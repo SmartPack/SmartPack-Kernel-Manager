@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- CPU -->
+    <string-array name="mc_power_saving_items">
+        <item>@string/disabled</item>
+        <item>@string/enabled</item>
+        <item>@string/aggressive</item>
+    </string-array>
+
+</resources>

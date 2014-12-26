@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="40dp"
+    android:id="@+id/header_view"
+    android:gravity="center_vertical"
+    android:textSize="15sp"
+    style="?android:attr/listSeparatorTextViewStyle" />

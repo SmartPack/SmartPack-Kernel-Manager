@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kernel Adiutor</string>
+    <string name="no_root">No root available</string>
+    <string name="no_busybox">No busybox available</string>
+    <string name="loading">Loading</string>
+
+    <!-- Units -->
+    <string name="mhz">MHz</string>
+    <string name="mv">mV</string>
+    <string name="kb">kB</string>
+
+    <!-- Special signs -->
+    <string name="minus">&lt;</string>
+    <string name="plus">&gt;</string>
+
+    <!-- Headers -->
+    <string name="information">Information</string>
+    <string name="kernel">Kernel</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Tabs -->
+    <string name="frequency_table">Frequency Table</string>
+    <string name="kernel_information">Kernel Information</string>
+    <string name="cpu">CPU</string>
+
+    <!-- Frequency Table -->
+    <string name="unused_cpu_states">Unused CPU states</string>
+    <string name="running_time">Running time</string>
+    <string name="deep_sleep">Deep Sleep</string>
+    <string name="refresh">Refresh</string>
+    <string name="reset_timer">Reset Timers</string>
+    <string name="restore_timer">Restore Timers</string>
+
+    <!-- Kernel Information -->
+    <string name="kernel_version">Kernel Version</string>
+    <string name="cpu_information">CPU Information</string>
+    <string name="memory_information">Memory Information</string>
+
+    <!-- CPU -->
+    <string name="current_freq">Current frequency</string>
+    <string name="core">Core %d</string>
+    <string name="offline">Offline</string>
+    <string name="cpu_max_freq">CPU Maximum Frequency</string>
+    <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
+    <string name="cpu_min_freq">CPU Minimum Frequency</string>
+    <string name="cpu_min_freq_summary">Set the minimum frequency the CPU scales down to.</string>
+    <string name="cpu_governor">CPU Governor</string>
+    <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to you CPU.</string>
+    <string name="cpu_governor_tunables">CPU Governor Tunables</string>
+    <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
+    <string name="not_tunable">%s is not tunable</string>
+    <string name="mc_power_saving">Multicore Power Saving</string>
+    <string name="mc_power_saving_summary">Try to group tasks into the least cores possible.</string>
+    <string name="disabled">Disabled</string>
+    <string name="enabled">Enabled</string>
+    <string name="aggressive">Aggressive</string>
+    <string name="mpdecision">MPDecision</string>
+    <string name="mpdecision_summary">QCOM\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
+    <string name="intelliplug">IntelliPlug</string>
+    <string name="intelliplug_summary">A MPDecision replacement by faux123.</string>
+    <string name="intelliplug_eco_mode">IntelliPlug Eco Mode</string>
+    <string name="intelliplug_eco_mode_summary">Battery saving mode for IntelliPlug.</string>
+
+    <!-- CPU Voltage -->
+    <string name="cpu_voltage">CPU Voltage</string>
+
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="gpu_stats">GPU Stats</string>
+    <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
+    <string name="gpu_3d_cur_freq">GPU 3D Current Frequency</string>
+    <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
+    <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
+    <string name="gpu_3d_max_freq">GPU 3D Maximum Frequency</string>
+    <string name="gpu_3d_max_freq_summary">Set the maximum 3D frequency the GPU scales up to.</string>
+    <string name="gpu_2d_governor">GPU 2D Governor</string>
+    <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
+    <string name="gpu_3d_governor">GPU 3D Governor</string>
+    <string name="gpu_3d_governor_summary">Set the 3D governor of the GPU.</string>
+
+    <!-- Screen -->
+    <string name="screen">Screen</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+
+    <!-- I/O Scheduler -->
+    <string name="io_scheduler">I/O Scheduler</string>
+    <string name="internal_scheduler">Internal Storage Scheduler</string>
+    <string name="internal_scheduler_summary">Set the active I/O elevator algorithm. The Scheduler decides how to handle I/O requests.</string>
+    <string name="external_scheduler">External Storage Scheduler</string>
+    <string name="internal_scheduler_tunable">Internal Storage Scheduler Tunable</string>
+    <string name="internal_scheduler_tunable_summary">The various configuration items which are Scheduler-dependent.</string>
+    <string name="external_scheduler_tunable">External Storage Scheduler Tunable</string>
+    <string name="internal_read_ahead">Internal Storage Read-ahead</string>
+    <string name="internal_read_ahead_summary">The Read-ahead value on the phone memory.</string>
+    <string name="external_read_ahead">External Storage Read-ahead</string>
+
+</resources>
