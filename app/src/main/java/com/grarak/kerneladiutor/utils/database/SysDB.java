@@ -89,6 +89,21 @@ public class SysDB implements Constants {
         return sysList;
     }
 
+    public void deleteAllSys() {
+        List<Sys> syss = getAllSys();
+        for (Sys sys : syss) deleteSys(sys.getId());
+    }
+
+    public void updateRow(long rowId, String sys, String value) {
+        String where = KEY_ID + "=" + rowId;
+
+        ContentValues newValues = new ContentValues();
+        newValues.put(KEY_SYS, sys);
+        newValues.put(KEY_VALUE, value);
+
+        database.update(TABLE_BOOT, newValues, where, null);
+    }
+
     private Sys cursorToSys(Cursor cursor) {
         Sys sys = new Sys();
         sys.setId(cursor.getLong(0));
