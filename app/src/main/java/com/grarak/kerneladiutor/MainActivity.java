@@ -28,6 +28,7 @@ import com.grarak.kerneladiutor.fragments.KSMFragment;
 import com.grarak.kerneladiutor.fragments.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.LMKFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.VMFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
@@ -166,6 +167,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
                         mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
                     if (LMK.hasMinFree())
                         mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+                    mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
 
                     mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
 

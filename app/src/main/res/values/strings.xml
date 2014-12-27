@@ -120,10 +120,12 @@
     <string name="hidden_app">Hidden Applications</string>
     <string name="content_providers">Content Providers</string>
     <string name="empty_app">Empty Applications</string>
-    <string name="profiles">Profiles</string>
     <string name="very_light">Very light</string>
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
+
+    <!-- Virtual Machine -->
+    <string name="virtual_machine">Virtual Machine</string>
 
 </resources>

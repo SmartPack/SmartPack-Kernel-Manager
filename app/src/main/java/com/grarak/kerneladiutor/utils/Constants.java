@@ -117,4 +117,7 @@ public interface Constants {
     // Low Memory Killer
     public final String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
 
+    // Virtual Machine
+    public final String VM_PATH = "/proc/sys/vm";
+
 }
