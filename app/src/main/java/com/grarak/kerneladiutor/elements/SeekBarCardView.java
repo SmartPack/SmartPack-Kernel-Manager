@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -115,6 +117,10 @@ public class SeekBarCardView extends BaseCardView {
         private int progress;
 
         private OnSeekBarCardListener onSeekBarCardListener;
+
+        public DSeekBarCardView(String[] array) {
+            this(new ArrayList<>(Arrays.asList(array)));
+        }
 
         public DSeekBarCardView(List<String> list) {
             this.list = list;

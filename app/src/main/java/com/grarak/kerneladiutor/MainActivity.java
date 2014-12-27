@@ -24,11 +24,13 @@ import com.grarak.kerneladiutor.fragments.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.GPUFragment;
 import com.grarak.kerneladiutor.fragments.IOFragment;
+import com.grarak.kerneladiutor.fragments.KSMFragment;
 import com.grarak.kerneladiutor.fragments.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
+import com.grarak.kerneladiutor.utils.kernel.KSM;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -158,6 +160,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     if (Screen.hasScreen())
                         mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
                     mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+                    if (KSM.hasKsm())
+                        mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
 
                     mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
 

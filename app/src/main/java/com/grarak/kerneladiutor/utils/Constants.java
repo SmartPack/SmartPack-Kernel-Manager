@@ -100,4 +100,18 @@ public interface Constants {
     public final String IO_INTERNAL_READ_AHEAD = "/sys/block/mmcblk0/queue/read_ahead_kb";
     public final String IO_EXTERNAL_READ_AHEAD = "/sys/block/mmcblk1/queue/read_ahead_kb";
 
+    // Kernel Samepage Merging
+    public final String KSM_FOLDER = "/sys/kernel/mm/ksm";
+    public final String KSM_FULL_SCANS = KSM_FOLDER + "/full_scans";
+    public final String KSM_PAGES_SHARED = KSM_FOLDER + "/pages_shared";
+    public final String KSM_PAGES_SHARING = KSM_FOLDER + "/pages_sharing";
+    public final String KSM_PAGES_UNSHARED = KSM_FOLDER + "/pages_unshared";
+    public final String KSM_PAGES_VOLATILE = KSM_FOLDER + "/pages_volatile";
+    public final String KSM_RUN = KSM_FOLDER + "/run";
+    public final String KSM_PAGES_TO_SCAN = KSM_FOLDER + "/pages_to_scan";
+    public final String KSM_SLEEP_MILLISECONDS = KSM_FOLDER + "/sleep_millisecs";
+
+    public final String[] KSM_INFOS = new String[]{KSM_FULL_SCANS, KSM_PAGES_SHARED, KSM_PAGES_SHARING, KSM_PAGES_UNSHARED,
+            KSM_PAGES_VOLATILE};
+
 }

@@ -8,4 +8,13 @@
         <item>@string/aggressive</item>
     </string-array>
 
+    <!-- Kernel Samepage Merging -->
+    <string-array name="ksm_infos">
+        <item>@string/ksm_full_scans</item>
+        <item>@string/ksm_pages_shared</item>
+        <item>@string/ksm_pages_sharing</item>
+        <item>@string/ksm_pages_unshared</item>
+        <item>@string/ksm_pages_volatile</item>
+    </string-array>
+
 </resources>
