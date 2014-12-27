@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.io.File;
@@ -46,6 +47,8 @@ public class PathReaderActivity extends ActionBarActivity {
     private SwipeRefreshLayout refreshLayout;
     private ListView list;
 
+    private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,19 @@ public class PathReaderActivity extends ActionBarActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDialog(files.get(position).getAbsolutePath(), values.get(position));
+                boolean freq = false;
+                for (String freqFile : FREQ_FILE)
+                    if (files.get(position).getName().equals(freqFile)) {
+                        freq = true;
+                        break;
+                    }
+
+                if (freq) {
+                    String[] values = new String[CPU.getFreqs().size()];
+                    for (int i = 0; i < values.length; i++)
+                        values[i] = String.valueOf(CPU.getFreqs().get(i));
+                    showPopupDialog(files.get(position).getAbsolutePath(), values);
+                } else showDialog(files.get(position).getAbsolutePath(), values.get(position));
             }
         });
         refreshLayout.addView(list);
@@ -147,8 +162,20 @@ public class PathReaderActivity extends ActionBarActivity {
                 }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Control.runCommand(editText.getText().toString(), file,
-                        Control.CommandType.GENERIC, PathReaderActivity.this);
+                Control.runCommand(editText.getText().toString(), file, Control.CommandType.GENERIC,
+                        PathReaderActivity.this);
+                refreshLayout.setRefreshing(true);
+                hand.postDelayed(run, 500);
+            }
+        }).show();
+    }
+
+    private void showPopupDialog(final String file, final String[] values) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setItems(values, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Control.runCommand(values[which], file, Control.CommandType.GENERIC, PathReaderActivity.this);
                 refreshLayout.setRefreshing(true);
                 hand.postDelayed(run, 500);
             }
