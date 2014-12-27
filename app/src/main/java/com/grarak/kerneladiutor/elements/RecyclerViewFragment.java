@@ -25,6 +25,9 @@ import java.util.List;
  */
 public class RecyclerViewFragment extends Fragment {
 
+    protected LayoutInflater inflater;
+    protected ViewGroup container;
+
     private ProgressBar progressBar;
     private final List<DAdapter.DView> views = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -33,6 +36,9 @@ public class RecyclerViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+        this.inflater = inflater;
+        this.container = container;
+
         views.clear();
 
         recyclerView = (RecyclerView) inflater.inflate(R.layout.recyclerview_vertical, container, false);

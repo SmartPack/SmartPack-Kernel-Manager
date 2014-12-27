@@ -20,6 +20,7 @@ import android.widget.Switch;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
+import com.grarak.kerneladiutor.fragments.AboutUsFragment;
 import com.grarak.kerneladiutor.fragments.CPUFragment;
 import com.grarak.kerneladiutor.fragments.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.FrequencyTableFragment;
@@ -172,6 +173,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     if (LMK.hasMinFree())
                         mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
                     mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+                    mList.add(new ListAdapter.Header(getString(R.string.other)));
+                    mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
 
                     mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
 

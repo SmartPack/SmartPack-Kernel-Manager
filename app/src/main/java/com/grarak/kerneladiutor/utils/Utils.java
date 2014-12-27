@@ -2,7 +2,9 @@ package com.grarak.kerneladiutor.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Display;
 import android.widget.Toast;
@@ -17,6 +19,10 @@ import java.io.IOException;
  * Created by willi on 30.11.14.
  */
 public class Utils implements Constants {
+
+    public static void launchUrl(Context context, String link) {
+        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+    }
 
     public static int getScreenOrientation(Context context) {
         Display getOrient = ((Activity) context).getWindowManager().getDefaultDisplay();

@@ -6,6 +6,8 @@
     <string name="no_busybox">No busybox available</string>
     <string name="loading">Loading</string>
     <string name="apply_on_boot">Apply on boot</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Units -->
     <string name="mhz">MHz</string>
@@ -21,13 +23,20 @@
     <!-- Headers -->
     <string name="information">Information</string>
     <string name="kernel">Kernel</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
+    <string name="other">Other</string>
 
     <!-- Tabs -->
     <string name="frequency_table">Frequency Table</string>
     <string name="kernel_information">Kernel Information</string>
     <string name="cpu">CPU</string>
+    <string name="cpu_voltage">CPU Voltage</string>
+    <string name="gpu">GPU</string>
+    <string name="screen">Screen</string>
+    <string name="io_scheduler">I/O Scheduler</string>
+    <string name="ksm">Kernel Samepage Merging</string>
+    <string name="low_memory_killer">Low Memory Killer</string>
+    <string name="virtual_machine">Virtual Machine</string>
+    <string name="about_us">About us</string>
 
     <!-- Frequency Table -->
     <string name="unused_cpu_states">Unused CPU states</string>
@@ -67,11 +76,7 @@
     <string name="intelliplug_eco_mode">IntelliPlug Eco Mode</string>
     <string name="intelliplug_eco_mode_summary">Battery saving mode for IntelliPlug.</string>
 
-    <!-- CPU Voltage -->
-    <string name="cpu_voltage">CPU Voltage</string>
-
     <!-- GPU -->
-    <string name="gpu">GPU</string>
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
     <string name="gpu_3d_cur_freq">GPU 3D Current Frequency</string>
     <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
@@ -84,13 +89,11 @@
     <string name="gpu_3d_governor_summary">Set the 3D governor of the GPU.</string>
 
     <!-- Screen -->
-    <string name="screen">Screen</string>
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
 
     <!-- I/O Scheduler -->
-    <string name="io_scheduler">I/O Scheduler</string>
     <string name="internal_scheduler">Internal Storage Scheduler</string>
     <string name="internal_scheduler_summary">Set the active I/O elevator algorithm. The Scheduler decides how to handle I/O requests.</string>
     <string name="external_scheduler">External Storage Scheduler</string>
@@ -102,7 +105,6 @@
     <string name="external_read_ahead">External Storage Read-ahead</string>
 
     <!-- Kernel Samepage Merging -->
-    <string name="ksm">Kernel Samepage Merging</string>
     <string name="ksm_full_scans">Full scans</string>
     <string name="ksm_pages_shared">Pages shared</string>
     <string name="ksm_pages_sharing">Pages sharing</string>
@@ -114,7 +116,6 @@
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
 
     <!-- Low Memory Killer -->
-    <string name="low_memory_killer">Low Memory Killer</string>
     <string name="foreground_app">Foreground Applications</string>
     <string name="visible_app">Visible Applications</string>
     <string name="secondary_server">Secondary Server</string>
@@ -126,7 +127,19 @@
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
 
-    <!-- Virtual Machine -->
-    <string name="virtual_machine">Virtual Machine</string>
+    <!-- About us -->
+    <string name="license">License</string>
+    <string name="app_license">Kernel Adiutor is licensed under the Apache License, Version 2.0, and uses following libraries</string>
+    <string name="support_v13">v13 Support Library</string>
+    <string name="appcompat_v7">v7 Appcompat Library</string>
+    <string name="cardview_v7">v7 Cardview Library</string>
+    <string name="recyclerview_v7">v7 Recyclerview Library</string>
+    <string name="by_google">by Google</string>
+    <string name="roottools">RootTools</string>
+    <string name="by_stericson">by Stephen Stericson</string>
+    <string name="open_source">Open source</string>
+    <string name="open_source_summary">This application is open source. Check it out on my Github.</string>
+    <string name="donate">Donate</string>
+    <string name="donate_summary">Buy me a beer! :)</string>
 
 </resources>
