@@ -79,15 +79,15 @@
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
-    <string name="gpu_3d_cur_freq">GPU 3D Current Frequency</string>
+    <string name="gpu_cur_freq">GPU Current Frequency</string>
     <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
     <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
-    <string name="gpu_3d_max_freq">GPU 3D Maximum Frequency</string>
-    <string name="gpu_3d_max_freq_summary">Set the maximum 3D frequency the GPU scales up to.</string>
+    <string name="gpu_max_freq">GPU Maximum Frequency</string>
+    <string name="gpu_max_freq_summary">Set the maximum frequency the GPU scales up to.</string>
     <string name="gpu_2d_governor">GPU 2D Governor</string>
     <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
-    <string name="gpu_3d_governor">GPU 3D Governor</string>
-    <string name="gpu_3d_governor_summary">Set the 3D governor of the GPU.</string>
+    <string name="gpu_governor">GPU Governor</string>
+    <string name="gpu_governor_summary">Set the governor of the GPU.</string>
 
     <!-- Screen -->
     <string name="red">Red</string>

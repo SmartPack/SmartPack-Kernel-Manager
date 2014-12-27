@@ -53,6 +53,12 @@ public interface Constants {
     public final String GPU_SCALING_FDB00000_QCOM_GOVERNOR = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/devfreq/governor";
     public final String GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/devfreq/available_governors";
 
+    public final String GPU_CUR_OMAP_FREQ = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/frequency";
+    public final String GPU_MAX_OMAP_FREQ = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/frequency_limit";
+    public final String GPU_AVAILABLE_OMAP_FREQS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/frequency_list";
+    public final String GPU_SCALING_OMAP_GOVERNOR = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor";
+    public final String GPU_AVAILABLE_OMAP_GOVERNORS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor_list";
+
     public final String[] GPU_2D_CUR_FREQ_ARRAY = new String[]{GPU_CUR_KGSL2D0_QCOM_FREQ};
 
     public final String[] GPU_2D_MAX_FREQ_ARRAY = new String[]{GPU_MAX_KGSL2D0_QCOM_FREQ};
@@ -61,23 +67,26 @@ public interface Constants {
 
     public final String[] GPU_2D_SCALING_GOVERNOR_ARRAY = new String[]{GPU_SCALING_KGSL2D0_QCOM_GOVERNOR};
 
-    public final String[] GPU_3D_CUR_FREQ_ARRAY = new String[]{GPU_CUR_KGSL3D0_QCOM_FREQ, GPU_CUR_FDB00000_QCOM_FREQ};
+    public final String[] GPU_CUR_FREQ_ARRAY = new String[]{GPU_CUR_KGSL3D0_QCOM_FREQ, GPU_CUR_FDB00000_QCOM_FREQ,
+            GPU_CUR_OMAP_FREQ};
 
-    public final String[] GPU_3D_MAX_FREQ_ARRAY = new String[]{GPU_MAX_KGSL3D0_QCOM_FREQ, GPU_MAX_FDB00000_QCOM_FREQ};
+    public final String[] GPU_MAX_FREQ_ARRAY = new String[]{GPU_MAX_KGSL3D0_QCOM_FREQ, GPU_MAX_FDB00000_QCOM_FREQ,
+            GPU_MAX_OMAP_FREQ};
 
-    public final String[] GPU_3D_AVAILABLE_FREQS_ARRAY = new String[]{GPU_AVAILABLE_KGSL3D0_QCOM_FREQS,
-            GPU_AVAILABLE_FDB00000_QCOM_FREQS};
+    public final String[] GPU_AVAILABLE_FREQS_ARRAY = new String[]{GPU_AVAILABLE_KGSL3D0_QCOM_FREQS,
+            GPU_AVAILABLE_FDB00000_QCOM_FREQS, GPU_AVAILABLE_OMAP_FREQS};
 
-    public final String[] GPU_3D_SCALING_GOVERNOR_ARRAY = new String[]{GPU_SCALING_KGSL3D0_QCOM_GOVERNOR,
-            GPU_SCALING_FDB00000_QCOM_GOVERNOR};
+    public final String[] GPU_SCALING_GOVERNOR_ARRAY = new String[]{GPU_SCALING_KGSL3D0_QCOM_GOVERNOR,
+            GPU_SCALING_FDB00000_QCOM_GOVERNOR, GPU_SCALING_OMAP_GOVERNOR};
 
-    public final String[] GPU_3D_AVAILABLE_GOVERNORS_ARRAY = new String[]{GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS};
+    public final String[] GPU_AVAILABLE_GOVERNORS_ARRAY = new String[]{GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS,
+            GPU_AVAILABLE_OMAP_GOVERNORS};
 
     public final String[][] GPU_ARRAY = new String[][]{GPU_2D_CUR_FREQ_ARRAY,
             GPU_2D_MAX_FREQ_ARRAY, GPU_2D_AVAILABLE_FREQS_ARRAY,
-            GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_3D_CUR_FREQ_ARRAY,
-            GPU_3D_MAX_FREQ_ARRAY, GPU_3D_AVAILABLE_FREQS_ARRAY,
-            GPU_3D_SCALING_GOVERNOR_ARRAY};
+            GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_CUR_FREQ_ARRAY,
+            GPU_MAX_FREQ_ARRAY, GPU_AVAILABLE_FREQS_ARRAY,
+            GPU_SCALING_GOVERNOR_ARRAY};
 
     // Screen
     public final String SCREEN_KCAL_CTRL = "/sys/devices/platform/kcal_ctrl.0/kcal";

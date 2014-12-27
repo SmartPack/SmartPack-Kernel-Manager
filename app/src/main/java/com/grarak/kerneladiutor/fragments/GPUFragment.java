@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
 
-    private CardViewItem.DCardView mCur2dFreqCard, mCur3dFreqCard;
+    private CardViewItem.DCardView mCur2dFreqCard, mCurFreqCard;
 
-    private PopupCardItem.DPopupCard mMax2dFreqCard, mMax3dFreqCard;
+    private PopupCardItem.DPopupCard mMax2dFreqCard, mMaxFreqCard;
 
-    private PopupCardItem.DPopupCard m2dGovernor, m3dGovernor;
+    private PopupCardItem.DPopupCard m2dGovernor, mGovernor;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -39,11 +39,11 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             addView(mCur2dFreqCard);
         }
 
-        if (GPU.hasGpu3dCurFreq()) {
-            mCur3dFreqCard = new CardViewItem.DCardView();
-            mCur3dFreqCard.setTitle(getString(R.string.gpu_3d_cur_freq));
+        if (GPU.hasGpuCurFreq()) {
+            mCurFreqCard = new CardViewItem.DCardView();
+            mCurFreqCard.setTitle(getString(R.string.gpu_cur_freq));
 
-            addView(mCur3dFreqCard);
+            addView(mCurFreqCard);
         }
     }
 
@@ -62,18 +62,18 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             addView(mMax2dFreqCard);
         }
 
-        if (GPU.hasGpu3dMaxFreq() && GPU.hasGpu3dFreqs()) {
+        if (GPU.hasGpuMaxFreq() && GPU.hasGpuFreqs()) {
             List<String> freqs = new ArrayList<>();
-            for (int freq : GPU.getGpu3dFreqs())
+            for (int freq : GPU.getGpuFreqs())
                 freqs.add(freq / 1000000 + getString(R.string.mhz));
 
-            mMax3dFreqCard = new PopupCardItem.DPopupCard(freqs);
-            mMax3dFreqCard.setTitle(getString(R.string.gpu_3d_max_freq));
-            mMax3dFreqCard.setDescription(getString(R.string.gpu_3d_max_freq_summary));
-            mMax3dFreqCard.setItem(GPU.getGpu3dMaxFreq() / 1000000 + getString(R.string.mhz));
-            mMax3dFreqCard.setOnDPopupCardListener(this);
+            mMaxFreqCard = new PopupCardItem.DPopupCard(freqs);
+            mMaxFreqCard.setTitle(getString(R.string.gpu_max_freq));
+            mMaxFreqCard.setDescription(getString(R.string.gpu_max_freq_summary));
+            mMaxFreqCard.setItem(GPU.getGpuMaxFreq() / 1000000 + getString(R.string.mhz));
+            mMaxFreqCard.setOnDPopupCardListener(this);
 
-            addView(mMax3dFreqCard);
+            addView(mMaxFreqCard);
         }
     }
 
@@ -88,14 +88,14 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             addView(m2dGovernor);
         }
 
-        if (GPU.hasGpu3dGovernor()) {
-            m3dGovernor = new PopupCardItem.DPopupCard(GPU.getGpu3dGovernors());
-            m3dGovernor.setTitle(getString(R.string.gpu_3d_governor));
-            m3dGovernor.setDescription(getString(R.string.gpu_3d_governor_summary));
-            m3dGovernor.setItem(GPU.getGpu3dGovernor());
-            m3dGovernor.setOnDPopupCardListener(this);
+        if (GPU.hasGpuGovernor()) {
+            mGovernor = new PopupCardItem.DPopupCard(GPU.getGpuGovernors());
+            mGovernor.setTitle(getString(R.string.gpu_governor));
+            mGovernor.setDescription(getString(R.string.gpu_governor_summary));
+            mGovernor.setItem(GPU.getGpuGovernor());
+            mGovernor.setOnDPopupCardListener(this);
 
-            addView(m3dGovernor);
+            addView(mGovernor);
         }
     }
 
@@ -103,12 +103,12 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMax2dFreqCard)
             GPU.setGpu2dMaxFreq(GPU.getGpu2dFreqs().get(position), getActivity());
-        if (dPopupCard == mMax3dFreqCard)
-            GPU.setGpu3dMaxFreq(GPU.getGpu3dFreqs().get(position), getActivity());
+        if (dPopupCard == mMaxFreqCard)
+            GPU.setGpuMaxFreq(GPU.getGpuFreqs().get(position), getActivity());
         if (dPopupCard == m2dGovernor)
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
-        if (dPopupCard == m3dGovernor)
-            GPU.setGpu3dGovernor(GPU.getGpu3dGovernors().get(position), getActivity());
+        if (dPopupCard == mGovernor)
+            GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
     }
 
     @Override
@@ -119,8 +119,8 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
         if (mCur2dFreqCard != null)
             mCur2dFreqCard.setDescription(GPU.getGpu2dCurFreq() / 1000000 + MHZ);
 
-        if (mCur3dFreqCard != null)
-            mCur3dFreqCard.setDescription(GPU.getGpu3dCurFreq() / 1000000 + MHZ);
+        if (mCurFreqCard != null)
+            mCurFreqCard.setDescription(GPU.getGpuCurFreq() / 1000000 + MHZ);
 
         return true;
     }
