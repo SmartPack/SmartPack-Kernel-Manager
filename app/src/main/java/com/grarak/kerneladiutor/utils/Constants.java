@@ -95,9 +95,18 @@ public interface Constants {
     public final String SCREEN_DIAG0_POWER = "/sys/devices/platform/DIAG0.0/power_rail";
     public final String SCREEN_DIAG0_POWER_CTRL = "/sys/devices/platform/DIAG0.0/power_rail_ctrl";
 
-    public final String[] SCREEN_KCAL_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER};
+    public final String SCREEN_COLOR_CONTROL = "/sys/class/misc/colorcontrol/multiplier";
+    public final String SCREEN_COLOR_CONTROL_CTRL = "/sys/class/misc/colorcontrol/safety_enabled";
 
-    public final String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_DIAG0_POWER_CTRL};
+    public final String SCREEN_SAMOLED_COLOR_RED = "/sys/class/misc/samoled_color/red_multiplier";
+    public final String SCREEN_SAMOLED_COLOR_GREEN = "/sys/class/misc/samoled_color/green_multiplier";
+    public final String SCREEN_SAMOLED_COLOR_BLUE = "/sys/class/misc/samoled_color/blue_multiplier";
+
+    public final String[] SCREEN_KCAL_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER, SCREEN_COLOR_CONTROL,
+            SCREEN_SAMOLED_COLOR_RED};
+
+    public final String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_DIAG0_POWER_CTRL,
+            SCREEN_COLOR_CONTROL_CTRL};
 
     public final String[][] SCREEN_ARRAY = {SCREEN_KCAL_ARRAY, SCREEN_KCAL_CTRL_ARRAY};
 

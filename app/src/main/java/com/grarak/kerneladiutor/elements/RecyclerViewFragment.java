@@ -69,8 +69,7 @@ public class RecyclerViewFragment extends Fragment {
         ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER_VERTICAL | Gravity.END));
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
     }
 
     public void init(Bundle savedInstanceState) {
@@ -102,8 +101,8 @@ public class RecyclerViewFragment extends Fragment {
         }
 
         @Override
-        protected String doInBackground(Bundle... params) {
-            init(params[0]);
+        protected String doInBackground(final Bundle... params) {
+            if (isAdded()) init(params[0]);
             return null;
         }
 

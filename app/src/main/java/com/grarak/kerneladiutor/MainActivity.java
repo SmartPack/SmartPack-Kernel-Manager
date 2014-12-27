@@ -1,22 +1,24 @@
 package com.grarak.kerneladiutor;
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -48,7 +50,8 @@ import java.util.List;
  */
 public class MainActivity extends ActionBarActivity implements Constants {
 
-    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
+    private Toolbar toolbar;
 
     private String mTitle;
 
@@ -67,6 +70,16 @@ public class MainActivity extends ActionBarActivity implements Constants {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "Initialize for " + MODEL);
         setContentView(R.layout.activity_main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        progressBar = new ProgressBar(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER_VERTICAL | Gravity.END));
 
         new Task().execute();
     }
@@ -90,6 +103,69 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mDrawerList.setItemChecked(position, true);
     }
 
+    private void setList() {
+        mList.clear();
+        mList.add(new ListAdapter.Header(getString(R.string.information)));
+        mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
+        mList.add(new ListAdapter.Header(getString(R.string.kernel)));
+        mList.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
+        if (CPUVoltage.hasCpuVoltage())
+            mList.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+        if (GPU.hasGpuControl())
+            mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+        if (Screen.hasScreen())
+            mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+        if (KSM.hasKsm())
+            mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+        if (LMK.hasMinFree())
+            mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+        mList.add(new ListAdapter.Header(getString(R.string.other)));
+        mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
+    }
+
+    private void setView() {
+        mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        SwitchCompat mApplyOnBootSwitch = (SwitchCompat) findViewById(R.id.apply_on_boot_switch);
+        mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
+        mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.saveBoolean("applyonboot", ((SwitchCompat) v).isChecked(), MainActivity.this);
+            }
+        });
+
+        mDrawerList = (ListView) findViewById(R.id.drawer_list);
+        mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItem(position);
+            }
+        });
+
+        mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                getSupportActionBar().setTitle(mTitle);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(getString(R.string.app_name));
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mDrawerToggle.onOptionsItemSelected(item);
@@ -104,7 +180,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
+        if (mDrawerToggle != null) mDrawerToggle.syncState();
     }
 
     @Override
@@ -119,82 +195,13 @@ public class MainActivity extends ActionBarActivity implements Constants {
         else mDrawerLayout.openDrawer(mScrimInsetsFrameLayout);
     }
 
-    private final Runnable init = new Runnable() {
-        @Override
-        public void run() {
-            mList.clear();
-            mList.add(new ListAdapter.Header(getString(R.string.information)));
-            mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
-            mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
-            mList.add(new ListAdapter.Header(getString(R.string.kernel)));
-            mList.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
-            if (CPUVoltage.hasCpuVoltage())
-                mList.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
-            if (GPU.hasGpuControl())
-                mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
-            if (Screen.hasScreen())
-                mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
-            mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
-            if (KSM.hasKsm())
-                mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-            if (LMK.hasMinFree())
-                mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-            mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
-            mList.add(new ListAdapter.Header(getString(R.string.other)));
-            mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
-
-            mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
-
-            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
-            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-            SwitchCompat mApplyOnBootSwitch = (SwitchCompat) findViewById(R.id.apply_on_boot_switch);
-            mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
-            mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Utils.saveBoolean("applyonboot", ((SwitchCompat) v).isChecked(), MainActivity.this);
-                }
-            });
-
-            mDrawerList = (ListView) findViewById(R.id.drawer_list);
-            mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
-            mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    selectItem(position);
-                }
-            });
-
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    getSupportActionBar().setTitle(mTitle);
-                }
-
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    getSupportActionBar().setTitle(getString(R.string.app_name));
-                }
-            };
-
-            mDrawerLayout.setDrawerListener(mDrawerToggle);
-        }
-    };
-
-    private class Task extends AsyncTask<Void, Void, Void> {
+    private class Task extends AsyncTask<Void, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage(getString(R.string.loading));
-            progressDialog.show();
+            progressBar.setVisibility(View.VISIBLE);
 
             // Check root access and busybox installation
             boolean hasRoot = false;
@@ -220,21 +227,20 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
             for (String file : files) RootUtils.runCommand("chmod 644 " + file);
 
-            runOnUiThread(init);
-
+            setList();
+            setView();
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             selectItem(cur_position);
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-
-            progressDialog.dismiss();
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressBar.setVisibility(View.GONE);
         }
     }
 
