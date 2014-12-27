@@ -68,24 +68,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         Log.i(TAG, "Initialize for " + MODEL);
         setContentView(R.layout.activity_main);
 
-        // Check root access and busybox installation
-        boolean hasRoot = false;
-        boolean hasBusybox = false;
-        if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-        if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
-
-        if (!hasRoot || !hasBusybox) {
-            Intent i = new Intent(MainActivity.this, TextActivity.class);
-            Bundle args = new Bundle();
-            args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
-            Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
-            i.putExtras(args);
-            startActivity(i);
-
-            finish();
-            return;
-        }
-
         new Task().execute();
     }
 
@@ -137,6 +119,73 @@ public class MainActivity extends ActionBarActivity implements Constants {
         else mDrawerLayout.openDrawer(mScrimInsetsFrameLayout);
     }
 
+    private final Runnable init = new Runnable() {
+        @Override
+        public void run() {
+            mList.clear();
+            mList.add(new ListAdapter.Header(getString(R.string.information)));
+            mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
+            mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
+            mList.add(new ListAdapter.Header(getString(R.string.kernel)));
+            mList.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
+            if (CPUVoltage.hasCpuVoltage())
+                mList.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+            if (GPU.hasGpuControl())
+                mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+            if (Screen.hasScreen())
+                mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+            mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+            if (KSM.hasKsm())
+                mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+            if (LMK.hasMinFree())
+                mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+            mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+            mList.add(new ListAdapter.Header(getString(R.string.other)));
+            mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
+
+            mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
+
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
+            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+            Switch mApplyOnBootSwitch = (Switch) findViewById(R.id.apply_on_boot_switch);
+            mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
+            mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Utils.saveBoolean("applyonboot", ((Switch) v).isChecked(), MainActivity.this);
+                }
+            });
+
+            mDrawerList = (ListView) findViewById(R.id.drawer_list);
+            mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
+            mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    selectItem(position);
+                }
+            });
+
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    getSupportActionBar().setTitle(mTitle);
+                }
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    getSupportActionBar().setTitle(getString(R.string.app_name));
+                }
+            };
+
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+        }
+    };
+
     private class Task extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -147,77 +196,31 @@ public class MainActivity extends ActionBarActivity implements Constants {
             progressDialog.setMessage(getString(R.string.loading));
             progressDialog.show();
 
+            // Check root access and busybox installation
+            boolean hasRoot = false;
+            boolean hasBusybox = false;
+            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+
+            if (!hasRoot || !hasBusybox) {
+                Intent i = new Intent(MainActivity.this, TextActivity.class);
+                Bundle args = new Bundle();
+                args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
+                Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
+                i.putExtras(args);
+                startActivity(i);
+
+                cancel(true);
+                finish();
+                return;
+            }
+
             String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
                     String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
 
             for (String file : files) RootUtils.runCommand("chmod 644 " + file);
 
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mList.clear();
-                    mList.add(new ListAdapter.Header(getString(R.string.information)));
-                    mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
-                    mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
-                    mList.add(new ListAdapter.Header(getString(R.string.kernel)));
-                    mList.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
-                    if (CPUVoltage.hasCpuVoltage())
-                        mList.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
-                    if (GPU.hasGpuControl())
-                        mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
-                    if (Screen.hasScreen())
-                        mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
-                    mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
-                    if (KSM.hasKsm())
-                        mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-                    if (LMK.hasMinFree())
-                        mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-                    mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
-                    mList.add(new ListAdapter.Header(getString(R.string.other)));
-                    mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
-
-                    mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
-
-                    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
-                    mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-                    Switch mApplyOnBootSwitch = (Switch) findViewById(R.id.apply_on_boot_switch);
-                    mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
-                    mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Utils.saveBoolean("applyonboot", ((Switch) v).isChecked(), MainActivity.this);
-                        }
-                    });
-
-                    mDrawerList = (ListView) findViewById(R.id.drawer_list);
-                    mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
-                    mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            selectItem(position);
-                        }
-                    });
-
-                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                    setSupportActionBar(toolbar);
-
-                    mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-                        @Override
-                        public void onDrawerClosed(View drawerView) {
-                            getSupportActionBar().setTitle(mTitle);
-                        }
-
-                        @Override
-                        public void onDrawerOpened(View drawerView) {
-                            getSupportActionBar().setTitle(getString(R.string.app_name));
-                        }
-                    };
-
-                    mDrawerLayout.setDrawerListener(mDrawerToggle);
-                }
-            });
+            runOnUiThread(init);
 
         }
 

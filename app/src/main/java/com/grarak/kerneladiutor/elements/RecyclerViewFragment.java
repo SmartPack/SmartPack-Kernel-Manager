@@ -51,9 +51,9 @@ public class RecyclerViewFragment extends Fragment {
         setProgressBar(progressBar);
         adapter = new DAdapter.Adapter(views);
 
-        if (isAdded()) new Task().execute(savedInstanceState);
-
         recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in));
+
+        if (isAdded()) new Task().execute(savedInstanceState);
 
         return recyclerView;
     }

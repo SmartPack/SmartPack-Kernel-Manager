@@ -2,7 +2,6 @@ package com.grarak.kerneladiutor.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -63,7 +62,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mCoreProgressBar = new ProgressBar[mCoreCheckBox.length];
         mCoreFreqText = new TextView[mCoreCheckBox.length];
         for (int i = 0; i < mCoreCheckBox.length; i++) {
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.coreview, null, false);
+            View view = inflater.inflate(R.layout.coreview, container, false);
 
             mCoreCheckBox[i] = (CheckBox) view.findViewById(R.id.checkbox);
             mCoreCheckBox[i].setText(getString(R.string.core, i + 1));
