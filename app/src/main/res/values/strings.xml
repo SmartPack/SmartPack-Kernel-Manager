@@ -6,6 +6,7 @@
     <string name="no_busybox">No busybox available</string>
     <string name="loading">Loading</string>
     <string name="apply_on_boot">Apply on boot</string>
+    <string name="apply_on_boot_summary">Your changes have been applied</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 

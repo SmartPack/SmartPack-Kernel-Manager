@@ -35,6 +35,9 @@ public class BootReceiver extends BroadcastReceiver {
         db.close();
 
         for (SysDB.Sys sys : list) RootUtils.runCommand(sys.getValue());
+
+        Utils.toast(context.getString(R.string.apply_on_boot_summary), context);
+
     }
 
 }
