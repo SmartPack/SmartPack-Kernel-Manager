@@ -10,13 +10,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Switch;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -149,12 +149,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
             mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
             mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-            Switch mApplyOnBootSwitch = (Switch) findViewById(R.id.apply_on_boot_switch);
+            SwitchCompat mApplyOnBootSwitch = (SwitchCompat) findViewById(R.id.apply_on_boot_switch);
             mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
             mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Utils.saveBoolean("applyonboot", ((Switch) v).isChecked(), MainActivity.this);
+                    Utils.saveBoolean("applyonboot", ((SwitchCompat) v).isChecked(), MainActivity.this);
                 }
             });
 

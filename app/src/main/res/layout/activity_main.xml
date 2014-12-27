@@ -65,7 +65,7 @@
                         android:textSize="30sp"
                         android:text="@string/app_name" />
 
-                    <Switch
+                    <android.support.v7.widget.SwitchCompat
                         android:id="@+id/apply_on_boot_switch"
                         android:text="@string/apply_on_boot"
                         android:layout_width="match_parent"
