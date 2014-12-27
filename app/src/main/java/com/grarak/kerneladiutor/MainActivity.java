@@ -153,6 +153,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
         mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
             @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+            }
+
+            @Override
             public void onDrawerClosed(View drawerView) {
                 getSupportActionBar().setTitle(mTitle);
             }
