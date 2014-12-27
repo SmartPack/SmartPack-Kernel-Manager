@@ -29,16 +29,14 @@ public class Utils implements Constants {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public static int getInteger(String name, int defaults, Context context) {
+    public static boolean getBoolean(String name, boolean defaults, Context context) {
         Log.i(TAG, "getting " + name);
-        return context.getSharedPreferences(PREF_NAME, 0)
-                .getInt(name, defaults);
+        return context.getSharedPreferences(PREF_NAME, 0).getBoolean(name, defaults);
     }
 
-    public static void saveInteger(String name, int value, Context context) {
+    public static void saveBoolean(String name, boolean value, Context context) {
         Log.i(TAG, "saving " + name + " as " + value);
-        context.getSharedPreferences(PREF_NAME, 0).edit().putInt(name, value)
-                .apply();
+        context.getSharedPreferences(PREF_NAME, 0).edit().putBoolean(name, value).apply();
     }
 
     public static boolean existFile(String file) {

@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <FrameLayout
             android:id="@+id/content_frame"
@@ -49,15 +49,31 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
 
-                <TextView
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_gravity="bottom"
-                    android:paddingLeft="16dp"
-                    android:paddingBottom="3dp"
-                    android:layout_height="56dp"
                     android:layout_width="match_parent"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp"
-                    android:text="@string/app_name" />
+                    android:layout_height="76dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="3dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp"
+                        android:text="@string/app_name" />
+
+                    <Switch
+                        android:id="@+id/apply_on_boot_switch"
+                        android:text="@string/apply_on_boot"
+                        android:layout_width="match_parent"
+                        android:textColor="@android:color/white"
+                        android:layout_height="14dp" />
+
+                </LinearLayout>
+
             </FrameLayout>
 
             <ListView

@@ -28,6 +28,10 @@
             android:name=".PathReaderActivity"
             android:theme="@style/AppThemeActionBar"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <receiver android:name="BootReceiver">
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </receiver>
     </application>
 
 </manifest>

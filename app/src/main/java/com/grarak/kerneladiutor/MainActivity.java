@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -30,6 +31,7 @@ import com.grarak.kerneladiutor.fragments.LMKFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.VMFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
@@ -117,6 +119,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
@@ -137,10 +145,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.setMessage(getString(R.string.loading));
             progressDialog.show();
-
-            setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
 
             String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
                     String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
@@ -175,6 +179,15 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
                     mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
+                    Switch mApplyOnBootSwitch = (Switch) findViewById(R.id.apply_on_boot_switch);
+                    mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
+                    mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Utils.saveBoolean("applyonboot", ((Switch) v).isChecked(), MainActivity.this);
+                        }
+                    });
+
                     mDrawerList = (ListView) findViewById(R.id.drawer_list);
                     mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
                     mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -184,7 +197,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
                         }
                     });
 
-                    mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, 0, 0) {
+                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                    setSupportActionBar(toolbar);
+
+                    mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
                         @Override
                         public void onDrawerClosed(View drawerView) {
                             getSupportActionBar().setTitle(mTitle);
@@ -195,13 +211,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
                             getSupportActionBar().setTitle(getString(R.string.app_name));
                         }
                     };
-
-                    mDrawerLayout.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mDrawerToggle.syncState();
-                        }
-                    });
 
                     mDrawerLayout.setDrawerListener(mDrawerToggle);
                 }
