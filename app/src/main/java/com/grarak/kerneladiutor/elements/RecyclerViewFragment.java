@@ -35,7 +35,7 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         views.clear();
 
-        recyclerView = new RecyclerView(getActivity());
+        recyclerView = (RecyclerView) inflater.inflate(R.layout.recyclerview_vertical, container, false);
         recyclerView.setHasFixedSize(true);
 
         progressBar = new ProgressBar(getActivity());
