@@ -87,7 +87,7 @@ public class CheckBoxCardItem extends BaseCardView {
         private String description;
         private boolean checked;
 
-        private OnCheckBoxCardListener onCheckBoxCardListener;
+        private OnDCheckBoxCardListener onDCheckBoxCardListener;
 
         @Override
         public Holder onCreateViewHolder(ViewGroup viewGroup) {
@@ -120,24 +120,24 @@ public class CheckBoxCardItem extends BaseCardView {
             if (checkBoxCardItem != null) checkBoxCardItem.setChecked(checked);
         }
 
-        public void setOnCheckBoxCardListener(OnCheckBoxCardListener onCheckBoxCardListener) {
-            this.onCheckBoxCardListener = onCheckBoxCardListener;
+        public void setOnDCheckBoxCardListener(OnDCheckBoxCardListener onDCheckBoxCardListener) {
+            this.onDCheckBoxCardListener = onDCheckBoxCardListener;
             setUpListener();
         }
 
         private void setUpListener() {
-            if (onCheckBoxCardListener != null && checkBoxCardItem != null) {
+            if (onDCheckBoxCardListener != null && checkBoxCardItem != null) {
                 checkBoxCardItem.setOnCheckBoxCardListener(new CheckBoxCardItem.OnCheckBoxCardListener() {
                     @Override
                     public void onChecked(CheckBoxCardItem checkBoxCardItem, boolean checked) {
                         DCheckBoxCard.this.checked = checked;
-                        onCheckBoxCardListener.onChecked(DCheckBoxCard.this, checked);
+                        onDCheckBoxCardListener.onChecked(DCheckBoxCard.this, checked);
                     }
                 });
             }
         }
 
-        public interface OnCheckBoxCardListener {
+        public interface OnDCheckBoxCardListener {
             public void onChecked(DCheckBoxCard dCheckBoxCard, boolean checked);
         }
 

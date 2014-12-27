@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by willi on 26.12.14.
  */
-public class IOFragment extends RecyclerViewFragment implements Constants, PopupCardItem.DPopupCard.OnPopupCardListener,
+public class IOFragment extends RecyclerViewFragment implements Constants, PopupCardItem.DPopupCard.OnDPopupCardListener,
         CardViewItem.DCardView.OnDCardListener {
 
     List<String> readheads = new ArrayList<>();
@@ -43,7 +43,7 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
         mInternalScheduler.setTitle(getString(R.string.internal_scheduler));
         mInternalScheduler.setDescription(getString(R.string.internal_scheduler_summary));
         mInternalScheduler.setItem(IO.getScheduler(IO.StorageType.INTERNAL));
-        mInternalScheduler.setOnPopupCardListener(this);
+        mInternalScheduler.setOnDPopupCardListener(this);
 
         addView(mInternalScheduler);
 
@@ -51,7 +51,7 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
             mExternalScheduler = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
             mExternalScheduler.setDescription(getString(R.string.external_scheduler));
             mExternalScheduler.setItem(IO.getScheduler(IO.StorageType.EXTERNAL));
-            mExternalScheduler.setOnPopupCardListener(this);
+            mExternalScheduler.setOnDPopupCardListener(this);
 
             addView(mExternalScheduler);
         }
@@ -82,7 +82,7 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
         mInternalReadAhead.setTitle(getString(R.string.internal_read_ahead));
         mInternalReadAhead.setDescription(getString(R.string.internal_read_ahead_summary));
         mInternalReadAhead.setItem(IO.getReadahead(IO.StorageType.INTERNAL) + getString(R.string.kb));
-        mInternalReadAhead.setOnPopupCardListener(this);
+        mInternalReadAhead.setOnDPopupCardListener(this);
 
         addView(mInternalReadAhead);
 
@@ -90,7 +90,7 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
             mExternalReadAhead = new PopupCardItem.DPopupCard(readheads);
             mExternalReadAhead.setDescription(getString(R.string.external_read_ahead));
             mExternalReadAhead.setItem(IO.getReadahead(IO.StorageType.EXTERNAL) + getString(R.string.kb));
-            mExternalReadAhead.setOnPopupCardListener(this);
+            mExternalReadAhead.setOnDPopupCardListener(this);
 
             addView(mExternalReadAhead);
         }

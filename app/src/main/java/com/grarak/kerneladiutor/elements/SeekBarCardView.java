@@ -116,7 +116,7 @@ public class SeekBarCardView extends BaseCardView {
         private String title;
         private int progress;
 
-        private OnSeekBarCardListener onSeekBarCardListener;
+        private OnDSeekBarCardListener onDSeekBarCardListener;
 
         public DSeekBarCardView(String[] array) {
             this(new ArrayList<>(Arrays.asList(array)));
@@ -142,8 +142,8 @@ public class SeekBarCardView extends BaseCardView {
                 @Override
                 public void onStop(SeekBarCardView seekBarCardView, int progress) {
                     DSeekBarCardView.this.progress = progress;
-                    if (onSeekBarCardListener != null)
-                        onSeekBarCardListener.onStop(DSeekBarCardView.this, progress);
+                    if (onDSeekBarCardListener != null)
+                        onDSeekBarCardListener.onStop(DSeekBarCardView.this, progress);
                 }
             });
         }
@@ -158,11 +158,11 @@ public class SeekBarCardView extends BaseCardView {
             if (seekBarCardView != null) seekBarCardView.setProgress(progress);
         }
 
-        public void setOnSeekBarCardListener(OnSeekBarCardListener onSeekBarCardListener) {
-            this.onSeekBarCardListener = onSeekBarCardListener;
+        public void setOnDSeekBarCardListener(OnDSeekBarCardListener onDSeekBarCardListener) {
+            this.onDSeekBarCardListener = onDSeekBarCardListener;
         }
 
-        public interface OnSeekBarCardListener {
+        public interface OnDSeekBarCardListener {
             public void onStop(DSeekBarCardView dSeekBarCardView, int position);
         }
 

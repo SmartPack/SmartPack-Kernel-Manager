@@ -132,7 +132,7 @@ public class PopupCardItem extends BaseCardView {
         private String description;
         private String value;
 
-        private OnPopupCardListener onPopupCardListener;
+        private OnDPopupCardListener onDPopupCardListener;
 
         public DPopupCard(String[] array) {
             this(new ArrayList<>(Arrays.asList(array)));
@@ -154,8 +154,8 @@ public class PopupCardItem extends BaseCardView {
             popupCardItem.setOnPopupCardListener(new PopupCardItem.OnPopupCardListener() {
                 @Override
                 public void onItemSelected(PopupCardItem popupCardItem, int position) {
-                    if (onPopupCardListener != null)
-                        onPopupCardListener.onItemSelected(DPopupCard.this, position);
+                    if (onDPopupCardListener != null)
+                        onDPopupCardListener.onItemSelected(DPopupCard.this, position);
                 }
             });
 
@@ -184,11 +184,11 @@ public class PopupCardItem extends BaseCardView {
             if (popupCardItem != null) popupCardItem.setItem(value);
         }
 
-        public void setOnPopupCardListener(OnPopupCardListener onPopupCardListener) {
-            this.onPopupCardListener = onPopupCardListener;
+        public void setOnDPopupCardListener(OnDPopupCardListener onDPopupCardListener) {
+            this.onDPopupCardListener = onDPopupCardListener;
         }
 
-        public interface OnPopupCardListener {
+        public interface OnDPopupCardListener {
             public void onItemSelected(DPopupCard dPopupCard, int position);
         }
 

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by willi on 27.12.14.
  */
 public class KSMFragment extends RecyclerViewFragment implements Constants,
-        CheckBoxCardItem.DCheckBoxCard.OnCheckBoxCardListener, SeekBarCardView.DSeekBarCardView.OnSeekBarCardListener {
+        CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
 
@@ -74,7 +74,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
         mEnableKsm.setTitle(getString(R.string.ksm_enable));
         mEnableKsm.setDescription(getString(R.string.ksm_enable_summary));
         mEnableKsm.setChecked(KSM.isKsmActive());
-        mEnableKsm.setOnCheckBoxCardListener(this);
+        mEnableKsm.setOnDCheckBoxCardListener(this);
 
         addView(mEnableKsm);
 
@@ -83,7 +83,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
         mPagesToScan = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
         mPagesToScan.setTitle(getString(R.string.ksm_pages_to_scan));
         mPagesToScan.setProgress(mPagesToScanValues.indexOf(String.valueOf(KSM.getPagesToScan())));
-        mPagesToScan.setOnSeekBarCardListener(this);
+        mPagesToScan.setOnDSeekBarCardListener(this);
 
         addView(mPagesToScan);
 
@@ -92,7 +92,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
         mSleepMilliseconds = new SeekBarCardView.DSeekBarCardView(mSleepMillisecondsValues);
         mSleepMilliseconds.setTitle(getString(R.string.ksm_sleep_milliseconds));
         mSleepMilliseconds.setProgress(mSleepMillisecondsValues.indexOf(KSM.getSleepMilliseconds() + getString(R.string.ms)));
-        mSleepMilliseconds.setOnSeekBarCardListener(this);
+        mSleepMilliseconds.setOnDSeekBarCardListener(this);
 
         addView(mSleepMilliseconds);
     }

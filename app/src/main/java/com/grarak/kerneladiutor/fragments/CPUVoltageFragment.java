@@ -53,7 +53,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
             mVoltage[i].setDescription(voltage + getString(R.string.mv));
             mVoltage[i].setValue(voltage);
             mVoltage[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-            mVoltage[i].setOnEditTextCardListener(new EditTextCardView.DEditTextCard.OnEditTextCardListener() {
+            mVoltage[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
                     List<String> voltages = CPUVoltage.getVoltages();

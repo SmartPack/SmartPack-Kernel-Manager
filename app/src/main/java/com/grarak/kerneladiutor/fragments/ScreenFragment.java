@@ -51,7 +51,7 @@ public class ScreenFragment extends RecyclerViewFragment {
                 mColorCalibration[i] = new SeekBarCardView.DSeekBarCardView(Screen.getLimits());
                 mColorCalibration[i].setTitle(getColor(i));
                 mColorCalibration[i].setProgress(Screen.getLimits().indexOf(colors.get(i)));
-                mColorCalibration[i].setOnSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnSeekBarCardListener() {
+                mColorCalibration[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
                     @Override
                     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
                         List<String> colors = Screen.getColorCalibration();

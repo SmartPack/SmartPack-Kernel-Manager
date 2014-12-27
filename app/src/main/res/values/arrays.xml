@@ -17,4 +17,21 @@
         <item>@string/ksm_pages_volatile</item>
     </string-array>
 
+    <!-- Low Memory Killer -->
+    <string-array name="lmk_names">
+        <item>@string/foreground_app</item>
+        <item>@string/visible_app</item>
+        <item>@string/secondary_server</item>
+        <item>@string/hidden_app</item>
+        <item>@string/content_providers</item>
+        <item>@string/empty_app</item>
+    </string-array>
+    <string-array name="lmk_profiles">
+        <item>@string/very_light</item>
+        <item>@string/light</item>
+        <item>@string/medium</item>
+        <item>@string/aggressive</item>
+        <item>@string/very_aggressive</item>
+    </string-array>
+
 </resources>

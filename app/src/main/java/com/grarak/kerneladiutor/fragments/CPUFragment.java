@@ -25,8 +25,8 @@ import java.util.List;
  * Created by willi on 22.12.14.
  */
 public class CPUFragment extends RecyclerViewFragment implements Constants, View.OnClickListener,
-        PopupCardItem.DPopupCard.OnPopupCardListener, CardViewItem.DCardView.OnDCardListener,
-        CheckBoxCardItem.DCheckBoxCard.OnCheckBoxCardListener {
+        PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener,
+        CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener {
 
     private CheckBox[] mCoreCheckBox;
     private ProgressBar[] mCoreProgressBar;
@@ -94,13 +94,13 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mMaxFreq.setTitle(getString(R.string.cpu_max_freq));
         mMaxFreq.setDescription(getString(R.string.cpu_max_freq_summary));
         mMaxFreq.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
-        mMaxFreq.setOnPopupCardListener(this);
+        mMaxFreq.setOnDPopupCardListener(this);
 
         mMinFreq = new PopupCardItem.DPopupCard(freqs);
         mMinFreq.setTitle(getString(R.string.cpu_min_freq));
         mMinFreq.setDescription(getString(R.string.cpu_min_freq_summary));
         mMinFreq.setItem(CPU.getMinFreq(0) / 1000 + MHZ);
-        mMinFreq.setOnPopupCardListener(this);
+        mMinFreq.setOnDPopupCardListener(this);
 
         addView(mMaxFreq);
         addView(mMinFreq);
@@ -111,7 +111,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mGovernor.setTitle(getString(R.string.cpu_governor));
         mGovernor.setDescription(getString(R.string.cpu_governor_summary));
         mGovernor.setItem(CPU.getCurGovernor(0));
-        mGovernor.setOnPopupCardListener(this);
+        mGovernor.setOnDPopupCardListener(this);
 
         mGovernorTunable = new CardViewItem.DCardView();
         mGovernorTunable.setTitle(getString(R.string.cpu_governor_tunables));
@@ -127,7 +127,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mMcPowerSaving.setTitle(getString(R.string.mc_power_saving));
         mMcPowerSaving.setDescription(getString(R.string.mc_power_saving_summary));
         mMcPowerSaving.setItem(CPU.getCurMcPowerSaving());
-        mMcPowerSaving.setOnPopupCardListener(this);
+        mMcPowerSaving.setOnDPopupCardListener(this);
 
         addView(mMcPowerSaving);
     }
@@ -137,7 +137,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mMpdecision.setTitle(getString(R.string.mpdecision));
         mMpdecision.setDescription(getString(R.string.mpdecision_summary));
         mMpdecision.setChecked(CPU.isMpdecisionActive());
-        mMpdecision.setOnCheckBoxCardListener(this);
+        mMpdecision.setOnDCheckBoxCardListener(this);
 
         addView(mMpdecision);
     }
@@ -147,7 +147,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mIntelliPlug.setTitle(getString(R.string.intelliplug));
         mIntelliPlug.setDescription(getString(R.string.intelliplug_summary));
         mIntelliPlug.setChecked(CPU.isIntelliPlugActive());
-        mIntelliPlug.setOnCheckBoxCardListener(this);
+        mIntelliPlug.setOnDCheckBoxCardListener(this);
 
         addView(mIntelliPlug);
 
@@ -156,7 +156,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mIntelliPlugEco.setTitle(getString(R.string.intelliplug_eco_mode_summary));
         mIntelliPlugEco.setDescription(getString(R.string.intelliplug_eco_mode_summary));
         mIntelliPlugEco.setChecked(CPU.isIntelliPlugEcoActive());
-        mIntelliPlugEco.setOnCheckBoxCardListener(this);
+        mIntelliPlugEco.setOnDCheckBoxCardListener(this);
 
         addView(mIntelliPlugEco);
     }

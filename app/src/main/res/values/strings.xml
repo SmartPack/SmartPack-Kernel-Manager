@@ -11,6 +11,7 @@
     <string name="mv">mV</string>
     <string name="kb">kB</string>
     <string name="ms">ms</string>
+    <string name="mb">MB</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">&lt;</string>
@@ -110,5 +111,19 @@
     <string name="ksm_enable_summary">Reduces memory usage but has an impact on the CPU usage.</string>
     <string name="ksm_pages_to_scan">Pages to scan</string>
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
+
+    <!-- Low Memory Killer -->
+    <string name="low_memory_killer">Low Memory Killer</string>
+    <string name="foreground_app">Foreground Applications</string>
+    <string name="visible_app">Visible Applications</string>
+    <string name="secondary_server">Secondary Server</string>
+    <string name="hidden_app">Hidden Applications</string>
+    <string name="content_providers">Content Providers</string>
+    <string name="empty_app">Empty Applications</string>
+    <string name="profiles">Profiles</string>
+    <string name="very_light">Very light</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="very_aggressive">Very Aggressive</string>
 
 </resources>

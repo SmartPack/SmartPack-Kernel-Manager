@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by willi on 26.12.14.
  */
-public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnPopupCardListener {
+public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
 
     private CardViewItem.DCardView mCur2dFreqCard, mCur3dFreqCard;
 
@@ -57,7 +57,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             mMax2dFreqCard.setTitle(getString(R.string.gpu_2d_max_freq));
             mMax2dFreqCard.setDescription(getString(R.string.gpu_2d_max_freq_summary));
             mMax2dFreqCard.setItem(GPU.getGpu2dMaxFreq() / 1000000 + getString(R.string.mhz));
-            mMax2dFreqCard.setOnPopupCardListener(this);
+            mMax2dFreqCard.setOnDPopupCardListener(this);
 
             addView(mMax2dFreqCard);
         }
@@ -71,7 +71,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             mMax3dFreqCard.setTitle(getString(R.string.gpu_3d_max_freq));
             mMax3dFreqCard.setDescription(getString(R.string.gpu_3d_max_freq_summary));
             mMax3dFreqCard.setItem(GPU.getGpu3dMaxFreq() / 1000000 + getString(R.string.mhz));
-            mMax3dFreqCard.setOnPopupCardListener(this);
+            mMax3dFreqCard.setOnDPopupCardListener(this);
 
             addView(mMax3dFreqCard);
         }
@@ -83,7 +83,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             m2dGovernor.setTitle(getString(R.string.gpu_2d_governor));
             m2dGovernor.setDescription(getString(R.string.gpu_2d_governor_summary));
             m2dGovernor.setItem(GPU.getGpu2dGovernor());
-            m2dGovernor.setOnPopupCardListener(this);
+            m2dGovernor.setOnDPopupCardListener(this);
 
             addView(m2dGovernor);
         }
@@ -93,7 +93,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             m3dGovernor.setTitle(getString(R.string.gpu_3d_governor));
             m3dGovernor.setDescription(getString(R.string.gpu_3d_governor_summary));
             m3dGovernor.setItem(GPU.getGpu3dGovernor());
-            m3dGovernor.setOnPopupCardListener(this);
+            m3dGovernor.setOnDPopupCardListener(this);
 
             addView(m3dGovernor);
         }

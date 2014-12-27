@@ -114,4 +114,7 @@ public interface Constants {
     public final String[] KSM_INFOS = new String[]{KSM_FULL_SCANS, KSM_PAGES_SHARED, KSM_PAGES_SHARING, KSM_PAGES_UNSHARED,
             KSM_PAGES_VOLATILE};
 
+    // Low Memory Killer
+    public final String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
+
 }

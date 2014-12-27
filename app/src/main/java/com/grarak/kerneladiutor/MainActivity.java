@@ -26,11 +26,13 @@ import com.grarak.kerneladiutor.fragments.GPUFragment;
 import com.grarak.kerneladiutor.fragments.IOFragment;
 import com.grarak.kerneladiutor.fragments.KSMFragment;
 import com.grarak.kerneladiutor.fragments.KernelInformationFragment;
+import com.grarak.kerneladiutor.fragments.LMKFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
+import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -140,7 +142,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
             getSupportActionBar().setHomeButtonEnabled(true);
 
             String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
-                    String.format(CPU_SCALING_GOVERNOR, 0)};
+                    String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
 
             for (String file : files) RootUtils.runCommand("chmod 644 " + file);
 
@@ -162,6 +164,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
                     if (KSM.hasKsm())
                         mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+                    if (LMK.hasMinFree())
+                        mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
 
                     mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
 

@@ -81,6 +81,10 @@ public class CardViewItem extends BaseCardView {
             if (cardViewItem != null) cardViewItem.setView(view);
         }
 
+        public String getDescription() {
+            return description;
+        }
+
         public void setOnDCardListener(OnDCardListener onDCardListener) {
             this.onDCardListener = onDCardListener;
             setUpListener();

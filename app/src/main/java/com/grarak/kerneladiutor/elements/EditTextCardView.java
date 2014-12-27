@@ -83,7 +83,7 @@ public class EditTextCardView extends CardViewItem {
         private String value;
         private int inputType = -1;
 
-        private OnEditTextCardListener onEditTextCardListener;
+        private OnDEditTextCardListener onDEditTextCardListener;
 
         @Override
         public void onBindViewHolder(Holder viewHolder) {
@@ -97,8 +97,8 @@ public class EditTextCardView extends CardViewItem {
             editTextCardView.setOnEditTextCardListener(new EditTextCardView.OnEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView editTextCardView, String value) {
-                    if (onEditTextCardListener != null)
-                        onEditTextCardListener.onApply(DEditTextCard.this, value);
+                    if (onDEditTextCardListener != null)
+                        onDEditTextCardListener.onApply(DEditTextCard.this, value);
                 }
             });
         }
@@ -128,11 +128,11 @@ public class EditTextCardView extends CardViewItem {
             if (editTextCardView != null) editTextCardView.setInputType(inputType);
         }
 
-        public void setOnEditTextCardListener(OnEditTextCardListener onEditTextCardListener) {
-            this.onEditTextCardListener = onEditTextCardListener;
+        public void setOnDEditTextCardListener(OnDEditTextCardListener onDEditTextCardListener) {
+            this.onDEditTextCardListener = onDEditTextCardListener;
         }
 
-        public interface OnEditTextCardListener {
+        public interface OnDEditTextCardListener {
             public void onApply(DEditTextCard dEditTextCard, String value);
         }
 
