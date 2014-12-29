@@ -140,6 +140,8 @@
     <string name="by_stericson">by Stephen Stericson</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my Github.</string>
+    <string name="feature_request">Feature request</string>
+    <string name="feature_request_summary">Do you want more features? Open a new issue on Github and tell me your idea.</string>
     <string name="donate">Donate</string>
     <string name="donate_summary">Buy me a beer! :)</string>
 
