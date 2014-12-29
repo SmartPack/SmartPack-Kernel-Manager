@@ -22,8 +22,8 @@ public class CPUVoltage implements Constants {
     }
 
     public static List<String> getVoltages() {
-        if (Utils.existFile(String.format(CPU_VOLTAGE, 0))) {
-            String value = Utils.readFile(String.format(CPU_VOLTAGE, 0));
+        if (Utils.existFile(CPU_VOLTAGE)) {
+            String value = Utils.readFile(CPU_VOLTAGE);
             if (value != null) {
                 String[] lines = value.split(" mV");
                 String[] voltages = new String[lines.length];
@@ -37,8 +37,8 @@ public class CPUVoltage implements Constants {
 
     public static List<String> getFreqs() {
         if (mCpuFreqs == null)
-            if (Utils.existFile(String.format(CPU_VOLTAGE, 0))) {
-                String value = Utils.readFile(String.format(CPU_VOLTAGE, 0));
+            if (Utils.existFile(CPU_VOLTAGE)) {
+                String value = Utils.readFile(CPU_VOLTAGE);
                 if (value != null) {
                     String[] lines = value.split(" mV");
                     mCpuFreqs = new String[lines.length];
@@ -50,7 +50,7 @@ public class CPUVoltage implements Constants {
     }
 
     public static boolean hasCpuVoltage() {
-        return Utils.existFile(String.format(CPU_VOLTAGE, 0));
+        return Utils.existFile(CPU_VOLTAGE);
     }
 
 }

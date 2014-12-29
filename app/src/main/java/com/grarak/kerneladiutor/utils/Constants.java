@@ -14,7 +14,6 @@ public interface Constants {
     public final String PROC_VERSION = "/proc/version";
     public final String PROC_CPUINFO = "/proc/cpuinfo";
     public final String PROC_MEMINFO = "/proc/meminfo";
-    public final String PROC_STAT = "/proc/stat";
 
     // CPU
     public final String CPU_CUR_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq";

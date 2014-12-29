@@ -22,8 +22,7 @@ public class CPU implements Constants {
     private static String[] mMcPowerSavingItems;
 
     public static void activateIntelliPlugEco(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0",CPU_CORE_ONLINE,
-                Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", CPU_INTELLI_PLUG_ECO, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isIntelliPlugEcoActive() {
@@ -35,8 +34,7 @@ public class CPU implements Constants {
     }
 
     public static void activateIntelliPlug(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CPU_INTELLI_PLUG,
-                Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", CPU_INTELLI_PLUG, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isIntelliPlugActive() {

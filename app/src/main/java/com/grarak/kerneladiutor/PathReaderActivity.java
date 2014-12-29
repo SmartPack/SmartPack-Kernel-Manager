@@ -38,7 +38,6 @@ public class PathReaderActivity extends ActionBarActivity {
     public static final String ARG_PATH = "path";
     public static final String ARG_ERROR = "error";
     private String path;
-    private String error;
 
     private final List<File> files = new ArrayList<>();
     private final List<String> values = new ArrayList<>();
@@ -89,7 +88,7 @@ public class PathReaderActivity extends ActionBarActivity {
         // Get args
         getSupportActionBar().setTitle(getIntent().getExtras().getString(ARG_TITLE));
         path = getIntent().getExtras().getString(ARG_PATH);
-        error = getIntent().getExtras().getString(ARG_ERROR);
+        String error = getIntent().getExtras().getString(ARG_ERROR);
 
         // Collecting all files and add them to Lists
         File[] fileArray = new File(path).listFiles();

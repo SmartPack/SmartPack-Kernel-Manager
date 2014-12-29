@@ -195,6 +195,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     @Override
     public void onChecked(CheckBoxCardItem.DCheckBoxCard dCheckBoxCard, boolean checked) {
         if (dCheckBoxCard == mMpdecision) CPU.activateMpdecision(checked, getActivity());
+        if (dCheckBoxCard == mIntelliPlug) CPU.activateIntelliPlug(checked, getActivity());
+        if (dCheckBoxCard == mIntelliPlugEco) CPU.activateIntelliPlugEco(checked, getActivity());
     }
 
     @Override

@@ -39,9 +39,9 @@ public class VM implements Constants {
             File[] files = new File(VM_PATH).listFiles();
             if (files.length > 0) {
                 for (String supported : supportedVM)
-                    for (int i = 0; i < files.length; i++)
-                        if (files[i].getName().equals(supported))
-                            vmFiles.add(files[i].getName());
+                    for (File file : files)
+                        if (file.getName().equals(supported))
+                            vmFiles.add(file.getName());
             }
         }
         return vmFiles;

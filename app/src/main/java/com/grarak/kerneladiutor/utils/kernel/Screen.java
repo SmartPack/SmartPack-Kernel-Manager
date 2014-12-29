@@ -20,19 +20,27 @@ public class Screen implements Constants {
 
     public static void setColorCalibration(String colors, Context context) {
         List<String> list = new ArrayList<>(Arrays.asList(colors.split(" ")));
-        if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)) {
-            Control.runCommand(String.valueOf(Integer.parseInt(list.get(0)) * 10000000), SCREEN_SAMOLED_COLOR_RED,
-                    Control.CommandType.GENERIC, context);
-            Control.runCommand(String.valueOf(Integer.parseInt(list.get(1)) * 10000000), SCREEN_SAMOLED_COLOR_GREEN,
-                    Control.CommandType.GENERIC, context);
-            Control.runCommand(String.valueOf(Integer.parseInt(list.get(2)) * 10000000), SCREEN_SAMOLED_COLOR_BLUE,
-                    Control.CommandType.GENERIC, context);
-        } else if (SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL)) {
-            String red = String.valueOf(Integer.parseInt(list.get(0)) * 10000000);
-            String green = String.valueOf(Integer.parseInt(list.get(1)) * 10000000);
-            String blue = String.valueOf(Integer.parseInt(list.get(2)) * 10000000);
-            Control.runCommand(red + " " + green + " " + blue, SCREEN_COLOR_CONTROL, Control.CommandType.GENERIC, context);
-        } else Control.runCommand(colors, SCREEN_CALIBRATION, Control.CommandType.GENERIC, context);
+
+        switch (SCREEN_CALIBRATION) {
+            case SCREEN_SAMOLED_COLOR_RED:
+                Control.runCommand(String.valueOf(Integer.parseInt(list.get(0)) * 10000000), SCREEN_SAMOLED_COLOR_RED,
+                        Control.CommandType.GENERIC, context);
+                Control.runCommand(String.valueOf(Integer.parseInt(list.get(1)) * 10000000), SCREEN_SAMOLED_COLOR_GREEN,
+                        Control.CommandType.GENERIC, context);
+                Control.runCommand(String.valueOf(Integer.parseInt(list.get(2)) * 10000000), SCREEN_SAMOLED_COLOR_BLUE,
+                        Control.CommandType.GENERIC, context);
+                break;
+            case SCREEN_COLOR_CONTROL:
+                String red = String.valueOf(Integer.parseInt(list.get(0)) * 10000000);
+                String green = String.valueOf(Integer.parseInt(list.get(1)) * 10000000);
+                String blue = String.valueOf(Integer.parseInt(list.get(2)) * 10000000);
+                Control.runCommand(red + " " + green + " " + blue, SCREEN_COLOR_CONTROL, Control.CommandType.GENERIC, context);
+                break;
+            default:
+                Control.runCommand(colors, SCREEN_CALIBRATION, Control.CommandType.GENERIC, context);
+                break;
+        }
+
         if (hasColorCalibrationCtrl())
             Control.runCommand(SCREEN_CALIBRATION_CTRL.equals(SCREEN_COLOR_CONTROL_CTRL) ? "0" : "1",
                     SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);

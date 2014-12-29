@@ -36,7 +36,6 @@ public class HeaderCardView {
     }
 
     public void setUpHeaderLayout(View view) {
-
     }
 
     public void setText(String title) {

@@ -26,9 +26,8 @@ public class Utils implements Constants {
 
     public static int getScreenOrientation(Context context) {
         Display getOrient = ((Activity) context).getWindowManager().getDefaultDisplay();
-        int orientation = getOrient.getWidth() < getOrient.getHeight() ?
+        return getOrient.getWidth() < getOrient.getHeight() ?
                 Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
-        return orientation;
     }
 
     public static void toast(String message, Context context) {
