@@ -50,6 +50,8 @@ public class Utils implements Constants {
     }
 
     public static String readFile(String filepath) {
+        if (filepath == null) return null;
+
         try {
             BufferedReader buffreader = new BufferedReader(new FileReader(
                     filepath), 256);

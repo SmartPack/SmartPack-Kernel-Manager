@@ -80,7 +80,9 @@ public class GPU implements Constants {
             for (String file : GPU_2D_AVAILABLE_FREQS_ARRAY)
                 if (Utils.existFile(file)) GPU_2D_AVAILABLE_FREQS = file;
         }
-        return GPU_2D_AVAILABLE_FREQS != null;
+        String value = Utils.readFile(GPU_2D_AVAILABLE_FREQS);
+        if (value == null) value = "";
+        return !value.isEmpty();
     }
 
     public static int getGpu2dMaxFreq() {
