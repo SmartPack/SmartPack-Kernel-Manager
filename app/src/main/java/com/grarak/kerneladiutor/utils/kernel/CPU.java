@@ -124,6 +124,7 @@ public class CPU implements Constants {
                 }
             }
         }
+        if (mFreqs == null) return null;
         return new ArrayList<>(Arrays.asList(mFreqs));
     }
 

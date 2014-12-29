@@ -46,8 +46,10 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        coreInit();
-        freqInit();
+        if (CPU.getFreqs() != null) {
+            coreInit();
+            freqInit();
+        }
         governorInit();
         if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
         if (CPU.hasMpdecision()) mpdecisionInit();
