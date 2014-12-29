@@ -97,13 +97,21 @@ public class CPU implements Constants {
     }
 
     public static ArrayList<Integer> getFreqs() {
-        if (mFreqs == null)
-            if (Utils.existFile(CPU_TIME_STATE)) {
+        if (mFreqs == null) {
+            if (Utils.existFile(CPU_AVAILABLE_FREQS)) {
+                String values = Utils.readFile(CPU_AVAILABLE_FREQS);
+                if (values != null) {
+                    String[] valueArray = values.split(" ");
+                    mFreqs = new Integer[valueArray.length];
+                    for (int i = 0; i < mFreqs.length; i++)
+                        mFreqs[i] = Integer.parseInt(valueArray[i]);
+                }
+            } else if (Utils.existFile(CPU_TIME_STATE)) {
                 String values = Utils.readFile(CPU_TIME_STATE);
                 if (values != null) {
                     String[] valueArray = values.split("\\r?\\n");
                     mFreqs = new Integer[valueArray.length];
-                    for (int i = 0; i < valueArray.length; i++)
+                    for (int i = 0; i < mFreqs.length; i++)
                         mFreqs[i] = Integer.parseInt(valueArray[i].split(" ")[0]);
 
                     if (mFreqs[0] > mFreqs[mFreqs.length - 1]) {
@@ -115,6 +123,7 @@ public class CPU implements Constants {
                     }
                 }
             }
+        }
         return new ArrayList<>(Arrays.asList(mFreqs));
     }
 
