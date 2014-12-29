@@ -119,6 +119,7 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
                     IO.StorageType.EXTERNAL);
             Intent i = new Intent(getActivity(), PathReaderActivity.class);
             Bundle args = new Bundle();
+            args.putInt(PathReaderActivity.ARG_TYPE, PathReaderActivity.PATH_TYPE.IO.ordinal());
             args.putString(PathReaderActivity.ARG_TITLE, scheduler);
             args.putString(PathReaderActivity.ARG_PATH, dCardView == mInternalTunable ?
                     IO_INTERNAL_SCHEDULER_TUNABLE : IO_EXTERNAL_SCHEDULER_TUNABLE);

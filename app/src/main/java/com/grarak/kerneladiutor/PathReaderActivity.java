@@ -32,8 +32,13 @@ import java.util.List;
  */
 public class PathReaderActivity extends ActionBarActivity {
 
+    public enum PATH_TYPE {
+        GOVERNOR, IO
+    }
+
     private final Handler hand = new Handler();
 
+    public static final String ARG_TYPE = "type";
     public static final String ARG_TITLE = "title";
     public static final String ARG_PATH = "path";
     public static final String ARG_ERROR = "error";
@@ -46,7 +51,8 @@ public class PathReaderActivity extends ActionBarActivity {
     private SwipeRefreshLayout refreshLayout;
     private ListView list;
 
-    private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq"};
+    private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq",
+            "max_freq_blank", "high_freq_zone"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +77,7 @@ public class PathReaderActivity extends ActionBarActivity {
                         break;
                     }
 
-                if (freq) {
+                if (freq && getIntent().getExtras().getInt(ARG_TYPE) == PATH_TYPE.GOVERNOR.ordinal()) {
                     String[] values = new String[CPU.getFreqs().size()];
                     for (int i = 0; i < values.length; i++)
                         values[i] = String.valueOf(CPU.getFreqs().get(i));
