@@ -44,7 +44,7 @@ public class BaseCardView extends CardView {
         super(context, attributeSet);
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(20, 20, 20, 20);
+        layoutParams.setMargins(20, 10, 20, 10);
         setLayoutParams(layoutParams);
         setRadius(10);
 
