@@ -48,6 +48,9 @@ import java.util.List;
  */
 public class MainActivity extends ActionBarActivity implements Constants {
 
+    private boolean hasRoot;
+    private boolean hasBusybox;
+
     private ProgressBar progressBar;
     private Toolbar toolbar;
 
@@ -66,7 +69,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "Initialize for " + MODEL);
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,8 +78,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER_VERTICAL | Gravity.END));
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
 
         new Task().execute();
     }
@@ -127,13 +128,14 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private void setView() {
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
         mDrawerList = (ListView) findViewById(R.id.drawer_list);
-        mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
+    }
+
+    private void setInterface() {
+        mDrawerList.setAdapter(new ListAdapter.Adapter(this, mList));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -142,7 +144,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         });
 
         mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-
             @Override
             public void onDrawerClosed(View drawerView) {
                 getSupportActionBar().setTitle(mTitle);
@@ -152,10 +153,68 @@ public class MainActivity extends ActionBarActivity implements Constants {
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(getString(R.string.app_name));
             }
-
         };
-
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerToggle.syncState();
+            }
+        });
+    }
+
+    private class Task extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressBar.setVisibility(View.VISIBLE);
+            setView();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            // Check root access and busybox installation
+            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+
+            if (hasRoot && hasBusybox) {
+                String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
+                        String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
+
+                for (String file : files) RootUtils.runCommand("chmod 644 " + file);
+            }
+
+            setList();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            if (!hasRoot || !hasBusybox) {
+                Intent i = new Intent(MainActivity.this, TextActivity.class);
+                Bundle args = new Bundle();
+                args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root)
+                        : getString(R.string.no_busybox));
+                Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
+                i.putExtras(args);
+                startActivity(i);
+
+                cancel(true);
+                finish();
+                return;
+            }
+
+            setInterface();
+            selectItem(cur_position);
+
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -170,12 +229,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        if (mDrawerToggle != null) mDrawerToggle.syncState();
-    }
-
-    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mDrawerToggle.onConfigurationChanged(newConfig);
@@ -185,55 +238,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
         else mDrawerLayout.openDrawer(mScrimInsetsFrameLayout);
-    }
-
-    private class Task extends AsyncTask<Void, Void, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressBar.setVisibility(View.VISIBLE);
-
-            // Check root access and busybox installation
-            boolean hasRoot = false;
-            boolean hasBusybox = false;
-            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
-
-            if (!hasRoot || !hasBusybox) {
-                Intent i = new Intent(MainActivity.this, TextActivity.class);
-                Bundle args = new Bundle();
-                args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
-                Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
-                i.putExtras(args);
-                startActivity(i);
-
-                cancel(true);
-                finish();
-                return;
-            }
-
-            String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
-                    String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
-
-            for (String file : files) RootUtils.runCommand("chmod 644 " + file);
-
-            setList();
-            setView();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            selectItem(cur_position);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            progressBar.setVisibility(View.GONE);
-        }
     }
 
 }

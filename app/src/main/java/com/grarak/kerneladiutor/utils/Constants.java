@@ -5,8 +5,6 @@ package com.grarak.kerneladiutor.utils;
  */
 public interface Constants {
 
-    public final String MODEL = android.os.Build.MODEL;
-
     public final String TAG = "Kernel Adiutor";
     public final String PREF_NAME = "prefs";
 

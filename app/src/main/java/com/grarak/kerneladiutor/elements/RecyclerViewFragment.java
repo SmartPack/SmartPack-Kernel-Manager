@@ -32,13 +32,14 @@ public class RecyclerViewFragment extends Fragment {
     private final List<DAdapter.DView> views = new ArrayList<>();
     private RecyclerView recyclerView;
     private DAdapter.Adapter adapter;
-    private final Handler hand = new Handler();
+    private Handler hand;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         this.inflater = inflater;
         this.container = container;
 
+        hand = new Handler();
         views.clear();
 
         recyclerView = (RecyclerView) inflater.inflate(R.layout.recyclerview_vertical, container, false);
@@ -73,7 +74,6 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void init(Bundle savedInstanceState) {
-
     }
 
     public void addView(DAdapter.DView view) {
@@ -111,7 +111,7 @@ public class RecyclerViewFragment extends Fragment {
             super.onPostExecute(s);
 
             if (adapter != null) recyclerView.setAdapter(adapter);
-            hand.post(run);
+            if (hand != null) hand.post(run);
 
             progressBar.setVisibility(View.GONE);
         }
@@ -125,18 +125,18 @@ public class RecyclerViewFragment extends Fragment {
     private final Runnable run = new Runnable() {
         @Override
         public void run() {
-            if (isAdded())
+            if (isAdded()) {
                 if (onRefresh()) {
-                    hand.postDelayed(run, 1000);
-                } else hand.removeCallbacks(run);
-            else hand.postDelayed(run, 1000);
+                    if (hand != null) hand.postDelayed(run, 1000);
+                } else if (hand != null) hand.removeCallbacks(run);
+            } else if (hand != null) hand.postDelayed(run, 1000);
         }
     };
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        hand.removeCallbacks(run);
+        if (hand != null) hand.removeCallbacks(run);
     }
 
 }
