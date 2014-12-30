@@ -2,6 +2,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
 
@@ -102,9 +104,44 @@ public class ListAdapter {
 
         @Override
         public View getView(LayoutInflater inflater, ViewGroup parent) {
-            TextView text = (TextView) inflater.inflate(R.layout.list_header, parent, false);
-            text.setText(title);
-            return text;
+            View view = inflater.inflate(R.layout.list_header, parent, false);
+            ((TextView) view.findViewById(R.id.text)).setText(title);
+            return view;
+        }
+
+    }
+
+    public static class MainHeader implements ListItem {
+
+        @Override
+        public Button getItem() {
+            return null;
+        }
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public Fragment getFragment() {
+            return null;
+        }
+
+        @Override
+        public View getView(final LayoutInflater inflater, ViewGroup parent) {
+            View view = inflater.inflate(R.layout.header_main, parent, false);
+
+            SwitchCompat mApplyOnBootSwitch = (SwitchCompat) view.findViewById(R.id.apply_on_boot_switch);
+            mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, inflater.getContext()));
+            mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Utils.saveBoolean("applyonboot", ((SwitchCompat) v).isChecked(), inflater.getContext());
+                }
+            });
+
+            return view;
         }
 
     }

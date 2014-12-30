@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,7 +33,6 @@ import com.grarak.kerneladiutor.fragments.LMKFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.VMFragment;
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
@@ -63,7 +61,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private final List<ListAdapter.ListItem> mList = new ArrayList<>();
 
-    private int cur_position = 1;
+    private int cur_position = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +90,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
             return;
         }
 
+        mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+
         cur_position = position;
 
         Log.i(TAG, "Open postion " + position + ": " + mList.get(position).getTitle());
         getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-        mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
 
         setTitle(mList.get(position).getTitle());
         mDrawerList.setItemChecked(position, true);
@@ -105,6 +103,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private void setList() {
         mList.clear();
+        mList.add(new ListAdapter.MainHeader());
         mList.add(new ListAdapter.Header(getString(R.string.information)));
         mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
@@ -133,15 +132,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        SwitchCompat mApplyOnBootSwitch = (SwitchCompat) findViewById(R.id.apply_on_boot_switch);
-        mApplyOnBootSwitch.setChecked(Utils.getBoolean("applyonboot", false, MainActivity.this));
-        mApplyOnBootSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utils.saveBoolean("applyonboot", ((SwitchCompat) v).isChecked(), MainActivity.this);
-            }
-        });
-
         mDrawerList = (ListView) findViewById(R.id.drawer_list);
         mDrawerList.setAdapter(new ListAdapter.Adapter(MainActivity.this, mList));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,9 +142,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         });
 
         mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-            }
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -165,6 +152,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(getString(R.string.app_name));
             }
+
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);

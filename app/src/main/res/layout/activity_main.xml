@@ -34,56 +34,12 @@
         app:insetForeground="#4000"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ListView
+            android:id="@+id/drawer_list"
+            android:choiceMode="singleChoice"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <FrameLayout
-                android:layout_height="170dp"
-                android:layout_width="match_parent">
-
-                <ImageView
-                    android:background="@drawable/bg_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_gravity="bottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="76dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="3dp">
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:textColor="@android:color/white"
-                        android:textSize="30sp"
-                        android:text="@string/app_name" />
-
-                    <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/apply_on_boot_switch"
-                        android:text="@string/apply_on_boot"
-                        android:layout_width="match_parent"
-                        android:textColor="@android:color/white"
-                        android:layout_height="14dp" />
-
-                </LinearLayout>
-
-            </FrameLayout>
-
-            <ListView
-                android:id="@+id/drawer_list"
-                android:choiceMode="singleChoice"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:divider="@null" />
-
-        </LinearLayout>
+            android:divider="@null" />
 
     </com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout>
 
