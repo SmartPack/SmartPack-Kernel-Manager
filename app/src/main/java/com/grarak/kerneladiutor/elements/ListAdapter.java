@@ -22,8 +22,6 @@ public class ListAdapter {
 
         public Button getItem();
 
-        public TextView getHeader();
-
         public String getTitle();
 
         public Fragment getFragment();
@@ -34,11 +32,8 @@ public class ListAdapter {
 
     public static class Adapter extends ArrayAdapter<ListItem> {
 
-        private final List<ListItem> list;
-
         public Adapter(Context context, List<ListItem> list) {
             super(context, 0, list);
-            this.list = list;
         }
 
         @Override
@@ -60,11 +55,6 @@ public class ListAdapter {
 
         @Override
         public Button getItem() {
-            return null;
-        }
-
-        @Override
-        public TextView getHeader() {
             return null;
         }
 
@@ -97,11 +87,6 @@ public class ListAdapter {
 
         @Override
         public Button getItem() {
-            return null;
-        }
-
-        @Override
-        public TextView getHeader() {
             return null;
         }
 

@@ -56,7 +56,7 @@ public class KSM implements Constants {
     }
 
     public static boolean hasKsm() {
-        return Utils.existFile(KSM_FOLDER);
+        return Utils.readFile(KSM_RUN) != null;
     }
 
 }

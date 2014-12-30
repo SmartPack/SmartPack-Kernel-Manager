@@ -47,12 +47,35 @@ public class RootUtils implements Constants {
     }
 
     // Thanks to Performance Control creators for this code!
+    public static String readFile(String file) {
+        String output = null;
+        try {
+            output = getOutput("echo $(cat " + file + ")", true, true);
+        } catch (IOException e) {
+            Log.e(TAG, "failed to read " + file);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public static boolean fileExist(String file) {
+        String output = null;
+        try {
+            output = getOutput("echo $([ -e " + file + " ] && echo true)", true, true);
+        } catch (IOException e) {
+            Log.e(TAG, "failed to read " + file);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return output != null && output.contains("true");
+    }
+
     public static boolean moduleActive(String module) {
         String output = null;
         try {
-            output = getOutput("echo `ps | grep " + module
-                            + " | grep -v \"grep " + module + "\" | awk '{print $1}'`",
-                    true);
+            output = getOutput("echo `ps | grep " + module + " | grep -v \"grep " + module + "\" | awk '{print $1}'`",
+                    false, true);
         } catch (IOException e) {
             Log.e(TAG, "failed to get status of " + module);
         } catch (InterruptedException e) {
@@ -61,12 +84,10 @@ public class RootUtils implements Constants {
         return output != null && output.length() > 0 && !output.equals("error");
     }
 
-    // Thanks to Performance Control creators for this code!
-    private static String getOutput(String command, boolean debug) throws IOException,
+    private static String getOutput(String command, boolean su, boolean debug) throws IOException,
             InterruptedException {
-        Process process = Runtime.getRuntime().exec("sh");
-        final DataOutputStream processStream = new DataOutputStream(
-                process.getOutputStream());
+        Process process = Runtime.getRuntime().exec(su ? "su" : "sh");
+        final DataOutputStream processStream = new DataOutputStream(process.getOutputStream());
         processStream.writeBytes("exec " + command + "\n");
         processStream.flush();
 
@@ -75,8 +96,7 @@ public class RootUtils implements Constants {
         exit = process.waitFor();
 
         StringBuffer buffer = null;
-        final DataInputStream inputStream = new DataInputStream(
-                process.getInputStream());
+        final DataInputStream inputStream = new DataInputStream(process.getInputStream());
 
         if (inputStream.available() > 0) {
             buffer = new StringBuffer(inputStream.readLine());
