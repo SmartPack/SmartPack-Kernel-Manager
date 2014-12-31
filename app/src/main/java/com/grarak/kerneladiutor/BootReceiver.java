@@ -18,7 +18,7 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        if (Utils.getBoolean("applyonboot", false, context)) return;
+        if (!Utils.getBoolean("applyonboot", false, context)) return;
 
         // Check root access and busybox installation
         boolean hasRoot = false;
@@ -28,6 +28,8 @@ public class BootReceiver extends BroadcastReceiver {
 
         if (!hasRoot || !hasBusybox) return;
 
+        if (RootUtils.su == null) RootUtils.su = new RootUtils.SU();
+
         SysDB db = new SysDB(context);
         db.open();
 
@@ -35,6 +37,8 @@ public class BootReceiver extends BroadcastReceiver {
         db.close();
 
         for (SysDB.Sys sys : list) RootUtils.runCommand(sys.getValue());
+
+        RootUtils.su.close();
 
         Utils.toast(context.getString(R.string.apply_on_boot_summary), context);
 

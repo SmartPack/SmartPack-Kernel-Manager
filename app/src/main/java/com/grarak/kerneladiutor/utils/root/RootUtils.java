@@ -2,7 +2,6 @@ package com.grarak.kerneladiutor.utils.root;
 
 import android.util.Log;
 
-import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.stericson.RootTools.RootTools;
 
@@ -17,8 +16,11 @@ import java.io.OutputStreamWriter;
  */
 public class RootUtils implements Constants {
 
+    public static SU su;
+
     public static void runCommand(final String command) {
-        MainActivity.su.run(command);
+        if (su == null) su = new SU();
+        su.run(command);
     }
 
     public static boolean rooted() {
@@ -34,16 +36,19 @@ public class RootUtils implements Constants {
     }
 
     public static String readFile(String file) {
-        return MainActivity.su.runCommand("cat " + file);
+        if (su == null) su = new SU();
+        return su.runCommand("cat " + file);
     }
 
     public static boolean fileExist(String file) {
-        String output = MainActivity.su.runCommand("[ -e " + file + " ] && echo true");
+        if (su == null) su = new SU();
+        String output = su.runCommand("[ -e " + file + " ] && echo true");
         return output != null && output.contains("true");
     }
 
     public static boolean moduleActive(String module) {
-        String output = MainActivity.su.runCommand("echo `ps | grep " + module + " | grep -v \"grep "
+        if (su == null) su = new SU();
+        String output = su.runCommand("echo `ps | grep " + module + " | grep -v \"grep "
                 + module + "\" | awk '{print $1}'`");
         return output != null && output.length() > 0;
     }
