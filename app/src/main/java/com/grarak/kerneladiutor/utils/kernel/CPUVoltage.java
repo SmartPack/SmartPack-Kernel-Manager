@@ -27,8 +27,10 @@ public class CPUVoltage implements Constants {
             if (value != null) {
                 String[] lines = value.split(" mV");
                 String[] voltages = new String[lines.length];
-                for (int i = 0; i < lines.length; i++)
-                    voltages[i] = lines[i].split("mhz: ")[1];
+                for (int i = 0; i < voltages.length; i++) {
+                    String[] voltageLine = lines[i].split("mhz: ");
+                    if (voltageLine.length > 1) voltages[i] = voltageLine[1];
+                }
                 return new ArrayList<>(Arrays.asList(voltages));
             }
         }
