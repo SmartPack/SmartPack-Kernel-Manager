@@ -2,15 +2,15 @@ package com.grarak.kerneladiutor.utils.root;
 
 import android.util.Log;
 
+import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 /**
  * Created by willi on 14.12.14.
@@ -18,20 +18,7 @@ import java.util.concurrent.TimeoutException;
 public class RootUtils implements Constants {
 
     public static void runCommand(final String command) {
-        new Thread() {
-            public void run() {
-                try {
-                    RootTools.getShell(true).add(new CommandCapture(0, command)).commandCompleted(0, 0);
-                    Log.i(TAG, "open shell: " + command);
-                } catch (IOException e) {
-                    Log.e(TAG, "failed to run " + command);
-                } catch (TimeoutException ignored) {
-                    Log.e(TAG, "Timeout: Cannot gain root access");
-                } catch (RootDeniedException e) {
-                    Log.e(TAG, "Root access denied");
-                }
-            }
-        }.start();
+        MainActivity.su.run(command);
     }
 
     public static boolean rooted() {
@@ -46,69 +33,102 @@ public class RootUtils implements Constants {
         return RootTools.isBusyboxAvailable();
     }
 
-    // Thanks to Performance Control creators for this code!
     public static String readFile(String file) {
-        String output = null;
-        try {
-            output = getOutput("echo $(cat " + file + ")", true, true);
-        } catch (IOException e) {
-            Log.e(TAG, "failed to read " + file);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return output;
+        return MainActivity.su.runCommand("cat " + file);
     }
 
     public static boolean fileExist(String file) {
-        String output = null;
-        try {
-            output = getOutput("echo $([ -e " + file + " ] && echo true)", true, true);
-        } catch (IOException e) {
-            Log.e(TAG, "failed to read " + file);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        String output = MainActivity.su.runCommand("[ -e " + file + " ] && echo true");
         return output != null && output.contains("true");
     }
 
     public static boolean moduleActive(String module) {
-        String output = null;
-        try {
-            output = getOutput("echo `ps | grep " + module + " | grep -v \"grep " + module + "\" | awk '{print $1}'`",
-                    false, true);
-        } catch (IOException e) {
-            Log.e(TAG, "failed to get status of " + module);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return output != null && output.length() > 0 && !output.equals("error");
+        String output = MainActivity.su.runCommand("echo `ps | grep " + module + " | grep -v \"grep "
+                + module + "\" | awk '{print $1}'`");
+        return output != null && output.length() > 0;
     }
 
-    private static String getOutput(String command, boolean su, boolean debug) throws IOException,
-            InterruptedException {
-        Process process = Runtime.getRuntime().exec(su ? "su" : "sh");
-        final DataOutputStream processStream = new DataOutputStream(process.getOutputStream());
-        processStream.writeBytes("exec " + command + "\n");
-        processStream.flush();
+    /**
+     * Based on AndreiLux's SU code in Synapse
+     * https://github.com/AndreiLux/Synapse/blob/master/src/main/java/com/af/synapse/utils/Utils.java#L238
+     */
+    public static class SU {
 
-        int exit;
-        String output = null;
-        exit = process.waitFor();
+        private Process process;
+        private BufferedWriter bufferedWriter;
+        private BufferedReader bufferedReader;
 
-        StringBuffer buffer = null;
-        final DataInputStream inputStream = new DataInputStream(process.getInputStream());
-
-        if (inputStream.available() > 0) {
-            buffer = new StringBuffer(inputStream.readLine());
-            while (inputStream.available() > 0)
-                buffer.append("\n").append(inputStream.readLine());
+        public SU() {
+            try {
+                process = Runtime.getRuntime().exec("su");
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+                bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            } catch (IOException e) {
+                Log.e(TAG, "Failed to run shell as su");
+            }
         }
-        inputStream.close();
-        if (buffer != null) output = buffer.toString();
 
-        if (debug) Log.d(TAG, "Output of " + command + ": " + output);
+        public synchronized void run(final String command) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        bufferedWriter.write(command + "\n");
+                        bufferedWriter.flush();
 
-        return exit != 1 && exit == 0 ? output : "error";
+                        Log.i(TAG, "run " + command);
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to run " + command);
+                    }
+                }
+            }).start();
+        }
+
+        public synchronized String runCommand(final String command) {
+            StringBuilder sb = new StringBuilder();
+
+            try {
+                String callback = "/shellCallback/";
+                bufferedWriter.write(command + "\necho " + callback + "\n");
+                bufferedWriter.flush();
+
+                int i;
+                char[] buffer = new char[16];
+                while (true) {
+                    i = bufferedReader.read(buffer);
+                    sb.append(buffer, 0, i);
+                    if ((i = sb.indexOf(callback)) > -1) {
+                        sb.delete(i, i + callback.length());
+                        break;
+                    }
+                }
+
+                Log.i(TAG, "Output of " + command + " : " + sb.toString().trim());
+            } catch (IOException e) {
+                Log.e(TAG, "Failed to run " + command);
+            }
+
+            return sb.toString().trim();
+        }
+
+        public void close() {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        bufferedWriter.write("exit\n");
+                        bufferedWriter.flush();
+
+                        process.waitFor();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to close BufferWriter");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+
     }
 
 }

@@ -23,19 +23,15 @@ public class LMK implements Constants {
     }
 
     public static int getMinFree(int position) {
-        if (existFile(LMK_MINFREE)) {
-            String value = readFile(LMK_MINFREE);
-            if (value != null)
-                return Integer.parseInt(value.split(",")[position]);
-        }
+        String value = readFile(LMK_MINFREE);
+        if (value != null)
+            return Integer.parseInt(value.split(",")[position]);
         return 0;
     }
 
     public static List<String> getMinFrees() {
-        if (existFile(LMK_MINFREE)) {
-            String value = readFile(LMK_MINFREE);
-            if (value != null) return new ArrayList<>(Arrays.asList(value.split(",")));
-        }
+        String value = readFile(LMK_MINFREE);
+        if (value != null) return new ArrayList<>(Arrays.asList(value.split(",")));
         return null;
     }
 
@@ -43,10 +39,6 @@ public class LMK implements Constants {
         String value = Utils.readFile(LMK_MINFREE);
         if (value == null) su = true;
         return true;
-    }
-
-    private static boolean existFile(String file) {
-        return Utils.existFile(file) || RootUtils.fileExist(file);
     }
 
     private static String readFile(String file) {

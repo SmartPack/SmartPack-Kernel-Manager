@@ -66,6 +66,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private int cur_position = 2;
 
+    public static RootUtils.SU su;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,10 +187,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
                         String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
 
+                su = new RootUtils.SU();
                 for (String file : files) RootUtils.runCommand("chmod 644 " + file);
+                setList();
             }
-
-            setList();
             return null;
         }
 
@@ -240,4 +242,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
         else mDrawerLayout.openDrawer(mScrimInsetsFrameLayout);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        su.close();
+    }
 }

@@ -98,23 +98,21 @@ public class Screen implements Constants {
     }
 
     public static boolean hasColorCalibration() {
-        if (SCREEN_CALIBRATION == null) for (String file : SCREEN_KCAL_ARRAY) {
+        if (SCREEN_CALIBRATION == null) for (String file : SCREEN_KCAL_ARRAY)
             if (existFile(file)) {
                 SCREEN_CALIBRATION = file;
                 break;
             }
-        }
         return SCREEN_CALIBRATION != null;
     }
 
     public static boolean hasScreen() {
-        for (String[] array : SCREEN_ARRAY)
-            for (String file : array)
-                if (Utils.existFile(file) || RootUtils.fileExist(file)) {
-                    String value = Utils.readFile(file);
-                    if (value == null) su = true;
-                    return true;
-                }
+        for (String file : SCREEN_ARRAY)
+            if (Utils.existFile(file)) {
+                String value = Utils.readFile(file);
+                if (value == null) su = true;
+                return true;
+            }
         return false;
     }
 

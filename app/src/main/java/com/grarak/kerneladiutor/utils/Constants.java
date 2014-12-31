@@ -87,18 +87,22 @@ public interface Constants {
             GPU_SCALING_GOVERNOR_ARRAY};
 
     // Screen
-    public final String SCREEN_KCAL_CTRL = "/sys/devices/platform/kcal_ctrl.0/kcal";
-    public final String SCREEN_KCAL_CTRL_CTRL = "/sys/devices/platform/kcal_ctrl.0/kcal_ctrl";
+    public final String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";
+    public final String SCREEN_KCAL_CTRL = SCREEN_KCAL + "/kcal";
+    public final String SCREEN_KCAL_CTRL_CTRL = SCREEN_KCAL + "/kcal_ctrl";
 
-    public final String SCREEN_DIAG0_POWER = "/sys/devices/platform/DIAG0.0/power_rail";
-    public final String SCREEN_DIAG0_POWER_CTRL = "/sys/devices/platform/DIAG0.0/power_rail_ctrl";
+    public final String SCREEN_DIAG0 = "/sys/devices/platform/DIAG0.0";
+    public final String SCREEN_DIAG0_POWER = SCREEN_DIAG0 + "/power_rail";
+    public final String SCREEN_DIAG0_POWER_CTRL = SCREEN_DIAG0 + "/power_rail_ctrl";
 
-    public final String SCREEN_COLOR_CONTROL = "/sys/class/misc/colorcontrol/multiplier";
-    public final String SCREEN_COLOR_CONTROL_CTRL = "/sys/class/misc/colorcontrol/safety_enabled";
+    public final String SCREEN_COLOR = "/sys/class/misc/colorcontrol";
+    public final String SCREEN_COLOR_CONTROL = SCREEN_COLOR + "/multiplier";
+    public final String SCREEN_COLOR_CONTROL_CTRL = SCREEN_COLOR + "/safety_enabled";
 
-    public final String SCREEN_SAMOLED_COLOR_RED = "/sys/class/misc/samoled_color/red_multiplier";
-    public final String SCREEN_SAMOLED_COLOR_GREEN = "/sys/class/misc/samoled_color/green_multiplier";
-    public final String SCREEN_SAMOLED_COLOR_BLUE = "/sys/class/misc/samoled_color/blue_multiplier";
+    public final String SCREEN_SAMOLED_COLOR = "/sys/class/misc/samoled_color";
+    public final String SCREEN_SAMOLED_COLOR_RED = SCREEN_SAMOLED_COLOR + "/red_multiplier";
+    public final String SCREEN_SAMOLED_COLOR_GREEN = SCREEN_SAMOLED_COLOR + "/green_multiplier";
+    public final String SCREEN_SAMOLED_COLOR_BLUE = SCREEN_SAMOLED_COLOR + "/blue_multiplier";
 
     public final String[] SCREEN_KCAL_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER, SCREEN_COLOR_CONTROL,
             SCREEN_SAMOLED_COLOR_RED};
@@ -106,7 +110,7 @@ public interface Constants {
     public final String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_DIAG0_POWER_CTRL,
             SCREEN_COLOR_CONTROL_CTRL};
 
-    public final String[][] SCREEN_ARRAY = {SCREEN_KCAL_ARRAY, SCREEN_KCAL_CTRL_ARRAY};
+    public final String[] SCREEN_ARRAY = {SCREEN_KCAL, SCREEN_DIAG0, SCREEN_COLOR, SCREEN_SAMOLED_COLOR};
 
     // I/O
     public final String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
