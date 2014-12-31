@@ -3,6 +3,7 @@ package com.grarak.kerneladiutor;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -135,6 +136,11 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     private void setInterface() {
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
+        params.width = getResources().getDisplayMetrics().widthPixels - ta.getDimensionPixelSize(0, 100);
+        mScrimInsetsFrameLayout.setLayoutParams(params);
+
         mDrawerList.setAdapter(new ListAdapter.Adapter(this, mList));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -187,6 +193,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
                 for (String file : files) RootUtils.runCommand("chmod 644 " + file);
                 setList();
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }

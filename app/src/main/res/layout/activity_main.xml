@@ -27,7 +27,7 @@
 
     <com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/scrimInsetsFrameLayout"
-        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white"
