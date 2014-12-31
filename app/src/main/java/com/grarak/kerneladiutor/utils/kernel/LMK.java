@@ -22,10 +22,10 @@ public class LMK implements Constants {
         Control.runCommand(minFree, LMK_MINFREE, Control.CommandType.GENERIC, context);
     }
 
-    public static int getMinFree(int position) {
+    public static int getMinFree(List<String> minfrees, int position) {
         String value = readFile(LMK_MINFREE);
         if (value != null)
-            return Integer.parseInt(value.split(",")[position]);
+            return Integer.parseInt(minfrees.get(position));
         return 0;
     }
 

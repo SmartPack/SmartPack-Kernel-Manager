@@ -242,6 +242,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RootUtils.su.close();
+        if (RootUtils.su != null) RootUtils.su.close();
     }
 }

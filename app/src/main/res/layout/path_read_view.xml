@@ -13,14 +13,13 @@
         android:layout_weight="1"
         android:background="?android:attr/activatedBackgroundIndicator"
         android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:textColor="@android:color/black" />
+        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
     <TextView
         android:id="@+id/value"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:gravity="right|center_vertical"
+        android:gravity="end|center_vertical"
         android:layout_weight="1"
         android:background="?android:attr/activatedBackgroundIndicator"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"

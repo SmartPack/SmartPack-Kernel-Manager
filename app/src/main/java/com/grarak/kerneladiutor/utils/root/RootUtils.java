@@ -18,7 +18,7 @@ public class RootUtils implements Constants {
 
     public static SU su;
 
-    public static void runCommand(final String command) {
+    public static void runCommand(String command) {
         if (su == null) su = new SU();
         su.run(command);
     }
@@ -36,21 +36,23 @@ public class RootUtils implements Constants {
     }
 
     public static String readFile(String file) {
-        if (su == null) su = new SU();
-        return su.runCommand("cat " + file);
+        return getOutput("cat " + file);
     }
 
     public static boolean fileExist(String file) {
-        if (su == null) su = new SU();
-        String output = su.runCommand("[ -e " + file + " ] && echo true");
+        String output = getOutput("[ -e " + file + " ] && echo true");
         return output != null && output.contains("true");
     }
 
     public static boolean moduleActive(String module) {
-        if (su == null) su = new SU();
-        String output = su.runCommand("echo `ps | grep " + module + " | grep -v \"grep "
+        String output = getOutput("echo `ps | grep " + module + " | grep -v \"grep "
                 + module + "\" | awk '{print $1}'`");
         return output != null && output.length() > 0;
+    }
+
+    public static String getOutput(String command) {
+        if (su == null) su = new SU();
+        return su.runCommand(command);
     }
 
     /**

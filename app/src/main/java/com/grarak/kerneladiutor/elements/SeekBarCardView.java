@@ -30,6 +30,7 @@ public class SeekBarCardView extends BaseCardView {
         super(context, R.layout.seekbar_cardview);
 
         seekBarView.setMax(list.size() - 1);
+        seekBarView.setProgress(progress);
         seekBarView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -52,7 +53,6 @@ public class SeekBarCardView extends BaseCardView {
         headerCardView = new HeaderCardView(getContext());
         addHeader(headerCardView);
         if (title != null) headerCardView.setText(title);
-        seekBarView.setProgress(progress);
     }
 
     @Override
