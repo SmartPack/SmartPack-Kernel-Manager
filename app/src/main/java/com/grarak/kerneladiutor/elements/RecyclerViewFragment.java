@@ -39,20 +39,28 @@ public class RecyclerViewFragment extends Fragment {
         this.inflater = inflater;
         this.container = container;
 
-        hand = new Handler();
-        views.clear();
-
         recyclerView = (RecyclerView) inflater.inflate(R.layout.recyclerview_vertical, container, false);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return 0;
+            }
+        });
+        setRecyclerView(recyclerView);
 
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
-
-        setRecyclerView(recyclerView);
-        setProgressBar(progressBar);
-        adapter = new DAdapter.Adapter(views);
-
-        recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in));
 
         if (isAdded()) new Task().execute(savedInstanceState);
 
@@ -98,6 +106,10 @@ public class RecyclerViewFragment extends Fragment {
             super.onPreExecute();
 
             progressBar.setVisibility(View.VISIBLE);
+
+            hand = new Handler();
+            views.clear();
+            adapter = new DAdapter.Adapter(views);
         }
 
         @Override
@@ -110,7 +122,8 @@ public class RecyclerViewFragment extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            if (adapter != null) recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
+            recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in));
             if (hand != null) hand.post(run);
 
             progressBar.setVisibility(View.GONE);

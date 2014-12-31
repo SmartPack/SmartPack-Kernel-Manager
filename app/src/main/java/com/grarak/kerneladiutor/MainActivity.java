@@ -191,6 +191,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
                         String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
 
+                RootUtils.su = new RootUtils.SU();
                 for (String file : files) RootUtils.runCommand("chmod 644 " + file);
                 setList();
 
@@ -255,5 +256,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     protected void onDestroy() {
         super.onDestroy();
         if (RootUtils.su != null) RootUtils.su.close();
+        RootUtils.su = null;
     }
 }

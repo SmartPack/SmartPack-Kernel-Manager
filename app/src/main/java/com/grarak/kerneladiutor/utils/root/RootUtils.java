@@ -67,6 +67,7 @@ public class RootUtils implements Constants {
 
         public SU() {
             try {
+                Log.i(TAG, "SU initialized");
                 process = Runtime.getRuntime().exec("su");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -127,6 +128,7 @@ public class RootUtils implements Constants {
                         bufferedWriter.flush();
 
                         process.waitFor();
+                        Log.i(TAG, "SU closed");
                     } catch (IOException e) {
                         Log.e(TAG, "Failed to close BufferWriter");
                     } catch (InterruptedException e) {

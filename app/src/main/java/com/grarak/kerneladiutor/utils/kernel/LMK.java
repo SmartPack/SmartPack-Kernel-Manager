@@ -23,10 +23,7 @@ public class LMK implements Constants {
     }
 
     public static int getMinFree(List<String> minfrees, int position) {
-        String value = readFile(LMK_MINFREE);
-        if (value != null)
-            return Integer.parseInt(minfrees.get(position));
-        return 0;
+        return Integer.parseInt(minfrees.get(position));
     }
 
     public static List<String> getMinFrees() {
