@@ -5,7 +5,7 @@
 //-----------------------------------------------------------------------------
 // Modified by Willi Ye to work as Fragment
 
-package com.grarak.kerneladiutor.fragments;
+package com.grarak.kerneladiutor.fragments.information;
 
 // imports
 

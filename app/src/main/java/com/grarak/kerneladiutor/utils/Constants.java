@@ -112,6 +112,21 @@ public interface Constants {
 
     public final String[] SCREEN_ARRAY = {SCREEN_KCAL, SCREEN_DIAG0, SCREEN_COLOR, SCREEN_SAMOLED_COLOR};
 
+    // Wake
+    public final String LGE_TOUCH_DT2W = "/sys/devices/virtual/input/lge_touch/dt_wake_enabled";
+    public final String LGE_TOUCH_CORE_DT2W = "/sys/module/lge_touch_core/parameters/doubletap_to_wake";
+    public final String DT2W = "/sys/android_touch/doubletap2wake";
+    public final String TOUCH_PANEL_DT2W = "/proc/touchpanel/double_tap_enable";
+
+    public final String[] DT2W_ARRAY = new String[]{LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, DT2W, TOUCH_PANEL_DT2W};
+
+    public final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
+    public final String SW2 = "/sys/android_touch/sweep2wake";
+
+    public final String[] S2W_ARRY = new String[]{S2W_ONLY, SW2};
+
+    public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY};
+
     // I/O
     public final String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
     public final String IO_EXTERNAL_SCHEDULER = "/sys/block/mmcblk1/queue/scheduler";

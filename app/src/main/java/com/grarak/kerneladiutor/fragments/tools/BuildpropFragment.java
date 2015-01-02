@@ -1,4 +1,4 @@
-package com.grarak.kerneladiutor.fragments;
+package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

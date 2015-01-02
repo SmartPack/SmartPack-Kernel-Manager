@@ -1,4 +1,4 @@
-package com.grarak.kerneladiutor.fragments;
+package com.grarak.kerneladiutor.fragments.other;
 
 import android.os.Bundle;
 import android.view.View;

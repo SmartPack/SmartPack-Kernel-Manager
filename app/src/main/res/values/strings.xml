@@ -33,6 +33,7 @@
     <string name="cpu_voltage">CPU Voltage</string>
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
+    <string name="wake">Wake</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
@@ -95,6 +96,17 @@
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
+
+    <!-- Wake -->
+    <string name="dt2w">DoubleTap2Wake</string>
+    <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
+    <string name="center">Center</string>
+    <string name="full">Full</string>
+    <string name="bottom_half">Bottom half</string>
+    <string name="top_half">Top half</string>
+    <string name="s2w">Sweep2Wake</string>
+    <string name="s2w_summary">Wake up your device by swiping on the navigation bar.</string>
+    <string name="s2s">Sweep2Sleep</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_scheduler">Internal Storage Scheduler</string>

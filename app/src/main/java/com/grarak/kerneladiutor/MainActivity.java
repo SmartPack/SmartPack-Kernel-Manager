@@ -23,19 +23,20 @@ import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
-import com.grarak.kerneladiutor.fragments.AboutUsFragment;
-import com.grarak.kerneladiutor.fragments.BuildpropFragment;
-import com.grarak.kerneladiutor.fragments.CPUFragment;
-import com.grarak.kerneladiutor.fragments.CPUVoltageFragment;
-import com.grarak.kerneladiutor.fragments.FrequencyTableFragment;
-import com.grarak.kerneladiutor.fragments.GPUFragment;
-import com.grarak.kerneladiutor.fragments.IOFragment;
-import com.grarak.kerneladiutor.fragments.KSMFragment;
-import com.grarak.kerneladiutor.fragments.KernelInformationFragment;
-import com.grarak.kerneladiutor.fragments.LMKFragment;
-import com.grarak.kerneladiutor.fragments.MiscControlsFragment;
-import com.grarak.kerneladiutor.fragments.ScreenFragment;
-import com.grarak.kerneladiutor.fragments.VMFragment;
+import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
+import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
+import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
+import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
+import com.grarak.kerneladiutor.fragments.kernel.MiscControlsFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
+import com.grarak.kerneladiutor.fragments.other.AboutUsFragment;
+import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -43,6 +44,7 @@ import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
+import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -121,6 +123,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
             mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
         if (Screen.hasScreen())
             mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+        if (Wake.hasWake())
+            mList.add(new ListAdapter.Item(getString(R.string.wake), new WakeFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
             mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));

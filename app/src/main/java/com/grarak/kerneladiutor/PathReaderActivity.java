@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Created by willi on 14.12.14.
  */
-public class PathReaderActivity extends ActionBarActivity {
+public class PathReaderActivity extends ActionBarActivity implements View.OnClickListener {
 
     public enum PATH_TYPE {
         GOVERNOR, IO
@@ -65,7 +65,7 @@ public class PathReaderActivity extends ActionBarActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hand.postDelayed(run, 500);
+                hand.postDelayed(refresh, 500);
             }
         });
 
@@ -97,26 +97,8 @@ public class PathReaderActivity extends ActionBarActivity {
                         PopupCardItem.DPopupCard dPopupCard = new PopupCardItem.DPopupCard(null);
                         dPopupCard.setDescription(file.getName());
                         dPopupCard.setItem(value);
-                        dPopupCard.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                boolean freq = false;
-                                for (String freqFile : FREQ_FILE)
-                                    if (((PopupCardItem) v).getDescription().equals(freqFile)) {
-                                        freq = true;
-                                        break;
-                                    }
+                        dPopupCard.setOnClickListener(this);
 
-                                if (freq && getIntent().getExtras().getInt(ARG_TYPE) == PATH_TYPE.GOVERNOR.ordinal()) {
-                                    String[] values = new String[CPU.getFreqs().size()];
-                                    for (int i = 0; i < values.length; i++)
-                                        values[i] = String.valueOf(CPU.getFreqs().get(i));
-                                    showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
-                                } else
-                                    showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
-                                            ((PopupCardItem) v).getItem());
-                            }
-                        });
                         dViewList.add(dPopupCard);
                     }
                 }
@@ -162,16 +144,22 @@ public class PathReaderActivity extends ActionBarActivity {
         return height / 3 - actionBarSize;
     }
 
-    private final Runnable run = new Runnable() {
+    private final Runnable refresh = new Runnable() {
         @Override
         public void run() {
+            dViewList.clear();
+
             File[] fileArray = new File(path).listFiles();
             if (fileArray != null) {
-                for (int i = 0; i < fileArray.length; i++) {
-                    String value = Utils.readFile(fileArray[i].getAbsolutePath());
+                for (File file : fileArray) {
+                    String value = Utils.readFile(file.getAbsolutePath());
                     if (value != null) {
-                        ((PopupCardItem.DPopupCard) dViewList.get(i)).setDescription(fileArray[i].getName());
-                        ((PopupCardItem.DPopupCard) dViewList.get(i)).setItem(value);
+                        PopupCardItem.DPopupCard dPopupCard = new PopupCardItem.DPopupCard(null);
+                        dPopupCard.setDescription(file.getName());
+                        dPopupCard.setItem(value);
+                        dPopupCard.setOnClickListener(PathReaderActivity.this);
+
+                        dViewList.add(dPopupCard);
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -179,6 +167,25 @@ public class PathReaderActivity extends ActionBarActivity {
             refreshLayout.setRefreshing(false);
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        boolean freq = false;
+        for (String freqFile : FREQ_FILE)
+            if (((PopupCardItem) v).getDescription().equals(freqFile)) {
+                freq = true;
+                break;
+            }
+
+        if (freq && getIntent().getExtras().getInt(ARG_TYPE) == PATH_TYPE.GOVERNOR.ordinal()) {
+            String[] values = new String[CPU.getFreqs().size()];
+            for (int i = 0; i < values.length; i++)
+                values[i] = String.valueOf(CPU.getFreqs().get(i));
+            showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
+        } else
+            showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
+                    ((PopupCardItem) v).getItem());
+    }
 
     private void showDialog(final String file, String value) {
         LinearLayout layout = new LinearLayout(this);
@@ -204,7 +211,7 @@ public class PathReaderActivity extends ActionBarActivity {
                 Control.runCommand(editText.getText().toString(), file, Control.CommandType.GENERIC,
                         PathReaderActivity.this);
                 refreshLayout.setRefreshing(true);
-                hand.postDelayed(run, 500);
+                hand.postDelayed(refresh, 500);
             }
         }).show();
     }
@@ -216,7 +223,7 @@ public class PathReaderActivity extends ActionBarActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Control.runCommand(values[which], file, Control.CommandType.GENERIC, PathReaderActivity.this);
                 refreshLayout.setRefreshing(true);
-                hand.postDelayed(run, 500);
+                hand.postDelayed(refresh, 500);
             }
         }).show();
     }

@@ -1,4 +1,4 @@
-package com.grarak.kerneladiutor.fragments;
+package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.Intent;
 import android.os.Bundle;
