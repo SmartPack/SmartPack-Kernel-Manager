@@ -1,9 +1,11 @@
 package com.grarak.kerneladiutor.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,6 +22,24 @@ public class Utils implements Constants {
 
     public static void launchUrl(Context context, String link) {
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+    }
+
+    public static boolean isTablet(Context context) {
+        boolean device_large = ((context.getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                Configuration.SCREENLAYOUT_SIZE_LARGE);
+
+        if (device_large) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            if (metrics.densityDpi == DisplayMetrics.DENSITY_DEFAULT
+                    || metrics.densityDpi == DisplayMetrics.DENSITY_HIGH
+                    || metrics.densityDpi == DisplayMetrics.DENSITY_TV
+                    || metrics.densityDpi == DisplayMetrics.DENSITY_XHIGH)
+                return true;
+        }
+        return false;
     }
 
     public static int getScreenOrientation(Context context) {

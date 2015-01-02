@@ -266,12 +266,18 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     private DrawerLayout.LayoutParams getDrawerParams() {
+        boolean tablet = Utils.isTablet(this);
+
         DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
+        int width = getResources().getDisplayMetrics().widthPixels;
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+
+        int actionBarSize = ta.getDimensionPixelSize(0, 100);
         if (Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
-            params.width = getResources().getDisplayMetrics().widthPixels / 2;
+            params.width = width / 2;
+            if (tablet) params.width -= actionBarSize + 30;
         } else {
-            TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
-            params.width = getResources().getDisplayMetrics().widthPixels - ta.getDimensionPixelSize(0, 100);
+            params.width = tablet ? width / 2 : width - actionBarSize;
         }
 
         return params;
