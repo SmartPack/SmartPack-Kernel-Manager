@@ -16,7 +16,7 @@ import java.util.List;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU
+        GENERIC, CPU, TCP_CONGESTION
     }
 
     private static void commandSaver(Context context, String sys, String value) {
@@ -36,6 +36,12 @@ public class Control implements Constants {
         RootUtils.runCommand("echo " + value + " > " + file);
 
         commandSaver(context, file, "echo " + value + " > " + file);
+    }
+
+    private static void runTcpCongestion(String tcpCongestion, Context context) {
+        RootUtils.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
+
+        commandSaver(context, TCP_AVAILABLE_CONGESTIONS, "sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
     }
 
     public static void startModule(String module, boolean save, Context context) {
@@ -92,6 +98,8 @@ public class Control implements Constants {
                     }
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, context);
+                } else if (command == CommandType.TCP_CONGESTION) {
+                    runTcpCongestion(value, context);
                 }
             }
         };

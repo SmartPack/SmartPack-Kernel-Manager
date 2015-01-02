@@ -33,6 +33,7 @@ import com.grarak.kerneladiutor.fragments.IOFragment;
 import com.grarak.kerneladiutor.fragments.KSMFragment;
 import com.grarak.kerneladiutor.fragments.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.LMKFragment;
+import com.grarak.kerneladiutor.fragments.MiscControlsFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.VMFragment;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -126,6 +127,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         if (LMK.hasMinFree())
             mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscControlsFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.tools)));
         mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.other)));
@@ -259,10 +261,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         super.onDestroy();
         if (RootUtils.su != null) RootUtils.su.close();
         RootUtils.su = null;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
     }
 
     private DrawerLayout.LayoutParams getDrawerParams() {
