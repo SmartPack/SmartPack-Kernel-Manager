@@ -94,12 +94,16 @@ public class BaseCardView extends CardView {
         if (headerCardView != null && headerLayout != null) {
             headerLayout.removeAllViews();
             headerLayout.addView(headerCardView.getView());
+            headerLayout.setVisibility(VISIBLE);
         }
     }
 
     public void removeHeader() {
         headerCardView = null;
-        if (headerLayout != null) headerLayout.removeAllViews();
+        if (headerLayout != null) {
+            headerLayout.removeAllViews();
+            headerLayout.setVisibility(GONE);
+        }
     }
 
     private void setUpCustomLayout() {

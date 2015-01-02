@@ -2,13 +2,14 @@
 
     <!-- Base application theme. -->
     <style name="AppThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/material_blue_grey_800</item>
-        <item name="colorPrimaryDark">@color/material_blue_grey_900</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/material_blue_grey_800</item>
-        <item name="colorPrimaryDark">@color/material_blue_grey_900</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
     </style>

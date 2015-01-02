@@ -135,7 +135,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private void setView() {
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.material_blue_grey_900));
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.color_primary_dark));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.drawer_list);
     }

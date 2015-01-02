@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="color_primary">#2a7289</color>
+    <color name="color_primary_dark">#1f5465</color>
     <color name="black_semi_transparent">#A6000000</color>
-    <color name="fab_normal">#E637474F</color>
+    <color name="fab_normal">#E62a7289</color>
 </resources>
