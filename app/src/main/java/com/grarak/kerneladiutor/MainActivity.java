@@ -250,8 +250,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
-        else mDrawerLayout.openDrawer(mScrimInsetsFrameLayout);
+        if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
+        else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
     }
 
     @Override
