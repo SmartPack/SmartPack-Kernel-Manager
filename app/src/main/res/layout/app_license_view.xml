@@ -31,8 +31,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_google"
-                android:layout_weight="1" />
+                android:text="@string/google"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 
@@ -52,8 +53,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_google"
-                android:layout_weight="1" />
+                android:text="@string/google"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 
@@ -73,8 +75,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_google"
-                android:layout_weight="1" />
+                android:text="@string/google"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 
@@ -94,8 +97,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_google"
-                android:layout_weight="1" />
+                android:text="@string/google"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 
@@ -115,8 +119,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_stericson"
-                android:layout_weight="1" />
+                android:text="@string/stericson"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 
@@ -136,8 +141,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_jerzy"
-                android:layout_weight="1" />
+                android:text="@string/jerzy"
+                android:layout_weight="1"
+                android:gravity="end" />
 
         </LinearLayout>
 

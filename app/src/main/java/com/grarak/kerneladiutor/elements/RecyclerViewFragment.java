@@ -3,6 +3,7 @@ package com.grarak.kerneladiutor.elements;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -92,6 +93,8 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void setProgressBar(ProgressBar progressBar) {
+        progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
+                getResources().getColor(android.R.color.white)));
         ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,

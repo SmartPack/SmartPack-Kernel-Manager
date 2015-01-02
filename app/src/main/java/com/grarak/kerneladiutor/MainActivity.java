@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -82,6 +83,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         setSupportActionBar(toolbar);
 
         progressBar = new ProgressBar(this);
+        progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
+                getResources().getColor(android.R.color.white)));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
