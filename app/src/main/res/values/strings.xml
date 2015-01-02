@@ -150,6 +150,8 @@
     <string name="by_google">by Google</string>
     <string name="roottools">RootTools</string>
     <string name="by_stericson">by Stephen Stericson</string>
+    <string name="fab">FloatingActionButton</string>
+    <string name="by_jerzy">Jerzy Chałupski</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my Github.</string>
     <string name="feature_request">Feature request</string>
