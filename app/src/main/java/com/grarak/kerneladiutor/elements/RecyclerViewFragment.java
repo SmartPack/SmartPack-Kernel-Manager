@@ -2,6 +2,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -28,6 +30,7 @@ import java.util.List;
 public class RecyclerViewFragment extends Fragment {
 
     protected View view;
+    protected View backgroundView;
     protected LayoutInflater inflater;
     protected ViewGroup container;
 
@@ -77,6 +80,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public RecyclerView getRecyclerView() {
+        backgroundView = getParentView(R.layout.recyclerview_vertical).findViewById(R.id.background_view);
         return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
     }
 
@@ -125,8 +129,23 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private int getSidePadding() {
+        if (backgroundView != null)
+            if (Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) backgroundView.getLayoutParams();
+                params.height = getViewHeight();
+                backgroundView.setLayoutParams(params);
+                backgroundView.setVisibility(View.VISIBLE);
+            } else backgroundView.setVisibility(View.GONE);
+
         double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
         return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+    }
+
+    public int getViewHeight() {
+        TypedArray ta = getActivity().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        int actionBarSize = ta.getDimensionPixelSize(0, 100);
+        int height = getResources().getDisplayMetrics().heightPixels;
+        return height / 3 - actionBarSize;
     }
 
     private class Task extends AsyncTask<Bundle, Void, String> {

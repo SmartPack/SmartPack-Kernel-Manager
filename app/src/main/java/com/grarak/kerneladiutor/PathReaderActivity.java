@@ -3,6 +3,7 @@ package com.grarak.kerneladiutor;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
@@ -48,6 +50,7 @@ public class PathReaderActivity extends ActionBarActivity {
     private RecyclerView recyclerView;
     private DAdapter.Adapter adapter;
     private SwipeRefreshLayout refreshLayout;
+    private View backgroundView;
 
     private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq",
             "max_freq_blank", "high_freq_zone"};
@@ -66,6 +69,8 @@ public class PathReaderActivity extends ActionBarActivity {
             }
         });
 
+        backgroundView = findViewById(R.id.background_view);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -75,6 +80,7 @@ public class PathReaderActivity extends ActionBarActivity {
         int padding = getSidePadding();
         recyclerView.setPadding(padding, 0, padding, 0);
 
+        getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get args
@@ -137,8 +143,23 @@ public class PathReaderActivity extends ActionBarActivity {
     }
 
     private int getSidePadding() {
+        if (backgroundView != null)
+            if (Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) backgroundView.getLayoutParams();
+                params.height = getViewHeight();
+                backgroundView.setLayoutParams(params);
+                backgroundView.setVisibility(View.VISIBLE);
+            } else backgroundView.setVisibility(View.GONE);
+
         double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
         return Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+    }
+
+    public int getViewHeight() {
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        int actionBarSize = ta.getDimensionPixelSize(0, 100);
+        int height = getResources().getDisplayMetrics().heightPixels;
+        return height / 3 - actionBarSize;
     }
 
     private final Runnable run = new Runnable() {

@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/background_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
@@ -28,29 +34,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         fab:fab_addButtonColorNormal="@color/fab_normal"
-        fab:fab_addButtonColorPressed="?attr/colorPrimary"
+        fab:fab_addButtonColorPressed="@color/fab_pressed"
         fab:fab_addButtonPlusIconColor="@android:color/white"
         fab:fab_labelStyle="@style/menu_labels_style"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
         android:visibility="gone">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/backup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/fab_normal"
-            fab:fab_colorPressed="?attr/colorPrimary"
-            fab:fab_title="@string/backup"
-            fab:fab_size="mini" />
+            fab:fab_colorNormal="@color/white"
+            fab:fab_colorPressed="@color/white_pressed"
+            fab:fab_title="@string/backup" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/fab_normal"
-            fab:fab_colorPressed="?attr/colorPrimary"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_colorPressed="@color/white_pressed"
             fab:fab_title="@string/add"
             fab:fab_size="mini" />
 

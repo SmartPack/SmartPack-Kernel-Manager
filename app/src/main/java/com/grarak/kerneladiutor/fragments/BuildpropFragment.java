@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
@@ -36,12 +37,15 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     private Handler hand;
 
     private SwipeRefreshLayout refreshLayout;
+    private FloatingActionsMenu floatingActionsMenu;
     private List<Buildprop.BuildpropItems> buildpropItem;
 
     private MenuItem searchItem;
 
     @Override
     public RecyclerView getRecyclerView() {
+        backgroundView = getParentView(R.layout.path_read_view).findViewById(R.id.background_view);
+
         refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view)
                 .findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -67,7 +71,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        getParentView(R.layout.path_read_view).findViewById(R.id.fab_menu).setVisibility(View.VISIBLE);
+        floatingActionsMenu = (FloatingActionsMenu) getParentView(R.layout.path_read_view).findViewById(R.id.fab_menu);
+        floatingActionsMenu.setVisibility(View.VISIBLE);
         return (RecyclerView) getParentView(R.layout.path_read_view).findViewById(R.id.recycler_view);
     }
 

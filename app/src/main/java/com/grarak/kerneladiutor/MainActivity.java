@@ -270,8 +270,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
         DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
         int width = getResources().getDisplayMetrics().widthPixels;
-        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
 
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
         int actionBarSize = ta.getDimensionPixelSize(0, 100);
         if (Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
             params.width = width / 2;
