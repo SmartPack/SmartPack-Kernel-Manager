@@ -142,6 +142,7 @@ public interface Constants {
 
     // Misc
     public final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
+    public final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

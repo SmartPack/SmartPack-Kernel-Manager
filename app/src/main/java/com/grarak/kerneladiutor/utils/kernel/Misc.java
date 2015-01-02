@@ -15,7 +15,18 @@ import java.util.List;
  */
 public class Misc implements Constants {
 
-    private static String[] TCP_CONGESTIONS;
+    public static void activateForceFastCharge(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", FORCE_FAST_CHARGE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isForceFastChargeActive() {
+        String value = Utils.readFile(FORCE_FAST_CHARGE);
+        return value != null && value.equals("1");
+    }
+
+    public static boolean hasForceFastCharge() {
+        return Utils.existFile(FORCE_FAST_CHARGE);
+    }
 
     public static void setTcpCongestion(String tcpCongestion, Context context) {
         Control.runCommand(tcpCongestion, null, Control.CommandType.TCP_CONGESTION, context);
@@ -26,9 +37,7 @@ public class Misc implements Constants {
     }
 
     public static List<String> getTcpAvailableCongestions() {
-        if (TCP_CONGESTIONS == null)
-            TCP_CONGESTIONS = Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ");
-        return new ArrayList<>(Arrays.asList(TCP_CONGESTIONS));
+        return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
     }
 
 }
