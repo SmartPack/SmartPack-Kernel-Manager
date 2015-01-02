@@ -46,8 +46,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     public RecyclerView getRecyclerView() {
         backgroundView = getParentView(R.layout.path_read_view).findViewById(R.id.background_view);
 
-        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view)
-                .findViewById(R.id.refresh_layout);
+        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view).findViewById(R.id.refresh_layout);
+        refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

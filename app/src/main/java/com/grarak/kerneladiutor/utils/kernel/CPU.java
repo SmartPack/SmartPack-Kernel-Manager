@@ -77,9 +77,11 @@ public class CPU implements Constants {
     }
 
     public static ArrayList<String> getAvailableGovernors() {
-        if (mAvailableGovernors == null)
-            if (Utils.existFile(CPU_AVAILABLE_GOVERNORS))
-                mAvailableGovernors = Utils.readFile(CPU_AVAILABLE_GOVERNORS).split(" ");
+        if (mAvailableGovernors == null) {
+            String value = Utils.readFile(CPU_AVAILABLE_GOVERNORS);
+            if (value != null) mAvailableGovernors = value.split(" ");
+            else return new ArrayList<>();
+        }
         return new ArrayList<>(Arrays.asList(mAvailableGovernors));
     }
 

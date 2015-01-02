@@ -62,6 +62,7 @@ public class PathReaderActivity extends ActionBarActivity implements View.OnClic
         setContentView(R.layout.path_read_view);
 
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
