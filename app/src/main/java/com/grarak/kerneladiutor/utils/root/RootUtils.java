@@ -35,6 +35,10 @@ public class RootUtils implements Constants {
         return RootTools.isBusyboxAvailable();
     }
 
+    public static void mount(boolean writeable, String mountpoint) {
+        runCommand(writeable ? "mount -o rw,remount " + mountpoint : "mount -o ro,remount " + mountpoint);
+    }
+
     public static String readFile(String file) {
         return getOutput("cat " + file);
     }

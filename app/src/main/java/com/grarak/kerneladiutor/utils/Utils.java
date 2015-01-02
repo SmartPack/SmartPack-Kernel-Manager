@@ -1,12 +1,10 @@
 package com.grarak.kerneladiutor.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.util.Log;
-import android.view.Display;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -25,8 +23,8 @@ public class Utils implements Constants {
     }
 
     public static int getScreenOrientation(Context context) {
-        Display getOrient = ((Activity) context).getWindowManager().getDefaultDisplay();
-        return getOrient.getWidth() < getOrient.getHeight() ?
+        return context.getResources().getDisplayMetrics().widthPixels <
+                context.getResources().getDisplayMetrics().heightPixels ?
                 Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
     }
 
@@ -52,8 +50,7 @@ public class Utils implements Constants {
         if (filepath == null) return null;
 
         try {
-            BufferedReader buffreader = new BufferedReader(new FileReader(
-                    filepath), 256);
+            BufferedReader buffreader = new BufferedReader(new FileReader(filepath), 256);
             String line;
             StringBuilder text = new StringBuilder();
             while ((line = buffreader.readLine()) != null) {

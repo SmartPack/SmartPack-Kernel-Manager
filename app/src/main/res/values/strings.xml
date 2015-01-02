@@ -23,6 +23,7 @@
     <!-- Headers -->
     <string name="information">Information</string>
     <string name="kernel">Kernel</string>
+    <string name="tools">Tools</string>
     <string name="other">Other</string>
 
     <!-- Tabs -->
@@ -36,6 +37,7 @@
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
     <string name="virtual_machine">Virtual Machine</string>
+    <string name="build_prop_editor">Build prop Editor</string>
     <string name="about_us">About us</string>
 
     <!-- Frequency Table -->
@@ -126,6 +128,17 @@
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
+
+    <!-- Build prop Editor -->
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="backup">Backup</string>
+    <string name="key">Key</string>
+    <string name="value">Value</string>
+    <string name="add">Add</string>
+    <string name="delete_prop">Delete %s?</string>
+    <string name="backup_created">Backup has been created in %s.</string>
+    <string name="search">Search</string>
 
     <!-- About us -->
     <string name="license">License</string>

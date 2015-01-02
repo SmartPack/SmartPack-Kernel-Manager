@@ -1,24 +1,23 @@
 package com.grarak.kerneladiutor;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -44,12 +43,11 @@ public class PathReaderActivity extends ActionBarActivity {
     public static final String ARG_ERROR = "error";
     private String path;
 
-    private final List<File> files = new ArrayList<>();
-    private final List<String> values = new ArrayList<>();
+    private List<DAdapter.DView> dViewList = new ArrayList<>();
 
-    private Adapter adapter;
+    private RecyclerView recyclerView;
+    private DAdapter.Adapter adapter;
     private SwipeRefreshLayout refreshLayout;
-    private ListView list;
 
     private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq",
             "max_freq_blank", "high_freq_zone"};
@@ -58,36 +56,24 @@ public class PathReaderActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        setContentView(R.layout.path_read_view);
 
-        refreshLayout = new SwipeRefreshLayout(this);
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 hand.postDelayed(run, 500);
             }
         });
-        list = new ListView(this);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                boolean freq = false;
-                for (String freqFile : FREQ_FILE)
-                    if (files.get(position).getName().equals(freqFile)) {
-                        freq = true;
-                        break;
-                    }
 
-                if (freq && getIntent().getExtras().getInt(ARG_TYPE) == PATH_TYPE.GOVERNOR.ordinal()) {
-                    String[] values = new String[CPU.getFreqs().size()];
-                    for (int i = 0; i < values.length; i++)
-                        values[i] = String.valueOf(CPU.getFreqs().get(i));
-                    showPopupDialog(files.get(position).getAbsolutePath(), values);
-                } else showDialog(files.get(position).getAbsolutePath(), values.get(position));
-            }
-        });
-        refreshLayout.addView(list);
-
-        setContentView(refreshLayout);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setSmoothScrollbarEnabled(true);
+        recyclerView.setLayoutManager(layoutManager);
+        int padding = getSidePadding();
+        recyclerView.setPadding(padding, 0, padding, 0);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -96,21 +82,43 @@ public class PathReaderActivity extends ActionBarActivity {
         path = getIntent().getExtras().getString(ARG_PATH);
         String error = getIntent().getExtras().getString(ARG_ERROR);
 
-        // Collecting all files and add them to Lists
         File[] fileArray = new File(path).listFiles();
         if (Utils.existFile(path) && fileArray != null) {
             for (File file : fileArray)
                 if (file.isFile()) {
                     String value = Utils.readFile(file.getAbsolutePath());
                     if (value != null) {
-                        files.add(file);
-                        values.add(value);
+                        PopupCardItem.DPopupCard dPopupCard = new PopupCardItem.DPopupCard(null);
+                        dPopupCard.setDescription(file.getName());
+                        dPopupCard.setItem(value);
+                        dPopupCard.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                boolean freq = false;
+                                for (String freqFile : FREQ_FILE)
+                                    if (((PopupCardItem) v).getDescription().equals(freqFile)) {
+                                        freq = true;
+                                        break;
+                                    }
+
+                                if (freq && getIntent().getExtras().getInt(ARG_TYPE) == PATH_TYPE.GOVERNOR.ordinal()) {
+                                    String[] values = new String[CPU.getFreqs().size()];
+                                    for (int i = 0; i < values.length; i++)
+                                        values[i] = String.valueOf(CPU.getFreqs().get(i));
+                                    showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
+                                } else
+                                    showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
+                                            ((PopupCardItem) v).getItem());
+                            }
+                        });
+                        dViewList.add(dPopupCard);
                     }
                 }
+
             // Setup adapter
-            if (files.size() > 0) {
-                adapter = new Adapter(PathReaderActivity.this, files, values);
-                list.setAdapter(adapter);
+            if (dViewList.size() > 0) {
+                adapter = new DAdapter.Adapter(dViewList);
+                recyclerView.setAdapter(adapter);
             } else {
                 Utils.toast(error, PathReaderActivity.this);
                 finish();
@@ -121,26 +129,31 @@ public class PathReaderActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int padding = getSidePadding();
+        recyclerView.setPadding(padding, 0, padding, 0);
+    }
+
+    private int getSidePadding() {
+        double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
+        return Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+    }
+
     private final Runnable run = new Runnable() {
         @Override
         public void run() {
-            // Remove all items first otherwise we will get duplicated items
-            files.clear();
-            values.clear();
-
             File[] fileArray = new File(path).listFiles();
             if (fileArray != null) {
-                for (File file : fileArray) {
-                    String value = Utils.readFile(file.getAbsolutePath());
+                for (int i = 0; i < fileArray.length; i++) {
+                    String value = Utils.readFile(fileArray[i].getAbsolutePath());
                     if (value != null) {
-                        files.add(file);
-                        values.add(value);
+                        ((PopupCardItem.DPopupCard) dViewList.get(i)).setDescription(fileArray[i].getName());
+                        ((PopupCardItem.DPopupCard) dViewList.get(i)).setItem(value);
                     }
                 }
-
                 adapter.notifyDataSetChanged();
-                list.invalidateViews();
-                list.refreshDrawableState();
             }
             refreshLayout.setRefreshing(false);
         }
@@ -189,8 +202,7 @@ public class PathReaderActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        finish();
     }
 
     @Override
@@ -203,33 +215,6 @@ public class PathReaderActivity extends ActionBarActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-    }
-
-    private class Adapter extends ArrayAdapter<String> {
-
-        private final List<File> files;
-        private final List<String> values;
-
-        public Adapter(Context context, List<File> files, List<String> values) {
-            super(context, R.layout.path_read_view, values);
-            this.files = files;
-            this.values = values;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            View view = inflater.inflate(R.layout.path_read_view, null, false);
-
-            TextView keyText = (TextView) view.findViewById(R.id.key);
-            TextView valueText = (TextView) view.findViewById(R.id.value);
-
-            keyText.setText(files.get(position).getName());
-            valueText.setText(values.get(position) + "\n");
-
-            return view;
-        }
     }
 
 }

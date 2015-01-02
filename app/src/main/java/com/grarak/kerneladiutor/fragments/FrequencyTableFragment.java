@@ -55,7 +55,6 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        setHasOptionsMenu(true);
 
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.frequency_table_fragment, null, false);
         _uiStatesView = (LinearLayout) view.findViewById(R.id.ui_states_view);
@@ -95,7 +94,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.frequency_table, menu);
+        inflater.inflate(R.menu.frequency_table_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

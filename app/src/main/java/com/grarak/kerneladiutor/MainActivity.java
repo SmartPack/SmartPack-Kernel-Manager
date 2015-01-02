@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -23,6 +24,7 @@ import android.widget.ProgressBar;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.fragments.AboutUsFragment;
+import com.grarak.kerneladiutor.fragments.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.CPUFragment;
 import com.grarak.kerneladiutor.fragments.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.FrequencyTableFragment;
@@ -34,6 +36,7 @@ import com.grarak.kerneladiutor.fragments.LMKFragment;
 import com.grarak.kerneladiutor.fragments.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.VMFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
@@ -65,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private final List<ListAdapter.ListItem> mList = new ArrayList<>();
 
-    private int cur_position = 2;
+    private int cur_position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private void selectItem(int position) {
         Fragment fragment = mList.get(position).getFragment();
 
-        if (fragment == null) {
+        if (fragment == null || cur_position == position) {
             mDrawerList.setItemChecked(cur_position, true);
             return;
         }
@@ -97,7 +100,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         cur_position = position;
 
         Log.i(TAG, "Open postion " + position + ": " + mList.get(position).getTitle());
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commitAllowingStateLoss();
 
         setTitle(mList.get(position).getTitle());
         mDrawerList.setItemChecked(position, true);
@@ -123,6 +126,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         if (LMK.hasMinFree())
             mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+        mList.add(new ListAdapter.Header(getString(R.string.tools)));
+        mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.other)));
         mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
     }
@@ -136,11 +141,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     private void setInterface() {
-        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
-        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
-        params.width = getResources().getDisplayMetrics().widthPixels - ta.getDimensionPixelSize(0, 100);
-        mScrimInsetsFrameLayout.setLayoutParams(params);
-
+        mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
         mDrawerList.setAdapter(new ListAdapter.Adapter(this, mList));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -176,7 +177,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressBar.setVisibility(View.VISIBLE);
             setView();
         }
 
@@ -223,9 +223,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
             }
 
             setInterface();
-            selectItem(cur_position);
+            ((ViewGroup) progressBar.getParent()).removeView(progressBar);
 
-            progressBar.setVisibility(View.GONE);
+            selectItem(2);
+            mScrimInsetsFrameLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -243,6 +244,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -258,4 +260,21 @@ public class MainActivity extends ActionBarActivity implements Constants {
         if (RootUtils.su != null) RootUtils.su.close();
         RootUtils.su = null;
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    }
+
+    private DrawerLayout.LayoutParams getDrawerParams() {
+        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
+        if (Utils.getScreenOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
+            params.width = getResources().getDisplayMetrics().widthPixels / 2;
+        } else {
+            TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+            params.width = getResources().getDisplayMetrics().widthPixels - ta.getDimensionPixelSize(0, 100);
+        }
+
+        return params;
+    }
+
 }

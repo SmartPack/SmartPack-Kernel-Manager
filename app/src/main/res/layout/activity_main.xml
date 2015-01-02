@@ -32,7 +32,8 @@
         android:layout_gravity="start"
         android:background="@android:color/white"
         app:insetForeground="#4000"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:visibility="gone">
 
         <ListView
             android:id="@+id/drawer_list"

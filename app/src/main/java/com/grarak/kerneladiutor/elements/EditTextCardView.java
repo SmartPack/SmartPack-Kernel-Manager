@@ -86,6 +86,11 @@ public class EditTextCardView extends CardViewItem {
         private OnDEditTextCardListener onDEditTextCardListener;
 
         @Override
+        public Holder onCreateViewHolder(ViewGroup viewGroup) {
+            return new Holder(new EditTextCardView(viewGroup.getContext()));
+        }
+
+        @Override
         public void onBindViewHolder(Holder viewHolder) {
             editTextCardView = (EditTextCardView) viewHolder.view;
 
@@ -101,11 +106,6 @@ public class EditTextCardView extends CardViewItem {
                         onDEditTextCardListener.onApply(DEditTextCard.this, value);
                 }
             });
-        }
-
-        @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new EditTextCardView(viewGroup.getContext()));
         }
 
         public void setTitle(String title) {

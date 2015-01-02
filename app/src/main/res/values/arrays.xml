@@ -34,4 +34,10 @@
         <item>@string/very_aggressive</item>
     </string-array>
 
+    <!-- Build prop -->
+    <string-array name="build_prop_menu">
+        <item>@string/edit</item>
+        <item>@string/delete</item>
+    </string-array>
+
 </resources>

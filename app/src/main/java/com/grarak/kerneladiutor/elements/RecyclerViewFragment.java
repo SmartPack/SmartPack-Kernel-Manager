@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ import java.util.List;
  */
 public class RecyclerViewFragment extends Fragment {
 
+    protected View view;
     protected LayoutInflater inflater;
     protected ViewGroup container;
 
@@ -36,11 +39,11 @@ public class RecyclerViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         this.inflater = inflater;
         this.container = container;
 
-        recyclerView = (RecyclerView) inflater.inflate(R.layout.recyclerview_vertical, container, false);
-        recyclerView.setHasFixedSize(true);
+        recyclerView = getRecyclerView();
         recyclerView.setAdapter(new RecyclerView.Adapter() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -58,13 +61,23 @@ public class RecyclerViewFragment extends Fragment {
             }
         });
         setRecyclerView(recyclerView);
+        int padding = getSidePadding();
+        recyclerView.setPadding(padding, 0, padding, 0);
 
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
 
         if (isAdded()) new Task().execute(savedInstanceState);
 
-        return recyclerView;
+        return view;
+    }
+
+    protected View getParentView(int layout) {
+        return view != null ? view : (view = inflater.inflate(layout, container, false));
+    }
+
+    public RecyclerView getRecyclerView() {
+        return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
     }
 
     public void setRecyclerView(RecyclerView recyclerView) {
@@ -99,13 +112,28 @@ public class RecyclerViewFragment extends Fragment {
         }
     }
 
+    public void removeAllViews() {
+        views.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        int padding = getSidePadding();
+        recyclerView.setPadding(padding, 0, padding, 0);
+    }
+
+    private int getSidePadding() {
+        double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
+        return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+    }
+
     private class Task extends AsyncTask<Bundle, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            progressBar.setVisibility(View.VISIBLE);
 
             hand = new Handler();
             views.clear();
@@ -126,9 +154,13 @@ public class RecyclerViewFragment extends Fragment {
             recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in));
             if (hand != null) hand.post(run);
 
-            progressBar.setVisibility(View.GONE);
+            ((ViewGroup) progressBar.getParent()).removeView(progressBar);
         }
 
+    }
+
+    public Handler getHandler() {
+        return hand;
     }
 
     public boolean onRefresh() {

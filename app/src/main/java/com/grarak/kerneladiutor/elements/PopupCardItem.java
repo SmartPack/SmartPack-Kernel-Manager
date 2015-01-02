@@ -30,6 +30,7 @@ public class PopupCardItem extends BaseCardView {
     private String descriptionText;
     private String valueText;
 
+    private PopupMenu popup;
     private OnPopupCardListener onPopupCardListener;
 
     public PopupCardItem(Context context, String[] array) {
@@ -40,26 +41,23 @@ public class PopupCardItem extends BaseCardView {
         super(context, R.layout.popup_cardview);
         this.list = list;
 
-        final PopupMenu popup = new PopupMenu(getContext(), valueView);
-        for (int i = 0; i < list.size(); i++)
-            popup.getMenu().add(Menu.NONE, i, Menu.NONE, list.get(i));
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (valueView != null)
-                    valueView.setText(list.get(item.getItemId()));
-                if (onPopupCardListener != null)
-                    onPopupCardListener.onItemSelected(PopupCardItem.this, item.getItemId());
-                return false;
-            }
-        });
+        if (list != null) {
+            popup = new PopupMenu(getContext(), valueView);
+            for (int i = 0; i < list.size(); i++)
+                popup.getMenu().add(Menu.NONE, i, Menu.NONE, list.get(i));
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (valueView != null)
+                        valueView.setText(list.get(item.getItemId()));
+                    if (onPopupCardListener != null)
+                        onPopupCardListener.onItemSelected(PopupCardItem.this, item.getItemId());
+                    return false;
+                }
+            });
+        }
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popup.show();
-            }
-        });
+        if (onPopupCardListener != null) setListener();
     }
 
     @Override
@@ -96,6 +94,14 @@ public class PopupCardItem extends BaseCardView {
         if (valueView != null) valueView.setText(valueText);
     }
 
+    public String getDescription() {
+        return descriptionText;
+    }
+
+    public String getItem() {
+        return valueText;
+    }
+
     private void setUpTitle() {
         if (headerCardView != null) {
             if (titleText == null) removeHeader();
@@ -114,8 +120,18 @@ public class PopupCardItem extends BaseCardView {
             descriptionView.setText(descriptionText);
     }
 
+    private void setListener() {
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (popup != null) popup.show();
+            }
+        });
+    }
+
     public void setOnPopupCardListener(OnPopupCardListener onPopupCardListener) {
         this.onPopupCardListener = onPopupCardListener;
+        setListener();
     }
 
     public interface OnPopupCardListener {
@@ -133,10 +149,7 @@ public class PopupCardItem extends BaseCardView {
         private String value;
 
         private OnDPopupCardListener onDPopupCardListener;
-
-        public DPopupCard(String[] array) {
-            this(new ArrayList<>(Arrays.asList(array)));
-        }
+        private OnClickListener onClickListener;
 
         public DPopupCard(List<String> list) {
             this.list = list;
@@ -151,17 +164,10 @@ public class PopupCardItem extends BaseCardView {
         public void onBindViewHolder(Holder viewHolder) {
             popupCardItem = (PopupCardItem) viewHolder.itemView;
 
-            popupCardItem.setOnPopupCardListener(new PopupCardItem.OnPopupCardListener() {
-                @Override
-                public void onItemSelected(PopupCardItem popupCardItem, int position) {
-                    if (onDPopupCardListener != null)
-                        onDPopupCardListener.onItemSelected(DPopupCard.this, position);
-                }
-            });
-
             if (title != null) popupCardItem.setTitle(title);
             if (description != null) popupCardItem.setDescription(description);
             if (value != null) popupCardItem.setItem(value);
+            setListener();
         }
 
         public void setTitle(String title) {
@@ -186,6 +192,32 @@ public class PopupCardItem extends BaseCardView {
 
         public void setOnDPopupCardListener(OnDPopupCardListener onDPopupCardListener) {
             this.onDPopupCardListener = onDPopupCardListener;
+            setListener();
+        }
+
+        public void setOnClickListener(OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+            setListener();
+        }
+
+        private void setListener() {
+            if (popupCardItem != null) {
+                if (onDPopupCardListener != null)
+                    popupCardItem.setOnPopupCardListener(new PopupCardItem.OnPopupCardListener() {
+                        @Override
+                        public void onItemSelected(PopupCardItem popupCardItem, int position) {
+                            if (onDPopupCardListener != null)
+                                onDPopupCardListener.onItemSelected(DPopupCard.this, position);
+                        }
+                    });
+                if (onClickListener != null)
+                    popupCardItem.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (onClickListener != null) onClickListener.onClick(v);
+                        }
+                    });
+            }
         }
 
         public interface OnDPopupCardListener {

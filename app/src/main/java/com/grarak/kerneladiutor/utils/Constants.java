@@ -140,4 +140,7 @@ public interface Constants {
     // Virtual Machine
     public final String VM_PATH = "/proc/sys/vm";
 
+    // Build prop
+    public final String BUILD_PROP = "/system/build.prop";
+
 }

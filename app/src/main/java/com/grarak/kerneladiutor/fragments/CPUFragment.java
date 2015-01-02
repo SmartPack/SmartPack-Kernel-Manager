@@ -18,6 +18,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -124,7 +125,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     private void mcPowerSavingInit() {
-        mMcPowerSaving = new PopupCardItem.DPopupCard(CPU.getMcPowerSavingItems(getActivity()));
+        mMcPowerSaving = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays.asList(
+                CPU.getMcPowerSavingItems(getActivity()))));
         mMcPowerSaving.setTitle(getString(R.string.mc_power_saving));
         mMcPowerSaving.setDescription(getString(R.string.mc_power_saving_summary));
         mMcPowerSaving.setItem(CPU.getCurMcPowerSaving());
