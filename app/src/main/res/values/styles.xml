@@ -15,6 +15,12 @@
         <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
     </style>
 
+    <style name="AutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColorHighlight">@android:color/white</item>
+    </style>
+
     <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">17sp</item>

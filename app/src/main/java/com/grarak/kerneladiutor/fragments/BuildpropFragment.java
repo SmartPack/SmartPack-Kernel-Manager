@@ -214,6 +214,11 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         searchItem = menu.findItem(R.id.search);
         SearchView searchView = new SearchView(((ActionBarActivity) getActivity())
                 .getSupportActionBar().getThemedContext());
+        searchView.setQueryHint(getString(R.string.search));
+
+        View searchPlate = searchView.findViewById(R.id.search_plate);
+        searchPlate.setBackgroundResource(R.drawable.searchview);
+
         MenuItemCompat.setActionView(searchItem, searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
