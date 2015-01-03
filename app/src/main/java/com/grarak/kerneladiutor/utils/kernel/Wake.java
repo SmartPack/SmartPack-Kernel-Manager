@@ -57,7 +57,12 @@ public class Wake implements Constants {
     }
 
     public static int getDt2wValue() {
-        if (DT2W_FILE != null) return Integer.parseInt(Utils.readFile(DT2W_FILE));
+        try {
+            if (DT2W_FILE != null)
+                return Integer.parseInt(Utils.readFile(DT2W_FILE));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

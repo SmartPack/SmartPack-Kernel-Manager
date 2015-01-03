@@ -181,7 +181,11 @@ public class PopupCardItem extends BaseCardView {
         }
 
         public void setItem(int position) {
-            value = list.get(position);
+            try {
+                value = list.get(position);
+            } catch (IndexOutOfBoundsException e) {
+                value = "Unknown";
+            }
             if (popupCardItem != null) popupCardItem.setItem(value);
         }
 
