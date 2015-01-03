@@ -15,19 +15,6 @@ import java.util.List;
  */
 public class Misc implements Constants {
 
-    public static void activateForceFastCharge(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", FORCE_FAST_CHARGE, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isForceFastChargeActive() {
-        String value = Utils.readFile(FORCE_FAST_CHARGE);
-        return value != null && value.equals("1");
-    }
-
-    public static boolean hasForceFastCharge() {
-        return Utils.existFile(FORCE_FAST_CHARGE);
-    }
-
     public static void setTcpCongestion(String tcpCongestion, Context context) {
         Control.runCommand(tcpCongestion, null, Control.CommandType.TCP_CONGESTION, context);
     }

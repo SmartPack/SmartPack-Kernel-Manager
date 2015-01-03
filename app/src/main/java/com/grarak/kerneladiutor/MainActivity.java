@@ -26,6 +26,7 @@ import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
+import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
@@ -128,6 +129,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
             mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
             mList.add(new ListAdapter.Item(getString(R.string.wake), new WakeFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
             mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));

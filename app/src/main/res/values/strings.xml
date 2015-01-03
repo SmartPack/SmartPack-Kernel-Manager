@@ -34,6 +34,7 @@
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
     <string name="wake">Wake</string>
+    <string name="battery">Battery</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
@@ -107,6 +108,11 @@
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the navigation bar.</string>
     <string name="s2s">Sweep2Sleep</string>
+
+    <!-- Battery -->
+    <string name="battery_voltage">Battery Voltage</string>
+    <string name="battery_level">Battery Level</string>
+    <string name="battery_temperature">Battery Temperature</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_scheduler">Internal Storage Scheduler</string>
