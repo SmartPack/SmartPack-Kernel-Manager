@@ -11,6 +11,20 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class Battery implements Constants {
 
+    public static void setBlx(int value, Context context) {
+        Control.runCommand(String.valueOf(value), BLX, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCurBlx() {
+        String value = Utils.readFile(FORCE_FAST_CHARGE);
+        if (value != null) return Integer.parseInt(value);
+        return 0;
+    }
+
+    public static boolean hasBlx() {
+        return Utils.existFile(BLX);
+    }
+
     public static void activateForceFastCharge(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", FORCE_FAST_CHARGE, Control.CommandType.GENERIC, context);
     }

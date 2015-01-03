@@ -127,6 +127,10 @@ public interface Constants {
 
     public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY};
 
+    // Battery
+    public final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
+    public final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
+
     // I/O
     public final String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
     public final String IO_EXTERNAL_SCHEDULER = "/sys/block/mmcblk1/queue/scheduler";
@@ -157,7 +161,6 @@ public interface Constants {
 
     // Misc
     public final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
-    public final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

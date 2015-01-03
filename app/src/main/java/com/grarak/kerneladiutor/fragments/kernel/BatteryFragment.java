@@ -11,16 +11,23 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.CheckBoxCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by willi on 03.01.15.
  */
-public class BatteryFragment extends RecyclerViewFragment implements CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener {
+public class BatteryFragment extends RecyclerViewFragment implements CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener,
+        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView mBatteryLevelCard, mBatteryVoltageCard, mBatteryTemperature;
 
     private CheckBoxCardItem.DCheckBoxCard mForceFastChargeCard;
+
+    private SeekBarCardView.DSeekBarCardView mBlxCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -30,6 +37,7 @@ public class BatteryFragment extends RecyclerViewFragment implements CheckBoxCar
         batteryVoltageInit();
         batteryTemperatureInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
+        if (Battery.hasBlx()) blxInit();
 
         getActivity().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
@@ -65,6 +73,18 @@ public class BatteryFragment extends RecyclerViewFragment implements CheckBoxCar
         addView(mForceFastChargeCard);
     }
 
+    private void blxInit() {
+        List<String> blxValues = new ArrayList<>();
+        for (int i = 0; i < 101; i++) blxValues.add(String.valueOf(i));
+        mBlxCard = new SeekBarCardView.DSeekBarCardView(blxValues);
+        mBlxCard.setTitle(getString(R.string.blx));
+        mBlxCard.setDescription(getString(R.string.blx_summary));
+        mBlxCard.setProgress(Battery.getCurBlx());
+        mBlxCard.setOnDSeekBarCardListener(this);
+
+        addView(mBatteryLevelCard);
+    }
+
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context arg0, Intent intent) {
@@ -86,4 +106,14 @@ public class BatteryFragment extends RecyclerViewFragment implements CheckBoxCar
             Battery.activateForceFastCharge(checked, getActivity());
     }
 
+    @Override
+    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        if (dSeekBarCardView == mBlxCard) Battery.setBlx(position, getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().unregisterReceiver(mBatInfoReceiver);
+    }
 }

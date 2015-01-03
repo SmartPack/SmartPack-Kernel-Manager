@@ -106,8 +106,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
         cur_position = position;
 
-        Log.i(TAG, "Open postion " + position + ": " + mList.get(position).getTitle());
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commitAllowingStateLoss();
+        try {
+            Log.i(TAG, "Open postion " + position + ": " + mList.get(position).getTitle());
+            getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commitAllowingStateLoss();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         setTitle(mList.get(position).getTitle());
         mDrawerList.setItemChecked(position, true);

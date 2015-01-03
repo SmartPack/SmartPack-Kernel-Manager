@@ -18,10 +18,12 @@ import java.util.List;
 public class SeekBarCardView extends BaseCardView {
 
     private HeaderCardView headerCardView;
+    private TextView descriptionView;
     private TextView valueView;
     private SeekBar seekBarView;
 
     private String title;
+    private String description;
     private int progress;
 
     private OnSeekBarCardListener onSeekBarCardListener;
@@ -53,12 +55,14 @@ public class SeekBarCardView extends BaseCardView {
         headerCardView = new HeaderCardView(getContext());
         addHeader(headerCardView);
         if (title != null) headerCardView.setText(title);
+        if (description != null) descriptionView.setText(description);
     }
 
     @Override
     protected void setUpInnerLayout(View view) {
         super.setUpInnerLayout(view);
 
+        descriptionView = (TextView) view.findViewById(R.id.description_view);
         valueView = (TextView) view.findViewById(R.id.value_view);
         seekBarView = (SeekBar) view.findViewById(R.id.seekbar_view);
 
@@ -94,6 +98,11 @@ public class SeekBarCardView extends BaseCardView {
         if (headerCardView != null) headerCardView.setText(title);
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+        if (descriptionView != null) descriptionView.setText(description);
+    }
+
     public void setProgress(int progress) {
         this.progress = progress;
         if (seekBarView != null) seekBarView.setProgress(progress);
@@ -114,6 +123,7 @@ public class SeekBarCardView extends BaseCardView {
         private SeekBarCardView seekBarCardView;
 
         private String title;
+        private String description;
         private int progress;
 
         private OnDSeekBarCardListener onDSeekBarCardListener;
@@ -136,6 +146,7 @@ public class SeekBarCardView extends BaseCardView {
             seekBarCardView = (SeekBarCardView) viewHolder.view;
 
             if (title != null) seekBarCardView.setTitle(title);
+            if (description != null) seekBarCardView.setDescription(description);
             seekBarCardView.setProgress(progress);
 
             seekBarCardView.setOnSeekBarCardListener(new SeekBarCardView.OnSeekBarCardListener() {
@@ -151,6 +162,11 @@ public class SeekBarCardView extends BaseCardView {
         public void setTitle(String title) {
             this.title = title;
             if (seekBarCardView != null) seekBarCardView.setTitle(title);
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+            if (seekBarCardView != null) seekBarCardView.setDescription(description);
         }
 
         public void setProgress(int progress) {
