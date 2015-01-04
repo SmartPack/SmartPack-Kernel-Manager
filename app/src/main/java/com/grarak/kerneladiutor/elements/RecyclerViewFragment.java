@@ -125,6 +125,10 @@ public class RecyclerViewFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    public int getCount() {
+        return views.size();
+    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -140,13 +144,21 @@ public class RecyclerViewFragment extends Fragment {
                 backgroundView.setLayoutParams(params);
                 backgroundView.setVisibility(View.VISIBLE);
 
-                Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.top_to_bottom);
-                animation.setDuration(1500);
-                backgroundView.startAnimation(animation);
+                animateBackground();
             } else backgroundView.setVisibility(View.GONE);
 
         double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
         return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+    }
+
+    public void animateBackground() {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.top_to_bottom);
+        animation.setDuration(1500);
+        backgroundView.startAnimation(animation);
+    }
+
+    public void animateRecyclerView() {
+        recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.bottom_to_top));
     }
 
     public int getViewHeight() {
@@ -178,7 +190,7 @@ public class RecyclerViewFragment extends Fragment {
             super.onPostExecute(s);
 
             recyclerView.setAdapter(adapter);
-            recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.bottom_to_top));
+            animateRecyclerView();
             if (hand != null) hand.post(run);
 
             ((ViewGroup) progressBar.getParent()).removeView(progressBar);
