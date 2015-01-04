@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
@@ -75,27 +74,20 @@ public class Control implements Constants {
 
     public static void runCommand(final String value, final String file, final CommandType command,
                                   final Context context) {
-
         Runnable run = new Runnable() {
             @Override
             public void run() {
                 if (command == CommandType.CPU) {
-                    if (CPU.getCoreCount() > 1) {
-                        boolean stoppedMpdec = false;
-                        if (RootUtils.moduleActive(CPU_MPDEC)) {
-                            stopModule(CPU_MPDEC, false, context);
-                            stoppedMpdec = true;
-                        }
-
-                        for (int i = 0; i < CPU.getCoreCount(); i++)
-                            while (true)
-                                if (Utils.existFile(String.format(file, i))) {
-                                    runGeneric(String.format(file, i), value, context);
-                                    break;
-                                }
-
-                        if (stoppedMpdec) startModule(CPU_MPDEC, false, context);
+                    boolean stoppedMpdec = false;
+                    if (CPU.hasMpdecision() && RootUtils.moduleActive(CPU_MPDEC)) {
+                        stopModule(CPU_MPDEC, false, context);
+                        stoppedMpdec = true;
                     }
+
+                    for (int i = 0; i < CPU.getCoreCount(); i++)
+                        runGeneric(String.format(file, i), value, context);
+
+                    if (stoppedMpdec) startModule(CPU_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, context);
                 } else if (command == CommandType.TCP_CONGESTION) {
