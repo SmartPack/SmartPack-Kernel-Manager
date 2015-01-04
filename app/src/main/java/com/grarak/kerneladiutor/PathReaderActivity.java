@@ -14,6 +14,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -132,6 +134,10 @@ public class PathReaderActivity extends ActionBarActivity implements View.OnClic
                 params.height = getViewHeight();
                 backgroundView.setLayoutParams(params);
                 backgroundView.setVisibility(View.VISIBLE);
+
+                Animation animation = AnimationUtils.loadAnimation(this, R.anim.top_to_bottom);
+                animation.setDuration(1500);
+                backgroundView.startAnimation(animation);
             } else backgroundView.setVisibility(View.GONE);
 
         double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;

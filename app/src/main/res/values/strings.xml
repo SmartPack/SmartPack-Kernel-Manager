@@ -159,10 +159,8 @@
     <!-- Build prop Editor -->
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="backup">Backup</string>
     <string name="key">Key</string>
     <string name="value">Value</string>
-    <string name="add">Add</string>
     <string name="delete_prop">Delete %s?</string>
     <string name="backup_created">Backup has been created in %s.</string>
     <string name="search">Search</string>

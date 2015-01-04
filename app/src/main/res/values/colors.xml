@@ -2,9 +2,6 @@
 <resources>
     <color name="color_primary">#2a7289</color>
     <color name="color_primary_dark">#1f5465</color>
-    <color name="black_semi_transparent">#A6000000</color>
-    <color name="fab_normal">#E6FFFB05</color>
-    <color name="fab_pressed">#E6C2BF00</color>
-    <color name="white">#E6FAFAFA</color>
-    <color name="white_pressed">#E6F1F1F1</color>
+    <color name="fab_normal">#FFFB05</color>
+    <color name="fab_pressed">#C2BF00</color>
 </resources>
