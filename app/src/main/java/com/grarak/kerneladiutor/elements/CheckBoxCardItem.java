@@ -39,6 +39,16 @@ public class CheckBoxCardItem extends BaseCardView {
                 }
             }
         });
+
+        checkBoxView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checked = checkBoxView.isChecked();
+
+                if (onCheckBoxCardListener != null)
+                    onCheckBoxCardListener.onChecked(CheckBoxCardItem.this, checked);
+            }
+        });
     }
 
     @Override
@@ -46,19 +56,18 @@ public class CheckBoxCardItem extends BaseCardView {
         super.setUpInnerLayout(view);
 
         headerCardView = new HeaderCardView(getContext());
-        addHeader(headerCardView);
 
         descriptionView = (TextView) view.findViewById(R.id.description_view);
         checkBoxView = (CheckBox) view.findViewById(R.id.checkbox_view);
 
-        if (titleText != null) headerCardView.setText(titleText);
+        setUpTitle();
         if (descriptionText != null) descriptionView.setText(descriptionText);
         checkBoxView.setChecked(checked);
     }
 
     public void setTitle(String title) {
         titleText = title;
-        if (headerCardView != null) headerCardView.setText(title);
+        setUpTitle();
     }
 
     public void setDescription(String description) {
@@ -69,6 +78,15 @@ public class CheckBoxCardItem extends BaseCardView {
     public void setChecked(boolean checked) {
         this.checked = checked;
         if (checkBoxView != null) checkBoxView.setChecked(checked);
+    }
+
+    private void setUpTitle() {
+        if (headerCardView != null) {
+            if (titleText == null) removeHeader();
+            else addHeader(headerCardView);
+        }
+        if (headerCardView != null && titleText != null)
+            headerCardView.setText(titleText);
     }
 
     public void setOnCheckBoxCardListener(OnCheckBoxCardListener onCheckBoxCardListener) {

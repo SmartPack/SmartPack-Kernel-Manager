@@ -105,7 +105,8 @@ public class ListAdapter {
         @Override
         public View getView(LayoutInflater inflater, ViewGroup parent) {
             View view = inflater.inflate(R.layout.list_header, parent, false);
-            ((TextView) view.findViewById(R.id.text)).setText(title);
+            TextView text = (TextView) view.findViewById(R.id.text);
+            text.setText(title);
             return view;
         }
 

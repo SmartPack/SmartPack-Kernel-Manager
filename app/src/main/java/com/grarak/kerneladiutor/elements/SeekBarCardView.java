@@ -53,8 +53,7 @@ public class SeekBarCardView extends BaseCardView {
         });
 
         headerCardView = new HeaderCardView(getContext());
-        addHeader(headerCardView);
-        if (title != null) headerCardView.setText(title);
+        setUpTitle();
         if (description != null) descriptionView.setText(description);
     }
 
@@ -95,7 +94,7 @@ public class SeekBarCardView extends BaseCardView {
 
     public void setTitle(String title) {
         this.title = title;
-        if (headerCardView != null) headerCardView.setText(title);
+        setUpTitle();
     }
 
     public void setDescription(String description) {
@@ -106,6 +105,15 @@ public class SeekBarCardView extends BaseCardView {
     public void setProgress(int progress) {
         this.progress = progress;
         if (seekBarView != null) seekBarView.setProgress(progress);
+    }
+
+    private void setUpTitle() {
+        if (headerCardView != null) {
+            if (title == null) removeHeader();
+            else addHeader(headerCardView);
+        }
+        if (headerCardView != null && title != null)
+            headerCardView.setText(title);
     }
 
     public void setOnSeekBarCardListener(OnSeekBarCardListener onSeekBarCardListener) {
@@ -146,7 +154,10 @@ public class SeekBarCardView extends BaseCardView {
             seekBarCardView = (SeekBarCardView) viewHolder.view;
 
             if (title != null) seekBarCardView.setTitle(title);
-            if (description != null) seekBarCardView.setDescription(description);
+            if (description != null) {
+                seekBarCardView.setVisibility(VISIBLE);
+                seekBarCardView.setDescription(description);
+            }
             seekBarCardView.setProgress(progress);
 
             seekBarCardView.setOnSeekBarCardListener(new SeekBarCardView.OnSeekBarCardListener() {
@@ -166,7 +177,10 @@ public class SeekBarCardView extends BaseCardView {
 
         public void setDescription(String description) {
             this.description = description;
-            if (seekBarCardView != null) seekBarCardView.setDescription(description);
+            if (seekBarCardView != null) {
+                seekBarCardView.setVisibility(VISIBLE);
+                seekBarCardView.setDescription(description);
+            }
         }
 
         public void setProgress(int progress) {
