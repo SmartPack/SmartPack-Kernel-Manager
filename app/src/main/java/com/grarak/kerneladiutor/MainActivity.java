@@ -259,8 +259,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        if (mScrimInsetsFrameLayout != null)
+            mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
+        if (mDrawerToggle != null) mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
