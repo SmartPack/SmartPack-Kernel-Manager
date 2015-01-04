@@ -181,7 +181,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mDrawerLayout.post(new Runnable() {
             @Override
             public void run() {
-                mDrawerToggle.syncState();
+                if (mDrawerToggle != null) mDrawerToggle.syncState();
             }
         });
     }
