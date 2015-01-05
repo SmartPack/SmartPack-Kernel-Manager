@@ -64,6 +64,8 @@
     <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
     <string name="cpu_min_freq">CPU Minimum Frequency</string>
     <string name="cpu_min_freq_summary">Set the minimum frequency the CPU scales down to.</string>
+    <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
+    <string name="cpu_max_screen_off_freq_summary">Set the maximum screen off frequency the CPU scales up to.</string>
     <string name="cpu_governor">CPU Governor</string>
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to you CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>

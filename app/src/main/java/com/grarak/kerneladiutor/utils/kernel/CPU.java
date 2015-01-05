@@ -130,6 +130,22 @@ public class CPU implements Constants {
         return new ArrayList<>(Arrays.asList(mFreqs));
     }
 
+    public static void setMaxScreenOffFreq(int freq, Context context) {
+        Control.runCommand(String.valueOf(freq), CPU_MAX_SCREEN_OFF_FREQ, Control.CommandType.CPU, context);
+    }
+
+    public static int getMaxScreenOffFreq(int core) {
+        if (Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core))) {
+            String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
+            if (value != null) return Integer.parseInt(value);
+        }
+        return 0;
+    }
+
+    public static boolean hasMaxScreenOffFreq() {
+        return Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, 0));
+    }
+
     public static void setMinFreq(int freq, Context context) {
         Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, Control.CommandType.CPU, context);
     }

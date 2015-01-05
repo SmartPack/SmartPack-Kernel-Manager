@@ -131,11 +131,11 @@ public class PathReaderActivity extends ActionBarActivity {
 
                 // Setup adapter
                 if (getCount() < 1) {
-                    Utils.toast(ERROR, getActivity());
+                    toast(ERROR);
                     getActivity().finish();
                 }
             } else {
-                Utils.toast(ERROR, getActivity());
+                toast(ERROR);
                 getActivity().finish();
             }
         }
@@ -228,6 +228,15 @@ public class PathReaderActivity extends ActionBarActivity {
                     hand.postDelayed(refresh, 500);
                 }
             }).show();
+        }
+
+        private void toast(final String message) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.toast(message, getActivity());
+                }
+            });
         }
 
     }

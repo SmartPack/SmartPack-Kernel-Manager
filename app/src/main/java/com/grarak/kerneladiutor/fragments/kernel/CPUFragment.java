@@ -32,7 +32,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     private ProgressBar[] mCoreProgressBar;
     private TextView[] mCoreFreqText;
 
-    private PopupCardItem.DPopupCard mMaxFreq, mMinFreq;
+    private PopupCardItem.DPopupCard mMaxFreq, mMinFreq, mMaxScreenOffFreq;
 
     private PopupCardItem.DPopupCard mGovernor;
     private CardViewItem.DCardView mGovernorTunable;
@@ -106,6 +106,16 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
         addView(mMaxFreq);
         addView(mMinFreq);
+
+        if (CPU.hasMaxScreenOffFreq()) {
+            mMaxScreenOffFreq = new PopupCardItem.DPopupCard(freqs);
+            mMaxScreenOffFreq.setTitle(getString(R.string.cpu_max_screen_off_freq));
+            mMaxScreenOffFreq.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
+            mMaxScreenOffFreq.setItem(CPU.getMaxScreenOffFreq(0) / 1000 + MHZ);
+            mMaxScreenOffFreq.setOnDPopupCardListener(this);
+
+            addView(mMaxScreenOffFreq);
+        }
     }
 
     private void governorInit() {
@@ -175,6 +185,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMaxFreq) CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
         if (dPopupCard == mMinFreq) CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
+        if (dPopupCard == mMaxScreenOffFreq)
+            CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
         if (dPopupCard == mGovernor)
             CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
         if (dPopupCard == mMcPowerSaving) CPU.setMcPowerSaving(position, getActivity());
