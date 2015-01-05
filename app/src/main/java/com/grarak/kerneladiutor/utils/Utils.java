@@ -1,5 +1,6 @@
 package com.grarak.kerneladiutor.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -33,8 +34,13 @@ public class Utils implements Constants {
                 Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    public static void toast(String message, Context context) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    public static void toast(final String message, final Context context) {
+        ((Activity) context).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
