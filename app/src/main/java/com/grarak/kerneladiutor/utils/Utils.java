@@ -1,11 +1,14 @@
 package com.grarak.kerneladiutor.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.grarak.kerneladiutor.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +20,12 @@ import java.io.IOException;
  * Created by willi on 30.11.14.
  */
 public class Utils implements Constants {
+
+    public static void restartActivity(Context context) {
+        Activity activity = (Activity) context;
+        activity.finish();
+        activity.startActivity(new Intent(activity, MainActivity.class));
+    }
 
     public static void launchUrl(Context context, String link) {
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));

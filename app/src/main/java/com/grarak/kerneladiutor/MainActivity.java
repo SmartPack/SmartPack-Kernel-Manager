@@ -238,7 +238,11 @@ public class MainActivity extends ActionBarActivity implements Constants {
             }
 
             setInterface();
-            if (progressBar != null) ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+            try {
+                ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+            } catch (NullPointerException e) {
+                Utils.restartActivity(MainActivity.this);
+            }
 
             selectItem(2);
             mScrimInsetsFrameLayout.setVisibility(View.VISIBLE);
