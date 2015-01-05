@@ -241,7 +241,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
             try {
                 ((ViewGroup) progressBar.getParent()).removeView(progressBar);
             } catch (NullPointerException e) {
-                Utils.restartActivity(MainActivity.this);
             }
 
             selectItem(2);

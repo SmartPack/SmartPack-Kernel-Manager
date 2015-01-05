@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.LightingColorFilter;
@@ -158,7 +159,9 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void animateRecyclerView() {
-        recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.bottom_to_top));
+        Context context = getActivity();
+        if (context != null)
+            recyclerView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_to_top));
     }
 
     public int getViewHeight() {
