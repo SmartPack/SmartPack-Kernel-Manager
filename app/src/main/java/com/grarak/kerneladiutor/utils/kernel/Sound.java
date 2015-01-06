@@ -86,7 +86,7 @@ public class Sound implements Constants {
     }
 
     public static String getCurHeadphoneGain() {
-        return Utils.readFile(HEADPHONE_GAIN.split(" ")[0]);
+        return Utils.readFile(HEADPHONE_GAIN).split(" ")[0];
     }
 
     public static List<String> getHeadphoneGainLimits() {
