@@ -78,7 +78,11 @@ public class Screen implements Constants {
                 if (value != null) {
                     for (String color : value.split(" ")) {
                         if (SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
-                            list.add(String.valueOf(Long.parseLong(color) / 10000000));
+                            try {
+                                list.add(String.valueOf(Long.parseLong(color) / 10000000));
+                            } catch (NumberFormatException e) {
+                                list.add("0");
+                            }
                         else list.add(color);
                     }
                 }
