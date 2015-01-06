@@ -32,6 +32,11 @@ public interface Constants {
 
     // CPU Voltage
     public final String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
+    public final String CPU_FAUX_VOLTAGE = "/sys/devices/system/cpu/cpufreq/vdd_table/vdd_levels";
+
+    public final String[] CPU_VOLTAGE_ARRAY = new String[]{
+            CPU_VOLTAGE, CPU_FAUX_VOLTAGE
+    };
 
     // GPU
     public final String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple";

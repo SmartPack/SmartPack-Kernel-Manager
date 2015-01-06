@@ -84,8 +84,10 @@ public class Control implements Constants {
                         stoppedMpdec = true;
                     }
 
-                    for (int i = 0; i < CPU.getCoreCount() && CPU.hasMpdecision(); i++)
-                        runGeneric(String.format(file, i), value, context);
+                    if (CPU.hasMpdecision())
+                        for (int i = 0; i < CPU.getCoreCount(); i++)
+                            runGeneric(String.format(file, i), value, context);
+                    else runGeneric(String.format(file, 0), value, context);
 
                     if (stoppedMpdec) startModule(CPU_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
