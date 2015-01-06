@@ -10,6 +10,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.grarak.kerneladiutor.utils.Utils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +62,7 @@ public class CpuSpyApp extends Application {
         String[] sOffsets = prefs.split(",");
         for (String offset : sOffsets) {
             String[] parts = offset.split(" ");
-            offsets.put(Integer.parseInt(parts[0]), Long.parseLong(parts[1]));
+            offsets.put(Utils.stringToInt(parts[0]), Utils.stringToLong(parts[1]));
         }
 
         _monitor.setOffsets(offsets);

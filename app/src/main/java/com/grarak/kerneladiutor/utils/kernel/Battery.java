@@ -17,7 +17,7 @@ public class Battery implements Constants {
 
     public static int getCurBlx() {
         String value = Utils.readFile(FORCE_FAST_CHARGE);
-        if (value != null) return Integer.parseInt(value);
+        if (value != null) return Utils.stringToInt(value);
         return 0;
     }
 

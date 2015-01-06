@@ -22,8 +22,8 @@ import java.util.List;
  */
 public class LMKFragment extends RecyclerViewFragment implements Constants {
 
-    private SeekBarCardView.DSeekBarCardView[] mMinFree;
-    private CardViewItem.DCardView[] mProfile;
+    private SeekBarCardView.DSeekBarCardView[] mMinFreeCard;
+    private CardViewItem.DCardView[] mProfileCard;
 
     private List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
 
@@ -63,19 +63,19 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
         }
 
         List<String> minfrees = LMK.getMinFrees();
-        mMinFree = new SeekBarCardView.DSeekBarCardView[minfrees.size()];
+        mMinFreeCard = new SeekBarCardView.DSeekBarCardView[minfrees.size()];
         for (int i = 0; i < minfrees.size(); i++) {
-            mMinFree[i] = new SeekBarCardView.DSeekBarCardView(modifiedvalues);
-            mMinFree[i].setTitle(getResources().getStringArray(R.array.lmk_names)[i]);
-            mMinFree[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
-            mMinFree[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
+            mMinFreeCard[i] = new SeekBarCardView.DSeekBarCardView(modifiedvalues);
+            mMinFreeCard[i].setTitle(getResources().getStringArray(R.array.lmk_names)[i]);
+            mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
+            mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
                 @Override
                 public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
                     List<String> minFrees = LMK.getMinFrees();
                     String minFree = "";
 
-                    for (int i = 0; i < mMinFree.length; i++)
-                        if (dSeekBarCardView == mMinFree[i])
+                    for (int i = 0; i < mMinFreeCard.length; i++)
+                        if (dSeekBarCardView == mMinFreeCard[i])
                             minFree += minFree.isEmpty() ? values.get(position) : "," + values.get(position);
                         else
                             minFree += minFree.isEmpty() ? minFrees.get(i) : "," + minFrees.get(i);
@@ -85,18 +85,18 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
                 }
             });
 
-            addView(mMinFree[i]);
+            addView(mMinFreeCard[i]);
         }
 
-        mProfile = new CardViewItem.DCardView[mProfileValues.length];
+        mProfileCard = new CardViewItem.DCardView[mProfileValues.length];
         for (int i = 0; i < mProfileValues.length; i++) {
-            mProfile[i] = new CardViewItem.DCardView();
-            mProfile[i].setTitle(getResources().getStringArray(R.array.lmk_profiles)[i]);
-            mProfile[i].setDescription(mProfileValues[i]);
-            mProfile[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            mProfileCard[i] = new CardViewItem.DCardView();
+            mProfileCard[i].setTitle(getResources().getStringArray(R.array.lmk_profiles)[i]);
+            mProfileCard[i].setDescription(mProfileValues[i]);
+            mProfileCard[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    for (CardViewItem.DCardView profile : mProfile)
+                    for (CardViewItem.DCardView profile : mProfileCard)
                         if (dCardView == profile) {
                             RootUtils.runCommand("echo " + dCardView.getDescription() + " > " + LMK_MINFREE);
                             refresh();
@@ -104,7 +104,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
                 }
             });
 
-            addView(mProfile[i]);
+            addView(mProfileCard[i]);
         }
     }
 
@@ -119,7 +119,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
                         public void run() {
                             List<String> minfrees = LMK.getMinFrees();
                             for (int i = 0; i < minfrees.size(); i++)
-                                mMinFree[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
+                                mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
                                         + getString(R.string.mb)));
                         }
                     });

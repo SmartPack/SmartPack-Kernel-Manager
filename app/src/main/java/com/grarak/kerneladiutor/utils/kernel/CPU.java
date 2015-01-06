@@ -69,7 +69,7 @@ public class CPU implements Constants {
     }
 
     public static int getCurMcPowerSaving() {
-        return Integer.parseInt(Utils.readFile(CPU_MC_POWER_SAVING));
+        return Utils.stringToInt(Utils.readFile(CPU_MC_POWER_SAVING));
     }
 
     public static boolean hasMcPowerSaving() {
@@ -91,8 +91,7 @@ public class CPU implements Constants {
 
     public static String getCurGovernor(int core) {
         if (Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core))) {
-            String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR,
-                    core));
+            String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
             if (value != null) return value;
         }
         return "";
@@ -106,7 +105,7 @@ public class CPU implements Constants {
                     String[] valueArray = values.split(" ");
                     mFreqs = new Integer[valueArray.length];
                     for (int i = 0; i < mFreqs.length; i++)
-                        mFreqs[i] = Integer.parseInt(valueArray[i]);
+                        mFreqs[i] = Utils.stringToInt(valueArray[i]);
                 }
             } else if (Utils.existFile(CPU_TIME_STATE)) {
                 String values = Utils.readFile(CPU_TIME_STATE);
@@ -114,7 +113,7 @@ public class CPU implements Constants {
                     String[] valueArray = values.split("\\r?\\n");
                     mFreqs = new Integer[valueArray.length];
                     for (int i = 0; i < mFreqs.length; i++)
-                        mFreqs[i] = Integer.parseInt(valueArray[i].split(" ")[0]);
+                        mFreqs[i] = Utils.stringToInt(valueArray[i].split(" ")[0]);
 
                     if (mFreqs[0] > mFreqs[mFreqs.length - 1]) {
                         List<Integer> freqs = new ArrayList<>();
@@ -137,7 +136,7 @@ public class CPU implements Constants {
     public static int getMaxScreenOffFreq(int core) {
         if (Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -153,7 +152,7 @@ public class CPU implements Constants {
     public static int getMinFreq(int core) {
         if (Utils.existFile(String.format(CPU_MIN_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -165,7 +164,7 @@ public class CPU implements Constants {
     public static int getMaxFreq(int core) {
         if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -173,7 +172,7 @@ public class CPU implements Constants {
     public static int getCurFreq(int core) {
         if (Utils.existFile(String.format(CPU_CUR_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_CUR_FREQ, core));
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }

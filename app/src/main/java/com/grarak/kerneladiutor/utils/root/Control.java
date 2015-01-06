@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, TCP_CONGESTION
+        GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC
     }
 
     private static void commandSaver(Context context, String sys, String value) {
@@ -31,6 +32,10 @@ public class Control implements Constants {
         db.close();
     }
 
+    private static int getChecksum(int arg1, int arg2) {
+        return 255 & (Integer.MAX_VALUE ^ (arg1 & 255) + (arg2 & 255));
+    }
+
     private static void runGeneric(String file, String value, Context context) {
         RootUtils.runCommand("echo " + value + " > " + file);
 
@@ -41,6 +46,15 @@ public class Control implements Constants {
         RootUtils.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
 
         commandSaver(context, TCP_AVAILABLE_CONGESTIONS, "sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
+    }
+
+    private static void runFauxGeneric(String file, String value, Context context) {
+        String command = value.contains(" ") ? value + " " + getChecksum(Utils.stringToInt(value.split(" ")[0]),
+                Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
+
+        RootUtils.runCommand(command);
+
+        commandSaver(context, file, command);
     }
 
     public static void startModule(String module, boolean save, Context context) {
@@ -94,6 +108,8 @@ public class Control implements Constants {
                     runGeneric(file, value, context);
                 } else if (command == CommandType.TCP_CONGESTION) {
                     runTcpCongestion(value, context);
+                } else if (command == CommandType.FAUX_GENERIC) {
+                    runFauxGeneric(file, value, context);
                 }
             }
         };

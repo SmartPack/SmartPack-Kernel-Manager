@@ -32,16 +32,16 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     private ProgressBar[] mCoreProgressBar;
     private TextView[] mCoreFreqText;
 
-    private PopupCardItem.DPopupCard mMaxFreq, mMinFreq, mMaxScreenOffFreq;
+    private PopupCardItem.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard;
 
-    private PopupCardItem.DPopupCard mGovernor;
-    private CardViewItem.DCardView mGovernorTunable;
+    private PopupCardItem.DPopupCard mGovernorCard;
+    private CardViewItem.DCardView mGovernorTunableCard;
 
-    private PopupCardItem.DPopupCard mMcPowerSaving;
+    private PopupCardItem.DPopupCard mMcPowerSavingCard;
 
-    private CheckBoxCardItem.DCheckBoxCard mMpdecision;
+    private CheckBoxCardItem.DCheckBoxCard mMpdecisionCard;
 
-    private CheckBoxCardItem.DCheckBoxCard mIntelliPlug, mIntelliPlugEco;
+    private CheckBoxCardItem.DCheckBoxCard mIntelliPlugCard, mIntelliPlugEcoCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -92,86 +92,86 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
         String MHZ = getString(R.string.mhz);
 
-        mMaxFreq = new PopupCardItem.DPopupCard(freqs);
-        mMaxFreq.setTitle(getString(R.string.cpu_max_freq));
-        mMaxFreq.setDescription(getString(R.string.cpu_max_freq_summary));
-        mMaxFreq.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
-        mMaxFreq.setOnDPopupCardListener(this);
+        mMaxFreqCard = new PopupCardItem.DPopupCard(freqs);
+        mMaxFreqCard.setTitle(getString(R.string.cpu_max_freq));
+        mMaxFreqCard.setDescription(getString(R.string.cpu_max_freq_summary));
+        mMaxFreqCard.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
+        mMaxFreqCard.setOnDPopupCardListener(this);
 
-        mMinFreq = new PopupCardItem.DPopupCard(freqs);
-        mMinFreq.setTitle(getString(R.string.cpu_min_freq));
-        mMinFreq.setDescription(getString(R.string.cpu_min_freq_summary));
-        mMinFreq.setItem(CPU.getMinFreq(0) / 1000 + MHZ);
-        mMinFreq.setOnDPopupCardListener(this);
+        mMinFreqCard = new PopupCardItem.DPopupCard(freqs);
+        mMinFreqCard.setTitle(getString(R.string.cpu_min_freq));
+        mMinFreqCard.setDescription(getString(R.string.cpu_min_freq_summary));
+        mMinFreqCard.setItem(CPU.getMinFreq(0) / 1000 + MHZ);
+        mMinFreqCard.setOnDPopupCardListener(this);
 
-        addView(mMaxFreq);
-        addView(mMinFreq);
+        addView(mMaxFreqCard);
+        addView(mMinFreqCard);
 
         if (CPU.hasMaxScreenOffFreq()) {
-            mMaxScreenOffFreq = new PopupCardItem.DPopupCard(freqs);
-            mMaxScreenOffFreq.setTitle(getString(R.string.cpu_max_screen_off_freq));
-            mMaxScreenOffFreq.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
-            mMaxScreenOffFreq.setItem(CPU.getMaxScreenOffFreq(0) / 1000 + MHZ);
-            mMaxScreenOffFreq.setOnDPopupCardListener(this);
+            mMaxScreenOffFreqCard = new PopupCardItem.DPopupCard(freqs);
+            mMaxScreenOffFreqCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
+            mMaxScreenOffFreqCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
+            mMaxScreenOffFreqCard.setItem(CPU.getMaxScreenOffFreq(0) / 1000 + MHZ);
+            mMaxScreenOffFreqCard.setOnDPopupCardListener(this);
 
-            addView(mMaxScreenOffFreq);
+            addView(mMaxScreenOffFreqCard);
         }
     }
 
     private void governorInit() {
-        mGovernor = new PopupCardItem.DPopupCard(CPU.getAvailableGovernors());
-        mGovernor.setTitle(getString(R.string.cpu_governor));
-        mGovernor.setDescription(getString(R.string.cpu_governor_summary));
-        mGovernor.setItem(CPU.getCurGovernor(0));
-        mGovernor.setOnDPopupCardListener(this);
+        mGovernorCard = new PopupCardItem.DPopupCard(CPU.getAvailableGovernors());
+        mGovernorCard.setTitle(getString(R.string.cpu_governor));
+        mGovernorCard.setDescription(getString(R.string.cpu_governor_summary));
+        mGovernorCard.setItem(CPU.getCurGovernor(0));
+        mGovernorCard.setOnDPopupCardListener(this);
 
-        mGovernorTunable = new CardViewItem.DCardView();
-        mGovernorTunable.setTitle(getString(R.string.cpu_governor_tunables));
-        mGovernorTunable.setDescription(getString(R.string.cpu_governor_tunables_summary));
-        mGovernorTunable.setOnDCardListener(this);
+        mGovernorTunableCard = new CardViewItem.DCardView();
+        mGovernorTunableCard.setTitle(getString(R.string.cpu_governor_tunables));
+        mGovernorTunableCard.setDescription(getString(R.string.cpu_governor_tunables_summary));
+        mGovernorTunableCard.setOnDCardListener(this);
 
-        addView(mGovernor);
-        addView(mGovernorTunable);
+        addView(mGovernorCard);
+        addView(mGovernorTunableCard);
     }
 
     private void mcPowerSavingInit() {
-        mMcPowerSaving = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays.asList(
+        mMcPowerSavingCard = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays.asList(
                 CPU.getMcPowerSavingItems(getActivity()))));
-        mMcPowerSaving.setTitle(getString(R.string.mc_power_saving));
-        mMcPowerSaving.setDescription(getString(R.string.mc_power_saving_summary));
-        mMcPowerSaving.setItem(CPU.getCurMcPowerSaving());
-        mMcPowerSaving.setOnDPopupCardListener(this);
+        mMcPowerSavingCard.setTitle(getString(R.string.mc_power_saving));
+        mMcPowerSavingCard.setDescription(getString(R.string.mc_power_saving_summary));
+        mMcPowerSavingCard.setItem(CPU.getCurMcPowerSaving());
+        mMcPowerSavingCard.setOnDPopupCardListener(this);
 
-        addView(mMcPowerSaving);
+        addView(mMcPowerSavingCard);
     }
 
     private void mpdecisionInit() {
-        mMpdecision = new CheckBoxCardItem.DCheckBoxCard();
-        mMpdecision.setTitle(getString(R.string.mpdecision));
-        mMpdecision.setDescription(getString(R.string.mpdecision_summary));
-        mMpdecision.setChecked(CPU.isMpdecisionActive());
-        mMpdecision.setOnDCheckBoxCardListener(this);
+        mMpdecisionCard = new CheckBoxCardItem.DCheckBoxCard();
+        mMpdecisionCard.setTitle(getString(R.string.mpdecision));
+        mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
+        mMpdecisionCard.setChecked(CPU.isMpdecisionActive());
+        mMpdecisionCard.setOnDCheckBoxCardListener(this);
 
-        addView(mMpdecision);
+        addView(mMpdecisionCard);
     }
 
     private void intelliPlugInit() {
-        mIntelliPlug = new CheckBoxCardItem.DCheckBoxCard();
-        mIntelliPlug.setTitle(getString(R.string.intelliplug));
-        mIntelliPlug.setDescription(getString(R.string.intelliplug_summary));
-        mIntelliPlug.setChecked(CPU.isIntelliPlugActive());
-        mIntelliPlug.setOnDCheckBoxCardListener(this);
+        mIntelliPlugCard = new CheckBoxCardItem.DCheckBoxCard();
+        mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
+        mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
+        mIntelliPlugCard.setChecked(CPU.isIntelliPlugActive());
+        mIntelliPlugCard.setOnDCheckBoxCardListener(this);
 
-        addView(mIntelliPlug);
+        addView(mIntelliPlugCard);
 
         if (!CPU.hasIntelliPlugEco()) return;
-        mIntelliPlugEco = new CheckBoxCardItem.DCheckBoxCard();
-        mIntelliPlugEco.setTitle(getString(R.string.intelliplug_eco_mode_summary));
-        mIntelliPlugEco.setDescription(getString(R.string.intelliplug_eco_mode_summary));
-        mIntelliPlugEco.setChecked(CPU.isIntelliPlugEcoActive());
-        mIntelliPlugEco.setOnDCheckBoxCardListener(this);
+        mIntelliPlugEcoCard = new CheckBoxCardItem.DCheckBoxCard();
+        mIntelliPlugEcoCard.setTitle(getString(R.string.intelliplug_eco_mode_summary));
+        mIntelliPlugEcoCard.setDescription(getString(R.string.intelliplug_eco_mode_summary));
+        mIntelliPlugEcoCard.setChecked(CPU.isIntelliPlugEcoActive());
+        mIntelliPlugEcoCard.setOnDCheckBoxCardListener(this);
 
-        addView(mIntelliPlugEco);
+        addView(mIntelliPlugEcoCard);
     }
 
     @Override
@@ -183,18 +183,18 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mMaxFreq) CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mMinFreq) CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mMaxScreenOffFreq)
+        if (dPopupCard == mMaxFreqCard) CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
+        if (dPopupCard == mMinFreqCard) CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
+        if (dPopupCard == mMaxScreenOffFreqCard)
             CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mGovernor)
+        if (dPopupCard == mGovernorCard)
             CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
-        if (dPopupCard == mMcPowerSaving) CPU.setMcPowerSaving(position, getActivity());
+        if (dPopupCard == mMcPowerSavingCard) CPU.setMcPowerSaving(position, getActivity());
     }
 
     @Override
     public void onClick(CardViewItem.DCardView dCardView) {
-        if (dCardView == mGovernorTunable) {
+        if (dCardView == mGovernorTunableCard) {
             String governor = CPU.getCurGovernor(0);
             Intent i = new Intent(getActivity(),
                     PathReaderActivity.class);
@@ -211,9 +211,10 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     @Override
     public void onChecked(CheckBoxCardItem.DCheckBoxCard dCheckBoxCard, boolean checked) {
-        if (dCheckBoxCard == mMpdecision) CPU.activateMpdecision(checked, getActivity());
-        if (dCheckBoxCard == mIntelliPlug) CPU.activateIntelliPlug(checked, getActivity());
-        if (dCheckBoxCard == mIntelliPlugEco) CPU.activateIntelliPlugEco(checked, getActivity());
+        if (dCheckBoxCard == mMpdecisionCard) CPU.activateMpdecision(checked, getActivity());
+        if (dCheckBoxCard == mIntelliPlugCard) CPU.activateIntelliPlug(checked, getActivity());
+        if (dCheckBoxCard == mIntelliPlugEcoCard)
+            CPU.activateIntelliPlugEco(checked, getActivity());
     }
 
     @Override
@@ -231,9 +232,9 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
                     mCoreFreqText[i].setText(cur == 0 ? getString(R.string.offline) : cur / 1000 + MHZ);
             }
 
-        if (mMaxFreq != null) mMaxFreq.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
-        if (mMinFreq != null) mMinFreq.setItem(CPU.getMinFreq(0) / 1000 + MHZ);
-        if (mGovernor != null) mGovernor.setItem(CPU.getCurGovernor(0));
+        if (mMaxFreqCard != null) mMaxFreqCard.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
+        if (mMinFreqCard != null) mMinFreqCard.setItem(CPU.getMinFreq(0) / 1000 + MHZ);
+        if (mGovernorCard != null) mGovernorCard.setItem(CPU.getCurGovernor(0));
 
         return true;
     }

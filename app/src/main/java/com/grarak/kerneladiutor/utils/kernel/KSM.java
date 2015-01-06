@@ -18,7 +18,7 @@ public class KSM implements Constants {
     public static int getSleepMilliseconds() {
         if (Utils.existFile(KSM_SLEEP_MILLISECONDS)) {
             String value = Utils.readFile(KSM_SLEEP_MILLISECONDS);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -30,7 +30,7 @@ public class KSM implements Constants {
     public static int getPagesToScan() {
         if (Utils.existFile(KSM_PAGES_TO_SCAN)) {
             String value = Utils.readFile(KSM_PAGES_TO_SCAN);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -50,7 +50,7 @@ public class KSM implements Constants {
     public static int getInfos(int position) {
         if (Utils.existFile(KSM_INFOS[position])) {
             String value = Utils.readFile(KSM_INFOS[position]);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }

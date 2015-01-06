@@ -26,17 +26,17 @@ public class Screen implements Constants {
 
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:
-                Control.runCommand(String.valueOf(Long.parseLong(list.get(0)) * 10000000), SCREEN_SAMOLED_COLOR_RED,
+                Control.runCommand(String.valueOf(Utils.stringToLong(list.get(0)) * 10000000), SCREEN_SAMOLED_COLOR_RED,
                         Control.CommandType.GENERIC, context);
-                Control.runCommand(String.valueOf(Long.parseLong(list.get(1)) * 10000000), SCREEN_SAMOLED_COLOR_GREEN,
+                Control.runCommand(String.valueOf(Utils.stringToLong(list.get(1)) * 10000000), SCREEN_SAMOLED_COLOR_GREEN,
                         Control.CommandType.GENERIC, context);
-                Control.runCommand(String.valueOf(Long.parseLong(list.get(2)) * 10000000), SCREEN_SAMOLED_COLOR_BLUE,
+                Control.runCommand(String.valueOf(Utils.stringToLong(list.get(2)) * 10000000), SCREEN_SAMOLED_COLOR_BLUE,
                         Control.CommandType.GENERIC, context);
                 break;
             case SCREEN_COLOR_CONTROL:
-                String red = String.valueOf(Long.parseLong(list.get(0)) * 10000000);
-                String green = String.valueOf(Long.parseLong(list.get(1)) * 10000000);
-                String blue = String.valueOf(Long.parseLong(list.get(2)) * 10000000);
+                String red = String.valueOf(Utils.stringToLong(list.get(0)) * 10000000);
+                String green = String.valueOf(Utils.stringToLong(list.get(1)) * 10000000);
+                String blue = String.valueOf(Utils.stringToLong(list.get(2)) * 10000000);
                 Control.runCommand(red + " " + green + " " + blue, SCREEN_COLOR_CONTROL, Control.CommandType.GENERIC, context);
                 break;
             default:
@@ -49,7 +49,7 @@ public class Screen implements Constants {
                     SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);
     }
 
-    public static List<String> getLimits() {
+    public static List<String> getColorCalibrationLimits() {
         String[] values;
         if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)
                 || SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
@@ -67,9 +67,9 @@ public class Screen implements Constants {
         List<String> list = new ArrayList<>();
         if (SCREEN_CALIBRATION != null) {
             if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)) {
-                long red = Long.parseLong(readFile(SCREEN_SAMOLED_COLOR_RED));
-                long green = Long.parseLong(readFile(SCREEN_SAMOLED_COLOR_GREEN));
-                long blue = Long.parseLong(readFile(SCREEN_SAMOLED_COLOR_BLUE));
+                long red = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_RED));
+                long green = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_GREEN));
+                long blue = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_BLUE));
                 list.add(String.valueOf(red / 10000000));
                 list.add(String.valueOf(green / 10000000));
                 list.add(String.valueOf(blue / 10000000));
@@ -78,11 +78,7 @@ public class Screen implements Constants {
                 if (value != null) {
                     for (String color : value.split(" ")) {
                         if (SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
-                            try {
-                                list.add(String.valueOf(Long.parseLong(color) / 10000000));
-                            } catch (NumberFormatException e) {
-                                list.add("0");
-                            }
+                            list.add(String.valueOf(Utils.stringToLong(color) / 10000000));
                         else list.add(color);
                     }
                 }

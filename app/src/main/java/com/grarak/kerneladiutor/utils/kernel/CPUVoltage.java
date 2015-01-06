@@ -34,7 +34,7 @@ public class CPUVoltage implements Constants {
                     command += command.isEmpty() ? voltages.get(i) : " " + voltages.get(i);
         }
         if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE))
-            command = getFreqs().get(position) + " " + Integer.parseInt(voltage) * 1000;
+            command = getFreqs().get(position) + " " + Utils.stringToInt(voltage) * 1000;
         Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, context);
     }
 
@@ -75,7 +75,7 @@ public class CPUVoltage implements Constants {
                         if (CPU_VOLTAGE_FILE.equals(CPU_VOLTAGE))
                             mCpuFreqs[i] = lines[i].split("mhz: ")[0].trim();
                         if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE))
-                            mCpuFreqs[i] = String.valueOf(Integer.parseInt(lines[i].split(":")[0]
+                            mCpuFreqs[i] = String.valueOf(Utils.stringToInt(lines[i].split(":")[0]
                                     .replace(" ", "").trim()) / 1000);
                     }
                 }

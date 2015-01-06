@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class ScreenFragment extends RecyclerViewFragment {
 
-    private SeekBarCardView.DSeekBarCardView[] mColorCalibration;
+    private SeekBarCardView.DSeekBarCardView[] mColorCalibrationCard;
 
     private GridLayoutManager gridLayoutManager;
 
@@ -46,20 +46,20 @@ public class ScreenFragment extends RecyclerViewFragment {
 
         if (Screen.hasColorCalibration()) {
             List<String> colors = Screen.getColorCalibration();
-            mColorCalibration = new SeekBarCardView.DSeekBarCardView[colors.size()];
-            for (int i = 0; i < mColorCalibration.length; i++) {
-                mColorCalibration[i] = new SeekBarCardView.DSeekBarCardView(Screen.getLimits());
-                mColorCalibration[i].setTitle(getColor(i));
-                mColorCalibration[i].setProgress(Screen.getLimits().indexOf(colors.get(i)));
-                mColorCalibration[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
+            mColorCalibrationCard = new SeekBarCardView.DSeekBarCardView[colors.size()];
+            for (int i = 0; i < mColorCalibrationCard.length; i++) {
+                mColorCalibrationCard[i] = new SeekBarCardView.DSeekBarCardView(Screen.getColorCalibrationLimits());
+                mColorCalibrationCard[i].setTitle(getColor(i));
+                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits().indexOf(colors.get(i)));
+                mColorCalibrationCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
                     @Override
                     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
                         List<String> colors = Screen.getColorCalibration();
-                        List<String> list = Screen.getLimits();
+                        List<String> list = Screen.getColorCalibrationLimits();
                         String color = "";
 
-                        for (int i = 0; i < mColorCalibration.length; i++)
-                            if (dSeekBarCardView == mColorCalibration[i])
+                        for (int i = 0; i < mColorCalibrationCard.length; i++)
+                            if (dSeekBarCardView == mColorCalibrationCard[i])
                                 color += color.isEmpty() ? list.get(position) : " " + list.get(position);
                             else
                                 color += color.isEmpty() ? colors.get(i) : " " + colors.get(i);
@@ -68,7 +68,7 @@ public class ScreenFragment extends RecyclerViewFragment {
                     }
                 });
 
-                addView(mColorCalibration[i]);
+                addView(mColorCalibrationCard[i]);
             }
         }
     }

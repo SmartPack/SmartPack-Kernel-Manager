@@ -23,11 +23,7 @@ public class LMK implements Constants {
     }
 
     public static int getMinFree(List<String> minfrees, int position) {
-        try {
-            return Integer.parseInt(minfrees.get(position));
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        return Utils.stringToInt(minfrees.get(position));
     }
 
     public static List<String> getMinFrees() {

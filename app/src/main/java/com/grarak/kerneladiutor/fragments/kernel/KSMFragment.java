@@ -25,10 +25,10 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
 
     private CardViewItem.DCardView[] mInfos;
 
-    private CheckBoxCardItem.DCheckBoxCard mEnableKsm;
+    private CheckBoxCardItem.DCheckBoxCard mEnableKsmCard;
 
     private List<String> mPagesToScanValues = new ArrayList<>(), mSleepMillisecondsValues = new ArrayList<>();
-    private SeekBarCardView.DSeekBarCardView mPagesToScan, mSleepMilliseconds;
+    private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
 
     private GridLayoutManager gridLayoutManager;
 
@@ -70,44 +70,45 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     }
 
     private void ksmInit() {
-        mEnableKsm = new CheckBoxCardItem.DCheckBoxCard();
-        mEnableKsm.setTitle(getString(R.string.ksm_enable));
-        mEnableKsm.setDescription(getString(R.string.ksm_enable_summary));
-        mEnableKsm.setChecked(KSM.isKsmActive());
-        mEnableKsm.setOnDCheckBoxCardListener(this);
+        mEnableKsmCard = new CheckBoxCardItem.DCheckBoxCard();
+        mEnableKsmCard.setTitle(getString(R.string.ksm_enable));
+        mEnableKsmCard.setDescription(getString(R.string.ksm_enable_summary));
+        mEnableKsmCard.setChecked(KSM.isKsmActive());
+        mEnableKsmCard.setOnDCheckBoxCardListener(this);
 
-        addView(mEnableKsm);
+        addView(mEnableKsmCard);
 
         mPagesToScanValues.clear();
         for (int i = 0; i < 1025; i++) mPagesToScanValues.add(String.valueOf(i));
-        mPagesToScan = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
-        mPagesToScan.setTitle(getString(R.string.ksm_pages_to_scan));
-        mPagesToScan.setProgress(mPagesToScanValues.indexOf(String.valueOf(KSM.getPagesToScan())));
-        mPagesToScan.setOnDSeekBarCardListener(this);
+        mPagesToScanCard = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
+        mPagesToScanCard.setTitle(getString(R.string.ksm_pages_to_scan));
+        mPagesToScanCard.setProgress(mPagesToScanValues.indexOf(String.valueOf(KSM.getPagesToScan())));
+        mPagesToScanCard.setOnDSeekBarCardListener(this);
 
-        addView(mPagesToScan);
+        addView(mPagesToScanCard);
 
         mSleepMillisecondsValues.clear();
         for (int i = 0; i < 5001; i++) mSleepMillisecondsValues.add(i + getString(R.string.ms));
-        mSleepMilliseconds = new SeekBarCardView.DSeekBarCardView(mSleepMillisecondsValues);
-        mSleepMilliseconds.setTitle(getString(R.string.ksm_sleep_milliseconds));
-        mSleepMilliseconds.setProgress(mSleepMillisecondsValues.indexOf(KSM.getSleepMilliseconds() + getString(R.string.ms)));
-        mSleepMilliseconds.setOnDSeekBarCardListener(this);
+        mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCardView(mSleepMillisecondsValues);
+        mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
+        mSleepMillisecondsCard.setProgress(mSleepMillisecondsValues.indexOf(KSM.getSleepMilliseconds()
+                + getString(R.string.ms)));
+        mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
 
-        addView(mSleepMilliseconds);
+        addView(mSleepMillisecondsCard);
     }
 
     @Override
     public void onChecked(CheckBoxCardItem.DCheckBoxCard dCheckBoxCard, boolean checked) {
-        if (dCheckBoxCard == mEnableKsm) KSM.activateKSM(checked, getActivity());
+        if (dCheckBoxCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
     }
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mPagesToScan)
-            KSM.setPagesToScan(Integer.parseInt(mPagesToScanValues.get(position)), getActivity());
-        if (dSeekBarCardView == mSleepMilliseconds)
-            KSM.setSleepMilliseconds(Integer.parseInt(mSleepMillisecondsValues.get(position)
+        if (dSeekBarCardView == mPagesToScanCard)
+            KSM.setPagesToScan(Utils.stringToInt(mPagesToScanValues.get(position)), getActivity());
+        if (dSeekBarCardView == mSleepMillisecondsCard)
+            KSM.setSleepMilliseconds(Utils.stringToInt(mSleepMillisecondsValues.get(position)
                     .replace(getString(R.string.ms), "")), getActivity());
     }
 

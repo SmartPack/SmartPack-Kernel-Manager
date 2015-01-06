@@ -16,7 +16,7 @@ import com.grarak.kerneladiutor.utils.kernel.VM;
  */
 public class VMFragment extends RecyclerViewFragment {
 
-    private EditTextCardView.DEditTextCard[] mVM;
+    private EditTextCardView.DEditTextCard[] mVMCard;
     private GridLayoutManager gridLayoutManager;
 
     @Override
@@ -41,19 +41,19 @@ public class VMFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        mVM = new EditTextCardView.DEditTextCard[VM.getVMfiles().size()];
-        for (int i = 0; i < mVM.length; i++) {
+        mVMCard = new EditTextCardView.DEditTextCard[VM.getVMfiles().size()];
+        for (int i = 0; i < mVMCard.length; i++) {
             String value = VM.getVMValue(VM.getVMfiles().get(i));
-            mVM[i] = new EditTextCardView.DEditTextCard();
-            mVM[i].setTitle(VM.getVMfiles().get(i).replace("_", " "));
-            mVM[i].setDescription(value);
-            mVM[i].setValue(value);
-            mVM[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-            mVM[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
+            mVMCard[i] = new EditTextCardView.DEditTextCard();
+            mVMCard[i].setTitle(VM.getVMfiles().get(i).replace("_", " "));
+            mVMCard[i].setDescription(value);
+            mVMCard[i].setValue(value);
+            mVMCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+            mVMCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                    for (int i = 0; i < mVM.length; i++)
-                        if (dEditTextCard == mVM[i]) {
+                    for (int i = 0; i < mVMCard.length; i++)
+                        if (dEditTextCard == mVMCard[i]) {
                             dEditTextCard.setDescription(value);
                             dEditTextCard.setValue(value);
 
@@ -67,10 +67,10 @@ public class VMFragment extends RecyclerViewFragment {
                                         getActivity().runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                for (int i = 0; i < mVM.length; i++) {
+                                                for (int i = 0; i < mVMCard.length; i++) {
                                                     String value = VM.getVMValue(VM.getVMfiles().get(i));
-                                                    mVM[i].setDescription(value);
-                                                    mVM[i].setValue(value);
+                                                    mVMCard[i].setDescription(value);
+                                                    mVMCard[i].setValue(value);
                                                 }
                                             }
                                         });
@@ -83,7 +83,7 @@ public class VMFragment extends RecyclerViewFragment {
                 }
             });
 
-            addView(mVM[i]);
+            addView(mVMCard[i]);
         }
     }
 }

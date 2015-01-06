@@ -18,6 +18,22 @@ import java.io.IOException;
  */
 public class Utils implements Constants {
 
+    public static long stringToLong(String string) {
+        try {
+            return Long.parseLong(string);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    public static int stringToInt(String string) {
+        try {
+            return Math.round(Float.parseFloat(string));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
     public static void launchUrl(Context context, String link) {
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
     }

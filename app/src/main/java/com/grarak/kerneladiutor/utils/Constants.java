@@ -133,6 +133,17 @@ public interface Constants {
 
     public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY};
 
+    // Sound
+    public final String HEADPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_gain";
+    public final String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control_3/gpl_mic_gain";
+    public final String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_cam_mic_gai";
+    public final String SPEAKER_GAIN = "/sys/kernel/sound_control_3/gpl_speaker_gain";
+    public final String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
+
+    public final String[] SOUND_ARRAY = new String[]{
+            HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN, CAM_MICROPHONE_GAIN, SPEAKER_GAIN, HEADPHONE_POWERAMP_GAIN
+    };
+
     // Battery
     public final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     public final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";

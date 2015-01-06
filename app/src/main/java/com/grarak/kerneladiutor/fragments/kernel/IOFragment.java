@@ -9,6 +9,7 @@ import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.IO;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
 
     List<String> readheads = new ArrayList<>();
 
-    private PopupCardItem.DPopupCard mInternalScheduler, mExternalScheduler;
+    private PopupCardItem.DPopupCard mInternalSchedulerCard, mExternalSchedulerCard;
 
-    private CardViewItem.DCardView mInternalTunable, mExternalTunable;
+    private CardViewItem.DCardView mInternalTunableCard, mExternalTunableCard;
 
-    private PopupCardItem.DPopupCard mInternalReadAhead, mExternalReadAhead;
+    private PopupCardItem.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -39,38 +40,38 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
     }
 
     private void schedulerInit() {
-        mInternalScheduler = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.INTERNAL));
-        mInternalScheduler.setTitle(getString(R.string.internal_scheduler));
-        mInternalScheduler.setDescription(getString(R.string.internal_scheduler_summary));
-        mInternalScheduler.setItem(IO.getScheduler(IO.StorageType.INTERNAL));
-        mInternalScheduler.setOnDPopupCardListener(this);
+        mInternalSchedulerCard = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.INTERNAL));
+        mInternalSchedulerCard.setTitle(getString(R.string.internal_scheduler));
+        mInternalSchedulerCard.setDescription(getString(R.string.internal_scheduler_summary));
+        mInternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.INTERNAL));
+        mInternalSchedulerCard.setOnDPopupCardListener(this);
 
-        addView(mInternalScheduler);
+        addView(mInternalSchedulerCard);
 
         if (IO.hasExternalStorage()) {
-            mExternalScheduler = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
-            mExternalScheduler.setDescription(getString(R.string.external_scheduler));
-            mExternalScheduler.setItem(IO.getScheduler(IO.StorageType.EXTERNAL));
-            mExternalScheduler.setOnDPopupCardListener(this);
+            mExternalSchedulerCard = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
+            mExternalSchedulerCard.setDescription(getString(R.string.external_scheduler));
+            mExternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.EXTERNAL));
+            mExternalSchedulerCard.setOnDPopupCardListener(this);
 
-            addView(mExternalScheduler);
+            addView(mExternalSchedulerCard);
         }
     }
 
     private void tunableInit() {
-        mInternalTunable = new CardViewItem.DCardView();
-        mInternalTunable.setTitle(getString(R.string.internal_scheduler_tunable));
-        mInternalTunable.setDescription(getString(R.string.internal_scheduler_tunable_summary));
-        mInternalTunable.setOnDCardListener(this);
+        mInternalTunableCard = new CardViewItem.DCardView();
+        mInternalTunableCard.setTitle(getString(R.string.internal_scheduler_tunable));
+        mInternalTunableCard.setDescription(getString(R.string.internal_scheduler_tunable_summary));
+        mInternalTunableCard.setOnDCardListener(this);
 
-        addView(mInternalTunable);
+        addView(mInternalTunableCard);
 
         if (IO.hasExternalStorage()) {
-            mExternalTunable = new CardViewItem.DCardView();
-            mExternalTunable.setDescription(getString(R.string.external_scheduler_tunable));
-            mExternalTunable.setOnDCardListener(this);
+            mExternalTunableCard = new CardViewItem.DCardView();
+            mExternalTunableCard.setDescription(getString(R.string.external_scheduler_tunable));
+            mExternalTunableCard.setOnDCardListener(this);
 
-            addView(mExternalTunable);
+            addView(mExternalTunableCard);
         }
     }
 
@@ -78,50 +79,50 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
         for (int i = 0; i < 32; i++)
             readheads.add((i * 128 + 128) + getString(R.string.kb));
 
-        mInternalReadAhead = new PopupCardItem.DPopupCard(readheads);
-        mInternalReadAhead.setTitle(getString(R.string.internal_read_ahead));
-        mInternalReadAhead.setDescription(getString(R.string.internal_read_ahead_summary));
-        mInternalReadAhead.setItem(IO.getReadahead(IO.StorageType.INTERNAL) + getString(R.string.kb));
-        mInternalReadAhead.setOnDPopupCardListener(this);
+        mInternalReadAheadCard = new PopupCardItem.DPopupCard(readheads);
+        mInternalReadAheadCard.setTitle(getString(R.string.internal_read_ahead));
+        mInternalReadAheadCard.setDescription(getString(R.string.internal_read_ahead_summary));
+        mInternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.INTERNAL) + getString(R.string.kb));
+        mInternalReadAheadCard.setOnDPopupCardListener(this);
 
-        addView(mInternalReadAhead);
+        addView(mInternalReadAheadCard);
 
         if (IO.hasExternalStorage()) {
-            mExternalReadAhead = new PopupCardItem.DPopupCard(readheads);
-            mExternalReadAhead.setDescription(getString(R.string.external_read_ahead));
-            mExternalReadAhead.setItem(IO.getReadahead(IO.StorageType.EXTERNAL) + getString(R.string.kb));
-            mExternalReadAhead.setOnDPopupCardListener(this);
+            mExternalReadAheadCard = new PopupCardItem.DPopupCard(readheads);
+            mExternalReadAheadCard.setDescription(getString(R.string.external_read_ahead));
+            mExternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.EXTERNAL) + getString(R.string.kb));
+            mExternalReadAheadCard.setOnDPopupCardListener(this);
 
-            addView(mExternalReadAhead);
+            addView(mExternalReadAheadCard);
         }
     }
 
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mInternalScheduler)
+        if (dPopupCard == mInternalSchedulerCard)
             IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
                     .get(position), getActivity());
-        if (dPopupCard == mExternalScheduler)
+        if (dPopupCard == mExternalSchedulerCard)
             IO.setScheduler(IO.StorageType.EXTERNAL, IO.getSchedulers(IO.StorageType.EXTERNAL)
                     .get(position), getActivity());
-        if (dPopupCard == mInternalReadAhead)
-            IO.setReadahead(IO.StorageType.INTERNAL, Integer.parseInt(readheads.get(position)
+        if (dPopupCard == mInternalReadAheadCard)
+            IO.setReadahead(IO.StorageType.INTERNAL, Utils.stringToInt(readheads.get(position)
                     .replace(getString(R.string.kb), "")), getActivity());
-        if (dPopupCard == mExternalReadAhead)
-            IO.setReadahead(IO.StorageType.EXTERNAL, Integer.parseInt(readheads.get(position)
+        if (dPopupCard == mExternalReadAheadCard)
+            IO.setReadahead(IO.StorageType.EXTERNAL, Utils.stringToInt(readheads.get(position)
                     .replace(getString(R.string.kb), "")), getActivity());
     }
 
     @Override
     public void onClick(CardViewItem.DCardView dCardView) {
-        if (dCardView == mInternalTunable || dCardView == mExternalTunable) {
-            String scheduler = IO.getScheduler(dCardView == mInternalTunable ? IO.StorageType.INTERNAL :
+        if (dCardView == mInternalTunableCard || dCardView == mExternalTunableCard) {
+            String scheduler = IO.getScheduler(dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL :
                     IO.StorageType.EXTERNAL);
             Intent i = new Intent(getActivity(), PathReaderActivity.class);
             Bundle args = new Bundle();
             args.putInt(PathReaderActivity.ARG_TYPE, PathReaderActivity.PATH_TYPE.IO.ordinal());
             args.putString(PathReaderActivity.ARG_TITLE, scheduler);
-            args.putString(PathReaderActivity.ARG_PATH, dCardView == mInternalTunable ?
+            args.putString(PathReaderActivity.ARG_PATH, dCardView == mInternalTunableCard ?
                     IO_INTERNAL_SCHEDULER_TUNABLE : IO_EXTERNAL_SCHEDULER_TUNABLE);
             args.putString(PathReaderActivity.ARG_ERROR, getString(R.string.not_tunable, scheduler));
             i.putExtras(args);

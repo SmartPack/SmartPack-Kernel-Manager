@@ -23,8 +23,7 @@ public class Wake implements Constants {
     }
 
     public static int getS2wValue() {
-        if (S2W_FILE != null) return Integer.parseInt(Utils.readFile(S2W_FILE));
-        return 0;
+        return Utils.stringToInt(Utils.readFile(S2W_FILE));
     }
 
     public static List<String> getS2wMenu(Context context) {
@@ -57,13 +56,7 @@ public class Wake implements Constants {
     }
 
     public static int getDt2wValue() {
-        try {
-            if (DT2W_FILE != null)
-                return Integer.parseInt(Utils.readFile(DT2W_FILE));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return 0;
+        return Utils.stringToInt(Utils.readFile(DT2W_FILE));
     }
 
     public static List<String> getDt2wMenu(Context context) {

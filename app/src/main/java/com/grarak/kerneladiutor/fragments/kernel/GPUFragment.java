@@ -20,7 +20,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
 
     private PopupCardItem.DPopupCard mMax2dFreqCard, mMaxFreqCard;
 
-    private PopupCardItem.DPopupCard m2dGovernor, mGovernor;
+    private PopupCardItem.DPopupCard m2dGovernorCard, mGovernorCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -79,23 +79,23 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
 
     private void governorInit() {
         if (GPU.hasGpu2dGovernor()) {
-            m2dGovernor = new PopupCardItem.DPopupCard(GPU.getGpu2dGovernors());
-            m2dGovernor.setTitle(getString(R.string.gpu_2d_governor));
-            m2dGovernor.setDescription(getString(R.string.gpu_2d_governor_summary));
-            m2dGovernor.setItem(GPU.getGpu2dGovernor());
-            m2dGovernor.setOnDPopupCardListener(this);
+            m2dGovernorCard = new PopupCardItem.DPopupCard(GPU.getGpu2dGovernors());
+            m2dGovernorCard.setTitle(getString(R.string.gpu_2d_governor));
+            m2dGovernorCard.setDescription(getString(R.string.gpu_2d_governor_summary));
+            m2dGovernorCard.setItem(GPU.getGpu2dGovernor());
+            m2dGovernorCard.setOnDPopupCardListener(this);
 
-            addView(m2dGovernor);
+            addView(m2dGovernorCard);
         }
 
         if (GPU.hasGpuGovernor()) {
-            mGovernor = new PopupCardItem.DPopupCard(GPU.getGpuGovernors());
-            mGovernor.setTitle(getString(R.string.gpu_governor));
-            mGovernor.setDescription(getString(R.string.gpu_governor_summary));
-            mGovernor.setItem(GPU.getGpuGovernor());
-            mGovernor.setOnDPopupCardListener(this);
+            mGovernorCard = new PopupCardItem.DPopupCard(GPU.getGpuGovernors());
+            mGovernorCard.setTitle(getString(R.string.gpu_governor));
+            mGovernorCard.setDescription(getString(R.string.gpu_governor_summary));
+            mGovernorCard.setItem(GPU.getGpuGovernor());
+            mGovernorCard.setOnDPopupCardListener(this);
 
-            addView(mGovernor);
+            addView(mGovernorCard);
         }
     }
 
@@ -105,9 +105,9 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             GPU.setGpu2dMaxFreq(GPU.getGpu2dFreqs().get(position), getActivity());
         if (dPopupCard == mMaxFreqCard)
             GPU.setGpuMaxFreq(GPU.getGpuFreqs().get(position), getActivity());
-        if (dPopupCard == m2dGovernor)
+        if (dPopupCard == m2dGovernorCard)
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
-        if (dPopupCard == mGovernor)
+        if (dPopupCard == mGovernorCard)
             GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
     }
 

@@ -29,7 +29,7 @@ public class IO implements Constants {
                 : IO_EXTERNAL_READ_AHEAD;
         if (Utils.existFile(file)) {
             String values = Utils.readFile(file);
-            if (values != null) return Integer.parseInt(values);
+            if (values != null) return Utils.stringToInt(values);
         }
         return 0;
     }

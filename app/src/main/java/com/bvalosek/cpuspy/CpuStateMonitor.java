@@ -13,6 +13,7 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -205,8 +206,7 @@ public class CpuStateMonitor implements Constants {
             while ((line = br.readLine()) != null) {
                 // split open line and convert to Integers
                 String[] nums = line.split(" ");
-                _states.add(new CpuState(Integer.parseInt(nums[0]), Long
-                        .parseLong(nums[1])));
+                _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
             }
         } catch (IOException e) {
             throw new CpuStateMonitorException(

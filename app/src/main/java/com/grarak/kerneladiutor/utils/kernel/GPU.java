@@ -69,7 +69,7 @@ public class GPU implements Constants {
                         String[] freqs = value.split(" ");
                         mGpu2dFreqs = new Integer[freqs.length];
                         for (int i = 0; i < mGpu2dFreqs.length; i++)
-                            mGpu2dFreqs[i] = Integer.parseInt(freqs[i]);
+                            mGpu2dFreqs[i] = Utils.stringToInt(freqs[i]);
                     }
                 }
         return new ArrayList<>(Arrays.asList(mGpu2dFreqs));
@@ -88,7 +88,7 @@ public class GPU implements Constants {
     public static int getGpu2dMaxFreq() {
         if (GPU_2D_MAX_FREQ != null) if (Utils.existFile(GPU_2D_MAX_FREQ)) {
             String value = Utils.readFile(GPU_2D_MAX_FREQ);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -104,7 +104,7 @@ public class GPU implements Constants {
     public static int getGpu2dCurFreq() {
         if (GPU_2D_CUR_FREQ != null) if (Utils.existFile(GPU_2D_CUR_FREQ)) {
             String value = Utils.readFile(GPU_2D_CUR_FREQ);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -165,7 +165,7 @@ public class GPU implements Constants {
                         String[] freqs = value.split(" ");
                         mGpuFreqs = new Integer[freqs.length];
                         for (int i = 0; i < mGpuFreqs.length; i++)
-                            mGpuFreqs[i] = Integer.parseInt(freqs[i]);
+                            mGpuFreqs[i] = Utils.stringToInt(freqs[i]);
                     }
                 }
         return new ArrayList<>(Arrays.asList(mGpuFreqs));
@@ -182,7 +182,7 @@ public class GPU implements Constants {
     public static int getGpuMaxFreq() {
         if (GPU_MAX_FREQ != null) if (Utils.existFile(GPU_MAX_FREQ)) {
             String value = Utils.readFile(GPU_MAX_FREQ);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
@@ -198,7 +198,7 @@ public class GPU implements Constants {
     public static int getGpuCurFreq() {
         if (GPU_CUR_FREQ != null) if (Utils.existFile(GPU_CUR_FREQ)) {
             String value = Utils.readFile(GPU_CUR_FREQ);
-            if (value != null) return Integer.parseInt(value);
+            if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }

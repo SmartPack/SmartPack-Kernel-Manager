@@ -35,6 +35,7 @@ import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscControlsFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.other.AboutUsFragment;
@@ -46,6 +47,7 @@ import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
+import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -133,6 +135,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
             mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
             mList.add(new ListAdapter.Item(getString(R.string.wake), new WakeFragment()));
+        if (Sound.hasSound())
+            mList.add(new ListAdapter.Item(getString(R.string.sound), new SoundFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
@@ -245,7 +249,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
             }
 
             selectItem(2);
-            mScrimInsetsFrameLayout.setVisibility(View.VISIBLE);
         }
     }
 

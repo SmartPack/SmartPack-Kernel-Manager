@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CPUVoltageFragment extends RecyclerViewFragment {
 
-    private EditTextCardView.DEditTextCard[] mVoltage;
+    private EditTextCardView.DEditTextCard[] mVoltageCard;
     private GridLayoutManager gridLayoutManager;
 
     @Override
@@ -44,22 +44,22 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        mVoltage = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
+        mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
         for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
-            mVoltage[i] = new EditTextCardView.DEditTextCard();
-            mVoltage[i].setTitle(CPUVoltage.getFreqs().get(i) + getString(R.string.mhz));
+            mVoltageCard[i] = new EditTextCardView.DEditTextCard();
+            mVoltageCard[i].setTitle(CPUVoltage.getFreqs().get(i) + getString(R.string.mhz));
 
             String voltage = CPUVoltage.getVoltages().get(i);
-            mVoltage[i].setDescription(voltage + getString(R.string.mv));
-            mVoltage[i].setValue(voltage);
-            mVoltage[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-            mVoltage[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
+            mVoltageCard[i].setDescription(voltage + getString(R.string.mv));
+            mVoltageCard[i].setValue(voltage);
+            mVoltageCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+            mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
                     List<String> freqs = CPUVoltage.getFreqs();
 
-                    for (int i = 0; i < mVoltage.length; i++)
-                        if (dEditTextCard == mVoltage[i])
+                    for (int i = 0; i < mVoltageCard.length; i++)
+                        if (dEditTextCard == mVoltageCard[i])
                             CPUVoltage.setVoltage(freqs.get(i), value, getActivity());
 
                     dEditTextCard.setDescription(value + getString(R.string.mv));
@@ -74,9 +74,9 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                                     @Override
                                     public void run() {
                                         List<String> voltages = CPUVoltage.getVoltages();
-                                        for (int i = 0; i < mVoltage.length; i++) {
-                                            mVoltage[i].setDescription(voltages.get(i) + getString(R.string.mv));
-                                            mVoltage[i].setValue(voltages.get(i));
+                                        for (int i = 0; i < mVoltageCard.length; i++) {
+                                            mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
+                                            mVoltageCard[i].setValue(voltages.get(i));
                                         }
                                     }
                                 });
@@ -89,7 +89,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 }
             });
 
-            addView(mVoltage[i]);
+            addView(mVoltageCard[i]);
         }
 
     }

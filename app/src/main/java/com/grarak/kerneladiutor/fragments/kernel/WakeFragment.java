@@ -13,7 +13,6 @@ import com.grarak.kerneladiutor.utils.kernel.Wake;
 public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
 
     private PopupCardItem.DPopupCard mDt2wCard;
-
     private PopupCardItem.DPopupCard mS2wCard;
 
     @Override
