@@ -46,8 +46,12 @@ public class SeekBarCardView extends BaseCardView {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                progress = seekBar.getProgress();
-                if (onSeekBarCardListener != null)
+                boolean changed = false;
+                if ((progress != seekBar.getProgress())) {
+                    progress = seekBar.getProgress();
+                    changed = true;
+                }
+                if (onSeekBarCardListener != null && changed)
                     onSeekBarCardListener.onStop(SeekBarCardView.this, seekBar.getProgress());
             }
         });

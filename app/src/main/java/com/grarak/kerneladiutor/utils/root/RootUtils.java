@@ -88,7 +88,7 @@ public class RootUtils implements Constants {
                         bufferedWriter.write(command + "\n");
                         bufferedWriter.flush();
 
-                        Log.i(TAG, "run " + command);
+                        Log.i(TAG, "run: " + command);
                     } catch (IOException e) {
                         Log.e(TAG, "Failed to run " + command);
                     }
@@ -115,7 +115,7 @@ public class RootUtils implements Constants {
                     }
                 }
 
-                Log.i(TAG, "Output of " + command + " : " + sb.toString().trim());
+                Log.i(TAG, "Output of: " + command + " : " + sb.toString().trim());
             } catch (IOException e) {
                 Log.e(TAG, "Failed to run " + command);
             }
