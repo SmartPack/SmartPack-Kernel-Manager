@@ -196,7 +196,12 @@ public class RecyclerViewFragment extends Fragment {
             animateRecyclerView();
             if (hand != null) hand.post(run);
 
-            ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+            try {
+                ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+
         }
 
     }
