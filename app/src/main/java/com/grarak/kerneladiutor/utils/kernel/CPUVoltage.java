@@ -80,6 +80,7 @@ public class CPUVoltage implements Constants {
                     }
                 }
         }
+        if (mCpuFreqs == null) return null;
         return new ArrayList<>(Arrays.asList(mCpuFreqs));
     }
 

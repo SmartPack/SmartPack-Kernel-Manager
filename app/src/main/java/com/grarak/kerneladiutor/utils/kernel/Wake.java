@@ -56,7 +56,9 @@ public class Wake implements Constants {
     }
 
     public static int getDt2wValue() {
-        return Utils.stringToInt(Utils.readFile(DT2W_FILE));
+        if (Utils.existFile(DT2W_FILE))
+            return Utils.stringToInt(Utils.readFile(DT2W_FILE));
+        return 0;
     }
 
     public static List<String> getDt2wMenu(Context context) {
