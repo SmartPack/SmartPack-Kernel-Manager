@@ -84,6 +84,9 @@
     <string name="intelliplug_eco_mode">IntelliPlug Eco Mode</string>
     <string name="intelliplug_eco_mode_summary">Battery saving mode for IntelliPlug.</string>
 
+    <!-- CPU Voltage -->
+    <string name="global_adjustment">Global Adjustment</string>
+
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
     <string name="gpu_cur_freq">GPU Current Frequency</string>
