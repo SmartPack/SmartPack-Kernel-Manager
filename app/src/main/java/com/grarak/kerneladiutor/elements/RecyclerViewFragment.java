@@ -184,7 +184,11 @@ public class RecyclerViewFragment extends Fragment {
 
         @Override
         protected String doInBackground(final Bundle... params) {
-            if (isAdded()) init(params[0]);
+            try {
+                if (isAdded()) init(params[0]);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 

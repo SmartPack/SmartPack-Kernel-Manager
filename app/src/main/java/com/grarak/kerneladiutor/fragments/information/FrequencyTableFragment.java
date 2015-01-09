@@ -145,7 +145,11 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         for (CpuStateMonitor.CpuState state : monitor.getStates()) {
             if (state.duration > 0) {
                 addView(frequencyCard);
-                generateStateRow(state, _uiStatesView);
+                try {
+                    generateStateRow(state, _uiStatesView);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             } else
                 extraStates.add(state.freq == 0 ? getString(R.string.deep_sleep) : state.freq / 1000
                         + getString(R.string.mhz));
@@ -206,7 +210,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      */
     private View generateStateRow(CpuStateMonitor.CpuState state, ViewGroup parent) {
         // inflate the XML into a view in the parent
-        LinearLayout layout = (LinearLayout) LayoutInflater.from(getActivity()).inflate(R.layout.state_row, parent, false);
+        LinearLayout layout = (LinearLayout) LayoutInflater.from(getActivity())
+                .inflate(R.layout.state_row, parent, false);
 
         // what percentage we've got
         CpuStateMonitor monitor = cpuSpyApp.getCpuStateMonitor();
