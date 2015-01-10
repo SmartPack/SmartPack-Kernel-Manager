@@ -54,7 +54,7 @@ public class CPUVoltage implements Constants {
     }
 
     public static List<String> getVoltages() {
-        String value = Utils.readFile(CPU_VOLTAGE);
+        String value = Utils.readFile(CPU_VOLTAGE_FILE);
         if (value != null) {
             String[] lines = null;
             value = value.replace(" ", "");

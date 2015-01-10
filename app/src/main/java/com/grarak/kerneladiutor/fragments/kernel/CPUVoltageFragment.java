@@ -52,36 +52,34 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (CPUVoltage.getFreqs() != null) {
-            mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
-            for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
-                mVoltageCard[i] = new EditTextCardView.DEditTextCard();
-                String freq = CPUVoltage.isFauxVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
-                        .getFreqs().get(i)) / 1000) : CPUVoltage.getFreqs().get(i);
-                mVoltageCard[i].setTitle(freq + getString(R.string.mhz));
+        mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
+        for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
+            mVoltageCard[i] = new EditTextCardView.DEditTextCard();
+            String freq = CPUVoltage.isFauxVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
+                    .getFreqs().get(i)) / 1000) : CPUVoltage.getFreqs().get(i);
+            mVoltageCard[i].setTitle(freq + getString(R.string.mhz));
 
-                String voltage = CPUVoltage.getVoltages().get(i);
-                mVoltageCard[i].setDescription(voltage + getString(R.string.mv));
-                mVoltageCard[i].setValue(voltage);
-                mVoltageCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-                mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
-                    @Override
-                    public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                        List<String> freqs = CPUVoltage.getFreqs();
+            String voltage = CPUVoltage.getVoltages().get(i);
+            mVoltageCard[i].setDescription(voltage + getString(R.string.mv));
+            mVoltageCard[i].setValue(voltage);
+            mVoltageCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+            mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
+                @Override
+                public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
+                    List<String> freqs = CPUVoltage.getFreqs();
 
-                        for (int i = 0; i < mVoltageCard.length; i++)
-                            if (dEditTextCard == mVoltageCard[i])
-                                CPUVoltage.setVoltage(freqs.get(i), value, getActivity());
+                    for (int i = 0; i < mVoltageCard.length; i++)
+                        if (dEditTextCard == mVoltageCard[i])
+                            CPUVoltage.setVoltage(freqs.get(i), value, getActivity());
 
-                        dEditTextCard.setDescription(value + getString(R.string.mv));
-                        dEditTextCard.setValue(value);
+                    dEditTextCard.setDescription(value + getString(R.string.mv));
+                    dEditTextCard.setValue(value);
 
-                        refresh();
-                    }
-                });
+                    refresh();
+                }
+            });
 
-                addView(mVoltageCard[i]);
-            }
+            addView(mVoltageCard[i]);
         }
 
     }
