@@ -177,7 +177,12 @@ public class RecyclerViewFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            hand = new Handler();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    hand = new Handler();
+                }
+            });
             views.clear();
             adapter = new DAdapter.Adapter(views);
         }
