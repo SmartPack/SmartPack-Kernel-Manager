@@ -8,7 +8,6 @@ package com.bvalosek.cpuspy;
 
 // imports
 
-import android.annotation.SuppressLint;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 
@@ -31,7 +30,6 @@ import java.util.Map;
  * the time-in-state information, as well as allowing the user to set/reset
  * offsets to "restart" the state timers
  */
-@SuppressLint("UseValueOf")
 public class CpuStateMonitor implements Constants {
 
     private List<CpuState> _states = new ArrayList<>();
@@ -213,4 +211,5 @@ public class CpuStateMonitor implements Constants {
                     "Problem processing time-in-states file");
         }
     }
+
 }

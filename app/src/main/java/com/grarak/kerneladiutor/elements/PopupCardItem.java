@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,10 +30,6 @@ public class PopupCardItem extends BaseCardView {
 
     private PopupMenu popup;
     private OnPopupCardListener onPopupCardListener;
-
-    public PopupCardItem(Context context, String[] array) {
-        this(context, new ArrayList<>(Arrays.asList(array)));
-    }
 
     public PopupCardItem(Context context, final List<String> list) {
         super(context, R.layout.popup_cardview);

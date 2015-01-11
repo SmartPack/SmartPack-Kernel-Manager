@@ -24,19 +24,16 @@ public class SysDB implements Constants {
     private final String KEY_SYS = "sys";
     private final String KEY_VALUE = "value";
 
-    private final String DATABASE_NAME = "sys.db";
-
-    private final String DATABASE_CREATE =
-            "create table " + TABLE_BOOT
-                    + " (" + KEY_ID + " integer primary key autoincrement, " // long (0)
-                    + KEY_SYS + " text not null, " // string (1)
-                    + KEY_VALUE + " string not null" // string (2)
-                    + ");";
-
     public final String[] ALL_KEYS = new String[]{KEY_ID, KEY_SYS, KEY_VALUE};
 
     public SysDB(Context context) {
-        dbAdapter = new DBAdapter(context, DATABASE_NAME, DATABASE_CREATE, TABLE_BOOT);
+        dbAdapter = new DBAdapter(context, "sys.db" /* Database name */,
+                "create table " + TABLE_BOOT
+                        + " (" + KEY_ID + " integer primary key autoincrement, " // long (0)
+                        + KEY_SYS + " text not null, " // string (1)
+                        + KEY_VALUE + " string not null" // string (2)
+                        + ");",
+                TABLE_BOOT);
     }
 
     public void open() {
@@ -89,7 +86,7 @@ public class SysDB implements Constants {
         return sysList;
     }
 
-    public void deleteAllSys() {
+    /*public void deleteAllSys() {
         List<Sys> syss = getAllSys();
         for (Sys sys : syss) deleteSys(sys.getId());
     }
@@ -102,7 +99,7 @@ public class SysDB implements Constants {
         newValues.put(KEY_VALUE, value);
 
         database.update(TABLE_BOOT, newValues, where, null);
-    }
+    }*/
 
     private Sys cursorToSys(Cursor cursor) {
         Sys sys = new Sys();
