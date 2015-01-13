@@ -1,4 +1,4 @@
-package com.grarak.kerneladiutor.elements;
+package com.grarak.cardview;
 
 import android.content.Context;
 import android.view.LayoutInflater;

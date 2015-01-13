@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.grarak.cardview.BaseCardView;
+import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
 
 /**

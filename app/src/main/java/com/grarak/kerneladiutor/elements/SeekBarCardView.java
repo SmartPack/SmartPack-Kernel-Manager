@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.grarak.cardview.BaseCardView;
+import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
 
 import java.util.List;
