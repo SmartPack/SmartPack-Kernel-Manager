@@ -10,6 +10,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by willi on 14.12.14.
@@ -97,30 +100,41 @@ public class RootUtils implements Constants {
         }
 
         public synchronized String runCommand(final String command) {
-            StringBuilder sb = new StringBuilder();
+            Future<String> value = Executors.newFixedThreadPool(3).submit(new Callable<String>() {
+                @Override
+                public String call() {
+                    StringBuilder sb = new StringBuilder();
+
+                    try {
+                        String callback = "/shellCallback/";
+                        bufferedWriter.write(command + "\necho " + callback + "\n");
+                        bufferedWriter.flush();
+
+                        int i;
+                        char[] buffer = new char[256];
+                        while (true) {
+                            i = bufferedReader.read(buffer);
+                            sb.append(buffer, 0, i);
+                            if ((i = sb.indexOf(callback)) > -1) {
+                                sb.delete(i, i + callback.length());
+                                break;
+                            }
+                        }
+
+                        Log.i(TAG, "Output of: " + command + " : " + sb.toString().trim());
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to run " + command);
+                    }
+
+                    return sb.toString().trim();
+                }
+            });
 
             try {
-                String callback = "/shellCallback/";
-                bufferedWriter.write(command + "\necho " + callback + "\n");
-                bufferedWriter.flush();
-
-                int i;
-                char[] buffer = new char[16];
-                while (true) {
-                    i = bufferedReader.read(buffer);
-                    sb.append(buffer, 0, i);
-                    if ((i = sb.indexOf(callback)) > -1) {
-                        sb.delete(i, i + callback.length());
-                        break;
-                    }
-                }
-
-                Log.i(TAG, "Output of: " + command + " : " + sb.toString().trim());
-            } catch (IOException e) {
-                Log.e(TAG, "Failed to run " + command);
+                return value.get();
+            } catch (Exception e) {
+                return "";
             }
-
-            return sb.toString().trim();
         }
 
         public void close() {

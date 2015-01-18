@@ -83,11 +83,10 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform (1)" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="support-v13-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="floatingactionbutton-1.6.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="floatingactionbutton-1.5.1" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="RootTools" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.3" level="project" />

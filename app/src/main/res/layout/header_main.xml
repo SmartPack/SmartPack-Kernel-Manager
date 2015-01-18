@@ -32,8 +32,8 @@
 
             <android.support.v7.widget.SwitchCompat
                 android:id="@+id/apply_on_boot_switch"
-                android:paddingEnd="1dp"
-                android:paddingStart="1dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
                 android:text="@string/apply_on_boot"
                 android:layout_width="match_parent"
                 android:textColor="@android:color/white"

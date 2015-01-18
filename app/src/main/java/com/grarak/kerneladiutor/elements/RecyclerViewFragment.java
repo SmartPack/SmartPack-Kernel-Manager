@@ -165,8 +165,9 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public int getViewHeight() {
-        TypedArray ta = getActivity().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        TypedArray ta = getActivity().obtainStyledAttributes(new int[]{R.attr.actionBarSize});
         int actionBarSize = ta.getDimensionPixelSize(0, 100);
+        ta.recycle();
         int height = getResources().getDisplayMetrics().heightPixels;
         return height / 3 - actionBarSize;
     }
