@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class FrequencyTableFragment extends RecyclerViewFragment implements Constants {
 
-    private final CpuSpyApp cpuSpyApp = new CpuSpyApp();
+    private CpuSpyApp cpuSpyApp;
 
     private CardViewItem.DCardView runningCard;
     private CardViewItem.DCardView frequencyCard;
@@ -74,7 +74,13 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         if (savedInstanceState != null)
             _updatingData = savedInstanceState.getBoolean("updatingData");
 
-        if (isAdded()) refreshData();
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                cpuSpyApp = new CpuSpyApp();
+                if (isAdded()) refreshData();
+            }
+        });
 
         addView(runningCard);
         addView(frequencyCard);
