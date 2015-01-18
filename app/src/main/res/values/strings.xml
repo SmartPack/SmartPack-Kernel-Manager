@@ -195,6 +195,6 @@
     <string name="feature_request">Feature request</string>
     <string name="feature_request_summary">Do you want more features? Open a new issue on Github and tell me your idea.</string>
     <string name="donate">Donate</string>
-    <string name="donate_summary">I\'m writing this application during my free time. You would make me really happy if you donate my a few bucks. I don\'t force you to donate anything. This application will stay free and I won\'t charge you to unlock any features!</string>
+    <string name="donate_summary">I\'m writing this application during my free time. You would make me really happy if you donate me a few bucks. I don\'t force you to donate anything. This application will stay free and I won\'t charge you to unlock any features!</string>
 
 </resources>
