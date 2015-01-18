@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.grarak.kerneladiutor.utils.root.RootUtils;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -87,7 +85,7 @@ public class Utils implements Constants {
         } catch (IOException e) {
             Log.e(TAG, "I/O read error: " + filepath);
         }
-        return RootUtils.readFile(filepath);
+        return null;
     }
 
 }
