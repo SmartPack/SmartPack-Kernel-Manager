@@ -39,7 +39,7 @@
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
-    <string name="virtual_machine">Virtual Machine</string>
+    <string name="virtual_memory">Virtual Memory</string>
     <string name="misc_controls">Misc Controls</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="about_us">About us</string>

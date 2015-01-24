@@ -250,7 +250,6 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        animate();
     }
 
     private void animate() {

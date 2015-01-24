@@ -45,7 +45,6 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
-import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
@@ -141,9 +140,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
             mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-        if (LMK.hasMinFree())
-            mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.virtual_machine), new VMFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscControlsFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.tools)));
         mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
@@ -207,11 +205,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
             if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
 
             if (hasRoot && hasBusybox) {
-                String[] files = {String.format(CPU_MAX_FREQ, 0), String.format(CPU_MIN_FREQ, 0),
-                        String.format(CPU_SCALING_GOVERNOR, 0), LMK_MINFREE};
-
                 RootUtils.su = new RootUtils.SU();
-                for (String file : files) RootUtils.runCommand("chmod 644 " + file);
+                RootUtils.runCommand("chmod 644 " + LMK_MINFREE);
+
                 setList();
 
                 try {

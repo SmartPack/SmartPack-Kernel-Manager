@@ -5,7 +5,6 @@ import android.content.Context;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +17,6 @@ public class Screen implements Constants {
 
     private static String SCREEN_CALIBRATION;
     private static String SCREEN_CALIBRATION_CTRL;
-
-    private static boolean su;
 
     public static void setColorCalibration(String colors, Context context) {
         List<String> list = new ArrayList<>(Arrays.asList(colors.split(" ")));
@@ -67,14 +64,14 @@ public class Screen implements Constants {
         List<String> list = new ArrayList<>();
         if (SCREEN_CALIBRATION != null) {
             if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)) {
-                long red = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_RED));
-                long green = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_GREEN));
-                long blue = Utils.stringToLong(readFile(SCREEN_SAMOLED_COLOR_BLUE));
+                long red = Utils.stringToLong(Utils.readFile(SCREEN_SAMOLED_COLOR_RED));
+                long green = Utils.stringToLong(Utils.readFile(SCREEN_SAMOLED_COLOR_GREEN));
+                long blue = Utils.stringToLong(Utils.readFile(SCREEN_SAMOLED_COLOR_BLUE));
                 list.add(String.valueOf(red / 10000000));
                 list.add(String.valueOf(green / 10000000));
                 list.add(String.valueOf(blue / 10000000));
             } else {
-                String value = readFile(SCREEN_CALIBRATION);
+                String value = Utils.readFile(SCREEN_CALIBRATION);
                 if (value != null) {
                     for (String color : value.split(" ")) {
                         if (SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
@@ -90,7 +87,7 @@ public class Screen implements Constants {
     public static boolean hasColorCalibrationCtrl() {
         if (SCREEN_CALIBRATION_CTRL == null)
             for (String file : SCREEN_KCAL_CTRL_ARRAY)
-                if (existFile(file)) {
+                if (Utils.existFile(file)) {
                     SCREEN_CALIBRATION_CTRL = file;
                     break;
                 }
@@ -99,7 +96,7 @@ public class Screen implements Constants {
 
     public static boolean hasColorCalibration() {
         if (SCREEN_CALIBRATION == null) for (String file : SCREEN_KCAL_ARRAY)
-            if (existFile(file)) {
+            if (Utils.existFile(file)) {
                 SCREEN_CALIBRATION = file;
                 break;
             }
@@ -108,21 +105,8 @@ public class Screen implements Constants {
 
     public static boolean hasScreen() {
         for (String file : SCREEN_ARRAY)
-            if (Utils.existFile(file)) {
-                String value = Utils.readFile(file);
-                if (value == null) su = true;
-                return true;
-            }
+            if (Utils.existFile(file)) return true;
         return false;
-    }
-
-    private static boolean existFile(String file) {
-        return Utils.existFile(file) || RootUtils.fileExist(file);
-    }
-
-    private static String readFile(String file) {
-        if (su) return RootUtils.readFile(file);
-        return Utils.readFile(file);
     }
 
 }

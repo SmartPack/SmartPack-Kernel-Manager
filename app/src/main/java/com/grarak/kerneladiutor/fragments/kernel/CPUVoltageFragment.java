@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,24 +26,13 @@ import java.util.List;
 public class CPUVoltageFragment extends RecyclerViewFragment {
 
     private EditTextCardView.DEditTextCard[] mVoltageCard;
-    private GridLayoutManager gridLayoutManager;
 
     @Override
-    public void setRecyclerView(RecyclerView recyclerView) {
-        gridLayoutManager = new GridLayoutManager(getActivity(), getSpanCount());
-        gridLayoutManager.setSmoothScrollbarEnabled(true);
-        recyclerView.setLayoutManager(gridLayoutManager);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        if (gridLayoutManager != null)
-            gridLayoutManager.setSpanCount(getSpanCount());
-        super.onConfigurationChanged(newConfig);
-    }
-
-    private int getSpanCount() {
-        return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
+    public int getSpan() {
+        int orientation = Utils.getScreenOrientation(getActivity());
+        if (Utils.isTablet(getActivity()))
+            return orientation == Configuration.ORIENTATION_LANDSCAPE ? 6 : 5;
+        return orientation == Configuration.ORIENTATION_LANDSCAPE ? 4 : 3;
     }
 
     @Override

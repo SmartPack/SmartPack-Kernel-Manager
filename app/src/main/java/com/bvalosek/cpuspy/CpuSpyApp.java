@@ -49,13 +49,10 @@ public class CpuSpyApp extends Application {
      * state monitor
      */
     public void loadOffsets() {
-        SharedPreferences settings = getSharedPreferences(PREF_NAME,
-                MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         String prefs = settings.getString(PREF_OFFSETS, "");
 
-        if (prefs == null || prefs.length() < 1) {
-            return;
-        }
+        if (prefs == null || prefs.length() < 1) return;
 
         // split the string by peroids and then the info by commas and load
         Map<Integer, Long> offsets = new HashMap<>();
@@ -73,15 +70,13 @@ public class CpuSpyApp extends Application {
      * etc
      */
     public void saveOffsets(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_NAME,
-                MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
         // build the string by iterating over the freq->duration map
         String str = "";
-        for (Map.Entry<Integer, Long> entry : _monitor.getOffsets().entrySet()) {
+        for (Map.Entry<Integer, Long> entry : _monitor.getOffsets().entrySet())
             str += entry.getKey() + " " + entry.getValue() + ",";
-        }
 
         editor.putString(PREF_OFFSETS, str);
         editor.apply();

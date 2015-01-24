@@ -1,9 +1,6 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
@@ -29,26 +26,6 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
 
     private List<String> mPagesToScanValues = new ArrayList<>(), mSleepMillisecondsValues = new ArrayList<>();
     private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
-
-    private GridLayoutManager gridLayoutManager;
-
-    @Override
-    public void setRecyclerView(RecyclerView recyclerView) {
-        gridLayoutManager = new GridLayoutManager(getActivity(), getSpanCount());
-        gridLayoutManager.setSmoothScrollbarEnabled(true);
-        recyclerView.setLayoutManager(gridLayoutManager);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        if (gridLayoutManager != null)
-            gridLayoutManager.setSpanCount(getSpanCount());
-        super.onConfigurationChanged(newConfig);
-    }
-
-    private int getSpanCount() {
-        return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? 2 : 1;
-    }
 
     @Override
     public void init(Bundle savedInstanceState) {

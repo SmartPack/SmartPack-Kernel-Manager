@@ -3,6 +3,7 @@ package com.grarak.kerneladiutor.elements;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,15 +13,17 @@ public class DAdapter {
 
     public interface DView {
 
-        public void onBindViewHolder(Holder viewHolder);
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder);
 
-        public Holder onCreateViewHolder(ViewGroup viewGroup);
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup);
 
     }
 
-    public static class Adapter extends RecyclerView.Adapter<Holder> {
+    public static class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private final List<DView> DViews;
+
+        private List<RecyclerView.ViewHolder> viewHolders = new ArrayList<>();
 
         public Adapter(List<DView> DViews) {
             this.DViews = DViews;
@@ -32,8 +35,8 @@ public class DAdapter {
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder, int i) {
-            DViews.get(i).onBindViewHolder(viewHolder);
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            DViews.get(position).onBindViewHolder(holder);
         }
 
         @Override
@@ -42,8 +45,14 @@ public class DAdapter {
         }
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return DViews.get(i).onCreateViewHolder(viewGroup);
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            RecyclerView.ViewHolder viewHolder = DViews.get(viewType).onCreateViewHolder(parent);
+            viewHolders.add(viewHolder);
+            return viewHolder;
+        }
+
+        public List<RecyclerView.ViewHolder> getViewHolders() {
+            return viewHolders;
         }
 
     }

@@ -15,7 +15,7 @@ import com.grarak.kerneladiutor.R;
 /**
  * Created by willi on 23.12.14.
  */
-public class BaseCardView extends CardView {
+public abstract class BaseCardView extends CardView {
 
     private static final int DEFAULT_LAYOUT = R.layout.inner_cardview;
 
@@ -44,9 +44,9 @@ public class BaseCardView extends CardView {
         super(context, attributeSet);
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(20, 10, 20, 10);
+        layoutParams.setMargins(5, 5, 5, 5);
         setLayoutParams(layoutParams);
-        setRadius(10);
+        setRadius(5);
 
         TypedArray ta = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
         Drawable d = ta.getDrawable(0);
@@ -72,8 +72,7 @@ public class BaseCardView extends CardView {
         innerLayout.addView(layoutView);
     }
 
-    protected void setUpInnerLayout(View view) {
-    }
+    public abstract void setUpInnerLayout(View view);
 
     public final void setText(String mTitle) {
         this.mTitle = mTitle;

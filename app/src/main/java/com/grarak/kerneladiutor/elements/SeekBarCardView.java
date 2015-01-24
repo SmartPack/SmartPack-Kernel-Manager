@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -62,9 +63,7 @@ public class SeekBarCardView extends BaseCardView {
     }
 
     @Override
-    protected void setUpInnerLayout(View view) {
-        super.setUpInnerLayout(view);
-
+    public void setUpInnerLayout(View view) {
         descriptionView = (TextView) view.findViewById(R.id.description_view);
         valueView = (TextView) view.findViewById(R.id.value_view);
         seekBarView = (SeekBar) view.findViewById(R.id.seekbar_view);
@@ -93,7 +92,6 @@ public class SeekBarCardView extends BaseCardView {
                 }
             }
         });
-
     }
 
     public void setTitle(String title) {
@@ -145,13 +143,14 @@ public class SeekBarCardView extends BaseCardView {
         }
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new SeekBarCardView(viewGroup.getContext(), list));
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+            return new RecyclerView.ViewHolder(new SeekBarCardView(viewGroup.getContext(), list)) {
+            };
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder) {
-            seekBarCardView = (SeekBarCardView) viewHolder.view;
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            seekBarCardView = (SeekBarCardView) viewHolder.itemView;
 
             if (title != null) seekBarCardView.setTitle(title);
             if (description != null) {

@@ -26,5 +26,4 @@ public class Misc implements Constants {
     public static List<String> getTcpAvailableCongestions() {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
     }
-
 }

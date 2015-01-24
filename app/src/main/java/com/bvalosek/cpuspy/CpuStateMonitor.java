@@ -14,11 +14,6 @@ import android.support.annotation.NonNull;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -164,21 +159,8 @@ public class CpuStateMonitor implements Constants {
      * frequency and a duration (time spent in that state
      */
     public List<CpuState> updateStates() throws CpuStateMonitorException {
-        /*
-         * attempt to create a buffered reader to the time in state file and
-         * read in the states to the class
-         */
-        try {
-            InputStream is = new FileInputStream(CPU_TIME_STATE);
-            InputStreamReader ir = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(ir);
-            _states.clear();
-            readInStates(br);
-            is.close();
-        } catch (IOException e) {
-            throw new CpuStateMonitorException(
-                    "Problem opening time-in-states file");
-        }
+        _states.clear();
+        readInStates();
 
         /*
          * deep sleep time determined by difference between elapsed (total) boot
@@ -197,18 +179,13 @@ public class CpuStateMonitor implements Constants {
      * read from a provided BufferedReader the state lines into the States
      * member field
      */
-    private void readInStates(BufferedReader br)
-            throws CpuStateMonitorException {
-        try {
-            String line;
-            while ((line = br.readLine()) != null) {
-                // split open line and convert to Integers
-                String[] nums = line.split(" ");
-                _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
-            }
-        } catch (IOException e) {
-            throw new CpuStateMonitorException(
-                    "Problem processing time-in-states file");
+    private void readInStates() {
+        String value = Utils.readFile(CPU_TIME_STATE);
+
+        // split open line and convert to Integers
+        for (String line : value.split("\\r?\\n")) {
+            String[] nums = line.split(" ");
+            _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
         }
     }
 

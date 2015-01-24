@@ -3,6 +3,7 @@ package com.grarak.kerneladiutor.elements;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,13 +87,14 @@ public class EditTextCardView extends CardViewItem {
         private OnDEditTextCardListener onDEditTextCardListener;
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new EditTextCardView(viewGroup.getContext()));
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+            return new RecyclerView.ViewHolder(new EditTextCardView(viewGroup.getContext())) {
+            };
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder) {
-            editTextCardView = (EditTextCardView) viewHolder.view;
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            editTextCardView = (EditTextCardView) viewHolder.itemView;
 
             if (title != null) editTextCardView.setTitle(title);
             if (description != null) editTextCardView.setDescription(description);

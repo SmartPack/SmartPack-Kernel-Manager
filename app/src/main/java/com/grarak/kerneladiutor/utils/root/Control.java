@@ -2,6 +2,7 @@ package com.grarak.kerneladiutor.utils.root;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -20,6 +21,7 @@ public class Control implements Constants {
     }
 
     private static void commandSaver(Context context, String sys, String value) {
+        Log.i(TAG, "Run command: " + value);
         SysDB db = new SysDB(context);
         db.open();
 

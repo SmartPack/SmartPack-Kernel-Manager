@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,9 +58,7 @@ public class PopupCardItem extends BaseCardView {
     }
 
     @Override
-    protected void setUpInnerLayout(View view) {
-        super.setUpInnerLayout(view);
-
+    public void setUpInnerLayout(View view) {
         headerCardView = new HeaderCardView(getContext());
 
         descriptionView = (TextView) view.findViewById(R.id.description_view);
@@ -152,12 +151,13 @@ public class PopupCardItem extends BaseCardView {
         }
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new PopupCardItem(viewGroup.getContext(), list));
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+            return new RecyclerView.ViewHolder(new PopupCardItem(viewGroup.getContext(), list)) {
+            };
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
             popupCardItem = (PopupCardItem) viewHolder.itemView;
 
             if (title != null) popupCardItem.setTitle(title);

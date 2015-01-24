@@ -1,16 +1,12 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -30,26 +26,6 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
     private final String[] mProfileValues = new String[]{
             "512,1024,1280,2048,3072,4096", "1024,2048,2560,4096,6144,8192", "1024,2048,4096,8192,12288,16384",
             "2048,4096,8192,16384,24576,32768", "4096,8192,16384,32768,49152,65536"};
-
-    private GridLayoutManager gridLayoutManager;
-
-    @Override
-    public void setRecyclerView(RecyclerView recyclerView) {
-        gridLayoutManager = new GridLayoutManager(getActivity(), getSpanCount());
-        gridLayoutManager.setSmoothScrollbarEnabled(true);
-        recyclerView.setLayoutManager(gridLayoutManager);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        if (gridLayoutManager != null)
-            gridLayoutManager.setSpanCount(getSpanCount());
-        super.onConfigurationChanged(newConfig);
-    }
-
-    private int getSpanCount() {
-        return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? 2 : 1;
-    }
 
     @Override
     public void init(Bundle savedInstanceState) {

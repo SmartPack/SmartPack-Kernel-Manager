@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,6 +46,11 @@ public class CardViewItem extends BaseCardView {
             headerCardView.setText(title);
     }
 
+    @Override
+    public void setUpInnerLayout(View view) {
+
+    }
+
     public static class DCardView implements DAdapter.DView {
 
         private CardViewItem cardViewItem;
@@ -55,13 +61,14 @@ public class CardViewItem extends BaseCardView {
         private View view;
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new CardViewItem(viewGroup.getContext()));
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+            return new RecyclerView.ViewHolder(new CardViewItem(viewGroup.getContext())) {
+            };
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder) {
-            cardViewItem = (CardViewItem) viewHolder.view;
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            cardViewItem = (CardViewItem) viewHolder.itemView;
 
             if (title != null) cardViewItem.setTitle(title);
             if (description != null) cardViewItem.setDescription(description);

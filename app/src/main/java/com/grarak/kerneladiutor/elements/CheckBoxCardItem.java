@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -54,9 +55,7 @@ public class CheckBoxCardItem extends BaseCardView {
     }
 
     @Override
-    protected void setUpInnerLayout(View view) {
-        super.setUpInnerLayout(view);
-
+    public void setUpInnerLayout(View view) {
         headerCardView = new HeaderCardView(getContext());
 
         descriptionView = (TextView) view.findViewById(R.id.description_view);
@@ -110,12 +109,13 @@ public class CheckBoxCardItem extends BaseCardView {
         private OnDCheckBoxCardListener onDCheckBoxCardListener;
 
         @Override
-        public Holder onCreateViewHolder(ViewGroup viewGroup) {
-            return new Holder(new CheckBoxCardItem(viewGroup.getContext()));
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+            return new RecyclerView.ViewHolder(new CheckBoxCardItem(viewGroup.getContext())) {
+            };
         }
 
         @Override
-        public void onBindViewHolder(Holder viewHolder) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
             checkBoxCardItem = (CheckBoxCardItem) viewHolder.itemView;
 
             if (title != null) checkBoxCardItem.setTitle(title);

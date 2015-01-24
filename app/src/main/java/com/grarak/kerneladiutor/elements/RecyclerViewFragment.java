@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +41,7 @@ public class RecyclerViewFragment extends Fragment {
     private final List<DAdapter.DView> views = new ArrayList<>();
     private RecyclerView recyclerView;
     private DAdapter.Adapter adapter;
+    private StaggeredGridLayoutManager layoutManager;
     private Handler hand;
 
     @Override
@@ -67,8 +68,8 @@ public class RecyclerViewFragment extends Fragment {
             }
         });
         setRecyclerView(recyclerView);
-        int padding = getSidePadding();
-        recyclerView.setPadding(padding, 0, padding, 0);
+        setLayout();
+        recyclerView.setPadding(5, 5, 5, 5);
 
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
@@ -88,9 +89,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void setRecyclerView(RecyclerView recyclerView) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        layoutManager.setSmoothScrollbarEnabled(true);
+        layoutManager = new StaggeredGridLayoutManager(getSpan(), StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
     }
 
@@ -133,11 +132,10 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        int padding = getSidePadding();
-        recyclerView.setPadding(padding, 0, padding, 0);
+        setLayout();
     }
 
-    private int getSidePadding() {
+    private void setLayout() {
         if (backgroundView != null)
             if (Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE) {
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) backgroundView.getLayoutParams();
@@ -148,20 +146,20 @@ public class RecyclerViewFragment extends Fragment {
                 animateBackground();
             } else backgroundView.setVisibility(View.GONE);
 
-        double padding = getResources().getDisplayMetrics().widthPixels * 0.08361204013;
-        return Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE ? (int) padding : 0;
+        layoutManager.setSpanCount(getSpan());
+    }
+
+    public int getSpan() {
+        int orientation = Utils.getScreenOrientation(getActivity());
+        if (Utils.isTablet(getActivity()))
+            return orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
+        return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
     }
 
     public void animateBackground() {
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.top_to_bottom);
         animation.setDuration(1500);
         backgroundView.startAnimation(animation);
-    }
-
-    public void animateRecyclerView() {
-        Context context = getActivity();
-        if (context != null)
-            recyclerView.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_to_top));
     }
 
     public int getViewHeight() {
@@ -214,6 +212,12 @@ public class RecyclerViewFragment extends Fragment {
 
         }
 
+    }
+
+    public void animateRecyclerView() {
+        Context context = getActivity();
+        if (context != null)
+            recyclerView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_to_top));
     }
 
     public Handler getHandler() {

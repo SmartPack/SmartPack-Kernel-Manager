@@ -7,11 +7,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 /**
  * Created by willi on 30.11.14.
@@ -64,28 +60,12 @@ public class Utils implements Constants {
     }
 
     public static boolean existFile(String file) {
-        return new File(file).exists();
+        String output = RootUtils.runCommand("[ -e " + file + " ] && echo true");
+        return output != null && output.contains("true");
     }
 
-    public static String readFile(String filepath) {
-        if (filepath == null) return null;
-
-        try {
-            BufferedReader buffreader = new BufferedReader(new FileReader(filepath), 256);
-            String line;
-            StringBuilder text = new StringBuilder();
-            while ((line = buffreader.readLine()) != null) {
-                text.append(line);
-                text.append("\n");
-            }
-            buffreader.close();
-            return text.toString().trim();
-        } catch (FileNotFoundException e) {
-            Log.e(TAG, filepath + " does not exist");
-        } catch (IOException e) {
-            Log.e(TAG, "I/O read error: " + filepath);
-        }
-        return null;
+    public static String readFile(String file) {
+        return RootUtils.runCommand("cat " + file);
     }
 
 }

@@ -99,6 +99,7 @@ public class PathReaderActivity extends ActionBarActivity {
 
             refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view).findViewById(R.id.refresh_layout);
             refreshLayout.setColorSchemeResources(R.color.color_primary);
+            refreshLayout.setEnabled(false);
             refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -162,14 +163,6 @@ public class PathReaderActivity extends ActionBarActivity {
                 refreshLayout.setRefreshing(false);
             }
         };
-
-        @Override
-        public void animateBackground() {
-        }
-
-        @Override
-        public void animateRecyclerView() {
-        }
 
         @Override
         public void onClick(View v) {

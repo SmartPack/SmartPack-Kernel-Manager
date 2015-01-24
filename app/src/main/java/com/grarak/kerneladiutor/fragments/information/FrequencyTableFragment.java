@@ -9,6 +9,7 @@ package com.grarak.kerneladiutor.fragments.information;
 
 // imports
 
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,14 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     private CardViewItem.DCardView frequencyCard;
     private CardViewItem.DCardView additionalCard;
     private LinearLayout _uiStatesView;
+
+    @Override
+    public int getSpan() {
+        int orientation = Utils.getScreenOrientation(getActivity());
+        if (Utils.isTablet(getActivity()))
+            return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
+        return 1;
+    }
 
     /**
      * whether or not we're updating the data in the background
