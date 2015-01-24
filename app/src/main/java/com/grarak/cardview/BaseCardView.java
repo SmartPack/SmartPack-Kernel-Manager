@@ -46,7 +46,7 @@ public abstract class BaseCardView extends CardView {
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(5, 5, 5, 5);
         setLayoutParams(layoutParams);
-        setRadius(5);
+        setRadius(0);
 
         TypedArray ta = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
         Drawable d = ta.getDrawable(0);
