@@ -20,18 +20,19 @@ public class Control implements Constants {
         GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC
     }
 
-    private static void commandSaver(Context context, String sys, String value) {
-        Log.i(TAG, "Run command: " + value);
-        SysDB db = new SysDB(context);
-        db.open();
+    private static void commandSaver(Context context, String sys, String command) {
+        Log.i(TAG, "Run command: " + command);
+        SysDB sysDB = new SysDB(context);
+        sysDB.create();
 
-        List<SysDB.Sys> sysList = db.getAllSys();
-        for (int i = 0; i < sysList.size(); i++)
+        List<SysDB.SysItem> sysList = sysDB.getAllSys();
+        for (int i = 0; i < sysList.size(); i++) {
             if (sysList.get(i).getSys().equals(sys))
-                db.deleteSys(sysList.get(i).getId());
+                sysDB.deleteItem(sysList.get(i).getId());
+        }
 
-        db.insertSys(sys, value);
-        db.close();
+        sysDB.insertSys(sys, command);
+        sysDB.close();
     }
 
     private static int getChecksum(int arg1, int arg2) {

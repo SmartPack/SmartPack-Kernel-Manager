@@ -3,146 +3,95 @@ package com.grarak.kerneladiutor.utils.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
-import com.grarak.kerneladiutor.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 13.12.14.
+ * Created by willi on 31.01.15.
  */
-public class SysDB implements Constants {
-
-    private DBAdapter dbAdapter;
-    private SQLiteDatabase database;
+public class SysDB extends BaseDB {
 
     private final String TABLE_BOOT = "bootTable";
-    private final String KEY_ID = "_id";
     private final String KEY_SYS = "sys";
-    private final String KEY_VALUE = "value";
+    private final String KEY_COMMAND = "command";
 
-    public final String[] ALL_KEYS = new String[]{KEY_ID, KEY_SYS, KEY_VALUE};
+    private String sys;
+    private String command;
 
     public SysDB(Context context) {
-        dbAdapter = new DBAdapter(context, "sys.db" /* Database name */,
-                "create table " + TABLE_BOOT
-                        + " (" + KEY_ID + " integer primary key autoincrement, " // long (0)
-                        + KEY_SYS + " text not null, " // string (1)
-                        + KEY_VALUE + " string not null" // string (2)
-                        + ");",
-                TABLE_BOOT);
+        super(context);
     }
 
-    public void open() {
-        database = dbAdapter.getWritableDatabase();
+    @Override
+    public String getDBName() {
+        return "sys.db";
     }
 
-    public void close() {
-        dbAdapter.close();
+    @Override
+    public String getTable() {
+        return TABLE_BOOT;
     }
 
-    public Sys insertSys(String sys, String value) {
+    @Override
+    public String getDBCreate() {
+        return "create table " + TABLE_BOOT + " ("
+                + KEY_ID + " integer primary key autoincrement, " // long (0)
+                + KEY_SYS + " text not null, " // string (1)
+                + KEY_COMMAND + " string not null" // string (2)
+                + ");";
+    }
 
-        log("Saving " + sys + " as " + value);
+    @Override
+    public String[] getAllKeys() {
+        return new String[]{KEY_ID, KEY_SYS, KEY_COMMAND};
+    }
 
-        ContentValues contentValues = new ContentValues();
+    public void insertSys(String sys, String command) {
+        this.sys = sys;
+        this.command = command;
+        insertItem();
+
+        Log.i(TAG, "Saving " + sys + " as " + command);
+    }
+
+    @Override
+    public void saveItems(ContentValues contentValues) {
         contentValues.put(KEY_SYS, sys);
-        contentValues.put(KEY_VALUE, value);
-
-        long insertId = database.insert(TABLE_BOOT, null, contentValues);
-        Cursor cursor = database.query(TABLE_BOOT,
-                ALL_KEYS, KEY_ID + " = " + insertId, null,
-                null, null, null);
-        cursor.moveToFirst();
-        Sys toSys = cursorToSys(cursor);
-        cursor.close();
-        return toSys;
+        contentValues.put(KEY_COMMAND, command);
     }
 
-    public boolean deleteSys(long rowId) {
-
-        log("Delete id " + rowId);
-
-        String where = KEY_ID + "=" + rowId;
-        return database.delete(TABLE_BOOT, where, null) != 0;
+    @Override
+    public DBItem cursorToDBItem(Cursor cursor) {
+        return new SysItem(cursor.getLong(0), cursor.getString(1), cursor.getString(2));
     }
 
-    public List<Sys> getAllSys() {
-        List<Sys> sysList = new ArrayList<>();
-
-        Cursor cursor = database.query(TABLE_BOOT, ALL_KEYS, null, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Sys sys = cursorToSys(cursor);
-            sysList.add(sys);
-            cursor.moveToNext();
-        }
-        // make sure to close the cursor
-        cursor.close();
-        return sysList;
+    public List<SysItem> getAllSys() {
+        List<DBItem> dbItems = getAllItems();
+        List<SysItem> sysItems = new ArrayList<>();
+        for (DBItem dbItem : dbItems) sysItems.add((SysItem) dbItem);
+        return sysItems;
     }
 
-    /*public void deleteAllSys() {
-        List<Sys> syss = getAllSys();
-        for (Sys sys : syss) deleteSys(sys.getId());
-    }
+    public static class SysItem extends DBItem {
 
-    public void updateRow(long rowId, String sys, String value) {
-        String where = KEY_ID + "=" + rowId;
+        private final String sys;
+        private final String command;
 
-        ContentValues newValues = new ContentValues();
-        newValues.put(KEY_SYS, sys);
-        newValues.put(KEY_VALUE, value);
-
-        database.update(TABLE_BOOT, newValues, where, null);
-    }*/
-
-    private Sys cursorToSys(Cursor cursor) {
-        Sys sys = new Sys();
-        sys.setId(cursor.getLong(0));
-        sys.setSys(cursor.getString(1));
-        sys.setValue(cursor.getString(2));
-        return sys;
-    }
-
-    private void log(String log) {
-        Log.i(TAG, getClass().getName() + ": " + log);
-    }
-
-    public static class Sys {
-
-        private long id;
-        private String sys;
-        private String value;
-
-        public long getId() {
-            return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
+        public SysItem(long id, String sys, String command) {
+            super(id);
+            this.sys = sys;
+            this.command = command;
         }
 
         public String getSys() {
             return sys;
         }
 
-        public String getValue() {
-            return value;
+        public String getCommand() {
+            return command;
         }
-
-        public void setSys(String sys) {
-            this.sys = sys;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-
     }
 
 }
