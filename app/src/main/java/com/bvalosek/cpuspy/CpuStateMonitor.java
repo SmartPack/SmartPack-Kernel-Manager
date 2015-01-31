@@ -166,8 +166,7 @@ public class CpuStateMonitor implements Constants {
          * deep sleep time determined by difference between elapsed (total) boot
          * time and the system uptime (awake)
          */
-        long sleepTime = (SystemClock.elapsedRealtime() - SystemClock
-                .uptimeMillis()) / 10;
+        long sleepTime = (SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) / 10;
         _states.add(new CpuState(0, sleepTime));
 
         Collections.sort(_states, Collections.reverseOrder());
@@ -183,9 +182,11 @@ public class CpuStateMonitor implements Constants {
         String value = Utils.readFile(CPU_TIME_STATE);
 
         // split open line and convert to Integers
+        if (value == null) return;
         for (String line : value.split("\\r?\\n")) {
             String[] nums = line.split(" ");
-            _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
+            if (nums.length > 0)
+                _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
         }
     }
 

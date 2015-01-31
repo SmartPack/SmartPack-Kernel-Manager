@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.grarak.kerneladiutor"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 21
         versionCode 33
         versionName "0.6.4"

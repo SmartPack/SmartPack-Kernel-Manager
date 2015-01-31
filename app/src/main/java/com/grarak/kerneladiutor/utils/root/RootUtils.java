@@ -76,8 +76,7 @@ public class RootUtils implements Constants {
                 int i;
                 char[] buffer = new char[256];
                 while (true) {
-                    i = bufferedReader.read(buffer);
-                    sb.append(buffer, 0, i);
+                    sb.append(buffer, 0, bufferedReader.read(buffer));
                     if ((i = sb.indexOf(callback)) > -1) {
                         sb.delete(i, i + callback.length());
                         break;

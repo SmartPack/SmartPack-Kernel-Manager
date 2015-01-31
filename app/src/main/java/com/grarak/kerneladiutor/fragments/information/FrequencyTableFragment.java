@@ -66,7 +66,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.frequency_table_fragment, null, false);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.frequency_table_fragment, container, false);
         _uiStatesView = (LinearLayout) view.findViewById(R.id.ui_states_view);
 
         runningCard = new CardViewItem.DCardView();
@@ -150,6 +150,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      * Generate and update all UI elements
      */
     private void updateView() {
+        if (!isAdded()) return;
         /**
          * Get the CpuStateMonitor from the app, and iterate over all states,
          * creating a row if the duration is > 0 or otherwise marking it in
