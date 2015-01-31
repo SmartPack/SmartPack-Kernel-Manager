@@ -39,7 +39,7 @@ public class RecyclerViewFragment extends Fragment {
 
     private ProgressBar progressBar;
     private final List<DAdapter.DView> views = new ArrayList<>();
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     private DAdapter.Adapter adapter;
     private StaggeredGridLayoutManager layoutManager;
     private Handler hand;

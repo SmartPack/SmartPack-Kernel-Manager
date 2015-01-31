@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 
@@ -46,7 +45,6 @@ public abstract class BaseDB implements Constants {
     }
 
     public boolean deleteItem(long rowId) {
-        Log.i(TAG, "Delete id " + rowId);
         return database.delete(getTable(), KEY_ID + "=" + rowId, null) != 0;
     }
 

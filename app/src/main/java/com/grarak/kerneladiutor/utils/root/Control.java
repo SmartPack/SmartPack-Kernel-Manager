@@ -20,7 +20,7 @@ public class Control implements Constants {
         GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC
     }
 
-    private static void commandSaver(Context context, String sys, String command) {
+    public static void commandSaver(Context context, String sys, String command) {
         Log.i(TAG, "Run command: " + command);
         SysDB sysDB = new SysDB(context);
         sysDB.create();

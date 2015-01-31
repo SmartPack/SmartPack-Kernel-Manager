@@ -8,7 +8,6 @@ import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +73,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
                 public void onClick(CardViewItem.DCardView dCardView) {
                     for (CardViewItem.DCardView profile : mProfileCard)
                         if (dCardView == profile) {
-                            RootUtils.runCommand("echo " + dCardView.getDescription() + " > " + LMK_MINFREE);
+                            LMK.setMinFree(dCardView.getDescription(), getActivity());
                             refresh();
                         }
                 }

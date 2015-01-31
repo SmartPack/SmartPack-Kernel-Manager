@@ -40,4 +40,10 @@
         <item>@string/delete</item>
     </string-array>
 
+    <string-array name="profile_menu">
+        <item>@string/apply</item>
+        <item>@string/delete</item>
+        <item>@string/information</item>
+    </string-array>
+
 </resources>

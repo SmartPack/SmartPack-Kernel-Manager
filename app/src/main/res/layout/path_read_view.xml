@@ -35,7 +35,7 @@
         android:layout_alignParentEnd="true"
         fab:fab_addButtonColorNormal="@color/fab_normal"
         fab:fab_addButtonColorPressed="@color/fab_pressed"
-        fab:fab_addButtonPlusIconColor="@android:color/white"
+        fab:fab_addButtonPlusIconColor="@android:color/black"
         android:visibility="gone">
 
         <com.getbase.floatingactionbutton.FloatingActionButton

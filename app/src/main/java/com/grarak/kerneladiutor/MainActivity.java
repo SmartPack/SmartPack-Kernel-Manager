@@ -40,6 +40,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.other.AboutUsFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
+import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -145,6 +146,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscControlsFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.tools)));
         mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.other)));
         mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
     }

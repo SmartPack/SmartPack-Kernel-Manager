@@ -42,6 +42,7 @@
     <string name="virtual_memory">Virtual Memory</string>
     <string name="misc_controls">Misc Controls</string>
     <string name="build_prop_editor">Build prop Editor</string>
+    <string name="profile">Profile</string>
     <string name="about_us">About us</string>
 
     <!-- Frequency Table -->
@@ -177,6 +178,12 @@
     <string name="delete_prop">Delete %s?</string>
     <string name="backup_created">Backup has been created in %s.</string>
     <string name="search">Search</string>
+
+    <!-- Profile -->
+    <string name="no_profiles">No profiles</string>
+    <string name="profile_description">Adding a profile will save your current settings, which you can apply later.</string>
+    <string name="name">Name</string>
+    <string name="apply">Apply</string>
 
     <!-- About us -->
     <string name="license">License</string>

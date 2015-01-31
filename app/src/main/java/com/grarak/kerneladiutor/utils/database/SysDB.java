@@ -53,7 +53,13 @@ public class SysDB extends BaseDB {
         this.command = command;
         insertItem();
 
-        Log.i(TAG, "Saving " + sys + " as " + command);
+        Log.i(TAG, "SysDB: Saving " + sys + " as " + command);
+    }
+
+    @Override
+    public boolean deleteItem(long rowId) {
+        Log.i(TAG, "SysDB: Delete id " + rowId);
+        return super.deleteItem(rowId);
     }
 
     @Override
