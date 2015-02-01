@@ -32,7 +32,7 @@ public class DBAdapter extends SQLiteOpenHelper implements Constants {
     private final String DATABASE_TABLE;
 
     public DBAdapter(Context context, String DATABASE_NAME, String DATABASE_CREATE, String DATABASE_TABLE) {
-        super(context, DATABASE_NAME, null, 1 /* Version */);
+        super(context, DATABASE_NAME, null, 2 /* Version */);
         this.DATABASE_CREATE = DATABASE_CREATE;
         this.DATABASE_TABLE = DATABASE_TABLE;
     }

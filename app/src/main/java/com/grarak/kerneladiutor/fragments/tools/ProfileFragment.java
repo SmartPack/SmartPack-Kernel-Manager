@@ -190,8 +190,15 @@ public class ProfileFragment extends RecyclerViewFragment {
                                                         @Override
                                                         public void run() {
                                                             ScrollView scrollView = new ScrollView(getActivity());
+                                                            scrollView.setBackgroundColor(getResources()
+                                                                    .getColor(android.R.color.black));
+
                                                             String text = "";
                                                             TextView textView = new TextView(getActivity());
+                                                            textView.setBackgroundColor(getResources()
+                                                                    .getColor(android.R.color.black));
+                                                            textView.setTextColor(getResources().getColor(android.R.color.white));
+                                                            textView.setPadding(0, 20, 0, 20);
 
                                                             ProfileDB.ProfileItem profileItem = profileItems.get(position);
                                                             for (String command : profileItem.getCommands())
@@ -206,12 +213,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                                             textView.requestLayout();
 
                                                             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                                                            dialog.setNeutralButton(getString(R.string.ok),
-                                                                    new DialogInterface.OnClickListener() {
-                                                                        @Override
-                                                                        public void onClick(DialogInterface dialog, int which) {
-                                                                        }
-                                                                    }).setView(scrollView).show();
+                                                            dialog.setView(scrollView).show();
                                                         }
                                                     });
                                                     break;
