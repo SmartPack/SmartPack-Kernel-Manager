@@ -27,7 +27,7 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.PathReaderActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.CheckBoxCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class CPUFragment extends RecyclerViewFragment implements Constants, View.OnClickListener,
         PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener,
-        CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener {
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
     private CheckBox[] mCoreCheckBox;
     private ProgressBar[] mCoreProgressBar;
@@ -55,9 +55,9 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     private PopupCardItem.DPopupCard mMcPowerSavingCard;
 
-    private CheckBoxCardItem.DCheckBoxCard mMpdecisionCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mMpdecisionCard;
 
-    private CheckBoxCardItem.DCheckBoxCard mIntelliPlugCard, mIntelliPlugEcoCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugCard, mIntelliPlugEcoCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -162,30 +162,30 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     private void mpdecisionInit() {
-        mMpdecisionCard = new CheckBoxCardItem.DCheckBoxCard();
+        mMpdecisionCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mMpdecisionCard.setTitle(getString(R.string.mpdecision));
         mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
         mMpdecisionCard.setChecked(CPU.isMpdecisionActive());
-        mMpdecisionCard.setOnDCheckBoxCardListener(this);
+        mMpdecisionCard.setOnDSwitchCompatCardListener(this);
 
         addView(mMpdecisionCard);
     }
 
     private void intelliPlugInit() {
-        mIntelliPlugCard = new CheckBoxCardItem.DCheckBoxCard();
+        mIntelliPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
         mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
         mIntelliPlugCard.setChecked(CPU.isIntelliPlugActive());
-        mIntelliPlugCard.setOnDCheckBoxCardListener(this);
+        mIntelliPlugCard.setOnDSwitchCompatCardListener(this);
 
         addView(mIntelliPlugCard);
 
         if (!CPU.hasIntelliPlugEco()) return;
-        mIntelliPlugEcoCard = new CheckBoxCardItem.DCheckBoxCard();
+        mIntelliPlugEcoCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mIntelliPlugEcoCard.setTitle(getString(R.string.intelliplug_eco_mode_summary));
         mIntelliPlugEcoCard.setDescription(getString(R.string.intelliplug_eco_mode_summary));
         mIntelliPlugEcoCard.setChecked(CPU.isIntelliPlugEcoActive());
-        mIntelliPlugEcoCard.setOnDCheckBoxCardListener(this);
+        mIntelliPlugEcoCard.setOnDSwitchCompatCardListener(this);
 
         addView(mIntelliPlugEcoCard);
     }
@@ -226,10 +226,10 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     @Override
-    public void onChecked(CheckBoxCardItem.DCheckBoxCard dCheckBoxCard, boolean checked) {
-        if (dCheckBoxCard == mMpdecisionCard) CPU.activateMpdecision(checked, getActivity());
-        if (dCheckBoxCard == mIntelliPlugCard) CPU.activateIntelliPlug(checked, getActivity());
-        if (dCheckBoxCard == mIntelliPlugEcoCard)
+    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mMpdecisionCard) CPU.activateMpdecision(checked, getActivity());
+        if (dSwitchCompatCard == mIntelliPlugCard) CPU.activateIntelliPlug(checked, getActivity());
+        if (dSwitchCompatCard == mIntelliPlugEcoCard)
             CPU.activateIntelliPlugEco(checked, getActivity());
     }
 

@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.CheckBoxCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -34,11 +34,11 @@ import java.util.List;
  * Created by willi on 27.12.14.
  */
 public class KSMFragment extends RecyclerViewFragment implements Constants,
-        CheckBoxCardItem.DCheckBoxCard.OnDCheckBoxCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
 
-    private CheckBoxCardItem.DCheckBoxCard mEnableKsmCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mEnableKsmCard;
 
     private List<String> mPagesToScanValues = new ArrayList<>(), mSleepMillisecondsValues = new ArrayList<>();
     private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
@@ -63,11 +63,11 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     }
 
     private void ksmInit() {
-        mEnableKsmCard = new CheckBoxCardItem.DCheckBoxCard();
+        mEnableKsmCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mEnableKsmCard.setTitle(getString(R.string.ksm_enable));
         mEnableKsmCard.setDescription(getString(R.string.ksm_enable_summary));
         mEnableKsmCard.setChecked(KSM.isKsmActive());
-        mEnableKsmCard.setOnDCheckBoxCardListener(this);
+        mEnableKsmCard.setOnDSwitchCompatCardListener(this);
 
         addView(mEnableKsmCard);
 
@@ -92,8 +92,8 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     }
 
     @Override
-    public void onChecked(CheckBoxCardItem.DCheckBoxCard dCheckBoxCard, boolean checked) {
-        if (dCheckBoxCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
+    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
     }
 
     @Override

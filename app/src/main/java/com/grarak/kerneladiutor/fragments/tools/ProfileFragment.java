@@ -68,6 +68,17 @@ public class ProfileFragment extends RecyclerViewFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SysDB sysDB = new SysDB(getActivity());
+                sysDB.create();
+
+                final List<SysDB.SysItem> sysItemList = sysDB.getAllSys();
+                sysDB.close();
+
+                if (sysItemList.size() < 1) {
+                    Utils.toast(getString(R.string.no_settings), getActivity());
+                    return;
+                }
+
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
                 linearLayout.setGravity(Gravity.CENTER);
@@ -104,13 +115,10 @@ public class ProfileFragment extends RecyclerViewFragment {
 
                                         List<String> sys = new ArrayList<>();
                                         List<String> commands = new ArrayList<>();
-                                        SysDB sysDB = new SysDB(getActivity());
-                                        sysDB.create();
-                                        for (SysDB.SysItem sysItem : sysDB.getAllSys()) {
+                                        for (SysDB.SysItem sysItem : sysItemList) {
                                             sys.add(sysItem.getSys());
                                             commands.add(sysItem.getCommand());
                                         }
-                                        sysDB.close();
 
                                         profileDB.insertProfile(profileName.getText().toString(), sys, commands);
                                         profileDB.close();
@@ -191,12 +199,12 @@ public class ProfileFragment extends RecyclerViewFragment {
                                                         public void run() {
                                                             ScrollView scrollView = new ScrollView(getActivity());
                                                             scrollView.setBackgroundColor(getResources()
-                                                                    .getColor(android.R.color.black));
+                                                                    .getColor(R.color.color_primary_dark));
 
                                                             String text = "";
                                                             TextView textView = new TextView(getActivity());
                                                             textView.setBackgroundColor(getResources()
-                                                                    .getColor(android.R.color.black));
+                                                                    .getColor(R.color.color_primary_dark));
                                                             textView.setTextColor(getResources().getColor(android.R.color.white));
                                                             textView.setPadding(0, 20, 0, 20);
 

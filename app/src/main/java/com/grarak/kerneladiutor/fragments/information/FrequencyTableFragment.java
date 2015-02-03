@@ -41,7 +41,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
     private CpuSpyApp cpuSpyApp;
 
-    private CardViewItem.DCardView runningCard;
+    private CardViewItem.DCardView uptimeCard;
     private CardViewItem.DCardView frequencyCard;
     private CardViewItem.DCardView additionalCard;
     private LinearLayout _uiStatesView;
@@ -69,8 +69,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.frequency_table_fragment, container, false);
         _uiStatesView = (LinearLayout) view.findViewById(R.id.ui_states_view);
 
-        runningCard = new CardViewItem.DCardView();
-        runningCard.setTitle(getString(R.string.running_time));
+        uptimeCard = new CardViewItem.DCardView();
+        uptimeCard.setTitle(getString(R.string.uptime));
 
         frequencyCard = new CardViewItem.DCardView();
         frequencyCard.setTitle(getString(R.string.frequency_table));
@@ -92,7 +92,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             }
         });
 
-        addView(runningCard);
+        addView(uptimeCard);
         addView(frequencyCard);
     }
 
@@ -119,7 +119,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // what it do mayne
+        // what it do maybe
         switch (item.getItemId()) {
         /* pressed the load menu button */
             case R.id.menu_refresh:
@@ -174,13 +174,13 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         // show the red warning label if no states found
         if (monitor.getStates().size() == 0) {
-            removeView(runningCard);
+            removeView(uptimeCard);
             removeView(frequencyCard);
         }
 
         // update the total state time
         long totTime = monitor.getTotalStateTime() / 100;
-        runningCard.setDescription(sToString(totTime));
+        uptimeCard.setDescription(sToString(totTime));
 
         // for all the 0 duration states, add the the Unused State area
         if (extraStates.size() > 0) {

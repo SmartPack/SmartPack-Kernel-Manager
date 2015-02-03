@@ -15,10 +15,10 @@
         android:id="@+id/description_view"
         android:layout_weight="1" />
 
-    <CheckBox
+    <android.support.v7.widget.SwitchCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkbox_view"
+        android:id="@+id/switchcompat_view"
         android:layout_weight="0" />
 
 </LinearLayout>

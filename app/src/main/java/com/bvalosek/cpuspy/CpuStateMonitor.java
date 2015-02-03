@@ -14,6 +14,9 @@ import android.support.annotation.NonNull;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -109,13 +112,8 @@ public class CpuStateMonitor implements Constants {
         long sum = 0;
         long offset = 0;
 
-        for (CpuState state : _states) {
-            sum += state.duration;
-        }
-
-        for (Map.Entry<Integer, Long> entry : _offsets.entrySet()) {
-            offset += entry.getValue();
-        }
+        for (CpuState state : _states) sum += state.duration;
+        for (Map.Entry<Integer, Long> entry : _offsets.entrySet()) offset += entry.getValue();
 
         return sum - offset;
     }
@@ -142,9 +140,7 @@ public class CpuStateMonitor implements Constants {
         _offsets.clear();
         updateStates();
 
-        for (CpuState state : _states) {
-            _offsets.put(state.freq, state.duration);
-        }
+        for (CpuState state : _states) _offsets.put(state.freq, state.duration);
     }
 
     /**
@@ -160,7 +156,13 @@ public class CpuStateMonitor implements Constants {
      */
     public List<CpuState> updateStates() throws CpuStateMonitorException {
         _states.clear();
-        readInStates();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(CPU_TIME_STATE));
+            readInStates(bufferedReader);
+            bufferedReader.close();
+        } catch (Exception e) {
+            throw new CpuStateMonitorException("Problem opening time-in-states file");
+        }
 
         /*
          * deep sleep time determined by difference between elapsed (total) boot
@@ -170,7 +172,6 @@ public class CpuStateMonitor implements Constants {
         _states.add(new CpuState(0, sleepTime));
 
         Collections.sort(_states, Collections.reverseOrder());
-
         return _states;
     }
 
@@ -178,15 +179,16 @@ public class CpuStateMonitor implements Constants {
      * read from a provided BufferedReader the state lines into the States
      * member field
      */
-    private void readInStates() {
-        String value = Utils.readFile(CPU_TIME_STATE);
-
-        // split open line and convert to Integers
-        if (value == null) return;
-        for (String line : value.split("\\r?\\n")) {
-            String[] nums = line.split(" ");
-            if (nums.length > 0)
+    private void readInStates(BufferedReader bufferedReader) throws CpuStateMonitorException {
+        try {
+            String line;
+            // split open line and convert to Integers
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] nums = line.split(" ");
                 _states.add(new CpuState(Utils.stringToInt(nums[0]), Utils.stringToLong(nums[1])));
+            }
+        } catch (IOException e) {
+            throw new CpuStateMonitorException("Problem processing time-in-states file");
         }
     }
 

@@ -67,12 +67,22 @@ public class Utils implements Constants {
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
         Log.i(TAG, "getting " + name);
-        return context.getSharedPreferences(PREF_NAME, 0).getBoolean(name, defaults);
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
     }
 
     public static void saveBoolean(String name, boolean value, Context context) {
         Log.i(TAG, "saving " + name + " as " + value);
-        context.getSharedPreferences(PREF_NAME, 0).edit().putBoolean(name, value).apply();
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putBoolean(name, value).apply();
+    }
+
+    public static String getString(String name, String defaults, Context context) {
+        Log.i(TAG, "getting " + name);
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
+    }
+
+    public static void saveString(String name, String value, Context context) {
+        Log.i(TAG, "saving " + name + " as " + value);
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(name, value).apply();
     }
 
     public static boolean existFile(String file) {

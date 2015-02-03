@@ -8,7 +8,6 @@ package com.bvalosek.cpuspy;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.grarak.kerneladiutor.utils.Utils;
 
@@ -20,7 +19,6 @@ import java.util.Map;
  */
 public class CpuSpyApp extends Application {
 
-    private static final String PREF_NAME = "CpuSpyPreferences";
     private static final String PREF_OFFSETS = "offsets";
 
     /**
@@ -34,7 +32,7 @@ public class CpuSpyApp extends Application {
      */
     @Override
     public void onCreate() {
-        loadOffsets();
+        loadOffsets(getApplicationContext());
     }
 
     /**
@@ -48,9 +46,8 @@ public class CpuSpyApp extends Application {
      * Load the saved string of offsets from preferences and put it into the
      * state monitor
      */
-    public void loadOffsets() {
-        SharedPreferences settings = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        String prefs = settings.getString(PREF_OFFSETS, "");
+    public void loadOffsets(Context context) {
+        String prefs = Utils.getString(PREF_OFFSETS, "", context);
 
         if (prefs == null || prefs.length() < 1) return;
 
@@ -70,15 +67,11 @@ public class CpuSpyApp extends Application {
      * etc
      */
     public void saveOffsets(Context context) {
-        SharedPreferences settings = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
         // build the string by iterating over the freq->duration map
         String str = "";
         for (Map.Entry<Integer, Long> entry : _monitor.getOffsets().entrySet())
             str += entry.getKey() + " " + entry.getValue() + ",";
 
-        editor.putString(PREF_OFFSETS, str);
-        editor.apply();
+        Utils.saveString(PREF_OFFSETS, str, context);
     }
 }

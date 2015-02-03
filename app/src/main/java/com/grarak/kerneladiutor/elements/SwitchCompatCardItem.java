@@ -18,9 +18,9 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
@@ -30,42 +30,42 @@ import com.grarak.kerneladiutor.R;
 /**
  * Created by willi on 22.12.14.
  */
-public class CheckBoxCardItem extends BaseCardView {
+public class SwitchCompatCardItem extends BaseCardView {
 
     private HeaderCardView headerCardView;
 
     private TextView descriptionView;
-    private CheckBox checkBoxView;
+    private SwitchCompat switchCompatView;
 
     private String titleText;
     private String descriptionText;
     private boolean checked;
 
-    private OnCheckBoxCardListener onCheckBoxCardListener;
+    private OnSwitchCompatCardListener onSwitchCompatCardListener;
 
-    public CheckBoxCardItem(Context context) {
-        super(context, R.layout.checkbox_cardview);
+    public SwitchCompatCardItem(Context context) {
+        super(context, R.layout.switchcompat_cardview);
 
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkBoxView != null) {
-                    checkBoxView.setChecked(!checkBoxView.isChecked());
-                    checked = checkBoxView.isChecked();
+                if (switchCompatView != null) {
+                    switchCompatView.setChecked(!switchCompatView.isChecked());
+                    checked = switchCompatView.isChecked();
 
-                    if (onCheckBoxCardListener != null)
-                        onCheckBoxCardListener.onChecked(CheckBoxCardItem.this, checked);
+                    if (onSwitchCompatCardListener != null)
+                        onSwitchCompatCardListener.onChecked(SwitchCompatCardItem.this, checked);
                 }
             }
         });
 
-        checkBoxView.setOnClickListener(new OnClickListener() {
+        switchCompatView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                checked = checkBoxView.isChecked();
+                checked = switchCompatView.isChecked();
 
-                if (onCheckBoxCardListener != null)
-                    onCheckBoxCardListener.onChecked(CheckBoxCardItem.this, checked);
+                if (onSwitchCompatCardListener != null)
+                    onSwitchCompatCardListener.onChecked(SwitchCompatCardItem.this, checked);
             }
         });
     }
@@ -75,11 +75,11 @@ public class CheckBoxCardItem extends BaseCardView {
         headerCardView = new HeaderCardView(getContext());
 
         descriptionView = (TextView) view.findViewById(R.id.description_view);
-        checkBoxView = (CheckBox) view.findViewById(R.id.checkbox_view);
+        switchCompatView = (SwitchCompat) view.findViewById(R.id.switchcompat_view);
 
         setUpTitle();
         if (descriptionText != null) descriptionView.setText(descriptionText);
-        checkBoxView.setChecked(checked);
+        switchCompatView.setChecked(checked);
     }
 
     public void setTitle(String title) {
@@ -94,7 +94,7 @@ public class CheckBoxCardItem extends BaseCardView {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
-        if (checkBoxView != null) checkBoxView.setChecked(checked);
+        if (switchCompatView != null) switchCompatView.setChecked(checked);
     }
 
     private void setUpTitle() {
@@ -106,75 +106,75 @@ public class CheckBoxCardItem extends BaseCardView {
             headerCardView.setText(titleText);
     }
 
-    public void setOnCheckBoxCardListener(OnCheckBoxCardListener onCheckBoxCardListener) {
-        this.onCheckBoxCardListener = onCheckBoxCardListener;
+    public void setOnSwitchCompatCardListener(OnSwitchCompatCardListener onSwitchCompatCardListener) {
+        this.onSwitchCompatCardListener = onSwitchCompatCardListener;
     }
 
-    public interface OnCheckBoxCardListener {
-        public void onChecked(CheckBoxCardItem checkBoxCardItem, boolean checked);
+    public interface OnSwitchCompatCardListener {
+        public void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked);
     }
 
-    public static class DCheckBoxCard implements DAdapter.DView {
+    public static class DSwitchCompatCard implements DAdapter.DView {
 
-        private CheckBoxCardItem checkBoxCardItem;
+        private SwitchCompatCardItem switchCompatCardItem;
 
         private String title;
         private String description;
         private boolean checked;
 
-        private OnDCheckBoxCardListener onDCheckBoxCardListener;
+        private OnDSwitchCompatCardListener onDSwitchCompatCardListener;
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new CheckBoxCardItem(viewGroup.getContext())) {
+            return new RecyclerView.ViewHolder(new SwitchCompatCardItem(viewGroup.getContext())) {
             };
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            checkBoxCardItem = (CheckBoxCardItem) viewHolder.itemView;
+            switchCompatCardItem = (SwitchCompatCardItem) viewHolder.itemView;
 
-            if (title != null) checkBoxCardItem.setTitle(title);
-            if (description != null) checkBoxCardItem.setDescription(description);
-            checkBoxCardItem.setChecked(checked);
+            if (title != null) switchCompatCardItem.setTitle(title);
+            if (description != null) switchCompatCardItem.setDescription(description);
+            switchCompatCardItem.setChecked(checked);
 
             setUpListener();
         }
 
         public void setTitle(String title) {
             this.title = title;
-            if (checkBoxCardItem != null) checkBoxCardItem.setTitle(title);
+            if (switchCompatCardItem != null) switchCompatCardItem.setTitle(title);
         }
 
         public void setDescription(String description) {
             this.description = description;
-            if (checkBoxCardItem != null) checkBoxCardItem.setDescription(description);
+            if (switchCompatCardItem != null) switchCompatCardItem.setDescription(description);
         }
 
         public void setChecked(boolean checked) {
             this.checked = checked;
-            if (checkBoxCardItem != null) checkBoxCardItem.setChecked(checked);
+            if (switchCompatCardItem != null) switchCompatCardItem.setChecked(checked);
         }
 
-        public void setOnDCheckBoxCardListener(OnDCheckBoxCardListener onDCheckBoxCardListener) {
-            this.onDCheckBoxCardListener = onDCheckBoxCardListener;
+        public void setOnDSwitchCompatCardListener(OnDSwitchCompatCardListener onDSwitchCompatCardListener) {
+            this.onDSwitchCompatCardListener = onDSwitchCompatCardListener;
             setUpListener();
         }
 
         private void setUpListener() {
-            if (onDCheckBoxCardListener != null && checkBoxCardItem != null) {
-                checkBoxCardItem.setOnCheckBoxCardListener(new CheckBoxCardItem.OnCheckBoxCardListener() {
+            if (onDSwitchCompatCardListener != null && switchCompatCardItem != null) {
+                switchCompatCardItem.setOnSwitchCompatCardListener(new OnSwitchCompatCardListener() {
                     @Override
-                    public void onChecked(CheckBoxCardItem checkBoxCardItem, boolean checked) {
-                        DCheckBoxCard.this.checked = checked;
-                        onDCheckBoxCardListener.onChecked(DCheckBoxCard.this, checked);
+                    public void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked) {
+                        DSwitchCompatCard.this.checked = checked;
+                        onDSwitchCompatCardListener.onChecked(DSwitchCompatCard.this, checked);
                     }
                 });
             }
         }
 
-        public interface OnDCheckBoxCardListener {
-            public void onChecked(DCheckBoxCard dCheckBoxCard, boolean checked);
+        public interface OnDSwitchCompatCardListener {
+            public void onChecked(DSwitchCompatCard dSwitchCompatCard, boolean checked);
         }
 
     }
