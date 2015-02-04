@@ -26,7 +26,7 @@ import com.grarak.kerneladiutor.utils.kernel.Misc;
 /**
  * Created by willi on 02.01.15.
  */
-public class MiscControlsFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
+public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
 
     private PopupCardItem.DPopupCard mTcpCongestionCard;
 

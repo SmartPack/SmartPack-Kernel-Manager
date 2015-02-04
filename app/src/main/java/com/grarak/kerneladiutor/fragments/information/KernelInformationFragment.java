@@ -29,6 +29,11 @@ import com.grarak.kerneladiutor.utils.kernel.Info;
 public class KernelInformationFragment extends RecyclerViewFragment {
 
     @Override
+    public boolean showApplyOnBoot() {
+        return false;
+    }
+
+    @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
@@ -48,4 +53,5 @@ public class KernelInformationFragment extends RecyclerViewFragment {
         addView(cpuCard);
         addView(memCard);
     }
+
 }

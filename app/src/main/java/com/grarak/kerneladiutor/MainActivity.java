@@ -49,12 +49,12 @@ import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
-import com.grarak.kerneladiutor.fragments.kernel.MiscControlsFragment;
+import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
-import com.grarak.kerneladiutor.fragments.other.AboutUsFragment;
+import com.grarak.kerneladiutor.fragments.other.AboutusFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -125,7 +125,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         cur_position = position;
 
         try {
-            Log.i(TAG, "Open postion " + position + ": " + mList.get(position).getTitle());
             getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commitAllowingStateLoss();
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,12 +158,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
             mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscControlsFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.tools)));
         mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.other)));
-        mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutUsFragment()));
+        mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
     }
 
     private void setView() {

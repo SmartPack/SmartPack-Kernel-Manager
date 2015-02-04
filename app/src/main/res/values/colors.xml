@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_primary">#2A7289</color>
-    <color name="color_primary_dark">#1F5465</color>
+    <color name="color_primary_dark">#1D5060</color>
+    <color name="color_primary_light">#3F8095</color>
     <color name="fab_normal">#E6FFFFFF</color>
     <color name="fab_pressed">#E6E8E8E8</color>
 </resources>

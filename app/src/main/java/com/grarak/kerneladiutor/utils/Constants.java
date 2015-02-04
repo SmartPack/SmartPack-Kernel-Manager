@@ -46,6 +46,10 @@ public interface Constants {
     public final String CPU_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
     public final String CPU_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
 
+    public final String[] CPU_ARRAY = new String[]{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
+            CPU_MAX_SCREEN_OFF_FREQ, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS,
+            CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_MPDECISION_BINARY, CPU_MPDEC, CPU_INTELLI_PLUG, CPU_INTELLI_PLUG_ECO};
+
     // CPU Voltage
     public final String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
     public final String CPU_FAUX_VOLTAGE = "/sys/devices/system/cpu/cpufreq/vdd_table/vdd_levels";
@@ -164,6 +168,10 @@ public interface Constants {
     public final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     public final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
+    public final String[] BATTERY_ARRAY = new String[]{
+            FORCE_FAST_CHARGE, BLX
+    };
+
     // I/O
     public final String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
     public final String IO_EXTERNAL_SCHEDULER = "/sys/block/mmcblk1/queue/scheduler";
@@ -171,6 +179,11 @@ public interface Constants {
     public final String IO_EXTERNAL_SCHEDULER_TUNABLE = "/sys/block/mmcblk1/queue/iosched";
     public final String IO_INTERNAL_READ_AHEAD = "/sys/block/mmcblk0/queue/read_ahead_kb";
     public final String IO_EXTERNAL_READ_AHEAD = "/sys/block/mmcblk1/queue/read_ahead_kb";
+
+    public final String[] IO_ARRAY = new String[]{
+            IO_INTERNAL_SCHEDULER, IO_EXTERNAL_SCHEDULER, IO_INTERNAL_SCHEDULER_TUNABLE, IO_EXTERNAL_SCHEDULER_TUNABLE,
+            IO_INTERNAL_READ_AHEAD, IO_EXTERNAL_READ_AHEAD
+    };
 
     // Kernel Samepage Merging
     public final String KSM_FOLDER = "/sys/kernel/mm/ksm";
@@ -192,8 +205,15 @@ public interface Constants {
     // Virtual Machine
     public final String VM_PATH = "/proc/sys/vm";
 
+    public final String[] SUPPORTED_VM = {"dirty_ratio",
+            "dirty_background_ratio", "dirty_expire_centisecs",
+            "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio",
+            "swappiness", "vfs_cache_pressure"};
+
     // Misc
     public final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
+
+    public final String[] MISC_ARRAY = new String[]{TCP_AVAILABLE_CONGESTIONS};
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

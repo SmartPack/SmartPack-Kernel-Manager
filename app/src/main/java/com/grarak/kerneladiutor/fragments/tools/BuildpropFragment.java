@@ -63,8 +63,6 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public RecyclerView getRecyclerView() {
-        backgroundView = getParentView(R.layout.path_read_view).findViewById(R.id.background_view);
-
         refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view).findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -235,9 +233,6 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         SearchView searchView = new SearchView(((ActionBarActivity) getActivity())
                 .getSupportActionBar().getThemedContext());
         searchView.setQueryHint(getString(R.string.search));
-
-        View searchPlate = searchView.findViewById(R.id.search_plate);
-        searchPlate.setBackgroundResource(R.drawable.searchview);
 
         MenuItemCompat.setActionView(searchItem, searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

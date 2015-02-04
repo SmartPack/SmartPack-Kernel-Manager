@@ -54,6 +54,11 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         return 1;
     }
 
+    @Override
+    public boolean showApplyOnBoot() {
+        return false;
+    }
+
     /**
      * whether or not we're updating the data in the background
      */

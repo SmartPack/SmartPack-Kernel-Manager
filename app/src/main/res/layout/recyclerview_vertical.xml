@@ -3,11 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/background_view"
+    <FrameLayout
+        android:id="@+id/apply_on_boot_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary" />
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/color_primary_light"
+        android:paddingLeft="50dp"
+        android:paddingRight="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true">
+
+        <android.support.v7.internal.widget.CompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apply_on_boot"
+            android:layout_gravity="start|center_vertical"
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/apply_on_boot_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:theme="@style/SwitchCompatStyle" />
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -15,6 +37,7 @@
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/apply_on_boot_layout" />
 
 </RelativeLayout>

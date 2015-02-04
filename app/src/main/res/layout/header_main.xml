@@ -4,38 +4,22 @@
     android:layout_width="match_parent">
 
     <ImageView
-        android:background="@drawable/bg_header"
+        android:src="@drawable/bg_header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:contentDescription="@string/app_name" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
+    <TextView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:text="@string/app_name"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingBottom="3dp">
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:text="@string/app_name" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/apply_on_boot_switch"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:text="@string/apply_on_boot"
-            android:layout_width="match_parent"
-            android:textColor="@android:color/white"
-            android:layout_height="14dp" />
-
-    </LinearLayout>
+        android:paddingBottom="13dp"
+        android:layout_gravity="bottom" />
 
 </FrameLayout>
 

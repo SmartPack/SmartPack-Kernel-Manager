@@ -19,7 +19,6 @@ package com.grarak.kerneladiutor.elements;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,16 +27,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
@@ -49,13 +49,14 @@ import java.util.List;
 public class RecyclerViewFragment extends Fragment {
 
     protected View view;
-    protected View backgroundView;
     protected LayoutInflater inflater;
     protected ViewGroup container;
 
     private ProgressBar progressBar;
     private final List<DAdapter.DView> views = new ArrayList<>();
     protected RecyclerView recyclerView;
+    protected View applyOnBootLayout;
+    protected SwitchCompat applyOnBootView;
     private DAdapter.Adapter adapter;
     private StaggeredGridLayoutManager layoutManager;
     private Handler hand;
@@ -65,6 +66,8 @@ public class RecyclerViewFragment extends Fragment {
         setHasOptionsMenu(true);
         this.inflater = inflater;
         this.container = container;
+
+        Log.i(Constants.TAG, "Opening " + getClassName());
 
         recyclerView = getRecyclerView();
         recyclerView.setAdapter(new RecyclerView.Adapter() {
@@ -90,6 +93,9 @@ public class RecyclerViewFragment extends Fragment {
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
 
+        if (!showApplyOnBoot())
+            getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(View.GONE);
+
         if (isAdded()) new Task().execute(savedInstanceState);
 
         return view;
@@ -100,8 +106,31 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public RecyclerView getRecyclerView() {
-        backgroundView = getParentView(R.layout.recyclerview_vertical).findViewById(R.id.background_view);
+        if (showApplyOnBoot()) {
+            applyOnBootView = (SwitchCompat) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_view);
+            applyOnBootView.setChecked(Utils.getBoolean(getClassName() + "onboot", false, getActivity()));
+            applyOnBootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Utils.saveBoolean(getClassName() + "onboot", applyOnBootView.isChecked(), getActivity());
+                }
+            });
+
+            applyOnBootLayout = getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout);
+            applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    applyOnBootView.setChecked(!applyOnBootView.isChecked());
+                    Utils.saveBoolean(getClassName() + "onboot", applyOnBootView.isChecked(), getActivity());
+                }
+            });
+        }
+
         return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
+    }
+
+    public String getClassName() {
+        return getClass().getSimpleName();
     }
 
     public void setRecyclerView(RecyclerView recyclerView) {
@@ -152,17 +181,11 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private void setLayout() {
-        if (backgroundView != null)
-            if (Utils.getScreenOrientation(getActivity()) == Configuration.ORIENTATION_LANDSCAPE) {
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) backgroundView.getLayoutParams();
-                params.height = getViewHeight();
-                backgroundView.setLayoutParams(params);
-                backgroundView.setVisibility(View.VISIBLE);
-
-                animateBackground();
-            } else backgroundView.setVisibility(View.GONE);
-
         layoutManager.setSpanCount(getSpan());
+    }
+
+    public boolean showApplyOnBoot() {
+        return true;
     }
 
     public int getSpan() {
@@ -170,20 +193,6 @@ public class RecyclerViewFragment extends Fragment {
         if (Utils.isTablet(getActivity()))
             return orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
         return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
-    }
-
-    public void animateBackground() {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.top_to_bottom);
-        animation.setDuration(1500);
-        backgroundView.startAnimation(animation);
-    }
-
-    public int getViewHeight() {
-        TypedArray ta = getActivity().obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-        int actionBarSize = ta.getDimensionPixelSize(0, 100);
-        ta.recycle();
-        int height = getResources().getDisplayMetrics().heightPixels;
-        return height / 3 - actionBarSize;
     }
 
     private class Task extends AsyncTask<Bundle, Void, String> {

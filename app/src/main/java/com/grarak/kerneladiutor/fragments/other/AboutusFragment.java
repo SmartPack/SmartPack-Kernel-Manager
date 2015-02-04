@@ -27,11 +27,16 @@ import com.grarak.kerneladiutor.utils.Utils;
 /**
  * Created by willi on 27.12.14.
  */
-public class AboutUsFragment extends RecyclerViewFragment {
+public class AboutusFragment extends RecyclerViewFragment {
 
     private final String APP_SOURCE = "https://github.com/Grarak/KernelAdiutor";
     private final String DONATE_LINK = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG";
     private final String ISSUE_LINK = "https://github.com/Grarak/KernelAdiutor/issues";
+
+    @Override
+    public boolean showApplyOnBoot() {
+        return false;
+    }
 
     @Override
     public void init(Bundle savedInstanceState) {

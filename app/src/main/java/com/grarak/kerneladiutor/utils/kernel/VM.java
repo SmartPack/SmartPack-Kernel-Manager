@@ -33,11 +33,6 @@ public class VM implements Constants {
 
     private static List<String> vmFiles = new ArrayList<>();
 
-    private static final String[] supportedVM = {"dirty_ratio",
-            "dirty_background_ratio", "dirty_expire_centisecs",
-            "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio",
-            "swappiness", "vfs_cache_pressure"};
-
     public static void setVM(String value, String name, Context context) {
         Control.runCommand(value, VM_PATH + "/" + name, Control.CommandType.GENERIC, context);
     }
@@ -54,7 +49,7 @@ public class VM implements Constants {
         if (vmFiles.size() < 1) {
             File[] files = new File(VM_PATH).listFiles();
             if (files.length > 0) {
-                for (String supported : supportedVM)
+                for (String supported : SUPPORTED_VM)
                     for (File file : files)
                         if (file.getName().equals(supported))
                             vmFiles.add(file.getName());

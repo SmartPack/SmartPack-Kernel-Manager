@@ -8,6 +8,10 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="SwitchCompatStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -16,10 +20,8 @@
         <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
     </style>
 
-    <style name="AutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textCursorDrawable">@null</item>
-        <item name="android:textColorHighlight">@android:color/white</item>
+    <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorAccent">@android:color/white</item>
     </style>
 
     <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">

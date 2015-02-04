@@ -61,7 +61,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        backgroundView = getParentView(R.layout.profile_fragment).findViewById(R.id.background_view);
         noProfilesView = (TextView) getParentView(R.layout.profile_fragment).findViewById(R.id.no_profiles_text);
 
         addButton = (FloatingActionButton) getParentView(R.layout.profile_fragment).findViewById(R.id.add_button);
