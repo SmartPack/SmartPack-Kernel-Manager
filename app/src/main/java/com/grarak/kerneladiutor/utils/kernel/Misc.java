@@ -31,6 +31,75 @@ import java.util.List;
  */
 public class Misc implements Constants {
 
+    private static String VIBRATION_PATH;
+    private static Integer VIBRATION_MAX = null;
+    private static Integer VIBRATION_MIN = null;
+
+    public static void setVibration(int value, Context context) {
+        String enablePath = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
+        boolean enable = Utils.existFile(enablePath);
+        if (enable) Control.runCommand("1", enablePath, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), VIBRATION_PATH, Control.CommandType.GENERIC, context);
+        if (enable) Control.runCommand("0", enablePath, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getVibrationMin() {
+        if (VIBRATION_MIN == null) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level")
+                    && Utils.existFile("/sys/class/timed_output/vibrator/vtg_min")) {
+                VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/vtg_min"));
+                return VIBRATION_MIN;
+            }
+
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value")
+                    && Utils.existFile("/sys/class/timed_output/vibrator/pwm_min")) {
+                VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/pwm_min"));
+                return VIBRATION_MIN;
+            }
+
+            for (int i = 0; i < VIBRATION_ARRAY.length; i++)
+                if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
+                    VIBRATION_MIN = VIBRATION_MAX_MIN_ARRAY[i][1];
+        }
+        return VIBRATION_MIN;
+    }
+
+    public static int getVibrationMax() {
+        if (VIBRATION_MAX == null) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level")
+                    && Utils.existFile("/sys/class/timed_output/vibrator/vtg_max")) {
+                VIBRATION_MAX = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/vtg_max"));
+                return VIBRATION_MAX;
+            }
+
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value")
+                    && Utils.existFile("/sys/class/timed_output/vibrator/pwm_max")) {
+                VIBRATION_MAX = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/pwm_max"));
+                return VIBRATION_MAX;
+            }
+
+            for (int i = 0; i < VIBRATION_ARRAY.length; i++)
+                if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
+                    VIBRATION_MAX = VIBRATION_MAX_MIN_ARRAY[i][0];
+        }
+        return VIBRATION_MAX;
+    }
+
+    public static int getCurVibration() {
+        if (VIBRATION_PATH != null && Utils.existFile(VIBRATION_PATH))
+            return Utils.stringToInt(Utils.readFile(VIBRATION_PATH).replaceAll("[^0-9]", ""));
+        return 0;
+    }
+
+    public static boolean hasVibration() {
+        for (String vibration : VIBRATION_ARRAY)
+            if (Utils.existFile(vibration)) {
+                VIBRATION_PATH = vibration;
+                break;
+            }
+        return VIBRATION_PATH != null;
+    }
+
     public static void setTcpCongestion(String tcpCongestion, Context context) {
         Control.runCommand(tcpCongestion, null, Control.CommandType.TCP_CONGESTION, context);
     }

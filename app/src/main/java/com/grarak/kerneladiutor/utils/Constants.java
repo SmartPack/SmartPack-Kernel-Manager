@@ -213,9 +213,39 @@ public interface Constants {
             "swappiness", "vfs_cache_pressure"};
 
     // Misc
+
+    // TCP
     public final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
-    public final String[] MISC_ARRAY = new String[]{TCP_AVAILABLE_CONGESTIONS};
+    // Vibration
+    public final String[] VIBRATION_ARRAY = new String[]{
+            "/sys/vibrator/pwmvalue",
+            "/sys/class/timed_output/vibrator/amp",
+            "/sys/class/timed_output/vibrator/vtg_level",
+            "/sys/devices/platform/tspdrv/nforce_timed",
+            "/sys/devices/virtual/timed_output/vibrator/vtg_level",
+            "/sys/class/timed_output/vibrator/pwm_value",
+            "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle",
+            "/sys/devices/virtual/timed_output/vibrator/voltage_level",
+            "/sys/devices/virtual/timed_output/vibrator/pwm_value_1p"
+    };
+
+    public final Integer[][] VIBRATION_MAX_MIN_ARRAY = new Integer[][]{
+            new Integer[]{127, 0},
+            new Integer[]{100, 0},
+            new Integer[]{0, 0}, // Read MAX MIN from sys
+            new Integer[]{127, 1},
+            new Integer[]{31, 12},
+            new Integer[]{100, 0}, // Read MAX MIN from sys
+            new Integer[]{100, 25}, // Needs enable path
+            new Integer[]{3199, 1200},
+            new Integer[]{99, 53}
+    };
+
+    public final String[][] MISC_ARRAY = new String[][]{
+            new String[]{TCP_AVAILABLE_CONGESTIONS},
+            VIBRATION_ARRAY
+    };
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

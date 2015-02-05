@@ -280,8 +280,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
                                     mUsageCard.setProgress(Math.round(usage));
                                 }
                             });
-                        } catch (NullPointerException e) {
-                            e.printStackTrace();
+                        } catch (NullPointerException ignored) {
                         }
                     }
                 }).start();

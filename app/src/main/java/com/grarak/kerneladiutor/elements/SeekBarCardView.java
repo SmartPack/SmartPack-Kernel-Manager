@@ -34,6 +34,8 @@ import java.util.List;
  */
 public class SeekBarCardView extends BaseCardView {
 
+    private final List<String> list;
+
     private HeaderCardView headerCardView;
     private TextView descriptionView;
     private TextView valueView;
@@ -45,15 +47,15 @@ public class SeekBarCardView extends BaseCardView {
 
     private OnSeekBarCardListener onSeekBarCardListener;
 
-    public SeekBarCardView(Context context, final List<String> list) {
+    public SeekBarCardView(Context context, List<String> list) {
         super(context, R.layout.seekbar_cardview);
 
+        this.list = list;
         seekBarView.setMax(list.size() - 1);
-        seekBarView.setProgress(progress);
         seekBarView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (valueView != null) valueView.setText(list.get(progress));
+                if (valueView != null) valueView.setText(SeekBarCardView.this.list.get(progress));
             }
 
             @Override
@@ -72,6 +74,7 @@ public class SeekBarCardView extends BaseCardView {
                     onSeekBarCardListener.onStop(SeekBarCardView.this, seekBar.getProgress());
             }
         });
+        seekBarView.setProgress(progress);
 
         headerCardView = new HeaderCardView(getContext());
         setUpTitle();
@@ -122,7 +125,10 @@ public class SeekBarCardView extends BaseCardView {
 
     public void setProgress(int progress) {
         this.progress = progress;
-        if (seekBarView != null) seekBarView.setProgress(progress);
+        if (seekBarView != null) {
+            seekBarView.setProgress(progress);
+            if (valueView != null) valueView.setText(list.get(progress));
+        }
     }
 
     private void setUpTitle() {

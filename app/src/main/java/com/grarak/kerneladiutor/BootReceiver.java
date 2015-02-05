@@ -90,7 +90,8 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
             applys.add(LMK_MINFREE);
 
         if (Utils.getBoolean(MiscFragment.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(MISC_ARRAY)));
+            for (String[] arrays : MISC_ARRAY)
+                applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
 
         if (Utils.getBoolean(ScreenFragment.class.getSimpleName() + "onboot", false, context))
             applys.addAll(new ArrayList<>(Arrays.asList(SCREEN_ARRAY)));
