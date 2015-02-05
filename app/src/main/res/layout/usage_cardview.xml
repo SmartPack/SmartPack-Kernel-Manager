@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:padding="50dp">
+    android:paddingTop="50dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:paddingBottom="40dp">
 
     <com.grarak.kerneladiutor.elements.CircleChart
         android:id="@+id/circle_chart"
