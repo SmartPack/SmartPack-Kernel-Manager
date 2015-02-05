@@ -67,7 +67,8 @@ public class CircleChart extends View {
         int padding = Math.round(5 * density);
         mRectF.set(padding, padding, x - padding, y - padding);
         canvas.drawArc(mRectF, 0, 360, false, mPaintBackground);
-        canvas.drawArc(mRectF, 270, Math.round(mProgress * (360 / mMax)), false, mPaintCircle);
+        float offset = 360 / (float) mMax;
+        canvas.drawArc(mRectF, 270, offset * mProgress, false, mPaintCircle);
 
         TextPaint textPaint = new TextPaint();
         textPaint.setColor(mCircleColor);
@@ -78,11 +79,11 @@ public class CircleChart extends View {
         float textOffset = (textHeight / 2) - textPaint.descent();
 
         RectF bounds = new RectF(padding, padding, x - padding, y - padding);
-        String text = mProgress + "";
+        String text = String.valueOf(mProgress);
         canvas.drawText(text, bounds.centerX(), bounds.centerY() + textOffset, textPaint);
     }
 
-    public void setProgress(final int progress) {
+    public void setProgress(int progress) {
         mProgress = progress;
         invalidate();
     }
