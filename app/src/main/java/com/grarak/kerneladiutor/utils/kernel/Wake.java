@@ -33,6 +33,42 @@ public class Wake implements Constants {
 
     private static String DT2W_FILE;
     private static String S2W_FILE;
+    private static String T2W_FILE;
+
+    public static void setT2w(int value, Context context) {
+        String command = String.valueOf(value);
+        if (T2W_FILE.equals(TSP_T2W)) command = value == 0 ? "OFF" : "AUTO";
+
+        Control.runCommand(command, T2W_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getT2w() {
+        if (T2W_FILE != null && Utils.existFile(T2W_FILE)) {
+            String value = Utils.readFile(T2W_FILE);
+            if (T2W_FILE.equals(TSP_T2W)) return value.equals("OFF") ? 0 : 1;
+            return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static List<String> getT2wMenu(Context context) {
+        List<String> list = new ArrayList<>();
+        if (T2W_FILE != null) {
+            list.add(context.getString(R.string.disabled));
+            list.add(context.getString(R.string.enabled));
+        }
+        return list;
+    }
+
+    public static boolean hasT2w() {
+        if (T2W_FILE == null)
+            for (String file : T2W_ARRAY)
+                if (Utils.existFile(file)) {
+                    T2W_FILE = file;
+                    break;
+                }
+        return T2W_FILE != null;
+    }
 
     public static void setS2w(int value, Context context) {
         Control.runCommand(String.valueOf(value), S2W_FILE, Control.CommandType.GENERIC, context);

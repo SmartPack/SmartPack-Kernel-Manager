@@ -141,6 +141,8 @@ public interface Constants {
     public final String[] SCREEN_ARRAY = {SCREEN_KCAL, SCREEN_DIAG0, SCREEN_COLOR, SCREEN_SAMOLED_COLOR};
 
     // Wake
+
+    // DT2W
     public final String LGE_TOUCH_DT2W = "/sys/devices/virtual/input/lge_touch/dt_wake_enabled";
     public final String LGE_TOUCH_CORE_DT2W = "/sys/module/lge_touch_core/parameters/doubletap_to_wake";
     public final String DT2W = "/sys/android_touch/doubletap2wake";
@@ -148,12 +150,19 @@ public interface Constants {
 
     public final String[] DT2W_ARRAY = new String[]{LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, DT2W, TOUCH_PANEL_DT2W};
 
+    // S2W
     public final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     public final String SW2 = "/sys/android_touch/sweep2wake";
 
     public final String[] S2W_ARRY = new String[]{S2W_ONLY, SW2};
 
-    public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY};
+    // T2W
+    public final String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
+    public final String TOUCHWAKE_T2W = "/sys/class/misc/touchwake/enabled";
+
+    public final String[] T2W_ARRAY = new String[]{TSP_T2W, TOUCHWAKE_T2W};
+
+    public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY, T2W_ARRAY};
 
     // Sound
     public final String HEADPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_gain";

@@ -30,6 +30,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private PopupCardItem.DPopupCard mDt2wCard;
     private PopupCardItem.DPopupCard mS2wCard;
+    private PopupCardItem.DPopupCard mT2wCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
 
         if (Wake.hasDt2w()) dt2wInit();
         if (Wake.hasS2w()) s2wInit();
+        if (Wake.hasT2w()) t2wInit();
     }
 
     private void dt2wInit() {
@@ -59,9 +61,20 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mS2wCard);
     }
 
+    private void t2wInit() {
+        mT2wCard = new PopupCardItem.DPopupCard(Wake.getT2wMenu(getActivity()));
+        mT2wCard.setTitle(getString(R.string.t2w));
+        mT2wCard.setDescription(getString(R.string.t2w_summary));
+        mT2wCard.setItem(Wake.getT2w());
+        mT2wCard.setOnDPopupCardListener(this);
+
+        addView(mT2wCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
         if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
+        if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
     }
 }

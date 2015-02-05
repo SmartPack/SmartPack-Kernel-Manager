@@ -116,6 +116,8 @@
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the navigation bar.</string>
     <string name="s2s">Sweep2Sleep</string>
+    <string name="t2w">Tap2Wake</string>
+    <string name="t2w_summary">Wake up your device by tapping the screen.</string>
 
     <!-- Sound -->
     <string name="headphone_gain">Headphone Gain</string>
