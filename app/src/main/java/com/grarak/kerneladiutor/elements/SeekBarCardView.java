@@ -55,7 +55,7 @@ public class SeekBarCardView extends BaseCardView {
         seekBarView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (valueView != null) valueView.setText(SeekBarCardView.this.list.get(progress));
+                if (valueView != null) valueView.setText(getItem(progress));
             }
 
             @Override
@@ -127,7 +127,16 @@ public class SeekBarCardView extends BaseCardView {
         this.progress = progress;
         if (seekBarView != null) {
             seekBarView.setProgress(progress);
-            if (valueView != null) valueView.setText(list.get(progress));
+            if (valueView != null) valueView.setText(getItem(progress));
+        }
+    }
+
+    private String getItem(int progress) {
+        try {
+            return list.get(progress);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 

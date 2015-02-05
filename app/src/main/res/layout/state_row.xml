@@ -35,7 +35,9 @@
         android:id="@+id/ui_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:max="100" />
+        android:layout_height="5dp"
+        android:max="100"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
 </LinearLayout>

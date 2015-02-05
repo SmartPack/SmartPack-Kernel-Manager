@@ -2,6 +2,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.TextPaint;
@@ -21,7 +22,6 @@ public class CircleChart extends View {
     private final Paint mPaintBackground;
     private final RectF mRectF;
     private final int mCircleColor;
-    private final int mBackgroundColor;
     private final float density;
 
     public CircleChart(Context context) {
@@ -36,20 +36,19 @@ public class CircleChart extends View {
         super(context, attrs, defStyle);
 
         mCircleColor = getResources().getColor(R.color.color_primary);
-        mBackgroundColor = getResources().getColor(R.color.color_primary_dark);
         density = getResources().getDisplayMetrics().density;
 
         mPaintBackground = new Paint();
-        mPaintBackground.setStrokeWidth(Math.round(7.5 * density));
+        mPaintBackground.setStrokeWidth(Math.round(1 * density));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
-        mPaintBackground.setColor(mBackgroundColor);
+        mPaintBackground.setColor(Color.rgb(200, 200, 200));
         mPaintBackground.setStrokeCap(Paint.Cap.ROUND);
 
         mPaintCircle = new Paint();
         mPaintCircle.setAntiAlias(true);
         mPaintCircle.setStyle(Paint.Style.STROKE);
-        mPaintCircle.setStrokeWidth(Math.round(5 * density));
+        mPaintCircle.setStrokeWidth(Math.round(1 * density));
         mPaintCircle.setStrokeCap(Paint.Cap.ROUND);
         mPaintCircle.setColor(mCircleColor);
 
