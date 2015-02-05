@@ -25,9 +25,10 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
 
 import java.util.ArrayList;
@@ -39,7 +40,8 @@ import java.util.List;
 public class BatteryFragment extends RecyclerViewFragment implements SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
-    private CardViewItem.DCardView mBatteryLevelCard, mBatteryVoltageCard, mBatteryTemperature;
+    private UsageCardView.DUsageCard mBatteryLevelCard;
+    private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
 
     private SwitchCompatCardItem.DSwitchCompatCard mForceFastChargeCard;
 
@@ -59,8 +61,8 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCompa
     }
 
     private void batteryLevelInit() {
-        mBatteryLevelCard = new CardViewItem.DCardView();
-        mBatteryLevelCard.setTitle(getString(R.string.battery_level));
+        mBatteryLevelCard = new UsageCardView.DUsageCard();
+        mBatteryLevelCard.setText(getString(R.string.battery_level));
 
         addView(mBatteryLevelCard);
     }
@@ -108,7 +110,7 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCompa
             int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
             int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
 
-            if (mBatteryLevelCard != null) mBatteryLevelCard.setDescription(level + "%");
+            if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(level);
             if (mBatteryVoltageCard != null)
                 mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
             if (mBatteryTemperature != null)

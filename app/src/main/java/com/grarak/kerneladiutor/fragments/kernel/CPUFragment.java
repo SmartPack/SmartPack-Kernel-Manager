@@ -78,6 +78,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     private void usageInit() {
         mUsageCard = new UsageCardView.DUsageCard();
+        mUsageCard.setText(getString(R.string.cpu_usage));
         addView(mUsageCard);
 
         getHandler().post(cpuUsage);

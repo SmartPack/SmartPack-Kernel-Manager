@@ -90,7 +90,7 @@ public abstract class BaseCardView extends CardView {
 
     public abstract void setUpInnerLayout(View view);
 
-    public final void setText(String mTitle) {
+    public void setText(String mTitle) {
         this.mTitle = mTitle;
         if (innerView != null) innerView.setText(mTitle);
     }
