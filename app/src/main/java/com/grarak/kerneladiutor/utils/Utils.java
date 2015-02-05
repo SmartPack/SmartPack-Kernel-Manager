@@ -54,7 +54,7 @@ public class Utils implements Constants {
 
     public static int getActionBarHeight(Context context) {
         TypedArray ta = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-        int actionBarSize = ta.getDimensionPixelSize(0, 100);
+        int actionBarSize = ta.getDimensionPixelSize(0, 150);
         ta.recycle();
         return actionBarSize;
     }

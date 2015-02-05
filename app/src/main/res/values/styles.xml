@@ -8,7 +8,7 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="SwitchCompatStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+    <style name="WhiteAccent">
         <item name="colorAccent">@android:color/white</item>
     </style>
 

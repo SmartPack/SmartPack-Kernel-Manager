@@ -105,24 +105,27 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
             for (String[] arrays : WAKE_ARRAY)
                 applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
 
-        for (String sys : applys)
-            Log.i(TAG, context.getClass().getSimpleName() + ": applys: " + sys);
-
-        SysDB sysDB = new SysDB(context);
-        sysDB.create();
-
-        RootUtils.su = new RootUtils.SU();
-        for (SysDB.SysItem sysItem : sysDB.getAllSys())
+        if (applys.size() > 0) {
             for (String sys : applys)
-                if (sys.contains(sysItem.getSys()) || sysItem.getSys().contains(sys)) {
-                    Log.i(TAG, context.getClass().getSimpleName() + ": run: " + sysItem.getCommand());
-                    RootUtils.runCommand(sysItem.getCommand());
-                }
+                Log.i(TAG, context.getClass().getSimpleName() + ": applys: " + sys);
 
-        sysDB.close();
+            SysDB sysDB = new SysDB(context);
+            sysDB.create();
 
-        if (RootUtils.su != null) RootUtils.su.close();
-        Utils.toast(context.getString(R.string.apply_on_boot_summary), context);
+            RootUtils.su = new RootUtils.SU();
+            for (SysDB.SysItem sysItem : sysDB.getAllSys())
+                for (String sys : applys)
+                    if (sys.contains(sysItem.getSys()) || sysItem.getSys().contains(sys)) {
+                        Log.i(TAG, context.getClass().getSimpleName() + ": run: " + sysItem.getCommand());
+                        RootUtils.runCommand(sysItem.getCommand());
+                    }
+
+            sysDB.close();
+
+            if (RootUtils.su != null) RootUtils.su.close();
+            Utils.toast(context.getString(R.string.apply_on_boot_summary), context);
+        }
+
     }
 
 }

@@ -22,6 +22,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.LinuxUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -174,6 +175,8 @@ public class CPU implements Constants {
     }
 
     public static void setMaxFreq(int freq, Context context) {
+        if (Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
+            Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
         Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, Control.CommandType.CPU, context);
     }
 
@@ -200,6 +203,26 @@ public class CPU implements Constants {
 
     public static int getCoreCount() {
         return Runtime.getRuntime().availableProcessors();
+    }
+
+    /**
+     * This code is from http://stackoverflow.com/a/13342738
+     */
+    private static LinuxUtils linuxUtils;
+
+    public static float getCpuUsage() {
+        if (linuxUtils == null) linuxUtils = new LinuxUtils();
+
+        try {
+            String cpuStat1 = linuxUtils.readSystemStat();
+            Thread.sleep(1000);
+            String cpuStat2 = linuxUtils.readSystemStat();
+            return linuxUtils.getSystemCpuUsage(cpuStat1, cpuStat2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 
 }

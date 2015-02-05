@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -112,7 +113,7 @@ public class RecyclerViewFragment extends Fragment {
             applyOnBootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Utils.saveBoolean(getClassName() + "onboot", applyOnBootView.isChecked(), getActivity());
+                    activateApplyOnBoot(applyOnBootView.isChecked());
                 }
             });
 
@@ -121,12 +122,16 @@ public class RecyclerViewFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     applyOnBootView.setChecked(!applyOnBootView.isChecked());
-                    Utils.saveBoolean(getClassName() + "onboot", applyOnBootView.isChecked(), getActivity());
+                    activateApplyOnBoot(applyOnBootView.isChecked());
                 }
             });
         }
 
         return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
+    }
+
+    private void activateApplyOnBoot(boolean active) {
+        Utils.saveBoolean(getClassName() + "onboot", active, getActivity());
     }
 
     public String getClassName() {
@@ -181,6 +186,12 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     private void setLayout() {
+        if (applyOnBootLayout != null) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) applyOnBootLayout.getLayoutParams();
+            layoutParams.height = Utils.getActionBarHeight(getActivity());
+            applyOnBootLayout.requestLayout();
+        }
+
         layoutManager.setSpanCount(getSpan());
     }
 

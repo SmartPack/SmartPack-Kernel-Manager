@@ -27,9 +27,10 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.PathReaderActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
@@ -44,6 +45,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener,
         SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
+    private UsageCardView.DUsageCard mUsageCard;
     private CheckBox[] mCoreCheckBox;
     private ProgressBar[] mCoreProgressBar;
     private TextView[] mCoreFreqText;
@@ -63,6 +65,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        usageInit();
         if (CPU.getFreqs() != null) {
             coreInit();
             freqInit();
@@ -71,6 +74,13 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
         if (CPU.hasMpdecision()) mpdecisionInit();
         if (CPU.hasIntelliPlug()) intelliPlugInit();
+    }
+
+    private void usageInit() {
+        mUsageCard = new UsageCardView.DUsageCard();
+        addView(mUsageCard);
+
+        getHandler().post(cpuUsage);
     }
 
     private void coreInit() {
@@ -253,6 +263,37 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         if (mGovernorCard != null) mGovernorCard.setItem(CPU.getCurGovernor(0));
 
         return true;
+    }
+
+    private final Runnable cpuUsage = new Runnable() {
+        @Override
+        public void run() {
+            if (mUsageCard != null)
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final float usage = CPU.getCpuUsage();
+                        try {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mUsageCard.setProgress(Math.round(usage));
+                                }
+                            });
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+            getHandler().postDelayed(cpuUsage, 3000);
+        }
+    };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getHandler().removeCallbacks(cpuUsage);
     }
 
 }
