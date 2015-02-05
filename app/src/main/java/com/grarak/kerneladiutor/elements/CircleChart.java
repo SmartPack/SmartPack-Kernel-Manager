@@ -71,6 +71,7 @@ public class CircleChart extends View {
 
         TextPaint textPaint = new TextPaint();
         textPaint.setColor(mCircleColor);
+        textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(Math.round(20 * density));
         float textHeight = textPaint.descent() - textPaint.ascent();
