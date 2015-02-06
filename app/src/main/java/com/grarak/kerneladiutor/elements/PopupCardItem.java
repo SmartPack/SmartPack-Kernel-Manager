@@ -62,7 +62,7 @@ public class PopupCardItem extends BaseCardView {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (valueView != null)
-                        valueView.setText(list.get(item.getItemId()));
+                        valueView.setText(list.get(item.getItemId()) + " ");
                     if (onPopupCardListener != null)
                         onPopupCardListener.onItemSelected(PopupCardItem.this, item.getItemId());
                     return false;

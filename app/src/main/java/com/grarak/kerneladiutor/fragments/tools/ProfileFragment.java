@@ -25,6 +25,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -33,7 +34,9 @@ import android.widget.TextView;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.database.SysDB;
@@ -73,11 +76,6 @@ public class ProfileFragment extends RecyclerViewFragment {
                 final List<SysDB.SysItem> sysItemList = sysDB.getAllSys();
                 sysDB.close();
 
-                if (sysItemList.size() < 1) {
-                    Utils.toast(getString(R.string.no_settings), getActivity());
-                    return;
-                }
-
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
                 linearLayout.setGravity(Gravity.CENTER);
@@ -92,9 +90,33 @@ public class ProfileFragment extends RecyclerViewFragment {
                 profileName.setHint(getString(R.string.name));
                 linearLayout.addView(profileName);
 
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) profileName.getLayoutParams();
-                layoutParams.topMargin = 40;
-                profileName.requestLayout();
+                ScrollView scrollView = new ScrollView(getActivity());
+                scrollView.setPadding(0, 10, 0, 10);
+                linearLayout.addView(scrollView);
+
+                LinearLayout checkBoxLayout = new LinearLayout(getActivity());
+                checkBoxLayout.setOrientation(LinearLayout.VERTICAL);
+                scrollView.addView(checkBoxLayout);
+
+                boolean load = true;
+                String start = getString(R.string.kernel);
+                String stop = getString(R.string.tools);
+                final List<Class> fragments = new ArrayList<>();
+                final List<CheckBox> checkBoxes = new ArrayList<>();
+                for (ListAdapter.ListItem item : Constants.mList) {
+                    if (item.getTitle() != null) {
+                        if (item.getTitle().equals(start)) load = false;
+                        if (item.getTitle().equals(stop)) load = true;
+                        if (item.getFragment() != null && !load) {
+                            CheckBox checkBox = new CheckBox(getActivity());
+                            checkBox.setText(item.getTitle());
+                            fragments.add(item.getFragment().getClass());
+                            checkBoxLayout.addView(checkBox);
+
+                            checkBoxes.add(checkBox);
+                        }
+                    }
+                }
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setView(linearLayout).setNegativeButton(getString(R.string.cancel),
@@ -112,20 +134,33 @@ public class ProfileFragment extends RecyclerViewFragment {
                                         ProfileDB profileDB = new ProfileDB(getActivity());
                                         profileDB.create();
 
-                                        List<String> sys = new ArrayList<>();
-                                        List<String> commands = new ArrayList<>();
-                                        for (SysDB.SysItem sysItem : sysItemList) {
-                                            sys.add(sysItem.getSys());
-                                            commands.add(sysItem.getCommand());
-                                        }
+                                        List<String> applys = new ArrayList<>();
+                                        for (int i = 0; i < fragments.size(); i++)
+                                            if (checkBoxes.get(i).isChecked())
+                                                applys.addAll(Utils.getApplys(fragments.get(i)));
 
-                                        profileDB.insertProfile(profileName.getText().toString(), sys, commands);
+                                        final List<String> sys = new ArrayList<>();
+                                        final List<String> commands = new ArrayList<>();
+                                        for (SysDB.SysItem sysItem : sysItemList)
+                                            for (String s : applys)
+                                                if (s.contains(sysItem.getSys()) || sysItem.getSys().contains(s)) {
+                                                    sys.add(sysItem.getSys());
+                                                    commands.add(sysItem.getCommand());
+                                                }
+
+                                        final String name = profileName.getText().toString();
+                                        if (!name.isEmpty() && sys.size() > 0)
+                                            profileDB.insertProfile(name, sys, commands);
                                         profileDB.close();
 
                                         getHandler().post(new Runnable() {
                                             @Override
                                             public void run() {
-                                                create();
+                                                if (name.isEmpty())
+                                                    Utils.toast(getString(R.string.empty_name), getActivity());
+                                                else if (sys.size() < 1)
+                                                    Utils.toast(getString(R.string.no_settings), getActivity());
+                                                else create();
                                             }
                                         });
                                     }

@@ -25,15 +25,80 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
+import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
+import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
+import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
+import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by willi on 30.11.14.
  */
 public class Utils implements Constants {
 
-    public static int celciusToFahrenheit(int celcius) {
-        return celcius * 9 / 5 + 32;
+    public static List<String> getApplys(Class mClass) {
+        List<String> applys = new ArrayList<>();
+
+        if (mClass == BatteryFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
+
+        if (mClass == CPUFragment.class) {
+            int cores = CPU.getCoreCount();
+            for (String[] array : CPU_ARRAY)
+                for (String cpu : array)
+                    if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
+                        for (int i = 0; i < cores; i++) applys.add(String.format(cpu, i));
+                    else applys.add(cpu);
+        }
+
+        if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
+            applys.addAll(new ArrayList<>(Arrays.asList(array)));
+
+        if (mClass == CPUVoltageFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
+
+        if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
+            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+
+        if (mClass == IOFragment.class) applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
+
+        if (mClass == KSMFragment.class) applys.add(KSM_FOLDER);
+
+        if (mClass == LMKFragment.class) applys.add(LMK_MINFREE);
+
+        if (mClass == MiscFragment.class) for (String[] arrays : MISC_ARRAY)
+            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+
+        if (mClass == ScreenFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(SCREEN_ARRAY)));
+
+        if (mClass == SoundFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(SOUND_ARRAY)));
+
+        if (mClass == VMFragment.class) applys.add(VM_PATH);
+
+        if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
+            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+
+        return applys;
+    }
+
+    public static int celsiusToFahrenheit(int celsius) {
+        return celsius * 9 / 5 + 32;
     }
 
     public static long stringToLong(String string) {

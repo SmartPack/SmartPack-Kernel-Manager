@@ -247,10 +247,11 @@
 
     <!-- Profile -->
     <string name="no_profiles">No profiles</string>
-    <string name="profile_description">Adding a profile will save your current settings, which you can apply later.</string>
+    <string name="profile_description">Adding a profile will save your current settings. You can apply them later.</string>
     <string name="name">Name</string>
     <string name="apply">Apply</string>
     <string name="no_settings">No settings found!</string>
+    <string name="empty_name">Name is empty</string>
 
     <!-- About us -->
     <string name="license">License</string>

@@ -16,6 +16,11 @@
 
 package com.grarak.kerneladiutor.utils;
 
+import com.grarak.kerneladiutor.elements.ListAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by willi on 30.11.14.
  */
@@ -23,6 +28,7 @@ public interface Constants {
 
     public final String TAG = "Kernel Adiutor";
     public final String PREF_NAME = "prefs";
+    public static final List<ListAdapter.ListItem> mList = new ArrayList<>();
 
     // Kernel Informations
     public final String PROC_VERSION = "/proc/version";

@@ -23,6 +23,8 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
@@ -35,13 +37,9 @@ import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
-import com.grarak.kerneladiutor.utils.kernel.CPU;
-import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
-import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,54 +61,18 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
 
     private static void apply(Context context) {
         List<String> applys = new ArrayList<>();
-        if (Utils.getBoolean(BatteryFragment.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
 
-        if (Utils.getBoolean(CPUFragment.class.getSimpleName() + "onboot", false, context)) {
-            int cores = CPU.getCoreCount();
-            for (String[] array : CPU_ARRAY)
-                for (String cpu : array)
-                    if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
-                        for (int i = 0; i < cores; i++)
-                            applys.add(String.format(cpu, i));
-                    else applys.add(cpu);
-        }
+        Class[] classes = new Class[]{
+                BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
+                CPUVoltageFragment.class, GPUFragment.class, IOFragment.class,
+                KSMFragment.class, LMKFragment.class, MiscFragment.class,
+                ScreenFragment.class, SoundFragment.class, VMFragment.class,
+                WakeFragment.class,
+        };
 
-        if (Utils.getBoolean(CPUHotplug.class.getSimpleName() + "onboot", false, context))
-            for (String[] array : CPU_HOTPLUG_ARRAY)
-                applys.addAll(new ArrayList<>(Arrays.asList(array)));
-
-        if (Utils.getBoolean(CPUVoltage.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
-
-        if (Utils.getBoolean(GPUFragment.class.getSimpleName() + "onboot", false, context))
-            for (String[] arrays : GPU_ARRAY) applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        if (Utils.getBoolean(IOFragment.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
-
-        if (Utils.getBoolean(KSMFragment.class.getSimpleName() + "onboot", false, context))
-            applys.add(KSM_FOLDER);
-
-        if (Utils.getBoolean(LMKFragment.class.getSimpleName() + "onboot", false, context))
-            applys.add(LMK_MINFREE);
-
-        if (Utils.getBoolean(MiscFragment.class.getSimpleName() + "onboot", false, context))
-            for (String[] arrays : MISC_ARRAY)
-                applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        if (Utils.getBoolean(ScreenFragment.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(SCREEN_ARRAY)));
-
-        if (Utils.getBoolean(SoundFragment.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(SOUND_ARRAY)));
-
-        if (Utils.getBoolean(VMFragment.class.getSimpleName() + "onboot", false, context))
-            applys.add(VM_PATH);
-
-        if (Utils.getBoolean(WakeFragment.class.getSimpleName() + "onboot", false, context))
-            for (String[] arrays : WAKE_ARRAY)
-                applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+        for (Class mClass : classes)
+            if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, context))
+                applys.addAll(Utils.getApplys(mClass));
 
         if (applys.size() > 0) {
             for (String sys : applys)

@@ -68,9 +68,6 @@ import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by willi on 01.12.14.
  */
@@ -89,8 +86,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private ListView mDrawerList;
-
-    private final List<ListAdapter.ListItem> mList = new ArrayList<>();
 
     private int cur_position;
 
