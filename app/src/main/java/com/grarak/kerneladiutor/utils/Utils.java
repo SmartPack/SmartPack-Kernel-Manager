@@ -99,11 +99,9 @@ public class Utils implements Constants {
     }
 
     public static boolean isServiceActive(String service) {
-        return RootUtils.runCommand("getprop | grep " + service + " | awk '{print $2}'").contains("running");
-    }
-
-    public static boolean hasService(String service) {
-        return !RootUtils.runCommand("getprop | grep " + service + " | awk '{print $2}'").isEmpty();
+        String output = RootUtils.runCommand("echo `ps | grep " + service + " | grep -v \"grep "
+                + service + "\" | awk '{print $1}'`");
+        return output != null && output.length() > 0;
     }
 
     public static boolean existFile(String file) {

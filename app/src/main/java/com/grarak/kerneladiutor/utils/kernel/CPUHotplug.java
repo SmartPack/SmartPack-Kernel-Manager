@@ -37,6 +37,117 @@ public class CPUHotplug implements Constants {
 
     private static INTELLIPLUG_TYPE TYPE;
 
+    public static void setBluPlugDownTimerCnt(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugDownTimerCnt() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT));
+    }
+
+    public static boolean hasBluPlugDownTimerCnt() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT);
+    }
+
+    public static void setBluPlugUpTimerCnt(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_UP_TIMER_CNT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugUpTimerCnt() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_UP_TIMER_CNT));
+    }
+
+    public static boolean hasBluPlugUpTimerCnt() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_UP_TIMER_CNT);
+    }
+
+    public static void setBluPlugUpThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_UP_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugUpThreshold() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_UP_THRESHOLD));
+    }
+
+    public static boolean hasBluPlugUpThreshold() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_UP_THRESHOLD);
+    }
+
+    public static void setBluPlugMaxFreqScreenOff(int position, Context context) {
+        String command = position == 0 ? "0" : String.valueOf(CPU.getFreqs().get(position - 1));
+        Control.runCommand(command, HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugMaxFreqScreenOff() {
+        String value = Utils.readFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
+        if (value.equals("0")) return 0;
+        return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
+    }
+
+    public static boolean hasBluPlugMaxFreqScreenOff() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
+    }
+
+    public static void setBluPlugMaxCoresScreenOff(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugMaxCoresScreenOff() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF));
+    }
+
+    public static boolean hasBluPlugMaxCoresScreenOff() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF);
+    }
+
+    public static void setBluPlugMaxOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_MAX_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugMaxOnline() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_MAX_ONLINE));
+    }
+
+    public static boolean hasBluPlugMaxOnline() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_MAX_ONLINE);
+    }
+
+    public static void setBluPlugMinOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_BLU_PLUG_MIN_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBluPlugMinOnline() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_BLU_PLUG_MIN_ONLINE));
+    }
+
+    public static boolean hasBluPlugMinOnline() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_MIN_ONLINE);
+    }
+
+    public static void activateBluPlugPowersaverMode(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", HOTPLUG_BLU_PLUG_POWERSAVER_MODE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBluPlugPowersaverModeActive() {
+        return Utils.readFile(HOTPLUG_BLU_PLUG_POWERSAVER_MODE).equals("Y");
+    }
+
+    public static boolean hasBluPlugPowersaverMode() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_POWERSAVER_MODE);
+    }
+
+    public static void activateBluPlug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HOTPLUG_BLU_PLUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBluPlugActive() {
+        return Utils.readFile(HOTPLUG_BLU_PLUG).equals("1");
+    }
+
+    public static boolean hasBluPlug() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG);
+    }
+
     public static void setIntelliPlugFShift(int value, Context context) {
         Control.runCommand(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_FSHIFT, Control.CommandType.GENERIC, context);
     }
@@ -194,20 +305,20 @@ public class CPUHotplug implements Constants {
     }
 
     public static void setIntelliPlugThresold(int value, Context context) {
-        String file = HOTPLUG_INTELLI_PLUG_THRESOLD;
-        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESOLD;
+        String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         Control.runCommand(String.valueOf(value), file, Control.CommandType.GENERIC, context);
     }
 
     public static int getIntelliPlugThresold() {
-        String file = HOTPLUG_INTELLI_PLUG_THRESOLD;
-        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESOLD;
+        String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         return Utils.stringToInt(Utils.readFile(file));
     }
 
     public static boolean hasIntelliPlugThresold() {
-        String file = HOTPLUG_INTELLI_PLUG_THRESOLD;
-        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESOLD;
+        String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         return Utils.existFile(file);
     }
 
@@ -312,11 +423,10 @@ public class CPUHotplug implements Constants {
     }
 
     public static boolean hasMpdecision() {
-        return Utils.hasService(HOTPLUG_MPDEC);
+        return Utils.existFile(HOTPLUG_MPDECISION_BINARY);
     }
 
     public static boolean hasCpuHotplug() {
-        if (hasMpdecision()) return true;
         for (String[] array : CPU_HOTPLUG_ARRAY)
             for (String file : array) if (Utils.existFile(file)) return true;
         return false;

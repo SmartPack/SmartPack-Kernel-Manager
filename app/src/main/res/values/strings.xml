@@ -107,7 +107,7 @@
     <string name="intelliplug_touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
     <string name="intelliplug_hysteresis">IntelliPlug Hysteresis Value</string>
     <string name="intelliplug_hysteresis_summary">The lower it is, the faster IntelliPlug response.</string>
-    <string name="intelliplug_thresold">IntelliPlug Threshold Value</string>
+    <string name="intelliplug_threshold">IntelliPlug Threshold Value</string>
     <string name="intelliplug_screen_off_max">IntelliPlug CPU Max Screen Off Frequency</string>
     <string name="intelliplug_debug">IntelliPlug Debug</string>
     <string name="intelliplug_debug_summary">Allows you to activate debug mask for IntelliPlug operations.</string>
@@ -128,6 +128,23 @@
     <string name="intelliplug_down_lock_duration">IntelliPlug Down Lock Duration</string>
     <string name="intelliplug_down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
     <string name="intelliplug_fshift">IntelliPlug FShift</string>
+    <string name="blu_plug">Blu Plug</string>
+    <string name="blu_plug_summary">A MPDecision replacement by Code_Blue team.</string>
+    <string name="blu_plug_powersaver_mode">Blu Plug Powersaver Mode</string>
+    <string name="blu_plug_powersaver_mode_summary">Sets 1 CPU maximum online with frequency @1728 MHz.</string>
+    <string name="blu_plug_min_online">Blu Plug Minimum Online CPU</string>
+    <string name="blu_plug_min_online_summary">Minimum number of CPUs that will be always online.</string>
+    <string name="blu_plug_max_online">Blu Plug Maximum Online CPU</string>
+    <string name="blu_plug_max_online_summary">Maximum number of CPUs that will be always online.</string>
+    <string name="blu_plug_max_cores_screen_off">Blu Plug Max Cores Screen Off</string>
+    <string name="blu_plug_max_cores_screen_off_summary">Maximum number of cores online when screen is off.</string>
+    <string name="blu_plug_max_freq_screen_off">Blu Plug Max Frequency Screen Off</string>
+    <string name="blu_plug_up_threshold">Blu Plug Up Threshold</string>
+    <string name="blu_plug_up_threshold_summary">Over this threshold the driver will put one more core online.</string>
+    <string name="blu_plug_up_timer_cnt">Blu Plug Up Timer Control</string>
+    <string name="blu_plug_up_timer_cnt_summary">Control timer for up CPUs.</string>
+    <string name="blu_plug_down_timer_cnt">Blu Plug Down Timer Control</string>
+    <string name="blu_plug_down_timer_cnt_summary">Control timer for down CPUs.</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
