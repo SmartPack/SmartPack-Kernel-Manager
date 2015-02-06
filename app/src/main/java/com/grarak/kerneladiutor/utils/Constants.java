@@ -63,8 +63,9 @@ public interface Constants {
     };
 
     // CPU Hotplug
-    public final String HOTPLUG_MPDECISION_BINARY = "/system/bin/mpdecision";
     public final String HOTPLUG_MPDEC = "mpdecision";
+
+    public final String[] MPDECISION_ARRAY = new String[]{HOTPLUG_MPDEC};
 
     public final String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
     public final String HOTPLUG_INTELLI_PLUG_PROFILE = "/sys/module/intelli_plug/parameters/nr_run_profile_sel";
@@ -74,9 +75,35 @@ public interface Constants {
     public final String HOTPLUG_INTELLI_PLUG_THRESOLD = "/sys/module/intelli_plug/parameters/cpu_nr_run_threshold";
     public final String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = "/sys/module/intelli_plug/parameters/screen_off_max";
 
-    public final String[] CPU_HOTPLUG_ARRAY = new String[]{HOTPLUG_MPDECISION_BINARY, HOTPLUG_MPDEC,
+    public final String HOTPLUG_INTELLI_PLUG_5 = "/sys/kernel/intelli_plug/intelli_plug_active";
+    public final String HOTPLUG_INTELLI_PLUG_5_DEBUG = "/sys/kernel/intelli_plug/debug_intelli_plug";
+    public final String HOTPLUG_INTELLI_PLUG_5_PROFILE = "/sys/kernel/intelli_plug/full_mode_profile";
+    public final String HOTPLUG_INTELLI_PLUG_5_SUSPEND = "/sys/kernel/intelli_plug/hotplug_suspend";
+    public final String HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED = "/sys/kernel/intelli_plug/cpus_boosted";
+    public final String HOTPLUG_INTELLI_PLUG_5_HYSTERESIS = "/sys/kernel/intelli_plug/nr_run_hysteresis";
+    public final String HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE = "/sys/kernel/intelli_plug/min_cpus_online";
+    public final String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE = "/sys/kernel/intelli_plug/max_cpus_online";
+    public final String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP = "/sys/kernel/intelli_plug/max_cpus_online_susp";
+    public final String HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME = "/sys/kernel/intelli_plug/suspend_defer_time";
+    public final String HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING = "/sys/kernel/intelli_plug/def_sampling_ms";
+    public final String HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION = "/sys/kernel/intelli_plug/boost_lock_duration";
+    public final String HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION = "/sys/kernel/intelli_plug/down_lock_duration";
+    public final String HOTPLUG_INTELLI_PLUG_5_THRESOLD = "/sys/kernel/intelli_plug/cpu_nr_run_threshold";
+    public final String HOTPLUG_INTELLI_PLUG_5_FSHIFT = "/sys/kernel/intelli_plug/nr_fshift";
+    public final String HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX = "/sys/kernel/intelli_plug/screen_off_max";
+
+    public final String[] INTELLIPLUG_ARRAY = new String[]{
             HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_PROFILE, HOTPLUG_INTELLI_PLUG_ECO, HOTPLUG_INTELLI_PLUG_TOUCH_BOOST,
-            HOTPLUG_INTELLI_PLUG_HYSTERESIS, HOTPLUG_INTELLI_PLUG_THRESOLD, HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX};
+            HOTPLUG_INTELLI_PLUG_HYSTERESIS, HOTPLUG_INTELLI_PLUG_THRESOLD, HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX,
+            HOTPLUG_INTELLI_PLUG_5, HOTPLUG_INTELLI_PLUG_5_DEBUG, HOTPLUG_INTELLI_PLUG_5_PROFILE,
+            HOTPLUG_INTELLI_PLUG_5_SUSPEND, HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED, HOTPLUG_INTELLI_PLUG_5_HYSTERESIS,
+            HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE, HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE,
+            HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP, HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME,
+            HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING, HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION,
+            HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION, HOTPLUG_INTELLI_PLUG_5_THRESOLD,
+            HOTPLUG_INTELLI_PLUG_5_FSHIFT, HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX};
+
+    public final String[][] CPU_HOTPLUG_ARRAY = new String[][]{MPDECISION_ARRAY, INTELLIPLUG_ARRAY};
 
     // GPU
     public final String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple";

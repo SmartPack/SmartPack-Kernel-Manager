@@ -8,15 +8,6 @@
         <item>@string/aggressive</item>
     </string-array>
 
-    <!-- CPU Hotplug -->
-    <string-array name="intelliplug_profile_items">
-        <item>@string/balanced</item>
-        <item>@string/performance</item>
-        <item>@string/conservative</item>
-        <item>@string/eco_performance</item>
-        <item>@string/eco_conservative</item>
-    </string-array>
-
     <!-- Kernel Samepage Merging -->
     <string-array name="ksm_infos">
         <item>@string/ksm_full_scans</item>

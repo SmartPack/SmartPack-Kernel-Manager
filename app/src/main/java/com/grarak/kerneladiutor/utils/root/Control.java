@@ -80,17 +80,17 @@ public class Control implements Constants {
         commandSaver(context, file, "echo " + value + " > " + file);
     }
 
-    public static void startModule(String module, boolean save, Context context) {
-        RootUtils.runCommand("start " + module);
+    public static void startService(String service, boolean save, Context context) {
+        RootUtils.runCommand("start " + service);
 
-        if (save) commandSaver(context, module, "start " + module);
+        if (save) commandSaver(context, service, "start " + service);
     }
 
-    public static void stopModule(String module, boolean save, Context context) {
-        RootUtils.runCommand("stop " + module);
-        if (module.equals(HOTPLUG_MPDEC)) bringCoresOnline();
+    public static void stopService(String service, boolean save, Context context) {
+        RootUtils.runCommand("stop " + service);
+        if (service.equals(HOTPLUG_MPDEC)) bringCoresOnline();
 
-        if (save) commandSaver(context, module, "stop " + module);
+        if (save) commandSaver(context, service, "stop " + service);
     }
 
     public static void bringCoresOnline() {
@@ -109,15 +109,14 @@ public class Control implements Constants {
         }.start();
     }
 
-    public static void runCommand(final String value, final String file, final CommandType command,
-                                  final Context context) {
+    public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
         Runnable run = new Runnable() {
             @Override
             public void run() {
                 if (command == CommandType.CPU) {
                     boolean stoppedMpdec = false;
-                    if (CPUHotplug.hasMpdecision() && RootUtils.moduleActive(HOTPLUG_MPDEC)) {
-                        stopModule(HOTPLUG_MPDEC, false, context);
+                    if (CPUHotplug.hasMpdecision() && Utils.isServiceActive(HOTPLUG_MPDEC)) {
+                        stopService(HOTPLUG_MPDEC, false, context);
                         stoppedMpdec = true;
                     }
 
@@ -126,7 +125,7 @@ public class Control implements Constants {
                             runGeneric(String.format(file, i), value, context);
                     else runGeneric(String.format(file, 0), value, context);
 
-                    if (stoppedMpdec) startModule(HOTPLUG_MPDEC, false, context);
+                    if (stoppedMpdec) startService(HOTPLUG_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, context);
                 } else if (command == CommandType.TCP_CONGESTION) {

@@ -77,7 +77,8 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
         }
 
         if (Utils.getBoolean(CPUHotplug.class.getSimpleName() + "onboot", false, context))
-            applys.addAll(new ArrayList<>(Arrays.asList(CPU_HOTPLUG_ARRAY)));
+            for (String[] array : CPU_HOTPLUG_ARRAY)
+                applys.addAll(new ArrayList<>(Arrays.asList(array)));
 
         if (Utils.getBoolean(CPUVoltage.class.getSimpleName() + "onboot", false, context))
             applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));

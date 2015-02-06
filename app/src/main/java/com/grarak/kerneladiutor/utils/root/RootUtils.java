@@ -50,12 +50,6 @@ public class RootUtils implements Constants {
         runCommand(writeable ? "mount -o rw,remount " + mountpoint : "mount -o ro,remount " + mountpoint);
     }
 
-    public static boolean moduleActive(String module) {
-        String output = runCommand("echo `ps | grep " + module + " | grep -v \"grep "
-                + module + "\" | awk '{print $1}'`");
-        return output != null && output.length() > 0;
-    }
-
     public static String runCommand(String command) {
         if (su == null) su = new SU();
         return su.runCommand(command);

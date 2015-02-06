@@ -98,6 +98,14 @@ public class Utils implements Constants {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(name, value).apply();
     }
 
+    public static boolean isServiceActive(String service) {
+        return RootUtils.runCommand("getprop | grep " + service + " | awk '{print $2}'").contains("running");
+    }
+
+    public static boolean hasService(String service) {
+        return !RootUtils.runCommand("getprop | grep " + service + " | awk '{print $2}'").isEmpty();
+    }
+
     public static boolean existFile(String file) {
         String output = RootUtils.runCommand("[ -e " + file + " ] && echo true");
         return output != null && output.contains("true");

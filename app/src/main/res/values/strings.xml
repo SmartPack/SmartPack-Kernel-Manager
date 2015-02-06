@@ -98,6 +98,9 @@
     <string name="conservative">Conservative</string>
     <string name="eco_performance">Eco Performance</string>
     <string name="eco_conservative">Eco Conservative</string>
+    <string name="tri">Tri</string>
+    <string name="eco">Eco</string>
+    <string name="strict">Strict</string>
     <string name="intelliplug_eco_mode">IntelliPlug Eco Mode</string>
     <string name="intelliplug_eco_mode_summary">Battery saving mode for IntelliPlug.</string>
     <string name="intelliplug_touch_boost">IntelliPlug Touch Boost</string>
@@ -106,6 +109,25 @@
     <string name="intelliplug_hysteresis_summary">The lower it is, the faster IntelliPlug response.</string>
     <string name="intelliplug_thresold">IntelliPlug Threshold Value</string>
     <string name="intelliplug_screen_off_max">IntelliPlug CPU Max Screen Off Frequency</string>
+    <string name="intelliplug_debug">IntelliPlug Debug</string>
+    <string name="intelliplug_debug_summary">Allows you to activate debug mask for IntelliPlug operations.</string>
+    <string name="intelliplug_suspend">IntelliPlug Suspend</string>
+    <string name="intelliplug_suspend_summary">Prevent IntelliPlug to suspend.</string>
+    <string name="intelliplug_cpus_boosted">IntelliPlug CPUs Boosted</string>
+    <string name="intelliplug_cpus_boosted_summary">Maximum number of CPUs boosted at the same time.</string>
+    <string name="intelliplug_min_cpus_online">IntelliPlug Min CPUs Online</string>
+    <string name="intelliplug_min_cpus_online_summary">Minimum CPUs online at any time.</string>
+    <string name="intelliplug_max_cpus_online">IntelliPlug Max CPUs Online</string>
+    <string name="intelliplug_max_cpus_online_summary">Maximum CPUs online at any time.</string>
+    <string name="intelliplug_max_cpus_online_susp">IntelliPlug Max CPUs Screen Off</string>
+    <string name="intelliplug_max_cpus_online_susp_summary">Maximum number of CPUs online when screen is off.</string>
+    <string name="intelliplug_suspend_defer_time">IntelliPlug Suspend Defer Time</string>
+    <string name="intelliplug_defer_sampling">IntelliPlug Defer Sampling</string>
+    <string name="intelliplug_boost_lock_duration">IntelliPlug Boost Lock Duration</string>
+    <string name="intelliplug_boost_lock_duration_summary">Minimum interval a CPU is boosted.</string>
+    <string name="intelliplug_down_lock_duration">IntelliPlug Down Lock Duration</string>
+    <string name="intelliplug_down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
+    <string name="intelliplug_fshift">IntelliPlug FShift</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
