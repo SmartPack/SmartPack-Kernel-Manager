@@ -99,7 +99,7 @@ public class RootUtils implements Constants {
                     }
                 }
                 return sb.toString().trim();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 Log.e(TAG, "Failed to run " + command);
                 return null;
             }

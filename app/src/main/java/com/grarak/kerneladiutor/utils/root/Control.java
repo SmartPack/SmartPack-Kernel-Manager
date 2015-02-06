@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
 import java.util.List;
 
@@ -72,8 +73,11 @@ public class Control implements Constants {
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
 
         RootUtils.runCommand(command);
+        // Some kernels don't have checksum
+        RootUtils.runCommand("echo " + value + " > " + file);
 
         commandSaver(context, file, command);
+        commandSaver(context, file, "echo " + value + " > " + file);
     }
 
     public static void startModule(String module, boolean save, Context context) {
@@ -112,12 +116,12 @@ public class Control implements Constants {
             public void run() {
                 if (command == CommandType.CPU) {
                     boolean stoppedMpdec = false;
-                    if (CPU.hasMpdecision() && RootUtils.moduleActive(CPU_MPDEC)) {
+                    if (CPUHotplug.hasMpdecision() && RootUtils.moduleActive(CPU_MPDEC)) {
                         stopModule(CPU_MPDEC, false, context);
                         stoppedMpdec = true;
                     }
 
-                    if (CPU.hasMpdecision())
+                    if (CPUHotplug.hasMpdecision())
                         for (int i = 0; i < CPU.getCoreCount(); i++)
                             runGeneric(String.format(file, i), value, context);
                     else runGeneric(String.format(file, 0), value, context);

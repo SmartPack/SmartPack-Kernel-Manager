@@ -42,15 +42,17 @@ public interface Constants {
     public final String CPU_AVAILABLE_GOVERNORS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
     public final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq/%s";
     public final String CPU_MC_POWER_SAVING = "/sys/devices/system/cpu/sched_mc_power_savings";
-    public final String CPU_MPDECISION_BINARY = "/system/bin/mpdecision";
-    public final String CPU_MPDEC = "mpdecision";
-    public final String CPU_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
-    public final String CPU_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
 
-    public final String[] CPU_ARRAY = new String[]{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
-            CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
-            CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_MPDECISION_BINARY, CPU_MPDEC,
-            CPU_INTELLI_PLUG, CPU_INTELLI_PLUG_ECO};
+    public final String CPU_TEMPCONTROL_TEMP_LIMIT = "/sys/class/misc/tempcontrol/templimit";
+    public final String CPU_MSM_TEMP_LIMIT = "/sys/module/msm_thermal/parameters/temp_threshold";
+
+    public final String[] CPU_TEMP_LIMIT_ARRAY = new String[]{CPU_TEMPCONTROL_TEMP_LIMIT, CPU_MSM_TEMP_LIMIT};
+
+    public final String[][] CPU_ARRAY = new String[][]{
+            new String[]{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
+                    CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE,
+                    CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING},
+            CPU_TEMP_LIMIT_ARRAY};
 
     // CPU Voltage
     public final String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
@@ -59,6 +61,16 @@ public interface Constants {
     public final String[] CPU_VOLTAGE_ARRAY = new String[]{
             CPU_VOLTAGE, CPU_FAUX_VOLTAGE
     };
+
+    // CPU Hotplug
+    public final String CPU_MPDECISION_BINARY = "/system/bin/mpdecision";
+    public final String CPU_MPDEC = "mpdecision";
+
+    public final String CPU_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
+    public final String CPU_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
+
+    public final String[] CPU_HOTPLUG_ARRAY = new String[]{CPU_MPDECISION_BINARY, CPU_MPDEC,
+            CPU_INTELLI_PLUG, CPU_INTELLI_PLUG_ECO};
 
     // GPU
     public final String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple";
@@ -173,7 +185,7 @@ public interface Constants {
     // Sound
     public final String HEADPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_gain";
     public final String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control_3/gpl_mic_gain";
-    public final String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_cam_mic_gai";
+    public final String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_cam_mic_gain";
     public final String SPEAKER_GAIN = "/sys/kernel/sound_control_3/gpl_speaker_gain";
     public final String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
 
@@ -225,7 +237,7 @@ public interface Constants {
     public final String[] SUPPORTED_VM = {"dirty_ratio",
             "dirty_background_ratio", "dirty_expire_centisecs",
             "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio",
-            "swappiness", "vfs_cache_pressure"};
+            "swappiness", "vfs_cache_pressure", "laptop_mode"};
 
     // Misc
 

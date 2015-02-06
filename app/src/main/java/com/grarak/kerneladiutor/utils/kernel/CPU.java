@@ -23,7 +23,6 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.LinuxUtils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,41 +37,51 @@ public class CPU implements Constants {
     private static String[] mAvailableGovernors;
     private static String[] mMcPowerSavingItems;
 
-    public static void activateIntelliPlugEco(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CPU_INTELLI_PLUG_ECO, Control.CommandType.GENERIC, context);
+    private static String TEMP_LIMIT_FILE;
+
+    public static void setTempLimit(int value, Context context) {
+        if (TEMP_LIMIT_FILE.equals(CPU_TEMPCONTROL_TEMP_LIMIT))
+            value *= 1000;
+
+        Control.runCommand(String.valueOf(value), TEMP_LIMIT_FILE, Control.CommandType.GENERIC, context);
     }
 
-    public static boolean isIntelliPlugEcoActive() {
-        return Utils.readFile(CPU_INTELLI_PLUG_ECO).equals("1");
+    public static int getTempLimitMax() {
+        if (TEMP_LIMIT_FILE.equals(CPU_TEMPCONTROL_TEMP_LIMIT)) return 80;
+        return 95;
     }
 
-    public static boolean hasIntelliPlugEco() {
-        return Utils.existFile(CPU_INTELLI_PLUG_ECO);
+    public static int getTempLimitMin() {
+        if (TEMP_LIMIT_FILE.equals(CPU_TEMPCONTROL_TEMP_LIMIT)) return 60;
+        return 50;
     }
 
-    public static void activateIntelliPlug(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CPU_INTELLI_PLUG, Control.CommandType.GENERIC, context);
+    public static List<String> getTempLimitList() {
+        List<String> list = new ArrayList<>();
+        for (int i = getTempLimitMin(); i <= getTempLimitMax(); i++)
+            list.add(i + "%");
+        return list;
     }
 
-    public static boolean isIntelliPlugActive() {
-        return Utils.readFile(CPU_INTELLI_PLUG).equals("1");
+    public static int getCurTempLimit() {
+        if (TEMP_LIMIT_FILE != null) {
+            int value = Utils.stringToInt(Utils.readFile(TEMP_LIMIT_FILE));
+            if (TEMP_LIMIT_FILE.equals(CPU_TEMPCONTROL_TEMP_LIMIT))
+                value /= 1000;
+
+            return value;
+        }
+        return 0;
     }
 
-    public static boolean hasIntelliPlug() {
-        return Utils.existFile(CPU_INTELLI_PLUG);
-    }
-
-    public static void activateMpdecision(boolean active, Context context) {
-        if (active) Control.startModule(CPU_MPDEC, true, context);
-        else Control.stopModule(CPU_MPDEC, true, context);
-    }
-
-    public static boolean isMpdecisionActive() {
-        return RootUtils.moduleActive(CPU_MPDEC);
-    }
-
-    public static boolean hasMpdecision() {
-        return Utils.existFile(CPU_MPDECISION_BINARY);
+    public static boolean hasTempLimit() {
+        if (TEMP_LIMIT_FILE == null)
+            for (String file : CPU_TEMP_LIMIT_ARRAY)
+                if (Utils.existFile(file)) {
+                    TEMP_LIMIT_FILE = file;
+                    break;
+                }
+        return TEMP_LIMIT_FILE != null;
     }
 
     public static String[] getMcPowerSavingItems(Context context) {

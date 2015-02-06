@@ -36,6 +36,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -67,12 +68,16 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
 
         if (Utils.getBoolean(CPUFragment.class.getSimpleName() + "onboot", false, context)) {
             int cores = CPU.getCoreCount();
-            for (String cpu : CPU_ARRAY)
-                if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
-                    for (int i = 0; i < cores; i++)
-                        applys.add(String.format(cpu, i));
-                else applys.add(cpu);
+            for (String[] array : CPU_ARRAY)
+                for (String cpu : array)
+                    if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
+                        for (int i = 0; i < cores; i++)
+                            applys.add(String.format(cpu, i));
+                    else applys.add(cpu);
         }
+
+        if (Utils.getBoolean(CPUHotplug.class.getSimpleName() + "onboot", false, context))
+            applys.addAll(new ArrayList<>(Arrays.asList(CPU_HOTPLUG_ARRAY)));
 
         if (Utils.getBoolean(CPUVoltage.class.getSimpleName() + "onboot", false, context))
             applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));

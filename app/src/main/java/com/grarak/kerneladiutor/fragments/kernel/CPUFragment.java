@@ -29,7 +29,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class CPUFragment extends RecyclerViewFragment implements Constants, View.OnClickListener,
         PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener,
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
+        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mUsageCard;
     private CheckBox[] mCoreCheckBox;
@@ -57,9 +57,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     private PopupCardItem.DPopupCard mMcPowerSavingCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mMpdecisionCard;
-
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugCard, mIntelliPlugEcoCard;
+    private SeekBarCardView.DSeekBarCardView mTempLimitCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -72,8 +70,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         }
         governorInit();
         if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
-        if (CPU.hasMpdecision()) mpdecisionInit();
-        if (CPU.hasIntelliPlug()) intelliPlugInit();
+        if (CPU.hasTempLimit()) tempLimitInit();
     }
 
     private void usageInit() {
@@ -172,33 +169,14 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         addView(mMcPowerSavingCard);
     }
 
-    private void mpdecisionInit() {
-        mMpdecisionCard = new SwitchCompatCardItem.DSwitchCompatCard();
-        mMpdecisionCard.setTitle(getString(R.string.mpdecision));
-        mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
-        mMpdecisionCard.setChecked(CPU.isMpdecisionActive());
-        mMpdecisionCard.setOnDSwitchCompatCardListener(this);
+    private void tempLimitInit() {
+        mTempLimitCard = new SeekBarCardView.DSeekBarCardView(CPU.getTempLimitList());
+        mTempLimitCard.setTitle(getString(R.string.temp_limit));
+        mTempLimitCard.setDescription(getString(R.string.temp_limit_summary));
+        mTempLimitCard.setProgress(CPU.getCurTempLimit());
+        mTempLimitCard.setOnDSeekBarCardListener(this);
 
-        addView(mMpdecisionCard);
-    }
-
-    private void intelliPlugInit() {
-        mIntelliPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
-        mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
-        mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
-        mIntelliPlugCard.setChecked(CPU.isIntelliPlugActive());
-        mIntelliPlugCard.setOnDSwitchCompatCardListener(this);
-
-        addView(mIntelliPlugCard);
-
-        if (!CPU.hasIntelliPlugEco()) return;
-        mIntelliPlugEcoCard = new SwitchCompatCardItem.DSwitchCompatCard();
-        mIntelliPlugEcoCard.setTitle(getString(R.string.intelliplug_eco_mode_summary));
-        mIntelliPlugEcoCard.setDescription(getString(R.string.intelliplug_eco_mode_summary));
-        mIntelliPlugEcoCard.setChecked(CPU.isIntelliPlugEcoActive());
-        mIntelliPlugEcoCard.setOnDSwitchCompatCardListener(this);
-
-        addView(mIntelliPlugEcoCard);
+        addView(mTempLimitCard);
     }
 
     @Override
@@ -237,11 +215,9 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mMpdecisionCard) CPU.activateMpdecision(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugCard) CPU.activateIntelliPlug(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugEcoCard)
-            CPU.activateIntelliPlugEco(checked, getActivity());
+    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        if (dSeekBarCardView == mTempLimitCard)
+            CPU.setTempLimit(position + CPU.getTempLimitMin(), getActivity());
     }
 
     @Override
