@@ -58,8 +58,10 @@ public class CPU implements Constants {
 
     public static List<String> getTempLimitList() {
         List<String> list = new ArrayList<>();
-        for (int i = getTempLimitMin(); i <= getTempLimitMax(); i++)
-            list.add(i + "%");
+        for (int i = getTempLimitMin(); i <= getTempLimitMax(); i++) {
+            int fahrenheit = i * 9 / 5 + 32;
+            list.add(i + "°C" + " " + fahrenheit + "°F");
+        }
         return list;
     }
 
@@ -226,7 +228,8 @@ public class CPU implements Constants {
             String cpuStat1 = linuxUtils.readSystemStat();
             Thread.sleep(1000);
             String cpuStat2 = linuxUtils.readSystemStat();
-            return linuxUtils.getSystemCpuUsage(cpuStat1, cpuStat2);
+            float usage = linuxUtils.getSystemCpuUsage(cpuStat1, cpuStat2);
+            if (usage > -1) return usage;
         } catch (Exception e) {
             e.printStackTrace();
         }

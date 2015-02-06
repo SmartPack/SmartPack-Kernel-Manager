@@ -152,7 +152,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         if (Screen.hasScreen())
             mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
-            mList.add(new ListAdapter.Item(getString(R.string.wake), new WakeFragment()));
+            mList.add(new ListAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
         if (Sound.hasSound())
             mList.add(new ListAdapter.Item(getString(R.string.sound), new SoundFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));

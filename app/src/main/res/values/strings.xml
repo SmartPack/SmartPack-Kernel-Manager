@@ -34,7 +34,7 @@
     <string name="cpu_hotplug">CPU Hotplug</string>
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
-    <string name="wake">Wake</string>
+    <string name="wake_controls">Wake Controls</string>
     <string name="sound">Sound</string>
     <string name="battery">Battery</string>
     <string name="io_scheduler">I/O Scheduler</string>
@@ -91,8 +91,21 @@
     <string name="mpdecision_summary">QCOM\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">A MPDecision replacement by faux123.</string>
+    <string name="intelliplug_profile">Intelliplug Profile</string>
+    <string name="intelliplug_profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
+    <string name="balanced">Balanced</string>
+    <string name="performance">Performance</string>
+    <string name="conservative">Conservative</string>
+    <string name="eco_performance">Eco Performance</string>
+    <string name="eco_conservative">Eco Conservative</string>
     <string name="intelliplug_eco_mode">IntelliPlug Eco Mode</string>
     <string name="intelliplug_eco_mode_summary">Battery saving mode for IntelliPlug.</string>
+    <string name="intelliplug_touch_boost">IntelliPlug Touch Boost</string>
+    <string name="intelliplug_touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
+    <string name="intelliplug_hysteresis">IntelliPlug Hysteresis Value</string>
+    <string name="intelliplug_hysteresis_summary">The lower it is, the faster IntelliPlug response.</string>
+    <string name="intelliplug_thresold">IntelliPlug Threshold Value</string>
+    <string name="intelliplug_screen_off_max">IntelliPlug CPU Max Screen Off Frequency</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
@@ -116,7 +129,7 @@
     <string name="green">Green</string>
     <string name="blue">Blue</string>
 
-    <!-- Wake -->
+    <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
     <string name="center">Center</string>

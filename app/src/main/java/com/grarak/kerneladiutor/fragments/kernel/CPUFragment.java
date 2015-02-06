@@ -173,7 +173,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mTempLimitCard = new SeekBarCardView.DSeekBarCardView(CPU.getTempLimitList());
         mTempLimitCard.setTitle(getString(R.string.temp_limit));
         mTempLimitCard.setDescription(getString(R.string.temp_limit_summary));
-        mTempLimitCard.setProgress(CPU.getCurTempLimit());
+        mTempLimitCard.setProgress(CPU.getCurTempLimit() - CPU.getTempLimitMin());
         mTempLimitCard.setOnDSeekBarCardListener(this);
 
         addView(mTempLimitCard);
@@ -222,7 +222,6 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     @Override
     public boolean onRefresh() {
-
         String MHZ = getString(R.string.mhz);
 
         if (mCoreCheckBox != null)
