@@ -78,7 +78,7 @@ public class SeekBarCardView extends BaseCardView {
 
         headerCardView = new HeaderCardView(getContext());
         setUpTitle();
-        if (description != null) descriptionView.setText(description);
+        setUpDescription();
     }
 
     @Override
@@ -120,7 +120,7 @@ public class SeekBarCardView extends BaseCardView {
 
     public void setDescription(String description) {
         this.description = description;
-        if (descriptionView != null) descriptionView.setText(description);
+        setUpDescription();
     }
 
     public void setProgress(int progress) {
@@ -147,6 +147,14 @@ public class SeekBarCardView extends BaseCardView {
         }
         if (headerCardView != null && title != null)
             headerCardView.setText(title);
+    }
+
+    private void setUpDescription() {
+        if (descriptionView != null)
+            if (description != null) {
+                descriptionView.setVisibility(VISIBLE);
+                descriptionView.setText(description);
+            } else descriptionView.setVisibility(GONE);
     }
 
     public void setOnSeekBarCardListener(OnSeekBarCardListener onSeekBarCardListener) {

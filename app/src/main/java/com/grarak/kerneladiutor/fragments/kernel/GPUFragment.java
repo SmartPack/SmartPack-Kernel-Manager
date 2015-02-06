@@ -22,6 +22,8 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.elements.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 
 import java.util.ArrayList;
@@ -30,13 +32,18 @@ import java.util.List;
 /**
  * Created by willi on 26.12.14.
  */
-public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener {
+public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView mCur2dFreqCard, mCurFreqCard;
 
     private PopupCardItem.DPopupCard mMax2dFreqCard, mMaxFreqCard;
 
     private PopupCardItem.DPopupCard m2dGovernorCard, mGovernorCard;
+
+    private SwitchCompatCardItem.DSwitchCompatCard mSimpleGpuCard;
+    private SeekBarCardView.DSeekBarCardView mSimpleGpuLazinessCard, mSimpleGpuRampThresoldCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
         curFreqInit();
         maxFreqInit();
         governorInit();
+        if (GPU.hasSimpleGpu()) simpleGpuInit();
     }
 
     private void curFreqInit() {
@@ -115,6 +123,35 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
         }
     }
 
+    private void simpleGpuInit() {
+        mSimpleGpuCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm));
+        mSimpleGpuCard.setChecked(GPU.isSimpleGpuActive());
+        mSimpleGpuCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mSimpleGpuCard);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 11; i++)
+            list.add(String.valueOf(i));
+
+        mSimpleGpuLazinessCard = new SeekBarCardView.DSeekBarCardView(list);
+        mSimpleGpuLazinessCard.setTitle(getString(R.string.simple_gpu_laziness));
+        mSimpleGpuLazinessCard.setDescription(getString(R.string.simple_gpu_laziness_summary));
+        mSimpleGpuLazinessCard.setProgress(GPU.getSimpleGpuLaziness());
+        mSimpleGpuLazinessCard.setOnDSeekBarCardListener(this);
+
+        addView(mSimpleGpuLazinessCard);
+
+        mSimpleGpuRampThresoldCard = new SeekBarCardView.DSeekBarCardView(list);
+        mSimpleGpuRampThresoldCard.setTitle(getString(R.string.simple_gpu_ramp_thresold));
+        mSimpleGpuRampThresoldCard.setDescription(getString(R.string.simple_gpu_ramp_thresold_summary));
+        mSimpleGpuRampThresoldCard.setProgress(GPU.getSimpleGpuRampThreshold());
+        mSimpleGpuRampThresoldCard.setOnDSeekBarCardListener(this);
+
+        addView(mSimpleGpuRampThresoldCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMax2dFreqCard)
@@ -125,6 +162,19 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
         if (dPopupCard == mGovernorCard)
             GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
+    }
+
+    @Override
+    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mSimpleGpuCard) GPU.activateSimpleGpu(checked, getActivity());
+    }
+
+    @Override
+    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        if (dSeekBarCardView == mSimpleGpuLazinessCard)
+            GPU.setSimpleGpuLaziness(position, getActivity());
+        if (dSeekBarCardView == mSimpleGpuRampThresoldCard)
+            GPU.setSimpleGpuRampThreshold(position, getActivity());
     }
 
     @Override

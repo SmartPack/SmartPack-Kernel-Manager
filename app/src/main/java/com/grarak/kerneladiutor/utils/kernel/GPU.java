@@ -46,6 +46,34 @@ public class GPU implements Constants {
 
     private static Integer[] mGpuFreqs;
 
+    public static void setSimpleGpuRampThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value * 1000), SIMPLE_RAMP_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSimpleGpuRampThreshold() {
+        return Utils.stringToInt(Utils.readFile(SIMPLE_RAMP_THRESHOLD)) / 1000;
+    }
+
+    public static void setSimpleGpuLaziness(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SIMPLE_GPU_LAZINESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSimpleGpuLaziness() {
+        return Utils.stringToInt(Utils.readFile(SIMPLE_GPU_LAZINESS));
+    }
+
+    public static void activateSimpleGpu(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", SIMPLE_GPU_ACTIVATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSimpleGpuActive() {
+        return Utils.readFile(SIMPLE_GPU_ACTIVATE).equals("1");
+    }
+
+    public static boolean hasSimpleGpu() {
+        return Utils.existFile(SIMPLE_GPU_ACTIVATE);
+    }
+
     public static void setGpu2dGovernor(String governor, Context context) {
         if (GPU_2D_SCALING_GOVERNOR != null)
             Control.runCommand(governor, GPU_2D_SCALING_GOVERNOR, Control.CommandType.GENERIC, context);

@@ -108,11 +108,17 @@ public interface Constants {
     public final String[] GPU_AVAILABLE_GOVERNORS_ARRAY = new String[]{GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS,
             GPU_AVAILABLE_OMAP_GOVERNORS};
 
+    // Simple GPU
+    public final String SIMPLE_GPU_ACTIVATE = "/sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate";
+    public final String SIMPLE_GPU_LAZINESS = "/sys/module/simple_gpu_algorithm/parameters/simple_laziness";
+    public final String SIMPLE_RAMP_THRESHOLD = "/sys/module/simple_gpu_algorithm/parameters/simple_ramp_threshold";
+
     public final String[][] GPU_ARRAY = new String[][]{GPU_2D_CUR_FREQ_ARRAY,
             GPU_2D_MAX_FREQ_ARRAY, GPU_2D_AVAILABLE_FREQS_ARRAY,
             GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_CUR_FREQ_ARRAY,
             GPU_MAX_FREQ_ARRAY, GPU_AVAILABLE_FREQS_ARRAY,
-            GPU_SCALING_GOVERNOR_ARRAY};
+            GPU_SCALING_GOVERNOR_ARRAY,
+            new String[]{SIMPLE_GPU_ACTIVATE, SIMPLE_GPU_LAZINESS, SIMPLE_RAMP_THRESHOLD}};
 
     // Screen
     public final String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";

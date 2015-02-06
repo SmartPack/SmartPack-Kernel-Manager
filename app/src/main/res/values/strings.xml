@@ -100,6 +100,11 @@
     <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
     <string name="gpu_governor">GPU Governor</string>
     <string name="gpu_governor_summary">Set the governor of the GPU.</string>
+    <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
+    <string name="simple_gpu_laziness">Simple GPU Laziness</string>
+    <string name="simple_gpu_laziness_summary">This increases the threshold to ramp up or down GPU frequencies. The lower it is, the more performance you get.</string>
+    <string name="simple_gpu_ramp_thresold">Simple GPU Ramp Thresold</string>
+    <string name="simple_gpu_ramp_thresold_summary">This increases the number of times the GPU governor ramp down requests. The higher it is, the more performance you get.</string>
 
     <!-- Screen -->
     <string name="red">Red</string>
