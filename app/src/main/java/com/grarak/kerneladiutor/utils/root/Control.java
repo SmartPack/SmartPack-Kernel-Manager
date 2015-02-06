@@ -88,7 +88,7 @@ public class Control implements Constants {
 
     public static void stopModule(String module, boolean save, Context context) {
         RootUtils.runCommand("stop " + module);
-        if (module.equals(CPU_MPDEC)) bringCoresOnline();
+        if (module.equals(HOTPLUG_MPDEC)) bringCoresOnline();
 
         if (save) commandSaver(context, module, "stop " + module);
     }
@@ -116,8 +116,8 @@ public class Control implements Constants {
             public void run() {
                 if (command == CommandType.CPU) {
                     boolean stoppedMpdec = false;
-                    if (CPUHotplug.hasMpdecision() && RootUtils.moduleActive(CPU_MPDEC)) {
-                        stopModule(CPU_MPDEC, false, context);
+                    if (CPUHotplug.hasMpdecision() && RootUtils.moduleActive(HOTPLUG_MPDEC)) {
+                        stopModule(HOTPLUG_MPDEC, false, context);
                         stoppedMpdec = true;
                     }
 
@@ -126,7 +126,7 @@ public class Control implements Constants {
                             runGeneric(String.format(file, i), value, context);
                     else runGeneric(String.format(file, 0), value, context);
 
-                    if (stoppedMpdec) startModule(CPU_MPDEC, false, context);
+                    if (stoppedMpdec) startModule(HOTPLUG_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, context);
                 } else if (command == CommandType.TCP_CONGESTION) {

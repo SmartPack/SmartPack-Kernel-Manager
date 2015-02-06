@@ -63,20 +63,20 @@ public interface Constants {
     };
 
     // CPU Hotplug
-    public final String CPU_MPDECISION_BINARY = "/system/bin/mpdecision";
-    public final String CPU_MPDEC = "mpdecision";
+    public final String HOTPLUG_MPDECISION_BINARY = "/system/bin/mpdecision";
+    public final String HOTPLUG_MPDEC = "mpdecision";
 
-    public final String CPU_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
-    public final String CPU_INTELLI_PLUG_PROFILE = "/sys/module/intelli_plug/parameters/nr_run_profile_sel";
-    public final String CPU_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
-    public final String CPU_INTELLI_PLUG_TOUCH_BOOST = "/sys/module/intelli_plug/parameters/touch_boost_active";
-    public final String CPU_INTELLI_PLUG_HYSTERESIS = "/sys/module/intelli_plug/parameters/nr_run_hysteresis";
-    public final String CPU_INTELLI_PLUG_THRESOLD = "/sys/module/intelli_plug/parameters/cpu_nr_run_threshold";
-    public final String CPU_INTELLI_PLUG_SCREEN_OFF_MAX = "/sys/module/intelli_plug/parameters/screen_off_max";
+    public final String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
+    public final String HOTPLUG_INTELLI_PLUG_PROFILE = "/sys/module/intelli_plug/parameters/nr_run_profile_sel";
+    public final String HOTPLUG_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
+    public final String HOTPLUG_INTELLI_PLUG_TOUCH_BOOST = "/sys/module/intelli_plug/parameters/touch_boost_active";
+    public final String HOTPLUG_INTELLI_PLUG_HYSTERESIS = "/sys/module/intelli_plug/parameters/nr_run_hysteresis";
+    public final String HOTPLUG_INTELLI_PLUG_THRESOLD = "/sys/module/intelli_plug/parameters/cpu_nr_run_threshold";
+    public final String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = "/sys/module/intelli_plug/parameters/screen_off_max";
 
-    public final String[] CPU_HOTPLUG_ARRAY = new String[]{CPU_MPDECISION_BINARY, CPU_MPDEC,
-            CPU_INTELLI_PLUG, CPU_INTELLI_PLUG_PROFILE, CPU_INTELLI_PLUG_ECO, CPU_INTELLI_PLUG_TOUCH_BOOST,
-            CPU_INTELLI_PLUG_HYSTERESIS, CPU_INTELLI_PLUG_THRESOLD, CPU_INTELLI_PLUG_SCREEN_OFF_MAX};
+    public final String[] CPU_HOTPLUG_ARRAY = new String[]{HOTPLUG_MPDECISION_BINARY, HOTPLUG_MPDEC,
+            HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_PROFILE, HOTPLUG_INTELLI_PLUG_ECO, HOTPLUG_INTELLI_PLUG_TOUCH_BOOST,
+            HOTPLUG_INTELLI_PLUG_HYSTERESIS, HOTPLUG_INTELLI_PLUG_THRESOLD, HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX};
 
     // GPU
     public final String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple";

@@ -100,7 +100,7 @@ public class PathReaderActivity extends ActionBarActivity {
         private SwipeRefreshLayout refreshLayout;
 
         private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq",
-                "max_freq_blank", "high_freq_zone"};
+                "max_freq_blank", "high_freq_zone", "input_boost_freq"};
 
         public static PathReaderFragment newInstance(String path, String error, int type) {
             PATH = path;

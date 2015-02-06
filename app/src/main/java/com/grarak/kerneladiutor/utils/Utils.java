@@ -32,6 +32,10 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
  */
 public class Utils implements Constants {
 
+    public static int celciusToFahrenheit(int celcius) {
+        return celcius * 9 / 5 + 32;
+    }
+
     public static long stringToLong(String string) {
         try {
             return Long.parseLong(string);

@@ -58,10 +58,8 @@ public class CPU implements Constants {
 
     public static List<String> getTempLimitList() {
         List<String> list = new ArrayList<>();
-        for (int i = getTempLimitMin(); i <= getTempLimitMax(); i++) {
-            int fahrenheit = i * 9 / 5 + 32;
-            list.add(i + "°C" + " " + fahrenheit + "°F");
-        }
+        for (int i = getTempLimitMin(); i <= getTempLimitMax(); i++)
+            list.add(i + "°C" + " " + Utils.celciusToFahrenheit(i) + "°F");
         return list;
     }
 
