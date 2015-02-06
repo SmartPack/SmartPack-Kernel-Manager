@@ -283,7 +283,6 @@ public interface Constants {
             "/sys/class/timed_output/vibrator/amp",
             "/sys/class/timed_output/vibrator/vtg_level",
             "/sys/devices/platform/tspdrv/nforce_timed",
-            "/sys/devices/virtual/timed_output/vibrator/vtg_level",
             "/sys/class/timed_output/vibrator/pwm_value",
             "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle",
             "/sys/devices/virtual/timed_output/vibrator/voltage_level",
@@ -293,9 +292,8 @@ public interface Constants {
     public final Integer[][] VIBRATION_MAX_MIN_ARRAY = new Integer[][]{
             new Integer[]{127, 0},
             new Integer[]{100, 0},
-            new Integer[]{0, 0}, // Read MAX MIN from sys
+            new Integer[]{31, 12}, // Read MAX MIN from sys
             new Integer[]{127, 1},
-            new Integer[]{31, 12},
             new Integer[]{100, 0}, // Read MAX MIN from sys
             new Integer[]{100, 25}, // Needs enable path
             new Integer[]{3199, 1200},

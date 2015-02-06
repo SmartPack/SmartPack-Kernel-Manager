@@ -45,9 +45,9 @@ public class Misc implements Constants {
 
     public static int getVibrationMin() {
         if (VIBRATION_MIN == null) {
-            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level")
-                    && Utils.existFile("/sys/class/timed_output/vibrator/vtg_min")) {
-                VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/vtg_min"));
+            if (VIBRATION_PATH.equals("/sys/devices/virtual/timed_output/vibrator/vtg_level")
+                    && Utils.existFile("/sys/devices/virtual/timed_output/vibrator/vtg_min")) {
+                VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/devices/virtual/timed_output/vibrator/vtg_min"));
                 return VIBRATION_MIN;
             }
 
@@ -61,7 +61,7 @@ public class Misc implements Constants {
                 if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
                     VIBRATION_MIN = VIBRATION_MAX_MIN_ARRAY[i][1];
         }
-        return VIBRATION_MIN;
+        return VIBRATION_MIN != null ? VIBRATION_MIN : 0;
     }
 
     public static int getVibrationMax() {
@@ -82,13 +82,11 @@ public class Misc implements Constants {
                 if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
                     VIBRATION_MAX = VIBRATION_MAX_MIN_ARRAY[i][0];
         }
-        return VIBRATION_MAX;
+        return VIBRATION_MAX != null ? VIBRATION_MAX : 0;
     }
 
     public static int getCurVibration() {
-        if (VIBRATION_PATH != null && Utils.existFile(VIBRATION_PATH))
-            return Utils.stringToInt(Utils.readFile(VIBRATION_PATH).replaceAll("[^0-9]", ""));
-        return 0;
+        return Utils.stringToInt(Utils.readFile(VIBRATION_PATH).replaceAll("%", ""));
     }
 
     public static boolean hasVibration() {
