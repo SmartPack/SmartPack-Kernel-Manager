@@ -32,6 +32,7 @@ public class AboutusFragment extends RecyclerViewFragment {
     private final String APP_SOURCE = "https://github.com/Grarak/KernelAdiutor";
     private final String DONATE_LINK = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG";
     private final String ISSUE_LINK = "https://github.com/Grarak/KernelAdiutor/issues";
+    private final String COMMUNITY_LINK = "https://plus.google.com/u/0/communities/108445529270785762340";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -45,6 +46,7 @@ public class AboutusFragment extends RecyclerViewFragment {
         licenseInit();
         appSourceInit();
         featureRequestInit();
+        communityInit();
         donateInit();
     }
 
@@ -84,6 +86,20 @@ public class AboutusFragment extends RecyclerViewFragment {
         });
 
         addView(mFeatureRequestCard);
+    }
+
+    private void communityInit() {
+        CardViewItem.DCardView mCommunityCard = new CardViewItem.DCardView();
+        mCommunityCard.setTitle(getString(R.string.google_plus));
+        mCommunityCard.setDescription(getString(R.string.google_plus_summary));
+        mCommunityCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                Utils.launchUrl(getActivity(), COMMUNITY_LINK);
+            }
+        });
+
+        addView(mCommunityCard);
     }
 
     private void donateInit() {
