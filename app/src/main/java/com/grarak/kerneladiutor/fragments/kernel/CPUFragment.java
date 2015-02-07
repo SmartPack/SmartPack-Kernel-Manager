@@ -201,12 +201,11 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void onClick(CardViewItem.DCardView dCardView) {
         if (dCardView == mGovernorTunableCard) {
             String governor = CPU.getCurGovernor(0);
-            Intent i = new Intent(getActivity(),
-                    PathReaderActivity.class);
+            Intent i = new Intent(getActivity(), PathReaderActivity.class);
             Bundle args = new Bundle();
             args.putInt(PathReaderActivity.ARG_TYPE, PathReaderActivity.PATH_TYPE.GOVERNOR.ordinal());
             args.putString(PathReaderActivity.ARG_TITLE, governor);
-            args.putString(PathReaderActivity.ARG_PATH, String.format(CPU_GOVERNOR_TUNABLES, governor));
+            args.putString(PathReaderActivity.ARG_PATH, CPU_GOVERNOR_TUNABLES + "/" + governor);
             args.putString(PathReaderActivity.ARG_ERROR, getString(R.string.not_tunable, governor));
             i.putExtras(args);
 

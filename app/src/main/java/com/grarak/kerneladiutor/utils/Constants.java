@@ -46,7 +46,7 @@ public interface Constants {
     public final String CPU_TIME_STATE = "/sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state";
     public final String CPU_SCALING_GOVERNOR = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor";
     public final String CPU_AVAILABLE_GOVERNORS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
-    public final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq/%s";
+    public final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq";
     public final String CPU_MC_POWER_SAVING = "/sys/devices/system/cpu/sched_mc_power_savings";
 
     public final String CPU_TEMPCONTROL_TEMP_LIMIT = "/sys/class/misc/tempcontrol/templimit";
