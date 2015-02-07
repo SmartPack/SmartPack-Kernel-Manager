@@ -49,18 +49,17 @@ public class SeekBarCardView extends BaseCardView {
 
     public SeekBarCardView(Context context, List<String> list) {
         super(context, R.layout.seekbar_cardview);
-
         this.list = list;
+
         seekBarView.setMax(list.size() - 1);
         seekBarView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (valueView != null) valueView.setText(getItem(progress));
+                if (valueView != null) valueView.setText(SeekBarCardView.this.list.get(progress));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
@@ -127,16 +126,7 @@ public class SeekBarCardView extends BaseCardView {
         this.progress = progress;
         if (seekBarView != null) {
             seekBarView.setProgress(progress);
-            if (valueView != null) valueView.setText(getItem(progress));
-        }
-    }
-
-    private String getItem(int progress) {
-        try {
-            return list.get(progress);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-            return "";
+            if (valueView != null && progress == 0) valueView.setText(list.get(progress));
         }
     }
 
