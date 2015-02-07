@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.UsageCardView;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
 
 import java.util.ArrayList;
@@ -113,8 +114,11 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCompa
             if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(level);
             if (mBatteryVoltageCard != null)
                 mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
-            if (mBatteryTemperature != null)
-                mBatteryTemperature.setDescription((float) temperature / 10 + "°C");
+            if (mBatteryTemperature != null) {
+                float celsius = (float) temperature / 10;
+                float fahrenheit = Utils.celsiusToFahrenheit(celsius);
+                mBatteryTemperature.setDescription((celsius + "°C" + " " + fahrenheit + "°F").replace(".0", ""));
+            }
         }
     };
 

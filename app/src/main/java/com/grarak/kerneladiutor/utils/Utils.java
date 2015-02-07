@@ -97,7 +97,7 @@ public class Utils implements Constants {
         return applys;
     }
 
-    public static int celsiusToFahrenheit(int celsius) {
+    public static float celsiusToFahrenheit(float celsius) {
         return celsius * 9 / 5 + 32;
     }
 
