@@ -119,11 +119,11 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.global_adjustment:
+            case R.id.global_offset:
 
-                View view = inflater.inflate(R.layout.global_adjustment_view, container, false);
+                View view = inflater.inflate(R.layout.global_offset_view, container, false);
 
-                final TextView textView = (TextView) view.findViewById(R.id.adjust_text);
+                final TextView textView = (TextView) view.findViewById(R.id.offset_text);
                 textView.setText("0");
 
                 Button minus = (Button) view.findViewById(R.id.button_minus);

@@ -16,7 +16,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/adjust_text"
+        android:id="@+id/offset_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

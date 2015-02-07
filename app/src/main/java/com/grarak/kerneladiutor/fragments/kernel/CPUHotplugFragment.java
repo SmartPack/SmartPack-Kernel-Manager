@@ -71,25 +71,23 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        mpdecisionInit();
-        intelliPlugInit();
-        bluPlugInit();
+        if (CPUHotplug.hasMpdecision()) mpdecisionInit();
+        if (CPUHotplug.hasIntelliPlug()) intelliPlugInit();
+        if (CPUHotplug.hasBluPlug()) bluPlugInit();
     }
 
     private void mpdecisionInit() {
-        if (CPUHotplug.hasMpdecision()) {
-            mMpdecisionCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mMpdecisionCard.setTitle(getString(R.string.mpdecision));
-            mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
-            mMpdecisionCard.setChecked(CPUHotplug.isMpdecisionActive());
-            mMpdecisionCard.setOnDSwitchCompatCardListener(this);
+        mMpdecisionCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mMpdecisionCard.setTitle(getString(R.string.mpdecision));
+        mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
+        mMpdecisionCard.setChecked(CPUHotplug.isMpdecisionActive());
+        mMpdecisionCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mMpdecisionCard);
-        }
+        addView(mMpdecisionCard);
     }
 
     private void intelliPlugInit() {
-        if (CPUHotplug.hasIntelliPlug()) {
+        if (CPUHotplug.hasIntelliPlugEnable()) {
             mIntelliPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
             mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
@@ -317,7 +315,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void bluPlugInit() {
-        if (CPUHotplug.hasBluPlug()) {
+        if (CPUHotplug.hasBluPlugEnable()) {
             mBluPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mBluPlugCard.setTitle(getString(R.string.blu_plug));
             mBluPlugCard.setDescription(getString(R.string.blu_plug_summary));

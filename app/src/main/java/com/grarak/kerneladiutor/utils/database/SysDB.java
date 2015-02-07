@@ -19,7 +19,6 @@ package com.grarak.kerneladiutor.utils.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,13 +67,10 @@ public class SysDB extends BaseDB {
         this.sys = sys;
         this.command = command;
         insertItem();
-
-        Log.i(TAG, "SysDB: Saving " + sys + " as " + command);
     }
 
     @Override
     public boolean deleteItem(long rowId) {
-        Log.i(TAG, "SysDB: Delete id " + rowId);
         return super.deleteItem(rowId);
     }
 

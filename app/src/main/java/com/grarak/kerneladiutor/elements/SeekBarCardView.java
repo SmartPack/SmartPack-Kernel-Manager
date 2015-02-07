@@ -86,6 +86,7 @@ public class SeekBarCardView extends BaseCardView {
         valueView = (TextView) view.findViewById(R.id.value_view);
         seekBarView = (SeekBar) view.findViewById(R.id.seekbar_view);
 
+        valueView.setText(getContext().getString(R.string.current_value_not_supported));
         view.findViewById(R.id.button_minus).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

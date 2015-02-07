@@ -137,11 +137,15 @@ public class CPUHotplug implements Constants {
     }
 
     public static void activateBluPlug(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", HOTPLUG_BLU_PLUG, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isBluPlugActive() {
-        return Utils.readFile(HOTPLUG_BLU_PLUG).equals("1");
+        return Utils.readFile(HOTPLUG_BLU_PLUG_ENABLE).equals("1");
+    }
+
+    public static boolean hasBluPlugEnable() {
+        return Utils.existFile(HOTPLUG_BLU_PLUG_ENABLE);
     }
 
     public static boolean hasBluPlug() {
@@ -400,11 +404,21 @@ public class CPUHotplug implements Constants {
     }
 
     public static void activateIntelliPlug(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", HOTPLUG_INTELLI_PLUG, Control.CommandType.GENERIC, context);
+        String file = HOTPLUG_INTELLI_PLUG_ENABLE;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        Control.runCommand(active ? "1" : "0", file, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isIntelliPlugActive() {
-        return Utils.readFile(HOTPLUG_INTELLI_PLUG).equals("1");
+        String file = HOTPLUG_INTELLI_PLUG_ENABLE;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        return Utils.readFile(file).equals("1");
+    }
+
+    public static boolean hasIntelliPlugEnable() {
+        String file = HOTPLUG_INTELLI_PLUG_ENABLE;
+        if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        return Utils.existFile(file);
     }
 
     public static boolean hasIntelliPlug() {

@@ -8,6 +8,7 @@
     <string name="apply_on_boot_summary">Your changes have been applied</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="current_value_not_supported">Current value is not supported</string>
 
     <!-- Units -->
     <string name="mhz">MHz</string>
@@ -84,7 +85,7 @@
     <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
 
     <!-- CPU Voltage -->
-    <string name="global_adjustment">Global Adjustment</string>
+    <string name="global_offset">Global Offset</string>
 
     <!-- CPU Hotplug -->
     <string name="mpdecision">MPDecision</string>

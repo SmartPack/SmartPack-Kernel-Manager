@@ -74,7 +74,8 @@ public interface Constants {
 
     public final String[] MPDECISION_ARRAY = new String[]{HOTPLUG_MPDECISION_BINARY, HOTPLUG_MPDEC};
 
-    public final String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters/intelli_plug_active";
+    public final String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters";
+    public final String HOTPLUG_INTELLI_PLUG_ENABLE = "/sys/module/intelli_plug/parameters/intelli_plug_active";
     public final String HOTPLUG_INTELLI_PLUG_PROFILE = "/sys/module/intelli_plug/parameters/nr_run_profile_sel";
     public final String HOTPLUG_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
     public final String HOTPLUG_INTELLI_PLUG_TOUCH_BOOST = "/sys/module/intelli_plug/parameters/touch_boost_active";
@@ -82,7 +83,8 @@ public interface Constants {
     public final String HOTPLUG_INTELLI_PLUG_THRESHOLD = "/sys/module/intelli_plug/parameters/cpu_nr_run_threshold";
     public final String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = "/sys/module/intelli_plug/parameters/screen_off_max";
 
-    public final String HOTPLUG_INTELLI_PLUG_5 = "/sys/kernel/intelli_plug/intelli_plug_active";
+    public final String HOTPLUG_INTELLI_PLUG_5 = "/sys/kernel/intelli_plug";
+    public final String HOTPLUG_INTELLI_PLUG_5_ENABLE = "/sys/kernel/intelli_plug/intelli_plug_active";
     public final String HOTPLUG_INTELLI_PLUG_5_DEBUG = "/sys/kernel/intelli_plug/debug_intelli_plug";
     public final String HOTPLUG_INTELLI_PLUG_5_PROFILE = "/sys/kernel/intelli_plug/full_mode_profile";
     public final String HOTPLUG_INTELLI_PLUG_5_SUSPEND = "/sys/kernel/intelli_plug/hotplug_suspend";
@@ -100,17 +102,18 @@ public interface Constants {
     public final String HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX = "/sys/kernel/intelli_plug/screen_off_max";
 
     public final String[] INTELLIPLUG_ARRAY = new String[]{
-            HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_PROFILE, HOTPLUG_INTELLI_PLUG_ECO, HOTPLUG_INTELLI_PLUG_TOUCH_BOOST,
-            HOTPLUG_INTELLI_PLUG_HYSTERESIS, HOTPLUG_INTELLI_PLUG_THRESHOLD, HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX,
-            HOTPLUG_INTELLI_PLUG_5, HOTPLUG_INTELLI_PLUG_5_DEBUG, HOTPLUG_INTELLI_PLUG_5_PROFILE,
-            HOTPLUG_INTELLI_PLUG_5_SUSPEND, HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED, HOTPLUG_INTELLI_PLUG_5_HYSTERESIS,
-            HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE, HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE,
-            HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP, HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME,
-            HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING, HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION,
-            HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION, HOTPLUG_INTELLI_PLUG_5_THRESHOLD,
-            HOTPLUG_INTELLI_PLUG_5_FSHIFT, HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX};
+            HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_ENABLE, HOTPLUG_INTELLI_PLUG_PROFILE, HOTPLUG_INTELLI_PLUG_ECO,
+            HOTPLUG_INTELLI_PLUG_TOUCH_BOOST, HOTPLUG_INTELLI_PLUG_HYSTERESIS, HOTPLUG_INTELLI_PLUG_THRESHOLD,
+            HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX, HOTPLUG_INTELLI_PLUG_5_ENABLE, HOTPLUG_INTELLI_PLUG_5_DEBUG,
+            HOTPLUG_INTELLI_PLUG_5, HOTPLUG_INTELLI_PLUG_5_PROFILE, HOTPLUG_INTELLI_PLUG_5_SUSPEND,
+            HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED, HOTPLUG_INTELLI_PLUG_5_HYSTERESIS, HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE,
+            HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE, HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP,
+            HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME, HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING,
+            HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION, HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION,
+            HOTPLUG_INTELLI_PLUG_5_THRESHOLD, HOTPLUG_INTELLI_PLUG_5_FSHIFT, HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX};
 
-    public final String HOTPLUG_BLU_PLUG = "/sys/module/blu_plug/parameters/enabled";
+    public final String HOTPLUG_BLU_PLUG = "/sys/module/blu_plug/parameters";
+    public final String HOTPLUG_BLU_PLUG_ENABLE = "/sys/module/blu_plug/parameters/enabled";
     public final String HOTPLUG_BLU_PLUG_POWERSAVER_MODE = "/sys/module/blu_plug/parameters/powersaver_mode";
     public final String HOTPLUG_BLU_PLUG_MIN_ONLINE = "/sys/module/blu_plug/parameters/min_online";
     public final String HOTPLUG_BLU_PLUG_MAX_ONLINE = "/sys/module/blu_plug/parameters/max_online";
@@ -120,10 +123,10 @@ public interface Constants {
     public final String HOTPLUG_BLU_PLUG_UP_TIMER_CNT = "/sys/module/blu_plug/parameters/up_timer_cnt";
     public final String HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT = "/sys/module/blu_plug/parameters/down_timer_cnt";
 
-    public final String[] BLU_PLUG_ARRAY = new String[]{HOTPLUG_BLU_PLUG, HOTPLUG_BLU_PLUG_POWERSAVER_MODE,
-            HOTPLUG_BLU_PLUG_MIN_ONLINE, HOTPLUG_BLU_PLUG_MAX_ONLINE, HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF,
-            HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF, HOTPLUG_BLU_PLUG_UP_THRESHOLD, HOTPLUG_BLU_PLUG_UP_TIMER_CNT,
-            HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT};
+    public final String[] BLU_PLUG_ARRAY = new String[]{HOTPLUG_BLU_PLUG, HOTPLUG_BLU_PLUG_ENABLE,
+            HOTPLUG_BLU_PLUG_POWERSAVER_MODE, HOTPLUG_BLU_PLUG_MIN_ONLINE, HOTPLUG_BLU_PLUG_MAX_ONLINE,
+            HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF, HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF, HOTPLUG_BLU_PLUG_UP_THRESHOLD,
+            HOTPLUG_BLU_PLUG_UP_TIMER_CNT, HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT};
 
     public final String[][] CPU_HOTPLUG_ARRAY = new String[][]{MPDECISION_ARRAY, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY};
 
