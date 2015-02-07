@@ -91,7 +91,7 @@
     <string name="mpdecision_summary">QCOM\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">A MPDecision replacement by faux123.</string>
-    <string name="intelliplug_profile">Intelliplug Profile</string>
+    <string name="intelliplug_profile">IntelliPlug Profile</string>
     <string name="intelliplug_profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
     <string name="balanced">Balanced</string>
     <string name="performance">Performance</string>
