@@ -16,7 +16,9 @@
 
 package com.grarak.kerneladiutor;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
@@ -93,6 +95,15 @@ public class MainActivity extends ActionBarActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (VERSION_NAME.contains("beta"))
+            new AlertDialog.Builder(MainActivity.this)
+                    .setMessage(getString(R.string.beta_message, VERSION_NAME))
+                    .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    }).show();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

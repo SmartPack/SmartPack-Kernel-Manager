@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.utils;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.List;
 public interface Constants {
 
     public final String TAG = "Kernel Adiutor";
+    public final String VERSION_NAME = BuildConfig.VERSION_NAME;
     public final String PREF_NAME = "prefs";
     public static final List<ListAdapter.ListItem> mList = new ArrayList<>();
 
