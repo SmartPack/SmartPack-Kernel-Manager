@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.internal.widget.TintEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Gravity;
@@ -33,7 +34,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -158,13 +158,13 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         dialogLayout.setGravity(Gravity.CENTER);
         dialogLayout.setPadding(30, 20, 30, 20);
 
-        final EditText keyEdit = new EditText(getActivity());
+        final TintEditText keyEdit = new TintEditText(getActivity());
         keyEdit.setTextColor(getResources().getColor(android.R.color.black));
 
         if (modify) keyEdit.setText(key.trim());
         else keyEdit.setHint(getString(R.string.key));
 
-        final EditText valueEdit = new EditText(getActivity());
+        final TintEditText valueEdit = new TintEditText(getActivity());
         valueEdit.setTextColor(getResources().getColor(android.R.color.black));
 
         if (modify) valueEdit.setText(value.trim());
