@@ -32,8 +32,20 @@ import java.util.List;
 public class Misc implements Constants {
 
     private static String VIBRATION_PATH;
-    private static Integer VIBRATION_MAX = null;
-    private static Integer VIBRATION_MIN = null;
+    private static Integer VIBRATION_MAX;
+    private static Integer VIBRATION_MIN;
+
+    public static void activateSmb135xWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSmb135xWakeLockActive() {
+        return Utils.readFile(SMB135X_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasSmb135xWakeLock() {
+        return Utils.existFile(SMB135X_WAKELOCK);
+    }
 
     public static void setVibration(int value, Context context) {
         String enablePath = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";

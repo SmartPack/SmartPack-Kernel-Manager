@@ -116,6 +116,18 @@ public class Sound implements Constants {
         return Utils.existFile(HEADPHONE_GAIN);
     }
 
+    public static void activateSoundControl(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SOUND_CONTROL_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSoundControlActive() {
+        return Utils.readFile(SOUND_CONTROL_ENABLE).equals("Y");
+    }
+
+    public static boolean hasSoundControlEnable() {
+        return Utils.existFile(SOUND_CONTROL_ENABLE);
+    }
+
     public static boolean hasSound() {
         for (String file : SOUND_ARRAY)
             if (Utils.existFile(file)) return true;

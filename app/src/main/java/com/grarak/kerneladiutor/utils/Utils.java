@@ -39,6 +39,7 @@ import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -49,6 +50,10 @@ import java.util.List;
  * Created by willi on 30.11.14.
  */
 public class Utils implements Constants {
+
+    public static void vibrate(int duration) {
+        RootUtils.runCommand("echo " + duration + " > " + VIBRATION_ENABLE);
+    }
 
     public static List<String> getApplys(Class mClass) {
         List<String> applys = new ArrayList<>();
@@ -170,12 +175,11 @@ public class Utils implements Constants {
     }
 
     public static boolean existFile(String file) {
-        String output = RootUtils.runCommand("[ -e " + file + " ] && echo true");
-        return output != null && output.contains("true");
+        return new RootFile(file).exists();
     }
 
     public static String readFile(String file) {
-        return RootUtils.runCommand("cat " + file);
+        return new RootFile(file).readFile();
     }
 
 }

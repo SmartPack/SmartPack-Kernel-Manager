@@ -22,8 +22,9 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,14 @@ import java.util.List;
  * Created by willi on 02.01.15.
  */
 public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
-        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
     private PopupCardItem.DPopupCard mTcpCongestionCard;
 
     private SeekBarCardView.DSeekBarCardView mVibrationCard;
+
+    private SwitchCompatCardItem.DSwitchCompatCard mSmb135xWakeLockCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
         tcpCongestionInit();
         if (Misc.hasVibration()) vibrationInit();
+        if (Misc.hasSmb135xWakeLock()) smb135xWakeLockInit();
     }
 
     private void tcpCongestionInit() {
@@ -73,6 +78,16 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mVibrationCard);
     }
 
+    private void smb135xWakeLockInit() {
+        mSmb135xWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSmb135xWakeLockCard.setTitle(getString(R.string.smb135x_wakelock));
+        mSmb135xWakeLockCard.setDescription(getString(R.string.smb135x_wakelock_summary));
+        mSmb135xWakeLockCard.setChecked(Misc.isSmb135xWakeLockActive());
+        mSmb135xWakeLockCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mSmb135xWakeLockCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -93,7 +108,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
                 public void run() {
                     try {
                         Thread.sleep(100);
-                        RootUtils.runCommand("echo 300 > /sys/class/timed_output/vibrator/enable");
+                        Utils.vibrate(300);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -102,4 +117,9 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         }
     }
 
+    @Override
+    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mSmb135xWakeLockCard)
+            Misc.activateSmb135xWakeLock(checked, getActivity());
+    }
 }

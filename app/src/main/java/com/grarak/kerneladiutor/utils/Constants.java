@@ -241,6 +241,7 @@ public interface Constants {
     public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY, T2W_ARRAY};
 
     // Sound
+    public final String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
     public final String HEADPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_gain";
     public final String HANDSET_MICROPONE_GAIN = "/sys/kernel/sound_control_3/gpl_mic_gain";
     public final String CAM_MICROPHONE_GAIN = "/sys/kernel/sound_control_3/gpl_cam_mic_gain";
@@ -248,7 +249,8 @@ public interface Constants {
     public final String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
 
     public final String[] SOUND_ARRAY = new String[]{
-            HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN, CAM_MICROPHONE_GAIN, SPEAKER_GAIN, HEADPHONE_POWERAMP_GAIN
+            SOUND_CONTROL_ENABLE, HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN, CAM_MICROPHONE_GAIN, SPEAKER_GAIN,
+            HEADPHONE_POWERAMP_GAIN
     };
 
     // Battery
@@ -289,7 +291,7 @@ public interface Constants {
     // Low Memory Killer
     public final String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
 
-    // Virtual Machine
+    // Virtual Memory
     public final String VM_PATH = "/proc/sys/vm";
 
     public final String[] SUPPORTED_VM = {"dirty_ratio",
@@ -303,6 +305,7 @@ public interface Constants {
     public final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
     // Vibration
+    public final String VIBRATION_ENABLE = "/sys/class/timed_output/vibrator/enable";
     public final String[] VIBRATION_ARRAY = new String[]{
             "/sys/vibrator/pwmvalue",
             "/sys/class/timed_output/vibrator/amp",
@@ -325,8 +328,11 @@ public interface Constants {
             new Integer[]{99, 53}
     };
 
+    // SMB135X Wakelock
+    public final String SMB135X_WAKELOCK = "/sys/module/smb135x_charger/parameters/use_wlock";
+
     public final String[][] MISC_ARRAY = new String[][]{
-            new String[]{TCP_AVAILABLE_CONGESTIONS},
+            new String[]{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK},
             VIBRATION_ARRAY
     };
 
