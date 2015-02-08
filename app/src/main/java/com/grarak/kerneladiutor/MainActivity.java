@@ -221,7 +221,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
             if (hasRoot && hasBusybox) {
                 RootUtils.su = new RootUtils.SU();
-                RootUtils.runCommand("chmod 644 " + LMK_MINFREE);
+
+                String[] permission = new String[]{
+                        CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_SCALING_GOVERNOR, LMK_MINFREE
+                };
+                for (String file : permission)
+                    RootUtils.runCommand("chmod 644 " + file);
 
                 setList();
 
