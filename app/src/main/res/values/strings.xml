@@ -83,6 +83,15 @@
     <string name="aggressive">Aggressive</string>
     <string name="temp_limit">Temperature Limit</string>
     <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
+    <string name="cpu_boost">CPU Boost</string>
+    <string name="cpu_boost_debug_mask">CPU Boost Debug Mask</string>
+    <string name="cpu_boost_debug_mask_summary">Allows you to activate debug mask for CPU Boost operations.</string>
+    <string name="cpu_boost_interval">CPU Boost Interval</string>
+    <string name="cpu_boost_interval_summary">Minimum interval a CPU is boosted.</string>
+    <string name="cpu_boost_sync_threshold">CPU Boost Sync Threshold</string>
+    <string name="cpu_boost_sync_threshold_summary">When CPU loading crosses the preset threshold, the current CPU is raised to this frequency.</string>
+    <string name="cpu_boost_input_interval">CPU Boost Input Interval</string>
+    <string name="cpu_boost_input_interval_summary">Minimum interval a CPU is boosted when input is detected.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>

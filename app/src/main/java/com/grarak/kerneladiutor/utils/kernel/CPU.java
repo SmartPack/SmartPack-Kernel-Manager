@@ -39,6 +39,79 @@ public class CPU implements Constants {
 
     private static String TEMP_LIMIT_FILE;
 
+    private static String CPU_BOOST_ENABLE_FILE;
+
+    public static void setCpuBoostInputMs(int value, Context context) {
+        Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_MS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCpuBootInputMs() {
+        return Utils.stringToInt(Utils.readFile(CPU_BOOST_INPUT_MS));
+    }
+
+    public static boolean hasCpuBoostInputMs() {
+        return Utils.existFile(CPU_BOOST_INPUT_MS);
+    }
+
+    public static void setCpuBoostSyncThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), CPU_BOOST_SYNC_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCpuBootSyncThreshold() {
+        String value = Utils.readFile(CPU_BOOST_SYNC_THRESHOLD);
+        if (value.equals("0")) return 0;
+        return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
+    }
+
+    public static boolean hasCpuBoostSyncThreshold() {
+        return Utils.existFile(CPU_BOOST_SYNC_THRESHOLD);
+    }
+
+    public static void setCpuBoostMs(int value, Context context) {
+        Control.runCommand(String.valueOf(value), CPU_BOOST_MS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCpuBootMs() {
+        return Utils.stringToInt(Utils.readFile(CPU_BOOST_MS));
+    }
+
+    public static boolean hasCpuBoostMs() {
+        return Utils.existFile(CPU_BOOST_MS);
+    }
+
+    public static void activateCpuBoostDebugMask(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_BOOST_DEBUG_MASK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostDebugMaskActive() {
+        return Utils.readFile(CPU_BOOST_DEBUG_MASK).equals("1");
+    }
+
+    public static boolean hasCpuBoostDebugMask() {
+        return Utils.existFile(CPU_BOOST_DEBUG_MASK);
+    }
+
+    public static void activateCpuBoost(boolean active, Context context) {
+        String command = active ? "1" : "0";
+        if (CPU_BOOST_ENABLE_FILE.equals(CPU_BOOST_ENABLE_2)) command = active ? "Y" : "N";
+        Control.runCommand(command, CPU_BOOST_ENABLE_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostActive() {
+        String value = Utils.readFile(CPU_BOOST_ENABLE_FILE);
+        return value.equals("1") || value.equals("Y");
+    }
+
+    public static boolean hasCpuBoostEnable() {
+        if (Utils.existFile(CPU_BOOST_ENABLE)) CPU_BOOST_ENABLE_FILE = CPU_BOOST_ENABLE;
+        else if (Utils.existFile(CPU_BOOST_ENABLE_2)) CPU_BOOST_ENABLE_FILE = CPU_BOOST_ENABLE_2;
+        return CPU_BOOST_ENABLE_FILE != null;
+    }
+
+    public static boolean hasCpuBoost() {
+        return Utils.existFile(CPU_BOOST);
+    }
+
     public static void setTempLimit(int value, Context context) {
         if (TEMP_LIMIT_FILE.equals(CPU_TEMPCONTROL_TEMP_LIMIT))
             value *= 1000;

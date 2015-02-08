@@ -34,7 +34,7 @@ public class CPUVoltage implements Constants {
     private static String CPU_VOLTAGE_FILE;
     private static String[] mCpuFreqs;
 
-    public static void setGlobal(String voltage, Context context) {
+    public static void setGlobalOffset(String voltage, Context context) {
         List<String> voltages = getVoltages();
         String command = "";
         int adjust = Utils.stringToInt(voltage);

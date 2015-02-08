@@ -54,11 +54,22 @@ public interface Constants {
 
     public final String[] CPU_TEMP_LIMIT_ARRAY = new String[]{CPU_TEMPCONTROL_TEMP_LIMIT, CPU_MSM_TEMP_LIMIT};
 
+    public final String CPU_BOOST = "/sys/module/cpu_boost/parameters";
+    public final String CPU_BOOST_ENABLE = "/sys/module/cpu_boost/parameters/cpu_boost";
+    public final String CPU_BOOST_ENABLE_2 = "/sys/module/cpu_boost/parameters/cpuboost_enable";
+    public final String CPU_BOOST_DEBUG_MASK = "/sys/module/cpu_boost/parameters/debug_mask";
+    public final String CPU_BOOST_MS = "/sys/module/cpu_boost/parameters/boost_ms";
+    public final String CPU_BOOST_SYNC_THRESHOLD = "/sys/module/cpu_boost/parameters/sync_threshold";
+    public final String CPU_BOOST_INPUT_MS = "/sys/module/cpu_boost/parameters/input_boost_ms";
+
+    public final String[] CPU_BOOST_ARRAY = new String[]{CPU_BOOST, CPU_BOOST_ENABLE, CPU_BOOST_ENABLE_2,
+            CPU_BOOST_DEBUG_MASK, CPU_BOOST_MS, CPU_BOOST_SYNC_THRESHOLD, CPU_BOOST_INPUT_MS};
+
     public final String[][] CPU_ARRAY = new String[][]{
             new String[]{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
                     CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE,
                     CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING},
-            CPU_TEMP_LIMIT_ARRAY};
+            CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
 
     // CPU Voltage
     public final String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";

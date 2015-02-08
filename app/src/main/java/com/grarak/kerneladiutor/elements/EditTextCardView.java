@@ -19,11 +19,11 @@ package com.grarak.kerneladiutor.elements;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.internal.widget.TintEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
@@ -47,7 +47,7 @@ public class EditTextCardView extends CardViewItem {
                 LinearLayout layout = new LinearLayout(getContext());
                 layout.setPadding(30, 30, 30, 30);
 
-                final EditText editText = new EditText(getContext());
+                final TintEditText editText = new TintEditText(getContext());
                 editText.setGravity(Gravity.CENTER);
                 editText.setTextColor(getContext().getResources().getColor(android.R.color.black));
                 editText.setLayoutParams(new LinearLayout.LayoutParams(

@@ -159,7 +159,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                         }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        CPUVoltage.setGlobal(textView.getText().toString(), getActivity());
+                        CPUVoltage.setGlobalOffset(textView.getText().toString(), getActivity());
 
                         refresh();
                     }
