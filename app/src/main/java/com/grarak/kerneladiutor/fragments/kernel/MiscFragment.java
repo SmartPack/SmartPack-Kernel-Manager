@@ -41,6 +41,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     private SeekBarCardView.DSeekBarCardView mVibrationCard;
 
     private SwitchCompatCardItem.DSwitchCompatCard mSmb135xWakeLockCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mSensorIndWakeLockCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         tcpCongestionInit();
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasSmb135xWakeLock()) smb135xWakeLockInit();
+        if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
     }
 
     private void tcpCongestionInit() {
@@ -88,6 +90,16 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mSmb135xWakeLockCard);
     }
 
+    private void sensorIndWakeLockInit() {
+        mSensorIndWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSensorIndWakeLockCard.setTitle(getString(R.string.sensor_ind_wakelock));
+        mSensorIndWakeLockCard.setDescription(getString(R.string.sensor_ind_wakelock_summary));
+        mSensorIndWakeLockCard.setChecked(Misc.isSmb135xWakeLockActive());
+        mSensorIndWakeLockCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mSensorIndWakeLockCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -121,5 +133,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
+        if (dSwitchCompatCard == mSensorIndWakeLockCard)
+            Misc.activateSensorIndWakeLock(checked, getActivity());
     }
 }

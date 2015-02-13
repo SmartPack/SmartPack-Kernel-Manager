@@ -341,8 +341,9 @@ public interface Constants {
             new Integer[]{99, 53}
     };
 
-    // SMB135X Wakelock
+    // Wakelock
     public final String SMB135X_WAKELOCK = "/sys/module/smb135x_charger/parameters/use_wlock";
+    public final String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
 
     public final String[][] MISC_ARRAY = new String[][]{
             new String[]{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK},

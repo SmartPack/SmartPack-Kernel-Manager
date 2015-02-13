@@ -35,6 +35,18 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    public static void activateSensorIndWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SENSOR_IND_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSensorIndWakeLockActive() {
+        return Utils.readFile(SENSOR_IND_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasSensorIndWakeLock() {
+        return Utils.existFile(SENSOR_IND_WAKELOCK);
+    }
+
     public static void activateSmb135xWakeLock(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK, Control.CommandType.GENERIC, context);
     }

@@ -247,8 +247,10 @@
     <string name="tcp">TCP Congestion Algorithm</string>
     <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="vibration_strength">Vibration Strength</string>
-    <string name="smb135x_wakelock">SMB135X Wakelock</string>
-    <string name="smb135x_wakelock_summary">By disabling this you will prevent wakelocks when Ambient Display is disabled.</string>
+    <string name="smb135x_wakelock">smb135x Wakelock</string>
+    <string name="smb135x_wakelock_summary">Prevent wakelock when power disconnected.</string>
+    <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
+    <string name="sensor_ind_wakelock_summary">Prevent wakelock when Ambient Display disabled.</string>
 
     <!-- Build prop Editor -->
     <string name="edit">Edit</string>
