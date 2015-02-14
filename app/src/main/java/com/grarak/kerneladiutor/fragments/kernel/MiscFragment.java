@@ -17,12 +17,14 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 
@@ -54,13 +56,17 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void tcpCongestionInit() {
-        mTcpCongestionCard = new PopupCardItem.DPopupCard(Misc.getTcpAvailableCongestions());
-        mTcpCongestionCard.setTitle(getString(R.string.tcp));
-        mTcpCongestionCard.setDescription(getString(R.string.tcp_summary));
-        mTcpCongestionCard.setItem(Misc.getCurTcpCongestion());
-        mTcpCongestionCard.setOnDPopupCardListener(this);
+        try {
+            mTcpCongestionCard = new PopupCardItem.DPopupCard(Misc.getTcpAvailableCongestions());
+            mTcpCongestionCard.setTitle(getString(R.string.tcp));
+            mTcpCongestionCard.setDescription(getString(R.string.tcp_summary));
+            mTcpCongestionCard.setItem(Misc.getCurTcpCongestion());
+            mTcpCongestionCard.setOnDPopupCardListener(this);
 
-        addView(mTcpCongestionCard);
+            addView(mTcpCongestionCard);
+        } catch (Exception e) {
+            Log.e(Constants.TAG, "Failed to read TCP");
+        }
     }
 
     private void vibrationInit() {
@@ -94,7 +100,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         mSensorIndWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mSensorIndWakeLockCard.setTitle(getString(R.string.sensor_ind_wakelock));
         mSensorIndWakeLockCard.setDescription(getString(R.string.sensor_ind_wakelock_summary));
-        mSensorIndWakeLockCard.setChecked(Misc.isSmb135xWakeLockActive());
+        mSensorIndWakeLockCard.setChecked(Misc.isSensorIndWakeLockActive());
         mSensorIndWakeLockCard.setOnDSwitchCompatCardListener(this);
 
         addView(mSensorIndWakeLockCard);

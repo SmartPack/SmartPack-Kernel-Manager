@@ -64,6 +64,7 @@ public abstract class BaseCardView extends CardView {
         setLayoutParams(layoutParams);
         setRadius(0);
 
+        setCardBackgroundColor(getResources().getColor(R.color.card_background));
         TypedArray ta = getContext().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
         Drawable d = ta.getDrawable(0);
         ta.recycle();

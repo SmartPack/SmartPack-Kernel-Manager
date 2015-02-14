@@ -51,6 +51,9 @@ import java.util.List;
  */
 public class Utils implements Constants {
 
+    // Saving Profile Apply here
+    public static boolean PROFILE_APPLY = false;
+
     public static void vibrate(int duration) {
         RootUtils.runCommand("echo " + duration + " > " + VIBRATION_ENABLE);
     }

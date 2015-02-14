@@ -112,6 +112,12 @@ public class ProfileDB extends BaseDB {
         return sysItems;
     }
 
+    public ProfileItem getItem(long id) {
+        for (ProfileItem profileItem : getAllProfiles())
+            if (profileItem.getId() == id) return profileItem;
+        return null;
+    }
+
     public static class ProfileItem extends DBItem {
 
         private final String name;

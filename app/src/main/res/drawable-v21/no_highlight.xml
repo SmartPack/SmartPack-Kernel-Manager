@@ -1,4 +1,4 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@android:color/white">
-    <item android:drawable="@android:color/white" />
+    android:color="@color/navigationdrawer_background">
+    <item android:drawable="@color/navigationdrawer_background" />
 </ripple>

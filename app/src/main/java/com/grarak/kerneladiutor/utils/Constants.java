@@ -330,15 +330,15 @@ public interface Constants {
             "/sys/devices/virtual/timed_output/vibrator/pwm_value_1p"
     };
 
-    public final Integer[][] VIBRATION_MAX_MIN_ARRAY = new Integer[][]{
-            new Integer[]{127, 0},
-            new Integer[]{100, 0},
-            new Integer[]{31, 12}, // Read MAX MIN from sys
-            new Integer[]{127, 1},
-            new Integer[]{100, 0}, // Read MAX MIN from sys
-            new Integer[]{100, 25}, // Needs enable path
-            new Integer[]{3199, 1200},
-            new Integer[]{99, 53}
+    public final int[][] VIBRATION_MAX_MIN_ARRAY = {
+            {127, 0},
+            {100, 0},
+            {31, 12}, // Read MAX MIN from sys
+            {127, 1},
+            {100, 0}, // Read MAX MIN from sys
+            {100, 25}, // Needs enable path
+            {3199, 1200},
+            {99, 53}
     };
 
     // Wakelock

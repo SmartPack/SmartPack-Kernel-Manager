@@ -268,6 +268,8 @@
     <string name="apply">Apply</string>
     <string name="no_settings">No settings found!</string>
     <string name="empty_name">Name is empty</string>
+    <string name="press_again_to_apply">Press again to apply.</string>
+    <string name="applied">Applied</string>
 
     <!-- About us -->
     <string name="license">License</string>

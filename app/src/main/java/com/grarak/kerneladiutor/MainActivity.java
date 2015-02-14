@@ -16,8 +16,10 @@
 
 package com.grarak.kerneladiutor;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -75,6 +77,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
  */
 public class MainActivity extends ActionBarActivity implements Constants {
 
+    private static Context context;
     private boolean hasRoot;
     private boolean hasBusybox;
 
@@ -89,21 +92,30 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private ListView mDrawerList;
 
+    public static String LAUNCH_INTENT = "launch_section";
+    private String LAUNCH_NAME;
     private int cur_position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (context != null) ((Activity) context).finish();
+        context = this;
 
-        if (VERSION_NAME.contains("beta"))
-            new AlertDialog.Builder(MainActivity.this)
-                    .setMessage(getString(R.string.beta_message, VERSION_NAME))
-                    .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    }).show();
+        try {
+            LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
+            if (LAUNCH_NAME == null && VERSION_NAME.contains("beta"))
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage(getString(R.string.beta_message, VERSION_NAME))
+                        .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -275,7 +287,12 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 e.printStackTrace();
             }
 
-            selectItem(2);
+            if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
+            for (int i = 0; i < mList.size(); i++) {
+                if (mList.get(i).getFragment() != null)
+                    if (LAUNCH_NAME.equals(mList.get(i).getFragment().getClass().getSimpleName()))
+                        selectItem(i);
+            }
         }
     }
 
@@ -309,6 +326,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
         super.onDestroy();
         if (RootUtils.su != null) RootUtils.su.close();
         RootUtils.su = null;
+    }
+
+    public static void destroy() {
+        if (context != null) ((Activity) context).finish();
     }
 
     private DrawerLayout.LayoutParams getDrawerParams() {

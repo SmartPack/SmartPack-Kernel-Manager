@@ -17,6 +17,8 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.widgets.ProfileWidget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -283,6 +286,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                 }
             }
         });
+
+        // Update Profilewidget here
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+        int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
     }
 
     private void animate() {

@@ -2,9 +2,9 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -35,14 +35,14 @@ public class CircleChart extends View {
     public CircleChart(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        mCircleColor = getResources().getColor(R.color.color_primary);
+        mCircleColor = getResources().getColor(R.color.circlebar_text);
         density = getResources().getDisplayMetrics().density;
 
         mPaintBackground = new Paint();
         mPaintBackground.setStrokeWidth(Math.round(1 * density));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
-        mPaintBackground.setColor(Color.rgb(200, 200, 200));
+        mPaintBackground.setColor(getResources().getColor(R.color.circlebar_background));
         mPaintBackground.setStrokeCap(Paint.Cap.ROUND);
 
         mPaintCircle = new Paint();
@@ -56,7 +56,7 @@ public class CircleChart extends View {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
         draw(canvas, getWidth() - 10, getHeight() - 10);
