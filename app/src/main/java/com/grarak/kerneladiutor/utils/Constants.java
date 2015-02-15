@@ -251,7 +251,11 @@ public interface Constants {
 
     public final String[] T2W_ARRAY = new String[]{TSP_T2W, TOUCHWAKE_T2W};
 
-    public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY, T2W_ARRAY};
+    public final String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
+    public final String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
+
+    public final String[][] WAKE_ARRAY = new String[][]{DT2W_ARRAY, S2W_ARRY, T2W_ARRAY,
+            new String[]{WAKE_TIMEOUT, POWER_KEY_SUSPEND}};
 
     // Sound
     public final String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";

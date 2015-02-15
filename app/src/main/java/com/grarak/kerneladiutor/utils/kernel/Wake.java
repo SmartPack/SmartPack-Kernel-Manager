@@ -35,6 +35,30 @@ public class Wake implements Constants {
     private static String S2W_FILE;
     private static String T2W_FILE;
 
+    public static void activatePowerKeySuspend(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isPowerKeySuspendActive() {
+        return Utils.readFile(POWER_KEY_SUSPEND).equals("1");
+    }
+
+    public static boolean hasPowerKeySuspend() {
+        return Utils.existFile(POWER_KEY_SUSPEND);
+    }
+
+    public static void setWakeTimeout(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_TIMEOUT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getWakeTimeout() {
+        return Utils.stringToInt(Utils.readFile(WAKE_TIMEOUT));
+    }
+
+    public static boolean hasWakeTimeout() {
+        return Utils.existFile(WAKE_TIMEOUT);
+    }
+
     public static void setT2w(int value, Context context) {
         String command = String.valueOf(value);
         if (T2W_FILE.equals(TSP_T2W)) command = value == 0 ? "OFF" : "AUTO";
@@ -116,15 +140,21 @@ public class Wake implements Constants {
     public static List<String> getDt2wMenu(Context context) {
         List<String> list = new ArrayList<>();
         if (DT2W_FILE != null) {
-            if (DT2W_FILE.equals(LGE_TOUCH_CORE_DT2W)) {
-                list.add(context.getString(R.string.disabled));
-                list.add(context.getString(R.string.center));
-                list.add(context.getString(R.string.full));
-                list.add(context.getString(R.string.bottom_half));
-                list.add(context.getString(R.string.top_half));
-            } else {
-                list.add(context.getString(R.string.disabled));
-                list.add(context.getString(R.string.enabled));
+            list.add(context.getString(R.string.disabled));
+            switch (DT2W_FILE) {
+                case LGE_TOUCH_CORE_DT2W:
+                    list.add(context.getString(R.string.center));
+                    list.add(context.getString(R.string.full));
+                    list.add(context.getString(R.string.bottom_half));
+                    list.add(context.getString(R.string.top_half));
+                    break;
+                case DT2W:
+                    list.add(context.getString(R.string.halfscreen));
+                    list.add(context.getString(R.string.fullscreen));
+                    break;
+                default:
+                    list.add(context.getString(R.string.enabled));
+                    break;
             }
         }
         return list;
