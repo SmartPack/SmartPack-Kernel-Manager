@@ -45,6 +45,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     private SwitchCompatCardItem.DSwitchCompatCard mSmb135xWakeLockCard;
     private SwitchCompatCardItem.DSwitchCompatCard mSensorIndWakeLockCard;
 
+    private SwitchCompatCardItem.DSwitchCompatCard mLoggerEnableCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -53,6 +55,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasSmb135xWakeLock()) smb135xWakeLockInit();
         if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
+        if (Misc.hasLoggerEnable()) loggerInit();
     }
 
     private void tcpCongestionInit() {
@@ -106,6 +109,15 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mSensorIndWakeLockCard);
     }
 
+    private void loggerInit() {
+        mLoggerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mLoggerEnableCard.setDescription(getString(R.string.android_logger));
+        mLoggerEnableCard.setChecked(Misc.isLoggerActive());
+        mLoggerEnableCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mLoggerEnableCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -141,5 +153,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
             Misc.activateSmb135xWakeLock(checked, getActivity());
         if (dSwitchCompatCard == mSensorIndWakeLockCard)
             Misc.activateSensorIndWakeLock(checked, getActivity());
+        if (dSwitchCompatCard == mLoggerEnableCard)
+            Misc.activateLogger(checked, getActivity());
     }
 }

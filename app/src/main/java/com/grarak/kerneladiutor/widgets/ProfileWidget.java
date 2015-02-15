@@ -1,4 +1,4 @@
-package com.grarak.widgets;
+package com.grarak.kerneladiutor.widgets;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

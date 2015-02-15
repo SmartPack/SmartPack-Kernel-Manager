@@ -35,6 +35,18 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    public static void activateLogger(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LOGGER_ENABLED, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLoggerActive() {
+        return Utils.readFile(LOGGER_ENABLED).equals("1");
+    }
+
+    public static boolean hasLoggerEnable() {
+        return Utils.existFile(LOGGER_ENABLED);
+    }
+
     public static void activateSensorIndWakeLock(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", SENSOR_IND_WAKELOCK, Control.CommandType.GENERIC, context);
     }

@@ -44,7 +44,7 @@ import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
-import com.grarak.widgets.ProfileWidget;
+import com.grarak.kerneladiutor.widgets.ProfileWidget;
 
 import java.util.ArrayList;
 import java.util.List;
