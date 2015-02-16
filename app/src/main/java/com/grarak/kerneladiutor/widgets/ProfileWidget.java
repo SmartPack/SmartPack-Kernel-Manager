@@ -31,8 +31,6 @@ public class ProfileWidget extends AppWidgetProvider {
 
     private static final String ITEM_ARG = "item_extra";
 
-    private static List<ProfileDB.ProfileItem> items;
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -70,29 +68,31 @@ public class ProfileWidget extends AppWidgetProvider {
             MainActivity.destroy();
             context.startActivity(launch);
         } else if (intent.getAction().equals(LIST_ITEM_CLICK)) {
-            if (!Utils.PROFILE_APPLY) {
-                Utils.PROFILE_APPLY = true;
-                Utils.toast(context.getString(R.string.press_again_to_apply), context);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                            Utils.PROFILE_APPLY = false;
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+            if (ListViewFactory.items != null) {
+                if (!Utils.PROFILE_APPLY) {
+                    Utils.PROFILE_APPLY = true;
+                    Utils.toast(context.getString(R.string.press_again_to_apply), context);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                Utils.PROFILE_APPLY = false;
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
+                    }).start();
+                } else {
+                    Utils.PROFILE_APPLY = false;
+                    int position = intent.getIntExtra(ITEM_ARG, 0);
+                    for (int i = 0; i < ListViewFactory.items.get(position).getSys().size(); i++) {
+                        Control.commandSaver(context, ListViewFactory.items.get(position).getSys().get(i),
+                                ListViewFactory.items.get(position).getCommands().get(i));
+                        RootUtils.runCommand(ListViewFactory.items.get(position).getCommands().get(i));
                     }
-                }).start();
-            } else {
-                Utils.PROFILE_APPLY = false;
-                int position = intent.getIntExtra(ITEM_ARG, 0);
-                for (int i = 0; i < items.get(position).getSys().size(); i++) {
-                    Control.commandSaver(context, items.get(position).getSys().get(i),
-                            items.get(position).getCommands().get(i));
-                    RootUtils.runCommand(items.get(position).getCommands().get(i));
+                    Utils.toast(context.getString(R.string.applied), context);
                 }
-                Utils.toast(context.getString(R.string.applied), context);
             }
         }
 
@@ -102,6 +102,7 @@ public class ProfileWidget extends AppWidgetProvider {
     private static class ListViewFactory implements RemoteViewsService.RemoteViewsFactory {
 
         private final Context context;
+        public static List<ProfileDB.ProfileItem> items;
 
         public ListViewFactory(Context context) {
             this.context = context;
