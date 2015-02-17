@@ -34,6 +34,74 @@ public class Screen implements Constants {
     private static String SCREEN_CALIBRATION;
     private static String SCREEN_CALIBRATION_CTRL;
 
+    private static String MIN_BRIGHTNESS;
+
+    public static void setBackLightDimmerOffset(int value, Context context) {
+        Control.runCommand(String.valueOf(value), LM3630_BACKLIGHT_DIMMER_OFFSET, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBackLightDimmerOffset() {
+        return Utils.stringToInt(Utils.readFile(LM3630_BACKLIGHT_DIMMER_OFFSET));
+    }
+
+    public static boolean hasBackLightDimmerOffset() {
+        return Utils.existFile(LM3630_BACKLIGHT_DIMMER_OFFSET);
+    }
+
+    public static void setBackLightDimmerThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), LM3630_BACKLIGHT_DIMMER_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBackLightDimmerThreshold() {
+        return Utils.stringToInt(Utils.readFile(LM3630_BACKLIGHT_DIMMER_THRESHOLD));
+    }
+
+    public static boolean hasBackLightDimmerThreshold() {
+        return Utils.existFile(LM3630_BACKLIGHT_DIMMER_THRESHOLD);
+    }
+
+    public static void setMinBrightness(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MIN_BRIGHTNESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMaxMinBrightness() {
+        if (MIN_BRIGHTNESS != null) {
+            switch (MIN_BRIGHTNESS) {
+                case LM3630_MIN_BRIGHTNESS:
+                    return 50;
+                case MSM_BACKLIGHT_DIMMER:
+                    return 100;
+            }
+        }
+        return 0;
+    }
+
+    public static int getCurMinBrightness() {
+        return Utils.stringToInt(Utils.readFile(MIN_BRIGHTNESS));
+    }
+
+    public static boolean hasMinBrightness() {
+        if (MIN_BRIGHTNESS == null)
+            for (String file : MIN_BRIGHTNESS_ARRAY)
+                if (Utils.existFile(file)) {
+                    MIN_BRIGHTNESS = file;
+                    break;
+                }
+        return MIN_BRIGHTNESS != null;
+    }
+
+    public static void activateBackLightDimmer(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", LM3630_BACKLIGHT_DIMMER, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBackLightDimmerActive() {
+        return Utils.readFile(LM3630_BACKLIGHT_DIMMER).equals("Y");
+    }
+
+    public static boolean hasBackLightDimmerEnable() {
+        return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
+    }
+
     public static void setColorCalibration(String colors, Context context) {
         List<String> list = new ArrayList<>(Arrays.asList(colors.split(" ")));
 
@@ -120,8 +188,8 @@ public class Screen implements Constants {
     }
 
     public static boolean hasScreen() {
-        for (String file : SCREEN_ARRAY)
-            if (Utils.existFile(file)) return true;
+        for (String[] array : SCREEN_ARRAY)
+            for (String file : array) if (Utils.existFile(file)) return true;
         return false;
     }
 

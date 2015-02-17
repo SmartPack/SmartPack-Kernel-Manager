@@ -56,15 +56,17 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         super.init(savedInstanceState);
 
         mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
+        List<String> voltages = CPUVoltage.getVoltages();
+        if (voltages == null) return;
+
         for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
             mVoltageCard[i] = new EditTextCardView.DEditTextCard();
             String freq = CPUVoltage.isFauxVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
                     .getFreqs().get(i)) / 1000) : CPUVoltage.getFreqs().get(i);
             mVoltageCard[i].setTitle(freq + getString(R.string.mhz));
 
-            String voltage = CPUVoltage.getVoltages().get(i);
-            mVoltageCard[i].setDescription(voltage + getString(R.string.mv));
-            mVoltageCard[i].setValue(voltage);
+            mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
+            mVoltageCard[i].setValue(voltages.get(i));
             mVoltageCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
             mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override

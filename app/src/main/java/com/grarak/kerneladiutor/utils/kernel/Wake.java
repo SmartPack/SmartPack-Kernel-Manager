@@ -104,14 +104,16 @@ public class Wake implements Constants {
 
     public static List<String> getS2wMenu(Context context) {
         List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
         if (S2W_FILE != null) {
-            if (S2W_FILE.equals(S2W_ONLY)) {
-                list.add(context.getString(R.string.disabled));
-                list.add(context.getString(R.string.s2s));
-            } else if (S2W_FILE.equals(SW2)) {
-                list.add(context.getString(R.string.disabled));
-                list.add(context.getString(R.string.s2w) + " + " + context.getString(R.string.s2s));
-                list.add(context.getString(R.string.s2s));
+            switch (S2W_FILE) {
+                case S2W_ONLY:
+                    list.add(context.getString(R.string.enabled));
+                    break;
+                case SW2:
+                    list.add(context.getString(R.string.s2w) + " + " + context.getString(R.string.s2s));
+                    list.add(context.getString(R.string.s2s));
+                    break;
             }
         }
         return list;

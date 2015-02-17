@@ -154,7 +154,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             addView(mIntelliPlugThresholdCard);
         }
 
-        if (CPUHotplug.hasIntelliPlugScreenOffMax()) {
+        if (CPUHotplug.hasIntelliPlugScreenOffMax() && CPU.getFreqs() != null) {
             List<String> list = new ArrayList<>();
             list.add(getString(R.string.disabled));
             for (int freq : CPU.getFreqs())
