@@ -348,10 +348,11 @@ public interface Constants {
     public final String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
     public final String MSM_HSIC_HOST_WAKELOCK = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
 
-    public final String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK}, VIBRATION_ARRAY};
-
     // Logging
     public final String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
+
+    public final String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK,
+            MSM_HSIC_HOST_WAKELOCK, LOGGER_ENABLED}, VIBRATION_ARRAY};
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";
