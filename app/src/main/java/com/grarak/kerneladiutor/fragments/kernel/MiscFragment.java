@@ -44,6 +44,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private SwitchCompatCardItem.DSwitchCompatCard mSmb135xWakeLockCard;
     private SwitchCompatCardItem.DSwitchCompatCard mSensorIndWakeLockCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mMsmHsicHostWakeLockCard;
 
     private SwitchCompatCardItem.DSwitchCompatCard mLoggerEnableCard;
 
@@ -55,6 +56,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasSmb135xWakeLock()) smb135xWakeLockInit();
         if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
+        if (Misc.hasMsmHsicHostWakeLock()) msmHsicHostWakeLockInit();
         if (Misc.hasLoggerEnable()) loggerInit();
     }
 
@@ -109,6 +111,16 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mSensorIndWakeLockCard);
     }
 
+    private void msmHsicHostWakeLockInit() {
+        mMsmHsicHostWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mMsmHsicHostWakeLockCard.setTitle(getString(R.string.msm_hsic_host_wakelock));
+        mMsmHsicHostWakeLockCard.setDescription(getString(R.string.msm_hsic_host_wakelock_summary));
+        mMsmHsicHostWakeLockCard.setChecked(Misc.isMsmHsicHostWakeLockActive());
+        mMsmHsicHostWakeLockCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mMsmHsicHostWakeLockCard);
+    }
+
     private void loggerInit() {
         mLoggerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mLoggerEnableCard.setDescription(getString(R.string.android_logger));
@@ -153,6 +165,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
             Misc.activateSmb135xWakeLock(checked, getActivity());
         if (dSwitchCompatCard == mSensorIndWakeLockCard)
             Misc.activateSensorIndWakeLock(checked, getActivity());
+        if (dSwitchCompatCard == mMsmHsicHostWakeLockCard)
+            Misc.activateMsmHsicHostWakeLock(checked, getActivity());
         if (dSwitchCompatCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
     }

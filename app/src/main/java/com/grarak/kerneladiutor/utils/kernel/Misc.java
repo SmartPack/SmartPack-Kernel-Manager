@@ -35,6 +35,18 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    public static void activateMsmHsicHostWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", MSM_HSIC_HOST_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMsmHsicHostWakeLockActive() {
+        return Utils.readFile(MSM_HSIC_HOST_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasMsmHsicHostWakeLock() {
+        return Utils.existFile(MSM_HSIC_HOST_WAKELOCK);
+    }
+
     public static void activateLogger(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", LOGGER_ENABLED, Control.CommandType.GENERIC, context);
     }

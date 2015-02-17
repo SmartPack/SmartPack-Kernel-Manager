@@ -346,6 +346,7 @@ public interface Constants {
     // Wakelock
     public final String SMB135X_WAKELOCK = "/sys/module/smb135x_charger/parameters/use_wlock";
     public final String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
+    public final String MSM_HSIC_HOST_WAKELOCK = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
 
     public final String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK}, VIBRATION_ARRAY};
 
