@@ -290,6 +290,10 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mTempLimitCard)
             CPU.setTempLimit(position + CPU.getTempLimitMin(), getActivity());

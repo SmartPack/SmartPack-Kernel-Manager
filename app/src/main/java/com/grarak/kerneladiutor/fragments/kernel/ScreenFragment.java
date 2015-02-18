@@ -33,7 +33,15 @@ import java.util.List;
 public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
         SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
+    private List<String> mColorCalibrationLimits;
     private SeekBarCardView.DSeekBarCardView[] mColorCalibrationCard;
+    private SeekBarCardView.DSeekBarCardView mColorCalibrationMinCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mInvertScreenCard;
+    private SeekBarCardView.DSeekBarCardView mSaturationIntensityCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mGrayscaleModeCard;
+    private SeekBarCardView.DSeekBarCardView mScreenHueCard;
+    private SeekBarCardView.DSeekBarCardView mScreenValueCard;
+    private SeekBarCardView.DSeekBarCardView mScreenContrastCard;
 
     private SwitchCompatCardItem.DSwitchCompatCard mBackLightDimmerEnableCard;
     private SeekBarCardView.DSeekBarCardView mMinBrightnessCard;
@@ -44,20 +52,103 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (Screen.hasColorCalibration()) screenColorInit();
+        screenColorInit();
         backlightDimmerInit();
     }
 
     private void screenColorInit() {
-        List<String> colors = Screen.getColorCalibration();
-        mColorCalibrationCard = new SeekBarCardView.DSeekBarCardView[colors.size()];
-        for (int i = 0; i < mColorCalibrationCard.length; i++) {
-            mColorCalibrationCard[i] = new SeekBarCardView.DSeekBarCardView(Screen.getColorCalibrationLimits());
-            mColorCalibrationCard[i].setTitle(getColor(i));
-            mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits().indexOf(colors.get(i)));
-            mColorCalibrationCard[i].setOnDSeekBarCardListener(this);
+        if (Screen.hasColorCalibration()) {
+            List<String> colors = Screen.getColorCalibration();
+            mColorCalibrationLimits = Screen.getColorCalibrationLimits();
+            mColorCalibrationCard = new SeekBarCardView.DSeekBarCardView[colors.size()];
+            for (int i = 0; i < mColorCalibrationCard.length; i++) {
+                mColorCalibrationCard[i] = new SeekBarCardView.DSeekBarCardView(Screen.getColorCalibrationLimits());
+                mColorCalibrationCard[i].setTitle(getColor(i));
+                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits().indexOf(colors.get(i)));
+                mColorCalibrationCard[i].setOnDSeekBarCardListener(this);
 
-            addView(mColorCalibrationCard[i]);
+                addView(mColorCalibrationCard[i]);
+            }
+        }
+
+        if (Screen.hasColorCalibrationMin() && mColorCalibrationLimits != null) {
+            mColorCalibrationMinCard = new SeekBarCardView.DSeekBarCardView(Screen.getColorCalibrationLimits());
+            mColorCalibrationMinCard.setTitle(getString(R.string.min_rgb));
+            mColorCalibrationMinCard.setProgress(Screen.getColorCalibrationMin());
+            mColorCalibrationMinCard.setOnDSeekBarCardListener(this);
+
+            addView(mColorCalibrationMinCard);
+        }
+
+        if (Screen.hasInvertScreen()) {
+            mInvertScreenCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mInvertScreenCard.setDescription(getString(R.string.invert_screen));
+            mInvertScreenCard.setChecked(Screen.isInvertScreenActive());
+            mInvertScreenCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mInvertScreenCard);
+        }
+
+        if (Screen.hasSaturationIntensity()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 159; i++)
+                list.add(String.valueOf(i));
+
+            int saturation = Screen.getSaturationIntensity();
+            mSaturationIntensityCard = new SeekBarCardView.DSeekBarCardView(list);
+            mSaturationIntensityCard.setTitle(getString(R.string.saturation_intensity));
+            mSaturationIntensityCard.setProgress(saturation == 128 ? 30 : saturation - 225);
+            mSaturationIntensityCard.setEnabled(saturation != 128);
+            mSaturationIntensityCard.setOnDSeekBarCardListener(this);
+
+            addView(mSaturationIntensityCard);
+
+            mGrayscaleModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mGrayscaleModeCard.setDescription(getString(R.string.grayscale_mode));
+            mGrayscaleModeCard.setChecked(saturation == 128);
+            mGrayscaleModeCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mGrayscaleModeCard);
+        }
+
+        if (Screen.hasScreenHue()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 1537; i++)
+                list.add(String.valueOf(i));
+
+            mScreenHueCard = new SeekBarCardView.DSeekBarCardView(list);
+            mScreenHueCard.setTitle(getString(R.string.screen_hue));
+            mScreenHueCard.setDescription(getString(R.string.screen_hue_summary));
+            mScreenHueCard.setProgress(Screen.getScreenHue());
+            mScreenHueCard.setOnDSeekBarCardListener(this);
+
+            addView(mScreenHueCard);
+        }
+
+        if (Screen.hasScreenValue()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 256; i++)
+                list.add(String.valueOf(i));
+
+            mScreenValueCard = new SeekBarCardView.DSeekBarCardView(list);
+            mScreenValueCard.setTitle(getString(R.string.screen_value));
+            mScreenValueCard.setProgress(Screen.getScreenValue() - 128);
+            mScreenValueCard.setOnDSeekBarCardListener(this);
+
+            addView(mScreenValueCard);
+        }
+
+        if (Screen.hasScreenContrast()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 256; i++)
+                list.add(String.valueOf(i));
+
+            mScreenContrastCard = new SeekBarCardView.DSeekBarCardView(list);
+            mScreenContrastCard.setTitle(getString(R.string.screen_contrast));
+            mScreenContrastCard.setProgress(Screen.getScreenContrast() - 128);
+            mScreenContrastCard.setOnDSeekBarCardListener(this);
+
+            addView(mScreenContrastCard);
         }
     }
 
@@ -113,6 +204,51 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
+            if (dSeekBarCardView == seekBarCardView) {
+                setColor(dSeekBarCardView, position);
+                if (mColorCalibrationMinCard != null)
+                    if (position < mColorCalibrationMinCard.getProgress()) {
+                        dSeekBarCardView.setProgress(mColorCalibrationMinCard.getProgress());
+                        setColor(dSeekBarCardView, mColorCalibrationMinCard.getProgress());
+                    }
+            }
+
+        if (dSeekBarCardView == mColorCalibrationMinCard) {
+            Screen.setColorCalibrationMin(Integer.parseInt(mColorCalibrationLimits.get(position)), getActivity());
+            for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
+                if (position > seekBarCardView.getProgress()) {
+                    seekBarCardView.setProgress(position);
+                    setColor(seekBarCardView, position);
+                }
+        }
+
+        if (dSeekBarCardView == mColorCalibrationMinCard)
+            Screen.setColorCalibrationMin(position, getActivity());
+        if (dSeekBarCardView == mSaturationIntensityCard)
+            Screen.setSaturationIntensity(position + 225, getActivity());
+        if (dSeekBarCardView == mScreenHueCard)
+            Screen.setScreenHue(position, getActivity());
+        if (dSeekBarCardView == mScreenValueCard)
+            Screen.setScreenValue(position + 128, getActivity());
+        if (dSeekBarCardView == mScreenContrastCard)
+            Screen.setScreenContrast(position + 128, getActivity());
+    }
+
+    private void setColor(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        String command = "";
+        for (SeekBarCardView.DSeekBarCardView colorCard : mColorCalibrationCard) {
+            String color;
+            if (dSeekBarCardView == colorCard)
+                color = mColorCalibrationLimits.get(position);
+            else color = mColorCalibrationLimits.get(colorCard.getProgress());
+            command += command.isEmpty() ? color : " " + color;
+        }
+        Screen.setColorCalibration(command, getActivity());
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mMinBrightnessCard)
             Screen.setMinBrightness(position, getActivity());
@@ -120,25 +256,17 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.setBackLightDimmerThreshold(position, getActivity());
         if (dSeekBarCardView == mBackLightDimmerOffsetCard)
             Screen.setBackLightDimmerOffset(position, getActivity());
-
-        for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
-            if (dSeekBarCardView == seekBarCardView) {
-                List<String> colors = Screen.getColorCalibration();
-                List<String> list = Screen.getColorCalibrationLimits();
-                String color = "";
-
-                for (int i = 0; i < mColorCalibrationCard.length; i++)
-                    if (dSeekBarCardView == mColorCalibrationCard[i])
-                        color += color.isEmpty() ? list.get(position) : " " + list.get(position);
-                    else
-                        color += color.isEmpty() ? colors.get(i) : " " + colors.get(i);
-
-                Screen.setColorCalibration(color, getActivity());
-            }
     }
 
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mInvertScreenCard)
+            Screen.activateInvertScreen(checked, getActivity());
+        if (dSwitchCompatCard == mGrayscaleModeCard) {
+            mSaturationIntensityCard.setEnabled(!checked);
+            Screen.activateGrayscaleMode(checked, getActivity());
+            if (!checked) mSaturationIntensityCard.setProgress(30);
+        }
         if (dSwitchCompatCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
     }

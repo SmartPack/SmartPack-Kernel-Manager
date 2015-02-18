@@ -129,6 +129,10 @@ public class BatteryFragment extends RecyclerViewFragment implements SwitchCompa
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mBlxCard) Battery.setBlx(position, getActivity());
     }

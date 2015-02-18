@@ -44,6 +44,7 @@ public class SeekBarCardView extends BaseCardView {
     private String title;
     private String description;
     private int progress;
+    private boolean enabled = true;
 
     private OnSeekBarCardListener onSeekBarCardListener;
 
@@ -56,6 +57,10 @@ public class SeekBarCardView extends BaseCardView {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (valueView != null) valueView.setText(SeekBarCardView.this.list.get(progress));
+                boolean changed = false;
+                if ((SeekBarCardView.this.progress != seekBar.getProgress())) changed = true;
+                if (onSeekBarCardListener != null && changed)
+                    onSeekBarCardListener.onChanged(SeekBarCardView.this, seekBar.getProgress());
             }
 
             @Override
@@ -74,6 +79,7 @@ public class SeekBarCardView extends BaseCardView {
             }
         });
         seekBarView.setProgress(progress);
+        seekBarView.setEnabled(enabled);
 
         headerCardView = new HeaderCardView(getContext());
         setUpTitle();
@@ -131,6 +137,11 @@ public class SeekBarCardView extends BaseCardView {
         }
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        if (seekBarView != null) seekBarView.setEnabled(enabled);
+    }
+
     private void setUpTitle() {
         if (headerCardView != null) {
             if (title == null) removeHeader();
@@ -153,6 +164,8 @@ public class SeekBarCardView extends BaseCardView {
     }
 
     public interface OnSeekBarCardListener {
+        public void onChanged(SeekBarCardView seekBarCardView, int progress);
+
         public void onStop(SeekBarCardView seekBarCardView, int progress);
     }
 
@@ -165,6 +178,7 @@ public class SeekBarCardView extends BaseCardView {
         private String title;
         private String description;
         private int progress;
+        private boolean enabled = true;
 
         private OnDSeekBarCardListener onDSeekBarCardListener;
 
@@ -188,8 +202,15 @@ public class SeekBarCardView extends BaseCardView {
                 seekBarCardView.setDescription(description);
             }
             seekBarCardView.setProgress(progress);
+            seekBarCardView.setEnabled(enabled);
 
             seekBarCardView.setOnSeekBarCardListener(new SeekBarCardView.OnSeekBarCardListener() {
+                @Override
+                public void onChanged(SeekBarCardView seekBarCardView, int progress) {
+                    if (onDSeekBarCardListener != null)
+                        onDSeekBarCardListener.onChanged(DSeekBarCardView.this, progress);
+                }
+
                 @Override
                 public void onStop(SeekBarCardView seekBarCardView, int progress) {
                     DSeekBarCardView.this.progress = progress;
@@ -217,11 +238,22 @@ public class SeekBarCardView extends BaseCardView {
             if (seekBarCardView != null) seekBarCardView.setProgress(progress);
         }
 
+        public int getProgress() {
+            return progress;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+            if (seekBarCardView != null) seekBarCardView.setEnabled(enabled);
+        }
+
         public void setOnDSeekBarCardListener(OnDSeekBarCardListener onDSeekBarCardListener) {
             this.onDSeekBarCardListener = onDSeekBarCardListener;
         }
 
         public interface OnDSeekBarCardListener {
+            public void onChanged(DSeekBarCardView dSeekBarCardView, int position);
+
             public void onStop(DSeekBarCardView dSeekBarCardView, int position);
         }
 

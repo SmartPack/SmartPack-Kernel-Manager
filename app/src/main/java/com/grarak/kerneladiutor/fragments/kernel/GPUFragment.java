@@ -170,6 +170,10 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mSimpleGpuLazinessCard)
             GPU.setSimpleGpuLaziness(position, getActivity());

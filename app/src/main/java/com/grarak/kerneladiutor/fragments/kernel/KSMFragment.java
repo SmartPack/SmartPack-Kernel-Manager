@@ -20,9 +20,9 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
@@ -94,6 +94,10 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
+    }
+
+    @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
     }
 
     @Override

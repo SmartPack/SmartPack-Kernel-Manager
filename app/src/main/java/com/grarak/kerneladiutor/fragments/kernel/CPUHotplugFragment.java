@@ -466,6 +466,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mIntelliPlugHysteresisCard)
             CPUHotplug.setIntelliPlugHysteresis(position, getActivity());

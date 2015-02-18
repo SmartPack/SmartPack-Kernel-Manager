@@ -102,6 +102,82 @@ public class Screen implements Constants {
         return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
     }
 
+    public static void setScreenContrast(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_CONT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getScreenContrast() {
+        return Utils.stringToInt(Utils.readFile(SCREEN_KCAL_CTRL_CONT));
+    }
+
+    public static boolean hasScreenContrast() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_CONT);
+    }
+
+    public static void setScreenValue(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_VAL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getScreenValue() {
+        return Utils.stringToInt(Utils.readFile(SCREEN_KCAL_CTRL_VAL));
+    }
+
+    public static boolean hasScreenValue() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_VAL);
+    }
+
+    public static void setScreenHue(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_HUE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getScreenHue() {
+        return Utils.stringToInt(Utils.readFile(SCREEN_KCAL_CTRL_HUE));
+    }
+
+    public static boolean hasScreenHue() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_HUE);
+    }
+
+    public static void activateGrayscaleMode(boolean active, Context context) {
+        Control.runCommand(active ? "128" : "255", SCREEN_KCAL_CTRL_SAT, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setSaturationIntensity(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_SAT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSaturationIntensity() {
+        return Utils.stringToInt(Utils.readFile(SCREEN_KCAL_CTRL_SAT));
+    }
+
+    public static boolean hasSaturationIntensity() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_SAT);
+    }
+
+    public static void activateInvertScreen(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", SCREEN_KCAL_CTRL_INVERT, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isInvertScreenActive() {
+        return Utils.readFile(SCREEN_KCAL_CTRL_INVERT).equals("1");
+    }
+
+    public static boolean hasInvertScreen() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_INVERT);
+    }
+
+    public static void setColorCalibrationMin(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_MIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getColorCalibrationMin() {
+        return Utils.stringToInt(Utils.readFile(SCREEN_KCAL_CTRL_MIN));
+    }
+
+    public static boolean hasColorCalibrationMin() {
+        return Utils.existFile(SCREEN_KCAL_CTRL_MIN);
+    }
+
     public static void setColorCalibration(String colors, Context context) {
         List<String> list = new ArrayList<>(Arrays.asList(colors.split(" ")));
 
@@ -132,15 +208,27 @@ public class Screen implements Constants {
 
     public static List<String> getColorCalibrationLimits() {
         String[] values;
-        if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)
-                || SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
-            values = new String[341];
-        else values = new String[226];
-        for (int i = 0; i < values.length; i++)
-            if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)
-                    || SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
-                values[i] = String.valueOf(i + 60);
-            else values[i] = String.valueOf(i + 30);
+        switch (SCREEN_CALIBRATION) {
+            case SCREEN_SAMOLED_COLOR_RED:
+            case SCREEN_COLOR_CONTROL:
+                values = new String[341];
+                for (int i = 0; i < values.length; i++)
+                    values[i] = String.valueOf(i + 60);
+                break;
+            default:
+                int max = 255;
+                int min = 30;
+                for (String file : SCREEN_KCAL_CTRL_NEW_ARRAY)
+                    if (Utils.existFile(file)) {
+                        max = 256;
+                        min = 0;
+                        break;
+                    }
+                values = new String[max - min + 1];
+                for (int i = 0; i < values.length; i++)
+                    values[i] = String.valueOf(i);
+                break;
+        }
         return new ArrayList<>(Arrays.asList(values));
     }
 

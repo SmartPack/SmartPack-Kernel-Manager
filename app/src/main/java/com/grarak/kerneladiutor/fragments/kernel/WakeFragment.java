@@ -116,6 +116,10 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
     }

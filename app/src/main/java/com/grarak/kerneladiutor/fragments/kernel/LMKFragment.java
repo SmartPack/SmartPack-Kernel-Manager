@@ -61,6 +61,10 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
             mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
             mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
                 @Override
+                public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+                }
+
+                @Override
                 public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
                     List<String> minFrees = LMK.getMinFrees();
                     String minFree = "";

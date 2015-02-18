@@ -137,6 +137,10 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mVibrationCard) {
             int max = Misc.getVibrationMax();

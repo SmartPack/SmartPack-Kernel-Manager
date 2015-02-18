@@ -179,8 +179,16 @@
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
+    <string name="min_rgb">Minimum RGB Value</string>
     <string name="backlight_dimmer">Backlight Dimmer</string>
     <string name="min_brightness">Minimum Brightness</string>
+    <string name="invert_screen">Invert Screen</string>
+    <string name="saturation_intensity">Saturation Intensity</string>
+    <string name="grayscale_mode">Grayscale Mode</string>
+    <string name="screen_hue">Screen Hue</string>
+    <string name="screen_hue_summary">You might get problems with MSM8x26 SoC with higher values.</string>
+    <string name="screen_value">Screen Value</string>
+    <string name="screen_contrast">Screen Contrast</string>
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible than stock.</string>
     <string name="backlight_dimmer_threshold">Backlight Dimmer Threshold</string>
     <string name="backlight_dimmer_offset">Backlight Dimmer Offset</string>

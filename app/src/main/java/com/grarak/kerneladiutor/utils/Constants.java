@@ -204,6 +204,16 @@ public interface Constants {
     public final String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";
     public final String SCREEN_KCAL_CTRL = SCREEN_KCAL + "/kcal";
     public final String SCREEN_KCAL_CTRL_CTRL = SCREEN_KCAL + "/kcal_ctrl";
+    public final String SCREEN_KCAL_CTRL_ENABLE = SCREEN_KCAL + "/kcal_enable";
+    public final String SCREEN_KCAL_CTRL_MIN = SCREEN_KCAL + "/kcal_min";
+    public final String SCREEN_KCAL_CTRL_INVERT = SCREEN_KCAL + "/kcal_invert";
+    public final String SCREEN_KCAL_CTRL_SAT = SCREEN_KCAL + "/kcal_sat";
+    public final String SCREEN_KCAL_CTRL_HUE = SCREEN_KCAL + "/kcal_hue";
+    public final String SCREEN_KCAL_CTRL_VAL = SCREEN_KCAL + "/kcal_val";
+    public final String SCREEN_KCAL_CTRL_CONT = SCREEN_KCAL + "/kcal_cont";
+
+    public final String[] SCREEN_KCAL_CTRL_NEW_ARRAY = {SCREEN_KCAL_CTRL_MIN, SCREEN_KCAL_CTRL_INVERT, SCREEN_KCAL_CTRL_SAT,
+            SCREEN_KCAL_CTRL_HUE, SCREEN_KCAL_CTRL_VAL, SCREEN_KCAL_CTRL_CONT};
 
     public final String SCREEN_DIAG0 = "/sys/devices/platform/DIAG0.0";
     public final String SCREEN_DIAG0_POWER = SCREEN_DIAG0 + "/power_rail";
@@ -221,7 +231,7 @@ public interface Constants {
     public final String[] SCREEN_KCAL_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER, SCREEN_COLOR_CONTROL,
             SCREEN_SAMOLED_COLOR_RED};
 
-    public final String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_DIAG0_POWER_CTRL,
+    public final String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_KCAL_CTRL_ENABLE, SCREEN_DIAG0_POWER_CTRL,
             SCREEN_COLOR_CONTROL_CTRL};
 
     public final String LM3630_BACKLIGHT_DIMMER = "/sys/module/lm3630_bl/parameters/backlight_dimmer";
@@ -234,6 +244,7 @@ public interface Constants {
     public final String[] MIN_BRIGHTNESS_ARRAY = {LM3630_MIN_BRIGHTNESS, MSM_BACKLIGHT_DIMMER};
 
     public final String[][] SCREEN_ARRAY = {SCREEN_KCAL_ARRAY, SCREEN_KCAL_CTRL_ARRAY, MIN_BRIGHTNESS_ARRAY,
+            SCREEN_KCAL_CTRL_NEW_ARRAY,
             {LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD, LM3630_BACKLIGHT_DIMMER_OFFSET}};
 
     // Wake

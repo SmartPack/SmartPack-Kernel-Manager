@@ -113,6 +113,10 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mHeadphoneGainCard)
             Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity());
