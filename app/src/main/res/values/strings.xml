@@ -186,7 +186,7 @@
     <string name="saturation_intensity">Saturation Intensity</string>
     <string name="grayscale_mode">Grayscale Mode</string>
     <string name="screen_hue">Screen Hue</string>
-    <string name="screen_hue_summary">You might get problems with MSM8x26 SoC with higher values.</string>
+    <string name="screen_hue_summary">You might get problems with MSM8x26 SoC when setting a high value.</string>
     <string name="screen_value">Screen Value</string>
     <string name="screen_contrast">Screen Contrast</string>
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible than stock.</string>
