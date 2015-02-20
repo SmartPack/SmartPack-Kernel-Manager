@@ -217,7 +217,7 @@ public class Screen implements Constants {
                 break;
             default:
                 int max = 255;
-                int min = 30;
+                int min = 0;
                 for (String file : SCREEN_KCAL_CTRL_NEW_ARRAY)
                     if (Utils.existFile(file)) {
                         max = 256;
