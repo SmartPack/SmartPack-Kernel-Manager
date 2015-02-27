@@ -177,6 +177,10 @@ public class RecyclerViewFragment extends Fragment {
         return views.size();
     }
 
+    public boolean animate() {
+        return true;
+    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -218,6 +222,7 @@ public class RecyclerViewFragment extends Fragment {
             });
             views.clear();
             adapter = new DAdapter.Adapter(views);
+            adapter.animate(animate());
         }
 
         @Override

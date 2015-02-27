@@ -18,7 +18,6 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
@@ -90,7 +89,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
         floatingActionsMenu = (FloatingActionsMenu) getParentView(R.layout.path_read_view).findViewById(R.id.fab_menu);
         floatingActionsMenu.setVisibility(View.VISIBLE);
-        animate();
+        animateFab();
         return (RecyclerView) getParentView(R.layout.path_read_view).findViewById(R.id.recycler_view);
     }
 
@@ -258,12 +257,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         });
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    private void animate() {
+    private void animateFab() {
         Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
         animation.setDuration(1500);
         if (floatingActionsMenu != null) floatingActionsMenu.startAnimation(animation);

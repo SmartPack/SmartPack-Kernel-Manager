@@ -43,6 +43,7 @@ public class DAdapter {
 
         private final List<DView> DViews;
         private int count = -1;
+        private boolean animate = true;
 
         public Adapter(List<DView> DViews) {
             this.DViews = DViews;
@@ -70,10 +71,14 @@ public class DAdapter {
         }
 
         private void setAnimation(View viewToAnimate, int position) {
-            if (position > count && viewToAnimate instanceof BaseCardView) {
+            if (position > count && viewToAnimate instanceof BaseCardView && animate) {
                 viewToAnimate.startAnimation(AnimationUtils.loadAnimation(viewToAnimate.getContext(), R.anim.recyclerview));
                 count = position;
             }
+        }
+
+        public void animate(boolean animate) {
+            this.animate = animate;
         }
 
     }

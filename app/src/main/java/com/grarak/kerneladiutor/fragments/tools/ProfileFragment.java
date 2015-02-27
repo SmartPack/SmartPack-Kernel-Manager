@@ -173,7 +173,7 @@ public class ProfileFragment extends RecyclerViewFragment {
             }
         });
 
-        animate();
+        animateFab();
         return (RecyclerView) getParentView(R.layout.profile_fragment).findViewById(R.id.recycler_view);
     }
 
@@ -293,7 +293,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
     }
 
-    private void animate() {
+    private void animateFab() {
         Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
         animation.setDuration(1500);
         if (addButton != null) addButton.startAnimation(animation);
