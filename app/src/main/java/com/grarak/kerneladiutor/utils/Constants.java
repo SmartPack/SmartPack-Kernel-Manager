@@ -254,8 +254,9 @@ public interface Constants {
     public final String LGE_TOUCH_CORE_DT2W = "/sys/module/lge_touch_core/parameters/doubletap_to_wake";
     public final String DT2W = "/sys/android_touch/doubletap2wake";
     public final String TOUCH_PANEL_DT2W = "/proc/touchpanel/double_tap_enable";
+    public final String DT2W_WAKEUP_GESTURE = "/sys/devices/virtual/input/input1/wakeup_gesture";
 
-    public final String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, DT2W, TOUCH_PANEL_DT2W};
+    public final String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, DT2W, TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE};
 
     // S2W
     public final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
