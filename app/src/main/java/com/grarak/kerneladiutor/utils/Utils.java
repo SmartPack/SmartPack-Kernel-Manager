@@ -152,8 +152,9 @@ public class Utils implements Constants {
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
-        Log.i(TAG, "getting " + name);
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
+        boolean bool = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
+        Log.i(TAG, "getting " + name + ": " + bool);
+        return bool;
     }
 
     public static void saveBoolean(String name, boolean value, Context context) {
@@ -162,8 +163,9 @@ public class Utils implements Constants {
     }
 
     public static String getString(String name, String defaults, Context context) {
-        Log.i(TAG, "getting " + name);
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
+        String ret = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
+        Log.i(TAG, "getting " + name + ": " + ret);
+        return ret;
     }
 
     public static void saveString(String name, String value, Context context) {
