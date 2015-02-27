@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
@@ -35,8 +34,6 @@ import java.util.List;
 public class ListAdapter {
 
     public interface ListItem {
-
-        public Button getItem();
 
         public String getTitle();
 
@@ -70,11 +67,6 @@ public class ListAdapter {
         }
 
         @Override
-        public Button getItem() {
-            return null;
-        }
-
-        @Override
         public String getTitle() {
             return title;
         }
@@ -102,11 +94,6 @@ public class ListAdapter {
         }
 
         @Override
-        public Button getItem() {
-            return null;
-        }
-
-        @Override
         public String getTitle() {
             return title;
         }
@@ -127,11 +114,6 @@ public class ListAdapter {
     }
 
     public static class MainHeader implements ListItem {
-
-        @Override
-        public Button getItem() {
-            return null;
-        }
 
         @Override
         public String getTitle() {

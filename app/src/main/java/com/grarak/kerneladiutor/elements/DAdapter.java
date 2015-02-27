@@ -17,9 +17,13 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
-import java.util.ArrayList;
+import com.grarak.cardview.BaseCardView;
+import com.grarak.kerneladiutor.R;
+
 import java.util.List;
 
 /**
@@ -38,8 +42,7 @@ public class DAdapter {
     public static class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private final List<DView> DViews;
-
-        private List<RecyclerView.ViewHolder> viewHolders = new ArrayList<>();
+        private int count = -1;
 
         public Adapter(List<DView> DViews) {
             this.DViews = DViews;
@@ -53,6 +56,7 @@ public class DAdapter {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             DViews.get(position).onBindViewHolder(holder);
+            setAnimation(holder.itemView, position);
         }
 
         @Override
@@ -62,13 +66,14 @@ public class DAdapter {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            RecyclerView.ViewHolder viewHolder = DViews.get(viewType).onCreateViewHolder(parent);
-            viewHolders.add(viewHolder);
-            return viewHolder;
+            return DViews.get(viewType).onCreateViewHolder(parent);
         }
 
-        public List<RecyclerView.ViewHolder> getViewHolders() {
-            return viewHolders;
+        private void setAnimation(View viewToAnimate, int position) {
+            if (position > count && viewToAnimate instanceof BaseCardView) {
+                viewToAnimate.startAnimation(AnimationUtils.loadAnimation(viewToAnimate.getContext(), R.anim.recyclerview));
+                count = position;
+            }
         }
 
     }

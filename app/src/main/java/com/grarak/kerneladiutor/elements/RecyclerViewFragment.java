@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
@@ -33,7 +32,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -237,7 +235,6 @@ public class RecyclerViewFragment extends Fragment {
             super.onPostExecute(s);
 
             recyclerView.setAdapter(adapter);
-            animateRecyclerView();
             if (hand != null) hand.post(run);
 
             try {
@@ -248,12 +245,6 @@ public class RecyclerViewFragment extends Fragment {
 
         }
 
-    }
-
-    public void animateRecyclerView() {
-        Context context = getActivity();
-        if (context != null)
-            recyclerView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.bottom_to_top));
     }
 
     public Handler getHandler() {
