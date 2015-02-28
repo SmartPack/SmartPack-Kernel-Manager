@@ -60,7 +60,8 @@ public abstract class BaseCardView extends CardView {
         super(context, attributeSet);
 
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(5, 5, 5, 5);
+        int margin = (int) (2.5 * getResources().getDisplayMetrics().density);
+        layoutParams.setMargins(margin, margin, margin, margin);
         setLayoutParams(layoutParams);
         setRadius(0);
 

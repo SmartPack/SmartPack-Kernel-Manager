@@ -91,9 +91,9 @@ public class PathReaderActivity extends ActionBarActivity {
 
     public static class PathReaderFragment extends RecyclerViewFragment implements View.OnClickListener {
 
-        private static String PATH;
-        private static String ERROR;
-        private static int TYPE;
+        private String PATH;
+        private String ERROR;
+        private int TYPE;
 
         private Handler hand;
 
@@ -103,10 +103,13 @@ public class PathReaderActivity extends ActionBarActivity {
                 "max_freq_blank", "high_freq_zone", "input_boost_freq"};
 
         public static PathReaderFragment newInstance(String path, String error, int type) {
-            PATH = path;
-            ERROR = error;
-            TYPE = type;
-            return new PathReaderFragment();
+            Bundle args = new Bundle();
+            args.putString(ARG_PATH, path);
+            args.putString(ARG_ERROR, error);
+            args.putInt(ARG_TYPE, type);
+            PathReaderFragment pathReaderFragment = new PathReaderFragment();
+            pathReaderFragment.setArguments(args);
+            return pathReaderFragment;
         }
 
         @Override
@@ -128,6 +131,10 @@ public class PathReaderActivity extends ActionBarActivity {
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
             hand = getHandler();
+
+            PATH = getArguments().getString(ARG_PATH);
+            ERROR = getArguments().getString(ARG_ERROR);
+            TYPE = getArguments().getInt(ARG_TYPE);
 
             File[] fileArray = new File(PATH).listFiles();
             if (Utils.existFile(PATH) && fileArray != null) {

@@ -32,9 +32,7 @@ public class Battery implements Constants {
     }
 
     public static int getCurBlx() {
-        String value = Utils.readFile(FORCE_FAST_CHARGE);
-        if (value != null) return Utils.stringToInt(value);
-        return 0;
+        return Utils.stringToInt(Utils.readFile(FORCE_FAST_CHARGE));
     }
 
     public static boolean hasBlx() {
@@ -46,8 +44,7 @@ public class Battery implements Constants {
     }
 
     public static boolean isForceFastChargeActive() {
-        String value = Utils.readFile(FORCE_FAST_CHARGE);
-        return value != null && value.equals("1");
+        return Utils.readFile(FORCE_FAST_CHARGE).equals("1");
     }
 
     public static boolean hasForceFastCharge() {
