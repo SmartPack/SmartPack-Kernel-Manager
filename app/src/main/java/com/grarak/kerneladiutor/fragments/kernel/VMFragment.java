@@ -20,7 +20,7 @@ import android.os.Bundle;
 import android.text.InputType;
 
 import com.grarak.kerneladiutor.elements.EditTextCardView;
-import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.VM;
 
 /**

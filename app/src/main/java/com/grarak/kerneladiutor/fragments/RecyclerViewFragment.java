@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.elements;
+package com.grarak.kerneladiutor.fragments;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
@@ -37,6 +37,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 

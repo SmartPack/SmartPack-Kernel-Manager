@@ -31,7 +31,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;

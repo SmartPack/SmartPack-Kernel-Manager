@@ -37,7 +37,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.ListAdapter;
-import com.grarak.kerneladiutor.elements.RecyclerViewFragment;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
