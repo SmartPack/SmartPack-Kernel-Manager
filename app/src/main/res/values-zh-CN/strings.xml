@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kernel Adiutor</string>
+    <string name="no_root">root 不可用</string>
+    <string name="no_busybox">busybox 不可用</string>
+    <string name="apply_on_boot">在启动时重新应用</string>
+    <string name="apply_on_boot_summary">您的更改已经被应用</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="current_value_not_supported">不支持当前值</string>
+    <string name="beta_message">感谢您成为Beta版本的测试人员！如果您遇到任何问题，请不要犹豫并立即联系我。您当前运行的版本是 %s</string>
+
+    <!-- Units -->
+    <string name="mhz">MHz</string>
+    <string name="mv">mV</string>
+    <string name="kb">kB</string>
+    <string name="ms">ms</string>
+    <string name="mb">MB</string>
+    <string name="min">min</string>
+
+    <!-- Special signs -->
+    <string name="minus" translatable="false">&lt;</string>
+    <string name="plus" translatable="false">&gt;</string>
+
+    <!-- Headers -->
+    <string name="information">信息</string>
+    <string name="kernel">内核</string>
+    <string name="tools">工具</string>
+    <string name="other">其他</string>
+
+    <!-- Tabs -->
+    <string name="frequency_table">频率表</string>
+    <string name="kernel_information">内核信息</string>
+    <string name="cpu">CPU</string>
+    <string name="cpu_voltage">CPU 电压</string>
+    <string name="cpu_hotplug">CPU Hotplug</string>
+    <string name="gpu">GPU</string>
+    <string name="screen">屏幕</string>
+    <string name="wake_controls">唤醒控制</string>
+    <string name="sound">声音</string>
+    <string name="battery">电源</string>
+    <string name="io_scheduler">I/O 调度器</string>
+    <string name="ksm">内核同页合并(KSM)</string>
+    <string name="low_memory_killer">低内存管理</string>
+    <string name="virtual_memory">虚拟内存</string>
+    <string name="misc_controls">杂项控制</string>
+    <string name="build_prop_editor">Build prop 编辑器</string>
+    <string name="profile">配置文件</string>
+    <string name="about_us">关于我们</string>
+
+    <!-- Frequency Table -->
+    <string name="unused_cpu_states">未使用的 CPU 状态</string>
+    <string name="uptime">启动时间</string>
+    <string name="deep_sleep">深度睡眠</string>
+    <string name="refresh">刷新</string>
+    <string name="reset_timer">重置计时器</string>
+    <string name="restore_timer">还原计时器</string>
+
+    <!-- Kernel Information -->
+    <string name="kernel_version">内核版本</string>
+    <string name="cpu_information">CPU 信息</string>
+    <string name="memory_information">内存信息</string>
+
+    <!-- CPU -->
+    <string name="cpu_usage">CPU 使用情况</string>
+    <string name="current_freq">当前频率</string>
+    <string name="core">核心 %d</string>
+    <string name="offline">离线</string>
+    <string name="cpu_max_freq">CPU 最高频率</string>
+    <string name="cpu_max_freq_summary">设置 CPU 能调节到的最高频率.</string>
+    <string name="cpu_min_freq">CPU 最低频率</string>
+    <string name="cpu_min_freq_summary">设置 CPU 能调节到的最低频率.</string>
+    <string name="cpu_max_screen_off_freq">CPU 最高灭屏频率</string>
+    <string name="cpu_max_screen_off_freq_summary">调整在屏幕关闭状态时 CPU 能调节到的最高频率.</string>
+    <string name="cpu_governor">CPU 调速器</string>
+    <string name="cpu_governor_summary">CPU 调速器决定 CPU 在应对各种工作负载情形时的行为. 更改调速器会影响 CPU 如何在可用频率间切换频率大小.</string>
+    <string name="cpu_governor_tunables">CPU 调速器微调</string>
+    <string name="cpu_governor_tunables_summary">这些配置项与您使用的调速器有关</string>
+    <string name="not_tunable">%s 无法调节</string>
+    <string name="mc_power_saving">多核省电</string>
+    <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务.</string>
+    <string name="disabled">禁用</string>
+    <string name="enabled">启用</string>
+    <string name="aggressive">积极</string>
+    <string name="temp_limit">温度上限</string>
+    <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的.</string>
+    <string name="cpu_boost">CPU Boost</string>
+    <string name="cpu_boost_debug_mask">CPU Boost 调试选项</string>
+    <string name="cpu_boost_debug_mask_summary">允许你激活 CPU Boost 操作的调试选项.</string>
+    <string name="cpu_boost_interval">CPU Boost 间隔</string>
+    <string name="cpu_boost_interval_summary">单个 CPU 被提升频率的最小间隔.</string>
+    <string name="cpu_boost_sync_threshold">CPU Boost 同步阀值</string>
+    <string name="cpu_boost_sync_threshold_summary">当 CPU 负载超过预设阀值，当前 CPU 将会升高至此频率。</string>
+    <string name="cpu_boost_input_interval">CPU Boost 输入间隔</string>
+    <string name="cpu_boost_input_interval_summary">当输入事件（如屏幕被触摸）被检测到时单个 CPU 被提升频率的最小间隔。</string>
+
+    <!-- CPU Voltage -->
+    <string name="global_offset">全局偏移量</string>
+
+    <!-- CPU Hotplug -->
+    <string name="mpdecision">MPDecision</string>
+    <string name="mpdecision_summary">高通提出的 hotplug 解决方案。当它启用时你可能会在更改最大/最小频率时遇到问题。</string>
+    <string name="intelliplug">IntelliPlug</string>
+    <string name="intelliplug_summary">由 faux123 提出的 MPDecision 替代方案。</string>
+    <string name="intelliplug_profile">IntelliPlug 情景模式</string>
+    <string name="intelliplug_profile_summary">括号中的数字表示任意时间内在线核心的数量。</string>
+    <string name="balanced">平衡</string>
+    <string name="performance">性能</string>
+    <string name="conservative">节能</string>
+    <string name="eco_performance">Eco 性能模式</string>
+    <string name="eco_conservative">Eco 节能模式</string>
+    <string name="tri">Tri</string>
+    <string name="eco">Eco</string>
+    <string name="strict">Strict</string>
+    <string name="intelliplug_eco_mode">IntelliPlug Eco 模式</string>
+    <string name="intelliplug_eco_mode_summary">IntelliPlug 方案的省电模式.</string>
+    <string name="intelliplug_touch_boost">IntelliPlug 触摸升频</string>
+    <string name="intelliplug_touch_boost_summary">如果你触摸屏幕或按下按键 IntelliPlug 将会提升 CPU 的最小频率。</string>
+    <string name="intelliplug_hysteresis">IntelliPlug 滞后值</string>
+    <string name="intelliplug_hysteresis_summary">该值越低，IntelliPlug 响应得越快。</string>
+    <string name="intelliplug_threshold">IntelliPlug 阀值</string>
+    <string name="intelliplug_screen_off_max">IntelliPlug CPU 最大灭屏频率</string>
+    <string name="intelliplug_debug">IntelliPlug 调试</string>
+    <string name="intelliplug_debug_summary">允许你激活 IntelliPlug 操作的调试选项。</string>
+    <string name="intelliplug_suspend">IntelliPlug 延迟</string>
+    <string name="intelliplug_suspend_summary">阻止 IntelliPlug 延迟</string>
+    <string name="intelliplug_cpus_boosted">IntelliPlug 升频 CPU</string>
+    <string name="intelliplug_cpus_boosted_summary">同一时间内被升高频率的 CPU 的最大数值。</string>
+    <string name="intelliplug_min_cpus_online">IntelliPlug 最小在线 CPU</string>
+    <string name="intelliplug_min_cpus_online_summary">在任意时间在线 CPU 的最大数值。</string>
+    <string name="intelliplug_max_cpus_online">IntelliPlug 最大在线 CPU</string>
+    <string name="intelliplug_max_cpus_online_summary">在任意时间在线 CPU 的最大数值。</string>
+    <string name="intelliplug_max_cpus_online_susp">IntelliPlug 灭屏最大 CPU</string>
+    <string name="intelliplug_max_cpus_online_susp_summary">灭屏状态下在线 CPU 的最大数值。</string>
+    <string name="intelliplug_suspend_defer_time">IntelliPlug 延迟推迟时间</string>
+    <string name="intelliplug_defer_sampling">IntelliPlug 延迟采样</string>
+    <string name="intelliplug_boost_lock_duration">IntelliPlug 升频锁定时间</string>
+    <string name="intelliplug_boost_lock_duration_summary">单个 CPU 被升频的最小间隔。</string>
+    <string name="intelliplug_down_lock_duration">IntelliPlug 在线核心锁定时间</string>
+    <string name="intelliplug_down_lock_duration_summary">单个 CPU 保持在线的最小间隔。</string>
+    <string name="intelliplug_fshift">IntelliPlug FShift</string>
+    <string name="blu_plug">Blu Plug</string>
+    <string name="blu_plug_summary">由 Code_Blue 团队提出的 MPDecision 替代方案。</string>
+    <string name="blu_plug_powersaver_mode">Blu Plug 省电模式</string>
+    <string name="blu_plug_powersaver_mode_summary">设定仅单个 CPU 在线并以 1728Mhz 频率运行。</string>
+    <string name="blu_plug_min_online">Blu Plug 最小在线 CPU</string>
+    <string name="blu_plug_min_online_summary">保持在线的 CPU 的最小数值。</string>
+    <string name="blu_plug_max_online">Blu Plug 最大在线 CPU</string>
+    <string name="blu_plug_max_online_summary">保持在线的 CPU 的最大数值。</string>
+    <string name="blu_plug_max_cores_screen_off">Blu Plug 灭屏最大在线核心数</string>
+    <string name="blu_plug_max_cores_screen_off_summary">屏幕关闭时保持在线的核心的最大数值。</string>
+    <string name="blu_plug_max_freq_screen_off">Blu Plug 灭屏最高频率</string>
+    <string name="blu_plug_up_threshold">Blu Plug 提升阀值</string>
+    <string name="blu_plug_up_threshold_summary">超过该阀值后驱动将会再启用一颗核心。</string>
+    <string name="blu_plug_up_timer_cnt">Blu Plug 在线计时器控制</string>
+    <string name="blu_plug_up_timer_cnt_summary">控制在线 CPU 的计时器。</string>
+    <string name="blu_plug_down_timer_cnt">Blu Plug 离线计时器控制</string>
+    <string name="blu_plug_down_timer_cnt_summary">控制离线 CPU 的计时器。</string>
+
+    <!-- GPU -->
+    <string name="gpu_2d_cur_freq">GPU 2D 当前频率</string>
+    <string name="gpu_cur_freq">GPU 当前频率</string>
+    <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>
+    <string name="gpu_2d_max_freq_summary">设置 GPU 2D绘图时所能达到的最高频率。</string>
+    <string name="gpu_max_freq">GPU 最高频率</string>
+    <string name="gpu_max_freq_summary">>设置 GPU 所能达到的最高频率。</string>
+    <string name="gpu_2d_governor">GPU 2D 调速器</string>
+    <string name="gpu_2d_governor_summary">设置 GPU 的 2D 调速器。</string>
+    <string name="gpu_governor">GPU 调速器</string>
+    <string name="gpu_governor_summary">设置 GPU 的调速器。</string>
+    <string name="simple_gpu_algorithm">Simple GPU 算法</string>
+    <string name="simple_gpu_laziness">Simple GPU Laziness</string>
+    <string name="simple_gpu_laziness_summary">增加 GPU 频率升降时的阀值。该值越低，你将获得越高的性能。</string>
+    <string name="simple_gpu_ramp_thresold">Simple GPU 升降阀值</string>
+    <string name="simple_gpu_ramp_thresold_summary">此项将会增加 GPU 调速器调节频率请求的数目。该值越高，你将获得越高的性能。</string>
+
+    <!-- Screen -->
+    <string name="red">红</string>
+    <string name="green">绿</string>
+    <string name="blue">蓝</string>
+    <string name="min_rgb">最小 RGB 值</string>
+    <string name="backlight_dimmer">背光调光器</string>
+    <string name="min_brightness">最小亮度</string>
+    <string name="invert_screen">翻转屏幕</string>
+    <string name="saturation_intensity">饱和度</string>
+    <string name="grayscale_mode">黑白模式</string>
+    <string name="screen_hue">屏幕色调</string>
+    <string name="screen_hue_summary">如果该值被设置得过高在 MSM8x26 SoC 上可能出现问题.</string>
+    <string name="screen_value">屏幕值</string>
+    <string name="screen_contrast">屏幕对比度</string>
+    <string name="min_brightness_summary">允许你尽可能降低 LCD 屏幕亮度。</string>
+    <string name="backlight_dimmer_threshold">背光调光器阀值</string>
+    <string name="backlight_dimmer_offset">背光调光器偏移值</string>
+
+    <!-- Wake Controls -->
+    <string name="dt2w">双击唤醒</string>
+    <string name="dt2w_summary">双击屏幕来唤醒您的设备。</string>
+    <string name="center">中心</string>
+    <string name="full">全部</string>
+    <string name="bottom_half">下半部分</string>
+    <string name="top_half">上半部分</string>
+    <string name="halfscreen">半屏幕</string>
+    <string name="fullscreen">全屏幕</string>
+    <string name="s2w">滑动唤醒</string>
+    <string name="s2w_summary">在导航栏上滑动来唤醒您的设备。</string>
+    <string name="s2s">滑动睡眠</string>
+    <string name="t2w">单击唤醒</string>
+    <string name="t2w_summary">点触屏幕来唤醒您的设备。</string>
+    <string name="wake_timeout">唤醒超时</string>
+    <string name="wake_timeout_summary">设置在屏幕关闭多久后唤醒控制开始生效。</string>
+    <string name="power_key_suspend">电源键延迟</string>
+    <string name="power_key_suspend_summary">启用此项后当屏幕由电源键关闭时唤醒控制将会被禁用。</string>
+
+    <!-- Sound -->
+    <string name="sound_control">声音控制</string>
+    <string name="headphone_gain">耳机增益</string>
+    <string name="handset_microphone_gain">手机听筒麦克风增益</string>
+    <string name="cam_microphone_gain">录音麦克风增益</string>
+    <string name="speaker_gain">扬声器增益</string>
+    <string name="headphone_poweramp_gain">耳机 PowerAmp 增益</string>
+
+    <!-- Battery -->
+    <string name="battery_voltage">电池电压</string>
+    <string name="battery_level">电量</string>
+    <string name="battery_temperature">电池温度</string>
+    <string name="usb_fast_charge">USB 快充</string>
+    <string name="usb_fast_charge_summary">设备连接到 USB 时充电速度将被加快。更改此设置后请重新拔插充电器。</string>
+    <string name="blx">电池寿命延长器</string>
+    <string name="blx_summary">设置电池充电时满电容量的上限（在0-100之间）。</string>
+
+    <!-- I/O Scheduler -->
+    <string name="internal_scheduler">内置存储调度器</string>
+    <string name="internal_scheduler_summary">设置 I/O 调度算法。调度器会决定如何处理 I/O 请求。</string>
+    <string name="external_scheduler">外置存储调度器</string>
+    <string name="internal_scheduler_tunable">内置存储调度器微调</string>
+    <string name="internal_scheduler_tunable_summary">这些配置项与您使用的调度器有关。</string>
+    <string name="external_scheduler_tunable">外置存储调度器微调</string>
+    <string name="internal_read_ahead">内置存储预读</string>
+    <string name="internal_read_ahead_summary">对设备内存进行预读的值的大小.</string>
+    <string name="external_read_ahead">外置存储预读</string>
+
+    <!-- Kernel Samepage Merging -->
+    <string name="ksm_full_scans">完整扫描</string>
+    <string name="ksm_pages_shared">已共享页面</string>
+    <string name="ksm_pages_sharing">共享中页面</string>
+    <string name="ksm_pages_unshared">未共享页面</string>
+    <string name="ksm_pages_volatile">易丢失页面</string>
+    <string name="ksm_enable">启用 KSM</string>
+    <string name="ksm_enable_summary">减少内存占用但对 CPU 使用率有影响。</string>
+    <string name="ksm_pages_to_scan">要扫描的页面</string>
+    <string name="ksm_sleep_milliseconds">扫描休眠间隔</string>
+
+    <!-- Low Memory Killer -->
+    <string name="foreground_app">前台程序</string>
+    <string name="visible_app">可见程序</string>
+    <string name="secondary_server">备用服务器</string>
+    <string name="hidden_app">隐藏程序</string>
+    <string name="content_providers">内容提供程序</string>
+    <string name="empty_app">空程序</string>
+    <string name="very_light">非常轻度</string>
+    <string name="light">轻度</string>
+    <string name="medium">中等</string>
+    <string name="very_aggressive">非常积极</string>
+
+    <!-- Misc Controls -->
+    <string name="tcp">TCP 拥塞算法</string>
+    <string name="tcp_summary">传输控制协议（TCP）是互联网协议（IP）组件的核心协议之一，并且通常被合称为 TCP/IP。</string>
+    <string name="vibration_strength">震动长度</string>
+    <string name="smb135x_wakelock">smb135x 唤醒锁</string>
+    <string name="smb135x_wakelock_summary">当充电器未连接时阻止唤醒锁。</string>
+    <string name="sensor_ind_wakelock">sensor_ind 唤醒锁</string>
+    <string name="sensor_ind_wakelock_summary">当主动显示被禁用时阻止唤醒锁。</string>
+    <string name="msm_hsic_host_wakelock">msm_hsic_host 唤醒锁</string>
+    <string name="msm_hsic_host_wakelock_summary">阻止 msm_hsic_host 唤醒锁.</string>
+    <string name="android_logger">Android 日志记录</string>
+
+    <!-- Build prop Editor -->
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="key">Key</string>
+    <string name="value">值</string>
+    <string name="delete_prop">删除 %s?</string>
+    <string name="backup_created">备份已在 %s 创建.</string>
+    <string name="search">搜索</string>
+
+    <!-- Profile -->
+    <string name="no_profiles">无配置文件</string>
+    <string name="profile_description">添加一个配置文件将会保存你现有的设置。你可以之后应用它们。</string>
+    <string name="name">名称</string>
+    <string name="apply">应用</string>
+    <string name="no_settings">没有找到设置!</string>
+    <string name="empty_name">名称为空</string>
+    <string name="press_again_to_apply">再按一次以应用.</string>
+    <string name="applied">已应用</string>
+
+    <!-- About us -->
+    <string name="license">许可</string>
+    <string name="app_license">内核助手在 Apache License Version 2.0 下授权, 并使用了以下库</string>
+    <string name="support_v13">v13 Support Library</string>
+    <string name="appcompat_v7">v7 Appcompat Library</string>
+    <string name="cardview_v7">v7 Cardview Library</string>
+    <string name="recyclerview_v7">v7 Recyclerview Library</string>
+    <string name="google">Google</string>
+    <string name="roottools">RootTools</string>
+    <string name="stericson">Stephen Stericson</string>
+    <string name="fab">FloatingActionButton</string>
+    <string name="jerzy">Jerzy Chałupski</string>
+    <string name="open_source">开放源代码</string>
+    <string name="open_source_summary">此应用是开源的。 在我的 Github 上查看它.</string>
+    <string name="feature_request">功能请求</string>
+    <string name="feature_request_summary">你想要更多的功能吗? 请在 Github 上新开一个issue并告知您的建议。</string>
+    <string name="google_plus">Google Plus</string>
+    <string name="google_plus_summary">加入我们的社群.</string>
+    <string name="donate">捐赠</string>
+    <string name="donate_summary">我在闲暇时间里编写了这个应用。如果你捐赠支持开发的话我会非常高兴。我不会强迫你进行捐赠。这个应用将会一直免费并且我不会开发付费才能解锁的功能！</string>
+
+</resources>
