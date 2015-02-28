@@ -19,10 +19,6 @@
     <string name="mb">MB</string>
     <string name="min">min</string>
 
-    <!-- Special signs -->
-    <string name="minus" translatable="false">&lt;</string>
-    <string name="plus" translatable="false">&gt;</string>
-
     <!-- Headers -->
     <string name="information">信息</string>
     <string name="kernel">内核</string>

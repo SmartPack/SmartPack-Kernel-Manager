@@ -19,10 +19,6 @@
     <string name="mb">MB</string>
     <string name="min">分</string>
 
-    <!-- Special signs -->
-    <string name="minus" translatable="false">&lt;</string>
-    <string name="plus" translatable="false">&gt;</string>
-
     <!-- Headers -->
     <string name="information">情報</string>
     <string name="kernel">カーネル</string>
