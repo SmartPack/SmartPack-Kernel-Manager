@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">内核助手</string>
+    <string name="app_name">Kernel Adiutor</string>
     <string name="no_root">root 不可用</string>
     <string name="no_busybox">busybox 不可用</string>
     <string name="apply_on_boot">在启动时重新应用</string>
     <string name="apply_on_boot_summary">您的更改已经被应用</string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
-    <string name="current_value_not_supported">当前值不受支持</string>
+    <string name="current_value_not_supported">不支持当前值</string>
     <string name="beta_message">感谢您成为Beta版本的测试人员！如果您遇到任何问题，请不要犹豫并立即联系我。您当前运行的版本是 %s</string>
 
     <!-- Units -->
@@ -74,9 +74,9 @@
     <string name="cpu_max_screen_off_freq">CPU 最高灭屏频率</string>
     <string name="cpu_max_screen_off_freq_summary">调整在屏幕关闭状态时 CPU 能调节到的最高频率.</string>
     <string name="cpu_governor">CPU 调速器</string>
-    <string name="cpu_governor_summary">CPU 调速器决定 CPU 在应对各种工作负载时的行为. 更改调速器会影响 CPU 如何在可用频率间切换频率大小.</string>
+    <string name="cpu_governor_summary">CPU 调速器决定 CPU 在应对各种工作负载情形时的行为. 更改调速器会影响 CPU 如何在可用频率间切换频率大小.</string>
     <string name="cpu_governor_tunables">CPU 调速器微调</string>
-    <string name="cpu_governor_tunables_summary">取决于调速器的各配置项目.</string>
+    <string name="cpu_governor_tunables_summary">这些配置项与您使用的调速器有关</string>
     <string name="not_tunable">%s 无法调节</string>
     <string name="mc_power_saving">多核省电</string>
     <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务.</string>
@@ -171,7 +171,7 @@
     <string name="gpu_governor_summary">设置 GPU 的调速器。</string>
     <string name="simple_gpu_algorithm">Simple GPU 算法</string>
     <string name="simple_gpu_laziness">Simple GPU Laziness</string>
-    <string name="simple_gpu_laziness_summary">增加 GPU 频率升降时的阀值。 该值越低，你将获得越高的性能。</string>
+    <string name="simple_gpu_laziness_summary">增加 GPU 频率升降时的阀值。该值越低，你将获得越高的性能。</string>
     <string name="simple_gpu_ramp_thresold">Simple GPU 升降阀值</string>
     <string name="simple_gpu_ramp_thresold_summary">此项将会增加 GPU 调速器调节频率请求的数目。该值越高，你将获得越高的性能。</string>
 
@@ -227,14 +227,14 @@
     <string name="usb_fast_charge">USB 快充</string>
     <string name="usb_fast_charge_summary">设备连接到 USB 时充电速度将被加快。更改此设置后请重新拔插充电器。</string>
     <string name="blx">电池寿命延长器</string>
-    <string name="blx_summary">设置电池充电时容量的上限（在0-100之间）。</string>
+    <string name="blx_summary">设置电池充电时满电容量的上限（在0-100之间）。</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_scheduler">内置存储调度器</string>
     <string name="internal_scheduler_summary">设置 I/O 调度算法。调度器会决定如何处理 I/O 请求。</string>
     <string name="external_scheduler">外置存储调度器</string>
     <string name="internal_scheduler_tunable">内置存储调度器微调</string>
-    <string name="internal_scheduler_tunable_summary">取决于调度器的各配置项目。</string>
+    <string name="internal_scheduler_tunable_summary">这些配置项与您使用的调度器有关。</string>
     <string name="external_scheduler_tunable">外置存储调度器微调</string>
     <string name="internal_read_ahead">内置存储预读</string>
     <string name="internal_read_ahead_summary">对设备内存进行预读的值的大小.</string>
@@ -245,7 +245,7 @@
     <string name="ksm_pages_shared">已共享页面</string>
     <string name="ksm_pages_sharing">共享中页面</string>
     <string name="ksm_pages_unshared">未共享页面</string>
-    <string name="ksm_pages_volatile">Pages volatile</string>
+    <string name="ksm_pages_volatile">易丢失页面</string>
     <string name="ksm_enable">启用 KSM</string>
     <string name="ksm_enable_summary">减少内存占用但对 CPU 使用率有影响。</string>
     <string name="ksm_pages_to_scan">要扫描的页面</string>
