@@ -254,9 +254,9 @@ public class PathReaderActivity extends ActionBarActivity {
         }
 
         @Override
-        public boolean animate() {
-            return false;
+        public void animateRecyclerView() {
         }
+
     }
 
 }

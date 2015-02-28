@@ -17,12 +17,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-
-import com.grarak.cardview.BaseCardView;
-import com.grarak.kerneladiutor.R;
 
 import java.util.List;
 
@@ -42,8 +37,6 @@ public class DAdapter {
     public static class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private final List<DView> DViews;
-        private int count = -1;
-        private boolean animate = true;
 
         public Adapter(List<DView> DViews) {
             this.DViews = DViews;
@@ -57,7 +50,6 @@ public class DAdapter {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             DViews.get(position).onBindViewHolder(holder);
-            setAnimation(holder.itemView, position);
         }
 
         @Override
@@ -68,17 +60,6 @@ public class DAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return DViews.get(viewType).onCreateViewHolder(parent);
-        }
-
-        private void setAnimation(View viewToAnimate, int position) {
-            if (position > count && viewToAnimate instanceof BaseCardView && animate) {
-                viewToAnimate.startAnimation(AnimationUtils.loadAnimation(viewToAnimate.getContext(), R.anim.recyclerview));
-                count = position;
-            }
-        }
-
-        public void animate(boolean animate) {
-            this.animate = animate;
         }
 
     }

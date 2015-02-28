@@ -32,6 +32,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -177,8 +178,8 @@ public class RecyclerViewFragment extends Fragment {
         return views.size();
     }
 
-    public boolean animate() {
-        return true;
+    public void animateRecyclerView() {
+        recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
     }
 
     @Override
@@ -222,7 +223,6 @@ public class RecyclerViewFragment extends Fragment {
             });
             views.clear();
             adapter = new DAdapter.Adapter(views);
-            adapter.animate(animate());
         }
 
         @Override
@@ -240,6 +240,7 @@ public class RecyclerViewFragment extends Fragment {
             super.onPostExecute(s);
 
             recyclerView.setAdapter(adapter);
+            animateRecyclerView();
             if (hand != null) hand.post(run);
 
             try {

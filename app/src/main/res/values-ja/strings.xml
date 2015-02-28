@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Kernel Adiutor</string>
     <string name="no_root">root権限がありません。</string>
     <string name="no_busybox">busyboxがありません。</string>
@@ -9,6 +10,7 @@
     <string name="cancel">キャンセル</string>
     <string name="current_value_not_supported">現在の値は非対応です</string>
     <string name="beta_message">ベータテスターに鳴ってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
+
     <!-- Units -->
     <string name="mhz">MHz</string>
     <string name="mv">mV</string>
@@ -16,12 +18,17 @@
     <string name="ms">ms</string>
     <string name="mb">MB</string>
     <string name="min">分</string>
+
     <!-- Special signs -->
+    <string name="minus" translatable="false">&lt;</string>
+    <string name="plus" translatable="false">&gt;</string>
+
     <!-- Headers -->
     <string name="information">情報</string>
     <string name="kernel">カーネル</string>
     <string name="tools">ツール</string>
     <string name="other">その他</string>
+
     <!-- Tabs -->
     <string name="frequency_table">周波数テーブル</string>
     <string name="kernel_information">カーネルの情報</string>
@@ -41,6 +48,7 @@
     <string name="build_prop_editor">Build propエディタ</string>
     <string name="profile">プロファイル</string>
     <string name="about_us">このアプリについて</string>
+
     <!-- Frequency Table -->
     <string name="unused_cpu_states">未使用のCPUテーブル</string>
     <string name="uptime">使用時間</string>
@@ -48,10 +56,12 @@
     <string name="refresh">再読み込み</string>
     <string name="reset_timer">タイマーのリセット</string>
     <string name="restore_timer">タイマーのリストア</string>
+
     <!-- Kernel Information -->
     <string name="kernel_version">カーネルバージョン</string>
     <string name="cpu_information">CPU情報</string>
     <string name="memory_information">メモリ情報</string>
+
     <!-- CPU -->
     <string name="cpu_usage">CPU使用率</string>
     <string name="current_freq">現在の周波数</string>
@@ -84,8 +94,10 @@
     <string name="cpu_boost_sync_threshold_summary">CPUの負荷がプリセットされたしきい値を超えたら、現在のCPUがこの周波数になります。</string>
     <string name="cpu_boost_input_interval">CPUブースト入力間隔</string>
     <string name="cpu_boost_input_interval_summary">入力が検出されたとき、CPUをブーストするまでの最小間隔です。</string>
+
     <!-- CPU Voltage -->
     <string name="global_offset">全体のオフセット</string>
+
     <!-- CPU Hotplug -->
     <string name="mpdecision">MPDecision</string>
     <string name="mpdecision_summary">QualcommのHotplugです。有効になっていると、周波数の変更がうまく出来ないことがあります。</string>
@@ -145,6 +157,7 @@
     <string name="blu_plug_up_timer_cnt_summary">CPUタイマーを操作します。</string>
     <string name="blu_plug_down_timer_cnt">Blu Plug 下降タイマー操作</string>
     <string name="blu_plug_down_timer_cnt_summary">CPUタイマーを操作します。</string>
+
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D 現在の周波数</string>
     <string name="gpu_cur_freq">GPU 現在の周波数</string>
@@ -161,6 +174,7 @@
     <string name="simple_gpu_laziness_summary">GPU周波数を上昇/下降するしきい値を高くします。低くすると、パフォーマンスが良くなります。</string>
     <string name="simple_gpu_ramp_thresold">Simple GPU ランプしきい値</string>
     <string name="simple_gpu_ramp_thresold_summary">GPUガバナのランプダウン要求の回数を増やします。高くすると、パフォーマンスが良くなります。</string>
+
     <!-- Screen -->
     <string name="red">赤</string>
     <string name="green">緑</string>
@@ -178,6 +192,7 @@
     <string name="min_brightness_summary">デフォルト以上に画面の明るさを下げられます。</string>
     <string name="backlight_dimmer_threshold">バックライト調整しきい値</string>
     <string name="backlight_dimmer_offset">バックライト調整オフセット</string>
+
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>
     <string name="dt2w_summary">画面をダブルタップすることでスリープ状態から復帰できるようになります。</string>
@@ -196,6 +211,7 @@
     <string name="wake_timeout_summary">画面消灯後に起動操作を無効にするまでの時間を設定します。</string>
     <string name="power_key_suspend">電源キーサスペンド</string>
     <string name="power_key_suspend_summary">有効にすると、電源キーで画面を消灯したときに起動操作を無効にします。</string>
+
     <!-- Sound -->
     <string name="sound_control">サウンド操作</string>
     <string name="headphone_gain">ヘッドフォンゲイン</string>
@@ -203,6 +219,7 @@
     <string name="cam_microphone_gain">カメラマイクゲイン</string>
     <string name="speaker_gain">スピーカーゲイン</string>
     <string name="headphone_poweramp_gain">ヘッドフォンPowerAmpゲイン</string>
+
     <!-- Battery -->
     <string name="battery_voltage">バッテリー電圧</string>
     <string name="battery_level">バッテリー残量</string>
@@ -211,6 +228,7 @@
     <string name="usb_fast_charge_summary">USB接続時の充電を高速化します。この設定を変更した後は充電器を抜き差ししてください。</string>
     <string name="blx">Battery Life eXtender</string>
     <string name="blx_summary">どの残量になるまで充電するか、0から100までの値で指定します。</string>
+
     <!-- I/O Scheduler -->
     <string name="internal_scheduler">内部ストレージスケジューラ</string>
     <string name="internal_scheduler_summary">I/Oスケジューラを設定します。スケジューラはI/O要求の扱い方法を決定するものです。</string>
@@ -221,6 +239,7 @@
     <string name="internal_read_ahead">内部ストレージ先読みサイズ</string>
     <string name="internal_read_ahead_summary">内部ストレージの先読みサイズです。</string>
     <string name="external_read_ahead">外部ストレージ先読みサイズ</string>
+
     <!-- Kernel Samepage Merging -->
     <string name="ksm_full_scans">完全スキャン</string>
     <string name="ksm_pages_shared">共有されたページ</string>
@@ -231,6 +250,7 @@
     <string name="ksm_enable_summary">メモリ使用率を削減しますが、CPU消費量が増えます。</string>
     <string name="ksm_pages_to_scan">スキャンするページ</string>
     <string name="ksm_sleep_milliseconds">スキャン間のスリープ</string>
+
     <!-- Low Memory Killer -->
     <string name="foreground_app">前面アプリ</string>
     <string name="visible_app">表示中アプリ</string>
@@ -242,6 +262,7 @@
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
+
     <!-- Misc Controls -->
     <string name="tcp">TCP Congestion Algorithm</string>
     <string name="tcp_summary">TCPとは、伝送制御プロトコルといわれる、インターネット・プロトコル・スイートの中核プロトコルのひとつです。</string>
@@ -253,6 +274,7 @@
     <string name="msm_hsic_host_wakelock">msm_hsic_host ウェイクロック</string>
     <string name="msm_hsic_host_wakelock_summary">msm_hsic_host ウェイクロックを阻止します。</string>
     <string name="android_logger">Androidログ出力</string>
+
     <!-- Build prop Editor -->
     <string name="edit">編集</string>
     <string name="delete">削除</string>
@@ -261,6 +283,7 @@
     <string name="delete_prop">%sを削除しますか?</string>
     <string name="backup_created">%sにバックアップを作成しました。</string>
     <string name="search">検索</string>
+
     <!-- Profile -->
     <string name="no_profiles">プロファイルなし</string>
     <string name="profile_description">プロファイルを追加すると現在の設定を保存できます。後で適用することもできます。</string>
@@ -270,6 +293,7 @@
     <string name="empty_name">名前が入力されていません。</string>
     <string name="press_again_to_apply">もう一度タップすると適用します。</string>
     <string name="applied">適用しました。</string>
+
     <!-- About us -->
     <string name="license">ライセンス</string>
     <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
@@ -290,4 +314,5 @@
     <string name="google_plus_summary">コミュニティに参加する</string>
     <string name="donate">寄付</string>
     <string name="donate_summary">このアプリは私の空き時間を使って書かれています。少しだけでも寄付して頂ければ幸いです。寄付は強制ではありません。アプリはずっと無料のままにして、機能のアンロックにお金がいるような事はしません!</string>
+
 </resources>
