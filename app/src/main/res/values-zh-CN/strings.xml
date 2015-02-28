@@ -223,7 +223,7 @@
     <string name="usb_fast_charge">USB 快充</string>
     <string name="usb_fast_charge_summary">设备连接到 USB 时充电速度将被加快。更改此设置后请重新拔插充电器。</string>
     <string name="blx">电池寿命延长器</string>
-    <string name="blx_summary">设置电池充电时满电容量的上限（在0-100之间）。</string>
+    <string name="blx_summary">设置电池充电时满电容量的上限（在0&#8211;100之间）。</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_scheduler">内置存储调度器</string>
