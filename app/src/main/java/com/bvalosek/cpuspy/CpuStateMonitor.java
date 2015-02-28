@@ -157,8 +157,10 @@ public class CpuStateMonitor implements Constants {
     public List<CpuState> updateStates() throws CpuStateMonitorException {
         _states.clear();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(CPU_TIME_STATE));
+            FileReader fileReader = new FileReader(CPU_TIME_STATE);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             readInStates(bufferedReader);
+            fileReader.close();
             bufferedReader.close();
         } catch (Exception e) {
             throw new CpuStateMonitorException("Problem opening time-in-states file");

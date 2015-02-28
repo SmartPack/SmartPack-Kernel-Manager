@@ -94,29 +94,21 @@ public class RootUtils implements Constants {
                 }
                 return sb.toString().trim();
             } catch (Exception e) {
-                Log.e(TAG, "Failed to run " + command);
+                e.printStackTrace();
                 return null;
             }
-
         }
 
         public void close() {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        bufferedWriter.write("exit\n");
-                        bufferedWriter.flush();
+            try {
+                bufferedWriter.write("exit\n");
+                bufferedWriter.flush();
 
-                        process.waitFor();
-                        Log.i(TAG, "SU closed");
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to close BufferWriter");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+                process.waitFor();
+                Log.i(TAG, "SU closed: " + process.exitValue());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

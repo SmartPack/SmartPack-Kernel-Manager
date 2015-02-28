@@ -8,4 +8,6 @@
     android:gravity="center_vertical"
     android:textSize="15sp"
     android:textColor="@android:color/black"
+    android:ellipsize="end"
+    android:maxLines="1"
     android:background="?android:attr/activatedBackgroundIndicator" />

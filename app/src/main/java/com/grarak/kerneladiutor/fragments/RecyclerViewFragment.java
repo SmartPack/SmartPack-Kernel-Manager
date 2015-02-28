@@ -180,7 +180,10 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void animateRecyclerView() {
-        recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
+        try {
+            recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Override

@@ -1,6 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+    </style>
+
     <style name="AppThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -12,10 +18,7 @@
         <item name="colorAccent">@android:color/white</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
+    <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
     </style>
@@ -27,6 +30,12 @@
     <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
     </style>
 
 </resources>
