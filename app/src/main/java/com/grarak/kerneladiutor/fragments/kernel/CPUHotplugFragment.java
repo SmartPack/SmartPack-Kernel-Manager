@@ -19,10 +19,12 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
@@ -106,6 +108,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void intelliPlugInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
         if (CPUHotplug.hasIntelliPlugEnable()) {
             mIntelliPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
@@ -113,37 +117,37 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mIntelliPlugCard.setChecked(CPUHotplug.isIntelliPlugActive());
             mIntelliPlugCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mIntelliPlugCard);
+            views.add(mIntelliPlugCard);
         }
 
         if (CPUHotplug.hasIntelliPlugProfile()) {
             mIntelliPlugProfileCard = new PopupCardItem.DPopupCard(CPUHotplug.getIntelliPlugProfileMenu(getActivity()));
-            mIntelliPlugProfileCard.setTitle(getString(R.string.intelliplug_profile));
-            mIntelliPlugProfileCard.setDescription(getString(R.string.intelliplug_profile_summary));
+            mIntelliPlugProfileCard.setTitle(getString(R.string.profile));
+            mIntelliPlugProfileCard.setDescription(getString(R.string.profile_summary));
             mIntelliPlugProfileCard.setItem(CPUHotplug.getIntelliPlugProfile());
             mIntelliPlugProfileCard.setOnDPopupCardListener(this);
 
-            addView(mIntelliPlugProfileCard);
+            views.add(mIntelliPlugProfileCard);
         }
 
         if (CPUHotplug.hasIntelliPlugEco()) {
             mIntelliPlugEcoCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mIntelliPlugEcoCard.setTitle(getString(R.string.intelliplug_eco_mode_summary));
-            mIntelliPlugEcoCard.setDescription(getString(R.string.intelliplug_eco_mode_summary));
+            mIntelliPlugEcoCard.setTitle(getString(R.string.eco_mode_summary));
+            mIntelliPlugEcoCard.setDescription(getString(R.string.eco_mode_summary));
             mIntelliPlugEcoCard.setChecked(CPUHotplug.isIntelliPlugEcoActive());
             mIntelliPlugEcoCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mIntelliPlugEcoCard);
+            views.add(mIntelliPlugEcoCard);
         }
 
         if (CPUHotplug.hasIntelliPlugTouchBoost()) {
             mIntelliPlugTouchBoostCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mIntelliPlugTouchBoostCard.setTitle(getString(R.string.intelliplug_touch_boost));
-            mIntelliPlugTouchBoostCard.setDescription(getString(R.string.intelliplug_touch_boost_summary));
+            mIntelliPlugTouchBoostCard.setTitle(getString(R.string.touch_boost));
+            mIntelliPlugTouchBoostCard.setDescription(getString(R.string.touch_boost_summary));
             mIntelliPlugTouchBoostCard.setChecked(CPUHotplug.isIntelliPlugTouchBoostActive());
             mIntelliPlugTouchBoostCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mIntelliPlugTouchBoostCard);
+            views.add(mIntelliPlugTouchBoostCard);
         }
 
         if (CPUHotplug.hasIntelliPlugHysteresis()) {
@@ -152,12 +156,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mIntelliPlugHysteresisCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugHysteresisCard.setTitle(getString(R.string.intelliplug_hysteresis));
-            mIntelliPlugHysteresisCard.setDescription(getString(R.string.intelliplug_hysteresis_summary));
+            mIntelliPlugHysteresisCard.setTitle(getString(R.string.hysteresis));
+            mIntelliPlugHysteresisCard.setDescription(getString(R.string.hysteresis_summary));
             mIntelliPlugHysteresisCard.setProgress(CPUHotplug.getIntelliPlugHysteresis());
             mIntelliPlugHysteresisCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugHysteresisCard);
+            views.add(mIntelliPlugHysteresisCard);
         }
 
         if (CPUHotplug.hasIntelliPlugThresold()) {
@@ -166,11 +170,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mIntelliPlugThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugThresholdCard.setTitle(getString(R.string.intelliplug_threshold));
+            mIntelliPlugThresholdCard.setTitle(getString(R.string.threshold));
             mIntelliPlugThresholdCard.setProgress(CPUHotplug.getIntelliPlugThresold());
             mIntelliPlugThresholdCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugThresholdCard);
+            views.add(mIntelliPlugThresholdCard);
         }
 
         if (CPUHotplug.hasIntelliPlugScreenOffMax() && CPU.getFreqs() != null) {
@@ -180,31 +184,32 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add((freq / 1000) + getString(R.string.mhz));
 
             mIntelliPlugScreenOffMaxCard = new PopupCardItem.DPopupCard(list);
-            mIntelliPlugScreenOffMaxCard.setDescription(getString(R.string.intelliplug_screen_off_max));
+            mIntelliPlugScreenOffMaxCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
+            mIntelliPlugScreenOffMaxCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mIntelliPlugScreenOffMaxCard.setItem(CPUHotplug.getIntelliPlugScreenOffMax());
             mIntelliPlugScreenOffMaxCard.setOnDPopupCardListener(this);
 
-            addView(mIntelliPlugScreenOffMaxCard);
+            views.add(mIntelliPlugScreenOffMaxCard);
         }
 
         if (CPUHotplug.hasIntelliPlugDebug()) {
             mIntelliPlugDebugCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mIntelliPlugDebugCard.setTitle(getString(R.string.intelliplug_debug));
-            mIntelliPlugDebugCard.setDescription(getString(R.string.intelliplug_debug_summary));
+            mIntelliPlugDebugCard.setTitle(getString(R.string.debug));
+            mIntelliPlugDebugCard.setDescription(getString(R.string.debug_summary));
             mIntelliPlugDebugCard.setChecked(CPUHotplug.isIntelliPlugDebugActive());
             mIntelliPlugDebugCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mIntelliPlugDebugCard);
+            views.add(mIntelliPlugDebugCard);
         }
 
         if (CPUHotplug.hasIntelliPlugSuspend()) {
             mIntelliPlugSuspendCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mIntelliPlugSuspendCard.setTitle(getString(R.string.intelliplug_suspend));
-            mIntelliPlugSuspendCard.setDescription(getString(R.string.intelliplug_suspend_summary));
+            mIntelliPlugSuspendCard.setTitle(getString(R.string.suspend));
+            mIntelliPlugSuspendCard.setDescription(getString(R.string.suspend_summary));
             mIntelliPlugSuspendCard.setChecked(CPUHotplug.isIntelliPlugSuspendActive());
             mIntelliPlugSuspendCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mIntelliPlugSuspendCard);
+            views.add(mIntelliPlugSuspendCard);
         }
 
         if (CPUHotplug.hasIntelliPlugCpusBoosted()) {
@@ -213,12 +218,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mIntelliPlugCpusBoostedCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugCpusBoostedCard.setTitle(getString(R.string.intelliplug_cpus_boosted));
-            mIntelliPlugCpusBoostedCard.setDescription(getString(R.string.intelliplug_cpus_boosted_summary));
+            mIntelliPlugCpusBoostedCard.setTitle(getString(R.string.cpus_boosted));
+            mIntelliPlugCpusBoostedCard.setDescription(getString(R.string.cpus_boosted_summary));
             mIntelliPlugCpusBoostedCard.setProgress(CPUHotplug.getIntelliPlugCpusBoosted() - 1);
             mIntelliPlugCpusBoostedCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugCpusBoostedCard);
+            views.add(mIntelliPlugCpusBoostedCard);
         }
 
         if (CPUHotplug.hasIntelliPlugMinCpusOnline()) {
@@ -227,12 +232,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mIntelliPlugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugMinCpusOnlineCard.setTitle(getString(R.string.intelliplug_min_cpus_online));
-            mIntelliPlugMinCpusOnlineCard.setDescription(getString(R.string.intelliplug_min_cpus_online_summary));
+            mIntelliPlugMinCpusOnlineCard.setTitle(getString(R.string.min_cpus_online));
+            mIntelliPlugMinCpusOnlineCard.setDescription(getString(R.string.min_cpus_online_summary));
             mIntelliPlugMinCpusOnlineCard.setProgress(CPUHotplug.getIntelliPlugMinCpusOnline() - 1);
             mIntelliPlugMinCpusOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugMinCpusOnlineCard);
+            views.add(mIntelliPlugMinCpusOnlineCard);
         }
 
         if (CPUHotplug.hasIntelliPlugMaxCpusOnline()) {
@@ -241,12 +246,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mIntelliPlugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugMaxCpusOnlineCard.setTitle(getString(R.string.intelliplug_max_cpus_online));
-            mIntelliPlugMaxCpusOnlineCard.setDescription(getString(R.string.intelliplug_max_cpus_online_summary));
+            mIntelliPlugMaxCpusOnlineCard.setTitle(getString(R.string.max_cpus_online));
+            mIntelliPlugMaxCpusOnlineCard.setDescription(getString(R.string.max_cpus_online_summary));
             mIntelliPlugMaxCpusOnlineCard.setProgress(CPUHotplug.getIntelliPlugMaxCpusOnline() - 1);
             mIntelliPlugMaxCpusOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugMaxCpusOnlineCard);
+            views.add(mIntelliPlugMaxCpusOnlineCard);
         }
 
         if (CPUHotplug.hasIntelliPlugMaxCpusOnlineSusp()) {
@@ -255,12 +260,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mIntelliPlugMaxCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugMaxCpusOnlineSuspCard.setTitle(getString(R.string.intelliplug_max_cpus_online_susp));
-            mIntelliPlugMaxCpusOnlineSuspCard.setDescription(getString(R.string.intelliplug_max_cpus_online_susp_summary));
+            mIntelliPlugMaxCpusOnlineSuspCard.setTitle(getString(R.string.max_cpus_online_susp));
+            mIntelliPlugMaxCpusOnlineSuspCard.setDescription(getString(R.string.max_cpus_online_susp_summary));
             mIntelliPlugMaxCpusOnlineSuspCard.setProgress(CPUHotplug.getIntelliPlugMaxCpusOnlineSusp() - 1);
             mIntelliPlugMaxCpusOnlineSuspCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugMaxCpusOnlineSuspCard);
+            views.add(mIntelliPlugMaxCpusOnlineSuspCard);
         }
 
         if (CPUHotplug.hasIntelliPlugSuspendDeferTime()) {
@@ -269,12 +274,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add((i * 10) + getString(R.string.ms));
 
             mIntelliPlugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugSuspendDeferTimeCard.setTitle(getString(R.string.intelliplug_suspend_defer_time));
+            mIntelliPlugSuspendDeferTimeCard.setTitle(getString(R.string.suspend_defer_time));
             mIntelliPlugSuspendDeferTimeCard.setProgress(list.indexOf(String.valueOf(
                     CPUHotplug.getIntelliPlugSuspendDeferTime())));
             mIntelliPlugSuspendDeferTimeCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugSuspendDeferTimeCard);
+            views.add(mIntelliPlugSuspendDeferTimeCard);
         }
 
         if (CPUHotplug.hasIntelliPlugDeferSampling()) {
@@ -283,11 +288,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(i + getString(R.string.ms));
 
             mIntelliPlugDeferSamplingCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugDeferSamplingCard.setTitle(getString(R.string.intelliplug_defer_sampling));
+            mIntelliPlugDeferSamplingCard.setTitle(getString(R.string.defer_sampling));
             mIntelliPlugDeferSamplingCard.setProgress(CPUHotplug.getIntelliPlugDeferSampling());
             mIntelliPlugDeferSamplingCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugDeferSamplingCard);
+            views.add(mIntelliPlugDeferSamplingCard);
         }
 
         if (CPUHotplug.hasIntelliPlugBoostLockDuration()) {
@@ -296,12 +301,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(i + getString(R.string.ms));
 
             mIntelliPlugBoostLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugBoostLockDurationCard.setTitle(getString(R.string.intelliplug_boost_lock_duration));
-            mIntelliPlugBoostLockDurationCard.setDescription(getString(R.string.intelliplug_boost_lock_duration_summary));
+            mIntelliPlugBoostLockDurationCard.setTitle(getString(R.string.boost_lock_duration));
+            mIntelliPlugBoostLockDurationCard.setDescription(getString(R.string.boost_lock_duration_summary));
             mIntelliPlugBoostLockDurationCard.setProgress(CPUHotplug.getIntelliPlugBoostLockDuration() - 1);
             mIntelliPlugBoostLockDurationCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugBoostLockDurationCard);
+            views.add(mIntelliPlugBoostLockDurationCard);
         }
 
         if (CPUHotplug.hasIntelliPlugDownLockDuration()) {
@@ -310,12 +315,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(i + getString(R.string.ms));
 
             mIntelliPlugDownLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugDownLockDurationCard.setTitle(getString(R.string.intelliplug_down_lock_duration));
-            mIntelliPlugDownLockDurationCard.setDescription(getString(R.string.intelliplug_down_lock_duration_summary));
+            mIntelliPlugDownLockDurationCard.setTitle(getString(R.string.down_lock_duration));
+            mIntelliPlugDownLockDurationCard.setDescription(getString(R.string.down_lock_duration_summary));
             mIntelliPlugDownLockDurationCard.setProgress(CPUHotplug.getIntelliPlugDownLockDuration() - 1);
             mIntelliPlugDownLockDurationCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugDownLockDurationCard);
+            views.add(mIntelliPlugDownLockDurationCard);
         }
 
         if (CPUHotplug.hasIntelliPlugFShift()) {
@@ -324,16 +329,26 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mIntelliPlugFShiftCard = new SeekBarCardView.DSeekBarCardView(list);
-            mIntelliPlugFShiftCard.setTitle(getString(R.string.intelliplug_fshift));
+            mIntelliPlugFShiftCard.setTitle(getString(R.string.fshift));
             mIntelliPlugFShiftCard.setProgress(CPUHotplug.getIntelliPlugFShift());
             mIntelliPlugFShiftCard.setOnDSeekBarCardListener(this);
 
-            addView(mIntelliPlugFShiftCard);
+            views.add(mIntelliPlugFShiftCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mIntelliPlugDividerCard = new DividerCardView.DDividerCard();
+            mIntelliPlugDividerCard.setText(getString(R.string.intelliplug));
+            addView(mIntelliPlugDividerCard);
+
+            addAllView(views);
         }
 
     }
 
     private void bluPlugInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
         if (CPUHotplug.hasBluPlugEnable()) {
             mBluPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mBluPlugCard.setTitle(getString(R.string.blu_plug));
@@ -341,17 +356,17 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mBluPlugCard.setChecked(CPUHotplug.isBluPlugActive());
             mBluPlugCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mBluPlugCard);
+            views.add(mBluPlugCard);
         }
 
         if (CPUHotplug.hasBluPlugPowersaverMode()) {
             mBluPlugPowersaverModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mBluPlugPowersaverModeCard.setTitle(getString(R.string.blu_plug_powersaver_mode));
-            mBluPlugPowersaverModeCard.setDescription(getString(R.string.blu_plug_powersaver_mode_summary));
+            mBluPlugPowersaverModeCard.setTitle(getString(R.string.powersaver_mode));
+            mBluPlugPowersaverModeCard.setDescription(getString(R.string.powersaver_mode_summary));
             mBluPlugPowersaverModeCard.setChecked(CPUHotplug.isBluPlugPowersaverModeActive());
             mBluPlugPowersaverModeCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mBluPlugPowersaverModeCard);
+            views.add(mBluPlugPowersaverModeCard);
         }
 
         if (CPUHotplug.hasBluPlugMinOnline()) {
@@ -360,12 +375,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mBluPlugMinOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugMinOnlineCard.setTitle(getString(R.string.blu_plug_min_online));
-            mBluPlugMinOnlineCard.setDescription(getString(R.string.blu_plug_min_online_summary));
+            mBluPlugMinOnlineCard.setTitle(getString(R.string.min_online));
+            mBluPlugMinOnlineCard.setDescription(getString(R.string.min_online_summary));
             mBluPlugMinOnlineCard.setProgress(CPUHotplug.getBluPlugMinOnline() - 1);
             mBluPlugMinOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugMinOnlineCard);
+            views.add(mBluPlugMinOnlineCard);
         }
 
         if (CPUHotplug.hasBluPlugMaxOnline()) {
@@ -374,12 +389,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mBluPlugMaxOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugMaxOnlineCard.setTitle(getString(R.string.blu_plug_max_online));
-            mBluPlugMaxOnlineCard.setDescription(getString(R.string.blu_plug_max_online_summary));
+            mBluPlugMaxOnlineCard.setTitle(getString(R.string.max_online));
+            mBluPlugMaxOnlineCard.setDescription(getString(R.string.max_online_summary));
             mBluPlugMaxOnlineCard.setProgress(CPUHotplug.getBluPlugMaxOnline() - 1);
             mBluPlugMaxOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugMaxOnlineCard);
+            views.add(mBluPlugMaxOnlineCard);
         }
 
         if (CPUHotplug.hasBluPlugMaxCoresScreenOff()) {
@@ -388,26 +403,27 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i + 1));
 
             mBluPlugMaxCoresScreenOffCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugMaxCoresScreenOffCard.setTitle(getString(R.string.blu_plug_max_cores_screen_off));
-            mBluPlugMaxCoresScreenOffCard.setDescription(getString(R.string.blu_plug_max_cores_screen_off_summary));
+            mBluPlugMaxCoresScreenOffCard.setTitle(getString(R.string.max_cores_screen_off));
+            mBluPlugMaxCoresScreenOffCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mBluPlugMaxCoresScreenOffCard.setProgress(CPUHotplug.getBluPlugMaxCoresScreenOff() - 1);
             mBluPlugMaxCoresScreenOffCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugMaxCoresScreenOffCard);
+            views.add(mBluPlugMaxCoresScreenOffCard);
         }
 
-        if (CPUHotplug.hasBluPlugMaxFreqScreenOff()) {
+        if (CPUHotplug.hasBluPlugMaxFreqScreenOff() && CPU.getFreqs() != null) {
             List<String> list = new ArrayList<>();
             list.add(getString(R.string.disabled));
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
             mBluPlugMaxFreqScreenOffCard = new PopupCardItem.DPopupCard(list);
-            mBluPlugMaxFreqScreenOffCard.setDescription(getString(R.string.blu_plug_max_freq_screen_off));
+            mBluPlugMaxFreqScreenOffCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
+            mBluPlugMaxFreqScreenOffCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mBluPlugMaxFreqScreenOffCard.setItem(CPUHotplug.getBluPlugMaxFreqScreenOff());
             mBluPlugMaxFreqScreenOffCard.setOnDPopupCardListener(this);
 
-            addView(mBluPlugMaxFreqScreenOffCard);
+            views.add(mBluPlugMaxFreqScreenOffCard);
         }
 
         if (CPUHotplug.hasBluPlugUpThreshold()) {
@@ -416,12 +432,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(i + "%");
 
             mBluPlugUpThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugUpThresholdCard.setTitle(getString(R.string.blu_plug_up_threshold));
-            mBluPlugUpThresholdCard.setDescription(getString(R.string.blu_plug_up_threshold_summary));
+            mBluPlugUpThresholdCard.setTitle(getString(R.string.up_threshold));
+            mBluPlugUpThresholdCard.setDescription(getString(R.string.up_threshold_summary));
             mBluPlugUpThresholdCard.setProgress(CPUHotplug.getBluPlugUpThreshold());
             mBluPlugUpThresholdCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugUpThresholdCard);
+            views.add(mBluPlugUpThresholdCard);
         }
 
         if (CPUHotplug.hasBluPlugUpTimerCnt()) {
@@ -430,12 +446,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
             mBluPlugUpTimerCntCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugUpTimerCntCard.setTitle(getString(R.string.blu_plug_up_timer_cnt));
-            mBluPlugUpTimerCntCard.setDescription(getString(R.string.blu_plug_up_timer_cnt_summary));
+            mBluPlugUpTimerCntCard.setTitle(getString(R.string.up_timer_cnt));
+            mBluPlugUpTimerCntCard.setDescription(getString(R.string.up_timer_cnt_summary));
             mBluPlugUpTimerCntCard.setProgress(CPUHotplug.getBluPlugUpTimerCnt());
             mBluPlugUpTimerCntCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugUpTimerCntCard);
+            views.add(mBluPlugUpTimerCntCard);
         }
 
         if (CPUHotplug.hasBluPlugDownTimerCnt()) {
@@ -444,17 +460,27 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
             mBluPlugDownTimerCntCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBluPlugDownTimerCntCard.setTitle(getString(R.string.blu_plug_down_timer_cnt));
-            mBluPlugDownTimerCntCard.setDescription(getString(R.string.blu_plug_down_timer_cnt_summary));
+            mBluPlugDownTimerCntCard.setTitle(getString(R.string.down_timer_cnt));
+            mBluPlugDownTimerCntCard.setDescription(getString(R.string.down_timer_cnt_summary));
             mBluPlugDownTimerCntCard.setProgress(CPUHotplug.getBluPlugDownTimerCnt());
             mBluPlugDownTimerCntCard.setOnDSeekBarCardListener(this);
 
-            addView(mBluPlugDownTimerCntCard);
+            views.add(mBluPlugDownTimerCntCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mBluPlugDividerCard = new DividerCardView.DDividerCard();
+            mBluPlugDividerCard.setText(getString(R.string.blu_plug));
+
+            addView(mBluPlugDividerCard);
+            addAllView(views);
         }
 
     }
 
     private void msmHotplugInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
         if (CPUHotplug.hasMsmHotplugEnable()) {
             mMsmHotplugEnabledCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mMsmHotplugEnabledCard.setTitle(getString(R.string.msm_hotplug));
@@ -462,17 +488,17 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mMsmHotplugEnabledCard.setChecked(CPUHotplug.isMsmHotplugActive());
             mMsmHotplugEnabledCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mMsmHotplugEnabledCard);
+            views.add(mMsmHotplugEnabledCard);
         }
 
         if (CPUHotplug.hasMsmHotplugDebugMask()) {
             mMsmHotplugDebugMaskCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mMsmHotplugDebugMaskCard.setTitle(getString(R.string.msm_hotplug_debug_mask));
-            mMsmHotplugDebugMaskCard.setDescription(getString(R.string.msm_hotplug_debug_mask_summary));
+            mMsmHotplugDebugMaskCard.setTitle(getString(R.string.debug_mask));
+            mMsmHotplugDebugMaskCard.setDescription(getString(R.string.debug_mask_summary));
             mMsmHotplugDebugMaskCard.setChecked(CPUHotplug.isMsmHotplugDebugMaskActive());
             mMsmHotplugDebugMaskCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mMsmHotplugDebugMaskCard);
+            views.add(mMsmHotplugDebugMaskCard);
         }
 
         if (CPUHotplug.hasMsmHotplugMinCpusOnline()) {
@@ -481,12 +507,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugMinCpusOnlineCard.setTitle(getString(R.string.msm_hotplug_min_cpus_online));
-            mMsmHotplugMinCpusOnlineCard.setDescription(getString(R.string.msm_hotplug_min_cpus_online_summary));
+            mMsmHotplugMinCpusOnlineCard.setTitle(getString(R.string.min_cpus_online));
+            mMsmHotplugMinCpusOnlineCard.setDescription(getString(R.string.min_cpus_online_summary));
             mMsmHotplugMinCpusOnlineCard.setProgress(CPUHotplug.getMsmHotplugMinCpusOnline() - 1);
             mMsmHotplugMinCpusOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugMinCpusOnlineCard);
+            views.add(mMsmHotplugMinCpusOnlineCard);
         }
 
         if (CPUHotplug.hasMsmHotplugMaxCpusOnline()) {
@@ -495,12 +521,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugMaxCpusOnlineCard.setTitle(getString(R.string.msm_hotplug_max_cpus_online));
-            mMsmHotplugMaxCpusOnlineCard.setDescription(getString(R.string.msm_hotplug_max_cpus_online_summary));
+            mMsmHotplugMaxCpusOnlineCard.setTitle(getString(R.string.max_cpus_online));
+            mMsmHotplugMaxCpusOnlineCard.setDescription(getString(R.string.max_cpus_online_summary));
             mMsmHotplugMaxCpusOnlineCard.setProgress(CPUHotplug.getMsmHotplugMaxCpusOnline() - 1);
             mMsmHotplugMaxCpusOnlineCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugMaxCpusOnlineCard);
+            views.add(mMsmHotplugMaxCpusOnlineCard);
         }
 
         if (CPUHotplug.hasMsmHotplugCpusBoosted()) {
@@ -510,12 +536,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugCpusBoostedCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugCpusBoostedCard.setTitle(getString(R.string.msm_hotplug_cpus_boosted));
-            mMsmHotplugCpusBoostedCard.setDescription(getString(R.string.msm_hotplug_cpus_boosted_summary));
+            mMsmHotplugCpusBoostedCard.setTitle(getString(R.string.cpus_boosted));
+            mMsmHotplugCpusBoostedCard.setDescription(getString(R.string.cpus_boosted_summary));
             mMsmHotplugCpusBoostedCard.setProgress(CPUHotplug.getMsmHotplugCpusBoosted());
             mMsmHotplugCpusBoostedCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugCpusBoostedCard);
+            views.add(mMsmHotplugCpusBoostedCard);
         }
 
         if (CPUHotplug.hasMsmHotplugMaxCpusOnlineSusp()) {
@@ -524,12 +550,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugCpusOnlineSuspCard.setTitle(getString(R.string.msm_hotplug_max_cpus_screen_off));
-            mMsmHotplugCpusOnlineSuspCard.setDescription(getString(R.string.msm_hotplug_max_cpus_screen_off_summary));
+            mMsmHotplugCpusOnlineSuspCard.setTitle(getString(R.string.max_cpus_screen_off));
+            mMsmHotplugCpusOnlineSuspCard.setDescription(getString(R.string.max_cpus_screen_off_summary));
             mMsmHotplugCpusOnlineSuspCard.setProgress(CPUHotplug.getMsmHotplugMaxCpusOnlineSusp() - 1);
             mMsmHotplugCpusOnlineSuspCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugCpusOnlineSuspCard);
+            views.add(mMsmHotplugCpusOnlineSuspCard);
         }
 
         if (CPUHotplug.hasMsmHotplugBoostLockDuration()) {
@@ -538,12 +564,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugBoostLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugBoostLockDurationCard.setTitle(getString(R.string.msm_hotplug_boost_lock_duration));
-            mMsmHotplugBoostLockDurationCard.setDescription(getString(R.string.msm_hotplug_boost_lock_duration_summary));
+            mMsmHotplugBoostLockDurationCard.setTitle(getString(R.string.boost_lock_duration));
+            mMsmHotplugBoostLockDurationCard.setDescription(getString(R.string.boost_lock_duration_summary));
             mMsmHotplugBoostLockDurationCard.setProgress(CPUHotplug.getMsmHotplugBoostLockDuration() - 1);
             mMsmHotplugBoostLockDurationCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugBoostLockDurationCard);
+            views.add(mMsmHotplugBoostLockDurationCard);
         }
 
         if (CPUHotplug.hasMsmHotplugDownLockDuration()) {
@@ -552,12 +578,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugDownLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugDownLockDurationCard.setTitle(getString(R.string.msm_hotplug_down_lock_duration));
-            mMsmHotplugDownLockDurationCard.setDescription(getString(R.string.msm_hotplug_down_lock_duration_summary));
+            mMsmHotplugDownLockDurationCard.setTitle(getString(R.string.down_lock_duration));
+            mMsmHotplugDownLockDurationCard.setDescription(getString(R.string.down_lock_duration_summary));
             mMsmHotplugDownLockDurationCard.setProgress(CPUHotplug.getMsmHotplugDownLockDuration() - 1);
             mMsmHotplugDownLockDurationCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugDownLockDurationCard);
+            views.add(mMsmHotplugDownLockDurationCard);
         }
 
         if (CPUHotplug.hasMsmHotplugHistorySize()) {
@@ -566,12 +592,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugHistorySizeCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugHistorySizeCard.setTitle(getString(R.string.msm_hotplug_history_size));
-            mMsmHotplugHistorySizeCard.setDescription(getString(R.string.msm_hotplug_history_size_summary));
+            mMsmHotplugHistorySizeCard.setTitle(getString(R.string.history_size));
+            mMsmHotplugHistorySizeCard.setDescription(getString(R.string.history_size_summary));
             mMsmHotplugHistorySizeCard.setProgress(CPUHotplug.getMsmHotplugHistorySize() - 1);
             mMsmHotplugHistorySizeCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugHistorySizeCard);
+            views.add(mMsmHotplugHistorySizeCard);
         }
 
         if (CPUHotplug.hasMsmHotplugUpdateRate()) {
@@ -580,12 +606,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugUpdateRateCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugUpdateRateCard.setTitle(getString(R.string.msm_hotplug_update_rate));
-            mMsmHotplugUpdateRateCard.setDescription(getString(R.string.msm_hotplug_update_rate_summary));
+            mMsmHotplugUpdateRateCard.setTitle(getString(R.string.update_rate));
+            mMsmHotplugUpdateRateCard.setDescription(getString(R.string.update_rate_summary));
             mMsmHotplugUpdateRateCard.setProgress(CPUHotplug.getMsmHotplugUpdateRate());
             mMsmHotplugUpdateRateCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugUpdateRateCard);
+            views.add(mMsmHotplugUpdateRateCard);
         }
 
         if (CPUHotplug.hasMsmHotplugFastLaneLoad()) {
@@ -594,12 +620,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugFastLaneLoadCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugFastLaneLoadCard.setTitle(getString(R.string.msm_hotplug_fast_lane_load));
-            mMsmHotplugFastLaneLoadCard.setDescription(getString(R.string.msm_hotplug_fast_lane_load_summary));
+            mMsmHotplugFastLaneLoadCard.setTitle(getString(R.string.fast_lane_load));
+            mMsmHotplugFastLaneLoadCard.setDescription(getString(R.string.fast_lane_load_summary));
             mMsmHotplugFastLaneLoadCard.setProgress(CPUHotplug.getMsmHotplugFastLaneLoad());
             mMsmHotplugFastLaneLoadCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugFastLaneLoadCard);
+            views.add(mMsmHotplugFastLaneLoadCard);
         }
 
         if (CPUHotplug.hasMsmHotplugFastLaneMinFreq()) {
@@ -608,12 +634,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add((freq / 1000) + getString(R.string.mhz));
 
             mMsmHotplugFastLaneMinFreqCard = new PopupCardItem.DPopupCard(list);
-            mMsmHotplugFastLaneMinFreqCard.setTitle(getString(R.string.msm_hotplug_fast_lane_min_freq));
-            mMsmHotplugFastLaneMinFreqCard.setDescription(getString(R.string.msm_hotplug_fast_lane_min_freq_summary));
+            mMsmHotplugFastLaneMinFreqCard.setTitle(getString(R.string.fast_lane_min_freq));
+            mMsmHotplugFastLaneMinFreqCard.setDescription(getString(R.string.fast_lane_min_freq_summary));
             mMsmHotplugFastLaneMinFreqCard.setItem((CPUHotplug.getMsmHotplugFastLaneMinFreq() / 1000) + getString(R.string.mhz));
             mMsmHotplugFastLaneMinFreqCard.setOnDPopupCardListener(this);
 
-            addView(mMsmHotplugFastLaneMinFreqCard);
+            views.add(mMsmHotplugFastLaneMinFreqCard);
         }
 
         if (CPUHotplug.hasMsmHotplugOfflineLoad()) {
@@ -622,22 +648,22 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugOfflineLoadCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugOfflineLoadCard.setTitle(getString(R.string.msm_hotplug_offline_load));
-            mMsmHotplugOfflineLoadCard.setDescription(getString(R.string.msm_hotplug_offline_load_summary));
+            mMsmHotplugOfflineLoadCard.setTitle(getString(R.string.offline_load));
+            mMsmHotplugOfflineLoadCard.setDescription(getString(R.string.offline_load_summary));
             mMsmHotplugOfflineLoadCard.setProgress(CPUHotplug.getMsmHotplugOfflineLoad());
             mMsmHotplugOfflineLoadCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugOfflineLoadCard);
+            views.add(mMsmHotplugOfflineLoadCard);
         }
 
         if (CPUHotplug.hasMsmHotplugIoIsBusy()) {
             mMsmHotplugIoIsBusyCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mMsmHotplugIoIsBusyCard.setTitle(getString(R.string.msm_hotplug_io_is_busy));
-            mMsmHotplugIoIsBusyCard.setDescription(getString(R.string.msm_hotplug_io_is_busy_summary));
+            mMsmHotplugIoIsBusyCard.setTitle(getString(R.string.io_is_busy));
+            mMsmHotplugIoIsBusyCard.setDescription(getString(R.string.io_is_busy_summary));
             mMsmHotplugIoIsBusyCard.setChecked(CPUHotplug.isMsmHotplugIoIsBusyActive());
             mMsmHotplugIoIsBusyCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mMsmHotplugIoIsBusyCard);
+            views.add(mMsmHotplugIoIsBusyCard);
         }
 
         if (CPUHotplug.hasMsmHotplugSuspendMaxCpus()) {
@@ -647,12 +673,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugSuspendMaxCpusCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugSuspendMaxCpusCard.setTitle(getString(R.string.msm_hotplug_suspend_max_cpus));
-            mMsmHotplugSuspendMaxCpusCard.setDescription(getString(R.string.msm_hotplug_suspend_max_cpus_summary));
+            mMsmHotplugSuspendMaxCpusCard.setTitle(getString(R.string.suspend_max_cpus));
+            mMsmHotplugSuspendMaxCpusCard.setDescription(getString(R.string.suspend_max_cpus_summary));
             mMsmHotplugSuspendMaxCpusCard.setProgress(CPUHotplug.getMsmHotplugSuspendMaxCpus());
             mMsmHotplugSuspendMaxCpusCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugSuspendMaxCpusCard);
+            views.add(mMsmHotplugSuspendMaxCpusCard);
         }
 
         if (CPUHotplug.hasMsmHotplugSuspendFreq()) {
@@ -661,12 +687,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add((freq / 1000) + getString(R.string.mhz));
 
             mMsmHotplugSuspendFreqCard = new PopupCardItem.DPopupCard(list);
-            mMsmHotplugSuspendFreqCard.setTitle(getString(R.string.msm_hotplug_suspend_freq));
-            mMsmHotplugSuspendFreqCard.setDescription(getString(R.string.msm_hotplug_suspend_freq_summary));
+            mMsmHotplugSuspendFreqCard.setTitle(getString(R.string.suspend_freq));
+            mMsmHotplugSuspendFreqCard.setDescription(getString(R.string.suspend_freq_summary));
             mMsmHotplugSuspendFreqCard.setItem((CPUHotplug.getMsmHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
             mMsmHotplugSuspendFreqCard.setOnDPopupCardListener(this);
 
-            addView(mMsmHotplugSuspendFreqCard);
+            views.add(mMsmHotplugSuspendFreqCard);
         }
 
         if (CPUHotplug.hasMsmHotplugSuspendDeferTime()) {
@@ -675,11 +701,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 list.add(String.valueOf(i));
 
             mMsmHotplugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMsmHotplugSuspendDeferTimeCard.setTitle(getString(R.string.msm_hotplug_defer_time));
+            mMsmHotplugSuspendDeferTimeCard.setTitle(getString(R.string.defer_time));
             mMsmHotplugSuspendDeferTimeCard.setProgress(CPUHotplug.getMsmHotplugSuspendDeferTime());
             mMsmHotplugSuspendDeferTimeCard.setOnDSeekBarCardListener(this);
 
-            addView(mMsmHotplugSuspendDeferTimeCard);
+            views.add(mMsmHotplugSuspendDeferTimeCard);
+        }
+        
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mMsmHotplugDividerCard = new DividerCardView.DDividerCard();
+            mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
+
+            addView(mMsmHotplugDividerCard);
+            addAllView(views);
         }
 
     }

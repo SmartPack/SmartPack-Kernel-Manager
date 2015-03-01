@@ -10,6 +10,7 @@ android {
         targetSdkVersion 21
         versionCode 47
         versionName "0.8.5"
+        useJack true
     }
     buildTypes {
         release {

@@ -314,7 +314,7 @@ public class CPUHotplug implements Constants {
     }
 
     public static boolean hasBluPlugMaxFreqScreenOff() {
-        return Utils.existFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
+        return !Utils.existFile(CPU_MAX_SCREEN_OFF_FREQ) && Utils.existFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
     }
 
     public static void setBluPlugMaxCoresScreenOff(int value, Context context) {
@@ -532,6 +532,7 @@ public class CPUHotplug implements Constants {
     }
 
     public static boolean hasIntelliPlugScreenOffMax() {
+        if (Utils.existFile(CPU_MAX_SCREEN_OFF_FREQ)) return false;
         String file = HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX;
         if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
         return Utils.existFile(file);

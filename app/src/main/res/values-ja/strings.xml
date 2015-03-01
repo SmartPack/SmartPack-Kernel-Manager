@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Kernel Adiutor</string>
     <string name="no_root">root権限がありません。</string>
     <string name="no_busybox">busyboxがありません。</string>
@@ -342,5 +343,5 @@
     <string name="google_plus_summary">コミュニティに参加する</string>
     <string name="donate">寄付</string>
     <string name="donate_summary">このアプリは私の空き時間を使って書かれています。少しだけでも寄付して頂ければ幸いです。寄付は強制ではありません。アプリはずっと無料のままにして、機能のアンロックにお金がいるような事はしません!</string>
-    
+
 </resources>

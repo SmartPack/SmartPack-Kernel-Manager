@@ -79,7 +79,6 @@ public class RecyclerViewFragment extends Fragment {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
             }
 
             @Override
@@ -97,7 +96,46 @@ public class RecyclerViewFragment extends Fragment {
         if (!showApplyOnBoot())
             getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(View.GONE);
 
-        if (isAdded()) new Task().execute(savedInstanceState);
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hand = new Handler();
+                    }
+                });
+                views.clear();
+                adapter = new DAdapter.Adapter(views);
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    if (isAdded()) init(savedInstanceState);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+
+                recyclerView.setAdapter(adapter);
+                animateRecyclerView();
+                if (hand != null) hand.post(run);
+
+                try {
+                    ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
 
         return view;
     }
@@ -175,6 +213,11 @@ public class RecyclerViewFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    public void addAllView(List<DAdapter.DView> views) {
+        this.views.addAll(views);
+        adapter.notifyDataSetChanged();
+    }
+
     public int getCount() {
         return views.size();
     }
@@ -190,6 +233,7 @@ public class RecyclerViewFragment extends Fragment {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         setLayout();
+        layoutManager.setSpanCount(getSpan());
     }
 
     private void setLayout() {
@@ -198,8 +242,6 @@ public class RecyclerViewFragment extends Fragment {
             layoutParams.height = Utils.getActionBarHeight(getActivity());
             applyOnBootLayout.requestLayout();
         }
-
-        layoutManager.setSpanCount(getSpan());
     }
 
     public boolean showApplyOnBoot() {
@@ -211,50 +253,6 @@ public class RecyclerViewFragment extends Fragment {
         if (Utils.isTablet(getActivity()))
             return orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
         return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
-    }
-
-    private class Task extends AsyncTask<Bundle, Void, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    hand = new Handler();
-                }
-            });
-            views.clear();
-            adapter = new DAdapter.Adapter(views);
-        }
-
-        @Override
-        protected String doInBackground(final Bundle... params) {
-            try {
-                if (isAdded()) init(params[0]);
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            recyclerView.setAdapter(adapter);
-            animateRecyclerView();
-            if (hand != null) hand.post(run);
-
-            try {
-                ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-
-        }
-
     }
 
     public Handler getHandler() {

@@ -27,11 +27,13 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.PathReaderActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.UsageCardView;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
@@ -189,23 +191,24 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     }
 
     private void cpuBoostInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
         if (CPU.hasCpuBoostEnable()) {
             mCpuBoostEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mCpuBoostEnableCard.setDescription(getString(R.string.cpu_boost));
             mCpuBoostEnableCard.setChecked(CPU.isCpuBoostActive());
             mCpuBoostEnableCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mCpuBoostEnableCard);
+            views.add(mCpuBoostEnableCard);
         }
 
         if (CPU.hasCpuBoostDebugMask()) {
             mCpuBoostDebugMaskCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mCpuBoostDebugMaskCard.setTitle(getString(R.string.cpu_boost_debug_mask));
-            mCpuBoostDebugMaskCard.setDescription(getString(R.string.cpu_boost_debug_mask_summary));
+            mCpuBoostDebugMaskCard.setTitle(getString(R.string.debug_mask));
+            mCpuBoostDebugMaskCard.setDescription(getString(R.string.debug_mask_summary));
             mCpuBoostDebugMaskCard.setChecked(CPU.isCpuBoostDebugMaskActive());
             mCpuBoostDebugMaskCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mCpuBoostDebugMaskCard);
+            views.add(mCpuBoostDebugMaskCard);
         }
 
         if (CPU.hasCpuBoostMs()) {
@@ -214,12 +217,12 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
                 list.add(i + getString(R.string.ms));
 
             mCpuBoostMsCard = new SeekBarCardView.DSeekBarCardView(list);
-            mCpuBoostMsCard.setTitle(getString(R.string.cpu_boost_interval));
-            mCpuBoostMsCard.setDescription(getString(R.string.cpu_boost_interval_summary));
+            mCpuBoostMsCard.setTitle(getString(R.string.interval));
+            mCpuBoostMsCard.setDescription(getString(R.string.interval_summary));
             mCpuBoostMsCard.setProgress(CPU.getCpuBootMs() / 10);
             mCpuBoostMsCard.setOnDSeekBarCardListener(this);
 
-            addView(mCpuBoostMsCard);
+            views.add(mCpuBoostMsCard);
         }
 
         if (CPU.hasCpuBoostSyncThreshold()) {
@@ -229,12 +232,12 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
                 list.add((freq / 1000) + getString(R.string.mhz));
 
             mCpuBoostSyncThresholdCard = new PopupCardItem.DPopupCard(list);
-            mCpuBoostSyncThresholdCard.setTitle(getString(R.string.cpu_boost_sync_threshold));
-            mCpuBoostSyncThresholdCard.setDescription(getString(R.string.cpu_boost_sync_threshold_summary));
+            mCpuBoostSyncThresholdCard.setTitle(getString(R.string.sync_threshold));
+            mCpuBoostSyncThresholdCard.setDescription(getString(R.string.sync_threshold_summary));
             mCpuBoostSyncThresholdCard.setItem(CPU.getCpuBootSyncThreshold());
             mCpuBoostSyncThresholdCard.setOnDPopupCardListener(this);
 
-            addView(mCpuBoostSyncThresholdCard);
+            views.add(mCpuBoostSyncThresholdCard);
         }
 
         if (CPU.hasCpuBoostInputMs()) {
@@ -243,12 +246,20 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
                 list.add(i + getString(R.string.ms));
 
             mCpuBoostInputMsCard = new SeekBarCardView.DSeekBarCardView(list);
-            mCpuBoostInputMsCard.setTitle(getString(R.string.cpu_boost_input_interval));
-            mCpuBoostInputMsCard.setDescription(getString(R.string.cpu_boost_input_interval_summary));
+            mCpuBoostInputMsCard.setTitle(getString(R.string.input_interval));
+            mCpuBoostInputMsCard.setDescription(getString(R.string.input_interval_summary));
             mCpuBoostInputMsCard.setProgress(CPU.getCpuBootInputMs() / 10);
             mCpuBoostInputMsCard.setOnDSeekBarCardListener(this);
 
-            addView(mCpuBoostInputMsCard);
+            views.add(mCpuBoostInputMsCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mCpuBoostDividerCard = new DividerCardView.DDividerCard();
+            mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
+
+            addView(mCpuBoostDividerCard);
+            addAllView(views);
         }
 
     }

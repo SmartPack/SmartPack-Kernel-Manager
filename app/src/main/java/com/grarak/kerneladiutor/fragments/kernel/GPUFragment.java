@@ -20,10 +20,11 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 
 import java.util.ArrayList;
@@ -124,8 +125,14 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     }
 
     private void simpleGpuInit() {
+        DividerCardView.DDividerCard mSimpleGpuDividerCard = new DividerCardView.DDividerCard();
+        mSimpleGpuDividerCard.setText(getString(R.string.simple_gpu_algorithm));
+
+        addView(mSimpleGpuDividerCard);
+
         mSimpleGpuCard = new SwitchCompatCardItem.DSwitchCompatCard();
-        mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm));
+        mSimpleGpuCard.setTitle(getString(R.string.simple_gpu_algorithm));
+        mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm_summary));
         mSimpleGpuCard.setChecked(GPU.isSimpleGpuActive());
         mSimpleGpuCard.setOnDSwitchCompatCardListener(this);
 
@@ -136,16 +143,16 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
             list.add(String.valueOf(i));
 
         mSimpleGpuLazinessCard = new SeekBarCardView.DSeekBarCardView(list);
-        mSimpleGpuLazinessCard.setTitle(getString(R.string.simple_gpu_laziness));
-        mSimpleGpuLazinessCard.setDescription(getString(R.string.simple_gpu_laziness_summary));
+        mSimpleGpuLazinessCard.setTitle(getString(R.string.laziness));
+        mSimpleGpuLazinessCard.setDescription(getString(R.string.laziness_summary));
         mSimpleGpuLazinessCard.setProgress(GPU.getSimpleGpuLaziness());
         mSimpleGpuLazinessCard.setOnDSeekBarCardListener(this);
 
         addView(mSimpleGpuLazinessCard);
 
         mSimpleGpuRampThresoldCard = new SeekBarCardView.DSeekBarCardView(list);
-        mSimpleGpuRampThresoldCard.setTitle(getString(R.string.simple_gpu_ramp_thresold));
-        mSimpleGpuRampThresoldCard.setDescription(getString(R.string.simple_gpu_ramp_thresold_summary));
+        mSimpleGpuRampThresoldCard.setTitle(getString(R.string.ramp_thresold));
+        mSimpleGpuRampThresoldCard.setDescription(getString(R.string.ramp_thresold_summary));
         mSimpleGpuRampThresoldCard.setProgress(GPU.getSimpleGpuRampThreshold());
         mSimpleGpuRampThresoldCard.setOnDSeekBarCardListener(this);
 
