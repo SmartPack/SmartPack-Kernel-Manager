@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Kernel Adiutor</string>
     <string name="no_root">root権限がありません。</string>
     <string name="no_busybox">busyboxがありません。</string>
@@ -153,6 +152,39 @@
     <string name="blu_plug_up_timer_cnt_summary">CPUタイマーを操作します。</string>
     <string name="blu_plug_down_timer_cnt">Blu Plug 下降タイマー操作</string>
     <string name="blu_plug_down_timer_cnt_summary">CPUタイマーを操作します。</string>
+    <string name="msm_hotplug">MSM Hotplug</string>
+    <string name="msm_hotplug_summary">myfluxi氏が開発した、カーネル内部でのQualcomms MPDecisionの代替です。</string>
+    <string name="msm_hotplug_debug_mask">MSM Hotplug デバッグマスク</string>
+    <string name="msm_hotplug_debug_mask_summary">Hotplug操作のデバッグマスクを有効化できます。</string>
+    <string name="msm_hotplug_min_cpus_online">MSM Hotplug 最小CPU数</string>
+    <string name="msm_hotplug_min_cpus_online_summary">常時オンラインにするCPUの最小数です。</string>
+    <string name="msm_hotplug_max_cpus_online">MSM Hotplug 最大CPU数</string>
+    <string name="msm_hotplug_max_cpus_online_summary">常時オンラインにするCPUの最大数です。</string>
+    <string name="msm_hotplug_cpus_boosted">MSM Hotplug 最大CPUブースト数</string>
+    <string name="msm_hotplug_cpus_boosted_summary">同時にブーストするCPU数の最大値です。</string>
+    <string name="msm_hotplug_max_cpus_screen_off">画面消灯時のMSM Hotplug CPU数</string>
+    <string name="msm_hotplug_max_cpus_screen_off_summary">画面消灯時にオンラインになるCPUの最大数です。</string>
+    <string name="msm_hotplug_boost_lock_duration">MSM Hotplug ブーストロック時間</string>
+    <string name="msm_hotplug_boost_lock_duration_summary">CPUをブーストする最小間隔です。</string>
+    <string name="msm_hotplug_down_lock_duration">MSM Hotplug ダウンロック時間</string>
+    <string name="msm_hotplug_down_lock_duration_summary">CPUをオンラインのままにする最小間隔です。</string>
+    <string name="msm_hotplug_history_size">MSM Hotplug 履歴サイズ</string>
+    <string name="msm_hotplug_history_size_summary">平均負荷を計算するために記録するサンプル数です。低くすると素早く、不安定になります。</string>
+    <string name="msm_hotplug_update_rate">MSM Hotplug 更新レート</string>
+    <string name="msm_hotplug_update_rate_summary">CPUの平均負荷計算のためのサンプルを記録する間隔です。低くすると素早く、不安定になります。</string>
+    <string name="msm_hotplug_fast_lane_load">MSM Hotplug 高速レーン負荷</string>
+    <string name="msm_hotplug_fast_lane_load_summary">CPUの負荷が指定したしきい値を超えているとき、全てのCPUをすぐオンラインにすることでレイテンシを向上させます。</string>
+    <string name="msm_hotplug_fast_lane_min_freq">MSM Hotplug 高速レーン最小周波数</string>
+    <string name="msm_hotplug_fast_lane_min_freq_summary">高速レーンが上記の負荷に達した時にスケールダウンさせる最小周波数を指定します。</string>
+    <string name="msm_hotplug_offline_load">MSM Hotplug オフライン負荷</string>
+    <string name="msm_hotplug_offline_load_summary">しきい値を超える負荷でこのレベル以下になるとき、CPUをオフラインにしないようにします。</string>
+    <string name="msm_hotplug_io_is_busy">MSM Hotplug IO is Busy</string>
+    <string name="msm_hotplug_io_is_busy_summary">HotplugがI/O時間をCPU時間として認識するようにします。</string>
+    <string name="msm_hotplug_suspend_max_cpus">MSM Hotplug サスペンド最大CPU数</string>
+    <string name="msm_hotplug_suspend_max_cpus_summary">画面消灯時にオンラインになるCPUの最大数です。</string>
+    <string name="msm_hotplug_suspend_freq">MSM Hotplug サスペンド周波数</string>
+    <string name="msm_hotplug_suspend_freq_summary">画面消灯時に使用するCPU周波数の最大値を設定します。</string>
+    <string name="msm_hotplug_defer_time">MSM Hotplug サスペンド延期時間</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D 現在の周波数</string>
@@ -237,7 +269,7 @@
     <string name="external_read_ahead">外部ストレージ先読みサイズ</string>
 
     <!-- Kernel Samepage Merging -->
-    <string name="ksm_full_scans">完全スキャン</string>
+    <string name="ksm_full_scans">完了したスキャン</string>
     <string name="ksm_pages_shared">共有されたページ</string>
     <string name="ksm_pages_sharing">共有中のページ</string>
     <string name="ksm_pages_unshared">未共有のページ</string>
@@ -254,10 +286,10 @@
     <string name="hidden_app">非表示アプリ</string>
     <string name="content_providers">コンテンツプロバイダ</string>
     <string name="empty_app">空のアプリ</string>
-    <string name="very_light">Very light</string>
-    <string name="light">Light</string>
-    <string name="medium">Medium</string>
-    <string name="very_aggressive">Very Aggressive</string>
+    <string name="very_light">緩め (強)</string>
+    <string name="light">緩め</string>
+    <string name="medium">中</string>
+    <string name="very_aggressive">積極的 (強)</string>
 
     <!-- Misc Controls -->
     <string name="tcp">TCP Congestion Algorithm</string>
@@ -310,5 +342,5 @@
     <string name="google_plus_summary">コミュニティに参加する</string>
     <string name="donate">寄付</string>
     <string name="donate_summary">このアプリは私の空き時間を使って書かれています。少しだけでも寄付して頂ければ幸いです。寄付は強制ではありません。アプリはずっと無料のままにして、機能のアンロックにお金がいるような事はしません!</string>
-
+    
 </resources>
