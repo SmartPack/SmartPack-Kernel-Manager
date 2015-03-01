@@ -7,7 +7,7 @@
     android:minHeight="48dp"
     android:gravity="center_vertical"
     android:textSize="15sp"
-    android:textColor="@android:color/black"
+    android:textColor="@color/button_text_color"
     android:ellipsize="end"
     android:maxLines="1"
     android:background="?android:attr/activatedBackgroundIndicator" />
