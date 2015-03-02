@@ -33,6 +33,7 @@ public class AboutusFragment extends RecyclerViewFragment {
     private final String DONATE_LINK = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG";
     private final String ISSUE_LINK = "https://github.com/Grarak/KernelAdiutor/issues";
     private final String COMMUNITY_LINK = "https://plus.google.com/u/0/communities/108445529270785762340";
+    private final String TRANSLATE_LINK = "https://crowdin.com/project/kernel-adiutor";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -48,6 +49,7 @@ public class AboutusFragment extends RecyclerViewFragment {
         featureRequestInit();
         communityInit();
         donateInit();
+        translationInit();
     }
 
     private void licenseInit() {
@@ -114,6 +116,20 @@ public class AboutusFragment extends RecyclerViewFragment {
         });
 
         addView(mDonateCard);
+    }
+
+    private void translationInit() {
+        CardViewItem.DCardView mTranslationCard = new CardViewItem.DCardView();
+        mTranslationCard.setTitle(getString(R.string.translation));
+        mTranslationCard.setDescription(getString(R.string.translation_summary));
+        mTranslationCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                Utils.launchUrl(getActivity(), TRANSLATE_LINK);
+            }
+        });
+
+        addView(mTranslationCard);
     }
 
 }

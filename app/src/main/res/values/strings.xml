@@ -72,7 +72,7 @@
     <string name="cpu_min_freq">CPU Minimum Frequency</string>
     <string name="cpu_min_freq_summary">Set the minimum frequency the CPU scales down to.</string>
     <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
-    <string name="cpu_max_screen_off_freq_summary">Set the maximum screen off frequency the CPU scales up to.</string>
+    <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="cpu_governor">CPU Governor</string>
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to you CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
@@ -138,7 +138,7 @@
     <string name="down_lock_duration">Down Lock Duration</string>
     <string name="down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
     <string name="fshift">FShift</string>
-    <string name="blu_plug">Blu Plug</string>
+    <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">A MPDecision replacement by Code_Blue team.</string>
     <string name="powersaver_mode">Powersaver Mode</string>
     <string name="powersaver_mode_summary">Sets 1 CPU maximum online with frequency @1728 MHz.</string>
@@ -332,5 +332,7 @@
     <string name="google_plus_summary">Join our community.</string>
     <string name="donate">Donate</string>
     <string name="donate_summary">I\'m writing this application during my free time. You would make me really happy if you donate me a few bucks. I don\'t force you to donate anything. This application will stay free and I won\'t charge you to unlock any features!</string>
+    <string name="translation">Translation</string>
+    <string name="translation_summary">Help me to translate this app!</string>
 
 </resources>
