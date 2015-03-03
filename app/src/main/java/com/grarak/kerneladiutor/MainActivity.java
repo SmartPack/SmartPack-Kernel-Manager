@@ -67,6 +67,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
+import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
@@ -177,7 +178,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
             mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+        if (LMK.getMinFrees() != null)
+            mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.tools)));
