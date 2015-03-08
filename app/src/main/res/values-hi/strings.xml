@@ -4,12 +4,11 @@
   <string name="app_name">कर्नल एड्युटर</string>
   <string name="no_root">रूट उप्लब्ध नहीं है</string>
   <string name="no_busybox">बिज़ीबोक्स उप्लब्ध नहीं है</string>
-  <string name="apply_on_boot">बूट पर चालू करें</string>
-  <string name="apply_on_boot_summary">आपके परिवर्तनों को लागू कर दिया गया है</string>
   <string name="ok">ठीक</string>
   <string name="cancel">रद्द</string>
   <string name="current_value_not_supported">वर्तमान मूल्य समर्थित नहीं है</string>
   <string name="beta_message">एक बीटा परीक्षक होने के लिए धन्यवाद! आपको कोई भी समस्या होती है, तो मुझसे संपर्क करने में संकोच न करें । आपका वर्तमान संस्करण %s चला रहें है ।</string>
+  <string name="apply_on_boot">बूट पर चालू करें</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

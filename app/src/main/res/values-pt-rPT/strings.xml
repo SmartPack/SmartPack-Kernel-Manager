@@ -5,13 +5,12 @@
 </string>
   <string name="no_root">Root não disponível </string>
   <string name="no_busybox">Busybox não disponível </string>
-  <string name="apply_on_boot">Aplicar no arranque </string>
-  <string name="apply_on_boot_summary">As alterações foram aplicadas </string>
   <string name="ok">OK</string>
   <string name="cancel">Cancelar </string>
   <string name="current_value_not_supported">Valor não suportado </string>
   <string name="beta_message">Obrigado por testar a beta! Se tiver problemas, não hesite em contactar-me.
 Está a usar a versão %s.</string>
+  <string name="apply_on_boot">Aplicar no arranque </string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

@@ -3,12 +3,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="no_root">Root 不可用</string>
   <string name="no_busybox">Busybox 不可用</string>
-  <string name="apply_on_boot">在启动时重新应用</string>
-  <string name="apply_on_boot_summary">您的更改已经被应用</string>
   <string name="ok">确定</string>
   <string name="cancel">取消</string>
   <string name="current_value_not_supported">不支持当前值</string>
   <string name="beta_message">感谢您成为 Beta 版本的测试人员！如果您遇到任何问题，请不要犹豫并立即联系我。您当前运行的版本是 %s。</string>
+  <string name="apply_on_boot">在启动时重新应用</string>
   <string name="information">信息</string>
   <string name="kernel">内核</string>
   <string name="tools">工具</string>

@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Права суперпользователя недоступны</string>
   <string name="no_busybox">Busybox недоступен</string>
-  <string name="apply_on_boot">Применять при загрузке</string>
-  <string name="apply_on_boot_summary">Ваши настройки применены</string>
   <string name="ok">ОК</string>
   <string name="cancel">Отмена</string>
   <string name="current_value_not_supported">Эта величина не поддерживается</string>
   <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
+  <string name="apply_on_boot">Применять при загрузке</string>
   <string name="mhz">МГц</string>
   <string name="mv">мВ</string>
   <string name="kb">кВ</string>

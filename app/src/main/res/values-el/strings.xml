@@ -3,12 +3,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="no_root">Δεν βρέθηκε root</string>
   <string name="no_busybox">Δεν βρέθηκε busybox</string>
-  <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
-  <string name="apply_on_boot_summary">Οι αλλαγές σας έχουν εφαρμοστεί</string>
   <string name="ok">OK</string>
   <string name="cancel">Ακύρωση</string>
   <string name="current_value_not_supported">Η τρέχουσα τιμή δεν υποστηρίζεται</string>
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
+  <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

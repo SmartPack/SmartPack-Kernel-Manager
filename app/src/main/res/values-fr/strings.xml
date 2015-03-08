@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Root pas disponible</string>
   <string name="no_busybox">Busybox pas disponible</string>
-  <string name="apply_on_boot">Appliquer au démarrage</string>
-  <string name="apply_on_boot_summary">Tes modifications ont été appliquées</string>
   <string name="ok">OK</string>
   <string name="cancel">Annuler</string>
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si tu as des problèmes, n\'hésite pas à me contacter. Tu utilises actuellement la version %s.</string>
+  <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kO</string>

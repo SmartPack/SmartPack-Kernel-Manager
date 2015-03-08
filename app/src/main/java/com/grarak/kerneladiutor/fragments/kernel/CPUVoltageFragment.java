@@ -99,10 +99,11 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                         @Override
                         public void run() {
                             List<String> voltages = CPUVoltage.getVoltages();
-                            for (int i = 0; i < mVoltageCard.length; i++) {
-                                mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
-                                mVoltageCard[i].setValue(voltages.get(i));
-                            }
+                            if (voltages != null)
+                                for (int i = 0; i < mVoltageCard.length; i++) {
+                                    mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
+                                    mVoltageCard[i].setValue(voltages.get(i));
+                                }
                         }
                     });
                 } catch (InterruptedException e) {

@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">root権限がありません。</string>
   <string name="no_busybox">busyboxがありません。</string>
-  <string name="apply_on_boot">起動時に適用</string>
-  <string name="apply_on_boot_summary">設定が適用されました。</string>
   <string name="ok">OK</string>
   <string name="cancel">キャンセル</string>
   <string name="current_value_not_supported">現在の値は非対応です</string>
   <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
+  <string name="apply_on_boot">起動時に適用</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

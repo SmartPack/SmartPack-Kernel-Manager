@@ -4,11 +4,10 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Root jogosultság szükséges</string>
   <string name="no_busybox">Busybox szükséges</string>
-  <string name="apply_on_boot">Alkalmazás induláskor</string>
-  <string name="apply_on_boot_summary">A módosítások alkalmazva</string>
   <string name="cancel">Mégse</string>
   <string name="current_value_not_supported">Jelenlegi érték nem támogatott</string>
   <string name="beta_message">Köszönöm, hogy béta teszter! Ha bármilyen probléma merülne fel, ne habozzon a kapcsolatba lépéssel. Az éppen futó változat %s.</string>
+  <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="min">perc</string>
   <string name="information">Információ</string>
   <string name="tools">Eszközök</string>

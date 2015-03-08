@@ -10,7 +10,6 @@ android {
         targetSdkVersion 21
         versionCode 49
         versionName "0.8.5.2 beta"
-        useJack true
     }
     buildTypes {
         release {

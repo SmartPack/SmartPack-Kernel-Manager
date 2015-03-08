@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">حق وصول الرووت غير موجود</string>
   <string name="no_busybox">busybox غير موجود</string>
-  <string name="apply_on_boot">تطبيق عند التشغيل</string>
-  <string name="apply_on_boot_summary">لقد تم تطبيق التغيرات</string>
   <string name="ok">موافق</string>
   <string name="cancel">إلغاء الأمر</string>
   <string name="current_value_not_supported">القيمة الحالية غير مدعّمة</string>
   <string name="beta_message">شكرا لكونك أحد مختبري الإصدارات التجريبية! إذا كان لديك أي مشاكل، رجاءا لاتتردد في إرسالها إلي. تقوم حاليا بتشغيل الإصدار %s.</string>
+  <string name="apply_on_boot">تطبيق عند التشغيل</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

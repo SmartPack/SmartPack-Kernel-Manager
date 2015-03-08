@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Permessi di root non disponibili</string>
   <string name="no_busybox">Busibox non disponibile</string>
-  <string name="apply_on_boot">Applica all\'avvio</string>
-  <string name="apply_on_boot_summary">Le modifiche sono state applicate</string>
   <string name="ok">OK</string>
   <string name="cancel">Annulla</string>
   <string name="current_value_not_supported">Il valore corrente non è supportato</string>
   <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
+  <string name="apply_on_boot">Applica all\'avvio</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

@@ -5,12 +5,11 @@
   <string name="no_root">Kein Root vorhanden
 </string>
   <string name="no_busybox">Kein Busybox vorhanden</string>
-  <string name="apply_on_boot">Beim Systemstart anwenden</string>
-  <string name="apply_on_boot_summary">Deine Änderungen wurden übernommen </string>
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
   <string name="current_value_not_supported">Aktueller Wert wird nicht unterstützt</string>
   <string name="beta_message">Danke, dass du Beta Tester bist. Falls du irgendwelche Probleme bekommen solltest, zögere bitte nicht, mich zu kontaktieren. Momentan benutzt du Version %s.</string>
+  <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="mhz">Mhz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
@@ -36,7 +35,7 @@
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">Virtueller Speicher</string>
   <string name="misc_controls">Verschiedene Einstellungen</string>
-  <string name="build_prop_editor">Build prop-Editierer</string>
+  <string name="build_prop_editor">Build prop-Bearbeiter</string>
   <string name="profile">Profil</string>
   <string name="about_us">Über uns</string>
   <string name="unused_cpu_states">Ungenutzte CPU-Stadien</string>

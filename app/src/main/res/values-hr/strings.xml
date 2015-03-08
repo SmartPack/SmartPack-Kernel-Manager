@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Root nije pristupan</string>
   <string name="no_busybox">Busybox nije pristupan</string>
-  <string name="apply_on_boot">Aktiviranje pri pokretanju sustava</string>
-  <string name="apply_on_boot_summary">Promjene su aktivirane</string>
   <string name="ok">OK</string>
   <string name="cancel">Poništi</string>
   <string name="current_value_not_supported">Ova opcija nije pristupačna</string>
   <string name="beta_message">Hvala Vam što testirate beta-verziju! Ukoliko se suočite s bilo kakvim problemima, molim kontaktirajte me. Trenutno koristite verziju %s.</string>
+  <string name="apply_on_boot">Aktiviranje pri pokretanju sustava</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

@@ -4,12 +4,11 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Root-ul nu este disponibil</string>
   <string name="no_busybox">Busybox nu este disponibil</string>
-  <string name="apply_on_boot">Aplică pe boot</string>
-  <string name="apply_on_boot_summary">Modificările au fost aplicate</string>
   <string name="ok">OK</string>
   <string name="cancel">Anulare</string>
   <string name="current_value_not_supported">Valoarea curentă nu este susținută</string>
   <string name="beta_message">Vă mulţumim pentru a fi un tester versiunei beta! Dacă aveţi orice probleme, vă rog să nu ezitaţi să mă contactati. Deocamdata se execută versiunea %s.</string>
+  <string name="apply_on_boot">Aplică pe boot</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
