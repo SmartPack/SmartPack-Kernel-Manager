@@ -63,6 +63,7 @@ public interface Constants {
     public final String CPU_BOOST_MS = "/sys/module/cpu_boost/parameters/boost_ms";
     public final String CPU_BOOST_SYNC_THRESHOLD = "/sys/module/cpu_boost/parameters/sync_threshold";
     public final String CPU_BOOST_INPUT_MS = "/sys/module/cpu_boost/parameters/input_boost_ms";
+    public final String CPU_BOOST_INPUT_BOOST_FREQ = "/sys/module/cpu_boost/parameters/input_boost_freq";
 
     public final String[] CPU_BOOST_ARRAY = {CPU_BOOST, CPU_BOOST_ENABLE, CPU_BOOST_ENABLE_2,
             CPU_BOOST_DEBUG_MASK, CPU_BOOST_MS, CPU_BOOST_SYNC_THRESHOLD, CPU_BOOST_INPUT_MS};
