@@ -268,6 +268,8 @@
     <string name="ksm_enable_summary">Reduces memory usage but has an impact on the CPU usage.</string>
     <string name="ksm_pages_to_scan">Pages to scan</string>
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
+    <string name="ksm_deferred_timer">Deferred timer</string>
+    <string name="ksm_deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
 
     <!-- Low Memory Killer -->
     <string name="foreground_app">Foreground Applications</string>
