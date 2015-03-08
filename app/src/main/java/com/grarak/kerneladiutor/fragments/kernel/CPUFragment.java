@@ -68,6 +68,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     private SeekBarCardView.DSeekBarCardView mCpuBoostMsCard;
     private PopupCardItem.DPopupCard mCpuBoostSyncThresholdCard;
     private SeekBarCardView.DSeekBarCardView mCpuBoostInputMsCard;
+    private PopupCardItem.DPopupCard mCpuBoostInputFreqCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -254,6 +255,21 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
             views.add(mCpuBoostInputMsCard);
         }
 
+        if (CPU.hasCpuBoostInputFreq()) {
+            List<String> list = new ArrayList<>();
+            list.add(getString(R.string.disabled));
+            for (int freq : CPU.getFreqs())
+                list.add((freq / 1000) + getString(R.string.mhz));
+
+            mCpuBoostInputFreqCard = new PopupCardItem.DPopupCard(list);
+            mCpuBoostInputFreqCard.setTitle(getString(R.string.input_boost_freq));
+            mCpuBoostInputFreqCard.setDescription(getString(R.string.input_boost_freq_summary));
+            mCpuBoostInputFreqCard.setItem(CPU.getCpuBootInputFreq());
+            mCpuBoostInputFreqCard.setOnDPopupCardListener(this);
+
+            views.add(mCpuBoostInputFreqCard);
+        }
+
         if (views.size() > 0) {
             DividerCardView.DDividerCard mCpuBoostDividerCard = new DividerCardView.DDividerCard();
             mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
@@ -282,6 +298,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         if (dPopupCard == mMcPowerSavingCard) CPU.setMcPowerSaving(position, getActivity());
         if (dPopupCard == mCpuBoostSyncThresholdCard)
             CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
+        if (dPopupCard == mCpuBoostInputFreqCard)
+            CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
     }
 
     @Override

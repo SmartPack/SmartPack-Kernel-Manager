@@ -94,6 +94,8 @@
     <string name="sync_threshold_summary">When CPU loading crosses the preset threshold, the current CPU is raised to this frequency.</string>
     <string name="input_interval">Input Interval</string>
     <string name="input_interval_summary">Minimum interval a CPU is boosted when input is detected.</string>
+    <string name="input_boost_freq">Input Boost Freq</string>
+    <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
@@ -268,6 +270,8 @@
     <string name="ksm_enable_summary">Reduces memory usage but has an impact on the CPU usage.</string>
     <string name="ksm_pages_to_scan">Pages to scan</string>
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
+    <string name="ksm_deferred_timer">Deferred timer</string>
+    <string name="ksm_deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
 
     <!-- Low Memory Killer -->
     <string name="foreground_app">Foreground Applications</string>

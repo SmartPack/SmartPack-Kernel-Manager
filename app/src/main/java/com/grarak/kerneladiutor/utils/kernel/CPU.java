@@ -53,6 +53,18 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
+    public static void setCpuBoostInputFreq(int value, Context context) {
+        Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCpuBootInputFreq() {
+        String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
+        if (value.equals("0")) return 0;
+        return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
+    }
+
+    public static boolean hasCpuBoostInputFreq() { return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ); }
+
     public static void setCpuBoostSyncThreshold(int value, Context context) {
         Control.runCommand(String.valueOf(value), CPU_BOOST_SYNC_THRESHOLD, Control.CommandType.GENERIC, context);
     }

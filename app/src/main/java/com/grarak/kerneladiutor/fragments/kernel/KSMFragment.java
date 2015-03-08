@@ -38,7 +38,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
 
     private CardViewItem.DCardView[] mInfos;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mEnableKsmCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mEnableKsmCard, mDeferredTimerCard;
 
     private List<String> mPagesToScanValues = new ArrayList<>(), mSleepMillisecondsValues = new ArrayList<>();
     private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
@@ -71,6 +71,16 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
 
         addView(mEnableKsmCard);
 
+        if (KSM.hasDeferredTimer()) {
+            mDeferredTimerCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mDeferredTimerCard.setTitle(getString(R.string.ksm_deferred_timer));
+            mDeferredTimerCard.setDescription(getString(R.string.ksm_deferred_timer_summary));
+            mDeferredTimerCard.setChecked(KSM.isDeferredTimerActive());
+            mDeferredTimerCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mDeferredTimerCard);
+        }
+
         mPagesToScanValues.clear();
         for (int i = 0; i < 1025; i++) mPagesToScanValues.add(String.valueOf(i));
         mPagesToScanCard = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
@@ -89,11 +99,14 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
         mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
 
         addView(mSleepMillisecondsCard);
+
     }
 
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
+        else if (dSwitchCompatCard == mDeferredTimerCard) KSM.activateDeferredTimer(checked,
+                getActivity());
     }
 
     @Override

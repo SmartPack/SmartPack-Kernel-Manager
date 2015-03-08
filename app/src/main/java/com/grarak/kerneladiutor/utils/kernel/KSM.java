@@ -55,11 +55,25 @@ public class KSM implements Constants {
         Control.runCommand(active ? "1" : "0", KSM_RUN, Control.CommandType.GENERIC, context);
     }
 
+    public static void activateDeferredTimer(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", KSM_DEFERRED_TIMER,
+                Control.CommandType.GENERIC, context);
+    }
+
     public static boolean isKsmActive() {
         if (Utils.existFile(KSM_RUN)) {
             String value = Utils.readFile(KSM_RUN);
             if (value != null) return value.equals("1");
         }
+        return false;
+    }
+
+    public static boolean isDeferredTimerActive() {
+        if (Utils.existFile(KSM_DEFERRED_TIMER)) {
+            String value = Utils.readFile(KSM_DEFERRED_TIMER);
+            if (value != null) return value.equals("1");
+        }
+
         return false;
     }
 
@@ -74,5 +88,7 @@ public class KSM implements Constants {
     public static boolean hasKsm() {
         return Utils.existFile(KSM_RUN);
     }
+
+    public static boolean hasDeferredTimer() { return Utils.existFile(KSM_DEFERRED_TIMER); }
 
 }
