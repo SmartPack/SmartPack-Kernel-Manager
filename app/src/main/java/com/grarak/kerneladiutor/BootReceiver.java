@@ -49,17 +49,6 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        boolean hasRoot = false;
-        boolean hasBusybox = false;
-        if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-        if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
-
-        if (!hasRoot || !hasBusybox) return;
-
-        apply(context);
-    }
-
-    private static void apply(Context context) {
         List<String> applys = new ArrayList<>();
 
         Class[] classes = new Class[]{
@@ -71,12 +60,27 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
         };
 
         for (Class mClass : classes)
-            if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, context))
+            if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, context)) {
+                log("Applying on boot for " + mClass.getSimpleName());
                 applys.addAll(Utils.getApplys(mClass));
+            }
 
         if (applys.size() > 0) {
-            for (String sys : applys)
-                Log.i(TAG, context.getClass().getSimpleName() + ": applys: " + sys);
+            boolean hasRoot = false;
+            boolean hasBusybox = false;
+            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+
+            String message = context.getString(R.string.failed_apply_on_boot);
+            if (!hasRoot) message += ": " + context.getString(R.string.no_root);
+            else if (!hasBusybox) message += ": " + context.getString(R.string.no_busybox);
+
+            if (!hasRoot || !hasBusybox) {
+                toast(message, context);
+                return;
+            }
+
+            for (String sys : applys) log(getClass().getSimpleName() + ": applys: " + sys);
 
             SysDB sysDB = new SysDB(context);
             sysDB.create();
@@ -85,16 +89,23 @@ public class BootReceiver extends BroadcastReceiver implements Constants {
             for (SysDB.SysItem sysItem : sysDB.getAllSys())
                 for (String sys : applys)
                     if (sys.contains(sysItem.getSys()) || sysItem.getSys().contains(sys)) {
-                        Log.i(TAG, context.getClass().getSimpleName() + ": run: " + sysItem.getCommand());
+                        log(getClass().getSimpleName() + ": run: " + sysItem.getCommand());
                         RootUtils.runCommand(sysItem.getCommand());
                     }
 
             sysDB.close();
 
             if (RootUtils.su != null) RootUtils.su.close();
-            Utils.toast(context.getString(R.string.apply_on_boot_summary), context);
+            toast(context.getString(R.string.apply_on_boot_summary), context);
         }
+    }
 
+    private void log(String log) {
+        Log.i(TAG, getClass().getSimpleName() + ": " + log);
+    }
+
+    private void toast(String message, Context context) {
+        Utils.toast(context.getString(R.string.app_name) + ": " + message, context);
     }
 
 }

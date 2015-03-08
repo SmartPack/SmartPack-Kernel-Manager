@@ -9,30 +9,36 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:background="@color/color_primary_light"
-        android:paddingLeft="50dp"
+        android:paddingLeft="40dp"
         android:paddingRight="20dp"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true">
 
-        <android.support.v7.internal.widget.CompatTextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/apply_on_boot"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:layout_gravity="start|center_vertical"
-            android:textColor="@android:color/white"
-            android:textSize="17sp" />
+            android:layout_gravity="center_vertical">
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/apply_on_boot_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:theme="@style/WhiteAccent"
-            android:paddingRight="1dp"
-            android:paddingEnd="1dp" />
+            <android.support.v7.internal.widget.CompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/apply_on_boot"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:layout_weight="1" />
 
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/apply_on_boot_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/WhiteAccent"
+                android:paddingRight="1dp"
+                android:paddingEnd="1dp"
+                android:layout_weight="0" />
+        </LinearLayout>
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView

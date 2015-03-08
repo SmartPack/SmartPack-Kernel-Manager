@@ -23,7 +23,6 @@
         android:layout_marginLeft="10dp"
         android:layout_weight="0"
         android:paddingLeft="1dp"
-        android:paddingStart="1dp"
         android:paddingRight="1dp"
         android:paddingEnd="1dp" />
 

@@ -170,6 +170,8 @@ public class RecyclerViewFragment extends Fragment {
 
     private void activateApplyOnBoot(boolean active) {
         Utils.saveBoolean(getClassName() + "onboot", active, getActivity());
+        Utils.toast(getString(active ? R.string.enabled_apply_on_boot : R.string.disabled_apply_on_boot,
+                getActionBar().getTitle()), getActivity());
     }
 
     public String getClassName() {
@@ -242,6 +244,10 @@ public class RecyclerViewFragment extends Fragment {
             layoutParams.height = Utils.getActionBarHeight(getActivity());
             applyOnBootLayout.requestLayout();
         }
+    }
+
+    public ActionBar getActionBar() {
+        return ((ActionBarActivity) getActivity()).getSupportActionBar();
     }
 
     public boolean showApplyOnBoot() {

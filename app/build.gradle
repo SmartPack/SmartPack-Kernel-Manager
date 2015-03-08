@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 48
-        versionName "0.8.5.1 beta"
+        versionName "0.8.5.2"
         useJack true
     }
     buildTypes {
