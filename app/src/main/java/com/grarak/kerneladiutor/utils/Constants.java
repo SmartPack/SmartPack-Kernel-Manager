@@ -342,9 +342,9 @@ public interface Constants {
     public final String KSM_PAGES_UNSHARED = KSM_FOLDER + "/pages_unshared";
     public final String KSM_PAGES_VOLATILE = KSM_FOLDER + "/pages_volatile";
     public final String KSM_RUN = KSM_FOLDER + "/run";
+    public final String KSM_DEFERRED_TIMER = KSM_FOLDER + "/deferred_timer";
     public final String KSM_PAGES_TO_SCAN = KSM_FOLDER + "/pages_to_scan";
     public final String KSM_SLEEP_MILLISECONDS = KSM_FOLDER + "/sleep_millisecs";
-    public final String KSM_DEFERRED_TIMER = KSM_FOLDER + "/deferred_timer";
 
     public final String[] KSM_INFOS = {KSM_FULL_SCANS, KSM_PAGES_SHARED, KSM_PAGES_SHARING,
             KSM_PAGES_UNSHARED, KSM_PAGES_VOLATILE};

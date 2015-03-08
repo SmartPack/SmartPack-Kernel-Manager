@@ -20,9 +20,9 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
@@ -81,32 +81,36 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
             addView(mDeferredTimerCard);
         }
 
-        mPagesToScanValues.clear();
-        for (int i = 0; i < 1025; i++) mPagesToScanValues.add(String.valueOf(i));
-        mPagesToScanCard = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
-        mPagesToScanCard.setTitle(getString(R.string.ksm_pages_to_scan));
-        mPagesToScanCard.setProgress(mPagesToScanValues.indexOf(String.valueOf(KSM.getPagesToScan())));
-        mPagesToScanCard.setOnDSeekBarCardListener(this);
+        if (KSM.hasPagesToScan()) {
+            mPagesToScanValues.clear();
+            for (int i = 0; i < 1025; i++) mPagesToScanValues.add(String.valueOf(i));
+            mPagesToScanCard = new SeekBarCardView.DSeekBarCardView(mPagesToScanValues);
+            mPagesToScanCard.setTitle(getString(R.string.ksm_pages_to_scan));
+            mPagesToScanCard.setProgress(mPagesToScanValues.indexOf(String.valueOf(KSM.getPagesToScan())));
+            mPagesToScanCard.setOnDSeekBarCardListener(this);
 
-        addView(mPagesToScanCard);
+            addView(mPagesToScanCard);
+        }
 
-        mSleepMillisecondsValues.clear();
-        for (int i = 0; i < 5001; i++) mSleepMillisecondsValues.add(i + getString(R.string.ms));
-        mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCardView(mSleepMillisecondsValues);
-        mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
-        mSleepMillisecondsCard.setProgress(mSleepMillisecondsValues.indexOf(KSM.getSleepMilliseconds()
-                + getString(R.string.ms)));
-        mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
+        if (KSM.hasSleepMilliseconds()) {
+            mSleepMillisecondsValues.clear();
+            for (int i = 0; i < 5001; i++) mSleepMillisecondsValues.add(i + getString(R.string.ms));
+            mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCardView(mSleepMillisecondsValues);
+            mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
+            mSleepMillisecondsCard.setProgress(mSleepMillisecondsValues.indexOf(KSM.getSleepMilliseconds()
+                    + getString(R.string.ms)));
+            mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
 
-        addView(mSleepMillisecondsCard);
+            addView(mSleepMillisecondsCard);
+        }
 
     }
 
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
-        else if (dSwitchCompatCard == mDeferredTimerCard) KSM.activateDeferredTimer(checked,
-                getActivity());
+        if (dSwitchCompatCard == mDeferredTimerCard)
+            KSM.activateDeferredTimer(checked, getActivity());
     }
 
     @Override
@@ -124,10 +128,8 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
 
     @Override
     public boolean onRefresh() {
-
         for (int i = 0; i < KSM_INFOS.length; i++)
             mInfos[i].setDescription(String.valueOf(KSM.getInfos(i)));
-
         return true;
     }
 

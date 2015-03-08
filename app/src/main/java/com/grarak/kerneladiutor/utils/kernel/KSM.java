@@ -32,11 +32,11 @@ public class KSM implements Constants {
     }
 
     public static int getSleepMilliseconds() {
-        if (Utils.existFile(KSM_SLEEP_MILLISECONDS)) {
-            String value = Utils.readFile(KSM_SLEEP_MILLISECONDS);
-            if (value != null) return Utils.stringToInt(value);
-        }
-        return 0;
+        return Utils.stringToInt(Utils.readFile(KSM_SLEEP_MILLISECONDS));
+    }
+
+    public static boolean hasSleepMilliseconds() {
+        return Utils.existFile(KSM_SLEEP_MILLISECONDS);
     }
 
     public static void setPagesToScan(int pages, Context context) {
@@ -44,37 +44,27 @@ public class KSM implements Constants {
     }
 
     public static int getPagesToScan() {
-        if (Utils.existFile(KSM_PAGES_TO_SCAN)) {
-            String value = Utils.readFile(KSM_PAGES_TO_SCAN);
-            if (value != null) return Utils.stringToInt(value);
-        }
-        return 0;
+        return Utils.stringToInt(Utils.readFile(KSM_PAGES_TO_SCAN));
+    }
+
+    public static boolean hasPagesToScan() {
+        return Utils.existFile(KSM_PAGES_TO_SCAN);
+    }
+
+    public static void activateDeferredTimer(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", KSM_DEFERRED_TIMER, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isDeferredTimerActive() {
+        return Utils.readFile(KSM_DEFERRED_TIMER).equals("1");
+    }
+
+    public static boolean hasDeferredTimer() {
+        return Utils.existFile(KSM_DEFERRED_TIMER);
     }
 
     public static void activateKSM(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", KSM_RUN, Control.CommandType.GENERIC, context);
-    }
-
-    public static void activateDeferredTimer(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", KSM_DEFERRED_TIMER,
-                Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isKsmActive() {
-        if (Utils.existFile(KSM_RUN)) {
-            String value = Utils.readFile(KSM_RUN);
-            if (value != null) return value.equals("1");
-        }
-        return false;
-    }
-
-    public static boolean isDeferredTimerActive() {
-        if (Utils.existFile(KSM_DEFERRED_TIMER)) {
-            String value = Utils.readFile(KSM_DEFERRED_TIMER);
-            if (value != null) return value.equals("1");
-        }
-
-        return false;
     }
 
     public static int getInfos(int position) {
@@ -85,10 +75,12 @@ public class KSM implements Constants {
         return 0;
     }
 
+    public static boolean isKsmActive() {
+        return Utils.readFile(KSM_RUN).equals("1");
+    }
+
     public static boolean hasKsm() {
         return Utils.existFile(KSM_RUN);
     }
-
-    public static boolean hasDeferredTimer() { return Utils.existFile(KSM_DEFERRED_TIMER); }
 
 }
