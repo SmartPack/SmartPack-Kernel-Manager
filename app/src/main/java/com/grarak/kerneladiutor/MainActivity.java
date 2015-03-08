@@ -85,8 +85,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private ProgressBar progressBar;
     private Toolbar toolbar;
 
-    private String mTitle;
-
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
@@ -208,15 +206,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         });
 
         mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                getSupportActionBar().setTitle(mTitle);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(getString(R.string.app_name));
-            }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
@@ -301,12 +290,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mDrawerToggle.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title.toString();
-        getSupportActionBar().setTitle(mTitle);
     }
 
     @Override
