@@ -170,7 +170,7 @@ public class RecyclerViewFragment extends Fragment {
 
     private void activateApplyOnBoot(boolean active) {
         Utils.saveBoolean(getClassName() + "onboot", active, getActivity());
-        Utils.toast(getString(active ? R.string.enabled_apply_on_boot : R.string.disabled_apply_on_boot,
+        Utils.toast(getString(active ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
                 getActionBar().getTitle()), getActivity());
     }
 

@@ -70,6 +70,7 @@ public class RootUtils implements Constants {
 
     public static String runCommand(String command) {
         if (su == null) su = new SU();
+        if (su.closed) su = new SU();
         return su.runCommand(command);
     }
 
@@ -82,6 +83,7 @@ public class RootUtils implements Constants {
         private Process process;
         private BufferedWriter bufferedWriter;
         private BufferedReader bufferedReader;
+        private boolean closed;
 
         public SU() {
             try {
@@ -124,6 +126,7 @@ public class RootUtils implements Constants {
 
                 process.waitFor();
                 Log.i(TAG, "SU closed: " + process.exitValue());
+                closed = true;
             } catch (Exception e) {
                 e.printStackTrace();
             }

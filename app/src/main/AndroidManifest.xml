@@ -35,6 +35,8 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".BootService" />
+
         <receiver android:name=".widgets.ProfileWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
