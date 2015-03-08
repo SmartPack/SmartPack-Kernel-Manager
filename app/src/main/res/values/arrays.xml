@@ -46,4 +46,10 @@
         <item>@string/information</item>
     </string-array>
 
+    <!-- Misc -->
+    <string-array name="selinux_items">
+        <item>@string/permissive</item>
+        <item>@string/enforcing</item>
+    </string-array>
+
 </resources>

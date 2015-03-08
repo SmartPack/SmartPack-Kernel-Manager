@@ -395,8 +395,11 @@ public interface Constants {
     // Logging
     public final String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
 
+    // SELinux
+    public final String SELINUX = "selinux";
+
     public final String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK,
-            MSM_HSIC_HOST_WAKELOCK, LOGGER_ENABLED}, VIBRATION_ARRAY};
+            MSM_HSIC_HOST_WAKELOCK, LOGGER_ENABLED, SELINUX}, VIBRATION_ARRAY};
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

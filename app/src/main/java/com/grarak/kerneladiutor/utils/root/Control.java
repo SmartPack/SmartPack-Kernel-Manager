@@ -34,7 +34,7 @@ import java.util.List;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC
+        GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC, SELINUX
     }
 
     public static void commandSaver(Context context, String sys, String command) {
@@ -78,6 +78,12 @@ public class Control implements Constants {
 
         commandSaver(context, file, command);
         commandSaver(context, file, "echo " + value + " > " + file);
+    }
+
+    private static void runSelinux(int value, Context context) {
+        RootUtils.runCommand("setenforce " + value);
+
+        commandSaver(context, SELINUX, "setenforce " + value);
     }
 
     public static void startService(String service, boolean save, Context context) {
@@ -132,6 +138,8 @@ public class Control implements Constants {
                     runTcpCongestion(value, context);
                 } else if (command == CommandType.FAUX_GENERIC) {
                     runFauxGeneric(file, value, context);
+                } else if (command == CommandType.SELINUX) {
+                    runSelinux(Utils.stringToInt(value), context);
                 }
             }
         };

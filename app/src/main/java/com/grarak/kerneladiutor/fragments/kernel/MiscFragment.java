@@ -21,14 +21,15 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,6 +49,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private SwitchCompatCardItem.DSwitchCompatCard mLoggerEnableCard;
 
+    private PopupCardItem.DPopupCard mSelinuxCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -58,6 +61,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
         if (Misc.hasMsmHsicHostWakeLock()) msmHsicHostWakeLockInit();
         if (Misc.hasLoggerEnable()) loggerInit();
+        if (Misc.hasSelinux()) selinuxInit();
     }
 
     private void tcpCongestionInit() {
@@ -130,10 +134,23 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mLoggerEnableCard);
     }
 
+    private void selinuxInit() {
+        String[] items = getResources().getStringArray(R.array.selinux_items);
+        mSelinuxCard = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays.asList(items)));
+        mSelinuxCard.setTitle(getString(R.string.selinux));
+        mSelinuxCard.setDescription(getString(R.string.selinux_summary));
+        mSelinuxCard.setItem(Misc.getSelinux());
+        mSelinuxCard.setOnDPopupCardListener(this);
+
+        addView(mSelinuxCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
             Misc.setTcpCongestion(Misc.getTcpAvailableCongestions().get(position), getActivity());
+        if (dPopupCard == mSelinuxCard)
+            Misc.setSelinux(position, getActivity());
     }
 
     @Override

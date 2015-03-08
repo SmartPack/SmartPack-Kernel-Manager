@@ -296,6 +296,10 @@
     <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
     <string name="msm_hsic_host_wakelock_summary">Prevent msm_hsic_host wakelock.</string>
     <string name="android_logger">Android logging</string>
+    <string name="selinux">SELinux</string>
+    <string name="selinux_summary">Security-Enhanced Linux is a Linux kernel security module that provides a mechanism for supporting access control security policies, including United States Department of Defense–style mandatory access controls.</string>
+    <string name="permissive">Permissive</string>
+    <string name="enforcing">Enforcing</string>
 
     <!-- Build prop Editor -->
     <string name="edit">Edit</string>
