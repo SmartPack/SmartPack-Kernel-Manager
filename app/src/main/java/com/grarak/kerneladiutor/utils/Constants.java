@@ -417,8 +417,11 @@ public interface Constants {
     // SELinux
     public final String SELINUX = "selinux";
 
+    // Dynamic Fsync
+    public final String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
+
     public final String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK,
-            MSM_HSIC_HOST_WAKELOCK, LOGGER_ENABLED, SELINUX}, VIBRATION_ARRAY};
+            MSM_HSIC_HOST_WAKELOCK, LOGGER_ENABLED, SELINUX, DYNAMIC_FSYNC}, VIBRATION_ARRAY};
 
     // Build prop
     public final String BUILD_PROP = "/system/build.prop";

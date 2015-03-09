@@ -51,6 +51,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private PopupCardItem.DPopupCard mSelinuxCard;
 
+    private SwitchCompatCardItem.DSwitchCompatCard mDynamicFsyncCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -62,6 +64,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasMsmHsicHostWakeLock()) msmHsicHostWakeLockInit();
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasSelinux()) selinuxInit();
+        if (Misc.hasDynamicFsync()) dynamicFsyncInit();
     }
 
     private void tcpCongestionInit() {
@@ -145,6 +148,16 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mSelinuxCard);
     }
 
+    private void dynamicFsyncInit() {
+        mDynamicFsyncCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mDynamicFsyncCard.setTitle(getString(R.string.dynamic_fsync));
+        mDynamicFsyncCard.setDescription(getString(R.string.dynamic_fsync_summary));
+        mDynamicFsyncCard.setChecked(Misc.isDynamicFsyncActive());
+        mDynamicFsyncCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mDynamicFsyncCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -190,5 +203,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
             Misc.activateMsmHsicHostWakeLock(checked, getActivity());
         else if (dSwitchCompatCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
+        else if (dSwitchCompatCard == mDynamicFsyncCard)
+            Misc.activateDynamicFsync(checked, getActivity());
     }
 }

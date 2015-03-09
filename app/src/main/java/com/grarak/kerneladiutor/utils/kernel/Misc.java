@@ -37,6 +37,18 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    public static void activateDynamicFsync(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", DYNAMIC_FSYNC, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isDynamicFsyncActive() {
+        return Utils.readFile(DYNAMIC_FSYNC).equals("1");
+    }
+
+    public static boolean hasDynamicFsync() {
+        return Utils.existFile(DYNAMIC_FSYNC);
+    }
+
     public static void setSelinux(int value, Context context) {
         Control.runCommand(String.valueOf(value), null, Control.CommandType.SELINUX, context);
     }
