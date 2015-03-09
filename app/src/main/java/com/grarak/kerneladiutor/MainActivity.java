@@ -43,6 +43,7 @@ import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
+import com.grarak.kerneladiutor.elements.SplashView;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -91,6 +92,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private ListView mDrawerList;
+    private SplashView mSplashView;
 
     public static String LAUNCH_INTENT = "launch_section";
     private String LAUNCH_NAME;
@@ -195,6 +197,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.color_primary_dark));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList = (ListView) findViewById(R.id.drawer_list);
+        mSplashView = (SplashView) findViewById(R.id.splash_view);
     }
 
     private void setInterface() {
@@ -243,11 +246,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     RootUtils.runCommand("chmod 644 " + file);
 
                 setList();
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
             return null;
         }
@@ -273,6 +271,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
             setInterface();
             try {
                 ((ViewGroup) progressBar.getParent()).removeView(progressBar);
+                mSplashView.finish();
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
