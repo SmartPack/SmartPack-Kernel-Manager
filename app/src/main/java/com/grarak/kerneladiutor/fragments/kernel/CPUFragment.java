@@ -275,7 +275,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
             mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
 
             addView(mCpuBoostDividerCard);
-            addAllView(views);
+            addAllViews(views);
         }
 
     }
@@ -283,8 +283,10 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     @Override
     public void onClick(View v) {
         for (int i = 0; i < mCoreCheckBox.length; i++)
-            if (v == mCoreCheckBox[i])
+            if (v == mCoreCheckBox[i]) {
+                if (i == 0) return;
                 CPU.activateCore(i, ((CheckBox) v).isChecked(), getActivity());
+            }
     }
 
     @Override

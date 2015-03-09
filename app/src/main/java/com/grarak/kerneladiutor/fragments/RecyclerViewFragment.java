@@ -215,7 +215,7 @@ public class RecyclerViewFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void addAllView(List<DAdapter.DView> views) {
+    public void addAllViews(List<DAdapter.DView> views) {
         this.views.addAll(views);
         adapter.notifyDataSetChanged();
     }

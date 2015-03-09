@@ -42,6 +42,130 @@ public class CPUHotplug implements Constants {
     private static String MSM_HOTPLUG_IO_IS_BUSY_FILE;
     private static String MSM_HOTPLUG_SUSPEND_FREQ_FILE;
 
+    public static void setMakoHotplugSuspendFreq(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_SUSPEND_FREQ, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugSuspendFreq() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_SUSPEND_FREQ));
+    }
+
+    public static boolean hasMakoHotplugSuspendFreq() {
+        return !Utils.existFile(CPU_MAX_SCREEN_OFF_FREQ) && Utils.existFile(MAKO_HOTPLUG_SUSPEND_FREQ);
+    }
+
+    public static void setMakoHotplugTimer(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_TIMER, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugTimer() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_TIMER));
+    }
+
+    public static boolean hasMakoHotplugTimer() {
+        return Utils.existFile(MAKO_HOTPLUG_TIMER);
+    }
+
+    public static void setMakoHotplugMinTimeCpuOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugMinTimeCpuOnline() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE));
+    }
+
+    public static boolean hasMakoHotplugMinTimeCpuOnline() {
+        return Utils.existFile(MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE);
+    }
+
+    public static void setMakoHotplugMaxLoadCounter(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_MAX_LOAD_COUNTER, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugMaxLoadCounter() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_MAX_LOAD_COUNTER));
+    }
+
+    public static boolean hasMakoHotplugMaxLoadCounter() {
+        return Utils.existFile(MAKO_HOTPLUG_MAX_LOAD_COUNTER);
+    }
+
+    public static void setMakoHotplugLoadThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_LOAD_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugLoadThreshold() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_LOAD_THRESHOLD));
+    }
+
+    public static boolean hasMakoHotplugLoadThreshold() {
+        return Utils.existFile(MAKO_HOTPLUG_LOAD_THRESHOLD);
+    }
+
+    public static void setMakoHotplugHighLoadCounter(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_HIGH_LOAD_COUNTER, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugHighLoadCounter() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_HIGH_LOAD_COUNTER));
+    }
+
+    public static boolean hasMakoHotplugHighLoadCounter() {
+        return Utils.existFile(MAKO_HOTPLUG_HIGH_LOAD_COUNTER);
+    }
+
+    public static void setMakoHotplugFirstLevel(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_FIRST_LEVEL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugFirstLevel() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_FIRST_LEVEL));
+    }
+
+    public static boolean hasMakoHotplugFirstLevel() {
+        return Utils.existFile(MAKO_HOTPLUG_FIRST_LEVEL);
+    }
+
+    public static void setMakoHotplugCpuFreqUnplugLimit(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugCpuFreqUnplugLimit() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT));
+    }
+
+    public static boolean hasMakoHotplugCpuFreqUnplugLimit() {
+        return Utils.existFile(MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT);
+    }
+
+    public static void setMakoHotplugCoresOnTouch(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_CORES_ON_TOUCH, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugCoresOnTouch() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_CORES_ON_TOUCH));
+    }
+
+    public static boolean hasMakoHotplugCoresOnTouch() {
+        return Utils.existFile(MAKO_HOTPLUG_CORES_ON_TOUCH);
+    }
+
+    public static void activateMakoHotplug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMakoHotplugActive() {
+        return Utils.readFile(MAKO_HOTPLUG_ENABLED).equals("1");
+    }
+
+    public static boolean hasMakoHotplugEnable() {
+        return Utils.existFile(MAKO_HOTPLUG_ENABLED);
+    }
+
+    public static boolean hasMakoHotplug() {
+        return Utils.existFile(MAKO_HOTPLUG);
+    }
+
     public static void setMsmHotplugSuspendDeferTime(int value, Context context) {
         Control.runCommand(String.valueOf(value), HOTPLUG_MSM_SUSPEND_DEFER_TIME, Control.CommandType.GENERIC, context);
     }

@@ -87,6 +87,17 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private PopupCardItem.DPopupCard mMsmHotplugSuspendFreqCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugSuspendDeferTimeCard;
 
+    private SwitchCompatCardItem.DSwitchCompatCard mMakoHotplugEnableCard;
+    private SeekBarCardView.DSeekBarCardView mMakoCoreOnTouchCard;
+    private PopupCardItem.DPopupCard mMakoHotplugCpuFreqUnplugLimitCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugFirstLevelCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugHighLoadCounterCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugLoadThresholdCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugMaxLoadCounterCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugMinTimeCpuOnlineCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugTimerCard;
+    private PopupCardItem.DPopupCard mMakoSuspendFreqCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -95,6 +106,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasIntelliPlug()) intelliPlugInit();
         if (CPUHotplug.hasBluPlug()) bluPlugInit();
         if (CPUHotplug.hasMsmHotplug()) msmHotplugInit();
+        if (CPUHotplug.hasMakoHotplug()) makoHotplugInit();
     }
 
     private void mpdecisionInit() {
@@ -341,7 +353,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mIntelliPlugDividerCard.setText(getString(R.string.intelliplug));
             addView(mIntelliPlugDividerCard);
 
-            addAllView(views);
+            addAllViews(views);
         }
 
     }
@@ -473,7 +485,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mBluPlugDividerCard.setText(getString(R.string.blu_plug));
 
             addView(mBluPlugDividerCard);
-            addAllView(views);
+            addAllViews(views);
         }
 
     }
@@ -713,7 +725,152 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
 
             addView(mMsmHotplugDividerCard);
-            addAllView(views);
+            addAllViews(views);
+        }
+
+    }
+
+    private void makoHotplugInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (CPUHotplug.hasMakoHotplugEnable()) {
+            mMakoHotplugEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMakoHotplugEnableCard.setTitle(getString(R.string.mako_hotplug));
+            mMakoHotplugEnableCard.setDescription(getString(R.string.mako_hotplug_summary));
+            mMakoHotplugEnableCard.setChecked(CPUHotplug.isMakoHotplugActive());
+            mMakoHotplugEnableCard.setOnDSwitchCompatCardListener(this);
+
+            views.add(mMakoHotplugEnableCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugCoresOnTouch()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= CPU.getCoreCount(); i++)
+                list.add(String.valueOf(i));
+
+            mMakoCoreOnTouchCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoCoreOnTouchCard.setTitle(getString(R.string.cores_on_touch));
+            mMakoCoreOnTouchCard.setDescription(getString(R.string.cores_on_touch_summary));
+            mMakoCoreOnTouchCard.setProgress(CPUHotplug.getMakoHotplugCoresOnTouch() - 1);
+            mMakoCoreOnTouchCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoCoreOnTouchCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugCpuFreqUnplugLimit()) {
+            List<String> list = new ArrayList<>();
+            for (int freq : CPU.getFreqs())
+                list.add((freq / 1000) + getString(R.string.mhz));
+
+            mMakoHotplugCpuFreqUnplugLimitCard = new PopupCardItem.DPopupCard(list);
+            mMakoHotplugCpuFreqUnplugLimitCard.setDescription(getString(R.string.cpu_freq_unplug_limit));
+            mMakoHotplugCpuFreqUnplugLimitCard.setItem((CPUHotplug.getMakoHotplugCpuFreqUnplugLimit() / 1000)
+                    + getString(R.string.mhz));
+            mMakoHotplugCpuFreqUnplugLimitCard.setOnDPopupCardListener(this);
+
+            views.add(mMakoHotplugCpuFreqUnplugLimitCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugFirstLevel()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(i + "%");
+
+            mMakoHotplugFirstLevelCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugFirstLevelCard.setTitle(getString(R.string.first_level));
+            mMakoHotplugFirstLevelCard.setDescription(getString(R.string.first_level_summary));
+            mMakoHotplugFirstLevelCard.setProgress(CPUHotplug.getMakoHotplugFirstLevel());
+            mMakoHotplugFirstLevelCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugFirstLevelCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugHighLoadCounter()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(String.valueOf(i));
+
+            mMakoHotplugHighLoadCounterCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugHighLoadCounterCard.setTitle(getString(R.string.high_load_counter));
+            mMakoHotplugHighLoadCounterCard.setProgress(CPUHotplug.getMakoHotplugHighLoadCounter());
+            mMakoHotplugHighLoadCounterCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugHighLoadCounterCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugLoadThreshold()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(i + "%");
+
+            mMakoHotplugLoadThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugLoadThresholdCard.setTitle(getString(R.string.load_threshold));
+            mMakoHotplugLoadThresholdCard.setDescription(getString(R.string.load_threshold_summary));
+            mMakoHotplugLoadThresholdCard.setProgress(CPUHotplug.getMakoHotplugLoadThreshold());
+            mMakoHotplugLoadThresholdCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugLoadThresholdCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugMaxLoadCounter()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(String.valueOf(i));
+
+            mMakoHotplugMaxLoadCounterCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMaxLoadCounterCard.setTitle(getString(R.string.max_load_counter));
+            mMakoHotplugMaxLoadCounterCard.setProgress(CPUHotplug.getMakoHotplugMaxLoadCounter());
+            mMakoHotplugMaxLoadCounterCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugMaxLoadCounterCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugMinTimeCpuOnline()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(String.valueOf(i));
+
+            mMakoHotplugMinTimeCpuOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMinTimeCpuOnlineCard.setTitle(getString(R.string.min_time_cpu_online));
+            mMakoHotplugMinTimeCpuOnlineCard.setProgress(CPUHotplug.getMakoHotplugMinTimeCpuOnline());
+            mMakoHotplugMinTimeCpuOnlineCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugMinTimeCpuOnlineCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugTimer()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++)
+                list.add(String.valueOf(i));
+
+            mMakoHotplugTimerCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugTimerCard.setTitle(getString(R.string.timer));
+            mMakoHotplugTimerCard.setProgress(CPUHotplug.getMakoHotplugTimer());
+            mMakoHotplugTimerCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugTimerCard);
+        }
+
+        if (CPUHotplug.hasMakoHotplugSuspendFreq()) {
+            List<String> list = new ArrayList<>();
+            for (int freq : CPU.getFreqs())
+                list.add((freq / 1000) + getString(R.string.mhz));
+
+            mMakoSuspendFreqCard = new PopupCardItem.DPopupCard(list);
+            mMakoSuspendFreqCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
+            mMakoSuspendFreqCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
+            mMakoSuspendFreqCard.setItem((CPUHotplug.getMakoHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
+            mMakoSuspendFreqCard.setOnDPopupCardListener(this);
+
+            views.add(mMakoSuspendFreqCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mMakoHotplugDividerCard = new DividerCardView.DDividerCard();
+            mMakoHotplugDividerCard.setText(getString(R.string.mako_hotplug));
+            addView(mMakoHotplugDividerCard);
+
+            addAllViews(views);
         }
 
     }
@@ -742,6 +899,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.activateMsmHotplugDebugMask(checked, getActivity());
         else if (dSwitchCompatCard == mMsmHotplugIoIsBusyCard)
             CPUHotplug.activateMsmHotplugIoIsBusy(checked, getActivity());
+        else if (dSwitchCompatCard == mMakoHotplugEnableCard)
+            CPUHotplug.activateMakoHotplug(checked, getActivity());
     }
 
     @Override
@@ -756,6 +915,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMsmHotplugFastLaneMinFreq(CPU.getFreqs().get(position), getActivity());
         else if (dPopupCard == mMsmHotplugSuspendFreqCard)
             CPUHotplug.setMsmHotplugSuspendFreq(CPU.getFreqs().get(position), getActivity());
+        else if (dPopupCard == mMakoHotplugCpuFreqUnplugLimitCard)
+            CPUHotplug.setMakoHotplugCpuFreqUnplugLimit(CPU.getFreqs().get(position), getActivity());
+        else if (dPopupCard == mMakoSuspendFreqCard)
+            CPUHotplug.setMakoHotplugSuspendFreq(CPU.getFreqs().get(position), getActivity());
     }
 
     @Override
@@ -822,6 +985,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMsmHotplugSuspendMaxCpus(position, getActivity());
         else if (dSeekBarCardView == mMsmHotplugSuspendDeferTimeCard)
             CPUHotplug.setMsmHotplugSuspendDeferTime(position, getActivity());
+        else if (dSeekBarCardView == mMakoCoreOnTouchCard)
+            CPUHotplug.setMakoHotplugCoresOnTouch(position + 1, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugFirstLevelCard)
+            CPUHotplug.setMakoHotplugFirstLevel(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugHighLoadCounterCard)
+            CPUHotplug.setMakoHotplugHighLoadCounter(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugLoadThresholdCard)
+            CPUHotplug.setMakoHotplugLoadThreshold(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugMaxLoadCounterCard)
+            CPUHotplug.setMakoHotplugMaxLoadCounter(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugMinTimeCpuOnlineCard)
+            CPUHotplug.setMakoHotplugMinTimeCpuOnline(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugTimerCard)
+            CPUHotplug.setMakoHotplugTimer(position, getActivity());
     }
 
 }

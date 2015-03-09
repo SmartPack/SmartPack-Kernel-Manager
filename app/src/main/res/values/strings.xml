@@ -183,6 +183,19 @@
     <string name="suspend_freq">Suspend Frequency</string>
     <string name="suspend_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="defer_time">Suspend Defer Time</string>
+    <string name="mako_hotplug">Mako Hotplug Control</string>
+    <string name="mako_hotplug_summary">An in kernel replacement for Qualcomms MPDecision. Developed by franciscofranco.</string>
+    <string name="cores_on_touch">Cores on touch</string>
+    <string name="cores_on_touch_summary">Number of CPUs online when touching screen or pressing button.</string>
+    <string name="cpu_freq_unplug_limit">CPU Frequency Unplug Limit</string>
+    <string name="first_level">First Level</string>
+    <string name="first_level_summary">The threshold to online all CPUs.</string>
+    <string name="high_load_counter">High Load Counter</string>
+    <string name="load_threshold">Load Threshold</string>
+    <string name="load_threshold_summary">The threshold to online all CPUs.</string>
+    <string name="max_load_counter">Max Load Counter</string>
+    <string name="min_time_cpu_online">Min Time CPU Online</string>
+    <string name="timer">Timer</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
