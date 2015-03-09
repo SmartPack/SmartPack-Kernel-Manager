@@ -151,6 +151,17 @@ public class Utils implements Constants {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
+    public static int getInt(String name, int defaults, Context context) {
+        int i = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getInt(name, defaults);
+        Log.i(TAG, "getting " + name + ": " + i);
+        return i;
+    }
+
+    public static void saveInt(String name, int value, Context context) {
+        Log.i(TAG, "saving " + name + " as " + value);
+        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putInt(name, value).apply();
+    }
+
     public static boolean getBoolean(String name, boolean defaults, Context context) {
         boolean bool = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
         Log.i(TAG, "getting " + name + ": " + bool);

@@ -88,7 +88,7 @@ public class BootService extends Service {
             }
 
         if (applys.size() > 0) {
-            final int delay = 5;
+            final int delay = Utils.getInt("applyonbootdelay", 15, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
@@ -107,8 +107,7 @@ public class BootService extends Service {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    mBuilder.setContentText(getString(R.string.apply_on_boot_finished))
-                            .setProgress(0, 0, false);
+                    mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
                     mNotifyManager.notify(id, mBuilder.build());
                     apply(applys);
                 }

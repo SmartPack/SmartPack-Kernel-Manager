@@ -24,6 +24,7 @@
     <string name="ms">ms</string>
     <string name="mb">MB</string>
     <string name="min">min</string>
+    <string name="sec">sec</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">&lt;</string>
@@ -53,6 +54,7 @@
     <string name="misc_controls">Misc Controls</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
     <string name="about_us">About us</string>
 
     <!-- Frequency Table -->
@@ -340,6 +342,9 @@
     <string name="empty_name">Name is empty</string>
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
+
+    <!-- Settings -->
+    <string name="apply_on_boot_delay">Apply on boot delay</string>
 
     <!-- About us -->
     <string name="license">License</string>

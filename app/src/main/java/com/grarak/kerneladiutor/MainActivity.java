@@ -59,6 +59,7 @@ import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.other.AboutusFragment;
+import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -184,6 +185,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         mList.add(new ListAdapter.Header(getString(R.string.other)));
+        mList.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
         mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
     }
 
