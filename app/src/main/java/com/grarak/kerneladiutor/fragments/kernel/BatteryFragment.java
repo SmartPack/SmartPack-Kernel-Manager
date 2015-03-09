@@ -25,10 +25,10 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.elements.UsageCardView;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
 
@@ -38,7 +38,8 @@ import java.util.List;
 /**
  * Created by willi on 03.01.15.
  */
-public class BatteryFragment extends RecyclerViewFragment implements SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+public class BatteryFragment extends RecyclerViewFragment implements
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mBatteryLevelCard;

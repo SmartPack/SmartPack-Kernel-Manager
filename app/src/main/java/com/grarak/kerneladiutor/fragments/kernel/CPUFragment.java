@@ -289,16 +289,18 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mMaxFreqCard) CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mMinFreqCard) CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mMaxScreenOffFreqCard)
+        if (dPopupCard == mMaxFreqCard)
+            CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
+        else if (dPopupCard == mMinFreqCard)
+            CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
+        else if (dPopupCard == mMaxScreenOffFreqCard)
             CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mGovernorCard)
+        else if (dPopupCard == mGovernorCard)
             CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
-        if (dPopupCard == mMcPowerSavingCard) CPU.setMcPowerSaving(position, getActivity());
-        if (dPopupCard == mCpuBoostSyncThresholdCard)
+        else if (dPopupCard == mMcPowerSavingCard) CPU.setMcPowerSaving(position, getActivity());
+        else if (dPopupCard == mCpuBoostSyncThresholdCard)
             CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
-        if (dPopupCard == mCpuBoostInputFreqCard)
+        else if (dPopupCard == mCpuBoostInputFreqCard)
             CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
     }
 
@@ -326,9 +328,9 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mTempLimitCard)
             CPU.setTempLimit(position + CPU.getTempLimitMin(), getActivity());
-        if (dSeekBarCardView == mCpuBoostMsCard)
+        else if (dSeekBarCardView == mCpuBoostMsCard)
             CPU.setCpuBoostMs(position * 10, getActivity());
-        if (dSeekBarCardView == mCpuBoostInputMsCard)
+        else if (dSeekBarCardView == mCpuBoostInputMsCard)
             CPU.setCpuBoostInputMs(position * 10, getActivity());
     }
 
@@ -336,7 +338,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mCpuBoostEnableCard)
             CPU.activateCpuBoost(checked, getActivity());
-        if (dSwitchCompatCard == mCpuBoostDebugMaskCard)
+        else if (dSwitchCompatCard == mCpuBoostDebugMaskCard)
             CPU.activateCpuBoostDebugMask(checked, getActivity());
     }
 

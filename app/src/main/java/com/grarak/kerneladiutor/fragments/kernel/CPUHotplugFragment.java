@@ -707,7 +707,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
             views.add(mMsmHotplugSuspendDeferTimeCard);
         }
-        
+
         if (views.size() > 0) {
             DividerCardView.DDividerCard mMsmHotplugDividerCard = new DividerCardView.DDividerCard();
             mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
@@ -722,25 +722,25 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mMpdecisionCard)
             CPUHotplug.activateMpdecision(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugCard)
+        else if (dSwitchCompatCard == mIntelliPlugCard)
             CPUHotplug.activateIntelliPlug(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugEcoCard)
+        else if (dSwitchCompatCard == mIntelliPlugEcoCard)
             CPUHotplug.activateIntelliPlugEco(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugTouchBoostCard)
+        else if (dSwitchCompatCard == mIntelliPlugTouchBoostCard)
             CPUHotplug.activateIntelliPlugTouchBoost(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugDebugCard)
+        else if (dSwitchCompatCard == mIntelliPlugDebugCard)
             CPUHotplug.activateIntelliPlugDebug(checked, getActivity());
-        if (dSwitchCompatCard == mIntelliPlugSuspendCard)
+        else if (dSwitchCompatCard == mIntelliPlugSuspendCard)
             CPUHotplug.activateIntelliPlugSuspend(checked, getActivity());
-        if (dSwitchCompatCard == mBluPlugCard)
+        else if (dSwitchCompatCard == mBluPlugCard)
             CPUHotplug.activateBluPlug(checked, getActivity());
-        if (dSwitchCompatCard == mBluPlugPowersaverModeCard)
+        else if (dSwitchCompatCard == mBluPlugPowersaverModeCard)
             CPUHotplug.activateBluPlugPowersaverMode(checked, getActivity());
-        if (dSwitchCompatCard == mMsmHotplugEnabledCard)
+        else if (dSwitchCompatCard == mMsmHotplugEnabledCard)
             CPUHotplug.activateMsmHotplug(checked, getActivity());
-        if (dSwitchCompatCard == mMsmHotplugDebugMaskCard)
+        else if (dSwitchCompatCard == mMsmHotplugDebugMaskCard)
             CPUHotplug.activateMsmHotplugDebugMask(checked, getActivity());
-        if (dSwitchCompatCard == mMsmHotplugIoIsBusyCard)
+        else if (dSwitchCompatCard == mMsmHotplugIoIsBusyCard)
             CPUHotplug.activateMsmHotplugIoIsBusy(checked, getActivity());
     }
 
@@ -748,13 +748,13 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mIntelliPlugProfileCard)
             CPUHotplug.setIntelliPlugProfile(position, getActivity());
-        if (dPopupCard == mIntelliPlugScreenOffMaxCard)
+        else if (dPopupCard == mIntelliPlugScreenOffMaxCard)
             CPUHotplug.setIntelliPlugScreenOffMax(position, getActivity());
-        if (dPopupCard == mBluPlugMaxFreqScreenOffCard)
+        else if (dPopupCard == mBluPlugMaxFreqScreenOffCard)
             CPUHotplug.setBluPlugMaxFreqScreenOff(position, getActivity());
-        if (dPopupCard == mMsmHotplugFastLaneMinFreqCard)
+        else if (dPopupCard == mMsmHotplugFastLaneMinFreqCard)
             CPUHotplug.setMsmHotplugFastLaneMinFreq(CPU.getFreqs().get(position), getActivity());
-        if (dPopupCard == mMsmHotplugSuspendFreqCard)
+        else if (dPopupCard == mMsmHotplugSuspendFreqCard)
             CPUHotplug.setMsmHotplugSuspendFreq(CPU.getFreqs().get(position), getActivity());
     }
 
@@ -766,61 +766,61 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mIntelliPlugHysteresisCard)
             CPUHotplug.setIntelliPlugHysteresis(position, getActivity());
-        if (dSeekBarCardView == mIntelliPlugThresholdCard)
+        else if (dSeekBarCardView == mIntelliPlugThresholdCard)
             CPUHotplug.setIntelliPlugThresold(position, getActivity());
-        if (dSeekBarCardView == mIntelliPlugCpusBoostedCard)
+        else if (dSeekBarCardView == mIntelliPlugCpusBoostedCard)
             CPUHotplug.setIntelliPlugCpusBoosted(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugMinCpusOnlineCard)
+        else if (dSeekBarCardView == mIntelliPlugMinCpusOnlineCard)
             CPUHotplug.setIntelliPlugMinCpusOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineCard)
+        else if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineCard)
             CPUHotplug.setIntelliPlugMaxCpusOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineSuspCard)
+        else if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineSuspCard)
             CPUHotplug.setIntelliPlugMaxCpusOnlineSusp(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugSuspendDeferTimeCard)
+        else if (dSeekBarCardView == mIntelliPlugSuspendDeferTimeCard)
             CPUHotplug.setIntelliPlugSuspendDeferTime(position * 10, getActivity());
-        if (dSeekBarCardView == mIntelliPlugDeferSamplingCard)
+        else if (dSeekBarCardView == mIntelliPlugDeferSamplingCard)
             CPUHotplug.setIntelliPlugDeferSampling(position, getActivity());
-        if (dSeekBarCardView == mIntelliPlugBoostLockDurationCard)
+        else if (dSeekBarCardView == mIntelliPlugBoostLockDurationCard)
             CPUHotplug.setIntelliPlugBoostLockDuration(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugDownLockDurationCard)
+        else if (dSeekBarCardView == mIntelliPlugDownLockDurationCard)
             CPUHotplug.setIntelliPlugDownLockDuration(position + 1, getActivity());
-        if (dSeekBarCardView == mIntelliPlugFShiftCard)
+        else if (dSeekBarCardView == mIntelliPlugFShiftCard)
             CPUHotplug.setIntelliPlugFShift(position, getActivity());
-        if (dSeekBarCardView == mBluPlugMinOnlineCard)
+        else if (dSeekBarCardView == mBluPlugMinOnlineCard)
             CPUHotplug.setBluPlugMinOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mBluPlugMaxOnlineCard)
+        else if (dSeekBarCardView == mBluPlugMaxOnlineCard)
             CPUHotplug.setBluPlugMaxOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mBluPlugMaxCoresScreenOffCard)
+        else if (dSeekBarCardView == mBluPlugMaxCoresScreenOffCard)
             CPUHotplug.setBluPlugMaxCoresScreenOff(position + 1, getActivity());
-        if (dSeekBarCardView == mBluPlugUpThresholdCard)
+        else if (dSeekBarCardView == mBluPlugUpThresholdCard)
             CPUHotplug.setBluPlugUpThreshold(position, getActivity());
-        if (dSeekBarCardView == mBluPlugUpTimerCntCard)
+        else if (dSeekBarCardView == mBluPlugUpTimerCntCard)
             CPUHotplug.setBluPlugUpTimerCnt(position, getActivity());
-        if (dSeekBarCardView == mBluPlugDownTimerCntCard)
+        else if (dSeekBarCardView == mBluPlugDownTimerCntCard)
             CPUHotplug.setBluPlugDownTimerCnt(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugMinCpusOnlineCard)
+        else if (dSeekBarCardView == mMsmHotplugMinCpusOnlineCard)
             CPUHotplug.setMsmHotplugMinCpusOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugMaxCpusOnlineCard)
+        else if (dSeekBarCardView == mMsmHotplugMaxCpusOnlineCard)
             CPUHotplug.setMsmHotplugMaxCpusOnline(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugCpusBoostedCard)
+        else if (dSeekBarCardView == mMsmHotplugCpusBoostedCard)
             CPUHotplug.setMsmHotplugCpusBoosted(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugCpusOnlineSuspCard)
+        else if (dSeekBarCardView == mMsmHotplugCpusOnlineSuspCard)
             CPUHotplug.setMsmHotplugMaxCpusOnlineSusp(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugBoostLockDurationCard)
+        else if (dSeekBarCardView == mMsmHotplugBoostLockDurationCard)
             CPUHotplug.setMsmHotplugBoostLockDuration(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugDownLockDurationCard)
+        else if (dSeekBarCardView == mMsmHotplugDownLockDurationCard)
             CPUHotplug.setMsmHotplugDownLockDuration(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugHistorySizeCard)
+        else if (dSeekBarCardView == mMsmHotplugHistorySizeCard)
             CPUHotplug.setMsmHotplugHistorySize(position + 1, getActivity());
-        if (dSeekBarCardView == mMsmHotplugUpdateRateCard)
+        else if (dSeekBarCardView == mMsmHotplugUpdateRateCard)
             CPUHotplug.setMsmHotplugUpdateRate(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugFastLaneLoadCard)
+        else if (dSeekBarCardView == mMsmHotplugFastLaneLoadCard)
             CPUHotplug.setMsmHotplugFastLaneLoad(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugOfflineLoadCard)
+        else if (dSeekBarCardView == mMsmHotplugOfflineLoadCard)
             CPUHotplug.setMsmHotplugOfflineLoad(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugSuspendMaxCpusCard)
+        else if (dSeekBarCardView == mMsmHotplugSuspendMaxCpusCard)
             CPUHotplug.setMsmHotplugSuspendMaxCpus(position, getActivity());
-        if (dSeekBarCardView == mMsmHotplugSuspendDeferTimeCard)
+        else if (dSeekBarCardView == mMsmHotplugSuspendDeferTimeCard)
             CPUHotplug.setMsmHotplugSuspendDeferTime(position, getActivity());
     }
 

@@ -20,9 +20,9 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 
 import java.util.ArrayList;
@@ -111,8 +111,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
-        if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
-        if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
+        else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
+        else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
     }
 
     @Override

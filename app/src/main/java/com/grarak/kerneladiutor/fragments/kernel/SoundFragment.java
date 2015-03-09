@@ -19,9 +19,9 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 
 /**
@@ -120,13 +120,13 @@ public class SoundFragment extends RecyclerViewFragment implements
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mHeadphoneGainCard)
             Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity());
-        if (dSeekBarCardView == mHandsetMicrophoneGainCard)
+        else if (dSeekBarCardView == mHandsetMicrophoneGainCard)
             Sound.setHandsetMicrophoneGain(Sound.getHandsetMicrophoneGainLimits().get(position), getActivity());
-        if (dSeekBarCardView == mCamMicrophoneGainCard)
+        else if (dSeekBarCardView == mCamMicrophoneGainCard)
             Sound.setCamMicrophoneGain(Sound.getCamMicrophoneGainLimits().get(position), getActivity());
-        if (dSeekBarCardView == mSpeakerGainCard)
+        else if (dSeekBarCardView == mSpeakerGainCard)
             Sound.setSpeakerGain(Sound.getSpeakerGainLimits().get(position), getActivity());
-        if (dSeekBarCardView == mHeadphonePowerAmpGainCard)
+        else if (dSeekBarCardView == mHeadphonePowerAmpGainCard)
             Sound.setHeadphonePowerAmpGain(Sound.getHeadphonePowerAmpGainLimits().get(position), getActivity());
     }
 }

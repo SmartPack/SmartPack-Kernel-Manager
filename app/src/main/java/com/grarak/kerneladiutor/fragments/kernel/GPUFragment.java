@@ -163,11 +163,11 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMax2dFreqCard)
             GPU.setGpu2dMaxFreq(GPU.getGpu2dFreqs().get(position), getActivity());
-        if (dPopupCard == mMaxFreqCard)
+        else if (dPopupCard == mMaxFreqCard)
             GPU.setGpuMaxFreq(GPU.getGpuFreqs().get(position), getActivity());
-        if (dPopupCard == m2dGovernorCard)
+        else if (dPopupCard == m2dGovernorCard)
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
-        if (dPopupCard == mGovernorCard)
+        else if (dPopupCard == mGovernorCard)
             GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
     }
 
@@ -184,7 +184,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mSimpleGpuLazinessCard)
             GPU.setSimpleGpuLaziness(position, getActivity());
-        if (dSeekBarCardView == mSimpleGpuRampThresoldCard)
+        else if (dSeekBarCardView == mSimpleGpuRampThresoldCard)
             GPU.setSimpleGpuRampThreshold(position, getActivity());
     }
 

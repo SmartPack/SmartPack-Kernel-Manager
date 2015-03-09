@@ -19,9 +19,9 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 
 import java.util.ArrayList;
@@ -213,6 +213,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                         dSeekBarCardView.setProgress(mColorCalibrationMinCard.getProgress());
                         setColor(dSeekBarCardView, mColorCalibrationMinCard.getProgress());
                     }
+                return;
             }
 
         if (dSeekBarCardView == mColorCalibrationMinCard) {
@@ -222,17 +223,13 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                     seekBarCardView.setProgress(position);
                     setColor(seekBarCardView, position);
                 }
-        }
-
-        if (dSeekBarCardView == mColorCalibrationMinCard)
-            Screen.setColorCalibrationMin(position, getActivity());
-        if (dSeekBarCardView == mSaturationIntensityCard)
+        } else if (dSeekBarCardView == mSaturationIntensityCard)
             Screen.setSaturationIntensity(position + 225, getActivity());
-        if (dSeekBarCardView == mScreenHueCard)
+        else if (dSeekBarCardView == mScreenHueCard)
             Screen.setScreenHue(position, getActivity());
-        if (dSeekBarCardView == mScreenValueCard)
+        else if (dSeekBarCardView == mScreenValueCard)
             Screen.setScreenValue(position + 128, getActivity());
-        if (dSeekBarCardView == mScreenContrastCard)
+        else if (dSeekBarCardView == mScreenContrastCard)
             Screen.setScreenContrast(position + 128, getActivity());
     }
 
@@ -252,9 +249,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mMinBrightnessCard)
             Screen.setMinBrightness(position, getActivity());
-        if (dSeekBarCardView == mBackLightDimmerThresholdCard)
+        else if (dSeekBarCardView == mBackLightDimmerThresholdCard)
             Screen.setBackLightDimmerThreshold(position, getActivity());
-        if (dSeekBarCardView == mBackLightDimmerOffsetCard)
+        else if (dSeekBarCardView == mBackLightDimmerOffsetCard)
             Screen.setBackLightDimmerOffset(position, getActivity());
     }
 
@@ -262,12 +259,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mInvertScreenCard)
             Screen.activateInvertScreen(checked, getActivity());
-        if (dSwitchCompatCard == mGrayscaleModeCard) {
+        else if (dSwitchCompatCard == mGrayscaleModeCard) {
             mSaturationIntensityCard.setEnabled(!checked);
             Screen.activateGrayscaleMode(checked, getActivity());
             if (!checked) mSaturationIntensityCard.setProgress(30);
-        }
-        if (dSwitchCompatCard == mBackLightDimmerEnableCard)
+        } else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
     }
 

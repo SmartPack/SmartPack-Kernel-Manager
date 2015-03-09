@@ -222,13 +222,11 @@ public class MainActivity extends ActionBarActivity implements Constants {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             setView();
         }
 
         @Override
         protected String doInBackground(Void... params) {
-
             // Check root access and busybox installation
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
             if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
@@ -243,7 +241,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
                     RootUtils.runCommand("chmod 644 " + file);
 
                 setList();
-
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

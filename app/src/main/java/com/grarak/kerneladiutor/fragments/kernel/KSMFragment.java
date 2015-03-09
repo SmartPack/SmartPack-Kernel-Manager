@@ -109,7 +109,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
-        if (dSwitchCompatCard == mDeferredTimerCard)
+        else if (dSwitchCompatCard == mDeferredTimerCard)
             KSM.activateDeferredTimer(checked, getActivity());
     }
 
@@ -121,7 +121,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mPagesToScanCard)
             KSM.setPagesToScan(Utils.stringToInt(mPagesToScanValues.get(position)), getActivity());
-        if (dSeekBarCardView == mSleepMillisecondsCard)
+        else if (dSeekBarCardView == mSleepMillisecondsCard)
             KSM.setSleepMilliseconds(Utils.stringToInt(mSleepMillisecondsValues.get(position)
                     .replace(getString(R.string.ms), "")), getActivity());
     }

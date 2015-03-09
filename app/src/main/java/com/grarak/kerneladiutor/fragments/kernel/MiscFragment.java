@@ -149,7 +149,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
             Misc.setTcpCongestion(Misc.getTcpAvailableCongestions().get(position), getActivity());
-        if (dPopupCard == mSelinuxCard)
+        else if (dPopupCard == mSelinuxCard)
             Misc.setSelinux(position, getActivity());
     }
 
@@ -184,11 +184,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
-        if (dSwitchCompatCard == mSensorIndWakeLockCard)
+        else if (dSwitchCompatCard == mSensorIndWakeLockCard)
             Misc.activateSensorIndWakeLock(checked, getActivity());
-        if (dSwitchCompatCard == mMsmHsicHostWakeLockCard)
+        else if (dSwitchCompatCard == mMsmHsicHostWakeLockCard)
             Misc.activateMsmHsicHostWakeLock(checked, getActivity());
-        if (dSwitchCompatCard == mLoggerEnableCard)
+        else if (dSwitchCompatCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
     }
 }

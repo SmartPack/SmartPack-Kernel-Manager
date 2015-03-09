@@ -120,13 +120,13 @@ public class IOFragment extends RecyclerViewFragment implements Constants, Popup
         if (dPopupCard == mInternalSchedulerCard)
             IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
                     .get(position), getActivity());
-        if (dPopupCard == mExternalSchedulerCard)
+        else if (dPopupCard == mExternalSchedulerCard)
             IO.setScheduler(IO.StorageType.EXTERNAL, IO.getSchedulers(IO.StorageType.EXTERNAL)
                     .get(position), getActivity());
-        if (dPopupCard == mInternalReadAheadCard)
+        else if (dPopupCard == mInternalReadAheadCard)
             IO.setReadahead(IO.StorageType.INTERNAL, Utils.stringToInt(readheads.get(position)
                     .replace(getString(R.string.kb), "")), getActivity());
-        if (dPopupCard == mExternalReadAheadCard)
+        else if (dPopupCard == mExternalReadAheadCard)
             IO.setReadahead(IO.StorageType.EXTERNAL, Utils.stringToInt(readheads.get(position)
                     .replace(getString(R.string.kb), "")), getActivity());
     }
