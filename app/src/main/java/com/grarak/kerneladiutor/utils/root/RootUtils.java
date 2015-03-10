@@ -19,7 +19,7 @@ package com.grarak.kerneladiutor.utils.root;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
-import com.stericson.RootTools.RootTools;
+import com.stericson.RootShell.RootShell;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -53,15 +53,15 @@ public class RootUtils implements Constants {
     }
 
     public static boolean rooted() {
-        return RootTools.isRootAvailable();
+        return RootShell.isRootAvailable();
     }
 
     public static boolean rootAccess() {
-        return RootTools.isAccessGiven();
+        return RootShell.isAccessGiven();
     }
 
     public static boolean busyboxInstalled() {
-        return RootTools.isBusyboxAvailable();
+        return RootShell.isBusyboxAvailable();
     }
 
     public static void mount(boolean writeable, String mountpoint) {

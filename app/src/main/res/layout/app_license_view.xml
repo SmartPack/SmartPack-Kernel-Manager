@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:text="@string/roottools"
+                android:text="@string/rootshell"
                 android:layout_weight="1" />
 
             <TextView
