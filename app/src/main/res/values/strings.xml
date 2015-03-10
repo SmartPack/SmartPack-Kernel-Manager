@@ -344,7 +344,14 @@
     <string name="applied">Applied</string>
 
     <!-- Settings -->
-    <string name="apply_on_boot_delay">Apply on boot delay</string>
+    <string name="delay">Delay</string>
+    <string name="notification">Notification</string>
+    <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>
+    <string name="debugging">Debugging</string>
+    <string name="logcat">Logcat</string>
+    <string name="logcat_summary">Copy logcat to /sdcard/logcat.txt</string>
+    <string name="last_kmsg">Last Kernel Message</string>
+    <string name="last_kmsg_summary">Copy /proc/last_kmsg to /sdcard/last_kmsg.txt</string>
 
     <!-- About us -->
     <string name="license">License</string>

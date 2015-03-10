@@ -94,23 +94,37 @@ public class BootService extends Service {
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
                     .setContentText(getString(R.string.apply_on_boot_time, delay))
                     .setSmallIcon(R.mipmap.ic_launcher);
-            new Thread(new Runnable() {
+            hand.post(new Runnable() {
                 @Override
                 public void run() {
-                    for (int i = delay; i >= 0; i--)
-                        try {
-                            Thread.sleep(1000);
-                            mBuilder.setContentText(getString(R.string.apply_on_boot_time, i))
-                                    .setProgress(delay, delay - i, false);
-                            mNotifyManager.notify(id, mBuilder.build());
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (Utils.getBoolean("applyonbootnotification", true, BootService.this)) {
+                                for (int i = delay; i >= 0; i--)
+                                    try {
+                                        Thread.sleep(1000);
+                                        mBuilder.setContentText(getString(R.string.apply_on_boot_time, i))
+                                                .setProgress(delay, delay - i, false);
+                                        mNotifyManager.notify(id, mBuilder.build());
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
+                                mNotifyManager.notify(id, mBuilder.build());
+                                apply(applys);
+                            } else {
+                                try {
+                                    Thread.sleep(delay * 1000);
+                                    apply(applys);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                    mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
-                    mNotifyManager.notify(id, mBuilder.build());
-                    apply(applys);
+                    }).start();
                 }
-            }).start();
+            });
         }
     }
 

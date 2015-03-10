@@ -109,10 +109,10 @@ public class SplashView extends View {
                         @Override
                         public void run() {
                             setVisibility(GONE);
+                            finished = true;
                             startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_out));
                         }
                     });
-                    finished = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
