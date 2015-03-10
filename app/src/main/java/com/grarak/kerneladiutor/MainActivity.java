@@ -268,10 +268,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 return;
             }
 
+            mSplashView.finish();
             setInterface();
             try {
                 ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-                mSplashView.finish();
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }

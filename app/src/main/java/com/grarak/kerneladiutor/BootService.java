@@ -16,10 +16,13 @@
 
 package com.grarak.kerneladiutor;
 
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -50,9 +53,9 @@ public class BootService extends Service {
 
     private Handler hand = new Handler();
 
-    /*private int id = 1;
+    private int id = 1;
     private NotificationManager mNotifyManager;
-    private NotificationCompat.Builder mBuilder;*/
+    private NotificationCompat.Builder mBuilder;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -85,7 +88,7 @@ public class BootService extends Service {
             }
 
         if (applys.size() > 0) {
-            /*final int delay = Utils.getInt("applyonbootdelay", 15, this);
+            final int delay = Utils.getInt("applyonbootdelay", 15, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
@@ -104,10 +107,10 @@ public class BootService extends Service {
                             e.printStackTrace();
                         }
                     mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
-                    mNotifyManager.notify(id, mBuilder.build());*/
+                    mNotifyManager.notify(id, mBuilder.build());
                     apply(applys);
-                /*}
-            }).start();*/
+                }
+            }).start();
         }
     }
 

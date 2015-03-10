@@ -2,8 +2,11 @@ package com.grarak.kerneladiutor.elements;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
@@ -20,6 +23,10 @@ public class SplashView extends View {
     private final Paint mPaintCircle;
     private final float density;
     private int radius = 0;
+    private int rotate = 0;
+    private final Bitmap icon;
+    private final Matrix matrix;
+    private boolean finished = false;
 
     public SplashView(Context context) {
         this(context, null);
@@ -40,6 +47,30 @@ public class SplashView extends View {
         mPaintCircle.setStyle(Paint.Style.FILL);
         mPaintCircle.setStrokeCap(Paint.Cap.ROUND);
         mPaintCircle.setColor(Color.WHITE);
+
+        matrix = new Matrix();
+        icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(10);
+                        rotate++;
+                        ((Activity) getContext()).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                invalidate();
+                            }
+                        });
+                        if (finished) break;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
     public void finish() {
@@ -65,6 +96,7 @@ public class SplashView extends View {
                             startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_out));
                         }
                     });
+                    finished = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -80,7 +112,10 @@ public class SplashView extends View {
     }
 
     private void draw(Canvas canvas, int x, int y, int radius) {
-        canvas.drawCircle(x / 2, y / 2, radius, mPaintCircle);
+        if (radius > 0) canvas.drawCircle(x / 2, y / 2, radius, mPaintCircle);
+        matrix.postRotate(rotate);
+        Bitmap iconRotate = Bitmap.createBitmap(icon, 0, 0, icon.getWidth(), icon.getHeight(), matrix, false);
+        canvas.drawBitmap(iconRotate, x / 2 - iconRotate.getWidth() / 2, y / 2 - iconRotate.getHeight() / 2, mPaintCircle);
     }
 
 }
