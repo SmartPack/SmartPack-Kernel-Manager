@@ -97,7 +97,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     public static String LAUNCH_INTENT = "launch_section";
     private String LAUNCH_NAME;
     private int cur_position;
-    
+
     private AlertDialog betaDialog;
 
     @Override
@@ -265,9 +265,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 i.putExtras(args);
                 startActivity(i);
 
-                if (betaDialog != null)
-                    betaDialog.dismiss();
-
+                if (betaDialog != null) betaDialog.dismiss();
                 cancel(true);
                 finish();
                 return;
