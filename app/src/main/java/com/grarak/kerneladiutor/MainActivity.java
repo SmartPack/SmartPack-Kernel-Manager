@@ -97,6 +97,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
     public static String LAUNCH_INTENT = "launch_section";
     private String LAUNCH_NAME;
     private int cur_position;
+    
+    private AlertDialog betaDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +110,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         try {
             LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
             if (LAUNCH_NAME == null && VERSION_NAME.contains("beta"))
-                new AlertDialog.Builder(MainActivity.this)
+                betaDialog = new AlertDialog.Builder(MainActivity.this)
                         .setMessage(getString(R.string.beta_message, VERSION_NAME))
                         .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                             @Override
@@ -262,6 +264,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
                 i.putExtras(args);
                 startActivity(i);
+
+                if (betaDialog != null)
+                    betaDialog.dismiss();
 
                 cancel(true);
                 finish();
