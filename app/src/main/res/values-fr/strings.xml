@@ -9,12 +9,14 @@
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si tu as des problèmes, n\'hésite pas à me contacter. Tu utilises actuellement la version %s.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
+  <string name="apply_on_boot_finished">Vos modifications ont été appliquées</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kO</string>
   <string name="ms">ms</string>
   <string name="mb"> MO</string>
   <string name="min">min</string>
+  <string name="sec">sec</string>
   <string name="information">Informations </string>
   <string name="kernel">Kernel</string>
   <string name="tools">Outils</string>
@@ -36,6 +38,7 @@
   <string name="misc_controls">Contrôles Divers</string>
   <string name="build_prop_editor">Editeur Build prop</string>
   <string name="profile">Profile</string>
+  <string name="settings">Réglages</string>
   <string name="about_us">À propos de nous</string>
   <string name="unused_cpu_states">États de processeur inutilisés</string>
   <string name="uptime">Temps de fonctionnement</string>
@@ -99,8 +102,10 @@
   <string name="hysteresis_summary">Plus bas c\'est, plus la réponse sera rapide.</string>
   <string name="threshold">Valeur du Seuil</string>
   <string name="debug">Débogage</string>
+  <string name="suspend">Suspendre</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Un remplacement du MPDecision par la team Code_Blue.</string>
+  <string name="powersaver_mode">Mode économie d’énergie</string>
   <string name="edit">Editer</string>
   <string name="delete">Suppression</string>
   <string name="value">Valeur </string>

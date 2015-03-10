@@ -27,6 +27,7 @@
   <string name="misc_controls">Egyéb</string>
   <string name="build_prop_editor">Build prop szerkesztő</string>
   <string name="profile">Profilok</string>
+  <string name="settings">Beállítások</string>
   <string name="about_us">Rólunk</string>
   <string name="unused_cpu_states">Nem használt CPU frekvenciák</string>
   <string name="uptime">Üzemidő</string>
@@ -97,6 +98,15 @@
   <string name="max_cpus_online_summary">Maximális CPU online bármikor.</string>
   <string name="max_cpus_online_susp">Maximális CPU-k alvó állapotban</string>
   <string name="max_cpus_online_susp_summary">Maximális CPU online kikapcsolt képernyőnél.</string>
+  <string name="update_rate">Frissítési gyakoriság</string>
+  <string name="offline_load">Offline terhelés</string>
+  <string name="io_is_busy">IO leterhelt</string>
+  <string name="first_level">Első szint</string>
+  <string name="high_load_counter">Nagy terhelés számláló</string>
+  <string name="load_threshold">Terhelési küszöb</string>
+  <string name="timer">Időzítő</string>
+  <string name="gpu_governor">GPU ütemező</string>
+  <string name="simple_gpu_algorithm">Egyszerű GPU algoritmus</string>
   <string name="laziness">Lustaság</string>
   <string name="red">Vörös</string>
   <string name="green">Zöld</string>
