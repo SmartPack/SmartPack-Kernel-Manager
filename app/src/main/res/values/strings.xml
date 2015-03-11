@@ -355,6 +355,8 @@
     <string name="logcat_summary">Copy logcat to /sdcard/logcat.txt</string>
     <string name="last_kmsg">Last Kernel Message</string>
     <string name="last_kmsg_summary">Copy /proc/last_kmsg to /sdcard/last_kmsg.txt</string>
+    <string name="driver_message">Driver Message</string>
+    <string name="driver_message_summary">Copy driver message (dmesg) to /sdcard/dmesg.txt</string>
 
     <!-- About us -->
     <string name="license">License</string>

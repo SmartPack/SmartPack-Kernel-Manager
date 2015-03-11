@@ -159,6 +159,18 @@ public class SettingsFragment extends RecyclerViewFragment {
 
             addView(mLastKmsgCard);
         }
+
+        CardViewItem.DCardView mDmesgCard = new CardViewItem.DCardView();
+        mDmesgCard.setTitle(getString(R.string.driver_message));
+        mDmesgCard.setDescription(getString(R.string.driver_message_summary));
+        mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                RootUtils.runCommand("dmesg > /sdcard/dmesg.txt");
+            }
+        });
+
+        addView(mDmesgCard);
     }
 
 }
