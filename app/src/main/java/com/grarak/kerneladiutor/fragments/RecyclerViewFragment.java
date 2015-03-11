@@ -109,6 +109,11 @@ public class RecyclerViewFragment extends Fragment {
                 });
                 views.clear();
                 adapter = new DAdapter.Adapter(views);
+                try {
+                    if (isAdded()) preInit(savedInstanceState);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -190,6 +195,9 @@ public class RecyclerViewFragment extends Fragment {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+    }
+
+    public void preInit(Bundle savedInstanceState) {
     }
 
     public void init(Bundle savedInstanceState) {

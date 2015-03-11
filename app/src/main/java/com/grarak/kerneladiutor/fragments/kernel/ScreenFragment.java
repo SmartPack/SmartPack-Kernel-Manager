@@ -17,8 +17,12 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -32,6 +36,8 @@ import java.util.List;
  */
 public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
         SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
+
+    private ImageView mPreviewIconView;
 
     private List<String> mColorCalibrationLimits;
     private SeekBarCardView.DSeekBarCardView[] mColorCalibrationCard;
@@ -56,8 +62,25 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         backlightDimmerInit();
     }
 
+    @Override
+    public void preInit(Bundle savedInstanceState) {
+        super.preInit(savedInstanceState);
+
+        mPreviewIconView = new ImageView(getActivity());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().density * 150));
+        mPreviewIconView.setLayoutParams(layoutParams);
+        mPreviewIconView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    }
+
     private void screenColorInit() {
         if (Screen.hasColorCalibration()) {
+            mPreviewIconView.setImageDrawable(getResources().getDrawable(R.drawable.ic_color_preview));
+            CardViewItem.DCardView mPreviewIconCard = new CardViewItem.DCardView();
+            mPreviewIconCard.setView(mPreviewIconView);
+
+            addView(mPreviewIconCard);
+
             List<String> colors = Screen.getColorCalibration();
             mColorCalibrationLimits = Screen.getColorCalibrationLimits();
             mColorCalibrationCard = new SeekBarCardView.DSeekBarCardView[colors.size()];

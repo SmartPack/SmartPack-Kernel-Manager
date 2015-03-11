@@ -89,13 +89,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         if (savedInstanceState != null)
             _updatingData = savedInstanceState.getBoolean("updatingData");
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                cpuSpyApp = new CpuSpyApp();
-                if (isAdded()) refreshData();
-            }
-        });
+        cpuSpyApp = new CpuSpyApp();
+        if (isAdded()) refreshData();
 
         addView(uptimeCard);
         addView(frequencyCard);
