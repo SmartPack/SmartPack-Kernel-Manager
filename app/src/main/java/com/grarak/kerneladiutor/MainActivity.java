@@ -104,9 +104,13 @@ public class MainActivity extends ActionBarActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (context != null) ((Activity) context).finish();
+        if (context != null) {
+            RootUtils.closeSU();
+            ((Activity) context).finish();
+        }
         context = this;
 
+        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
         try {
             LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
             if (LAUNCH_NAME == null && VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, this))
@@ -310,8 +314,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (RootUtils.su != null) RootUtils.su.close();
-        RootUtils.su = null;
+        RootUtils.closeSU();
     }
 
     public static void destroy() {

@@ -16,8 +16,11 @@
 
 package com.grarak.kerneladiutor.fragments.other;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
+import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
@@ -45,9 +48,28 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        forceenglishlanguageInit();
         betainfoInit();
         applyonbootInit();
         debuggingInit();
+    }
+
+    private void forceenglishlanguageInit() {
+        SwitchCompatCardItem.DSwitchCompatCard mForceEnglishLanguageCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mForceEnglishLanguageCard.setDescription(getString(R.string.force_english_language));
+        mForceEnglishLanguageCard.setChecked(Utils.getBoolean("forceenglish", false, getActivity()));
+        mForceEnglishLanguageCard.setOnDSwitchCompatCardListener(
+                new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+                    @Override
+                    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                        Utils.saveBoolean("forceenglish", checked, getActivity());
+                        if (!checked)
+                            Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                    }
+                });
+
+        addView(mForceEnglishLanguageCard);
     }
 
     private void betainfoInit() {
@@ -56,12 +78,13 @@ public class SettingsFragment extends RecyclerViewFragment {
             mBetaInfoCard.setTitle(getString(R.string.beta_info));
             mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
             mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
-            mBetaInfoCard.setOnDSwitchCompatCardListener(new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
-                @Override
-                public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-                    Utils.saveBoolean("betainfo", checked, getActivity());
-                }
-            });
+            mBetaInfoCard.setOnDSwitchCompatCardListener(
+                    new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+                        @Override
+                        public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                            Utils.saveBoolean("betainfo", checked, getActivity());
+                        }
+                    });
 
             addView(mBetaInfoCard);
         }

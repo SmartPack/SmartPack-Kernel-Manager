@@ -45,6 +45,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 30.11.14.
@@ -53,6 +54,14 @@ public class Utils implements Constants {
 
     // Saving Profile Apply here
     public static boolean PROFILE_APPLY = false;
+
+    public static void setLocale(String lang, Context context) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getResources().updateConfiguration(config, null);
+    }
 
     public static void vibrate(int duration) {
         RootUtils.runCommand("echo " + duration + " > " + VIBRATION_ENABLE);
