@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -44,8 +45,26 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        betainfoInit();
         applyonbootInit();
         debuggingInit();
+    }
+
+    private void betainfoInit() {
+        if (Constants.VERSION_NAME.contains("beta")) {
+            SwitchCompatCardItem.DSwitchCompatCard mBetaInfoCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBetaInfoCard.setTitle(getString(R.string.beta_info));
+            mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
+            mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
+            mBetaInfoCard.setOnDSwitchCompatCardListener(new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+                @Override
+                public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                    Utils.saveBoolean("betainfo", checked, getActivity());
+                }
+            });
+
+            addView(mBetaInfoCard);
+        }
     }
 
     private void applyonbootInit() {

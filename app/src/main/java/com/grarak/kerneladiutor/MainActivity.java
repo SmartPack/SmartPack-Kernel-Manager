@@ -109,7 +109,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
         try {
             LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
-            if (LAUNCH_NAME == null && VERSION_NAME.contains("beta"))
+            if (LAUNCH_NAME == null && VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, this))
                 betaDialog = new AlertDialog.Builder(MainActivity.this)
                         .setMessage(getString(R.string.beta_message, VERSION_NAME))
                         .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {

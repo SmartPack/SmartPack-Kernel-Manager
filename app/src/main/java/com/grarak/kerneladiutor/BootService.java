@@ -67,18 +67,16 @@ public class BootService extends Service {
         super.onCreate();
         log("initialize");
         init();
-        stopSelf();
     }
 
     private void init() {
         final List<String> applys = new ArrayList<>();
 
-        Class[] classes = new Class[]{
-                BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
+        Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
                 CPUVoltageFragment.class, GPUFragment.class, IOFragment.class,
                 KSMFragment.class, LMKFragment.class, MiscFragment.class,
                 ScreenFragment.class, SoundFragment.class, VMFragment.class,
-                WakeFragment.class,
+                WakeFragment.class
         };
 
         for (Class mClass : classes)
@@ -94,38 +92,33 @@ public class BootService extends Service {
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
                     .setContentText(getString(R.string.apply_on_boot_time, delay))
                     .setSmallIcon(R.mipmap.ic_launcher);
-            hand.post(new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (Utils.getBoolean("applyonbootnotification", true, BootService.this)) {
-                                for (int i = delay; i >= 0; i--)
-                                    try {
-                                        Thread.sleep(1000);
-                                        mBuilder.setContentText(getString(R.string.apply_on_boot_time, i))
-                                                .setProgress(delay, delay - i, false);
-                                        mNotifyManager.notify(id, mBuilder.build());
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
+                    if (Utils.getBoolean("applyonbootnotification", true, BootService.this)) {
+                        for (int i = delay; i >= 0; i--)
+                            try {
+                                Thread.sleep(1000);
+                                mBuilder.setContentText(getString(R.string.apply_on_boot_time, i))
+                                        .setProgress(delay, delay - i, false);
                                 mNotifyManager.notify(id, mBuilder.build());
-                                apply(applys);
-                            } else {
-                                try {
-                                    Thread.sleep(delay * 1000);
-                                    apply(applys);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
+                        mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
+                        mNotifyManager.notify(id, mBuilder.build());
+                        apply(applys);
+                    } else {
+                        try {
+                            Thread.sleep(delay * 1000);
+                            apply(applys);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    }).start();
+                    }
                 }
-            });
-        }
+            }).start();
+        } else stopSelf();
     }
 
     private void apply(List<String> applys) {
@@ -140,8 +133,9 @@ public class BootService extends Service {
 
         if (!hasRoot || !hasBusybox) {
             toast(message);
-            //mBuilder.setContentText(message);
-            //mNotifyManager.notify(id, mBuilder.build());
+            mBuilder.setContentText(message);
+            mNotifyManager.notify(id, mBuilder.build());
+            stopSelf();
             return;
         }
 
@@ -160,6 +154,7 @@ public class BootService extends Service {
 
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
+        stopSelf();
     }
 
     private void log(String log) {

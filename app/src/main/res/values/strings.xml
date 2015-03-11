@@ -344,6 +344,8 @@
     <string name="applied">Applied</string>
 
     <!-- Settings -->
+    <string name="beta_info">Beta Information</string>
+    <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
     <string name="delay">Delay</string>
     <string name="notification">Notification</string>
     <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>
