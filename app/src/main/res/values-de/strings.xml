@@ -63,6 +63,7 @@
   <string name="cpu_min_freq">Minimale CPU-Frequenz</string>
   <string name="cpu_min_freq_summary">Ändere die minimale Taktfrequenz der CPU.</string>
   <string name="cpu_max_screen_off_freq">Maximale CPU-Taktfrequenz bei ausgeschaltetem Bildschirm</string>
+  <string name="cpu_max_screen_off_freq_summary">Ändere die minimale Taktfrequenz der CPU wenn der Bildschirm aus ist.</string>
   <string name="cpu_governor">CPU-Governor</string>
   <string name="cpu_governor_summary">Der CPU-Governor entscheidet, wie sich die CPU verhält. Die Änderung des Governors hat Auswirkungen darauf, wie sich die CPU zwischen Frequenzen entscheidet.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
@@ -84,6 +85,7 @@
   <string name="sync_threshold_summary">Wenn CPU-Belastung den voreingestellten Schwellenwert überschreitet, wird die aktuelle CPU auf diese Frequenz angehoben.</string>
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall wann eine CPU geboosted wird, wenn eine Eingabe erfolgt.</string>
+  <string name="input_boost_freq">Eingabe Boost Frequenz</string>
   <string name="global_offset">Globale Versetzung</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOMs Hotplugging Lösung. Sie werden wahrscheinlich Schwierigkeiten mit der Änderung der Frequenzen feststellen, wenn diese Funktion aktiv ist.</string>
@@ -99,6 +101,8 @@
   <string name="eco_mode">Energiespar-Modus</string>
   <string name="eco_mode_summary">Akkuschonender IntelliPlug-Modus.</string>
   <string name="touch_boost">Touch-Boost</string>
+  <string name="hysteresis_summary">Je niedriger es ist, desto schneller reagiert es.</string>
+  <string name="debug">Fehlersuche</string>
   <string name="suspend">Ruhezustand</string>
   <string name="suspend_summary">Ruhezustand verhindern.</string>
   <string name="min_cpus_online">Min. CPUs online</string>
@@ -117,6 +121,7 @@
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="suspend_max_cpus">Max. CPUs im Ruhemodus</string>
   <string name="suspend_max_cpus_summary">Maximale Anzahl der laufenden CPUs, wenn der Bildschirm ausgeschaltet ist.</string>
+  <string name="cores_on_touch">Kerne während einer Eingabe</string>
   <string name="timer">Timer</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_max_freq">Maximale GPU-Frequenz</string>
@@ -145,6 +150,7 @@
   <string name="s2s">Wischen, um den Bildschirm zu sperren</string>
   <string name="t2w">Tippen zum Aufwecken</string>
   <string name="t2w_summary">Wecke dein Gerät auf, indem du auf den Touchscreen tippst.</string>
+  <string name="sound_control">Lautstärken-Kontrolle</string>
   <string name="battery_voltage">Akku-Spannung</string>
   <string name="battery_level">Akkustand</string>
   <string name="battery_temperature">Akku-Temperatur</string>
@@ -153,9 +159,17 @@
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
   <string name="scheduler">Scheduler</string>
+  <string name="ksm_full_scans">Vollständige Scans</string>
+  <string name="ksm_pages_shared">Geteilte Seiten</string>
+  <string name="ksm_pages_sharing">Teilende Seiten</string>
+  <string name="ksm_pages_unshared">Ungeteilte Seiten</string>
+  <string name="ksm_pages_volatile">Flüchtige Seiten</string>
   <string name="ksm_enable">KSM aktivieren</string>
   <string name="ksm_enable_summary">Reduziert den Speicherverbrauch, hat aber Auswirkungen auf die CPU-Auslastung.</string>
+  <string name="ksm_pages_to_scan">Zu scannende Seiten</string>
+  <string name="ksm_sleep_milliseconds">Schlafen zwischen den Scans</string>
   <string name="foreground_app">Anwendungen im Vordergrund</string>
+  <string name="visible_app">Sichtbare Anwendungen</string>
   <string name="hidden_app">Versteckte Anwendungen</string>
   <string name="empty_app">Leere Anwendungen</string>
   <string name="very_light">Sehr leicht</string>
@@ -163,6 +177,7 @@
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
   <string name="vibration_strength">Vibrationsstärke</string>
+  <string name="android_logger">Android-Protokollierung</string>
   <string name="selinux">SELinux</string>
   <string name="permissive">Moderat</string>
   <string name="enforcing">Strikt</string>
