@@ -298,6 +298,19 @@
   <string name="empty_name">名前が入力されていません。</string>
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
+  <string name="force_english_language">英語表示にする</string>
+  <string name="beta_info">ベータ情報</string>
+  <string name="beta_info_summary">ベータ版を使用しているとき、起動時にダイアログを出すようにします。</string>
+  <string name="delay">遅延</string>
+  <string name="notification">通知</string>
+  <string name="notification_summary">起動時に適用するときに通知を表示します。問題があれば無効にしてください。</string>
+  <string name="debugging">デバッグ</string>
+  <string name="logcat">Logcat</string>
+  <string name="logcat_summary">logcatを/sdcard/logcat.txtにコピーします。</string>
+  <string name="last_kmsg">最後のカーネルメッセージ</string>
+  <string name="last_kmsg_summary">/proc/last_kmsg を /sdcard/last_kmsg.txtにコピーします。</string>
+  <string name="driver_message">ドライバメッセージ</string>
+  <string name="driver_message_summary">ドライバメッセージ (dmesg) を /sdcard/dmesg.txtにコピーします。</string>
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="support_v13">v13 Support Library</string>
@@ -305,6 +318,7 @@
   <string name="cardview_v7">v7 Cardview Library</string>
   <string name="recyclerview_v7">v7 Recyclerview Library</string>
   <string name="google">Google</string>
+  <string name="rootshell">RootShell</string>
   <string name="stericson">Stephen Stericson</string>
   <string name="fab">FloatingActionButton</string>
   <string name="jerzy">Jerzy Chałupski</string>

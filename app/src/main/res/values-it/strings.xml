@@ -298,6 +298,19 @@
   <string name="empty_name">Il nome è vuoto</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
   <string name="applied">Applicato</string>
+  <string name="force_english_language">Forza lingua Inglese</string>
+  <string name="beta_info">Informazioni Beta</string>
+  <string name="beta_info_summary">Mostra un avvertimento all\'avvio se stai usando una versione beta.</string>
+  <string name="delay">Ritardo</string>
+  <string name="notification">Notifica</string>
+  <string name="notification_summary">Mostra una notifica quando parte il servizio applica all\'avvio. Disabilitalo se hai qualche problema.</string>
+  <string name="debugging">Debugging</string>
+  <string name="logcat">Logcat</string>
+  <string name="logcat_summary">Copia logcat in /sdcard/logcat.txt</string>
+  <string name="last_kmsg">Ultimo Kernel Message</string>
+  <string name="last_kmsg_summary">Copia /proc/last_kmsg in /sdcard/last_kmsg.txt</string>
+  <string name="driver_message">Messaggio Driver</string>
+  <string name="driver_message_summary">Copia messaggio driver (dmesg) in /sdcard/dmesg.txt</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Auditor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="support_v13">Libreria di supporto V13</string>
@@ -305,6 +318,7 @@
   <string name="cardview_v7">Libreria Cardview V7</string>
   <string name="recyclerview_v7">Libreria Recyclerview V7</string>
   <string name="google">Google</string>
+  <string name="rootshell">RootShell</string>
   <string name="stericson">Stephen Stericson</string>
   <string name="fab">FloatingActionButton</string>
   <string name="jerzy">Jerzy Chałupski</string>

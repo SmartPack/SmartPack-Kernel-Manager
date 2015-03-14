@@ -90,7 +90,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOMs Hotplugging Lösung. Sie werden wahrscheinlich Schwierigkeiten mit der Änderung der Frequenzen feststellen, wenn diese Funktion aktiv ist.</string>
   <string name="intelliplug">IntelliPlug</string>
-  <string name="intelliplug_summary">Ein MPDecision-Pendant von faux123.</string>
+  <string name="intelliplug_summary">Ein MPDecision Ersatz von faux123.</string>
   <string name="balanced">Ausgeglichen</string>
   <string name="performance">Leistung</string>
   <string name="conservative">Konservativ</string>
