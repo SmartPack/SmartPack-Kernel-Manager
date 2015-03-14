@@ -252,7 +252,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         freqText.setText(sFreq);
         perText.setText(sPer);
         durText.setText(sDur);
-        bar.setProgress((int) per);
+        bar.setProgress(Math.round(per));
 
         // add it to parent and return
         parent.addView(layout);

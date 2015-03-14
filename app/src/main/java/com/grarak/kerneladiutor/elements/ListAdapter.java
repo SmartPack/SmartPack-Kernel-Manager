@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
 
@@ -79,6 +80,8 @@ public class ListAdapter {
         @Override
         public View getView(LayoutInflater inflater, ViewGroup parent) {
             TextView text = (TextView) inflater.inflate(R.layout.list_item, parent, false);
+            if (!Utils.DARKTHEME)
+                text.setTextColor(parent.getContext().getResources().getColorStateList(R.color.item_textcolor_light));
             text.setText(title);
             return text;
         }
@@ -108,6 +111,7 @@ public class ListAdapter {
             View view = inflater.inflate(R.layout.list_header, parent, false);
             TextView text = (TextView) view.findViewById(R.id.text);
             text.setText(title);
+            if (Utils.DARKTHEME) view.setBackgroundResource(R.drawable.no_highlight_dark);
             return view;
         }
 

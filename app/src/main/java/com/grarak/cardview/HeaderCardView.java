@@ -17,6 +17,7 @@
 package com.grarak.cardview;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class HeaderCardView {
 
     private static final int DEFAULT_LAYOUT = R.layout.header_cardview;
 
+    private final Context context;
+
     private TextView textView;
     private String title;
     private View view;
@@ -39,7 +42,7 @@ public class HeaderCardView {
     }
 
     public HeaderCardView(Context context, int layout) {
-
+        this.context = context;
         view = LayoutInflater.from(context).inflate(layout, null, false);
 
         if (layout == DEFAULT_LAYOUT) {
@@ -61,6 +64,10 @@ public class HeaderCardView {
 
     public View getView() {
         return view;
+    }
+
+    public Resources getResources() {
+        return context.getResources();
     }
 
 }

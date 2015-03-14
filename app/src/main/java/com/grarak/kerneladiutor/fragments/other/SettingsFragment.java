@@ -48,10 +48,27 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        forceenglishlanguageInit();
+        darkthemeInit();
+        if (!Resources.getSystem().getConfiguration().locale.getLanguage().equals("en"))
+            forceenglishlanguageInit();
         betainfoInit();
         applyonbootInit();
         debuggingInit();
+    }
+
+    private void darkthemeInit() {
+        SwitchCompatCardItem.DSwitchCompatCard mDarkthemeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mDarkthemeCard.setDescription(getString(R.string.dark_theme));
+        mDarkthemeCard.setChecked(Utils.DARKTHEME);
+        mDarkthemeCard.setOnDSwitchCompatCardListener(new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+            @Override
+            public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                Utils.saveBoolean("darktheme", checked, getActivity());
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
+
+        addView(mDarkthemeCard);
     }
 
     private void forceenglishlanguageInit() {

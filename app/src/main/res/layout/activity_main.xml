@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/navigationdrawer_background"
+        android:background="@color/navigationdrawer_background_light"
         app:insetForeground="#4000"
         android:fitsSystemWindows="true">
 

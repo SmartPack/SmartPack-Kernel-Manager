@@ -103,13 +103,14 @@ public class MainActivity extends ActionBarActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         if (context != null) {
             RootUtils.closeSU();
             ((Activity) context).finish();
         }
         context = this;
+        Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
 
+        if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeDark);
         if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
         try {
             LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
@@ -125,7 +126,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
             e.printStackTrace();
         }
 
+        setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
         setSupportActionBar(toolbar);
 
         progressBar = new ProgressBar(this);
@@ -135,6 +138,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+
+        if (mDrawerLayout != null && mScrimInsetsFrameLayout != null)
+            mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
 
         new Task().execute();
     }
@@ -208,6 +214,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     private void setInterface() {
         mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
+        if (Utils.DARKTHEME)
+            mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
         mDrawerList.setAdapter(new ListAdapter.Adapter(this, mList));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -219,6 +227,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        if (Utils.DARKTHEME)
+            mDrawerLayout.setBackgroundColor(getResources().getColor(R.color.black));
 
         mDrawerLayout.post(new Runnable() {
             @Override

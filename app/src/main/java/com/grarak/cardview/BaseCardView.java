@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 23.12.14.
@@ -65,7 +66,8 @@ public abstract class BaseCardView extends CardView {
         setLayoutParams(layoutParams);
         setRadius(0);
 
-        setCardBackgroundColor(getResources().getColor(R.color.card_background));
+        setCardBackgroundColor(getResources().getColor(Utils.DARKTHEME ?
+                R.color.card_background_dark : R.color.card_background_light));
         TypedArray ta = getContext().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
         Drawable d = ta.getDrawable(0);
         ta.recycle();

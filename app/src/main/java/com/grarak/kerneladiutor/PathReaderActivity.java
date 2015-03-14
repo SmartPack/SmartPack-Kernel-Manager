@@ -55,9 +55,12 @@ public class PathReaderActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeActionBarDark);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         setContentView(R.layout.fragment_layout);
 
+        if (Utils.DARKTHEME)
+            findViewById(R.id.content_frame).setBackgroundColor(getResources().getColor(R.color.black));
         getSupportActionBar().setTitle(getIntent().getExtras().getString(ARG_TITLE));
         String path = getIntent().getExtras().getString(ARG_PATH);
         String error = getIntent().getExtras().getString(ARG_ERROR);

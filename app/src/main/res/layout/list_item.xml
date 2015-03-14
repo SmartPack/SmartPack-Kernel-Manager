@@ -7,7 +7,7 @@
     android:minHeight="48dp"
     android:gravity="center_vertical"
     android:textSize="15sp"
-    android:textColor="@drawable/item_bg"
+    android:textColor="@color/white"
     android:ellipsize="end"
     android:maxLines="1"
     android:background="?android:attr/activatedBackgroundIndicator" />

@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 09.03.15.
@@ -90,6 +91,8 @@ public class SplashView extends View {
     }
 
     public void finish() {
+        if (Utils.DARKTHEME)
+            mPaintCircle.setColor(getResources().getColor(R.color.navigationdrawer_background_dark));
         new Thread(new Runnable() {
             @Override
             public void run() {

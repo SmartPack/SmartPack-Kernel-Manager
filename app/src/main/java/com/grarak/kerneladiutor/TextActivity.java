@@ -21,6 +21,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import com.grarak.kerneladiutor.utils.Utils;
+
 public class TextActivity extends ActionBarActivity {
 
     public static final String ARG_TEXT = "text";
@@ -28,8 +30,10 @@ public class TextActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeActionBarDark);
 
         TextView text = new TextView(this);
+        if (Utils.DARKTHEME) text.setBackgroundColor(getResources().getColor(R.color.black));
         setContentView(text);
 
         text.setTextSize(20);

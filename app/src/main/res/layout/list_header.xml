@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:layout_marginTop="3dp"
     android:clickable="false"
     android:orientation="vertical"
-    android:background="@drawable/no_highlight">
+    android:background="@drawable/no_highlight_light">
 
     <View style="@style/Divider" />
 
@@ -20,4 +20,4 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:gravity="center_vertical" />
-</LinearLayout>
+</FrameLayout>

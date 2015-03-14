@@ -127,9 +127,12 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 View view = inflater.inflate(R.layout.global_offset_view, container, false);
 
                 final TextView textView = (TextView) view.findViewById(R.id.offset_text);
+                if (Utils.DARKTHEME)
+                    textView.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 textView.setText("0");
 
                 Button minus = (Button) view.findViewById(R.id.button_minus);
+                if (!Utils.DARKTHEME) minus.setTextColor(getResources().getColor(R.color.black));
                 minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,6 +145,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 });
 
                 Button plus = (Button) view.findViewById(R.id.button_plus);
+                if (!Utils.DARKTHEME) plus.setTextColor(getResources().getColor(R.color.black));
                 plus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

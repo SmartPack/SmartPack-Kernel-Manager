@@ -19,8 +19,10 @@ package com.grarak.kerneladiutor.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -54,13 +56,14 @@ public class Utils implements Constants {
 
     // Saving Profile Apply here
     public static boolean PROFILE_APPLY = false;
+    public static boolean DARKTHEME = false;
 
     public static void setLocale(String lang, Context context) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getResources().updateConfiguration(config, null);
+        Resources res = context.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale(lang);
+        res.updateConfiguration(conf, dm);
     }
 
     public static void vibrate(int duration) {

@@ -1,13 +1,47 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">?attr/colorPrimary</item>
     </style>
 
-    <style name="AppThemeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+    </style>
+
+    <style name="AppThemeLight" parent="AppBaseThemeLight">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceLight</item>
+    </style>
+
+    <style name="AppThemeDark" parent="AppBaseThemeDark">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceDark</item>
+    </style>
+
+    <style name="myCustomMenuTextApearanceLight" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="myCustomMenuTextApearanceDark" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/textcolor_dark</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:colorBackground">@color/navigationdrawer_background_dark</item>
+    </style>
+
+    <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppThemeActionBarDark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">?attr/colorPrimary</item>
@@ -18,18 +52,8 @@
         <item name="colorAccent">@android:color/white</item>
     </style>
 
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
-    </style>
-
     <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorAccent">@android:color/white</item>
-    </style>
-
-    <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:textSize">17sp</item>
     </style>
 
     <style name="Divider">
