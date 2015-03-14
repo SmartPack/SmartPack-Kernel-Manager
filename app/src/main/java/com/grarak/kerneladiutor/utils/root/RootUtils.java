@@ -19,7 +19,7 @@ package com.grarak.kerneladiutor.utils.root;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
-import com.stericson.RootShell.RootShell;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -53,15 +53,25 @@ public class RootUtils implements Constants {
     }
 
     public static boolean rooted() {
-        return RootShell.isRootAvailable();
+        return existBinary("su");
     }
 
     public static boolean rootAccess() {
-        return RootShell.isAccessGiven();
+        SU su = getSU();
+        su.runCommand("mount");
+        return !su.denied;
     }
 
     public static boolean busyboxInstalled() {
-        return RootShell.isBusyboxAvailable();
+        return existBinary("busybox");
+    }
+
+    private static boolean existBinary(String binary) {
+        for (String path : System.getenv("PATH").split(":")) {
+            if (!path.endsWith("/")) path += "/";
+            if (Utils.existFile(path + binary)) return true;
+        }
+        return false;
     }
 
     public static void mount(boolean writeable, String mountpoint) {
@@ -74,9 +84,13 @@ public class RootUtils implements Constants {
     }
 
     public static String runCommand(String command) {
+        return getSU().runCommand(command);
+    }
+
+    private static SU getSU() {
         if (su == null) su = new SU();
         if (su.closed) su = new SU();
-        return su.runCommand(command);
+        return su;
     }
 
     /**
@@ -89,6 +103,7 @@ public class RootUtils implements Constants {
         private BufferedWriter bufferedWriter;
         private BufferedReader bufferedReader;
         private boolean closed;
+        private boolean denied;
 
         public SU() {
             try {
@@ -118,10 +133,15 @@ public class RootUtils implements Constants {
                     }
                 }
                 return sb.toString().trim();
+            } catch (IOException e) {
+                denied = true;
+                e.printStackTrace();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                denied = true;
             } catch (Exception e) {
                 e.printStackTrace();
-                return null;
             }
+            return null;
         }
 
         public void close() {

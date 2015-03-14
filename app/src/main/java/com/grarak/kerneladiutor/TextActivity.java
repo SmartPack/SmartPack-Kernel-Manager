@@ -39,7 +39,6 @@ public class TextActivity extends ActionBarActivity {
         text.setTextSize(20);
         text.setGravity(Gravity.CENTER);
         text.setText(getIntent().getExtras().getString(ARG_TEXT));
-        text.setTextColor(getResources().getColor(android.R.color.black));
     }
 
 }
