@@ -189,7 +189,6 @@
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопировать logcat в /sdcard/logcat.txt</string>
   <string name="google">Googlе</string>
-  <string name="stericson">Stephen Stericson</string>
   <string name="fab">FloatingActionButton</string>
   <string name="jerzy">Jerzy Chałupski</string>
   <string name="open_source">Открытый исходный код</string>

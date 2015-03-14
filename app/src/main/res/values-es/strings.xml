@@ -160,6 +160,7 @@
   <string name="defer_time">Suspender Tiempo Aplazado</string>
   <string name="mako_hotplug">Control de Mako Hotplug</string>
   <string name="cores_on_touch_summary">Número de CPUs online cuando tocas la pantalla o presionas un botón.</string>
+  <string name="cpu_freq_unplug_limit">Límite de frecuencia de la CPU Desactivada</string>
   <string name="first_level">Primer nivel</string>
   <string name="first_level_summary">Umbral para activar todas las CPUs.</string>
   <string name="high_load_counter">Contador de Gran Carga</string>
@@ -213,6 +214,7 @@
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Enciende la pantalla pulsandola.</string>
+  <string name="wake_timeout">Tiempo de espera para Despertar</string>
   <string name="sound_control">Control de sonido</string>
   <string name="headphone_gain">Ganancia de auriculares</string>
   <string name="handset_microphone_gain">Ganancia del micrófono auricular</string>
@@ -238,6 +240,7 @@
   <string name="ksm_enable_summary">Reduce el uso de la memoria, pero tiene un impacto en el uso de la CPU.</string>
   <string name="ksm_pages_to_scan">Páginas a escanear</string>
   <string name="ksm_sleep_milliseconds">Pause entre escaneos</string>
+  <string name="ksm_deferred_timer">Temporizador diferido</string>
   <string name="ksm_deferred_timer_summary">Reduce el uso de CPU a cambio de menos ahorro de memoria.</string>
   <string name="foreground_app">Aplicaciones de primer plano</string>
   <string name="visible_app">Aplicaciones accesibles</string>
@@ -259,6 +262,7 @@
   <string name="selinux_summary">Security-Enhanced Linux es un módulo de seguridad del kernel de Linux que proporciona un mecanismo para apoyar políticas de seguridad de control de acceso, incluyendo controles de acceso obligatorios del Departamento de Defensa de los Estados Unidos.</string>
   <string name="permissive">Permisivo</string>
   <string name="enforcing">Cumplir</string>
+  <string name="dynamic_fsync">Fsync dinámico</string>
   <string name="dynamic_fsync_summary">Cuando está activado y la pantalla está activada, la operación fsync es asincrónica. Cuando la pantalla está apagada, esta operación es sincrónic.</string>
   <string name="edit">Editar</string>
   <string name="delete">Borrar</string>
@@ -275,6 +279,7 @@
   <string name="empty_name">Nombre está vacío</string>
   <string name="press_again_to_apply">Pulsa de nuevo para aplicar.</string>
   <string name="applied">Aplicado</string>
+  <string name="dark_theme">Tema Oscuro</string>
   <string name="force_english_language">Forzar idioma inglés</string>
   <string name="beta_info">Información beta</string>
   <string name="beta_info_summary">Mostrar un diálogo al inicio si estas usando una versión beta.</string>
@@ -285,11 +290,10 @@
   <string name="logcat_summary">Copiar Logcat a /sdcard/logcat.txt</string>
   <string name="last_kmsg">Último mensaje del Kernel</string>
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg en /sdcard/last_kmsg.txt</string>
+  <string name="driver_message">Mensaje del Controlador</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="google">Google</string>
-  <string name="rootshell">RootShell</string>
-  <string name="stericson">Stephen Stericson</string>
   <string name="jerzy">Jerzy Chałupski</string>
   <string name="open_source">Código abierto</string>
   <string name="open_source_summary">Esta aplicación es de código abierto. Mira en mi Github.</string>
