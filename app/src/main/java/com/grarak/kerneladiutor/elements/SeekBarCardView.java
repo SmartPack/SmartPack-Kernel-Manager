@@ -20,12 +20,14 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
 
@@ -93,7 +95,9 @@ public class SeekBarCardView extends BaseCardView {
         seekBarView = (SeekBar) view.findViewById(R.id.seekbar_view);
 
         valueView.setText(getContext().getString(R.string.current_value_not_supported));
-        view.findViewById(R.id.button_minus).setOnClickListener(new OnClickListener() {
+
+        Button minusButton = (Button) view.findViewById(R.id.button_minus);
+        minusButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (seekBarView != null) {
@@ -106,7 +110,8 @@ public class SeekBarCardView extends BaseCardView {
 
         });
 
-        view.findViewById(R.id.button_plus).setOnClickListener(new OnClickListener() {
+        Button plusButton = (Button) view.findViewById(R.id.button_plus);
+        plusButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (seekBarView != null) {
@@ -117,6 +122,12 @@ public class SeekBarCardView extends BaseCardView {
                 }
             }
         });
+
+        if (Utils.DARKTHEME) {
+            int color = getResources().getColor(R.color.textcolor_dark);
+            minusButton.setTextColor(color);
+            plusButton.setTextColor(color);
+        }
     }
 
     public void setTitle(String title) {

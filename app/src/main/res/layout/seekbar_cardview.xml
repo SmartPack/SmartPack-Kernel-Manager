@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:textColor="@color/black"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/minus"
             android:textSize="20sp" />
@@ -49,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:textColor="@color/black"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/plus"
             android:textSize="20sp" />

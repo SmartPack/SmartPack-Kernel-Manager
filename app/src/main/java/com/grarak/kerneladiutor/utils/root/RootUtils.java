@@ -23,6 +23,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -69,7 +70,7 @@ public class RootUtils implements Constants {
     private static boolean existBinary(String binary) {
         for (String path : System.getenv("PATH").split(":")) {
             if (!path.endsWith("/")) path += "/";
-            if (Utils.existFile(path + binary)) return true;
+            if (new File(path + binary).exists() || Utils.existFile(path + binary)) return true;
         }
         return false;
     }

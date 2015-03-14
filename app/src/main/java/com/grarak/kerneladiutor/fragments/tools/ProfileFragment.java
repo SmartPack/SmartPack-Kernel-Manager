@@ -68,6 +68,8 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     public RecyclerView getRecyclerView() {
         noProfilesView = (TextView) getParentView(R.layout.profile_fragment).findViewById(R.id.no_profiles_text);
+        if (Utils.DARKTHEME)
+            noProfilesView.setTextColor(getResources().getColor(R.color.textcolor_dark));
 
         addButton = (FloatingActionButton) getParentView(R.layout.profile_fragment).findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +91,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 linearLayout.addView(descriptionText);
 
                 final TintEditText profileName = new TintEditText(getActivity());
-                profileName.setTextColor(getResources().getColor(android.R.color.black));
+                profileName.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
                 profileName.setHint(getString(R.string.name));
                 linearLayout.addView(profileName);
 

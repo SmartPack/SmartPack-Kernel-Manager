@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 26.12.14.
@@ -49,7 +50,8 @@ public class EditTextCardView extends CardViewItem {
 
                 final TintEditText editText = new TintEditText(getContext());
                 editText.setGravity(Gravity.CENTER);
-                editText.setTextColor(getContext().getResources().getColor(android.R.color.black));
+                editText.setTextColor(getContext().getResources().getColor(
+                        Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
                 editText.setLayoutParams(new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 if (value != null) editText.setText(value);

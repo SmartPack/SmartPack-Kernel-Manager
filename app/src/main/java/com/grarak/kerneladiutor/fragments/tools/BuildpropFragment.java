@@ -158,13 +158,13 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         dialogLayout.setPadding(30, 20, 30, 20);
 
         final TintEditText keyEdit = new TintEditText(getActivity());
-        keyEdit.setTextColor(getResources().getColor(android.R.color.black));
+        keyEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
 
         if (modify) keyEdit.setText(key.trim());
         else keyEdit.setHint(getString(R.string.key));
 
         final TintEditText valueEdit = new TintEditText(getActivity());
-        valueEdit.setTextColor(getResources().getColor(android.R.color.black));
+        valueEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
 
         if (modify) valueEdit.setText(value.trim());
         else valueEdit.setHint(getString(R.string.value));
