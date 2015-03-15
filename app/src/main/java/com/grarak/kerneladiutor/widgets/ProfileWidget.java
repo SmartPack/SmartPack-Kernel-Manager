@@ -74,7 +74,7 @@ public class ProfileWidget extends AppWidgetProvider {
     }
 
     @Override
-    public void onReceive(@NonNull Context context, @NonNull Intent intent) {
+    public void onReceive(@NonNull final Context context, @NonNull Intent intent) {
         if (intent.getAction().equals(PROFILE_BUTTON)) {
             Bundle args = new Bundle();
             args.putString(MainActivity.LAUNCH_INTENT, ProfileFragment.class.getSimpleName());
@@ -84,31 +84,34 @@ public class ProfileWidget extends AppWidgetProvider {
             MainActivity.destroy();
             context.startActivity(launch);
         } else if (intent.getAction().equals(LIST_ITEM_CLICK)) {
-            if (ListViewFactory.items != null) {
-                if (!Utils.PROFILE_APPLY) {
-                    Utils.PROFILE_APPLY = true;
-                    Utils.toast(context.getString(R.string.press_again_to_apply), context);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2000);
-                                Utils.PROFILE_APPLY = false;
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+            if (!Utils.getBoolean("profileclicked", false, context)) {
+                Utils.saveBoolean("profileclicked", true, context);
+                Utils.toast(context.getString(R.string.press_again_to_apply), context);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            Utils.saveBoolean("profileclicked", false, context);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    }).start();
-                } else {
-                    Utils.PROFILE_APPLY = false;
-                    int position = intent.getIntExtra(ITEM_ARG, 0);
-                    for (int i = 0; i < ListViewFactory.items.get(position).getSys().size(); i++) {
-                        Control.commandSaver(context, ListViewFactory.items.get(position).getSys().get(i),
-                                ListViewFactory.items.get(position).getCommands().get(i));
-                        RootUtils.runCommand(ListViewFactory.items.get(position).getCommands().get(i));
                     }
-                    Utils.toast(context.getString(R.string.applied), context);
+                }).start();
+            } else {
+                Utils.saveBoolean("profileclicked", false, context);
+                int position = intent.getIntExtra(ITEM_ARG, 0);
+                ProfileDB profileDB = new ProfileDB(context);
+                profileDB.create();
+                ProfileDB.ProfileItem profileItem = profileDB.getAllProfiles().get(position);
+                profileDB.close();
+                RootUtils.SU su = new RootUtils.SU();
+                for (int i = 0; i < profileItem.getSys().size(); i++) {
+                    Control.commandSaver(context, profileItem.getSys().get(i), profileItem.getCommands().get(i));
+                    su.runCommand(profileItem.getCommands().get(i));
                 }
+                su.close();
+                Utils.toast(context.getString(R.string.applied), context);
             }
         }
 

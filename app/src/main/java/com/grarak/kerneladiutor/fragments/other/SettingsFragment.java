@@ -114,12 +114,12 @@ public class SettingsFragment extends RecyclerViewFragment {
         addView(mApplyonBootDividerCard);
 
         final List<String> list = new ArrayList<>();
-        for (int i = 15; i < 481; i *= 2)
+        for (int i = 5; i < 421; i *= 2)
             list.add(i + getString(R.string.sec));
 
         PopupCardItem.DPopupCard mApplyonbootDelayCard = new PopupCardItem.DPopupCard(list);
         mApplyonbootDelayCard.setDescription(getString(R.string.delay));
-        mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 15, getActivity()) + getString(R.string.sec));
+        mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 5, getActivity()) + getString(R.string.sec));
         mApplyonbootDelayCard.setOnDPopupCardListener(new PopupCardItem.DPopupCard.OnDPopupCardListener() {
             @Override
             public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {

@@ -54,8 +54,6 @@ import java.util.Locale;
  */
 public class Utils implements Constants {
 
-    // Saving Profile Apply here
-    public static boolean PROFILE_APPLY = false;
     public static boolean DARKTHEME = false;
 
     public static void setLocale(String lang, Context context) {
