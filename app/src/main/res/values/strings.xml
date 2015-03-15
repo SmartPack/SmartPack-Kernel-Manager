@@ -177,7 +177,7 @@
     <string name="fast_lane_min_freq">Fast Lane Min Frequency</string>
     <string name="fast_lane_min_freq_summary">Sets the minimum frequency the CPU scales down to when fast lane reaches the above load.</string>
     <string name="offline_load">Offline Load</string>
-    <string name="offline_load_summary">Don\'t offline a CPU if it would drop under the lower levels up threshold load.</string>
+    <string name="offline_load_summary">Don\'t offline a CPU if it drops under the lower levels up threshold load.</string>
     <string name="io_is_busy">IO is Busy</string>
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
     <string name="suspend_max_cpus">Suspend Max CPUs</string>

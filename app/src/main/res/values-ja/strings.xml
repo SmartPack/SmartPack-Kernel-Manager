@@ -298,6 +298,7 @@
   <string name="empty_name">名前が入力されていません。</string>
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
+  <string name="dark_theme">ダークテーマ</string>
   <string name="force_english_language">英語表示にする</string>
   <string name="beta_info">ベータ情報</string>
   <string name="beta_info_summary">ベータ版を使用しているとき、起動時にダイアログを出すようにします。</string>

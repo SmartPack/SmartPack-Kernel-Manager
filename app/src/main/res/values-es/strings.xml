@@ -136,6 +136,7 @@
   <string name="up_threshold_summary">Pasando este umbral, el controlador activará un núcleo más.</string>
   <string name="up_timer_cnt">Control de temporizador</string>
   <string name="up_timer_cnt_summary">Temporizador de control para activar CPUs.</string>
+  <string name="down_timer_cnt">Tiempo de espera para desactivar los núcleos</string>
   <string name="down_timer_cnt_summary">Temporizador de control para desactivar CPUs.</string>
   <string name="msm_hotplug">Hotplug de MSM</string>
   <string name="msm_hotplug_summary">Un reemplazo para MPDecision de myfluxi.</string>
@@ -159,6 +160,7 @@
   <string name="suspend_freq_summary">Ajustar la frecuencia máxima de la CPU cuando la pantalla está apagada.</string>
   <string name="defer_time">Suspender Tiempo Aplazado</string>
   <string name="mako_hotplug">Control de Mako Hotplug</string>
+  <string name="mako_hotplug_summary">Una en reemplazo del kernel para Qualcomms MPDecision. Desarrollado por franciscofranco.</string>
   <string name="cores_on_touch_summary">Número de CPUs online cuando tocas la pantalla o presionas un botón.</string>
   <string name="cpu_freq_unplug_limit">Límite de frecuencia de la CPU Desactivada</string>
   <string name="first_level">Primer nivel</string>
@@ -285,6 +287,7 @@
   <string name="beta_info_summary">Mostrar un diálogo al inicio si estas usando una versión beta.</string>
   <string name="delay">Retraso</string>
   <string name="notification">Notificación</string>
+  <string name="notification_summary">Mostrar una notificación cuando se aplica la configuración al arranque. Desactivar si da algún problema.</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copiar Logcat a /sdcard/logcat.txt</string>
@@ -293,7 +296,12 @@
   <string name="driver_message">Mensaje del Controlador</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
+  <string name="support_v13">Liberia de apoyo v13</string>
+  <string name="appcompat_v7">Librería Appcompat V7</string>
+  <string name="cardview_v7">Librería Cardview V7</string>
+  <string name="recyclerview_v7">Librería Recyclerview V7</string>
   <string name="google">Google</string>
+  <string name="fab">FloatingActionButton</string>
   <string name="jerzy">Jerzy Chałupski</string>
   <string name="open_source">Código abierto</string>
   <string name="open_source_summary">Esta aplicación es de código abierto. Mira en mi Github.</string>

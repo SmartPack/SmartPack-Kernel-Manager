@@ -298,6 +298,7 @@
   <string name="empty_name">Nema imena</string>
   <string name="press_again_to_apply">Pritisnite ponovo za primjenu.</string>
   <string name="applied">Primjenjeno</string>
+  <string name="dark_theme">Tamni motiv</string>
   <string name="force_english_language">Iznudi Engleski jezik</string>
   <string name="beta_info">Beta informacije</string>
   <string name="beta_info_summary">Prikazuje obavijest na početku ukoliko koristite beta-verziju.</string>
