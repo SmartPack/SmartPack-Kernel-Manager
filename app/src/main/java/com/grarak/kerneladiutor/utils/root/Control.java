@@ -56,6 +56,12 @@ public class Control implements Constants {
         return 255 & (Integer.MAX_VALUE ^ (arg1 & 255) + (arg2 & 255));
     }
 
+    private static void setPermission(String file, int permission, Context context) {
+        RootUtils.runCommand("chmod " + permission + " " + file);
+
+        commandSaver(context, file + "permission", "chmod " + permission + " " + file);
+    }
+
     private static void runGeneric(String file, String value, Context context) {
         RootUtils.runCommand("echo " + value + " > " + file);
 
@@ -73,11 +79,8 @@ public class Control implements Constants {
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
 
         RootUtils.runCommand(command);
-        // Some kernels don't have checksum
-        RootUtils.runCommand("echo " + value + " > " + file);
 
         commandSaver(context, file, command);
-        commandSaver(context, file, "echo " + value + " > " + file);
     }
 
     private static void runSelinux(int value, Context context) {
@@ -127,9 +130,14 @@ public class Control implements Constants {
                     }
 
                     if (CPUHotplug.hasMpdecision())
-                        for (int i = 0; i < CPU.getCoreCount(); i++)
+                        for (int i = 0; i < CPU.getCoreCount(); i++) {
                             runGeneric(String.format(file, i), value, context);
-                    else runGeneric(String.format(file, 0), value, context);
+                            setPermission(String.format(file, i), 444, context);
+                        }
+                    else {
+                        runGeneric(String.format(file, 0), value, context);
+                        setPermission(String.format(file, 0), 444, context);
+                    }
 
                     if (stoppedMpdec) startService(HOTPLUG_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {

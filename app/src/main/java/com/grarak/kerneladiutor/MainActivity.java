@@ -259,7 +259,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
                         CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_SCALING_GOVERNOR, LMK_MINFREE
                 };
                 for (String file : permission)
-                    RootUtils.runCommand("chmod 644 " + file);
+                    RootUtils.runCommand("chmod 444 " + file);
 
                 setList();
             }
