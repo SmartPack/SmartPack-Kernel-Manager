@@ -81,7 +81,6 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOM\'s hotplugging solution. Aţi putea obţine probleme cu schimbarea frecvenţelor atunci când această opţiune este activată.</string>
   <string name="intelliplug">IntelliPlug</string>
-  <string name="intelliplug_summary">Un înlocuitor de MPDecision de faux123.</string>
   <string name="profile_summary">Numărul în paranteze indică suma de corii online în oricare moment.</string>
   <string name="balanced">Echilibrat</string>
   <string name="performance">Performanță</string>
@@ -104,8 +103,6 @@
   <string name="suspend_summary">A preveni suspendarea.</string>
   <string name="cpus_boosted">CPU-uri amplificate</string>
   <string name="cpus_boosted_summary">Numărul maxim de procesoare amplificate în acelaşi timp.</string>
-  <string name="min_cpus_online">Min CPU-uri Online</string>
-  <string name="min_cpus_online_summary">Minimul CPU-urilor online în oricare moment .</string>
   <string name="gpu_2d_max_freq">Frecvența maximă 2D al GPU</string>
   <string name="gpu_2d_max_freq_summary">Setaţi frecvenţa maximă 2D GPU până la sfârșitul scalei.</string>
   <string name="gpu_max_freq">Frecvența maximă GPU-ului</string>

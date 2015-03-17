@@ -78,8 +78,4 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="eco_mode">Modo Eco</string>
   <string name="suspend">Suspender</string>
   <string name="suspend_summary">Prevenir de suspender.</string>
-  <string name="max_cpus_online">Maximo de núcleos atiçados</string>
-  <string name="max_cpus_online_summary">Maximo de núcleos ativados a todo tempo.</string>
-  <string name="max_cpus_online_susp">Máximo de núcleos com ecrã Off</string>
-  <string name="max_cpus_online_susp_summary">Número maximo de núcleos activados com ecrã desligado.</string>
 </resources>

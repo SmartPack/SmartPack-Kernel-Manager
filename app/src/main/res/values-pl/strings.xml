@@ -100,7 +100,6 @@
   <string name="history_size">Rozmiar historii</string>
   <string name="update_rate">Częstotliwość aktualizacji</string>
   <string name="io_is_busy">IO jest zajęte</string>
-  <string name="suspend_freq">Zawieś częstotliwość</string>
   <string name="red">Czerwony</string>
   <string name="green">Zielony</string>
   <string name="blue">Niebieski</string>

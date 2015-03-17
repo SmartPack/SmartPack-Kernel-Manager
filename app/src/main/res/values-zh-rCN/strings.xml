@@ -59,13 +59,11 @@
   <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的。</string>
   <string name="global_offset">全局偏移量</string>
   <string name="mpdecision_summary">高通提出的 hotplug 解决方案。当它启用时你可能会在更改最大/最小频率时遇到问题。</string>
-  <string name="intelliplug_summary">由 faux123 提出的 MPDecision 替代方案。</string>
   <string name="balanced">平衡</string>
   <string name="performance">性能</string>
   <string name="conservative">节能</string>
   <string name="eco_performance">Eco 性能模式</string>
   <string name="eco_conservative">Eco 节能模式</string>
-  <string name="blu_plug_summary">由 Code_Blue 团队提出的 MPDecision 替代方案。</string>
   <string name="gpu_2d_cur_freq">GPU 2D 当前频率</string>
   <string name="gpu_cur_freq">GPU 当前频率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>

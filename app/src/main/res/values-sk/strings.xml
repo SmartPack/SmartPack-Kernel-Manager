@@ -30,4 +30,9 @@
   <string name="about_us">o nás</string>
   <string name="deep_sleep">hlboký spánok</string>
   <string name="refresh">obnoviť</string>
+  <string name="offline">Offline</string>
+  <string name="disabled">odpojené</string>
+  <string name="enabled">pripojené</string>
+  <string name="temp_limit">Teplotový limit</string>
+  <string name="interval">Interval</string>
 </resources>
