@@ -90,6 +90,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solution Hotplug de Qualcom. Vous pourriez obtenir des problèmes au changement des fréquences lorsque cette option est activée.</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Une alternative dans le noyau à MPDecision de Qualcomm s. Développé par faux123.</string>
   <string name="profile_summary">Le nombre entre parenthèses indique la quantité de cœurs en ligne à tout moment.</string>
   <string name="balanced">Équilibré</string>
   <string name="performance">Performance</string>
@@ -112,8 +113,6 @@
   <string name="suspend_summary">Prévention pour suspendre.</string>
   <string name="cpus_boosted">CPUs Boostés</string>
   <string name="cpus_boosted_summary">Nombre maximal de CPU stimulés en même temps.</string>
-  <string name="min_online_summary">Nombre minimal de CPU qui seront toujours en ligne.</string>
-  <string name="max_online_summary">Nombre maximal de CPU qui seront toujours en ligne.</string>
   <string name="max_cores_screen_off">Max de Cœurs l\'Ecran Éteint</string>
   <string name="max_cores_screen_off_summary">Nombre maximal de coeurs en ligne lorsque l\'écran est éteint.</string>
   <string name="suspend_defer_time">Temps de suspension du report</string>
@@ -142,6 +141,7 @@
   <string name="load_threshold">Seuil de Charge</string>
   <string name="max_load_counter">Compteur de Charge Maximal</string>
   <string name="timer">Minuteur</string>
+  <string name="delay">Délai</string>
   <string name="gpu_2d_cur_freq">Fréquence Actuelle GPU 2D</string>
   <string name="gpu_cur_freq">Fréquence Actuelle GPU</string>
   <string name="gpu_2d_max_freq">Fréquence Maximale GPU 2D</string>
@@ -240,7 +240,6 @@
   <string name="dark_theme">Thème sombre</string>
   <string name="force_english_language">Forcer la Langue Anglaise</string>
   <string name="beta_info">Informations Bêta</string>
-  <string name="delay">Délai</string>
   <string name="notification">Notification</string>
   <string name="debugging">Débogage</string>
   <string name="logcat">Logcat</string>

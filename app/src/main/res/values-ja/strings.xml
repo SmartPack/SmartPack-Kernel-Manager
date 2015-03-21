@@ -90,6 +90,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QualcommのHotplugです。有効になっていると、周波数の変更がうまく出来ないことがあります。</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">faux123氏が開発した、Qualcomms MPDecisionの代替です。</string>
   <string name="profile_summary">括弧の中の数字は、オンラインになるコアの数です。バージョンによっては書かれていないこともあります。</string>
   <string name="balanced">Balanced</string>
   <string name="performance">Performance</string>
@@ -112,8 +113,6 @@
   <string name="suspend_summary">サスペンドを阻止します。</string>
   <string name="cpus_boosted">ブーストCPU数</string>
   <string name="cpus_boosted_summary">同時にブーストするCPU数の最大値です。</string>
-  <string name="min_online_summary">オンラインにするCPU数の最小値です。</string>
-  <string name="max_online_summary">常にオンラインにするCPU数の最大値です。</string>
   <string name="max_cores_screen_off">画面消灯時の最大コア数</string>
   <string name="max_cores_screen_off_summary">画面消灯時にオンラインになるCPUの最大数です。</string>
   <string name="suspend_defer_time">サスペンド延期時間</string>
@@ -124,6 +123,7 @@
   <string name="down_lock_duration_summary">CPUをオンラインのままにする最小間隔です。</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
+  <string name="blu_plug_summary">Code_Blue teamが開発した、Qualcomms MPDecisionの代替です。</string>
   <string name="powersaver_mode">省電力モード</string>
   <string name="powersaver_mode_summary">1CPUだけを最大周波数1728 MHzでオンラインにします。</string>
   <string name="up_threshold">上昇しきい値</string>
@@ -133,6 +133,7 @@
   <string name="down_timer_cnt">下降タイマー操作</string>
   <string name="down_timer_cnt_summary">CPUタイマーを操作します。</string>
   <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="msm_hotplug_summary">myfluxi氏が開発した、Qualcomms MPDecisionの代替です。</string>
   <string name="history_size">履歴のサイズ</string>
   <string name="history_size_summary">平均負荷を計算するために記録するサンプル数です。低くすると素早く、不安定になります。</string>
   <string name="update_rate">更新レート</string>
@@ -142,6 +143,7 @@
   <string name="fast_lane_min_freq">高速レーン最小周波数</string>
   <string name="fast_lane_min_freq_summary">高速レーンが上記の負荷に達した時にスケールダウンさせる最小周波数を指定します。</string>
   <string name="offline_load">オフライン負荷</string>
+  <string name="offline_load_summary">しきい値を超える負荷でこのレベル以下になるとき、CPUをオフラインにしないようにします。</string>
   <string name="io_is_busy">IO is Busy</string>
   <string name="io_is_busy_summary">I/O時間をCPU時間として認識するようにします。</string>
   <string name="defer_time">サスペンド延期時間</string>
@@ -158,6 +160,9 @@
   <string name="max_load_counter">最大負荷カウンター</string>
   <string name="min_time_cpu_online">CPUオンラインの最小時間</string>
   <string name="timer">タイマー</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="screen_off_single_core">画面消灯時一コア</string>
+  <string name="delay">遅延</string>
   <string name="gpu_2d_cur_freq">GPU 2D 現在の周波数</string>
   <string name="gpu_cur_freq">GPU 現在の周波数</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大周波数</string>
@@ -284,7 +289,6 @@
   <string name="force_english_language">英語表示にする</string>
   <string name="beta_info">ベータ情報</string>
   <string name="beta_info_summary">ベータ版を使用しているとき、起動時にダイアログを出すようにします。</string>
-  <string name="delay">遅延</string>
   <string name="notification">通知</string>
   <string name="notification_summary">起動時に適用するときに通知を表示します。問題があれば無効にしてください。</string>
   <string name="debugging">デバッグ</string>

@@ -82,9 +82,12 @@
   <string name="interval_summary">Минимальный интервал разгона ЦП.</string>
   <string name="sync_threshold">Порог синхронизации</string>
   <string name="sync_threshold_summary">Когда загрузка ЦП пересекает установленный порог, текущее частота повышается до этой частоты.</string>
+  <string name="input_interval">Укажите интервал</string>
+  <string name="input_boost_freq">Укажите частоту разгона</string>
   <string name="global_offset">Глобальное смещение</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Замена Qualcomm MDPecision. Разработано faux123.</string>
   <string name="profile_summary">Число ядер CPU включенных постоянно.</string>
   <string name="balanced">Сбалансированный</string>
   <string name="performance">Производительность</string>
@@ -96,6 +99,8 @@
   <string name="strict">Строгий</string>
   <string name="eco_mode">Эко режим</string>
   <string name="eco_mode_summary">Режим энегросбережения для IntelliPlug.</string>
+  <string name="touch_boost">Усиление прикосновений</string>
+  <string name="touch_boost_summary">Это увеличит минимальную частоту процессора, если вы коснетесь экрана или нажмете на кнопку.</string>
   <string name="hysteresis">Значение гистерезиса</string>
   <string name="hysteresis_summary">Чем ниже это, тем быстрее отклик.</string>
   <string name="threshold">Пороговое значение</string>
@@ -103,7 +108,12 @@
   <string name="suspend">Приостановить</string>
   <string name="cpus_boosted">Разогнанных процессоров</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно разогнанных процессоров.</string>
+  <string name="max_cores_screen_off">Максимальное количество ядер при выключенном экране</string>
+  <string name="max_cores_screen_off_summary">Максимальное количество включенных ядер при выключенном экране.</string>
   <string name="defer_sampling">Отложенная выборка</string>
+  <string name="boost_lock_duration_summary">Минимальный интервал разгона процессора.</string>
+  <string name="down_lock_duration_summary">Минимальный интервал работы процессора.</string>
+  <string name="blu_plug_summary">Замена Qualcomm MDPecision. Разработано Code_Blue team.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
   <string name="up_threshold">Высший порог</string>
   <string name="up_threshold_summary">При превышении данного порога загрузки драйвер включит ещё одно ядро CPU.</string>
@@ -114,12 +124,20 @@
   <string name="load_threshold_summary">Порог загрузки для включения всех CPU.</string>
   <string name="min_time_cpu_online">Минимальное время работы CPU</string>
   <string name="timer">Таймер</string>
+  <string name="screen_off_single_core">Одно ядро при выключенном экране</string>
+  <string name="delay">Задержка</string>
   <string name="gpu_2d_cur_freq">Текущая частота GPU 2D</string>
   <string name="gpu_cur_freq">Текущая частота GPU</string>
   <string name="gpu_2d_max_freq">Максимальная частота GPU при 2D операциях</string>
   <string name="gpu_2d_max_freq_summary">Установите максимальную частоту GPU при 2D операциях.</string>
   <string name="gpu_max_freq">Максимальная частота GPU</string>
   <string name="gpu_max_freq_summary">Установите максимальную частоту GPU.</string>
+  <string name="gpu_2d_governor">Плировщик GPU (2D)</string>
+  <string name="gpu_2d_governor_summary">Установите планировщик GPU для режима 2D.</string>
+  <string name="gpu_governor">Планировщик GPU</string>
+  <string name="gpu_governor_summary">Установите планировщик GPU.</string>
+  <string name="simple_gpu_algorithm_summary">Дополнение к планировщику MSM Andreno TZ.
+Разработано faux123.</string>
   <string name="red">Красный</string>
   <string name="green">Зелёный</string>
   <string name="blue">Cиний</string>
@@ -190,8 +208,8 @@
   <string name="applied">Применено</string>
   <string name="dark_theme">Тёмная тема</string>
   <string name="force_english_language">Принудительно использовать английский язык</string>
+  <string name="beta_info">Информация о бета версии</string>
   <string name="beta_info_summary">Показывать уведомление при старте, если используется бета версия.</string>
-  <string name="delay">Задержка</string>
   <string name="notification">Уведомление</string>
   <string name="notification_summary">Показывать уведомление при запуске сервиса восстановления настроек. Пожалуйста отключите, если у вас возникли проблемы.</string>
   <string name="debugging">Отладка</string>

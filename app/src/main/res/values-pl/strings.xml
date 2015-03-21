@@ -96,7 +96,6 @@
   <string name="threshold">Wartość progu</string>
   <string name="debug">Debugowanie</string>
   <string name="suspend">Wstrzymaj</string>
-  <string name="max_online_summary">Maksymalna liczba rdzeni, które zawsze będą dostępne.</string>
   <string name="history_size">Rozmiar historii</string>
   <string name="update_rate">Częstotliwość aktualizacji</string>
   <string name="io_is_busy">IO jest zajęte</string>

@@ -112,8 +112,6 @@
   <string name="suspend_summary">Prevenir de suspender.</string>
   <string name="cpus_boosted">CPUs impulsionados</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs impulsionados ao mesmo tempo.</string>
-  <string name="min_online_summary">Número mínimo de CPUs que estará sempre online.</string>
-  <string name="max_online_summary">Número máximo de CPUs que estará sempre online.</string>
   <string name="max_cores_screen_off">Número máximo de núcleos com a tela desligada</string>
   <string name="max_cores_screen_off_summary">Número máximo de núcleos com a tela desligada.</string>
   <string name="suspend_defer_time">Suspender Adiar Tempo</string>
@@ -157,6 +155,7 @@
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Tempo mínimo da CPU online</string>
   <string name="timer">Cronômetro</string>
+  <string name="delay">Atrasar</string>
   <string name="gpu_2d_cur_freq">Frequência atual da GPU 2D</string>
   <string name="gpu_cur_freq">Frequência atual da GPU</string>
   <string name="gpu_2d_max_freq">Frequência maxima da GPU 2D</string>
@@ -282,7 +281,6 @@
   <string name="force_english_language">Forçar em língua inglesa</string>
   <string name="beta_info">Informações beta</string>
   <string name="beta_info_summary">Mostre uma caixa de diálogo no início, se você estiver usando uma versão beta.</string>
-  <string name="delay">Atrasar</string>
   <string name="notification">Notificação</string>
   <string name="notification_summary">Mostrar uma notificação quando as aplicações forem definidas no início. Por favor, desative se você tiver algum problema.</string>
   <string name="debugging">Depuração</string>

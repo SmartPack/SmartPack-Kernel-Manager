@@ -14,6 +14,7 @@
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
+  <string name="ms">ms</string>
   <string name="mb">MB</string>
   <string name="min">perc</string>
   <string name="sec">másodperc</string>
@@ -80,6 +81,7 @@
   <string name="sync_threshold_summary">Ha a CPU-terhelés a beállított küszöböt átlépi, a frekvencia erre az értékre lesz növelve.</string>
   <string name="input_interval">Bemeneti intervallum</string>
   <string name="input_interval_summary">A minimális időköz, ameddig a CPU gyorsítva lesz bemenet észlelésekor.</string>
+  <string name="input_boost_freq">Bemeneti boost frekvencia</string>
   <string name="global_offset">Globális eltolás</string>
   <string name="mpdecision_summary">QCOM féle hotplug megoldás. Ha ez engedélyezve van, akkor problémai lehetnek a frekvencia változtatással.</string>
   <string name="intelliplug">IntelliPlug</string>

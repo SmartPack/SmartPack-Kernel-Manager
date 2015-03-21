@@ -112,8 +112,6 @@
   <string name="suspend_summary">Spriječiti obustavljanje.</string>
   <string name="cpus_boosted">CPU ubrzavanje</string>
   <string name="cpus_boosted_summary">Najveći broj istovremeno ubrzanih CPU-a.</string>
-  <string name="min_online_summary">Najmanji broj CPU-a koji je uvijek online.</string>
-  <string name="max_online_summary">Najveći broj CPU-a koji je uvijek u pogonu.</string>
   <string name="max_cores_screen_off">Najviše jezgri pri isključenom zaslonu</string>
   <string name="max_cores_screen_off_summary">Najveći broj jezgri u pogonu pri isključenom zaslonu.</string>
   <string name="suspend_defer_time">Obustavljanje vremena odgađanja</string>
@@ -158,6 +156,7 @@
   <string name="max_load_counter">Brojač Maksimalnog Opterećenja</string>
   <string name="min_time_cpu_online">Minimalno vrijeme CPUa u pogonu</string>
   <string name="timer">Istek vremena</string>
+  <string name="delay">Kašnjenje</string>
   <string name="gpu_2d_cur_freq">GPU 2D trenutna frekvencija</string>
   <string name="gpu_cur_freq">GPU trenutna frekvencija</string>
   <string name="gpu_2d_max_freq">GPU 2D najviša frekvencija</string>
@@ -284,7 +283,6 @@
   <string name="force_english_language">Iznudi Engleski jezik</string>
   <string name="beta_info">Beta informacije</string>
   <string name="beta_info_summary">Prikazuje obavijest na početku ukoliko koristite beta-verziju.</string>
-  <string name="delay">Kašnjenje</string>
   <string name="notification">Obavijest</string>
   <string name="notification_summary">Prikaži obavijest kad započne primjenjivanje unosa pri pokretanju sustava. Molimo onemogućite ovo ukoliko dođe do bilo kakvih problema.</string>
   <string name="debugging">Ispravljanje pogrešaka</string>

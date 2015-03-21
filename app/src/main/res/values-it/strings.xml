@@ -90,6 +90,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Potresti avere problemi cambiando le frequenze quando QCOM\'s hotplugging solution è attivo.</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Un\'alternativa all\'interno del kernel per Qualcomms MPDecision. Sviluppato da faux123.</string>
   <string name="profile_summary">Il numero in parentesi indica la quantità del numero di core attivi in qualsiasi momento.</string>
   <string name="balanced">Bilanciato</string>
   <string name="performance">Performante</string>
@@ -112,8 +113,6 @@
   <string name="suspend_summary">Evitare di sospendere.</string>
   <string name="cpus_boosted">CPU potenziate</string>
   <string name="cpus_boosted_summary">Numero massimo di CPU potenziate allo stesso tempo.</string>
-  <string name="min_online_summary">Minimo di Core sempre attivi indipendentemente dal carico.</string>
-  <string name="max_online_summary">Numero massimo di CPU che possono essere online.</string>
   <string name="max_cores_screen_off">Max Core a schermo spento</string>
   <string name="max_cores_screen_off_summary">Massimo numero di core da usare a schermo spento.</string>
   <string name="suspend_defer_time">Sospendere il tempo di ritardio</string>
@@ -124,6 +123,7 @@
   <string name="down_lock_duration_summary">Intervallo minimo di mantenimento online.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
+  <string name="blu_plug_summary">Un\'alternativa all\'interno del kernel per Qualcomms MPDecision. Sviluppato da Code_Blue team.</string>
   <string name="powersaver_mode">Modalità risparmio energetico</string>
   <string name="powersaver_mode_summary">Setta la CPU 1 sempre attiva alla frequenza di 1728 MHz.</string>
   <string name="up_threshold">Soglia superiore</string>
@@ -133,6 +133,7 @@
   <string name="down_timer_cnt">Controllo inferiore Timer</string>
   <string name="down_timer_cnt_summary">Timer di controllo inferiore per le CPU.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="msm_hotplug_summary">Un\'alternativa all\'interno del kernel per Qualcomms MPDecision. Sviluppato da myfluxi.</string>
   <string name="history_size">Dimensione cronologia</string>
   <string name="history_size_summary">Numero di campioni presi in considerazione del carico medio delle CPU. Valori bassi significa più veloce/più irregolare.</string>
   <string name="update_rate">Frequenza di aggiornamento</string>
@@ -142,6 +143,7 @@
   <string name="fast_lane_min_freq">Frequenza minima FastLane</string>
   <string name="fast_lane_min_freq_summary">Imposta la frequenza minima che della CPU scale giù a quando fast lane raggiunge il carico sopra.</string>
   <string name="offline_load">Carico Offline</string>
+  <string name="offline_load_summary">Non spegnere una CPU se scende sotto i livelli più bassi del carico di soglia.</string>
   <string name="io_is_busy">I/O è occupato</string>
   <string name="io_is_busy_summary">Per fare l\'hotplug considerare il tempo di I/O come il tempo di caricamento della CPU.</string>
   <string name="defer_time">Sospendere il tempo di rinvio</string>
@@ -158,6 +160,9 @@
   <string name="max_load_counter">Contatore per carico massimo</string>
   <string name="min_time_cpu_online">Tempo minimo per CPU attive</string>
   <string name="timer">Timer</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="screen_off_single_core">Schermo spento Single Core</string>
+  <string name="delay">Ritardo</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequenza corrente</string>
   <string name="gpu_cur_freq">Frequenza attuale GPU</string>
   <string name="gpu_2d_max_freq">GPU 2D Frequenza Massima</string>
@@ -284,7 +289,6 @@
   <string name="force_english_language">Forza lingua Inglese</string>
   <string name="beta_info">Informazioni Beta</string>
   <string name="beta_info_summary">Mostra un avvertimento all\'avvio se stai usando una versione beta.</string>
-  <string name="delay">Ritardo</string>
   <string name="notification">Notifica</string>
   <string name="notification_summary">Mostra una notifica quando parte il servizio applica all\'avvio. Disabilitalo se hai qualche problema.</string>
   <string name="debugging">Debugging</string>
