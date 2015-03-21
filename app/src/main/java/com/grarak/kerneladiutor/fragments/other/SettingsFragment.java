@@ -143,6 +143,18 @@ public class SettingsFragment extends RecyclerViewFragment {
                 });
 
         addView(mApplyonbootNotificationCard);
+
+        SwitchCompatCardItem.DSwitchCompatCard mShowToastCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mShowToastCard.setDescription(getString(R.string.show_toast));
+        mShowToastCard.setChecked(Utils.getBoolean("applyonbootshowtoast", true, getActivity()));
+        mShowToastCard.setOnDSwitchCompatCardListener(new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+            @Override
+            public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                Utils.saveBoolean("applyonbootshowtoast", checked, getActivity());
+            }
+        });
+
+        addView(mShowToastCard);
     }
 
     private void debuggingInit() {

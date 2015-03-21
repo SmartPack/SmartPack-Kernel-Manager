@@ -162,12 +162,13 @@ public class BootService extends Service {
     }
 
     private void toast(final String message) {
-        hand.post(new Runnable() {
-            @Override
-            public void run() {
-                Utils.toast(getString(R.string.app_name) + ": " + message, BootService.this);
-            }
-        });
+        if (Utils.getBoolean("applyonbootshowtoast", true, getApplicationContext()))
+            hand.post(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.toast(getString(R.string.app_name) + ": " + message, BootService.this);
+                }
+            });
     }
 
 }

@@ -353,6 +353,7 @@
     <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
     <string name="notification">Notification</string>
     <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>
+    <string name="show_toast">Show toast</string>
     <string name="debugging">Debugging</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">Copy logcat to /sdcard/logcat.txt</string>
