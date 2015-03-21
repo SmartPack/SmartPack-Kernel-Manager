@@ -128,7 +128,7 @@ public class CardViewItem extends BaseCardView {
         }
 
         public interface OnDCardListener {
-            public void onClick(DCardView dCardView);
+            void onClick(DCardView dCardView);
         }
 
     }

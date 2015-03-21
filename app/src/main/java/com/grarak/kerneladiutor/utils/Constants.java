@@ -187,8 +187,28 @@ public interface Constants {
             MAKO_HOTPLUG_LOAD_THRESHOLD, MAKO_HOTPLUG_MAX_LOAD_COUNTER, MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE,
             MAKO_HOTPLUG_TIMER, MAKO_HOTPLUG_SUSPEND_FREQ};
 
+    String MSM_MPDECISION_HOTPLUG = "/sys/kernel/msm_mpdecision/conf";
+    String BRICKED_HOTPLUG = "/sys/kernel/bricked_hotplug/conf";
+    String MB_ENABLED = "enabled";
+    String MB_SCROFF_SINGLE_CORE = "scroff_single_core";
+    String MB_MIN_CPUS = "min_cpus";
+    String MB_MAX_CPUS = "max_cpus";
+    String MB_MIN_CPUS_ONLINE = "min_cpus_online";
+    String MB_MAX_CPUS_ONLINE = "max_cpus_online";
+    String MB_CPUS_ONLINE_SUSP = "max_cpus_online_susp";
+    String MB_IDLE_FREQ = "idle_freq";
+    String MB_BOOST_ENABLED = "boost_enabled";
+    String MB_BOOST_TIME = "boost_time";
+    String MB_CPUS_BOOSTED = "cpus_boosted";
+    String MB_BOOST_FREQS = "boost_freqs";
+    String MB_STARTDELAY = "startdelay";
+    String MB_DELAY = "delay";
+    String MB_PAUSE = "pause";
+
+    String[] MB_HOTPLUG_ARRAY = {MSM_MPDECISION_HOTPLUG, BRICKED_HOTPLUG};
+
     String[][] CPU_HOTPLUG_ARRAY = {MPDECISION_ARRAY, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY,
-            MAKO_HOTPLUG_ARRAY};
+            MAKO_HOTPLUG_ARRAY, MB_HOTPLUG_ARRAY};
 
     // GPU
     String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";

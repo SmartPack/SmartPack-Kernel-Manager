@@ -146,7 +146,7 @@ public class PopupCardItem extends BaseCardView {
     }
 
     public interface OnPopupCardListener {
-        public void onItemSelected(PopupCardItem popupCardItem, int position);
+        void onItemSelected(PopupCardItem popupCardItem, int position);
     }
 
     public static class DPopupCard implements DAdapter.DView {
@@ -237,7 +237,7 @@ public class PopupCardItem extends BaseCardView {
         }
 
         public interface OnDPopupCardListener {
-            public void onItemSelected(DPopupCard dPopupCard, int position);
+            void onItemSelected(DPopupCard dPopupCard, int position);
         }
 
     }

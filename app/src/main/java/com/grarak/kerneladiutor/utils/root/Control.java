@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.utils.root;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
@@ -52,41 +51,36 @@ public class Control implements Constants {
         sysDB.close();
     }
 
+    private static void run(String command, String sys, Context context) {
+        RootUtils.runCommand(command);
+        commandSaver(context, sys, command);
+    }
+
     private static int getChecksum(int arg1, int arg2) {
         return 255 & (Integer.MAX_VALUE ^ (arg1 & 255) + (arg2 & 255));
     }
 
     private static void setPermission(String file, int permission, Context context) {
-        RootUtils.runCommand("chmod " + permission + " " + file);
-
-        commandSaver(context, file + "permission", "chmod " + permission + " " + file);
+        run("chmod " + permission + " " + file, file, context);
     }
 
     private static void runGeneric(String file, String value, Context context) {
-        RootUtils.runCommand("echo " + value + " > " + file);
-
-        commandSaver(context, file, "echo " + value + " > " + file);
+        run("echo " + value + " > " + file, file, context);
     }
 
     private static void runTcpCongestion(String tcpCongestion, Context context) {
+        run("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion, TCP_AVAILABLE_CONGESTIONS, context);
         RootUtils.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
-
-        commandSaver(context, TCP_AVAILABLE_CONGESTIONS, "sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
     }
 
     private static void runFauxGeneric(String file, String value, Context context) {
         String command = value.contains(" ") ? value + " " + getChecksum(Utils.stringToInt(value.split(" ")[0]),
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
-
-        RootUtils.runCommand(command);
-
-        commandSaver(context, file, command);
+        run(command, file, context);
     }
 
     private static void runSelinux(int value, Context context) {
-        RootUtils.runCommand("setenforce " + value);
-
-        commandSaver(context, SELINUX, "setenforce " + value);
+        run("setenforce " + value, SELINUX, context);
     }
 
     public static void startService(String service, boolean save, Context context) {
@@ -108,7 +102,6 @@ public class Control implements Constants {
                 try {
                     for (int i = 0; i < CPU.getCoreCount(); i++)
                         RootUtils.runCommand("echo 1 > " + String.format(CPU_CORE_ONLINE, i));
-
                     // Give CPU some time to bring core online
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -119,7 +112,7 @@ public class Control implements Constants {
     }
 
     public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
-        Runnable run = new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 if (command == CommandType.CPU) {
@@ -131,10 +124,12 @@ public class Control implements Constants {
 
                     if (CPUHotplug.hasMpdecision())
                         for (int i = 0; i < CPU.getCoreCount(); i++) {
+                            setPermission(String.format(file, i), 644, context);
                             runGeneric(String.format(file, i), value, context);
                             setPermission(String.format(file, i), 444, context);
                         }
                     else {
+                        setPermission(String.format(file, 0), 644, context);
                         runGeneric(String.format(file, 0), value, context);
                         setPermission(String.format(file, 0), 444, context);
                     }
@@ -150,10 +145,7 @@ public class Control implements Constants {
                     runSelinux(Utils.stringToInt(value), context);
                 }
             }
-        };
-
-        new Handler().post(run);
-
+        }).start();
     }
 
 }

@@ -28,9 +28,9 @@ public class DAdapter {
 
     public interface DView {
 
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder);
+        void onBindViewHolder(RecyclerView.ViewHolder viewHolder);
 
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup);
+        RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup);
 
     }
 

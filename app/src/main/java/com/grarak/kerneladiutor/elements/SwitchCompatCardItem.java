@@ -111,7 +111,7 @@ public class SwitchCompatCardItem extends BaseCardView {
     }
 
     public interface OnSwitchCompatCardListener {
-        public void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked);
+        void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked);
     }
 
     public static class DSwitchCompatCard implements DAdapter.DView {
@@ -174,7 +174,7 @@ public class SwitchCompatCardItem extends BaseCardView {
         }
 
         public interface OnDSwitchCompatCardListener {
-            public void onChecked(DSwitchCompatCard dSwitchCompatCard, boolean checked);
+            void onChecked(DSwitchCompatCard dSwitchCompatCard, boolean checked);
         }
 
     }

@@ -36,11 +36,11 @@ public class ListAdapter {
 
     public interface ListItem {
 
-        public String getTitle();
+        String getTitle();
 
-        public Fragment getFragment();
+        Fragment getFragment();
 
-        public View getView(LayoutInflater inflater, ViewGroup parent);
+        View getView(LayoutInflater inflater, ViewGroup parent);
 
     }
 

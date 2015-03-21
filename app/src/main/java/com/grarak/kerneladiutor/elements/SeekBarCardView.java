@@ -175,9 +175,9 @@ public class SeekBarCardView extends BaseCardView {
     }
 
     public interface OnSeekBarCardListener {
-        public void onChanged(SeekBarCardView seekBarCardView, int progress);
+        void onChanged(SeekBarCardView seekBarCardView, int progress);
 
-        public void onStop(SeekBarCardView seekBarCardView, int progress);
+        void onStop(SeekBarCardView seekBarCardView, int progress);
     }
 
     public static class DSeekBarCardView implements DAdapter.DView {
@@ -263,9 +263,9 @@ public class SeekBarCardView extends BaseCardView {
         }
 
         public interface OnDSeekBarCardListener {
-            public void onChanged(DSeekBarCardView dSeekBarCardView, int position);
+            void onChanged(DSeekBarCardView dSeekBarCardView, int position);
 
-            public void onStop(DSeekBarCardView dSeekBarCardView, int position);
+            void onStop(DSeekBarCardView dSeekBarCardView, int position);
         }
 
     }

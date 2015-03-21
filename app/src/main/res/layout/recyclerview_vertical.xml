@@ -11,6 +11,8 @@
         android:background="@color/color_primary_light"
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="20dp"
         android:foreground="?attr/selectableItemBackground"
         android:clickable="true">
 

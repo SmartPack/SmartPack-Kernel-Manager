@@ -90,7 +90,7 @@ public class EditTextCardView extends CardViewItem {
     }
 
     public interface OnEditTextCardListener {
-        public void onApply(EditTextCardView editTextCardView, String value);
+        void onApply(EditTextCardView editTextCardView, String value);
     }
 
     public static class DEditTextCard implements DAdapter.DView {
@@ -153,7 +153,7 @@ public class EditTextCardView extends CardViewItem {
         }
 
         public interface OnDEditTextCardListener {
-            public void onApply(DEditTextCard dEditTextCard, String value);
+            void onApply(DEditTextCard dEditTextCard, String value);
         }
 
     }
