@@ -36,6 +36,7 @@ public class CPU implements Constants {
     private static Integer[] mFreqs;
     private static String[] mAvailableGovernors;
     private static String[] mMcPowerSavingItems;
+    private static String[] mAvailableCFSSchedulers;
 
     private static String TEMP_LIMIT_FILE;
 
@@ -169,6 +170,24 @@ public class CPU implements Constants {
                     break;
                 }
         return TEMP_LIMIT_FILE != null;
+    }
+
+    public static void setCFSScheduler(String value, Context context) {
+        Control.runCommand(value, CPU_CURRENT_CFS_SCHEDULER, Control.CommandType.GENERIC, context);
+    }
+
+    public static String getCurrentCFSScheduler() {
+        return Utils.readFile(CPU_CURRENT_CFS_SCHEDULER);
+    }
+
+    public static List<String> getAvailableCFSSchedulers() {
+        if (mAvailableCFSSchedulers == null)
+            mAvailableCFSSchedulers = Utils.readFile(CPU_AVAILABLE_CFS_SCHEDULERS).split(" ");
+        return new ArrayList<>(Arrays.asList(mAvailableCFSSchedulers));
+    }
+
+    public static boolean hasCFSScheduler() {
+        return Utils.existFile(CPU_AVAILABLE_CFS_SCHEDULERS) && Utils.existFile(CPU_CURRENT_CFS_SCHEDULER);
     }
 
     public static String[] getMcPowerSavingItems(Context context) {

@@ -61,6 +61,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
 
     private PopupCardItem.DPopupCard mMcPowerSavingCard;
 
+    private PopupCardItem.DPopupCard mCFSSchedulerCard;
+
     private SeekBarCardView.DSeekBarCardView mTempLimitCard;
 
     private SwitchCompatCardItem.DSwitchCompatCard mCpuBoostEnableCard;
@@ -81,6 +83,7 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         }
         governorInit();
         if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
+        if (CPU.hasCFSScheduler()) cfsSchedulerInit();
         if (CPU.hasTempLimit()) tempLimitInit();
         if (CPU.hasCpuBoost()) cpuBoostInit();
     }
@@ -179,6 +182,16 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         mMcPowerSavingCard.setOnDPopupCardListener(this);
 
         addView(mMcPowerSavingCard);
+    }
+
+    private void cfsSchedulerInit() {
+        mCFSSchedulerCard = new PopupCardItem.DPopupCard(CPU.getAvailableCFSSchedulers());
+        mCFSSchedulerCard.setTitle(getString(R.string.cfs_scheduler_policy));
+        mCFSSchedulerCard.setDescription(getString(R.string.cfs_scheduler_policy_summary));
+        mCFSSchedulerCard.setItem(CPU.getCurrentCFSScheduler());
+        mCFSSchedulerCard.setOnDPopupCardListener(this);
+
+        addView(mCFSSchedulerCard);
     }
 
     private void tempLimitInit() {
@@ -300,6 +313,8 @@ public class CPUFragment extends RecyclerViewFragment implements Constants, View
         else if (dPopupCard == mGovernorCard)
             CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
         else if (dPopupCard == mMcPowerSavingCard) CPU.setMcPowerSaving(position, getActivity());
+        else if (dPopupCard == mCFSSchedulerCard)
+            CPU.setCFSScheduler(CPU.getAvailableCFSSchedulers().get(position), getActivity());
         else if (dPopupCard == mCpuBoostSyncThresholdCard)
             CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
         else if (dPopupCard == mCpuBoostInputFreqCard)
