@@ -55,6 +55,11 @@ public class FAQFragment extends RecyclerViewFragment {
         mFeatureFunctionCard.setTitle(getString(R.string.feature_function));
         mFeatureFunctionCard.setDescription(getString(R.string.feature_function_summary));
         addView(mFeatureFunctionCard);
+
+        CardViewItem.DCardView mAddNewFeaturesCard = new CardViewItem.DCardView();
+        mAddNewFeaturesCard.setTitle(getString(R.string.add_new_features));
+        mAddNewFeaturesCard.setDescription(getString(R.string.add_new_features_summary));
+        addView(mAddNewFeaturesCard);
     }
 
 }
