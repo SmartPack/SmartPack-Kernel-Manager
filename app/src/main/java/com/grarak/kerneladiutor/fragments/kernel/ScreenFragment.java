@@ -252,9 +252,12 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.setBackLightDimmerThreshold(position, getActivity());
         else if (dSeekBarCardView == mBackLightDimmerOffsetCard)
             Screen.setBackLightDimmerOffset(position, getActivity());
-        else if (dSeekBarCardView == mColorCalibrationMinCard)
+        else if (dSeekBarCardView == mColorCalibrationMinCard) {
+            for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
+                if (position == seekBarCardView.getProgress())
+                    setScreenColor(seekBarCardView, position);
             Screen.setColorCalibrationMin(Utils.stringToInt(mColorCalibrationLimits.get(position)), getActivity());
-        else if (dSeekBarCardView == mSaturationIntensityCard)
+        } else if (dSeekBarCardView == mSaturationIntensityCard)
             Screen.setSaturationIntensity(position + 225, getActivity());
         else if (dSeekBarCardView == mScreenHueCard)
             Screen.setScreenHue(position, getActivity());
@@ -265,12 +268,12 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         else {
             for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
                 if (dSeekBarCardView == seekBarCardView) {
-                    if (mColorCalibrationMinCard != null)
-                        if (mColorCalibrationMinCard.getProgress() > position)
-                            return;
-                    if (mColorCalibrationMinCard != null)
-                        Screen.setColorCalibrationMin(Utils.stringToInt(mColorCalibrationLimits.get(position)), getActivity());
-                    setColor(seekBarCardView, position);
+                    if (mColorCalibrationMinCard != null) {
+                        int current = Utils.stringToInt(mColorCalibrationLimits.get(position));
+                        if (Screen.getColorCalibrationMin() > current)
+                            Screen.setColorCalibrationMin(current, getActivity());
+                    }
+                    setScreenColor(dSeekBarCardView, position);
                     return;
                 }
         }
@@ -301,7 +304,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
     }
 
-    private void setColor(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    private void setScreenColor(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         String command = "";
         for (SeekBarCardView.DSeekBarCardView colorCard : mColorCalibrationCard) {
             String color;
