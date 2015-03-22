@@ -173,7 +173,7 @@
     <string name="io_is_busy">IO is Busy</string>
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
     <string name="defer_time">Suspend Defer Time</string>
-    <string name="mako_hotplug">Mako Hotplug Control</string>
+    <string name="mako_hotplug">Mako Hotplug</string>
     <string name="mako_hotplug_summary">An in kernel replacement for Qualcomms MPDecision. Developed by franciscofranco.</string>
     <string name="cores_on_touch">Cores on touch</string>
     <string name="cores_on_touch_summary">Number of CPUs online when touching screen or pressing button.</string>
@@ -201,6 +201,11 @@
     <string name="delay_summary">Time between checks.</string>
     <string name="pause">Pause</string>
     <string name="pause_summary">If something else plugs in the CPU, fall asleep for this amount of time.</string>
+    <string name="alucard_hotplug">Alucard Hotplug</string>
+    <string name="alucard_hotplug_summary">An in kernel replacement for Qualcomms MPDecision. Developed by Alucard.</string>
+    <string name="sampling_rate">Sampling Rate</string>
+    <string name="cpu_down_rate">CPU Down Rate</string>
+    <string name="cpu_up_rate">CPU Up Rate</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>

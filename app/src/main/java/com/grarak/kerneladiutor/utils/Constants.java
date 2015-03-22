@@ -206,8 +206,23 @@ public interface Constants {
 
     String[] MB_HOTPLUG_ARRAY = {MSM_MPDECISION_HOTPLUG, BRICKED_HOTPLUG};
 
+    String ALUCARD_HOTPLUG = "/sys/kernel/alucard_hotplug";
+    String ALUCARD_HOTPLUG_ENABLE = "/sys/kernel/alucard_hotplug/hotplug_enable";
+    String ALUCARD_HOTPLUG_HP_IO_IS_BUSY = "/sys/kernel/alucard_hotplug/hp_io_is_busy";
+    String ALUCARD_HOTPLUG_SAMPLING_RATE = "/sys/kernel/alucard_hotplug/hotplug_sampling_rate";
+    String ALUCARD_HOTPLUG_SUSPEND = "/sys/kernel/alucard_hotplug/hotplug_suspend";
+    String ALUCARD_HOTPLUG_MIN_CPUS_ONLINE = "/sys/kernel/alucard_hotplug/min_cpus_online";
+    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT = "/sys/kernel/alucard_hotplug/maxcoreslimit";
+    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP = "/sys/kernel/alucard_hotplug/maxcoreslimit_sleep";
+    String ALUCARD_HOTPLUG_CPU_DOWN_RATE = "/sys/kernel/alucard_hotplug/cpu_down_rate";
+    String ALUCARD_HOTPLUG_CPU_UP_RATE = "/sys/kernel/alucard_hotplug/cpu_up_rate";
+
+    String[] ALUCARD_HOTPLUG_ARRAY = {ALUCARD_HOTPLUG, ALUCARD_HOTPLUG_ENABLE, ALUCARD_HOTPLUG_HP_IO_IS_BUSY,
+            ALUCARD_HOTPLUG_SAMPLING_RATE, ALUCARD_HOTPLUG_SUSPEND, ALUCARD_HOTPLUG_MIN_CPUS_ONLINE, ALUCARD_HOTPLUG_MAX_CORES_LIMIT,
+            ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP, ALUCARD_HOTPLUG_CPU_DOWN_RATE, ALUCARD_HOTPLUG_CPU_UP_RATE};
+
     String[][] CPU_HOTPLUG_ARRAY = {MPDECISION_ARRAY, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
-            MB_HOTPLUG_ARRAY};
+            MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY};
 
     // GPU
     String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";

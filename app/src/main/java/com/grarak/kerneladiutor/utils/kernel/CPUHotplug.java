@@ -46,6 +46,118 @@ public class CPUHotplug implements Constants {
     private static String MB_HOTPLUG_MIN_CPUS_FILE;
     private static String MB_HOTPLUG_MAX_CPUS_FILE;
 
+    public static void setAlucardHotplugCpuUpRate(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_CPU_UP_RATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugCpuUpRate() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_CPU_UP_RATE));
+    }
+
+    public static boolean hasAlucardHotplugCpuUpRate() {
+        return Utils.existFile(ALUCARD_HOTPLUG_CPU_UP_RATE);
+    }
+
+    public static void setAlucardHotplugCpuDownRate(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_CPU_DOWN_RATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugCpuDownRate() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_CPU_DOWN_RATE));
+    }
+
+    public static boolean hasAlucardHotplugCpuDownRate() {
+        return Utils.existFile(ALUCARD_HOTPLUG_CPU_DOWN_RATE);
+    }
+
+    public static void setAlucardHotplugMaxCoresLimitSleep(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugMaxCoresLimitSleep() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP));
+    }
+
+    public static boolean hasAlucardHotplugMaxCoresLimitSleep() {
+        return Utils.existFile(ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP);
+    }
+
+    public static void setAlucardHotplugMaxCoresLimit(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_MAX_CORES_LIMIT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugMaxCoresLimit() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_MAX_CORES_LIMIT));
+    }
+
+    public static boolean hasAlucardHotplugMaxCoresLimit() {
+        return Utils.existFile(ALUCARD_HOTPLUG_MAX_CORES_LIMIT);
+    }
+
+    public static void setAlucardHotplugMinCpusOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_MIN_CPUS_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugMinCpusOnline() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_MIN_CPUS_ONLINE));
+    }
+
+    public static boolean hasAlucardHotplugMinCpusOnline() {
+        return Utils.existFile(ALUCARD_HOTPLUG_MIN_CPUS_ONLINE);
+    }
+
+    public static void activateAlucardHotplugSuspend(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", ALUCARD_HOTPLUG_SUSPEND, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAlucardHotplugSuspendActive() {
+        return Utils.readFile(ALUCARD_HOTPLUG_SUSPEND).equals("1");
+    }
+
+    public static boolean hasAlucardHotplugSuspend() {
+        return Utils.existFile(ALUCARD_HOTPLUG_SUSPEND);
+    }
+
+    public static void setAlucardHotplugSamplingRate(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_SAMPLING_RATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugSamplingRate() {
+        return Utils.stringToInt(Utils.readFile(ALUCARD_HOTPLUG_SAMPLING_RATE));
+    }
+
+    public static boolean hasAlucardHotplugSamplingRate() {
+        return Utils.existFile(ALUCARD_HOTPLUG_SAMPLING_RATE);
+    }
+
+    public static void activateAlucardHotplugHpIoIsBusy(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", ALUCARD_HOTPLUG_HP_IO_IS_BUSY, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAlucardHotplugHpIoIsBusyActive() {
+        return Utils.readFile(ALUCARD_HOTPLUG_HP_IO_IS_BUSY).equals("1");
+    }
+
+    public static boolean hasAlucardHotplugHpIoIsBusy() {
+        return Utils.existFile(ALUCARD_HOTPLUG_HP_IO_IS_BUSY);
+    }
+
+    public static void activateAlucardHotplug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAlucardHotplugActive() {
+        return Utils.readFile(ALUCARD_HOTPLUG_ENABLE).equals("1");
+    }
+
+    public static boolean hasAlucardHotplugEnable() {
+        return Utils.existFile(ALUCARD_HOTPLUG_ENABLE);
+    }
+
+    public static boolean hasAlucardHotplug() {
+        return Utils.existFile(ALUCARD_HOTPLUG);
+    }
+
     public static void setMBHotplugPause(int value, Context context) {
         Control.runCommand(String.valueOf(value), MB_HOTPLUG_FILE + "/" + MB_PAUSE, Control.CommandType.GENERIC, context);
     }
