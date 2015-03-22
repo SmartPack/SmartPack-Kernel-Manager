@@ -63,10 +63,11 @@ public class CPUVoltage implements Constants {
                     command += command.isEmpty() ? voltage : " " + voltage;
                 else
                     command += command.isEmpty() ? voltages.get(i) : " " + voltages.get(i);
-        }
-        if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE))
+            Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, context);
+        } else if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE)) {
             command = getFreqs().get(position) + " " + Utils.stringToInt(voltage) * 1000;
-        Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, context);
+            Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, position, context);
+        }
     }
 
     public static List<String> getVoltages() {

@@ -62,8 +62,8 @@ public class Control implements Constants {
         run("chmod " + permission + " " + file, file + "permission", context);
     }
 
-    private static void runGeneric(String file, String value, Context context) {
-        run("echo " + value + " > " + file, file, context);
+    private static void runGeneric(String file, String value, int id, Context context) {
+        run("echo " + value + " > " + file, id > -1 ? file + id : file, context);
     }
 
     private static void runTcpCongestion(String tcpCongestion, Context context) {
@@ -109,17 +109,18 @@ public class Control implements Constants {
         }.start();
     }
 
-    public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
+    public static void runCommand(final String value, final String file, final CommandType command, final int id,
+                                  final Context context) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if (command == CommandType.CPU) {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
-                        runGeneric(String.format(file, i), value, context);
+                        runGeneric(String.format(file, i), value, id, context);
                         setPermission(String.format(file, i), 444, context);
                     }
                 } else if (command == CommandType.GENERIC) {
-                    runGeneric(file, value, context);
+                    runGeneric(file, value, id, context);
                 } else if (command == CommandType.TCP_CONGESTION) {
                     runTcpCongestion(value, context);
                 } else if (command == CommandType.FAUX_GENERIC) {
@@ -129,6 +130,10 @@ public class Control implements Constants {
                 }
             }
         }).start();
+    }
+
+    public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
+        runCommand(value, file, command, -1, context);
     }
 
 }
