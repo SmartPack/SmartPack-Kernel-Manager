@@ -73,8 +73,8 @@ public class Control implements Constants {
     private static void runFauxGeneric(String file, String value, Context context) {
         String command = value.contains(" ") ? value + " " + getChecksum(Utils.stringToInt(value.split(" ")[0]),
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
-        run(value, file, context);
-        run("echo " + command + " " + file, file, context);
+        run("echo " + value + " > " + file, file + "nochecksum", context);
+        run("echo " + command + " > " + file, file, context);
     }
 
     private static void runSelinux(int value, Context context) {
