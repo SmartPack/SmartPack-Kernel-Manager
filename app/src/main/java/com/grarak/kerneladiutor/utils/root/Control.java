@@ -41,10 +41,14 @@ public class Control implements Constants {
         SysDB sysDB = new SysDB(context);
         sysDB.create();
 
-        List<SysDB.SysItem> sysList = sysDB.getAllSys();
-        for (int i = 0; i < sysList.size(); i++) {
-            if (sysList.get(i).getSys().equals(sys))
-                sysDB.deleteItem(sysList.get(i).getId());
+        try {
+            List<SysDB.SysItem> sysList = sysDB.getAllSys();
+            for (int i = 0; i < sysList.size(); i++)
+                if (sysList.get(i).getSys().equals(sys))
+                    sysDB.deleteItem(sysList.get(i).getId());
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         sysDB.insertSys(sys, command);
@@ -61,7 +65,7 @@ public class Control implements Constants {
     }
 
     private static void setPermission(String file, int permission, Context context) {
-        run("chmod " + permission + " " + file, file, context);
+        run("chmod " + permission + " " + file, file + "permission" + permission, context);
     }
 
     private static void runGeneric(String file, String value, Context context) {
@@ -70,13 +74,13 @@ public class Control implements Constants {
 
     private static void runTcpCongestion(String tcpCongestion, Context context) {
         run("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion, TCP_AVAILABLE_CONGESTIONS, context);
-        RootUtils.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion);
     }
 
     private static void runFauxGeneric(String file, String value, Context context) {
         String command = value.contains(" ") ? value + " " + getChecksum(Utils.stringToInt(value.split(" ")[0]),
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
-        run(command, file, context);
+        run(value, file, context);
+        run("echo " + command + " " + file, file, context);
     }
 
     private static void runSelinux(int value, Context context) {

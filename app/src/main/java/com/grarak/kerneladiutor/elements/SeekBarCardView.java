@@ -56,13 +56,14 @@ public class SeekBarCardView extends BaseCardView {
 
         seekBarView.setMax(list.size() - 1);
         seekBarView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (valueView != null) valueView.setText(SeekBarCardView.this.list.get(progress));
                 boolean changed = false;
                 if ((SeekBarCardView.this.progress != seekBar.getProgress())) changed = true;
                 if (onSeekBarCardListener != null && changed)
-                    onSeekBarCardListener.onChanged(SeekBarCardView.this, seekBar.getProgress());
+                    onSeekBarCardListener.onChanged(SeekBarCardView.this, progress);
             }
 
             @Override
@@ -76,8 +77,10 @@ public class SeekBarCardView extends BaseCardView {
                     progress = seekBar.getProgress();
                     changed = true;
                 }
-                if (onSeekBarCardListener != null && changed)
+                if (onSeekBarCardListener != null && changed) {
+                    onSeekBarCardListener.onChanged(SeekBarCardView.this, seekBar.getProgress());
                     onSeekBarCardListener.onStop(SeekBarCardView.this, seekBar.getProgress());
+                }
             }
         });
         seekBarView.setProgress(progress);

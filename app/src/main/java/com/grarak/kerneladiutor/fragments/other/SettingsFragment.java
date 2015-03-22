@@ -49,9 +49,9 @@ public class SettingsFragment extends RecyclerViewFragment {
         super.init(savedInstanceState);
 
         darkthemeInit();
-        if (!Resources.getSystem().getConfiguration().locale.getLanguage().equals("en"))
+        if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en"))
             forceenglishlanguageInit();
-        betainfoInit();
+        if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
         applyonbootInit();
         debuggingInit();
     }
@@ -90,21 +90,19 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void betainfoInit() {
-        if (Constants.VERSION_NAME.contains("beta")) {
-            SwitchCompatCardItem.DSwitchCompatCard mBetaInfoCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mBetaInfoCard.setTitle(getString(R.string.beta_info));
-            mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
-            mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
-            mBetaInfoCard.setOnDSwitchCompatCardListener(
-                    new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
-                        @Override
-                        public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-                            Utils.saveBoolean("betainfo", checked, getActivity());
-                        }
-                    });
+        SwitchCompatCardItem.DSwitchCompatCard mBetaInfoCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mBetaInfoCard.setTitle(getString(R.string.beta_info));
+        mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
+        mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
+        mBetaInfoCard.setOnDSwitchCompatCardListener(
+                new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
+                    @Override
+                    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+                        Utils.saveBoolean("betainfo", checked, getActivity());
+                    }
+                });
 
-            addView(mBetaInfoCard);
-        }
+        addView(mBetaInfoCard);
     }
 
     private void applyonbootInit() {

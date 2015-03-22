@@ -75,11 +75,11 @@ public class Utils implements Constants {
             applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
 
         if (mClass == CPUFragment.class) {
-            int cores = CPU.getCoreCount();
             for (String[] array : CPU_ARRAY)
                 for (String cpu : array)
                     if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
-                        for (int i = 0; i < cores; i++) applys.add(String.format(cpu, i));
+                        for (int i = 0; i < CPU.getCoreCount(); i++)
+                            applys.add(String.format(cpu, i));
                     else applys.add(cpu);
         }
 

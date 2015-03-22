@@ -38,20 +38,20 @@ public class DBAdapter extends SQLiteOpenHelper implements Constants {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase _db) {
-        _db.execSQL(DATABASE_CREATE);
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(DATABASE_CREATE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase _db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.w(TAG, "Upgrading application's database from version " + oldVersion
                 + " to " + newVersion + ", which will destroy all old data!");
 
         // Destroy old database:
-        _db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
 
         // Recreate new database:
-        onCreate(_db);
+        onCreate(db);
     }
 
 }
