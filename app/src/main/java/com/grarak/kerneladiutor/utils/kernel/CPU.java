@@ -63,7 +63,9 @@ public class CPU implements Constants {
         return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
     }
 
-    public static boolean hasCpuBoostInputFreq() { return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ); }
+    public static boolean hasCpuBoostInputFreq() {
+        return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ);
+    }
 
     public static void setCpuBoostSyncThreshold(int value, Context context) {
         Control.runCommand(String.valueOf(value), CPU_BOOST_SYNC_THRESHOLD, Control.CommandType.GENERIC, context);
@@ -257,6 +259,7 @@ public class CPU implements Constants {
     }
 
     public static void setMinFreq(int freq, Context context) {
+        if (getMaxFreq(0) < freq) setMaxFreq(freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, Control.CommandType.CPU, context);
     }
 
@@ -271,6 +274,7 @@ public class CPU implements Constants {
     public static void setMaxFreq(int freq, Context context) {
         if (Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
+        if (getMinFreq(0) > freq) setMinFreq(freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, Control.CommandType.CPU, context);
     }
 

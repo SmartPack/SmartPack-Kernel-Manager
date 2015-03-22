@@ -6,8 +6,7 @@
     <FrameLayout
         android:id="@+id/apply_on_boot_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/color_primary_light"
         android:paddingLeft="40dp"
         android:paddingRight="20dp"

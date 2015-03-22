@@ -23,7 +23,6 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
-import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
 import java.util.List;
 
@@ -41,15 +40,10 @@ public class Control implements Constants {
         SysDB sysDB = new SysDB(context);
         sysDB.create();
 
-        try {
-            List<SysDB.SysItem> sysList = sysDB.getAllSys();
-            for (int i = 0; i < sysList.size(); i++)
-                if (sysList.get(i).getSys().equals(sys))
-                    sysDB.deleteItem(sysList.get(i).getId());
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        List<SysDB.SysItem> sysList = sysDB.getAllSys();
+        for (int i = 0; i < sysList.size(); i++)
+            if (sysList.get(i).getSys().equals(sys))
+                sysDB.deleteItem(sysList.get(i).getId());
 
         sysDB.insertSys(sys, command);
         sysDB.close();
@@ -65,7 +59,7 @@ public class Control implements Constants {
     }
 
     private static void setPermission(String file, int permission, Context context) {
-        run("chmod " + permission + " " + file, file + "permission" + permission, context);
+        run("chmod " + permission + " " + file, file + "permission", context);
     }
 
     private static void runGeneric(String file, String value, Context context) {
@@ -120,25 +114,10 @@ public class Control implements Constants {
             @Override
             public void run() {
                 if (command == CommandType.CPU) {
-                    boolean stoppedMpdec = false;
-                    if (CPUHotplug.hasMpdecision() && Utils.isServiceActive(HOTPLUG_MPDEC)) {
-                        stopService(HOTPLUG_MPDEC, false, context);
-                        stoppedMpdec = true;
+                    for (int i = 0; i < CPU.getCoreCount(); i++) {
+                        runGeneric(String.format(file, i), value, context);
+                        setPermission(String.format(file, i), 444, context);
                     }
-
-                    if (CPUHotplug.hasMpdecision())
-                        for (int i = 0; i < CPU.getCoreCount(); i++) {
-                            setPermission(String.format(file, i), 644, context);
-                            runGeneric(String.format(file, i), value, context);
-                            setPermission(String.format(file, i), 444, context);
-                        }
-                    else {
-                        setPermission(String.format(file, 0), 644, context);
-                        runGeneric(String.format(file, 0), value, context);
-                        setPermission(String.format(file, 0), 444, context);
-                    }
-
-                    if (stoppedMpdec) startService(HOTPLUG_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, context);
                 } else if (command == CommandType.TCP_CONGESTION) {

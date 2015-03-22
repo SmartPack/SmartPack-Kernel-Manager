@@ -927,7 +927,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mMBHotplugMinCpusCard);
         }
 
-        if (CPUHotplug.hasMBHotplugMinCpus()) {
+        if (CPUHotplug.hasMBHotplugMaxCpus()) {
             List<String> list = new ArrayList<>();
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
@@ -1064,6 +1064,14 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mMBHotplugPauseCard.setOnDSeekBarCardListener(this);
 
             views.add(mMBHotplugPauseCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mMBHotplugDividerCard = new DividerCardView.DDividerCard();
+            mMBHotplugDividerCard.setText(CPUHotplug.getMBName(getActivity()));
+            addView(mMBHotplugDividerCard);
+
+            addAllViews(views);
         }
 
     }
