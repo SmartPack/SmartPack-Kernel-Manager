@@ -143,7 +143,6 @@
   <string name="io_is_busy">IO zauzet</string>
   <string name="io_is_busy_summary">Koristi se da hotplug smatra I/O vrijeme kao da je vrijeme CPU-a pod opterećenjem.</string>
   <string name="defer_time">Vrijeme obustavljanja odgađanja</string>
-  <string name="mako_hotplug">Mako Hotplug Control</string>
   <string name="mako_hotplug_summary">Zamjena za Qualcomms MPDecision unutar kernela. Programirao: franciscofranco.</string>
   <string name="cores_on_touch">Jezgre na dodir</string>
   <string name="cores_on_touch_summary">Broj CPU-a u pogonu pri dodiru zaslona ili pritisku na tipku.</string>

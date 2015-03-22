@@ -133,7 +133,6 @@
   <string name="fast_lane_min_freq">Fréquence Min Voie Rapide</string>
   <string name="offline_load">Charge Hors Ligne</string>
   <string name="io_is_busy">Les E/S sont Occupées</string>
-  <string name="mako_hotplug">Mako Hotplug Control</string>
   <string name="mako_hotplug_summary">Un remplacement du noyau pour MPDecision de Qualcomm. Développé par franciscofranco.</string>
   <string name="cores_on_touch">Cœurs au toucher</string>
   <string name="first_level">Premier Niveau</string>

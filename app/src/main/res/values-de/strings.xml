@@ -127,7 +127,6 @@
   <string name="history_size">Verlaufs-Größe</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="defer_time">Suspend Zeit verzögern</string>
-  <string name="mako_hotplug">Mako-Hotplug-Steuerelement</string>
   <string name="mako_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von Franciscofranco entwickelt.</string>
   <string name="cores_on_touch">Kerne während einer Eingabe</string>
   <string name="cores_on_touch_summary">Anzahl der CPUs die online bleiben, indem der Bildschirm oder eine Taste berührt wird.</string>

@@ -147,7 +147,6 @@
   <string name="io_is_busy">IO is Busy</string>
   <string name="io_is_busy_summary">I/O時間をCPU時間として認識するようにします。</string>
   <string name="defer_time">サスペンド延期時間</string>
-  <string name="mako_hotplug">Mako Hotplug Control</string>
   <string name="mako_hotplug_summary">franciscofranco氏が開発した、Qualcomms MPDecisionの代替です。.</string>
   <string name="cores_on_touch">タッチ時のコア</string>
   <string name="cores_on_touch_summary">画面をタッチしたりボタンを押したりしたときにオンラインにするコアの数です。</string>

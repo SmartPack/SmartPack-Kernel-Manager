@@ -139,7 +139,6 @@
   <string name="io_is_busy">E/S se encuentra ocupada</string>
   <string name="io_is_busy_summary">Utilizado para hacer que el Gob. hotplug considere el tiempo de carga de E/S del CPU.</string>
   <string name="defer_time">Suspender Tiempo Aplazado</string>
-  <string name="mako_hotplug">Control de Mako Hotplug</string>
   <string name="mako_hotplug_summary">Una en reemplazo del kernel para Qualcomms MPDecision. Desarrollado por franciscofranco.</string>
   <string name="cores_on_touch_summary">Número de CPUs online cuando tocas la pantalla o presionas un botón.</string>
   <string name="cpu_freq_unplug_limit">Límite de frecuencia de la CPU Desactivada</string>

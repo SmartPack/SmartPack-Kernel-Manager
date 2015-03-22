@@ -142,7 +142,6 @@
   <string name="io_is_busy">IO está ocupado</string>
   <string name="io_is_busy_summary">Usado para fazer o hotplug considerar o tempo que I/O como o tempo de carga da CPU.</string>
   <string name="defer_time">Suspender Adiar Tempo</string>
-  <string name="mako_hotplug">Controle do Mako Hotplug</string>
   <string name="mako_hotplug_summary">Um substituto do kernel para Qualcomms MPDecision. Desenvolvido por franciscofranco.</string>
   <string name="cores_on_touch">Núcleos no toque</string>
   <string name="cores_on_touch_summary">Número de CPUs online ao tocar na tela ou pressionar um botão.</string>
