@@ -59,7 +59,7 @@ public class Control implements Constants {
     }
 
     private static void setPermission(String file, int permission, Context context) {
-        run("chmod " + permission + " " + file, file + "permission", context);
+        run("chmod " + permission + " " + file, file + "permission" + permission, context);
     }
 
     private static void runGeneric(String file, String value, int id, Context context) {
@@ -116,6 +116,7 @@ public class Control implements Constants {
             public void run() {
                 if (command == CommandType.CPU) {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
+                        setPermission(String.format(file, i), 644, context);
                         runGeneric(String.format(file, i), value, id, context);
                         setPermission(String.format(file, i), 444, context);
                     }

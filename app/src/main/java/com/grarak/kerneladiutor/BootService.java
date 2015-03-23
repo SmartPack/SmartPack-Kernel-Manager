@@ -143,6 +143,11 @@ public class BootService extends Service {
         sysDB.create();
 
         RootUtils.SU su = new RootUtils.SU();
+
+        String[] writePermission = {Constants.LMK_MINFREE};
+        for (String file : writePermission)
+            su.runCommand("chmod 644 " + file);
+
         for (SysDB.SysItem sysItem : sysDB.getAllSys())
             for (String sys : applys)
                 if (sys.contains(sysItem.getSys()) || sysItem.getSys().contains(sys)) {
