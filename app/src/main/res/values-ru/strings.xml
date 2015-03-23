@@ -43,6 +43,7 @@
   <string name="build_prop_editor">Редактор Build prop</string>
   <string name="profile">Профиль</string>
   <string name="settings">Настройки</string>
+  <string name="faq">Часто задаваемые вопросы</string>
   <string name="about_us">О нас</string>
   <string name="unused_cpu_states">Неиспользуемые частоты процессора</string>
   <string name="uptime">Время работы</string>
@@ -70,6 +71,7 @@
   <string name="not_tunable">%s не настраиваемый</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
+  <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
   <string name="disabled">Выкл</string>
   <string name="enabled">Вкл</string>
   <string name="aggressive">Агрессивный</string>

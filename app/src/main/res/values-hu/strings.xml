@@ -11,6 +11,9 @@
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_finished">A módosítások érvénybe léptek</string>
   <string name="apply_on_boot_time">A beállításaid %d másodperc múlva érvénybe lépnek</string>
+  <string name="apply_on_boot_enabled">Bootolás után a(z) %s szekció módosításai életbe lépnek</string>
+  <string name="apply_on_boot_disabled">Bootolás után a(z) %s szekció módosításai érvényüket vesztik</string>
+  <string name="apply_on_boot_failed">A(z) %s szekció beállításai bootlás után sikertelenek</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
@@ -40,6 +43,7 @@
   <string name="build_prop_editor">Build prop szerkesztő</string>
   <string name="profile">Profilok</string>
   <string name="settings">Beállítások</string>
+  <string name="faq">GYIK</string>
   <string name="about_us">Rólunk</string>
   <string name="unused_cpu_states">Nem használt CPU frekvenciák</string>
   <string name="uptime">Üzemidő</string>
@@ -67,6 +71,7 @@
   <string name="not_tunable">%s nem állítható</string>
   <string name="mc_power_saving">Többmagos Energiatakarékosság</string>
   <string name="mc_power_saving_summary">A feladatok csoportosítása a lehető legkevesebb magra.</string>
+  <string name="cfs_scheduler_policy">CFS ütemezésének irányelve</string>
   <string name="disabled">Letiltva</string>
   <string name="enabled">Engedélyezve</string>
   <string name="aggressive">Agresszív</string>
@@ -83,6 +88,7 @@
   <string name="input_interval_summary">A minimális időköz, ameddig a CPU gyorsítva lesz bemenet észlelésekor.</string>
   <string name="input_boost_freq">Bemeneti boost frekvencia</string>
   <string name="global_offset">Globális eltolás</string>
+  <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOM féle hotplug megoldás. Ha ez engedélyezve van, akkor problémai lehetnek a frekvencia változtatással.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="profile_summary">A zárójelben álló szám jelzi a bármikor aktív magok számát.</string>
@@ -91,6 +97,7 @@
   <string name="conservative">Konzervatív</string>
   <string name="eco_performance">Eco Teljesítmény</string>
   <string name="eco_conservative">Eco Konzervatív</string>
+  <string name="eco">Eco</string>
   <string name="strict">Szigorú</string>
   <string name="eco_mode">Eco mód</string>
   <string name="eco_mode_summary">Akkumulátor takarékos mód az IntelliPlug-hoz.</string>
@@ -105,9 +112,15 @@
   <string name="suspend_summary">Felfüggesztés megakadályozása.</string>
   <string name="cpus_boosted">CPU-k gyorsítva</string>
   <string name="cpus_boosted_summary">Maximális gyorsított magok száma egy időben.</string>
+  <string name="max_cores_screen_off">Maximum magok száma kikapcsolt képernyőknél</string>
+  <string name="fshift">FShift</string>
+  <string name="blu_plug">Blu_Plug</string>
+  <string name="powersaver_mode">Energiatakarékos mód</string>
+  <string name="msm_hotplug">MSM Hotplug</string>
   <string name="update_rate">Frissítési gyakoriság</string>
   <string name="offline_load">Offline terhelés</string>
   <string name="io_is_busy">IO leterhelt</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
   <string name="first_level">Első szint</string>
   <string name="high_load_counter">Nagy terhelés számláló</string>
   <string name="load_threshold">Terhelési küszöb</string>
