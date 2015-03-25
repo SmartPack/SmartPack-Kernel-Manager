@@ -16,8 +16,6 @@
 
 package com.grarak.kerneladiutor.services;
 
-import android.content.Intent;
-
 import com.google.android.apps.dashclock.api.DashClockExtension;
 import com.google.android.apps.dashclock.api.ExtensionData;
 import com.grarak.kerneladiutor.R;
@@ -73,8 +71,9 @@ public class DashClockService extends DashClockExtension {
     }
 
     @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        super.onTaskRemoved(rootIntent);
+    public void onDestroy() {
+        super.onDestroy();
         RootUtils.closeSU();
     }
+
 }
