@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor;
+package com.grarak.kerneladiutor.services;
 
 import android.app.NotificationManager;
 import android.app.Service;
@@ -25,6 +25,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;

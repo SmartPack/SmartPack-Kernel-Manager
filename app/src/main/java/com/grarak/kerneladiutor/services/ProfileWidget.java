@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.widgets;
+package com.grarak.kerneladiutor.services;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

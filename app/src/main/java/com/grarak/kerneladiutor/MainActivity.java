@@ -23,23 +23,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -85,7 +80,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
     private boolean hasRoot;
     private boolean hasBusybox;
 
-    private ProgressBar progressBar;
     private Toolbar toolbar;
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -131,14 +125,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
         setSupportActionBar(toolbar);
-
-        progressBar = new ProgressBar(this);
-        progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
-                getResources().getColor(android.R.color.white)));
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
 
         if (mDrawerLayout != null && mScrimInsetsFrameLayout != null)
             mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
@@ -291,11 +277,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
             mSplashView.finish();
             setInterface();
-            try {
-                ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
 
             if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
             for (int i = 0; i < mList.size(); i++) {

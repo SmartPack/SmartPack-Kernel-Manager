@@ -29,15 +29,15 @@
             android:theme="@style/AppThemeActionBarLight"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
-        <receiver android:name=".BootReceiver">
+        <receiver android:name=".services.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".BootService" />
+        <service android:name=".services.BootService" />
 
-        <receiver android:name=".widgets.ProfileWidget">
+        <receiver android:name=".services.ProfileWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -47,8 +47,19 @@
         </receiver>
 
         <service
-            android:name=".widgets.ProfileWidget$WidgetService"
+            android:name=".services.ProfileWidget$WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service
+            android:name=".services.DashClockService"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+            <meta-data
+                android:name="protocolVersion"
+                android:value="1" />
+        </service>
     </application>
 
 </manifest>

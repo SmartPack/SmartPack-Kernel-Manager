@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor;
+package com.grarak.kerneladiutor.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
