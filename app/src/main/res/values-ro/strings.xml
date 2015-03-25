@@ -79,7 +79,6 @@
   <string name="input_interval_summary">Intervalul minim unui CPU este amplificat, când este detectat de input.</string>
   <string name="global_offset">Global Offset</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">QCOM\'s hotplugging solution. Aţi putea obţine probleme cu schimbarea frecvenţelor atunci când această opţiune este activată.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="profile_summary">Numărul în paranteze indică suma de corii online în oricare moment.</string>
   <string name="balanced">Echilibrat</string>

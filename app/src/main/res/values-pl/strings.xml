@@ -82,7 +82,6 @@
   <string name="input_boost_freq_summary">Częstotliwość procesora zostanie zwiększona do tej podczas dotyku.</string>
   <string name="global_offset">Zmiany Globalne</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">Hotplugging QCOM. Mogą wystąpić problemy ze zmianą częstotliwości, gdy włączone.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="profile_summary">Liczba w nawiasie oznacza ilość włączonych rdzeni w dowolnym momencie.</string>
   <string name="balanced">Zbalansowany</string>

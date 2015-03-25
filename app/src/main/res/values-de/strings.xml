@@ -88,7 +88,6 @@
   <string name="input_boost_freq">Eingabe Boost Frequenz</string>
   <string name="global_offset">Globale Versetzung</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">QCOMs Hotplugging Lösung. Sie werden wahrscheinlich Schwierigkeiten mit der Änderung der Frequenzen feststellen, wenn diese Funktion aktiv ist.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von faux123 entwickelt.</string>
   <string name="profile_summary">Die Zahl in Klammern zeigt die Kerne die jederzeit online sind.</string>

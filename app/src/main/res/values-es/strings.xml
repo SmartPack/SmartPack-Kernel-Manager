@@ -41,6 +41,7 @@
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil</string>
   <string name="settings">Ajustes</string>
+  <string name="faq">FAQ</string>
   <string name="about_us">Acerca de</string>
   <string name="unused_cpu_states">Frecuencias de CPU no utilizadas</string>
   <string name="uptime">Tiempo de actividad</string>
@@ -85,8 +86,8 @@
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
   <string name="global_offset">Desplazamiento global</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">Solución hotplugging de QCOM. Podría tener problemas con el cambio de frecuencias cuando esta opción está activada.</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Remplazo de Qualcomms Mpdecision. Desarrollado por faux123.</string>
   <string name="profile_summary">El número entre paréntesis indica la cantidad de núcleos trabajando en cualquier momento.</string>
   <string name="balanced">Equilibrado</string>
   <string name="performance">Rendimiento</string>
@@ -109,6 +110,10 @@
   <string name="suspend_summary">Impedir suspensión.</string>
   <string name="cpus_boosted">CPUs supercargadas</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs supercargadas al mismo tiempo.</string>
+  <string name="min_cpu_online">Mínimo CPU activos</string>
+  <string name="min_cpu_online_summary">Número mínimo de CPUs que estarán siempre activos.</string>
+  <string name="max_cpu_online">Máximo CPU activos</string>
+  <string name="max_cpu_online_summary">Número máximo de CPUs que estarán siempre activos.</string>
   <string name="max_cores_screen_off">Máximo de núcleos con pantalla apagada</string>
   <string name="max_cores_screen_off_summary">Número máximo de núcleos online cuando la pantalla está apagada.</string>
   <string name="suspend_defer_time">Suspender Aplazo de Tiempo</string>
@@ -118,6 +123,7 @@
   <string name="down_lock_duration_summary">Intervalo mínimo que un CPU se mantendrá en línea.</string>
   <string name="fshift">FShit</string>
   <string name="blu_plug">Blu-Plug</string>
+  <string name="blu_plug_summary">Remplazo para MPDecision de Qualcomms. Desarrollado por Code_Blue.</string>
   <string name="powersaver_mode">Modo económico</string>
   <string name="powersaver_mode_summary">Fija 1 CPU máximo activado con frecuencia de @1728.</string>
   <string name="up_threshold">Umbral de subida</string>
@@ -127,6 +133,7 @@
   <string name="down_timer_cnt">Tiempo de espera para desactivar los núcleos</string>
   <string name="down_timer_cnt_summary">Temporizador de control para desactivar CPUs.</string>
   <string name="msm_hotplug">Hotplug de MSM</string>
+  <string name="msm_hotplug_summary">Remplazo MPDecision de Qualcomms. Desarrollado por myfluxi.</string>
   <string name="history_size">Tamaño de la historia</string>
   <string name="history_size_summary">Número de muestras tomadas en consideración para la carga media a través de CPUs. Inferior significa más rápido y más errático.</string>
   <string name="update_rate">Intervalo de Actualizacion</string>
@@ -139,6 +146,7 @@
   <string name="io_is_busy">E/S se encuentra ocupada</string>
   <string name="io_is_busy_summary">Utilizado para hacer que el Gob. hotplug considere el tiempo de carga de E/S del CPU.</string>
   <string name="defer_time">Suspender Tiempo Aplazado</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Una en reemplazo del kernel para Qualcomms MPDecision. Desarrollado por franciscofranco.</string>
   <string name="cores_on_touch_summary">Número de CPUs online cuando tocas la pantalla o presionas un botón.</string>
   <string name="cpu_freq_unplug_limit">Límite de frecuencia de la CPU Desactivada</string>
@@ -150,7 +158,18 @@
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Tiempo mínimo de CPU online</string>
   <string name="timer">Contador</string>
+  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="mb_hotplug_summary">Remplazo para MPDecision de Qualcomms. Desarrollado por show-p1984.</string>
+  <string name="screen_off_single_core">Sólo un núcleo con la pantalla apagada</string>
+  <string name="screen_off_single_core_summary">Usar sólo un núcleo con la pantalla apagada.</string>
+  <string name="idle_frequency_summary">Si este núcleo esta por debajo de esta frecuencia, no activar los otros nucleos.</string>
+  <string name="start_delay">Retardo al inicio</string>
+  <string name="start_delay_summary">Tiempo hasta que Hotplug comienza.</string>
   <string name="delay">Retraso</string>
+  <string name="pause">Pausar</string>
+  <string name="alucard_hotplug">Alucard Hotplug</string>
+  <string name="alucard_hotplug_summary">Remplazo para MPDecision de Qualcomms. Desarrollado por Alucard.</string>
   <string name="gpu_2d_cur_freq">Frecuencia actual de GPU 2D</string>
   <string name="gpu_cur_freq">Frecuencia actual del GPU</string>
   <string name="gpu_2d_max_freq">Frecuencia máxima de GPU 2D</string>
@@ -272,6 +291,7 @@
   <string name="beta_info_summary">Mostrar un diálogo al inicio si estas usando una versión beta.</string>
   <string name="notification">Notificación</string>
   <string name="notification_summary">Mostrar una notificación cuando se aplica la configuración al arranque. Desactivar si da algún problema.</string>
+  <string name="show_toast">Mostrar notificación emergente</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copiar Logcat a /sdcard/logcat.txt</string>
@@ -279,6 +299,11 @@
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg en /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensaje del Controlador</string>
   <string name="driver_message_summary">Copiar mensaje del controlador (dmesg) en /sdcard/dmesg.txt</string>
+  <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
+  <string name="cpu_freq_not_sticking">Por que mi frecuencia predeterminada no se guarda?</string>
+  <string name="cpu_freq_not_sticking_summary">Puede ser pormuchas razones. Muchos núcleos en la actualidad tienen su propio sistema hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia implementación de CPU Boost que regulan la frecuencia. Yo sugiero no tocar las frecuencias de la CPU y que el núcleo haga su trabajo.</string>
+  <string name="feature_not_appearing">Por que no aparecen algunas características?</string>
+  <string name="feature_not_appearing_summary">Las características dependen del kernel.</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="support_v13">Liberia de apoyo v13</string>

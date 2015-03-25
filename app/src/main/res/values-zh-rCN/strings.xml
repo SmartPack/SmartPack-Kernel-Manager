@@ -58,7 +58,6 @@
   <string name="temp_limit">温度上限</string>
   <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的。</string>
   <string name="global_offset">全局偏移量</string>
-  <string name="mpdecision_summary">高通提出的 hotplug 解决方案。当它启用时你可能会在更改最大/最小频率时遇到问题。</string>
   <string name="balanced">平衡</string>
   <string name="performance">性能</string>
   <string name="conservative">节能</string>

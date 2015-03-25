@@ -88,7 +88,6 @@
   <string name="input_boost_freq_summary">La fréquence du CPU va être stimulé à cette fréquence en cas de détection d\'entrée.</string>
   <string name="global_offset">Offset Global</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">Solution Hotplug de Qualcom. Vous pourriez obtenir des problèmes au changement des fréquences lorsque cette option est activée.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Une alternative dans le noyau à MPDecision de Qualcomm s. Développé par faux123.</string>
   <string name="profile_summary">Le nombre entre parenthèses indique la quantité de cœurs en ligne à tout moment.</string>

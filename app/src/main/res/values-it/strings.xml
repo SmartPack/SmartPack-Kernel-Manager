@@ -43,6 +43,7 @@
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profilo</string>
   <string name="settings">Impostazioni</string>
+  <string name="faq">Domande e risposte</string>
   <string name="about_us">Chi Siamo</string>
   <string name="unused_cpu_states">Stati inutilizzati della cpu</string>
   <string name="uptime">Uptime</string>
@@ -70,6 +71,8 @@
   <string name="not_tunable">%s non si può modificare</string>
   <string name="mc_power_saving">Risparmio Energetico Multicore</string>
   <string name="mc_power_saving_summary">Prova a raggruppare le attività nel minor numero di core disponibili.</string>
+  <string name="cfs_scheduler_policy">Linea di condotta Scheduler CFS</string>
+  <string name="cfs_scheduler_policy_summary">La linea di condotta regola come lo scheduler CFS distribuirà i processi sui core disponibili.</string>
   <string name="disabled">Disabilitato</string>
   <string name="enabled">Abilitato</string>
   <string name="aggressive">Aggressivo</string>
@@ -88,7 +91,7 @@
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
   <string name="global_offset">Scostamento globale</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">Potresti avere problemi cambiando le frequenze quando QCOM\'s hotplugging solution è attivo.</string>
+  <string name="mpdecision_summary">Sistema hotplug di Qualcomm. Se abilitata potresti avere difficoltà a cambiare le frequenze.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Un\'alternativa all\'interno del kernel per Qualcomms MPDecision. Sviluppato da faux123.</string>
   <string name="profile_summary">Il numero in parentesi indica la quantità del numero di core attivi in qualsiasi momento.</string>
@@ -113,6 +116,7 @@
   <string name="suspend_summary">Evitare di sospendere.</string>
   <string name="cpus_boosted">CPU potenziate</string>
   <string name="cpus_boosted_summary">Numero massimo di CPU potenziate allo stesso tempo.</string>
+  <string name="min_cpu_online">Numero minimo di CPU Attive</string>
   <string name="max_cores_screen_off">Max Core a schermo spento</string>
   <string name="max_cores_screen_off_summary">Massimo numero di core da usare a schermo spento.</string>
   <string name="suspend_defer_time">Sospendere il tempo di ritardio</string>
@@ -161,6 +165,7 @@
   <string name="timer">Timer</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="screen_off_single_core">Schermo spento Single Core</string>
+  <string name="screen_off_single_core_summary">Usa un solo Core quando lo schermo è spento.</string>
   <string name="delay">Ritardo</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequenza corrente</string>
   <string name="gpu_cur_freq">Frequenza attuale GPU</string>
@@ -290,6 +295,7 @@
   <string name="beta_info_summary">Mostra un avvertimento all\'avvio se stai usando una versione beta.</string>
   <string name="notification">Notifica</string>
   <string name="notification_summary">Mostra una notifica quando parte il servizio applica all\'avvio. Disabilitalo se hai qualche problema.</string>
+  <string name="show_toast">Mostra la notifica Toast</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copia logcat in /sdcard/logcat.txt</string>
@@ -297,6 +303,15 @@
   <string name="last_kmsg_summary">Copia /proc/last_kmsg in /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Messaggio Driver</string>
   <string name="driver_message_summary">Copia messaggio driver (dmesg) in /sdcard/dmesg.txt</string>
+  <string name="misspelled">Perchè hai sbagliato a scrivere \"Auditor\"?</string>
+  <string name="misspelled_summary">Adiutor, in Latino, significa \"assistente\".</string>
+  <string name="cpu_freq_not_sticking">Perchè la frequenza che ho scelto non viene conservata?</string>
+  <string name="feature_not_appearing">Perché le caratteristiche X e Y non sono disponibili?</string>
+  <string name="feature_not_appearing_summary">Le caratteristiche utilizzabili dipendono dal Kernel.</string>
+  <string name="feature_function">Cosa fa la caratteristica X?</string>
+  <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso Smartphone.</string>
+  <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
+  <string name="add_new_features_summary">Si lo so, ci provo ad aggiungere tutte le caratteristiche, ma è veramente difficile rendere questa applicazione universale e funzionante su tutti i dispositivi. I posseggo solo un S4 (I9500) e un HTC Desire, quindi non datemi la colpa se non riesco ad aggiungere immediatamente le nuove funzioni.</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Auditor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="support_v13">Libreria di supporto V13</string>
