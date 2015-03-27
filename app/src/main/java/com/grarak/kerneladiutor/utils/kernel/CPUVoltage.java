@@ -43,8 +43,10 @@ public class CPUVoltage implements Constants {
             for (String volt : voltages)
                 command += command.isEmpty() ? (Utils.stringToInt(volt) + adjust) :
                         " " + (Utils.stringToInt(volt) + adjust);
-        if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE))
+        if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE)) {
             command = String.valueOf(adjust * 1000);
+            if (adjust > 0) command = "+" + command;
+        }
 
         Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, context);
     }
