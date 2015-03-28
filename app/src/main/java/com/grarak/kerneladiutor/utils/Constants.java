@@ -30,7 +30,7 @@ public interface Constants {
     String TAG = "Kernel Adiutor";
     String VERSION_NAME = BuildConfig.VERSION_NAME;
     String PREF_NAME = "prefs";
-    List<ListAdapter.ListItem> mList = new ArrayList<>();
+    List<ListAdapter.ListItem> ITEMS = new ArrayList<>();
 
     // Kernel Informations
     String PROC_VERSION = "/proc/version";

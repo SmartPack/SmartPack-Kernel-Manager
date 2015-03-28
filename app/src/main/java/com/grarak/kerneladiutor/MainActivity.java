@@ -65,7 +65,6 @@ import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
-import com.grarak.kerneladiutor.utils.kernel.LMK;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
@@ -133,7 +132,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
     }
 
     private void selectItem(int position) {
-        Fragment fragment = mList.get(position).getFragment();
+        Fragment fragment = ITEMS.get(position).getFragment();
 
         if (fragment == null || cur_position == position) {
             mDrawerList.setItemChecked(cur_position, true);
@@ -150,45 +149,44 @@ public class MainActivity extends ActionBarActivity implements Constants {
             e.printStackTrace();
         }
 
-        setTitle(mList.get(position).getTitle());
+        setTitle(ITEMS.get(position).getTitle());
         mDrawerList.setItemChecked(position, true);
     }
 
     private void setList() {
-        mList.clear();
-        mList.add(new ListAdapter.MainHeader());
-        mList.add(new ListAdapter.Header(getString(R.string.information)));
-        mList.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
-        mList.add(new ListAdapter.Header(getString(R.string.kernel)));
-        mList.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
+        ITEMS.clear();
+        ITEMS.add(new ListAdapter.MainHeader());
+        ITEMS.add(new ListAdapter.Header(getString(R.string.information)));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
+        ITEMS.add(new ListAdapter.Header(getString(R.string.kernel)));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
         if (CPUVoltage.hasCpuVoltage())
-            mList.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
         if (CPUHotplug.hasCpuHotplug())
-            mList.add(new ListAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
         if (GPU.hasGpuControl())
-            mList.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
         if (Screen.hasScreen())
-            mList.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
-            mList.add(new ListAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
         if (Sound.hasSound())
-            mList.add(new ListAdapter.Item(getString(R.string.sound), new SoundFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.sound), new SoundFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
-            mList.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-        if (LMK.getMinFrees() != null)
-            mList.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
-        mList.add(new ListAdapter.Header(getString(R.string.tools)));
-        mList.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
-        mList.add(new ListAdapter.Header(getString(R.string.other)));
-        mList.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));
-        mList.add(new ListAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
+            ITEMS.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
+        ITEMS.add(new ListAdapter.Header(getString(R.string.tools)));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
+        ITEMS.add(new ListAdapter.Header(getString(R.string.other)));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
     }
 
     private void setView() {
@@ -204,7 +202,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
         if (Utils.DARKTHEME)
             mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
-        mDrawerList.setAdapter(new ListAdapter.Adapter(this, mList));
+        mDrawerList.setAdapter(new ListAdapter.Adapter(this, ITEMS));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -243,10 +241,6 @@ public class MainActivity extends ActionBarActivity implements Constants {
             if (hasRoot && hasBusybox) {
                 RootUtils.su = new RootUtils.SU();
 
-                String[] readPermission = {CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_SCALING_GOVERNOR};
-                for (String file : readPermission)
-                    RootUtils.runCommand("chmod 444 " + file);
-
                 String[] writePermission = {LMK_MINFREE};
                 for (String file : writePermission)
                     RootUtils.runCommand("chmod 644 " + file);
@@ -279,9 +273,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
             setInterface();
 
             if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
-            for (int i = 0; i < mList.size(); i++) {
-                if (mList.get(i).getFragment() != null)
-                    if (LAUNCH_NAME.equals(mList.get(i).getFragment().getClass().getSimpleName()))
+            for (int i = 0; i < ITEMS.size(); i++) {
+                if (ITEMS.get(i).getFragment() != null)
+                    if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))
                         selectItem(i);
             }
         }

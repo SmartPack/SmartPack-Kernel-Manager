@@ -24,9 +24,11 @@ import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
+import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.services.BootService;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
@@ -153,6 +155,27 @@ public class SettingsFragment extends RecyclerViewFragment {
         });
 
         addView(mShowToastCard);
+
+        CardViewItem.DCardView mTestCard = new CardViewItem.DCardView();
+        mTestCard.setTitle(getString(R.string.test));
+        mTestCard.setDescription(getString(R.string.test_summary));
+        mTestCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                boolean applyonbootenabled = false;
+                for (ListAdapter.ListItem item : Constants.ITEMS)
+                    if (item.getFragment() != null && Utils.getBoolean(item.getFragment().getClass().getSimpleName()
+                            + "onboot", false, getActivity())) {
+                        applyonbootenabled = true;
+                        break;
+                    }
+                if (applyonbootenabled)
+                    getActivity().startService(new Intent(getActivity(), BootService.class));
+                else Utils.toast(getString(R.string.enable_apply_on_boot_first), getActivity());
+            }
+        });
+
+        addView(mTestCard);
     }
 
     private void debuggingInit() {

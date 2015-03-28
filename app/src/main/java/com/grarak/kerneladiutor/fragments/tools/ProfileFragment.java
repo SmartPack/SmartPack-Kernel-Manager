@@ -108,7 +108,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 String stop = getString(R.string.tools);
                 final List<Class> fragments = new ArrayList<>();
                 final List<TintCheckBox> checkBoxes = new ArrayList<>();
-                for (ListAdapter.ListItem item : Constants.mList) {
+                for (ListAdapter.ListItem item : Constants.ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
                         if (item.getTitle().equals(stop)) load = true;

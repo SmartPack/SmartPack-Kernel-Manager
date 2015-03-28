@@ -29,36 +29,36 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 public class DashClockService extends DashClockExtension {
 
     private boolean running = false;
+    private ExtensionData extensionData;
 
     @Override
     protected void onUpdateData(int reason) {
         final String status = getString(R.string.app_name);
         final int cores = CPU.getCoreCount();
 
+        if (extensionData == null)
+            extensionData = new ExtensionData().visible(true).icon(R.drawable.ic_launcher_preview);
         if (!running) new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     try {
                         String body = "";
+                        if (RootUtils.rootAccess()) {
+                            String cpu = "";
+                            for (int i = 0; i < cores; i++) {
+                                if (!cpu.isEmpty()) cpu += " | ";
+                                int freq = CPU.getCurFreq(i) / 1000;
+                                cpu += freq == 0 ? "Offline" : freq;
+                            }
+                            if (!cpu.isEmpty()) body += "CPU: " + cpu + "\n";
+                            body += "GOVERNOR: " + CPU.getCurGovernor(0) + "\n";
 
-                        String cpu = "";
-                        for (int i = 0; i < cores; i++) {
-                            if (!cpu.isEmpty()) cpu += " | ";
-                            int freq = CPU.getCurFreq(i) / 1000;
-                            cpu += freq == 0 ? "Offline" : freq;
-                        }
-                        if (!cpu.isEmpty()) body += "CPU: " + cpu + "\n";
-                        body += "GOVERNOR: " + CPU.getCurGovernor(0) + "\n";
+                            if (GPU.hasGpuCurFreq())
+                                body += "GPU: " + (GPU.getGpuCurFreq() / 1000000) + "MHz";
+                        } else body = getString(R.string.no_root);
 
-                        if (GPU.hasGpuCurFreq())
-                            body += "GPU: " + (GPU.getGpuCurFreq() / 1000000) + "MHz";
-
-                        publishUpdate(new ExtensionData()
-                                .visible(true)
-                                .icon(R.mipmap.ic_launcher)
-                                .status(status)
-                                .expandedBody(body));
+                        publishUpdate(extensionData.status(status).expandedBody(body));
                         Thread.sleep(5000);
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -92,31 +92,27 @@ public class BootService extends Service {
             mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
                     .setContentText(getString(R.string.apply_on_boot_time, delay))
-                    .setSmallIcon(R.mipmap.ic_launcher);
+                    .setSmallIcon(R.drawable.ic_launcher_preview);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (Utils.getBoolean("applyonbootnotification", true, BootService.this)) {
-                        for (int i = delay; i >= 0; i--)
-                            try {
-                                Thread.sleep(1000);
-                                mBuilder.setContentText(getString(R.string.apply_on_boot_time, i))
-                                        .setProgress(delay, delay - i, false);
-                                mNotifyManager.notify(id, mBuilder.build());
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
-                        mNotifyManager.notify(id, mBuilder.build());
-                        apply(applys);
-                    } else {
+                    boolean notification = Utils.getBoolean("applyonbootnotification", true, BootService.this);
+                    for (int i = delay; i >= 0; i--)
                         try {
-                            Thread.sleep(delay * 1000);
-                            apply(applys);
+                            Thread.sleep(1000);
+                            String note = getString(R.string.apply_on_boot_time, i);
+                            if (notification) {
+                                mBuilder.setContentText(note).setProgress(delay, delay - i, false);
+                                mNotifyManager.notify(id, mBuilder.build());
+                            } else if ((i % 10 == 0 || i == delay) && i != 0) toast(note);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                    if (notification) {
+                        mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
+                        mNotifyManager.notify(id, mBuilder.build());
                     }
+                    apply(applys);
                 }
             }).start();
         } else stopSelf();
