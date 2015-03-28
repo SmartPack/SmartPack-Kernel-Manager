@@ -49,7 +49,7 @@ public class Control implements Constants {
         sysDB.close();
     }
 
-    private static void run(String command, String sys, Context context) {
+    private static synchronized void run(String command, String sys, Context context) {
         RootUtils.runCommand(command);
         commandSaver(context, sys, command);
     }
@@ -95,42 +95,38 @@ public class Control implements Constants {
     }
 
     public static void bringCoresOnline() {
-        new Thread() {
-            public void run() {
-                try {
-                    for (int i = 0; i < CPU.getCoreCount(); i++)
-                        RootUtils.runCommand("echo 1 > " + String.format(CPU_CORE_ONLINE, i));
-                    // Give CPU some time to bring core online
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        try {
+            for (int i = 0; i < CPU.getCoreCount(); i++)
+                RootUtils.runCommand("echo 1 > " + String.format(CPU_CORE_ONLINE, i));
+            // Give CPU some time to bring core online
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void runCommand(final String value, final String file, final CommandType command, final int id,
                                   final Context context) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (command == CommandType.CPU) {
+        if (command == CommandType.CPU) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
                         setPermission(String.format(file, i), 644, context);
                         runGeneric(String.format(file, i), value, id, context);
                         setPermission(String.format(file, i), 444, context);
                     }
-                } else if (command == CommandType.GENERIC) {
-                    runGeneric(file, value, id, context);
-                } else if (command == CommandType.TCP_CONGESTION) {
-                    runTcpCongestion(value, context);
-                } else if (command == CommandType.FAUX_GENERIC) {
-                    runFauxGeneric(file, value, context);
-                } else if (command == CommandType.SELINUX) {
-                    runSelinux(Utils.stringToInt(value), context);
                 }
-            }
-        }).start();
+            }).start();
+        } else if (command == CommandType.GENERIC) {
+            runGeneric(file, value, id, context);
+        } else if (command == CommandType.TCP_CONGESTION) {
+            runTcpCongestion(value, context);
+        } else if (command == CommandType.FAUX_GENERIC) {
+            runFauxGeneric(file, value, context);
+        } else if (command == CommandType.SELINUX) {
+            runSelinux(Utils.stringToInt(value), context);
+        }
     }
 
     public static void runCommand(final String value, final String file, final CommandType command, final Context context) {

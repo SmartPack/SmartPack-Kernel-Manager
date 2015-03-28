@@ -252,12 +252,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.setBackLightDimmerThreshold(position, getActivity());
         else if (dSeekBarCardView == mBackLightDimmerOffsetCard)
             Screen.setBackLightDimmerOffset(position, getActivity());
-        else if (dSeekBarCardView == mColorCalibrationMinCard) {
-            for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
-                if (position == seekBarCardView.getProgress())
-                    setScreenColor(seekBarCardView, position);
+        else if (dSeekBarCardView == mColorCalibrationMinCard)
             Screen.setColorCalibrationMin(Utils.stringToInt(mColorCalibrationLimits.get(position)), getActivity());
-        } else if (dSeekBarCardView == mSaturationIntensityCard)
+        else if (dSeekBarCardView == mSaturationIntensityCard)
             Screen.setSaturationIntensity(position + 225, getActivity());
         else if (dSeekBarCardView == mScreenHueCard)
             Screen.setScreenHue(position, getActivity());
