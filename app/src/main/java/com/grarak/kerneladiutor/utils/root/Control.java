@@ -35,8 +35,7 @@ public class Control implements Constants {
         GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC, SELINUX
     }
 
-    public static void commandSaver(Context context, String sys, String command) {
-        Log.i(TAG, "Run command: " + command);
+    public static void commandSaver(final Context context, final String sys, final String command) {
         SysDB sysDB = new SysDB(context);
         sysDB.create();
 
@@ -47,9 +46,12 @@ public class Control implements Constants {
 
         sysDB.insertSys(sys, command);
         sysDB.close();
+
+        Log.i(TAG, "Run command: " + command);
+
     }
 
-    private static synchronized void run(String command, String sys, Context context) {
+    private static void run(String command, String sys, Context context) {
         RootUtils.runCommand(command);
         commandSaver(context, sys, command);
     }
@@ -105,27 +107,37 @@ public class Control implements Constants {
         }
     }
 
+    private static Thread mThread;
+
     public static void runCommand(final String value, final String file, final CommandType command, final int id,
                                   final Context context) {
-        if (command == CommandType.CPU) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (command == CommandType.CPU) {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
                         setPermission(String.format(file, i), 644, context);
                         runGeneric(String.format(file, i), value, id, context);
                         setPermission(String.format(file, i), 444, context);
                     }
+                } else if (command == CommandType.GENERIC) {
+                    runGeneric(file, value, id, context);
+                } else if (command == CommandType.TCP_CONGESTION) {
+                    runTcpCongestion(value, context);
+                } else if (command == CommandType.FAUX_GENERIC) {
+                    runFauxGeneric(file, value, context);
+                } else if (command == CommandType.SELINUX) {
+                    runSelinux(Utils.stringToInt(value), context);
                 }
-            }).start();
-        } else if (command == CommandType.GENERIC) {
-            runGeneric(file, value, id, context);
-        } else if (command == CommandType.TCP_CONGESTION) {
-            runTcpCongestion(value, context);
-        } else if (command == CommandType.FAUX_GENERIC) {
-            runFauxGeneric(file, value, context);
-        } else if (command == CommandType.SELINUX) {
-            runSelinux(Utils.stringToInt(value), context);
+            }
+        });
+
+        try {
+            if (mThread != null) mThread.join();
+            thread.start();
+            mThread = thread;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

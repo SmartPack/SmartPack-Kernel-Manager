@@ -270,7 +270,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                         if (Screen.getColorCalibrationMin() > current)
                             Screen.setColorCalibrationMin(current, getActivity());
                     }
-                    setScreenColor(dSeekBarCardView, position);
+                    int r = mColorCalibrationCard[0].getProgress();
+                    int g = mColorCalibrationCard[1].getProgress();
+                    int b = mColorCalibrationCard[2].getProgress();
+                    Screen.setColorCalibration(mColorCalibrationLimits.get(r) + " " +
+                            mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
                     return;
                 }
         }
@@ -299,18 +303,6 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             default:
                 return null;
         }
-    }
-
-    private void setScreenColor(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        String command = "";
-        for (SeekBarCardView.DSeekBarCardView colorCard : mColorCalibrationCard) {
-            String color;
-            if (dSeekBarCardView == colorCard)
-                color = mColorCalibrationLimits.get(position);
-            else color = mColorCalibrationLimits.get(colorCard.getProgress());
-            command += command.isEmpty() ? color : " " + color;
-        }
-        Screen.setColorCalibration(command, getActivity());
     }
 
 }

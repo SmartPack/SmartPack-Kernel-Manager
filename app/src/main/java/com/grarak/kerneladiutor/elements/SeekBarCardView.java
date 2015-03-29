@@ -77,10 +77,8 @@ public class SeekBarCardView extends BaseCardView {
                     progress = seekBar.getProgress();
                     changed = true;
                 }
-                if (onSeekBarCardListener != null && changed) {
-                    onSeekBarCardListener.onChanged(SeekBarCardView.this, seekBar.getProgress());
+                if (onSeekBarCardListener != null && changed)
                     onSeekBarCardListener.onStop(SeekBarCardView.this, seekBar.getProgress());
-                }
             }
         });
         seekBarView.setProgress(progress);
