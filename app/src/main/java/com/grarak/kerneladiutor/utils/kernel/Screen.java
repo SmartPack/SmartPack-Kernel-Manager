@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.utils.kernel;
 import android.content.Context;
 
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.GammaProfiles;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
@@ -33,6 +34,8 @@ public class Screen implements Constants {
 
     private static String SCREEN_CALIBRATION;
     private static String SCREEN_CALIBRATION_CTRL;
+
+    private static GammaProfiles GAMMA_PROFILES;
 
     private static String MIN_BRIGHTNESS;
 
@@ -100,6 +103,289 @@ public class Screen implements Constants {
 
     public static boolean hasBackLightDimmerEnable() {
         return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
+    }
+
+    public static void setDsiPanelProfile(int profile, Context context) {
+        GammaProfiles.DsiPanelProfiles dsiPanelProfiles = getDsiPanelProfiles(context);
+        setRedPositive(dsiPanelProfiles.getRedPositive(profile), context);
+        setRedNegative(dsiPanelProfiles.getRedNegative(profile), context);
+        setGreenPositive(dsiPanelProfiles.getGreenPositive(profile), context);
+        setGreenNegative(dsiPanelProfiles.getGreenNegative(profile), context);
+        setBluePositive(dsiPanelProfiles.getBluePositive(profile), context);
+        setBlueNegative(dsiPanelProfiles.getBlueNegative(profile), context);
+        setWhitePoint(dsiPanelProfiles.getWhitePoint(profile), context);
+    }
+
+    public static void setWhitePoint(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_W, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBlueNegative(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_BN, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBluePositive(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_BP, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenNegative(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_GN, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenPositive(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_GP, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedNegative(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_RN, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedPositive(String value, Context context) {
+        Control.runCommand(value, DSI_PANEL_RP, Control.CommandType.GENERIC, context);
+    }
+
+    public static GammaProfiles.DsiPanelProfiles getDsiPanelProfiles(Context context) {
+        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        return GAMMA_PROFILES.getDsiPanelProfiles();
+    }
+
+    public static String getWhitePoint() {
+        return Utils.readFile(DSI_PANEL_W);
+    }
+
+    public static String getBlueNegative() {
+        return Utils.readFile(DSI_PANEL_BN);
+    }
+
+    public static String getBluePositive() {
+        return Utils.readFile(DSI_PANEL_BP);
+    }
+
+    public static String getGreenNegative() {
+        return Utils.readFile(DSI_PANEL_GN);
+    }
+
+    public static String getGreenPositive() {
+        return Utils.readFile(DSI_PANEL_GP);
+    }
+
+    public static String getRedNegative() {
+        return Utils.readFile(DSI_PANEL_RN);
+    }
+
+    public static String getRedPositive() {
+        return Utils.readFile(DSI_PANEL_RP);
+    }
+
+    public static boolean hasDsiPanel() {
+        for (String file : DSI_PANEL_ARRAY) if (Utils.existFile(file)) return true;
+        return false;
+    }
+
+    public static void setGammaControlProfile(int profile, Context context) {
+        GammaProfiles.GammaControlProfiles gammaControlProfiles = getGammaControlProfiles(context);
+        setColorCalibration(gammaControlProfiles.getKCAL(profile), context);
+        setRedGreys(gammaControlProfiles.getRedGreys(profile), context);
+        setRedMids(gammaControlProfiles.getRedMids(profile), context);
+        setRedBlacks(gammaControlProfiles.getRedBlacks(profile), context);
+        setRedWhites(gammaControlProfiles.getRedWhites(profile), context);
+        setGreenGreys(gammaControlProfiles.getGreenGreys(profile), context);
+        setGreenMids(gammaControlProfiles.getGreenMids(profile), context);
+        setGreenBlacks(gammaControlProfiles.getGreenBlacks(profile), context);
+        setGreenWhites(gammaControlProfiles.getGreenWhites(profile), context);
+        setBlueGreys(gammaControlProfiles.getBlueGreys(profile), context);
+        setBlueMids(gammaControlProfiles.getBlueMids(profile), context);
+        setBlueBlacks(gammaControlProfiles.getBlueBlacks(profile), context);
+        setBlueWhites(gammaControlProfiles.getBlueWhites(profile), context);
+        setGammaContrast(gammaControlProfiles.getContrast(profile), context);
+        setGammaBrightness(gammaControlProfiles.getBrightness(profile), context);
+        setGammaSaturation(gammaControlProfiles.getSaturation(profile), context);
+    }
+
+    public static void setGammaSaturation(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_SATURATION, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGammaBrightness(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_BRIGHTNESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGammaContrast(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_CONTRAST, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBlueWhites(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_BLUE_WHITES, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBlueBlacks(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_BLUE_BLACKS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBlueMids(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_BLUE_MIDS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setBlueGreys(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_BLUE_GREYS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenWhites(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_GREEN_WHITES, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenBlacks(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_GREEN_BLACKS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenMids(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_GREEN_MIDS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGreenGreys(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_GREEN_GREYS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedWhites(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_RED_WHITES, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedBlacks(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_RED_BLACKS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedMids(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_RED_MIDS, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setRedGreys(String value, Context context) {
+        Control.runCommand(value, GAMMACONTROL_RED_GREYS, Control.CommandType.GENERIC, context);
+    }
+
+    public static GammaProfiles.GammaControlProfiles getGammaControlProfiles(Context context) {
+        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        return GAMMA_PROFILES.getGammaControl();
+    }
+
+    public static String getGammaSaturation() {
+        return Utils.readFile(GAMMACONTROL_SATURATION);
+    }
+
+    public static String getGammaBrightness() {
+        return Utils.readFile(GAMMACONTROL_BRIGHTNESS);
+    }
+
+    public static String getGammaContrast() {
+        return Utils.readFile(GAMMACONTROL_CONTRAST);
+    }
+
+    public static String getBlueWhites() {
+        return Utils.readFile(GAMMACONTROL_BLUE_WHITES);
+    }
+
+    public static String getBlueBlacks() {
+        return Utils.readFile(GAMMACONTROL_BLUE_BLACKS);
+    }
+
+    public static String getBlueMids() {
+        return Utils.readFile(GAMMACONTROL_BLUE_MIDS);
+    }
+
+    public static String getBlueGreys() {
+        return Utils.readFile(GAMMACONTROL_BLUE_GREYS);
+    }
+
+    public static String getGreenWhites() {
+        return Utils.readFile(GAMMACONTROL_GREEN_WHITES);
+    }
+
+    public static String getGreenBlacks() {
+        return Utils.readFile(GAMMACONTROL_GREEN_BLACKS);
+    }
+
+    public static String getGreenMids() {
+        return Utils.readFile(GAMMACONTROL_GREEN_MIDS);
+    }
+
+    public static String getGreenGreys() {
+        return Utils.readFile(GAMMACONTROL_GREEN_GREYS);
+    }
+
+    public static String getRedWhites() {
+        return Utils.readFile(GAMMACONTROL_RED_WHITES);
+    }
+
+    public static String getRedBlacks() {
+        return Utils.readFile(GAMMACONTROL_RED_BLACKS);
+    }
+
+    public static String getRedMids() {
+        return Utils.readFile(GAMMACONTROL_RED_MIDS);
+    }
+
+    public static String getRedGreys() {
+        return Utils.readFile(GAMMACONTROL_RED_GREYS);
+    }
+
+    public static boolean hasGammaControl() {
+        for (String file : GAMMACONTROL_ARRAY) if (Utils.existFile(file)) return true;
+        return false;
+    }
+
+    public static void setKGammaProfile(int profile, Context context) {
+        GammaProfiles.KGammaProfiles kGammaProfiles = getKGammaProfiles(context);
+        if (kGammaProfiles == null) return;
+        setColorCalibration(kGammaProfiles.getKCAL(profile), context);
+        setKGammaRed(kGammaProfiles.getGammaRed(profile), context);
+        setKGammaGreen(kGammaProfiles.getGammaGreen(profile), context);
+        setKGammaBlue(kGammaProfiles.getGammaBlue(profile), context);
+    }
+
+    public static void setKGammaBlue(String value, Context context) {
+        if (Utils.existFile(K_GAMMA_BLUE))
+            Control.runCommand(value, K_GAMMA_BLUE, Control.CommandType.GENERIC, context);
+        else
+            Control.runCommand(value, K_GAMMA_B, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setKGammaGreen(String value, Context context) {
+        if (Utils.existFile(K_GAMMA_GREEN))
+            Control.runCommand(value, K_GAMMA_GREEN, Control.CommandType.GENERIC, context);
+        else
+            Control.runCommand(value, K_GAMMA_G, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setKGammaRed(String value, Context context) {
+        if (Utils.existFile(K_GAMMA_RED))
+            Control.runCommand(value, K_GAMMA_RED, Control.CommandType.GENERIC, context);
+        else
+            Control.runCommand(value, K_GAMMA_R, Control.CommandType.GENERIC, context);
+    }
+
+    public static GammaProfiles.KGammaProfiles getKGammaProfiles(Context context) {
+        if (Utils.existFile(K_GAMMA_BLUE)) return null;
+        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        return GAMMA_PROFILES.getKGamma();
+    }
+
+    public static String getKGammaBlue() {
+        if (Utils.existFile(K_GAMMA_BLUE)) return Utils.readFile(K_GAMMA_BLUE);
+        return Utils.readFile(K_GAMMA_B);
+    }
+
+    public static String getKGammaGreen() {
+        if (Utils.existFile(K_GAMMA_GREEN)) return Utils.readFile(K_GAMMA_GREEN);
+        return Utils.readFile(K_GAMMA_G);
+    }
+
+    public static String getKGammaRed() {
+        if (Utils.existFile(K_GAMMA_RED)) return Utils.readFile(K_GAMMA_RED);
+        return Utils.readFile(K_GAMMA_R);
+    }
+
+    public static boolean hasKGamma() {
+        for (String file : K_GAMMA_ARRAY) if (Utils.existFile(file)) return true;
+        return false;
     }
 
     public static void setScreenContrast(int value, Context context) {

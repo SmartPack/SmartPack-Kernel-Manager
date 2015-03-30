@@ -44,6 +44,10 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,6 +59,33 @@ import java.util.Locale;
 public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
+
+    public static String readAssetFile(Context context, String file) {
+        BufferedReader in = null;
+        try {
+            StringBuilder buf = new StringBuilder();
+            InputStream is = context.getAssets().open(file);
+            in = new BufferedReader(new InputStreamReader(is));
+
+            String str;
+            boolean isFirst = true;
+            while ((str = in.readLine()) != null) {
+                if (isFirst) isFirst = false;
+                else buf.append('\n');
+                buf.append(str);
+            }
+            return buf.toString();
+        } catch (IOException e) {
+            Log.e(TAG, "Unable to read " + file);
+        } finally {
+            if (in != null) try {
+                in.close();
+            } catch (IOException e) {
+                Log.e(TAG, "Unable to close Reader " + file);
+            }
+        }
+        return null;
+    }
 
     public static void setLocale(String lang, Context context) {
         Resources res = context.getResources();

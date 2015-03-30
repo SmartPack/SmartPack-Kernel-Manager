@@ -319,6 +319,49 @@ public interface Constants {
 
     String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_CTRL, SCREEN_DIAG0_POWER_CTRL, SCREEN_COLOR_CONTROL_CTRL};
 
+    // Gamma
+    String K_GAMMA_R = "/sys/devices/platform/mipi_lgit.1537/kgamma_r";
+    String K_GAMMA_G = "/sys/devices/platform/mipi_lgit.1537/kgamma_g";
+    String K_GAMMA_B = "/sys/devices/platform/mipi_lgit.1537/kgamma_b";
+
+    String K_GAMMA_RED = "/sys/devices/platform/mipi_lgit.1537/kgamma_red";
+    String K_GAMMA_GREEN = "/sys/devices/platform/mipi_lgit.1537/kgamma_green";
+    String K_GAMMA_BLUE = "/sys/devices/platform/mipi_lgit.1537/kgamma_blue";
+
+    String[] K_GAMMA_ARRAY = {K_GAMMA_R, K_GAMMA_G, K_GAMMA_B, K_GAMMA_RED, K_GAMMA_GREEN, K_GAMMA_BLUE};
+
+    String GAMMACONTROL_RED_GREYS = "/sys/class/misc/gammacontrol/red_greys";
+    String GAMMACONTROL_RED_MIDS = "/sys/class/misc/gammacontrol/red_mids";
+    String GAMMACONTROL_RED_BLACKS = "/sys/class/misc/gammacontrol/red_blacks";
+    String GAMMACONTROL_RED_WHITES = "/sys/class/misc/gammacontrol/red_whites";
+    String GAMMACONTROL_GREEN_GREYS = "/sys/class/misc/gammacontrol/green_greys";
+    String GAMMACONTROL_GREEN_MIDS = "/sys/class/misc/gammacontrol/green_mids";
+    String GAMMACONTROL_GREEN_BLACKS = "/sys/class/misc/gammacontrol/green_blacks";
+    String GAMMACONTROL_GREEN_WHITES = "/sys/class/misc/gammacontrol/green_whites";
+    String GAMMACONTROL_BLUE_GREYS = "/sys/class/misc/gammacontrol/blue_greys";
+    String GAMMACONTROL_BLUE_MIDS = "/sys/class/misc/gammacontrol/blue_mids";
+    String GAMMACONTROL_BLUE_BLACKS = "/sys/class/misc/gammacontrol/blue_blacks";
+    String GAMMACONTROL_BLUE_WHITES = "/sys/class/misc/gammacontrol/blue_whites";
+    String GAMMACONTROL_CONTRAST = "/sys/class/misc/gammacontrol/contrast";
+    String GAMMACONTROL_BRIGHTNESS = "/sys/class/misc/gammacontrol/brightness";
+    String GAMMACONTROL_SATURATION = "/sys/class/misc/gammacontrol/saturation";
+
+    String[] GAMMACONTROL_ARRAY = {GAMMACONTROL_RED_GREYS, GAMMACONTROL_RED_MIDS, GAMMACONTROL_RED_BLACKS, GAMMACONTROL_RED_WHITES,
+            GAMMACONTROL_GREEN_GREYS, GAMMACONTROL_GREEN_MIDS, GAMMACONTROL_GREEN_BLACKS, GAMMACONTROL_GREEN_WHITES,
+            GAMMACONTROL_BLUE_GREYS, GAMMACONTROL_BLUE_MIDS, GAMMACONTROL_BLUE_BLACKS, GAMMACONTROL_BLUE_WHITES, GAMMACONTROL_CONTRAST,
+            GAMMACONTROL_BRIGHTNESS, GAMMACONTROL_SATURATION};
+
+    String DSI_PANEL_RP = "/sys/module/dsi_panel/kgamma_rp";
+    String DSI_PANEL_RN = "/sys/module/dsi_panel/kgamma_rn";
+    String DSI_PANEL_GP = "/sys/module/dsi_panel/kgamma_gp";
+    String DSI_PANEL_GN = "/sys/module/dsi_panel/kgamma_gn";
+    String DSI_PANEL_BP = "/sys/module/dsi_panel/kgamma_bp";
+    String DSI_PANEL_BN = "/sys/module/dsi_panel/kgamma_bn";
+    String DSI_PANEL_W = "/sys/module/dsi_panel/kgamma_w";
+
+    String[] DSI_PANEL_ARRAY = {DSI_PANEL_RP, DSI_PANEL_RN, DSI_PANEL_GP, DSI_PANEL_GN, DSI_PANEL_BP, DSI_PANEL_BN, DSI_PANEL_W};
+
+    // Backlight
     String LM3630_BACKLIGHT_DIMMER = "/sys/module/lm3630_bl/parameters/backlight_dimmer";
     String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
     String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
@@ -329,6 +372,7 @@ public interface Constants {
     String[] MIN_BRIGHTNESS_ARRAY = {LM3630_MIN_BRIGHTNESS, MSM_BACKLIGHT_DIMMER};
 
     String[][] SCREEN_ARRAY = {SCREEN_KCAL_ARRAY, SCREEN_KCAL_CTRL_ARRAY, MIN_BRIGHTNESS_ARRAY, SCREEN_KCAL_CTRL_NEW_ARRAY,
+            K_GAMMA_ARRAY, GAMMACONTROL_ARRAY, DSI_PANEL_ARRAY,
             {SCREEN_KCAL_CTRL_MIN, LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD, LM3630_BACKLIGHT_DIMMER_OFFSET}};
 
     // Wake

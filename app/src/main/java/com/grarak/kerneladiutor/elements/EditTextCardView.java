@@ -68,11 +68,11 @@ public class EditTextCardView extends CardViewItem {
                         }).setPositiveButton(getContext().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        value = editText.getText().toString();
                         if (onEditTextCardListener != null)
                             onEditTextCardListener.onApply(EditTextCardView.this, editText.getText().toString());
                     }
                 }).show();
-
             }
         });
     }

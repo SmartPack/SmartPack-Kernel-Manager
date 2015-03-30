@@ -48,8 +48,6 @@ public class VMFragment extends RecyclerViewFragment {
                     for (int i = 0; i < mVMCard.length; i++)
                         if (dEditTextCard == mVMCard[i]) {
                             dEditTextCard.setDescription(value);
-                            dEditTextCard.setValue(value);
-
                             VM.setVM(value, VM.getVMfiles().get(i), getActivity());
 
                             new Thread(new Runnable() {

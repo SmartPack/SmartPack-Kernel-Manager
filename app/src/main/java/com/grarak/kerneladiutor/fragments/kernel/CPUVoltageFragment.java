@@ -78,8 +78,6 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                             CPUVoltage.setVoltage(freqs.get(i), value, getActivity());
 
                     dEditTextCard.setDescription(value + getString(R.string.mv));
-                    dEditTextCard.setValue(value);
-
                     refresh();
                 }
             });
