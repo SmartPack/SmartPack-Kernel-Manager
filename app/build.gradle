@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 60
-        versionName "0.8.8.2 beta"
+        versionName "0.8.8.3"
     }
     buildTypes {
         release {
