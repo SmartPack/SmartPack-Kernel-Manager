@@ -107,12 +107,20 @@ public class Wake implements Constants {
         list.add(context.getString(R.string.disabled));
         if (S2W_FILE != null) {
             switch (S2W_FILE) {
-                case S2W_ONLY:
-                    list.add(context.getString(R.string.enabled));
-                    break;
                 case SW2:
                     list.add(context.getString(R.string.s2w) + " + " + context.getString(R.string.s2s));
                     list.add(context.getString(R.string.s2s));
+                    break;
+                case SCREEN_WAKE_OPTIONS:
+                    list.add(context.getString(R.string.s2w));
+                    list.add(context.getString(R.string.s2w_charging));
+                    list.add(context.getString(R.string.dt2w));
+                    list.add(context.getString(R.string.dt2w_charging));
+                    list.add(context.getString(R.string.dt2w) + " + " + context.getString(R.string.s2w));
+                    list.add(context.getString(R.string.dt2w_s2w_charging));
+                    break;
+                default:
+                    list.add(context.getString(R.string.enabled));
                     break;
             }
         }
@@ -153,6 +161,9 @@ public class Wake implements Constants {
                 case DT2W:
                     list.add(context.getString(R.string.halfscreen));
                     list.add(context.getString(R.string.fullscreen));
+                    break;
+                case SCREEN_SLEEP_OPTIONS:
+                    list.add(context.getString(R.string.dt2s));
                     break;
                 default:
                     list.add(context.getString(R.string.enabled));

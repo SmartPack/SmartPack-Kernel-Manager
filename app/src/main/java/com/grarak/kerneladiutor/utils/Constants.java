@@ -384,14 +384,17 @@ public interface Constants {
     String DT2W = "/sys/android_touch/doubletap2wake";
     String TOUCH_PANEL_DT2W = "/proc/touchpanel/double_tap_enable";
     String DT2W_WAKEUP_GESTURE = "/sys/devices/virtual/input/input1/wakeup_gesture";
+    String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
 
-    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE};
+    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE,
+            SCREEN_SLEEP_OPTIONS};
 
     // S2W
     String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     String SW2 = "/sys/android_touch/sweep2wake";
+    String SCREEN_WAKE_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_wake_options";
 
-    String[] S2W_ARRY = {S2W_ONLY, SW2};
+    String[] S2W_ARRY = {S2W_ONLY, SW2, SCREEN_WAKE_OPTIONS};
 
     // T2W
     String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";

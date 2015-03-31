@@ -279,8 +279,12 @@
     <string name="top_half">Top half</string>
     <string name="halfscreen">Halfscreen</string>
     <string name="fullscreen">Fullscreen</string>
+    <string name="dt2w_charging">DoubleTap2Wake while charging</string>
+    <string name="dt2s">DoubleTap2Sleep</string>
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the navigation bar.</string>
+    <string name="s2w_charging">Sweep2Wake while charging</string>
+    <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
     <string name="s2s">Sweep2Sleep</string>
     <string name="t2w">Tap2Wake</string>
     <string name="t2w_summary">Wake up your device by tapping the screen.</string>
