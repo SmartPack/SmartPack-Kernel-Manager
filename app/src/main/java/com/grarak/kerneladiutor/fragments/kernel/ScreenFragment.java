@@ -55,9 +55,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCardView mScreenValueCard;
     private SeekBarCardView.DSeekBarCardView mScreenContrastCard;
 
-    private EditTextCardView.DEditTextCard mKGammaRedCard;
-    private EditTextCardView.DEditTextCard mKGammaGreenCard;
     private EditTextCardView.DEditTextCard mKGammaBlueCard;
+    private EditTextCardView.DEditTextCard mKGammaGreenCard;
+    private EditTextCardView.DEditTextCard mKGammaRedCard;
     private PopupCardItem.DPopupCard mKGammaProfilesCard;
 
     private EditTextCardView.DEditTextCard mGammaControlRedGreysCard;
@@ -77,12 +77,12 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private EditTextCardView.DEditTextCard mGammaControlSaturationCard;
     private PopupCardItem.DPopupCard mGammaControlProfilesCard;
 
-    private EditTextCardView.DEditTextCard mDsiPanelRedPositiveCard;
-    private EditTextCardView.DEditTextCard mDsiPanelRedNegativeCard;
-    private EditTextCardView.DEditTextCard mDsiPanelGreenPositiveCard;
-    private EditTextCardView.DEditTextCard mDsiPanelGreenNegativeCard;
-    private EditTextCardView.DEditTextCard mDsiPanelBluePositiveCard;
     private EditTextCardView.DEditTextCard mDsiPanelBlueNegativeCard;
+    private EditTextCardView.DEditTextCard mDsiPanelBluePositiveCard;
+    private EditTextCardView.DEditTextCard mDsiPanelGreenNegativeCard;
+    private EditTextCardView.DEditTextCard mDsiPanelGreenPositiveCard;
+    private EditTextCardView.DEditTextCard mDsiPanelRedNegativeCard;
+    private EditTextCardView.DEditTextCard mDsiPanelRedPositiveCard;
     private EditTextCardView.DEditTextCard mDsiPanelWhitePointCard;
     private PopupCardItem.DPopupCard mDsiPanelProfilesCard;
 
@@ -220,14 +220,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
-        String red = Screen.getKGammaRed();
-        mKGammaRedCard = new EditTextCardView.DEditTextCard();
-        mKGammaRedCard.setTitle(getString(R.string.red));
-        mKGammaRedCard.setDescription(red);
-        mKGammaRedCard.setValue(red);
-        mKGammaRedCard.setOnDEditTextCardListener(this);
+        String blue = Screen.getKGammaBlue();
+        mKGammaBlueCard = new EditTextCardView.DEditTextCard();
+        mKGammaBlueCard.setTitle(getString(R.string.blue));
+        mKGammaBlueCard.setDescription(blue);
+        mKGammaBlueCard.setValue(blue);
+        mKGammaBlueCard.setOnDEditTextCardListener(this);
 
-        addView(mKGammaRedCard);
+        addView(mKGammaBlueCard);
 
         String green = Screen.getKGammaGreen();
         mKGammaGreenCard = new EditTextCardView.DEditTextCard();
@@ -238,14 +238,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         addView(mKGammaGreenCard);
 
-        String blue = Screen.getKGammaBlue();
-        mKGammaBlueCard = new EditTextCardView.DEditTextCard();
-        mKGammaBlueCard.setTitle(getString(R.string.blue));
-        mKGammaBlueCard.setDescription(blue);
-        mKGammaBlueCard.setValue(blue);
-        mKGammaBlueCard.setOnDEditTextCardListener(this);
+        String red = Screen.getKGammaRed();
+        mKGammaRedCard = new EditTextCardView.DEditTextCard();
+        mKGammaRedCard.setTitle(getString(R.string.red));
+        mKGammaRedCard.setDescription(red);
+        mKGammaRedCard.setValue(red);
+        mKGammaRedCard.setOnDEditTextCardListener(this);
 
-        addView(mKGammaBlueCard);
+        addView(mKGammaRedCard);
 
         GammaProfiles.KGammaProfiles kGammaProfiles = Screen.getKGammaProfiles(getActivity());
         if (kGammaProfiles != null) {
@@ -424,41 +424,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
-        String redPositive = Screen.getRedPositive();
-        mDsiPanelRedPositiveCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelRedPositiveCard.setTitle(getString(R.string.red_positive));
-        mDsiPanelRedPositiveCard.setDescription(redPositive);
-        mDsiPanelRedPositiveCard.setValue(redPositive);
-        mDsiPanelRedPositiveCard.setOnDEditTextCardListener(this);
+        String blueNegative = Screen.getBlueNegative();
+        mDsiPanelBlueNegativeCard = new EditTextCardView.DEditTextCard();
+        mDsiPanelBlueNegativeCard.setTitle(getString(R.string.blue_negative));
+        mDsiPanelBlueNegativeCard.setDescription(blueNegative);
+        mDsiPanelBlueNegativeCard.setValue(blueNegative);
+        mDsiPanelBlueNegativeCard.setOnDEditTextCardListener(this);
 
-        addView(mDsiPanelRedPositiveCard);
-
-        String redNegative = Screen.getRedNegative();
-        mDsiPanelRedNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelRedNegativeCard.setTitle(getString(R.string.red_negative));
-        mDsiPanelRedNegativeCard.setDescription(redNegative);
-        mDsiPanelRedNegativeCard.setValue(redNegative);
-        mDsiPanelRedNegativeCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelRedNegativeCard);
-
-        String greenPositive = Screen.getGreenPositive();
-        mDsiPanelGreenPositiveCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelGreenPositiveCard.setTitle(getString(R.string.green_positive));
-        mDsiPanelGreenPositiveCard.setDescription(greenPositive);
-        mDsiPanelGreenPositiveCard.setValue(greenPositive);
-        mDsiPanelGreenPositiveCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelGreenPositiveCard);
-
-        String greenNegative = Screen.getGreenNegative();
-        mDsiPanelGreenNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelGreenNegativeCard.setTitle(getString(R.string.green_negative));
-        mDsiPanelGreenNegativeCard.setDescription(greenNegative);
-        mDsiPanelGreenNegativeCard.setValue(greenNegative);
-        mDsiPanelGreenNegativeCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelGreenNegativeCard);
+        addView(mDsiPanelBlueNegativeCard);
 
         String bluePositive = Screen.getBluePositive();
         mDsiPanelBluePositiveCard = new EditTextCardView.DEditTextCard();
@@ -469,14 +442,41 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         addView(mDsiPanelBluePositiveCard);
 
-        String blueNegative = Screen.getBlueNegative();
-        mDsiPanelBlueNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelBlueNegativeCard.setTitle(getString(R.string.blue_negative));
-        mDsiPanelBlueNegativeCard.setDescription(blueNegative);
-        mDsiPanelBlueNegativeCard.setValue(blueNegative);
-        mDsiPanelBlueNegativeCard.setOnDEditTextCardListener(this);
+        String greenNegative = Screen.getGreenNegative();
+        mDsiPanelGreenNegativeCard = new EditTextCardView.DEditTextCard();
+        mDsiPanelGreenNegativeCard.setTitle(getString(R.string.green_negative));
+        mDsiPanelGreenNegativeCard.setDescription(greenNegative);
+        mDsiPanelGreenNegativeCard.setValue(greenNegative);
+        mDsiPanelGreenNegativeCard.setOnDEditTextCardListener(this);
 
-        addView(mDsiPanelBlueNegativeCard);
+        addView(mDsiPanelGreenNegativeCard);
+
+        String greenPositive = Screen.getGreenPositive();
+        mDsiPanelGreenPositiveCard = new EditTextCardView.DEditTextCard();
+        mDsiPanelGreenPositiveCard.setTitle(getString(R.string.green_positive));
+        mDsiPanelGreenPositiveCard.setDescription(greenPositive);
+        mDsiPanelGreenPositiveCard.setValue(greenPositive);
+        mDsiPanelGreenPositiveCard.setOnDEditTextCardListener(this);
+
+        addView(mDsiPanelGreenPositiveCard);
+
+        String redNegative = Screen.getRedNegative();
+        mDsiPanelRedNegativeCard = new EditTextCardView.DEditTextCard();
+        mDsiPanelRedNegativeCard.setTitle(getString(R.string.red_negative));
+        mDsiPanelRedNegativeCard.setDescription(redNegative);
+        mDsiPanelRedNegativeCard.setValue(redNegative);
+        mDsiPanelRedNegativeCard.setOnDEditTextCardListener(this);
+
+        addView(mDsiPanelRedNegativeCard);
+
+        String redPositive = Screen.getRedPositive();
+        mDsiPanelRedPositiveCard = new EditTextCardView.DEditTextCard();
+        mDsiPanelRedPositiveCard.setTitle(getString(R.string.red_positive));
+        mDsiPanelRedPositiveCard.setDescription(redPositive);
+        mDsiPanelRedPositiveCard.setValue(redPositive);
+        mDsiPanelRedPositiveCard.setOnDEditTextCardListener(this);
+
+        addView(mDsiPanelRedPositiveCard);
 
         String whitePoint = Screen.getWhitePoint();
         mDsiPanelWhitePointCard = new EditTextCardView.DEditTextCard();
@@ -763,29 +763,29 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         } else if (dPopupCard == mDsiPanelProfilesCard) {
             Screen.setDsiPanelProfile(position, getActivity());
 
-            String redPositive = Screen.getRedPositive();
-            mDsiPanelRedPositiveCard.setDescription(redPositive);
-            mDsiPanelRedPositiveCard.setValue(redPositive);
-
-            String redNegative = Screen.getRedNegative();
-            mDsiPanelRedNegativeCard.setDescription(redNegative);
-            mDsiPanelRedNegativeCard.setValue(redNegative);
-
-            String greenPositive = Screen.getGreenPositive();
-            mDsiPanelGreenPositiveCard.setDescription(greenPositive);
-            mDsiPanelGreenPositiveCard.setValue(greenPositive);
-
-            String greenNegative = Screen.getGreenNegative();
-            mDsiPanelGreenNegativeCard.setDescription(greenNegative);
-            mDsiPanelGreenNegativeCard.setValue(greenNegative);
+            String blueNegative = Screen.getBlueNegative();
+            mDsiPanelBlueNegativeCard.setDescription(blueNegative);
+            mDsiPanelBlueNegativeCard.setValue(blueNegative);
 
             String bluePositive = Screen.getBluePositive();
             mDsiPanelBluePositiveCard.setDescription(bluePositive);
             mDsiPanelBluePositiveCard.setValue(bluePositive);
 
-            String blueNegative = Screen.getBlueNegative();
-            mDsiPanelBlueNegativeCard.setDescription(blueNegative);
-            mDsiPanelBlueNegativeCard.setValue(blueNegative);
+            String greenNegative = Screen.getGreenNegative();
+            mDsiPanelGreenNegativeCard.setDescription(greenNegative);
+            mDsiPanelGreenNegativeCard.setValue(greenNegative);
+
+            String greenPositive = Screen.getGreenPositive();
+            mDsiPanelGreenPositiveCard.setDescription(greenPositive);
+            mDsiPanelGreenPositiveCard.setValue(greenPositive);
+
+            String redNegative = Screen.getRedNegative();
+            mDsiPanelRedNegativeCard.setDescription(redNegative);
+            mDsiPanelRedNegativeCard.setValue(redNegative);
+
+            String redPositive = Screen.getRedPositive();
+            mDsiPanelRedPositiveCard.setDescription(redPositive);
+            mDsiPanelRedPositiveCard.setValue(redPositive);
 
             String whitePoint = Screen.getWhitePoint();
             mDsiPanelWhitePointCard.setDescription(whitePoint);
