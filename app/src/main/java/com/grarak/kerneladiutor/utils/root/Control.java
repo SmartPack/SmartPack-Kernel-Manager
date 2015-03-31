@@ -64,8 +64,8 @@ public class Control implements Constants {
         run("chmod " + permission + " " + file, file + "permission" + permission, context);
     }
 
-    private static void runGeneric(String file, String value, int id, Context context) {
-        run("echo " + value + " > " + file, id > -1 ? file + id : file, context);
+    private static void runGeneric(String file, String value, String id, Context context) {
+        run("echo " + value + " > " + file, id != null ? file + id : file, context);
     }
 
     private static void runTcpCongestion(String tcpCongestion, Context context) {
@@ -109,7 +109,7 @@ public class Control implements Constants {
 
     private static Thread mThread;
 
-    public static void runCommand(final String value, final String file, final CommandType command, final int id,
+    public static void runCommand(final String value, final String file, final CommandType command, final String id,
                                   final Context context) {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -142,7 +142,7 @@ public class Control implements Constants {
     }
 
     public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
-        runCommand(value, file, command, -1, context);
+        runCommand(value, file, command, null, context);
     }
 
 }

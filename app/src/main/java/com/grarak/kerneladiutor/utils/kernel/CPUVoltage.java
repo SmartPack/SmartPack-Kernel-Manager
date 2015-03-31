@@ -68,7 +68,7 @@ public class CPUVoltage implements Constants {
             Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, context);
         } else if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE)) {
             command = getFreqs().get(position) + " " + Utils.stringToInt(voltage) * 1000;
-            Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, position, context);
+            Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, String.valueOf(position), context);
         }
     }
 

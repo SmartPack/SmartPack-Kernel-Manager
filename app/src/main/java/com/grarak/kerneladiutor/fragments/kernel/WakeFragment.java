@@ -40,6 +40,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     private PopupCardItem.DPopupCard mT2wCard;
     private PopupCardItem.DPopupCard mWakeMiscCard;
     private PopupCardItem.DPopupCard mSleepMiscCard;
+    private SwitchCompatCardItem.DSwitchCompatCard[] mGestureCards;
 
     private SeekBarCardView.DSeekBarCardView mWakeTimeoutCard;
     private SwitchCompatCardItem.DSwitchCompatCard mPowerKeySuspendCard;
@@ -53,6 +54,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Wake.hasT2w()) t2wInit();
         if (Wake.hasWakeMisc()) wakeMiscInit();
         if (Wake.hasSleepMisc()) sleepMiscInit();
+        if (Wake.hasGesture()) gestureInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
     }
@@ -105,6 +107,19 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mSleepMiscCard);
     }
 
+    private void gestureInit() {
+        List<String> gestures = Wake.getGestures(getActivity());
+        mGestureCards = new SwitchCompatCardItem.DSwitchCompatCard[gestures.size()];
+        for (int i = 0; i < mGestureCards.length; i++) {
+            mGestureCards[i] = new SwitchCompatCardItem.DSwitchCompatCard();
+            mGestureCards[i].setDescription(gestures.get(i));
+            mGestureCards[i].setChecked(Wake.isGestureActive(i));
+            mGestureCards[i].setOnDSwitchCompatCardListener(this);
+
+            addView(mGestureCards[i]);
+        }
+    }
+
     private void wakeTimeoutInit() {
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.disabled));
@@ -152,6 +167,13 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mPowerKeySuspendCard)
             Wake.activatePowerKeySuspend(checked, getActivity());
+        else {
+            for (int i = 0; i < mGestureCards.length; i++)
+                if (dSwitchCompatCard == mGestureCards[i]) {
+                    Wake.activateGesture(checked, i, getActivity());
+                    return;
+                }
+        }
     }
 
 }
