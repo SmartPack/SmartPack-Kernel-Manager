@@ -107,12 +107,12 @@ public class Screen implements Constants {
 
     public static void setDsiPanelProfile(int profile, Context context) {
         GammaProfiles.DsiPanelProfiles dsiPanelProfiles = getDsiPanelProfiles(context);
-        setRedPositive(dsiPanelProfiles.getRedPositive(profile), context);
-        setRedNegative(dsiPanelProfiles.getRedNegative(profile), context);
-        setGreenPositive(dsiPanelProfiles.getGreenPositive(profile), context);
-        setGreenNegative(dsiPanelProfiles.getGreenNegative(profile), context);
-        setBluePositive(dsiPanelProfiles.getBluePositive(profile), context);
         setBlueNegative(dsiPanelProfiles.getBlueNegative(profile), context);
+        setBluePositive(dsiPanelProfiles.getBluePositive(profile), context);
+        setGreenNegative(dsiPanelProfiles.getGreenNegative(profile), context);
+        setGreenPositive(dsiPanelProfiles.getGreenPositive(profile), context);
+        setRedNegative(dsiPanelProfiles.getRedNegative(profile), context);
+        setRedPositive(dsiPanelProfiles.getRedPositive(profile), context);
         setWhitePoint(dsiPanelProfiles.getWhitePoint(profile), context);
     }
 
@@ -336,9 +336,9 @@ public class Screen implements Constants {
         GammaProfiles.KGammaProfiles kGammaProfiles = getKGammaProfiles(context);
         if (kGammaProfiles == null) return;
         setColorCalibration(kGammaProfiles.getKCAL(profile), context);
-        setKGammaRed(kGammaProfiles.getGammaRed(profile), context);
-        setKGammaGreen(kGammaProfiles.getGammaGreen(profile), context);
         setKGammaBlue(kGammaProfiles.getGammaBlue(profile), context);
+        setKGammaGreen(kGammaProfiles.getGammaGreen(profile), context);
+        setKGammaRed(kGammaProfiles.getGammaRed(profile), context);
     }
 
     public static void setKGammaBlue(String value, Context context) {
