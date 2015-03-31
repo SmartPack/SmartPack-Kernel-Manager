@@ -38,6 +38,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     private PopupCardItem.DPopupCard mDt2wCard;
     private PopupCardItem.DPopupCard mS2wCard;
     private PopupCardItem.DPopupCard mT2wCard;
+    private PopupCardItem.DPopupCard mWakeMiscCard;
+    private PopupCardItem.DPopupCard mSleepMiscCard;
 
     private SeekBarCardView.DSeekBarCardView mWakeTimeoutCard;
     private SwitchCompatCardItem.DSwitchCompatCard mPowerKeySuspendCard;
@@ -49,6 +51,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Wake.hasDt2w()) dt2wInit();
         if (Wake.hasS2w()) s2wInit();
         if (Wake.hasT2w()) t2wInit();
+        if (Wake.hasWakeMisc()) wakeMiscInit();
+        if (Wake.hasSleepMisc()) sleepMiscInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
     }
@@ -83,6 +87,24 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mT2wCard);
     }
 
+    private void wakeMiscInit() {
+        mWakeMiscCard = new PopupCardItem.DPopupCard(Wake.getWakeMiscMenu(getActivity()));
+        mWakeMiscCard.setDescription(getString(R.string.wake));
+        mWakeMiscCard.setItem(Wake.getWakeMisc());
+        mWakeMiscCard.setOnDPopupCardListener(this);
+
+        addView(mWakeMiscCard);
+    }
+
+    private void sleepMiscInit() {
+        mSleepMiscCard = new PopupCardItem.DPopupCard(Wake.getSleepMiscMenu(getActivity()));
+        mSleepMiscCard.setDescription(getString(R.string.sleep));
+        mSleepMiscCard.setItem(Wake.getSleepMisc());
+        mSleepMiscCard.setOnDPopupCardListener(this);
+
+        addView(mSleepMiscCard);
+    }
+
     private void wakeTimeoutInit() {
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.disabled));
@@ -113,6 +135,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
         else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
         else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
+        else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
+        else if (dPopupCard == mSleepMiscCard) Wake.setSleepMisc(position, getActivity());
     }
 
     @Override

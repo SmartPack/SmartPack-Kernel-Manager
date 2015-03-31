@@ -34,6 +34,8 @@ public class Wake implements Constants {
     private static String DT2W_FILE;
     private static String S2W_FILE;
     private static String T2W_FILE;
+    private static String WAKE_MISC_FILE;
+    private static String SLEEP_MISC_FILE;
 
     public static void activatePowerKeySuspend(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
@@ -59,9 +61,95 @@ public class Wake implements Constants {
         return Utils.existFile(WAKE_TIMEOUT);
     }
 
+    public static void setSleepMisc(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SLEEP_MISC_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSleepMisc() {
+        return Utils.stringToInt(Utils.readFile(SLEEP_MISC_FILE));
+    }
+
+    public static List<String> getSleepMiscMenu(Context context) {
+        List<String> list = new ArrayList<>();
+        if (SLEEP_MISC_FILE != null) {
+            list.add(context.getString(R.string.disabled));
+            switch (SLEEP_MISC_FILE) {
+                case SCREEN_SLEEP_OPTIONS:
+                    list.add(context.getString(R.string.dt2s));
+                    break;
+            }
+        }
+        return list;
+    }
+
+    public static boolean hasSleepMisc() {
+        for (String file : SLEEP_MISC_ARRAY)
+            if (Utils.existFile(file)) {
+                SLEEP_MISC_FILE = file;
+                return true;
+            }
+        return SLEEP_MISC_FILE != null;
+    }
+
+    public static void setWakeMisc(int value, Context context) {
+        String command = String.valueOf(value);
+        if (WAKE_MISC_FILE.equals(GESTURE_WAKEUP)) command = GESTURE_WAKEUP_VALUES[value];
+
+        Control.runCommand(command, WAKE_MISC_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getWakeMisc() {
+        String value = Utils.readFile(WAKE_MISC_FILE);
+        if (WAKE_MISC_FILE.equals(GESTURE_WAKEUP))
+            for (int i = 0; i < GESTURE_WAKEUP_VALUES.length; i++)
+                if (value.equals(GESTURE_WAKEUP_VALUES[i])) return i;
+        return Utils.stringToInt(value);
+    }
+
+    public static List<String> getWakeMiscMenu(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
+        if (WAKE_MISC_FILE != null) {
+            switch (WAKE_MISC_FILE) {
+                case SCREEN_WAKE_OPTIONS:
+                    list.add(context.getString(R.string.s2w));
+                    list.add(context.getString(R.string.s2w_charging));
+                    list.add(context.getString(R.string.dt2w));
+                    list.add(context.getString(R.string.dt2w_charging));
+                    list.add(context.getString(R.string.dt2w) + " + " + context.getString(R.string.s2w));
+                    list.add(context.getString(R.string.dt2w_s2w_charging));
+                    break;
+                case GESTURE_WAKEUP:
+                    list.add(context.getString(R.string.slide_up));
+                    list.add(context.getString(R.string.slide_down));
+                    list.add(context.getString(R.string.slide_left));
+                    list.add(context.getString(R.string.slide_right));
+                    list.add(context.getString(R.string.draw_e));
+                    list.add(context.getString(R.string.draw_o));
+                    list.add(context.getString(R.string.draw_w));
+                    list.add(context.getString(R.string.draw_c));
+                    list.add(context.getString(R.string.draw_m));
+                    list.add(context.getString(R.string.dt2w));
+                    break;
+            }
+        }
+        return list;
+    }
+
+    public static boolean hasWakeMisc() {
+        for (String file : WAKE_MISC_ARRAY)
+            if (Utils.existFile(file)) {
+                WAKE_MISC_FILE = file;
+                return true;
+            }
+        return WAKE_MISC_FILE != null;
+    }
+
     public static void setT2w(int value, Context context) {
         String command = String.valueOf(value);
         if (T2W_FILE.equals(TSP_T2W)) command = value == 0 ? "OFF" : "AUTO";
+        else if (T2W_FILE.equals(GESTURE_CRTL))
+            command = value == 1 ? "double_click=true" : "double_click=false";
 
         Control.runCommand(command, T2W_FILE, Control.CommandType.GENERIC, context);
     }
@@ -70,6 +158,7 @@ public class Wake implements Constants {
         if (T2W_FILE != null && Utils.existFile(T2W_FILE)) {
             String value = Utils.readFile(T2W_FILE);
             if (T2W_FILE.equals(TSP_T2W)) return value.equals("OFF") ? 0 : 1;
+            else if (T2W_FILE.equals(GESTURE_CRTL)) return value.equals("0x200") ? 1 : 0;
             return Utils.stringToInt(value);
         }
         return 0;
@@ -89,7 +178,7 @@ public class Wake implements Constants {
             for (String file : T2W_ARRAY)
                 if (Utils.existFile(file)) {
                     T2W_FILE = file;
-                    break;
+                    return true;
                 }
         return T2W_FILE != null;
     }
@@ -110,14 +199,6 @@ public class Wake implements Constants {
                 case SW2:
                     list.add(context.getString(R.string.s2w) + " + " + context.getString(R.string.s2s));
                     list.add(context.getString(R.string.s2s));
-                    break;
-                case SCREEN_WAKE_OPTIONS:
-                    list.add(context.getString(R.string.s2w));
-                    list.add(context.getString(R.string.s2w_charging));
-                    list.add(context.getString(R.string.dt2w));
-                    list.add(context.getString(R.string.dt2w_charging));
-                    list.add(context.getString(R.string.dt2w) + " + " + context.getString(R.string.s2w));
-                    list.add(context.getString(R.string.dt2w_s2w_charging));
                     break;
                 default:
                     list.add(context.getString(R.string.enabled));
@@ -162,9 +243,6 @@ public class Wake implements Constants {
                     list.add(context.getString(R.string.halfscreen));
                     list.add(context.getString(R.string.fullscreen));
                     break;
-                case SCREEN_SLEEP_OPTIONS:
-                    list.add(context.getString(R.string.dt2s));
-                    break;
                 default:
                     list.add(context.getString(R.string.enabled));
                     break;
@@ -178,7 +256,7 @@ public class Wake implements Constants {
             for (String file : DT2W_ARRAY)
                 if (Utils.existFile(file)) {
                     DT2W_FILE = file;
-                    break;
+                    return true;
                 }
         return DT2W_FILE != null;
     }

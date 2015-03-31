@@ -384,28 +384,39 @@ public interface Constants {
     String DT2W = "/sys/android_touch/doubletap2wake";
     String TOUCH_PANEL_DT2W = "/proc/touchpanel/double_tap_enable";
     String DT2W_WAKEUP_GESTURE = "/sys/devices/virtual/input/input1/wakeup_gesture";
-    String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
 
-    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE,
-            SCREEN_SLEEP_OPTIONS};
+    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE};
 
     // S2W
     String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     String SW2 = "/sys/android_touch/sweep2wake";
-    String SCREEN_WAKE_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_wake_options";
 
-    String[] S2W_ARRY = {S2W_ONLY, SW2, SCREEN_WAKE_OPTIONS};
+    String[] S2W_ARRY = {S2W_ONLY, SW2};
 
     // T2W
     String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
     String TOUCHWAKE_T2W = "/sys/class/misc/touchwake/enabled";
+    String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
 
-    String[] T2W_ARRAY = {TSP_T2W, TOUCHWAKE_T2W};
+    String[] T2W_ARRAY = {TSP_T2W, TOUCHWAKE_T2W, GESTURE_CRTL};
+
+    // Wake Misc
+    String SCREEN_WAKE_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_wake_options";
+    String GESTURE_WAKEUP = "/sys/class/touchscreen/touchscreen_dev/gesture_wakeup";
+
+    String[] GESTURE_WAKEUP_VALUES = {"0x0", "0x1", "0x2", "0x4", "0x8", "0x16", "0x20", "0x40", "0x80", "0x100", "0x200"};
+
+    String[] WAKE_MISC_ARRAY = {SCREEN_WAKE_OPTIONS, GESTURE_WAKEUP};
+
+    // Sleep Misc
+    String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
+
+    String[] SLEEP_MISC_ARRAY = {SCREEN_SLEEP_OPTIONS};
 
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
-    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, {WAKE_TIMEOUT, POWER_KEY_SUSPEND}};
+    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, {WAKE_TIMEOUT, POWER_KEY_SUSPEND}};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
