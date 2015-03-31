@@ -139,6 +139,11 @@ public class RecyclerViewFragment extends Fragment {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+                try {
+                    if (isAdded()) postInit(savedInstanceState);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
             }
         }.execute();
 
@@ -203,6 +208,9 @@ public class RecyclerViewFragment extends Fragment {
     public void init(Bundle savedInstanceState) {
     }
 
+    public void postInit(Bundle savedInstanceState) {
+    }
+
     public void addView(DAdapter.DView view) {
         if (views.indexOf(view) < 0) {
             views.add(view);
@@ -260,6 +268,11 @@ public class RecyclerViewFragment extends Fragment {
 
     public boolean showApplyOnBoot() {
         return true;
+    }
+
+    public void showApplyOnBoot(boolean visible) {
+        getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
+                visible ? View.VISIBLE : View.GONE);
     }
 
     public int getSpan() {

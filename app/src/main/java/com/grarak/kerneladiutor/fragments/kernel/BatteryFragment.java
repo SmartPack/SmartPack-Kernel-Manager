@@ -62,6 +62,12 @@ public class BatteryFragment extends RecyclerViewFragment implements
         getActivity().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
+    @Override
+    public void postInit(Bundle savedInstanceState) {
+        super.postInit(savedInstanceState);
+        if (getCount() < 4) showApplyOnBoot(false);
+    }
+
     private void batteryLevelInit() {
         mBatteryLevelCard = new UsageCardView.DUsageCard();
         mBatteryLevelCard.setText(getString(R.string.battery_level));
