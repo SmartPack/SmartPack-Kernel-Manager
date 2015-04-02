@@ -130,12 +130,13 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 textView.setText("0");
 
                 Button minus = (Button) view.findViewById(R.id.button_minus);
-                if (!Utils.DARKTHEME) minus.setTextColor(getResources().getColor(R.color.black));
+                if (Utils.DARKTHEME)
+                    minus.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            textView.setText(String.valueOf(Utils.stringToInt(textView.getText().toString()) - 25));
+                            textView.setText(String.valueOf(Utils.stringToInt(textView.getText().toString()) - 5));
                         } catch (NumberFormatException e) {
                             textView.setText("0");
                         }
@@ -143,12 +144,13 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 });
 
                 Button plus = (Button) view.findViewById(R.id.button_plus);
-                if (!Utils.DARKTHEME) plus.setTextColor(getResources().getColor(R.color.black));
+                if (Utils.DARKTHEME)
+                    plus.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 plus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            textView.setText(String.valueOf(Utils.stringToInt(textView.getText().toString()) + 25));
+                            textView.setText(String.valueOf(Utils.stringToInt(textView.getText().toString()) + 5));
                         } catch (NumberFormatException e) {
                             textView.setText("0");
                         }
