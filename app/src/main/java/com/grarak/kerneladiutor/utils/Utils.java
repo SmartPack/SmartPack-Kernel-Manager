@@ -113,35 +113,24 @@ public class Utils implements Constants {
                         for (int i = 0; i < CPU.getCoreCount(); i++)
                             applys.add(String.format(cpu, i));
                     else applys.add(cpu);
-        }
-
-        if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
+        } else if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(array)));
-
-        if (mClass == CPUVoltageFragment.class)
+        else if (mClass == CPUVoltageFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
-
-        if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
+        else if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        if (mClass == IOFragment.class) applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
-
-        if (mClass == KSMFragment.class) applys.add(KSM_FOLDER);
-
-        if (mClass == LMKFragment.class) applys.add(LMK_MINFREE);
-
-        if (mClass == MiscFragment.class) for (String[] arrays : MISC_ARRAY)
+        else if (mClass == IOFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
+        else if (mClass == KSMFragment.class) applys.add(KSM_FOLDER);
+        else if (mClass == LMKFragment.class) applys.add(LMK_MINFREE);
+        else if (mClass == MiscFragment.class) for (String[] arrays : MISC_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        if (mClass == ScreenFragment.class) for (String[] arrays : SCREEN_ARRAY)
+        else if (mClass == ScreenFragment.class) for (String[] arrays : SCREEN_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        if (mClass == SoundFragment.class)
+        else if (mClass == SoundFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(SOUND_ARRAY)));
-
-        if (mClass == VMFragment.class) applys.add(VM_PATH);
-
-        if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
+        else if (mClass == VMFragment.class) applys.add(VM_PATH);
+        else if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
 
         return applys;
