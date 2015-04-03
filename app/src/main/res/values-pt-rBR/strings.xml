@@ -228,7 +228,6 @@
   <string name="halfscreen">Meia tela</string>
   <string name="fullscreen">Tela Cheia</string>
   <string name="s2w">Deslizar-Para-Acordar</string>
-  <string name="s2w_summary">Acordar seu dispositivo ao deslizar na barra de navegação.</string>
   <string name="s2s">Deslizar para desligar</string>
   <string name="t2w">Tocar-Para-Acordar</string>
   <string name="t2w_summary">Acorda seu dispositivo ao tocar na tela.</string>
@@ -316,6 +315,9 @@
   <string name="notification">Notificação</string>
   <string name="notification_summary">Mostrar uma notificação quando as aplicações forem definidas no início. Por favor, desative se você tiver algum problema.</string>
   <string name="show_toast">Mostrar alerta</string>
+  <string name="test">Teste</string>
+  <string name="test_summary">Teste irá ativar no início (com atraso). Se nada acontecer, então não há configurações salvas.</string>
+  <string name="enable_apply_on_boot_first">Você precisa ativar aplicar no início ao menos para uma seção.</string>
   <string name="debugging">Depuração</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copiar o Logcat para /sdcard/logcat.txt</string>

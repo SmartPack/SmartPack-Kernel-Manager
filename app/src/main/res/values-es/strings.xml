@@ -86,6 +86,7 @@
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
   <string name="global_offset">Desplazamiento global</string>
   <string name="mpdecision">MPDecision</string>
+  <string name="mpdecision_summary">Solución hotplugging de Qualcomm. Podrías tener problemas con el cambio de frecuencias cuando esta opción está activada.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Remplazo de Qualcomms Mpdecision. Desarrollado por faux123.</string>
   <string name="profile_summary">El número entre paréntesis indica la cantidad de núcleos trabajando en cualquier momento.</string>
@@ -199,6 +200,10 @@
   <string name="screen_hue_summary">Podrías tener problemas con MSM8x26 SoC al establecer un valor alto.</string>
   <string name="screen_value">Valor de pantalla</string>
   <string name="screen_contrast">Contraste de pantalla</string>
+  <string name="gamma">Gamma</string>
+  <string name="gamma_profile">Perfil de gamma</string>
+  <string name="red_greys">Rojos grises</string>
+  <string name="white_point">Punto de blanco</string>
   <string name="min_brightness_summary">Permite disminuir el brillo de la pantalla LCD inclusive mas que en stock.</string>
   <string name="backlight_dimmer_threshold">Umbral atenuador de luz de fondo</string>
   <string name="backlight_dimmer_offset">Offset atenuador de luz de fondo</string>
@@ -211,7 +216,6 @@
   <string name="halfscreen">Mitad de pantalla</string>
   <string name="fullscreen">Pantalla completa</string>
   <string name="s2w">Sweep2Wake</string>
-  <string name="s2w_summary">Enciende la pantalla deslizando la barra de navegación.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Enciende la pantalla pulsandola.</string>
@@ -292,6 +296,7 @@
   <string name="notification">Notificación</string>
   <string name="notification_summary">Mostrar una notificación cuando se aplica la configuración al arranque. Desactivar si da algún problema.</string>
   <string name="show_toast">Mostrar notificación emergente</string>
+  <string name="test">Probar</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copiar Logcat a /sdcard/logcat.txt</string>
@@ -299,11 +304,16 @@
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg en /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensaje del Controlador</string>
   <string name="driver_message_summary">Copiar mensaje del controlador (dmesg) en /sdcard/dmesg.txt</string>
+  <string name="misspelled">¿Por qué se escribe incorrectamente «Auditor»?</string>
   <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
   <string name="cpu_freq_not_sticking">Por que mi frecuencia predeterminada no se guarda?</string>
   <string name="cpu_freq_not_sticking_summary">Puede ser pormuchas razones. Muchos núcleos en la actualidad tienen su propio sistema hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia implementación de CPU Boost que regulan la frecuencia. Yo sugiero no tocar las frecuencias de la CPU y que el núcleo haga su trabajo.</string>
   <string name="feature_not_appearing">Por que no aparecen algunas características?</string>
   <string name="feature_not_appearing_summary">Las características dependen del kernel.</string>
+  <string name="feature_function">Que hace la función x?</string>
+  <string name="feature_function_summary">Si no sabe lo que hace este control, entonces simplemente no lo toques. Por favor, investiga antes de modificar una característica de su caro hardware.</string>
+  <string name="add_new_features">Podría añadir la función x o y?</string>
+  <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las características, pero es difícil hacer la aplicación universal para todos los dispositivos. Sólo tengo un Samsung Galaxy S4 (I9500) y una HTC Desire 816, así que no me culpes si no implemento alguna característica inmediatamente.</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="support_v13">Liberia de apoyo v13</string>

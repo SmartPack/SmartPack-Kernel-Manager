@@ -110,6 +110,9 @@
   <string name="suspend">Приостановить</string>
   <string name="cpus_boosted">Разогнанных процессоров</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно разогнанных процессоров.</string>
+  <string name="min_cpu_online">Минимальная частота процессора </string>
+  <string name="min_cpu_online_summary">Минимальное количество ядер процессора которые будут всегда включены </string>
+  <string name="max_cpu_online">Максимальное количество работающих ядер процессора </string>
   <string name="max_cores_screen_off">Максимальное количество ядер при выключенном экране</string>
   <string name="max_cores_screen_off_summary">Максимальное количество включенных ядер при выключенном экране.</string>
   <string name="defer_sampling">Отложенная выборка</string>
@@ -117,10 +120,12 @@
   <string name="down_lock_duration_summary">Минимальный интервал работы процессора.</string>
   <string name="blu_plug_summary">Замена Qualcomm MDPecision. Разработано Code_Blue team.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
+  <string name="powersaver_mode_summary">Задать первому ядру максимальное значение частоты на 1728 МГц </string>
   <string name="up_threshold">Высший порог</string>
   <string name="up_threshold_summary">При превышении данного порога загрузки драйвер включит ещё одно ядро CPU.</string>
   <string name="history_size">Размер истории</string>
   <string name="update_rate">Частота обновления</string>
+  <string name="cores_on_touch_summary">Количество задействованных ядер процессора отрабатывающих прикосновения к экрану или нажатий</string>
   <string name="first_level">Первый уровень</string>
   <string name="load_threshold">Порог наргузки</string>
   <string name="load_threshold_summary">Порог загрузки для включения всех CPU.</string>
@@ -159,7 +164,6 @@
   <string name="top_half">Верхняя половина</string>
   <string name="halfscreen">Половина экрана</string>
   <string name="fullscreen">Полный экран</string>
-  <string name="s2w_summary">Пробуждение устройства свайпом по панели навигации.</string>
   <string name="t2w_summary">Пробуждение устройства тапом по экрану.</string>
   <string name="sound_control">Упраление звуком</string>
   <string name="headphone_gain">Усиление для наушников</string>

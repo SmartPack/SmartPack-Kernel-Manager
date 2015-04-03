@@ -99,7 +99,6 @@
   <string name="halfscreen">半屏幕</string>
   <string name="fullscreen">全屏幕</string>
   <string name="s2w">滑动唤醒</string>
-  <string name="s2w_summary">在导航栏上滑动来唤醒您的设备。</string>
   <string name="s2s">滑动睡眠</string>
   <string name="t2w">单击唤醒</string>
   <string name="t2w_summary">点触屏幕来唤醒您的设备。</string>

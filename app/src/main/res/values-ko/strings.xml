@@ -228,7 +228,6 @@
   <string name="halfscreen">절반화면</string>
   <string name="fullscreen">전체화면</string>
   <string name="s2w">밀어서 화면 켜기</string>
-  <string name="s2w_summary">네이게이션 바를 밀면 장치의 화면이 켜집니다.</string>
   <string name="s2s">밀어서 화면 끄기</string>
   <string name="t2w">두드려서 화면 켜기</string>
   <string name="t2w_summary">화면을 두드리면 장치의 화면이 켜집니다.</string>

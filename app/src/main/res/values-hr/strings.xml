@@ -228,7 +228,6 @@
   <string name="halfscreen">Pola zaslona</string>
   <string name="fullscreen">Cijeli zaslon</string>
   <string name="s2w">Klizni-Pa-Probudi</string>
-  <string name="s2w_summary">Uređaj će se probuditi kliznim potezom preko upravljačke površine.</string>
   <string name="s2s">Pometi-Pa-Uspavaj</string>
   <string name="t2w">Kucni-Pa-Probudi</string>
   <string name="t2w_summary">Uređaju će se probuditi po dodiru zaslona.</string>
@@ -316,6 +315,9 @@
   <string name="notification">Obavijest</string>
   <string name="notification_summary">Prikaži obavijest kad započne primjenjivanje unosa pri pokretanju sustava. Molimo onemogućite ovo ukoliko dođe do bilo kakvih problema.</string>
   <string name="show_toast">Pokaži Toast poruku</string>
+  <string name="test">Testiranje</string>
+  <string name="test_summary">Testirajte primjenu postavki pri pokretanju sustava (s odgađanjem). Ne bude li promjene, postavke nisu bile sačuvane.</string>
+  <string name="enable_apply_on_boot_first">Prvo morate odabrati primjenu pri pokretanju sustava barem u jednoj kategoriji.</string>
   <string name="debugging">Ispravljanje pogrešaka</string>
   <string name="logcat">Logcat - izvješće o sustavu</string>
   <string name="logcat_summary">Kopirajte logcat u datoteku /sdcard/logcat.txt</string>

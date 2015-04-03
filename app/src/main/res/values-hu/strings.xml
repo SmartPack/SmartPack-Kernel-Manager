@@ -153,7 +153,6 @@
   <string name="halfscreen">Fél képernyő</string>
   <string name="fullscreen">Teljes képernyő</string>
   <string name="s2w">Sweep2Wake</string>
-  <string name="s2w_summary">Feloldani a készüléket a navigációs sávon való swipe-olással.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Feloldani a készüléket a képernyőre való koppintással.</string>
