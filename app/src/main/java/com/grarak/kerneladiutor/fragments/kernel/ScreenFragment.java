@@ -721,11 +721,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                     if (gammaProfiles.readable()) {
                         Utils.writeFile(path, raw, false);
                         showMoreGammaProfiles(gammaProfiles);
-                    } else if (Utils.existFile(path)) {
-                        gammaProfiles.refresh(Utils.readFile(path));
-                        if (gammaProfiles.readable()) showMoreGammaProfiles(gammaProfiles);
-                        else Utils.toast(getString(R.string.no_internet), getActivity());
                     } else {
+                        if (Utils.existFile(path)) {
+                            gammaProfiles.refresh(Utils.readFile(path));
+                            if (gammaProfiles.readable()) {
+                                showMoreGammaProfiles(gammaProfiles);
+                                return;
+                            }
+                        }
                         Utils.toast(getString(R.string.no_internet), getActivity());
                     }
                 }
