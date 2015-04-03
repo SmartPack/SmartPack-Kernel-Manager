@@ -419,7 +419,7 @@ public interface Constants {
     // Gesture
     String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
 
-    Integer[] GESTURE_HEX_VALUES = {0, 2, 4, 8, 16, 32, 64, 128, 256, 512};
+    Integer[] GESTURE_HEX_VALUES = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
     String[] GESTURE_STRING_VALUES = {"up", "down", "left", "right", "e", "o", "w", "c", "m", "double_click"};
 
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
