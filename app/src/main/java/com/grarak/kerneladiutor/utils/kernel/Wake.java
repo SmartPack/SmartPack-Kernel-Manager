@@ -67,7 +67,12 @@ public class Wake implements Constants {
     }
 
     public static boolean isGestureActive(int gesture) {
-        return (Long.decode(Utils.readFile(GESTURE_CRTL)) & GESTURE_HEX_VALUES[gesture]) > 0;
+        try {
+            return (Long.decode(Utils.readFile(GESTURE_CRTL)) & GESTURE_HEX_VALUES[gesture]) > 0;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static List<String> getGestures(Context context) {

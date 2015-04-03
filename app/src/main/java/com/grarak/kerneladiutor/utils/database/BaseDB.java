@@ -77,11 +77,6 @@ public abstract class BaseDB implements Constants {
         return sysList;
     }
 
-    public void deleteAllItems() {
-        List<DBItem> dbItems = getAllItems();
-        for (DBItem dbItem : dbItems) deleteItem(dbItem.getId());
-    }
-
     public abstract String getDBName();
 
     public abstract String getDBCreate();

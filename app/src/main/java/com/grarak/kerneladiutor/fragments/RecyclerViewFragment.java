@@ -93,8 +93,7 @@ public class RecyclerViewFragment extends Fragment {
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
 
-        if (!showApplyOnBoot())
-            getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(View.GONE);
+        if (!showApplyOnBoot()) showApplyOnBoot(false);
 
         new AsyncTask<Void, Void, Void>() {
             @Override
