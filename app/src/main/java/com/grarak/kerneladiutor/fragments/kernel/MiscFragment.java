@@ -53,6 +53,10 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private SwitchCompatCardItem.DSwitchCompatCard mDynamicFsyncCard;
 
+    private PopupCardItem.DPopupCard mPowerSuspendModeCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mOldPowerSuspendStateCard;
+    private SeekBarCardView.DSeekBarCardView mNewPowerSuspendStateCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -65,6 +69,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasSelinux()) selinuxInit();
         if (Misc.hasDynamicFsync()) dynamicFsyncInit();
+        if (Misc.hasPowerSuspend()) powersuspendInit();
     }
 
     private void tcpCongestionInit() {
@@ -158,12 +163,56 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mDynamicFsyncCard);
     }
 
+
+    private void powersuspendInit() {
+        if (Misc.hasPowerSuspendMode()) {
+            List<String> list = new ArrayList<>();
+            list.add(getString(R.string.kernel_mode));
+            list.add(getString(R.string.user_mode));
+            list.add(getString(R.string.lcd_hooks));
+            list.add(getString(R.string.highest_level_hook));
+
+            mPowerSuspendModeCard = new PopupCardItem.DPopupCard(list);
+            mPowerSuspendModeCard.setTitle(getString(R.string.power_suspend_mode));
+            mPowerSuspendModeCard.setDescription(getString(R.string.power_suspend_mode_summary));
+            mPowerSuspendModeCard.setItem(Misc.getPowerSuspendMode());
+            mPowerSuspendModeCard.setOnDPopupCardListener(this);
+
+            addView(mPowerSuspendModeCard);
+        }
+
+        if (Misc.hasOldPowerSuspendState()) {
+            mOldPowerSuspendStateCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mOldPowerSuspendStateCard.setTitle(getString(R.string.power_suspend_state));
+            mOldPowerSuspendStateCard.setDescription(getString(R.string.power_suspend_state_summary));
+            mOldPowerSuspendStateCard.setChecked(Misc.isOldPowerSuspendStateActive());
+            mOldPowerSuspendStateCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mOldPowerSuspendStateCard);
+        }
+
+        if (Misc.hasNewPowerSuspendState()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 3; i++)
+                list.add(String.valueOf(i));
+
+            mNewPowerSuspendStateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mNewPowerSuspendStateCard.setTitle(getString(R.string.power_suspend_state));
+            mNewPowerSuspendStateCard.setDescription(getString(R.string.power_suspend_state_summary));
+            mNewPowerSuspendStateCard.setProgress(Misc.getNewPowerSuspendState());
+            mNewPowerSuspendStateCard.setOnDSeekBarCardListener(this);
+
+            addView(mNewPowerSuspendStateCard);
+        }
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
             Misc.setTcpCongestion(Misc.getTcpAvailableCongestions().get(position), getActivity());
-        else if (dPopupCard == mSelinuxCard)
-            Misc.setSelinux(position, getActivity());
+        else if (dPopupCard == mSelinuxCard) Misc.setSelinux(position, getActivity());
+        else if (dPopupCard == mPowerSuspendModeCard)
+            Misc.setPowerSuspendMode(position, getActivity());
     }
 
     @Override
@@ -190,7 +239,10 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
                     }
                 }
             }).start();
-        }
+        } else if (dSeekBarCardView == mNewPowerSuspendStateCard)
+            if (Misc.getPowerSuspendMode() == 1) {
+                Misc.setNewPowerSuspend(position, getActivity());
+            } else dSeekBarCardView.setProgress(Misc.getNewPowerSuspendState());
     }
 
     @Override
@@ -205,5 +257,9 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
             Misc.activateLogger(checked, getActivity());
         else if (dSwitchCompatCard == mDynamicFsyncCard)
             Misc.activateDynamicFsync(checked, getActivity());
+        else if (dSwitchCompatCard == mOldPowerSuspendStateCard)
+            if (Misc.getPowerSuspendMode() == 1) {
+                Misc.activateOldPowerSuspend(checked, getActivity());
+            } else dSwitchCompatCard.setChecked(Misc.isOldPowerSuspendStateActive());
     }
 }

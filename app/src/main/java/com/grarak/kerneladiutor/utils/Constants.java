@@ -523,8 +523,14 @@ public interface Constants {
     // Dynamic Fsync
     String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
+    // Power suspend
+    String POWER_SUSPEND = "/sys/kernel/power_suspend";
+    String POWER_SUSPEND_MODE = POWER_SUSPEND + "/power_suspend_mode";
+    String POWER_SUSPEND_STATE = POWER_SUSPEND + "/power_suspend_state";
+    String POWER_SUSPEND_VERSION = POWER_SUSPEND + "/power_suspend_version";
+
     String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK,
-            LOGGER_ENABLED, SELINUX, DYNAMIC_FSYNC}, VIBRATION_ARRAY};
+            LOGGER_ENABLED, SELINUX, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE}, VIBRATION_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

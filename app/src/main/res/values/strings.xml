@@ -378,6 +378,14 @@
     <string name="enforcing">Enforcing</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
     <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is committed synchronously.</string>
+    <string name="power_suspend_mode">Power Suspend Mode</string>
+    <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel, to manually enable or disable the Power Suspend State choose User Mode.</string>
+    <string name="kernel_mode">Kernel Mode</string>
+    <string name="user_mode">User Mode</string>
+    <string name="lcd_hooks">LCD Hooks</string>
+    <string name="highest_level_hook">Highest Level Hook</string>
+    <string name="power_suspend_state">Power Suspend State</string>
+    <string name="power_suspend_state_summary">Kernel power management driver when screen is off. Better battery savings if enabled. Note: You can only change this setting if Power Suspend Mode is in User Mode.</string>
 
     <!-- Build prop Editor -->
     <string name="edit">Edit</string>
