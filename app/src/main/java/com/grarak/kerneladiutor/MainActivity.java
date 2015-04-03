@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -259,7 +260,9 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 Bundle args = new Bundle();
                 args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root)
                         : getString(R.string.no_busybox));
-                Log.d(TAG, !hasRoot ? getString(R.string.no_root) : getString(R.string.no_busybox));
+                Log.d(TAG, !hasRoot ? "no root" : "no busybox");
+                if (!hasRoot)
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
                 i.putExtras(args);
                 startActivity(i);
 

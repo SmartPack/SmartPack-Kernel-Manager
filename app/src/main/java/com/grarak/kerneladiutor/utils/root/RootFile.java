@@ -31,14 +31,6 @@ public class RootFile {
         return RootUtils.runCommand("basename " + file);
     }
 
-    public RootFile[] listFiles() {
-        String[] list = list();
-        RootFile[] rootFiles = new RootFile[list.length];
-        for (int i = 0; i < list.length; i++)
-            rootFiles[i] = new RootFile(file + "/" + list[i]);
-        return rootFiles;
-    }
-
     public String[] list() {
         return RootUtils.runCommand("ls " + file).split("\\r?\\n");
     }

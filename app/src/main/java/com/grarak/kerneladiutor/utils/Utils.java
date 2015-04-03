@@ -45,6 +45,7 @@ import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -229,6 +230,17 @@ public class Utils implements Constants {
         String output = RootUtils.runCommand("echo `ps | grep " + service + " | grep -v \"grep "
                 + service + "\" | awk '{print $1}'`");
         return output != null && output.length() > 0;
+    }
+
+    public static void writeFile(String path, String text, boolean append) {
+        try {
+            FileWriter fWriter = new FileWriter(path, append);
+            fWriter.write(text);
+            fWriter.flush();
+            fWriter.close();
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to write " + path);
+        }
     }
 
     public static boolean existFile(String file) {

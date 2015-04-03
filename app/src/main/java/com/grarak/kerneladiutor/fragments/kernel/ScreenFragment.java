@@ -16,6 +16,9 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,8 +32,10 @@ import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.GammaProfiles;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.WebpageReader;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 
 import java.util.ArrayList;
@@ -41,7 +46,7 @@ import java.util.List;
  */
 public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
         SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
-        PopupCardItem.DPopupCard.OnDPopupCardListener {
+        PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
 
     private ImageView mPreviewIconView;
 
@@ -86,6 +91,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private EditTextCardView.DEditTextCard mDsiPanelWhitePointCard;
     private PopupCardItem.DPopupCard mDsiPanelProfilesCard;
 
+    private CardViewItem.DCardView mAdditionalProfilesCard;
+
     private SwitchCompatCardItem.DSwitchCompatCard mBackLightDimmerEnableCard;
     private SeekBarCardView.DSeekBarCardView mMinBrightnessCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerThresholdCard;
@@ -100,6 +107,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         if (Screen.hasKGamma()) kgammaInit();
         if (Screen.hasGammaControl()) gammacontrolInit();
         if (Screen.hasDsiPanel()) dsipanelInit();
+        if (mKGammaProfilesCard != null || mGammaControlProfilesCard != null || mDsiPanelProfilesCard != null)
+            additionalProfilesInit();
     }
 
     @Override
@@ -503,6 +512,15 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
     }
 
+    private void additionalProfilesInit() {
+        mAdditionalProfilesCard = new CardViewItem.DCardView();
+        mAdditionalProfilesCard.setTitle(getString(R.string.additional_profiles));
+        mAdditionalProfilesCard.setDescription(getString(R.string.additional_profiles_summary));
+        mAdditionalProfilesCard.setOnDCardListener(this);
+
+        addView(mAdditionalProfilesCard);
+    }
+
     private void backlightDimmerInit() {
         if (Screen.hasBackLightDimmerEnable()) {
             mBackLightDimmerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
@@ -677,119 +695,41 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mKGammaProfilesCard) {
-            Screen.setKGammaProfile(position, getActivity());
-
-            for (int i = 0; i < mColorCalibrationCard.length; i++)
-                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                        .indexOf(Screen.getColorCalibration().get(i)));
-
-            String red = Screen.getKGammaRed();
-            mKGammaRedCard.setDescription(red);
-            mKGammaRedCard.setValue(red);
-
-            String green = Screen.getKGammaGreen();
-            mKGammaGreenCard.setDescription(green);
-            mKGammaGreenCard.setValue(green);
-
-            String blue = Screen.getKGammaBlue();
-            mKGammaBlueCard.setDescription(blue);
-            mKGammaBlueCard.setValue(blue);
+            Screen.setKGammaProfile(position, Screen.getKGammaProfiles(getActivity()), getActivity());
+            refreshKGamma();
         } else if (dPopupCard == mGammaControlProfilesCard) {
-            Screen.setGammaControlProfile(position, getActivity());
-
-            for (int i = 0; i < mColorCalibrationCard.length; i++)
-                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                        .indexOf(Screen.getColorCalibration().get(i)));
-
-            String redGreys = Screen.getRedGreys();
-            mGammaControlRedGreysCard.setDescription(redGreys);
-            mGammaControlRedGreysCard.setValue(redGreys);
-
-            String redMids = Screen.getRedMids();
-            mGammaControlRedMidsCard.setDescription(redMids);
-            mGammaControlRedMidsCard.setValue(redMids);
-
-            String redBlacks = Screen.getRedBlacks();
-            mGammaControlRedBlacksCard.setDescription(redBlacks);
-            mGammaControlRedBlacksCard.setValue(redBlacks);
-
-            String redWhites = Screen.getRedWhites();
-            mGammaControlRedWhitesCard.setDescription(redWhites);
-            mGammaControlRedWhitesCard.setValue(redWhites);
-
-            String greenGreys = Screen.getGreenGreys();
-            mGammaControlGreenGreysCard.setDescription(greenGreys);
-            mGammaControlGreenGreysCard.setValue(greenGreys);
-
-            String greenMids = Screen.getGreenMids();
-            mGammaControlGreenMidsCard.setDescription(greenMids);
-            mGammaControlGreenMidsCard.setValue(greenMids);
-
-            String greenBlacks = Screen.getGreenBlacks();
-            mGammaControlGreenBlacksCard.setDescription(greenBlacks);
-            mGammaControlGreenBlacksCard.setValue(greenBlacks);
-
-            String greenWhites = Screen.getGreenWhites();
-            mGammaControlGreenWhitesCard.setDescription(greenWhites);
-            mGammaControlGreenWhitesCard.setValue(greenWhites);
-
-            String blueGreys = Screen.getBlueGreys();
-            mGammaControlBlueGreysCard.setDescription(blueGreys);
-            mGammaControlBlueGreysCard.setValue(blueGreys);
-
-            String blueMids = Screen.getBlueMids();
-            mGammaControlBlueMidsCard.setDescription(blueMids);
-            mGammaControlBlueMidsCard.setValue(blueMids);
-
-            String blueBlacks = Screen.getBlueBlacks();
-            mGammaControlBlueBlacksCard.setDescription(blueBlacks);
-            mGammaControlBlueBlacksCard.setValue(blueBlacks);
-
-            String blueWhites = Screen.getBlueWhites();
-            mGammaControlBlueWhitesCard.setDescription(blueWhites);
-            mGammaControlBlueWhitesCard.setValue(blueWhites);
-
-            String contrast = Screen.getGammaContrast();
-            mGammaControlContrastCard.setDescription(contrast);
-            mGammaControlContrastCard.setValue(contrast);
-
-            String brightness = Screen.getGammaBrightness();
-            mGammaControlBrightnessCard.setDescription(brightness);
-            mGammaControlBrightnessCard.setValue(brightness);
-
-            String saturation = Screen.getGammaSaturation();
-            mGammaControlSaturationCard.setDescription(saturation);
-            mGammaControlSaturationCard.setValue(saturation);
+            Screen.setGammaControlProfile(position, Screen.getGammaControlProfiles(getActivity()), getActivity());
+            refreshGammaControl();
         } else if (dPopupCard == mDsiPanelProfilesCard) {
-            Screen.setDsiPanelProfile(position, getActivity());
+            Screen.setDsiPanelProfile(position, Screen.getDsiPanelProfiles(getActivity()), getActivity());
+            refreshDsiPanel();
+        }
+    }
 
-            String blueNegative = Screen.getBlueNegative();
-            mDsiPanelBlueNegativeCard.setDescription(blueNegative);
-            mDsiPanelBlueNegativeCard.setValue(blueNegative);
-
-            String bluePositive = Screen.getBluePositive();
-            mDsiPanelBluePositiveCard.setDescription(bluePositive);
-            mDsiPanelBluePositiveCard.setValue(bluePositive);
-
-            String greenNegative = Screen.getGreenNegative();
-            mDsiPanelGreenNegativeCard.setDescription(greenNegative);
-            mDsiPanelGreenNegativeCard.setValue(greenNegative);
-
-            String greenPositive = Screen.getGreenPositive();
-            mDsiPanelGreenPositiveCard.setDescription(greenPositive);
-            mDsiPanelGreenPositiveCard.setValue(greenPositive);
-
-            String redNegative = Screen.getRedNegative();
-            mDsiPanelRedNegativeCard.setDescription(redNegative);
-            mDsiPanelRedNegativeCard.setValue(redNegative);
-
-            String redPositive = Screen.getRedPositive();
-            mDsiPanelRedPositiveCard.setDescription(redPositive);
-            mDsiPanelRedPositiveCard.setValue(redPositive);
-
-            String whitePoint = Screen.getWhitePoint();
-            mDsiPanelWhitePointCard.setDescription(whitePoint);
-            mDsiPanelWhitePointCard.setValue(whitePoint);
+    @Override
+    public void onClick(CardViewItem.DCardView dCardView) {
+        if (dCardView == mAdditionalProfilesCard) {
+            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getString(R.string.loading));
+            progressDialog.show();
+            new WebpageReader(new WebpageReader.WebpageCallback() {
+                @Override
+                public void onCallback(String raw, String html) {
+                    progressDialog.dismiss();
+                    GammaProfiles gammaProfiles = new GammaProfiles(raw);
+                    String path = getActivity().getApplicationContext().getCacheDir() + "/gamma_profiles.json";
+                    if (gammaProfiles.readable()) {
+                        Utils.writeFile(path, raw, false);
+                        showMoreGammaProfiles(gammaProfiles);
+                    } else if (Utils.existFile(path)) {
+                        gammaProfiles.refresh(Utils.readFile(path));
+                        if (gammaProfiles.readable()) showMoreGammaProfiles(gammaProfiles);
+                        else Utils.toast(getString(R.string.no_internet), getActivity());
+                    } else {
+                        Utils.toast(getString(R.string.no_internet), getActivity());
+                    }
+                }
+            }).execute(Constants.GAMMA_URL);
         }
     }
 
@@ -804,6 +744,164 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             default:
                 return null;
         }
+    }
+
+    private void showMoreGammaProfiles(GammaProfiles gammaProfiles) {
+        GammaProfiles.GammaProfile profile = null;
+        int screen = -1;
+        if (mKGammaProfilesCard != null) {
+            profile = gammaProfiles.getKGamma();
+            screen = 0;
+        } else if (mGammaControlProfilesCard != null) {
+            profile = gammaProfiles.getGammaControl();
+            screen = 1;
+        } else if (mDsiPanelProfilesCard != null) {
+            profile = gammaProfiles.getDsiPanelProfiles();
+            screen = 2;
+        }
+
+        if (profile == null) Utils.toast(getString(R.string.no_additional_profiles), getActivity());
+        else {
+            String[] names = new String[profile.length()];
+            for (int i = 0; i < names.length; i++)
+                names[i] = profile.getName(i);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            final int profileType = screen;
+            final GammaProfiles.GammaProfile gammaProfile = profile;
+            builder.setItems(names, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (profileType) {
+                        case 0:
+                            Screen.setKGammaProfile(which, (GammaProfiles.KGammaProfiles) gammaProfile, getActivity());
+                            refreshKGamma();
+                            break;
+                        case 1:
+                            Screen.setGammaControlProfile(which, (GammaProfiles.GammaControlProfiles) gammaProfile, getActivity());
+                            refreshGammaControl();
+                            break;
+                        case 2:
+                            Screen.setDsiPanelProfile(which, (GammaProfiles.DsiPanelProfiles) gammaProfile, getActivity());
+                            refreshDsiPanel();
+                            break;
+                    }
+                }
+            }).show();
+        }
+    }
+
+    private void refreshKGamma() {
+        for (int i = 0; i < mColorCalibrationCard.length; i++)
+            mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
+                    .indexOf(Screen.getColorCalibration().get(i)));
+
+        String red = Screen.getKGammaRed();
+        mKGammaRedCard.setDescription(red);
+        mKGammaRedCard.setValue(red);
+
+        String green = Screen.getKGammaGreen();
+        mKGammaGreenCard.setDescription(green);
+        mKGammaGreenCard.setValue(green);
+
+        String blue = Screen.getKGammaBlue();
+        mKGammaBlueCard.setDescription(blue);
+        mKGammaBlueCard.setValue(blue);
+    }
+
+    private void refreshGammaControl() {
+        for (int i = 0; i < mColorCalibrationCard.length; i++)
+            mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
+                    .indexOf(Screen.getColorCalibration().get(i)));
+
+        String redGreys = Screen.getRedGreys();
+        mGammaControlRedGreysCard.setDescription(redGreys);
+        mGammaControlRedGreysCard.setValue(redGreys);
+
+        String redMids = Screen.getRedMids();
+        mGammaControlRedMidsCard.setDescription(redMids);
+        mGammaControlRedMidsCard.setValue(redMids);
+
+        String redBlacks = Screen.getRedBlacks();
+        mGammaControlRedBlacksCard.setDescription(redBlacks);
+        mGammaControlRedBlacksCard.setValue(redBlacks);
+
+        String redWhites = Screen.getRedWhites();
+        mGammaControlRedWhitesCard.setDescription(redWhites);
+        mGammaControlRedWhitesCard.setValue(redWhites);
+
+        String greenGreys = Screen.getGreenGreys();
+        mGammaControlGreenGreysCard.setDescription(greenGreys);
+        mGammaControlGreenGreysCard.setValue(greenGreys);
+
+        String greenMids = Screen.getGreenMids();
+        mGammaControlGreenMidsCard.setDescription(greenMids);
+        mGammaControlGreenMidsCard.setValue(greenMids);
+
+        String greenBlacks = Screen.getGreenBlacks();
+        mGammaControlGreenBlacksCard.setDescription(greenBlacks);
+        mGammaControlGreenBlacksCard.setValue(greenBlacks);
+
+        String greenWhites = Screen.getGreenWhites();
+        mGammaControlGreenWhitesCard.setDescription(greenWhites);
+        mGammaControlGreenWhitesCard.setValue(greenWhites);
+
+        String blueGreys = Screen.getBlueGreys();
+        mGammaControlBlueGreysCard.setDescription(blueGreys);
+        mGammaControlBlueGreysCard.setValue(blueGreys);
+
+        String blueMids = Screen.getBlueMids();
+        mGammaControlBlueMidsCard.setDescription(blueMids);
+        mGammaControlBlueMidsCard.setValue(blueMids);
+
+        String blueBlacks = Screen.getBlueBlacks();
+        mGammaControlBlueBlacksCard.setDescription(blueBlacks);
+        mGammaControlBlueBlacksCard.setValue(blueBlacks);
+
+        String blueWhites = Screen.getBlueWhites();
+        mGammaControlBlueWhitesCard.setDescription(blueWhites);
+        mGammaControlBlueWhitesCard.setValue(blueWhites);
+
+        String contrast = Screen.getGammaContrast();
+        mGammaControlContrastCard.setDescription(contrast);
+        mGammaControlContrastCard.setValue(contrast);
+
+        String brightness = Screen.getGammaBrightness();
+        mGammaControlBrightnessCard.setDescription(brightness);
+        mGammaControlBrightnessCard.setValue(brightness);
+
+        String saturation = Screen.getGammaSaturation();
+        mGammaControlSaturationCard.setDescription(saturation);
+        mGammaControlSaturationCard.setValue(saturation);
+    }
+
+    private void refreshDsiPanel() {
+        String blueNegative = Screen.getBlueNegative();
+        mDsiPanelBlueNegativeCard.setDescription(blueNegative);
+        mDsiPanelBlueNegativeCard.setValue(blueNegative);
+
+        String bluePositive = Screen.getBluePositive();
+        mDsiPanelBluePositiveCard.setDescription(bluePositive);
+        mDsiPanelBluePositiveCard.setValue(bluePositive);
+
+        String greenNegative = Screen.getGreenNegative();
+        mDsiPanelGreenNegativeCard.setDescription(greenNegative);
+        mDsiPanelGreenNegativeCard.setValue(greenNegative);
+
+        String greenPositive = Screen.getGreenPositive();
+        mDsiPanelGreenPositiveCard.setDescription(greenPositive);
+        mDsiPanelGreenPositiveCard.setValue(greenPositive);
+
+        String redNegative = Screen.getRedNegative();
+        mDsiPanelRedNegativeCard.setDescription(redNegative);
+        mDsiPanelRedNegativeCard.setValue(redNegative);
+
+        String redPositive = Screen.getRedPositive();
+        mDsiPanelRedPositiveCard.setDescription(redPositive);
+        mDsiPanelRedPositiveCard.setValue(redPositive);
+
+        String whitePoint = Screen.getWhitePoint();
+        mDsiPanelWhitePointCard.setDescription(whitePoint);
+        mDsiPanelWhitePointCard.setValue(whitePoint);
     }
 
 }

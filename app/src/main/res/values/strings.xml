@@ -266,6 +266,11 @@
     <string name="blue_negative">Blue Negative</string>
     <string name="white_point">White Point</string>
     <string name="gamma_profile_summary">After selecting a profile, please turn your screen off and on.</string>
+    <string name="additional_profiles">Additional Profiles</string>
+    <string name="additional_profiles_summary">Get more profiles from the internet.</string>
+    <string name="loading">Loading</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="no_additional_profiles">No additional profiles found</string>
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible than stock.</string>
     <string name="backlight_dimmer_threshold">Backlight Dimmer Threshold</string>
     <string name="backlight_dimmer_offset">Backlight Dimmer Offset</string>

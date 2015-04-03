@@ -105,8 +105,7 @@ public class Screen implements Constants {
         return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
     }
 
-    public static void setDsiPanelProfile(int profile, Context context) {
-        GammaProfiles.DsiPanelProfiles dsiPanelProfiles = getDsiPanelProfiles(context);
+    public static void setDsiPanelProfile(int profile, GammaProfiles.DsiPanelProfiles dsiPanelProfiles, Context context) {
         setBlueNegative(dsiPanelProfiles.getBlueNegative(profile), context);
         setBluePositive(dsiPanelProfiles.getBluePositive(profile), context);
         setGreenNegative(dsiPanelProfiles.getGreenNegative(profile), context);
@@ -145,7 +144,8 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.DsiPanelProfiles getDsiPanelProfiles(Context context) {
-        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        if (GAMMA_PROFILES == null)
+            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
         return GAMMA_PROFILES.getDsiPanelProfiles();
     }
 
@@ -182,8 +182,8 @@ public class Screen implements Constants {
         return false;
     }
 
-    public static void setGammaControlProfile(int profile, Context context) {
-        GammaProfiles.GammaControlProfiles gammaControlProfiles = getGammaControlProfiles(context);
+    public static void setGammaControlProfile(int profile, GammaProfiles.GammaControlProfiles gammaControlProfiles,
+                                              Context context) {
         setColorCalibration(gammaControlProfiles.getKCAL(profile), context);
         setRedGreys(gammaControlProfiles.getRedGreys(profile), context);
         setRedMids(gammaControlProfiles.getRedMids(profile), context);
@@ -263,7 +263,8 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.GammaControlProfiles getGammaControlProfiles(Context context) {
-        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        if (GAMMA_PROFILES == null)
+            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
         return GAMMA_PROFILES.getGammaControl();
     }
 
@@ -332,8 +333,7 @@ public class Screen implements Constants {
         return false;
     }
 
-    public static void setKGammaProfile(int profile, Context context) {
-        GammaProfiles.KGammaProfiles kGammaProfiles = getKGammaProfiles(context);
+    public static void setKGammaProfile(int profile, GammaProfiles.KGammaProfiles kGammaProfiles, Context context) {
         if (kGammaProfiles == null) return;
         setColorCalibration(kGammaProfiles.getKCAL(profile), context);
         setKGammaBlue(kGammaProfiles.getGammaBlue(profile), context);
@@ -364,7 +364,8 @@ public class Screen implements Constants {
 
     public static GammaProfiles.KGammaProfiles getKGammaProfiles(Context context) {
         if (Utils.existFile(K_GAMMA_BLUE)) return null;
-        if (GAMMA_PROFILES == null) GAMMA_PROFILES = new GammaProfiles(context);
+        if (GAMMA_PROFILES == null)
+            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
         return GAMMA_PROFILES.getKGamma();
     }
 

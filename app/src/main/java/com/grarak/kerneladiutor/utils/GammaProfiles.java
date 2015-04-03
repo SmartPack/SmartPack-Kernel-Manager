@@ -16,7 +16,6 @@
 
 package com.grarak.kerneladiutor.utils;
 
-import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -33,9 +32,8 @@ public class GammaProfiles {
     private GammaControlProfiles gammaControlProfiles;
     private DsiPanelProfiles dsiPanelProfiles;
 
-    public GammaProfiles(Context context) {
+    public GammaProfiles(String json) {
         try {
-            String json = Utils.readAssetFile(context, "gamma_profiles.json");
             JSON = new JSONObject(json);
         } catch (JSONException e) {
             Log.e(Constants.TAG, "Failed to read gamma profiles");
@@ -75,7 +73,26 @@ public class GammaProfiles {
         }
     }
 
-    public static class KGammaProfiles {
+    public void refresh(String json) {
+        try {
+            JSON = new JSONObject(json);
+        } catch (JSONException e) {
+            Log.e(Constants.TAG, "Failed to read gamma profiles");
+            JSON = null;
+        }
+    }
+
+    public boolean readable() {
+        return JSON != null;
+    }
+
+    public interface GammaProfile {
+        String getName(int position);
+
+        int length();
+    }
+
+    public static class KGammaProfiles implements GammaProfile {
 
         private final JSONArray JSON;
 
@@ -99,6 +116,7 @@ public class GammaProfiles {
             return getString("kcal", position);
         }
 
+        @Override
         public String getName(int position) {
             return getString("name", position);
         }
@@ -111,13 +129,14 @@ public class GammaProfiles {
             }
         }
 
+        @Override
         public int length() {
             return JSON.length();
         }
 
     }
 
-    public static class GammaControlProfiles {
+    public static class GammaControlProfiles implements GammaProfile {
 
         private final JSONArray JSON;
 
@@ -189,6 +208,7 @@ public class GammaProfiles {
             return getString("kcal", position);
         }
 
+        @Override
         public String getName(int position) {
             return getString("name", position);
         }
@@ -201,13 +221,14 @@ public class GammaProfiles {
             }
         }
 
+        @Override
         public int length() {
             return JSON.length();
         }
 
     }
 
-    public static class DsiPanelProfiles {
+    public static class DsiPanelProfiles implements GammaProfile {
 
         private final JSONArray JSON;
 
@@ -243,6 +264,7 @@ public class GammaProfiles {
             return getString("red_positive", position);
         }
 
+        @Override
         public String getName(int position) {
             return getString("name", position);
         }
@@ -255,6 +277,7 @@ public class GammaProfiles {
             }
         }
 
+        @Override
         public int length() {
             return JSON.length();
         }

@@ -30,6 +30,7 @@ public interface Constants {
     String TAG = "Kernel Adiutor";
     String VERSION_NAME = BuildConfig.VERSION_NAME;
     String PREF_NAME = "prefs";
+    String GAMMA_URL = "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/gamma_profiles.json";
     List<ListAdapter.ListItem> ITEMS = new ArrayList<>();
 
     // Kernel Informations
@@ -71,10 +72,10 @@ public interface Constants {
             CPU_BOOST_SYNC_THRESHOLD, CPU_BOOST_INPUT_MS,
             CPU_BOOST_INPUT_BOOST_FREQ};
 
-    String[][] CPU_ARRAY = {
-            new String[]{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT,
-                    CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES,
-                    CPU_MC_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS, CPU_CURRENT_CFS_SCHEDULER}, CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
+    String[][] CPU_ARRAY = {{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_MAX_SCREEN_OFF_FREQ,
+            CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS,
+            CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS, CPU_CURRENT_CFS_SCHEDULER},
+            CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
 
     // CPU Voltage
     String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
