@@ -60,6 +60,7 @@ public class CPU implements Constants {
 
     public static int getCpuBootInputFreq() {
         String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
+        if (value.split(" ").length > 1) value = value.split("0:")[1].split(" ")[0];
         if (value.equals("0")) return 0;
         return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
     }
