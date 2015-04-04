@@ -129,7 +129,8 @@ public class Utils implements Constants {
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
         else if (mClass == SoundFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(SOUND_ARRAY)));
-        else if (mClass == VMFragment.class) applys.add(VM_PATH);
+        else if (mClass == VMFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(VM_ARRAY)));
         else if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
 

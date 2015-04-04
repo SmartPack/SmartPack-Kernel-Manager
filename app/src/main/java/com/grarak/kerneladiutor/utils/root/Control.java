@@ -32,7 +32,7 @@ import java.util.List;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, TCP_CONGESTION, FAUX_GENERIC, SELINUX
+        GENERIC, CPU, FAUX_GENERIC, SELINUX, CUSTOM
     }
 
     public static void commandSaver(final Context context, final String sys, final String command) {
@@ -66,10 +66,6 @@ public class Control implements Constants {
 
     private static void runGeneric(String file, String value, String id, Context context) {
         run("echo " + value + " > " + file, id != null ? file + id : file, context);
-    }
-
-    private static void runTcpCongestion(String tcpCongestion, Context context) {
-        run("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion, TCP_AVAILABLE_CONGESTIONS, context);
     }
 
     private static void runFauxGeneric(String file, String value, Context context) {
@@ -122,12 +118,12 @@ public class Control implements Constants {
                     }
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, id, context);
-                } else if (command == CommandType.TCP_CONGESTION) {
-                    runTcpCongestion(value, context);
                 } else if (command == CommandType.FAUX_GENERIC) {
                     runFauxGeneric(file, value, context);
                 } else if (command == CommandType.SELINUX) {
                     runSelinux(Utils.stringToInt(value), context);
+                } else if (command == CommandType.CUSTOM) {
+                    Control.run(value, id == null ? file : file + id, context);
                 }
             }
         });

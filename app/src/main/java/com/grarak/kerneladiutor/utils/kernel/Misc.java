@@ -222,7 +222,8 @@ public class Misc implements Constants {
     }
 
     public static void setTcpCongestion(String tcpCongestion, Context context) {
-        Control.runCommand(tcpCongestion, null, Control.CommandType.TCP_CONGESTION, context);
+        Control.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion,
+                TCP_AVAILABLE_CONGESTIONS, Control.CommandType.CUSTOM, context);
     }
 
     public static String getCurTcpCongestion() {

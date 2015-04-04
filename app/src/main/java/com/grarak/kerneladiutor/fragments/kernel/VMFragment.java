@@ -19,16 +19,24 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 import android.text.InputType;
 
+import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
+import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.VM;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by willi on 27.12.14.
  */
-public class VMFragment extends RecyclerViewFragment {
+public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private EditTextCardView.DEditTextCard[] mVMCard;
+
+    private SeekBarCardView.DSeekBarCardView mZRAMDisksizeCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -76,5 +84,35 @@ public class VMFragment extends RecyclerViewFragment {
 
             addView(mVMCard[i]);
         }
+
+        if (VM.hasZRAM()) zramInit();
     }
+
+    private void zramInit() {
+        DividerCardView.DDividerCard mZRAMDividerCard = new DividerCardView.DDividerCard();
+        mZRAMDividerCard.setText(getString(R.string.zram));
+        addView(mZRAMDividerCard);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 101; i++)
+            list.add((i * 10) + getString(R.string.mb));
+
+        mZRAMDisksizeCard = new SeekBarCardView.DSeekBarCardView(list);
+        mZRAMDisksizeCard.setTitle(getString(R.string.disksize));
+        mZRAMDisksizeCard.setDescription(getString(R.string.disksize_summary));
+        mZRAMDisksizeCard.setProgress(VM.getZRAMDisksize() / 10);
+        mZRAMDisksizeCard.setOnDSeekBarCardListener(this);
+
+        addView(mZRAMDisksizeCard);
+    }
+
+    @Override
+    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    }
+
+    @Override
+    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+        if (dSeekBarCardView == mZRAMDisksizeCard) VM.setZRAMDisksize(position * 10, getActivity());
+    }
+
 }

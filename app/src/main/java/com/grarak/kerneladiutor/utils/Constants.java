@@ -482,6 +482,13 @@ public interface Constants {
             "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio", "swappiness",
             "vfs_cache_pressure", "laptop_mode"};
 
+    String ZRAM = "/sys/block/zram0";
+    String ZRAM_BLOCK = "/dev/block/zram0";
+    String ZRAM_DISKSIZE = "/sys/block/zram0/disksize";
+    String ZRAM_RESET = "/sys/block/zram0/reset";
+
+    String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET};
+
     // Misc
     // TCP
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
