@@ -68,11 +68,12 @@ public abstract class BaseDB implements Constants {
         List<DBItem> sysList = new ArrayList<>();
 
         Cursor cursor = database.query(getTable(), getAllKeys(), null, null, null, null, null);
-        if (cursor.moveToFirst())
-            do {
-                DBItem dbItem = cursorToDBItem(cursor);
-                sysList.add(dbItem);
-            } while (cursor.moveToNext());
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            DBItem dbItem = cursorToDBItem(cursor);
+            sysList.add(dbItem);
+            cursor.moveToNext();
+        }
         cursor.close();
         return sysList;
     }
