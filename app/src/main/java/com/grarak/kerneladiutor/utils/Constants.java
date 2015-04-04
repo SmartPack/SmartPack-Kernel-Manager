@@ -244,6 +244,7 @@ public interface Constants {
     String GPU_MAX_FDB00000_QCOM_FREQ = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk";
     String GPU_AVAILABLE_FDB00000_QCOM_FREQS = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/gpu_available_frequencies";
     String GPU_SCALING_FDB00000_QCOM_GOVERNOR = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/devfreq/governor";
+    String GPU_SCALING_PWRSCALE_GOVERNOR = "/sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor";
     String GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/devfreq/available_governors";
 
     String GPU_CUR_1C00000_QCOM_FREQ = "/sys/devices/soc.0/1c00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/max_gpuclk";
@@ -275,8 +276,8 @@ public interface Constants {
     String[] GPU_AVAILABLE_FREQS_ARRAY = {GPU_AVAILABLE_KGSL3D0_QCOM_FREQS, GPU_AVAILABLE_FDB00000_QCOM_FREQS,
             GPU_AVAILABLE_1C00000_QCOM_FREQ, GPU_AVAILABLE_OMAP_FREQS};
 
-    String[] GPU_SCALING_GOVERNOR_ARRAY = {GPU_SCALING_KGSL3D0_QCOM_GOVERNOR, GPU_SCALING_1C00000_QCOM_GOVERNOR,
-            GPU_SCALING_FDB00000_QCOM_GOVERNOR, GPU_SCALING_OMAP_GOVERNOR};
+    String[] GPU_SCALING_GOVERNOR_ARRAY = {GPU_SCALING_KGSL3D0_QCOM_GOVERNOR, GPU_SCALING_FDB00000_QCOM_GOVERNOR,
+            GPU_SCALING_PWRSCALE_GOVERNOR, GPU_SCALING_1C00000_QCOM_GOVERNOR, GPU_SCALING_OMAP_GOVERNOR};
 
     String[] GPU_AVAILABLE_GOVERNORS_ARRAY = {GPU_AVAILABLE_FDB00000_QCOM_GOVERNORS, GPU_AVAILABLE_1C00000_QCOM_GOVERNORS,
             GPU_AVAILABLE_OMAP_GOVERNORS};
