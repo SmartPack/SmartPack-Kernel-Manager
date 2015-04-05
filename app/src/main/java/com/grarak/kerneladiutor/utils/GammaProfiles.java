@@ -37,6 +37,7 @@ public class GammaProfiles {
             JSON = new JSONObject(json);
         } catch (JSONException e) {
             Log.e(Constants.TAG, "Failed to read gamma profiles");
+            e.printStackTrace();
         }
     }
 
@@ -46,7 +47,6 @@ public class GammaProfiles {
                 kgammaProfiles = new KGammaProfiles(JSON.getJSONArray("k_gamma"));
             return kgammaProfiles;
         } catch (JSONException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -57,7 +57,6 @@ public class GammaProfiles {
                 gammaControlProfiles = new GammaControlProfiles(JSON.getJSONArray("gammacontrol"));
             return gammaControlProfiles;
         } catch (JSONException e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -68,7 +67,6 @@ public class GammaProfiles {
                 dsiPanelProfiles = new DsiPanelProfiles(JSON.getJSONArray("dsi_panel"));
             return dsiPanelProfiles;
         } catch (JSONException e) {
-            e.printStackTrace();
             return null;
         }
     }
