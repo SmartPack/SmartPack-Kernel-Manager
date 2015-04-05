@@ -261,11 +261,11 @@ public class MainActivity extends ActionBarActivity implements Constants {
                 args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root)
                         : getString(R.string.no_busybox));
                 Log.d(TAG, !hasRoot ? "no root" : "no busybox");
-                if (!hasRoot)
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
                 i.putExtras(args);
                 startActivity(i);
 
+                if (hasRoot)
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
                 if (betaDialog != null) betaDialog.dismiss();
                 cancel(true);
                 finish();
