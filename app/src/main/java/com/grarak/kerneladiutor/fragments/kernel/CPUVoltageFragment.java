@@ -40,7 +40,8 @@ import java.util.List;
 /**
  * Created by willi on 26.12.14.
  */
-public class CPUVoltageFragment extends RecyclerViewFragment {
+public class CPUVoltageFragment extends RecyclerViewFragment implements
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
     private EditTextCardView.DEditTextCard[] mVoltageCard;
     private SwitchCompatCardItem.DSwitchCompatCard mOverrideVminCard;
@@ -65,15 +66,9 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
             mOverrideVminCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mOverrideVminCard.setTitle(getString(R.string.override_vmin));
             mOverrideVminCard.setDescription(getString(R.string.override_vmin_summary));
-            mOverrideVminCard.setChecked(CPUVoltage.getOverrideVmin());
-            mOverrideVminCard.setOnDSwitchCompatCardListener(new SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener() {
-                @Override
-                public void onChecked(SwitchCompatCardItem.DSwitchCompatCard card, boolean checked) {
-                    CPUVoltage.setOverrideVmin(checked, getActivity());
-                }
-            });
-
+            mOverrideVminCard.setChecked(CPUVoltage.isOverrideVminActive());
             mOverrideVminCard.setFullSpan(true);
+            mOverrideVminCard.setOnDSwitchCompatCardListener(this);
 
             addView(mOverrideVminCard);
         }
@@ -195,4 +190,11 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
+        if (dSwitchCompatCard == mOverrideVminCard)
+            CPUVoltage.activateOverrideVmin(checked, getActivity());
+    }
+
 }

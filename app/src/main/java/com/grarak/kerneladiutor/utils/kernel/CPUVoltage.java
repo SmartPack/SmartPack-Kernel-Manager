@@ -34,6 +34,18 @@ public class CPUVoltage implements Constants {
     private static String CPU_VOLTAGE_FILE;
     private static String[] mCpuFreqs;
 
+    public static void activateOverrideVmin(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_OVERRIDE_VMIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isOverrideVminActive() {
+        return Utils.readFile(CPU_OVERRIDE_VMIN).equals("1");
+    }
+
+    public static boolean hasOverrideVmin() {
+        return Utils.existFile(CPU_OVERRIDE_VMIN);
+    }
+
     public static void setGlobalOffset(String voltage, Context context) {
         List<String> voltages = getVoltages();
         String command = "";
@@ -135,15 +147,4 @@ public class CPUVoltage implements Constants {
         return CPU_VOLTAGE_FILE != null;
     }
 
-    public static boolean hasOverrideVmin() {
-        return Utils.existFile(CPU_OVERRIDE_VMIN);
-    }
-
-    public static boolean getOverrideVmin() {
-        return Utils.readFile(CPU_OVERRIDE_VMIN).equals("1");
-    }
-
-    public static void setOverrideVmin(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CPU_OVERRIDE_VMIN, Control.CommandType.GENERIC, context);
-    }
 }
