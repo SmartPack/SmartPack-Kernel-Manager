@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,6 +122,7 @@ public class SwitchCompatCardItem extends BaseCardView {
         private String title;
         private String description;
         private boolean checked;
+        private boolean fullspan;
 
         private OnDSwitchCompatCardListener onDSwitchCompatCardListener;
 
@@ -138,6 +140,14 @@ public class SwitchCompatCardItem extends BaseCardView {
             if (description != null) switchCompatCardItem.setDescription(description);
             switchCompatCardItem.setChecked(checked);
 
+            if (fullspan) {
+                final StaggeredGridLayoutManager.LayoutParams params =
+                        new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setFullSpan(true);
+                switchCompatCardItem.setLayoutParams(params);
+            }
+
             setUpListener();
         }
 
@@ -154,6 +164,10 @@ public class SwitchCompatCardItem extends BaseCardView {
         public void setChecked(boolean checked) {
             this.checked = checked;
             if (switchCompatCardItem != null) switchCompatCardItem.setChecked(checked);
+        }
+
+        public void setFullSpan(boolean state) {
+            fullspan = state;
         }
 
         public void setOnDSwitchCompatCardListener(OnDSwitchCompatCardListener onDSwitchCompatCardListener) {

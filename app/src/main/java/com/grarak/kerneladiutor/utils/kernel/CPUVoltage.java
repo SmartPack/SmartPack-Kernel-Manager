@@ -135,4 +135,15 @@ public class CPUVoltage implements Constants {
         return CPU_VOLTAGE_FILE != null;
     }
 
+    public static boolean hasOverrideVmin() {
+        return Utils.existFile(CPU_OVERRIDE_VMIN);
+    }
+
+    public static boolean getOverrideVmin() {
+        return Utils.readFile(CPU_OVERRIDE_VMIN).equals("1");
+    }
+
+    public static void setOverrideVmin(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_OVERRIDE_VMIN, Control.CommandType.GENERIC, context);
+    }
 }

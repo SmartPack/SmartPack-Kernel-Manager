@@ -110,6 +110,8 @@
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
+    <string name="override_vmin">Override Minimum Voltage</string>
+    <string name="override_vmin_summary">Disable to remove manufacturer limits on undervolting</string>
 
     <!-- CPU Hotplug -->
     <string name="mpdecision">MPDecision</string>
