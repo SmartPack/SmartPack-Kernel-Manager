@@ -52,4 +52,11 @@
         <item>@string/enforcing</item>
     </string-array>
 
+    <string-array name="powersuspend_items">
+        <item>@string/autosleep</item>
+        <item>@string/userspace</item>
+        <item>@string/lcd_panel</item>
+        <item>@string/hybrid</item>
+    </string-array>
+
 </resources>

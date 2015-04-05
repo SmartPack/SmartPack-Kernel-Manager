@@ -166,13 +166,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private void powersuspendInit() {
         if (Misc.hasPowerSuspendMode()) {
-            List<String> list = new ArrayList<>();
-            list.add(getString(R.string.kernel_mode));
-            list.add(getString(R.string.user_mode));
-            list.add(getString(R.string.lcd_hooks));
-            list.add(getString(R.string.highest_level_hook));
-
-            mPowerSuspendModeCard = new PopupCardItem.DPopupCard(list);
+            mPowerSuspendModeCard = new PopupCardItem.DPopupCard(new ArrayList<>(
+                    Arrays.asList(getResources().getStringArray(R.array.powersuspend_items))));
             mPowerSuspendModeCard.setTitle(getString(R.string.power_suspend_mode));
             mPowerSuspendModeCard.setDescription(getString(R.string.power_suspend_mode_summary));
             mPowerSuspendModeCard.setItem(Misc.getPowerSuspendMode());
