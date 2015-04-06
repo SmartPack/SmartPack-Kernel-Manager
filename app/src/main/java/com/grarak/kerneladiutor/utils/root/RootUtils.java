@@ -41,6 +41,7 @@ public class RootUtils implements Constants {
 
     public static SELINUX_STATUS getSelinux() {
         String status = runCommand("getenforce");
+        if (status == null) return SELINUX_STATUS.NOSELINUX;
         switch (status.toLowerCase()) {
             case "disabled":
                 return SELINUX_STATUS.DISABLED;
