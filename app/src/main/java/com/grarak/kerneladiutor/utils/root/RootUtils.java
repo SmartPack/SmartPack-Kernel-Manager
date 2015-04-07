@@ -60,7 +60,7 @@ public class RootUtils implements Constants {
 
     public static boolean rootAccess() {
         SU su = getSU();
-        su.runCommand("mount");
+        su.runCommand("echo /testRoot/");
         return !su.denied;
     }
 

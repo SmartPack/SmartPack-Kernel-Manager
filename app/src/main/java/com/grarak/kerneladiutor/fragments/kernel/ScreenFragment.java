@@ -579,13 +579,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                 if (position > seekBarCardView.getProgress())
                     seekBarCardView.setProgress(position);
         } else {
-            for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
-                if (dSeekBarCardView == seekBarCardView) {
-                    if (mColorCalibrationMinCard != null)
-                        if (position < mColorCalibrationMinCard.getProgress())
-                            mColorCalibrationMinCard.setProgress(position);
-                    return;
-                }
+            if (mColorCalibrationCard != null)
+                for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
+                    if (dSeekBarCardView == seekBarCardView) {
+                        if (mColorCalibrationMinCard != null)
+                            if (position < mColorCalibrationMinCard.getProgress())
+                                mColorCalibrationMinCard.setProgress(position);
+                        return;
+                    }
         }
     }
 
