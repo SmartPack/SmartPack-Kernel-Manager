@@ -102,9 +102,6 @@ public class PathReaderActivity extends ActionBarActivity {
 
         private SwipeRefreshLayout refreshLayout;
 
-        private final String[] FREQ_FILE = new String[]{"hispeed_freq", "optimal_freq", "sync_freq",
-                "max_freq_blank", "high_freq_zone", "input_boost_freq"};
-
         public static PathReaderFragment newInstance(String path, String error, int type) {
             Bundle args = new Bundle();
             args.putString(ARG_PATH, path);
@@ -190,12 +187,8 @@ public class PathReaderActivity extends ActionBarActivity {
 
         @Override
         public void onClick(View v) {
-            boolean freq = false;
-            for (String freqFile : FREQ_FILE)
-                if (((PopupCardItem) v).getDescription().equals(freqFile)) {
-                    freq = true;
-                    break;
-                }
+            boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
+                    .readFile(PATH + "/" + ((PopupCardItem) v).getDescription()))) > -1;
 
             if (freq && TYPE == PATH_TYPE.GOVERNOR.ordinal()) {
                 String[] values = new String[CPU.getFreqs().size()];

@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppThemeLight">
         <activity
-            android:name=".MainActivity"
+            android:name="com.grarak.kerneladiutor.MainActivity"
             android:label="@string/app_name"
             android:configChanges="locale|keyboardHidden|orientation|screenSize">
             <intent-filter>
@@ -22,23 +22,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TextActivity"
+            android:name="com.grarak.kerneladiutor.TextActivity"
             android:theme="@style/AppThemeActionBarLight"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".PathReaderActivity"
+            android:name="com.grarak.kerneladiutor.PathReaderActivity"
             android:theme="@style/AppThemeActionBarLight"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
-        <receiver android:name=".services.BootReceiver">
+        <receiver android:name="com.grarak.kerneladiutor.services.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".services.BootService" />
+        <service android:name="com.grarak.kerneladiutor.services.BootService" />
 
-        <receiver android:name=".services.ProfileWidget">
+        <receiver android:name="com.grarak.kerneladiutor.services.ProfileWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -48,11 +48,11 @@
         </receiver>
 
         <service
-            android:name=".services.ProfileWidget$WidgetService"
+            android:name="com.grarak.kerneladiutor.services.ProfileWidget$WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <service
-            android:name=".services.DashClockService"
+            android:name="com.grarak.kerneladiutor.services.DashClockService"
             android:icon="@drawable/ic_launcher_preview"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
             <intent-filter>

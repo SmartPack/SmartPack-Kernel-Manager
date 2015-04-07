@@ -100,15 +100,16 @@ public class BatteryFragment extends RecyclerViewFragment implements
     }
 
     private void blxInit() {
-        List<String> blxValues = new ArrayList<>();
-        for (int i = 0; i < 101; i++) blxValues.add(String.valueOf(i));
-        mBlxCard = new SeekBarCardView.DSeekBarCardView(blxValues);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 101; i++) list.add(String.valueOf(i));
+
+        mBlxCard = new SeekBarCardView.DSeekBarCardView(list);
         mBlxCard.setTitle(getString(R.string.blx));
         mBlxCard.setDescription(getString(R.string.blx_summary));
         mBlxCard.setProgress(Battery.getCurBlx());
         mBlxCard.setOnDSeekBarCardListener(this);
 
-        addView(mBatteryLevelCard);
+        addView(mBlxCard);
     }
 
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {

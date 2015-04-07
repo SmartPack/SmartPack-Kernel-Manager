@@ -32,7 +32,7 @@ public class Battery implements Constants {
     }
 
     public static int getCurBlx() {
-        return Utils.stringToInt(Utils.readFile(FORCE_FAST_CHARGE));
+        return Utils.stringToInt(Utils.readFile(BLX));
     }
 
     public static boolean hasBlx() {
