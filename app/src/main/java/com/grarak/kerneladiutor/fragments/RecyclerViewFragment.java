@@ -16,12 +16,12 @@
 
 package com.grarak.kerneladiutor.fragments;
 
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -87,7 +86,6 @@ public class RecyclerViewFragment extends Fragment {
             }
         });
         setRecyclerView(recyclerView);
-        setLayout();
         recyclerView.setPadding(5, 5, 5, 5);
 
         progressBar = new ProgressBar(getActivity());
@@ -136,7 +134,6 @@ public class RecyclerViewFragment extends Fragment {
                 try {
                     ((ViewGroup) progressBar.getParent()).removeView(progressBar);
                 } catch (NullPointerException e) {
-                    e.printStackTrace();
                 }
                 try {
                     if (isAdded()) postInit(savedInstanceState);
@@ -249,16 +246,7 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        setLayout();
         layoutManager.setSpanCount(getSpan());
-    }
-
-    private void setLayout() {
-        if (applyOnBootLayout != null) {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) applyOnBootLayout.getLayoutParams();
-            layoutParams.height = Utils.getActionBarHeight(getActivity());
-            applyOnBootLayout.requestLayout();
-        }
     }
 
     public ActionBar getActionBar() {

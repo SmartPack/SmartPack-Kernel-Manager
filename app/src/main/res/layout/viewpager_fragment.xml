@@ -42,13 +42,10 @@
         </LinearLayout>
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        android:scrollbarStyle="outsideOverlay"
+    <com.grarak.kerneladiutor.elements.CustomViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/apply_on_boot_layout" />
+        android:layout_below="@+id/apply_on_boot_layout" />
 
 </RelativeLayout>
