@@ -244,6 +244,7 @@
     <string name="screen_hue_summary">You might get problems with MSM8x26 SoC when setting a high value.</string>
     <string name="screen_value">Screen Value</string>
     <string name="screen_contrast">Screen Contrast</string>
+    <string name="high_brightness_mode">High Brightness Mode</string>
     <string name="gamma">Gamma</string>
     <string name="gamma_profile">Gamma Profile</string>
     <string name="red_greys">Red Greys</string>

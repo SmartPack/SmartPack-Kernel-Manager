@@ -389,6 +389,18 @@ public class Screen implements Constants {
         return false;
     }
 
+    public static void activateScreenHBM(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", SCREEN_HBM, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isScreenHBMActive() {
+        return Utils.readFile(SCREEN_HBM).equals("1");
+    }
+
+    public static boolean hasScreenHBM() {
+        return Utils.existFile(SCREEN_HBM);
+    }
+
     public static void setScreenContrast(int value, Context context) {
         Control.runCommand(String.valueOf(value), SCREEN_KCAL_CTRL_CONT, Control.CommandType.GENERIC, context);
     }

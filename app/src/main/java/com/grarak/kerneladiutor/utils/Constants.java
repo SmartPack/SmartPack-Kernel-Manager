@@ -330,6 +330,8 @@ public interface Constants {
     String[] SCREEN_KCAL_CTRL_ARRAY = {SCREEN_KCAL_CTRL_ENABLE, SCREEN_KCAL_CTRL_CTRL,
             SCREEN_DIAG0_POWER_CTRL, SCREEN_COLOR_CONTROL_CTRL};
 
+    String SCREEN_HBM = "/sys/devices/virtual/graphics/fb0/hbm";
+
     // Gamma
     String K_GAMMA_R = "/sys/devices/platform/mipi_lgit.1537/kgamma_r";
     String K_GAMMA_G = "/sys/devices/platform/mipi_lgit.1537/kgamma_g";
@@ -384,7 +386,8 @@ public interface Constants {
 
     String[][] SCREEN_ARRAY = {SCREEN_KCAL_ARRAY, SCREEN_KCAL_CTRL_ARRAY, MIN_BRIGHTNESS_ARRAY, SCREEN_KCAL_CTRL_NEW_ARRAY,
             K_GAMMA_ARRAY, GAMMACONTROL_ARRAY, DSI_PANEL_ARRAY,
-            {SCREEN_KCAL_CTRL_MIN, LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD, LM3630_BACKLIGHT_DIMMER_OFFSET}};
+            {SCREEN_KCAL_CTRL_MIN, SCREEN_HBM, LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD,
+                    LM3630_BACKLIGHT_DIMMER_OFFSET}};
 
     // Wake
 

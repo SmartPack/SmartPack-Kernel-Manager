@@ -59,6 +59,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCardView mScreenHueCard;
     private SeekBarCardView.DSeekBarCardView mScreenValueCard;
     private SeekBarCardView.DSeekBarCardView mScreenContrastCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mScreenHBMCard;
 
     private EditTextCardView.DEditTextCard mKGammaBlueCard;
     private EditTextCardView.DEditTextCard mKGammaGreenCard;
@@ -221,6 +222,15 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             mScreenContrastCard.setOnDSeekBarCardListener(this);
 
             addView(mScreenContrastCard);
+        }
+
+        if (Screen.hasScreenHBM()) {
+            mScreenHBMCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mScreenHBMCard.setDescription(getString(R.string.high_brightness_mode));
+            mScreenHBMCard.setChecked(Screen.isInvertScreenActive());
+            mScreenHBMCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mScreenHBMCard);
         }
     }
 
@@ -634,7 +644,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             mSaturationIntensityCard.setEnabled(!checked);
             Screen.activateGrayscaleMode(checked, getActivity());
             if (!checked) mSaturationIntensityCard.setProgress(30);
-        } else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
+        } else if (dSwitchCompatCard == mScreenHBMCard)
+            Screen.activateScreenHBM(checked, getActivity());
+        else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
     }
 
