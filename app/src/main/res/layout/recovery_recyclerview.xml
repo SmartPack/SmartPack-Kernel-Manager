@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="@color/fab_normal"
+        fab:fab_addButtonColorPressed="@color/fab_pressed"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_labelStyle="@style/menu_labels_style">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/wipe_data_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_title="@string/wipe_data"
+            fab:fab_colorNormal="@color/fab_normal_menu"
+            fab:fab_colorPressed="@color/fab_pressed_menu" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/wipe_cache_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_title="@string/wipe_cache"
+            fab:fab_colorNormal="@color/fab_normal_menu"
+            fab:fab_colorPressed="@color/fab_pressed_menu" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flash_zip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_title="@string/flash_zip"
+            fab:fab_colorNormal="@color/fab_normal_menu"
+            fab:fab_colorPressed="@color/fab_pressed_menu" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</RelativeLayout>

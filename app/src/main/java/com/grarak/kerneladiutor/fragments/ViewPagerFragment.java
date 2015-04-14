@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * Created by willi on 07.04.15.
  */
-public abstract class ViewPagerFragment extends Fragment {
+public class ViewPagerFragment extends BaseFragment {
 
     private Adapter adapter;
     private CustomViewPager mViewPager;
@@ -119,10 +119,15 @@ public abstract class ViewPagerFragment extends Fragment {
     public void init(Bundle savedInstanceState) {
     }
 
-    public abstract void onSwipe(int page);
+    public void onSwipe(int page) {
+    }
 
     public void setCurrentItem(int item) {
         mViewPager.setCurrentItem(item);
+    }
+
+    public int getCurrentPage() {
+        return mViewPager.getCurrentItem();
     }
 
     public void allowSwipe(boolean swipe) {
@@ -174,6 +179,11 @@ public abstract class ViewPagerFragment extends Fragment {
 
     public ActionBar getActionBar() {
         return ((ActionBarActivity) getActivity()).getSupportActionBar();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 
 }

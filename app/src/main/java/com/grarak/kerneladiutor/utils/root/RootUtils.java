@@ -35,25 +35,6 @@ public class RootUtils implements Constants {
 
     public static SU su;
 
-    public enum SELINUX_STATUS {
-        NOSELINUX, DISABLED, PERMISSIVE, ENFORCING
-    }
-
-    public static SELINUX_STATUS getSelinux() {
-        String status = runCommand("getenforce");
-        if (status == null) return SELINUX_STATUS.NOSELINUX;
-        switch (status.toLowerCase()) {
-            case "disabled":
-                return SELINUX_STATUS.DISABLED;
-            case "permissive":
-                return SELINUX_STATUS.PERMISSIVE;
-            case "enforcing":
-                return SELINUX_STATUS.ENFORCING;
-            default:
-                return SELINUX_STATUS.NOSELINUX;
-        }
-    }
-
     public static boolean rooted() {
         return existBinary("su");
     }

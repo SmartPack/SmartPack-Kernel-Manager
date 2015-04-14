@@ -62,7 +62,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public RecyclerView getRecyclerView() {
-        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view).findViewById(R.id.refresh_layout);
+        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -71,7 +71,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        FloatingActionButton addButton = (FloatingActionButton) getParentView(R.layout.path_read_view).findViewById(R.id.add_button);
+        FloatingActionButton addButton = (FloatingActionButton) getParentView(R.layout.swiperefresh_recyclerview)
+                .findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +80,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        FloatingActionButton backupButton = (FloatingActionButton) getParentView(R.layout.path_read_view).findViewById(R.id.backup_button);
+        FloatingActionButton backupButton = (FloatingActionButton) getParentView(R.layout.swiperefresh_recyclerview)
+                .findViewById(R.id.backup_button);
         backupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,10 +89,10 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        floatingActionsMenu = (FloatingActionsMenu) getParentView(R.layout.path_read_view).findViewById(R.id.fab_menu);
+        floatingActionsMenu = (FloatingActionsMenu) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.fab_menu);
         floatingActionsMenu.setVisibility(View.VISIBLE);
         animateFab();
-        return (RecyclerView) getParentView(R.layout.path_read_view).findViewById(R.id.recycler_view);
+        return (RecyclerView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.recycler_view);
     }
 
     @Override

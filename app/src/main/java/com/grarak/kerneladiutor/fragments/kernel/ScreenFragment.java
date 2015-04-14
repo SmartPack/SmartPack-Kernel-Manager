@@ -227,7 +227,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         if (Screen.hasScreenHBM()) {
             mScreenHBMCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mScreenHBMCard.setDescription(getString(R.string.high_brightness_mode));
-            mScreenHBMCard.setChecked(Screen.isInvertScreenActive());
+            mScreenHBMCard.setChecked(Screen.isScreenHBMActive());
             mScreenHBMCard.setOnDSwitchCompatCardListener(this);
 
             addView(mScreenHBMCard);

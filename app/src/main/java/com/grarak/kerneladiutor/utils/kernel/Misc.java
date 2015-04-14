@@ -17,12 +17,10 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
-import android.os.Build;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -91,23 +89,6 @@ public class Misc implements Constants {
 
     public static boolean hasDynamicFsync() {
         return Utils.existFile(DYNAMIC_FSYNC);
-    }
-
-    public static void setSelinux(int value, Context context) {
-        Control.runCommand(String.valueOf(value), null, Control.CommandType.SELINUX, context);
-    }
-
-    public static int getSelinux() {
-        if (RootUtils.getSelinux() == RootUtils.SELINUX_STATUS.ENFORCING) return 1;
-        return 0;
-    }
-
-    public static boolean hasSelinux() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            RootUtils.SELINUX_STATUS status = RootUtils.getSelinux();
-            return status == RootUtils.SELINUX_STATUS.PERMISSIVE || status == RootUtils.SELINUX_STATUS.ENFORCING;
-        }
-        return false;
     }
 
     public static void activateMsmHsicHostWakeLock(boolean active, Context context) {

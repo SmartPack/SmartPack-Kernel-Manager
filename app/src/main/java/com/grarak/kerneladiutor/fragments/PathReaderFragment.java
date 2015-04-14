@@ -49,8 +49,8 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        errorText = (TextView) getParentView(R.layout.path_read_view).findViewById(R.id.error_text);
-        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.path_read_view).findViewById(R.id.refresh_layout);
+        errorText = (TextView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.error_text);
+        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.color_primary));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -59,7 +59,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
             }
         });
 
-        return (RecyclerView) getParentView(R.layout.path_read_view).findViewById(R.id.recycler_view);
+        return (RecyclerView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.recycler_view);
     }
 
     @Override

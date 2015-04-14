@@ -49,8 +49,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private SwitchCompatCardItem.DSwitchCompatCard mLoggerEnableCard;
 
-    private PopupCardItem.DPopupCard mSelinuxCard;
-
     private SwitchCompatCardItem.DSwitchCompatCard mDynamicFsyncCard;
 
     private PopupCardItem.DPopupCard mPowerSuspendModeCard;
@@ -67,7 +65,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
         if (Misc.hasMsmHsicHostWakeLock()) msmHsicHostWakeLockInit();
         if (Misc.hasLoggerEnable()) loggerInit();
-        if (Misc.hasSelinux()) selinuxInit();
         if (Misc.hasDynamicFsync()) dynamicFsyncInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
     }
@@ -142,17 +139,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         addView(mLoggerEnableCard);
     }
 
-    private void selinuxInit() {
-        String[] items = getResources().getStringArray(R.array.selinux_items);
-        mSelinuxCard = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays.asList(items)));
-        mSelinuxCard.setTitle(getString(R.string.selinux));
-        mSelinuxCard.setDescription(getString(R.string.selinux_summary));
-        mSelinuxCard.setItem(Misc.getSelinux());
-        mSelinuxCard.setOnDPopupCardListener(this);
-
-        addView(mSelinuxCard);
-    }
-
     private void dynamicFsyncInit() {
         mDynamicFsyncCard = new SwitchCompatCardItem.DSwitchCompatCard();
         mDynamicFsyncCard.setTitle(getString(R.string.dynamic_fsync));
@@ -205,7 +191,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
             Misc.setTcpCongestion(Misc.getTcpAvailableCongestions().get(position), getActivity());
-        else if (dPopupCard == mSelinuxCard) Misc.setSelinux(position, getActivity());
         else if (dPopupCard == mPowerSuspendModeCard)
             Misc.setPowerSuspendMode(position, getActivity());
     }

@@ -33,18 +33,18 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.AddFloatingActionButton;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
-import com.grarak.kerneladiutor.services.ProfileWidget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ import java.util.List;
 public class ProfileFragment extends RecyclerViewFragment {
 
     private TextView noProfilesView;
-    private FloatingActionButton addButton;
+    private AddFloatingActionButton addButton;
 
     @Override
     public int getSpan() {
@@ -67,11 +67,11 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        noProfilesView = (TextView) getParentView(R.layout.profile_fragment).findViewById(R.id.no_profiles_text);
+        noProfilesView = (TextView) getParentView(R.layout.profile_recyclerview).findViewById(R.id.no_profiles_text);
         if (Utils.DARKTHEME)
             noProfilesView.setTextColor(getResources().getColor(R.color.textcolor_dark));
 
-        addButton = (FloatingActionButton) getParentView(R.layout.profile_fragment).findViewById(R.id.add_button);
+        addButton = (AddFloatingActionButton) getParentView(R.layout.profile_recyclerview).findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +176,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         });
 
         animateFab();
-        return (RecyclerView) getParentView(R.layout.profile_fragment).findViewById(R.id.recycler_view);
+        return (RecyclerView) getParentView(R.layout.profile_recyclerview).findViewById(R.id.recycler_view);
     }
 
     @Override

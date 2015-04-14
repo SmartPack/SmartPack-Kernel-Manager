@@ -36,23 +36,26 @@
         android:layout_alignParentEnd="true"
         fab:fab_addButtonColorNormal="@color/fab_normal"
         fab:fab_addButtonColorPressed="@color/fab_pressed"
-        fab:fab_addButtonPlusIconColor="@android:color/black"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_labelStyle="@style/menu_labels_style"
         android:visibility="gone">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/backup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="?attr/colorPrimary"
-            fab:fab_colorPressed="?attr/colorPrimaryDark"
+            fab:fab_title="@string/backup"
+            fab:fab_colorNormal="@color/fab_normal_menu"
+            fab:fab_colorPressed="@color/fab_pressed_menu"
             fab:fab_icon="@drawable/ic_backup" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="?attr/colorPrimary"
-            fab:fab_colorPressed="?attr/colorPrimaryDark"
+            fab:fab_title="@string/add"
+            fab:fab_colorNormal="@color/fab_normal_menu"
+            fab:fab_colorPressed="@color/fab_pressed_menu"
             fab:fab_icon="@drawable/ic_pen" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

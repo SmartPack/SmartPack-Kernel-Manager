@@ -68,6 +68,15 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
     }
 
+    @Override
+    public boolean onBackPressed() {
+        if (getCurrentPage() == 1) {
+            setCurrentItem(0);
+            return true;
+        }
+        return false;
+    }
+
     public static class IOPart extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
             CardViewItem.DCardView.OnDCardListener {
 

@@ -54,6 +54,7 @@
     <string name="misc_controls">Misc Controls</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
+    <string name="recovery">Recovery</string>
     <string name="settings">Settings</string>
     <string name="faq">FAQ</string>
     <string name="about_us">About us</string>
@@ -380,8 +381,6 @@
     <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
     <string name="msm_hsic_host_wakelock_summary">Prevent msm_hsic_host wakelock.</string>
     <string name="android_logger">Android logging</string>
-    <string name="selinux">SELinux</string>
-    <string name="selinux_summary">Security-Enhanced Linux is a Linux kernel security module that provides a mechanism for supporting access control security policies, including United States Department of Defense–style mandatory access controls.</string>
     <string name="permissive">Permissive</string>
     <string name="enforcing">Enforcing</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
@@ -396,6 +395,8 @@
     <string name="power_suspend_state_summary">Kernel power management driver when screen is off. Better battery savings if enabled. Note: You can only change this setting if Power Suspend Mode is in User Mode.</string>
 
     <!-- Build prop Editor -->
+    <string name="backup">Backup</string>
+    <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="key">Key</string>
@@ -413,6 +414,19 @@
     <string name="empty_name">Name is empty</string>
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
+
+    <!-- Recovery -->
+    <string name="your_recovery">Your Recovery</string>
+    <string name="reboot">Reboot</string>
+    <string name="reboot_recovery">Reboot Recovery</string>
+    <string name="reboot_bootloader">Reboot Bootloader</string>
+    <string name="reboot_download">Reboot Download</string>
+    <string name="cwm_recovery">CWM Recovery</string>
+    <string name="twrp">TWRP</string>
+    <string name="actions">Actions</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_cache">Wipe Cache</string>
+    <string name="flash_zip">Flash Zip</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>

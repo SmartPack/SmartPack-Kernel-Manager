@@ -66,6 +66,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
     @Override
     public void onSwipe(int page) {
+        super.onSwipe(page);
         if (page == 0) {
             getActionBar().setTitle(mTitle);
             allowSwipe(false);
@@ -73,6 +74,15 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             getActionBar().setTitle(CPU.getCurGovernor(0));
             allowSwipe(true);
         }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (getCurrentPage() == 1) {
+            setCurrentItem(0);
+            return true;
+        }
+        return false;
     }
 
     public static class CPUPart extends RecyclerViewFragment implements View.OnClickListener,

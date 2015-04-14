@@ -21,7 +21,6 @@ import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
+import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -46,7 +46,7 @@ import java.util.List;
 /**
  * Created by willi on 22.12.14.
  */
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends BaseFragment implements MainActivity.OnBackButtonListener {
 
     protected View view;
     protected LayoutInflater inflater;
@@ -133,7 +133,7 @@ public class RecyclerViewFragment extends Fragment {
 
                 try {
                     ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-                } catch (NullPointerException e) {
+                } catch (NullPointerException ignored) {
                 }
                 try {
                     if (isAdded()) postInit(savedInstanceState);
@@ -258,8 +258,11 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void showApplyOnBoot(boolean visible) {
-        getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
-                visible ? View.VISIBLE : View.GONE);
+        try {
+            getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
+                    visible ? View.VISIBLE : View.GONE);
+        } catch (NullPointerException ignored) {
+        }
     }
 
     public int getSpan() {
@@ -292,6 +295,11 @@ public class RecyclerViewFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (hand != null) hand.removeCallbacks(run);
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 
 }

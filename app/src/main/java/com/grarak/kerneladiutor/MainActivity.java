@@ -40,6 +40,7 @@ import android.widget.ListView;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -186,6 +187,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
         ITEMS.add(new ListAdapter.Header(getString(R.string.tools)));
         ITEMS.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
+        // TODO: Recovery is not finished yet
+        //ITEMS.add(new ListAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
         ITEMS.add(new ListAdapter.Header(getString(R.string.other)));
         ITEMS.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));
@@ -301,14 +304,15 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     @Override
     public void onBackPressed() {
-        if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
-        else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+        if (!((BaseFragment) ITEMS.get(cur_position).getFragment()).onBackPressed())
+            if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
+            else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         RootUtils.closeSU();
+        super.onDestroy();
     }
 
     public static void destroy() {
@@ -327,6 +331,10 @@ public class MainActivity extends ActionBarActivity implements Constants {
         } else params.width = tablet ? width / 2 : width - actionBarSize;
 
         return params;
+    }
+
+    public interface OnBackButtonListener {
+        boolean onBackPressed();
     }
 
 }
