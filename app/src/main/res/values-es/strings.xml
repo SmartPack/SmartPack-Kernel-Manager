@@ -164,6 +164,7 @@
   <string name="mb_hotplug_summary">Remplazo para MPDecision de Qualcomms. Desarrollado por show-p1984.</string>
   <string name="screen_off_single_core">Sólo un núcleo con la pantalla apagada</string>
   <string name="screen_off_single_core_summary">Usar sólo un núcleo con la pantalla apagada.</string>
+  <string name="idle_frequency">Frecuencia en reposo</string>
   <string name="idle_frequency_summary">Si este núcleo esta por debajo de esta frecuencia, no activar los otros nucleos.</string>
   <string name="start_delay">Retardo al inicio</string>
   <string name="start_delay_summary">Tiempo hasta que Hotplug comienza.</string>
@@ -268,8 +269,6 @@
   <string name="sensor_ind_wakelock_summary">Prevenir wakelock cuando Ambient Display esta desactivado.</string>
   <string name="msm_hsic_host_wakelock_summary">Evitar msm_hsic_host wakelock.</string>
   <string name="android_logger">Registro de Android</string>
-  <string name="selinux">SELinux</string>
-  <string name="selinux_summary">Security-Enhanced Linux es un módulo de seguridad del kernel de Linux que proporciona un mecanismo para apoyar políticas de seguridad de control de acceso, incluyendo controles de acceso obligatorios del Departamento de Defensa de los Estados Unidos.</string>
   <string name="permissive">Permisivo</string>
   <string name="enforcing">Cumplir</string>
   <string name="dynamic_fsync">Fsync dinámico</string>

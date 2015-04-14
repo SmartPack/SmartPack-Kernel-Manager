@@ -318,8 +318,6 @@
   <string name="msm_hsic_host_wakelock">Gerenciador de energia msm_hsic_host</string>
   <string name="msm_hsic_host_wakelock_summary">Evitar o gerenciamento de energia msm_hsic_host.</string>
   <string name="android_logger">Android log</string>
-  <string name="selinux">SELinux</string>
-  <string name="selinux_summary">Security-Enhanced Linux é um módulo de segurança do kernel Linux que fornece um mecanismo para apoiar políticas de segurança de controle de acesso, incluindo controles de acesso obrigatórios do departamento de defesa dos Estados Unidos.</string>
   <string name="permissive">Permissivo</string>
   <string name="enforcing">Obrigar</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>

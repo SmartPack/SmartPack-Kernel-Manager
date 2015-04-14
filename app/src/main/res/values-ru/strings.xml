@@ -72,6 +72,7 @@
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
   <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
+  <string name="cfs_scheduler_policy_summary">Система которая решает как использовать распределитель CFS  чтобы распределить различные задачи между CPU блоками.</string>
   <string name="disabled">Выкл</string>
   <string name="enabled">Вкл</string>
   <string name="aggressive">Агрессивный</string>
@@ -85,9 +86,12 @@
   <string name="sync_threshold">Порог синхронизации</string>
   <string name="sync_threshold_summary">Когда загрузка ЦП пересекает установленный порог, текущее частота повышается до этой частоты.</string>
   <string name="input_interval">Укажите интервал</string>
+  <string name="input_interval_summary">Минимальный интервал при котором повышается скорость CPU когда происходит прикосновение.</string>
   <string name="input_boost_freq">Укажите частоту разгона</string>
+  <string name="input_boost_freq_summary">Скорость CPU будет повышенна на эту скорость при косновении.</string>
   <string name="global_offset">Глобальное смещение</string>
   <string name="mpdecision">MPDecision</string>
+  <string name="mpdecision_summary">Контроль CPU блоков созданный компании Qualcomm. Вы можете получить проблемы с изменением частоты, когда эта функция включена.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Замена Qualcomm MDPecision. Разработано faux123.</string>
   <string name="profile_summary">Число ядер CPU включенных постоянно.</string>
@@ -113,6 +117,7 @@
   <string name="min_cpu_online">Минимальная частота процессора </string>
   <string name="min_cpu_online_summary">Минимальное количество ядер процессора которые будут всегда включены </string>
   <string name="max_cpu_online">Максимальное количество работающих ядер процессора </string>
+  <string name="max_cpu_online_summary">Максимум CPU блоков которые могут работать одновременно.</string>
   <string name="max_cores_screen_off">Максимальное количество ядер при выключенном экране</string>
   <string name="max_cores_screen_off_summary">Максимальное количество включенных ядер при выключенном экране.</string>
   <string name="defer_sampling">Отложенная выборка</string>

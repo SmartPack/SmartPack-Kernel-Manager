@@ -287,8 +287,6 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
   <string name="android_logger">Android: zapisi</string>
-  <string name="selinux">SELinux</string>
-  <string name="selinux_summary">Linux poboljšane sigurnosti je sigurnosni modul za Linux kernel koji nudi mehanizam za podržavanje sigurnosnih propisa o pristupu upravljanja, uključujući obavezni pristup upravljanju prema normama United States Department of Defense.</string>
   <string name="permissive">Popustljiv</string>
   <string name="enforcing">Namećući</string>
   <string name="dynamic_fsync">Dinamički Fsync</string>

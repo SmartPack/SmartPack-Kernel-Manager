@@ -88,6 +88,7 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall wann eine CPU geboosted wird, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe Boost Frequenz</string>
+  <string name="input_boost_freq_summary">CPU-Frequenz wird bei Berührungen auf dem Bildschirm auf diesen Wert gesetzt.</string>
   <string name="global_offset">Globale Versetzung</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOMs Hotplugging Lösung. Sie werden wahrscheinlich Schwierigkeiten mit der Änderung der Frequenzen feststellen, wenn diese Funktion aktiv ist.</string>
@@ -134,6 +135,7 @@
   <string name="msm_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von faux123 entwickelt.</string>
   <string name="history_size">Verlaufs-Größe</string>
   <string name="update_rate">Aktualisierungsrate</string>
+  <string name="fast_lane_load_summary">Verbesserte Latenz indem alle CPU-Kerne eingeschaltet werden wenn die Belastung auf einem hoch genug ist.</string>
   <string name="offline_load">Offline laden</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="defer_time">Suspend Zeit verzögern</string>
@@ -149,6 +151,7 @@
   <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von show-p1984 entwickelt.</string>
   <string name="screen_off_single_core_summary">Verwende nur ein Kern, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="idle_frequency">Leerlauf-Frequenz</string>
+  <string name="touch_boost_time">Berührungsboost-Zeit</string>
   <string name="start_delay">Startverzögerung</string>
   <string name="start_delay_summary">Zeit bis Hotplug beginnt zu arbeiten.</string>
   <string name="delay">Verzögerung</string>
@@ -180,6 +183,7 @@
   <string name="invert_screen">Bildschirm invertieren</string>
   <string name="saturation_intensity">Sättigungs-Intensität</string>
   <string name="grayscale_mode">\"Graustufen\"-Modus</string>
+  <string name="screen_hue_summary">Du erhälst möglichweise Probleme mit dem MSM8x26 SoC wenn du einen hohen Wert setzt.</string>
   <string name="screen_contrast">Bildschirmkontrast</string>
   <string name="gamma">Gamma</string>
   <string name="gamma_profile">Gamma-Profil</string>
@@ -210,9 +214,11 @@
   <string name="top_half">Obere Hälfte</string>
   <string name="fullscreen">Vollbildschirm</string>
   <string name="s2w">Wischen zum Aufwecken</string>
+  <string name="s2w_summary">Wecke dein Gerät durch swipen auf dem Bildschirm.</string>
   <string name="s2s">Wischen, um den Bildschirm zu sperren</string>
   <string name="t2w">Tippen zum Aufwecken</string>
   <string name="t2w_summary">Wecke dein Gerät auf, indem du auf den Touchscreen tippst.</string>
+  <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep 2Wake während des Ladens</string>
   <string name="power_key_suspend">Power-Taste unterbrechen</string>
   <string name="power_key_suspend_summary">Diese Einstellung wird Wake-Steuerelemente deaktivieren, wenn der Bildschirm durch die Power-Taste ausgeschaltet wird.</string>
   <string name="sound_control">Lautstärken-Kontrolle</string>
@@ -226,6 +232,7 @@
   <string name="battery_temperature">Akku-Temperatur</string>
   <string name="usb_fast_charge">Schnelleres Laden via USB</string>
   <string name="usb_fast_charge_summary">Das Gerät lädt schneller, falls verbunden via USB.</string>
+  <string name="blx">Akkulaufzeit eXtender</string>
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
   <string name="scheduler">Scheduler</string>
@@ -253,13 +260,13 @@
   <string name="light">Niedrig</string>
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
+  <string name="disksize_summary">Versucht die Leistung zu verbessern indem im RAM kleinere Pakete zwischenspeichert werden, anstelle von auf dem Hauptspeicher. Wenn der RAM voll ist werden diese Pakete wieder auf dem Hauptspeicher gespeichert.</string>
   <string name="tcp">TCP Congestion-Algorithmus</string>
   <string name="vibration_strength">Vibrationsstärke</string>
   <string name="smb135x_wakelock_summary">Verhindert Wakelock, wenn die Stromversorgung getrennt ist.</string>
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelock, wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelock.</string>
   <string name="android_logger">Android-Protokollierung</string>
-  <string name="selinux">SELinux</string>
   <string name="permissive">Moderat</string>
   <string name="enforcing">Strikt</string>
   <string name="dynamic_fsync">Dynamischer Fsync</string>
