@@ -533,9 +533,6 @@ public interface Constants {
     // Logging
     String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
 
-    // SELinux
-    String SELINUX = "selinux";
-
     // Dynamic Fsync
     String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
@@ -546,7 +543,7 @@ public interface Constants {
     String POWER_SUSPEND_VERSION = POWER_SUSPEND + "/power_suspend_version";
 
     String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK,
-            LOGGER_ENABLED, SELINUX, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE}, VIBRATION_ARRAY};
+            LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE}, VIBRATION_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";
