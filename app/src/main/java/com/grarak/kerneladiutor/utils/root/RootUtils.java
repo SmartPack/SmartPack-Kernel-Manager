@@ -117,7 +117,7 @@ public class RootUtils implements Constants {
                 }
                 return sb.toString().trim();
             } catch (IOException e) {
-                denied = true;
+                closed = true;
                 e.printStackTrace();
             } catch (ArrayIndexOutOfBoundsException e) {
                 denied = true;

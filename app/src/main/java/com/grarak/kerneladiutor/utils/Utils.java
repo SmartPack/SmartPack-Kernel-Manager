@@ -63,6 +63,14 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
+    public static String getExternalStorage() {
+        return RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
+    }
+
+    public static String getInternalStorage() {
+        return existFile("/data/media/0") ? "/data/media/0" : "/data/media";
+    }
+
     public static void confirmDialog(String title, String message, DialogInterface.OnClickListener onClickListener,
                                      Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

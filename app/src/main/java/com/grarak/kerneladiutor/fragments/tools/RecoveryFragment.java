@@ -26,14 +26,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
 
@@ -50,7 +54,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
     private TintRadioButton mCWMRecoveryButton;
     private TintRadioButton mTWRPButton;
 
-    private List<Recovery> mCommands = new ArrayList<>();
+    private FloatingActionsMenu mActionMenu;
+    private List<Recovery> mCommands;
 
     @Override
     public boolean showApplyOnBoot() {
@@ -60,18 +65,23 @@ public class RecoveryFragment extends RecyclerViewFragment {
     @Override
     public RecyclerView getRecyclerView() {
         View view = getParentView(R.layout.recovery_recyclerview);
+
+        mActionMenu = (FloatingActionsMenu) view.findViewById(R.id.action_menu);
+
         view.findViewById(R.id.wipe_data_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addAction(Recovery.RECOVERY_COMMAND.WIPE_DATA, null);
             }
         });
+
         view.findViewById(R.id.wipe_cache_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addAction(Recovery.RECOVERY_COMMAND.WIPE_CACHE, null);
             }
         });
+
         view.findViewById(R.id.flash_zip_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +91,34 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 startActivityForResult(intent, 0);
             }
         });
+
+        view.findViewById(R.id.flash_now_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCommands.size() < 1) {
+                    Utils.toast(getString(R.string.add_action_first), getActivity());
+                    return;
+                }
+
+                Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mTWRPButton.isChecked() ?
+                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                        RootFile recoveryFile = new RootFile(file);
+                        recoveryFile.delete();
+                        for (Recovery commands : mCommands) {
+                            for (String command : commands.getCommands(mTWRPButton.isChecked() ? Recovery.RECOVERY.TWRP :
+                                    Recovery.RECOVERY.CWM))
+                                recoveryFile.write(command, true);
+                        }
+                        RootUtils.runCommand("reboot recovery");
+                    }
+                }, getActivity());
+            }
+        });
+
+        animateFab();
         return (RecyclerView) view.findViewById(R.id.recycler_view);
     }
 
@@ -129,6 +167,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        mCommands = new ArrayList<>();
 
         CardViewItem.DCardView mRecoveryCard = new CardViewItem.DCardView();
         mRecoveryCard.setTitle(getString(R.string.your_recovery));
@@ -143,9 +182,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
     }
 
     private void addAction(Recovery.RECOVERY_COMMAND recovery_command, File file) {
-        final Recovery recovery = new Recovery(recovery_command, file);
-        mCommands.add(recovery);
-
         String description = null;
         switch (recovery_command) {
             case WIPE_DATA:
@@ -155,14 +191,20 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 description = getString(R.string.wipe_cache);
                 break;
             case FLASH_ZIP:
-                description = file.getName();
+                description = file.getAbsolutePath().replace("/file:", "");
+                if (!description.endsWith(".zip")) {
+                    Utils.toast(getString(R.string.went_wrong), getActivity());
+                    return;
+                }
                 break;
         }
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, container, false);
+        final Recovery recovery = new Recovery(recovery_command, file);
+        mCommands.add(recovery);
+
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null, false);
 
         final CardViewItem.DCardView mActionCard = new CardViewItem.DCardView();
-        mActionCard.setView(view);
 
         ((TextView) view.findViewById(R.id.action_text)).setText(description);
         view.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
@@ -173,7 +215,14 @@ public class RecoveryFragment extends RecyclerViewFragment {
             }
         });
 
+        mActionCard.setView(view);
         addView(mActionCard);
+    }
+
+    private void animateFab() {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
+        animation.setDuration(1500);
+        if (mActionMenu != null) mActionMenu.startAnimation(animation);
     }
 
     @Override

@@ -31,6 +31,14 @@ public class RootFile {
         return RootUtils.runCommand("basename " + file);
     }
 
+    public void write(String text, boolean append) {
+        RootUtils.runCommand(append ? "echo '" + text + "' >> " + file : "echo '" + text + "' > " + file);
+    }
+
+    public void delete() {
+        RootUtils.runCommand("rm -rf " + file);
+    }
+
     public String[] list() {
         return RootUtils.runCommand("ls " + file).split("\\r?\\n");
     }

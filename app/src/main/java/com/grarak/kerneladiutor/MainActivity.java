@@ -61,6 +61,7 @@ import com.grarak.kerneladiutor.fragments.other.FAQFragment;
 import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
+import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
@@ -187,8 +188,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
         ITEMS.add(new ListAdapter.Header(getString(R.string.tools)));
         ITEMS.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
-        // TODO: Recovery is not finished yet
-        //ITEMS.add(new ListAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
         ITEMS.add(new ListAdapter.Header(getString(R.string.other)));
         ITEMS.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));

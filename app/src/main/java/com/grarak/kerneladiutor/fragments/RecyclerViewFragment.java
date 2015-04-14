@@ -217,7 +217,7 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
     public void removeView(DAdapter.DView view) {
         int position = views.indexOf(view);
         if (position > -1) {
-            views.remove(view);
+            views.remove(position);
             adapter.notifyDataSetChanged();
         }
     }

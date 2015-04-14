@@ -366,6 +366,18 @@ public class CPUHotplug implements Constants {
         return Utils.existFile(MAKO_HOTPLUG_TIMER);
     }
 
+    public static void setMakoHotplugMinCoresOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_MIN_CORES_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMakoHotplugMinCoresOnline() {
+        return Utils.stringToInt(Utils.readFile(MAKO_HOTPLUG_MIN_CORES_ONLINE));
+    }
+
+    public static boolean hasMakoHotplugMinCoresOnline() {
+        return Utils.existFile(MAKO_HOTPLUG_MIN_CORES_ONLINE);
+    }
+
     public static void setMakoHotplugMinTimeCpuOnline(int value, Context context) {
         Control.runCommand(String.valueOf(value), MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE, Control.CommandType.GENERIC, context);
     }

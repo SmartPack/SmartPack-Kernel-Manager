@@ -95,6 +95,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mMakoHotplugLoadThresholdCard;
     private SeekBarCardView.DSeekBarCardView mMakoHotplugMaxLoadCounterCard;
     private SeekBarCardView.DSeekBarCardView mMakoHotplugMinTimeCpuOnlineCard;
+    private SeekBarCardView.DSeekBarCardView mMakoHotplugMinCoresOnlineCard;
     private SeekBarCardView.DSeekBarCardView mMakoHotplugTimerCard;
     private PopupCardItem.DPopupCard mMakoSuspendFreqCard;
 
@@ -864,6 +865,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mMakoHotplugMinTimeCpuOnlineCard);
         }
 
+        if (CPUHotplug.hasMakoHotplugMinCoresOnline()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= CPU.getCoreCount(); i++)
+                list.add(String.valueOf(i));
+
+            mMakoHotplugMinCoresOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMinCoresOnlineCard.setTitle(getString(R.string.min_cpu_online));
+            mMakoHotplugMinCoresOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
+            mMakoHotplugMinCoresOnlineCard.setProgress(CPUHotplug.getMakoHotplugMinCoresOnline() - 1);
+            mMakoHotplugMinCoresOnlineCard.setOnDSeekBarCardListener(this);
+
+            views.add(mMakoHotplugMinCoresOnlineCard);
+        }
+
         if (CPUHotplug.hasMakoHotplugTimer()) {
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 101; i++)
@@ -1354,6 +1369,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMakoHotplugMaxLoadCounter(position, getActivity());
         else if (dSeekBarCardView == mMakoHotplugMinTimeCpuOnlineCard)
             CPUHotplug.setMakoHotplugMinTimeCpuOnline(position, getActivity());
+        else if (dSeekBarCardView == mMakoHotplugMinCoresOnlineCard)
+            CPUHotplug.setMakoHotplugMinCoresOnline(position + 1, getActivity());
         else if (dSeekBarCardView == mMakoHotplugTimerCard)
             CPUHotplug.setMakoHotplugTimer(position, getActivity());
         else if (dSeekBarCardView == mMBHotplugMinCpusCard)

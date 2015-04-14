@@ -17,7 +17,13 @@
 
 package com.grarak.kerneladiutor.utils.tools;
 
+import android.os.Environment;
+
+import com.grarak.kerneladiutor.utils.Utils;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by willi on 13.04.15.
@@ -31,6 +37,11 @@ public class Recovery {
     public enum RECOVERY_COMMAND {
         WIPE_DATA, WIPE_CACHE, FLASH_ZIP
     }
+
+    private String[] internalStoragePaths = {"/sdcard/", "/storage/emulated/0/", "/storage/sdcard0/", "/mnt/sdcard/",
+            "/mnt/emmc/", "/emmc/", Environment.getExternalStorageDirectory().toString() + "/"};
+    private String[] externalStoragePaths = {"/external_sd/", "/storage/sdcard1/", "/mnt/external_sd/", "/storage/extSdCard/",
+            "/mnt/extSdCard/", Utils.getExternalStorage() + "/"};
 
     private final RECOVERY_COMMAND recovery_command;
     private final File file;
@@ -48,7 +59,7 @@ public class Recovery {
         return recovery == RECOVERY.TWRP ? "openrecoveryscript" : "extendedcommand";
     }
 
-    public String getCommand(RECOVERY recovery) {
+    public List<String> getCommands(RECOVERY recovery) {
         RecoveryType recoveryType = recovery == RECOVERY.TWRP ? new TWRP() : new CWM();
         switch (recovery_command) {
             case WIPE_DATA:
@@ -63,50 +74,105 @@ public class Recovery {
 
     private abstract class RecoveryType {
 
-        public abstract String getWipeData();
+        public abstract List<String> getWipeData();
 
-        public abstract String getWipeCache();
+        public abstract List<String> getWipeCache();
 
-        public abstract String getFlashZip(File file);
+        public abstract List<String> getFlashZip(File file);
+
+        public abstract String getExternalPath();
+
+        public String formatFile(File file) {
+            String zip = file.getAbsolutePath().replace("/file:", "");
+            for (String storage : internalStoragePaths)
+                if (zip.startsWith(storage)) {
+                    zip = zip.replace(storage, Utils.getInternalStorage() + "/");
+                    break;
+                }
+
+            for (String storage : externalStoragePaths)
+                if (zip.startsWith(storage)) {
+                    zip = zip.replace(storage, getExternalPath() + "/");
+                    break;
+                }
+
+            return zip;
+        }
 
     }
 
     private class CWM extends RecoveryType {
 
         @Override
-        public String getWipeData() {
-            return null;
+        public List<String> getWipeData() {
+            List<String> commands = new ArrayList<>();
+
+            commands.add("format(\"/data\");");
+            commands.add("format(\"" + Utils.getInternalStorage() + "/.android_secure\");");
+
+            return commands;
         }
 
         @Override
-        public String getWipeCache() {
-            return null;
+        public List<String> getWipeCache() {
+            List<String> commands = new ArrayList<>();
+
+            commands.add("format(\"/cache\");");
+            commands.add("format(\"/data/dalvik-cache\");");
+            commands.add("format(\"/cache/dalvik-cache\");");
+            commands.add("format(\"/sd-ext/dalvik-cache\");");
+
+            return commands;
         }
 
         @Override
-        public String getFlashZip(File file) {
-            return null;
+        public List<String> getFlashZip(File file) {
+            List<String> commands = new ArrayList<>();
+
+            commands.add("assert(install_zip(\"" + formatFile(file) + "\"));");
+
+            return commands;
         }
 
+        @Override
+        public String getExternalPath() {
+            return "/storage/sdcard1";
+        }
     }
 
     private class TWRP extends RecoveryType {
 
         @Override
-        public String getWipeData() {
-            return null;
+        public List<String> getWipeData() {
+            List<String> commands = new ArrayList<>();
+            commands.add("wipe data");
+            return commands;
         }
 
         @Override
-        public String getWipeCache() {
-            return null;
+        public List<String> getWipeCache() {
+            List<String> commands = new ArrayList<>();
+
+            commands.add("wipe cache");
+            commands.add("wipe dalvik");
+
+            return commands;
         }
 
         @Override
-        public String getFlashZip(File file) {
-            return null;
+        public List<String> getFlashZip(File file) {
+            List<String> commands = new ArrayList<>();
+
+            commands.add("set tw_signed_zip_verify 0");
+            commands.add("install " + formatFile(file));
+
+            return commands;
         }
 
+        @Override
+        public String getExternalPath() {
+            return "/external_sd";
+        }
     }
 
 }

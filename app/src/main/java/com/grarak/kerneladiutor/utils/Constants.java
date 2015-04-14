@@ -183,13 +183,14 @@ public interface Constants {
     String MAKO_HOTPLUG_LOAD_THRESHOLD = "/sys/class/misc/mako_hotplug_control/load_threshold";
     String MAKO_HOTPLUG_MAX_LOAD_COUNTER = "/sys/class/misc/mako_hotplug_control/max_load_counter";
     String MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE = "/sys/class/misc/mako_hotplug_control/min_time_cpu_online";
+    String MAKO_HOTPLUG_MIN_CORES_ONLINE = "/sys/class/misc/mako_hotplug_control/min_cores_online";
     String MAKO_HOTPLUG_TIMER = "/sys/class/misc/mako_hotplug_control/timer";
     String MAKO_HOTPLUG_SUSPEND_FREQ = "/sys/class/misc/mako_hotplug_control/suspend_frequency";
 
     String[] MAKO_HOTPLUG_ARRAY = {MAKO_HOTPLUG, MAKO_HOTPLUG_ENABLED, MAKO_HOTPLUG_CORES_ON_TOUCH,
             MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT, MAKO_HOTPLUG_FIRST_LEVEL, MAKO_HOTPLUG_HIGH_LOAD_COUNTER,
             MAKO_HOTPLUG_LOAD_THRESHOLD, MAKO_HOTPLUG_MAX_LOAD_COUNTER, MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE,
-            MAKO_HOTPLUG_TIMER, MAKO_HOTPLUG_SUSPEND_FREQ};
+            MAKO_HOTPLUG_MIN_CORES_ONLINE, MAKO_HOTPLUG_TIMER, MAKO_HOTPLUG_SUSPEND_FREQ};
 
     String MSM_MPDECISION_HOTPLUG = "/sys/kernel/msm_mpdecision/conf";
     String BRICKED_HOTPLUG = "/sys/kernel/bricked_hotplug/conf";

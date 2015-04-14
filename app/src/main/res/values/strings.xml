@@ -427,6 +427,10 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
+    <string name="went_wrong">Something went wrong!</string>
+    <string name="flash_now">Flash Now</string>
+    <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
+    <string name="add_action_first">You have to add an action first.</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>

@@ -23,6 +23,7 @@ import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -129,6 +130,10 @@ public abstract class BaseCardView extends CardView {
             innerView.setVisibility(GONE);
             customLayout.setVisibility(VISIBLE);
             customLayout.removeAllViews();
+            try {
+                ((ViewGroup) customView.getParent()).removeView(customView);
+            } catch (NullPointerException ignored) {
+            }
             customLayout.addView(customView);
         }
     }
