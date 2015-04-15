@@ -98,6 +98,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCardView mMinBrightnessCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerThresholdCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerOffsetCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mExponentialBlCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -231,6 +232,15 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             mScreenHBMCard.setOnDSwitchCompatCardListener(this);
 
             addView(mScreenHBMCard);
+        }
+
+        if (Screen.hasExponentialBl()) {
+            mExponentialBlCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mExponentialBlCard.setDescription(getString(R.string.exponential_backlight));
+            mExponentialBlCard.setChecked(Screen.isExponentialBlActive());
+            mExponentialBlCard.setOnDSwitchCompatCardListener(this);
+
+            addView(mExponentialBlCard);
         }
     }
 
@@ -648,6 +658,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.activateScreenHBM(checked, getActivity());
         else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
+        else if (dSwitchCompatCard == mExponentialBlCard)
+            Screen.activateExponentialBl(checked, getActivity());
     }
 
     @Override

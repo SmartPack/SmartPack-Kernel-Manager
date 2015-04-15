@@ -51,6 +51,7 @@ public interface Constants {
     String CPU_AVAILABLE_GOVERNORS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
     String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq";
     String CPU_MC_POWER_SAVING = "/sys/devices/system/cpu/sched_mc_power_savings";
+    String CPU_WQ_POWER_SAVING = "/sys/module/workqueue/parameters/power_efficient";
     String CPU_AVAILABLE_CFS_SCHEDULERS = "/sys/devices/system/cpu/sched_balance_policy/available_sched_balance_policy";
     String CPU_CURRENT_CFS_SCHEDULER = "/sys/devices/system/cpu/sched_balance_policy/current_sched_balance_policy";
 
@@ -382,6 +383,7 @@ public interface Constants {
     String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
     String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
     String LM3630_BACKLIGHT_DIMMER_OFFSET = "/sys/module/lm3630_bl/parameters/backlight_offset";
+    String LM3530_EXPONENTIAL_BL = "/sys/devices/i2c-0/0-0038/lm3530_br_mode?";
 
     String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
 

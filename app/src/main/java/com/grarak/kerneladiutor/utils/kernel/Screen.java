@@ -38,6 +38,18 @@ public class Screen implements Constants {
 
     private static String MIN_BRIGHTNESS;
 
+    public static void activateExponentialBl(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LM3530_EXPONENTIAL_BL, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isExponentialBlActive() {
+        return Utils.readFile(LM3530_EXPONENTIAL_BL).equals("1");
+    }
+
+    public static boolean hasExponentialBl() {
+        return Utils.existFile(LM3530_EXPONENTIAL_BL);
+    }
+
     public static void setBackLightDimmerOffset(int value, Context context) {
         Control.runCommand(String.valueOf(value), LM3630_BACKLIGHT_DIMMER_OFFSET, Control.CommandType.GENERIC, context);
     }
