@@ -213,6 +213,20 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_MC_POWER_SAVING);
     }
 
+    public static void activatePowerSavingWq(boolean active, Context context) {
+        String command = active ? "Y" : "N";
+        Control.runCommand(command, CPU_WQ_POWER_SAVING, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isPowerSavingWqActive() {
+        String value = Utils.readFile(CPU_WQ_POWER_SAVING);
+        return value.equals("Y");
+    }
+
+    public static boolean hasPowerSavingWq() {
+        return Utils.existFile(CPU_WQ_POWER_SAVING);
+    }
+
     public static ArrayList<String> getAvailableGovernors() {
         if (mAvailableGovernors == null) {
             String value = Utils.readFile(CPU_AVAILABLE_GOVERNORS);
