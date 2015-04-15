@@ -75,8 +75,8 @@ public interface Constants {
 
     String[][] CPU_ARRAY = {{CPU_CUR_FREQ, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ, CPU_MAX_SCREEN_OFF_FREQ,
             CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR, CPU_AVAILABLE_GOVERNORS,
-            CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS, CPU_CURRENT_CFS_SCHEDULER},
-            CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
+            CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_WQ_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS,
+            CPU_CURRENT_CFS_SCHEDULER}, CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
 
     // CPU Voltage
     String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
@@ -383,7 +383,7 @@ public interface Constants {
     String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
     String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
     String LM3630_BACKLIGHT_DIMMER_OFFSET = "/sys/module/lm3630_bl/parameters/backlight_offset";
-    String LM3530_EXPONENTIAL_BL = "/sys/devices/i2c-0/0-0038/lm3530_br_mode?";
+    String LM3530_EXPONENTIAL_BL = "/sys/devices/i2c-0/0-0038/lm3530_br_mode";
 
     String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
 
@@ -392,7 +392,7 @@ public interface Constants {
     String[][] SCREEN_ARRAY = {SCREEN_RGB_ARRAY, SCREEN_RGB_CTRL_ARRAY, MIN_BRIGHTNESS_ARRAY, SCREEN_KCAL_CTRL_NEW_ARRAY,
             K_GAMMA_ARRAY, GAMMACONTROL_ARRAY, DSI_PANEL_ARRAY,
             {SCREEN_KCAL_CTRL_MIN, SCREEN_HBM, LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD,
-                    LM3630_BACKLIGHT_DIMMER_OFFSET}};
+                    LM3630_BACKLIGHT_DIMMER_OFFSET, LM3530_EXPONENTIAL_BL}};
 
     // Wake
 
