@@ -279,6 +279,7 @@
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible than stock.</string>
     <string name="backlight_dimmer_threshold">Backlight Dimmer Threshold</string>
     <string name="backlight_dimmer_offset">Backlight Dimmer Offset</string>
+    <string name="exponential_backlight">Enable exponential backlight mode instead of linear mode.</string>
 
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>

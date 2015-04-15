@@ -383,6 +383,7 @@ public interface Constants {
     String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
     String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
     String LM3630_BACKLIGHT_DIMMER_OFFSET = "/sys/module/lm3630_bl/parameters/backlight_offset";
+    String LM3530_EXPONENTIAL_BL = "/sys/devices/i2c-0/0-0038/lm3530_br_mode?";
 
     String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
 
