@@ -62,8 +62,7 @@ public class CPU implements Constants {
         String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
         try {
             value = value.split("0:")[1].split(" ")[0];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
         if (value.equals("0")) return 0;
         return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;

@@ -102,12 +102,12 @@ public class ProfileWidget extends AppWidgetProvider {
                 Utils.saveBoolean("profileclicked", false, context);
                 int position = intent.getIntExtra(ITEM_ARG, 0);
                 ProfileDB profileDB = new ProfileDB(context);
-                profileDB.create();
                 ProfileDB.ProfileItem profileItem = profileDB.getAllProfiles().get(position);
-                profileDB.close();
                 RootUtils.SU su = new RootUtils.SU();
-                for (int i = 0; i < profileItem.getSys().size(); i++) {
-                    Control.commandSaver(context, profileItem.getSys().get(i), profileItem.getCommands().get(i));
+
+                List<String> paths = profileItem.getPath();
+                for (int i = 0; i < paths.size(); i++) {
+                    Control.commandSaver(context, paths.get(i), profileItem.getCommands().get(i));
                     su.runCommand(profileItem.getCommands().get(i));
                 }
                 su.close();
@@ -135,10 +135,7 @@ public class ProfileWidget extends AppWidgetProvider {
         @Override
         public void onCreate() {
             ProfileDB profileDB = new ProfileDB(context);
-            profileDB.create();
-
             items = profileDB.getAllProfiles();
-            profileDB.close();
         }
 
         @Override

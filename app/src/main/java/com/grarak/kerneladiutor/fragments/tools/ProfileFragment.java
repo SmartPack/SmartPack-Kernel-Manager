@@ -41,13 +41,15 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
-import com.grarak.kerneladiutor.utils.database.SysDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by willi on 31.01.15.
@@ -75,11 +77,8 @@ public class ProfileFragment extends RecyclerViewFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SysDB sysDB = new SysDB(getActivity());
-                sysDB.create();
-
-                final List<SysDB.SysItem> sysItemList = sysDB.getAllSys();
-                sysDB.close();
+                CommandDB commandDB = new CommandDB(getActivity());
+                final List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
 
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -137,33 +136,31 @@ public class ProfileFragment extends RecyclerViewFragment {
                                     @Override
                                     public void run() {
                                         ProfileDB profileDB = new ProfileDB(getActivity());
-                                        profileDB.create();
 
                                         List<String> applys = new ArrayList<>();
                                         for (int i = 0; i < fragments.size(); i++)
                                             if (checkBoxes.get(i).isChecked())
                                                 applys.addAll(Utils.getApplys(fragments.get(i)));
 
-                                        final List<String> sys = new ArrayList<>();
-                                        final List<String> commands = new ArrayList<>();
-                                        for (SysDB.SysItem sysItem : sysItemList)
-                                            for (String s : applys)
-                                                if (s.contains(sysItem.getSys()) || sysItem.getSys().contains(s)) {
-                                                    sys.add(sysItem.getSys());
-                                                    commands.add(sysItem.getCommand());
-                                                }
+                                        final Map<String, String> commands = new HashMap<>();
+                                        for (CommandDB.CommandItem commandItem : commandItems)
+                                            for (String s : applys) {
+                                                String path = commandItem.getPath();
+                                                if (path != null && (s.contains(path) || path.contains(s)))
+                                                    commands.put(path, commandItem.getCommand());
+                                            }
 
                                         final String name = profileName.getText().toString();
-                                        if (!name.isEmpty() && sys.size() > 0)
-                                            profileDB.insertProfile(name, sys, commands);
-                                        profileDB.close();
+                                        if (!name.isEmpty() && commands.size() > 0)
+                                            profileDB.putProfile(name, commands);
+                                        profileDB.commit();
 
                                         getHandler().post(new Runnable() {
                                             @Override
                                             public void run() {
                                                 if (name.isEmpty())
                                                     Utils.toast(getString(R.string.empty_name), getActivity());
-                                                else if (sys.size() < 1)
+                                                else if (commands.size() < 1)
                                                     Utils.toast(getString(R.string.no_settings), getActivity());
                                                 else create();
                                             }
@@ -189,7 +186,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     private void create() {
         removeAllViews();
         ProfileDB profileDB = new ProfileDB(getActivity());
-        profileDB.create();
 
         final List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
         for (int i = 0; i < profileItems.size(); i++) {
@@ -211,19 +207,18 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             switch (which) {
                                                 case 0:
                                                     ProfileDB.ProfileItem profileItem = profileItems.get(position);
-                                                    for (int i = 0; i < profileItem.getSys().size(); i++) {
-                                                        Control.commandSaver(getActivity(), profileItem.getSys().get(i),
+                                                    List<String> paths = profileItem.getPath();
+                                                    for (int i = 0; i < paths.size(); i++) {
+                                                        Control.commandSaver(getActivity(), paths.get(i),
                                                                 profileItem.getCommands().get(i));
                                                         RootUtils.runCommand(profileItem.getCommands().get(i));
                                                     }
                                                     break;
                                                 case 1:
                                                     ProfileDB profileDB = new ProfileDB(getActivity());
-                                                    profileDB.create();
+                                                    profileDB.delete(position);
 
-                                                    profileDB.deleteItem(profileItems.get(position).getId());
-
-                                                    profileDB.close();
+                                                    profileDB.commit();
 
                                                     getHandler().post(new Runnable() {
                                                         @Override
@@ -274,7 +269,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
             addView(mProfileCard);
         }
-        profileDB.close();
 
         getActivity().runOnUiThread(new Runnable() {
             @Override

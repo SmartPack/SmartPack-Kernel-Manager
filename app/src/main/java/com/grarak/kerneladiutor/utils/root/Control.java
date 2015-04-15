@@ -21,7 +21,7 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.database.SysDB;
+import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 
 import java.util.List;
@@ -35,17 +35,18 @@ public class Control implements Constants {
         GENERIC, CPU, FAUX_GENERIC, CUSTOM
     }
 
-    public static void commandSaver(final Context context, final String sys, final String command) {
-        SysDB sysDB = new SysDB(context);
-        sysDB.create();
+    public static void commandSaver(final Context context, final String path, final String command) {
+        CommandDB commandDB = new CommandDB(context);
 
-        List<SysDB.SysItem> sysList = sysDB.getAllSys();
-        for (int i = 0; i < sysList.size(); i++)
-            if (sysList.get(i).getSys().equals(sys))
-                sysDB.deleteItem(sysList.get(i).getId());
+        List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
+        for (int i = 0; i < commandItems.size(); i++) {
+            String p = commandItems.get(i).getPath();
+            if (p != null && p.equals(path))
+                commandDB.delete(i);
+        }
 
-        sysDB.insertSys(sys, command);
-        sysDB.close();
+        commandDB.putCommand(path, command);
+        commandDB.commit();
 
         Log.i(TAG, "Run command: " + command);
 

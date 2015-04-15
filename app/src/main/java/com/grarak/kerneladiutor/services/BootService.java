@@ -41,7 +41,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.database.SysDB;
+import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -136,8 +136,7 @@ public class BootService extends Service {
             return;
         }
 
-        SysDB sysDB = new SysDB(this);
-        sysDB.create();
+        CommandDB commandDB = new CommandDB(this);
 
         RootUtils.SU su = new RootUtils.SU();
 
@@ -145,14 +144,15 @@ public class BootService extends Service {
         for (String file : writePermission)
             su.runCommand("chmod 644 " + file);
 
-        for (SysDB.SysItem sysItem : sysDB.getAllSys())
-            for (String sys : applys)
-                if (sys.contains(sysItem.getSys()) || sysItem.getSys().contains(sys)) {
-                    log("run: " + sysItem.getCommand());
-                    su.runCommand(sysItem.getCommand());
+        for (CommandDB.CommandItem commandItem : commandDB.getAllCommands())
+            for (String sys : applys) {
+                String path = commandItem.getPath();
+                if ((sys.contains(path) || path.contains(sys))) {
+                    String command = commandItem.getCommand();
+                    log("run: " + command);
+                    su.runCommand(command);
                 }
-
-        sysDB.close();
+            }
 
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
