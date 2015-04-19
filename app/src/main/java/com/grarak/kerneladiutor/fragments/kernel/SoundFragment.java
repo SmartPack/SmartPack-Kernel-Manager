@@ -37,6 +37,8 @@ public class SoundFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mCamMicrophoneGainCard;
     private SeekBarCardView.DSeekBarCardView mSpeakerGainCard;
     private SeekBarCardView.DSeekBarCardView mHeadphonePowerAmpGainCard;
+    private SeekBarCardView.DSeekBarCardView mMicrophoneGainCard;
+    private SeekBarCardView.DSeekBarCardView mVolumeGainCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class SoundFragment extends RecyclerViewFragment implements
         if (Sound.hasCamMicrophoneGain()) camMicrophoneGainInit();
         if (Sound.hasSpeakerGain()) speakerGainInit();
         if (Sound.hasHeadphonePowerAmpGain()) headphonePowerAmpGainInit();
+        if (Sound.hasMicrophoneGain()) microphoneGainInit();
+        if (Sound.hasVolumeGain()) volumeGainInit();
     }
 
     private void soundControlEnableInit() {
@@ -106,6 +110,24 @@ public class SoundFragment extends RecyclerViewFragment implements
         addView(mHeadphonePowerAmpGainCard);
     }
 
+    private void microphoneGainInit() {
+        mMicrophoneGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getMicrophoneGainLimits());
+        mMicrophoneGainCard.setTitle(getString(R.string.microphone_gain));
+        mMicrophoneGainCard.setProgress(Sound.getMicrophoneGainLimits().indexOf(Sound.getMicrophoneGain()));
+        mMicrophoneGainCard.setOnDSeekBarCardListener(this);
+
+        addView(mMicrophoneGainCard);
+    }
+
+    private void volumeGainInit() {
+        mVolumeGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getVolumeGainLimits());
+        mVolumeGainCard.setTitle(getString(R.string.volume_gain));
+        mVolumeGainCard.setProgress(Sound.getVolumeGainLimits().indexOf(Sound.getVolumeGain()));
+        mVolumeGainCard.setOnDSeekBarCardListener(this);
+
+        addView(mVolumeGainCard);
+    }
+
     @Override
     public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
         if (dSwitchCompatCard == mSoundControlEnableCard)
@@ -128,5 +150,9 @@ public class SoundFragment extends RecyclerViewFragment implements
             Sound.setSpeakerGain(Sound.getSpeakerGainLimits().get(position), getActivity());
         else if (dSeekBarCardView == mHeadphonePowerAmpGainCard)
             Sound.setHeadphonePowerAmpGain(Sound.getHeadphonePowerAmpGainLimits().get(position), getActivity());
+        else if (dSeekBarCardView == mMicrophoneGainCard)
+            Sound.setMicrophoneGain(Sound.getMicrophoneGainLimits().get(position), getActivity());
+        else if (dSeekBarCardView == mVolumeGainCard)
+            Sound.setVolumeGain(Sound.getVolumeGainLimits().get(position), getActivity());
     }
 }

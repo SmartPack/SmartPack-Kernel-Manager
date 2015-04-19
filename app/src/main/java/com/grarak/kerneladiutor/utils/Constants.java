@@ -453,8 +453,14 @@ public interface Constants {
     String SPEAKER_GAIN = "/sys/kernel/sound_control_3/gpl_speaker_gain";
     String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
 
-    String[] SOUND_ARRAY = {SOUND_CONTROL_ENABLE, HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN, CAM_MICROPHONE_GAIN,
-            SPEAKER_GAIN, HEADPHONE_POWERAMP_GAIN};
+    String MIC_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
+    String SPEAKER_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
+    String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
+
+    String[] SPEAKER_GAIN_ARRAY = {SPEAKER_GAIN, SPEAKER_BOOST};
+
+    String[][] SOUND_ARRAY = {SPEAKER_GAIN_ARRAY, {SOUND_CONTROL_ENABLE, HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN, CAM_MICROPHONE_GAIN,
+            HEADPHONE_POWERAMP_GAIN, MIC_BOOST, VOLUME_BOOST}};
 
     // Battery
     String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
