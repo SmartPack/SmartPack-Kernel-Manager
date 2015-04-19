@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -482,8 +483,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public String getError() {
-            return getString(R.string.not_tunable, CPU.getCurGovernor(0));
+        public String getError(Context context) {
+            return context.getString(R.string.not_tunable, CPU.getCurGovernor(0));
         }
     }
 

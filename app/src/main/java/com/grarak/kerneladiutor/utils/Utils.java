@@ -64,7 +64,8 @@ public class Utils implements Constants {
     public static boolean DARKTHEME = false;
 
     public static String getExternalStorage() {
-        return RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
+        String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
+        return path.contains("/") ? path : null;
     }
 
     public static String getInternalStorage() {

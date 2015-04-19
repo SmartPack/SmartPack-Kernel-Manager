@@ -40,7 +40,6 @@ import android.widget.ListView;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -304,9 +303,13 @@ public class MainActivity extends ActionBarActivity implements Constants {
 
     @Override
     public void onBackPressed() {
-        if (!((BaseFragment) ITEMS.get(cur_position).getFragment()).onBackPressed())
-            if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
-            else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+        try {
+            if (!ITEMS.get(cur_position).getFragment().onBackPressed())
+                if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
+                else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

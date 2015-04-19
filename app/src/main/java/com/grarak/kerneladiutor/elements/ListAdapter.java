@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class ListAdapter {
 
         String getTitle();
 
-        Fragment getFragment();
+        BaseFragment getFragment();
 
         View getView(LayoutInflater inflater, ViewGroup parent);
 
@@ -60,9 +60,9 @@ public class ListAdapter {
     public static class Item implements ListItem {
 
         private final String title;
-        private final Fragment fragment;
+        private final BaseFragment fragment;
 
-        public Item(String title, Fragment fragment) {
+        public Item(String title, BaseFragment fragment) {
             this.title = title;
             this.fragment = fragment;
         }
@@ -73,7 +73,7 @@ public class ListAdapter {
         }
 
         @Override
-        public Fragment getFragment() {
+        public BaseFragment getFragment() {
             return fragment;
         }
 
@@ -102,7 +102,7 @@ public class ListAdapter {
         }
 
         @Override
-        public Fragment getFragment() {
+        public BaseFragment getFragment() {
             return null;
         }
 
@@ -125,7 +125,7 @@ public class ListAdapter {
         }
 
         @Override
-        public Fragment getFragment() {
+        public BaseFragment getFragment() {
             return null;
         }
 

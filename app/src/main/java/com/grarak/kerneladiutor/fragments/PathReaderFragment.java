@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -65,7 +66,6 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-
         refresh();
     }
 
@@ -91,39 +91,42 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         removeAllViews();
 
         final String path = getPath();
-        for (String file : new RootFile(path).list()) {
-            String value = Utils.readFile(path + "/" + file);
-            if (value != null && !value.isEmpty() && !value.contains("\n")) {
-                PopupCardItem.DPopupCard mPathCard = new PopupCardItem.DPopupCard(null);
-                mPathCard.setDescription(file);
-                mPathCard.setItem(value);
-                mPathCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
-                                .readFile(path + "/" + ((PopupCardItem) v).getDescription()))) > -1;
+        String files[] = new RootFile(path).list();
+        if (files != null)
+            for (String file : files)
+                if (file != null) {
+                    String value = Utils.readFile(path + "/" + file);
+                    if (value != null && !value.isEmpty() && !value.contains("\n")) {
+                        PopupCardItem.DPopupCard mPathCard = new PopupCardItem.DPopupCard(null);
+                        mPathCard.setDescription(file);
+                        mPathCard.setItem(value);
+                        mPathCard.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
+                                        .readFile(path + "/" + ((PopupCardItem) v).getDescription()))) > -1;
 
-                        if (freq && getType() == PATH_TYPE.GOVERNOR) {
-                            String[] values = new String[CPU.getFreqs().size()];
-                            for (int i = 0; i < values.length; i++)
-                                values[i] = String.valueOf(CPU.getFreqs().get(i));
-                            showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
-                        } else
-                            showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
-                                    ((PopupCardItem) v).getItem());
+                                if (freq && getType() == PATH_TYPE.GOVERNOR) {
+                                    String[] values = new String[CPU.getFreqs().size()];
+                                    for (int i = 0; i < values.length; i++)
+                                        values[i] = String.valueOf(CPU.getFreqs().get(i));
+                                    showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
+                                } else
+                                    showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
+                                            ((PopupCardItem) v).getItem());
+                            }
+                        });
+
+                        addView(mPathCard);
                     }
-                });
-
-                addView(mPathCard);
-            }
-        }
+                }
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (getCount() < 1) {
                     errorText.setVisibility(View.VISIBLE);
-                    errorText.setText(getError());
+                    errorText.setText(getError(getActivity()));
                     recyclerView.setVisibility(View.GONE);
                 } else {
                     errorText.setVisibility(View.GONE);
@@ -181,6 +184,6 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
 
     public abstract PATH_TYPE getType();
 
-    public abstract String getError();
+    public abstract String getError(Context context);
 
 }

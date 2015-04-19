@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
@@ -201,8 +202,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public String getError() {
-            return getString(R.string.not_tunable, IO.getScheduler(storageType == IO.StorageType.INTERNAL ?
+        public String getError(Context context) {
+            return context.getString(R.string.not_tunable, IO.getScheduler(storageType == IO.StorageType.INTERNAL ?
                     IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL));
         }
 

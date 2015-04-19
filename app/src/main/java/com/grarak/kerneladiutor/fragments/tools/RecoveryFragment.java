@@ -191,15 +191,17 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 description = getString(R.string.wipe_cache);
                 break;
             case FLASH_ZIP:
-                description = file.getAbsolutePath().replace("/file:", "");
-                if (!description.endsWith(".zip")) {
+                description = file.getAbsolutePath().replace("/file:", "").replace("/content:/com.estrongs.files", "")
+                        .replace("/content:/com.android.externalstorage.documents", "");
+                if (!description.endsWith(".zip") || description.startsWith("file:") || description.startsWith("/content:")
+                        || description.startsWith("content:")) {
                     Utils.toast(getString(R.string.went_wrong), getActivity());
                     return;
                 }
                 break;
         }
 
-        final Recovery recovery = new Recovery(recovery_command, file);
+        final Recovery recovery = new Recovery(recovery_command, new File(description));
         mCommands.add(recovery);
 
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null, false);

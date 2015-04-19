@@ -741,6 +741,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                 @Override
                 public void onCallback(String raw, String html) {
                     progressDialog.dismiss();
+                    if (getActivity() == null) return;
                     GammaProfiles gammaProfiles = new GammaProfiles(raw);
                     String path = getActivity().getApplicationContext().getCacheDir() + "/gamma_profiles.json";
                     if (gammaProfiles.readable()) {
