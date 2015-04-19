@@ -47,9 +47,8 @@ import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by willi on 31.01.15.
@@ -77,8 +76,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommandDB commandDB = new CommandDB(getActivity());
-                final List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
+                final List<CommandDB.CommandItem> commandItems = new CommandDB(getActivity()).getAllCommands();
 
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -142,11 +140,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             if (checkBoxes.get(i).isChecked())
                                                 applys.addAll(Utils.getApplys(fragments.get(i)));
 
-                                        final Map<String, String> commands = new HashMap<>();
+                                        final LinkedHashMap<String, String> commands = new LinkedHashMap<>();
                                         for (CommandDB.CommandItem commandItem : commandItems)
                                             for (String s : applys) {
                                                 String path = commandItem.getPath();
-                                                if (path != null && (s.contains(path) || path.contains(s)))
+                                                if (s.contains(path) || path.contains(s))
                                                     commands.put(path, commandItem.getCommand());
                                             }
 

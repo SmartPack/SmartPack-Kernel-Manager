@@ -136,23 +136,26 @@ public class BootService extends Service {
             return;
         }
 
-        CommandDB commandDB = new CommandDB(this);
-
         RootUtils.SU su = new RootUtils.SU();
-
         String[] writePermission = {Constants.LMK_MINFREE};
         for (String file : writePermission)
             su.runCommand("chmod 644 " + file);
 
-        for (CommandDB.CommandItem commandItem : commandDB.getAllCommands())
+        List<String> commands = new ArrayList<>();
+        for (CommandDB.CommandItem commandItem : new CommandDB(this).getAllCommands())
             for (String sys : applys) {
                 String path = commandItem.getPath();
                 if ((sys.contains(path) || path.contains(sys))) {
                     String command = commandItem.getCommand();
-                    log("run: " + command);
-                    su.runCommand(command);
+                    if (commands.indexOf(command) < 0)
+                        commands.add(command);
                 }
             }
+
+        for (String command : commands) {
+            log("run: " + command);
+            su.runCommand(command);
+        }
 
         su.close();
         toast(getString(R.string.apply_on_boot_finished));

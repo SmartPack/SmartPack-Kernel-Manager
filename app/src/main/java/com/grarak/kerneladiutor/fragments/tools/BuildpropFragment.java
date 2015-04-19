@@ -45,7 +45,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
 
-import java.util.List;
+import java.util.LinkedHashMap;
 
 /**
  * Created by willi on 31.12.14.
@@ -56,7 +56,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     private SwipeRefreshLayout refreshLayout;
     private FloatingActionsMenu floatingActionsMenu;
-    private List<Buildprop.BuildpropItems> buildpropItem;
+    private LinkedHashMap<String, String> buildpropItem;
 
     private MenuItem searchItem;
 
@@ -103,8 +103,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         buildpropItem = Buildprop.getProps();
         for (int i = 0; i < buildpropItem.size(); i++) {
             PopupCardItem.DPopupCard mPropCard = new PopupCardItem.DPopupCard(null);
-            mPropCard.setDescription(buildpropItem.get(i).getKey());
-            mPropCard.setItem(buildpropItem.get(i).getValue());
+            mPropCard.setDescription((String) buildpropItem.keySet().toArray()[i]);
+            mPropCard.setItem((String) buildpropItem.values().toArray()[i]);
             mPropCard.setOnClickListener(this);
 
             addView(mPropCard);
@@ -142,8 +142,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             buildpropItem = Buildprop.getProps();
             for (int i = 0; i < buildpropItem.size(); i++) {
                 PopupCardItem.DPopupCard mPropCard = new PopupCardItem.DPopupCard(null);
-                mPropCard.setDescription(buildpropItem.get(i).getKey());
-                mPropCard.setItem(buildpropItem.get(i).getValue());
+                mPropCard.setDescription((String) buildpropItem.keySet().toArray()[i]);
+                mPropCard.setItem((String) buildpropItem.values().toArray()[i]);
                 mPropCard.setOnClickListener(BuildpropFragment.this);
 
                 addView(mPropCard);
@@ -245,11 +245,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             @Override
             public boolean onQueryTextChange(String newText) {
                 removeAllViews();
-                for (Buildprop.BuildpropItems item : buildpropItem)
-                    if (item.getKey().contains(newText)) {
+
+                Object[] keys = buildpropItem.keySet().toArray();
+                Object[] values = buildpropItem.values().toArray();
+                for (int i = 0; i < keys.length; i++)
+                    if (((String) keys[i]).contains(newText)) {
                         PopupCardItem.DPopupCard mPopupCard = new PopupCardItem.DPopupCard(null);
-                        mPopupCard.setDescription(item.getKey());
-                        mPopupCard.setItem(item.getValue());
+                        mPopupCard.setDescription((String) keys[i]);
+                        mPopupCard.setItem((String) values[i]);
                         mPopupCard.setOnClickListener(BuildpropFragment.this);
 
                         addView(mPopupCard);

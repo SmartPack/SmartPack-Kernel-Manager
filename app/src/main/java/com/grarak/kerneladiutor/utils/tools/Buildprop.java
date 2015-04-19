@@ -20,8 +20,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 /**
  * Created by willi on 01.01.15.
@@ -39,38 +38,15 @@ public class Buildprop implements Constants {
         RootUtils.runCommand("echo " + key + "=" + value + " >> " + BUILD_PROP);
     }
 
-    public static List<BuildpropItems> getProps() {
+    public static LinkedHashMap<String, String> getProps() {
         String[] values = Utils.readFile(BUILD_PROP).split("\\r?\\n");
-        List<BuildpropItems> list = new ArrayList<>();
+        LinkedHashMap<String, String> list = new LinkedHashMap<>();
         for (String prop : values)
             if (!prop.isEmpty() && !prop.startsWith("#")) {
                 String[] line = prop.split("=");
-                String key = "";
-                if (line.length > 0) key = line[0];
-                String value = line.length > 1 ? line[1] : "";
-                list.add(new BuildpropItems(key, value));
+                list.put(line.length > 0 ? line[0] : "", line.length > 1 ? line[1] : "");
             }
         return list;
-    }
-
-    public static class BuildpropItems {
-
-        private final String key;
-        private final String value;
-
-        public BuildpropItems(String key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
     }
 
 }

@@ -23,8 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by willi on 15.04.15.
@@ -40,7 +40,7 @@ public class ProfileDB extends JsonDB {
         return new ProfileItem(item);
     }
 
-    public void putProfile(String name, Map<String, String> commands) {
+    public void putProfile(String name, LinkedHashMap<String, String> commands) {
         try {
             JSONObject items = new JSONObject();
             items.put("name", name);
