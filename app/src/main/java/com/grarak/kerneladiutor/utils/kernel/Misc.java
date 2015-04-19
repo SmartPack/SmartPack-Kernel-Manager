@@ -112,6 +112,18 @@ public class Misc implements Constants {
         return Utils.existFile(DYNAMIC_FSYNC);
     }
 
+    public static void activateFsync(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", FSYNC, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isFsyncActive() {
+        return Utils.readFile(FSYNC).equals("1");
+    }
+
+    public static boolean hasFsync() {
+        return Utils.existFile(FSYNC);
+    }
+
     public static void activateMsmHsicHostWakeLock(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", MSM_HSIC_HOST_WAKELOCK, Control.CommandType.GENERIC, context);
     }
