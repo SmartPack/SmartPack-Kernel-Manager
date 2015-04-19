@@ -123,9 +123,9 @@ public class BatteryFragment extends RecyclerViewFragment implements
             if (mBatteryVoltageCard != null)
                 mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
             if (mBatteryTemperature != null) {
-                float celsius = (float) temperature / 10;
-                float fahrenheit = Utils.celsiusToFahrenheit(celsius);
-                mBatteryTemperature.setDescription((celsius + "°C" + " " + fahrenheit + "°F").replace(".0", ""));
+                double celsius = (double) temperature / 10;
+                double fahrenheit = Utils.celsiusToFahrenheit(celsius);
+                mBatteryTemperature.setDescription((celsius + "°C" + " " + fahrenheit + "°F"));
             }
         }
     };
@@ -148,6 +148,10 @@ public class BatteryFragment extends RecyclerViewFragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unregisterReceiver(mBatInfoReceiver);
+        try {
+            getActivity().unregisterReceiver(mBatInfoReceiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 }

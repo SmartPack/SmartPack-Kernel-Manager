@@ -113,6 +113,7 @@ public class BootService extends Service {
                         mNotifyManager.notify(id, mBuilder.build());
                     }
                     apply(applys);
+                    stopSelf();
                 }
             }).start();
         } else stopSelf();
@@ -132,7 +133,6 @@ public class BootService extends Service {
             toast(message);
             mBuilder.setContentText(message);
             mNotifyManager.notify(id, mBuilder.build());
-            stopSelf();
             return;
         }
 
@@ -159,7 +159,6 @@ public class BootService extends Service {
 
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
-        stopSelf();
     }
 
     private void log(String log) {

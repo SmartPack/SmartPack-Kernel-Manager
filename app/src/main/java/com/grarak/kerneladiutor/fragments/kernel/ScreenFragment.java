@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
@@ -94,23 +95,27 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     private CardViewItem.DCardView mAdditionalProfilesCard;
 
+    private SwitchCompatCardItem.DSwitchCompatCard mBrightnessModeCard;
+    private SeekBarCardView.DSeekBarCardView mLcdMinBrightnessCard;
+    private SeekBarCardView.DSeekBarCardView mLcdMaxBrightnessCard;
+
     private SwitchCompatCardItem.DSwitchCompatCard mBackLightDimmerEnableCard;
-    private SeekBarCardView.DSeekBarCardView mMinBrightnessCard;
+    private SeekBarCardView.DSeekBarCardView mBackLightDimmerMinBrightnessCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerThresholdCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerOffsetCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mExponentialBlCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
         screenColorInit();
-        backlightDimmerInit();
         if (Screen.hasKGamma()) kgammaInit();
         if (Screen.hasGammaControl()) gammacontrolInit();
         if (Screen.hasDsiPanel()) dsipanelInit();
         if (mKGammaProfilesCard != null || mGammaControlProfilesCard != null || mDsiPanelProfilesCard != null)
             additionalProfilesInit();
+        lcdBackLightInit();
+        backlightDimmerInit();
     }
 
     @Override
@@ -232,15 +237,6 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             mScreenHBMCard.setOnDSwitchCompatCardListener(this);
 
             addView(mScreenHBMCard);
-        }
-
-        if (Screen.hasExponentialBl()) {
-            mExponentialBlCard = new SwitchCompatCardItem.DSwitchCompatCard();
-            mExponentialBlCard.setDescription(getString(R.string.exponential_backlight));
-            mExponentialBlCard.setChecked(Screen.isExponentialBlActive());
-            mExponentialBlCard.setOnDSwitchCompatCardListener(this);
-
-            addView(mExponentialBlCard);
         }
     }
 
@@ -541,14 +537,65 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         addView(mAdditionalProfilesCard);
     }
 
+    private void lcdBackLightInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (Screen.hasBrightnessMode()) {
+            mBrightnessModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBrightnessModeCard.setDescription(getString(R.string.brightness_mode));
+            mBrightnessModeCard.setChecked(Screen.isBrightnessModeActive());
+            mBrightnessModeCard.setOnDSwitchCompatCardListener(this);
+
+            views.add(mBrightnessModeCard);
+        }
+
+        if (Screen.hasLcdMinBrightness()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 2; i < 115; i++)
+                list.add(String.valueOf(i));
+
+            mLcdMinBrightnessCard = new SeekBarCardView.DSeekBarCardView(list);
+            mLcdMinBrightnessCard.setTitle(getString(R.string.min_brightness));
+            mLcdMinBrightnessCard.setDescription(getString(R.string.min_brightness_summary));
+            mLcdMinBrightnessCard.setProgress(Screen.getLcdMinBrightness() - 2);
+            mLcdMinBrightnessCard.setOnDSeekBarCardListener(this);
+
+            views.add(mLcdMinBrightnessCard);
+        }
+
+        if (Screen.hasLcdMaxBrightness()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 2; i < 115; i++)
+                list.add(String.valueOf(i));
+
+            mLcdMaxBrightnessCard = new SeekBarCardView.DSeekBarCardView(list);
+            mLcdMaxBrightnessCard.setTitle(getString(R.string.max_brightness));
+            mLcdMaxBrightnessCard.setDescription(getString(R.string.max_brightness_summary));
+            mLcdMaxBrightnessCard.setProgress(Screen.getLcdMaxBrightness() - 2);
+            mLcdMaxBrightnessCard.setOnDSeekBarCardListener(this);
+
+            views.add(mLcdMaxBrightnessCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mLcdBackLightDividerCard = new DividerCardView.DDividerCard();
+            mLcdBackLightDividerCard.setText(getString(R.string.lcd_backlight));
+            addView(mLcdBackLightDividerCard);
+
+            addAllViews(views);
+        }
+    }
+
     private void backlightDimmerInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
         if (Screen.hasBackLightDimmerEnable()) {
             mBackLightDimmerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
             mBackLightDimmerEnableCard.setDescription(getString(R.string.backlight_dimmer));
             mBackLightDimmerEnableCard.setChecked(Screen.isBackLightDimmerActive());
             mBackLightDimmerEnableCard.setOnDSwitchCompatCardListener(this);
 
-            addView(mBackLightDimmerEnableCard);
+            views.add(mBackLightDimmerEnableCard);
         }
 
         if (Screen.hasMinBrightness()) {
@@ -556,13 +603,13 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             for (int i = 0; i <= Screen.getMaxMinBrightness(); i++)
                 list.add(String.valueOf(i));
 
-            mMinBrightnessCard = new SeekBarCardView.DSeekBarCardView(list);
-            mMinBrightnessCard.setTitle(getString(R.string.min_brightness));
-            mMinBrightnessCard.setDescription(getString(R.string.min_brightness_summary));
-            mMinBrightnessCard.setProgress(Screen.getCurMinBrightness());
-            mMinBrightnessCard.setOnDSeekBarCardListener(this);
+            mBackLightDimmerMinBrightnessCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBackLightDimmerMinBrightnessCard.setTitle(getString(R.string.min_brightness));
+            mBackLightDimmerMinBrightnessCard.setDescription(getString(R.string.min_brightness_summary));
+            mBackLightDimmerMinBrightnessCard.setProgress(Screen.getCurMinBrightness());
+            mBackLightDimmerMinBrightnessCard.setOnDSeekBarCardListener(this);
 
-            addView(mMinBrightnessCard);
+            views.add(mBackLightDimmerMinBrightnessCard);
         }
 
         if (Screen.hasBackLightDimmerThreshold()) {
@@ -571,11 +618,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                 list.add(String.valueOf(i));
 
             mBackLightDimmerThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBackLightDimmerThresholdCard.setTitle(getString(R.string.backlight_dimmer_threshold));
+            mBackLightDimmerThresholdCard.setTitle(getString(R.string.threshold));
             mBackLightDimmerThresholdCard.setProgress(Screen.getBackLightDimmerThreshold());
             mBackLightDimmerThresholdCard.setOnDSeekBarCardListener(this);
 
-            addView(mBackLightDimmerThresholdCard);
+            views.add(mBackLightDimmerThresholdCard);
         }
 
         if (Screen.hasBackLightDimmerOffset()) {
@@ -584,12 +631,21 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                 list.add(String.valueOf(i));
 
             mBackLightDimmerOffsetCard = new SeekBarCardView.DSeekBarCardView(list);
-            mBackLightDimmerOffsetCard.setTitle(getString(R.string.backlight_dimmer_offset));
+            mBackLightDimmerOffsetCard.setTitle(getString(R.string.offset));
             mBackLightDimmerOffsetCard.setProgress(Screen.getBackLightDimmerOffset());
             mBackLightDimmerOffsetCard.setOnDSeekBarCardListener(this);
 
-            addView(mBackLightDimmerOffsetCard);
+            views.add(mBackLightDimmerOffsetCard);
         }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mBackLightDimmerDividerCard = new DividerCardView.DDividerCard();
+            mBackLightDimmerDividerCard.setText(getString(R.string.backlight_dimmer));
+            addView(mBackLightDimmerDividerCard);
+
+            addAllViews(views);
+        }
+
     }
 
     @Override
@@ -612,13 +668,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mMinBrightnessCard)
-            Screen.setMinBrightness(position, getActivity());
-        else if (dSeekBarCardView == mBackLightDimmerThresholdCard)
-            Screen.setBackLightDimmerThreshold(position, getActivity());
-        else if (dSeekBarCardView == mBackLightDimmerOffsetCard)
-            Screen.setBackLightDimmerOffset(position, getActivity());
-        else if (dSeekBarCardView == mColorCalibrationMinCard)
+        if (dSeekBarCardView == mColorCalibrationMinCard)
             Screen.setColorCalibrationMin(Utils.stringToInt(mColorCalibrationLimits.get(position)), getActivity());
         else if (dSeekBarCardView == mSaturationIntensityCard)
             Screen.setSaturationIntensity(position + 225, getActivity());
@@ -628,6 +678,16 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.setScreenValue(position + 128, getActivity());
         else if (dSeekBarCardView == mScreenContrastCard)
             Screen.setScreenContrast(position + 128, getActivity());
+        else if (dSeekBarCardView == mLcdMinBrightnessCard)
+            Screen.setLcdMinBrightness(position + 2, getActivity());
+        else if (dSeekBarCardView == mLcdMaxBrightnessCard)
+            Screen.setLcdMaxBrightness(position + 2, getActivity());
+        else if (dSeekBarCardView == mBackLightDimmerMinBrightnessCard)
+            Screen.setMinBrightness(position, getActivity());
+        else if (dSeekBarCardView == mBackLightDimmerThresholdCard)
+            Screen.setBackLightDimmerThreshold(position, getActivity());
+        else if (dSeekBarCardView == mBackLightDimmerOffsetCard)
+            Screen.setBackLightDimmerOffset(position, getActivity());
         else {
             for (SeekBarCardView.DSeekBarCardView seekBarCardView : mColorCalibrationCard)
                 if (dSeekBarCardView == seekBarCardView) {
@@ -658,8 +718,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.activateScreenHBM(checked, getActivity());
         else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
-        else if (dSwitchCompatCard == mExponentialBlCard)
-            Screen.activateExponentialBl(checked, getActivity());
+        else if (dSwitchCompatCard == mBrightnessModeCard)
+            Screen.activateBrightnessMode(checked, getActivity());
     }
 
     @Override

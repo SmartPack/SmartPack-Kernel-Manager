@@ -38,18 +38,6 @@ public class Screen implements Constants {
 
     private static String MIN_BRIGHTNESS;
 
-    public static void activateExponentialBl(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", LM3530_EXPONENTIAL_BL, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isExponentialBlActive() {
-        return Utils.readFile(LM3530_EXPONENTIAL_BL).equals("1");
-    }
-
-    public static boolean hasExponentialBl() {
-        return Utils.existFile(LM3530_EXPONENTIAL_BL);
-    }
-
     public static void setBackLightDimmerOffset(int value, Context context) {
         Control.runCommand(String.valueOf(value), LM3630_BACKLIGHT_DIMMER_OFFSET, Control.CommandType.GENERIC, context);
     }
@@ -114,6 +102,42 @@ public class Screen implements Constants {
 
     public static boolean hasBackLightDimmerEnable() {
         return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
+    }
+
+    public static void setLcdMaxBrightness(int value, Context context) {
+        Control.runCommand(String.valueOf(value), LM3530_MAX_BRIGHTNESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getLcdMaxBrightness() {
+        return Utils.stringToInt(Utils.readFile(LM3530_MAX_BRIGHTNESS));
+    }
+
+    public static boolean hasLcdMaxBrightness() {
+        return Utils.existFile(LM3530_MAX_BRIGHTNESS);
+    }
+
+    public static void setLcdMinBrightness(int value, Context context) {
+        Control.runCommand(String.valueOf(value), LM3530_MIN_BRIGHTNESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getLcdMinBrightness() {
+        return Utils.stringToInt(Utils.readFile(LM3530_MIN_BRIGHTNESS));
+    }
+
+    public static boolean hasLcdMinBrightness() {
+        return Utils.existFile(LM3530_MIN_BRIGHTNESS);
+    }
+
+    public static void activateBrightnessMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LM3530_BRIGTHNESS_MODE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBrightnessModeActive() {
+        return Utils.readFile(LM3530_BRIGTHNESS_MODE).equals("1");
+    }
+
+    public static boolean hasBrightnessMode() {
+        return Utils.existFile(LM3530_BRIGTHNESS_MODE);
     }
 
     public static void setDsiPanelProfile(int profile, GammaProfiles.DsiPanelProfiles dsiPanelProfiles, Context context) {

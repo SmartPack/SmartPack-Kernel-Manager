@@ -151,7 +151,7 @@ public class CPU implements Constants {
     public static List<String> getTempLimitList() {
         List<String> list = new ArrayList<>();
         for (float i = getTempLimitMin(); i <= getTempLimitMax(); i++)
-            list.add((i + "°C" + " " + Utils.celsiusToFahrenheit(i) + "°F").replace(".0", ""));
+            list.add((i + "°C" + " " + Utils.celsiusToFahrenheit(i) + "°F"));
         return list;
     }
 

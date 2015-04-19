@@ -237,8 +237,6 @@
     <string name="green">Green</string>
     <string name="blue">Blue</string>
     <string name="min_rgb">Minimum RGB Value</string>
-    <string name="backlight_dimmer">Backlight Dimmer</string>
-    <string name="min_brightness">Minimum Brightness</string>
     <string name="invert_screen">Invert Screen</string>
     <string name="saturation_intensity">Saturation Intensity</string>
     <string name="grayscale_mode">Grayscale Mode</string>
@@ -276,10 +274,14 @@
     <string name="loading">Loading</string>
     <string name="no_internet">No internet connection</string>
     <string name="no_additional_profiles">No additional profiles found</string>
+    <string name="lcd_backlight">LCD Backlight</string>
+    <string name="brightness_mode">Use exponential backlight mode instead of linear mode.</string>
+    <string name="min_brightness">Minimum Brightness</string>
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible than stock.</string>
-    <string name="backlight_dimmer_threshold">Backlight Dimmer Threshold</string>
-    <string name="backlight_dimmer_offset">Backlight Dimmer Offset</string>
-    <string name="exponential_backlight">Enable exponential backlight mode instead of linear mode.</string>
+    <string name="max_brightness">Maximum Brightness</string>
+    <string name="max_brightness_summary">Allows you to increase the LCD screen brightness higher than it\'s possible than stock.</string>
+    <string name="backlight_dimmer">Backlight Dimmer</string>
+    <string name="offset">Offset</string>
 
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>
@@ -383,8 +385,6 @@
     <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
     <string name="msm_hsic_host_wakelock_summary">Prevent msm_hsic_host wakelock.</string>
     <string name="android_logger">Android logging</string>
-    <string name="permissive">Permissive</string>
-    <string name="enforcing">Enforcing</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
     <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is committed synchronously.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>

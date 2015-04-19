@@ -128,8 +128,7 @@ public class Utils implements Constants {
 
         if (mClass == BatteryFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
-
-        if (mClass == CPUFragment.class) {
+        else if (mClass == CPUFragment.class) {
             for (String[] array : CPU_ARRAY)
                 for (String cpu : array)
                     if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
@@ -160,8 +159,9 @@ public class Utils implements Constants {
         return applys;
     }
 
-    public static float celsiusToFahrenheit(float celsius) {
-        return celsius * 9 / 5 + 32;
+    public static double celsiusToFahrenheit(double celsius) {
+        double temp = celsius * 9 / 5 + 32;
+        return (double) Math.round(temp * 100.0) / 100.0;
     }
 
     public static long stringToLong(String string) {
