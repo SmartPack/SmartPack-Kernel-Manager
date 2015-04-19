@@ -92,6 +92,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
         private UsageCardView.DUsageCard mUsageCard;
+        private CardViewItem.DCardView mTempCard;
+
         private CheckBox[] mCoreCheckBox;
         private ProgressBar[] mCoreProgressBar;
         private TextView[] mCoreFreqText;
@@ -126,6 +128,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             super.init(savedInstanceState);
 
             usageInit();
+            if (CPU.hasTemp()) tempInit();
             if (CPU.getFreqs() != null) {
                 coreInit();
                 freqInit();
@@ -144,6 +147,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             addView(mUsageCard);
 
             getHandler().post(cpuUsage);
+        }
+
+        private void tempInit() {
+            mTempCard = new CardViewItem.DCardView();
+            mTempCard.setTitle(getString(R.string.cpu_temp));
+            mTempCard.setDescription(CPU.getTemp());
+
+            addView(mTempCard);
         }
 
         private void coreInit() {
@@ -417,6 +428,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         @Override
         public boolean onRefresh() {
             String MHZ = getString(R.string.mhz);
+
+            if (mTempCard != null) mTempCard.setDescription(CPU.getTemp());
 
             if (mCoreCheckBox != null)
                 for (int i = 0; i < mCoreCheckBox.length; i++) {

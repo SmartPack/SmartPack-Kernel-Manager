@@ -38,6 +38,8 @@ public class CPU implements Constants {
     private static String[] mMcPowerSavingItems;
     private static String[] mAvailableCFSSchedulers;
 
+    private static String TEMP_FILE;
+
     private static String TEMP_LIMIT_FILE;
 
     private static String CPU_BOOST_ENABLE_FILE;
@@ -338,6 +340,19 @@ public class CPU implements Constants {
 
     public static int getCoreCount() {
         return Runtime.getRuntime().availableProcessors();
+    }
+
+    public static String getTemp() {
+        long temp = Utils.stringToLong(Utils.readFile(TEMP_FILE));
+        if (temp > 1000) temp /= 1000;
+        else if (temp > 200) temp /= 10;
+        return ((double) temp) + "°C" + " " + Utils.celsiusToFahrenheit(temp) + "°F";
+    }
+
+    public static boolean hasTemp() {
+        if (Utils.existFile(CPU_TEMP_ZONE1)) TEMP_FILE = CPU_TEMP_ZONE1;
+        else if (Utils.existFile(CPU_TEMP_ZONE0)) TEMP_FILE = CPU_TEMP_ZONE0;
+        return TEMP_FILE != null;
     }
 
     /**

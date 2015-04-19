@@ -74,6 +74,7 @@
 
     <!-- CPU -->
     <string name="cpu_usage">CPU Usage</string>
+    <string name="cpu_temp">CPU Temperature</string>
     <string name="current_freq">Current Frequency</string>
     <string name="core">Core %d</string>
     <string name="offline">Offline</string>
