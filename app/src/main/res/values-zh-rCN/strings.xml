@@ -78,8 +78,6 @@
   <string name="green">绿</string>
   <string name="blue">蓝</string>
   <string name="min_rgb">最小 RGB 值</string>
-  <string name="backlight_dimmer">背光调光器</string>
-  <string name="min_brightness">最小亮度</string>
   <string name="invert_screen">翻转屏幕</string>
   <string name="saturation_intensity">饱和度</string>
   <string name="grayscale_mode">黑白模式</string>
@@ -87,9 +85,9 @@
   <string name="screen_hue_summary">如果该值被设置得过高在 MSM8x26 SoC 上可能出现问题。</string>
   <string name="screen_value">屏幕值</string>
   <string name="screen_contrast">屏幕对比度</string>
+  <string name="min_brightness">最小亮度</string>
   <string name="min_brightness_summary">允许你尽可能降低 LCD 屏幕亮度。</string>
-  <string name="backlight_dimmer_threshold">背光调光器阀值</string>
-  <string name="backlight_dimmer_offset">背光调光器偏移值</string>
+  <string name="backlight_dimmer">背光调光器</string>
   <string name="dt2w">双击唤醒</string>
   <string name="dt2w_summary">双击屏幕来唤醒您的设备。</string>
   <string name="center">中心</string>
@@ -138,8 +136,6 @@
   <string name="light">轻度</string>
   <string name="medium">中等</string>
   <string name="very_aggressive">非常积极</string>
-  <string name="tcp">TCP 拥塞算法</string>
-  <string name="tcp_summary">传输控制协议（TCP）是互联网协议（IP）组件的核心协议之一，并且通常被合称为 TCP/IP。</string>
   <string name="vibration_strength">震动长度</string>
   <string name="smb135x_wakelock">smb135x 唤醒锁</string>
   <string name="smb135x_wakelock_summary">当充电器未连接时阻止唤醒锁。</string>
@@ -148,6 +144,8 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host 唤醒锁</string>
   <string name="msm_hsic_host_wakelock_summary">阻止 msm_hsic_host 唤醒锁。</string>
   <string name="android_logger">Android 日志记录</string>
+  <string name="tcp">TCP 拥塞算法</string>
+  <string name="tcp_summary">传输控制协议（TCP）是互联网协议（IP）组件的核心协议之一，并且通常被合称为 TCP/IP。</string>
   <string name="edit">编辑</string>
   <string name="delete">删除</string>
   <string name="value">值</string>

@@ -207,8 +207,6 @@
   <string name="green">Zelena</string>
   <string name="blue">Plava</string>
   <string name="min_rgb">Minimalna RGB vrijednost</string>
-  <string name="backlight_dimmer">Prigušivač pozadinskog osvjetljenja</string>
-  <string name="min_brightness">Minimalna svjetlina</string>
   <string name="invert_screen">Obrnuti prikaz boja</string>
   <string name="saturation_intensity">Zasićenost boja</string>
   <string name="grayscale_mode">Modus sivih tonova</string>
@@ -216,9 +214,9 @@
   <string name="screen_hue_summary">Postavljanje visoke vrijednosti za MSM8x26 SoC može Vam prouzročiti probleme.</string>
   <string name="screen_value">Vrijednosti Zaslona</string>
   <string name="screen_contrast">Kontrast zaslona</string>
+  <string name="min_brightness">Minimalna svjetlina</string>
   <string name="min_brightness_summary">Omogućava Vam zatamniti LCD zaslon do ispod tvorničkih granica.</string>
-  <string name="backlight_dimmer_threshold">Ograničenja podešivača pozadinskog osvjetljenja</string>
-  <string name="backlight_dimmer_offset">Odstupanje od prigušivanja pozadinskog osvjetljenja</string>
+  <string name="backlight_dimmer">Prigušivač pozadinskog osvjetljenja</string>
   <string name="dt2w">Dvaput-Dirni-Pa-Probudi</string>
   <string name="dt2w_summary">Probudite uređaj dvostrukim dodirom ekrana.</string>
   <string name="center">Sredina</string>
@@ -277,8 +275,6 @@
   <string name="light">Lagano</string>
   <string name="medium">Srednje</string>
   <string name="very_aggressive">Vrlo agresivno</string>
-  <string name="tcp">Algoritam TCP zagušenja</string>
-  <string name="tcp_summary">Transmission Control Protocol je jedan od sržnih protokola internetskog protokola (IP), te tako se često cijeli paket zove TCP/IP.</string>
   <string name="vibration_strength">Snaga vibracije</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="smb135x_wakelock_summary">Spriječiti buđenje uređaja pri otpajanju od napajača.</string>
@@ -287,10 +283,10 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
   <string name="android_logger">Android: zapisi</string>
-  <string name="permissive">Popustljiv</string>
-  <string name="enforcing">Namećući</string>
   <string name="dynamic_fsync">Dinamički Fsync</string>
   <string name="dynamic_fsync_summary">Kada je omogućeno uz uključen zaslon, fsync rad je asinkron. Kada je zaslon isključen, ova operacija se zalaže sinkronizirano.</string>
+  <string name="tcp">Algoritam TCP zagušenja</string>
+  <string name="tcp_summary">Transmission Control Protocol je jedan od sržnih protokola internetskog protokola (IP), te tako se često cijeli paket zove TCP/IP.</string>
   <string name="edit">Promjeni</string>
   <string name="delete">Izbriši</string>
   <string name="key">Ključ</string>

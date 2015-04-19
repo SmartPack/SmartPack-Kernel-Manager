@@ -138,12 +138,12 @@
   <string name="green">Zöld</string>
   <string name="blue">Kék</string>
   <string name="min_rgb">Minimális RGB érték</string>
-  <string name="min_brightness">Minimum fényerő</string>
   <string name="invert_screen">Fordított képernyő</string>
   <string name="saturation_intensity">Telítettség intenzitása</string>
   <string name="grayscale_mode">Szürkeárnyalatos színmód</string>
   <string name="screen_hue">Képernyő árnyalat</string>
   <string name="screen_contrast">Képernyő kontraszt</string>
+  <string name="min_brightness">Minimum fényerő</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Feloldani a készüléket a képernyőre való dupla koppintással.</string>
   <string name="center">Közép</string>

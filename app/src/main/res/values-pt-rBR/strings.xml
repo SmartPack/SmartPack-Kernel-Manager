@@ -42,6 +42,7 @@
   <string name="misc_controls">Controles variados</string>
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil	</string>
+  <string name="recovery">Recuperação			</string>
   <string name="settings">Configurações</string>
   <string name="faq">FAQ</string>
   <string name="about_us">Sobre nós</string>
@@ -90,6 +91,7 @@
   <string name="input_boost_freq">Incrementar a frequência de entrada</string>
   <string name="input_boost_freq_summary">Frequência da CPU para ser impulsionada até esta frequência após a detecção de entrada.</string>
   <string name="global_offset">Deslocamento global</string>
+  <string name="override_vmin">Substituir a tensão mínima</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solução hotplugging da Qualcomm. Você pode ter problemas com a mudança de frequências quando estiver habilitado.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -207,8 +209,6 @@
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
   <string name="min_rgb">Valor mínimo RGB</string>
-  <string name="backlight_dimmer">Atenuador de luz de fundo</string>
-  <string name="min_brightness">Brilho mínimo</string>
   <string name="invert_screen">Inverter tela</string>
   <string name="saturation_intensity">Intensidade de saturação</string>
   <string name="grayscale_mode">Modo tons de cinza</string>
@@ -232,9 +232,9 @@
   <string name="loading">Carregando</string>
   <string name="no_internet">Sem conexão à internet</string>
   <string name="no_additional_profiles">Nenhum perfil adicional encontrado</string>
+  <string name="min_brightness">Brilho mínimo</string>
   <string name="min_brightness_summary">Permite diminuir o brilho da tela menor do que possível por padrão.</string>
-  <string name="backlight_dimmer_threshold">Início do atenuador de luz de fundo</string>
-  <string name="backlight_dimmer_offset">Deslocamento Dimmer de luz de fundo</string>
+  <string name="backlight_dimmer">Atenuador de luz de fundo</string>
   <string name="dt2w">Duplo-Toque-Para-Acordar</string>
   <string name="dt2w_summary">Acorda seu dispositivo quando tiver um duplo toque na tela.</string>
   <string name="center">Centro</string>
@@ -308,8 +308,6 @@
   <string name="light">Suave</string>
   <string name="medium">Médio</string>
   <string name="very_aggressive">Muito agressivo</string>
-  <string name="tcp">Algoritmo de congestionamento TCP</string>
-  <string name="tcp_summary">O protocolo de controle de transmissão é um dos principais protocolos da suíte do Protocolo de Internet (IP), e é tão comum que todo o conjunto é muitas vezes chamado TCP/IP.</string>
   <string name="vibration_strength">Intensidade da vibração</string>
   <string name="smb135x_wakelock">Gerenciador de energia smb135x</string>
   <string name="smb135x_wakelock_summary">Evitar gerenciamento de energia quando a tomada for desconectada.</string>
@@ -318,11 +316,11 @@
   <string name="msm_hsic_host_wakelock">Gerenciador de energia msm_hsic_host</string>
   <string name="msm_hsic_host_wakelock_summary">Evitar o gerenciamento de energia msm_hsic_host.</string>
   <string name="android_logger">Android log</string>
-  <string name="permissive">Permissivo</string>
-  <string name="enforcing">Obrigar</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>
   <string name="dynamic_fsync_summary">Quando habilitada e a tela estiver acesa, a operação fsync é assíncrona. Quando a tela estiver desligada, esta operação é comprometida sincronicamente.</string>
   <string name="power_suspend_mode">Ligar modo de suspenção</string>
+  <string name="tcp">Algoritmo de congestionamento TCP</string>
+  <string name="tcp_summary">O protocolo de controle de transmissão é um dos principais protocolos da suíte do Protocolo de Internet (IP), e é tão comum que todo o conjunto é muitas vezes chamado TCP/IP.</string>
   <string name="edit">Editar</string>
   <string name="delete">Deletar</string>
   <string name="key">Chave</string>

@@ -105,8 +105,6 @@
   <string name="suspend_summary">Askıdan al.</string>
   <string name="delay">Gecikme</string>
   <string name="pause">Duraklat</string>
-  <string name="backlight_dimmer">Kısık Arka Işık</string>
-  <string name="min_brightness">Minimum Parlaklık</string>
   <string name="invert_screen">Ters Ekran</string>
   <string name="saturation_intensity">Renk Doygunluğu</string>
   <string name="grayscale_mode">Gri Tonlama Modu</string>
@@ -120,6 +118,8 @@
   <string name="white_point">Beyaz Nokta</string>
   <string name="loading">Yükleniyor</string>
   <string name="no_internet">Internet bağlantısı yok</string>
+  <string name="min_brightness">Minimum Parlaklık</string>
+  <string name="backlight_dimmer">Kısık Arka Işık</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="center">Orta</string>
   <string name="full">Tam</string>
@@ -173,7 +173,6 @@
   <string name="very_aggressive">Çok Agresif</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
-  <string name="tcp">TCP Congestion Algoritması</string>
   <string name="vibration_strength">Titreşim Gücü</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
@@ -183,6 +182,7 @@
   <string name="lcd_panel">LCD Panel</string>
   <string name="hybrid">Melez</string>
   <string name="power_suspend_state">Güç Askıya Alma Durumu</string>
+  <string name="tcp">TCP Congestion Algoritması</string>
   <string name="edit">Düzenle</string>
   <string name="delete">Sil</string>
   <string name="key">Anahtar</string>

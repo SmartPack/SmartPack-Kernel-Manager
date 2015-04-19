@@ -178,8 +178,6 @@
   <string name="green">Grün</string>
   <string name="blue">Blau</string>
   <string name="min_rgb">Minimaler RGB-Wert</string>
-  <string name="backlight_dimmer">Hintergrundbeleuchtungs-Dimmer</string>
-  <string name="min_brightness">Minimale Helligkeit</string>
   <string name="invert_screen">Bildschirm invertieren</string>
   <string name="saturation_intensity">Sättigungs-Intensität</string>
   <string name="grayscale_mode">\"Graustufen\"-Modus</string>
@@ -204,8 +202,9 @@
   <string name="blue_negative">Blau Negativ</string>
   <string name="white_point">Weißpunkt</string>
   <string name="gamma_profile_summary">Nach Auswahl eines Profils, Bitte schalten Sie Ihren Bildschirm aus und wieder ein.</string>
+  <string name="min_brightness">Minimale Helligkeit</string>
   <string name="min_brightness_summary">Erlaubt, die Helligkeit des Bildschirms niedriger als gewöhnlich einzustellen.</string>
-  <string name="backlight_dimmer_threshold">Hintergrundbeleuchtungs-Dimmer Schwelle</string>
+  <string name="backlight_dimmer">Hintergrundbeleuchtungs-Dimmer</string>
   <string name="dt2w">Doppelt Tippen zum Aufwecken</string>
   <string name="dt2w_summary">Wacht ihr Gerät durch doppeltes Antippen des Bildschirms ein.</string>
   <string name="center">Mittig</string>
@@ -261,15 +260,13 @@
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
   <string name="disksize_summary">Versucht die Leistung zu verbessern indem im RAM kleinere Pakete zwischenspeichert werden, anstelle von auf dem Hauptspeicher. Wenn der RAM voll ist werden diese Pakete wieder auf dem Hauptspeicher gespeichert.</string>
-  <string name="tcp">TCP Congestion-Algorithmus</string>
   <string name="vibration_strength">Vibrationsstärke</string>
   <string name="smb135x_wakelock_summary">Verhindert Wakelock, wenn die Stromversorgung getrennt ist.</string>
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelock, wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelock.</string>
   <string name="android_logger">Android-Protokollierung</string>
-  <string name="permissive">Moderat</string>
-  <string name="enforcing">Strikt</string>
   <string name="dynamic_fsync">Dynamischer Fsync</string>
+  <string name="tcp">TCP Congestion-Algorithmus</string>
   <string name="edit">Bearbeiten</string>
   <string name="delete">Löschen</string>
   <string name="key">Taste</string>

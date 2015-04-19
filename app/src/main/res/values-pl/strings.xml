@@ -115,8 +115,8 @@
   <string name="green">Zielony</string>
   <string name="blue">Niebieski</string>
   <string name="min_rgb">Wartość minimalna RGB</string>
-  <string name="min_brightness">Minimalna jasność</string>
   <string name="saturation_intensity">Natężenie nasycenia</string>
+  <string name="min_brightness">Minimalna jasność</string>
   <string name="dt2w">Podwójne Klikniecie By Wybudzić</string>
   <string name="dt2w_summary">Wybudź swoje urządzenie poprzez podwójne dotknięcie ekranu.</string>
   <string name="center">Środek</string>

@@ -11,6 +11,7 @@
   <string name="apply_on_boot">開機後自動套用</string>
   <string name="apply_on_boot_finished">您的更改已套用</string>
   <string name="apply_on_boot_time">在 %d 秒內套用您的設定</string>
+  <string name="apply_on_boot_enabled">啟用啟動 %s 節適用</string>
   <string name="apply_on_boot_disabled">取消開機自動套用 %s</string>
   <string name="apply_on_boot_failed">開機自動套用設定失敗</string>
   <string name="mhz">MHz</string>
@@ -102,8 +103,6 @@
   <string name="green">綠色</string>
   <string name="blue">藍色</string>
   <string name="min_rgb">最低 RGB 值</string>
-  <string name="backlight_dimmer">背光源調光器</string>
-  <string name="min_brightness">最小亮度</string>
   <string name="invert_screen">反轉螢幕顏色</string>
   <string name="saturation_intensity">飽和強度</string>
   <string name="screen_hue">螢幕顏色</string>
@@ -120,6 +119,8 @@
   <string name="blue_positive">藍色積極</string>
   <string name="blue_negative">藍色負</string>
   <string name="gamma_profile_summary">選擇一個設定檔後，請關閉和打開您的螢幕。</string>
+  <string name="min_brightness">最小亮度</string>
+  <string name="backlight_dimmer">背光源調光器</string>
   <string name="slide_right">向右滑動</string>
   <string name="draw_e">Draw E</string>
   <string name="draw_o">Draw O</string>
