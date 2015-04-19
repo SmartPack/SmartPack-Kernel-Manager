@@ -506,8 +506,6 @@ public interface Constants {
     String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET};
 
     // Misc
-    // TCP
-    String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
     // Vibration
     String VIBRATION_ENABLE = "/sys/class/timed_output/vibrator/enable";
@@ -550,8 +548,13 @@ public interface Constants {
     String POWER_SUSPEND_STATE = POWER_SUSPEND + "/power_suspend_state";
     String POWER_SUSPEND_VERSION = POWER_SUSPEND + "/power_suspend_version";
 
-    String[][] MISC_ARRAY = {{TCP_AVAILABLE_CONGESTIONS, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK,
-            LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE}, VIBRATION_ARRAY};
+    // Network
+    String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
+    String HOSTNAME_KEY = "net.hostname";
+
+    String[][] MISC_ARRAY = {{SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK,
+            LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
+            VIBRATION_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

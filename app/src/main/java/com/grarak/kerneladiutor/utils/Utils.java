@@ -239,6 +239,10 @@ public class Utils implements Constants {
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(name, value).apply();
     }
 
+    public static String getProp(String key) {
+        return RootUtils.runCommand("getprop " + key);
+    }
+
     public static boolean isServiceActive(String service) {
         String output = RootUtils.runCommand("echo `ps | grep " + service + " | grep -v \"grep "
                 + service + "\" | awk '{print $1}'`");

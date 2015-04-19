@@ -20,6 +20,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DividerCardView;
+import com.grarak.kerneladiutor.elements.EditTextCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
@@ -37,9 +39,8 @@ import java.util.List;
  */
 public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
-
-    private PopupCardItem.DPopupCard mTcpCongestionCard;
+        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        EditTextCardView.DEditTextCard.OnDEditTextCardListener {
 
     private SeekBarCardView.DSeekBarCardView mVibrationCard;
 
@@ -55,11 +56,13 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     private SwitchCompatCardItem.DSwitchCompatCard mOldPowerSuspendStateCard;
     private SeekBarCardView.DSeekBarCardView mNewPowerSuspendStateCard;
 
+    private PopupCardItem.DPopupCard mTcpCongestionCard;
+    private EditTextCardView.DEditTextCard mHostnameCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        tcpCongestionInit();
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasSmb135xWakeLock()) smb135xWakeLockInit();
         if (Misc.hasSensorIndWakeLock()) sensorIndWakeLockInit();
@@ -67,20 +70,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasDynamicFsync()) dynamicFsyncInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
-    }
-
-    private void tcpCongestionInit() {
-        try {
-            mTcpCongestionCard = new PopupCardItem.DPopupCard(Misc.getTcpAvailableCongestions());
-            mTcpCongestionCard.setTitle(getString(R.string.tcp));
-            mTcpCongestionCard.setDescription(getString(R.string.tcp_summary));
-            mTcpCongestionCard.setItem(Misc.getCurTcpCongestion());
-            mTcpCongestionCard.setOnDPopupCardListener(this);
-
-            addView(mTcpCongestionCard);
-        } catch (Exception e) {
-            Log.e(Constants.TAG, "Failed to read TCP");
-        }
+        networkInit();
     }
 
     private void vibrationInit() {
@@ -187,6 +177,33 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         }
     }
 
+    private void networkInit() {
+        DividerCardView.DDividerCard mNetworkDividerCard = new DividerCardView.DDividerCard();
+        mNetworkDividerCard.setText(getString(R.string.network));
+        addView(mNetworkDividerCard);
+
+        try {
+            mTcpCongestionCard = new PopupCardItem.DPopupCard(Misc.getTcpAvailableCongestions());
+            mTcpCongestionCard.setTitle(getString(R.string.tcp));
+            mTcpCongestionCard.setDescription(getString(R.string.tcp_summary));
+            mTcpCongestionCard.setItem(Misc.getCurTcpCongestion());
+            mTcpCongestionCard.setOnDPopupCardListener(this);
+
+            addView(mTcpCongestionCard);
+        } catch (Exception e) {
+            Log.e(Constants.TAG, "Failed to read TCP");
+        }
+
+        String hostname = Misc.getHostname();
+        mHostnameCard = new EditTextCardView.DEditTextCard();
+        mHostnameCard.setTitle(getString(R.string.hostname));
+        mHostnameCard.setDescription(hostname);
+        mHostnameCard.setValue(hostname);
+        mHostnameCard.setOnDEditTextCardListener(this);
+
+        addView(mHostnameCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -241,5 +258,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCompatCard.setChecked(Misc.isOldPowerSuspendStateActive());
+    }
+
+    @Override
+    public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
+        dEditTextCard.setDescription(value);
+        if (dEditTextCard == mHostnameCard) Misc.setHostname(value, getActivity());
     }
 }

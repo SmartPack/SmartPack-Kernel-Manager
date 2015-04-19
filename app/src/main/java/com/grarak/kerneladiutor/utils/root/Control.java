@@ -52,9 +52,9 @@ public class Control implements Constants {
 
     }
 
-    private static void run(String command, String sys, Context context) {
+    private static void run(String command, String path, Context context) {
         RootUtils.runCommand(command);
-        commandSaver(context, sys, command);
+        commandSaver(context, path, command);
     }
 
     private static int getChecksum(int arg1, int arg2) {
@@ -74,6 +74,10 @@ public class Control implements Constants {
                 Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
         run("echo " + value + " > " + file, file + "nochecksum", context);
         run("echo " + command + " > " + file, file, context);
+    }
+
+    public static void setProp(String key, String value, Context context) {
+        run("setprop " + key + " " + value, key, context);
     }
 
     public static void startService(String service, boolean save, Context context) {
