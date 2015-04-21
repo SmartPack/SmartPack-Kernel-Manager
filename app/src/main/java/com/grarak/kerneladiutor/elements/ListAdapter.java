@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,7 +132,12 @@ public class ListAdapter {
 
         @Override
         public View getView(final LayoutInflater inflater, ViewGroup parent) {
-            return inflater.inflate(R.layout.header_main, parent, false);
+            View view = inflater.inflate(R.layout.header_main, parent, false);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                view.getLayoutParams().height = (int) parent.getContext().getResources().getDisplayMetrics().density * 159;
+                view.requestLayout();
+            }
+            return view;
         }
 
     }

@@ -100,8 +100,8 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
                 });
             }
 
+            applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
             if (applyOnBootLayout != null) {
-                applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
                 applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
