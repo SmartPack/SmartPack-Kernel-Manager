@@ -105,6 +105,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerThresholdCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerOffsetCard;
 
+    private SwitchCompatCardItem.DSwitchCompatCard mNegativeToggleCard;
+
+    private SwitchCompatCardItem.DSwitchCompatCard mRegisterHookCard;
+    private SwitchCompatCardItem.DSwitchCompatCard mMasterSequenceCard;
+
     @Override
     public RecyclerView getRecyclerView() {
         mColorPalette = (ColorPalette) getParentView(R.layout.screen_fragment).findViewById(R.id.colorpalette);
@@ -125,6 +130,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             additionalProfilesInit();
         lcdBackLightInit();
         backlightDimmerInit();
+        if (Screen.hasNegativeToggle()) negativeToggleInit();
+        mdnieGlobalInit();
     }
 
     @Override
@@ -646,6 +653,48 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     }
 
+    private void negativeToggleInit() {
+        mNegativeToggleCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mNegativeToggleCard.setTitle(getString(R.string.negative_toggle));
+        mNegativeToggleCard.setDescription(getString(R.string.negative_toggle_summary));
+        mNegativeToggleCard.setChecked(Screen.isNegativeToggleActive());
+        mNegativeToggleCard.setOnDSwitchCompatCardListener(this);
+
+        addView(mNegativeToggleCard);
+    }
+
+    private void mdnieGlobalInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (Screen.hasRegisterHook()) {
+            mRegisterHookCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mRegisterHookCard.setTitle(getString(R.string.register_hook));
+            mRegisterHookCard.setDescription(getString(R.string.register_hook_summary));
+            mRegisterHookCard.setChecked(Screen.isRegisterHookActive());
+            mRegisterHookCard.setOnDSwitchCompatCardListener(this);
+
+            views.add(mRegisterHookCard);
+        }
+
+        if (Screen.hasMasterSequence()) {
+            mMasterSequenceCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMasterSequenceCard.setTitle(getString(R.string.master_sequence));
+            mMasterSequenceCard.setDescription(getString(R.string.master_sequence_summary));
+            mMasterSequenceCard.setChecked(Screen.isMasterSequenceActive());
+            mMasterSequenceCard.setOnDSwitchCompatCardListener(this);
+
+            views.add(mMasterSequenceCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mMdnieGlobalDivider = new DividerCardView.DDividerCard();
+            mMdnieGlobalDivider.setText(getString(R.string.mdnie_global_controls));
+            addView(mMdnieGlobalDivider);
+
+            addAllViews(views);
+        }
+    }
+
     @Override
     public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
         if (dSeekBarCardView == mColorCalibrationMinCard) {
@@ -718,6 +767,12 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.activateBackLightDimmer(checked, getActivity());
         else if (dSwitchCompatCard == mBrightnessModeCard)
             Screen.activateBrightnessMode(checked, getActivity());
+        else if (dSwitchCompatCard == mNegativeToggleCard)
+            Screen.activateNegativeToggle(checked, getActivity());
+        else if (dSwitchCompatCard == mRegisterHookCard)
+            Screen.activateRegisterHook(checked, getActivity());
+        else if (dSwitchCompatCard == mMasterSequenceCard)
+            Screen.activateMasterSequence(checked, getActivity());
     }
 
     @Override

@@ -283,6 +283,13 @@
     <string name="max_brightness_summary">Allows you to increase the LCD screen brightness higher than it\'s possible than stock.</string>
     <string name="backlight_dimmer">Backlight Dimmer</string>
     <string name="offset">Offset</string>
+    <string name="negative_toggle">Negative Toggle</string>
+    <string name="negative_toggle_summary">Enable inverting the screen colors by quickly pressing MENU button 4 times.</string>
+    <string name="mdnie_global_controls">mDNIe global controls</string>
+    <string name="register_hook">Register Hook</string>
+    <string name="register_hook_summary">Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook.</string>
+    <string name="master_sequence">Master Sequence</string>
+    <string name="master_sequence_summary">Enabling the master sequence will disable and ignore Samsungs profiles and scenarios, the ROM controls will be disabled.</string>
 
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>

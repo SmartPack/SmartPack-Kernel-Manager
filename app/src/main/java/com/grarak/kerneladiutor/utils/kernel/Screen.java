@@ -38,6 +38,42 @@ public class Screen implements Constants {
 
     private static String MIN_BRIGHTNESS;
 
+    public static void activateMasterSequence(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", MASTER_SEQUENCE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMasterSequenceActive() {
+        return Utils.readFile(MASTER_SEQUENCE).equals("1");
+    }
+
+    public static boolean hasMasterSequence() {
+        return Utils.existFile(MASTER_SEQUENCE);
+    }
+
+    public static void activateRegisterHook(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", REGISTER_HOOK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isRegisterHookActive() {
+        return Utils.readFile(REGISTER_HOOK).equals("1");
+    }
+
+    public static boolean hasRegisterHook() {
+        return Utils.existFile(REGISTER_HOOK);
+    }
+
+    public static void activateNegativeToggle(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", NEGATIVE_TOGGLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isNegativeToggleActive() {
+        return Utils.readFile(NEGATIVE_TOGGLE).equals("1");
+    }
+
+    public static boolean hasNegativeToggle() {
+        return Utils.existFile(NEGATIVE_TOGGLE);
+    }
+
     public static void setBackLightDimmerOffset(int value, Context context) {
         Control.runCommand(String.valueOf(value), LM3630_BACKLIGHT_DIMMER_OFFSET, Control.CommandType.GENERIC, context);
     }
