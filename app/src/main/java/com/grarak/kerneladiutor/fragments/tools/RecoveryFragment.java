@@ -171,6 +171,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
         CardViewItem.DCardView mRecoveryCard = new CardViewItem.DCardView();
         mRecoveryCard.setTitle(getString(R.string.your_recovery));
+        mRecoveryCard.setFullSpan(true);
         mRecoveryCard.setView(mRecoveryLayout);
 
         addView(mRecoveryCard);

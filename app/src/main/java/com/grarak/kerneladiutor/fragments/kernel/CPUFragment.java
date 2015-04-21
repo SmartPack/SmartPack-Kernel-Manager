@@ -92,11 +92,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
 
         private UsageCardView.DUsageCard mUsageCard;
-        private CardViewItem.DCardView mTempCard;
 
         private CheckBox[] mCoreCheckBox;
         private ProgressBar[] mCoreProgressBar;
         private TextView[] mCoreFreqText;
+
+        private CardViewItem.DCardView mTempCard;
 
         private PopupCardItem.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard;
 
@@ -128,11 +129,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             super.init(savedInstanceState);
 
             usageInit();
+            if (CPU.getFreqs() != null) coreInit();
             if (CPU.hasTemp()) tempInit();
-            if (CPU.getFreqs() != null) {
-                coreInit();
-                freqInit();
-            }
+            if (CPU.getFreqs() != null) freqInit();
             governorInit();
             if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
             if (CPU.hasPowerSavingWq()) powerSavingWqInit();
@@ -147,14 +146,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             addView(mUsageCard);
 
             getHandler().post(cpuUsage);
-        }
-
-        private void tempInit() {
-            mTempCard = new CardViewItem.DCardView();
-            mTempCard.setTitle(getString(R.string.cpu_temp));
-            mTempCard.setDescription(CPU.getTemp());
-
-            addView(mTempCard);
         }
 
         private void coreInit() {
@@ -184,6 +175,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             coreCard.setView(layout);
 
             addView(coreCard);
+        }
+
+        private void tempInit() {
+            mTempCard = new CardViewItem.DCardView();
+            mTempCard.setTitle(getString(R.string.cpu_temp));
+            mTempCard.setDescription(CPU.getTemp());
+
+            addView(mTempCard);
         }
 
         private void freqInit() {
@@ -429,8 +428,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         public boolean onRefresh() {
             String MHZ = getString(R.string.mhz);
 
-            if (mTempCard != null) mTempCard.setDescription(CPU.getTemp());
-
             if (mCoreCheckBox != null)
                 for (int i = 0; i < mCoreCheckBox.length; i++) {
                     int cur = CPU.getCurFreq(i);
@@ -441,6 +438,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                         mCoreFreqText[i].setText(cur == 0 ? getString(R.string.offline) : cur / 1000 + MHZ);
                 }
 
+            if (mTempCard != null) mTempCard.setDescription(CPU.getTemp());
             if (mMaxFreqCard != null)
                 mMaxFreqCard.setItem(CPU.getMaxFreq(0) / 1000 + MHZ);
             if (mMinFreqCard != null)

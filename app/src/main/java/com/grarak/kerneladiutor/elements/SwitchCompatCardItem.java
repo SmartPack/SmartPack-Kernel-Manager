@@ -100,8 +100,13 @@ public class SwitchCompatCardItem extends BaseCardView {
 
     private void setUpTitle() {
         if (headerCardView != null) {
-            if (titleText == null) removeHeader();
-            else addHeader(headerCardView);
+            if (titleText == null) {
+                removeHeader();
+                layoutView.setPadding(32, 32, 32, 32);
+            } else {
+                addHeader(headerCardView);
+                layoutView.setPadding(32, 0, 32, 32);
+            }
         }
         if (headerCardView != null && titleText != null)
             headerCardView.setText(titleText);
@@ -166,8 +171,8 @@ public class SwitchCompatCardItem extends BaseCardView {
             if (switchCompatCardItem != null) switchCompatCardItem.setChecked(checked);
         }
 
-        public void setFullSpan(boolean state) {
-            fullspan = state;
+        public void setFullSpan(boolean fullspan) {
+            this.fullspan = fullspan;
         }
 
         public void setOnDSwitchCompatCardListener(OnDSwitchCompatCardListener onDSwitchCompatCardListener) {

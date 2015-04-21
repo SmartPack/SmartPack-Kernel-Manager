@@ -26,6 +26,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 05.02.15.
@@ -58,7 +59,8 @@ public class CircleChart extends View {
         mPaintBackground.setStrokeWidth(Math.round(1 * density));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
-        mPaintBackground.setColor(getResources().getColor(R.color.circlebar_background));
+        mPaintBackground.setColor(getResources().getColor(Utils.DARKTHEME ? R.color.circlebar_background_dark
+                : R.color.circlebar_background_light));
         mPaintBackground.setStrokeCap(Paint.Cap.ROUND);
 
         mPaintCircle = new Paint();

@@ -115,8 +115,13 @@ public class PopupCardItem extends BaseCardView {
 
     private void setUpTitle() {
         if (headerCardView != null) {
-            if (titleText == null) removeHeader();
-            else addHeader(headerCardView);
+            if (titleText == null) {
+                removeHeader();
+                layoutView.setPadding(32, 32, 32, 32);
+            } else {
+                addHeader(headerCardView);
+                layoutView.setPadding(32, 0, 32, 32);
+            }
         }
         if (headerCardView != null && titleText != null)
             headerCardView.setText(titleText);

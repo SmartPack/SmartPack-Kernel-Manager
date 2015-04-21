@@ -27,8 +27,8 @@
     <string name="sec">sec</string>
 
     <!-- Special signs -->
-    <string name="minus" translatable="false">&lt;</string>
-    <string name="plus" translatable="false">&gt;</string>
+    <string name="minus" translatable="false">-</string>
+    <string name="plus" translatable="false">+</string>
 
     <!-- Headers -->
     <string name="information">Information</string>

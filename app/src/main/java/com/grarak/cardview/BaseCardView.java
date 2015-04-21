@@ -37,13 +37,15 @@ public abstract class BaseCardView extends CardView {
 
     private static final int DEFAULT_LAYOUT = R.layout.inner_cardview;
 
+    protected View layoutView;
+
     private HeaderCardView headerCardView;
     private LinearLayout headerLayout;
 
     private TextView innerView;
     private String mTitle;
 
-    private LinearLayout customLayout;
+    protected LinearLayout customLayout;
     private View customView;
 
     public BaseCardView(Context context) {
@@ -64,7 +66,7 @@ public abstract class BaseCardView extends CardView {
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(8, 4, 8, 4);
         setLayoutParams(layoutParams);
-        setRadius(0);
+        setRadius(6);
 
         setCardBackgroundColor(getResources().getColor(Utils.DARKTHEME ?
                 R.color.card_background_dark : R.color.card_background_light));
@@ -83,7 +85,7 @@ public abstract class BaseCardView extends CardView {
         LinearLayout innerLayout = (LinearLayout) view.findViewById(R.id.inner_layout);
         customLayout = (LinearLayout) view.findViewById(R.id.custom_layout);
 
-        View layoutView = LayoutInflater.from(getContext()).inflate(layout, null, false);
+        layoutView = LayoutInflater.from(getContext()).inflate(layout, null, false);
         if (layout == DEFAULT_LAYOUT) {
             innerView = (TextView) layoutView.findViewById(R.id.inner_view);
             if (mTitle != null) innerView.setText(mTitle);

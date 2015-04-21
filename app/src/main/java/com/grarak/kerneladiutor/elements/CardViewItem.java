@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -55,8 +56,15 @@ public class CardViewItem extends BaseCardView {
 
     private void setUpTitle() {
         if (headerCardView != null) {
-            if (title == null) removeHeader();
-            else addHeader(headerCardView);
+            if (title == null) {
+                removeHeader();
+                layoutView.setPadding(32, 32, 32, 32);
+                customLayout.setPadding(32, 32, 32, 32);
+            } else {
+                addHeader(headerCardView);
+                layoutView.setPadding(32, 0, 32, 32);
+                customLayout.setPadding(32, 0, 32, 32);
+            }
         }
         if (headerCardView != null && title != null)
             headerCardView.setText(title);
@@ -64,7 +72,6 @@ public class CardViewItem extends BaseCardView {
 
     @Override
     public void setUpInnerLayout(View view) {
-
     }
 
     public static class DCardView implements DAdapter.DView {
@@ -75,6 +82,7 @@ public class CardViewItem extends BaseCardView {
         private String title;
         private String description;
         private View view;
+        private boolean fullspan;
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
@@ -89,6 +97,13 @@ public class CardViewItem extends BaseCardView {
             if (title != null) cardViewItem.setTitle(title);
             if (description != null) cardViewItem.setDescription(description);
             if (view != null) cardViewItem.setView(view);
+            if (fullspan) {
+                StaggeredGridLayoutManager.LayoutParams params =
+                        new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setFullSpan(true);
+                cardViewItem.setLayoutParams(params);
+            }
             setUpListener();
         }
 
@@ -105,6 +120,10 @@ public class CardViewItem extends BaseCardView {
         public void setView(View view) {
             this.view = view;
             if (cardViewItem != null) cardViewItem.setView(view);
+        }
+
+        public void setFullSpan(boolean fullspan) {
+            this.fullspan = fullspan;
         }
 
         public String getDescription() {

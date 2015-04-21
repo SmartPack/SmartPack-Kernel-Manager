@@ -3,11 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="40dp"
-    android:paddingTop="16dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="5dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:gravity="center_vertical">
 
     <TextView
@@ -23,38 +22,47 @@
         android:layout_height="wrap_content"
         android:gravity="center" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
         <Button
             android:id="@+id/button_minus"
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/minus"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <SeekBar
             android:id="@+id/seekbar_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/button_minus"
+            android:layout_toEndOf="@+id/button_minus"
+            android:layout_toLeftOf="@+id/button_plus"
+            android:layout_toStartOf="@+id/button_plus" />
 
         <Button
             android:id="@+id/button_plus"
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/plus"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
