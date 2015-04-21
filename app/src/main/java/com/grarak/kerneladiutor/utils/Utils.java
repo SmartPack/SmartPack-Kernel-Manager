@@ -16,6 +16,8 @@
 
 package com.grarak.kerneladiutor.utils;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,8 +26,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
+import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
@@ -62,6 +67,26 @@ import java.util.Locale;
 public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
+
+    public static void circleAnimate(final View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.setVisibility(View.INVISIBLE);
+            int cx = 0;
+            int cy = view.getHeight();
+
+            int finalRadius = Math.max(view.getWidth(), view.getHeight());
+            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            anim.setDuration(500);
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    super.onAnimationStart(animation);
+                    view.setVisibility(View.VISIBLE);
+                }
+            });
+            anim.start();
+        }
+    }
 
     public static String getExternalStorage() {
         String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");

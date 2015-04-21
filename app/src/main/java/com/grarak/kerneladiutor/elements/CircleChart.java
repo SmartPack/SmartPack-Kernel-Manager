@@ -77,7 +77,7 @@ public class CircleChart extends View {
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        draw(canvas, getWidth() - 10, getHeight() - 10);
+        draw(canvas, getMeasuredWidth() - 10, getMeasuredHeight() - 10);
     }
 
     private void draw(Canvas canvas, int x, int y) {
@@ -107,6 +107,32 @@ public class CircleChart extends View {
 
     public void setMax(int max) {
         mMax = max;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        int desiredWidth = 150;
+        int desiredHeight = 150;
+
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int width;
+        int height;
+
+        if (widthMode == MeasureSpec.EXACTLY) width = widthSize;
+        else if (widthMode == MeasureSpec.AT_MOST) width = Math.min(desiredWidth, widthSize);
+        else width = desiredWidth;
+
+        if (heightMode == MeasureSpec.EXACTLY) height = heightSize;
+        else if (heightMode == MeasureSpec.AT_MOST) height = Math.min(desiredHeight, heightSize);
+        else height = desiredHeight;
+
+        setMeasuredDimension(width, height);
     }
 
 }

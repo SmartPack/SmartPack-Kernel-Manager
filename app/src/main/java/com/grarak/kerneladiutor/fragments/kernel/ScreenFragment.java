@@ -19,13 +19,14 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.ColorPalette;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
@@ -49,7 +50,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
         PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
 
-    private ImageView mPreviewIconView;
+    private ColorPalette mColorPalette;
 
     private List<String> mColorCalibrationLimits;
     private SeekBarCardView.DSeekBarCardView[] mColorCalibrationCard;
@@ -105,6 +106,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerOffsetCard;
 
     @Override
+    public RecyclerView getRecyclerView() {
+        mColorPalette = (ColorPalette) getParentView(R.layout.screen_fragment).findViewById(R.id.colorpalette);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            mColorPalette.setVisibility(View.INVISIBLE);
+        return (RecyclerView) getParentView(R.layout.screen_fragment).findViewById(R.id.recycler_view);
+    }
+
+    @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
@@ -119,24 +128,13 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     @Override
-    public void preInit(Bundle savedInstanceState) {
-        super.preInit(savedInstanceState);
-
-        mPreviewIconView = new ImageView(getActivity());
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().density * 150));
-        mPreviewIconView.setLayoutParams(layoutParams);
-        mPreviewIconView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    public void postInit(Bundle savedInstanceState) {
+        super.postInit(savedInstanceState);
+        Utils.circleAnimate(mColorPalette);
     }
 
     private void screenColorInit() {
         if (Screen.hasColorCalibration()) {
-            mPreviewIconView.setImageDrawable(getResources().getDrawable(R.drawable.ic_color_preview));
-            CardViewItem.DCardView mPreviewIconCard = new CardViewItem.DCardView();
-            mPreviewIconCard.setView(mPreviewIconView);
-
-            addView(mPreviewIconCard);
-
             List<String> colors = Screen.getColorCalibration();
             mColorCalibrationLimits = Screen.getColorCalibrationLimits();
             mColorCalibrationCard = new SeekBarCardView.DSeekBarCardView[colors.size()];

@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     private LinearLayout mRecoveryLayout;
     private TintRadioButton mCWMRecoveryButton;
     private TintRadioButton mTWRPButton;
+    private Button mFlashNowButton;
 
     private FloatingActionsMenu mActionMenu;
     private List<Recovery> mCommands;
@@ -92,7 +94,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
             }
         });
 
-        view.findViewById(R.id.flash_now_button).setOnClickListener(new View.OnClickListener() {
+        mFlashNowButton = (Button) view.findViewById(R.id.flash_now_button);
+        mFlashNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mCommands.size() < 1) {
@@ -180,6 +183,12 @@ public class RecoveryFragment extends RecyclerViewFragment {
         mActionsDividerCard.setText(getString(R.string.actions));
 
         addView(mActionsDividerCard);
+    }
+
+    @Override
+    public void postInit(Bundle savedInstanceState) {
+        super.postInit(savedInstanceState);
+        Utils.circleAnimate(mFlashNowButton);
     }
 
     private void addAction(Recovery.RECOVERY_COMMAND recovery_command, File file) {

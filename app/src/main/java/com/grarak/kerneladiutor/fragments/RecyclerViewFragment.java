@@ -88,6 +88,30 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
         setRecyclerView(recyclerView);
         recyclerView.setPadding(5, 5, 5, 5);
 
+        if (showApplyOnBoot()) {
+            applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
+            if (applyOnBootView != null) {
+                applyOnBootView.setChecked(Utils.getBoolean(getClassName() + "onboot", false, getActivity()));
+                applyOnBootView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activateApplyOnBoot(applyOnBootView.isChecked());
+                    }
+                });
+            }
+
+            if (applyOnBootLayout != null) {
+                applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
+                applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        applyOnBootView.setChecked(!applyOnBootView.isChecked());
+                        activateApplyOnBoot(applyOnBootView.isChecked());
+                    }
+                });
+            }
+        }
+
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
 
@@ -151,30 +175,10 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
     }
 
     public RecyclerView getRecyclerView() {
-        if (showApplyOnBoot()) {
-            applyOnBootView = (SwitchCompat) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_view);
-            applyOnBootView.setChecked(Utils.getBoolean(getClassName() + "onboot", false, getActivity()));
-            applyOnBootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    activateApplyOnBoot(applyOnBootView.isChecked());
-                }
-            });
-
-            applyOnBootLayout = getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout);
-            applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    applyOnBootView.setChecked(!applyOnBootView.isChecked());
-                    activateApplyOnBoot(applyOnBootView.isChecked());
-                }
-            });
-        }
-
         return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
     }
 
-    private void activateApplyOnBoot(boolean active) {
+    protected void activateApplyOnBoot(boolean active) {
         Utils.saveBoolean(getClassName() + "onboot", active, getActivity());
         Utils.toast(getString(active ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
                 getActionBar().getTitle()), getActivity());
