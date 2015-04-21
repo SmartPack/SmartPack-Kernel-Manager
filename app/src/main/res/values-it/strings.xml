@@ -56,6 +56,7 @@
   <string name="cpu_information">Informazioni sulla CPU</string>
   <string name="memory_information">Informazioni sulla memoria</string>
   <string name="cpu_usage">Utilizzo della CPU</string>
+  <string name="cpu_temp">Temperatura della CPU</string>
   <string name="current_freq">Frequenza corrente</string>
   <string name="core">Core %d</string>
   <string name="offline">Spento</string>
@@ -72,6 +73,7 @@
   <string name="not_tunable">%s non si può modificare</string>
   <string name="mc_power_saving">Risparmio Energetico Multicore</string>
   <string name="mc_power_saving_summary">Prova a raggruppare le attività nel minor numero di core disponibili.</string>
+  <string name="power_saving_wq">Pianificazione per risveglio CPU per risparmiare energia.</string>
   <string name="cfs_scheduler_policy">Linea di condotta Scheduler CFS</string>
   <string name="cfs_scheduler_policy_summary">La linea di condotta regola come lo scheduler CFS distribuirà i processi sui core disponibili.</string>
   <string name="disabled">Disabilitato</string>
@@ -247,9 +249,14 @@
   <string name="loading">Caricamento</string>
   <string name="no_internet">Nessuna connessione ad internet</string>
   <string name="no_additional_profiles">Nessun profilo aggiuntivo trovato</string>
+  <string name="lcd_backlight">Retroilluminazione LCD</string>
+  <string name="brightness_mode">Utilizzare la modalità retroilluminazione esponenziale invece che in modalità lineare.</string>
   <string name="min_brightness">Luminosità minima</string>
   <string name="min_brightness_summary">Consenti di diminuire la luminosità dello schermo LCD a valori più bassi di quanto permesso dalla stock.</string>
+  <string name="max_brightness">Luminosità massima</string>
+  <string name="max_brightness_summary">Consenti di diminuire la luminosità dello schermo LCD a valori più bassi di quanto permesso dalla stock.</string>
   <string name="backlight_dimmer">Dimmer di retroilluminazione</string>
+  <string name="offset">Offset</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Sveglia il dispositivo con doppio tap sullo schermo.</string>
   <string name="center">Centro</string>
@@ -288,6 +295,8 @@
   <string name="cam_microphone_gain">Guadagno microfono videocamera</string>
   <string name="speaker_gain">Guadagno altoparlanti</string>
   <string name="headphone_poweramp_gain">Guadagno cuffie con PowerAmp</string>
+  <string name="microphone_gain">Guadagno microfono</string>
+  <string name="volume_gain">Guadagno volume</string>
   <string name="battery_voltage">Tensione batteria</string>
   <string name="battery_level">Livello Batteria</string>
   <string name="battery_temperature">Temperatura batteria</string>
@@ -335,6 +344,8 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Prevenire msm_hsic_host wakelock.</string>
   <string name="android_logger">Registrazione Android</string>
+  <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Disabilitare per migliorare le prestazioni del file di sistema a rischio di perdita di dati se il telefono si dovesse bloccare.</string>
   <string name="dynamic_fsync">Fsync dimanico</string>
   <string name="dynamic_fsync_summary">Quando è abilitata e lo schermo è acceso, fsync è asincrona. Quando lo schermo è spento, l\'operazione è sincrona.</string>
   <string name="power_suspend_mode">Modalità Sospensione Energia</string>
@@ -345,8 +356,10 @@
   <string name="hybrid">Hybrid</string>
   <string name="power_suspend_state">In stato di sospensione</string>
   <string name="power_suspend_state_summary">La potenza del kernel viene gestita dai driver quando lo schermo è spento. Migliore sarà il risparmio di batteria se abilitato. Nota: Tu potrai in qualsiasi momento quambiare questa impostazione se il potere di sospensione è in modalità attiva</string>
+  <string name="network">Rete</string>
   <string name="tcp">Algoritmo di congestione TCP</string>
   <string name="tcp_summary">Il Protocollo di controllo trasmissione è uno dei principali protocolli della suite di protocolli Internet (IP), ed è così comune che l\'intera suite è spesso chiamato TCP/IP.</string>
+  <string name="hostname">Hostname</string>
   <string name="backup">Backup</string>
   <string name="add">Aggiungi</string>
   <string name="edit">Modifica</string>
@@ -375,6 +388,10 @@
   <string name="wipe_data">Cancella dati</string>
   <string name="wipe_cache">Cancella la cache</string>
   <string name="flash_zip">Flash Zip</string>
+  <string name="went_wrong">Qualcosa è andato storto!</string>
+  <string name="flash_now">Flash ora</string>
+  <string name="flash_now_confirm">Si desidera eseguire le azioni? Il dispositivo si riavvierà in recovery e le azioni verranno eseguite nell\'ordine come aggiunti.</string>
+  <string name="add_action_first">Si deve aggiungere prima un\'azione.</string>
   <string name="dark_theme">Tema scuro</string>
   <string name="force_english_language">Forza lingua Inglese</string>
   <string name="beta_info">Informazioni Beta</string>

@@ -56,6 +56,7 @@
   <string name="cpu_information">Сведения о ЦП</string>
   <string name="memory_information">Информация о памяти</string>
   <string name="cpu_usage">Использование ЦП</string>
+  <string name="cpu_temp">Температура процессора</string>
   <string name="current_freq">Текущая частота</string>
   <string name="core">Ядро %d</string>
   <string name="offline">Оффлайн</string>
@@ -72,6 +73,7 @@
   <string name="not_tunable">%s не настраиваемый</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
+  <string name="power_saving_wq">Расписание workqueues на awake процессорах для экономии энергии.</string>
   <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
   <string name="cfs_scheduler_policy_summary">Система которая решает как использовать распределитель CFS  чтобы распределить различные задачи между CPU блоками.</string>
   <string name="disabled">Выкл</string>
@@ -140,8 +142,11 @@
   <string name="up_threshold_summary">При превышении данного порога загрузки драйвер включит ещё одно ядро CPU.</string>
   <string name="up_timer_cnt">До элемента управления Timer</string>
   <string name="up_timer_cnt_summary">Управление таймер до процессоров.</string>
+  <string name="msm_hotplug">МСМ Hotplug</string>
+  <string name="msm_hotplug_summary">Замена ядра для Qualcomm MPDecision. Разработанный myfluxi.</string>
   <string name="history_size">Размер истории</string>
   <string name="update_rate">Частота обновления</string>
+  <string name="fast_lane_load_summary">Улучшить задержки, поставив онлайн мгновенно все процессоры если текущей нагрузки на любом ЦП выше определенного порога.</string>
   <string name="cores_on_touch_summary">Количество задействованных ядер процессора отрабатывающих прикосновения к экрану или нажатий</string>
   <string name="first_level">Первый уровень</string>
   <string name="load_threshold">Порог наргузки</string>
@@ -172,6 +177,8 @@
   <string name="screen_hue">Цвет экрана</string>
   <string name="screen_hue_summary">При установке высокого значения можете получить проблемы с MSM8x26 SoC!</string>
   <string name="screen_contrast">Контраст</string>
+  <string name="high_brightness_mode">Режим высокой яркости</string>
+  <string name="gamma">Гамма</string>
   <string name="min_brightness">Минимальная яркость</string>
   <string name="min_brightness_summary">Позволяет уменьшить яркость экрана ниже, чем возможно в штатном режиме.</string>
   <string name="dt2w_summary">Будит устройство двойным тапом по экрану.</string>

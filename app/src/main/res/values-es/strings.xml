@@ -56,6 +56,7 @@
   <string name="cpu_information">Información del CPU</string>
   <string name="memory_information">Información sobre la memoria</string>
   <string name="cpu_usage">Uso del CPU</string>
+  <string name="cpu_temp">Temperatura CPU</string>
   <string name="current_freq">Frecuencia Actual</string>
   <string name="core">Núcleo %d</string>
   <string name="offline">Desactivado</string>
@@ -72,6 +73,7 @@
   <string name="not_tunable">%s no se puede ajustar</string>
   <string name="mc_power_saving">Ahorro de Energía Multinúcleo</string>
   <string name="mc_power_saving_summary">Intenta agrupar tareas en el menor número de núcleos posible.</string>
+  <string name="power_saving_wq">Planificar workqueues en CPUs activos para ahorrar energía.</string>
   <string name="cfs_scheduler_policy">CFS política del regulador</string>
   <string name="cfs_scheduler_policy_summary">La política decide al programador CFS cómo equilibrar las tareas en diferentes las unidades de la CPU.</string>
   <string name="disabled">Desabilitado</string>
@@ -89,7 +91,10 @@
   <string name="input_interval">Intervalo de entrada</string>
   <string name="input_interval_summary">Intervalo mínimo de potenciado de la cpu cuando se detecte una señal.</string>
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
+  <string name="input_boost_freq_summary">Aumentar el CPU a esta frecuencia al detectar una entrada.</string>
   <string name="global_offset">Desplazamiento global</string>
+  <string name="override_vmin">Redefinir Tensión Mínima</string>
+  <string name="override_vmin_summary">Desactivar para remover los límites del fabricante para undervolting</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solución hotplugging de Qualcomm. Podrías tener problemas con el cambio de frecuencias cuando esta opción está activada.</string>
   <string name="intelliplug">IntelliPlug</string>
