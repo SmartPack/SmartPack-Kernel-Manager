@@ -152,8 +152,11 @@ public class MainActivity extends ActionBarActivity implements Constants {
             e.printStackTrace();
         }
 
-        setTitle(ITEMS.get(position).getTitle());
-        mDrawerList.setItemChecked(position, true);
+        try {
+            getSupportActionBar().setTitle(ITEMS.get(position).getTitle());
+            mDrawerList.setItemChecked(position, true);
+        } catch (NullPointerException ignored) {
+        }
     }
 
     private void setList() {

@@ -71,7 +71,7 @@ public class ColorPalette extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int desiredWidth = getResources().getDisplayMetrics().widthPixels;
-        int desiredHeight = 100;
+        int desiredHeight = 100 * (int) getResources().getDisplayMetrics().density;
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);

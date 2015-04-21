@@ -55,15 +55,16 @@ public class CardViewItem extends BaseCardView {
     }
 
     private void setUpTitle() {
+        int padding = 16 * (int) getResources().getDisplayMetrics().density;
         if (headerCardView != null) {
             if (title == null) {
                 removeHeader();
-                layoutView.setPadding(32, 32, 32, 32);
-                customLayout.setPadding(32, 32, 32, 32);
+                layoutView.setPadding(padding, padding, padding, padding);
+                customLayout.setPadding(padding, padding, padding, padding);
             } else {
                 addHeader(headerCardView);
-                layoutView.setPadding(32, 0, 32, 32);
-                customLayout.setPadding(32, 0, 32, 32);
+                layoutView.setPadding(padding, 0, padding, padding);
+                customLayout.setPadding(padding, 0, padding, padding);
             }
         }
         if (headerCardView != null && title != null)

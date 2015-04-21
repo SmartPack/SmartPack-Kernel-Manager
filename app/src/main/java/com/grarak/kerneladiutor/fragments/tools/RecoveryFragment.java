@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.internal.widget.TintRadioButton;
 import android.support.v7.widget.RecyclerView;
@@ -120,6 +121,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 }, getActivity());
             }
         });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            mFlashNowButton.setVisibility(View.INVISIBLE);
 
         animateFab();
         return (RecyclerView) view.findViewById(R.id.recycler_view);

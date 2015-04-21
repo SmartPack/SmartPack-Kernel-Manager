@@ -7,6 +7,7 @@
     android:paddingRight="16dp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
+    android:paddingBottom="6dp"
     android:gravity="center_vertical">
 
     <TextView
@@ -18,6 +19,7 @@
 
     <TextView
         android:id="@+id/value_view"
+        android:paddingTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center" />
@@ -30,11 +32,10 @@
         <Button
             android:id="@+id/button_minus"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/minus"
-            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -43,7 +44,7 @@
         <SeekBar
             android:id="@+id/seekbar_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/button_minus"
             android:layout_toEndOf="@+id/button_minus"
@@ -53,11 +54,10 @@
         <Button
             android:id="@+id/button_plus"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/plus"
-            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"

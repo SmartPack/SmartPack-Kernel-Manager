@@ -113,8 +113,9 @@ public class CircleChart extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int desiredWidth = 150;
-        int desiredHeight = 150;
+        int density = (int) getResources().getDisplayMetrics().density;
+        int desiredWidth = 75 * density;
+        int desiredHeight = 75 * density;
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
