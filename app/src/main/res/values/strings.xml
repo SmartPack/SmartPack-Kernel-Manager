@@ -411,6 +411,7 @@
     <string name="hostname">Hostname</string>
 
     <!-- Build prop Editor -->
+    <string name="items_found">%d items found</string>
     <string name="backup">Backup</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>

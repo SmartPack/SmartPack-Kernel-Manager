@@ -28,8 +28,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        fab:fab_colorNormal="@color/color_primary"
-        fab:fab_colorPressed="@color/color_primary_dark"
-        fab:fab_plusIconColor="@color/white" />
+        fab:fab_colorNormal="@color/fab_normal"
+        fab:fab_colorPressed="@color/fab_pressed"
+        fab:fab_plusIconColor="@color/color_primary" />
 
 </RelativeLayout>

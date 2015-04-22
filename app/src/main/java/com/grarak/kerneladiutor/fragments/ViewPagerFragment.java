@@ -74,17 +74,12 @@ public class ViewPagerFragment extends BaseFragment {
         if (showApplyOnBoot()) {
             applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
             applyOnBootView.setChecked(Utils.getBoolean(getClass().getSimpleName() + "onboot", false, getActivity()));
-            applyOnBootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    activateApplyOnBoot(applyOnBootView.isChecked());
-                }
-            });
-
             applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    activateApplyOnBoot(isChecked);
+                    Utils.saveBoolean(getClass().getSimpleName() + "onboot", isChecked, getActivity());
+                    Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
+                            getActionBar().getTitle()), getActivity());
                 }
             });
 
@@ -93,7 +88,6 @@ public class ViewPagerFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     applyOnBootView.setChecked(!applyOnBootView.isChecked());
-                    activateApplyOnBoot(applyOnBootView.isChecked());
                 }
             });
         } else showApplyOnBoot(false);
@@ -168,12 +162,6 @@ public class ViewPagerFragment extends BaseFragment {
             return fragments.size();
         }
 
-    }
-
-    private void activateApplyOnBoot(boolean active) {
-        Utils.saveBoolean(getClass().getSimpleName() + "onboot", active, getActivity());
-        Utils.toast(getString(active ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
-                getActionBar().getTitle()), getActivity());
     }
 
     public boolean showApplyOnBoot() {

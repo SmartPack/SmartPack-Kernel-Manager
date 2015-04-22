@@ -51,13 +51,8 @@ public class SwitchCardItem extends BaseCardView {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (switchCompatView != null) {
+                if (switchCompatView != null)
                     switchCompatView.setChecked(!switchCompatView.isChecked());
-                    checked = switchCompatView.isChecked();
-
-                    if (onSwitchCardListener != null)
-                        onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
-                }
             }
         });
 
@@ -69,16 +64,6 @@ public class SwitchCardItem extends BaseCardView {
                     if (onSwitchCardListener != null)
                         onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
                 }
-            }
-        });
-
-        switchCompatView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checked = switchCompatView.isChecked();
-
-                if (onSwitchCardListener != null)
-                    onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
             }
         });
     }

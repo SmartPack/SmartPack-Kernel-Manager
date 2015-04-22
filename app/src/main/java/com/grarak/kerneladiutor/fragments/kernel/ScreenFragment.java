@@ -137,7 +137,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     @Override
     public void postInit(Bundle savedInstanceState) {
         super.postInit(savedInstanceState);
-        Utils.circleAnimate(mColorPalette);
+        Utils.circleAnimate(mColorPalette, 0, mColorPalette.getHeight());
     }
 
     private void screenColorInit() {

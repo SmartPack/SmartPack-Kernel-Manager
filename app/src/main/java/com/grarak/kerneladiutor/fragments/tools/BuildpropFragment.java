@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
@@ -30,9 +31,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -53,6 +54,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     private Handler hand;
 
+    private FrameLayout bgView;
+    private TextView title;
     private SwipeRefreshLayout refreshLayout;
     private FloatingActionsMenu floatingActionsMenu;
     private LinkedHashMap<String, String> buildpropItem;
@@ -61,7 +64,12 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public RecyclerView getRecyclerView() {
-        refreshLayout = (SwipeRefreshLayout) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.refresh_layout);
+        View view = getParentView(R.layout.swiperefresh_recyclerview);
+
+        bgView = (FrameLayout) view.findViewById(R.id.background_view);
+        title = (TextView) view.findViewById(R.id.title_view);
+
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,8 +78,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        FloatingActionButton addButton = (FloatingActionButton) getParentView(R.layout.swiperefresh_recyclerview)
-                .findViewById(R.id.add_button);
+        FloatingActionButton addButton = (FloatingActionButton) view.findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,8 +86,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        FloatingActionButton backupButton = (FloatingActionButton) getParentView(R.layout.swiperefresh_recyclerview)
-                .findViewById(R.id.backup_button);
+        FloatingActionButton backupButton = (FloatingActionButton) view.findViewById(R.id.backup_button);
         backupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,9 +94,15 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        floatingActionsMenu = (FloatingActionsMenu) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.fab_menu);
+        floatingActionsMenu = (FloatingActionsMenu) view.findViewById(R.id.fab_menu);
         floatingActionsMenu.setVisibility(View.VISIBLE);
-        animateFab();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            bgView.setVisibility(View.INVISIBLE);
+            floatingActionsMenu.setVisibility(View.INVISIBLE);
+            floatingActionsMenu.setElevation(getResources().getDisplayMetrics().density * 100);
+        }
+
         return (RecyclerView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.recycler_view);
     }
 
@@ -108,6 +120,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
             addView(mPropCard);
         }
+    }
+
+    @Override
+    public void postInit(Bundle savedInstanceState) {
+        super.postInit(savedInstanceState);
+        title.setText(getString(R.string.items_found, buildpropItem.size()));
+        Utils.circleAnimate(bgView, 0, 0);
+        Utils.circleAnimate(floatingActionsMenu, floatingActionsMenu.getWidth() / 2, floatingActionsMenu.getHeight() / 2);
     }
 
     @Override
@@ -258,12 +278,6 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 return true;
             }
         });
-    }
-
-    private void animateFab() {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
-        animation.setDuration(1500);
-        if (floatingActionsMenu != null) floatingActionsMenu.startAnimation(animation);
     }
 
 }

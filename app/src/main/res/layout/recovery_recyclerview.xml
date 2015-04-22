@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         fab:fab_addButtonColorNormal="@color/fab_normal"
         fab:fab_addButtonColorPressed="@color/fab_pressed"
-        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_addButtonPlusIconColor="@color/color_primary"
         fab:fab_labelStyle="@style/menu_labels_style"
         android:id="@+id/action_menu"
         android:layout_alignParentBottom="true"

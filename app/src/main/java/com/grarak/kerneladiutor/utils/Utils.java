@@ -68,11 +68,9 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
-    public static void circleAnimate(final View view) {
+    public static void circleAnimate(final View view, int cx, int cy) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setVisibility(View.INVISIBLE);
-            int cx = 0;
-            int cy = view.getHeight();
 
             int finalRadius = Math.max(view.getWidth(), view.getHeight());
             Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);

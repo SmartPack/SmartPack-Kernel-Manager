@@ -42,8 +42,6 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     private static SchedulerPart schedulerPart;
     private static IO.StorageType storageType;
 
-    private String mTitle;
-
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -53,20 +51,12 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         allowSwipe(false);
         addFragment(new IOPart());
         addFragment(schedulerPart);
-
-        mTitle = getActionBar().getTitle().toString();
     }
 
     @Override
     public void onSwipe(int page) {
-        if (page == 0) {
-            getActionBar().setTitle(mTitle);
-            allowSwipe(false);
-        } else if (page == 1) {
-            getActionBar().setTitle(IO.getScheduler(storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL :
-                    IO.StorageType.EXTERNAL));
-            allowSwipe(true);
-        }
+        super.onSwipe(page);
+        allowSwipe(page == 1);
     }
 
     @Override
@@ -190,6 +180,11 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     }
 
     public static class SchedulerPart extends PathReaderFragment {
+
+        @Override
+        public String getName() {
+            return IO.getScheduler(storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL);
+        }
 
         @Override
         public String getPath() {

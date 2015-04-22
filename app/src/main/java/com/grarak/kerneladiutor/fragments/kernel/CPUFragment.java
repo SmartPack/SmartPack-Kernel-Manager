@@ -51,8 +51,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     private static CPUFragment cpuFragment;
     private static GovernorPart governorPart;
 
-    private String mTitle;
-
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -62,20 +60,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         allowSwipe(false);
         addFragment(new CPUPart());
         addFragment(governorPart);
-
-        mTitle = getActionBar().getTitle().toString();
     }
 
     @Override
     public void onSwipe(int page) {
         super.onSwipe(page);
-        if (page == 0) {
-            getActionBar().setTitle(mTitle);
-            allowSwipe(false);
-        } else if (page == 1) {
-            getActionBar().setTitle(CPU.getCurGovernor(0));
-            allowSwipe(true);
-        }
+        allowSwipe(page == 1);
     }
 
     @Override
@@ -483,6 +473,11 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     }
 
     public static class GovernorPart extends PathReaderFragment {
+
+        @Override
+        public String getName() {
+            return CPU.getCurGovernor(0);
+        }
 
         @Override
         public String getPath() {
