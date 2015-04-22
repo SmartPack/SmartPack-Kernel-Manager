@@ -23,7 +23,7 @@ import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 
@@ -34,7 +34,7 @@ import java.util.List;
  * Created by willi on 26.12.14.
  */
 public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView mCur2dFreqCard, mCurFreqCard;
@@ -43,7 +43,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
 
     private PopupCardItem.DPopupCard m2dGovernorCard, mGovernorCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mSimpleGpuCard;
+    private SwitchCardItem.DSwitchCard mSimpleGpuCard;
     private SeekBarCardView.DSeekBarCardView mSimpleGpuLazinessCard, mSimpleGpuRampThresoldCard;
 
     @Override
@@ -130,11 +130,11 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
 
         addView(mSimpleGpuDividerCard);
 
-        mSimpleGpuCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSimpleGpuCard = new SwitchCardItem.DSwitchCard();
         mSimpleGpuCard.setTitle(getString(R.string.simple_gpu_algorithm));
         mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm_summary));
         mSimpleGpuCard.setChecked(GPU.isSimpleGpuActive());
-        mSimpleGpuCard.setOnDSwitchCompatCardListener(this);
+        mSimpleGpuCard.setOnDSwitchCardListener(this);
 
         addView(mSimpleGpuCard);
 
@@ -172,8 +172,8 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardItem.D
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mSimpleGpuCard) GPU.activateSimpleGpu(checked, getActivity());
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mSimpleGpuCard) GPU.activateSimpleGpu(checked, getActivity());
     }
 
     @Override

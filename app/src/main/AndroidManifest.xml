@@ -23,7 +23,7 @@
         </activity>
         <activity
             android:name="com.grarak.kerneladiutor.TextActivity"
-            android:theme="@style/AppThemeActionBarLight"
+            android:theme="@style/AppBaseThemeLight"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
         <receiver android:name="com.grarak.kerneladiutor.services.BootReceiver">

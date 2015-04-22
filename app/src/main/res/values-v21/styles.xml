@@ -3,13 +3,11 @@
     <style name="AppThemeLight" parent="AppBaseThemeLight">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceLight</item>
     </style>
 
     <style name="AppThemeDark" parent="AppBaseThemeDark">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceDark</item>
     </style>
 
 </resources>

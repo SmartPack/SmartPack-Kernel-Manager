@@ -4,52 +4,23 @@
     <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_light</item>
     </style>
 
     <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_dark</item>
     </style>
 
-    <style name="AppThemeLight" parent="AppBaseThemeLight">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceLight</item>
-    </style>
+    <style name="AppThemeLight" parent="AppBaseThemeLight" />
 
-    <style name="AppThemeDark" parent="AppBaseThemeDark">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearanceDark</item>
-    </style>
+    <style name="AppThemeDark" parent="AppBaseThemeDark" />
 
-    <style name="myCustomMenuTextApearanceLight" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@color/textcolor_light</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-
-    <style name="myCustomMenuTextApearanceDark" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@color/textcolor_dark</item>
-        <item name="android:textSize">17sp</item>
-        <item name="android:colorBackground">@color/navigationdrawer_background_dark</item>
-    </style>
-
-    <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="AppThemeActionBarDark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="WhiteAccent">
-        <item name="colorAccent">@android:color/white</item>
+    <style name="SwitchCompat">
+        <item name="colorControlActivated">@android:color/white</item>
     </style>
 
     <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

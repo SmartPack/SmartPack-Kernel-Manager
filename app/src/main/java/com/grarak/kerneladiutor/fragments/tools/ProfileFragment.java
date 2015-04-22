@@ -16,14 +16,14 @@
 
 package com.grarak.kerneladiutor.fragments.tools;
 
-import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.internal.widget.TintCheckBox;
-import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
@@ -87,8 +87,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                 descriptionText.setText(getString(R.string.profile_description));
                 linearLayout.addView(descriptionText);
 
-                final TintEditText profileName = new TintEditText(getActivity());
-                profileName.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
+                final AppCompatEditText profileName = new AppCompatEditText(getActivity());
+                profileName.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
                 profileName.setHint(getString(R.string.name));
                 linearLayout.addView(profileName);
 
@@ -104,13 +104,13 @@ public class ProfileFragment extends RecyclerViewFragment {
                 String start = getString(R.string.kernel);
                 String stop = getString(R.string.tools);
                 final List<Class> fragments = new ArrayList<>();
-                final List<TintCheckBox> checkBoxes = new ArrayList<>();
+                final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
                 for (ListAdapter.ListItem item : Constants.ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
                         if (item.getTitle().equals(stop)) load = true;
                         if (item.getFragment() != null && !load) {
-                            TintCheckBox checkBox = new TintCheckBox(getActivity());
+                            AppCompatCheckBox checkBox = new AppCompatCheckBox(getActivity());
                             checkBox.setText(item.getTitle());
                             fragments.add(item.getFragment().getClass());
                             checkBoxLayout.addView(checkBox);

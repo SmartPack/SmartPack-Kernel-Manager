@@ -24,7 +24,7 @@ import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -39,22 +39,22 @@ import java.util.List;
  */
 public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
         EditTextCardView.DEditTextCard.OnDEditTextCardListener {
 
     private SeekBarCardView.DSeekBarCardView mVibrationCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mSmb135xWakeLockCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mSensorIndWakeLockCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMsmHsicHostWakeLockCard;
+    private SwitchCardItem.DSwitchCard mSmb135xWakeLockCard;
+    private SwitchCardItem.DSwitchCard mSensorIndWakeLockCard;
+    private SwitchCardItem.DSwitchCard mMsmHsicHostWakeLockCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mLoggerEnableCard;
+    private SwitchCardItem.DSwitchCard mLoggerEnableCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mFsyncCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mDynamicFsyncCard;
+    private SwitchCardItem.DSwitchCard mFsyncCard;
+    private SwitchCardItem.DSwitchCard mDynamicFsyncCard;
 
     private PopupCardItem.DPopupCard mPowerSuspendModeCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mOldPowerSuspendStateCard;
+    private SwitchCardItem.DSwitchCard mOldPowerSuspendStateCard;
     private SeekBarCardView.DSeekBarCardView mNewPowerSuspendStateCard;
 
     private PopupCardItem.DPopupCard mTcpCongestionCard;
@@ -92,61 +92,61 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void smb135xWakeLockInit() {
-        mSmb135xWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSmb135xWakeLockCard = new SwitchCardItem.DSwitchCard();
         mSmb135xWakeLockCard.setTitle(getString(R.string.smb135x_wakelock));
         mSmb135xWakeLockCard.setDescription(getString(R.string.smb135x_wakelock_summary));
         mSmb135xWakeLockCard.setChecked(Misc.isSmb135xWakeLockActive());
-        mSmb135xWakeLockCard.setOnDSwitchCompatCardListener(this);
+        mSmb135xWakeLockCard.setOnDSwitchCardListener(this);
 
         addView(mSmb135xWakeLockCard);
     }
 
     private void sensorIndWakeLockInit() {
-        mSensorIndWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSensorIndWakeLockCard = new SwitchCardItem.DSwitchCard();
         mSensorIndWakeLockCard.setTitle(getString(R.string.sensor_ind_wakelock));
         mSensorIndWakeLockCard.setDescription(getString(R.string.sensor_ind_wakelock_summary));
         mSensorIndWakeLockCard.setChecked(Misc.isSensorIndWakeLockActive());
-        mSensorIndWakeLockCard.setOnDSwitchCompatCardListener(this);
+        mSensorIndWakeLockCard.setOnDSwitchCardListener(this);
 
         addView(mSensorIndWakeLockCard);
     }
 
     private void msmHsicHostWakeLockInit() {
-        mMsmHsicHostWakeLockCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mMsmHsicHostWakeLockCard = new SwitchCardItem.DSwitchCard();
         mMsmHsicHostWakeLockCard.setTitle(getString(R.string.msm_hsic_host_wakelock));
         mMsmHsicHostWakeLockCard.setDescription(getString(R.string.msm_hsic_host_wakelock_summary));
         mMsmHsicHostWakeLockCard.setChecked(Misc.isMsmHsicHostWakeLockActive());
-        mMsmHsicHostWakeLockCard.setOnDSwitchCompatCardListener(this);
+        mMsmHsicHostWakeLockCard.setOnDSwitchCardListener(this);
 
         addView(mMsmHsicHostWakeLockCard);
     }
 
     private void loggerInit() {
-        mLoggerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mLoggerEnableCard = new SwitchCardItem.DSwitchCard();
         mLoggerEnableCard.setDescription(getString(R.string.android_logger));
         mLoggerEnableCard.setChecked(Misc.isLoggerActive());
-        mLoggerEnableCard.setOnDSwitchCompatCardListener(this);
+        mLoggerEnableCard.setOnDSwitchCardListener(this);
 
         addView(mLoggerEnableCard);
     }
 
     private void fsyncInit() {
         if (Misc.hasFsync()) {
-            mFsyncCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mFsyncCard = new SwitchCardItem.DSwitchCard();
             mFsyncCard.setTitle(getString(R.string.fsync));
             mFsyncCard.setDescription(getString(R.string.fsync_summary));
             mFsyncCard.setChecked(Misc.isFsyncActive());
-            mFsyncCard.setOnDSwitchCompatCardListener(this);
+            mFsyncCard.setOnDSwitchCardListener(this);
 
             addView(mFsyncCard);
         }
 
         if (Misc.hasDynamicFsync()) {
-            mDynamicFsyncCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mDynamicFsyncCard = new SwitchCardItem.DSwitchCard();
             mDynamicFsyncCard.setTitle(getString(R.string.dynamic_fsync));
             mDynamicFsyncCard.setDescription(getString(R.string.dynamic_fsync_summary));
             mDynamicFsyncCard.setChecked(Misc.isDynamicFsyncActive());
-            mDynamicFsyncCard.setOnDSwitchCompatCardListener(this);
+            mDynamicFsyncCard.setOnDSwitchCardListener(this);
 
             addView(mDynamicFsyncCard);
         }
@@ -166,11 +166,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         }
 
         if (Misc.hasOldPowerSuspendState()) {
-            mOldPowerSuspendStateCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mOldPowerSuspendStateCard = new SwitchCardItem.DSwitchCard();
             mOldPowerSuspendStateCard.setTitle(getString(R.string.power_suspend_state));
             mOldPowerSuspendStateCard.setDescription(getString(R.string.power_suspend_state_summary));
             mOldPowerSuspendStateCard.setChecked(Misc.isOldPowerSuspendStateActive());
-            mOldPowerSuspendStateCard.setOnDSwitchCompatCardListener(this);
+            mOldPowerSuspendStateCard.setOnDSwitchCardListener(this);
 
             addView(mOldPowerSuspendStateCard);
         }
@@ -256,23 +256,23 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mSmb135xWakeLockCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
-        else if (dSwitchCompatCard == mSensorIndWakeLockCard)
+        else if (dSwitchCard == mSensorIndWakeLockCard)
             Misc.activateSensorIndWakeLock(checked, getActivity());
-        else if (dSwitchCompatCard == mMsmHsicHostWakeLockCard)
+        else if (dSwitchCard == mMsmHsicHostWakeLockCard)
             Misc.activateMsmHsicHostWakeLock(checked, getActivity());
-        else if (dSwitchCompatCard == mLoggerEnableCard)
+        else if (dSwitchCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
-        else if (dSwitchCompatCard == mFsyncCard)
+        else if (dSwitchCard == mFsyncCard)
             Misc.activateFsync(checked, getActivity());
-        else if (dSwitchCompatCard == mDynamicFsyncCard)
+        else if (dSwitchCard == mDynamicFsyncCard)
             Misc.activateDynamicFsync(checked, getActivity());
-        else if (dSwitchCompatCard == mOldPowerSuspendStateCard)
+        else if (dSwitchCard == mOldPowerSuspendStateCard)
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());
-            } else dSwitchCompatCard.setChecked(Misc.isOldPowerSuspendStateActive());
+            } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
     }
 
     @Override

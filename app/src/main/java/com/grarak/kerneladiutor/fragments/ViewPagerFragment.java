@@ -24,11 +24,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CustomViewPager;
@@ -77,6 +78,13 @@ public class ViewPagerFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
                     activateApplyOnBoot(applyOnBootView.isChecked());
+                }
+            });
+
+            applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    activateApplyOnBoot(isChecked);
                 }
             });
 
@@ -178,7 +186,7 @@ public class ViewPagerFragment extends BaseFragment {
     }
 
     public ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     @Override

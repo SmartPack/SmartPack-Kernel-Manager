@@ -22,7 +22,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.SwitchCompat;
@@ -32,9 +32,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 
-import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -46,7 +46,7 @@ import java.util.List;
 /**
  * Created by willi on 22.12.14.
  */
-public class RecyclerViewFragment extends BaseFragment implements MainActivity.OnBackButtonListener {
+public class RecyclerViewFragment extends BaseFragment {
 
     protected View view;
     protected LayoutInflater inflater;
@@ -96,6 +96,13 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
                     @Override
                     public void onClick(View v) {
                         activateApplyOnBoot(applyOnBootView.isChecked());
+                    }
+                });
+
+                applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        activateApplyOnBoot(isChecked);
                     }
                 });
             }
@@ -196,10 +203,12 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
     public void setProgressBar(ProgressBar progressBar) {
         progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
                 getResources().getColor(android.R.color.white)));
-        ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+        ActionBar actionBar;
+        if ((actionBar = getActionBar()) != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
+            actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
+                    ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+        }
     }
 
     public void preInit(Bundle savedInstanceState) {
@@ -254,7 +263,7 @@ public class RecyclerViewFragment extends BaseFragment implements MainActivity.O
     }
 
     public ActionBar getActionBar() {
-        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     public boolean showApplyOnBoot() {

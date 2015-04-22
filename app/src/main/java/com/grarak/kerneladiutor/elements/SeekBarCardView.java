@@ -17,10 +17,10 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -97,7 +97,7 @@ public class SeekBarCardView extends BaseCardView {
 
         valueView.setText(getContext().getString(R.string.current_value_not_supported));
 
-        Button minusButton = (Button) view.findViewById(R.id.button_minus);
+        AppCompatButton minusButton = (AppCompatButton) view.findViewById(R.id.button_minus);
         minusButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +111,7 @@ public class SeekBarCardView extends BaseCardView {
 
         });
 
-        Button plusButton = (Button) view.findViewById(R.id.button_plus);
+        AppCompatButton plusButton = (AppCompatButton) view.findViewById(R.id.button_plus);
         plusButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

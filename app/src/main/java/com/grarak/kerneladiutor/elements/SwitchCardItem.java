@@ -22,6 +22,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
@@ -31,7 +32,7 @@ import com.grarak.kerneladiutor.R;
 /**
  * Created by willi on 22.12.14.
  */
-public class SwitchCompatCardItem extends BaseCardView {
+public class SwitchCardItem extends BaseCardView {
 
     private HeaderCardView headerCardView;
 
@@ -42,9 +43,9 @@ public class SwitchCompatCardItem extends BaseCardView {
     private String descriptionText;
     private boolean checked;
 
-    private OnSwitchCompatCardListener onSwitchCompatCardListener;
+    private OnSwitchCardListener onSwitchCardListener;
 
-    public SwitchCompatCardItem(Context context) {
+    public SwitchCardItem(Context context) {
         super(context, R.layout.switchcompat_cardview);
 
         setOnClickListener(new OnClickListener() {
@@ -54,8 +55,19 @@ public class SwitchCompatCardItem extends BaseCardView {
                     switchCompatView.setChecked(!switchCompatView.isChecked());
                     checked = switchCompatView.isChecked();
 
-                    if (onSwitchCompatCardListener != null)
-                        onSwitchCompatCardListener.onChecked(SwitchCompatCardItem.this, checked);
+                    if (onSwitchCardListener != null)
+                        onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
+                }
+            }
+        });
+
+        switchCompatView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (checked != isChecked) {
+                    checked = isChecked;
+                    if (onSwitchCardListener != null)
+                        onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
                 }
             }
         });
@@ -65,8 +77,8 @@ public class SwitchCompatCardItem extends BaseCardView {
             public void onClick(View v) {
                 checked = switchCompatView.isChecked();
 
-                if (onSwitchCompatCardListener != null)
-                    onSwitchCompatCardListener.onChecked(SwitchCompatCardItem.this, checked);
+                if (onSwitchCardListener != null)
+                    onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
             }
         });
     }
@@ -113,45 +125,45 @@ public class SwitchCompatCardItem extends BaseCardView {
             headerCardView.setText(titleText);
     }
 
-    public void setOnSwitchCompatCardListener(OnSwitchCompatCardListener onSwitchCompatCardListener) {
-        this.onSwitchCompatCardListener = onSwitchCompatCardListener;
+    public void setOnSwitchCardListener(OnSwitchCardListener onSwitchCardListener) {
+        this.onSwitchCardListener = onSwitchCardListener;
     }
 
-    public interface OnSwitchCompatCardListener {
-        void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked);
+    public interface OnSwitchCardListener {
+        void onChecked(SwitchCardItem switchCardItem, boolean checked);
     }
 
-    public static class DSwitchCompatCard implements DAdapter.DView {
+    public static class DSwitchCard implements DAdapter.DView {
 
-        private SwitchCompatCardItem switchCompatCardItem;
+        private SwitchCardItem switchCardItem;
 
         private String title;
         private String description;
         private boolean checked;
         private boolean fullspan;
 
-        private OnDSwitchCompatCardListener onDSwitchCompatCardListener;
+        private OnDSwitchCardListener onDSwitchCardListener;
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new SwitchCompatCardItem(viewGroup.getContext())) {
+            return new RecyclerView.ViewHolder(new SwitchCardItem(viewGroup.getContext())) {
             };
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            switchCompatCardItem = (SwitchCompatCardItem) viewHolder.itemView;
+            switchCardItem = (SwitchCardItem) viewHolder.itemView;
 
-            if (title != null) switchCompatCardItem.setTitle(title);
-            if (description != null) switchCompatCardItem.setDescription(description);
-            switchCompatCardItem.setChecked(checked);
+            if (title != null) switchCardItem.setTitle(title);
+            if (description != null) switchCardItem.setDescription(description);
+            switchCardItem.setChecked(checked);
 
             if (fullspan) {
                 StaggeredGridLayoutManager.LayoutParams params =
                         new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setFullSpan(true);
-                switchCompatCardItem.setLayoutParams(params);
+                switchCardItem.setLayoutParams(params);
             }
 
             setUpListener();
@@ -159,42 +171,42 @@ public class SwitchCompatCardItem extends BaseCardView {
 
         public void setTitle(String title) {
             this.title = title;
-            if (switchCompatCardItem != null) switchCompatCardItem.setTitle(title);
+            if (switchCardItem != null) switchCardItem.setTitle(title);
         }
 
         public void setDescription(String description) {
             this.description = description;
-            if (switchCompatCardItem != null) switchCompatCardItem.setDescription(description);
+            if (switchCardItem != null) switchCardItem.setDescription(description);
         }
 
         public void setChecked(boolean checked) {
             this.checked = checked;
-            if (switchCompatCardItem != null) switchCompatCardItem.setChecked(checked);
+            if (switchCardItem != null) switchCardItem.setChecked(checked);
         }
 
         public void setFullSpan(boolean fullspan) {
             this.fullspan = fullspan;
         }
 
-        public void setOnDSwitchCompatCardListener(OnDSwitchCompatCardListener onDSwitchCompatCardListener) {
-            this.onDSwitchCompatCardListener = onDSwitchCompatCardListener;
+        public void setOnDSwitchCardListener(OnDSwitchCardListener onDSwitchCardListener) {
+            this.onDSwitchCardListener = onDSwitchCardListener;
             setUpListener();
         }
 
         private void setUpListener() {
-            if (onDSwitchCompatCardListener != null && switchCompatCardItem != null) {
-                switchCompatCardItem.setOnSwitchCompatCardListener(new OnSwitchCompatCardListener() {
+            if (onDSwitchCardListener != null && switchCardItem != null) {
+                switchCardItem.setOnSwitchCardListener(new OnSwitchCardListener() {
                     @Override
-                    public void onChecked(SwitchCompatCardItem switchCompatCardItem, boolean checked) {
-                        DSwitchCompatCard.this.checked = checked;
-                        onDSwitchCompatCardListener.onChecked(DSwitchCompatCard.this, checked);
+                    public void onChecked(SwitchCardItem switchCardItem, boolean checked) {
+                        DSwitchCard.this.checked = checked;
+                        onDSwitchCardListener.onChecked(DSwitchCard.this, checked);
                     }
                 });
             }
         }
 
-        public interface OnDSwitchCompatCardListener {
-            void onChecked(DSwitchCompatCard dSwitchCompatCard, boolean checked);
+        public interface OnDSwitchCardListener {
+            void onChecked(DSwitchCard dSwitchCard, boolean checked);
         }
 
     }

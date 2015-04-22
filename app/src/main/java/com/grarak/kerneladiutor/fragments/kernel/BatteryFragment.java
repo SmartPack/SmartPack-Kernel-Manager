@@ -26,7 +26,7 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -39,13 +39,13 @@ import java.util.List;
  * Created by willi on 03.01.15.
  */
 public class BatteryFragment extends RecyclerViewFragment implements
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mBatteryLevelCard;
     private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mForceFastChargeCard;
+    private SwitchCardItem.DSwitchCard mForceFastChargeCard;
 
     private SeekBarCardView.DSeekBarCardView mBlxCard;
 
@@ -90,11 +90,11 @@ public class BatteryFragment extends RecyclerViewFragment implements
     }
 
     private void forceFastChargeInit() {
-        mForceFastChargeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mForceFastChargeCard = new SwitchCardItem.DSwitchCard();
         mForceFastChargeCard.setTitle(getString(R.string.usb_fast_charge));
         mForceFastChargeCard.setDescription(getString(R.string.usb_fast_charge_summary));
         mForceFastChargeCard.setChecked(Battery.isForceFastChargeActive());
-        mForceFastChargeCard.setOnDSwitchCompatCardListener(this);
+        mForceFastChargeCard.setOnDSwitchCardListener(this);
 
         addView(mForceFastChargeCard);
     }
@@ -131,8 +131,8 @@ public class BatteryFragment extends RecyclerViewFragment implements
     };
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mForceFastChargeCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mForceFastChargeCard)
             Battery.activateForceFastCharge(checked, getActivity());
     }
 

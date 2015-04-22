@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 
@@ -28,10 +28,10 @@ import com.grarak.kerneladiutor.utils.kernel.Sound;
  * Created by willi on 06.01.15.
  */
 public class SoundFragment extends RecyclerViewFragment implements
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
-    private SwitchCompatCardItem.DSwitchCompatCard mSoundControlEnableCard;
+    private SwitchCardItem.DSwitchCard mSoundControlEnableCard;
     private SeekBarCardView.DSeekBarCardView mHeadphoneGainCard;
     private SeekBarCardView.DSeekBarCardView mHandsetMicrophoneGainCard;
     private SeekBarCardView.DSeekBarCardView mCamMicrophoneGainCard;
@@ -55,10 +55,10 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void soundControlEnableInit() {
-        mSoundControlEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mSoundControlEnableCard = new SwitchCardItem.DSwitchCard();
         mSoundControlEnableCard.setDescription(getString(R.string.sound_control));
         mSoundControlEnableCard.setChecked(Sound.isSoundControlActive());
-        mSoundControlEnableCard.setOnDSwitchCompatCardListener(this);
+        mSoundControlEnableCard.setOnDSwitchCardListener(this);
 
         addView(mSoundControlEnableCard);
     }
@@ -129,8 +129,8 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mSoundControlEnableCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mSoundControlEnableCard)
             Sound.activateSoundControl(checked, getActivity());
     }
 

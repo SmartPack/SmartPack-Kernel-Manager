@@ -19,13 +19,13 @@ package com.grarak.cardview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -42,7 +42,7 @@ public abstract class BaseCardView extends CardView {
     private HeaderCardView headerCardView;
     private LinearLayout headerLayout;
 
-    private TextView innerView;
+    private AppCompatTextView innerView;
     private String mTitle;
 
     protected LinearLayout customLayout;
@@ -88,7 +88,7 @@ public abstract class BaseCardView extends CardView {
 
         layoutView = LayoutInflater.from(getContext()).inflate(layout, null, false);
         if (layout == DEFAULT_LAYOUT) {
-            innerView = (TextView) layoutView.findViewById(R.id.inner_view);
+            innerView = (AppCompatTextView) layoutView.findViewById(R.id.inner_view);
             if (mTitle != null) innerView.setText(mTitle);
         } else setUpInnerLayout(layoutView);
 

@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="1dp"
                 android:paddingEnd="1dp"
-                android:theme="@style/WhiteAccent"
+                android:theme="@style/SwitchCompat"
                 android:layout_weight="0" />
         </LinearLayout>
     </FrameLayout>

@@ -16,11 +16,11 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -32,7 +32,7 @@ import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.GammaProfiles;
@@ -47,7 +47,7 @@ import java.util.List;
  * Created by willi on 26.12.14.
  */
 public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
         PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
 
     private ColorPalette mColorPalette;
@@ -55,13 +55,13 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private List<String> mColorCalibrationLimits;
     private SeekBarCardView.DSeekBarCardView[] mColorCalibrationCard;
     private SeekBarCardView.DSeekBarCardView mColorCalibrationMinCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mInvertScreenCard;
+    private SwitchCardItem.DSwitchCard mInvertScreenCard;
     private SeekBarCardView.DSeekBarCardView mSaturationIntensityCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mGrayscaleModeCard;
+    private SwitchCardItem.DSwitchCard mGrayscaleModeCard;
     private SeekBarCardView.DSeekBarCardView mScreenHueCard;
     private SeekBarCardView.DSeekBarCardView mScreenValueCard;
     private SeekBarCardView.DSeekBarCardView mScreenContrastCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mScreenHBMCard;
+    private SwitchCardItem.DSwitchCard mScreenHBMCard;
 
     private EditTextCardView.DEditTextCard mKGammaBlueCard;
     private EditTextCardView.DEditTextCard mKGammaGreenCard;
@@ -96,19 +96,19 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     private CardViewItem.DCardView mAdditionalProfilesCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mBrightnessModeCard;
+    private SwitchCardItem.DSwitchCard mBrightnessModeCard;
     private SeekBarCardView.DSeekBarCardView mLcdMinBrightnessCard;
     private SeekBarCardView.DSeekBarCardView mLcdMaxBrightnessCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mBackLightDimmerEnableCard;
+    private SwitchCardItem.DSwitchCard mBackLightDimmerEnableCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerMinBrightnessCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerThresholdCard;
     private SeekBarCardView.DSeekBarCardView mBackLightDimmerOffsetCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mNegativeToggleCard;
+    private SwitchCardItem.DSwitchCard mNegativeToggleCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mRegisterHookCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMasterSequenceCard;
+    private SwitchCardItem.DSwitchCard mRegisterHookCard;
+    private SwitchCardItem.DSwitchCard mMasterSequenceCard;
 
     @Override
     public RecyclerView getRecyclerView() {
@@ -165,10 +165,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasInvertScreen()) {
-            mInvertScreenCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mInvertScreenCard = new SwitchCardItem.DSwitchCard();
             mInvertScreenCard.setDescription(getString(R.string.invert_screen));
             mInvertScreenCard.setChecked(Screen.isInvertScreenActive());
-            mInvertScreenCard.setOnDSwitchCompatCardListener(this);
+            mInvertScreenCard.setOnDSwitchCardListener(this);
 
             addView(mInvertScreenCard);
         }
@@ -187,10 +187,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
             addView(mSaturationIntensityCard);
 
-            mGrayscaleModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mGrayscaleModeCard = new SwitchCardItem.DSwitchCard();
             mGrayscaleModeCard.setDescription(getString(R.string.grayscale_mode));
             mGrayscaleModeCard.setChecked(saturation == 128);
-            mGrayscaleModeCard.setOnDSwitchCompatCardListener(this);
+            mGrayscaleModeCard.setOnDSwitchCardListener(this);
 
             addView(mGrayscaleModeCard);
         }
@@ -236,10 +236,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasScreenHBM()) {
-            mScreenHBMCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mScreenHBMCard = new SwitchCardItem.DSwitchCard();
             mScreenHBMCard.setDescription(getString(R.string.high_brightness_mode));
             mScreenHBMCard.setChecked(Screen.isScreenHBMActive());
-            mScreenHBMCard.setOnDSwitchCompatCardListener(this);
+            mScreenHBMCard.setOnDSwitchCardListener(this);
 
             addView(mScreenHBMCard);
         }
@@ -546,10 +546,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (Screen.hasBrightnessMode()) {
-            mBrightnessModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBrightnessModeCard = new SwitchCardItem.DSwitchCard();
             mBrightnessModeCard.setDescription(getString(R.string.brightness_mode));
             mBrightnessModeCard.setChecked(Screen.isBrightnessModeActive());
-            mBrightnessModeCard.setOnDSwitchCompatCardListener(this);
+            mBrightnessModeCard.setOnDSwitchCardListener(this);
 
             views.add(mBrightnessModeCard);
         }
@@ -595,10 +595,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (Screen.hasBackLightDimmerEnable()) {
-            mBackLightDimmerEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBackLightDimmerEnableCard = new SwitchCardItem.DSwitchCard();
             mBackLightDimmerEnableCard.setDescription(getString(R.string.backlight_dimmer));
             mBackLightDimmerEnableCard.setChecked(Screen.isBackLightDimmerActive());
-            mBackLightDimmerEnableCard.setOnDSwitchCompatCardListener(this);
+            mBackLightDimmerEnableCard.setOnDSwitchCardListener(this);
 
             views.add(mBackLightDimmerEnableCard);
         }
@@ -654,11 +654,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void negativeToggleInit() {
-        mNegativeToggleCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mNegativeToggleCard = new SwitchCardItem.DSwitchCard();
         mNegativeToggleCard.setTitle(getString(R.string.negative_toggle));
         mNegativeToggleCard.setDescription(getString(R.string.negative_toggle_summary));
         mNegativeToggleCard.setChecked(Screen.isNegativeToggleActive());
-        mNegativeToggleCard.setOnDSwitchCompatCardListener(this);
+        mNegativeToggleCard.setOnDSwitchCardListener(this);
 
         addView(mNegativeToggleCard);
     }
@@ -667,21 +667,21 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (Screen.hasRegisterHook()) {
-            mRegisterHookCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mRegisterHookCard = new SwitchCardItem.DSwitchCard();
             mRegisterHookCard.setTitle(getString(R.string.register_hook));
             mRegisterHookCard.setDescription(getString(R.string.register_hook_summary));
             mRegisterHookCard.setChecked(Screen.isRegisterHookActive());
-            mRegisterHookCard.setOnDSwitchCompatCardListener(this);
+            mRegisterHookCard.setOnDSwitchCardListener(this);
 
             views.add(mRegisterHookCard);
         }
 
         if (Screen.hasMasterSequence()) {
-            mMasterSequenceCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMasterSequenceCard = new SwitchCardItem.DSwitchCard();
             mMasterSequenceCard.setTitle(getString(R.string.master_sequence));
             mMasterSequenceCard.setDescription(getString(R.string.master_sequence_summary));
             mMasterSequenceCard.setChecked(Screen.isMasterSequenceActive());
-            mMasterSequenceCard.setOnDSwitchCompatCardListener(this);
+            mMasterSequenceCard.setOnDSwitchCardListener(this);
 
             views.add(mMasterSequenceCard);
         }
@@ -754,24 +754,24 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mInvertScreenCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mInvertScreenCard)
             Screen.activateInvertScreen(checked, getActivity());
-        else if (dSwitchCompatCard == mGrayscaleModeCard) {
+        else if (dSwitchCard == mGrayscaleModeCard) {
             mSaturationIntensityCard.setEnabled(!checked);
             Screen.activateGrayscaleMode(checked, getActivity());
             if (!checked) mSaturationIntensityCard.setProgress(30);
-        } else if (dSwitchCompatCard == mScreenHBMCard)
+        } else if (dSwitchCard == mScreenHBMCard)
             Screen.activateScreenHBM(checked, getActivity());
-        else if (dSwitchCompatCard == mBackLightDimmerEnableCard)
+        else if (dSwitchCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
-        else if (dSwitchCompatCard == mBrightnessModeCard)
+        else if (dSwitchCard == mBrightnessModeCard)
             Screen.activateBrightnessMode(checked, getActivity());
-        else if (dSwitchCompatCard == mNegativeToggleCard)
+        else if (dSwitchCard == mNegativeToggleCard)
             Screen.activateNegativeToggle(checked, getActivity());
-        else if (dSwitchCompatCard == mRegisterHookCard)
+        else if (dSwitchCard == mRegisterHookCard)
             Screen.activateRegisterHook(checked, getActivity());
-        else if (dSwitchCompatCard == mMasterSequenceCard)
+        else if (dSwitchCard == mMasterSequenceCard)
             Screen.activateMasterSequence(checked, getActivity());
     }
 

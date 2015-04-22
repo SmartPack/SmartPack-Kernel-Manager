@@ -16,11 +16,11 @@
 
 package com.grarak.kerneladiutor.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
@@ -144,6 +144,8 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         editText.setGravity(Gravity.CENTER);
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        if (!Utils.DARKTHEME)
+            editText.setTextColor(getResources().getColor(R.color.black));
         editText.setText(value);
 
         layout.addView(editText);

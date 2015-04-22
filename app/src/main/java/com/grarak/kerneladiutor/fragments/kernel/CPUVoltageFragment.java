@@ -16,21 +16,21 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -41,10 +41,10 @@ import java.util.List;
  * Created by willi on 26.12.14.
  */
 public class CPUVoltageFragment extends RecyclerViewFragment implements
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener {
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener {
 
     private EditTextCardView.DEditTextCard[] mVoltageCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mOverrideVminCard;
+    private SwitchCardItem.DSwitchCard mOverrideVminCard;
 
     @Override
     public int getSpan() {
@@ -63,12 +63,12 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
         if (voltages == null) return;
 
         if (CPUVoltage.hasOverrideVmin()) {
-            mOverrideVminCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mOverrideVminCard = new SwitchCardItem.DSwitchCard();
             mOverrideVminCard.setTitle(getString(R.string.override_vmin));
             mOverrideVminCard.setDescription(getString(R.string.override_vmin_summary));
             mOverrideVminCard.setChecked(CPUVoltage.isOverrideVminActive());
             mOverrideVminCard.setFullSpan(true);
-            mOverrideVminCard.setOnDSwitchCompatCardListener(this);
+            mOverrideVminCard.setOnDSwitchCardListener(this);
 
             addView(mOverrideVminCard);
         }
@@ -143,7 +143,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
                     textView.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 textView.setText("0");
 
-                Button minus = (Button) view.findViewById(R.id.button_minus);
+                AppCompatButton minus = (AppCompatButton) view.findViewById(R.id.button_minus);
                 if (Utils.DARKTHEME)
                     minus.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 minus.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
                     }
                 });
 
-                Button plus = (Button) view.findViewById(R.id.button_plus);
+                AppCompatButton plus = (AppCompatButton) view.findViewById(R.id.button_plus);
                 if (Utils.DARKTHEME)
                     plus.setTextColor(getResources().getColor(R.color.textcolor_dark));
                 plus.setOnClickListener(new View.OnClickListener() {
@@ -192,8 +192,8 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mOverrideVminCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mOverrideVminCard)
             CPUVoltage.activateOverrideVmin(checked, getActivity());
     }
 

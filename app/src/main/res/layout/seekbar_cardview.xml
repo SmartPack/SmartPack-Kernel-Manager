@@ -28,13 +28,14 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_minus"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/minus"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -44,19 +45,21 @@
             android:id="@+id/seekbar_view"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/button_minus"
             android:layout_toEndOf="@+id/button_minus"
             android:layout_toLeftOf="@+id/button_plus"
             android:layout_toStartOf="@+id/button_plus" />
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_plus"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:textColor="@color/textcolor_light"
             android:background="?android:attr/selectableItemBackground"
             android:text="@string/plus"
+            android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"

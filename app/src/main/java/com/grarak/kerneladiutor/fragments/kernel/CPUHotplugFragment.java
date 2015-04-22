@@ -23,7 +23,7 @@ import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCompatCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
@@ -35,20 +35,20 @@ import java.util.List;
  * Created by willi on 06.02.15.
  */
 public class CPUHotplugFragment extends RecyclerViewFragment implements
-        SwitchCompatCardItem.DSwitchCompatCard.OnDSwitchCompatCardListener,
+        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
         PopupCardItem.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
-    private SwitchCompatCardItem.DSwitchCompatCard mMpdecisionCard;
+    private SwitchCardItem.DSwitchCard mMpdecisionCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugCard;
+    private SwitchCardItem.DSwitchCard mIntelliPlugCard;
     private PopupCardItem.DPopupCard mIntelliPlugProfileCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugEcoCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugTouchBoostCard;
+    private SwitchCardItem.DSwitchCard mIntelliPlugEcoCard;
+    private SwitchCardItem.DSwitchCard mIntelliPlugTouchBoostCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugHysteresisCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugThresholdCard;
     private PopupCardItem.DPopupCard mIntelliPlugScreenOffMaxCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugDebugCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mIntelliPlugSuspendCard;
+    private SwitchCardItem.DSwitchCard mIntelliPlugDebugCard;
+    private SwitchCardItem.DSwitchCard mIntelliPlugSuspendCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugCpusBoostedCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugMinCpusOnlineCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugMaxCpusOnlineCard;
@@ -59,8 +59,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mIntelliPlugDownLockDurationCard;
     private SeekBarCardView.DSeekBarCardView mIntelliPlugFShiftCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mBluPlugCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mBluPlugPowersaverModeCard;
+    private SwitchCardItem.DSwitchCard mBluPlugCard;
+    private SwitchCardItem.DSwitchCard mBluPlugPowersaverModeCard;
     private SeekBarCardView.DSeekBarCardView mBluPlugMinOnlineCard;
     private SeekBarCardView.DSeekBarCardView mBluPlugMaxOnlineCard;
     private SeekBarCardView.DSeekBarCardView mBluPlugMaxCoresScreenOffCard;
@@ -69,8 +69,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mBluPlugUpTimerCntCard;
     private SeekBarCardView.DSeekBarCardView mBluPlugDownTimerCntCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mMsmHotplugEnabledCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMsmHotplugDebugMaskCard;
+    private SwitchCardItem.DSwitchCard mMsmHotplugEnabledCard;
+    private SwitchCardItem.DSwitchCard mMsmHotplugDebugMaskCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugMinCpusOnlineCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugMaxCpusOnlineCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugCpusBoostedCard;
@@ -82,12 +82,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mMsmHotplugFastLaneLoadCard;
     private PopupCardItem.DPopupCard mMsmHotplugFastLaneMinFreqCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugOfflineLoadCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMsmHotplugIoIsBusyCard;
+    private SwitchCardItem.DSwitchCard mMsmHotplugIoIsBusyCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugSuspendMaxCpusCard;
     private PopupCardItem.DPopupCard mMsmHotplugSuspendFreqCard;
     private SeekBarCardView.DSeekBarCardView mMsmHotplugSuspendDeferTimeCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mMakoHotplugEnableCard;
+    private SwitchCardItem.DSwitchCard mMakoHotplugEnableCard;
     private SeekBarCardView.DSeekBarCardView mMakoCoreOnTouchCard;
     private PopupCardItem.DPopupCard mMakoHotplugCpuFreqUnplugLimitCard;
     private SeekBarCardView.DSeekBarCardView mMakoHotplugFirstLevelCard;
@@ -99,13 +99,13 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mMakoHotplugTimerCard;
     private PopupCardItem.DPopupCard mMakoSuspendFreqCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mMBHotplugEnableCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMBHotplugScroffSingleCoreCard;
+    private SwitchCardItem.DSwitchCard mMBHotplugEnableCard;
+    private SwitchCardItem.DSwitchCard mMBHotplugScroffSingleCoreCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugMinCpusCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugMaxCpusCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugMaxCpusOnlineSuspCard;
     private PopupCardItem.DPopupCard mMBHotplugIdleFreqCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mMBHotplugBoostEnableCard;
+    private SwitchCardItem.DSwitchCard mMBHotplugBoostEnableCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugBoostTimeCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugCpusBoostedCard;
     private PopupCardItem.DPopupCard[] mMBHotplugBoostFreqsCard;
@@ -113,10 +113,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mMBHotplugDelayCard;
     private SeekBarCardView.DSeekBarCardView mMBHotplugPauseCard;
 
-    private SwitchCompatCardItem.DSwitchCompatCard mAlucardHotplugEnableCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mAlucardHotplugHpIoIsBusyCard;
+    private SwitchCardItem.DSwitchCard mAlucardHotplugEnableCard;
+    private SwitchCardItem.DSwitchCard mAlucardHotplugHpIoIsBusyCard;
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugSamplingRateCard;
-    private SwitchCompatCardItem.DSwitchCompatCard mAlucardHotplugSuspendCard;
+    private SwitchCardItem.DSwitchCard mAlucardHotplugSuspendCard;
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugMinCpusOnlineCard;
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugMaxCoresLimitCard;
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugMaxCoresLimitSleepCard;
@@ -137,11 +137,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void mpdecisionInit() {
-        mMpdecisionCard = new SwitchCompatCardItem.DSwitchCompatCard();
+        mMpdecisionCard = new SwitchCardItem.DSwitchCard();
         mMpdecisionCard.setTitle(getString(R.string.mpdecision));
         mMpdecisionCard.setDescription(getString(R.string.mpdecision_summary));
         mMpdecisionCard.setChecked(CPUHotplug.isMpdecisionActive());
-        mMpdecisionCard.setOnDSwitchCompatCardListener(this);
+        mMpdecisionCard.setOnDSwitchCardListener(this);
 
         addView(mMpdecisionCard);
     }
@@ -150,11 +150,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasIntelliPlugEnable()) {
-            mIntelliPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mIntelliPlugCard = new SwitchCardItem.DSwitchCard();
             mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
             mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
             mIntelliPlugCard.setChecked(CPUHotplug.isIntelliPlugActive());
-            mIntelliPlugCard.setOnDSwitchCompatCardListener(this);
+            mIntelliPlugCard.setOnDSwitchCardListener(this);
 
             views.add(mIntelliPlugCard);
         }
@@ -170,21 +170,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasIntelliPlugEco()) {
-            mIntelliPlugEcoCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mIntelliPlugEcoCard = new SwitchCardItem.DSwitchCard();
             mIntelliPlugEcoCard.setTitle(getString(R.string.eco_mode));
             mIntelliPlugEcoCard.setDescription(getString(R.string.eco_mode_summary));
             mIntelliPlugEcoCard.setChecked(CPUHotplug.isIntelliPlugEcoActive());
-            mIntelliPlugEcoCard.setOnDSwitchCompatCardListener(this);
+            mIntelliPlugEcoCard.setOnDSwitchCardListener(this);
 
             views.add(mIntelliPlugEcoCard);
         }
 
         if (CPUHotplug.hasIntelliPlugTouchBoost()) {
-            mIntelliPlugTouchBoostCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mIntelliPlugTouchBoostCard = new SwitchCardItem.DSwitchCard();
             mIntelliPlugTouchBoostCard.setTitle(getString(R.string.touch_boost));
             mIntelliPlugTouchBoostCard.setDescription(getString(R.string.touch_boost_summary));
             mIntelliPlugTouchBoostCard.setChecked(CPUHotplug.isIntelliPlugTouchBoostActive());
-            mIntelliPlugTouchBoostCard.setOnDSwitchCompatCardListener(this);
+            mIntelliPlugTouchBoostCard.setOnDSwitchCardListener(this);
 
             views.add(mIntelliPlugTouchBoostCard);
         }
@@ -232,21 +232,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasIntelliPlugDebug()) {
-            mIntelliPlugDebugCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mIntelliPlugDebugCard = new SwitchCardItem.DSwitchCard();
             mIntelliPlugDebugCard.setTitle(getString(R.string.debug));
             mIntelliPlugDebugCard.setDescription(getString(R.string.debug_summary));
             mIntelliPlugDebugCard.setChecked(CPUHotplug.isIntelliPlugDebugActive());
-            mIntelliPlugDebugCard.setOnDSwitchCompatCardListener(this);
+            mIntelliPlugDebugCard.setOnDSwitchCardListener(this);
 
             views.add(mIntelliPlugDebugCard);
         }
 
         if (CPUHotplug.hasIntelliPlugSuspend()) {
-            mIntelliPlugSuspendCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mIntelliPlugSuspendCard = new SwitchCardItem.DSwitchCard();
             mIntelliPlugSuspendCard.setTitle(getString(R.string.suspend));
             mIntelliPlugSuspendCard.setDescription(getString(R.string.suspend_summary));
             mIntelliPlugSuspendCard.setChecked(CPUHotplug.isIntelliPlugSuspendActive());
-            mIntelliPlugSuspendCard.setOnDSwitchCompatCardListener(this);
+            mIntelliPlugSuspendCard.setOnDSwitchCardListener(this);
 
             views.add(mIntelliPlugSuspendCard);
         }
@@ -389,21 +389,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasBluPlugEnable()) {
-            mBluPlugCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBluPlugCard = new SwitchCardItem.DSwitchCard();
             mBluPlugCard.setTitle(getString(R.string.blu_plug));
             mBluPlugCard.setDescription(getString(R.string.blu_plug_summary));
             mBluPlugCard.setChecked(CPUHotplug.isBluPlugActive());
-            mBluPlugCard.setOnDSwitchCompatCardListener(this);
+            mBluPlugCard.setOnDSwitchCardListener(this);
 
             views.add(mBluPlugCard);
         }
 
         if (CPUHotplug.hasBluPlugPowersaverMode()) {
-            mBluPlugPowersaverModeCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mBluPlugPowersaverModeCard = new SwitchCardItem.DSwitchCard();
             mBluPlugPowersaverModeCard.setTitle(getString(R.string.powersaver_mode));
             mBluPlugPowersaverModeCard.setDescription(getString(R.string.powersaver_mode_summary));
             mBluPlugPowersaverModeCard.setChecked(CPUHotplug.isBluPlugPowersaverModeActive());
-            mBluPlugPowersaverModeCard.setOnDSwitchCompatCardListener(this);
+            mBluPlugPowersaverModeCard.setOnDSwitchCardListener(this);
 
             views.add(mBluPlugPowersaverModeCard);
         }
@@ -521,21 +521,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasMsmHotplugEnable()) {
-            mMsmHotplugEnabledCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMsmHotplugEnabledCard = new SwitchCardItem.DSwitchCard();
             mMsmHotplugEnabledCard.setTitle(getString(R.string.msm_hotplug));
             mMsmHotplugEnabledCard.setDescription(getString(R.string.msm_hotplug_summary));
             mMsmHotplugEnabledCard.setChecked(CPUHotplug.isMsmHotplugActive());
-            mMsmHotplugEnabledCard.setOnDSwitchCompatCardListener(this);
+            mMsmHotplugEnabledCard.setOnDSwitchCardListener(this);
 
             views.add(mMsmHotplugEnabledCard);
         }
 
         if (CPUHotplug.hasMsmHotplugDebugMask()) {
-            mMsmHotplugDebugMaskCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMsmHotplugDebugMaskCard = new SwitchCardItem.DSwitchCard();
             mMsmHotplugDebugMaskCard.setTitle(getString(R.string.debug_mask));
             mMsmHotplugDebugMaskCard.setDescription(getString(R.string.debug_mask_summary));
             mMsmHotplugDebugMaskCard.setChecked(CPUHotplug.isMsmHotplugDebugMaskActive());
-            mMsmHotplugDebugMaskCard.setOnDSwitchCompatCardListener(this);
+            mMsmHotplugDebugMaskCard.setOnDSwitchCardListener(this);
 
             views.add(mMsmHotplugDebugMaskCard);
         }
@@ -696,11 +696,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasMsmHotplugIoIsBusy()) {
-            mMsmHotplugIoIsBusyCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMsmHotplugIoIsBusyCard = new SwitchCardItem.DSwitchCard();
             mMsmHotplugIoIsBusyCard.setTitle(getString(R.string.io_is_busy));
             mMsmHotplugIoIsBusyCard.setDescription(getString(R.string.io_is_busy_summary));
             mMsmHotplugIoIsBusyCard.setChecked(CPUHotplug.isMsmHotplugIoIsBusyActive());
-            mMsmHotplugIoIsBusyCard.setOnDSwitchCompatCardListener(this);
+            mMsmHotplugIoIsBusyCard.setOnDSwitchCardListener(this);
 
             views.add(mMsmHotplugIoIsBusyCard);
         }
@@ -761,11 +761,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasMakoHotplugEnable()) {
-            mMakoHotplugEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMakoHotplugEnableCard = new SwitchCardItem.DSwitchCard();
             mMakoHotplugEnableCard.setTitle(getString(R.string.mako_hotplug));
             mMakoHotplugEnableCard.setDescription(getString(R.string.mako_hotplug_summary));
             mMakoHotplugEnableCard.setChecked(CPUHotplug.isMakoHotplugActive());
-            mMakoHotplugEnableCard.setOnDSwitchCompatCardListener(this);
+            mMakoHotplugEnableCard.setOnDSwitchCardListener(this);
 
             views.add(mMakoHotplugEnableCard);
         }
@@ -920,21 +920,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasMBGHotplugEnable()) {
-            mMBHotplugEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMBHotplugEnableCard = new SwitchCardItem.DSwitchCard();
             mMBHotplugEnableCard.setTitle(CPUHotplug.getMBName(getActivity()));
             mMBHotplugEnableCard.setDescription(getString(R.string.mb_hotplug_summary));
             mMBHotplugEnableCard.setChecked(CPUHotplug.isMBHotplugActive());
-            mMBHotplugEnableCard.setOnDSwitchCompatCardListener(this);
+            mMBHotplugEnableCard.setOnDSwitchCardListener(this);
 
             views.add(mMBHotplugEnableCard);
         }
 
         if (CPUHotplug.hasMBHotplugScroffSingleCore()) {
-            mMBHotplugScroffSingleCoreCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMBHotplugScroffSingleCoreCard = new SwitchCardItem.DSwitchCard();
             mMBHotplugScroffSingleCoreCard.setTitle(getString(R.string.screen_off_single_core));
             mMBHotplugScroffSingleCoreCard.setDescription(getString(R.string.screen_off_single_core_summary));
             mMBHotplugScroffSingleCoreCard.setChecked(CPUHotplug.isMBHotplugScroffSingleCoreActive());
-            mMBHotplugScroffSingleCoreCard.setOnDSwitchCompatCardListener(this);
+            mMBHotplugScroffSingleCoreCard.setOnDSwitchCardListener(this);
 
             views.add(mMBHotplugScroffSingleCoreCard);
         }
@@ -996,11 +996,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasMBHotplugBoostEnable()) {
-            mMBHotplugBoostEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mMBHotplugBoostEnableCard = new SwitchCardItem.DSwitchCard();
             mMBHotplugBoostEnableCard.setTitle(getString(R.string.touch_boost));
             mMBHotplugBoostEnableCard.setDescription(getString(R.string.touch_boost_summary));
             mMBHotplugBoostEnableCard.setChecked(CPUHotplug.isMBHotplugBoostActive());
-            mMBHotplugBoostEnableCard.setOnDSwitchCompatCardListener(this);
+            mMBHotplugBoostEnableCard.setOnDSwitchCardListener(this);
 
             views.add(mMBHotplugBoostEnableCard);
         }
@@ -1106,21 +1106,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         List<DAdapter.DView> views = new ArrayList<>();
 
         if (CPUHotplug.hasAlucardHotplugEnable()) {
-            mAlucardHotplugEnableCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mAlucardHotplugEnableCard = new SwitchCardItem.DSwitchCard();
             mAlucardHotplugEnableCard.setTitle(getString(R.string.alucard_hotplug));
             mAlucardHotplugEnableCard.setDescription(getString(R.string.alucard_hotplug_summary));
             mAlucardHotplugEnableCard.setChecked(CPUHotplug.isAlucardHotplugActive());
-            mAlucardHotplugEnableCard.setOnDSwitchCompatCardListener(this);
+            mAlucardHotplugEnableCard.setOnDSwitchCardListener(this);
 
             views.add(mAlucardHotplugEnableCard);
         }
 
         if (CPUHotplug.hasAlucardHotplugHpIoIsBusy()) {
-            mAlucardHotplugHpIoIsBusyCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mAlucardHotplugHpIoIsBusyCard = new SwitchCardItem.DSwitchCard();
             mAlucardHotplugHpIoIsBusyCard.setTitle(getString(R.string.io_is_busy));
             mAlucardHotplugHpIoIsBusyCard.setDescription(getString(R.string.io_is_busy_summary));
             mAlucardHotplugHpIoIsBusyCard.setChecked(CPUHotplug.isAlucardHotplugHpIoIsBusyActive());
-            mAlucardHotplugHpIoIsBusyCard.setOnDSwitchCompatCardListener(this);
+            mAlucardHotplugHpIoIsBusyCard.setOnDSwitchCardListener(this);
 
             views.add(mAlucardHotplugHpIoIsBusyCard);
         }
@@ -1139,11 +1139,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasAlucardHotplugSuspend()) {
-            mAlucardHotplugSuspendCard = new SwitchCompatCardItem.DSwitchCompatCard();
+            mAlucardHotplugSuspendCard = new SwitchCardItem.DSwitchCard();
             mAlucardHotplugSuspendCard.setTitle(getString(R.string.suspend));
             mAlucardHotplugSuspendCard.setDescription(getString(R.string.suspend_summary));
             mAlucardHotplugSuspendCard.setChecked(CPUHotplug.isAlucardHotplugSuspendActive());
-            mAlucardHotplugSuspendCard.setOnDSwitchCompatCardListener(this);
+            mAlucardHotplugSuspendCard.setOnDSwitchCardListener(this);
 
             views.add(mAlucardHotplugSuspendCard);
         }
@@ -1227,42 +1227,42 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChecked(SwitchCompatCardItem.DSwitchCompatCard dSwitchCompatCard, boolean checked) {
-        if (dSwitchCompatCard == mMpdecisionCard)
+    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mMpdecisionCard)
             CPUHotplug.activateMpdecision(checked, getActivity());
-        else if (dSwitchCompatCard == mIntelliPlugCard)
+        else if (dSwitchCard == mIntelliPlugCard)
             CPUHotplug.activateIntelliPlug(checked, getActivity());
-        else if (dSwitchCompatCard == mIntelliPlugEcoCard)
+        else if (dSwitchCard == mIntelliPlugEcoCard)
             CPUHotplug.activateIntelliPlugEco(checked, getActivity());
-        else if (dSwitchCompatCard == mIntelliPlugTouchBoostCard)
+        else if (dSwitchCard == mIntelliPlugTouchBoostCard)
             CPUHotplug.activateIntelliPlugTouchBoost(checked, getActivity());
-        else if (dSwitchCompatCard == mIntelliPlugDebugCard)
+        else if (dSwitchCard == mIntelliPlugDebugCard)
             CPUHotplug.activateIntelliPlugDebug(checked, getActivity());
-        else if (dSwitchCompatCard == mIntelliPlugSuspendCard)
+        else if (dSwitchCard == mIntelliPlugSuspendCard)
             CPUHotplug.activateIntelliPlugSuspend(checked, getActivity());
-        else if (dSwitchCompatCard == mBluPlugCard)
+        else if (dSwitchCard == mBluPlugCard)
             CPUHotplug.activateBluPlug(checked, getActivity());
-        else if (dSwitchCompatCard == mBluPlugPowersaverModeCard)
+        else if (dSwitchCard == mBluPlugPowersaverModeCard)
             CPUHotplug.activateBluPlugPowersaverMode(checked, getActivity());
-        else if (dSwitchCompatCard == mMsmHotplugEnabledCard)
+        else if (dSwitchCard == mMsmHotplugEnabledCard)
             CPUHotplug.activateMsmHotplug(checked, getActivity());
-        else if (dSwitchCompatCard == mMsmHotplugDebugMaskCard)
+        else if (dSwitchCard == mMsmHotplugDebugMaskCard)
             CPUHotplug.activateMsmHotplugDebugMask(checked, getActivity());
-        else if (dSwitchCompatCard == mMsmHotplugIoIsBusyCard)
+        else if (dSwitchCard == mMsmHotplugIoIsBusyCard)
             CPUHotplug.activateMsmHotplugIoIsBusy(checked, getActivity());
-        else if (dSwitchCompatCard == mMakoHotplugEnableCard)
+        else if (dSwitchCard == mMakoHotplugEnableCard)
             CPUHotplug.activateMakoHotplug(checked, getActivity());
-        else if (dSwitchCompatCard == mMBHotplugEnableCard)
+        else if (dSwitchCard == mMBHotplugEnableCard)
             CPUHotplug.activateMBHotplug(checked, getActivity());
-        else if (dSwitchCompatCard == mMBHotplugScroffSingleCoreCard)
+        else if (dSwitchCard == mMBHotplugScroffSingleCoreCard)
             CPUHotplug.activateMBHotplugScroffSingleCore(checked, getActivity());
-        else if (dSwitchCompatCard == mMBHotplugBoostEnableCard)
+        else if (dSwitchCard == mMBHotplugBoostEnableCard)
             CPUHotplug.activateMBHotplugBoost(checked, getActivity());
-        else if (dSwitchCompatCard == mAlucardHotplugEnableCard)
+        else if (dSwitchCard == mAlucardHotplugEnableCard)
             CPUHotplug.activateAlucardHotplug(checked, getActivity());
-        else if (dSwitchCompatCard == mAlucardHotplugHpIoIsBusyCard)
+        else if (dSwitchCard == mAlucardHotplugHpIoIsBusyCard)
             CPUHotplug.activateAlucardHotplugHpIoIsBusy(checked, getActivity());
-        else if (dSwitchCompatCard == mAlucardHotplugSuspendCard)
+        else if (dSwitchCard == mAlucardHotplugSuspendCard)
             CPUHotplug.activateAlucardHotplugSuspend(checked, getActivity());
     }
 

@@ -16,14 +16,13 @@
 
 package com.grarak.kerneladiutor.fragments.tools;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.internal.widget.TintEditText;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Gravity;
@@ -159,14 +158,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         dialogLayout.setGravity(Gravity.CENTER);
         dialogLayout.setPadding(30, 20, 30, 20);
 
-        final TintEditText keyEdit = new TintEditText(getActivity());
-        keyEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
+        final AppCompatEditText keyEdit = new AppCompatEditText(getActivity());
+        keyEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
 
         if (modify) keyEdit.setText(key.trim());
         else keyEdit.setHint(getString(R.string.key));
 
-        final TintEditText valueEdit = new TintEditText(getActivity());
-        valueEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
+        final AppCompatEditText valueEdit = new AppCompatEditText(getActivity());
+        valueEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
 
         if (modify) valueEdit.setText(value.trim());
         else valueEdit.setHint(getString(R.string.value));
@@ -231,8 +230,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         inflater.inflate(R.menu.build_prop_menu, menu);
 
         searchItem = menu.findItem(R.id.search);
-        SearchView searchView = new SearchView(((ActionBarActivity) getActivity())
-                .getSupportActionBar().getThemedContext());
+        SearchView searchView = new SearchView(getActionBar().getThemedContext());
         searchView.setQueryHint(getString(R.string.search));
 
         MenuItemCompat.setActionView(searchItem, searchView);

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
+        android:gravity="center"
         android:background="@drawable/button_bg"
         android:textColor="@color/white"
         android:text="@string/profile" />

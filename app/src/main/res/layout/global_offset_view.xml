@@ -6,13 +6,15 @@
     android:padding="20dp"
     android:layout_gravity="center_vertical">
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_minus"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:textColor="@color/textcolor_light"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/minus"
+        android:textSize="16sp"
+        android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -24,19 +26,22 @@
         android:layout_height="wrap_content"
         android:textColor="@color/textcolor_light"
         android:gravity="center"
+        android:textSize="20sp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/button_minus"
         android:layout_toEndOf="@+id/button_minus"
         android:layout_toLeftOf="@+id/button_plus"
         android:layout_toStartOf="@+id/button_plus" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/button_plus"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:textColor="@color/textcolor_light"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/plus"
+        android:textSize="16sp"
+        android:gravity="center"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"

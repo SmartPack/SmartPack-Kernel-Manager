@@ -17,23 +17,19 @@
 package com.grarak.kerneladiutor;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import com.grarak.kerneladiutor.utils.Utils;
-
-public class TextActivity extends ActionBarActivity {
+public class TextActivity extends AppCompatActivity {
 
     public static final String ARG_TEXT = "text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeActionBarDark);
 
         TextView text = new TextView(this);
-        if (Utils.DARKTHEME) text.setBackgroundColor(getResources().getColor(R.color.black));
         setContentView(text);
 
         text.setTextSize(20);

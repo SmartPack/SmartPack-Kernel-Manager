@@ -20,7 +20,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.internal.widget.TintRadioButton;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,7 +30,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -53,9 +53,9 @@ import java.util.List;
 public class RecoveryFragment extends RecyclerViewFragment {
 
     private LinearLayout mRecoveryLayout;
-    private TintRadioButton mCWMRecoveryButton;
-    private TintRadioButton mTWRPButton;
-    private Button mFlashNowButton;
+    private AppCompatRadioButton mCWMRecoveryButton;
+    private AppCompatRadioButton mTWRPButton;
+    private AppCompatButton mFlashNowButton;
 
     private FloatingActionsMenu mActionMenu;
     private List<Recovery> mCommands;
@@ -95,7 +95,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
             }
         });
 
-        mFlashNowButton = (Button) view.findViewById(R.id.flash_now_button);
+        mFlashNowButton = (AppCompatButton) view.findViewById(R.id.flash_now_button);
         mFlashNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,8 +142,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
         mRecoveryLayout = new LinearLayout(getActivity());
         mRecoveryLayout.setOrientation(LinearLayout.VERTICAL);
 
-        mCWMRecoveryButton = new TintRadioButton(getActivity());
-        mTWRPButton = new TintRadioButton(getActivity());
+        mCWMRecoveryButton = new AppCompatRadioButton(getActivity());
+        mTWRPButton = new AppCompatRadioButton(getActivity());
 
         mTWRPButton.setChecked(Utils.getBoolean("twrp", false, getActivity()));
         mCWMRecoveryButton.setChecked(!mTWRPButton.isChecked());

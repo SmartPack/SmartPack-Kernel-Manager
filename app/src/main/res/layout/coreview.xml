@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <CheckBox
+        <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/freq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +29,5 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         style="?android:attr/progressBarStyleHorizontal" />
-
 
 </LinearLayout>
