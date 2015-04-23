@@ -129,6 +129,7 @@
   <string name="max_cores_screen_off_summary">Número máximo de núcleos online cuando la pantalla está apagada.</string>
   <string name="suspend_defer_time">Suspender Aplazo de Tiempo</string>
   <string name="defer_sampling">Aplazar muestreo</string>
+  <string name="boost_lock_duration">Incrementar duración de bloqueo</string>
   <string name="boost_lock_duration_summary">Intervalo mínimo para el CPU boost.</string>
   <string name="down_lock_duration">Duración de Bloqueo</string>
   <string name="down_lock_duration_summary">Intervalo mínimo que un CPU se mantendrá en línea.</string>
@@ -159,6 +160,7 @@
   <string name="defer_time">Suspender Tiempo Aplazado</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Una en reemplazo del kernel para Qualcomms MPDecision. Desarrollado por franciscofranco.</string>
+  <string name="cores_on_touch">Núcleos de toque</string>
   <string name="cores_on_touch_summary">Número de CPUs online cuando tocas la pantalla o presionas un botón.</string>
   <string name="cpu_freq_unplug_limit">Límite de frecuencia de la CPU Desactivada</string>
   <string name="first_level">Primer nivel</string>
@@ -176,9 +178,11 @@
   <string name="screen_off_single_core_summary">Usar sólo un núcleo con la pantalla apagada.</string>
   <string name="idle_frequency">Frecuencia en reposo</string>
   <string name="idle_frequency_summary">Si este núcleo esta por debajo de esta frecuencia, no activar los otros nucleos.</string>
+  <string name="touch_boost_time">Tiempo de impulso de toque</string>
   <string name="start_delay">Retardo al inicio</string>
   <string name="start_delay_summary">Tiempo hasta que Hotplug comienza.</string>
   <string name="delay">Retraso</string>
+  <string name="delay_summary">Tiempo entre verificaciones.</string>
   <string name="pause">Pausar</string>
   <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Remplazo para MPDecision de Qualcomms. Desarrollado por Alucard.</string>
