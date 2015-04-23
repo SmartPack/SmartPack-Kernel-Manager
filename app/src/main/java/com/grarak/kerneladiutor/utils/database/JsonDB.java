@@ -38,13 +38,16 @@ public abstract class JsonDB {
     public JsonDB(String path, int version) {
         this.path = path;
         try {
-            databaseMain = new JSONObject(Utils.readFile(path));
-            if (databaseMain.getInt("version") == version)
-                databaseItems = databaseMain.getJSONArray("database");
+            String json = Utils.readFile(path);
+            if (json != null) {
+                databaseMain = new JSONObject(json);
+                if (databaseMain.getInt("version") == version)
+                    databaseItems = databaseMain.getJSONArray("database");
+            }
         } catch (JSONException ignored) {
-            databaseMain = new JSONObject();
-            databaseItems = new JSONArray();
         }
+
+        if (databaseItems == null) databaseItems = new JSONArray();
         try {
             databaseMain = new JSONObject();
             databaseMain.put("version", version);
