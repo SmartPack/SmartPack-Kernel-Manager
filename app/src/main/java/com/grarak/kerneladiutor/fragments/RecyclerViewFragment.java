@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -59,6 +60,8 @@ public class RecyclerViewFragment extends BaseFragment {
     protected SwitchCompat applyOnBootView;
     private DAdapter.Adapter adapter;
     private StaggeredGridLayoutManager layoutManager;
+    protected View backgroundView;
+    protected View fabView;
     private Handler hand;
 
     @Override
@@ -113,6 +116,16 @@ public class RecyclerViewFragment extends BaseFragment {
             }
         }
 
+        backgroundView = view.findViewById(R.id.background_view);
+        fabView = view.findViewById(R.id.fab_view);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
+            if (fabView != null) {
+                fabView.setElevation(getResources().getDisplayMetrics().density * 500);
+                fabView.setVisibility(View.INVISIBLE);
+            }
+        }
+
         progressBar = new ProgressBar(getActivity());
         setProgressBar(progressBar);
 
@@ -164,6 +177,12 @@ public class RecyclerViewFragment extends BaseFragment {
                     if (isAdded()) postInit(savedInstanceState);
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    if (backgroundView != null) Utils.circleAnimate(backgroundView, 0, 0);
+                    if (fabView != null)
+                        Utils.circleAnimate(fabView, fabView.getWidth() / 2, fabView.getHeight() / 2);
                 }
             }
         }.execute();

@@ -39,7 +39,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/fab_menu"
+        android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         fab:fab_addButtonColorNormal="@color/fab_normal"
@@ -47,8 +47,10 @@
         fab:fab_addButtonPlusIconColor="@color/color_primary"
         fab:fab_labelStyle="@style/menu_labels_style"
         fab:fab_expandDirection="down"
-        android:layout_marginTop="38dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="-34dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_below="@+id/background_view"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:visibility="gone">

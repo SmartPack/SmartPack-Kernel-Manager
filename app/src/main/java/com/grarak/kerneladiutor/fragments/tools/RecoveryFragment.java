@@ -21,19 +21,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatRadioButton;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
@@ -52,12 +50,9 @@ import java.util.List;
  */
 public class RecoveryFragment extends RecyclerViewFragment {
 
-    private LinearLayout mRecoveryLayout;
-    private AppCompatRadioButton mCWMRecoveryButton;
-    private AppCompatRadioButton mTWRPButton;
+    private AppCompatSpinner mRecoverySpinner;
     private AppCompatButton mFlashNowButton;
 
-    private FloatingActionsMenu mActionMenu;
     private List<Recovery> mCommands;
 
     @Override
@@ -69,7 +64,23 @@ public class RecoveryFragment extends RecyclerViewFragment {
     public RecyclerView getRecyclerView() {
         View view = getParentView(R.layout.recovery_recyclerview);
 
-        mActionMenu = (FloatingActionsMenu) view.findViewById(R.id.action_menu);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.recovery_variants));
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mRecoverySpinner = (AppCompatSpinner) view.findViewById(R.id.recovery_spinner);
+        mRecoverySpinner.setAdapter(dataAdapter);
+        mRecoverySpinner.setSelection(Utils.getBoolean("twrp", false, getActivity()) ? 1 : 0);
+        mRecoverySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Utils.saveBoolean("twrp", position == 1, getActivity());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         view.findViewById(R.id.wipe_data_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,12 +118,13 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mTWRPButton.isChecked() ?
-                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mRecoverySpinner
+                                .getSelectedItemPosition() == 1 ? Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
                         RootFile recoveryFile = new RootFile(file);
                         recoveryFile.delete();
                         for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(mTWRPButton.isChecked() ? Recovery.RECOVERY.TWRP :
+                            for (String command : commands.getCommands(mRecoverySpinner.getSelectedItemPosition() == 1 ?
+                                    Recovery.RECOVERY.TWRP :
                                     Recovery.RECOVERY.CWM))
                                 recoveryFile.write(command, true);
                         }
@@ -121,10 +133,10 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 }, getActivity());
             }
         });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             mFlashNowButton.setVisibility(View.INVISIBLE);
 
-        animateFab();
         return (RecyclerView) view.findViewById(R.id.recycler_view);
     }
 
@@ -136,51 +148,9 @@ public class RecoveryFragment extends RecyclerViewFragment {
     }
 
     @Override
-    public void preInit(Bundle savedInstanceState) {
-        super.preInit(savedInstanceState);
-
-        mRecoveryLayout = new LinearLayout(getActivity());
-        mRecoveryLayout.setOrientation(LinearLayout.VERTICAL);
-
-        mCWMRecoveryButton = new AppCompatRadioButton(getActivity());
-        mTWRPButton = new AppCompatRadioButton(getActivity());
-
-        mTWRPButton.setChecked(Utils.getBoolean("twrp", false, getActivity()));
-        mCWMRecoveryButton.setChecked(!mTWRPButton.isChecked());
-
-        mCWMRecoveryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTWRPButton.setChecked(false);
-                Utils.saveBoolean("twrp", false, getActivity());
-            }
-        });
-        mTWRPButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCWMRecoveryButton.setChecked(false);
-                Utils.saveBoolean("twrp", true, getActivity());
-            }
-        });
-
-        mCWMRecoveryButton.setText(getString(R.string.cwm_recovery));
-        mTWRPButton.setText(getString(R.string.twrp));
-
-        mRecoveryLayout.addView(mCWMRecoveryButton);
-        mRecoveryLayout.addView(mTWRPButton);
-    }
-
-    @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         mCommands = new ArrayList<>();
-
-        CardViewItem.DCardView mRecoveryCard = new CardViewItem.DCardView();
-        mRecoveryCard.setTitle(getString(R.string.your_recovery));
-        mRecoveryCard.setFullSpan(true);
-        mRecoveryCard.setView(mRecoveryLayout);
-
-        addView(mRecoveryCard);
 
         DividerCardView.DDividerCard mActionsDividerCard = new DividerCardView.DDividerCard();
         mActionsDividerCard.setText(getString(R.string.actions));
@@ -232,12 +202,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
         mActionCard.setView(view);
         addView(mActionCard);
-    }
-
-    private void animateFab() {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
-        animation.setDuration(1500);
-        if (mActionMenu != null) mActionMenu.startAnimation(animation);
     }
 
     @Override

@@ -5,13 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/no_profiles_text"
+    <FrameLayout
+        android:id="@+id/background_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/no_profiles"
-        android:visibility="gone" />
+        android:layout_height="72dp"
+        android:background="@color/color_primary">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/white"
+            android:paddingLeft="72dp"
+            android:textSize="17sp"
+            android:gravity="center_vertical" />
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -19,17 +28,21 @@
         android:scrollbars="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_below="@+id/background_view" />
 
     <com.getbase.floatingactionbutton.AddFloatingActionButton
-        android:id="@+id/add_button"
+        android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         fab:fab_colorNormal="@color/fab_normal"
         fab:fab_colorPressed="@color/fab_pressed"
-        fab:fab_plusIconColor="@color/color_primary" />
+        fab:fab_plusIconColor="@color/color_primary"
+        android:layout_marginTop="-34dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_below="@+id/background_view"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

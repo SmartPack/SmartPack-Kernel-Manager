@@ -27,13 +27,10 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.AddFloatingActionButton;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.ListAdapter;
@@ -55,8 +52,7 @@ import java.util.List;
  */
 public class ProfileFragment extends RecyclerViewFragment {
 
-    private TextView noProfilesView;
-    private AddFloatingActionButton addButton;
+    private TextView title;
 
     @Override
     public int getSpan() {
@@ -68,12 +64,16 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        noProfilesView = (TextView) getParentView(R.layout.profile_recyclerview).findViewById(R.id.no_profiles_text);
-        if (Utils.DARKTHEME)
-            noProfilesView.setTextColor(getResources().getColor(R.color.textcolor_dark));
+        View view = getParentView(R.layout.profile_recyclerview);
+        title = (TextView) view.findViewById(R.id.title_view);
+        return (RecyclerView) view.findViewById(R.id.recycler_view);
+    }
 
-        addButton = (AddFloatingActionButton) getParentView(R.layout.profile_recyclerview).findViewById(R.id.add_button);
-        addButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void preInit(Bundle savedInstanceState) {
+        super.preInit(savedInstanceState);
+
+        fabView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final List<CommandDB.CommandItem> commandItems = new CommandDB(getActivity()).getAllCommands();
@@ -169,9 +169,6 @@ public class ProfileFragment extends RecyclerViewFragment {
                         }).show();
             }
         });
-
-        animateFab();
-        return (RecyclerView) getParentView(R.layout.profile_recyclerview).findViewById(R.id.recycler_view);
     }
 
     @Override
@@ -271,13 +268,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (getCount() < 1) {
-                    noProfilesView.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
-                } else {
-                    noProfilesView.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
-                }
+                title.setText(getCount() < 1 ? getString(R.string.no_profiles) : getString(R.string.items_found, getCount()));
             }
         });
 
@@ -285,12 +276,6 @@ public class ProfileFragment extends RecyclerViewFragment {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
         int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
-    }
-
-    private void animateFab() {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
-        animation.setDuration(1500);
-        if (addButton != null) addButton.startAnimation(animation);
     }
 
 }

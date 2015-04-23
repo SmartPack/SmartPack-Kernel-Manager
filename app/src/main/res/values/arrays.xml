@@ -40,17 +40,25 @@
         <item>@string/delete</item>
     </string-array>
 
+    <!-- Profile -->
     <string-array name="profile_menu">
         <item>@string/apply</item>
         <item>@string/delete</item>
         <item>@string/information</item>
     </string-array>
 
+    <!-- Misc -->
     <string-array name="powersuspend_items">
         <item>@string/autosleep</item>
         <item>@string/userspace</item>
         <item>@string/lcd_panel</item>
         <item>@string/hybrid</item>
+    </string-array>
+
+    <!-- Recovery -->
+    <string-array name="recovery_variants">
+        <item>@string/cwm_recovery</item>
+        <item>@string/twrp</item>
     </string-array>
 
 </resources>

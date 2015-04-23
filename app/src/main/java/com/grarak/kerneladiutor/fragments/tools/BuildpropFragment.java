@@ -31,12 +31,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -54,10 +52,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     private Handler hand;
 
-    private FrameLayout bgView;
     private TextView title;
     private SwipeRefreshLayout refreshLayout;
-    private FloatingActionsMenu floatingActionsMenu;
     private LinkedHashMap<String, String> buildpropItem;
 
     private MenuItem searchItem;
@@ -66,9 +62,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     public RecyclerView getRecyclerView() {
         View view = getParentView(R.layout.swiperefresh_recyclerview);
 
-        bgView = (FrameLayout) view.findViewById(R.id.background_view);
         title = (TextView) view.findViewById(R.id.title_view);
-
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeResources(R.color.color_primary);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -94,16 +88,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        floatingActionsMenu = (FloatingActionsMenu) view.findViewById(R.id.fab_menu);
-        floatingActionsMenu.setVisibility(View.VISIBLE);
+        return (RecyclerView) view.findViewById(R.id.recycler_view);
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            bgView.setVisibility(View.INVISIBLE);
-            floatingActionsMenu.setVisibility(View.INVISIBLE);
-            floatingActionsMenu.setElevation(getResources().getDisplayMetrics().density * 100);
-        }
-
-        return (RecyclerView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.recycler_view);
+    @Override
+    public void preInit(Bundle savedInstanceState) {
+        super.preInit(savedInstanceState);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            fabView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -120,14 +112,13 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
             addView(mPropCard);
         }
-    }
 
-    @Override
-    public void postInit(Bundle savedInstanceState) {
-        super.postInit(savedInstanceState);
-        title.setText(getString(R.string.items_found, buildpropItem.size()));
-        Utils.circleAnimate(bgView, 0, 0);
-        Utils.circleAnimate(floatingActionsMenu, floatingActionsMenu.getWidth() / 2, floatingActionsMenu.getHeight() / 2);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                title.setText(getString(R.string.items_found, buildpropItem.size()));
+            }
+        });
     }
 
     @Override
@@ -168,7 +159,13 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 addView(mPropCard);
             }
 
-            refreshLayout.setRefreshing(false);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    title.setText(getString(R.string.items_found, buildpropItem.size()));
+                    refreshLayout.setRefreshing(false);
+                }
+            });
         }
     };
 

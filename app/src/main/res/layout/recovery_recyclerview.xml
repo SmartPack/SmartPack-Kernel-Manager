@@ -5,10 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/background_view"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/color_primary">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/recovery_spinner"
+            android:paddingLeft="72dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:orientation="vertical"
         android:scrollbars="vertical"
+        android:layout_below="@+id/background_view"
         android:scrollbarStyle="outsideOverlay"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
@@ -16,17 +33,12 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/flash_now_button"
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/flash_now"
         android:textColor="@color/color_primary"
         android:gravity="center"
-        android:background="?android:attr/selectableItemBackground"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/action_menu"
-        android:layout_toStartOf="@+id/action_menu" />
+        android:layout_alignParentBottom="true" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
@@ -35,8 +47,12 @@
         fab:fab_addButtonColorPressed="@color/fab_pressed"
         fab:fab_addButtonPlusIconColor="@color/color_primary"
         fab:fab_labelStyle="@style/menu_labels_style"
-        android:id="@+id/action_menu"
-        android:layout_alignParentBottom="true"
+        fab:fab_expandDirection="down"
+        android:id="@+id/fab_view"
+        android:layout_marginTop="-34dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_below="@+id/background_view"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 

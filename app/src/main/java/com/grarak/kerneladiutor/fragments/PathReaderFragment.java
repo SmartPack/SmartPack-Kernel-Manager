@@ -65,9 +65,10 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
     }
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-        refresh();
+    public void preInit(Bundle savedInstanceState) {
+        super.preInit(savedInstanceState);
+        fabView.setVisibility(View.GONE);
+        fabView = null;
     }
 
     private Runnable refresh = new Runnable() {
@@ -122,18 +123,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
                     }
                 }
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (getCount() < 1) {
-                    title.setText(getError(getActivity()));
-                    recyclerView.setVisibility(View.GONE);
-                } else {
-                    title.setText(getName());
-                    recyclerView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        title.setText(getCount() < 1 ? getError(getActivity()) : getName());
     }
 
     private void showDialog(final String file, String value) {
