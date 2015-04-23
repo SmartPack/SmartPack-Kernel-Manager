@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -62,6 +63,7 @@ public class RecyclerViewFragment extends BaseFragment {
     private StaggeredGridLayoutManager layoutManager;
     protected View backgroundView;
     protected View fabView;
+    protected View onScrollDisappearView;
     private Handler hand;
 
     @Override
@@ -89,7 +91,65 @@ public class RecyclerViewFragment extends BaseFragment {
             }
         });
         setRecyclerView(recyclerView);
-        recyclerView.setPadding(5, 5, 5, 5);
+        int padding = (int) (2.5 * getResources().getDisplayMetrics().density);
+        recyclerView.setPadding(padding, padding, padding, padding);
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int scrollMargin = 5;
+            private boolean changing;
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, final int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.i(Constants.TAG, dy + "");
+
+                if (changing || onScrollDisappearView == null) return;
+                int y = dy;
+                if (y < 0) y *= -1;
+                if (y < 5) return;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        changing = true;
+                        int actionBarHeight = Utils.getActionBarHeight(getActivity());
+                        for (int i = 0; i <= actionBarHeight / scrollMargin; i++) {
+                            try {
+                                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                                        onScrollDisappearView.getLayoutParams();
+
+                                int margin = params.topMargin;
+                                if (dy < 0 && margin < 0)
+                                    margin += scrollMargin;
+                                else if (dy > 0 && margin > -actionBarHeight)
+                                    margin -= scrollMargin;
+
+                                if (margin >= 0) margin = 0;
+                                if (margin <= -actionBarHeight + scrollMargin)
+                                    margin = -actionBarHeight + 1;
+
+                                params.topMargin = margin;
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        onScrollDisappearView.requestLayout();
+                                    }
+                                });
+
+                                Thread.sleep(5);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        try {
+                            Thread.sleep(100);
+                            changing = false;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
 
         if (showApplyOnBoot()) {
             applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
@@ -98,7 +158,7 @@ public class RecyclerViewFragment extends BaseFragment {
                 applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Utils.saveBoolean(getClass().getSimpleName() + "onboot", isChecked, getActivity());
+                        Utils.saveBoolean(getClassName() + "onboot", isChecked, getActivity());
                         Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
                                 getActionBar().getTitle()), getActivity());
                     }
@@ -107,6 +167,7 @@ public class RecyclerViewFragment extends BaseFragment {
 
             applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
             if (applyOnBootLayout != null) {
+                onScrollDisappearView = applyOnBootLayout;
                 applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -131,6 +192,7 @@ public class RecyclerViewFragment extends BaseFragment {
 
         if (!showApplyOnBoot()) showApplyOnBoot(false);
 
+        showOnScrollDisappear();
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected void onPreExecute() {
@@ -267,6 +329,16 @@ public class RecyclerViewFragment extends BaseFragment {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         layoutManager.setSpanCount(getSpan());
+        showOnScrollDisappear();
+    }
+
+    private void showOnScrollDisappear() {
+        if (onScrollDisappearView != null) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) onScrollDisappearView
+                    .getLayoutParams();
+            layoutParams.topMargin = 0;
+            onScrollDisappearView.requestLayout();
+        }
     }
 
     public ActionBar getActionBar() {
