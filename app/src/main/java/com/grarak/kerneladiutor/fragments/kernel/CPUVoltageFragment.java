@@ -75,7 +75,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
 
         for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
             mVoltageCard[i] = new EditTextCardView.DEditTextCard();
-            String freq = CPUVoltage.isFauxVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
+            String freq = CPUVoltage.isVddVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
                     .getFreqs().get(i)) / 1000) : CPUVoltage.getFreqs().get(i);
             mVoltageCard[i].setTitle(freq + getString(R.string.mhz));
 
