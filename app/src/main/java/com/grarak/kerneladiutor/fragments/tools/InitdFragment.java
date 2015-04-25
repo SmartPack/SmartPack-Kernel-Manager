@@ -68,6 +68,7 @@ public class InitdFragment extends RecyclerViewFragment {
         }
 
         for (final String file : Initd.getInitds()) {
+            if (file == null || file.isEmpty()) return;
             CardViewItem.DCardView mInitdCard = new CardViewItem.DCardView();
             mInitdCard.setDescription(file);
             mInitdCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
@@ -120,6 +121,7 @@ public class InitdFragment extends RecyclerViewFragment {
     @Override
     public void postInit(Bundle savedInstanceState) {
         super.postInit(savedInstanceState);
-        if (getCount() < 1) Utils.toast(getString(R.string.no_scripts_found), getActivity());
+        int count = Utils.getBoolean("hideinfocardinit.d", false, getActivity()) ? 1 : 2;
+        if (getCount() < count) Utils.toast(getString(R.string.no_scripts_found), getActivity());
     }
 }

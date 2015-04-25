@@ -96,7 +96,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         String files[] = new RootFile(path).list();
         if (files != null)
             for (String file : files)
-                if (file != null) {
+                if (file != null && !file.isEmpty()) {
                     String value = Utils.readFile(path + "/" + file);
                     if (value != null && !value.isEmpty() && !value.contains("\n")) {
                         PopupCardItem.DPopupCard mPathCard = new PopupCardItem.DPopupCard(null);
