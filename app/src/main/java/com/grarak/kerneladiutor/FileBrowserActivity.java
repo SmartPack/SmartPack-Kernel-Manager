@@ -235,8 +235,11 @@ public class FileBrowserActivity extends AppCompatActivity {
 
             List<File> files = new ArrayList<>();
             List<File> folders = new ArrayList<>();
-
-            for (File file : new File(current_path).listFiles()) {
+            File[] storageFiles = new File(current_path).listFiles();
+            if (storageFiles == null || storageFiles.length == 0) {
+                return;
+            }
+            for (File file : storageFiles) {
                 if (file.isDirectory()) folders.add(file);
                 else if (type != null) {
                     if (file.getName().endsWith("." + type)) files.add(file);
