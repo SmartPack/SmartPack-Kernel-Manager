@@ -222,10 +222,10 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     }
 
     /**
-     * @return a View that corresponds to a CPU freq state row as specified by
+     * View that corresponds to a CPU freq state row as specified by
      * the state parameter
      */
-    private View generateStateRow(CpuStateMonitor.CpuState state, ViewGroup parent) {
+    private void generateStateRow(CpuStateMonitor.CpuState state, ViewGroup parent) {
         // inflate the XML into a view in the parent
         LinearLayout layout = (LinearLayout) LayoutInflater.from(getActivity())
                 .inflate(R.layout.state_row, parent, false);
@@ -256,7 +256,6 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         // add it to parent and return
         parent.addView(layout);
-        return layout;
     }
 
     /**

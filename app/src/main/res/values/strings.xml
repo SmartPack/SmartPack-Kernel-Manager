@@ -10,13 +10,12 @@
     <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
 
     <!-- FileBrowser -->
-    <string name="storage">Storage</string>
     <string name="select_file">Select %s?</string>
 
     <!-- Apply on boot -->
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_finished">Your changes have been applied</string>
-    <string name="apply_on_boot_time">Applying your settings in %d seconds</string>
+    <string name="apply_on_boot_time">Applying your settings in %d second/s</string>
     <string name="apply_on_boot_enabled">Enabled apply on boot for %s section</string>
     <string name="apply_on_boot_disabled">Disabled apply on boot for %s section</string>
     <string name="apply_on_boot_failed">Failed to apply settings on boot</string>
@@ -437,7 +436,6 @@
     <string name="applied">Applied</string>
 
     <!-- Recovery -->
-    <string name="your_recovery">Your Recovery</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>

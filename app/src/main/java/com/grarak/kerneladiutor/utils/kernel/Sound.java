@@ -114,7 +114,7 @@ public class Sound implements Constants {
                 SPEAKER_GAIN_FILE = file;
                 return true;
             }
-        return true;
+        return false;
     }
 
     public static List<String> getFrancoSoundLimits() {

@@ -151,10 +151,10 @@ public class CpuStateMonitor implements Constants {
     }
 
     /**
-     * @return a list of all the CPU frequency states, which contains both a
+     * list of all the CPU frequency states, which contains both a
      * frequency and a duration (time spent in that state
      */
-    public List<CpuState> updateStates() throws CpuStateMonitorException {
+    public void updateStates() throws CpuStateMonitorException {
         _states.clear();
         try {
             FileReader fileReader = new FileReader(CPU_TIME_STATE);
@@ -174,7 +174,6 @@ public class CpuStateMonitor implements Constants {
         _states.add(new CpuState(0, sleepTime));
 
         Collections.sort(_states, Collections.reverseOrder());
-        return _states;
     }
 
     /**
