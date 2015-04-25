@@ -26,7 +26,7 @@ import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.BootService;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -59,12 +59,12 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void darkthemeInit() {
-        SwitchCardItem.DSwitchCard mDarkthemeCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mDarkthemeCard = new SwitchCardView.DSwitchCard();
         mDarkthemeCard.setDescription(getString(R.string.dark_theme));
         mDarkthemeCard.setChecked(Utils.DARKTHEME);
-        mDarkthemeCard.setOnDSwitchCardListener(new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+        mDarkthemeCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
             @Override
-            public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                 Utils.saveBoolean("darktheme", checked, getActivity());
                 startActivity(new Intent(getActivity(), MainActivity.class));
             }
@@ -74,13 +74,13 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void forceenglishlanguageInit() {
-        SwitchCardItem.DSwitchCard mForceEnglishLanguageCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mForceEnglishLanguageCard = new SwitchCardView.DSwitchCard();
         mForceEnglishLanguageCard.setDescription(getString(R.string.force_english_language));
         mForceEnglishLanguageCard.setChecked(Utils.getBoolean("forceenglish", false, getActivity()));
         mForceEnglishLanguageCard.setOnDSwitchCardListener(
-                new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                     @Override
-                    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                         Utils.saveBoolean("forceenglish", checked, getActivity());
                         if (!checked)
                             Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
@@ -92,14 +92,14 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void betainfoInit() {
-        SwitchCardItem.DSwitchCard mBetaInfoCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mBetaInfoCard = new SwitchCardView.DSwitchCard();
         mBetaInfoCard.setTitle(getString(R.string.beta_info));
         mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
         mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
         mBetaInfoCard.setOnDSwitchCardListener(
-                new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                     @Override
-                    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                         Utils.saveBoolean("betainfo", checked, getActivity());
                     }
                 });
@@ -113,13 +113,13 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mApplyonBootDividerCard);
 
-        SwitchCardItem.DSwitchCard mHideApplyOnBootCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mHideApplyOnBootCard = new SwitchCardView.DSwitchCard();
         mHideApplyOnBootCard.setTitle(getString(R.string.hide_apply_on_boot));
         mHideApplyOnBootCard.setDescription(getString(R.string.hide_apply_on_boot_summary));
         mHideApplyOnBootCard.setChecked(Utils.getBoolean("hideapplyonboot", true, getActivity()));
-        mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+        mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
             @Override
-            public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                 Utils.saveBoolean("hideapplyonboot", checked, getActivity());
             }
         });
@@ -143,26 +143,26 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mApplyonbootDelayCard);
 
-        SwitchCardItem.DSwitchCard mApplyonbootNotificationCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
         mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
         mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
         mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", true, getActivity()));
         mApplyonbootNotificationCard.setOnDSwitchCardListener(
-                new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                     @Override
-                    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                         Utils.saveBoolean("applyonbootnotification", checked, getActivity());
                     }
                 });
 
         addView(mApplyonbootNotificationCard);
 
-        SwitchCardItem.DSwitchCard mShowToastCard = new SwitchCardItem.DSwitchCard();
+        SwitchCardView.DSwitchCard mShowToastCard = new SwitchCardView.DSwitchCard();
         mShowToastCard.setDescription(getString(R.string.show_toast));
         mShowToastCard.setChecked(Utils.getBoolean("applyonbootshowtoast", true, getActivity()));
-        mShowToastCard.setOnDSwitchCardListener(new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+        mShowToastCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
             @Override
-            public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                 Utils.saveBoolean("applyonbootshowtoast", checked, getActivity());
             }
         });

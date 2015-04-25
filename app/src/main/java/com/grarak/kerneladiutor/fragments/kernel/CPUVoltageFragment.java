@@ -30,7 +30,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -41,10 +41,10 @@ import java.util.List;
  * Created by willi on 26.12.14.
  */
 public class CPUVoltageFragment extends RecyclerViewFragment implements
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener {
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private EditTextCardView.DEditTextCard[] mVoltageCard;
-    private SwitchCardItem.DSwitchCard mOverrideVminCard;
+    private SwitchCardView.DSwitchCard mOverrideVminCard;
 
     @Override
     public int getSpan() {
@@ -63,7 +63,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
         if (voltages == null) return;
 
         if (CPUVoltage.hasOverrideVmin()) {
-            mOverrideVminCard = new SwitchCardItem.DSwitchCard();
+            mOverrideVminCard = new SwitchCardView.DSwitchCard();
             mOverrideVminCard.setTitle(getString(R.string.override_vmin));
             mOverrideVminCard.setDescription(getString(R.string.override_vmin_summary));
             mOverrideVminCard.setChecked(CPUVoltage.isOverrideVminActive());
@@ -192,7 +192,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mOverrideVminCard)
             CPUVoltage.activateOverrideVmin(checked, getActivity());
     }

@@ -36,6 +36,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -58,6 +59,7 @@ public class RecyclerViewFragment extends BaseFragment {
     private final List<DAdapter.DView> views = new ArrayList<>();
     protected RecyclerView recyclerView;
     protected View applyOnBootLayout;
+    protected TextView applyOnBootText;
     protected SwitchCompat applyOnBootView;
     private DAdapter.Adapter adapter;
     private StaggeredGridLayoutManager layoutManager;
@@ -165,6 +167,7 @@ public class RecyclerViewFragment extends BaseFragment {
                 });
             }
 
+            applyOnBootText = (TextView) view.findViewById(R.id.apply_on_boot_text);
             applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
             if (applyOnBootLayout != null) {
                 onScrollDisappearView = applyOnBootLayout;
@@ -292,7 +295,7 @@ public class RecyclerViewFragment extends BaseFragment {
     public void addView(DAdapter.DView view) {
         if (views.indexOf(view) < 0) {
             views.add(view);
-            adapter.notifyDataSetChanged();
+            adapter.notifyItemInserted(views.indexOf(view));
         }
     }
 
@@ -300,7 +303,7 @@ public class RecyclerViewFragment extends BaseFragment {
         int position = views.indexOf(view);
         if (position > -1) {
             views.remove(position);
-            adapter.notifyDataSetChanged();
+            adapter.notifyItemRemoved(position);
         }
     }
 

@@ -61,4 +61,10 @@
         <item>@string/twrp</item>
     </string-array>
 
+    <!-- Initd -->
+    <string-array name="initd_menu">
+        <item>@string/information</item>
+        <item>@string/execute</item>
+    </string-array>
+
 </resources>

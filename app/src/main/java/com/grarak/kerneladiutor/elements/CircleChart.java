@@ -56,7 +56,7 @@ public class CircleChart extends View {
         density = getResources().getDisplayMetrics().density;
 
         mPaintBackground = new Paint();
-        mPaintBackground.setStrokeWidth(Math.round(1 * density));
+        mPaintBackground.setStrokeWidth(Math.round(density));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
         mPaintBackground.setColor(getResources().getColor(Utils.DARKTHEME ? R.color.circlebar_background_dark
@@ -66,7 +66,7 @@ public class CircleChart extends View {
         mPaintCircle = new Paint();
         mPaintCircle.setAntiAlias(true);
         mPaintCircle.setStyle(Paint.Style.STROKE);
-        mPaintCircle.setStrokeWidth(Math.round(1 * density));
+        mPaintCircle.setStrokeWidth(Math.round(2 * density));
         mPaintCircle.setStrokeCap(Paint.Cap.ROUND);
         mPaintCircle.setColor(mCircleColor);
 

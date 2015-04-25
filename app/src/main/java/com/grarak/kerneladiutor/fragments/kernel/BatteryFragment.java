@@ -26,7 +26,7 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -39,13 +39,13 @@ import java.util.List;
  * Created by willi on 03.01.15.
  */
 public class BatteryFragment extends RecyclerViewFragment implements
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mBatteryLevelCard;
     private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
 
-    private SwitchCardItem.DSwitchCard mForceFastChargeCard;
+    private SwitchCardView.DSwitchCard mForceFastChargeCard;
 
     private SeekBarCardView.DSeekBarCardView mBlxCard;
 
@@ -90,7 +90,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
     }
 
     private void forceFastChargeInit() {
-        mForceFastChargeCard = new SwitchCardItem.DSwitchCard();
+        mForceFastChargeCard = new SwitchCardView.DSwitchCard();
         mForceFastChargeCard.setTitle(getString(R.string.usb_fast_charge));
         mForceFastChargeCard.setDescription(getString(R.string.usb_fast_charge_summary));
         mForceFastChargeCard.setChecked(Battery.isForceFastChargeActive());
@@ -131,7 +131,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
     };
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mForceFastChargeCard)
             Battery.activateForceFastCharge(checked, getActivity());
     }

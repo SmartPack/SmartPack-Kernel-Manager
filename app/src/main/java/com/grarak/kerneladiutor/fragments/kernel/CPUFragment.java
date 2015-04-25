@@ -31,7 +31,7 @@ import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.elements.UsageCardView;
 import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -80,7 +80,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public static class CPUPart extends RecyclerViewFragment implements View.OnClickListener,
             PopupCardItem.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener,
             SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-            SwitchCardItem.DSwitchCard.OnDSwitchCardListener {
+            SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
         private UsageCardView.DUsageCard mUsageCard;
 
@@ -97,14 +97,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private PopupCardItem.DPopupCard mMcPowerSavingCard;
 
-        private SwitchCardItem.DSwitchCard mPowerSavingWqCard;
+        private SwitchCardView.DSwitchCard mPowerSavingWqCard;
 
         private PopupCardItem.DPopupCard mCFSSchedulerCard;
 
         private SeekBarCardView.DSeekBarCardView mTempLimitCard;
 
-        private SwitchCardItem.DSwitchCard mCpuBoostEnableCard;
-        private SwitchCardItem.DSwitchCard mCpuBoostDebugMaskCard;
+        private SwitchCardView.DSwitchCard mCpuBoostEnableCard;
+        private SwitchCardView.DSwitchCard mCpuBoostDebugMaskCard;
         private SeekBarCardView.DSeekBarCardView mCpuBoostMsCard;
         private PopupCardItem.DPopupCard mCpuBoostSyncThresholdCard;
         private SeekBarCardView.DSeekBarCardView mCpuBoostInputMsCard;
@@ -238,7 +238,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         }
 
         private void powerSavingWqInit() {
-            mPowerSavingWqCard = new SwitchCardItem.DSwitchCard();
+            mPowerSavingWqCard = new SwitchCardView.DSwitchCard();
             mPowerSavingWqCard.setDescription(getString(R.string.power_saving_wq));
             mPowerSavingWqCard.setChecked(CPU.isPowerSavingWqActive());
             mPowerSavingWqCard.setOnDSwitchCardListener(this);
@@ -269,7 +269,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private void cpuBoostInit() {
             List<DAdapter.DView> views = new ArrayList<>();
             if (CPU.hasCpuBoostEnable()) {
-                mCpuBoostEnableCard = new SwitchCardItem.DSwitchCard();
+                mCpuBoostEnableCard = new SwitchCardView.DSwitchCard();
                 mCpuBoostEnableCard.setDescription(getString(R.string.cpu_boost));
                 mCpuBoostEnableCard.setChecked(CPU.isCpuBoostActive());
                 mCpuBoostEnableCard.setOnDSwitchCardListener(this);
@@ -278,7 +278,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             }
 
             if (CPU.hasCpuBoostDebugMask()) {
-                mCpuBoostDebugMaskCard = new SwitchCardItem.DSwitchCard();
+                mCpuBoostDebugMaskCard = new SwitchCardView.DSwitchCard();
                 mCpuBoostDebugMaskCard.setTitle(getString(R.string.debug_mask));
                 mCpuBoostDebugMaskCard.setDescription(getString(R.string.debug_mask_summary));
                 mCpuBoostDebugMaskCard.setChecked(CPU.isCpuBoostDebugMaskActive());
@@ -407,7 +407,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+        public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
             if (dSwitchCard == mCpuBoostEnableCard)
                 CPU.activateCpuBoost(checked, getActivity());
             else if (dSwitchCard == mCpuBoostDebugMaskCard)

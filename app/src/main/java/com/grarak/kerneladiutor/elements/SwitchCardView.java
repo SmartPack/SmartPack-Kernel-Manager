@@ -32,7 +32,7 @@ import com.grarak.kerneladiutor.R;
 /**
  * Created by willi on 22.12.14.
  */
-public class SwitchCardItem extends BaseCardView {
+public class SwitchCardView extends BaseCardView {
 
     private HeaderCardView headerCardView;
 
@@ -45,7 +45,7 @@ public class SwitchCardItem extends BaseCardView {
 
     private OnSwitchCardListener onSwitchCardListener;
 
-    public SwitchCardItem(Context context) {
+    public SwitchCardView(Context context) {
         super(context, R.layout.switchcompat_cardview);
 
         setOnClickListener(new OnClickListener() {
@@ -62,7 +62,7 @@ public class SwitchCardItem extends BaseCardView {
                 if (checked != isChecked) {
                     checked = isChecked;
                     if (onSwitchCardListener != null)
-                        onSwitchCardListener.onChecked(SwitchCardItem.this, checked);
+                        onSwitchCardListener.onChecked(SwitchCardView.this, checked);
                 }
             }
         });
@@ -115,12 +115,12 @@ public class SwitchCardItem extends BaseCardView {
     }
 
     public interface OnSwitchCardListener {
-        void onChecked(SwitchCardItem switchCardItem, boolean checked);
+        void onChecked(SwitchCardView switchCardView, boolean checked);
     }
 
     public static class DSwitchCard implements DAdapter.DView {
 
-        private SwitchCardItem switchCardItem;
+        private SwitchCardView switchCardView;
 
         private String title;
         private String description;
@@ -131,24 +131,24 @@ public class SwitchCardItem extends BaseCardView {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new SwitchCardItem(viewGroup.getContext())) {
+            return new RecyclerView.ViewHolder(new SwitchCardView(viewGroup.getContext())) {
             };
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            switchCardItem = (SwitchCardItem) viewHolder.itemView;
+            switchCardView = (SwitchCardView) viewHolder.itemView;
 
-            if (title != null) switchCardItem.setTitle(title);
-            if (description != null) switchCardItem.setDescription(description);
-            switchCardItem.setChecked(checked);
+            if (title != null) switchCardView.setTitle(title);
+            if (description != null) switchCardView.setDescription(description);
+            switchCardView.setChecked(checked);
 
             if (fullspan) {
                 StaggeredGridLayoutManager.LayoutParams params =
                         new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
                 params.setFullSpan(true);
-                switchCardItem.setLayoutParams(params);
+                switchCardView.setLayoutParams(params);
             }
 
             setUpListener();
@@ -156,17 +156,17 @@ public class SwitchCardItem extends BaseCardView {
 
         public void setTitle(String title) {
             this.title = title;
-            if (switchCardItem != null) switchCardItem.setTitle(title);
+            if (switchCardView != null) switchCardView.setTitle(title);
         }
 
         public void setDescription(String description) {
             this.description = description;
-            if (switchCardItem != null) switchCardItem.setDescription(description);
+            if (switchCardView != null) switchCardView.setDescription(description);
         }
 
         public void setChecked(boolean checked) {
             this.checked = checked;
-            if (switchCardItem != null) switchCardItem.setChecked(checked);
+            if (switchCardView != null) switchCardView.setChecked(checked);
         }
 
         public void setFullSpan(boolean fullspan) {
@@ -179,10 +179,10 @@ public class SwitchCardItem extends BaseCardView {
         }
 
         private void setUpListener() {
-            if (onDSwitchCardListener != null && switchCardItem != null) {
-                switchCardItem.setOnSwitchCardListener(new OnSwitchCardListener() {
+            if (onDSwitchCardListener != null && switchCardView != null) {
+                switchCardView.setOnSwitchCardListener(new OnSwitchCardListener() {
                     @Override
-                    public void onChecked(SwitchCardItem switchCardItem, boolean checked) {
+                    public void onChecked(SwitchCardView switchCardView, boolean checked) {
                         DSwitchCard.this.checked = checked;
                         onDSwitchCardListener.onChecked(DSwitchCard.this, checked);
                     }

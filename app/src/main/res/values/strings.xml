@@ -58,6 +58,7 @@
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
     <string name="recovery">Recovery</string>
+    <string name="initd">Init.d</string>
     <string name="settings">Settings</string>
     <string name="faq">FAQ</string>
     <string name="about_us">About us</string>
@@ -450,6 +451,15 @@
     <string name="flash_now">Flash Now</string>
     <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
     <string name="add_action_first">You have to add an action first.</string>
+
+    <!-- Init.d -->
+    <string name="emulate_initd">Emulate Init.d</string>
+    <string name="emulate_initd_summary">If your device does not support Init.d you can enable Emulate Init.d. By enabling the Init.d Emulation the application will run the scripts after your device boots up, but before apply on boot.</string>
+    <string name="executing">Executing</string>
+    <string name="execute">Execute</string>
+    <string name="no_scripts_found">No scripts found!</string>
+    <string name="starting_initd">Starting Init.d emulation</string>
+    <string name="finishing_initd">Finishing Init.d emulation</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>

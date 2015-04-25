@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 
@@ -28,10 +28,10 @@ import com.grarak.kerneladiutor.utils.kernel.Sound;
  * Created by willi on 06.01.15.
  */
 public class SoundFragment extends RecyclerViewFragment implements
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
-    private SwitchCardItem.DSwitchCard mSoundControlEnableCard;
+    private SwitchCardView.DSwitchCard mSoundControlEnableCard;
     private SeekBarCardView.DSeekBarCardView mHeadphoneGainCard;
     private SeekBarCardView.DSeekBarCardView mHandsetMicrophoneGainCard;
     private SeekBarCardView.DSeekBarCardView mCamMicrophoneGainCard;
@@ -55,7 +55,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void soundControlEnableInit() {
-        mSoundControlEnableCard = new SwitchCardItem.DSwitchCard();
+        mSoundControlEnableCard = new SwitchCardView.DSwitchCard();
         mSoundControlEnableCard.setDescription(getString(R.string.sound_control));
         mSoundControlEnableCard.setChecked(Sound.isSoundControlActive());
         mSoundControlEnableCard.setOnDSwitchCardListener(this);
@@ -129,7 +129,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSoundControlEnableCard)
             Sound.activateSoundControl(checked, getActivity());
     }

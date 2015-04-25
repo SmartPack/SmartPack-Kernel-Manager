@@ -21,7 +21,7 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -34,11 +34,11 @@ import java.util.List;
  * Created by willi on 27.12.14.
  */
 public class KSMFragment extends RecyclerViewFragment implements Constants,
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
 
-    private SwitchCardItem.DSwitchCard mEnableKsmCard, mDeferredTimerCard;
+    private SwitchCardView.DSwitchCard mEnableKsmCard, mDeferredTimerCard;
 
     private List<String> mPagesToScanValues = new ArrayList<>(), mSleepMillisecondsValues = new ArrayList<>();
     private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
@@ -63,7 +63,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     }
 
     private void ksmInit() {
-        mEnableKsmCard = new SwitchCardItem.DSwitchCard();
+        mEnableKsmCard = new SwitchCardView.DSwitchCard();
         mEnableKsmCard.setTitle(getString(R.string.ksm_enable));
         mEnableKsmCard.setDescription(getString(R.string.ksm_enable_summary));
         mEnableKsmCard.setChecked(KSM.isKsmActive());
@@ -72,7 +72,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
         addView(mEnableKsmCard);
 
         if (KSM.hasDeferredTimer()) {
-            mDeferredTimerCard = new SwitchCardItem.DSwitchCard();
+            mDeferredTimerCard = new SwitchCardView.DSwitchCard();
             mDeferredTimerCard.setTitle(getString(R.string.ksm_deferred_timer));
             mDeferredTimerCard.setDescription(getString(R.string.ksm_deferred_timer_summary));
             mDeferredTimerCard.setChecked(KSM.isDeferredTimerActive());
@@ -107,7 +107,7 @@ public class KSMFragment extends RecyclerViewFragment implements Constants,
     }
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mEnableKsmCard) KSM.activateKSM(checked, getActivity());
         else if (dSwitchCard == mDeferredTimerCard)
             KSM.activateDeferredTimer(checked, getActivity());

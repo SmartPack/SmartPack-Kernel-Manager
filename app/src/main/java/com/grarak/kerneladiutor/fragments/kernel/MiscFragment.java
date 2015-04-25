@@ -24,7 +24,7 @@ import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.EditTextCardView;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -39,22 +39,22 @@ import java.util.List;
  */
 public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener,
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
         EditTextCardView.DEditTextCard.OnDEditTextCardListener {
 
     private SeekBarCardView.DSeekBarCardView mVibrationCard;
 
-    private SwitchCardItem.DSwitchCard mSmb135xWakeLockCard;
-    private SwitchCardItem.DSwitchCard mSensorIndWakeLockCard;
-    private SwitchCardItem.DSwitchCard mMsmHsicHostWakeLockCard;
+    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard;
+    private SwitchCardView.DSwitchCard mSensorIndWakeLockCard;
+    private SwitchCardView.DSwitchCard mMsmHsicHostWakeLockCard;
 
-    private SwitchCardItem.DSwitchCard mLoggerEnableCard;
+    private SwitchCardView.DSwitchCard mLoggerEnableCard;
 
-    private SwitchCardItem.DSwitchCard mFsyncCard;
-    private SwitchCardItem.DSwitchCard mDynamicFsyncCard;
+    private SwitchCardView.DSwitchCard mFsyncCard;
+    private SwitchCardView.DSwitchCard mDynamicFsyncCard;
 
     private PopupCardItem.DPopupCard mPowerSuspendModeCard;
-    private SwitchCardItem.DSwitchCard mOldPowerSuspendStateCard;
+    private SwitchCardView.DSwitchCard mOldPowerSuspendStateCard;
     private SeekBarCardView.DSeekBarCardView mNewPowerSuspendStateCard;
 
     private PopupCardItem.DPopupCard mTcpCongestionCard;
@@ -92,7 +92,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void smb135xWakeLockInit() {
-        mSmb135xWakeLockCard = new SwitchCardItem.DSwitchCard();
+        mSmb135xWakeLockCard = new SwitchCardView.DSwitchCard();
         mSmb135xWakeLockCard.setTitle(getString(R.string.smb135x_wakelock));
         mSmb135xWakeLockCard.setDescription(getString(R.string.smb135x_wakelock_summary));
         mSmb135xWakeLockCard.setChecked(Misc.isSmb135xWakeLockActive());
@@ -102,7 +102,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void sensorIndWakeLockInit() {
-        mSensorIndWakeLockCard = new SwitchCardItem.DSwitchCard();
+        mSensorIndWakeLockCard = new SwitchCardView.DSwitchCard();
         mSensorIndWakeLockCard.setTitle(getString(R.string.sensor_ind_wakelock));
         mSensorIndWakeLockCard.setDescription(getString(R.string.sensor_ind_wakelock_summary));
         mSensorIndWakeLockCard.setChecked(Misc.isSensorIndWakeLockActive());
@@ -112,7 +112,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void msmHsicHostWakeLockInit() {
-        mMsmHsicHostWakeLockCard = new SwitchCardItem.DSwitchCard();
+        mMsmHsicHostWakeLockCard = new SwitchCardView.DSwitchCard();
         mMsmHsicHostWakeLockCard.setTitle(getString(R.string.msm_hsic_host_wakelock));
         mMsmHsicHostWakeLockCard.setDescription(getString(R.string.msm_hsic_host_wakelock_summary));
         mMsmHsicHostWakeLockCard.setChecked(Misc.isMsmHsicHostWakeLockActive());
@@ -122,7 +122,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void loggerInit() {
-        mLoggerEnableCard = new SwitchCardItem.DSwitchCard();
+        mLoggerEnableCard = new SwitchCardView.DSwitchCard();
         mLoggerEnableCard.setDescription(getString(R.string.android_logger));
         mLoggerEnableCard.setChecked(Misc.isLoggerActive());
         mLoggerEnableCard.setOnDSwitchCardListener(this);
@@ -132,7 +132,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private void fsyncInit() {
         if (Misc.hasFsync()) {
-            mFsyncCard = new SwitchCardItem.DSwitchCard();
+            mFsyncCard = new SwitchCardView.DSwitchCard();
             mFsyncCard.setTitle(getString(R.string.fsync));
             mFsyncCard.setDescription(getString(R.string.fsync_summary));
             mFsyncCard.setChecked(Misc.isFsyncActive());
@@ -142,7 +142,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         }
 
         if (Misc.hasDynamicFsync()) {
-            mDynamicFsyncCard = new SwitchCardItem.DSwitchCard();
+            mDynamicFsyncCard = new SwitchCardView.DSwitchCard();
             mDynamicFsyncCard.setTitle(getString(R.string.dynamic_fsync));
             mDynamicFsyncCard.setDescription(getString(R.string.dynamic_fsync_summary));
             mDynamicFsyncCard.setChecked(Misc.isDynamicFsyncActive());
@@ -166,7 +166,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
         }
 
         if (Misc.hasOldPowerSuspendState()) {
-            mOldPowerSuspendStateCard = new SwitchCardItem.DSwitchCard();
+            mOldPowerSuspendStateCard = new SwitchCardView.DSwitchCard();
             mOldPowerSuspendStateCard.setTitle(getString(R.string.power_suspend_state));
             mOldPowerSuspendStateCard.setDescription(getString(R.string.power_suspend_state_summary));
             mOldPowerSuspendStateCard.setChecked(Misc.isOldPowerSuspendStateActive());
@@ -256,7 +256,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
         else if (dSwitchCard == mSensorIndWakeLockCard)

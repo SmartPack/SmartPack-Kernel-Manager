@@ -571,4 +571,7 @@ public interface Constants {
     // Build prop
     String BUILD_PROP = "/system/build.prop";
 
+    // Init.d
+    String INITD = "/system/etc/init.d";
+
 }

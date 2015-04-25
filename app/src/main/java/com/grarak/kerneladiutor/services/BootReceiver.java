@@ -20,6 +20,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.grarak.kerneladiutor.utils.Utils;
+
 /**
  * Created by willi on 27.12.14.
  */
@@ -27,6 +29,8 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (Utils.getBoolean("emulateinit.d", false, context))
+            context.startService(new Intent(context, InitdService.class));
         context.startService(new Intent(context, BootService.class));
     }
 

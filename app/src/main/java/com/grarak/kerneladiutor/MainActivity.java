@@ -60,6 +60,7 @@ import com.grarak.kerneladiutor.fragments.other.AboutusFragment;
 import com.grarak.kerneladiutor.fragments.other.FAQFragment;
 import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
+import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         ITEMS.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
+        ITEMS.add(new ListAdapter.Item(getString(R.string.initd), new InitdFragment()));
         ITEMS.add(new ListAdapter.Header(getString(R.string.other)));
         ITEMS.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
         ITEMS.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));

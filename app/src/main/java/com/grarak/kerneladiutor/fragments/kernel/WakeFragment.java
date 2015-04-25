@@ -21,7 +21,7 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardItem;
+import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 
@@ -33,17 +33,17 @@ import java.util.List;
  */
 public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
         SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
-        SwitchCardItem.DSwitchCard.OnDSwitchCardListener {
+        SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private PopupCardItem.DPopupCard mDt2wCard;
     private PopupCardItem.DPopupCard mS2wCard;
     private PopupCardItem.DPopupCard mT2wCard;
     private PopupCardItem.DPopupCard mWakeMiscCard;
     private PopupCardItem.DPopupCard mSleepMiscCard;
-    private SwitchCardItem.DSwitchCard[] mGestureCards;
+    private SwitchCardView.DSwitchCard[] mGestureCards;
 
     private SeekBarCardView.DSeekBarCardView mWakeTimeoutCard;
-    private SwitchCardItem.DSwitchCard mPowerKeySuspendCard;
+    private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -109,9 +109,9 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
 
     private void gestureInit() {
         List<String> gestures = Wake.getGestures(getActivity());
-        mGestureCards = new SwitchCardItem.DSwitchCard[gestures.size()];
+        mGestureCards = new SwitchCardView.DSwitchCard[gestures.size()];
         for (int i = 0; i < mGestureCards.length; i++) {
-            mGestureCards[i] = new SwitchCardItem.DSwitchCard();
+            mGestureCards[i] = new SwitchCardView.DSwitchCard();
             mGestureCards[i].setDescription(gestures.get(i));
             mGestureCards[i].setChecked(Wake.isGestureActive(i));
             mGestureCards[i].setOnDSwitchCardListener(this);
@@ -136,7 +136,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void powerKeySuspendInit() {
-        mPowerKeySuspendCard = new SwitchCardItem.DSwitchCard();
+        mPowerKeySuspendCard = new SwitchCardView.DSwitchCard();
         mPowerKeySuspendCard.setTitle(getString(R.string.power_key_suspend));
         mPowerKeySuspendCard.setDescription(getString(R.string.power_key_suspend_summary));
         mPowerKeySuspendCard.setChecked(Wake.isPowerKeySuspendActive());
@@ -164,7 +164,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
-    public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mPowerKeySuspendCard)
             Wake.activatePowerKeySuspend(checked, getActivity());
         else {

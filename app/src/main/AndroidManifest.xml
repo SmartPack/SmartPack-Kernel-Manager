@@ -38,6 +38,7 @@
         </receiver>
 
         <service android:name="com.grarak.kerneladiutor.services.BootService" />
+        <service android:name="com.grarak.kerneladiutor.services.InitdService" />
 
         <receiver android:name="com.grarak.kerneladiutor.services.ProfileWidget">
             <intent-filter>
