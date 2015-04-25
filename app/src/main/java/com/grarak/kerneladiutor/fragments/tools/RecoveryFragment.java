@@ -18,9 +18,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,7 +49,6 @@ import java.util.List;
 public class RecoveryFragment extends RecyclerViewFragment {
 
     private AppCompatSpinner mRecoverySpinner;
-    private AppCompatButton mFlashNowButton;
 
     private List<Recovery> mCommands = new ArrayList<>();
 
@@ -107,37 +104,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
             }
         });
 
-        mFlashNowButton = (AppCompatButton) view.findViewById(R.id.flash_now_button);
-        mFlashNowButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCommands.size() < 1) {
-                    Utils.toast(getString(R.string.add_action_first), getActivity());
-                    return;
-                }
-
-                Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mRecoverySpinner
-                                .getSelectedItemPosition() == 1 ? Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
-                        RootFile recoveryFile = new RootFile(file);
-                        recoveryFile.delete();
-                        for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(mRecoverySpinner.getSelectedItemPosition() == 1 ?
-                                    Recovery.RECOVERY.TWRP :
-                                    Recovery.RECOVERY.CWM))
-                                recoveryFile.write(command, true);
-                        }
-                        RootUtils.runCommand("reboot recovery");
-                    }
-                }, getActivity());
-            }
-        });
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mFlashNowButton.setVisibility(View.INVISIBLE);
-
         return (RecyclerView) view.findViewById(R.id.recycler_view);
     }
 
@@ -146,12 +112,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null)
             addAction(Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(data.getExtras().getString("path")));
-    }
-
-    @Override
-    public void postInit(Bundle savedInstanceState) {
-        super.postInit(savedInstanceState);
-        Utils.circleAnimate(mFlashNowButton, 0, mFlashNowButton.getHeight());
     }
 
     private void addAction(Recovery.RECOVERY_COMMAND recovery_command, File file) {
@@ -201,33 +161,53 @@ public class RecoveryFragment extends RecyclerViewFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String command = null;
-        int message = 0;
         switch (item.getItemId()) {
+            case R.id.menu_flash_now:
+                if (mCommands.size() < 1) {
+                    Utils.toast(getString(R.string.add_action_first), getActivity());
+                    break;
+                }
+
+                Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mRecoverySpinner
+                                .getSelectedItemPosition() == 1 ? Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                        RootFile recoveryFile = new RootFile(file);
+                        recoveryFile.delete();
+                        for (Recovery commands : mCommands) {
+                            for (String command : commands.getCommands(mRecoverySpinner.getSelectedItemPosition() == 1 ?
+                                    Recovery.RECOVERY.TWRP :
+                                    Recovery.RECOVERY.CWM))
+                                recoveryFile.write(command, true);
+                        }
+                        RootUtils.runCommand("reboot recovery");
+                    }
+                }, getActivity());
+                break;
             case R.id.menu_reboot:
                 command = "reboot";
-                message = R.string.reboot;
                 break;
             case R.id.menu_reboot_recovery:
                 command = "reboot recovery";
-                message = R.string.reboot_recovery;
                 break;
             case R.id.menu_reboot_bootloader:
                 command = "reboot bootloader";
-                message = R.string.reboot_bootloader;
                 break;
             case R.id.menu_reboot_download:
                 command = "reboot download";
-                message = R.string.reboot_download;
                 break;
         }
 
-        final String c = command;
-        Utils.confirmDialog(null, getString(message), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                RootUtils.runCommand(c);
-            }
-        }, getActivity());
+        if (command != null) {
+            final String c = command;
+            Utils.confirmDialog(null, getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    RootUtils.runCommand(c);
+                }
+            }, getActivity());
+        }
         return true;
     }
 

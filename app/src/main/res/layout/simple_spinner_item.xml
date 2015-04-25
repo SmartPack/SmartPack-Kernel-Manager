@@ -23,5 +23,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
-    android:layout_gravity="start"
+    android:gravity="start"
     android:textColor="@color/white" />

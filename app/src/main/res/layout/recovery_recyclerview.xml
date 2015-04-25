@@ -28,17 +28,7 @@
         android:layout_below="@+id/background_view"
         android:scrollbarStyle="outsideOverlay"
         android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:layout_above="@+id/flash_now_button" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/flash_now_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/flash_now"
-        android:textColor="@color/color_primary"
-        android:gravity="center"
-        android:layout_alignParentBottom="true" />
+        android:layout_width="wrap_content" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"

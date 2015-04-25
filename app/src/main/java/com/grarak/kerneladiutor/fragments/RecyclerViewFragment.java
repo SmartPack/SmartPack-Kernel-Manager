@@ -94,61 +94,62 @@ public class RecyclerViewFragment extends BaseFragment {
         int padding = (int) (2.5 * getResources().getDisplayMetrics().density);
         recyclerView.setPadding(padding, padding, padding, padding);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int scrollMargin = 5;
-            private boolean changing;
+        if (Utils.getBoolean("hideapplyonboot", true, getActivity()))
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                private int scrollMargin = 5;
+                private boolean changing;
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, final int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, final int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
 
-                if (changing || onScrollDisappearView == null) return;
-                int y = dy;
-                if (y < 0) y *= -1;
-                if (y < 5) return;
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        changing = true;
-                        int actionBarHeight = Utils.getActionBarHeight(getActivity());
-                        for (int i = 0; i <= actionBarHeight / scrollMargin; i++) {
+                    if (changing || onScrollDisappearView == null) return;
+                    int y = dy;
+                    if (y < 0) y *= -1;
+                    if (y < 5) return;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            changing = true;
+                            int actionBarHeight = Utils.getActionBarHeight(getActivity());
+                            for (int i = 0; i <= actionBarHeight / scrollMargin; i++) {
+                                try {
+                                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                                            onScrollDisappearView.getLayoutParams();
+
+                                    int margin = params.topMargin;
+                                    if (dy < 0 && margin < 0)
+                                        margin += scrollMargin;
+                                    else if (dy > 0 && margin > -actionBarHeight)
+                                        margin -= scrollMargin;
+
+                                    if (margin >= 0) margin = 0;
+                                    if (margin <= -actionBarHeight + scrollMargin)
+                                        margin = -actionBarHeight + 1;
+
+                                    params.topMargin = margin;
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            onScrollDisappearView.requestLayout();
+                                        }
+                                    });
+
+                                    Thread.sleep(5);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             try {
-                                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
-                                        onScrollDisappearView.getLayoutParams();
-
-                                int margin = params.topMargin;
-                                if (dy < 0 && margin < 0)
-                                    margin += scrollMargin;
-                                else if (dy > 0 && margin > -actionBarHeight)
-                                    margin -= scrollMargin;
-
-                                if (margin >= 0) margin = 0;
-                                if (margin <= -actionBarHeight + scrollMargin)
-                                    margin = -actionBarHeight + 1;
-
-                                params.topMargin = margin;
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        onScrollDisappearView.requestLayout();
-                                    }
-                                });
-
-                                Thread.sleep(5);
+                                Thread.sleep(100);
+                                changing = false;
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }
-                        try {
-                            Thread.sleep(100);
-                            changing = false;
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
-            }
-        });
+                    }).start();
+                }
+            });
 
         if (showApplyOnBoot()) {
             applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);

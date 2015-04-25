@@ -113,6 +113,19 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mApplyonBootDividerCard);
 
+        SwitchCardItem.DSwitchCard mHideApplyOnBootCard = new SwitchCardItem.DSwitchCard();
+        mHideApplyOnBootCard.setTitle(getString(R.string.hide_apply_on_boot));
+        mHideApplyOnBootCard.setDescription(getString(R.string.hide_apply_on_boot_summary));
+        mHideApplyOnBootCard.setChecked(Utils.getBoolean("hideapplyonboot", true, getActivity()));
+        mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardItem.DSwitchCard.OnDSwitchCardListener() {
+            @Override
+            public void onChecked(SwitchCardItem.DSwitchCard dSwitchCard, boolean checked) {
+                Utils.saveBoolean("hideapplyonboot", checked, getActivity());
+            }
+        });
+
+        addView(mHideApplyOnBootCard);
+
         final List<String> list = new ArrayList<>();
         for (int i = 5; i < 421; i *= 2)
             list.add(i + getString(R.string.sec));
