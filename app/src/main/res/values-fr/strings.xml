@@ -328,7 +328,6 @@
   <string name="reboot_download">Redémarrer Téléchargement</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
-  <string name="actions">Actions</string>
   <string name="wipe_data">Effacer les données</string>
   <string name="wipe_cache">Effacer le Cache</string>
   <string name="flash_zip">Flasher le Zip</string>

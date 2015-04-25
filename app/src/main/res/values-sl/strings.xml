@@ -365,6 +365,7 @@
   <string name="tcp">Algoritem TCP zastojev</string>
   <string name="tcp_summary">Transmission Control Protocol je eden od osnovnih protokolov Internetnega protokolskega sklada (IP), in je tako pogost, da celoten sklad večkrat imenujemo TCP/IP.</string>
   <string name="hostname">Ime gostitelja</string>
+  <string name="items_found">%d najdenih predmetov</string>
   <string name="backup">Varnostno kopiranje</string>
   <string name="add">Dodaj</string>
   <string name="edit">Uredi</string>
@@ -389,7 +390,6 @@
   <string name="reboot_download">Zagon v Download</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
-  <string name="actions">Dejanja</string>
   <string name="wipe_data">Počisti podatke</string>
   <string name="wipe_cache">Počisti predpomnilnik</string>
   <string name="flash_zip">Namesti zip</string>

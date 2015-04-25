@@ -252,8 +252,12 @@
   <string name="min_brightness">최소 밝기</string>
   <string name="min_brightness_summary">액정의 밝기를 기존보다 더 어둡게 할 수 있습니다.</string>
   <string name="max_brightness">최대 밝기</string>
+  <string name="max_brightness_summary">액정의 밝기를 기존보다 더 밝게 할 수 있습니다.</string>
   <string name="backlight_dimmer">더 어두운 최소 밝기</string>
   <string name="offset">오프셋</string>
+  <string name="negative_toggle">색상 반전</string>
+  <string name="negative_toggle_summary">메뉴 버튼을 빠르게 네 번 눌러 화면의 색상을 반전시킬 수 있도록 합니다.</string>
+  <string name="mdnie_global_controls">mDNIe 전체적 설정</string>
   <string name="dt2w">두 번 두드려서 화면 켜기</string>
   <string name="dt2w_summary">두 번 두드리면 장치의 화면이 켜집니다.</string>
   <string name="center">중앙</string>
@@ -286,7 +290,8 @@
   <string name="cam_microphone_gain">마이크 소리 증폭</string>
   <string name="speaker_gain">스피커 소리 증폭</string>
   <string name="headphone_poweramp_gain">헤드폰 엠프 소리 증폭</string>
-  <string name="microphone_gain">마이크 게인</string>
+  <string name="microphone_gain">마이크 증폭</string>
+  <string name="volume_gain">볼륨 증폭</string>
   <string name="battery_voltage">배터리 전압</string>
   <string name="battery_level">배터리 잔량</string>
   <string name="battery_temperature">배터리 온도</string>
@@ -346,6 +351,7 @@
   <string name="tcp">TCP 혼잡 알고리즘</string>
   <string name="tcp_summary">TCP는 IP의 핵심 프로토콜 중 하나이며, 전체 제품군은 TCP/IP라고 불리는 것이 일반적입니다.</string>
   <string name="hostname">호스트네임</string>
+  <string name="items_found">%d 개 항목 발견됨</string>
   <string name="backup">백업</string>
   <string name="add">추가</string>
   <string name="edit">수정</string>
@@ -361,7 +367,7 @@
   <string name="apply">적용</string>
   <string name="no_settings">설정이 없습니다!</string>
   <string name="empty_name">이름이 비었습니다.</string>
-  <string name="press_again_to_apply">적용 버튼을 다시 눌러주세요.</string>
+  <string name="press_again_to_apply">적용하려면 다시 한 번 눌러주세요.</string>
   <string name="applied">적용됨</string>
   <string name="your_recovery">당신의 리커버리</string>
   <string name="reboot">재부팅</string>
@@ -370,7 +376,6 @@
   <string name="reboot_download">다운로드 모드로 재부팅</string>
   <string name="cwm_recovery">CWM 리커버리</string>
   <string name="twrp">TWRP 리커버리</string>
-  <string name="actions">동작</string>
   <string name="wipe_data">데이터 와이프</string>
   <string name="wipe_cache">캐시 와이프</string>
   <string name="flash_zip">Zip 파일 플래싱</string>

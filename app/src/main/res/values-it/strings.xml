@@ -390,7 +390,6 @@
   <string name="reboot_download">Riavvia download</string>
   <string name="cwm_recovery">Cwm recovery</string>
   <string name="twrp">Twrp</string>
-  <string name="actions">Azioni</string>
   <string name="wipe_data">Cancella dati</string>
   <string name="wipe_cache">Cancella la cache</string>
   <string name="flash_zip">Flash Zip</string>
