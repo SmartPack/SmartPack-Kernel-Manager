@@ -9,8 +9,10 @@
   <string name="cancel">Abbrechen</string>
   <string name="current_value_not_supported">Aktueller Wert wird nicht unterstützt</string>
   <string name="beta_message">Danke, dass du Beta Tester bist. Falls du irgendwelche Probleme bekommen solltest, zögere bitte nicht, mich zu kontaktieren. Momentan benutzt du Version %s.</string>
+  <string name="select_file">Wähle %s?</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_finished">Deine Änderungen wurden übernommen</string>
+  <string name="apply_on_boot_time">Anwenden der Einstellungen in %d Sekunden</string>
   <string name="apply_on_boot_enabled">Aktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_disabled">Deaktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_failed">Fehler beim Anwenden von Einstellungen beim Booten</string>
@@ -42,6 +44,8 @@
   <string name="misc_controls">Verschiedene Einstellungen</string>
   <string name="build_prop_editor">Build prop-Bearbeiter</string>
   <string name="profile">Profil</string>
+  <string name="recovery">Recovery</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Einstellungen</string>
   <string name="faq">FAQ (Häufig gestellte Fragen)</string>
   <string name="about_us">Über uns</string>
@@ -55,6 +59,7 @@
   <string name="cpu_information">CPU-Information</string>
   <string name="memory_information">Speicherinformation</string>
   <string name="cpu_usage">CPU-Nutzung</string>
+  <string name="cpu_temp">CPU Temperatur</string>
   <string name="current_freq">Aktuelle Frequenz</string>
   <string name="core">Kern %d</string>
   <string name="offline">Ausgeschaltet</string>
@@ -303,9 +308,9 @@
   <string name="cpu_freq_not_sticking">Warum bleibt meine eingestellte CPU-Frequenz nicht bestehen?</string>
   <string name="cpu_freq_not_sticking_summary">Dies hat mehrere Gründe. Viele Kernel haben heutzutage ihre eigenen Hotplug-Systeme, die die CPU-Frequenz steuern und CyanogenMod hat eigene CPU-Boost Implementierungen, die die Frequenz steuern. Ich empfehle, dass Sie die CPU-Frequenzen nicht verändern und diese Aufgabe dem Kernel überlassen.</string>
   <string name="feature_not_appearing">Warum werden einige Funktionen nicht angezeigt?</string>
-  <string name="feature_not_appearing_summary">Einstellmöglichkeiten sind Kernel abhängig.</string>
-  <string name="feature_function">Was macht Einstellung \"X\"?</string>
-  <string name="feature_function_summary">Wenn Sie nicht wissen, was diese Einstellung tut, verändern Sie es auch nicht. Informieren Sie sich vorher gut, bevor Sie mit Ihrer teuren Hardware experimentieren.</string>
+  <string name="feature_not_appearing_summary">Die Einstellmöglichkeiten sind vom Kernel abhängig.</string>
+  <string name="feature_function">Was macht die Einstellung \"X\"?</string>
+  <string name="feature_function_summary">Wenn Sie nicht wissen, was diese Einstellung tut, verändern Sie diese auch nicht. Informieren Sie sich vorher gut, bevor Sie mit Ihrer teuren Hardware experimentieren.</string>
   <string name="add_new_features">Kannst du Funktion x und y hinzufügen?</string>
   <string name="add_new_features_summary">Das ist schwer zu sagen. Ich versuche, alle Funktionen hinzuzufügen, aber es ist schwer, diese App universal für alle Geräte machen. Ich habe nur ein Samsung Galaxy S4 (I9500) und ein HTC Desire 816, also bitte keine Beschwerden, wenn Funktionen nicht sofort eingebaut werden.</string>
   <string name="license">Lizenz</string>
