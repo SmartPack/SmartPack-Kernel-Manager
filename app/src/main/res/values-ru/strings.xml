@@ -10,7 +10,6 @@
   <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_finished">Ваши настройки применены</string>
-  <string name="apply_on_boot_time">Применение настроек через %d секунды</string>
   <string name="apply_on_boot_enabled">Включено применение настрокек при загрузке для секции %s</string>
   <string name="apply_on_boot_disabled">Выключено применение настрокек при загрузке для секции %s</string>
   <string name="apply_on_boot_failed">Ошибка при применении настроек при загрузке</string>

@@ -10,7 +10,6 @@
   <string name="beta_message">Köszönöm, hogy béta teszter! Ha bármilyen probléma merülne fel, ne habozzon a kapcsolatba lépéssel. Az éppen futó változat %s.</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_finished">A módosítások érvénybe léptek</string>
-  <string name="apply_on_boot_time">A beállításaid %d másodperc múlva érvénybe lépnek</string>
   <string name="apply_on_boot_enabled">Bootolás után a(z) %s szekció módosításai életbe lépnek</string>
   <string name="apply_on_boot_disabled">Bootolás után a(z) %s szekció módosításai érvényüket vesztik</string>
   <string name="apply_on_boot_failed">A(z) %s szekció beállításai bootlás után sikertelenek</string>

@@ -10,7 +10,6 @@
   <string name="beta_message">Gracias por ser un Beta Tester! Si encuentras algun problema, no dudes en ponerte en contacto conmigo. Actualmente está utilizando la versión %s.</string>
   <string name="apply_on_boot">Aplicar al Inicio</string>
   <string name="apply_on_boot_finished">Los cambios han sido aplicados</string>
-  <string name="apply_on_boot_time">Aplicar su configuración en %d segundos</string>
   <string name="apply_on_boot_enabled">Arranque al inicio aplicado para la sección de %s</string>
   <string name="apply_on_boot_disabled">Desactivado el arranque al inicio para la sección de %s</string>
   <string name="apply_on_boot_failed">Error aplicando la configuración en el arranque</string>

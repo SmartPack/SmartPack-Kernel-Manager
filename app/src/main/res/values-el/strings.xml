@@ -10,7 +10,6 @@
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
   <string name="apply_on_boot_finished">Οι αλλαγές σας έχουν εφαρμοστεί</string>
-  <string name="apply_on_boot_time">Εφαρμογή των ρυθμίσεων σας σε %d δευτερόλεπτα</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

@@ -8,14 +8,17 @@
   <string name="cancel">取消</string>
   <string name="current_value_not_supported">不支援目前的數值</string>
   <string name="beta_message">謝謝你， Beta 版測試人員 ！如果你有任何問題，請不要猶豫與我聯繫。您當前正在運行的版本 %s。</string>
+  <string name="select_file">選擇 %s 嗎？</string>
   <string name="apply_on_boot">開機後自動套用</string>
   <string name="apply_on_boot_finished">您的更改已套用</string>
-  <string name="apply_on_boot_time">在 %d 秒內套用您的設定</string>
   <string name="apply_on_boot_enabled">啟用啟動 %s 節適用</string>
   <string name="apply_on_boot_disabled">取消開機自動套用 %s</string>
   <string name="apply_on_boot_failed">開機自動套用設定失敗</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
+  <string name="kb">kB</string>
+  <string name="ms">毫秒</string>
+  <string name="mb">MB</string>
   <string name="min">分</string>
   <string name="sec">秒</string>
   <string name="information">資訊</string>
@@ -38,6 +41,7 @@
   <string name="misc_controls">Misc 控制項</string>
   <string name="build_prop_editor">Build prop 編輯器</string>
   <string name="profile">設定檔</string>
+  <string name="recovery">修復模式</string>
   <string name="settings">設定</string>
   <string name="faq">FAQ</string>
   <string name="about_us">關於我們</string>

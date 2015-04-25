@@ -10,7 +10,6 @@
   <string name="beta_message">Hvala, da ste beta preizkuševalec/-ka! Če imate kakršne koli težave prosim ne oklevajte in mi pišete. Trenutno uporabljate različico %s.</string>
   <string name="apply_on_boot">Uporabi ob zagonu</string>
   <string name="apply_on_boot_finished">Vaše spremembe so bile uporabljene</string>
-  <string name="apply_on_boot_time">Nastavitve bodo uporabljene v %d sekundah</string>
   <string name="apply_on_boot_enabled">Omogočena uporaba ob zagonu za %s oddelek</string>
   <string name="apply_on_boot_disabled">Onemogočena uporaba ob zagonu za %s oddelek</string>
   <string name="apply_on_boot_failed">Neuspela uporaba nastavitev ob zagonu</string>
@@ -383,7 +382,6 @@
   <string name="empty_name">Ime je prazno</string>
   <string name="press_again_to_apply">Pritisnite znova za uporabo.</string>
   <string name="applied">Uporabljeno</string>
-  <string name="your_recovery">Vaš Recovery</string>
   <string name="reboot">Ponovni zagon</string>
   <string name="reboot_recovery">Zagon v Recovery</string>
   <string name="reboot_bootloader">Zagon v Bootloader</string>

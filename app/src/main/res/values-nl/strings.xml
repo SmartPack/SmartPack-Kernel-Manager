@@ -10,7 +10,6 @@
   <string name="beta_message">Bedankt voor het zijn van een beta tester! Als er enige problemen zijn, aarzel dan niet en contacteer mij. Jij draait momenteel versie nummer %s.</string>
   <string name="apply_on_boot">Toepassen bij het opstarten</string>
   <string name="apply_on_boot_finished">Je wijzigingen zijn toegepast</string>
-  <string name="apply_on_boot_time">Uw instellingen worden toegepast in %d seconden</string>
   <string name="apply_on_boot_disabled">Uw boot instellingen voor %s zijn Niet toegepast</string>
   <string name="apply_on_boot_failed">Toepassen van aangebrachte instellingen mislukt bij het opstarten</string>
   <string name="mhz">MHz</string>

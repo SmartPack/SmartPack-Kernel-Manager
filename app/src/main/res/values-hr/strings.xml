@@ -10,7 +10,6 @@
   <string name="beta_message">Hvala Vam što testirate beta-verziju! Ukoliko se suočite s bilo kakvim problemima, molim kontaktirajte me. Trenutno koristite verziju %s.</string>
   <string name="apply_on_boot">Aktiviranje pri pokretanju sustava</string>
   <string name="apply_on_boot_finished">Vaše promjene su primijenjene</string>
-  <string name="apply_on_boot_time">Primjena postavki za %d sekundi</string>
   <string name="apply_on_boot_enabled">Aktivirana je primjena za %s dio pri podizanju sustava</string>
   <string name="apply_on_boot_disabled">Onemogućena je primjena za %s dio pri podizanju sustava</string>
   <string name="apply_on_boot_failed">Nije uspjela primjena postavki pri podizanju sustava</string>

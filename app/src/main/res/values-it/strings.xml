@@ -10,7 +10,6 @@
   <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
   <string name="apply_on_boot">Applica all\'avvio</string>
   <string name="apply_on_boot_finished">Le modifiche sono state applicate</string>
-  <string name="apply_on_boot_time">Le impostazioni saranno applicate tra %d secondi</string>
   <string name="apply_on_boot_enabled">Applicazione all\'avvio abilitata per la sezione %s</string>
   <string name="apply_on_boot_disabled">Applicazione all\'avvio disabilitata per la sezione %s</string>
   <string name="apply_on_boot_failed">Applicazione delle impostazioni all\'avvio fallita</string>
@@ -383,7 +382,6 @@
   <string name="empty_name">Il nome è vuoto</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
   <string name="applied">Applicato</string>
-  <string name="your_recovery">La tua recovery</string>
   <string name="reboot">Riavvia</string>
   <string name="reboot_recovery">Riavviare in recovery</string>
   <string name="reboot_bootloader">Riavvia in modalità Bootloader</string>

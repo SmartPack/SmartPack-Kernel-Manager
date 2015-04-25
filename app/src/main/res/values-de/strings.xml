@@ -11,7 +11,6 @@
   <string name="beta_message">Danke, dass du Beta Tester bist. Falls du irgendwelche Probleme bekommen solltest, zögere bitte nicht, mich zu kontaktieren. Momentan benutzt du Version %s.</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_finished">Deine Änderungen wurden übernommen</string>
-  <string name="apply_on_boot_time">Anwenden der Einstellungen in %d Sekunden</string>
   <string name="apply_on_boot_enabled">Aktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_disabled">Deaktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_failed">Fehler beim Anwenden von Einstellungen beim Booten</string>

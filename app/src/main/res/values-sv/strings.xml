@@ -10,7 +10,6 @@
   <string name="beta_message">Tack för att du har valt att beta-testa! Tveka inte att kontaka mig om du stöter på några problem. Du använder just nu version %s.</string>
   <string name="apply_on_boot">aplicar en el arranque</string>
   <string name="apply_on_boot_finished">Dina ändringar har tillämpats</string>
-  <string name="apply_on_boot_time">Dina inställningar tillämpas om %d sekunder</string>
   <string name="apply_on_boot_enabled">Aktiverat tillämpning vid uppstart för avdelning %s</string>
   <string name="apply_on_boot_disabled">Inaktiverat tillämpning vid uppstart för avdelning %s</string>
   <string name="apply_on_boot_failed">Misslyckades att tillämpa inställningarna vid uppstart</string>

@@ -10,7 +10,6 @@
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="apply_on_boot_finished">Vos modifications ont été appliquées</string>
-  <string name="apply_on_boot_time">Application de vos paramètres en %d secondes</string>
   <string name="apply_on_boot_enabled">Applicage au démarrage activé pour la section %s</string>
   <string name="apply_on_boot_disabled">Applicage au démarrage désactivé pour la section %s</string>
   <string name="apply_on_boot_failed">Impossible d\'appliquer les paramètres au démarrage</string>
@@ -321,7 +320,6 @@
   <string name="empty_name">Le Nom est vide</string>
   <string name="press_again_to_apply">Appuyez à nouveau pour appliquer.</string>
   <string name="applied">Appliqué</string>
-  <string name="your_recovery">Votre Sauvegarde</string>
   <string name="reboot">Redémarrer</string>
   <string name="reboot_recovery">Redémarrer Recovery</string>
   <string name="reboot_bootloader">Redémarrer Bootloader</string>

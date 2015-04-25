@@ -10,7 +10,6 @@
   <string name="beta_message">Хвала вам што тестирате бета издање. Ако наиђете на проблеме, не оклевајте да ме контактирате. Тренутно издање је%s.</string>
   <string name="apply_on_boot">Примени при подизању система</string>
   <string name="apply_on_boot_finished">Ваше измене су примењене</string>
-  <string name="apply_on_boot_time">Примењујем ваше поставке за %d секунди</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>

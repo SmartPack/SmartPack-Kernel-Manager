@@ -10,7 +10,6 @@
   <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
   <string name="apply_on_boot">起動時に適用</string>
   <string name="apply_on_boot_finished">設定が適用されました。</string>
-  <string name="apply_on_boot_time">後%d秒で設定を適用します。</string>
   <string name="apply_on_boot_enabled">%sセクションで起動時の適用を有効にしました。</string>
   <string name="apply_on_boot_disabled">%sセクションで起動時の適用を無効にしました。</string>
   <string name="apply_on_boot_failed">起動時に設定を適用できませんでした。</string>
@@ -382,7 +381,6 @@
   <string name="empty_name">名前が入力されていません。</string>
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
-  <string name="your_recovery">リカバリ</string>
   <string name="reboot">再起動</string>
   <string name="reboot_recovery">リカバリへ再起動</string>
   <string name="reboot_bootloader">Bootloaderへ再起動</string>
