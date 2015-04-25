@@ -32,9 +32,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.grarak.kerneladiutor.FileBrowserActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -53,7 +53,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     private AppCompatSpinner mRecoverySpinner;
     private AppCompatButton mFlashNowButton;
 
-    private List<Recovery> mCommands;
+    private List<Recovery> mCommands = new ArrayList<>();
 
     @Override
     public boolean showApplyOnBoot() {
@@ -99,9 +99,10 @@ public class RecoveryFragment extends RecyclerViewFragment {
         view.findViewById(R.id.flash_zip_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/zip");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+                Bundle args = new Bundle();
+                args.putString(FileBrowserActivity.FILE_TYPE_ARG, "zip");
+                Intent intent = new Intent(getActivity(), FileBrowserActivity.class);
+                intent.putExtras(args);
                 startActivityForResult(intent, 0);
             }
         });
@@ -144,18 +145,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null)
-            addAction(Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(data.getDataString()));
-    }
-
-    @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-        mCommands = new ArrayList<>();
-
-        DividerCardView.DDividerCard mActionsDividerCard = new DividerCardView.DDividerCard();
-        mActionsDividerCard.setText(getString(R.string.actions));
-
-        addView(mActionsDividerCard);
+            addAction(Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(data.getExtras().getString("path")));
     }
 
     @Override
@@ -174,10 +164,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 description = getString(R.string.wipe_cache);
                 break;
             case FLASH_ZIP:
-                description = file.getAbsolutePath().replace("/file:", "").replace("/content:/com.estrongs.files", "")
-                        .replace("/content:/com.android.externalstorage.documents", "");
-                if (!description.endsWith(".zip") || description.startsWith("file:") || description.startsWith("/content:")
-                        || description.startsWith("content:")) {
+                description = file.getAbsolutePath();
+                if (!description.endsWith(".zip")) {
                     Utils.toast(getString(R.string.went_wrong), getActivity());
                     return;
                 }

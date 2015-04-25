@@ -19,6 +19,22 @@
 
     <style name="AppThemeDark" parent="AppBaseThemeDark" />
 
+    <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_light</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppThemeActionBarDark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_dark</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="SwitchCompat">
         <item name="colorControlActivated">@android:color/white</item>
     </style>

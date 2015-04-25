@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- FileBrowser -->
+    <string-array name="storage_menu">
+        <item>@string/internal_storage</item>
+        <item>@string/external_storage</item>
+    </string-array>
+
     <!-- CPU -->
     <string-array name="mc_power_saving_items">
         <item>@string/disabled</item>

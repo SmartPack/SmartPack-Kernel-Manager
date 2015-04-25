@@ -21,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import com.grarak.kerneladiutor.utils.Utils;
+
 public class TextActivity extends AppCompatActivity {
 
     public static final String ARG_TEXT = "text";
@@ -28,6 +30,8 @@ public class TextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Utils.getBoolean("darktheme", false, this))
+            super.setTheme(R.style.AppThemeActionBarDark);
 
         TextView text = new TextView(this);
         setContentView(text);

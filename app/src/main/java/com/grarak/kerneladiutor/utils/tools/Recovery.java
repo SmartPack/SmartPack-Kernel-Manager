@@ -38,11 +38,6 @@ public class Recovery {
         WIPE_DATA, WIPE_CACHE, FLASH_ZIP
     }
 
-    private String[] internalStoragePaths = {"/sdcard", "/storage/emulated/0", "/storage/sdcard0", "/mnt/sdcard",
-            "/mnt/emmc", "/emmc", Environment.getExternalStorageDirectory().toString()};
-    private String[] externalStoragePaths = {"/external_sd", "/storage/sdcard1", "/mnt/external_sd", "/storage/extSdCard",
-            "/mnt/extSdCard", "/storage/ext_sd", Utils.getExternalStorage()};
-
     private final RECOVERY_COMMAND recovery_command;
     private final File file;
 
@@ -85,13 +80,13 @@ public class Recovery {
         public String formatFile(File file) {
             String zip = file.getAbsolutePath();
 
-            for (String storage : internalStoragePaths)
-                if (storage != null && zip.startsWith(storage + "/") && !storage.isEmpty())
-                    return zip.replace(storage + "/", Utils.getInternalStorage() + "/");
+            String internalStorage = Environment.getExternalStorageDirectory().toString();
+            if (zip.startsWith(internalStorage + "/"))
+                return zip.replace(internalStorage + "/", Utils.getInternalStorage() + "/");
 
-            for (String storage : externalStoragePaths)
-                if (storage != null && zip.startsWith(storage + "/") && !storage.isEmpty())
-                    return zip.replace(storage + "/", getExternalPath() + "/");
+            String externalStorage = Utils.getExternalStorage();
+            if (externalStorage != null && zip.startsWith(externalStorage + "/"))
+                return zip.replace(externalStorage + "/", getExternalPath() + "/");
 
             return zip;
         }

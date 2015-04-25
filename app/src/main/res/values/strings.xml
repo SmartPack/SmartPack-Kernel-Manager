@@ -9,6 +9,10 @@
     <string name="current_value_not_supported">Current value is not supported</string>
     <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
 
+    <!-- FileBrowser -->
+    <string name="storage">Storage</string>
+    <string name="select_file">Select %s?</string>
+
     <!-- Apply on boot -->
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_finished">Your changes have been applied</string>
@@ -440,7 +444,6 @@
     <string name="reboot_download">Reboot Download</string>
     <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
-    <string name="actions">Actions</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
