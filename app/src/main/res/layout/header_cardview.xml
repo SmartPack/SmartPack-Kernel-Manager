@@ -7,6 +7,5 @@
     android:paddingTop="@dimen/card_padding"
     android:paddingLeft="@dimen/card_padding"
     android:paddingRight="@dimen/card_padding"
-    android:paddingBottom="@dimen/card_padding"
     android:textSize="16sp"
     android:gravity="center_vertical" />
