@@ -5,7 +5,7 @@
     android:minHeight="30dp"
     android:ellipsize="middle"
     android:maxLines="1"
-    android:padding="16dp"
+    android:padding="@dimen/card_padding"
     android:gravity="center"
     android:textAllCaps="true"
     android:textColor="@color/white"

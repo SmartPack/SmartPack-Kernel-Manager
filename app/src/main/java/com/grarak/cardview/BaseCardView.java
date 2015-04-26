@@ -63,11 +63,11 @@ public abstract class BaseCardView extends CardView {
     public BaseCardView(Context context, AttributeSet attributeSet, int layout) {
         super(context, attributeSet);
 
-        int density = (int) getResources().getDisplayMetrics().density;
+        int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(4 * density, 2 * density, 4 * density, 2 * density);
+        layoutParams.setMargins(padding, padding, padding, padding);
         setLayoutParams(layoutParams);
-        setRadius(2 * density);
+        setRadius(getResources().getDimensionPixelSize(R.dimen.basecard_radius));
 
         setCardBackgroundColor(getResources().getColor(Utils.DARKTHEME ?
                 R.color.card_background_dark : R.color.card_background_light));

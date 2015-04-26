@@ -93,8 +93,8 @@ public class RecyclerViewFragment extends BaseFragment {
             }
         });
         setRecyclerView(recyclerView);
-        int padding = (int) (2.5 * getResources().getDisplayMetrics().density);
-        recyclerView.setPadding(padding, padding, padding, padding);
+        int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
+        recyclerView.setPadding(padding, 0, padding, 0);
 
         if (Utils.getBoolean("hideapplyonboot", true, getActivity()))
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -185,7 +185,7 @@ public class RecyclerViewFragment extends BaseFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
             if (fabView != null) {
-                fabView.setElevation(getResources().getDisplayMetrics().density * 500);
+                fabView.setElevation(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
                 fabView.setVisibility(View.INVISIBLE);
             }
         }

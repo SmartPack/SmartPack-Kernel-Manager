@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_primary"
-    android:padding="16dp">
+    android:padding="@dimen/card_padding">
 
     <TextView
         android:id="@+id/info_text"
@@ -16,7 +16,7 @@
         android:id="@+id/ok_button"
         android:text="@string/ok"
         android:background="@drawable/button_bg"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/card_padding"
         android:layout_gravity="right"
         android:textColor="@color/white"
         android:gravity="center"

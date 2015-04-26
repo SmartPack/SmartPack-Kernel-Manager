@@ -24,6 +24,8 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.grarak.kerneladiutor.R;
+
 /**
  * Created by willi on 21.04.15.
  */
@@ -71,7 +73,7 @@ public class ColorPalette extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int desiredWidth = getResources().getDisplayMetrics().widthPixels;
-        int desiredHeight = 100 * (int) getResources().getDisplayMetrics().density;
+        int desiredHeight = getResources().getDimensionPixelSize(R.dimen.colorpalette_height);
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);

@@ -3,10 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    android:paddingLeft="@dimen/card_padding"
+    android:paddingRight="@dimen/card_padding"
+    android:paddingStart="@dimen/card_padding"
+    android:paddingEnd="@dimen/card_padding"
     android:paddingBottom="6dp"
     android:gravity="center_vertical">
 
@@ -14,7 +14,7 @@
         android:id="@+id/description_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
+        android:paddingBottom="@dimen/card_padding"
         android:visibility="gone" />
 
     <TextView

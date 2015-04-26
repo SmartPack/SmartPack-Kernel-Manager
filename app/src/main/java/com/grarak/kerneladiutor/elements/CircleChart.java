@@ -39,7 +39,8 @@ public class CircleChart extends View {
     private final Paint mPaintBackground;
     private final RectF mRectF;
     private final int mCircleColor;
-    private final float density;
+    private final int mPadding;
+    private final int mTextsize;
 
     public CircleChart(Context context) {
         this(context, null);
@@ -53,10 +54,11 @@ public class CircleChart extends View {
         super(context, attrs, defStyle);
 
         mCircleColor = getResources().getColor(R.color.circlebar_text);
-        density = getResources().getDisplayMetrics().density;
+        mPadding = getResources().getDimensionPixelSize(R.dimen.circlechart_padding);
+        mTextsize = getResources().getDimensionPixelSize(R.dimen.circlechart_textsize);
 
         mPaintBackground = new Paint();
-        mPaintBackground.setStrokeWidth(Math.round(density));
+        mPaintBackground.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.circlechart_background_stroke));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
         mPaintBackground.setColor(getResources().getColor(Utils.DARKTHEME ? R.color.circlebar_background_dark
@@ -66,7 +68,7 @@ public class CircleChart extends View {
         mPaintCircle = new Paint();
         mPaintCircle.setAntiAlias(true);
         mPaintCircle.setStyle(Paint.Style.STROKE);
-        mPaintCircle.setStrokeWidth(Math.round(2 * density));
+        mPaintCircle.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.circlechart_stroke));
         mPaintCircle.setStrokeCap(Paint.Cap.ROUND);
         mPaintCircle.setColor(mCircleColor);
 
@@ -81,8 +83,7 @@ public class CircleChart extends View {
     }
 
     private void draw(Canvas canvas, int x, int y) {
-        int padding = Math.round(5 * density);
-        mRectF.set(padding, padding, x - padding, y - padding);
+        mRectF.set(mPadding, mPadding, x - mPadding, y - mPadding);
         canvas.drawArc(mRectF, 0, 360, false, mPaintBackground);
         float offset = 360 / (float) mMax;
         canvas.drawArc(mRectF, 270, offset * mProgress, false, mPaintCircle);
@@ -91,11 +92,11 @@ public class CircleChart extends View {
         textPaint.setColor(mCircleColor);
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(Math.round(20 * density));
+        textPaint.setTextSize(mTextsize);
         float textHeight = textPaint.descent() - textPaint.ascent();
         float textOffset = (textHeight / 2) - textPaint.descent();
 
-        RectF bounds = new RectF(padding, padding, x - padding, y - padding);
+        RectF bounds = new RectF(mPadding, mPadding, x - mPadding, y - mPadding);
         String text = String.valueOf(mProgress);
         canvas.drawText(text, bounds.centerX(), bounds.centerY() + textOffset, textPaint);
     }
@@ -113,9 +114,8 @@ public class CircleChart extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int density = (int) getResources().getDisplayMetrics().density;
-        int desiredWidth = 75 * density;
-        int desiredHeight = 75 * density;
+        int desiredWidth = getResources().getDimensionPixelSize(R.dimen.circlechart_width);
+        int desiredHeight = getResources().getDimensionPixelSize(R.dimen.circlechart_height);
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);

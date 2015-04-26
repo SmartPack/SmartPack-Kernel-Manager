@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
+import com.grarak.kerneladiutor.R;
 
 /**
  * Created by willi on 23.12.14.
@@ -55,7 +56,7 @@ public class CardViewItem extends BaseCardView {
     }
 
     private void setUpTitle() {
-        int padding = 16 * (int) getResources().getDisplayMetrics().density;
+        int padding = getResources().getDimensionPixelSize(R.dimen.card_padding);
         if (headerCardView != null) {
             if (title == null) {
                 removeHeader();
