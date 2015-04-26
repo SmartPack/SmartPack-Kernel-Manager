@@ -47,16 +47,18 @@ public class CPUVoltage implements Constants {
     }
 
     public static void setGlobalOffset(String voltage, Context context) {
-        String command = "";
         int adjust = Utils.stringToInt(voltage);
+        String command = String.valueOf(adjust);
 
         switch (CPU_VOLTAGE_FILE) {
             case CPU_VDD_VOLTAGE:
             case CPU_FAUX_VOLTAGE:
-                command = String.valueOf(adjust * 1000);
+                if (CPU_VOLTAGE_FILE.equals(CPU_FAUX_VOLTAGE))
+                    command = String.valueOf(adjust * 1000);
                 if (adjust > 0) command = "+" + command;
                 break;
             default:
+                command = "";
                 for (String volt : getVoltages())
                     command += command.isEmpty() ? (Utils.stringToInt(volt) + adjust) :
                             " " + (Utils.stringToInt(volt) + adjust);
@@ -119,7 +121,6 @@ public class CPUVoltage implements Constants {
                 }
                 if (voltageLine.length > 1) {
                     switch (CPU_VOLTAGE_FILE) {
-                        case CPU_VDD_VOLTAGE:
                         case CPU_FAUX_VOLTAGE:
                             voltages[i] = String.valueOf(Utils.stringToInt(voltageLine[1]) / 1000).trim();
                             break;
