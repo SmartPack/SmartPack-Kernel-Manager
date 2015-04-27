@@ -22,6 +22,9 @@
     <color name="circlebar_background_dark">@color/textcolor_dark</color>
     <color name="circlebar_text">@color/color_primary</color>
 
+    <color name="divider_background_light">#DDDDDD</color>
+    <color name="divider_background_dark">#323232</color>
+
     <color name="navigationdrawer_background_light">@color/white</color>
     <color name="navigationdrawer_background_dark">#202020</color>
     <color name="navigationdrawer_selected_background_light">#1A000000</color>

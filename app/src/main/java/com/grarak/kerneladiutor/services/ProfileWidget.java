@@ -77,7 +77,7 @@ public class ProfileWidget extends AppWidgetProvider {
     public void onReceive(@NonNull final Context context, @NonNull Intent intent) {
         if (intent.getAction().equals(PROFILE_BUTTON)) {
             Bundle args = new Bundle();
-            args.putString(MainActivity.LAUNCH_INTENT, ProfileFragment.class.getSimpleName());
+            args.putString(MainActivity.LAUNCH_ARG, ProfileFragment.class.getSimpleName());
             Intent launch = new Intent(context, MainActivity.class);
             launch.putExtras(args);
             launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

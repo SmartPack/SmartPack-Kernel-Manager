@@ -157,7 +157,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
         if (Misc.hasWlanrxWakelockDivider()) {
             List<String> list = new ArrayList<>();
-            for (int i = 0; i < 17; i++) list.add((100 / i) + "%");
+            for (int i = 0; i < 17; i++) list.add(i == 0 ? "0%" : (100 / i) + "%");
 
             mWlanrxWakelockDividerCard = new SeekBarCardView.DSeekBarCardView(list);
             mWlanrxWakelockDividerCard.setTitle(getString(R.string.wlan_rx_wakelock_divider));
@@ -169,7 +169,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardItem.
 
         if (Misc.hasMsmHsicWakelockDivider()) {
             List<String> list = new ArrayList<>();
-            for (int i = 0; i < 17; i++) list.add((100 / i) + "%");
+            for (int i = 0; i < 17; i++) list.add(i == 0 ? "0%" : (100 / i) + "%");
 
             mMsmHsicWakelockDividerCard = new SeekBarCardView.DSeekBarCardView(list);
             mMsmHsicWakelockDividerCard.setTitle(getString(R.string.msm_hsic_wakelock_divider));

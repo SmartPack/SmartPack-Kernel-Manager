@@ -29,10 +29,16 @@ import com.grarak.kerneladiutor.R;
  */
 public class HeaderCardView {
 
+    /**
+     * Default layout
+     */
     private static final int DEFAULT_LAYOUT = R.layout.header_cardview;
 
     private final Context context;
 
+    /**
+     * Views
+     */
     private TextView textView;
     private String title;
     private View view;
@@ -43,8 +49,11 @@ public class HeaderCardView {
 
     public HeaderCardView(Context context, int layout) {
         this.context = context;
+
+        // Inflate the layout of the header
         view = LayoutInflater.from(context).inflate(layout, null, false);
 
+        // If sub class overwrites the default layout then don't try to get the TextView
         if (layout == DEFAULT_LAYOUT) {
             textView = (TextView) view.findViewById(R.id.header_view);
 
@@ -54,18 +63,40 @@ public class HeaderCardView {
         }
     }
 
+    /**
+     * Will get executed if sub class overwrites the default layout
+     * to use a custom one
+     *
+     * @param view is the parent innerlayout of the custom layout
+     */
     public void setUpHeaderLayout(View view) {
     }
 
+    /**
+     * Sets the string value of TextView in the header
+     *
+     * @param title new Text of the header
+     */
     public void setText(String title) {
         this.title = title;
         if (textView != null) textView.setText(title);
     }
 
+    /**
+     * BaseCardView needs this to add the header
+     *
+     * @return the header view
+     */
     public View getView() {
         return view;
     }
 
+    /**
+     * Since this class does not extending the View class
+     * create this function
+     *
+     * @return resources
+     */
     public Resources getResources() {
         return context.getResources();
     }

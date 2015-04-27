@@ -30,11 +30,23 @@ import java.util.List;
  */
 public abstract class JsonDB {
 
+    /**
+     * JSON Objects
+     */
     private JSONObject databaseMain;
     private JSONArray databaseItems;
 
+    /**
+     * JSON file location
+     */
     private final String path;
 
+    /**
+     * JSON Database is used to store large amount of datasets
+     *
+     * @param path    location of the JSON file
+     * @param version If version doesn't match with the dataset, remove all saved datas
+     */
     public JsonDB(String path, int version) {
         this.path = path;
         try {
@@ -56,10 +68,20 @@ public abstract class JsonDB {
         }
     }
 
+    /**
+     * Insert a dataset
+     *
+     * @param items the dataset will put into the JSONArray
+     */
     public void putItem(JSONObject items) {
         databaseItems.put(items);
     }
 
+    /**
+     * Read all sets
+     *
+     * @return all sets in a list
+     */
     public List<DBJsonItem> getAllItems() {
         List<DBJsonItem> items = new ArrayList<>();
         try {
@@ -88,6 +110,9 @@ public abstract class JsonDB {
         return databaseItems.length();
     }
 
+    /**
+     * Write the dataset as JSON file
+     */
     public void commit() {
         try {
             databaseMain.put("database", databaseItems);

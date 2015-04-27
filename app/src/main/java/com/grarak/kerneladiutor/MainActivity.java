@@ -80,10 +80,21 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
  */
 public class MainActivity extends AppCompatActivity implements Constants {
 
+    /**
+     * Cache the context of this activity
+     */
     private static Context context;
-    private boolean hasRoot;
-    private boolean hasBusybox;
 
+    /**
+     * The argument string of LAUNCH_NAME
+     */
+    public static String LAUNCH_ARG = "launch_section";
+
+    private String LAUNCH_NAME;
+
+    /**
+     * Views
+     */
     private Toolbar toolbar;
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -95,8 +106,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
     private DAdapter.Adapter mAdapter;
 
-    public static String LAUNCH_INTENT = "launch_section";
-    private String LAUNCH_NAME;
+    /**
+     * Current Fragment position
+     */
     private int cur_position;
 
     private AlertDialog betaDialog;
@@ -104,17 +116,21 @@ public class MainActivity extends AppCompatActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // If there is a previous activity running, kill it
         if (context != null) {
             RootUtils.closeSU();
             ((Activity) context).finish();
         }
         context = this;
-        Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
 
+        // Check if darktheme is in use and cache it as boolean
+        Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
         if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeDark);
+
+        // Show a dialog if user is running a beta version
         if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
         try {
-            LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_INTENT);
+            LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_ARG);
             if (LAUNCH_NAME == null && VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, this))
                 betaDialog = new AlertDialog.Builder(MainActivity.this)
                         .setMessage(getString(R.string.beta_message, VERSION_NAME))
@@ -135,9 +151,15 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (mDrawerLayout != null && mScrimInsetsFrameLayout != null)
             mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
 
+        // Use an AsyncTask to initialize everything
         new Task().execute();
     }
 
+    /**
+     * Gets called when there is an input on the navigation drawer
+     *
+     * @param position position of the fragment
+     */
     private void selectItem(int position) {
         Fragment fragment = ITEMS.get(position).getFragment();
 
@@ -157,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mAdapter.setItemChecked(position, true);
     }
 
+    /**
+     * Add all fragments in a list
+     */
     private void setList() {
         ITEMS.clear();
         ITEMS.add(new DAdapter.MainHeader());
@@ -196,6 +221,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
         ITEMS.add(new DAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
     }
 
+    /**
+     * Define all views
+     */
     private void setView() {
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -205,6 +233,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mSplashView = (SplashView) findViewById(R.id.splash_view);
     }
 
+    /**
+     * Setup the views
+     */
     private void setInterface() {
         mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
         if (Utils.DARKTHEME)
@@ -239,7 +270,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
         });
     }
 
-    private class Task extends AsyncTask<Void, Void, String> {
+    private class Task extends AsyncTask<Void, Void, Void> {
+
+        private boolean hasRoot;
+        private boolean hasBusybox;
 
         @Override
         protected void onPreExecute() {
@@ -248,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         }
 
         @Override
-        protected String doInBackground(Void... params) {
+        protected Void doInBackground(Void... params) {
             // Check root access and busybox installation
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
             if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
@@ -256,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
             if (hasRoot && hasBusybox) {
                 RootUtils.su = new RootUtils.SU();
 
+                // Set permissions to specific files which are not readable by default
                 String[] writePermission = {LMK_MINFREE};
                 for (String file : writePermission)
                     RootUtils.runCommand("chmod 644 " + file);
@@ -266,9 +301,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
             if (!hasRoot || !hasBusybox) {
                 Intent i = new Intent(MainActivity.this, TextActivity.class);
                 Bundle args = new Bundle();
@@ -279,6 +313,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 startActivity(i);
 
                 if (hasRoot)
+                    // Root is there but busybox is missing
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
                 if (betaDialog != null) betaDialog.dismiss();
                 cancel(true);
@@ -289,6 +324,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
             mSplashView.finish();
             setInterface();
 
+            // If LAUNCH_NAME is not null then open the fragment which matches with the string
             if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
             for (int i = 0; i < ITEMS.size(); i++) {
                 if (ITEMS.get(i).getFragment() != null)
@@ -311,27 +347,42 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (mDrawerToggle != null) mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * This makes onBackPressed function work in Fragments
+     */
     @Override
     public void onBackPressed() {
         try {
             if (!ITEMS.get(cur_position).getFragment().onBackPressed())
                 if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
                 else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Exit SU
+     */
     @Override
     protected void onDestroy() {
         RootUtils.closeSU();
         super.onDestroy();
     }
 
+    /**
+     * Let other Classes kill this activity
+     */
     public static void destroy() {
         if (context != null) ((Activity) context).finish();
     }
 
+    /**
+     * A function to calculate the width of the Navigation Drawer
+     * Phones and Tablets have different sizes
+     *
+     * @return the LayoutParams for the Drawer
+     */
     private DrawerLayout.LayoutParams getDrawerParams() {
         DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mScrimInsetsFrameLayout.getLayoutParams();
         int width = getResources().getDisplayMetrics().widthPixels;
@@ -346,6 +397,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
         return params;
     }
 
+    /**
+     * Interface to make onBackPressed function work in Fragments
+     */
     public interface OnBackButtonListener {
         boolean onBackPressed();
     }
