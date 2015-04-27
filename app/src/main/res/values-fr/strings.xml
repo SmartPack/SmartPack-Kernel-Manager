@@ -8,6 +8,7 @@
   <string name="cancel">Annuler</string>
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
+  <string name="select_file">Sélectionnez  %s?</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="apply_on_boot_finished">Vos modifications ont été appliquées</string>
   <string name="apply_on_boot_enabled">Applicage au démarrage activé pour la section %s</string>
@@ -55,6 +56,7 @@
   <string name="cpu_information">Informations sur le CPU</string>
   <string name="memory_information">Informations Mémoire</string>
   <string name="cpu_usage">Utilisation CPU</string>
+  <string name="cpu_temp">Température du CPU</string>
   <string name="current_freq">Fréquence Actuelle</string>
   <string name="core">Coeur %d</string>
   <string name="offline">Hors-Ligne</string>

@@ -363,7 +363,6 @@
   <string name="tcp">TCP輻輳アルゴリズム</string>
   <string name="tcp_summary">TCPとは、伝送制御プロトコルといわれる、インターネット・プロトコル・スイートの中核プロトコルのひとつです。</string>
   <string name="hostname">ホスト名</string>
-  <string name="items_found">%d個見つかりました</string>
   <string name="backup">バックアップ</string>
   <string name="add">追加</string>
   <string name="edit">編集</string>

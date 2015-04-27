@@ -8,6 +8,7 @@
   <string name="current_value_not_supported">不支持当前值</string>
   <string name="beta_message">感谢您成为 Beta 版本的测试人员！如果您遇到任何问题，请不要犹豫并立即联系我。您当前运行的版本是 %s。</string>
   <string name="apply_on_boot">在启动时重新应用</string>
+  <string name="apply_on_boot_finished">您的设定已被应用</string>
   <string name="information">信息</string>
   <string name="kernel">内核</string>
   <string name="tools">工具</string>
@@ -26,6 +27,9 @@
   <string name="misc_controls">杂项控制</string>
   <string name="build_prop_editor">Build prop 编辑器</string>
   <string name="profile">配置文件</string>
+  <string name="initd">Init.d</string>
+  <string name="settings">设置</string>
+  <string name="faq">疑问与解答</string>
   <string name="about_us">关于我们</string>
   <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
@@ -37,6 +41,7 @@
   <string name="cpu_information">CPU 信息</string>
   <string name="memory_information">内存信息</string>
   <string name="cpu_usage">CPU 使用情况</string>
+  <string name="cpu_temp">处理器温度</string>
   <string name="current_freq">当前频率</string>
   <string name="core">核心 %d</string>
   <string name="offline">离线</string>
@@ -45,6 +50,7 @@
   <string name="cpu_min_freq">CPU 最低频率</string>
   <string name="cpu_min_freq_summary">设置 CPU 能调节到的最低频率。</string>
   <string name="cpu_max_screen_off_freq">CPU 最高灭屏频率</string>
+  <string name="cpu_max_screen_off_freq_summary">设定屏幕关闭状态下的CPU最大频率</string>
   <string name="cpu_governor">CPU 调速器</string>
   <string name="cpu_governor_summary">CPU 调速器决定 CPU 在应对各种工作负载情形时的行为。更改调速器会影响 CPU 如何在可用频率间切换频率大小。</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
@@ -57,12 +63,22 @@
   <string name="aggressive">积极</string>
   <string name="temp_limit">温度上限</string>
   <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的。</string>
+  <string name="cpu_boost">处理器跳频</string>
+  <string name="input_boost_freq">输入跳频频率数值</string>
   <string name="global_offset">全局偏移量</string>
   <string name="balanced">平衡</string>
   <string name="performance">性能</string>
   <string name="conservative">节能</string>
   <string name="eco_performance">Eco 性能模式</string>
   <string name="eco_conservative">Eco 节能模式</string>
+  <string name="min_cpu_online">最小CPU在线数量</string>
+  <string name="max_cpu_online">最大CPU在线数量</string>
+  <string name="max_cores_screen_off">屏幕关闭状态下的最大CPU数量</string>
+  <string name="max_cores_screen_off_summary">当屏幕关闭时，最大CPU数量</string>
+  <string name="powersaver_mode">节能模式</string>
+  <string name="history_size">历史记录大小</string>
+  <string name="io_is_busy">I/O繁忙</string>
+  <string name="idle_frequency">空闲频率</string>
   <string name="gpu_2d_cur_freq">GPU 2D 当前频率</string>
   <string name="gpu_cur_freq">GPU 当前频率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>
@@ -74,6 +90,7 @@
   <string name="gpu_governor">GPU 调速器</string>
   <string name="gpu_governor_summary">设置 GPU 的调速器。</string>
   <string name="simple_gpu_algorithm">Simple GPU 算法</string>
+  <string name="simple_gpu_algorithm_summary">一个由faux123开发的MSM Adreno TZ GPU调度器扩展</string>
   <string name="red">红</string>
   <string name="green">绿</string>
   <string name="blue">蓝</string>
@@ -85,6 +102,12 @@
   <string name="screen_hue_summary">如果该值被设置得过高在 MSM8x26 SoC 上可能出现问题。</string>
   <string name="screen_value">屏幕值</string>
   <string name="screen_contrast">屏幕对比度</string>
+  <string name="gamma">伽玛</string>
+  <string name="gamma_profile">伽玛配置文件</string>
+  <string name="additional_profiles">附加的配置文件</string>
+  <string name="additional_profiles_summary">从互联网获取更多配置文件</string>
+  <string name="loading">正在加载...</string>
+  <string name="no_internet">无互联网连接</string>
   <string name="min_brightness">最小亮度</string>
   <string name="min_brightness_summary">允许你尽可能降低 LCD 屏幕亮度。</string>
   <string name="backlight_dimmer">背光调光器</string>
@@ -100,6 +123,7 @@
   <string name="s2s">滑动睡眠</string>
   <string name="t2w">单击唤醒</string>
   <string name="t2w_summary">点触屏幕来唤醒您的设备。</string>
+  <string name="sleep">休眠</string>
   <string name="wake_timeout">唤醒超时</string>
   <string name="wake_timeout_summary">设置在屏幕关闭多久后唤醒控制开始生效。</string>
   <string name="power_key_suspend">电源键延迟</string>
