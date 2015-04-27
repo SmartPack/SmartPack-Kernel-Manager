@@ -11,6 +11,7 @@
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>
+    <string name="no_files">No files in this path.</string>
 
     <!-- Apply on boot -->
     <string name="apply_on_boot">Apply on boot</string>

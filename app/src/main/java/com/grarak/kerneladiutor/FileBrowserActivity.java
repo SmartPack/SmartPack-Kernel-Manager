@@ -204,14 +204,13 @@ public class FileBrowserActivity extends AppCompatActivity {
         }
 
         private void updateData() {
-            final List<DAdapter.DView> views = new ArrayList<>();
+            File[] storageFiles = new File(current_path).listFiles();
+            if (storageFiles == null) return;
 
+            final List<DAdapter.DView> views = new ArrayList<>();
             List<File> files = new ArrayList<>();
             List<File> folders = new ArrayList<>();
-            File[] storageFiles = new File(current_path).listFiles();
-            if (storageFiles == null || storageFiles.length == 0) {
-                return;
-            }
+
             for (File file : storageFiles) {
                 if (file.isDirectory()) folders.add(file);
                 else if (type != null) {
@@ -225,34 +224,36 @@ public class FileBrowserActivity extends AppCompatActivity {
             for (File folder : folders) views.add(new FileItem(folder));
             for (File file : files) views.add(new FileItem(file));
 
-            pathText.setText(current_path);
+            if (views.size() > 0) {
+                pathText.setText(current_path);
 
-            DAdapter.Adapter adapter = new DAdapter.Adapter(views);
-            adapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    final File file = ((FileItem) views.get(position)).getFile();
-                    if (file.isDirectory()) {
-                        current_path = file.getAbsolutePath();
-                        updateData();
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setMessage(getString(R.string.select_file, file.getName()))
-                                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        fileBrowserActivity.finished(file.getAbsolutePath());
-                                    }
-                                }).show();
+                DAdapter.Adapter adapter = new DAdapter.Adapter(views);
+                adapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        final File file = ((FileItem) views.get(position)).getFile();
+                        if (file.isDirectory()) {
+                            current_path = file.getAbsolutePath();
+                            updateData();
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setMessage(getString(R.string.select_file, file.getName()))
+                                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                        }
+                                    })
+                                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            fileBrowserActivity.finished(file.getAbsolutePath());
+                                        }
+                                    }).show();
+                        }
                     }
-                }
-            });
-            recyclerView.setAdapter(adapter);
+                });
+                recyclerView.setAdapter(adapter);
+            } else Utils.toast(getString(R.string.no_files), getActivity());
         }
 
         @Override
