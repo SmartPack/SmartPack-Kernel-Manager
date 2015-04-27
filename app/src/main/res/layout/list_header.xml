@@ -12,9 +12,9 @@
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:maxLines="1"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:ellipsize="middle"
+        android:singleLine="true"
         android:gravity="center_vertical" />
 </FrameLayout>
