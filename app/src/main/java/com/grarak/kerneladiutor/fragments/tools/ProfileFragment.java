@@ -33,7 +33,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.ListAdapter;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -105,7 +105,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 String stop = getString(R.string.tools);
                 final List<Class> fragments = new ArrayList<>();
                 final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
-                for (ListAdapter.ListItem item : Constants.ITEMS) {
+                for (DAdapter.DView item : Constants.ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
                         if (item.getTitle().equals(stop)) load = true;

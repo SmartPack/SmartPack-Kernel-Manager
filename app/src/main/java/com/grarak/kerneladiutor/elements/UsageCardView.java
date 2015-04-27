@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 05.02.15.
@@ -65,6 +66,16 @@ public class UsageCardView extends BaseCardView {
 
         private int progress;
         private String text;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {

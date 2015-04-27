@@ -23,8 +23,8 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CardViewItem;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DividerCardView;
-import com.grarak.kerneladiutor.elements.ListAdapter;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.elements.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -176,7 +176,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
                 boolean applyonbootenabled = false;
-                for (ListAdapter.ListItem item : Constants.ITEMS)
+                for (DAdapter.DView item : Constants.ITEMS)
                     if (item.getFragment() != null && Utils.getBoolean(item.getFragment().getClass().getSimpleName()
                             + "onboot", false, getActivity())) {
                         applyonbootenabled = true;

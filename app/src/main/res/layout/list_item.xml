@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="48dp"
     android:paddingLeft="42dp"
     android:paddingRight="16dp"
-    android:minHeight="48dp"
-    android:gravity="center_vertical"
-    android:textSize="15sp"
-    android:textColor="@color/white"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:background="?android:attr/activatedBackgroundIndicator" />
+    android:paddingStart="42dp"
+    android:paddingEnd="16dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:layout_gravity="center_vertical" />
+</FrameLayout>

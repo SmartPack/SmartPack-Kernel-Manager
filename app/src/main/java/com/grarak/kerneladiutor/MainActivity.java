@@ -31,14 +31,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
-import com.grarak.kerneladiutor.elements.ListAdapter;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
@@ -90,8 +90,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
     private DrawerLayout mDrawerLayout;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-    private ListView mDrawerList;
+    private RecyclerView mDrawerList;
     private SplashView mSplashView;
+
+    private DAdapter.Adapter mAdapter;
 
     public static String LAUNCH_INTENT = "launch_section";
     private String LAUNCH_NAME;
@@ -139,13 +141,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
     private void selectItem(int position) {
         Fragment fragment = ITEMS.get(position).getFragment();
 
-        if (fragment == null || cur_position == position) {
-            mDrawerList.setItemChecked(cur_position, true);
-            return;
-        }
-
         mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
-
+        if (fragment == null || cur_position == position) return;
         cur_position = position;
 
         try {
@@ -157,46 +154,46 @@ public class MainActivity extends AppCompatActivity implements Constants {
         ActionBar actionBar;
         if ((actionBar = getSupportActionBar()) != null)
             actionBar.setTitle(ITEMS.get(position).getTitle());
-        mDrawerList.setItemChecked(position, true);
+        mAdapter.setItemChecked(position, true);
     }
 
     private void setList() {
         ITEMS.clear();
-        ITEMS.add(new ListAdapter.MainHeader());
-        ITEMS.add(new ListAdapter.Header(getString(R.string.information)));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
-        ITEMS.add(new ListAdapter.Header(getString(R.string.kernel)));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.cpu), new CPUFragment()));
+        ITEMS.add(new DAdapter.MainHeader());
+        ITEMS.add(new DAdapter.Header(getString(R.string.information)));
+        ITEMS.add(new DAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
+        ITEMS.add(new DAdapter.Header(getString(R.string.kernel)));
+        ITEMS.add(new DAdapter.Item(getString(R.string.cpu), new CPUFragment()));
         if (CPUVoltage.hasCpuVoltage())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
         if (CPUHotplug.hasCpuHotplug())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
         if (GPU.hasGpuControl())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.gpu), new GPUFragment()));
         if (Screen.hasScreen())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
         if (Sound.hasSound())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.sound), new SoundFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.battery), new BatteryFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
-            ITEMS.add(new ListAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
         if (LMK.getMinFrees() != null)
-            ITEMS.add(new ListAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
-        ITEMS.add(new ListAdapter.Header(getString(R.string.tools)));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.profile), new ProfileFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.initd), new InitdFragment()));
-        ITEMS.add(new ListAdapter.Header(getString(R.string.other)));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.settings), new SettingsFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.faq), new FAQFragment()));
-        ITEMS.add(new ListAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
+            ITEMS.add(new DAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
+        ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
+        ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.initd), new InitdFragment()));
+        ITEMS.add(new DAdapter.Header(getString(R.string.other)));
+        ITEMS.add(new DAdapter.Item(getString(R.string.settings), new SettingsFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.faq), new FAQFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
     }
 
     private void setView() {
@@ -204,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList = (ListView) findViewById(R.id.drawer_list);
+        mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
         mSplashView = (SplashView) findViewById(R.id.splash_view);
     }
 
@@ -212,16 +209,22 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
         if (Utils.DARKTHEME)
             mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
-        mDrawerList.setAdapter(new ListAdapter.Adapter(this, ITEMS));
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        mAdapter = new DAdapter.Adapter(ITEMS);
+        mAdapter.setItemOnly(true);
+        mAdapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 selectItem(position);
             }
         });
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mDrawerList.setLayoutManager(mLayoutManager);
+        mDrawerList.setAdapter(mAdapter);
+        mLayoutManager.setSmoothScrollbarEnabled(true);
+        mDrawerList.setHasFixedSize(true);
 
-        mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, toolbar, 0, 0) {
-        };
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         if (Utils.DARKTHEME)
             mDrawerLayout.setBackgroundColor(getResources().getColor(R.color.black));

@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 import java.util.List;
 
@@ -170,6 +171,16 @@ public class PopupCardItem extends BaseCardView {
 
         public DPopupCard(List<String> list) {
             this.list = list;
+        }
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
         }
 
         @Override

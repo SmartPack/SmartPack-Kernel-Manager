@@ -3,23 +3,33 @@
     <color name="color_primary">#2A7289</color>
     <color name="color_primary_dark">#1D5060</color>
     <color name="color_primary_light">#3F8095</color>
+
     <color name="statusbar_color">@color/color_primary_dark</color>
     <color name="actionbar_color">@color/color_primary</color>
+
     <color name="fab_normal">@color/white</color>
     <color name="fab_pressed">#E6E6E6</color>
     <color name="fab_normal_menu">@color/white</color>
     <color name="fab_pressed_menu">#E8E8E8</color>
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+
     <color name="profile_list_text">@color/white</color>
     <color name="profile_list_background">#E6303030</color>
+
     <color name="circlebar_background_light">@color/textcolor_light</color>
     <color name="circlebar_background_dark">@color/textcolor_dark</color>
     <color name="circlebar_text">@color/color_primary</color>
+
     <color name="navigationdrawer_background_light">@color/white</color>
     <color name="navigationdrawer_background_dark">#202020</color>
+    <color name="navigationdrawer_selected_background_light">#1A000000</color>
+    <color name="navigationdrawer_selected_background_dark">#26FFFFFF</color>
+
     <color name="card_background_light">#FAFAFA</color>
     <color name="card_background_dark">#202020</color>
+
     <color name="textcolor_light">#737373</color>
     <color name="textcolor_dark">#BDBDBD</color>
 </resources>

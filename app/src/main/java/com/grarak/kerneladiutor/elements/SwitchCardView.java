@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 22.12.14.
@@ -128,6 +129,16 @@ public class SwitchCardView extends BaseCardView {
         private boolean fullspan;
 
         private OnDSwitchCardListener onDSwitchCardListener;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {

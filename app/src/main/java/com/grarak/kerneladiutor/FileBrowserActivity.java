@@ -29,6 +29,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -36,11 +38,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.grarak.kerneladiutor.elements.ListAdapter;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.SlidingTabLayout;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -183,8 +183,7 @@ public class FileBrowserActivity extends AppCompatActivity {
         }
 
         private TextView pathText;
-        private List<ListAdapter.ListItem> files = new ArrayList<>();
-        private ListAdapter.Adapter adapter;
+        private RecyclerView recyclerView;
         private String current_path;
         private String type;
 
@@ -197,41 +196,15 @@ public class FileBrowserActivity extends AppCompatActivity {
             View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
             pathText = (TextView) view.findViewById(R.id.path_text);
-            ListView listView = (ListView) view.findViewById(R.id.list);
-            adapter = new ListAdapter.Adapter(getActivity(), files);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    final File file = ((FileItem) files.get(position)).getFile();
-                    if (file.isDirectory()) {
-                        current_path = file.getAbsolutePath();
-                        updateData();
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setMessage(getString(R.string.select_file, file.getName()))
-                                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                })
-                                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        fileBrowserActivity.finished(file.getAbsolutePath());
-                                    }
-                                }).show();
-                    }
-                }
-            });
+            recyclerView = (RecyclerView) view.findViewById(R.id.list);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             updateData();
             return view;
         }
 
         private void updateData() {
-            this.files.clear();
+            final List<DAdapter.DView> views = new ArrayList<>();
 
             List<File> files = new ArrayList<>();
             List<File> folders = new ArrayList<>();
@@ -249,42 +222,60 @@ public class FileBrowserActivity extends AppCompatActivity {
             Collections.sort(files);
             Collections.sort(folders);
 
-            for (File folder : folders) this.files.add(new FileItem(folder));
-            for (File file : files) this.files.add(new FileItem(file));
+            for (File folder : folders) views.add(new FileItem(folder));
+            for (File file : files) views.add(new FileItem(file));
 
             pathText.setText(current_path);
-            adapter.notifyDataSetChanged();
+
+            DAdapter.Adapter adapter = new DAdapter.Adapter(views);
+            adapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    final File file = ((FileItem) views.get(position)).getFile();
+                    if (file.isDirectory()) {
+                        current_path = file.getAbsolutePath();
+                        updateData();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage(getString(R.string.select_file, file.getName()))
+                                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        fileBrowserActivity.finished(file.getAbsolutePath());
+                                    }
+                                }).show();
+                    }
+                }
+            });
+            recyclerView.setAdapter(adapter);
         }
 
         @Override
         public boolean onBackPressed() {
             if (!current_path.equals(getArguments().getString(PATH_ARG))) {
-                current_path = getPreviousPath(current_path);
+                current_path = getParentPath(current_path);
                 updateData();
                 return false;
             }
             return true;
         }
 
-        private String getPreviousPath(String path) {
+        private String getParentPath(String path) {
             return new File(path).getParentFile().toString();
         }
 
-        private class FileItem implements ListAdapter.ListItem {
+        private class FileItem implements DAdapter.DView {
 
             private final File file;
+            private TextView text;
 
             public FileItem(File file) {
                 this.file = file;
-            }
-
-            @Override
-            public View getView(LayoutInflater inflater, ViewGroup parent) {
-                TextView view = (TextView) inflater.inflate(R.layout.filebrowser_item, parent, false);
-                view.setText(file.getName());
-                view.setCompoundDrawablesWithIntrinsicBounds(file.isDirectory() ? R.drawable.ic_folder : R.drawable.ic_file,
-                        0, 0, 0);
-                return view;
             }
 
             @Override
@@ -295,6 +286,21 @@ public class FileBrowserActivity extends AppCompatActivity {
             @Override
             public String getTitle() {
                 return null;
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
+                return new RecyclerView.ViewHolder(LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.filebrowser_item, viewGroup, false)) {
+                };
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+                text = (TextView) viewHolder.itemView.findViewById(R.id.text);
+                text.setText(file.getName());
+                text.setCompoundDrawablesWithIntrinsicBounds(file.isDirectory() ? R.drawable.ic_folder : R.drawable.ic_file,
+                        0, 0, 0);
             }
 
             public File getFile() {

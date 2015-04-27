@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
@@ -196,6 +197,16 @@ public class SeekBarCardView extends BaseCardView {
 
         public DSeekBarCardView(List<String> list) {
             this.list = list;
+        }
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
         }
 
         @Override

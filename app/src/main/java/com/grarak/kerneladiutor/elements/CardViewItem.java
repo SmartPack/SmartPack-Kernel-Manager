@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 23.12.14.
@@ -85,6 +86,16 @@ public class CardViewItem extends BaseCardView {
         private String description;
         private View view;
         private boolean fullspan;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {

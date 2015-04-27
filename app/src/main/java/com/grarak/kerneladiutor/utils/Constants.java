@@ -17,7 +17,7 @@
 package com.grarak.kerneladiutor.utils;
 
 import com.grarak.kerneladiutor.BuildConfig;
-import com.grarak.kerneladiutor.elements.ListAdapter;
+import com.grarak.kerneladiutor.elements.DAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public interface Constants {
     String VERSION_NAME = BuildConfig.VERSION_NAME;
     String PREF_NAME = "prefs";
     String GAMMA_URL = "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/gamma_profiles.json";
-    List<ListAdapter.ListItem> ITEMS = new ArrayList<>();
+    List<DAdapter.DView> ITEMS = new ArrayList<>();
 
     // Kernel Informations
     String PROC_VERSION = "/proc/version";

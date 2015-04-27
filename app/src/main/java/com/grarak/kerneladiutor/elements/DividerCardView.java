@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 01.03.15.
@@ -55,6 +56,16 @@ public class DividerCardView extends BaseCardView {
         private DividerCardView dividerCardView;
 
         private String text;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {

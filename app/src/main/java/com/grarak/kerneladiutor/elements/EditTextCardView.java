@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
@@ -103,6 +104,16 @@ public class EditTextCardView extends CardViewItem {
         private int inputType = -1;
 
         private OnDEditTextCardListener onDEditTextCardListener;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {

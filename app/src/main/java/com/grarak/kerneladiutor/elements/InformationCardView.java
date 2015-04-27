@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 25.04.15.
@@ -66,6 +67,16 @@ public class InformationCardView extends BaseCardView {
         private InformationCardView informationCardView;
         private String infoText;
         private OnClickListener onClickListener;
+
+        @Override
+        public String getTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseFragment getFragment() {
+            return null;
+        }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {

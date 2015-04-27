@@ -2,10 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:layout_marginTop="3dp"
-    android:clickable="false"
-    android:orientation="vertical"
-    android:background="@drawable/no_highlight_light">
+    android:clickable="false">
 
     <View style="@style/Divider" />
 
