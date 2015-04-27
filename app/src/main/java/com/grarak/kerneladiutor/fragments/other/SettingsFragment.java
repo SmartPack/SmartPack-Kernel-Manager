@@ -16,8 +16,10 @@
 
 package com.grarak.kerneladiutor.fragments.other;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.MainActivity;
@@ -203,7 +205,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                RootUtils.runCommand("logcat -d > /sdcard/logcat.txt");
+                new Execute().execute("logcat -d > /sdcard/logcat.txt");
             }
         });
 
@@ -216,7 +218,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    RootUtils.runCommand("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
+                    new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
                 }
             });
 
@@ -229,11 +231,36 @@ public class SettingsFragment extends RecyclerViewFragment {
         mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                RootUtils.runCommand("dmesg > /sdcard/dmesg.txt");
+                new Execute().execute("dmesg > /sdcard/dmesg.txt");
             }
         });
 
         addView(mDmesgCard);
+    }
+
+    private class Execute extends AsyncTask<String, Void, Void> {
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getString(R.string.execute));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            RootUtils.runCommand(params[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+        }
     }
 
 }

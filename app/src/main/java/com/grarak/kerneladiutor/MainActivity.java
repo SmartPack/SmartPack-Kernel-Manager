@@ -211,6 +211,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
             mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
 
         mAdapter = new DAdapter.Adapter(ITEMS);
+        mDrawerList.setAdapter(mAdapter);
+
         mAdapter.setItemOnly(true);
         mAdapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
             @Override
@@ -218,10 +220,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 selectItem(position);
             }
         });
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mDrawerList.setLayoutManager(mLayoutManager);
-        mDrawerList.setAdapter(mAdapter);
         mLayoutManager.setSmoothScrollbarEnabled(true);
+        mDrawerList.setLayoutManager(mLayoutManager);
         mDrawerList.setHasFixedSize(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);

@@ -91,6 +91,7 @@ public class InitdFragment extends RecyclerViewFragment {
                                             super.onPreExecute();
                                             progressDialog = new ProgressDialog(getActivity());
                                             progressDialog.setMessage(getString(R.string.executing));
+                                            progressDialog.setCancelable(false);
                                             progressDialog.show();
                                         }
 
@@ -104,7 +105,10 @@ public class InitdFragment extends RecyclerViewFragment {
                                             super.onPostExecute(s);
                                             progressDialog.dismiss();
                                             if (!s.isEmpty())
-                                                new AlertDialog.Builder(getActivity()).setMessage(s).show();
+                                                try {
+                                                    new AlertDialog.Builder(getActivity()).setMessage(s).show();
+                                                } catch (NullPointerException ignored) {
+                                                }
                                         }
                                     }.execute();
                                     break;
