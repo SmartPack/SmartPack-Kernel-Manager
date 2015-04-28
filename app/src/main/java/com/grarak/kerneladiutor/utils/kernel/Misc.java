@@ -35,6 +35,110 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    public static void setMsmHsicWakelockDivider(int value, Context context) {
+        String command = String.valueOf(value + 1);
+        if (value == 15) command = "0";
+        Control.runCommand(command, MSM_HSIC_WAKELOCK_DIVIDER, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMsmHsicWakelockDivider() {
+        int value = Utils.stringToInt(Utils.readFile(MSM_HSIC_WAKELOCK_DIVIDER));
+        if (value == 0) value = 16;
+        return value - 1;
+    }
+
+    public static boolean hasMsmHsicWakelockDivider() {
+        return Utils.existFile(MSM_HSIC_WAKELOCK_DIVIDER);
+    }
+
+    public static void setWlanrxWakelockDivider(int value, Context context) {
+        String command = String.valueOf(value + 1);
+        if (value == 15) command = "0";
+        Control.runCommand(command, WLAN_RX_WAKELOCK_DIVIDER, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getWlanrxWakelockDivider() {
+        int value = Utils.stringToInt(Utils.readFile(WLAN_RX_WAKELOCK_DIVIDER));
+        if (value == 0) value = 16;
+        return value - 1;
+    }
+
+    public static boolean hasWlanrxWakelockDivider() {
+        return Utils.existFile(WLAN_RX_WAKELOCK_DIVIDER);
+    }
+
+    public static void activateWlanWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", WLAN_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isWlanWakeLockActive() {
+        return Utils.readFile(WLAN_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasWlanWakeLock() {
+        return Utils.existFile(WLAN_WAKELOCK);
+    }
+
+    public static void activateWlanctrlWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", WLAN_CTRL_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isWlanctrlWakeLockActive() {
+        return Utils.readFile(WLAN_CTRL_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasWlanctrlWakeLock() {
+        return Utils.existFile(WLAN_CTRL_WAKELOCK);
+    }
+
+    public static void activateWlanrxWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", WLAN_RX_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isWlanrxWakeLockActive() {
+        return Utils.readFile(WLAN_RX_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasWlanrxWakeLock() {
+        return Utils.existFile(WLAN_RX_WAKELOCK);
+    }
+
+    public static void activateMsmHsicHostWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", MSM_HSIC_HOST_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMsmHsicHostWakeLockActive() {
+        return Utils.readFile(MSM_HSIC_HOST_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasMsmHsicHostWakeLock() {
+        return Utils.existFile(MSM_HSIC_HOST_WAKELOCK);
+    }
+
+    public static void activateSensorIndWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SENSOR_IND_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSensorIndWakeLockActive() {
+        return Utils.readFile(SENSOR_IND_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasSensorIndWakeLock() {
+        return Utils.existFile(SENSOR_IND_WAKELOCK);
+    }
+
+    public static void activateSmb135xWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSmb135xWakeLockActive() {
+        return Utils.readFile(SMB135X_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasSmb135xWakeLock() {
+        return Utils.existFile(SMB135X_WAKELOCK);
+    }
+
     public static void setHostname(String value, Context context) {
         Control.setProp(HOSTNAME_KEY, value, context);
     }
@@ -134,102 +238,6 @@ public class Misc implements Constants {
 
     public static boolean hasLoggerEnable() {
         return Utils.existFile(LOGGER_ENABLED);
-    }
-
-    public static void setMsmHsicWakelockDivider(int value, Context context) {
-        Control.runCommand(String.valueOf(value), MSM_HSIC_WAKELOCK_DIVIDER, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getMsmHsicWakelockDivider() {
-        return Utils.stringToInt(Utils.readFile(MSM_HSIC_WAKELOCK_DIVIDER));
-    }
-
-    public static boolean hasMsmHsicWakelockDivider() {
-        return Utils.existFile(MSM_HSIC_WAKELOCK_DIVIDER);
-    }
-
-    public static void setWlanrxWakelockDivider(int value, Context context) {
-        Control.runCommand(String.valueOf(value), WLAN_RX_WAKELOCK_DIVIDER, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getWlanrxWakelockDivider() {
-        return Utils.stringToInt(Utils.readFile(WLAN_RX_WAKELOCK_DIVIDER));
-    }
-
-    public static boolean hasWlanrxWakelockDivider() {
-        return Utils.existFile(WLAN_RX_WAKELOCK_DIVIDER);
-    }
-
-    public static void activateWlanWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isWlanWakeLockActive() {
-        return Utils.readFile(WLAN_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasWlanWakeLock() {
-        return Utils.existFile(WLAN_WAKELOCK);
-    }
-
-    public static void activateWlanctrlWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_CTRL_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isWlanctrlWakeLockActive() {
-        return Utils.readFile(WLAN_CTRL_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasWlanctrlWakeLock() {
-        return Utils.existFile(WLAN_CTRL_WAKELOCK);
-    }
-
-    public static void activateWlanrxWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_RX_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isWlanrxWakeLockActive() {
-        return Utils.readFile(WLAN_RX_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasWlanrxWakeLock() {
-        return Utils.existFile(WLAN_RX_WAKELOCK);
-    }
-
-    public static void activateMsmHsicHostWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", MSM_HSIC_HOST_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isMsmHsicHostWakeLockActive() {
-        return Utils.readFile(MSM_HSIC_HOST_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasMsmHsicHostWakeLock() {
-        return Utils.existFile(MSM_HSIC_HOST_WAKELOCK);
-    }
-
-    public static void activateSensorIndWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", SENSOR_IND_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isSensorIndWakeLockActive() {
-        return Utils.readFile(SENSOR_IND_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasSensorIndWakeLock() {
-        return Utils.existFile(SENSOR_IND_WAKELOCK);
-    }
-
-    public static void activateSmb135xWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isSmb135xWakeLockActive() {
-        return Utils.readFile(SMB135X_WAKELOCK).equals("Y");
-    }
-
-    public static boolean hasSmb135xWakeLock() {
-        return Utils.existFile(SMB135X_WAKELOCK);
     }
 
     public static void setVibration(int value, Context context) {

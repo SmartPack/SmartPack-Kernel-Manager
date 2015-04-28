@@ -40,7 +40,7 @@
     </style>
 
     <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <style name="Divider">

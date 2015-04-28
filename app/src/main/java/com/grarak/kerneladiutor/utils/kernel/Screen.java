@@ -434,7 +434,6 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.KGammaProfiles getKGammaProfiles(Context context) {
-        if (Utils.existFile(K_GAMMA_BLUE)) return null;
         if (GAMMA_PROFILES == null)
             GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
         return GAMMA_PROFILES.getKGamma();
