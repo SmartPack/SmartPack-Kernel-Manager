@@ -1,15 +1,49 @@
 KernelAdiutor
 =============
-An application which manages kernel parameters.
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
 
-![Screenshot](https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png)
+<img alt="Screenshot"
+   src="https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png" />
 
-You can download this app on Google Play:
+* [Join Google+ Community](https://plus.google.com/communities/108445529270785762340) (Beta Testing)
 
-[![Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
+<a href="https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor">
+  <img alt="Google Play"
+       src="http://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+</a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG">
+  <img alt="PayPal" width="200" height="70"
+       src="https://support.ankama.com/hc/fr/article_attachments/200892097/Paypal.jpg" />
+</a>
+
+Report a bug or request a feature
+----------------
+You can report or request a features by opening an issue [Open new issue][1]
+
+#### How to bug report
+* A detailed description of the bug
+* Logcat
+* Make sure there are no similar bug reports already
+
+#### How to request a feature
+* A detailed description of the features
+* All kind of informations
+* Paths to sys interface
+* What's the content if the sys file
+* How to apply a new value
+* Make sure there are no similar feature requests already
+
+Download & Build
+----------------
+Clone the project and come in:
+
+``` bash
+$ git clone git://github.com/Grarak/KernelAdiutor.git
+$ cd KernelAdiutor
+$ ./gradlew build
+```
 
 Credits
-=======
+----------------
 
 I used following libraries:
 
@@ -37,7 +71,7 @@ Also codes from different people:
 * [SlidingTabStrip](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/elements/SlidingTabStrip.java)
 
 License
-=======
+----------------
 
     Copyright (C) 2015 Willi Ye
 
