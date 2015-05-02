@@ -173,8 +173,6 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
   <string name="vibration_strength">Titreşim Gücü</string>
-  <string name="smb135x_wakelock">smb135x Wakelock</string>
-  <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
   <string name="dynamic_fsync">Dinamik Fsync</string>
   <string name="power_suspend_mode">Güç Askıya Alma Modu</string>
   <string name="autosleep">Oto uyku</string>
@@ -182,6 +180,8 @@
   <string name="hybrid">Melez</string>
   <string name="power_suspend_state">Güç Askıya Alma Durumu</string>
   <string name="tcp">TCP Congestion Algoritması</string>
+  <string name="smb135x_wakelock">smb135x Wakelock</string>
+  <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
   <string name="edit">Düzenle</string>
   <string name="delete">Sil</string>
   <string name="key">Anahtar</string>

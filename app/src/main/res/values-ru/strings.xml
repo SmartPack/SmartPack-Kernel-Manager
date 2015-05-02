@@ -289,8 +289,8 @@
   <string name="medium">Средний</string>
   <string name="very_aggressive">Очень агрессивный</string>
   <string name="vibration_strength">Интенсивность вибрации</string>
-  <string name="msm_hsic_host_wakelock_summary">Предотвращать msm_hsic_host вэйклок.</string>
   <string name="android_logger">Android протоколирования</string>
+  <string name="msm_hsic_host_wakelock_summary">Предотвращать msm_hsic_host вэйклок.</string>
   <string name="edit">Редактировать</string>
   <string name="delete">Удалить</string>
   <string name="key">Ключ</string>

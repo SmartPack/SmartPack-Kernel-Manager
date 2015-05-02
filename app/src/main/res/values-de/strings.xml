@@ -10,9 +10,10 @@
   <string name="current_value_not_supported">Aktueller Wert wird nicht unterstützt</string>
   <string name="beta_message">Danke dass du Beta Tester bist. Falls du irgendwelche Probleme hast, zögere bitte nicht mich zu kontaktieren. Momentan benutzt du Version %s.</string>
   <string name="select_file">Wähle %s?</string>
+  <string name="no_files">Keine Dateien in diesem Ordner.</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_finished">Deine Änderungen wurden übernommen</string>
-  <string name="apply_on_boot_time">Anwenden der Einstellungen in %d Sekunden</string>
+  <string name="apply_on_boot_time">Anwenden der Einstellungen in %d Sekunde/n</string>
   <string name="apply_on_boot_enabled">Aktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_disabled">Deaktiviere beim Booten für %s Abschnitt</string>
   <string name="apply_on_boot_failed">Fehler beim Anwenden von Einstellungen beim Booten</string>
@@ -133,7 +134,7 @@
   <string name="down_lock_duration_summary">Minimales Intervall das ein CPU Kern aktiv bleibt.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
-  <string name="blu_plug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von Code_Blue Team entwickelt.</string>
+  <string name="blu_plug_summary">Ein kernel-interner Ersatz für Qualcomms MPDecision. Von Code_Blue Team entwickelt.</string>
   <string name="powersaver_mode">Energiesparmodus</string>
   <string name="powersaver_mode_summary">1 CPU Maximal Online die mit der Frequenz @1728 MHz arbeitet.</string>
   <string name="up_threshold">Oberer Schwellwert</string>
@@ -160,7 +161,7 @@
   <string name="idle_frequency">Leerlauf-Frequenz</string>
   <string name="touch_boost_time">Berührungsboost-Zeit</string>
   <string name="start_delay">Startverzögerung</string>
-  <string name="start_delay_summary">Zeit bis Hotplug beginnt zu arbeiten.</string>
+  <string name="start_delay_summary">Zeit bis Hotplug zu arbeiten beginnt.</string>
   <string name="delay">Verzögerung</string>
   <string name="delay_summary">Zeit zwischen den Überprüfungen.</string>
   <string name="pause">Pause</string>
@@ -292,12 +293,6 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize_summary">Versucht die Leistung zu verbessern indem im RAM kleinere Pakete zwischenspeichert werden, anstelle von auf dem Hauptspeicher. Wenn der RAM voll ist werden diese Pakete wieder auf dem Hauptspeicher gespeichert.</string>
   <string name="vibration_strength">Vibrationsstärke</string>
-  <string name="smb135x_wakelock">smb135x Wakelock</string>
-  <string name="smb135x_wakelock_summary">Verhindert Wakelocks wenn die Stromversorgung getrennt ist.</string>
-  <string name="sensor_ind_wakelock">Sensor_ind Wakelock</string>
-  <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
-  <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
-  <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
   <string name="android_logger">Android-Protokollierung</string>
   <string name="fsync">FSync</string>
   <string name="dynamic_fsync">Dynamischer FSync</string>
@@ -305,6 +300,12 @@
   <string name="network">Netzwerk</string>
   <string name="tcp">TCP Congestion-Algorithmus</string>
   <string name="hostname">Hostname</string>
+  <string name="smb135x_wakelock">smb135x Wakelock</string>
+  <string name="smb135x_wakelock_summary">Verhindert Wakelocks wenn die Stromversorgung getrennt ist.</string>
+  <string name="sensor_ind_wakelock">Sensor_ind Wakelock</string>
+  <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
+  <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
+  <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
   <string name="backup"> Backup</string>
   <string name="add">Hinzufügen</string>
   <string name="edit">Bearbeiten</string>
@@ -325,7 +326,7 @@
   <string name="reboot">Neustarten</string>
   <string name="reboot_recovery">Recovery</string>
   <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_download">Downloadmodus</string>
+  <string name="reboot_download">Download</string>
   <string name="confirm">Bist du sicher?</string>
   <string name="cwm_recovery">CM Recovery</string>
   <string name="twrp">TWRP</string>

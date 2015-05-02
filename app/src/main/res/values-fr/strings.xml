@@ -9,8 +9,10 @@
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
   <string name="select_file">Sélectionnez  %s?</string>
+  <string name="no_files">Aucun fichier dans ce chemin.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="apply_on_boot_finished">Vos modifications ont été appliquées</string>
+  <string name="apply_on_boot_time">Application de vos paramètres dans %d secondes</string>
   <string name="apply_on_boot_enabled">Applicage au démarrage activé pour la section %s</string>
   <string name="apply_on_boot_disabled">Applicage au démarrage désactivé pour la section %s</string>
   <string name="apply_on_boot_failed">Impossible d\'appliquer les paramètres au démarrage</string>
@@ -43,6 +45,7 @@
   <string name="build_prop_editor">Editeur Build prop</string>
   <string name="profile">Profile</string>
   <string name="recovery">Restauration</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Réglages</string>
   <string name="faq">FAQ</string>
   <string name="about_us">À propos de nous</string>
@@ -295,10 +298,6 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Taille du disque</string>
   <string name="vibration_strength">Intensité de la Vibration</string>
-  <string name="smb135x_wakelock">Wakelock smb135x</string>
-  <string name="sensor_ind_wakelock">Wakelock sensor_ind</string>
-  <string name="msm_hsic_host_wakelock">Wakelock msm_hsic_host</string>
-  <string name="msm_hsic_host_wakelock_summary">Prévenir les wakelock msm_hsic_host.</string>
   <string name="android_logger">Journalisation Android</string>
   <string name="dynamic_fsync">Fsync dynamique</string>
   <string name="autosleep">Mise en veille automatique</string>
@@ -306,6 +305,10 @@
   <string name="lcd_panel">Panneau LCD</string>
   <string name="hybrid">Hybride</string>
   <string name="tcp">Algorithme de Congestion TCP</string>
+  <string name="smb135x_wakelock">Wakelock smb135x</string>
+  <string name="sensor_ind_wakelock">Wakelock sensor_ind</string>
+  <string name="msm_hsic_host_wakelock">Wakelock msm_hsic_host</string>
+  <string name="msm_hsic_host_wakelock_summary">Prévenir les wakelock msm_hsic_host.</string>
   <string name="backup">Sauvegarde</string>
   <string name="add">Ajouter</string>
   <string name="edit">Editer</string>
