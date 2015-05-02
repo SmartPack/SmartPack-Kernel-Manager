@@ -12,12 +12,12 @@
   -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
-    android:background="?android:selectableItemBackground"
     android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:background="?android:selectableItemBackground"
+    android:gravity="center"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:layout_height="48dp"
-    android:gravity="center"
+    android:textAllCaps="true"
     android:textColor="@color/white"
-    android:textSize="12sp"
-    android:textAllCaps="true" />
+    android:textSize="12sp" />

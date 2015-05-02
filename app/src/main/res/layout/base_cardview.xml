@@ -3,45 +3,45 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/header_layout"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
         android:visibility="gone" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/inner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inner_layout"
-        android:layout_below="@+id/header_layout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header_layout"
+        android:orientation="vertical" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/custom_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/custom_layout"
-        android:layout_below="@+id/header_layout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header_layout"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/card_padding"
+        android:paddingEnd="@dimen/card_padding"
         android:paddingLeft="@dimen/card_padding"
         android:paddingRight="@dimen/card_padding"
         android:paddingStart="@dimen/card_padding"
-        android:paddingEnd="@dimen/card_padding"
-        android:paddingBottom="@dimen/card_padding"
         android:visibility="gone" />
 
 </RelativeLayout>

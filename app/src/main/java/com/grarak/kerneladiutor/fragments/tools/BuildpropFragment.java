@@ -159,13 +159,16 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 addView(mPropCard);
             }
 
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    title.setText(getString(R.string.items_found, buildpropItem.size()));
-                    refreshLayout.setRefreshing(false);
-                }
-            });
+            try {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        title.setText(getString(R.string.items_found, buildpropItem.size()));
+                        refreshLayout.setRefreshing(false);
+                    }
+                });
+            } catch (NullPointerException ignored) {
+            }
         }
     };
 

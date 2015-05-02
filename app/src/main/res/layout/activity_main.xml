@@ -18,13 +18,13 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/actionbar_color"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:theme="@style/ActionBarStyle"
                 app:contentInsetLeft="72dp"
                 app:contentInsetStart="72dp"
-                android:theme="@style/ActionBarStyle" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
             <FrameLayout
                 android:id="@+id/content_frame"
@@ -46,16 +46,16 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/navigationdrawer_background_light"
-        app:insetForeground="#4000"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:insetForeground="#4000">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_list"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:scrollbarStyle="outsideOverlay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
 
     </com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout>
 

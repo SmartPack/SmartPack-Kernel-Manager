@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -13,25 +13,25 @@
             android:id="@+id/path_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:paddingLeft="72dp"
             android:layout_gravity="center_vertical"
-            android:textSize="16sp"
-            android:singleLine="true"
-            android:scrollHorizontally="true"
             android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="72dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        android:scrollbarStyle="outsideOverlay"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

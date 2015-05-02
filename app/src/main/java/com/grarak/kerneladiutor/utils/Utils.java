@@ -143,7 +143,7 @@ public class Utils implements Constants {
     }
 
     public static void vibrate(int duration) {
-        RootUtils.runCommand("echo " + duration + " > " + VIBRATION_ENABLE);
+        RootUtils.runCommand("echo " + duration + " > /sys/class/timed_output/vibrator/enable");
     }
 
     public static List<String> getApplys(Class mClass) {
@@ -266,10 +266,20 @@ public class Utils implements Constants {
         return RootUtils.runCommand("getprop " + key);
     }
 
-    public static boolean isServiceActive(String service) {
-        String output = RootUtils.runCommand("echo `ps | grep " + service + " | grep -v \"grep "
-                + service + "\" | awk '{print $1}'`");
-        return output != null && output.length() > 0;
+    public static boolean isPropActive(String key) {
+        try {
+            return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    public static boolean hasProp(String key) {
+        try {
+            return RootUtils.runCommand("getprop | grep " + key).split("]:").length > 1;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 
     public static void writeFile(String path, String text, boolean append) {

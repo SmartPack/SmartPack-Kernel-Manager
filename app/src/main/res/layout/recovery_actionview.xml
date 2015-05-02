@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/action_text"
@@ -15,8 +15,8 @@
         android:id="@+id/delete_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_delete"
+        android:background="?android:attr/selectableItemBackground"
         android:contentDescription="@string/delete"
-        android:background="?android:attr/selectableItemBackground" />
+        android:src="@drawable/ic_delete" />
 
 </LinearLayout>

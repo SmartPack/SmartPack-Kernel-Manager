@@ -89,10 +89,7 @@ public interface Constants {
     String[] CPU_VOLTAGE_ARRAY = {CPU_VOLTAGE, CPU_VDD_VOLTAGE, CPU_FAUX_VOLTAGE, CPU_OVERRIDE_VMIN};
 
     // CPU Hotplug
-    String HOTPLUG_MPDECISION_BINARY = "/system/bin/mpdecision";
     String HOTPLUG_MPDEC = "mpdecision";
-
-    String[] MPDECISION_ARRAY = {HOTPLUG_MPDECISION_BINARY, HOTPLUG_MPDEC};
 
     String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters";
     String HOTPLUG_INTELLI_PLUG_ENABLE = "/sys/module/intelli_plug/parameters/intelli_plug_active";
@@ -230,7 +227,7 @@ public interface Constants {
             ALUCARD_HOTPLUG_SAMPLING_RATE, ALUCARD_HOTPLUG_SUSPEND, ALUCARD_HOTPLUG_MIN_CPUS_ONLINE, ALUCARD_HOTPLUG_MAX_CORES_LIMIT,
             ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP, ALUCARD_HOTPLUG_CPU_DOWN_RATE, ALUCARD_HOTPLUG_CPU_UP_RATE};
 
-    String[][] CPU_HOTPLUG_ARRAY = {MPDECISION_ARRAY, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
+    String[][] CPU_HOTPLUG_ARRAY = {{HOTPLUG_MPDEC}, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
             MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY};
 
     // GPU
@@ -520,7 +517,6 @@ public interface Constants {
     // Misc
 
     // Vibration
-    String VIBRATION_ENABLE = "/sys/class/timed_output/vibrator/enable";
     String[] VIBRATION_ARRAY = {
             "/sys/vibrator/pwmvalue",
             "/sys/class/timed_output/vibrator/amp",
@@ -542,6 +538,8 @@ public interface Constants {
             {3199, 1200},
             {99, 53}
     };
+
+    String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
 
     // Wakelock
     String SMB135X_WAKELOCK = "/sys/module/smb135x_charger/parameters/use_wlock";
@@ -570,9 +568,9 @@ public interface Constants {
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
     String HOSTNAME_KEY = "net.hostname";
 
-    String[][] MISC_ARRAY = {{SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK, WLAN_CTRL_WAKELOCK,
-            WLAN_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER, MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC, DYNAMIC_FSYNC,
-            POWER_SUSPEND_MODE, POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY}, VIBRATION_ARRAY};
+    String[][] MISC_ARRAY = {{VIB_ENABLE, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK,
+            WLAN_CTRL_WAKELOCK, WLAN_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER, MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC,
+            DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY}, VIBRATION_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

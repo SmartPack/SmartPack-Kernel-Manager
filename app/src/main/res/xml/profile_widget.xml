@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="80dip"
-    android:minHeight="80dip"
     android:initialLayout="@layout/profile_widget_layout"
-    android:resizeMode="horizontal|vertical"
-    android:previewImage="@drawable/profile_widget_preview" />
+    android:minHeight="80dip"
+    android:minWidth="80dip"
+    android:previewImage="@drawable/profile_widget_preview"
+    android:resizeMode="horizontal|vertical" />

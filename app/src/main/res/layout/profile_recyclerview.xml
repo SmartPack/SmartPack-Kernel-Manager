@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <FrameLayout
         android:id="@+id/background_view"
@@ -15,34 +15,34 @@
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
             android:paddingLeft="72dp"
-            android:textSize="17sp"
-            android:gravity="center_vertical" />
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
 
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:orientation="vertical"
-        android:scrollbars="vertical"
-        android:scrollbarStyle="outsideOverlay"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_below="@+id/background_view" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/background_view"
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
 
     <com.getbase.floatingactionbutton.AddFloatingActionButton
         android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/background_view"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="-34dp"
         fab:fab_colorNormal="@color/fab_normal"
         fab:fab_colorPressed="@color/fab_pressed"
-        fab:fab_plusIconColor="@color/color_primary"
-        android:layout_marginTop="-34dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_below="@+id/background_view"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        fab:fab_plusIconColor="@color/color_primary" />
 
 </RelativeLayout>

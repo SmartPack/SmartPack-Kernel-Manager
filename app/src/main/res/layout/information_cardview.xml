@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_primary"
+    android:orientation="vertical"
     android:padding="@dimen/card_padding">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher_preview" />
 
     <TextView
         android:id="@+id/info_text"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:textColor="@color/white" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/ok_button"
-        android:text="@string/ok"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_bg"
-        android:layout_marginTop="@dimen/card_padding"
-        android:layout_gravity="right"
-        android:textColor="@color/white"
         android:gravity="center"
-        android:layout_width="50dp"
-        android:layout_height="30dp" />
+        android:text="@string/ok"
+        android:textColor="@color/white" />
 
 </LinearLayout>

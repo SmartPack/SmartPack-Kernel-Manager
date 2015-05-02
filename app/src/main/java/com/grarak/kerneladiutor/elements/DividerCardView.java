@@ -83,6 +83,8 @@ public class DividerCardView extends BaseCardView {
                     new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setFullSpan(true);
+            int padding = dividerCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+            layoutParams.setMargins(0, padding, 0, padding);
             dividerCardView.setLayoutParams(layoutParams);
         }
 

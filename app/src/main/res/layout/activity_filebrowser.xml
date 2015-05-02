@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:background="@color/color_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_primary"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/actionbar_color"
+            android:theme="@style/ActionBarStyle"
             app:contentInsetLeft="72dp"
-            app:contentInsetStart="72dp"
-            android:theme="@style/ActionBarStyle" />
+            app:contentInsetStart="72dp" />
 
         <com.grarak.kerneladiutor.elements.SlidingTabLayout
-            android:background="@color/color_primary"
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

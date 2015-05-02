@@ -105,14 +105,6 @@ public class FileBrowserActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.color_primary_dark));
-            mSlidingTabLayout.setVisibility(View.INVISIBLE);
-            mSlidingTabLayout.getRootView().addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                    v.removeOnLayoutChangeListener(this);
-                    Utils.circleAnimate(mSlidingTabLayout, 0, 0);
-                }
-            });
         }
     }
 

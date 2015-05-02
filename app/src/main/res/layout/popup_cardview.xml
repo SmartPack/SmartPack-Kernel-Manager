@@ -1,26 +1,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/card_padding"
+    android:paddingEnd="@dimen/card_padding"
     android:paddingLeft="@dimen/card_padding"
     android:paddingRight="@dimen/card_padding"
-    android:paddingStart="@dimen/card_padding"
-    android:paddingEnd="@dimen/card_padding"
-    android:paddingBottom="@dimen/card_padding"
-    android:gravity="center_vertical">
+    android:paddingStart="@dimen/card_padding">
 
     <TextView
+        android:id="@+id/description_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/description_view"
         android:layout_weight="1" />
 
     <TextView
+        android:id="@+id/value_view"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/value_view"
         android:layout_weight="0"
-        android:textStyle="italic"
-        android:gravity="end" />
+        android:gravity="end"
+        android:textStyle="italic" />
 
 </LinearLayout>

@@ -23,6 +23,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
 import java.util.List;
 
@@ -111,12 +112,18 @@ public class Control implements Constants {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                boolean mpd = false;
+                if (CPUHotplug.hasMpdecision() && CPUHotplug.isMpdecisionActive()) {
+                    mpd = true;
+                    stopService(HOTPLUG_MPDEC, false, context);
+                }
                 if (command == CommandType.CPU) {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
                         setPermission(String.format(file, i), 644, context);
                         runGeneric(String.format(file, i), value, id, context);
                         setPermission(String.format(file, i), 444, context);
                     }
+                    if (mpd) startService(HOTPLUG_MPDEC, false, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, id, context);
                 } else if (command == CommandType.FAUX_GENERIC) {

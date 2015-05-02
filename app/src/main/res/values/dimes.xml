@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="basecard_padding">3dp</dimen>
-    <dimen name="basecard_radius">2dp</dimen>
+    <dimen name="basecard_padding">6dp</dimen>
+    <dimen name="basecard_radius">3dp</dimen>
     <dimen name="card_padding">16dp</dimen>
 
     <dimen name="circlechart_background_stroke">1dp</dimen>

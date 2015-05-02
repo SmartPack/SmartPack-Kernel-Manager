@@ -2,21 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingEnd="16dp"
     android:paddingLeft="42dp"
     android:paddingRight="16dp"
-    android:paddingStart="72dp"
-    android:paddingEnd="16dp"
-    android:foreground="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:paddingStart="72dp">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:textSize="14sp"
-        android:textColor="@color/black"
+        android:layout_gravity="center_vertical"
         android:ellipsize="middle"
+        android:gravity="center_vertical"
         android:singleLine="true"
-        android:layout_gravity="center_vertical" />
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 </FrameLayout>

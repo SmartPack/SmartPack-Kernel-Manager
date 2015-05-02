@@ -241,7 +241,7 @@ public class Misc implements Constants {
     }
 
     public static void setVibration(int value, Context context) {
-        String enablePath = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
+        String enablePath = VIB_ENABLE;
         boolean enable = Utils.existFile(enablePath);
         if (enable) Control.runCommand("1", enablePath, Control.CommandType.GENERIC, context);
         Control.runCommand(String.valueOf(value), VIBRATION_PATH, Control.CommandType.GENERIC, context);

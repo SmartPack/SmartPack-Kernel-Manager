@@ -14,8 +14,8 @@
         android:theme="@style/AppThemeLight">
         <activity
             android:name="com.grarak.kerneladiutor.MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize">
+            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,12 +24,12 @@
         </activity>
         <activity
             android:name="com.grarak.kerneladiutor.TextActivity"
-            android:theme="@style/AppThemeActionBarLight"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
+            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeActionBarLight" />
         <activity
             android:name="com.grarak.kerneladiutor.FileBrowserActivity"
-            android:theme="@style/AppThemeLight"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
+            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeLight" />
 
         <receiver android:name="com.grarak.kerneladiutor.services.BootReceiver">
             <intent-filter>

@@ -1099,14 +1099,15 @@ public class CPUHotplug implements Constants {
     }
 
     public static boolean isMpdecisionActive() {
-        return Utils.isServiceActive(HOTPLUG_MPDEC);
+        return Utils.isPropActive(HOTPLUG_MPDEC);
     }
 
     public static boolean hasMpdecision() {
-        return Utils.existFile(HOTPLUG_MPDECISION_BINARY);
+        return Utils.hasProp(HOTPLUG_MPDEC);
     }
 
     public static boolean hasCpuHotplug() {
+        if (hasMpdecision()) return true;
         for (String[] array : CPU_HOTPLUG_ARRAY)
             for (String file : array) if (Utils.existFile(file)) return true;
         return false;

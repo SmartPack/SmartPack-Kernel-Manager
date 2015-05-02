@@ -90,6 +90,8 @@ public class InformationCardView extends BaseCardView {
                     new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setFullSpan(true);
+            int padding = informationCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+            layoutParams.setMargins(padding, padding, padding, padding);
             informationCardView.setLayoutParams(layoutParams);
         }
 
