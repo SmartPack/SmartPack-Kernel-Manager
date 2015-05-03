@@ -30,7 +30,6 @@ import com.grarak.kerneladiutor.utils.Utils;
 public class AboutusFragment extends RecyclerViewFragment {
 
     private final String APP_SOURCE = "https://github.com/Grarak/KernelAdiutor";
-    private final String DONATE_LINK = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG";
     private final String ISSUE_LINK = "https://github.com/Grarak/KernelAdiutor/issues";
     private final String COMMUNITY_LINK = "https://plus.google.com/u/0/communities/108445529270785762340";
     private final String TRANSLATE_LINK = "https://crowdin.com/project/kernel-adiutor";
@@ -48,7 +47,6 @@ public class AboutusFragment extends RecyclerViewFragment {
         appSourceInit();
         featureRequestInit();
         communityInit();
-        donateInit();
         translationInit();
     }
 
@@ -102,20 +100,6 @@ public class AboutusFragment extends RecyclerViewFragment {
         });
 
         addView(mCommunityCard);
-    }
-
-    private void donateInit() {
-        CardViewItem.DCardView mDonateCard = new CardViewItem.DCardView();
-        mDonateCard.setTitle(getString(R.string.donate));
-        mDonateCard.setDescription(getString(R.string.donate_summary));
-        mDonateCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                Utils.launchUrl(getActivity(), DONATE_LINK);
-            }
-        });
-
-        addView(mDonateCard);
     }
 
     private void translationInit() {
