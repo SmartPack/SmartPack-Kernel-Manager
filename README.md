@@ -19,14 +19,14 @@ Report a bug or request a feature
 ----------------
 You can report or request a features by opening an issue [Open new issue][1]
 
-#### How to bug report
+#### How to report a bug
 * A detailed description of the bug
 * Logcat
 * Make sure there are no similar bug reports already
 
 #### How to request a feature
 * A detailed description of the features
-* All kind of informations
+* All kind of information
 * Paths to sys interface
 * What's the content if the sys file
 * How to apply a new value
