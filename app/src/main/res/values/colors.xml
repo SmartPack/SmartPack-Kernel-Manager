@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="semi_transparent">#26000000</color>
+
     <color name="color_primary">#2A7289</color>
     <color name="color_primary_dark">#1D5060</color>
     <color name="color_primary_light">#3F8095</color>

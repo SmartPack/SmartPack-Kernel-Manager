@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Main Header -->
+    <string-array name="main_header_picture_items">
+        <item>@string/select_picture</item>
+        <item>@string/default_picture</item>
+    </string-array>
+
     <!-- CPU -->
     <string-array name="mc_power_saving_items">
         <item>@string/disabled</item>

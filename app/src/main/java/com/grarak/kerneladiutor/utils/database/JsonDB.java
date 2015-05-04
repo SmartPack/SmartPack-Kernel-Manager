@@ -23,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,8 @@ public abstract class JsonDB {
      * @param version If version doesn't match with the dataset, remove all saved datas
      */
     public JsonDB(String path, String newPath, int version) {
+        File parentFile = new File(newPath).getParentFile();
+        if (!parentFile.exists()) parentFile.mkdirs();
         if (Utils.existFile(path)) new RootFile(path).mv(newPath);
         path = newPath;
         this.path = path;

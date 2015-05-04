@@ -30,6 +30,10 @@
             android:name="com.grarak.kerneladiutor.FileBrowserActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeLight" />
+        <activity
+            android:name="com.grarak.kerneladiutor.elements.DAdapter$MainHeader$MainHeaderActivity"
+            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver android:name="com.grarak.kerneladiutor.services.BootReceiver">
             <intent-filter>

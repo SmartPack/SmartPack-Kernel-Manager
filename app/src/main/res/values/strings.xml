@@ -8,6 +8,8 @@
     <string name="cancel">Cancel</string>
     <string name="current_value_not_supported">Current value is not supported</string>
     <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
+    <string name="select_picture">Select Picture</string>
+    <string name="default_picture">Default Picture</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>
