@@ -222,8 +222,6 @@
   <string name="feature_request_summary">Daha fazla özellik mi istiyorsun? Github üzerinde yeni bir konu aç ve bana fikrini söyle.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Topluluğumuza katılın.</string>
-  <string name="donate">Bağışta bulun</string>
-  <string name="donate_summary">Ben boş zamanlarımda uygulama yazarım. Eğer bana birkaç dolar bağışlarsanız beni gerçekten mutlu edersiniz. Bağış yapmak için zorlamayın. Bu uygulama ücretsiz kalacak ve özelliklerin kilidini açmak için asla para almayacağım!</string>
   <string name="translation">Çeviri</string>
   <string name="translation_summary">Bu uygulamayı çevirmek için yardım edin!</string>
 </resources>

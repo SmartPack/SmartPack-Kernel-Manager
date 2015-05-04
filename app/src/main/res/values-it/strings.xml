@@ -461,8 +461,6 @@
   <string name="feature_request_summary">Vuoi più caratteristiche? Apri una nuova segnalazione su Github e dimmi la tua idea.</string>
   <string name="google_plus">Google+</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
-  <string name="donate">Fai una donazione</string>
-  <string name="donate_summary">Sto scrivendo questa applicazione nel mio tempo libero. Mi farebbe davvero piacere se mi donaste qualche euro. Non costringo nessuno a donare. Questa applicazione rimarrà gratuita e non addebiterò nulla per sbloccare le caratteristiche!</string>
   <string name="translation">Traduzione</string>
   <string name="translation_summary">Aiutami a tradurre questa app!</string>
 </resources>

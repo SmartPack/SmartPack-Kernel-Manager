@@ -264,6 +264,9 @@
   <string name="negative_toggle_summary">メニューボタンを4回素早く押すことで画面の色を反転させられるようにします。</string>
   <string name="mdnie_global_controls">mDNIeグローバルコントロール</string>
   <string name="register_hook">Register Hook</string>
+  <string name="register_hook_summary">インターセプト機能の有効化によりフックしたように動作しシナリオ設定やデルタ制御の変更を受信出来ます。シナリオが基本シーケンスの設定(登録)にない場合、フックにより変更されることはありません。</string>
+  <string name="master_sequence">マスターシーケンス</string>
+  <string name="master_sequence_summary">マスターシーケンスを有効にするととサムスンのプロファイルやシナリオを無視し、ROM制御が無効化されます。</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">画面をダブルタップすることでスリープ状態から復帰できるようになります。</string>
   <string name="center">中央</string>
@@ -361,6 +364,7 @@
   <string name="tcp">TCP輻輳アルゴリズム</string>
   <string name="tcp_summary">TCPとは、伝送制御プロトコルといわれる、インターネット・プロトコル・スイートの中核プロトコルのひとつです。</string>
   <string name="hostname">ホスト名</string>
+  <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x ウェイクロック</string>
   <string name="smb135x_wakelock_summary">電源に接続していないときのウェイクロックを阻止します。</string>
   <string name="sensor_ind_wakelock">sensor_ind ウェイクロック</string>
@@ -458,8 +462,6 @@
   <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">コミュニティに参加する</string>
-  <string name="donate">寄付</string>
-  <string name="donate_summary">このアプリは私の空き時間を使って書かれています。少しだけでも寄付して頂ければ幸いです。寄付は強制ではありません。アプリはずっと無料のままにして、機能のアンロックにお金がいるような事はしません!</string>
   <string name="translation">翻訳</string>
   <string name="translation_summary">このアプリの翻訳を手伝ってください!</string>
 </resources>

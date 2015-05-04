@@ -229,5 +229,4 @@
   <string name="last_kmsg_summary">Kopiera /proc/last_kmsg till /sdcard/last_kmsg.txt</string>
   <string name="misspelled">Varför stavade du \"Auditor\" fel?</string>
   <string name="misspelled_summary">Adiutor är latin och betyder hjälpare.</string>
-  <string name="donate_summary">Jag skapar den här appen på min fritid och skulle vara väldigt tacksam om du ville donera en slant. Du är dock inte tvingad till något. Appen kommer förbli gratis och jag kommer inte ta betalt för att låsa upp några funktioner!</string>
 </resources>

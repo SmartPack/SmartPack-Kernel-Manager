@@ -340,8 +340,6 @@
   <string name="feature_request_summary">Вы хотите больше возможностей? Расскажите вашу идею на Github.</string>
   <string name="google_plus">Google +</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
-  <string name="donate">Пожертвование</string>
-  <string name="donate_summary">Я пишу это приложение в свободное время. И я буду счастлив, если Вы пожертвуете мне пару баксов. Я не заставляю Вас делать это. Это приложение будет бесплатным, не будет взиматься плата, чтобы разблокировать какие-либо возможности!</string>
   <string name="translation">Перевод</string>
   <string name="translation_summary">Помогите мне перевести это приложение!</string>
 </resources>

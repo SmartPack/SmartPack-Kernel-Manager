@@ -8,8 +8,10 @@
   <string name="cancel">Cancelar</string>
   <string name="current_value_not_supported">Valor atual não é suportado</string>
   <string name="beta_message">Obrigado por ser um beta tester! Se você tiver quaisquer problemas, por favor não hesita contatar-me. Você atualmente está executando a versão %s.</string>
+  <string name="select_file">Selecione a %</string>
   <string name="apply_on_boot">Aplicar na inicialização</string>
   <string name="apply_on_boot_finished">As alterações foram aplicadas</string>
+  <string name="apply_on_boot_time">Aplicando as configurações em %d segundos</string>
   <string name="apply_on_boot_enabled">Habilitado para aplicar na inicialização para %s seção</string>
   <string name="apply_on_boot_disabled">Desabilitado para aplicar na inicialização para %s seção</string>
   <string name="apply_on_boot_failed">Falha ao aplicar as configurações de inicialização</string>
@@ -42,6 +44,7 @@
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil	</string>
   <string name="recovery">Recuperação			</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Configurações</string>
   <string name="faq">FAQ</string>
   <string name="about_us">Sobre nós</string>
@@ -55,6 +58,7 @@
   <string name="cpu_information">Informações da CPU</string>
   <string name="memory_information">Informações da Memória</string>
   <string name="cpu_usage">Uso da CPU</string>
+  <string name="cpu_temp">Temperatura da CPU</string>
   <string name="current_freq">Frequência atual</string>
   <string name="core">Núcleo %d</string>
   <string name="offline">Offiline</string>
@@ -215,6 +219,7 @@
   <string name="screen_hue_summary">Você pode ter problemas com SoC MSM8x26 ao definir um valor elevado.</string>
   <string name="screen_value">Valor de tela</string>
   <string name="screen_contrast">Contraste da tela</string>
+  <string name="high_brightness_mode">Modo de alto brilho</string>
   <string name="blue_whites">Azul e Preto</string>
   <string name="contrast">Contraste</string>
   <string name="brightness">Brilho</string>
@@ -335,6 +340,9 @@
   <string name="empty_name">O nome está vazio</string>
   <string name="press_again_to_apply">Pressione novamente para aplicar.</string>
   <string name="applied">Aplicado</string>
+  <string name="confirm">Tem certeza?</string>
+  <string name="cwm_recovery">CWM Recovery</string>
+  <string name="twrp">TWRP</string>
   <string name="dark_theme">Tema escuro</string>
   <string name="force_english_language">Forçar em língua inglesa</string>
   <string name="beta_info">Informações beta</string>
@@ -377,8 +385,6 @@
   <string name="feature_request_summary">Você quer mais recursos? Abra uma nova questão no Github e me conte sua idéia.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
-  <string name="donate">Doar</string>
-  <string name="donate_summary">Estou escrevendo este aplicativo durante o meu tempo livre. Você me faria muito feliz se me doasse uma graninha. Eu não irei forçá-lo a nada. Esta aplicação ficará de graça e não cobrarei para desbloquear qualquer recurso!</string>
   <string name="translation">Tradução</string>
   <string name="translation_summary">Me ajude a traduzir este app!</string>
 </resources>

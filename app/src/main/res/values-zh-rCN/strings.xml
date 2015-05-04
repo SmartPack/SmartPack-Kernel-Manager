@@ -191,6 +191,4 @@
   <string name="feature_request">功能请求</string>
   <string name="feature_request_summary">你想要更多的功能吗? 请在 Github 上新开一个 issue 并告知您的建议。</string>
   <string name="google_plus_summary">加入我们的社群。</string>
-  <string name="donate">捐赠</string>
-  <string name="donate_summary">我在闲暇时间里编写了这个应用。如果你捐赠支持开发的话我会非常高兴。我不会强迫你进行捐赠。这个应用将会一直免费并且我不会开发付费才能解锁的功能！</string>
 </resources>

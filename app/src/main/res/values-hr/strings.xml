@@ -343,8 +343,6 @@
   <string name="feature_request_summary">Želite li više funkcija? Posjetite moj Github i priopćite mi Vašu ideju.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Pridružite se našoj zajednici.</string>
-  <string name="donate">Donirajte</string>
-  <string name="donate_summary">Koristim svoje slobodno vrijeme za programiranje ove aplikacije. Doista biste me obradovali ako mi možete darovati par dolara ili eura. Ne morate ako nećete. Ova aplikacija će ostati besplatna kao i sve njene funkcije!</string>
   <string name="translation">Prijevod</string>
   <string name="translation_summary">Pomozite mi s prijevodima ove aplikacije!</string>
 </resources>

@@ -175,7 +175,6 @@
   <string name="feature_request">Prośba o funkcje</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Dołącz do naszej społeczności.</string>
-  <string name="donate">Dotacja</string>
   <string name="translation">Tłumaczenie</string>
   <string name="translation_summary">Pomóż mi przetłumaczyć tą aplikację!</string>
 </resources>

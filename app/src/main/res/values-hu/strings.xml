@@ -174,8 +174,6 @@
   <string name="feature_request">Ötlet, javaslat</string>
   <string name="google_plus">Google+</string>
   <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
-  <string name="donate">Adományozás</string>
-  <string name="donate_summary">Ezt az alkalmazást a szabadidőmben írom. Nagyon boldoggá tenne, ha adományozna nekem pár dollárt. Nem kötelező az adományozás. Ez az alkalmazás ingyenes marad, és hozzáférhető az összes szolgáltatás!</string>
   <string name="translation">Fordítás</string>
   <string name="translation_summary">Segítsen nekem lefordítani ezt az alkalmazást!</string>
 </resources>

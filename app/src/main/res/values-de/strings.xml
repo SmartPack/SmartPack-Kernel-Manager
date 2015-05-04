@@ -376,8 +376,6 @@
   <string name="feature_request_summary">Willst du mehr Funktionen? Öffne einen \"Issue\" auf GitHub und erzähl mir von deiner Idee.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Werde Teil unserer Community.</string>
-  <string name="donate">Spenden</string>
-  <string name="donate_summary">Ich schreibe diese Anwendung in meiner Freizeit und würde mich sehr über eine kleine, freiwillige Spende freuen. Diese App wird im vollen Funktionsumpfang kostenlos bleiben!</string>
   <string name="translation">Übersetzung</string>
   <string name="translation_summary">Hilf mir, diese App zu übersetzen!</string>
 </resources>

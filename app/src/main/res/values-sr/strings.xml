@@ -134,7 +134,6 @@
   <string name="feature_request_summary">Желите још функција? Направите пријаву на Гитхабу и опишите ми вашу идеју.</string>
   <string name="google_plus">Гугл Плус</string>
   <string name="google_plus_summary">Придружите се нашој заједници.</string>
-  <string name="donate">Донације</string>
   <string name="translation">Превођење</string>
   <string name="translation_summary">Помозите ми превођењем апликације!</string>
 </resources>

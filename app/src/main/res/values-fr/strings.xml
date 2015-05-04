@@ -369,8 +369,6 @@
   <string name="feature_request_summary">Vous voulez plus de fonctionnalités ? Ouvrez une nouvelle question sur Github et dites-moi votre idée.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Rejoignez notre communauté.</string>
-  <string name="donate">Faire un don</string>
-  <string name="donate_summary">J\'écris cette application au cours de mon temps libre. Vous me rendrez content si vous me faites un don. Je ne vous force pas à donner quoi que ce soit. Cette application va rester libre et je ne vous facturerai jamais pour débloquer toutes les fonctionnalités !</string>
   <string name="translation">Traduction </string>
   <string name="translation_summary">Aidez moi à traduire cette app !</string>
 </resources>

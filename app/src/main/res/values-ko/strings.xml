@@ -27,7 +27,7 @@
   <string name="kernel">커널</string>
   <string name="tools">도구</string>
   <string name="other">기타</string>
-  <string name="frequency_table">CPU 클럭 테이블</string>
+  <string name="frequency_table">클럭 테이블</string>
   <string name="kernel_information">커널 정보</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 전압</string>
@@ -47,7 +47,7 @@
   <string name="recovery">리커버리</string>
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
-  <string name="faq">자주 묻는 질문</string>
+  <string name="faq">FAQ</string>
   <string name="about_us">제작자 소개</string>
   <string name="unused_cpu_states">사용되지 않은 CPU 클럭</string>
   <string name="uptime">가동 시간</string>
@@ -62,7 +62,7 @@
   <string name="cpu_temp">CPU 온도</string>
   <string name="current_freq">현재 CPU 클럭</string>
   <string name="core">%d 번째 코어</string>
-  <string name="offline">꺼져 있음</string>
+  <string name="offline">꺼져있음</string>
   <string name="cpu_max_freq">최대 CPU 클럭</string>
   <string name="cpu_max_freq_summary">최대 CPU 클럭을 설정합니다.</string>
   <string name="cpu_min_freq">최소 CPU 클럭</string>
@@ -74,14 +74,14 @@
   <string name="cpu_governor_tunables">CPU 가버너 고급 설정</string>
   <string name="cpu_governor_tunables_summary">각 가버너에 따라 달라지는 설정 항목들입니다.</string>
   <string name="not_tunable">%s는 조절할 수 없습니다.</string>
-  <string name="mc_power_saving">멀티 코어 전원 절약 모드</string>
+  <string name="mc_power_saving">멀티코어 절약 모드</string>
   <string name="mc_power_saving_summary">최소한의 코어로 작업을 처리합니다.</string>
   <string name="power_saving_wq">전원을 절약하기 위해 깨어있는 CPU에 작업을 할당합니다.</string>
   <string name="cfs_scheduler_policy">CFS 스케줄러 정책</string>
   <string name="cfs_scheduler_policy_summary">CFS 스케줄러는 다른 CPU유닛에 어떻게 작업을 할당할지 결정하는 정책입니다.</string>
   <string name="disabled">사용 안 함</string>
   <string name="enabled">사용</string>
-  <string name="aggressive">적극적으로</string>
+  <string name="aggressive">적극적이게</string>
   <string name="temp_limit">온도 제한</string>
   <string name="temp_limit_summary">일정 온도를 넘으면 온도를 낮추기 위해 CPU 클럭이 제한됩니다.</string>
   <string name="cpu_boost">CPU 부스트</string>
@@ -112,7 +112,7 @@
   <string name="eco">Eco</string>
   <string name="strict">Strict</string>
   <string name="eco_mode">Eco 모드</string>
-  <string name="eco_mode_summary">IntelliPlug를 위한 배터리 절약 모드입니다.</string>
+  <string name="eco_mode_summary">IntelliPlug 전용 배터리 절약 모드입니다.</string>
   <string name="touch_boost">터치 부스트</string>
   <string name="touch_boost_summary">화면 또는 버튼에 입력이 감지될 때 최소 CPU 클럭을 가속시킵니다.</string>
   <string name="hysteresis">히스테리시스 값</string>
@@ -204,7 +204,7 @@
   <string name="gpu_2d_governor">GPU 2D 가버너</string>
   <string name="gpu_2d_governor_summary">GPU의 2D 가버너를 설정합니다.</string>
   <string name="gpu_governor">GPU 가버너</string>
-  <string name="gpu_governor_summary">GPU 가버너를 설정합니다.</string>
+  <string name="gpu_governor_summary">GPU의 가버너를 설정합니다.</string>
   <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
   <string name="simple_gpu_algorithm_summary">MSM Adreno TZ GPU 가버너의 추가 기능입니다. faux123이 개발했습니다.</string>
   <string name="laziness">Laziness</string>
@@ -362,6 +362,7 @@
   <string name="tcp">TCP 혼잡 알고리즘</string>
   <string name="tcp_summary">TCP는 IP의 핵심 프로토콜 중 하나이며, 전체 제품군은 TCP/IP라고 불리는 것이 일반적입니다.</string>
   <string name="hostname">호스트 이름</string>
+  <string name="wakelock">웨이크락</string>
   <string name="smb135x_wakelock">smb135x 웨이크락</string>
   <string name="smb135x_wakelock_summary">전원의 연결이 끊어질 때 웨이크락을 방지합니다.</string>
   <string name="sensor_ind_wakelock">sensor_ind 웨이크락</string>
@@ -374,6 +375,8 @@
   <string name="wlan_ctrl_wakelock_summary">wlan_ctrl 웨이크락을 방지합니다.</string>
   <string name="wlan_wakelock">wlan 웨이크락</string>
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
+  <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
+  <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
   <string name="items_found">%d개 항목 찾음</string>
   <string name="backup">백업</string>
   <string name="add">추가</string>
@@ -431,7 +434,7 @@
   <string name="last_kmsg">마지막 커널 메시지</string>
   <string name="last_kmsg_summary">/proc/last_kmsg를 /sdcard/last_kmsg.txt에 복사합니다.</string>
   <string name="driver_message">드라이버 메시지</string>
-  <string name="driver_message_summary">드라이브 메시지(dmesg)를 /sdcard/dmesg.txt에 복사합니다.</string>
+  <string name="driver_message_summary">드라이버 메시지(dmesg)를 /sdcard/dmesg.txt에 복사합니다.</string>
   <string name="misspelled">왜 \"Auditor\"가 아닌가요? 오타인가요?</string>
   <string name="misspelled_summary">Adiutor는 라틴어로 도우미를 뜻합니다.</string>
   <string name="cpu_freq_not_sticking">설정한 CPU 클럭으로 변경되지 않는데 왜 그런가요?</string>
@@ -457,8 +460,6 @@
   <string name="feature_request_summary">더 많은 기능을 원하십니까? Github의 Issues 탭을 열어서 여러분의 아이디어를 말씀해 주세요.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">저희 커뮤니티에 가입하세요.</string>
-  <string name="donate">기부</string>
-  <string name="donate_summary">저는 남는 시간에 이 앱을 개발합니다. 조금 기부를 해 주신다면 정말 기쁠 것 같습니다. 절대 강요하지는 않겠습니다. 이 앱은 계속 무료일 것이고 어떤 기능도 돈을 요구하지 않을 것입니다.</string>
   <string name="translation">번역</string>
   <string name="translation_summary">앱을 번역해 주세요!</string>
 </resources>
