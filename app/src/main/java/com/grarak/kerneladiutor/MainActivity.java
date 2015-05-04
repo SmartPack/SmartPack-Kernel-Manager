@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
             params.width = width / 2;
             if (tablet)
                 params.width -= actionBarSize + (35 * getResources().getDisplayMetrics().density);
-        } else params.width = tablet ? width / 2 + actionBarSize : width - actionBarSize;
+        } else params.width = tablet ? width / 2 : width - actionBarSize;
 
         return params;
     }
