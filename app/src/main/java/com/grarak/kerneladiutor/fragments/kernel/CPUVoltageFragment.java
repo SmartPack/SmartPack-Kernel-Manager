@@ -113,8 +113,12 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
                             List<String> voltages = CPUVoltage.getVoltages();
                             if (voltages != null)
                                 for (int i = 0; i < mVoltageCard.length; i++) {
-                                    mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
-                                    mVoltageCard[i].setValue(voltages.get(i));
+                                    try {
+                                        mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
+                                        mVoltageCard[i].setValue(voltages.get(i));
+                                    } catch (IndexOutOfBoundsException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                         }
                     });

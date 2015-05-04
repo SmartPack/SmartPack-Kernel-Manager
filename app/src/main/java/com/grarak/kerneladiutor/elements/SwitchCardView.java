@@ -155,11 +155,13 @@ public class SwitchCardView extends BaseCardView {
             switchCardView.setChecked(checked);
 
             if (fullspan) {
-                StaggeredGridLayoutManager.LayoutParams params =
+                StaggeredGridLayoutManager.LayoutParams layoutParams =
                         new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.setFullSpan(true);
-                switchCardView.setLayoutParams(params);
+                layoutParams.setFullSpan(true);
+                int padding = switchCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+                layoutParams.setMargins(padding, padding, padding, padding);
+                switchCardView.setLayoutParams(layoutParams);
             }
 
             setUpListener();

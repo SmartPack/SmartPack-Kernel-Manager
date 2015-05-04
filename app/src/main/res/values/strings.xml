@@ -46,6 +46,7 @@
     <string name="cpu">CPU</string>
     <string name="cpu_voltage">CPU Voltage</string>
     <string name="cpu_hotplug">CPU Hotplug</string>
+    <string name="thermal">Thermal</string>
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
     <string name="wake_controls">Wake Controls</string>
@@ -219,6 +220,11 @@
     <string name="sampling_rate">Sampling Rate</string>
     <string name="cpu_down_rate">CPU Down Rate</string>
     <string name="cpu_up_rate">CPU Up Rate</string>
+
+    <!-- Thermal -->
+    <string name="thermal_info">Use only one thermal driver from the following options, using more than at the same time may cause unexpected behavior.</string>
+    <string name="thermald">Thermald</string>
+    <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>

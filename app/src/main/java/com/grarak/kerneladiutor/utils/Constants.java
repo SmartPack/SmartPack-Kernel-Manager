@@ -230,6 +230,9 @@ public interface Constants {
     String[][] CPU_HOTPLUG_ARRAY = {{HOTPLUG_MPDEC}, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
             MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY};
 
+    // Thermal
+    String THERMALD = "thermald";
+
     // GPU
     String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";
 

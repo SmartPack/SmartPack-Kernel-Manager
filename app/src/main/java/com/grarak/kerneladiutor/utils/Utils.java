@@ -52,6 +52,8 @@ import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -293,12 +295,33 @@ public class Utils implements Constants {
         }
     }
 
+    public static String readFile(String file, boolean root) {
+        if (root) return new RootFile(file).readFile();
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null)
+                stringBuilder.append(line).append("\n");
+            bufferedReader.close();
+            fileReader.close();
+            return stringBuilder.toString().trim();
+        } catch (FileNotFoundException ignored) {
+            Log.e(TAG, "File does not exist " + file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e(TAG, "Failed to read " + file);
+        }
+        return null;
+    }
+
     public static boolean existFile(String file) {
         return new RootFile(file).exists();
     }
 
     public static String readFile(String file) {
-        return new RootFile(file).readFile();
+        return readFile(file, true);
     }
 
 }

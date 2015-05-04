@@ -35,6 +35,10 @@ public class RootFile {
         RootUtils.runCommand("mkdir -p " + file);
     }
 
+    public void mv(String newPath) {
+        RootUtils.runCommand("mv -f " + file + " " + newPath);
+    }
+
     public void write(String text, boolean append) {
         RootUtils.runCommand(append ? "echo '" + text + "' >> " + file : "echo '" + text + "' > " + file);
     }

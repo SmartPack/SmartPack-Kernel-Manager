@@ -111,11 +111,13 @@ public class CardViewItem extends BaseCardView {
             if (description != null) cardViewItem.setDescription(description);
             if (view != null) cardViewItem.setView(view);
             if (fullspan) {
-                StaggeredGridLayoutManager.LayoutParams params =
+                StaggeredGridLayoutManager.LayoutParams layoutParams =
                         new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.setFullSpan(true);
-                cardViewItem.setLayoutParams(params);
+                layoutParams.setFullSpan(true);
+                int padding = cardViewItem.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+                layoutParams.setMargins(padding, padding, padding, padding);
+                cardViewItem.setLayoutParams(layoutParams);
             }
             setUpListener();
         }
