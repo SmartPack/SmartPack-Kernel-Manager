@@ -36,6 +36,8 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 
+import java.util.List;
+
 /**
  * Created by willi on 07.04.15.
  */
@@ -93,35 +95,33 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         removeAllViews();
 
         final String path = getPath();
-        String files[] = new RootFile(path).list();
-        if (files != null)
-            for (String file : files)
-                if (file != null && !file.isEmpty()) {
-                    String value = Utils.readFile(path + "/" + file);
-                    if (value != null && !value.isEmpty() && !value.contains("\n")) {
-                        PopupCardItem.DPopupCard mPathCard = new PopupCardItem.DPopupCard(null);
-                        mPathCard.setDescription(file);
-                        mPathCard.setItem(value);
-                        mPathCard.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
-                                        .readFile(path + "/" + ((PopupCardItem) v).getDescription()))) > -1;
+        List<String> files = new RootFile(path).list();
+        for (String file : files) {
+            String value = Utils.readFile(path + "/" + file);
+            if (value != null && !value.isEmpty() && !value.contains("\n")) {
+                PopupCardItem.DPopupCard mPathCard = new PopupCardItem.DPopupCard(null);
+                mPathCard.setDescription(file);
+                mPathCard.setItem(value);
+                mPathCard.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
+                                .readFile(path + "/" + ((PopupCardItem) v).getDescription()))) > -1;
 
-                                if (freq && getType() == PATH_TYPE.GOVERNOR) {
-                                    String[] values = new String[CPU.getFreqs().size()];
-                                    for (int i = 0; i < values.length; i++)
-                                        values[i] = String.valueOf(CPU.getFreqs().get(i));
-                                    showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
-                                } else
-                                    showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
-                                            ((PopupCardItem) v).getItem());
-                            }
-                        });
-
-                        addView(mPathCard);
+                        if (freq && getType() == PATH_TYPE.GOVERNOR) {
+                            String[] values = new String[CPU.getFreqs().size()];
+                            for (int i = 0; i < values.length; i++)
+                                values[i] = String.valueOf(CPU.getFreqs().get(i));
+                            showPopupDialog(path + "/" + ((PopupCardItem) v).getDescription(), values);
+                        } else
+                            showDialog(path + "/" + ((PopupCardItem) v).getDescription(),
+                                    ((PopupCardItem) v).getItem());
                     }
-                }
+                });
+
+                addView(mPathCard);
+            }
+        }
 
         title.setText(getCount() < 1 ? getError(getActivity()) : getName());
     }

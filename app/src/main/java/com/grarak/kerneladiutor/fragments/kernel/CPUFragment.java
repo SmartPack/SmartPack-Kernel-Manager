@@ -37,7 +37,9 @@ import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -488,7 +490,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getPath() {
-            return CPU_GOVERNOR_TUNABLES + "/" + CPU.getCurGovernor(0);
+            String governor = CPU.getCurGovernor(0);
+            if (Utils.existFile(CPU_GOVERNOR_TUNABLES + "/" + governor))
+                return CPU_GOVERNOR_TUNABLES + "/" + governor;
+            else for (String file : new RootFile(CPU_GOVERNOR_TUNABLES).list())
+                if (governor.contains(file))
+                    return CPU_GOVERNOR_TUNABLES + "/" + file;
+            return CPU_GOVERNOR_TUNABLES + "/" + governor;
         }
 
         @Override

@@ -21,8 +21,6 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,7 +42,7 @@ public class Initd implements Constants {
             RootUtils.mount(true, "/system");
             initd.mkdir();
         }
-        return new ArrayList<>(Arrays.asList(new RootFile(INITD).list()));
+        return initd.list();
     }
 
 }
