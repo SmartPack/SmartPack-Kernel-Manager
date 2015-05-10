@@ -73,7 +73,7 @@ public class SplashView extends View {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(17);
                         rotate++;
                         ((Activity) getContext()).runOnUiThread(new Runnable() {
                             @Override
@@ -105,7 +105,7 @@ public class SplashView extends View {
                                 invalidate();
                             }
                         });
-                        Thread.sleep(15);
+                        Thread.sleep(17);
                     }
                     ((Activity) getContext()).runOnUiThread(new Runnable() {
                         @Override

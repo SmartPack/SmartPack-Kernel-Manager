@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -144,6 +145,13 @@ public class MainActivity extends AppCompatActivity implements Constants {
         }
 
         setContentView(R.layout.activity_main);
+        mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLayoutManager.setSmoothScrollbarEnabled(true);
+        mDrawerList.setLayoutManager(mLayoutManager);
+        mDrawerList.setHasFixedSize(true);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
         setSupportActionBar(toolbar);
@@ -231,7 +239,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
         mSplashView = (SplashView) findViewById(R.id.splash_view);
     }
 
@@ -253,11 +260,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 selectItem(position);
             }
         });
-
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setSmoothScrollbarEnabled(true);
-        mDrawerList.setLayoutManager(mLayoutManager);
-        mDrawerList.setHasFixedSize(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -316,7 +318,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
                 if (hasRoot)
                     // Root is there but busybox is missing
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
+                    } catch (ActivityNotFoundException ignored) {
+                    }
                 if (betaDialog != null) betaDialog.dismiss();
                 cancel(true);
                 finish();

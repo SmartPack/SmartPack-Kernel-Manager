@@ -228,8 +228,7 @@ public class FileBrowserActivity extends AppCompatActivity {
                             current_path = file.getAbsolutePath();
                             updateData();
                         } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setMessage(getString(R.string.select_file, file.getName()))
+                            new AlertDialog.Builder(getActivity()).setMessage(getString(R.string.select_file, file.getName()))
                                     .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
