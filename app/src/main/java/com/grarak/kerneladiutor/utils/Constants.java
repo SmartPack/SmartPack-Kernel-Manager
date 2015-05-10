@@ -460,8 +460,8 @@ public interface Constants {
     String HEADPHONE_POWERAMP_GAIN = "/sys/kernel/sound_control_3/gpl_headphone_pa_gain";
 
     String MIC_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
-    String SPEAKER_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
-    String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
+    String SPEAKER_BOOST = "/sys/devices/virtual/misc/soundcontrol/speaker_boost";
+    String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/volume_boost";
 
     String[] SPEAKER_GAIN_ARRAY = {SPEAKER_GAIN, SPEAKER_BOOST};
 
