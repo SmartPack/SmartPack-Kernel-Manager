@@ -8,7 +8,10 @@
   <string name="cancel">Отмена</string>
   <string name="current_value_not_supported">Данное значение не поддерживается</string>
   <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
+  <string name="select_picture">Выберить изображение</string>
+  <string name="default_picture">Рисунок по умолчанию</string>
   <string name="select_file">Выбрать %s?</string>
+  <string name="no_files">Файл не найден.</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_finished">Ваши настройки применены</string>
   <string name="apply_on_boot_time">Применение настроек через %d секунды</string>
@@ -291,6 +294,7 @@
   <string name="vibration_strength">Интенсивность вибрации</string>
   <string name="android_logger">Android протоколирования</string>
   <string name="msm_hsic_host_wakelock_summary">Предотвращать msm_hsic_host вэйклок.</string>
+  <string name="add">Добавить</string>
   <string name="edit">Редактировать</string>
   <string name="delete">Удалить</string>
   <string name="key">Ключ</string>

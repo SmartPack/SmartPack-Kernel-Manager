@@ -8,8 +8,10 @@
   <string name="cancel">Ακύρωση</string>
   <string name="current_value_not_supported">Η τρέχουσα τιμή δεν υποστηρίζεται</string>
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
+  <string name="default_picture">Προεπιλεγμένη εικόνα</string>
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
   <string name="apply_on_boot_finished">Οι αλλαγές σας έχουν εφαρμοστεί</string>
+  <string name="apply_on_boot_time">Εφαρμογή των ρυθμίσεων σας σε %d δευτερόλεπτα</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
@@ -37,6 +39,7 @@
   <string name="misc_controls">Διάφορα Στοιχεία Ελέγχου</string>
   <string name="build_prop_editor">Επεξεργαστής Build prop</string>
   <string name="profile">Προφίλ</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Ρυθμίσεις</string>
   <string name="about_us">Σχετικά με εμάς</string>
   <string name="unused_cpu_states">Αχρησιμοποίητες καταστάσεις CPU</string>
@@ -49,6 +52,7 @@
   <string name="cpu_information">Πληροφορίες για τη CPU</string>
   <string name="memory_information">Πληροφορίες Μνήμης</string>
   <string name="cpu_usage">Χρήση της CPU</string>
+  <string name="cpu_temp">Θερμοκρασία CPU</string>
   <string name="current_freq">Τρέχουσα Συχνότητα</string>
   <string name="core">Πυρήνας %d</string>
   <string name="offline">Αποσυνδεδεμένος</string>
@@ -74,5 +78,6 @@
   <string name="interval">Χρονικό διάστημα</string>
   <string name="interval_summary">Ελάχιστο διάστημα μίας extra ώθησης του επεξεργαστή.</string>
   <string name="sync_threshold">Όριο συγχρονισμού</string>
+  <string name="mpdecision">MPDecision</string>
   <string name="suspend">Αναστολή</string>
 </resources>

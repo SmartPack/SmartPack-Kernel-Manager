@@ -8,6 +8,8 @@
   <string name="cancel">Annuler</string>
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
+  <string name="select_picture">Sélectionner une image</string>
+  <string name="default_picture">Image par défaut</string>
   <string name="select_file">Sélectionnez  %s?</string>
   <string name="no_files">Aucun fichier dans ce chemin.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
@@ -32,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltage du CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Température</string>
   <string name="gpu">GPU</string>
   <string name="screen">Écran</string>
   <string name="wake_controls">Contrôles de Réveil</string>
@@ -76,6 +79,7 @@
   <string name="not_tunable">%s n\'est pas tunable</string>
   <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>
   <string name="mc_power_saving_summary">Essayez de regrouper les tâches en moins de cœurs possible.</string>
+  <string name="power_saving_wq">Envoyer les files d\'attentes sur les cœurs réveillés pour économiser de l’énergie.</string>
   <string name="cfs_scheduler_policy">Stratégie de l\'ordonnanceur CFS</string>
   <string name="cfs_scheduler_policy_summary">La stratégie règle comment l\'ordonnanceur CFS équilibre les tâches sur les différents cœurs CPU.</string>
   <string name="disabled">Désactivé</string>
@@ -151,6 +155,7 @@
   <string name="fast_lane_load">Charge de la Voie Rapide</string>
   <string name="fast_lane_load_summary">Améliore le temps de latence en mettant en ligne tous les CPUs si la charge actuelle sur un des cœurs est au dessus d\'un seuil.</string>
   <string name="fast_lane_min_freq">Fréquence Min Voie Rapide</string>
+  <string name="fast_lane_min_freq_summary">Fixe la fréquence minimum à laquelle les cœurs descendent quand la voie rapide atteint la charge ci-dessus.</string>
   <string name="offline_load">Charge Hors Ligne</string>
   <string name="io_is_busy">Les E/S sont Occupées</string>
   <string name="mako_hotplug">Mako Hotplug</string>

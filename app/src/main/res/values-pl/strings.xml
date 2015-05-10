@@ -8,8 +8,13 @@
   <string name="cancel">Anuluj</string>
   <string name="current_value_not_supported">Bieżąca wartość nie jest obsługiwana</string>
   <string name="beta_message">Dziękuję za bycie beta testerem! Jeśli napotykasz jakieś problemy, skontatuj się ze mną. Obecnie używasz wesji %s.</string>
+  <string name="select_picture">Wybierz obraz</string>
+  <string name="default_picture">Domyślny obraz</string>
+  <string name="select_file">Wybrać %s?</string>
+  <string name="no_files">Brak plików w tym folderze.</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>
   <string name="apply_on_boot_finished">Twoje zmiany zostały zastosowane</string>
+  <string name="apply_on_boot_time">Zastosowanie twoich ustawień w %d sekund</string>
   <string name="apply_on_boot_enabled">Włączono zastosowanie zmian przy uruchomieniu dla sekcji %s</string>
   <string name="apply_on_boot_disabled">Wyłączono zastosowanie zmian przy uruchomieniu dla sekcji %s</string>
   <string name="apply_on_boot_failed">Zastosowanie ustawień przy uruchomieniu nie powiodło się</string>
@@ -29,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Napięcie CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Termiczne</string>
   <string name="gpu">GPU</string>
   <string name="screen">Ekran</string>
   <string name="wake_controls">Kontrola wybudzeń</string>
@@ -41,6 +47,8 @@
   <string name="misc_controls">Różne Ustawienia</string>
   <string name="build_prop_editor">Edytor build prop</string>
   <string name="profile">Profil</string>
+  <string name="recovery">Recovery</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Ustawienia</string>
   <string name="faq">FAQ</string>
   <string name="about_us">O nas</string>
@@ -89,6 +97,7 @@
   <string name="input_boost_freq">Zwiększenie częstotliwości podczas dotyku</string>
   <string name="input_boost_freq_summary">Częstotliwość procesora zostanie zwiększona do tej podczas dotyku.</string>
   <string name="global_offset">Zmiany Globalne</string>
+  <string name="override_vmin">Nadpisz minimalne napięcie</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="profile_summary">Liczba w nawiasie oznacza ilość włączonych rdzeni w dowolnym momencie.</string>

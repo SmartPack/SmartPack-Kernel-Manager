@@ -8,6 +8,8 @@
   <string name="cancel">Annulla</string>
   <string name="current_value_not_supported">Il valore corrente non è supportato</string>
   <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
+  <string name="select_picture">Selezionare Immagine</string>
+  <string name="default_picture">Immagine di default</string>
   <string name="select_file">Selezionare %s?</string>
   <string name="no_files">Non ci sono file in questo percorso.</string>
   <string name="apply_on_boot">Applica all\'avvio</string>
@@ -32,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltaggio della CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Termico</string>
   <string name="gpu">GPU</string>
   <string name="screen">Schermo</string>
   <string name="wake_controls">Controlli per risveglio dispositivo</string>
@@ -195,6 +198,9 @@
   <string name="sampling_rate">Frequenza di campionamento</string>
   <string name="cpu_down_rate">Tasso discesa CPU</string>
   <string name="cpu_up_rate">Tasso salita CPU</string>
+  <string name="thermal_info">Utilizzare solo un driver termico tra le seguenti opzioni, utilizzando più di uno nello stesso momento si può causare un comportamento imprevisto.</string>
+  <string name="thermald">Surriscaldamento</string>
+  <string name="thermald_summary">Driver termico Qualcomm Originale che impedisce surriscaldamento dell\'apparecchio. Questo dovrebbe essere disabilitato se il kernel corrente ha un\'alternativa.</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequenza corrente</string>
   <string name="gpu_cur_freq">Frequenza attuale GPU</string>
   <string name="gpu_2d_max_freq">GPU 2D Frequenza Massima</string>
@@ -364,6 +370,7 @@
   <string name="tcp">Algoritmo di congestione TCP</string>
   <string name="tcp_summary">Il Protocollo di controllo trasmissione è uno dei principali protocolli della suite di protocolli Internet (IP), ed è così comune che l\'intera suite è spesso chiamato TCP/IP.</string>
   <string name="hostname">Hostname</string>
+  <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="smb135x_wakelock_summary">Prevenire wakelock quando alimentazione scollegata.</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>

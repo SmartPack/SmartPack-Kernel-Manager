@@ -8,7 +8,7 @@
   <string name="cancel">Cancelar</string>
   <string name="current_value_not_supported">Valor atual não é suportado</string>
   <string name="beta_message">Obrigado por ser um beta tester! Se você tiver quaisquer problemas, por favor não hesita contatar-me. Você atualmente está executando a versão %s.</string>
-  <string name="select_file">Selecione a %</string>
+  <string name="select_file">Selecione a %s</string>
   <string name="apply_on_boot">Aplicar na inicialização</string>
   <string name="apply_on_boot_finished">As alterações foram aplicadas</string>
   <string name="apply_on_boot_time">Aplicando as configurações em %d segundos</string>
@@ -43,7 +43,7 @@
   <string name="misc_controls">Controles variados</string>
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil	</string>
-  <string name="recovery">Recuperação			</string>
+  <string name="recovery">Recuperação</string>
   <string name="initd">Init.d</string>
   <string name="settings">Configurações</string>
   <string name="faq">FAQ</string>

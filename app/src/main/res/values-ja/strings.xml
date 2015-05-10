@@ -8,6 +8,8 @@
   <string name="cancel">キャンセル</string>
   <string name="current_value_not_supported">現在の値は非対応です</string>
   <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
+  <string name="select_picture">画像の選択</string>
+  <string name="default_picture">既定の画像</string>
   <string name="select_file">%sを選択しますか?</string>
   <string name="no_files">このパスにはファイルがありません。</string>
   <string name="apply_on_boot">起動時に適用</string>
@@ -32,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU電圧</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">過熱制御</string>
   <string name="gpu">GPU</string>
   <string name="screen">スクリーン</string>
   <string name="wake_controls">起動操作</string>
@@ -195,6 +198,9 @@
   <string name="sampling_rate">サンプリングレート</string>
   <string name="cpu_down_rate">CPUダウンレート</string>
   <string name="cpu_up_rate">CPUアップレート</string>
+  <string name="thermal_info">一つだけを有効にするようにしてください。同時に複数を有効化すると予期しない動作を引き起こす可能性があります。</string>
+  <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Qualcomm製の過熱制御ドライバーです。他の過熱制御ドライバーがある場合は無効にするべきです。</string>
   <string name="gpu_2d_cur_freq">GPU 2D 現在の周波数</string>
   <string name="gpu_cur_freq">GPU 現在の周波数</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大周波数</string>
