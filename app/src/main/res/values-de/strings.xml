@@ -80,7 +80,7 @@
   <string name="not_tunable">%s ist nicht einstellbar</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
-  <string name="power_saving_wq">Anstehende Aufgaben laufenden CPUs zuweisen um Strom zu sparen.</string>
+  <string name="power_saving_wq">Anstehende Aufgaben, laufenden CPUs zuweisen, um Strom zu sparen.</string>
   <string name="cfs_scheduler_policy">Richtlinien für den CFS-Planer</string>
   <string name="disabled">Deaktiviert</string>
   <string name="enabled">Aktiviert</string>
@@ -243,7 +243,7 @@
   <string name="fullscreen">Vollbild</string>
   <string name="s2w">Wischen zum Aufwecken</string>
   <string name="s2w_summary">Wecke dein Gerät durch swipen auf dem Bildschirm.</string>
-  <string name="s2s">Wischen für Bildschirmsperre</string>
+  <string name="s2s">Wischen, um den Bildschirm zu sperren</string>
   <string name="t2w">Tippen zum Aufwecken</string>
   <string name="t2w_summary">Wecke dein Gerät auf, indem du auf den Touchscreen tippst.</string>
   <string name="dt2w_charging">Doppelklicken, um das Gerät beim Laden zu wecken</string>
@@ -282,7 +282,7 @@
   <string name="scheduler">Scheduler</string>
   <string name="scheduler_summary">Lege einen aktiven I/O Scheduler Algorithmus fest. Der Scheduler entscheidet wie mit I/O Anfragen umgegangen wird.</string>
   <string name="scheduler_tunable">Scheduler Tunable</string>
-  <string name="scheduler_tunable_summary">Unterschiedliche, vom Scheduler abhängige Konfigurationen.</string>
+  <string name="scheduler_tunable_summary">Verschiedene Optionen die vom Scheduler abhängig sind.</string>
   <string name="read_ahead">Read-Ahead</string>
   <string name="read_ahead_summary">Der Read-Ahead Wert für den Telefonspeicher.</string>
   <string name="ksm_full_scans">Vollständige Scans</string>
@@ -307,7 +307,7 @@
   <string name="very_aggressive">Sehr aggressiv</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">Speichergröße</string>
-  <string name="disksize_summary">Versucht die Leistung zu steigern indem kleinere Pakete komprimiert im RAM anstelle des Hauptspeichers ausgelagert werden. Ist der RAM voll werden diese wieder auf den Hauptspeicher gelegt.</string>
+  <string name="disksize_summary">Versucht, die Leistung zu erhöhen, indem die Auslagerungsaktivitäten nicht mehr auf physischen Speicher gelagert werden, stattdessen wird ein virtuelles Blockgerät erstellt. Paging erfolgt im RAM, bis es erforderlich ist, den virtuellen Swap-Speicher zu verwenden.</string>
   <string name="vibration_strength">Vibrationsstärke</string>
   <string name="android_logger">Android-Protokollierung</string>
   <string name="fsync">FSync</string>
@@ -355,7 +355,7 @@
   <string name="flash_now">Jetzt flashen</string>
   <string name="add_action_first">Du musst zunächst eine Aktion hinzufügen.</string>
   <string name="emulate_initd">Init.d emulieren</string>
-  <string name="emulate_initd_summary">Wenn dein Gerät kein Init.d unterstützt kannst du hier die Emulierung aktivieren. Dadurch wird die App die Skripte nach dem Systemstart aber vor \"Beim Systemstart anwenden\" ausführen.</string>
+  <string name="emulate_initd_summary">Wenn dein Gerät kein Init.d unterstützt kannst du hier die Emulierung aktivieren. Durch die Aktivierung wird die Anwendung nach dem Systemstart die Skripte ausführen, dies geschieht jedoch vor \"Beim Systemstart anwenden\".</string>
   <string name="execute">Ausführen</string>
   <string name="dark_theme">Dunkles Design</string>
   <string name="force_english_language">Englische Sprache erzwingen</string>
