@@ -208,7 +208,7 @@
     <string name="screen_off_single_core">Screen off Single Core</string>
     <string name="screen_off_single_core_summary">Use only one core when screen is off.</string>
     <string name="idle_frequency">Idle Frequency</string>
-    <string name="idle_frequency_summary">If this first core is below this frequency, then don\'t plug the other cores.</string>
+    <string name="idle_frequency_summary">If the first core is below this frequency, then don\'t plug the other cores.</string>
     <string name="touch_boost_time">Touch Boost Time</string>
     <string name="boost_frequecy_core">Boost Frequency Core %d</string>
     <string name="start_delay">Start delay</string>
