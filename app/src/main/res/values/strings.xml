@@ -155,9 +155,11 @@
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by faux123.</string>
     <string name="profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
+    <string name="insanity">InSaNiTy</string>
     <string name="balanced">Balanced</string>
     <string name="performance">Performance</string>
     <string name="conservative">Conservative</string>
+    <string name="eco_insanity">Eco InSaNiTy</string>
     <string name="eco_performance">Eco Performance</string>
     <string name="eco_conservative">Eco Conservative</string>
     <string name="tri">Tri</string>

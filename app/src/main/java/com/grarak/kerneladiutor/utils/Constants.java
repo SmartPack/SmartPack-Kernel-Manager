@@ -106,6 +106,7 @@ public interface Constants {
     String HOTPLUG_INTELLI_PLUG_HYSTERESIS = HOTPLUG_INTELLI_PLUG + "/nr_run_hysteresis";
     String HOTPLUG_INTELLI_PLUG_THRESHOLD = HOTPLUG_INTELLI_PLUG + "/cpu_nr_run_threshold";
     String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = HOTPLUG_INTELLI_PLUG + "/screen_off_max";
+    String HOTPLUG_INTELLI_PLUG_INSANITY = HOTPLUG_INTELLI_PLUG + "/is_insanity";
 
     String HOTPLUG_INTELLI_PLUG_5 = "/sys/kernel/intelli_plug";
     String HOTPLUG_INTELLI_PLUG_5_ENABLE = HOTPLUG_INTELLI_PLUG_5 + "/intelli_plug_active";
