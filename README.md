@@ -58,6 +58,12 @@ Also codes from different people:
 
 * [RootUtils](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/utils/root/RootUtils.java)
 
+#### apbaxel
+
+* [Constants](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/utils/Constants.java)
+
+_(Many sys interface paths has been taken from his [UKM-Project](https://github.com/apbaxel/UKM))_
+
 #### Brandon Valosek
 
 * [CpuSpyApp](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/bvalosek/cpuspy/CpuSpyApp.java)
