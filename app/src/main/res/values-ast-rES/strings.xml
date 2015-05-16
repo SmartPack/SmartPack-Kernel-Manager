@@ -7,6 +7,7 @@
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
   <string name="current_value_not_supported">Nun ta sofitáu\'l valor actual</string>
+  <string name="beta_message">¡Gracies por ser un beta tester! Si alcuentres cualesquier problema, por favor nun dubies en contautame. Anguaño tas executando la versión %s.</string>
   <string name="select_file">¿Esbillar %s?</string>
   <string name="no_files">Ensin ficheros nesti camín.</string>
   <string name="apply_on_boot">Aplicar nel arranque</string>
@@ -51,6 +52,7 @@
   <string name="core">Nucleu %d</string>
   <string name="temp_limit">Llende de temperatura</string>
   <string name="interval">Intervalu</string>
+  <string name="profile_summary">El númberu ente paréntesis indica la cantidá de nucleos en llinia en cualesquier momentu.</string>
   <string name="eco_mode">Mou Eco</string>
   <string name="eco_mode_summary">Mou d\'aforru d\'enerxía pa IntelliPlug.</string>
   <string name="debug_summary">Permítete activar la mázcara de depuración pa operaciones.</string>

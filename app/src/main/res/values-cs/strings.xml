@@ -75,6 +75,9 @@
   <string name="not_tunable">%s nelze upravit</string>
   <string name="mc_power_saving">Úspora energie více jader</string>
   <string name="mc_power_saving_summary">Snaha o seskupení úkolů na co nejméně jader.</string>
+  <string name="power_saving_wq">Naplánovat workqueues na probuzení procesorů pro úsporu energie.</string>
+  <string name="cfs_scheduler_policy">Zásady CSF plánovače</string>
+  <string name="cfs_scheduler_policy_summary">Zásady určují, jak bude CSF plánovač přerozdělovat úkoly mezi různé jednotky procesoru.</string>
   <string name="disabled">Vypnuto</string>
   <string name="enabled">Zapnuto</string>
   <string name="aggressive">Agresivní</string>
@@ -83,6 +86,7 @@
   <string name="interval">Interval</string>
   <string name="global_offset">Globální nastavení</string>
   <string name="eco_mode_summary">Režim úspory energie pro IntelliPlug.</string>
+  <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
   <string name="start_delay">Prodleva spuštění</string>
   <string name="delay">Prodleva</string>
   <string name="delay_summary">Čas mezi kontrolami.</string>
@@ -111,6 +115,12 @@
   <string name="battery_temperature">Teplota baterie</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <string name="internal_storage">Vnitřní uložiště</string>
+  <string name="scheduler">Plánovač</string>
+  <string name="scheduler_summary">Nastavení aktivního elevator algoritmu pro I/O operace. Plánovač rozhoduje, jak nakládat s I/O požadavky.</string>
+  <string name="scheduler_tunable">Ladění plánovače</string>
+  <string name="scheduler_tunable_summary">Různé možnosti konfigurace, které závisí na použitém plánovači.</string>
+  <string name="read_ahead">Čtení předem</string>
+  <string name="read_ahead_summary">Read-ahead hodnota pro paměť zařízení.</string>
   <string name="ksm_enable_summary">Snižuje využití paměti, ale nemá dopad na využití procesoru.</string>
   <string name="ksm_deferred_timer_summary">Snižuje využití procesoru za cenu menší úspory paměti.</string>
   <string name="foreground_app">Aplikace v popředí</string>
@@ -123,6 +133,7 @@
   <string name="light">Mírné</string>
   <string name="medium">Střední</string>
   <string name="very_aggressive">Velmi agresivní</string>
+  <string name="zram">Z-RAM</string>
   <string name="network">Síť</string>
   <string name="tcp_summary">„Transmission Control Protocol“ je jedním z hlavních protokolů sady internetových protokolů (IP) a je natolik běžný, že se pro celou sadu běžně používá označení TCP/IP.</string>
   <string name="items_found">Nalezené položky: %d</string>
@@ -162,6 +173,8 @@
   <string name="driver_message_summary">Kopírovat zprávu ovladače (dmesg) do /sdcard/dmesg.txt</string>
   <string name="misspelled">Není „Adiutor“ překlep?</string>
   <string name="misspelled_summary">Výraz „adiutor“ pochází z latiny a znamená „pomocník“.</string>
+  <string name="cpu_freq_not_sticking">Proč je mnou nastavená frekvence procesoru ignorována?</string>
+  <string name="cpu_freq_not_sticking_summary">To může mít více důvodů. Mnoho dnešních kernelů používá vlastní „hotplugging“ systémy (tj. zapojení za běhu), které kontrolují frekvenci procesoru. Například CyanogenMod má vlastní implementaci „CPU Boost“. Doporučuji tedy nezasahovat do nastavení frekvencí procesoru a nechat jádro systému dělat svou práci.</string>
   <string name="feature_not_appearing">Proč se nezobrazují funkce X a Y?</string>
   <string name="feature_not_appearing_summary">Funkce záleží na jádře operačního systému.</string>
   <string name="feature_function">Co dělá funkce X?</string>
@@ -171,6 +184,8 @@
   <string name="license">Licence</string>
   <string name="app_license">Aplikace Kernel Adiutor je licencována pod licencí Apache, verze 2.0 a používá následující knihovny:</string>
   <string name="google">Google</string>
+  <string name="open_source">Open source</string>
+  <string name="open_source_summary">Tato aplikace je open source. Naleznete ji na GitHubu.</string>
   <string name="feature_request">Žádost o novou funkci</string>
   <string name="feature_request_summary">Chcete více funkcí? Založte nový požadavek na GitHubu a řekněte, co máte na srdci.</string>
   <string name="google_plus">Google Plus</string>
