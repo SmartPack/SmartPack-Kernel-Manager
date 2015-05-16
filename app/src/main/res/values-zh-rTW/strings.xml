@@ -8,6 +8,8 @@
   <string name="cancel">取消</string>
   <string name="current_value_not_supported">不支援目前的數值</string>
   <string name="beta_message">謝謝你， Beta 版測試人員 ！如果你有任何問題，請不要猶豫與我聯繫。您當前正在運行的版本 %s。</string>
+  <string name="select_picture">選擇圖片</string>
+  <string name="default_picture">預設圖片</string>
   <string name="select_file">選擇 %s 嗎？</string>
   <string name="no_files">此路徑中沒有檔案</string>
   <string name="apply_on_boot">開機後自動套用</string>
@@ -32,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 電壓</string>
   <string name="cpu_hotplug">CPU 熱插拔</string>
+  <string name="thermal">溫度管理</string>
   <string name="gpu">GPU</string>
   <string name="screen">螢幕</string>
   <string name="wake_controls">啟動控制</string>
@@ -80,6 +83,10 @@
   <string name="input_interval">輸入時間間隔</string>
   <string name="input_boost_freq">輸入Boost的頻率</string>
   <string name="global_offset">全局偏移</string>
+  <string name="override_vmin">重置最低電壓</string>
+  <string name="override_vmin_summary">關閉並移除原廠調低電壓調整的限制</string>
+  <string name="mpdecision_summary">高通公司的熱插拔解決方案。當啟用此功能時,你有可能會在改變頻率的時後遇到問題。</string>
+  <string name="intelliplug_summary">將高通的 MPDecision 內核替換為由 myfluxi 開發的</string>
   <string name="balanced">平衡</string>
   <string name="performance">高性能</string>
   <string name="conservative">保守</string>
@@ -127,12 +134,17 @@
   <string name="fast_lane_min_freq">快速通道最低頻率</string>
   <string name="offline_load">離線負載</string>
   <string name="io_is_busy">IO 非常忙碌</string>
+  <string name="mako_hotplug_summary">將高通的 MPDecision 內核替換為由 franciscofranco 開發的</string>
+  <string name="msm_mpdecision_hotplug">高通MPDecision熱插拔</string>
+  <string name="mb_hotplug_summary">將高通的 MPDecision 內核替換為由 show-p1984 開發的</string>
   <string name="idle_frequency">Idle 頻率</string>
   <string name="delay">延遲</string>
   <string name="pause">暫停</string>
+  <string name="alucard_hotplug_summary">將高通的 MPDecision 內核替換為由 myfluxi 開發的</string>
   <string name="sampling_rate">取樣頻率</string>
   <string name="cpu_down_rate">CPU下降頻率</string>
   <string name="cpu_up_rate">CPU上升頻率</string>
+  <string name="thermald">原廠溫度管裡</string>
   <string name="gpu_2d_cur_freq">GPU 2D 頻率</string>
   <string name="gpu_cur_freq">GPU 頻率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大頻率</string>
@@ -223,6 +235,8 @@
   <string name="userspace">使用者空間</string>
   <string name="hybrid">混合</string>
   <string name="network">網路</string>
+  <string name="tcp">TCP 擁塞控制演算法</string>
+  <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連接單次發送的分組數量的算法。它通過增減單次發送量逐步調整，使之逼近當前網絡的承載量。</string>
   <string name="hostname">主機名稱</string>
   <string name="backup">備份</string>
   <string name="add">增加</string>

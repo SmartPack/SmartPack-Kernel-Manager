@@ -35,7 +35,6 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU-Spannung</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
-  <string name="thermal">Temperatur</string>
   <string name="gpu">GPU</string>
   <string name="screen">Bildschirm</string>
   <string name="wake_controls">Aufweck-Einstellungen</string>
@@ -323,7 +322,7 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
-  <string name="items_found">%d Einträge gefunden</string>
+  <string name="items_found">%d Objekt/e gefunden</string>
   <string name="backup"> Backup</string>
   <string name="add">Hinzufügen</string>
   <string name="edit">Bearbeiten</string>
@@ -353,10 +352,15 @@
   <string name="flash_zip">Zip flashen</string>
   <string name="went_wrong">Etwas lief schief!</string>
   <string name="flash_now">Jetzt flashen</string>
+  <string name="flash_now_confirm">Möchtest du deine Aktionen ausführen? Das Gerät wird ins Recovery-System starten und die Aktionen werden in der Reihenfolge ausgeführt, wie du sie hinzugefügt hast.</string>
   <string name="add_action_first">Du musst zunächst eine Aktion hinzufügen.</string>
   <string name="emulate_initd">Init.d emulieren</string>
   <string name="emulate_initd_summary">Wenn dein Gerät kein Init.d unterstützt kannst du hier die Emulierung aktivieren. Durch die Aktivierung wird die Anwendung nach dem Systemstart die Skripte ausführen, dies geschieht jedoch vor \"Beim Systemstart anwenden\".</string>
+  <string name="executing">Ausführen</string>
   <string name="execute">Ausführen</string>
+  <string name="no_scripts_found">Keine Skripte gefunden!</string>
+  <string name="starting_initd">Starte Init.d-Emulation</string>
+  <string name="finishing_initd">Beende Init.d-Emulation</string>
   <string name="dark_theme">Dunkles Design</string>
   <string name="force_english_language">Englische Sprache erzwingen</string>
   <string name="beta_info">Beta-Informationen</string>

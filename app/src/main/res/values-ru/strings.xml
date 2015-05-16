@@ -34,6 +34,7 @@
   <string name="cpu">ЦП</string>
   <string name="cpu_voltage">Напряжение процессора</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Термальный</string>
   <string name="gpu">Графический процессор</string>
   <string name="screen">Экран</string>
   <string name="wake_controls">Управление пробуждением</string>
@@ -194,6 +195,8 @@
   <string name="sampling_rate">Частота дискретизации</string>
   <string name="cpu_down_rate">Уменьшить Скорость процессора.</string>
   <string name="cpu_up_rate">Увеличить Скорость процессора.</string>
+  <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
+  <string name="thermald_summary">Стоковый термальный драйвер, который предотвращает перегрев. Должен быть отключен, если ядро имеет альтернативу.</string>
   <string name="gpu_2d_cur_freq">Текущая частота GPU 2D</string>
   <string name="gpu_cur_freq">Текущая частота GPU</string>
   <string name="gpu_2d_max_freq">Максимальная частота GPU при 2D операциях</string>
@@ -208,6 +211,7 @@
   <string name="simple_gpu_algorithm_summary">Дополнение к планировщику MSM Andreno TZ.
 Разработано faux123.</string>
   <string name="laziness">Ленивость</string>
+  <string name="laziness_summary">Увеличивает порог увеличения или уменьшения частоты GPU. Чем меньше значение тем больше производительность.</string>
   <string name="red">Красный</string>
   <string name="green">Зелёный</string>
   <string name="blue">Cиний</string>
@@ -233,6 +237,7 @@
   <string name="white_point">Точка белого</string>
   <string name="gamma_profile_summary">После выбора профиля, пожалуйста, включите и выключите экран.</string>
   <string name="additional_profiles">Дополнительные профили</string>
+  <string name="additional_profiles_summary">Загрузить профили из интернета.</string>
   <string name="loading">Загружается</string>
   <string name="no_internet">Отсутствует подключение к Интернету</string>
   <string name="no_additional_profiles">Дополнительные профили не найдены</string>
@@ -241,6 +246,7 @@
   <string name="min_brightness">Минимальная яркость</string>
   <string name="min_brightness_summary">Позволяет уменьшить яркость экрана ниже, чем возможно в штатном режиме.</string>
   <string name="max_brightness">Максимальная яркость</string>
+  <string name="max_brightness_summary">Позволяет уменьшить яркость экрана ниже,  чем стоковое значение.</string>
   <string name="offset">Смещение</string>
   <string name="negative_toggle">Отрицательный рычаг</string>
   <string name="negative_toggle_summary">Чтобы Вкл. инвертирование цвета экрана, быстро нажимая кнопку меню 4 раза.</string>
@@ -255,11 +261,15 @@
   <string name="halfscreen">Половина экрана</string>
   <string name="fullscreen">Полный экран</string>
   <string name="s2w">Жест для пробуждения</string>
+  <string name="s2w_summary">Пробуждение свайпом по экрану.</string>
   <string name="t2w_summary">Пробуждение устройства тапом по экрану.</string>
+  <string name="dt2w_charging">Пробуждение по дв. тапу во время зарядки</string>
   <string name="slide_up">Сдвиг в верх</string>
   <string name="slide_down">Сдвиг в низ</string>
   <string name="slide_left">Сдвиг в лево</string>
   <string name="slide_right">Сдвиг в право</string>
+  <string name="wake_timeout_summary">Установите задержку, после которой пробуждение по дв. тапу будет отключено, когда экран погаснет.</string>
+  <string name="power_key_suspend_summary">Включите, чтобы жесты пробуждения отключались при блокировке экрана кнопкой питания.</string>
   <string name="sound_control">Упраление звуком</string>
   <string name="headphone_gain">Усиление для наушников</string>
   <string name="handset_microphone_gain">Усиление микрофона гарнитуры</string>
