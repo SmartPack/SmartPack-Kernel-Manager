@@ -123,7 +123,7 @@ public class Screen implements Constants {
             for (String file : MIN_BRIGHTNESS_ARRAY)
                 if (Utils.existFile(file)) {
                     MIN_BRIGHTNESS = file;
-                    break;
+                    return true;
                 }
         return MIN_BRIGHTNESS != null;
     }

@@ -83,8 +83,12 @@ public class DAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            DViews.get(position).onBindViewHolder(holder);
-            setOnClickListener(DViews.get(position), holder.itemView);
+            try {
+                DViews.get(position).onBindViewHolder(holder);
+                setOnClickListener(DViews.get(position), holder.itemView);
+            } catch (ClassCastException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override

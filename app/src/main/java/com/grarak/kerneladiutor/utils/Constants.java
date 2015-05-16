@@ -92,105 +92,86 @@ public interface Constants {
     String HOTPLUG_MPDEC = "mpdecision";
 
     String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters";
-    String HOTPLUG_INTELLI_PLUG_ENABLE = "/sys/module/intelli_plug/parameters/intelli_plug_active";
-    String HOTPLUG_INTELLI_PLUG_PROFILE = "/sys/module/intelli_plug/parameters/nr_run_profile_sel";
-    String HOTPLUG_INTELLI_PLUG_ECO = "/sys/module/intelli_plug/parameters/eco_mode_active";
-    String HOTPLUG_INTELLI_PLUG_TOUCH_BOOST = "/sys/module/intelli_plug/parameters/touch_boost_active";
-    String HOTPLUG_INTELLI_PLUG_HYSTERESIS = "/sys/module/intelli_plug/parameters/nr_run_hysteresis";
-    String HOTPLUG_INTELLI_PLUG_THRESHOLD = "/sys/module/intelli_plug/parameters/cpu_nr_run_threshold";
-    String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = "/sys/module/intelli_plug/parameters/screen_off_max";
+    String HOTPLUG_INTELLI_PLUG_ENABLE = HOTPLUG_INTELLI_PLUG + "/intelli_plug_active";
+    String HOTPLUG_INTELLI_PLUG_PROFILE = HOTPLUG_INTELLI_PLUG + "/nr_run_profile_sel";
+    String HOTPLUG_INTELLI_PLUG_ECO = HOTPLUG_INTELLI_PLUG + "/eco_mode_active";
+    String HOTPLUG_INTELLI_PLUG_TOUCH_BOOST = HOTPLUG_INTELLI_PLUG + "/touch_boost_active";
+    String HOTPLUG_INTELLI_PLUG_HYSTERESIS = HOTPLUG_INTELLI_PLUG + "/nr_run_hysteresis";
+    String HOTPLUG_INTELLI_PLUG_THRESHOLD = HOTPLUG_INTELLI_PLUG + "/cpu_nr_run_threshold";
+    String HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX = HOTPLUG_INTELLI_PLUG + "/screen_off_max";
 
     String HOTPLUG_INTELLI_PLUG_5 = "/sys/kernel/intelli_plug";
-    String HOTPLUG_INTELLI_PLUG_5_ENABLE = "/sys/kernel/intelli_plug/intelli_plug_active";
-    String HOTPLUG_INTELLI_PLUG_5_DEBUG = "/sys/kernel/intelli_plug/debug_intelli_plug";
-    String HOTPLUG_INTELLI_PLUG_5_PROFILE = "/sys/kernel/intelli_plug/full_mode_profile";
-    String HOTPLUG_INTELLI_PLUG_5_SUSPEND = "/sys/kernel/intelli_plug/hotplug_suspend";
-    String HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED = "/sys/kernel/intelli_plug/cpus_boosted";
-    String HOTPLUG_INTELLI_PLUG_5_HYSTERESIS = "/sys/kernel/intelli_plug/nr_run_hysteresis";
-    String HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE = "/sys/kernel/intelli_plug/min_cpus_online";
-    String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE = "/sys/kernel/intelli_plug/max_cpus_online";
-    String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP = "/sys/kernel/intelli_plug/max_cpus_online_susp";
-    String HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME = "/sys/kernel/intelli_plug/suspend_defer_time";
-    String HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING = "/sys/kernel/intelli_plug/def_sampling_ms";
-    String HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION = "/sys/kernel/intelli_plug/boost_lock_duration";
-    String HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION = "/sys/kernel/intelli_plug/down_lock_duration";
-    String HOTPLUG_INTELLI_PLUG_5_THRESHOLD = "/sys/kernel/intelli_plug/cpu_nr_run_threshold";
-    String HOTPLUG_INTELLI_PLUG_5_FSHIFT = "/sys/kernel/intelli_plug/nr_fshift";
-    String HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX = "/sys/kernel/intelli_plug/screen_off_max";
+    String HOTPLUG_INTELLI_PLUG_5_ENABLE = HOTPLUG_INTELLI_PLUG_5 + "/intelli_plug_active";
+    String HOTPLUG_INTELLI_PLUG_5_DEBUG = HOTPLUG_INTELLI_PLUG_5 + "/debug_intelli_plug";
+    String HOTPLUG_INTELLI_PLUG_5_PROFILE = HOTPLUG_INTELLI_PLUG_5 + "/full_mode_profile";
+    String HOTPLUG_INTELLI_PLUG_5_SUSPEND = HOTPLUG_INTELLI_PLUG_5 + "/hotplug_suspend";
+    String HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED = HOTPLUG_INTELLI_PLUG_5 + "/cpus_boosted";
+    String HOTPLUG_INTELLI_PLUG_5_HYSTERESIS = HOTPLUG_INTELLI_PLUG_5 + "/nr_run_hysteresis";
+    String HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE = HOTPLUG_INTELLI_PLUG_5 + "/min_cpus_online";
+    String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE = HOTPLUG_INTELLI_PLUG_5 + "/max_cpus_online";
+    String HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP = HOTPLUG_INTELLI_PLUG_5 + "/max_cpus_online_susp";
+    String HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME = HOTPLUG_INTELLI_PLUG_5 + "/suspend_defer_time";
+    String HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING = HOTPLUG_INTELLI_PLUG_5 + "/def_sampling_ms";
+    String HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION = HOTPLUG_INTELLI_PLUG_5 + "/boost_lock_duration";
+    String HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION = HOTPLUG_INTELLI_PLUG_5 + "/down_lock_duration";
+    String HOTPLUG_INTELLI_PLUG_5_THRESHOLD = HOTPLUG_INTELLI_PLUG_5 + "/cpu_nr_run_threshold";
+    String HOTPLUG_INTELLI_PLUG_5_FSHIFT = HOTPLUG_INTELLI_PLUG_5 + "/nr_fshift";
+    String HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX = HOTPLUG_INTELLI_PLUG_5 + "/screen_off_max";
 
-    String[] INTELLIPLUG_ARRAY = {HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_ENABLE, HOTPLUG_INTELLI_PLUG_PROFILE,
-            HOTPLUG_INTELLI_PLUG_ECO, HOTPLUG_INTELLI_PLUG_TOUCH_BOOST, HOTPLUG_INTELLI_PLUG_HYSTERESIS,
-            HOTPLUG_INTELLI_PLUG_THRESHOLD, HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX, HOTPLUG_INTELLI_PLUG_5_ENABLE,
-            HOTPLUG_INTELLI_PLUG_5_DEBUG, HOTPLUG_INTELLI_PLUG_5, HOTPLUG_INTELLI_PLUG_5_PROFILE, HOTPLUG_INTELLI_PLUG_5_SUSPEND,
-            HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED, HOTPLUG_INTELLI_PLUG_5_HYSTERESIS, HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE,
-            HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE, HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP,
-            HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME, HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING,
-            HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION, HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION,
-            HOTPLUG_INTELLI_PLUG_5_THRESHOLD, HOTPLUG_INTELLI_PLUG_5_FSHIFT, HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX};
+    String[] INTELLIPLUG_ARRAY = {HOTPLUG_INTELLI_PLUG, HOTPLUG_INTELLI_PLUG_5};
 
     String HOTPLUG_BLU_PLUG = "/sys/module/blu_plug/parameters";
-    String HOTPLUG_BLU_PLUG_ENABLE = "/sys/module/blu_plug/parameters/enabled";
-    String HOTPLUG_BLU_PLUG_POWERSAVER_MODE = "/sys/module/blu_plug/parameters/powersaver_mode";
-    String HOTPLUG_BLU_PLUG_MIN_ONLINE = "/sys/module/blu_plug/parameters/min_online";
-    String HOTPLUG_BLU_PLUG_MAX_ONLINE = "/sys/module/blu_plug/parameters/max_online";
-    String HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF = "/sys/module/blu_plug/parameters/max_cores_screenoff";
-    String HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF = "/sys/module/blu_plug/parameters/max_freq_screenoff";
-    String HOTPLUG_BLU_PLUG_UP_THRESHOLD = "/sys/module/blu_plug/parameters/up_threshold";
-    String HOTPLUG_BLU_PLUG_UP_TIMER_CNT = "/sys/module/blu_plug/parameters/up_timer_cnt";
-    String HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT = "/sys/module/blu_plug/parameters/down_timer_cnt";
+    String HOTPLUG_BLU_PLUG_ENABLE = HOTPLUG_BLU_PLUG + "/enabled";
+    String HOTPLUG_BLU_PLUG_POWERSAVER_MODE = HOTPLUG_BLU_PLUG + "/powersaver_mode";
+    String HOTPLUG_BLU_PLUG_MIN_ONLINE = HOTPLUG_BLU_PLUG + "/min_online";
+    String HOTPLUG_BLU_PLUG_MAX_ONLINE = HOTPLUG_BLU_PLUG + "/max_online";
+    String HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF = HOTPLUG_BLU_PLUG + "/max_cores_screenoff";
+    String HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF = HOTPLUG_BLU_PLUG + "/max_freq_screenoff";
+    String HOTPLUG_BLU_PLUG_UP_THRESHOLD = HOTPLUG_BLU_PLUG + "/up_threshold";
+    String HOTPLUG_BLU_PLUG_UP_TIMER_CNT = HOTPLUG_BLU_PLUG + "/up_timer_cnt";
+    String HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT = HOTPLUG_BLU_PLUG + "/down_timer_cnt";
 
-    String[] BLU_PLUG_ARRAY = {HOTPLUG_BLU_PLUG, HOTPLUG_BLU_PLUG_ENABLE, HOTPLUG_BLU_PLUG_POWERSAVER_MODE,
-            HOTPLUG_BLU_PLUG_MIN_ONLINE, HOTPLUG_BLU_PLUG_MAX_ONLINE, HOTPLUG_BLU_PLUG_MAX_CORES_SCREEN_OFF,
-            HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF, HOTPLUG_BLU_PLUG_UP_THRESHOLD, HOTPLUG_BLU_PLUG_UP_TIMER_CNT,
-            HOTPLUG_BLU_PLUG_DOWN_TIMER_CNT};
+    String[] BLU_PLUG_ARRAY = {HOTPLUG_BLU_PLUG};
 
     String HOTPLUG_MSM = "/sys/module/msm_hotplug";
-    String HOTPLUG_MSM_ENABLE = "/sys/module/msm_hotplug/enabled";
-    String HOTPLUG_MSM_ENABLE_2 = "/sys/module/msm_hotplug/msm_enabled";
-    String HOTPLUG_MSM_DEBUG_MASK = "/sys/module/msm_hotplug/parameters/debug_mask";
-    String HOTPLUG_MSM_MIN_CPUS_ONLINE = "/sys/module/msm_hotplug/min_cpus_online";
-    String HOTPLUG_MSM_MAX_CPUS_ONLINE = "/sys/module/msm_hotplug/max_cpus_online";
-    String HOTPLUG_MSM_CPUS_BOOSTED = "/sys/module/msm_hotplug/cpus_boosted";
-    String HOTPLUG_MSM_MAX_CPUS_ONLINE_SUSP = "/sys/module/msm_hotplug/max_cpus_online_susp";
-    String HOTPLUG_MSM_BOOST_LOCK_DURATION = "/sys/module/msm_hotplug/boost_lock_duration";
-    String HOTPLUG_MSM_DOWN_LOCK_DURATION = "/sys/module/msm_hotplug/down_lock_duration";
-    String HOTPLUG_MSM_HISTORY_SIZE = "/sys/module/msm_hotplug/history_size";
-    String HOTPLUG_MSM_UPDATE_RATE = "/sys/module/msm_hotplug/update_rate";
-    String HOTPLUG_MSM_UPDATE_RATES = "/sys/module/msm_hotplug/update_rates";
-    String HOTPLUG_MSM_FAST_LANE_LOAD = "/sys/module/msm_hotplug/fast_lane_load";
-    String HOTPLUG_MSM_FAST_LANE_MIN_FREQ = "/sys/module/msm_hotplug/fast_lane_min_freq";
-    String HOTPLUG_MSM_OFFLINE_LOAD = "/sys/module/msm_hotplug/offline_load";
-    String HOTPLUG_MSM_IO_IS_BUSY = "/sys/module/msm_hotplug/io_is_busy";
-    String HOTPLUG_MSM_HP_IO_IS_BUSY = "/sys/module/msm_hotplug/hp_io_is_busy";
-    String HOTPLUG_MSM_SUSPEND_MAX_CPUS = "/sys/module/msm_hotplug/suspend_max_cpus";
-    String HOTPLUG_MSM_SUSPEND_FREQ = "/sys/module/msm_hotplug/suspend_freq";
-    String HOTPLUG_MSM_SUSPEND_MAX_FREQ = "/sys/module/msm_hotplug/suspend_max_freq";
-    String HOTPLUG_MSM_SUSPEND_DEFER_TIME = "/sys/module/msm_hotplug/suspend_defer_time";
+    String HOTPLUG_MSM_ENABLE = HOTPLUG_MSM + "/enabled";
+    String HOTPLUG_MSM_ENABLE_2 = HOTPLUG_MSM + "/msm_enabled";
+    String HOTPLUG_MSM_DEBUG_MASK = HOTPLUG_MSM + "/parameters/debug_mask";
+    String HOTPLUG_MSM_MIN_CPUS_ONLINE = HOTPLUG_MSM + "/min_cpus_online";
+    String HOTPLUG_MSM_MAX_CPUS_ONLINE = HOTPLUG_MSM + "/max_cpus_online";
+    String HOTPLUG_MSM_CPUS_BOOSTED = HOTPLUG_MSM + "/cpus_boosted";
+    String HOTPLUG_MSM_MAX_CPUS_ONLINE_SUSP = HOTPLUG_MSM + "/max_cpus_online_susp";
+    String HOTPLUG_MSM_BOOST_LOCK_DURATION = HOTPLUG_MSM + "/boost_lock_duration";
+    String HOTPLUG_MSM_DOWN_LOCK_DURATION = HOTPLUG_MSM + "/down_lock_duration";
+    String HOTPLUG_MSM_HISTORY_SIZE = HOTPLUG_MSM + "/history_size";
+    String HOTPLUG_MSM_UPDATE_RATE = HOTPLUG_MSM + "/update_rate";
+    String HOTPLUG_MSM_UPDATE_RATES = HOTPLUG_MSM + "/update_rates";
+    String HOTPLUG_MSM_FAST_LANE_LOAD = HOTPLUG_MSM + "/fast_lane_load";
+    String HOTPLUG_MSM_FAST_LANE_MIN_FREQ = HOTPLUG_MSM + "/fast_lane_min_freq";
+    String HOTPLUG_MSM_OFFLINE_LOAD = HOTPLUG_MSM + "/offline_load";
+    String HOTPLUG_MSM_IO_IS_BUSY = HOTPLUG_MSM + "/io_is_busy";
+    String HOTPLUG_MSM_HP_IO_IS_BUSY = HOTPLUG_MSM + "/hp_io_is_busy";
+    String HOTPLUG_MSM_SUSPEND_MAX_CPUS = HOTPLUG_MSM + "/suspend_max_cpus";
+    String HOTPLUG_MSM_SUSPEND_FREQ = HOTPLUG_MSM + "/suspend_freq";
+    String HOTPLUG_MSM_SUSPEND_MAX_FREQ = HOTPLUG_MSM + "/suspend_max_freq";
+    String HOTPLUG_MSM_SUSPEND_DEFER_TIME = HOTPLUG_MSM + "/suspend_defer_time";
 
-    String[] HOTPLUG_MSM_ARRAY = {HOTPLUG_MSM, HOTPLUG_MSM_ENABLE, HOTPLUG_MSM_ENABLE_2, HOTPLUG_MSM_DEBUG_MASK,
-            HOTPLUG_MSM_MIN_CPUS_ONLINE, HOTPLUG_MSM_MAX_CPUS_ONLINE, HOTPLUG_MSM_CPUS_BOOSTED, HOTPLUG_MSM_MAX_CPUS_ONLINE_SUSP,
-            HOTPLUG_MSM_BOOST_LOCK_DURATION, HOTPLUG_MSM_DOWN_LOCK_DURATION, HOTPLUG_MSM_HISTORY_SIZE, HOTPLUG_MSM_UPDATE_RATE,
-            HOTPLUG_MSM_UPDATE_RATES, HOTPLUG_MSM_FAST_LANE_LOAD, HOTPLUG_MSM_FAST_LANE_MIN_FREQ, HOTPLUG_MSM_OFFLINE_LOAD,
-            HOTPLUG_MSM_IO_IS_BUSY, HOTPLUG_MSM_HP_IO_IS_BUSY, HOTPLUG_MSM_SUSPEND_MAX_CPUS, HOTPLUG_MSM_SUSPEND_FREQ,
-            HOTPLUG_MSM_SUSPEND_MAX_FREQ, HOTPLUG_MSM_SUSPEND_DEFER_TIME};
+    String[] HOTPLUG_MSM_ARRAY = {HOTPLUG_MSM};
 
     String MAKO_HOTPLUG = "/sys/class/misc/mako_hotplug_control";
-    String MAKO_HOTPLUG_ENABLED = "/sys/class/misc/mako_hotplug_control/enabled";
-    String MAKO_HOTPLUG_CORES_ON_TOUCH = "/sys/class/misc/mako_hotplug_control/cores_on_touch";
-    String MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT = "/sys/class/misc/mako_hotplug_control/cpufreq_unplug_limit";
-    String MAKO_HOTPLUG_FIRST_LEVEL = "/sys/class/misc/mako_hotplug_control/first_level";
-    String MAKO_HOTPLUG_HIGH_LOAD_COUNTER = "/sys/class/misc/mako_hotplug_control/high_load_counter";
-    String MAKO_HOTPLUG_LOAD_THRESHOLD = "/sys/class/misc/mako_hotplug_control/load_threshold";
-    String MAKO_HOTPLUG_MAX_LOAD_COUNTER = "/sys/class/misc/mako_hotplug_control/max_load_counter";
-    String MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE = "/sys/class/misc/mako_hotplug_control/min_time_cpu_online";
-    String MAKO_HOTPLUG_MIN_CORES_ONLINE = "/sys/class/misc/mako_hotplug_control/min_cores_online";
-    String MAKO_HOTPLUG_TIMER = "/sys/class/misc/mako_hotplug_control/timer";
-    String MAKO_HOTPLUG_SUSPEND_FREQ = "/sys/class/misc/mako_hotplug_control/suspend_frequency";
+    String MAKO_HOTPLUG_ENABLED = MAKO_HOTPLUG + "/enabled";
+    String MAKO_HOTPLUG_CORES_ON_TOUCH = MAKO_HOTPLUG + "/cores_on_touch";
+    String MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT = MAKO_HOTPLUG + "/cpufreq_unplug_limit";
+    String MAKO_HOTPLUG_FIRST_LEVEL = MAKO_HOTPLUG + "/first_level";
+    String MAKO_HOTPLUG_HIGH_LOAD_COUNTER = MAKO_HOTPLUG + "/high_load_counter";
+    String MAKO_HOTPLUG_LOAD_THRESHOLD = MAKO_HOTPLUG + "/load_threshold";
+    String MAKO_HOTPLUG_MAX_LOAD_COUNTER = MAKO_HOTPLUG + "/max_load_counter";
+    String MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE = MAKO_HOTPLUG + "/min_time_cpu_online";
+    String MAKO_HOTPLUG_MIN_CORES_ONLINE = MAKO_HOTPLUG + "/min_cores_online";
+    String MAKO_HOTPLUG_TIMER = MAKO_HOTPLUG + "/timer";
+    String MAKO_HOTPLUG_SUSPEND_FREQ = MAKO_HOTPLUG + "/suspend_frequency";
 
-    String[] MAKO_HOTPLUG_ARRAY = {MAKO_HOTPLUG, MAKO_HOTPLUG_ENABLED, MAKO_HOTPLUG_CORES_ON_TOUCH,
-            MAKO_HOTPLUG_CPUFREQ_UNPLUG_LIMIT, MAKO_HOTPLUG_FIRST_LEVEL, MAKO_HOTPLUG_HIGH_LOAD_COUNTER,
-            MAKO_HOTPLUG_LOAD_THRESHOLD, MAKO_HOTPLUG_MAX_LOAD_COUNTER, MAKO_HOTPLUG_MIN_TIME_CPU_ONLINE,
-            MAKO_HOTPLUG_MIN_CORES_ONLINE, MAKO_HOTPLUG_TIMER, MAKO_HOTPLUG_SUSPEND_FREQ};
+    String[] MAKO_HOTPLUG_ARRAY = {MAKO_HOTPLUG};
 
     String MSM_MPDECISION_HOTPLUG = "/sys/kernel/msm_mpdecision/conf";
     String BRICKED_HOTPLUG = "/sys/kernel/bricked_hotplug/conf";
@@ -213,19 +194,17 @@ public interface Constants {
     String[] MB_HOTPLUG_ARRAY = {MSM_MPDECISION_HOTPLUG, BRICKED_HOTPLUG};
 
     String ALUCARD_HOTPLUG = "/sys/kernel/alucard_hotplug";
-    String ALUCARD_HOTPLUG_ENABLE = "/sys/kernel/alucard_hotplug/hotplug_enable";
-    String ALUCARD_HOTPLUG_HP_IO_IS_BUSY = "/sys/kernel/alucard_hotplug/hp_io_is_busy";
-    String ALUCARD_HOTPLUG_SAMPLING_RATE = "/sys/kernel/alucard_hotplug/hotplug_sampling_rate";
-    String ALUCARD_HOTPLUG_SUSPEND = "/sys/kernel/alucard_hotplug/hotplug_suspend";
-    String ALUCARD_HOTPLUG_MIN_CPUS_ONLINE = "/sys/kernel/alucard_hotplug/min_cpus_online";
-    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT = "/sys/kernel/alucard_hotplug/maxcoreslimit";
-    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP = "/sys/kernel/alucard_hotplug/maxcoreslimit_sleep";
-    String ALUCARD_HOTPLUG_CPU_DOWN_RATE = "/sys/kernel/alucard_hotplug/cpu_down_rate";
-    String ALUCARD_HOTPLUG_CPU_UP_RATE = "/sys/kernel/alucard_hotplug/cpu_up_rate";
+    String ALUCARD_HOTPLUG_ENABLE = ALUCARD_HOTPLUG + "/hotplug_enable";
+    String ALUCARD_HOTPLUG_HP_IO_IS_BUSY = ALUCARD_HOTPLUG + "/hp_io_is_busy";
+    String ALUCARD_HOTPLUG_SAMPLING_RATE = ALUCARD_HOTPLUG + "/hotplug_sampling_rate";
+    String ALUCARD_HOTPLUG_SUSPEND = ALUCARD_HOTPLUG + "/hotplug_suspend";
+    String ALUCARD_HOTPLUG_MIN_CPUS_ONLINE = ALUCARD_HOTPLUG + "/min_cpus_online";
+    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT = ALUCARD_HOTPLUG + "/maxcoreslimit";
+    String ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP = ALUCARD_HOTPLUG + "/maxcoreslimit_sleep";
+    String ALUCARD_HOTPLUG_CPU_DOWN_RATE = ALUCARD_HOTPLUG + "/cpu_down_rate";
+    String ALUCARD_HOTPLUG_CPU_UP_RATE = ALUCARD_HOTPLUG + "/cpu_up_rate";
 
-    String[] ALUCARD_HOTPLUG_ARRAY = {ALUCARD_HOTPLUG, ALUCARD_HOTPLUG_ENABLE, ALUCARD_HOTPLUG_HP_IO_IS_BUSY,
-            ALUCARD_HOTPLUG_SAMPLING_RATE, ALUCARD_HOTPLUG_SUSPEND, ALUCARD_HOTPLUG_MIN_CPUS_ONLINE, ALUCARD_HOTPLUG_MAX_CORES_LIMIT,
-            ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP, ALUCARD_HOTPLUG_CPU_DOWN_RATE, ALUCARD_HOTPLUG_CPU_UP_RATE};
+    String[] ALUCARD_HOTPLUG_ARRAY = {ALUCARD_HOTPLUG};
 
     String[][] CPU_HOTPLUG_ARRAY = {{HOTPLUG_MPDEC}, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
             MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY};
@@ -331,16 +310,16 @@ public interface Constants {
             GPU_AVAILABLE_OMAP_GOVERNORS};
 
     // Simple GPU
-    String SIMPLE_GPU_ACTIVATE = "/sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate";
-    String SIMPLE_GPU_LAZINESS = "/sys/module/simple_gpu_algorithm/parameters/simple_laziness";
-    String SIMPLE_RAMP_THRESHOLD = "/sys/module/simple_gpu_algorithm/parameters/simple_ramp_threshold";
+    String SIMPLE_GPU = "/sys/module/simple_gpu_algorithm";
+    String SIMPLE_GPU_ACTIVATE = SIMPLE_GPU + "/parameters/simple_gpu_activate";
+    String SIMPLE_GPU_LAZINESS = SIMPLE_GPU + "/parameters/simple_laziness";
+    String SIMPLE_RAMP_THRESHOLD = SIMPLE_GPU + "/parameters/simple_ramp_threshold";
 
     String[][] GPU_ARRAY = {GPU_2D_CUR_FREQ_ARRAY,
             GPU_2D_MAX_FREQ_ARRAY, GPU_2D_AVAILABLE_FREQS_ARRAY,
             GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_CUR_FREQ_ARRAY,
             GPU_MAX_FREQ_ARRAY, GPU_AVAILABLE_FREQS_ARRAY,
-            GPU_SCALING_GOVERNOR_ARRAY,
-            {SIMPLE_GPU_ACTIVATE, SIMPLE_GPU_LAZINESS, SIMPLE_RAMP_THRESHOLD}};
+            GPU_SCALING_GOVERNOR_ARRAY, {SIMPLE_GPU}};
 
     // Screen
     String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";
@@ -372,8 +351,7 @@ public interface Constants {
 
     String SCREEN_FB0_RGB = "/sys/class/graphics/fb0/rgb";
 
-    String[] SCREEN_RGB_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER, SCREEN_COLOR_CONTROL,
-            SCREEN_SAMOLED_COLOR_RED, SCREEN_SAMOLED_COLOR_GREEN, SCREEN_SAMOLED_COLOR_BLUE, SCREEN_FB0_RGB};
+    String[] SCREEN_RGB_ARRAY = {SCREEN_KCAL_CTRL, SCREEN_DIAG0_POWER, SCREEN_COLOR_CONTROL, SCREEN_SAMOLED_COLOR, SCREEN_FB0_RGB};
 
     String[] SCREEN_RGB_CTRL_ARRAY = {SCREEN_KCAL_CTRL_ENABLE, SCREEN_KCAL_CTRL_CTRL,
             SCREEN_DIAG0_POWER_CTRL, SCREEN_COLOR_CONTROL_CTRL};
@@ -391,26 +369,24 @@ public interface Constants {
 
     String[] K_GAMMA_ARRAY = {K_GAMMA_R, K_GAMMA_G, K_GAMMA_B, K_GAMMA_RED, K_GAMMA_GREEN, K_GAMMA_BLUE};
 
-    String GAMMACONTROL_RED_GREYS = "/sys/class/misc/gammacontrol/red_greys";
-    String GAMMACONTROL_RED_MIDS = "/sys/class/misc/gammacontrol/red_mids";
-    String GAMMACONTROL_RED_BLACKS = "/sys/class/misc/gammacontrol/red_blacks";
-    String GAMMACONTROL_RED_WHITES = "/sys/class/misc/gammacontrol/red_whites";
-    String GAMMACONTROL_GREEN_GREYS = "/sys/class/misc/gammacontrol/green_greys";
-    String GAMMACONTROL_GREEN_MIDS = "/sys/class/misc/gammacontrol/green_mids";
-    String GAMMACONTROL_GREEN_BLACKS = "/sys/class/misc/gammacontrol/green_blacks";
-    String GAMMACONTROL_GREEN_WHITES = "/sys/class/misc/gammacontrol/green_whites";
-    String GAMMACONTROL_BLUE_GREYS = "/sys/class/misc/gammacontrol/blue_greys";
-    String GAMMACONTROL_BLUE_MIDS = "/sys/class/misc/gammacontrol/blue_mids";
-    String GAMMACONTROL_BLUE_BLACKS = "/sys/class/misc/gammacontrol/blue_blacks";
-    String GAMMACONTROL_BLUE_WHITES = "/sys/class/misc/gammacontrol/blue_whites";
-    String GAMMACONTROL_CONTRAST = "/sys/class/misc/gammacontrol/contrast";
-    String GAMMACONTROL_BRIGHTNESS = "/sys/class/misc/gammacontrol/brightness";
-    String GAMMACONTROL_SATURATION = "/sys/class/misc/gammacontrol/saturation";
+    String GAMMACONTROL = "/sys/class/misc/gammacontrol";
+    String GAMMACONTROL_RED_GREYS = GAMMACONTROL + "/red_greys";
+    String GAMMACONTROL_RED_MIDS = GAMMACONTROL + "/red_mids";
+    String GAMMACONTROL_RED_BLACKS = GAMMACONTROL + "/red_blacks";
+    String GAMMACONTROL_RED_WHITES = GAMMACONTROL + "/red_whites";
+    String GAMMACONTROL_GREEN_GREYS = GAMMACONTROL + "/green_greys";
+    String GAMMACONTROL_GREEN_MIDS = GAMMACONTROL + "/green_mids";
+    String GAMMACONTROL_GREEN_BLACKS = GAMMACONTROL + "/green_blacks";
+    String GAMMACONTROL_GREEN_WHITES = GAMMACONTROL + "/green_whites";
+    String GAMMACONTROL_BLUE_GREYS = GAMMACONTROL + "/blue_greys";
+    String GAMMACONTROL_BLUE_MIDS = GAMMACONTROL + "/blue_mids";
+    String GAMMACONTROL_BLUE_BLACKS = GAMMACONTROL + "/blue_blacks";
+    String GAMMACONTROL_BLUE_WHITES = GAMMACONTROL + "/blue_whites";
+    String GAMMACONTROL_CONTRAST = GAMMACONTROL + "/contrast";
+    String GAMMACONTROL_BRIGHTNESS = GAMMACONTROL + "/brightness";
+    String GAMMACONTROL_SATURATION = GAMMACONTROL + "/saturation";
 
-    String[] GAMMACONTROL_ARRAY = {GAMMACONTROL_RED_GREYS, GAMMACONTROL_RED_MIDS, GAMMACONTROL_RED_BLACKS, GAMMACONTROL_RED_WHITES,
-            GAMMACONTROL_GREEN_GREYS, GAMMACONTROL_GREEN_MIDS, GAMMACONTROL_GREEN_BLACKS, GAMMACONTROL_GREEN_WHITES,
-            GAMMACONTROL_BLUE_GREYS, GAMMACONTROL_BLUE_MIDS, GAMMACONTROL_BLUE_BLACKS, GAMMACONTROL_BLUE_WHITES,
-            GAMMACONTROL_CONTRAST, GAMMACONTROL_BRIGHTNESS, GAMMACONTROL_SATURATION};
+    String[] GAMMACONTROL_ARRAY = {GAMMACONTROL};
 
     String DSI_PANEL_RP = "/sys/module/dsi_panel/kgamma_rp";
     String DSI_PANEL_RN = "/sys/module/dsi_panel/kgamma_rn";
