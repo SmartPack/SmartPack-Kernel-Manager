@@ -98,7 +98,7 @@ public class RecyclerViewFragment extends BaseFragment {
 
         if (Utils.getBoolean("hideapplyonboot", true, getActivity()))
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                private int scrollMargin = 5;
+                private int scrollMargin = 10;
                 private boolean changing;
 
                 @Override
@@ -109,7 +109,7 @@ public class RecyclerViewFragment extends BaseFragment {
                         if (changing || onScrollDisappearView == null) return;
                         int y = dy;
                         if (y < 0) y *= -1;
-                        if (y < 5) return;
+                        if (y < 20) return;
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -126,9 +126,9 @@ public class RecyclerViewFragment extends BaseFragment {
                                         else if (dy > 0 && margin > -actionBarHeight)
                                             margin -= scrollMargin;
 
-                                        if (margin >= 0) margin = 0;
-                                        if (margin <= -actionBarHeight + scrollMargin)
-                                            margin = -actionBarHeight + 1;
+                                        if (margin > 0) margin = 0;
+                                        if (margin < -actionBarHeight + scrollMargin)
+                                            margin = -actionBarHeight;
 
                                         params.topMargin = margin;
                                         getActivity().runOnUiThread(new Runnable() {
@@ -138,7 +138,7 @@ public class RecyclerViewFragment extends BaseFragment {
                                             }
                                         });
 
-                                        Thread.sleep(5);
+                                        Thread.sleep(17);
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }

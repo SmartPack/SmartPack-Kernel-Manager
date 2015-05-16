@@ -35,7 +35,7 @@ public class CommandDB extends JsonDB {
      * @param context needed to get the cache directory
      */
     public CommandDB(Context context) {
-        super(context.getCacheDir() + "/commands.json", context.getFilesDir() + "/commands.json", 1);
+        super(context.getFilesDir() + "/commands.json", 1);
     }
 
     @Override

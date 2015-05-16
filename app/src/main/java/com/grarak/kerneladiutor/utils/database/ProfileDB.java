@@ -32,7 +32,7 @@ import java.util.List;
 public class ProfileDB extends JsonDB {
 
     public ProfileDB(Context context) {
-        super(context.getCacheDir() + "/profiles.json", context.getFilesDir() + "/profiles.json", 1);
+        super(context.getFilesDir() + "/profiles.json", 1);
     }
 
     @Override

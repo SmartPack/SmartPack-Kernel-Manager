@@ -233,6 +233,48 @@ public interface Constants {
     // Thermal
     String THERMALD = "thermald";
 
+    String MSM_THERMAL = "/sys/module/msm_thermal";
+    String MSM_THERMAL_V2 = "/sys/module/msm_thermal_v2";
+    String PARAMETERS_ENABLED = "parameters/enabled";
+    String PARAMETERS_INTELLI_ENABLED = "parameters/intelli_enabled";
+    String PARAMETERS_THERMAL_DEBUG_MODE = "parameters/thermal_debug_mode";
+    String CORE_CONTROL_ENABLED = "core_control/enabled";
+    String CORE_CONTROL_ENABLED_2 = "core_control/core_control";
+    String VDD_RESTRICTION_ENABLED = "vdd_restriction/enabled";
+    String PARAMETERS_LIMIT_TEMP_DEGC = "parameters/limit_temp_degC";
+    String PARAMETERS_CORE_LIMIT_TEMP_DEGC = "parameters/core_limit_temp_degC";
+    String PARAMETERS_CORE_TEMP_HYSTERESIS_DEGC = "parameters/core_temp_hysteresis_degC";
+    String PARAMETERS_FREQ_STEP = "parameters/freq_step";
+    String PARAMETERS_IMMEDIATELY_LIMIT_STOP = "parameters/immediately_limit_stop";
+    String PARAMETERS_POLL_MS = "parameters/poll_ms";
+    String PARAMETERS_TEMP_HYSTERESIS_DEGC = "parameters/temp_hysteresis_degC";
+    String PARAMETERS_THERMAL_LIMIT_LOW = "parameters/thermal_limit_low";
+    String PARAMETERS_THERMAL_LIMIT_HIGH = "parameters/thermal_limit_high";
+    String PARAMETERS_TEMP_SAFETY = "parameters/temp_safety";
+    String MSM_THERMAL_TEMP_THROTTLE = MSM_THERMAL + "/" + PARAMETERS_ENABLED;
+    String MSM_THERMAL_THROTTLE_TEMP = MSM_THERMAL + "/parameters/throttle_temp";
+    String MSM_THERMAL_TEMP_MAX = MSM_THERMAL + "/parameters/temp_max";
+    String MSM_THERMAL_TEMP_THRESHOLD = MSM_THERMAL + "/parameters/temp_threshold";
+    String MSM_THERMAL_FREQ_LIMIT_DEBUG = MSM_THERMAL + "/parameters/freq_limit_debug";
+    String MSM_THERMAL_MIN_FREQ_INDEX = MSM_THERMAL + "/parameters/min_freq_index";
+
+    String MSM_THERMAL_CONF = "/sys/kernel/msm_thermal/conf";
+    String CONF_ALLOWED_LOW_LOW = MSM_THERMAL_CONF + "/allowed_low_low";
+    String CONF_ALLOWED_LOW_HIGH = MSM_THERMAL_CONF + "/allowed_low_high";
+    String CONF_ALLOWED_LOW_FREQ = MSM_THERMAL_CONF + "/allowed_low_freq";
+    String CONF_ALLOWED_MID_LOW = MSM_THERMAL_CONF + "/allowed_mid_low";
+    String CONF_ALLOWED_MID_HIGH = MSM_THERMAL_CONF + "/allowed_mid_high";
+    String CONF_ALLOWED_MID_FREQ = MSM_THERMAL_CONF + "/allowed_mid_freq";
+    String CONF_ALLOWED_MAX_LOW = MSM_THERMAL_CONF + "/allowed_max_low";
+    String CONF_ALLOWED_MAX_HIGH = MSM_THERMAL_CONF + "/allowed_max_high";
+    String CONF_ALLOWED_MAX_FREQ = MSM_THERMAL_CONF + "/allowed_max_freq";
+    String CONF_CHECK_INTERVAL_MS = MSM_THERMAL_CONF + "/check_interval_ms";
+    String CONF_SHUTDOWN_TEMP = MSM_THERMAL_CONF + "/shutdown_temp";
+
+    String[] THERMAL_ARRAY = {MSM_THERMAL, MSM_THERMAL_V2};
+
+    String[][] THERMAL_ARRAYS = {THERMAL_ARRAY, {MSM_THERMAL_CONF}};
+
     // GPU
     String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";
 

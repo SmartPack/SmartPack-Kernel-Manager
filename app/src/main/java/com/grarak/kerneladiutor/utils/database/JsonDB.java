@@ -17,13 +17,11 @@
 package com.grarak.kerneladiutor.utils.database;
 
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,14 +45,9 @@ public abstract class JsonDB {
      * JSON Database is used to store large amount of datasets
      *
      * @param path    location of the JSON file
-     * @param newPath new location of the JSON file
      * @param version If version doesn't match with the dataset, remove all saved datas
      */
-    public JsonDB(String path, String newPath, int version) {
-        File parentFile = new File(newPath).getParentFile();
-        if (!parentFile.exists()) parentFile.mkdirs();
-        if (Utils.existFile(path)) new RootFile(path).mv(newPath);
-        path = newPath;
+    public JsonDB(String path, int version) {
         this.path = path;
         try {
             String json = Utils.readFile(path, false);

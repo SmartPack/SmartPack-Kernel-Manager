@@ -125,7 +125,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
             if (mBatteryTemperature != null) {
                 double celsius = (double) temperature / 10;
                 double fahrenheit = Utils.celsiusToFahrenheit(celsius);
-                mBatteryTemperature.setDescription((celsius + "°C" + " " + fahrenheit + "°F"));
+                mBatteryTemperature.setDescription((celsius + "°C " + fahrenheit + "°F"));
             }
         }
     };

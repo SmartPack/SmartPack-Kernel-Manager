@@ -191,72 +191,40 @@ public class ProfileFragment extends RecyclerViewFragment {
             mProfileCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                    dialog.setItems(getResources().getStringArray(R.array.profile_menu),
+                    new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.profile_menu),
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, final int which) {
-                                    new Thread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            switch (which) {
-                                                case 0:
-                                                    ProfileDB.ProfileItem profileItem = profileItems.get(position);
-                                                    List<String> paths = profileItem.getPath();
-                                                    for (int i = 0; i < paths.size(); i++) {
-                                                        Control.commandSaver(getActivity(), paths.get(i),
-                                                                profileItem.getCommands().get(i));
-                                                        RootUtils.runCommand(profileItem.getCommands().get(i));
-                                                    }
-                                                    break;
-                                                case 1:
-                                                    ProfileDB profileDB = new ProfileDB(getActivity());
-                                                    profileDB.delete(position);
-
-                                                    profileDB.commit();
-
-                                                    getHandler().post(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            create();
-                                                        }
-                                                    });
-                                                    break;
-                                                case 2:
-                                                    getActivity().runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            ScrollView scrollView = new ScrollView(getActivity());
-                                                            scrollView.setBackgroundColor(getResources()
-                                                                    .getColor(R.color.color_primary_dark));
-
-                                                            String text = "";
-                                                            TextView textView = new TextView(getActivity());
-                                                            textView.setBackgroundColor(getResources()
-                                                                    .getColor(R.color.color_primary_dark));
-                                                            textView.setTextColor(getResources().getColor(android.R.color.white));
-                                                            textView.setPadding(0, 20, 0, 20);
-
-                                                            ProfileDB.ProfileItem profileItem = profileItems.get(position);
-                                                            for (String command : profileItem.getCommands())
-                                                                text += text.isEmpty() ? command : "\n" + command;
-
-                                                            textView.setText(text);
-                                                            scrollView.addView(textView);
-
-                                                            ScrollView.LayoutParams layoutParams = (ScrollView.LayoutParams)
-                                                                    textView.getLayoutParams();
-                                                            layoutParams.setMargins(30, 0, 30, 0);
-                                                            textView.requestLayout();
-
-                                                            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                                                            dialog.setView(scrollView).show();
-                                                        }
-                                                    });
-                                                    break;
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ProfileDB.ProfileItem profileItem = profileItems.get(position);
+                                    switch (which) {
+                                        case 0:
+                                            List<String> paths = profileItem.getPath();
+                                            for (int i = 0; i < paths.size(); i++) {
+                                                Control.commandSaver(getActivity(), paths.get(i),
+                                                        profileItem.getCommands().get(i));
+                                                RootUtils.runCommand(profileItem.getCommands().get(i));
                                             }
-                                        }
-                                    }).start();
+                                            break;
+                                        case 1:
+                                            ProfileDB profileDB = new ProfileDB(getActivity());
+                                            profileDB.delete(position);
+
+                                            profileDB.commit();
+
+                                            getHandler().post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    create();
+                                                }
+                                            });
+                                            break;
+                                        case 2:
+                                            String text = "";
+                                            for (String command : profileItem.getCommands())
+                                                text += text.isEmpty() ? command : "\n" + command;
+                                            new AlertDialog.Builder(getActivity()).setMessage(text.trim()).show();
+                                            break;
+                                    }
                                 }
                             }).show();
                 }

@@ -173,7 +173,7 @@ public class CPU implements Constants {
             for (String file : CPU_TEMP_LIMIT_ARRAY)
                 if (Utils.existFile(file)) {
                     TEMP_LIMIT_FILE = file;
-                    break;
+                    return true;
                 }
         return TEMP_LIMIT_FILE != null;
     }
