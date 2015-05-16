@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -123,6 +124,13 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugCpuDownRateCard;
     private SeekBarCardView.DSeekBarCardView mAlucardHotplugCpuUpRateCard;
 
+    private SwitchCardView.DSwitchCard mThunderPlugEnableCard;
+    private SeekBarCardView.DSeekBarCardView mThunderPlugSuspendCpusCard;
+    private PopupCardItem.DPopupCard mThunderPlugEnduranceLevelCard;
+    private SeekBarCardView.DSeekBarCardView mThunderPlugSamplingRateCard;
+    private SeekBarCardView.DSeekBarCardView mThunderPlugLoadThresholdCard;
+    private SwitchCardView.DSwitchCard mThunderPlugTouchBoostCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -134,6 +142,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasMakoHotplug()) makoHotplugInit();
         if (CPUHotplug.hasMBHotplug()) mbHotplugInit();
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
+        if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
     }
 
     private void mpdecisionInit() {
@@ -1226,6 +1235,88 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     }
 
+    private void thunderPlugInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (CPUHotplug.hasThunderPlugEnable()) {
+            mThunderPlugEnableCard = new SwitchCardView.DSwitchCard();
+            mThunderPlugEnableCard.setTitle(getString(R.string.thunderplug));
+            mThunderPlugEnableCard.setDescription(getString(R.string.thunderplug_summary));
+            mThunderPlugEnableCard.setChecked(CPUHotplug.isThunderPlugActive());
+            mThunderPlugEnableCard.setOnDSwitchCardListener(this);
+
+            views.add(mThunderPlugEnableCard);
+        }
+
+        if (CPUHotplug.hasThunderPlugSuspendCpus()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
+
+            mThunderPlugSuspendCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugSuspendCpusCard.setTitle(getString(R.string.min_cores_screen_off));
+            mThunderPlugSuspendCpusCard.setDescription(getString(R.string.min_cores_screen_off_summary));
+            mThunderPlugSuspendCpusCard.setProgress(CPUHotplug.getThunderPlugSuspendCpus() - 1);
+            mThunderPlugSuspendCpusCard.setOnDSeekBarCardListener(this);
+
+            views.add(mThunderPlugSuspendCpusCard);
+        }
+
+        if (CPUHotplug.hasThunderPlugEnduranceLevel()) {
+            mThunderPlugEnduranceLevelCard = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays
+                    .asList(getResources().getStringArray(R.array.thunderplug_endurance_level_items))));
+            mThunderPlugEnduranceLevelCard.setTitle(getString(R.string.endurance_level));
+            mThunderPlugEnduranceLevelCard.setDescription(getString(R.string.endurance_level_summary));
+            mThunderPlugEnduranceLevelCard.setItem(CPUHotplug.getThunderPlugEnduranceLevel());
+            mThunderPlugEnduranceLevelCard.setOnDPopupCardListener(this);
+
+            views.add(mThunderPlugEnduranceLevelCard);
+        }
+
+        if (CPUHotplug.hasThunderPlugSamplingRate()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 51; i++) list.add(String.valueOf(i * 50 + 100));
+
+            mThunderPlugSamplingRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugSamplingRateCard.setTitle(getString(R.string.sampling_rate));
+            mThunderPlugSamplingRateCard.setProgress(CPUHotplug.getThunderPlugSamplingRate() / 50);
+            mThunderPlugSamplingRateCard.setOnDSeekBarCardListener(this);
+
+            views.add(mThunderPlugSamplingRateCard);
+        }
+
+        if (CPUHotplug.hasThunderPlugLoadThreshold()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 11; i < 101; i++) list.add(String.valueOf(i));
+
+            mThunderPlugLoadThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugLoadThresholdCard.setTitle(getString(R.string.load_threshold));
+            mThunderPlugLoadThresholdCard.setDescription(getString(R.string.load_threshold_summary));
+            mThunderPlugLoadThresholdCard.setProgress(CPUHotplug.getThunderPlugLoadThreshold() - 11);
+            mThunderPlugLoadThresholdCard.setOnDSeekBarCardListener(this);
+
+            views.add(mThunderPlugLoadThresholdCard);
+        }
+
+        if (CPUHotplug.hasThunderPlugTouchBoost()) {
+            mThunderPlugTouchBoostCard = new SwitchCardView.DSwitchCard();
+            mThunderPlugTouchBoostCard.setTitle(getString(R.string.touch_boost));
+            mThunderPlugTouchBoostCard.setDescription(getString(R.string.touch_boost_summary));
+            mThunderPlugTouchBoostCard.setChecked(CPUHotplug.isThunderPlugTouchBoostActive());
+            mThunderPlugTouchBoostCard.setOnDSwitchCardListener(this);
+
+            views.add(mThunderPlugTouchBoostCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mThunderPlugDividerCard = new DividerCardView.DDividerCard();
+            mThunderPlugDividerCard.setText(getString(R.string.thunderplug));
+            addView(mThunderPlugDividerCard);
+
+            addAllViews(views);
+        }
+
+    }
+
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mMpdecisionCard)
@@ -1264,6 +1355,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.activateAlucardHotplugHpIoIsBusy(checked, getActivity());
         else if (dSwitchCard == mAlucardHotplugSuspendCard)
             CPUHotplug.activateAlucardHotplugSuspend(checked, getActivity());
+        else if (dSwitchCard == mThunderPlugEnableCard)
+            CPUHotplug.activateThunderPlug(checked, getActivity());
+        else if (dSwitchCard == mThunderPlugTouchBoostCard)
+            CPUHotplug.activateThunderPlugTouchBoost(checked, getActivity());
     }
 
     @Override
@@ -1284,6 +1379,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMakoHotplugSuspendFreq(CPU.getFreqs().get(position), getActivity());
         else if (dPopupCard == mMBHotplugIdleFreqCard)
             CPUHotplug.setMBHotplugIdleFreq(CPU.getFreqs().get(position), getActivity());
+        else if (dPopupCard == mThunderPlugEnduranceLevelCard)
+            CPUHotplug.setThunderPlugEnduranceLevel(position, getActivity());
         else {
             for (int i = 0; i < mMBHotplugBoostFreqsCard.length; i++)
                 if (dPopupCard == mMBHotplugBoostFreqsCard[i]) {
@@ -1401,6 +1498,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setAlucardHotplugCpuDownRate(position + 1, getActivity());
         else if (dSeekBarCardView == mAlucardHotplugCpuUpRateCard)
             CPUHotplug.setAlucardHotplugCpuUpRate(position + 1, getActivity());
+        else if (dSeekBarCardView == mThunderPlugSuspendCpusCard)
+            CPUHotplug.setThunderPlugSuspendCpus(position + 1, getActivity());
+        else if (dSeekBarCardView == mThunderPlugSamplingRateCard)
+            CPUHotplug.setThunderPlugSamplingRate(position * 50, getActivity());
+        else if (dSeekBarCardView == mThunderPlugLoadThresholdCard)
+            CPUHotplug.setThunderPlugLoadThreshold(position + 11, getActivity());
     }
 
 }

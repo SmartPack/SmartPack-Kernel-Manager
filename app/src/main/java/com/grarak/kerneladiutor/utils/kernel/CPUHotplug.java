@@ -46,6 +46,82 @@ public class CPUHotplug implements Constants {
     private static String MB_HOTPLUG_MIN_CPUS_FILE;
     private static String MB_HOTPLUG_MAX_CPUS_FILE;
 
+    public static void activateThunderPlugTouchBoost(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HOTPLUG_THUNDER_PLUG_TOUCH_BOOST, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isThunderPlugTouchBoostActive() {
+        return Utils.readFile(HOTPLUG_THUNDER_PLUG_TOUCH_BOOST).equals("1");
+    }
+
+    public static boolean hasThunderPlugTouchBoost() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_TOUCH_BOOST);
+    }
+
+    public static void setThunderPlugLoadThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_THUNDER_PLUG_LOAD_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getThunderPlugLoadThreshold() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_THUNDER_PLUG_LOAD_THRESHOLD));
+    }
+
+    public static boolean hasThunderPlugLoadThreshold() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_LOAD_THRESHOLD);
+    }
+
+    public static void setThunderPlugSamplingRate(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_THUNDER_PLUG_SAMPLING_RATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getThunderPlugSamplingRate() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_THUNDER_PLUG_SAMPLING_RATE));
+    }
+
+    public static boolean hasThunderPlugSamplingRate() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_SAMPLING_RATE);
+    }
+
+    public static void setThunderPlugEnduranceLevel(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_THUNDER_PLUG_ENDURANCE_LEVEL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getThunderPlugEnduranceLevel() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_THUNDER_PLUG_ENDURANCE_LEVEL));
+    }
+
+    public static boolean hasThunderPlugEnduranceLevel() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_ENDURANCE_LEVEL);
+    }
+
+    public static void setThunderPlugSuspendCpus(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_THUNDER_PLUG_SUSPEND_CPUS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getThunderPlugSuspendCpus() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_THUNDER_PLUG_SUSPEND_CPUS));
+    }
+
+    public static boolean hasThunderPlugSuspendCpus() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_SUSPEND_CPUS);
+    }
+
+    public static void activateThunderPlug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isThunderPlugActive() {
+        return Utils.readFile(HOTPLUG_THUNDER_PLUG_ENABLE).equals("1");
+    }
+
+    public static boolean hasThunderPlugEnable() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG_ENABLE);
+    }
+
+    public static boolean hasThunderPlug() {
+        return Utils.existFile(HOTPLUG_THUNDER_PLUG);
+    }
+
     public static void setAlucardHotplugCpuUpRate(int value, Context context) {
         Control.runCommand(String.valueOf(value), ALUCARD_HOTPLUG_CPU_UP_RATE, Control.CommandType.GENERIC, context);
     }

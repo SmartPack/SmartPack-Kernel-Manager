@@ -222,15 +222,23 @@
     <string name="sampling_rate">Sampling Rate</string>
     <string name="cpu_down_rate">CPU Down Rate</string>
     <string name="cpu_up_rate">CPU Up Rate</string>
+    <string name="thunderplug">Thunderplug</string>
+    <string name="thunderplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by varunchitre15.</string>
+    <string name="min_cores_screen_off">Min Cores Screen Off</string>
+    <string name="min_cores_screen_off_summary">Minimum number of cores online when screen is off.</string>
+    <string name="endurance_level">Endurance Level</string>
+    <string name="endurance_level_summary">A power saving profile.</string>
+    <string name="quad_core_mode">Quad-Core mode</string>
+    <string name="dual_core_mode">Dual-Core mode</string>
 
     <!-- Thermal -->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
     <string name="thermald">Thermald</string>
     <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
     <string name="intellithermal">Intellithermal</string>
-    <string name="intellithermal_summary">An in kernel replacement for Qualcomm\'s Thermald. Developed by faux123.</string>
+    <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.</string>
     <string name="intellithermal_optimized">Intellithermal Optimized</string>
-    <string name="intellithermal_optimized_summary">An in kernel replacement for Qualcomm\'s Thermald. Developed by faux123 and alucard_24.</string>
+    <string name="intellithermal_optimized_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123 and alucard_24.</string>
     <string name="debug_mask_thermal">Allows you to activate debug mask for thermal operations.</string>
     <string name="core_control">Core Control</string>
     <string name="vdd_restriction">VDD Restriction</string>
@@ -247,7 +255,7 @@
     <string name="thermal_limit_high">Thermal Limit High</string>
     <string name="temp_safety">Temperature Safety</string>
     <string name="msm_thermal">MSM Thermal</string>
-    <string name="msm_thermal_summary">An in kernel replacement for Qualcomm\'s Thermald. Developed by show-p1984.</string>
+    <string name="msm_thermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by show-p1984.</string>
     <string name="allowed_low_low">Phase 1: Allowed Low Low</string>
     <string name="allowed_low_high">Phase 1: Allowed Low High</string>
     <string name="allowed_low_freq">Phase 1: Allowed Low Frequency</string>

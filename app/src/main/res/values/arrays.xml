@@ -14,6 +14,13 @@
         <item>@string/aggressive</item>
     </string-array>
 
+    <!-- CPU Hotplug -->
+    <string-array name="thunderplug_endurance_level_items">
+        <item>@string/disabled</item>
+        <item>@string/quad_core_mode</item>
+        <item>@string/dual_core_mode</item>
+    </string-array>
+
     <!-- Kernel Samepage Merging -->
     <string-array name="ksm_infos">
         <item>@string/ksm_full_scans</item>
