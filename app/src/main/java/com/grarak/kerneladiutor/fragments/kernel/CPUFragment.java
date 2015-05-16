@@ -350,8 +350,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (views.size() > 0) {
                 DividerCardView.DDividerCard mCpuBoostDividerCard = new DividerCardView.DDividerCard();
                 mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
-
                 addView(mCpuBoostDividerCard);
+
                 addAllViews(views);
             }
 

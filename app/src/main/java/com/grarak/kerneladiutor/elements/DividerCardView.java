@@ -17,6 +17,8 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -51,11 +53,26 @@ public class DividerCardView extends BaseCardView {
         if (textView != null) textView.setText(text);
     }
 
+    public void setDescription(final String description) {
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getContext()).setMessage(description)
+                        .setNeutralButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }).show();
+            }
+        });
+    }
+
     public static class DDividerCard implements DAdapter.DView {
 
         private DividerCardView dividerCardView;
 
         private String text;
+        private String description;
 
         @Override
         public String getTitle() {
@@ -78,6 +95,7 @@ public class DividerCardView extends BaseCardView {
             dividerCardView = (DividerCardView) viewHolder.itemView;
 
             if (text != null) dividerCardView.setText(text);
+            if (description != null) dividerCardView.setDescription(description);
 
             StaggeredGridLayoutManager.LayoutParams layoutParams =
                     new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -91,6 +109,10 @@ public class DividerCardView extends BaseCardView {
         public void setText(String text) {
             this.text = text;
             if (dividerCardView != null) dividerCardView.setText(text);
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
     }
