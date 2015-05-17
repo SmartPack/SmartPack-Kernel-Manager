@@ -27,30 +27,6 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class Battery implements Constants {
 
-    public static void setBlx(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BLX, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getCurBlx() {
-        return Utils.stringToInt(Utils.readFile(BLX));
-    }
-
-    public static boolean hasBlx() {
-        return Utils.existFile(BLX);
-    }
-
-    public static void activateForceFastCharge(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", FORCE_FAST_CHARGE, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isForceFastChargeActive() {
-        return Utils.readFile(FORCE_FAST_CHARGE).equals("1");
-    }
-
-    public static boolean hasForceFastCharge() {
-        return Utils.existFile(FORCE_FAST_CHARGE);
-    }
-	
     public static void setChargingRate(int value, Context context) {
         Control.runCommand(String.valueOf(value), CUSTOM_CHARGING_RATE, Control.CommandType.GENERIC, context);
     }
@@ -74,9 +50,33 @@ public class Battery implements Constants {
     public static boolean hasCustomChargeRateEnable() {
         return Utils.existFile(CHARGE_RATE_ENABLE);
     }
-	
-	public static boolean hasChargeRate() {
+
+    public static boolean hasChargeRate() {
         return Utils.existFile(CHARGE_RATE);
+    }
+
+    public static void setBlx(int value, Context context) {
+        Control.runCommand(String.valueOf(value), BLX, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCurBlx() {
+        return Utils.stringToInt(Utils.readFile(BLX));
+    }
+
+    public static boolean hasBlx() {
+        return Utils.existFile(BLX);
+    }
+
+    public static void activateForceFastCharge(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", FORCE_FAST_CHARGE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isForceFastChargeActive() {
+        return Utils.readFile(FORCE_FAST_CHARGE).equals("1");
+    }
+
+    public static boolean hasForceFastCharge() {
+        return Utils.existFile(FORCE_FAST_CHARGE);
     }
 
 }

@@ -499,14 +499,13 @@ public interface Constants {
 
     // Battery
     String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
-		
     String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
-	
-	String CHARGE_RATE = "sys/kernel/thundercharge_control";
-	String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
-	String CUSTOM_CHARGING_RATE = CHARGE_RATE + "/custom_current";
-	
-	String[] BATTERY_ARRAY = {FORCE_FAST_CHARGE, BLX, CHARGE_RATE, CHARGE_RATE_ENABLE, CUSTOM_CHARGING_RATE};
+
+    String CHARGE_RATE = "sys/kernel/thundercharge_control";
+    String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
+    String CUSTOM_CHARGING_RATE = CHARGE_RATE + "/custom_current";
+
+    String[] BATTERY_ARRAY = {FORCE_FAST_CHARGE, BLX, CHARGE_RATE};
 
     // I/O
     String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
