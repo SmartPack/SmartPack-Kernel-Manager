@@ -55,32 +55,36 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
 
         List<String> minfrees = LMK.getMinFrees();
         mMinFreeCard = new SeekBarCardView.DSeekBarCardView[minfrees.size()];
-        for (int i = 0; i < minfrees.size(); i++) {
-            mMinFreeCard[i] = new SeekBarCardView.DSeekBarCardView(modifiedvalues);
-            mMinFreeCard[i].setTitle(getResources().getStringArray(R.array.lmk_names)[i]);
-            mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
-            mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
-                @Override
-                public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-                }
+        try {
+            for (int i = 0; i < minfrees.size(); i++) {
+                mMinFreeCard[i] = new SeekBarCardView.DSeekBarCardView(modifiedvalues);
+                mMinFreeCard[i].setTitle(getResources().getStringArray(R.array.lmk_names)[i]);
+                mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
+                mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener() {
+                    @Override
+                    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+                    }
 
-                @Override
-                public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-                    List<String> minFrees = LMK.getMinFrees();
-                    String minFree = "";
+                    @Override
+                    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+                        List<String> minFrees = LMK.getMinFrees();
+                        String minFree = "";
 
-                    for (int i = 0; i < mMinFreeCard.length; i++)
-                        if (dSeekBarCardView == mMinFreeCard[i])
-                            minFree += minFree.isEmpty() ? values.get(position) : "," + values.get(position);
-                        else
-                            minFree += minFree.isEmpty() ? minFrees.get(i) : "," + minFrees.get(i);
+                        for (int i = 0; i < mMinFreeCard.length; i++)
+                            if (dSeekBarCardView == mMinFreeCard[i])
+                                minFree += minFree.isEmpty() ? values.get(position) : "," + values.get(position);
+                            else
+                                minFree += minFree.isEmpty() ? minFrees.get(i) : "," + minFrees.get(i);
 
-                    LMK.setMinFree(minFree, getActivity());
-                    refresh();
-                }
-            });
+                        LMK.setMinFree(minFree, getActivity());
+                        refresh();
+                    }
+                });
 
-            addView(mMinFreeCard[i]);
+                addView(mMinFreeCard[i]);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
 
         mProfileCard = new CardViewItem.DCardView[mProfileValues.length];
