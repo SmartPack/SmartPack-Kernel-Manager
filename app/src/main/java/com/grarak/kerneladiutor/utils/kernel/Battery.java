@@ -50,5 +50,33 @@ public class Battery implements Constants {
     public static boolean hasForceFastCharge() {
         return Utils.existFile(FORCE_FAST_CHARGE);
     }
+	
+    public static void setChargingRate(int value, Context context) {
+        Control.runCommand(String.valueOf(value), CUSTOM_CHARGING_RATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getChargingRate() {
+        return Utils.stringToInt(Utils.readFile(CUSTOM_CHARGING_RATE));
+    }
+
+    public static boolean hasChargingRate() {
+        return Utils.existFile(CUSTOM_CHARGING_RATE);
+    }
+
+    public static void activateCustomChargeRate(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CHARGE_RATE_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCustomChargeRateActive() {
+        return Utils.readFile(CHARGE_RATE_ENABLE).equals("1");
+    }
+
+    public static boolean hasCustomChargeRateEnable() {
+        return Utils.existFile(CHARGE_RATE_ENABLE);
+    }
+	
+	public static boolean hasChargeRate() {
+        return Utils.existFile(CHARGE_RATE);
+    }
 
 }

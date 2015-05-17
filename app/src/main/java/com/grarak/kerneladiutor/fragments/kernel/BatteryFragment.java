@@ -24,6 +24,8 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DividerCardView;
 import com.grarak.kerneladiutor.elements.CardViewItem;
 import com.grarak.kerneladiutor.elements.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.SwitchCardView;
@@ -48,6 +50,9 @@ public class BatteryFragment extends RecyclerViewFragment implements
     private SwitchCardView.DSwitchCard mForceFastChargeCard;
 
     private SeekBarCardView.DSeekBarCardView mBlxCard;
+	
+	private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard;
+    private SeekBarCardView.DSeekBarCardView mChargingRateCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
         batteryTemperatureInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
+        if (Battery.hasChargeRate()) chargerateInit();
 
         getActivity().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
@@ -99,6 +105,42 @@ public class BatteryFragment extends RecyclerViewFragment implements
         addView(mForceFastChargeCard);
     }
 
+    private void chargerateInit() {
+	    List<DAdapter.DView> views = new ArrayList<>();
+		
+	    if (Battery.hasCustomChargeRateEnable()) {
+		mCustomChargeRateEnableCard = new SwitchCardView.DSwitchCard();
+        mCustomChargeRateEnableCard.setTitle(getString(R.string.custom_charge_rate));
+	    mCustomChargeRateEnableCard.setDescription(getString(R.string.custom_charge_rate_summary));
+        mCustomChargeRateEnableCard.setChecked(Battery.isCustomChargeRateActive());
+        mCustomChargeRateEnableCard.setOnDSwitchCardListener(this);
+
+        views.add(mCustomChargeRateEnableCard);
+		}
+
+        if (Battery.hasChargingRate()) {
+        List<String> list = new ArrayList<>();
+        for (int i = 10; i < 151; i++) 
+		list.add((i * 10) + getString(R.string.ma));
+
+        mChargingRateCard = new SeekBarCardView.DSeekBarCardView(list);
+        mChargingRateCard.setTitle(getString(R.string.charge_rate));
+        mChargingRateCard.setDescription(getString(R.string.charge_rate_summary));
+        mChargingRateCard.setProgress((Battery.getChargingRate() / 10) - 10);
+        mChargingRateCard.setOnDSeekBarCardListener(this);
+
+        views.add(mChargingRateCard);
+		}
+		
+		if (views.size() > 0) {
+            DividerCardView.DDividerCard mChargeRateDividerCard = new DividerCardView.DDividerCard();
+            mChargeRateDividerCard.setText(getString(R.string.custom_charge_rate));
+            addView(mChargeRateDividerCard);
+
+            addAllViews(views);
+        }
+    }
+	
     private void blxInit() {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 101; i++) list.add(String.valueOf(i));
@@ -134,6 +176,8 @@ public class BatteryFragment extends RecyclerViewFragment implements
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mForceFastChargeCard)
             Battery.activateForceFastCharge(checked, getActivity());
+		else if (dSwitchCard == mCustomChargeRateEnableCard)
+            Battery.activateCustomChargeRate(checked, getActivity());
     }
 
     @Override
@@ -142,7 +186,10 @@ public class BatteryFragment extends RecyclerViewFragment implements
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mBlxCard) Battery.setBlx(position, getActivity());
+        if (dSeekBarCardView == mBlxCard)
+			Battery.setBlx(position, getActivity());
+		else if (dSeekBarCardView == mChargingRateCard)
+			Battery.setChargingRate((position * 10) + 100, getActivity());
     }
 
     @Override
