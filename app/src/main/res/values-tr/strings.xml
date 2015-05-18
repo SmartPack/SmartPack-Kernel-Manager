@@ -182,16 +182,14 @@
   <string name="tcp">TCP Congestion Algoritması</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
-  <string name="edit">Düzenle</string>
   <string name="delete">Sil</string>
+  <string name="edit">Düzenle</string>
   <string name="key">Anahtar</string>
   <string name="value">Değer</string>
-  <string name="delete_prop">%s silinsin mi?</string>
   <string name="search">Arama</string>
   <string name="no_profiles">Profil yok</string>
   <string name="name">Ad</string>
   <string name="apply">Onayla</string>
-  <string name="empty_name">İsim bölümü boş</string>
   <string name="press_again_to_apply">Tekrar uygulamak için düğmesine basın.</string>
   <string name="applied">Uygulandı</string>
   <string name="dark_theme">Koyu tema</string>

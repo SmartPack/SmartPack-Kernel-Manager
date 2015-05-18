@@ -126,7 +126,6 @@
   <string name="battery_temperature">Teplota batérie</string>
   <string name="scheduler">Plánovač</string>
   <string name="name">Názov</string>
-  <string name="empty_name">Názov je prázdny</string>
   <string name="reboot">Reštartovať</string>
   <string name="confirm">Ste si istý?</string>
   <string name="twrp">TWRP</string>

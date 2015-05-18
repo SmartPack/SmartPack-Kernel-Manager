@@ -42,6 +42,7 @@
   <string name="low_memory_killer">Sproščanje pomanjkanja spomina</string>
   <string name="virtual_memory">Navidezni pomnilnik</string>
   <string name="misc_controls">Napredni nadzor</string>
+  <string name="backup">Varnostno kopiranje</string>
   <string name="build_prop_editor">Build.prop urejevalec</string>
   <string name="profile">Profil</string>
   <string name="recovery">Recovery</string>
@@ -378,14 +379,12 @@
   <string name="wlan_wakelock_summary">Prepreči wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock delilnik</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock delilnik</string>
+  <string name="delete">Izbriši</string>
   <string name="items_found">%d najdenih predmetov</string>
-  <string name="backup">Varnostno kopiranje</string>
   <string name="add">Dodaj</string>
   <string name="edit">Uredi</string>
-  <string name="delete">Izbriši</string>
   <string name="key">Ključ</string>
   <string name="value">Vrednost</string>
-  <string name="delete_prop">Izbriši %s?</string>
   <string name="backup_created">Varnostna kopija je bila ustvarjena v %s.</string>
   <string name="search">Išči</string>
   <string name="no_profiles">Ni profilov</string>
@@ -393,7 +392,6 @@
   <string name="name">Ime</string>
   <string name="apply">Uporabi</string>
   <string name="no_settings">Ni najdenih nastavitev!</string>
-  <string name="empty_name">Ime je prazno</string>
   <string name="press_again_to_apply">Pritisnite znova za uporabo.</string>
   <string name="applied">Uporabljeno</string>
   <string name="reboot">Ponovni zagon</string>

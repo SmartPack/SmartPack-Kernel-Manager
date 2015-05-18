@@ -45,6 +45,7 @@
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">Mémoire Virtuelle</string>
   <string name="misc_controls">Contrôles Divers</string>
+  <string name="backup">Sauvegarde</string>
   <string name="build_prop_editor">Editeur Build prop</string>
   <string name="profile">Profile</string>
   <string name="recovery">Restauration</string>
@@ -184,6 +185,7 @@
   <string name="delay_summary">Temps entre les contrôles.</string>
   <string name="pause">Pause</string>
   <string name="alucard_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par Alucard.</string>
+  <string name="thermal_info">N\'utilisez qu\'un seul des pilotes de gestion de température proposés ci-après, en utiliser plus d\'un en même temps peu entrainer des comportements inattendus.</string>
   <string name="gpu_2d_cur_freq">Fréquence Actuelle GPU 2D</string>
   <string name="gpu_cur_freq">Fréquence Actuelle GPU</string>
   <string name="gpu_2d_max_freq">Fréquence Maximale GPU 2D</string>
@@ -352,14 +354,12 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
+  <string name="delete">Suppression</string>
   <string name="items_found">%d élément(s) trouvé(s)</string>
-  <string name="backup">Sauvegarde</string>
   <string name="add">Ajouter</string>
   <string name="edit">Editer</string>
-  <string name="delete">Suppression</string>
   <string name="key">Clé </string>
   <string name="value">Valeur </string>
-  <string name="delete_prop">Effacer %s?</string>
   <string name="backup_created">Une sauvegarde a été créé dans %s.</string>
   <string name="search">Rechercher</string>
   <string name="no_profiles">Aucun profil</string>
@@ -367,7 +367,6 @@
   <string name="name">Nom</string>
   <string name="apply">Appliquer</string>
   <string name="no_settings">Aucuns paramètres trouvés !</string>
-  <string name="empty_name">Le Nom est vide</string>
   <string name="press_again_to_apply">Appuyez à nouveau pour appliquer.</string>
   <string name="applied">Appliqué</string>
   <string name="reboot">Redémarrer</string>

@@ -286,11 +286,10 @@
   <string name="sensor_ind_wakelock_summary">Spriječiti buđenje uređaja pri deaktiviranoj automatskoj svjetlini zaslona.</string>
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
-  <string name="edit">Promjeni</string>
   <string name="delete">Izbriši</string>
+  <string name="edit">Promjeni</string>
   <string name="key">Ključ</string>
   <string name="value">Vrijednost</string>
-  <string name="delete_prop">Izbrisati %s?</string>
   <string name="backup_created">Sigurnosna kopija je stvorena u %s.</string>
   <string name="search">Tražiti</string>
   <string name="no_profiles">Nema profila</string>
@@ -298,7 +297,6 @@
   <string name="name">Ime</string>
   <string name="apply">Preuzmi</string>
   <string name="no_settings">Postavke nisu pronađene!</string>
-  <string name="empty_name">Nema imena</string>
   <string name="press_again_to_apply">Pritisnite ponovo za primjenu.</string>
   <string name="applied">Primjenjeno</string>
   <string name="dark_theme">Tamni motiv</string>

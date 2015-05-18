@@ -42,6 +42,7 @@
   <string name="low_memory_killer">Minneshantering</string>
   <string name="virtual_memory">Virtuellt Minne</string>
   <string name="misc_controls">Övriga Kontrollenheter</string>
+  <string name="backup">Säkerhetskopiera</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profiler</string>
   <string name="recovery">Återställning</string>
@@ -203,12 +204,10 @@
   <string name="network">Nätverk</string>
   <string name="smb135x_wakelock_summary">Förhindra \"wakelock\" när ström är frånkopplad.</string>
   <string name="sensor_ind_wakelock_summary">Förhindra \"wakelock\" när \"Ambient Display\" inaktiveras.</string>
-  <string name="backup">Säkerhetskopiera</string>
+  <string name="delete">Radera</string>
   <string name="add">Lägg till</string>
   <string name="edit">Ändra</string>
-  <string name="delete">Radera</string>
   <string name="value">Värde</string>
-  <string name="delete_prop">Radera %s?</string>
   <string name="backup_created">Säkerhetskopia har skapats i %s.</string>
   <string name="search">Sök</string>
   <string name="profile_description">Dina inställningar sparas när du lägger till en profil. Du kan använda dem senare.</string>

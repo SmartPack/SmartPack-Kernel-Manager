@@ -164,11 +164,10 @@
   <string name="scheduler">Ütemező</string>
   <string name="ksm_enable">KSM engedélyezése</string>
   <string name="ksm_enable_summary">Csökkenti a memória használatot, de hatással van a CPU-használatra.</string>
-  <string name="edit">Szerkesztés</string>
   <string name="delete">Törlés</string>
+  <string name="edit">Szerkesztés</string>
   <string name="key">Kulcs</string>
   <string name="value">Érték</string>
-  <string name="delete_prop">%s törlése?</string>
   <string name="search">Keresés</string>
   <string name="license">Licenc</string>
   <string name="feature_request">Ötlet, javaslat</string>

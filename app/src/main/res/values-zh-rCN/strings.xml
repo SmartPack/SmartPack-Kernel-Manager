@@ -170,10 +170,9 @@
   <string name="sensor_ind_wakelock_summary">当主动显示被禁用时阻止唤醒锁。</string>
   <string name="msm_hsic_host_wakelock">msm_hsic_host 唤醒锁</string>
   <string name="msm_hsic_host_wakelock_summary">阻止 msm_hsic_host 唤醒锁。</string>
-  <string name="edit">编辑</string>
   <string name="delete">删除</string>
+  <string name="edit">编辑</string>
   <string name="value">值</string>
-  <string name="delete_prop">删除 %s?</string>
   <string name="backup_created">备份已在 %s 创建。</string>
   <string name="search">搜索</string>
   <string name="no_profiles">无配置文件</string>
@@ -181,7 +180,6 @@
   <string name="name">名称</string>
   <string name="apply">应用</string>
   <string name="no_settings">没有找到设置!</string>
-  <string name="empty_name">名称为空</string>
   <string name="press_again_to_apply">再按一次以应用.</string>
   <string name="applied">已应用</string>
   <string name="license">许可</string>

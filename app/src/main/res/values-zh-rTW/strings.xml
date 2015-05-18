@@ -41,10 +41,11 @@
   <string name="sound">聲音</string>
   <string name="battery">電池</string>
   <string name="io_scheduler">I/O 排程</string>
-  <string name="ksm">Kernel Samepage Merging</string>
+  <string name="ksm">核心同頁合併(Kernel Samepage Merging)</string>
   <string name="low_memory_killer">低記憶體清除機制</string>
   <string name="virtual_memory">虛擬記憶體</string>
   <string name="misc_controls">Misc 控制項</string>
+  <string name="backup">備份</string>
   <string name="build_prop_editor">Build prop 編輯器</string>
   <string name="profile">設定檔</string>
   <string name="recovery">修復模式</string>
@@ -137,6 +138,8 @@
   <string name="mako_hotplug_summary">將高通的 MPDecision 內核替換為由 franciscofranco 開發的</string>
   <string name="msm_mpdecision_hotplug">高通MPDecision熱插拔</string>
   <string name="mb_hotplug_summary">將高通的 MPDecision 內核替換為由 show-p1984 開發的</string>
+  <string name="screen_off_single_core">關閉螢幕單核心</string>
+  <string name="screen_off_single_core_summary">當螢幕關閉時只使用一個核心</string>
   <string name="idle_frequency">Idle 頻率</string>
   <string name="delay">延遲</string>
   <string name="pause">暫停</string>
@@ -145,6 +148,11 @@
   <string name="cpu_down_rate">CPU下降頻率</string>
   <string name="cpu_up_rate">CPU上升頻率</string>
   <string name="thermald">原廠溫度管裡</string>
+  <string name="core_control">核心控制</string>
+  <string name="thermal_limit_low">最低溫度限制</string>
+  <string name="thermal_limit_high">最高溫度限制</string>
+  <string name="temp_safety">溫度安全控制</string>
+  <string name="msm_thermal">高通溫度安全控制</string>
   <string name="gpu_2d_cur_freq">GPU 2D 頻率</string>
   <string name="gpu_cur_freq">GPU 頻率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大頻率</string>
@@ -223,7 +231,9 @@
   <string name="ksm_pages_sharing">Pages sharing</string>
   <string name="ksm_pages_unshared">Pages unshared</string>
   <string name="ksm_enable">啟用 KSM</string>
+  <string name="ksm_enable_summary">合併相似的記憶體區塊以節省記憶體空間，但會增加cpu的使用率。</string>
   <string name="ksm_deferred_timer">延遲的計時器</string>
+  <string name="ksm_deferred_timer_summary">降低一些cpu的使用率，但會有較少的記憶體節省效果。</string>
   <string name="foreground_app">前臺應用程式</string>
   <string name="visible_app">可見的應用程式</string>
   <string name="hidden_app">隱藏的應用程式</string>
@@ -238,12 +248,10 @@
   <string name="tcp">TCP 擁塞控制演算法</string>
   <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連接單次發送的分組數量的算法。它通過增減單次發送量逐步調整，使之逼近當前網絡的承載量。</string>
   <string name="hostname">主機名稱</string>
-  <string name="backup">備份</string>
+  <string name="delete">刪除</string>
   <string name="add">增加</string>
   <string name="edit">編輯</string>
-  <string name="delete">刪除</string>
   <string name="value">值</string>
-  <string name="delete_prop">刪除 %s 嗎？</string>
   <string name="backup_created">在 %s 中建立備份。</string>
   <string name="search">搜尋</string>
   <string name="no_profiles">沒有設定檔</string>
@@ -251,7 +259,6 @@
   <string name="name">名稱</string>
   <string name="apply">套用</string>
   <string name="no_settings">發現沒有設定！</string>
-  <string name="empty_name">請輸入名稱</string>
   <string name="press_again_to_apply">再次按下以套用。</string>
   <string name="applied">套用成功</string>
   <string name="reboot">重新開機</string>

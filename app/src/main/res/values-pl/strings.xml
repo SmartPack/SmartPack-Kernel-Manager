@@ -45,6 +45,7 @@
   <string name="low_memory_killer">Zarządca niskiego poziomu pamięci</string>
   <string name="virtual_memory">Pamięć wirtualna</string>
   <string name="misc_controls">Różne Ustawienia</string>
+  <string name="backup">Kopia zapasowa</string>
   <string name="build_prop_editor">Edytor build prop</string>
   <string name="profile">Profil</string>
   <string name="recovery">Recovery</string>
@@ -159,9 +160,8 @@
   <string name="medium">Średni</string>
   <string name="very_aggressive">Bardzo agresywny</string>
   <string name="vibration_strength">Siła wibracji</string>
-  <string name="backup">Kopia zapasowa</string>
-  <string name="edit">Edytuj</string>
   <string name="delete">Usuń</string>
+  <string name="edit">Edytuj</string>
   <string name="key">Klucz</string>
   <string name="value">Wartość</string>
   <string name="backup_created">Kopia zapasowa został utworzony w %s.</string>

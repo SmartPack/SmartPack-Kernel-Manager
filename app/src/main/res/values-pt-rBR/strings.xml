@@ -8,7 +8,10 @@
   <string name="cancel">Cancelar</string>
   <string name="current_value_not_supported">Valor atual não é suportado</string>
   <string name="beta_message">Obrigado por ser um beta tester! Se você tiver quaisquer problemas, por favor não hesita contatar-me. Você atualmente está executando a versão %s.</string>
+  <string name="select_picture">Selecione imagem</string>
+  <string name="default_picture">Imagem padrão</string>
   <string name="select_file">Selecione a %s</string>
+  <string name="no_files">Não há arquivos neste caminho.</string>
   <string name="apply_on_boot">Aplicar na inicialização</string>
   <string name="apply_on_boot_finished">As alterações foram aplicadas</string>
   <string name="apply_on_boot_time">Aplicando as configurações em %d segundos</string>
@@ -31,6 +34,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltagem da CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Temperatura</string>
   <string name="gpu">GPU</string>
   <string name="screen">Tela</string>
   <string name="wake_controls">Controles de despertar</string>
@@ -75,6 +79,7 @@
   <string name="not_tunable">%s não é ajustável</string>
   <string name="mc_power_saving">Economia de energia com vários núcleos</string>
   <string name="mc_power_saving_summary">Tentar agrupar as tarefas em menos núcleos possíveis.</string>
+  <string name="power_saving_wq">Agendar filas de trabalho em CPUs acordados para economizar energia.</string>
   <string name="cfs_scheduler_policy">Política do escalonador CFS</string>
   <string name="cfs_scheduler_policy_summary">A política decide como o escalonador CFS deve balancear as tarefas entre diferentes núcleos da CPU.</string>
   <string name="disabled">Desativado</string>
@@ -95,6 +100,7 @@
   <string name="input_boost_freq_summary">Frequência da CPU para ser impulsionada até esta frequência após a detecção de entrada.</string>
   <string name="global_offset">Deslocamento global</string>
   <string name="override_vmin">Substituir a tensão mínima</string>
+  <string name="override_vmin_summary">Desabilitar para remover os limites de undervolting dos fabricantes</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solução hotplugging da Qualcomm. Você pode ter problemas com a mudança de frequências quando estiver habilitado.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -192,6 +198,21 @@
   <string name="sampling_rate">Taxa de amostragem</string>
   <string name="cpu_down_rate">Taxa de CPU abaixo</string>
   <string name="cpu_up_rate">Taxa de CPU acima</string>
+  <string name="thunderplug">Plug rapido</string>
+  <string name="thunderplug_summary">Uma substituição no kernel para MPDecision da Qualcomm. Desenvolvido por varunchitre15.</string>
+  <string name="min_cores_screen_off">Número máximo de núcleos com a tela desligada</string>
+  <string name="min_cores_screen_off_summary">Número mínimo de núcleos online quando a tela estiver desligada.</string>
+  <string name="endurance_level">Nível de resistência</string>
+  <string name="endurance_level_summary">perfil de economia de energia.</string>
+  <string name="quad_core_mode">Modo Quad-Core</string>
+  <string name="dual_core_mode">Modo Dual-Core</string>
+  <string name="thermal_info">Use apenas um condutor térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.</string>
+  <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Condutor térmico Stock da Qualcomm que impede sobreaquecimento do dispositivo. Isto deve ser desabilitado se o kernel atual tem uma alternativa.</string>
+  <string name="intellithermal">Intellithermal</string>
+  <string name="intellithermal_summary">Uma substituição no kernel para Thermald da Qualcomm. Desenvolvido por faux123.</string>
+  <string name="intellithermal_optimized">Intellithermal otimizado</string>
+  <string name="intellithermal_optimized_summary">Uma substituição no kernel para Thermald da Qualcomm. Desenvolvido por faux123 e alucard_24.</string>
   <string name="gpu_2d_cur_freq">Frequência atual da GPU 2D</string>
   <string name="gpu_cur_freq">Frequência atual da GPU</string>
   <string name="gpu_2d_max_freq">Frequência maxima da GPU 2D</string>
@@ -325,11 +346,10 @@
   <string name="sensor_ind_wakelock_summary">Evitar gerenciamento de energia quando o Ambient Display estiver desativado.</string>
   <string name="msm_hsic_host_wakelock">Gerenciador de energia msm_hsic_host</string>
   <string name="msm_hsic_host_wakelock_summary">Evitar o gerenciamento de energia msm_hsic_host.</string>
-  <string name="edit">Editar</string>
   <string name="delete">Deletar</string>
+  <string name="edit">Editar</string>
   <string name="key">Chave</string>
   <string name="value">Valor</string>
-  <string name="delete_prop">Excluir %s?</string>
   <string name="backup_created">Backup foi criado em %s.</string>
   <string name="search">Procurar</string>
   <string name="no_profiles">Sem perfis</string>
@@ -337,7 +357,6 @@
   <string name="name">Nome</string>
   <string name="apply">Aplicar	</string>
   <string name="no_settings">Não há definições encontradas!</string>
-  <string name="empty_name">O nome está vazio</string>
   <string name="press_again_to_apply">Pressione novamente para aplicar.</string>
   <string name="applied">Aplicado</string>
   <string name="confirm">Tem certeza?</string>

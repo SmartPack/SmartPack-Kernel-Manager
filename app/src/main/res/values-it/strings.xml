@@ -45,6 +45,7 @@
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">Memoria virtuale</string>
   <string name="misc_controls">Controlli vari</string>
+  <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profilo</string>
   <string name="recovery">Recovery</string>
@@ -98,7 +99,7 @@
   <string name="input_interval_summary">Intervallo minimo nella quale una CPU è potenziata quando l\'input viene rilevato.</string>
   <string name="input_boost_freq">Immissione frequenza di boost</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
-  <string name="global_offset">Scostamento globale</string>
+  <string name="global_offset">Offset Generale</string>
   <string name="override_vmin">Eseguire l\'abbassamento alla minima tensione</string>
   <string name="override_vmin_summary">Disabilitare per rimuovere i limiti di undervolt stabiliti dal produttore</string>
   <string name="mpdecision">MPDecision</string>
@@ -385,14 +386,12 @@
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
+  <string name="delete">Elimina</string>
   <string name="items_found">Trovato/i %d elemento/i</string>
-  <string name="backup">Backup</string>
   <string name="add">Aggiungi</string>
   <string name="edit">Modifica</string>
-  <string name="delete">Elimina</string>
   <string name="key">Chiave</string>
   <string name="value">Valore</string>
-  <string name="delete_prop">Elimina %s?</string>
   <string name="backup_created">Il Backup è stato creato nel %s.</string>
   <string name="search">Cerca</string>
   <string name="no_profiles">Nessun profilo</string>
@@ -400,7 +399,6 @@
   <string name="name">Nome</string>
   <string name="apply">Applica</string>
   <string name="no_settings">Impostazioni non trovate!</string>
-  <string name="empty_name">Il nome è vuoto</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
   <string name="applied">Applicato</string>
   <string name="reboot">Riavvia</string>

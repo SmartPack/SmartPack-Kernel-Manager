@@ -44,6 +44,7 @@
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">가상 메모리</string>
   <string name="misc_controls">기타</string>
+  <string name="backup">백업</string>
   <string name="build_prop_editor">Build prop 편집</string>
   <string name="profile">프로필</string>
   <string name="recovery">리커버리</string>
@@ -379,14 +380,12 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
+  <string name="delete">삭제</string>
   <string name="items_found">%d개 항목 찾음</string>
-  <string name="backup">백업</string>
   <string name="add">추가</string>
   <string name="edit">수정</string>
-  <string name="delete">삭제</string>
   <string name="key">Key</string>
   <string name="value">값</string>
-  <string name="delete_prop">%s를 삭제하시겠습니까?</string>
   <string name="backup_created">백업 파일이 %s에 생성되었습니다.</string>
   <string name="search">검색</string>
   <string name="no_profiles">프로필이 없습니다.</string>
@@ -394,7 +393,6 @@
   <string name="name">이름</string>
   <string name="apply">적용</string>
   <string name="no_settings">설정이 없습니다!</string>
-  <string name="empty_name">이름을 지정하지 않았습니다</string>
   <string name="press_again_to_apply">적용하려면 다시 한 번 눌러주세요.</string>
   <string name="applied">적용됨</string>
   <string name="reboot">다시 시작</string>

@@ -141,7 +141,6 @@
   <string name="name">Název</string>
   <string name="apply">Použít</string>
   <string name="no_settings">Nastavení nenalezeno!</string>
-  <string name="empty_name">Název není vyplněn</string>
   <string name="applied">Použito</string>
   <string name="reboot">Restart</string>
   <string name="reboot_recovery">Restart do Recovery menu</string>
