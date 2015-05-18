@@ -83,7 +83,7 @@ public class PopupCardItem extends BaseCardView {
 
         setUpTitle();
         setUpDescription();
-        if (valueText != null) valueView.setText(valueText + " ");
+        if (valueText != null) valueView.setText(valueText);
     }
 
     public void setTitle(String title) {
@@ -97,13 +97,13 @@ public class PopupCardItem extends BaseCardView {
     }
 
     public void setItem(int position) {
-        valueText = list.get(position);
-        if (valueView != null) valueView.setText(valueText + " ");
+        valueText = list.get(position) + " ";
+        if (valueView != null) valueView.setText(valueText);
     }
 
     public void setItem(String value) {
-        valueText = value;
-        if (valueView != null) valueView.setText(valueText + " ");
+        valueText = value + " ";
+        if (valueView != null) valueView.setText(valueText);
     }
 
     public String getDescription() {

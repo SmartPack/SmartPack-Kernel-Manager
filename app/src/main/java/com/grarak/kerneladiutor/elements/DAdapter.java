@@ -67,7 +67,7 @@ public class DAdapter {
             void onItemClick(View view, int position);
         }
 
-        private final List<DView> DViews;
+        public List<DView> DViews;
         private OnItemClickListener onItemClickListener;
         private int selectedItem = 0;
         private boolean itemOnly;
@@ -83,12 +83,7 @@ public class DAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            try {
-                DViews.get(position).onBindViewHolder(holder);
-                setOnClickListener(DViews.get(position), holder.itemView);
-            } catch (ClassCastException e) {
-                e.printStackTrace();
-            }
+            DViews.get(position).onBindViewHolder(holder);
         }
 
         @Override

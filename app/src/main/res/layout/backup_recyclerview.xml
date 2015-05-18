@@ -4,21 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/background_view"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="@color/color_primary"
-        android:orientation="horizontal">
+        android:background="@color/color_primary">
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/recovery_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="72dp" />
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="72dp"
+            android:textColor="@android:color/white"
+            android:textSize="17sp" />
 
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -33,46 +34,35 @@
         android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/background_view"
-        android:layout_marginLeft="7dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="-26dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="-34dp"
         fab:fab_addButtonColorNormal="@color/fab_normal"
         fab:fab_addButtonColorPressed="@color/fab_pressed"
         fab:fab_addButtonPlusIconColor="@color/color_primary"
-        fab:fab_addButtonSize="mini"
         fab:fab_expandDirection="down"
-        fab:fab_labelStyle="@style/menu_labels_style"
-        fab:fab_labelsPosition="right">
+        fab:fab_labelStyle="@style/menu_labels_style">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/wipe_data_button"
+            android:id="@+id/backup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
             fab:fab_size="mini"
-            fab:fab_title="@string/wipe_data" />
+            fab:fab_title="@string/backup" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/wipe_cache_button"
+            android:id="@+id/flash_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
             fab:fab_size="mini"
-            fab:fab_title="@string/wipe_cache" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flash_zip_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/fab_normal_menu"
-            fab:fab_colorPressed="@color/fab_pressed_menu"
-            fab:fab_size="mini"
-            fab:fab_title="@string/flash_zip" />
+            fab:fab_title="@string/flash_img" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

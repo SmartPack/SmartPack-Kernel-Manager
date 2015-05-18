@@ -57,6 +57,10 @@ public class RootUtils implements Constants {
         return false;
     }
 
+    public static String getKernelVersion() {
+        return runCommand("uname -r");
+    }
+
     public static void mount(boolean writeable, String mountpoint) {
         runCommand(writeable ? "mount -o rw,remount " + mountpoint : "mount -o ro,remount " + mountpoint);
     }

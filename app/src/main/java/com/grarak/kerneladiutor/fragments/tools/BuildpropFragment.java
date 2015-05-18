@@ -34,7 +34,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.PopupCardItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -72,16 +71,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             }
         });
 
-        FloatingActionButton addButton = (FloatingActionButton) view.findViewById(R.id.add_button);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addKeyDialog(null, null, false);
             }
         });
 
-        FloatingActionButton backupButton = (FloatingActionButton) view.findViewById(R.id.backup_button);
-        backupButton.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.backup_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 backup();
@@ -214,18 +211,12 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     }
 
     private void deleteDialog(final String key, final String value) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(getString(R.string.delete_prop, key)).setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+        Utils.confirmDialog(null, getString(R.string.delete_question, key), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 overwrite(key.trim(), value.trim(), "#" + key.trim(), value.trim());
             }
-        }).show();
+        }, getActivity());
     }
 
     private void backup() {

@@ -60,8 +60,7 @@ public class EditTextCardView extends CardViewItem {
 
                 layout.addView(editText);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setView(layout)
+                new AlertDialog.Builder(getContext()).setView(layout)
                         .setNegativeButton(getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

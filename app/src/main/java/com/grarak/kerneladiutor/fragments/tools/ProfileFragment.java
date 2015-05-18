@@ -64,7 +64,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        View view = getParentView(R.layout.profile_recyclerview);
+        View view = getParentView(R.layout.fab_recyclerview);
         title = (TextView) view.findViewById(R.id.title_view);
         return (RecyclerView) view.findViewById(R.id.recycler_view);
     }
@@ -103,8 +103,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 boolean load = true;
                 String start = getString(R.string.kernel);
                 String stop = getString(R.string.tools);
-                final List<Class> fragments = new ArrayList<>();
-                final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
+                final LinkedHashMap<Class, AppCompatCheckBox> items = new LinkedHashMap<>();
                 for (DAdapter.DView item : Constants.ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
@@ -112,10 +111,9 @@ public class ProfileFragment extends RecyclerViewFragment {
                         if (item.getFragment() != null && !load) {
                             AppCompatCheckBox checkBox = new AppCompatCheckBox(getActivity());
                             checkBox.setText(item.getTitle());
-                            fragments.add(item.getFragment().getClass());
                             checkBoxLayout.addView(checkBox);
 
-                            checkBoxes.add(checkBox);
+                            items.put(item.getFragment().getClass(), checkBox);
                         }
                     }
                 }
@@ -136,9 +134,9 @@ public class ProfileFragment extends RecyclerViewFragment {
                                         ProfileDB profileDB = new ProfileDB(getActivity());
 
                                         List<String> applys = new ArrayList<>();
-                                        for (int i = 0; i < fragments.size(); i++)
-                                            if (checkBoxes.get(i).isChecked())
-                                                applys.addAll(Utils.getApplys(fragments.get(i)));
+                                        for (int i = 0; i < items.size(); i++)
+                                            if (((AppCompatCheckBox) items.values().toArray()[i]).isChecked())
+                                                applys.addAll(Utils.getApplys((Class) items.keySet().toArray()[i]));
 
                                         final LinkedHashMap<String, String> commands = new LinkedHashMap<>();
                                         for (CommandDB.CommandItem commandItem : commandItems)

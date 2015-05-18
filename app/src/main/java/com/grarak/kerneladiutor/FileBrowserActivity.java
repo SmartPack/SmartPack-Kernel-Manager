@@ -79,7 +79,7 @@ public class FileBrowserActivity extends AppCompatActivity {
         String externalStorage = Utils.getExternalStorage();
 
         LinkedHashMap<String, Fragment> fragments = new LinkedHashMap<>();
-        internalStorage = StorageFragment.newInstance(Environment.getExternalStorageDirectory().toString(), fileType);
+        internalStorage = StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);
         fragments.put(getString(R.string.internal_storage), internalStorage);
         if (externalStorage != null) {
             this.externalStorage = StorageFragment.newInstance(externalStorage, fileType);
