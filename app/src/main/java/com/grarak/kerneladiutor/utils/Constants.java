@@ -57,11 +57,6 @@ public interface Constants {
     String CPU_AVAILABLE_CFS_SCHEDULERS = "/sys/devices/system/cpu/sched_balance_policy/available_sched_balance_policy";
     String CPU_CURRENT_CFS_SCHEDULER = "/sys/devices/system/cpu/sched_balance_policy/current_sched_balance_policy";
 
-    String CPU_TEMPCONTROL_TEMP_LIMIT = "/sys/class/misc/tempcontrol/templimit";
-    String CPU_MSM_TEMP_LIMIT = "/sys/module/msm_thermal/parameters/temp_threshold";
-
-    String[] CPU_TEMP_LIMIT_ARRAY = {CPU_TEMPCONTROL_TEMP_LIMIT, CPU_MSM_TEMP_LIMIT};
-
     String CPU_BOOST = "/sys/module/cpu_boost/parameters";
     String CPU_BOOST_ENABLE = "/sys/module/cpu_boost/parameters/cpu_boost";
     String CPU_BOOST_ENABLE_2 = "/sys/module/cpu_boost/parameters/cpuboost_enable";
@@ -77,7 +72,7 @@ public interface Constants {
     String[][] CPU_ARRAY = {{CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
             CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
             CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_WQ_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS,
-            CPU_CURRENT_CFS_SCHEDULER}, CPU_TEMP_LIMIT_ARRAY, CPU_BOOST_ARRAY};
+            CPU_CURRENT_CFS_SCHEDULER}, CPU_BOOST_ARRAY};
 
     // CPU Voltage
     String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
@@ -246,6 +241,10 @@ public interface Constants {
     String MSM_THERMAL_TEMP_THRESHOLD = MSM_THERMAL + "/parameters/temp_threshold";
     String MSM_THERMAL_FREQ_LIMIT_DEBUG = MSM_THERMAL + "/parameters/freq_limit_debug";
     String MSM_THERMAL_MIN_FREQ_INDEX = MSM_THERMAL + "/parameters/min_freq_index";
+    String TEMPCONTROL_TEMP_LIMIT = "/sys/class/misc/tempcontrol/templimit";
+
+    String[] TEMP_LIMIT_ARRAY = {MSM_THERMAL_THROTTLE_TEMP, MSM_THERMAL_TEMP_MAX, MSM_THERMAL_TEMP_THRESHOLD,
+            MSM_THERMAL_FREQ_LIMIT_DEBUG, MSM_THERMAL_MIN_FREQ_INDEX, TEMPCONTROL_TEMP_LIMIT};
 
     String MSM_THERMAL_CONF = "/sys/kernel/msm_thermal/conf";
     String CONF_ALLOWED_LOW_LOW = MSM_THERMAL_CONF + "/allowed_low_low";
@@ -262,7 +261,7 @@ public interface Constants {
 
     String[] THERMAL_ARRAY = {MSM_THERMAL, MSM_THERMAL_V2};
 
-    String[][] THERMAL_ARRAYS = {THERMAL_ARRAY, {MSM_THERMAL_CONF}};
+    String[][] THERMAL_ARRAYS = {THERMAL_ARRAY, TEMP_LIMIT_ARRAY, {MSM_THERMAL_CONF}};
 
     // GPU
     String GPU_GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";

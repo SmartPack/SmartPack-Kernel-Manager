@@ -94,7 +94,9 @@ public class RecyclerViewFragment extends BaseFragment {
         });
         int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
         recyclerView.setPadding(padding, 0, padding, 0);
+        recyclerView.setHasFixedSize(true);
 
+        final boolean hideapplyonboot = Utils.getBoolean("hideapplyonboot", true, getActivity());
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             private int scrollMargin = 10;
             private boolean changing;
@@ -103,7 +105,7 @@ public class RecyclerViewFragment extends BaseFragment {
             public void onScrolled(RecyclerView recyclerView, int dx, final int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                if (!Utils.getBoolean("hideapplyonboot", true, getActivity())) return;
+                if (!hideapplyonboot) return;
                 try {
                     if (changing || onScrollDisappearView == null) return;
                     int y = dy;

@@ -22,6 +22,9 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by willi on 03.05.15.
  */
@@ -193,18 +196,47 @@ public class Thermal implements Constants {
     }
 
     public static void setTempLimit(int value, Context context) {
+        if (TEMP_LIMIT_FILE.equals(TEMPCONTROL_TEMP_LIMIT))
+            value *= 1000;
+
         Control.runCommand(String.valueOf(value), TEMP_LIMIT_FILE, Control.CommandType.GENERIC, context);
     }
 
-    public static int getTempLimit() {
-        return Utils.stringToInt(Utils.readFile(TEMP_LIMIT_FILE));
+    public static int getTempLimitMax() {
+        if (TEMP_LIMIT_FILE.equals(TEMPCONTROL_TEMP_LIMIT)) return 80;
+        return 100;
+    }
+
+    public static int getTempLimitMin() {
+        if (TEMP_LIMIT_FILE.equals(TEMPCONTROL_TEMP_LIMIT)) return 60;
+        return 50;
+    }
+
+    public static List<String> getTempLimitList() {
+        List<String> list = new ArrayList<>();
+        for (double i = getTempLimitMin(); i <= getTempLimitMax(); i++)
+            list.add((i + "°C " + Utils.celsiusToFahrenheit(i) + "°F"));
+        return list;
+    }
+
+    public static int getCurTempLimit() {
+        if (TEMP_LIMIT_FILE != null) {
+            int value = Utils.stringToInt(Utils.readFile(TEMP_LIMIT_FILE));
+            if (TEMP_LIMIT_FILE.equals(TEMPCONTROL_TEMP_LIMIT))
+                value /= 1000;
+
+            return value;
+        }
+        return 0;
     }
 
     public static boolean hasTempLimit() {
-        if (Utils.existFile(MSM_THERMAL_THROTTLE_TEMP)) TEMP_LIMIT_FILE = MSM_THERMAL_THROTTLE_TEMP;
-        else if (Utils.existFile(MSM_THERMAL_TEMP_MAX)) TEMP_LIMIT_FILE = MSM_THERMAL_TEMP_MAX;
-        else if (Utils.existFile(MSM_THERMAL_TEMP_THRESHOLD))
-            TEMP_LIMIT_FILE = MSM_THERMAL_TEMP_THRESHOLD;
+        if (TEMP_LIMIT_FILE == null)
+            for (String file : TEMP_LIMIT_ARRAY)
+                if (Utils.existFile(file)) {
+                    TEMP_LIMIT_FILE = file;
+                    return true;
+                }
         return TEMP_LIMIT_FILE != null;
     }
 

@@ -107,8 +107,6 @@
     <string name="disabled">Disabled</string>
     <string name="enabled">Enabled</string>
     <string name="aggressive">Aggressive</string>
-    <string name="temp_limit">Temperature Limit</string>
-    <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
     <string name="cpu_boost">CPU Boost</string>
     <string name="debug_mask">Debug Mask</string>
     <string name="debug_mask_summary">Allows you to activate debug mask for CPU Boost operations.</string>
@@ -275,6 +273,8 @@
     <string name="freq_limit_debug_summary">This allows to debug the CPUs throttle when the temperature reaches maximum.</string>
     <string name="temp_limit_min_freq">Temperature Limit Minimum Frequency</string>
     <string name="temp_limit_min_freq_summary">The thermal will use this frequency to throttle the maximum temperature.</string>
+    <string name="temp_limit">Temperature Limit</string>
+    <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>

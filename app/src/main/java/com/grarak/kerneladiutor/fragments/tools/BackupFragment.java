@@ -215,30 +215,33 @@ public class BackupFragment extends RecyclerViewFragment {
     private void create() {
         removeAllViews();
 
-        viewInit(boot, Backup.PARTITION.BOOT);
-        viewInit(recovery, Backup.PARTITION.RECOVERY);
-        viewInit(fota, Backup.PARTITION.FOTA);
+        final long size = viewInit(boot, Backup.PARTITION.BOOT) + viewInit(recovery, Backup.PARTITION.RECOVERY) +
+                viewInit(fota, Backup.PARTITION.FOTA);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                title.setText(getCount() > 0 ? getString(R.string.items_found, getCount()) : getString(R.string.no_backups));
+                title.setText(getCount() > 0 ? getString(R.string.items_found, getCount()) + " (" +
+                        size + getString(R.string.mb) + ")" : getString(R.string.no_backups));
             }
         });
     }
 
-    private void viewInit(File folder, final Backup.PARTITION partition_type) {
-        if (!folder.exists()) if (!folder.mkdirs()) return;
+    private long viewInit(File folder, final Backup.PARTITION partition_type) {
+        if (!folder.exists()) if (!folder.mkdirs()) return 0;
 
+        long size = 0;
         String text = null;
         if (folder.toString().endsWith("boot")) text = getString(R.string.boot);
         else if (folder.toString().endsWith("recovery")) text = getString(R.string.recovery);
         else if (folder.toString().endsWith("fota")) text = getString(R.string.fota);
-        if (text == null) return;
+        if (text == null) return 0;
         for (final File file : folder.listFiles())
             if (file.getName().endsWith(".img")) {
                 CardViewItem.DCardView cardView = new CardViewItem.DCardView();
                 cardView.setTitle(file.getName().replace(".img", ""));
-                cardView.setDescription(text + ", " + (file.length() / 1024 / 1024) + getString(R.string.mb));
+                long fileSize = file.length() / 1024 / 1024;
+                size += fileSize;
+                cardView.setDescription(text + ", " + fileSize + getString(R.string.mb));
                 cardView.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                     @Override
                     public void onClick(CardViewItem.DCardView dCardView) {
@@ -261,6 +264,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
                 addView(cardView);
             }
+        return size;
     }
 
     private void restoreDialog(final File file, final Backup.PARTITION partition_type, final boolean restoring) {

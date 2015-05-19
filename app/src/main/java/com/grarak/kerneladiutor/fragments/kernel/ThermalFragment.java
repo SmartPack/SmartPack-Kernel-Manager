@@ -286,15 +286,11 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             addView(mTempThrottleEnableCard);
         }
 
-        if (Thermal.hasTempLimit() && !CPU.hasTempLimit()) {
-            List<String> list = new ArrayList<>();
-            for (double i = 50; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i) + "°F");
-
-            mTempLimitCard = new SeekBarCardView.DSeekBarCardView(list);
+        if (Thermal.hasTempLimit()) {
+            mTempLimitCard = new SeekBarCardView.DSeekBarCardView(Thermal.getTempLimitList());
             mTempLimitCard.setTitle(getString(R.string.temp_limit));
             mTempLimitCard.setDescription(getString(R.string.temp_limit_summary));
-            mTempLimitCard.setProgress(Thermal.getTempLimit() - 50);
+            mTempLimitCard.setProgress(Thermal.getCurTempLimit() - Thermal.getTempLimitMin());
             mTempLimitCard.setOnDSeekBarCardListener(this);
 
             addView(mTempLimitCard);
