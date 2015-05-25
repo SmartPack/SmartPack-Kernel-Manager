@@ -40,6 +40,8 @@ public class CPU implements Constants {
 
     private static String TEMP_FILE;
 
+    private static String[] mCpuQuietAvailableGovernors;
+
     private static String CPU_BOOST_ENABLE_FILE;
 
     public static void setCpuBoostInputMs(int value, Context context) {
@@ -129,6 +131,47 @@ public class CPU implements Constants {
 
     public static boolean hasCpuBoost() {
         return Utils.existFile(CPU_BOOST);
+    }
+
+    public static void setCpuQuietGovernor(String value, Context context) {
+        Control.runCommand(value, CPU_QUIET_CURRENT_GOVERNOR, Control.CommandType.GENERIC, context);
+    }
+
+    public static String getCpuQuietCurGovernor() {
+        return Utils.readFile(CPU_QUIET_CURRENT_GOVERNOR);
+    }
+
+    public static List<String> getCpuQuietAvailableGovernors() {
+        if (mCpuQuietAvailableGovernors == null) {
+            String[] governors = Utils.readFile(CPU_QUIET_AVAILABLE_GOVERNORS).split(" ");
+            if (governors.length > 0) {
+                mCpuQuietAvailableGovernors = new String[governors.length];
+                System.arraycopy(governors, 0, mCpuQuietAvailableGovernors, 0, mCpuQuietAvailableGovernors.length);
+            }
+        }
+        if (mCpuQuietAvailableGovernors == null) return null;
+        return new ArrayList<>(Arrays.asList(mCpuQuietAvailableGovernors));
+    }
+
+    public static boolean hasCpuQuietGovernors() {
+        return Utils.existFile(CPU_QUIET_AVAILABLE_GOVERNORS) && Utils.existFile(CPU_QUIET_CURRENT_GOVERNOR)
+                && !Utils.readFile(CPU_QUIET_AVAILABLE_GOVERNORS).equals("none");
+    }
+
+    public static void activateCpuQuiet(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_QUIET_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuQuietActive() {
+        return Utils.readFile(CPU_QUIET_ENABLE).equals("1");
+    }
+
+    public static boolean hasCpuQuietEnable() {
+        return Utils.existFile(CPU_QUIET_ENABLE);
+    }
+
+    public static boolean hasCpuQuiet() {
+        return Utils.existFile(CPU_QUIET);
     }
 
     public static void setCFSScheduler(String value, Context context) {

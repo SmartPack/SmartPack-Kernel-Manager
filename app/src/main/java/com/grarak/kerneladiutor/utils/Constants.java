@@ -57,22 +57,24 @@ public interface Constants {
     String CPU_AVAILABLE_CFS_SCHEDULERS = "/sys/devices/system/cpu/sched_balance_policy/available_sched_balance_policy";
     String CPU_CURRENT_CFS_SCHEDULER = "/sys/devices/system/cpu/sched_balance_policy/current_sched_balance_policy";
 
+    String CPU_QUIET = "/sys/devices/system/cpu/cpuquiet";
+    String CPU_QUIET_ENABLE = CPU_QUIET + "/cpuquiet_driver/enabled";
+    String CPU_QUIET_AVAILABLE_GOVERNORS = CPU_QUIET + "/available_governors";
+    String CPU_QUIET_CURRENT_GOVERNOR = CPU_QUIET + "/current_governor";
+
     String CPU_BOOST = "/sys/module/cpu_boost/parameters";
-    String CPU_BOOST_ENABLE = "/sys/module/cpu_boost/parameters/cpu_boost";
-    String CPU_BOOST_ENABLE_2 = "/sys/module/cpu_boost/parameters/cpuboost_enable";
-    String CPU_BOOST_DEBUG_MASK = "/sys/module/cpu_boost/parameters/debug_mask";
-    String CPU_BOOST_MS = "/sys/module/cpu_boost/parameters/boost_ms";
-    String CPU_BOOST_SYNC_THRESHOLD = "/sys/module/cpu_boost/parameters/sync_threshold";
-    String CPU_BOOST_INPUT_MS = "/sys/module/cpu_boost/parameters/input_boost_ms";
-    String CPU_BOOST_INPUT_BOOST_FREQ = "/sys/module/cpu_boost/parameters/input_boost_freq";
+    String CPU_BOOST_ENABLE = CPU_BOOST + "/cpu_boost";
+    String CPU_BOOST_ENABLE_2 = CPU_BOOST + "/cpuboost_enable";
+    String CPU_BOOST_DEBUG_MASK = CPU_BOOST + "/debug_mask";
+    String CPU_BOOST_MS = CPU_BOOST + "/boost_ms";
+    String CPU_BOOST_SYNC_THRESHOLD = CPU_BOOST + "/sync_threshold";
+    String CPU_BOOST_INPUT_MS = CPU_BOOST + "/input_boost_ms";
+    String CPU_BOOST_INPUT_BOOST_FREQ = CPU_BOOST + "/input_boost_freq";
 
-    String[] CPU_BOOST_ARRAY = {CPU_BOOST, CPU_BOOST_ENABLE, CPU_BOOST_ENABLE_2, CPU_BOOST_DEBUG_MASK, CPU_BOOST_MS,
-            CPU_BOOST_SYNC_THRESHOLD, CPU_BOOST_INPUT_MS, CPU_BOOST_INPUT_BOOST_FREQ};
-
-    String[][] CPU_ARRAY = {{CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
+    String[] CPU_ARRAY = {CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
             CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
             CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_WQ_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS,
-            CPU_CURRENT_CFS_SCHEDULER}, CPU_BOOST_ARRAY};
+            CPU_CURRENT_CFS_SCHEDULER, CPU_QUIET, CPU_BOOST};
 
     // CPU Voltage
     String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";

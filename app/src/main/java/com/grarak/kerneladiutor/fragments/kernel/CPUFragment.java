@@ -103,6 +103,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private PopupCardItem.DPopupCard mCFSSchedulerCard;
 
+        private SwitchCardView.DSwitchCard mCpuQuietEnableCard;
+        private PopupCardItem.DPopupCard mCpuQuietGovernorCard;
+
         private SwitchCardView.DSwitchCard mCpuBoostEnableCard;
         private SwitchCardView.DSwitchCard mCpuBoostDebugMaskCard;
         private SeekBarCardView.DSeekBarCardView mCpuBoostMsCard;
@@ -128,6 +131,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
             if (CPU.hasPowerSavingWq()) powerSavingWqInit();
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
+            if (CPU.hasCpuQuiet()) cpuQuietInit();
             if (CPU.hasCpuBoost()) cpuBoostInit();
         }
 
@@ -255,6 +259,27 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             addView(mCFSSchedulerCard);
         }
 
+        private void cpuQuietInit() {
+            if (CPU.hasCpuQuietEnable()) {
+                mCpuQuietEnableCard = new SwitchCardView.DSwitchCard();
+                mCpuQuietEnableCard.setTitle(getString(R.string.cpu_quiet));
+                mCpuQuietEnableCard.setDescription(getString(R.string.cpu_quiet_summary));
+                mCpuQuietEnableCard.setChecked(CPU.isCpuQuietActive());
+                mCpuQuietEnableCard.setOnDSwitchCardListener(this);
+
+                addView(mCpuQuietEnableCard);
+            }
+
+            if (CPU.hasCpuQuietGovernors()) {
+                mCpuQuietGovernorCard = new PopupCardItem.DPopupCard(CPU.getCpuQuietAvailableGovernors());
+                mCpuQuietGovernorCard.setDescription(getString(R.string.cpu_quiet_governor));
+                mCpuQuietGovernorCard.setItem(CPU.getCpuQuietCurGovernor());
+                mCpuQuietGovernorCard.setOnDPopupCardListener(this);
+
+                addView(mCpuQuietGovernorCard);
+            }
+        }
+
         private void cpuBoostInit() {
             List<DAdapter.DView> views = new ArrayList<>();
             if (CPU.hasCpuBoostEnable()) {
@@ -367,6 +392,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setMcPowerSaving(position, getActivity());
             else if (dPopupCard == mCFSSchedulerCard)
                 CPU.setCFSScheduler(CPU.getAvailableCFSSchedulers().get(position), getActivity());
+            else if (dPopupCard == mCpuQuietGovernorCard)
+                CPU.setCpuQuietGovernor(CPU.getCpuQuietAvailableGovernors().get(position), getActivity());
             else if (dPopupCard == mCpuBoostSyncThresholdCard)
                 CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
             else if (dPopupCard == mCpuBoostInputFreqCard)
@@ -395,7 +422,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-            if (dSwitchCard == mCpuBoostEnableCard)
+            if (dSwitchCard == mCpuQuietEnableCard)
+                CPU.activateCpuQuiet(checked, getActivity());
+            else if (dSwitchCard == mCpuBoostEnableCard)
                 CPU.activateCpuBoost(checked, getActivity());
             else if (dSwitchCard == mCpuBoostDebugMaskCard)
                 CPU.activateCpuBoostDebugMask(checked, getActivity());
