@@ -75,8 +75,6 @@
   <string name="disabled">Letiltva</string>
   <string name="enabled">Engedélyezve</string>
   <string name="aggressive">Agresszív</string>
-  <string name="temp_limit">Maximális hőmérséklet</string>
-  <string name="temp_limit_summary">Ha a hőmérséklet túllépi a határértéket, a CPU alacsonyabb frekvenciára vált a hőmérséklet csökkentéséhez.</string>
   <string name="cpu_boost">CPU gyorsítás</string>
   <string name="debug_mask">Hibakeresés</string>
   <string name="debug_mask_summary">Lehetővé teszi a hibakeresést a CPU gyorsító műveletekhez.</string>
@@ -130,6 +128,8 @@
   <string name="idle_frequency">Üresjárat frekvencia</string>
   <string name="idle_frequency_summary">Ha az első mag ez alatt a frekvencia alatt van, a többi mag nem kapcsol be.</string>
   <string name="pause">Szünet</string>
+  <string name="temp_limit">Maximális hőmérséklet</string>
+  <string name="temp_limit_summary">Ha a hőmérséklet túllépi a határértéket, a CPU alacsonyabb frekvenciára vált a hőmérséklet csökkentéséhez.</string>
   <string name="gpu_governor">GPU ütemező</string>
   <string name="simple_gpu_algorithm">Egyszerű GPU algoritmus</string>
   <string name="laziness">Lustaság</string>

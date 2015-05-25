@@ -83,8 +83,6 @@
   <string name="disabled">Onemogočen</string>
   <string name="enabled">Omogočen</string>
   <string name="aggressive">Agresiven</string>
-  <string name="temp_limit">Temperaturna meja</string>
-  <string name="temp_limit_summary">Če temperatura zraste, bo termal povišal frekvenco CPE za znižanje temperature.</string>
   <string name="cpu_boost">CPE pospešek</string>
   <string name="debug_mask">Razhroščevalna maska</string>
   <string name="debug_mask_summary">Omogoča, da aktivirate razhroščevalno masko za operacije CPE pospeška.</string>
@@ -196,6 +194,8 @@
   <string name="sampling_rate">Stopnja vzorčenja</string>
   <string name="cpu_down_rate">Hitrost CPE navzdol</string>
   <string name="cpu_up_rate">Hitrost CPE navzgor</string>
+  <string name="temp_limit">Temperaturna meja</string>
+  <string name="temp_limit_summary">Če temperatura zraste, bo termal povišal frekvenco CPE za znižanje temperature.</string>
   <string name="gpu_2d_cur_freq">GPE 2D trenutna frekvenca</string>
   <string name="gpu_cur_freq">Trenutna frekvenca GPE</string>
   <string name="gpu_2d_max_freq">GPE 2D najvišja frekvenca</string>

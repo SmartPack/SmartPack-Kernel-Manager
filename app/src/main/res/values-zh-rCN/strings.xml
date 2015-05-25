@@ -61,8 +61,6 @@
   <string name="disabled">禁用</string>
   <string name="enabled">启用</string>
   <string name="aggressive">积极</string>
-  <string name="temp_limit">温度上限</string>
-  <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的。</string>
   <string name="cpu_boost">处理器跳频</string>
   <string name="input_boost_freq">输入跳频频率数值</string>
   <string name="global_offset">全局偏移量</string>
@@ -79,6 +77,8 @@
   <string name="history_size">历史记录大小</string>
   <string name="io_is_busy">I/O繁忙</string>
   <string name="idle_frequency">空闲频率</string>
+  <string name="temp_limit">温度上限</string>
+  <string name="temp_limit_summary">如果温度超过此上限，CPU 频率将由于过热而降低以达到降温目的。</string>
   <string name="gpu_2d_cur_freq">GPU 2D 当前频率</string>
   <string name="gpu_cur_freq">GPU 当前频率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>

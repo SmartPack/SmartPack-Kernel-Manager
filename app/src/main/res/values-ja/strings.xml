@@ -86,8 +86,6 @@
   <string name="disabled">無効</string>
   <string name="enabled">有効</string>
   <string name="aggressive">積極的</string>
-  <string name="temp_limit">温度制限</string>
-  <string name="temp_limit_summary">温度が指定した値以上になると、温度が下がるまでCPU周波数を制限するようになります。</string>
   <string name="cpu_boost">CPUブースト</string>
   <string name="debug_mask">デバッグマスク</string>
   <string name="debug_mask_summary">CPUブースト操作のデバッグマスクを有効化できます。</string>
@@ -239,6 +237,8 @@
   <string name="freq_limit_debug_summary">温度が最大に達した時のCPUスロットルをデバッグできます。</string>
   <string name="temp_limit_min_freq">温度制限の最小周波数</string>
   <string name="temp_limit_min_freq_summary">最大温度の調整のためにこの周波数を使うようにします。</string>
+  <string name="temp_limit">温度制限</string>
+  <string name="temp_limit_summary">温度が指定した値以上になると、温度が下がるまでCPU周波数を制限するようになります。</string>
   <string name="gpu_2d_cur_freq">GPU 2D 現在の周波数</string>
   <string name="gpu_cur_freq">GPU 現在の周波数</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大周波数</string>
@@ -423,7 +423,11 @@
   <string name="wlan_wakelock_summary">wlan wakelockを防ぎます。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+  <string name="no_backups">バックアップはありません。</string>
+  <string name="boot">Boot</string>
+  <string name="empty_name">名前が入力されていません！</string>
   <string name="delete">削除</string>
+  <string name="restoring">復元中</string>
   <string name="items_found">%d個見つかりました</string>
   <string name="add">追加</string>
   <string name="edit">編集</string>

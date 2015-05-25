@@ -83,8 +83,6 @@
   <string name="disabled">Inaktiverad</string>
   <string name="enabled">Aktiverad</string>
   <string name="aggressive">Aggressiv</string>
-  <string name="temp_limit">Temperaturgräns</string>
-  <string name="temp_limit_summary">Om temperaturen stiger över gränsen så kommer CPU frekvensen strypas för att sänka temperaturen.</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Felsökningsmask</string>
   <string name="debug_mask_summary">Tillåter dig att aktivera felsökningsmasken för uppgifter som har med CPU Boost att göra.</string>
@@ -143,6 +141,8 @@
   <string name="delay_summary">Tid mellan kontroller.</string>
   <string name="pause">Pausa</string>
   <string name="sampling_rate">Samplingsfrekvens</string>
+  <string name="temp_limit">Temperaturgräns</string>
+  <string name="temp_limit_summary">Om temperaturen stiger över gränsen så kommer CPU frekvensen strypas för att sänka temperaturen.</string>
   <string name="gpu_max_freq">Högsta frekvensen för GPU:n</string>
   <string name="gpu_max_freq_summary">Ange den högsta frekvensen som GPU:n skalar upp till.</string>
   <string name="simple_gpu_algorithm">Enkel GPU Algoritm</string>

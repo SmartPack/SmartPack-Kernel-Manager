@@ -59,7 +59,6 @@
   <string name="offline">Fuera de llinia</string>
   <string name="cpu_max_freq">Frecuencia máxima de CPU</string>
   <string name="cpu_governor">Gobernador de CPU</string>
-  <string name="temp_limit">Llende de temperatura</string>
   <string name="interval">Intervalu</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -77,6 +76,7 @@
   <string name="history_size">Tamañu d\'historia</string>
   <string name="first_level">Primer nivel</string>
   <string name="delay">Retrasu</string>
+  <string name="temp_limit">Llende de temperatura</string>
   <string name="red">Bermeyu</string>
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
@@ -87,6 +87,7 @@
   <string name="screen_value">Valor de pantalla</string>
   <string name="screen_contrast">Contraste de pantalla</string>
   <string name="high_brightness_mode">Mou de rellumu altu</string>
+  <string name="contrast">Contraste</string>
   <string name="brightness">Rellumu</string>
   <string name="loading">Cargando</string>
   <string name="no_internet">Ensin conexón a internet</string>
@@ -113,7 +114,10 @@
   <string name="network">Rede</string>
   <string name="tcp">Algoritmu de conxestión TCP</string>
   <string name="hostname">Nome d\'agospiu</string>
+  <string name="empty_name">¡El nome ta baleru!</string>
   <string name="delete">Desaniciar</string>
+  <string name="restoring">Restaurando</string>
+  <string name="delete_question">¿Desaniciar %s?</string>
   <string name="add">Amestar</string>
   <string name="edit">Editar</string>
   <string name="key">Clave</string>
@@ -128,12 +132,19 @@
   <string name="applied">Aplicáu</string>
   <string name="reboot">Reaniciar</string>
   <string name="reboot_recovery">Reaniciar al Recovery</string>
-  <string name="reboot_bootloader">Reaniciar al cargador d\'arranq</string>
+  <string name="reboot_bootloader">Reaniciar al Cargador d\'arranq</string>
   <string name="reboot_download">Reaniciar al mou Download</string>
   <string name="confirm">¿De xuru?</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="went_wrong">¡Daqué foi mal!</string>
+  <string name="flash_now_confirm">¿Quies executar les tos aiciones? El to preséu reaniciaráse nel mou recovery y executaránse les aciones nel orde nes que les amestesti.</string>
+  <string name="add_action_first">Tienes d\'amestar una aición primero.</string>
+  <string name="emulate_initd">Emular Init.d</string>
+  <string name="executing">Executando</string>
+  <string name="no_scripts_found">¡Nun s\'alcontraron scripts!</string>
+  <string name="starting_initd">Aniciando emulación Init.d</string>
+  <string name="finishing_initd">Finando emulación d\'Init.d</string>
   <string name="dark_theme">Tema escuru</string>
   <string name="force_english_language">Forciar la llingua inglesa</string>
   <string name="beta_info">Información de Beta</string>
@@ -141,6 +152,10 @@
   <string name="hide_apply_on_boot">Anubrir \"Aplicar nel arranque\"</string>
   <string name="hide_apply_on_boot_summary">Anubre la so apaición al desplazase p\'abaxo.</string>
   <string name="debugging">Depuración</string>
+  <string name="misspelled">¿Por qué escribiesti mal \"Auditor\"?</string>
+  <string name="misspelled_summary">Adiutor ye llatín y significa \"ayudante\".</string>
+  <string name="feature_not_appearing">¿Por qué nun s\'amuesen les carauterístiques X ya Y?</string>
+  <string name="feature_not_appearing_summary">Les carauterístiques tán arreyaes al kernel.</string>
   <string name="feature_function">¿Qué fai la carauterística X?</string>
   <string name="feature_function_summary">Si nun sabes lo que fai esi control, cenciellamente nun lu toques. Por favor, fai una gueta afayadiza enantes de xugar col to hardware caru.</string>
   <string name="add_new_features">¿Podríes amestar les carauterístiques X ya Y?</string>
@@ -151,6 +166,7 @@
   <string name="jerzy">Jerzy Chałupski</string>
   <string name="open_source">Códigu abiertu</string>
   <string name="open_source_summary">Esta aplicación ye códigu abiertu. Compruébalo nel mio Github.</string>
+  <string name="feature_request">Solicitú de carauterístiques</string>
   <string name="feature_request_summary">¿Quies más carauterístiques? Abri un informe en Github y cúntame la to idea.</string>
   <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Xúnite a la nuesa comunidá.</string>

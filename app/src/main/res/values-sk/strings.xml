@@ -72,7 +72,6 @@
   <string name="disabled">Zakázané</string>
   <string name="enabled">Povolené</string>
   <string name="aggressive">Agresívne</string>
-  <string name="temp_limit">Tepelný limit</string>
   <string name="interval">Interval</string>
   <string name="balanced">Vyvážené</string>
   <string name="performance">Výkon</string>
@@ -89,6 +88,7 @@
   <string name="delay">Oneskorenie</string>
   <string name="delay_summary">Čas medzi kontrolami.</string>
   <string name="pause">Pauza</string>
+  <string name="temp_limit">Tepelný limit</string>
   <string name="red">Červená</string>
   <string name="green">Zelená</string>
   <string name="blue">Modrá</string>

@@ -85,8 +85,6 @@
   <string name="disabled">Wyłączone</string>
   <string name="enabled">Włączone</string>
   <string name="aggressive">Agresywny</string>
-  <string name="temp_limit">Limit temperatury</string>
-  <string name="temp_limit_summary">Jeśli temperatura przekroczy wybraną, częstotliwość procesora zostanie zmniejszona by uregulować temperaturę.</string>
   <string name="cpu_boost">Przyspieszenie CPU</string>
   <string name="debug_mask">Maska Debugowania</string>
   <string name="debug_mask_summary">Pozwala aktywować maskę debugowania by zwiekszyc operacje CPU.</string>
@@ -122,6 +120,8 @@
   <string name="history_size">Rozmiar historii</string>
   <string name="update_rate">Częstotliwość aktualizacji</string>
   <string name="io_is_busy">IO jest zajęte</string>
+  <string name="temp_limit">Limit temperatury</string>
+  <string name="temp_limit_summary">Jeśli temperatura przekroczy wybraną, częstotliwość procesora zostanie zmniejszona by uregulować temperaturę.</string>
   <string name="red">Czerwony</string>
   <string name="green">Zielony</string>
   <string name="blue">Niebieski</string>

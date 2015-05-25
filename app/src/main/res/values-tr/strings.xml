@@ -74,8 +74,6 @@
   <string name="disabled">Etkin Değil</string>
   <string name="enabled">Etkin</string>
   <string name="aggressive">Agresif</string>
-  <string name="temp_limit">Sıcaklık Limiti</string>
-  <string name="temp_limit_summary">Eğer sıcaklık yükselirse, İşlemci frekansı düşürerek sıcaklığı azaltır.</string>
   <string name="cpu_boost">İşlemci Hızlandırıcı</string>
   <string name="debug_mask">Hata Ayıklama Maskesi</string>
   <string name="interval">Aralık</string>
@@ -104,6 +102,8 @@
   <string name="suspend_summary">Askıdan al.</string>
   <string name="delay">Gecikme</string>
   <string name="pause">Duraklat</string>
+  <string name="temp_limit">Sıcaklık Limiti</string>
+  <string name="temp_limit_summary">Eğer sıcaklık yükselirse, İşlemci frekansı düşürerek sıcaklığı azaltır.</string>
   <string name="invert_screen">Ters Ekran</string>
   <string name="saturation_intensity">Renk Doygunluğu</string>
   <string name="grayscale_mode">Gri Tonlama Modu</string>

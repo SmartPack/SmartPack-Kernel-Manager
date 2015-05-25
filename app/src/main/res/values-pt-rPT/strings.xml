@@ -89,8 +89,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="disabled">Desativado</string>
   <string name="enabled">Ativado</string>
   <string name="aggressive">Agressivo</string>
-  <string name="temp_limit">Limite de temperatura</string>
-  <string name="temp_limit_summary">Se a temperatura for maior, o CPU vai ser regulada para descer a temperatura.</string>
   <string name="cpu_boost">Impulso de CPU</string>
   <string name="debug_mask">Depurar máscara</string>
   <string name="debug_mask_summary">Permite que você ative depuração máscara para operações de impulso de CPU.</string>
@@ -218,6 +216,8 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="intellithermal_optimized">Intellithermal otimizado</string>
   <string name="intellithermal_optimized_summary">Uma substituição no kernel para Thermald da Qualcomm. Desenvolvido por faux123 e alucard_24.</string>
   <string name="debug_mask_thermal">Permite que você ative depuração máscara para operações térmicas.</string>
+  <string name="temp_limit">Limite de temperatura</string>
+  <string name="temp_limit_summary">Se a temperatura for maior, o CPU vai ser regulada para descer a temperatura.</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequência atual</string>
   <string name="gpu_cur_freq">GPU frequência atual</string>
   <string name="gpu_2d_max_freq">GPU 2D frequência máxima</string>

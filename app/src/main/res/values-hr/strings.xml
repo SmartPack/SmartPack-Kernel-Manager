@@ -75,8 +75,6 @@
   <string name="disabled">Deaktivirano</string>
   <string name="enabled">Aktivirano</string>
   <string name="aggressive">Agresivno</string>
-  <string name="temp_limit">Toplotna granica</string>
-  <string name="temp_limit_summary">Ako se temperatura još više podigne, usporiti će se frekvencija CPU-a da se temperatura snizi.</string>
   <string name="cpu_boost">Ubrzavanje CPU-a</string>
   <string name="debug_mask">Maska za ispravljanje pogrešaka</string>
   <string name="debug_mask_summary">Omogućava Vam aktivirati masku za ispravljanje pogrešaka prouzročenih ubrzavanjem CPU-a.</string>
@@ -186,6 +184,8 @@
   <string name="sampling_rate">Brzina uzorkovanja</string>
   <string name="cpu_down_rate">Učestalost isključivanja CPU-a</string>
   <string name="cpu_up_rate">Učestalost aktiviranja CPU-a</string>
+  <string name="temp_limit">Toplotna granica</string>
+  <string name="temp_limit_summary">Ako se temperatura još više podigne, usporiti će se frekvencija CPU-a da se temperatura snizi.</string>
   <string name="gpu_2d_cur_freq">GPU 2D trenutna frekvencija</string>
   <string name="gpu_cur_freq">GPU trenutna frekvencija</string>
   <string name="gpu_2d_max_freq">GPU 2D najviša frekvencija</string>

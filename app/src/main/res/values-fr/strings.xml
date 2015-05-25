@@ -86,8 +86,6 @@
   <string name="disabled">Désactivé</string>
   <string name="enabled">Activé</string>
   <string name="aggressive">Aggresif</string>
-  <string name="temp_limit">Limite de Température</string>
-  <string name="temp_limit_summary">Si la température est au dessus, le CPU aura sa fréquence réduite pour abaisser la température.</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Masque de débogage</string>
   <string name="debug_mask_summary">Vous permet d\'activer le masque de débogage pour les opérations CPU Boost.</string>
@@ -186,6 +184,8 @@
   <string name="pause">Pause</string>
   <string name="alucard_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par Alucard.</string>
   <string name="thermal_info">N\'utilisez qu\'un seul des pilotes de gestion de température proposés ci-après, en utiliser plus d\'un en même temps peu entrainer des comportements inattendus.</string>
+  <string name="temp_limit">Limite de Température</string>
+  <string name="temp_limit_summary">Si la température est au dessus, le CPU aura sa fréquence réduite pour abaisser la température.</string>
   <string name="gpu_2d_cur_freq">Fréquence Actuelle GPU 2D</string>
   <string name="gpu_cur_freq">Fréquence Actuelle GPU</string>
   <string name="gpu_2d_max_freq">Fréquence Maximale GPU 2D</string>
@@ -354,7 +354,14 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
+  <string name="backing_up">Sauvegarde en cours</string>
+  <string name="empty_name">Le nom n\'est pas renseigné !</string>
+  <string name="backup_already_exists">Une sauvegarde avec le même nom existe déjà. Supprimez-la avant !</string>
+  <string name="restore">Restaurer</string>
   <string name="delete">Suppression</string>
+  <string name="overwrite_question">Écraser %s ?</string>
+  <string name="restoring">Restauration en cours</string>
+  <string name="delete_question">Supprimer %s ?</string>
   <string name="items_found">%d élément(s) trouvé(s)</string>
   <string name="add">Ajouter</string>
   <string name="edit">Editer</string>

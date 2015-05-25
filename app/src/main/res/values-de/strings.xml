@@ -84,8 +84,6 @@
   <string name="disabled">Deaktiviert</string>
   <string name="enabled">Aktiviert</string>
   <string name="aggressive">Aggressiv</string>
-  <string name="temp_limit">Temperatur-Begrenzung</string>
-  <string name="temp_limit_summary">Wenn die Temperatur höher ist, wird die CPU-Frequenz gemindert, um die Temperatur zu senken.</string>
   <string name="cpu_boost">CPU-Boost</string>
   <string name="debug_mask">Debug-Mask</string>
   <string name="debug_mask_summary">Erlaubt dir, Debug-Mask für CPU-Boost-Operationen zu aktivieren.</string>
@@ -179,6 +177,8 @@
   <string name="freq_step">Frequenz-Schritt</string>
   <string name="temp_safety">Temperatur-Sicherheit</string>
   <string name="check_interval">Prüfintervall</string>
+  <string name="temp_limit">Temperatur-Begrenzung</string>
+  <string name="temp_limit_summary">Wenn die Temperatur höher ist, wird die CPU-Frequenz gemindert, um die Temperatur zu senken.</string>
   <string name="gpu_2d_cur_freq">Aktuelle GPU 2D-Frequenz</string>
   <string name="gpu_cur_freq">Aktuelle GPU-Frequenz</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>

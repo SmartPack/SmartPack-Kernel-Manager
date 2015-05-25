@@ -86,8 +86,6 @@
   <string name="disabled">Desabilitado</string>
   <string name="enabled">Activo</string>
   <string name="aggressive">Agresivo</string>
-  <string name="temp_limit">Límite de temperatura</string>
-  <string name="temp_limit_summary">Si la temperatura aumenta, el thermal medirá la frecuencia de CPU para bajar la misma.</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Máscara de Depuración</string>
   <string name="debug_mask_summary">Permite activar la máscara de depuración para operaciones de CPU Boost.</string>
@@ -248,6 +246,8 @@
   <string name="freq_limit_debug_summary">Esto permite hacer debug del acelerador del CPU cuando la temperatura alcanza el máximo.</string>
   <string name="temp_limit_min_freq">Temperatura límite en la frecuencia mínima</string>
   <string name="temp_limit_min_freq_summary">Thermal utilizará esta frecuencia para regular la temperatura máxima.</string>
+  <string name="temp_limit">Límite de temperatura</string>
+  <string name="temp_limit_summary">Si la temperatura aumenta, el thermal medirá la frecuencia de CPU para bajar la misma.</string>
   <string name="gpu_2d_cur_freq">Frecuencia actual de GPU 2D</string>
   <string name="gpu_cur_freq">Frecuencia actual del GPU</string>
   <string name="gpu_2d_max_freq">Frecuencia máxima de GPU 2D</string>
@@ -352,6 +352,8 @@
   <string name="usb_fast_charge">Carga rápida USB</string>
   <string name="usb_fast_charge_summary">Dispositivo cargará más rápido cuando está conectado con el USB. Vuelva a conectar el cargador al cambiar esta opción.</string>
   <string name="blx_summary">Establecer un límite a la capacidad que la batería se cargará pasando un valor entre 0 y 100.</string>
+  <string name="custom_charge_rate">Índice de carga</string>
+  <string name="charge_rate">Tasa de carga de batería</string>
   <string name="internal_storage">Almacenamiento interno</string>
   <string name="external_storage">Almacenamiento externo</string>
   <string name="scheduler">Planificador</string>
@@ -414,7 +416,13 @@
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Evitar wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor de Wakelock de wlan_rx</string>
+  <string name="no_backups">No hay copias de seguridad</string>
+  <string name="backing_up">Creando la copia de seguridad</string>
+  <string name="restore">Restaurar</string>
   <string name="delete">Borrar</string>
+  <string name="overwrite_question">¿Sobrescribir %s?</string>
+  <string name="restoring">Restaurando</string>
+  <string name="delete_question">¿Borrar %s?</string>
   <string name="items_found">%d elemento/s encontrados</string>
   <string name="add">Añadir</string>
   <string name="edit">Editar</string>

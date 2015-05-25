@@ -25,6 +25,7 @@
   <string name="mb">MB</string>
   <string name="min">minuten</string>
   <string name="sec">seconde</string>
+  <string name="ma">mA</string>
   <string name="information">Informatie</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Hulpprogramma\'s</string>
@@ -43,6 +44,7 @@
   <string name="low_memory_killer">Onvoldoende geheugen Killer</string>
   <string name="virtual_memory">Virtueel geheugen</string>
   <string name="misc_controls">Misc besturingselementen</string>
+  <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop bewerker</string>
   <string name="profile">Profiel</string>
   <string name="recovery">Herstel</string>
@@ -83,8 +85,6 @@
   <string name="disabled">Uitgeschakeld</string>
   <string name="enabled">Ingeschakeld</string>
   <string name="aggressive">Agressieve</string>
-  <string name="temp_limit">Temperatuurgrens</string>
-  <string name="temp_limit_summary">Als de temperatuur te hoog wordt dan zal de thermische throttle de CPU frequentie om de temperatuur te verlagen.</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Debug masker</string>
   <string name="debug_mask_summary">Hiermee kunt u foutopsporing voor CPU Boost operaties activeren.</string>
@@ -96,4 +96,14 @@
   <string name="input_interval_summary">Minimuminterval een CPU wordt versterkt wanneer invoer wordt gedetecteerd.</string>
   <string name="input_boost_freq">Input Boost frequentie</string>
   <string name="input_boost_freq_summary">CPU frequentie te stimuleren om deze frequentie na invoer detectie.</string>
+  <string name="balanced">Gebalanceerd</string>
+  <string name="performance">Prestaties</string>
+  <string name="conservative">Conservatief</string>
+  <string name="eco_performance">Eco prestaties</string>
+  <string name="eco_conservative">Eco conservatief</string>
+  <string name="eco">Eco</string>
+  <string name="strict">Strikt</string>
+  <string name="eco_mode">Eco-modus</string>
+  <string name="temp_limit">Temperatuurgrens</string>
+  <string name="temp_limit_summary">Als de temperatuur te hoog wordt dan zal de thermische throttle de CPU frequentie om de temperatuur te verlagen.</string>
 </resources>
