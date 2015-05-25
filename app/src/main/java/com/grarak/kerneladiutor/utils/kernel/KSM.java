@@ -27,60 +27,72 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class KSM implements Constants {
 
+    private static String KSM_FILE;
+
     public static void setSleepMilliseconds(int ms, Context context) {
-        Control.runCommand(String.valueOf(ms), KSM_SLEEP_MILLISECONDS, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(ms), getKsmFile(SLEEP_MILLISECONDS), Control.CommandType.GENERIC, context);
     }
 
     public static int getSleepMilliseconds() {
-        return Utils.stringToInt(Utils.readFile(KSM_SLEEP_MILLISECONDS));
+        return Utils.stringToInt(Utils.readFile(getKsmFile(SLEEP_MILLISECONDS)));
     }
 
     public static boolean hasSleepMilliseconds() {
-        return Utils.existFile(KSM_SLEEP_MILLISECONDS);
+        return Utils.existFile(getKsmFile(SLEEP_MILLISECONDS));
     }
 
     public static void setPagesToScan(int pages, Context context) {
-        Control.runCommand(String.valueOf(pages), KSM_PAGES_TO_SCAN, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(pages), getKsmFile(PAGES_TO_SCAN), Control.CommandType.GENERIC, context);
     }
 
     public static int getPagesToScan() {
-        return Utils.stringToInt(Utils.readFile(KSM_PAGES_TO_SCAN));
+        return Utils.stringToInt(Utils.readFile(getKsmFile(PAGES_TO_SCAN)));
     }
 
     public static boolean hasPagesToScan() {
-        return Utils.existFile(KSM_PAGES_TO_SCAN);
+        return Utils.existFile(getKsmFile(PAGES_TO_SCAN));
     }
 
     public static void activateDeferredTimer(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", KSM_DEFERRED_TIMER, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", getKsmFile(DEFERRED_TIMER), Control.CommandType.GENERIC, context);
     }
 
     public static boolean isDeferredTimerActive() {
-        return Utils.readFile(KSM_DEFERRED_TIMER).equals("1");
+        return Utils.readFile(getKsmFile(DEFERRED_TIMER)).equals("1");
     }
 
     public static boolean hasDeferredTimer() {
-        return Utils.existFile(KSM_DEFERRED_TIMER);
+        return Utils.existFile(getKsmFile(DEFERRED_TIMER));
     }
 
-    public static void activateKSM(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", KSM_RUN, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getInfos(int position) {
-        if (Utils.existFile(KSM_INFOS[position])) {
-            String value = Utils.readFile(KSM_INFOS[position]);
-            if (value != null) return Utils.stringToInt(value);
-        }
-        return 0;
+    public static void activateKsm(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", getKsmFile(RUN), Control.CommandType.GENERIC, context);
     }
 
     public static boolean isKsmActive() {
-        return Utils.readFile(KSM_RUN).equals("1");
+        return Utils.readFile(getKsmFile(RUN)).equals("1");
+    }
+
+    public static String getInfo(int position) {
+        return Utils.readFile(getKsmFile(KSM_INFOS[position]));
+    }
+
+    public static boolean hasInfo(int position) {
+        return Utils.existFile(getKsmFile(KSM_INFOS[position]));
+    }
+
+    public static int getInfoLength() {
+        return KSM_INFOS.length;
+    }
+
+    private static String getKsmFile(String file) {
+        return KSM_FILE + "/" + file;
     }
 
     public static boolean hasKsm() {
-        return Utils.existFile(KSM_RUN);
+        if (Utils.existFile(UKSM_FOLDER)) KSM_FILE = UKSM_FOLDER;
+        else if (Utils.existFile(KSM_FOLDER)) KSM_FILE = KSM_FOLDER;
+        return KSM_FILE != null;
     }
 
 }

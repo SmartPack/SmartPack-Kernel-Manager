@@ -519,18 +519,20 @@ public interface Constants {
 
     // Kernel Samepage Merging
     String KSM_FOLDER = "/sys/kernel/mm/ksm";
-    String KSM_FULL_SCANS = KSM_FOLDER + "/full_scans";
-    String KSM_PAGES_SHARED = KSM_FOLDER + "/pages_shared";
-    String KSM_PAGES_SHARING = KSM_FOLDER + "/pages_sharing";
-    String KSM_PAGES_UNSHARED = KSM_FOLDER + "/pages_unshared";
-    String KSM_PAGES_VOLATILE = KSM_FOLDER + "/pages_volatile";
-    String KSM_RUN = KSM_FOLDER + "/run";
-    String KSM_DEFERRED_TIMER = KSM_FOLDER + "/deferred_timer";
-    String KSM_PAGES_TO_SCAN = KSM_FOLDER + "/pages_to_scan";
-    String KSM_SLEEP_MILLISECONDS = KSM_FOLDER + "/sleep_millisecs";
+    String UKSM_FOLDER = "/sys/kernel/mm/uksm";
+    String FULL_SCANS = "full_scans";
+    String PAGES_SHARED = "pages_shared";
+    String PAGES_SHARING = "pages_sharing";
+    String PAGES_UNSHARED = "pages_unshared";
+    String PAGES_VOLATILE = "pages_volatile";
+    String RUN = "run";
+    String DEFERRED_TIMER = "deferred_timer";
+    String PAGES_TO_SCAN = "pages_to_scan";
+    String SLEEP_MILLISECONDS = "sleep_millisecs";
 
-    String[] KSM_INFOS = {KSM_FULL_SCANS, KSM_PAGES_SHARED, KSM_PAGES_SHARING,
-            KSM_PAGES_UNSHARED, KSM_PAGES_VOLATILE};
+    String[] KSM_INFOS = {FULL_SCANS, PAGES_SHARED, PAGES_SHARING, PAGES_UNSHARED, PAGES_VOLATILE};
+
+    String[] KSM_ARRAY = {KSM_FOLDER, UKSM_FOLDER};
 
     // Low Memory Killer
     String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";

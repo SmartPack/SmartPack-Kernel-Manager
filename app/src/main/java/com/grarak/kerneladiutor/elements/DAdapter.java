@@ -30,7 +30,6 @@ import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,6 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
-import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.IOException;
@@ -86,7 +84,6 @@ public class DAdapter {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             DViews.get(position).onBindViewHolder(holder);
-            Log.i(Constants.TAG, "onBindViewHolder " + position);
         }
 
         @Override
@@ -111,7 +108,6 @@ public class DAdapter {
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             RecyclerView.ViewHolder viewHolder = DViews.get(viewType).onCreateViewHolder(parent);
             setOnClickListener(DViews.get(viewType), viewHolder.itemView);
-            Log.i(Constants.TAG, "onCreateViewHolder " + viewType);
             return viewHolder;
         }
 
