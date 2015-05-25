@@ -131,6 +131,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mThunderPlugLoadThresholdCard;
     private SwitchCardView.DSwitchCard mThunderPlugTouchBoostCard;
 
+    private SwitchCardView.DSwitchCard mZenDecisionEnableCard;
+    private SeekBarCardView.DSeekBarCardView mZenDecisionWakeWaitTimeCard;
+    private SeekBarCardView.DSeekBarCardView mZenDecisionBatThresholdIgnoreCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -143,6 +147,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasMBHotplug()) mbHotplugInit();
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
         if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
+        if (CPUHotplug.hasZenDecision()) zenDecisionInit();
     }
 
     private void mpdecisionInit() {
@@ -1317,6 +1322,55 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     }
 
+    private void zenDecisionInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (CPUHotplug.hasZenDecisionEnable()) {
+            mZenDecisionEnableCard = new SwitchCardView.DSwitchCard();
+            mZenDecisionEnableCard.setTitle(getString(R.string.zen_decision));
+            mZenDecisionEnableCard.setDescription(getString(R.string.zen_decision_summary));
+            mZenDecisionEnableCard.setChecked(CPUHotplug.isZenDecisionActive());
+            mZenDecisionEnableCard.setOnDSwitchCardListener(this);
+
+            views.add(mZenDecisionEnableCard);
+        }
+
+        if (CPUHotplug.hasZenDecisionWakeWaitTime()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 61; i++) list.add((i * 1000) + getString(R.string.ms));
+
+            mZenDecisionWakeWaitTimeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mZenDecisionWakeWaitTimeCard.setTitle(getString(R.string.wake_wait_time));
+            mZenDecisionWakeWaitTimeCard.setDescription(getString(R.string.wake_wait_time_summary));
+            mZenDecisionWakeWaitTimeCard.setProgress(CPUHotplug.getZenDecisionWakeWaitTime() / 1000);
+            mZenDecisionWakeWaitTimeCard.setOnDSeekBarCardListener(this);
+
+            views.add(mZenDecisionWakeWaitTimeCard);
+        }
+
+        if (CPUHotplug.hasZenDecisionBatThresholdIgnore()) {
+            List<String> list = new ArrayList<>();
+            list.add(getString(R.string.disabled));
+            for (int i = 1; i < 101; i++) list.add(i + "%");
+
+            mZenDecisionBatThresholdIgnoreCard = new SeekBarCardView.DSeekBarCardView(list);
+            mZenDecisionBatThresholdIgnoreCard.setTitle(getString(R.string.bat_threshold_ignore));
+            mZenDecisionBatThresholdIgnoreCard.setDescription(getString(R.string.bat_threshold_ignore_summary));
+            mZenDecisionBatThresholdIgnoreCard.setProgress(CPUHotplug.getZenDecisionBatThresholdIgnore());
+            mZenDecisionBatThresholdIgnoreCard.setOnDSeekBarCardListener(this);
+
+            views.add(mZenDecisionBatThresholdIgnoreCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mZenDecisionDividerCard = new DividerCardView.DDividerCard();
+            mZenDecisionDividerCard.setText(getString(R.string.zen_decision));
+            addView(mZenDecisionDividerCard);
+
+            addAllViews(views);
+        }
+    }
+
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mMpdecisionCard)
@@ -1359,6 +1413,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.activateThunderPlug(checked, getActivity());
         else if (dSwitchCard == mThunderPlugTouchBoostCard)
             CPUHotplug.activateThunderPlugTouchBoost(checked, getActivity());
+        else if (dSwitchCard == mZenDecisionEnableCard)
+            CPUHotplug.activateZenDecision(checked, getActivity());
     }
 
     @Override
@@ -1504,6 +1560,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setThunderPlugSamplingRate(position * 50, getActivity());
         else if (dSeekBarCardView == mThunderPlugLoadThresholdCard)
             CPUHotplug.setThunderPlugLoadThreshold(position + 11, getActivity());
+        else if (dSeekBarCardView == mZenDecisionWakeWaitTimeCard)
+            CPUHotplug.setZenDecisionWakeWaitTime(position * 1000, getActivity());
+        else if (dSeekBarCardView == mZenDecisionBatThresholdIgnoreCard)
+            CPUHotplug.setZenDecisionBatThresholdIgnore(position, getActivity());
     }
 
 }

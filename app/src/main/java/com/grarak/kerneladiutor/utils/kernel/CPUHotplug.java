@@ -46,6 +46,46 @@ public class CPUHotplug implements Constants {
     private static String MB_HOTPLUG_MIN_CPUS_FILE;
     private static String MB_HOTPLUG_MAX_CPUS_FILE;
 
+    public static void setZenDecisionBatThresholdIgnore(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_ZEN_DECISION_BAT_THRESHOLD_IGNORE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getZenDecisionBatThresholdIgnore() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_ZEN_DECISION_BAT_THRESHOLD_IGNORE));
+    }
+
+    public static boolean hasZenDecisionBatThresholdIgnore() {
+        return Utils.existFile(HOTPLUG_ZEN_DECISION_BAT_THRESHOLD_IGNORE);
+    }
+
+    public static void setZenDecisionWakeWaitTime(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_ZEN_DECISION_WAKE_WAIT_TIME, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getZenDecisionWakeWaitTime() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_ZEN_DECISION_WAKE_WAIT_TIME));
+    }
+
+    public static boolean hasZenDecisionWakeWaitTime() {
+        return Utils.existFile(HOTPLUG_ZEN_DECISION_WAKE_WAIT_TIME);
+    }
+
+    public static void activateZenDecision(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isZenDecisionActive() {
+        return Utils.readFile(HOTPLUG_ZEN_DECISION_ENABLE).equals("1");
+    }
+
+    public static boolean hasZenDecisionEnable() {
+        return Utils.existFile(HOTPLUG_ZEN_DECISION_ENABLE);
+    }
+
+    public static boolean hasZenDecision() {
+        return Utils.existFile(HOTPLUG_ZEN_DECISION);
+    }
+
     public static void activateThunderPlugTouchBoost(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HOTPLUG_THUNDER_PLUG_TOUCH_BOOST, Control.CommandType.GENERIC, context);
     }

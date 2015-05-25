@@ -233,6 +233,12 @@
     <string name="endurance_level_summary">A power saving profile.</string>
     <string name="quad_core_mode">Quad-Core mode</string>
     <string name="dual_core_mode">Dual-Core mode</string>
+    <string name="zen_decision">Zen Decision</string>
+    <string name="zen_decision_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by bbedward.</string>
+    <string name="wake_wait_time">Wake Wait Time</string>
+    <string name="wake_wait_time_summary">How long to wait before turning on any cores.</string>
+    <string name="bat_threshold_ignore">Battery Threshold Ignore</string>
+    <string name="bat_threshold_ignore_summary">Don\'t turn on any cores when charge is below the selected capacity.</string>
 
     <!-- Thermal -->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
