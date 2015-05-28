@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -39,6 +40,9 @@ public class DividerCardView extends BaseCardView {
 
     public DividerCardView(Context context) {
         super(context, R.layout.divider_cardview);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) setTranslationZ(getResources()
+                .getDimensionPixelSize(R.dimen.divider_card_elevation));
     }
 
     @Override
@@ -102,7 +106,7 @@ public class DividerCardView extends BaseCardView {
                             ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setFullSpan(true);
             int padding = dividerCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-            layoutParams.setMargins(0, padding, 0, padding);
+            layoutParams.setMargins(padding, padding, padding, padding);
             dividerCardView.setLayoutParams(layoutParams);
         }
 
