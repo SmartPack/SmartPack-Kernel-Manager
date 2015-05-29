@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -13,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppThemeLight">
         <activity
-            android:name="com.grarak.kerneladiutor.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name">
             <intent-filter>
@@ -23,51 +24,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.grarak.kerneladiutor.TextActivity"
+            android:name=".TextActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeActionBarLight" />
         <activity
-            android:name="com.grarak.kerneladiutor.FileBrowserActivity"
+            android:name=".FileBrowserActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeLight" />
         <activity
-            android:name="com.grarak.kerneladiutor.elements.DAdapter$MainHeader$MainHeaderActivity"
+            android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver android:name="com.grarak.kerneladiutor.services.BootReceiver">
+        <receiver android:name=".services.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.grarak.kerneladiutor.services.BootService" />
-        <service android:name="com.grarak.kerneladiutor.services.InitdService" />
+        <service android:name=".services.BootService" />
+        <service android:name=".services.InitdService" />
 
-        <receiver android:name="com.grarak.kerneladiutor.services.ProfileWidget">
+        <receiver android:name=".services.ProfileWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/profile_widget" />
         </receiver>
 
         <service
-            android:name="com.grarak.kerneladiutor.services.ProfileWidget$WidgetService"
+            android:name=".services.ProfileWidget$WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
         <service
-            android:name="com.grarak.kerneladiutor.services.DashClockService"
+            android:name=".services.DashClockService"
             android:icon="@drawable/ic_launcher_preview"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
             <intent-filter>
                 <action android:name="com.google.android.apps.dashclock.Extension" />
             </intent-filter>
+
             <meta-data
                 android:name="protocolVersion"
                 android:value="1" />
         </service>
+
     </application>
 
 </manifest>

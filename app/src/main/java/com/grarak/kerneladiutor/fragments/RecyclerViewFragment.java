@@ -190,7 +190,7 @@ public class RecyclerViewFragment extends BaseFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
             if (fabView != null) {
-                fabView.setElevation(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
+                fabView.setTranslationZ(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
                 fabView.setVisibility(View.INVISIBLE);
             }
         }
