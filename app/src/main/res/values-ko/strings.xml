@@ -197,10 +197,16 @@
   <string name="sampling_rate">샘플링 레이트</string>
   <string name="cpu_down_rate">CPU 감소 속도</string>
   <string name="cpu_up_rate">CPU 증가 속도</string>
+  <string name="thunderplug">Thunderplug</string>
+  <string name="thunderplug_summary">Qualcomm의 MPDecision을 대체합니다. varunchitre15가 개발했습니다.</string>
+  <string name="min_cores_screen_off">화면이 꺼져 있을 때의 최소 코어 개수</string>
   <string name="min_cores_screen_off_summary">화면이 꺼져 있을 때 켜지는 코어의 최소 개수입니다.</string>
   <string name="endurance_level_summary">절약 모드 프로필입니다.</string>
   <string name="quad_core_mode">쿼드코어 모드</string>
   <string name="dual_core_mode">듀얼코어 모드</string>
+  <string name="intellithermal">Intellithermal</string>
+  <string name="intellithermal_summary">Qualcomm의 온도 데몬을 대체합니다. faux123이 개발했습니다.</string>
+  <string name="intellithermal_optimized_summary">Qualcomm의 Thermald를 대체합니다. faux123과 alucard_24가 개발했습니다.</string>
   <string name="core_control">코어 제어</string>
   <string name="vdd_restriction">VDD 제한</string>
   <string name="freq_step">클럭 단계</string>

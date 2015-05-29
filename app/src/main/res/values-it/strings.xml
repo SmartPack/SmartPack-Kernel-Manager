@@ -87,6 +87,9 @@
   <string name="disabled">Disabilitato</string>
   <string name="enabled">Abilitato</string>
   <string name="aggressive">Aggressivo</string>
+  <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_summary">CPUQuiet attua vari metodi per forzare i core della CPU nello stato di riposo. Metodi adeguati permetteranno di risparmiare energia senza pregiudicare le prestazioni.</string>
+  <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">Potenziamento CPU</string>
   <string name="debug_mask">Debug di maschera</string>
   <string name="debug_mask_summary">Consente di attivare il debug maschera per operazioni di potenziamento della CPU.</string>

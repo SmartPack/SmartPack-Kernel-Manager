@@ -25,6 +25,7 @@
   <string name="mb">MB</string>
   <string name="min">min</string>
   <string name="sec">Sek</string>
+  <string name="ma">mA</string>
   <string name="information">Informationen</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Werkzeuge</string>

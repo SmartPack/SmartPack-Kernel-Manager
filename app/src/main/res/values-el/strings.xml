@@ -15,6 +15,8 @@
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
   <string name="apply_on_boot_finished">Οι αλλαγές σας έχουν εφαρμοστεί</string>
   <string name="apply_on_boot_time">Εφαρμογή των ρυθμίσεων σας σε %d δευτερόλεπτα</string>
+  <string name="apply_on_boot_enabled">Ενεργοποίηση χρήσης στην επανεκκίνηση για το τμήμα %s</string>
+  <string name="apply_on_boot_disabled">Απενεργοποίηση χρήσης στην επανεκκίνηση για το τμήμα %s</string>
   <string name="apply_on_boot_failed">Αποτυχία εφαρμογής ρυθμίσεων κατά την εκκίνηση</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
@@ -23,6 +25,7 @@
   <string name="mb">MB</string>
   <string name="min">min</string>
   <string name="sec">δευτερόλεπτο</string>
+  <string name="ma">mA</string>
   <string name="information">Πληροφορίες</string>
   <string name="kernel">Πυρήνας</string>
   <string name="tools">Εργαλεία</string>
@@ -43,6 +46,7 @@
   <string name="low_memory_killer">Τερματισμός σε λίγη Μνήμη</string>
   <string name="virtual_memory">Εικονική Μνήμη</string>
   <string name="misc_controls">Διάφορα Στοιχεία Ελέγχου</string>
+  <string name="backup">Δημιουργία αντιγράφου</string>
   <string name="build_prop_editor">Επεξεργαστής Build prop</string>
   <string name="profile">Προφίλ</string>
   <string name="recovery">Recovery</string>
@@ -122,6 +126,16 @@
   <string name="min_cpu_online_summary">Ελάχιστος αριθμός των CPU που θα είναι πάντα σε απευθείας σύνδεση.</string>
   <string name="max_cpu_online">Μέγιστη CPU σε απευθείας σύνδεση</string>
   <string name="max_cpu_online_summary">Ελάχιστος αριθμός των CPU που θα είναι πάντα σε απευθείας σύνδεση.</string>
+  <string name="max_cores_screen_off_summary">Μέγιστος αριθμός ενεργών πυρήνων όταν η οθόνη κλείνει.</string>
+  <string name="update_rate">Ρυθμός Ανανέωσης</string>
+  <string name="fast_lane_min_freq_summary">Θέτει την ελάχιστη συχνότητα για τη CPU όταν η \"γρήγορη λωρίδα\" φτάνει στο παραπάνω φορτίο.</string>
+  <string name="io_is_busy">ΙΟ απασχολημένο</string>
+  <string name="core_control">Διαχείριση Πυρήνων</string>
+  <string name="freq_throttle_temp">Θερμοκρασία όπου μειώνεται η συχνότητα</string>
+  <string name="thermal_limit_low">Θερμικό Κάτω Όριο</string>
+  <string name="thermal_limit_high">Θερμικό Άνω Όριο</string>
   <string name="temp_limit">Όριο θερμοκρασίας</string>
   <string name="temp_limit_summary">Αν η θερμοκρασία πάει πάνω από, το thermal θα βάλει \"κόφτη\" στην συχνότητα του επεξεργαστή για να μειωθεί η θερμοκρασία.</string>
+  <string name="gpu_max_freq">Ανώτατη Συχνότητα Κάρτας Γραφικών GPU</string>
+  <string name="gpu_max_freq_summary">Ρύθμιση ανώτατης συχνότητας για κάρτα γραφικών GPU.</string>
 </resources>
