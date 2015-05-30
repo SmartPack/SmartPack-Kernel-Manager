@@ -334,6 +334,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 i.putExtras(args);
                 startActivity(i);
 
+                tracker.send(new HitBuilders.ExceptionBuilder().setDescription(!hasRoot ? "No root" : "No busybox").build());
                 if (hasRoot)
                     // Root is there but busybox is missing
                     try {

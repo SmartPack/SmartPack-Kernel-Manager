@@ -46,6 +46,119 @@ public class CPUHotplug implements Constants {
     private static String MB_HOTPLUG_MIN_CPUS_FILE;
     private static String MB_HOTPLUG_MAX_CPUS_FILE;
 
+    public static void activateAutoSmpScroffSingleCoreActive(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HOTPLUG_AUTOSMP_SCROFF_SINGLE_CORE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAutoSmpScroffSingleCoreActive() {
+        return Utils.readFile(HOTPLUG_AUTOSMP_SCROFF_SINGLE_CORE).equals("1");
+    }
+
+    public static boolean hasAutoSmpScroffSingleCore() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_SCROFF_SINGLE_CORE);
+    }
+
+    public static void setAutoSmpMinCpus(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_MIN_CPUS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpMinCpus() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_MIN_CPUS));
+    }
+
+    public static boolean hasAutoSmpMinCpus() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MIN_CPUS);
+    }
+
+    public static void setAutoSmpMaxCpus(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_MAX_CPUS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpMaxCpus() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_MAX_CPUS));
+    }
+
+    public static boolean hasAutoSmpMaxCpus() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MAX_CPUS);
+    }
+
+    public static void setAutoSmpDelay(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_DELAY, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpDelay() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_DELAY));
+    }
+
+    public static boolean hasAutoSmpDelay() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_DELAY);
+    }
+
+    public static void setAutoSmpCycleUp(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_CYCLE_UP, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpCycleUp() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_CYCLE_UP));
+    }
+
+    public static boolean hasAutoSmpCycleUp() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CYCLE_UP);
+    }
+
+    public static void setAutoSmpCycleDown(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_CYCLE_DOWN, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpCycleDown() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_CYCLE_DOWN));
+    }
+
+    public static boolean hasAutoSmpCycleDown() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CYCLE_DOWN);
+    }
+
+    public static void setAutoSmpCpufreqUp(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_UP, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpCpufreqUp() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_UP));
+    }
+
+    public static boolean hasAutoSmpCpufreqUp() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_UP);
+    }
+
+    public static void setAutoSmpCpufreqDown(int value, Context context) {
+        Control.runCommand(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_DOWN, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAutoSmpCpufreqDown() {
+        return Utils.stringToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN));
+    }
+
+    public static boolean hasAutoSmpCpufreqDown() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN);
+    }
+
+    public static void activateAutoSmp(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAutoSmpActive() {
+        return Utils.readFile(HOTPLUG_AUTOSMP_ENABLE).equals("Y");
+    }
+
+    public static boolean hasAutoSmpEnable() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_ENABLE);
+    }
+
+    public static boolean hasAutoSmp() {
+        for (String file : HOTPLUG_AUTOSMP_ARRAY) if (Utils.existFile(file)) return true;
+        return false;
+    }
+
     public static void setZenDecisionBatThresholdIgnore(int value, Context context) {
         Control.runCommand(String.valueOf(value), HOTPLUG_ZEN_DECISION_BAT_THRESHOLD_IGNORE, Control.CommandType.GENERIC, context);
     }

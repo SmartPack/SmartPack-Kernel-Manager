@@ -135,6 +135,16 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCardView mZenDecisionWakeWaitTimeCard;
     private SeekBarCardView.DSeekBarCardView mZenDecisionBatThresholdIgnoreCard;
 
+    private SwitchCardView.DSwitchCard mAutoSmpEnableCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpCpufreqDownCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpCpufreqUpCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpCycleDownCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpCycleUpCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpDelayCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpMaxCpusCard;
+    private SeekBarCardView.DSeekBarCardView mAutoSmpMinCpusCard;
+    private SwitchCardView.DSwitchCard mAutoSmpScroffSingleCoreCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -148,6 +158,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
         if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
         if (CPUHotplug.hasZenDecision()) zenDecisionInit();
+        if (CPUHotplug.hasAutoSmp()) autoSmpInit();
     }
 
     private void mpdecisionInit() {
@@ -1371,6 +1382,127 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
     }
 
+    private void autoSmpInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (CPUHotplug.hasAutoSmpEnable()) {
+            mAutoSmpEnableCard = new SwitchCardView.DSwitchCard();
+            mAutoSmpEnableCard.setTitle(getString(R.string.autosmp));
+            mAutoSmpEnableCard.setDescription(getString(R.string.autosmp_summary));
+            mAutoSmpEnableCard.setChecked(CPUHotplug.isAutoSmpActive());
+            mAutoSmpEnableCard.setOnDSwitchCardListener(this);
+
+            views.add(mAutoSmpEnableCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpCpufreqDown()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++) list.add(i + "%");
+
+            mAutoSmpCpufreqDownCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCpufreqDownCard.setTitle(getString(R.string.downrate_limits));
+            mAutoSmpCpufreqDownCard.setProgress(CPUHotplug.getAutoSmpCpufreqDown());
+            mAutoSmpCpufreqDownCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpCpufreqDownCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpCpufreqUp()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 101; i++) list.add(i + "%");
+
+            mAutoSmpCpufreqUpCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCpufreqUpCard.setTitle(getString(R.string.uprate_limits));
+            mAutoSmpCpufreqUpCard.setProgress(CPUHotplug.getAutoSmpCpufreqUp());
+            mAutoSmpCpufreqUpCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpCpufreqUpCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpCycleDown()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
+
+            mAutoSmpCycleDownCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCycleDownCard.setTitle(getString(R.string.cycle_down));
+            mAutoSmpCycleDownCard.setDescription(getString(R.string.cycle_down_summary));
+            mAutoSmpCycleDownCard.setProgress(CPUHotplug.getAutoSmpCycleDown());
+            mAutoSmpCycleDownCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpCycleDownCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpCycleUp()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
+
+            mAutoSmpCycleUpCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCycleUpCard.setTitle(getString(R.string.cycle_up));
+            mAutoSmpCycleUpCard.setDescription(getString(R.string.cycle_up_summary));
+            mAutoSmpCycleUpCard.setProgress(CPUHotplug.getAutoSmpCycleUp());
+            mAutoSmpCycleUpCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpCycleUpCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpDelay()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 501; i++) list.add(i + getString(R.string.ms));
+
+            mAutoSmpDelayCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpDelayCard.setTitle(getString(R.string.delay));
+            mAutoSmpDelayCard.setDescription(getString(R.string.delay_summary));
+            mAutoSmpDelayCard.setProgress(CPUHotplug.getAutoSmpDelay());
+            mAutoSmpDelayCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpDelayCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpMaxCpus()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
+
+            mAutoSmpMaxCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpMaxCpusCard.setTitle(getString(R.string.max_cpu_online));
+            mAutoSmpMaxCpusCard.setDescription(getString(R.string.max_cpu_online_summary));
+            mAutoSmpMaxCpusCard.setProgress(CPUHotplug.getAutoSmpMaxCpus() - 1);
+            mAutoSmpMaxCpusCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpMaxCpusCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpMinCpus()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
+
+            mAutoSmpMinCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpMinCpusCard.setTitle(getString(R.string.min_cpu_online));
+            mAutoSmpMinCpusCard.setDescription(getString(R.string.min_cpu_online_summary));
+            mAutoSmpMinCpusCard.setProgress(CPUHotplug.getAutoSmpMinCpus() - 1);
+            mAutoSmpMinCpusCard.setOnDSeekBarCardListener(this);
+
+            views.add(mAutoSmpMinCpusCard);
+        }
+
+        if (CPUHotplug.hasAutoSmpScroffSingleCore()) {
+            mAutoSmpScroffSingleCoreCard = new SwitchCardView.DSwitchCard();
+            mAutoSmpScroffSingleCoreCard.setTitle(getString(R.string.screen_off_single_core));
+            mAutoSmpScroffSingleCoreCard.setDescription(getString(R.string.screen_off_single_core_summary));
+            mAutoSmpScroffSingleCoreCard.setChecked(CPUHotplug.isAutoSmpScroffSingleCoreActive());
+            mAutoSmpScroffSingleCoreCard.setOnDSwitchCardListener(this);
+
+            views.add(mAutoSmpScroffSingleCoreCard);
+        }
+
+        if (views.size() > 0) {
+            DividerCardView.DDividerCard mAutoSmpDividerCard = new DividerCardView.DDividerCard();
+            mAutoSmpDividerCard.setText(getString(R.string.autosmp));
+            addView(mAutoSmpDividerCard);
+
+            addAllViews(views);
+        }
+    }
+
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mMpdecisionCard)
@@ -1415,6 +1547,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.activateThunderPlugTouchBoost(checked, getActivity());
         else if (dSwitchCard == mZenDecisionEnableCard)
             CPUHotplug.activateZenDecision(checked, getActivity());
+        else if (dSwitchCard == mAutoSmpEnableCard)
+            CPUHotplug.activateAutoSmp(checked, getActivity());
+        else if (dSwitchCard == mAutoSmpScroffSingleCoreCard)
+            CPUHotplug.activateAutoSmpScroffSingleCoreActive(checked, getActivity());
     }
 
     @Override
@@ -1564,6 +1700,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setZenDecisionWakeWaitTime(position * 1000, getActivity());
         else if (dSeekBarCardView == mZenDecisionBatThresholdIgnoreCard)
             CPUHotplug.setZenDecisionBatThresholdIgnore(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpCpufreqDownCard)
+            CPUHotplug.setAutoSmpCpufreqDown(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpCpufreqUpCard)
+            CPUHotplug.setAutoSmpCpufreqUp(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpCycleDownCard)
+            CPUHotplug.setAutoSmpCycleDown(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpCycleUpCard)
+            CPUHotplug.setAutoSmpCycleUp(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpDelayCard)
+            CPUHotplug.setAutoSmpDelay(position, getActivity());
+        else if (dSeekBarCardView == mAutoSmpMaxCpusCard)
+            CPUHotplug.setAutoSmpMaxCpus(position + 1, getActivity());
+        else if (dSeekBarCardView == mAutoSmpMinCpusCard)
+            CPUHotplug.setAutoSmpMinCpus(position + 1, getActivity());
     }
 
 }

@@ -239,6 +239,14 @@
     <string name="wake_wait_time_summary">How long to wait before turning on any cores.</string>
     <string name="bat_threshold_ignore">Battery Threshold Ignore</string>
     <string name="bat_threshold_ignore_summary">Don\'t turn on any cores when charge is below the selected capacity.</string>
+    <string name="autosmp">AutoSMP</string>
+    <string name="autosmp_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by mrg666.</string>
+    <string name="downrate_limits">Downrate Limits</string>
+    <string name="uprate_limits">Uprate Limits</string>
+    <string name="cycle_down">Cycle Down</string>
+    <string name="cycle_down_summary">Cycles to wait after the last hotplug event to unplug another core.</string>
+    <string name="cycle_up">Cycle Up</string>
+    <string name="cycle_up_summary">Cycles to wait after the last hotplug event to plug another core.</string>
 
     <!-- Thermal -->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
