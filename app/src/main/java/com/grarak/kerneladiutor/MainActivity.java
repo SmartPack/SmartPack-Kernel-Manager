@@ -39,6 +39,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
@@ -66,6 +68,7 @@ import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
+import com.grarak.kerneladiutor.utils.AnalyticsTrackers;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
     public static String LAUNCH_ARG = "launch_section";
 
     private String LAUNCH_NAME;
+    private Tracker tracker;
 
     /**
      * Views
@@ -127,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements Constants {
             ((Activity) context).finish();
         }
         context = this;
+
+        // Initialize Google Analytics
+        AnalyticsTrackers.initialize(this);
+        tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
+        tracker.enableExceptionReporting(true);
+        tracker.enableAutoActivityTracking(true);
 
         // Check if darktheme is in use and cache it as boolean
         Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
@@ -189,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if ((actionBar = getSupportActionBar()) != null)
             actionBar.setTitle(ITEMS.get(position).getTitle());
         mAdapter.setItemChecked(position, true);
+        tracker.setScreenName(fragment.getClass().getSimpleName());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     /**
