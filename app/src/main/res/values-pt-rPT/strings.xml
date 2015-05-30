@@ -11,7 +11,6 @@
   <string name="beta_message">Obrigado por testar a beta! Se tiver problemas, não hesite em contactar-me.
 Está a usar a versão %s.</string>
   <string name="select_picture">Selecionar Imagem</string>
-  <string name="default_picture">Imagem Default</string>
   <string name="select_file">Selecionar %s?</string>
   <string name="no_files">Não há ficheiros neste caminho.</string>
   <string name="apply_on_boot">Aplicar no arranque </string>

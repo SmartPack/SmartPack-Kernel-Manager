@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">현재 값은 지원되지 않습니다.</string>
   <string name="beta_message">베타 테스트에 참여해 주셔서 감사합니다! 문제가 생기면 꼭 제게 알려주세요. 현재 %s 버전을 사용 중입니다.</string>
   <string name="select_picture">사진 선택</string>
-  <string name="default_picture">기본 사진</string>
   <string name="select_file">%s 를 선택하시겠습니까?</string>
   <string name="no_files">이 경로에 파일이 없습니다.</string>
   <string name="apply_on_boot">부팅 시 적용</string>

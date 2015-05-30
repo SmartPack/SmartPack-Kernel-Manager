@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">不支援目前的數值</string>
   <string name="beta_message">謝謝你， Beta 版測試人員 ！如果你有任何問題，請不要猶豫與我聯繫。您當前正在運行的版本 %s。</string>
   <string name="select_picture">選擇圖片</string>
-  <string name="default_picture">預設圖片</string>
   <string name="select_file">選擇 %s 嗎？</string>
   <string name="no_files">此路徑中沒有檔案</string>
   <string name="apply_on_boot">開機後自動套用</string>

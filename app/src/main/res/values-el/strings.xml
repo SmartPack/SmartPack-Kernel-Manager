@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Η τρέχουσα τιμή δεν υποστηρίζεται</string>
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
   <string name="select_picture">Επιλέξτε Εικόνα</string>
-  <string name="default_picture">Προεπιλεγμένη εικόνα</string>
   <string name="select_file">Επίλεξε %s;</string>
   <string name="no_files">Δεν υπάρχουν αρχεία σε αυτό το μονοπάτι.</string>
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>

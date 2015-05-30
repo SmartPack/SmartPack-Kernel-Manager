@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Nun ta sofitáu\'l valor actual</string>
   <string name="beta_message">¡Gracies por ser un beta tester! Si alcuentres cualesquier problema, por favor nun dubies en contautame. Anguaño tas executando la versión %s.</string>
   <string name="select_picture">Esbillar semeya</string>
-  <string name="default_picture">Semeya por defeutu</string>
   <string name="select_file">¿Esbillar %s?</string>
   <string name="no_files">Ensin ficheros nesti camín.</string>
   <string name="apply_on_boot">Aplicar nel arranque</string>

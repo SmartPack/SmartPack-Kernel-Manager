@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Наступне значення не підтримується</string>
   <string name="beta_message">Дякуємо вам за те, що стали бета-тестером! Якщо у Вас виникли які небуть проблеми, не соромтеся написати мені. Поточна версія %s.</string>
   <string name="select_picture">Виберіть зображення</string>
-  <string name="default_picture">Зображення за замовчуванням</string>
   <string name="select_file">Вибрати %s?</string>
   <string name="no_files">Файл не знайдений.</string>
   <string name="apply_on_boot">Застосувати під час завантаження</string>

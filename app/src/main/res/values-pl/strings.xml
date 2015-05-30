@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Bieżąca wartość nie jest obsługiwana</string>
   <string name="beta_message">Dziękuję za bycie beta testerem! Jeśli napotykasz jakieś problemy, skontatuj się ze mną. Obecnie używasz wesji %s.</string>
   <string name="select_picture">Wybierz obraz</string>
-  <string name="default_picture">Domyślny obraz</string>
   <string name="select_file">Wybrać %s?</string>
   <string name="no_files">Brak plików w tym folderze.</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>

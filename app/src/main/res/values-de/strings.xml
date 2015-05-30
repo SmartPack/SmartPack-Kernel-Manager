@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Aktueller Wert wird nicht unterstützt</string>
   <string name="beta_message">Danke dass du Beta Tester bist. Falls du irgendwelche Probleme hast, zögere bitte nicht mich zu kontaktieren. Momentan benutzt du Version %s.</string>
   <string name="select_picture">Bild auswählen</string>
-  <string name="default_picture">Standardbild</string>
   <string name="select_file">Wähle %s?</string>
   <string name="no_files">Keine Dateien in diesem Pfad.</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>

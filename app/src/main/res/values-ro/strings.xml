@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Valoarea curentă nu este susținută</string>
   <string name="beta_message">Vă mulţumim pentru a fi un tester versiunei beta! Dacă aveţi orice probleme, vă rog să nu ezitaţi să mă contactati. Deocamdata se execută versiunea %s.</string>
   <string name="select_picture">Selectează imagine</string>
-  <string name="default_picture">Imagine implicită</string>
   <string name="select_file">Selectează %s?</string>
   <string name="no_files">Niciun fișier în acest director.</string>
   <string name="apply_on_boot">Aplică pe boot</string>

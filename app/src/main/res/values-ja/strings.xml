@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">現在の値は非対応です</string>
   <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
   <string name="select_picture">画像の選択</string>
-  <string name="default_picture">既定の画像</string>
   <string name="select_file">%sを選択しますか?</string>
   <string name="no_files">このパスにはファイルがありません。</string>
   <string name="apply_on_boot">起動時に適用</string>

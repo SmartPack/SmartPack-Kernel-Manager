@@ -9,7 +9,6 @@
   <string name="current_value_not_supported">Aktuálna hodnota nie je podporovaná</string>
   <string name="beta_message">Ďakujem vám za to, že ste beta tester! Ak máte akékoľvek problémy, neváhajte ma kontaktovať. Používate verziu %s.</string>
   <string name="select_picture">Vybrať obrázok</string>
-  <string name="default_picture">Predvolený obrázok</string>
   <string name="select_file">Vybrať %s?</string>
   <string name="no_files">Žiadne súbory v tejto ceste.</string>
   <string name="apply_on_boot">Použiť pri štarte</string>
