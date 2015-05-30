@@ -548,6 +548,7 @@ public class Screen implements Constants {
     }
 
     public static void setColorCalibration(final String colors, final Context context) {
+        if (SCREEN_CALIBRATION == null) return;
         String[] col = colors.split(" ");
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:

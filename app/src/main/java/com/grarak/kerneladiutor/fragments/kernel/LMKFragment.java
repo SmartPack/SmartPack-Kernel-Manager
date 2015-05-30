@@ -119,8 +119,12 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
                             List<String> minfrees = LMK.getMinFrees();
                             if (minfrees == null) return;
                             for (int i = 0; i < minfrees.size(); i++)
-                                mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
-                                        + getString(R.string.mb)));
+                                try {
+                                    mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
+                                            + getString(R.string.mb)));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                         }
                     });
                 } catch (InterruptedException e) {

@@ -71,6 +71,15 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
+    public static void errorDialog(Context context, Exception e) {
+        new AlertDialog.Builder(context).setMessage(e.getMessage()).setNeutralButton(context.getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
+    }
+
     public static void circleAnimate(final View view, int cx, int cy) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setVisibility(View.INVISIBLE);

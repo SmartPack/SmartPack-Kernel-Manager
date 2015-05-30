@@ -743,11 +743,17 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                         if (Screen.getColorCalibrationMin() > current)
                             Screen.setColorCalibrationMin(current, getActivity());
                     }
-                    int r = mColorCalibrationCard[0].getProgress();
-                    int g = mColorCalibrationCard[1].getProgress();
-                    int b = mColorCalibrationCard[2].getProgress();
-                    Screen.setColorCalibration(mColorCalibrationLimits.get(r) + " " +
-                            mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
+
+                    try {
+                        int r = mColorCalibrationCard[0].getProgress();
+                        int g = mColorCalibrationCard[1].getProgress();
+                        int b = mColorCalibrationCard[2].getProgress();
+                        Screen.setColorCalibration(mColorCalibrationLimits.get(r) + " " +
+                                mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        Utils.errorDialog(getActivity(), e);
+                        e.printStackTrace();
+                    }
                     return;
                 }
         }
