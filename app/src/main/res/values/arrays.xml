@@ -4,7 +4,7 @@
     <!-- Main Header -->
     <string-array name="main_header_picture_items">
         <item>@string/select_picture</item>
-        <item>@string/default_picture</item>
+        <item>@string/no_picture</item>
     </string-array>
 
     <!-- CPU -->

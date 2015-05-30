@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -228,7 +227,7 @@ public class DAdapter {
     public static class MainHeader implements DView {
 
         private static ImageView image;
-        boolean defaultPic;
+        private boolean noPic;
 
         @Override
         public String getTitle() {
@@ -246,19 +245,17 @@ public class DAdapter {
             image = (ImageView) view.findViewById(R.id.picture);
             try {
                 String uri = Utils.getString("previewpicture", null, image.getContext());
-                if (uri == null || uri.equals("default")) defaultPic = true;
+                if (uri == null || uri.equals("nopicture")) noPic = true;
                 else {
                     setImage(Uri.parse(uri));
-                    defaultPic = false;
+                    noPic = false;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                defaultPic = true;
+                noPic = true;
             }
-            if (defaultPic) {
-                Utils.saveString("previewpicture", "default", image.getContext());
-                image.setImageDrawable(ContextCompat.getDrawable(image.getContext(), R.drawable.ic_bg_header));
-            }
+
+            if (noPic) Utils.saveString("previewpicture", "nopicture", image.getContext());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -271,10 +268,10 @@ public class DAdapter {
                                     v.getContext().startActivity(new Intent(v.getContext(), MainHeaderActivity.class));
                                     break;
                                 case 1:
-                                    if (Utils.getString("previewpicture", null, v.getContext()).equals("default"))
+                                    if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
                                         return;
-                                    Utils.saveString("previewpicture", "default", v.getContext());
-                                    image.setImageDrawable(ContextCompat.getDrawable(v.getContext(), R.drawable.ic_bg_header));
+                                    Utils.saveString("previewpicture", "nopicture", v.getContext());
+                                    image.setImageDrawable(null);
                                     animate();
                                     break;
                             }
@@ -355,9 +352,8 @@ public class DAdapter {
                 selectedImagePath = getPath(uri, image.getContext());
             } catch (Exception ignored) {
             }
-            Bitmap bitmap = selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
-                    contentToBitmap(uri, image.getContext());
-            image.setImageBitmap(bitmap);
+            image.setImageBitmap(selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
+                    contentToBitmap(uri, image.getContext()));
         }
 
         private static Bitmap contentToBitmap(Uri uri, Context context) throws IOException {

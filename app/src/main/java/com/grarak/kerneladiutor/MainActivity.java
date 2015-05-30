@@ -132,12 +132,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
         }
         context = this;
 
-        // Initialize Google Analytics
-        AnalyticsTrackers.initialize(this);
-        tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
-        tracker.enableExceptionReporting(true);
-        tracker.enableAutoActivityTracking(true);
-
         // Check if darktheme is in use and cache it as boolean
         Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
         if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeDark);
@@ -349,6 +343,12 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
             mSplashView.finish();
             setInterface();
+
+            // Initialize Google Analytics
+            AnalyticsTrackers.initialize(MainActivity.this);
+            tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
+            tracker.enableExceptionReporting(true);
+            tracker.enableAutoActivityTracking(true);
 
             // If LAUNCH_NAME is not null then open the fragment which matches with the string
             if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
