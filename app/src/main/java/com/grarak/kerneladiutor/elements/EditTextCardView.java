@@ -52,7 +52,7 @@ public class EditTextCardView extends CardViewItem {
                 final AppCompatEditText editText = new AppCompatEditText(getContext());
                 editText.setGravity(Gravity.CENTER);
                 editText.setTextColor(getContext().getResources().getColor(
-                        Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
+                        Utils.DARKTHEME ? R.color.white : R.color.black));
                 editText.setLayoutParams(new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 if (value != null) editText.setText(value);
