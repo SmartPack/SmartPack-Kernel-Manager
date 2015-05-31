@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -104,7 +105,10 @@ public class Utils implements Constants {
     }
 
     public static String getInternalStorage() {
-        return existFile("/data/media/0") ? "/data/media/0" : "/data/media";
+        String dataPath = existFile("/data/media/0") ? "/data/media/0" : "/data/media";
+        if (!new RootFile(dataPath).isEmpty()) return dataPath;
+        if (existFile("/sdcard")) return "/sdcard";
+        return Environment.getExternalStorageDirectory().getPath();
     }
 
     public static void confirmDialog(String title, String message, DialogInterface.OnClickListener onClickListener,
@@ -244,35 +248,26 @@ public class Utils implements Constants {
     }
 
     public static int getInt(String name, int defaults, Context context) {
-        int i = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getInt(name, defaults);
-        Log.i(TAG, "getting " + name + ": " + i);
-        return i;
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getInt(name, defaults);
     }
 
     public static void saveInt(String name, int value, Context context) {
-        Log.i(TAG, "saving " + name + " as " + value);
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putInt(name, value).apply();
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
-        boolean bool = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
-        Log.i(TAG, "getting " + name + ": " + bool);
-        return bool;
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
     }
 
     public static void saveBoolean(String name, boolean value, Context context) {
-        Log.i(TAG, "saving " + name + " as " + value);
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putBoolean(name, value).apply();
     }
 
     public static String getString(String name, String defaults, Context context) {
-        String ret = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
-        Log.i(TAG, "getting " + name + ": " + ret);
-        return ret;
+        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
     }
 
     public static void saveString(String name, String value, Context context) {
-        Log.i(TAG, "saving " + name + " as " + value);
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(name, value).apply();
     }
 

@@ -41,6 +41,7 @@ public class Backup {
     private static String[] Boot = {
             "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot",
             "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
+            "/dev/block/platform/sdhci-tegra.3/by-name/LX",
             "/dev/block/platform/sdhci-tegra.3/by-name/LNX",
             "/dev/block/platform/dw_mmc.0/by-name/BOOT",
             "/dev/block/platform/msm_sdcc.1/by-name/Kernel",
@@ -130,7 +131,9 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        return Utils.getInternalStorage() + "/KernelAdiutor/" + folder;
+        folder = Utils.getInternalStorage() + "/KernelAdiutor/" + folder;
+        if (Utils.existFile(folder)) return folder;
+        return "/sdcard/KernelAdiutor/" + folder;
     }
 
     public static String getBootPartition() {

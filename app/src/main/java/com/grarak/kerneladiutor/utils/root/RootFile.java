@@ -63,6 +63,10 @@ public class RootFile {
         return list;
     }
 
+    public boolean isEmpty() {
+        return RootUtils.runCommand("find " + file + " -mindepth 1 | read || echo false").equals("false");
+    }
+
     public boolean exists() {
         String output = RootUtils.runCommand("[ -e " + file + " ] && echo true");
         return output != null && output.contains("true");
