@@ -39,8 +39,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
@@ -68,7 +66,6 @@ import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
-import com.grarak.kerneladiutor.utils.AnalyticsTrackers;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
     public static String LAUNCH_ARG = "launch_section";
 
     private String LAUNCH_NAME;
-    private Tracker tracker;
 
     /**
      * Views
@@ -193,8 +189,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if ((actionBar = getSupportActionBar()) != null)
             actionBar.setTitle(ITEMS.get(position).getTitle());
         mAdapter.setItemChecked(position, true);
-        tracker.setScreenName(fragment.getClass().getSimpleName());
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     /**
@@ -328,7 +322,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 i.putExtras(args);
                 startActivity(i);
 
-                tracker.send(new HitBuilders.ExceptionBuilder().setDescription(!hasRoot ? "No root" : "No busybox").build());
                 if (hasRoot)
                     // Root is there but busybox is missing
                     try {
@@ -343,12 +336,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
             mSplashView.finish();
             setInterface();
-
-            // Initialize Google Analytics
-            AnalyticsTrackers.initialize(MainActivity.this);
-            tracker = AnalyticsTrackers.getInstance().get(AnalyticsTrackers.Target.APP);
-            tracker.enableExceptionReporting(true);
-            tracker.enableAutoActivityTracking(true);
 
             // If LAUNCH_NAME is not null then open the fragment which matches with the string
             if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
