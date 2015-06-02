@@ -5,42 +5,35 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layout"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/actionbar_color"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ActionBarStyle"
+            app:contentInsetLeft="72dp"
+            app:contentInsetStart="72dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleTextAppearance="@style/ToolbarTitle" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/actionbar_color"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ActionBarStyle"
-                app:contentInsetLeft="72dp"
-                app:contentInsetStart="72dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:titleTextAppearance="@style/ToolbarTitle" />
-
-            <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-        <com.grarak.kerneladiutor.elements.SplashView
-            android:id="@+id/splash_view"
+        <FrameLayout
+            android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
+    <com.grarak.kerneladiutor.elements.SplashView
+        android:id="@+id/splash_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout
         android:id="@+id/scrimInsetsFrameLayout"
