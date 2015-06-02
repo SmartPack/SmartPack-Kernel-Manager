@@ -8,8 +8,13 @@
   <string name="cancel">Mégse</string>
   <string name="current_value_not_supported">Jelenlegi érték nem támogatott</string>
   <string name="beta_message">Köszönöm, hogy béta teszter! Ha bármilyen probléma merülne fel, ne habozzon a kapcsolatba lépéssel. Az éppen futó változat %s.</string>
+  <string name="select_picture">Kép kiválasztása</string>
+  <string name="no_picture">Nincs kép</string>
+  <string name="select_file">Kiválasztod: %s?</string>
+  <string name="no_files">Nem található fájl ezen az útvonalon.</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_finished">A módosítások érvénybe léptek</string>
+  <string name="apply_on_boot_time">Beállítások érvényesítése %d másodperc múlva</string>
   <string name="apply_on_boot_enabled">Bootolás után a(z) %s szekció módosításai életbe lépnek</string>
   <string name="apply_on_boot_disabled">Bootolás után a(z) %s szekció módosításai érvényüket vesztik</string>
   <string name="apply_on_boot_failed">A(z) %s szekció beállításai bootlás után sikertelenek</string>
@@ -20,6 +25,7 @@
   <string name="mb">MB</string>
   <string name="min">perc</string>
   <string name="sec">másodperc</string>
+  <string name="ma">mA</string>
   <string name="information">Információ</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Eszközök</string>
@@ -29,6 +35,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU feszültség</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Hőfok</string>
   <string name="gpu">GPU</string>
   <string name="screen">Kijelző</string>
   <string name="wake_controls">Felébresztés</string>
@@ -39,8 +46,11 @@
   <string name="low_memory_killer">LMK</string>
   <string name="virtual_memory">Virtuális memória</string>
   <string name="misc_controls">Egyéb</string>
+  <string name="backup">Biztonsági mentés</string>
   <string name="build_prop_editor">Build prop szerkesztő</string>
   <string name="profile">Profilok</string>
+  <string name="recovery">Helyreállítás</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Beállítások</string>
   <string name="faq">GYIK</string>
   <string name="about_us">Rólunk</string>
@@ -54,6 +64,7 @@
   <string name="cpu_information">CPU információ</string>
   <string name="memory_information">Memória információ</string>
   <string name="cpu_usage">CPU használat</string>
+  <string name="cpu_temp">CPU hőmérséklete</string>
   <string name="current_freq">Jelenlegi frekvencia</string>
   <string name="core">Mag %d</string>
   <string name="offline">Offline</string>
@@ -75,6 +86,7 @@
   <string name="disabled">Letiltva</string>
   <string name="enabled">Engedélyezve</string>
   <string name="aggressive">Agresszív</string>
+  <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_boost">CPU gyorsítás</string>
   <string name="debug_mask">Hibakeresés</string>
   <string name="debug_mask_summary">Lehetővé teszi a hibakeresést a CPU gyorsító műveletekhez.</string>
@@ -86,6 +98,7 @@
   <string name="input_interval_summary">A minimális időköz, ameddig a CPU gyorsítva lesz bemenet észlelésekor.</string>
   <string name="input_boost_freq">Bemeneti boost frekvencia</string>
   <string name="global_offset">Globális eltolás</string>
+  <string name="override_vmin">Minimum feszültség felülírása</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="profile_summary">A zárójelben álló szám jelzi a bármikor aktív magok számát.</string>
@@ -94,6 +107,7 @@
   <string name="conservative">Konzervatív</string>
   <string name="eco_performance">Eco Teljesítmény</string>
   <string name="eco_conservative">Eco Konzervatív</string>
+  <string name="tri">Tri</string>
   <string name="eco">Eco</string>
   <string name="strict">Szigorú</string>
   <string name="eco_mode">Eco mód</string>
@@ -114,6 +128,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="powersaver_mode">Energiatakarékos mód</string>
   <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="history_size">Előzmény mérete</string>
   <string name="update_rate">Frissítési gyakoriság</string>
   <string name="offline_load">Offline terhelés</string>
   <string name="io_is_busy">IO leterhelt</string>

@@ -9,6 +9,7 @@
   <string name="current_value_not_supported">Aktuální hodnota není podporována</string>
   <string name="beta_message">Děkujeme za účast v testování beta verzí aplikace! Pokud narazíte na nějaké problémy, neváhejte nás kontaktovat. Aktuálně používáte verzi %s.</string>
   <string name="select_picture">Vybrat obrázek</string>
+  <string name="no_picture">Žádný obrázek</string>
   <string name="select_file">Vybrat %s?</string>
   <string name="no_files">V tomto umístění nejsou žádné soubory.</string>
   <string name="apply_on_boot">Použít při spuštění</string>
@@ -85,13 +86,18 @@
   <string name="interval">Interval</string>
   <string name="global_offset">Globální nastavení</string>
   <string name="eco_mode_summary">Režim úspory energie pro IntelliPlug.</string>
+  <string name="touch_boost_summary">Navýšení minimální rychlosti procesoru při dotyku obrazovky nebo při stisku klávesy.</string>
   <string name="hysteresis">Hodnota hystereze</string>
+  <string name="hysteresis_summary">Čím je nižší, tím rychlejší reakce.</string>
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
   <string name="start_delay">Prodleva spuštění</string>
   <string name="delay">Prodleva</string>
   <string name="delay_summary">Čas mezi kontrolami.</string>
   <string name="pause">Pauza</string>
   <string name="endurance_level_summary">Úsporný profil.</string>
+  <string name="core_temp_hysteresis">Hystereze teploty jádra</string>
+  <string name="temp_hysteresis">Teplotní hystereze</string>
+  <string name="check_interval">Interval kontroly</string>
   <string name="shutdown_temp">Teplota vypnutí</string>
   <string name="temp_limit">Teplotní limit</string>
   <string name="temp_limit_summary">Pokud teplota překročí stanovený limit, bude snížena frekvence procesoru za účelem ochlazení.</string>
@@ -107,8 +113,15 @@
   <string name="gpu_governor_summary">Nastavení správce grafiky.</string>
   <string name="simple_gpu_algorithm">Jednoduchý algoritmus grafiky</string>
   <string name="simple_gpu_algorithm_summary">Doplněk pro správce grafiky MSM Adreno TZ, vyvinutý uživatelem faux123.</string>
+  <string name="red">Červená</string>
+  <string name="green">Zelená</string>
+  <string name="blue">Modrá</string>
   <string name="min_rgb">Hodnota minimální RGB</string>
+  <string name="invert_screen">Invertovat displej</string>
+  <string name="saturation_intensity">Intenzita sytosti</string>
   <string name="screen_hue_summary">Pokud nastavíte vysoké hodnoty u MSM8x26 SoC, mohou nastat problémy.</string>
+  <string name="gamma">Gama</string>
+  <string name="gamma_profile">Gama profil</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jas</string>
   <string name="gamma_profile_summary">Po výběru profilu vypněte a znovu zapněte displej.</string>
@@ -127,6 +140,7 @@
   <string name="battery_voltage">Napětí baterie</string>
   <string name="battery_level">Úroveň nabití</string>
   <string name="battery_temperature">Teplota baterie</string>
+  <string name="usb_fast_charge_summary">Rychlejší nabíjení zařízení při připojení přes USB. Při změně této volby odpojte a znovu zapojte nabíječku.</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <string name="internal_storage">Vnitřní uložiště</string>
   <string name="scheduler">Plánovač</string>
@@ -150,6 +164,7 @@
   <string name="very_aggressive">Velmi agresivní</string>
   <string name="zram">Z-RAM</string>
   <string name="vibration_strength">Síla vibrace</string>
+  <string name="power_suspend_state_summary">Ovladač jádra pro správu napájení při vypnuté obrazovce. Větší úspora energie, pokud je zapnuto. Poznámka: Toto nastavení lze změnit pouze, pokud je Power Suspend Mode v režimu User mode.</string>
   <string name="network">Síť</string>
   <string name="tcp_summary">„Transmission Control Protocol“ je jedním z hlavních protokolů sady internetových protokolů (IP) a je natolik běžný, že se pro celou sadu běžně používá označení TCP/IP.</string>
   <string name="no_backups">Žádné zálohy</string>
@@ -184,6 +199,8 @@
   <string name="wipe_cache">Vymazat cache</string>
   <string name="went_wrong">Něco se pokazilo!</string>
   <string name="flash_now_confirm">Chcete provést naplánované akce? Zařízení bude restartováno do recovery menu a akce budou spuštěny v pořadí podle přidání.</string>
+  <string name="add_action_first">Nejprve musíte přidat nějakou akci.</string>
+  <string name="emulate_initd">Emulace Init.d</string>
   <string name="emulate_initd_summary">Pokud vaše zařízení nemá podporu Init.d, můžete povolit emulaci Init.d. Aplikace pak spustí skripty po spuštění vašeho zařízení, ale ještě předtím, než budou spuštěny služby „použít při spuštění“.</string>
   <string name="executing">Provádění</string>
   <string name="execute">Spustit</string>
@@ -200,6 +217,7 @@
   <string name="test_summary">Zkouška použití nastavení při spuštění (včetně prodlevy). Pokud se nic neděje, pak neexistují žádná uložená nastavení.</string>
   <string name="hide_apply_on_boot">Skrývat „Použít při spuštění“</string>
   <string name="hide_apply_on_boot_summary">Skrývat zobrazení při posouvání dolů.</string>
+  <string name="enable_apply_on_boot_first">Nejprve musíte povolit „Použít při spuštění“ alespoň pro jednu sekci.</string>
   <string name="debugging">Ladění</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopírovat protokol logcat do /sdcard/logcat.txt</string>

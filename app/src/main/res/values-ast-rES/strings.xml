@@ -58,9 +58,13 @@
   <string name="offline">Fuera de llinia</string>
   <string name="cpu_max_freq">Frecuencia máxima de CPU</string>
   <string name="cpu_governor">Gobernador de CPU</string>
+  <string name="debug_mask">Mazcara de depuración</string>
   <string name="interval">Intervalu</string>
+  <string name="input_interval">Intervalu d\'entrada</string>
+  <string name="override_vmin">Anular voltaxe mínimu</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolacáu por faux123.</string>
   <string name="profile_summary">El númberu ente paréntesis indica la cantidá de nucleos en llinia en cualesquier momentu.</string>
   <string name="eco_mode">Mou Eco</string>
   <string name="eco_mode_summary">Mou d\'aforru d\'enerxía pa IntelliPlug.</string>
@@ -131,7 +135,7 @@
   <string name="applied">Aplicáu</string>
   <string name="reboot">Reaniciar</string>
   <string name="reboot_recovery">Reaniciar al Recovery</string>
-  <string name="reboot_bootloader">Reaniciar al Cargador d\'arranq</string>
+  <string name="reboot_bootloader">Reaniciar al Cargador d\'arranque</string>
   <string name="reboot_download">Reaniciar al mou Download</string>
   <string name="confirm">¿De xuru?</string>
   <string name="cwm_recovery">CWM Recovery</string>

@@ -11,6 +11,7 @@
   <string name="beta_message">Obrigado por testar a beta! Se tiver problemas, não hesite em contactar-me.
 Está a usar a versão %s.</string>
   <string name="select_picture">Selecionar Imagem</string>
+  <string name="no_picture">Sem imagem</string>
   <string name="select_file">Selecionar %s?</string>
   <string name="no_files">Não há ficheiros neste caminho.</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
@@ -26,6 +27,7 @@ Está a usar a versão %s.</string>
   <string name="mb">MB</string>
   <string name="min">min</string>
   <string name="sec">seg</string>
+  <string name="ma">mA</string>
   <string name="information">Informação</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Ferramentas</string>
