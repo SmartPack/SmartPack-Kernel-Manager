@@ -45,7 +45,8 @@
         fab:fab_addButtonColorPressed="@color/fab_pressed"
         fab:fab_addButtonPlusIconColor="@color/color_primary"
         fab:fab_expandDirection="down"
-        fab:fab_labelStyle="@style/menu_labels_style">
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_labelsPosition="right">
 
         <net.i2p.android.ext.floatingactionbutton.FloatingActionButton
             android:id="@+id/backup_button"

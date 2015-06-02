@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -239,9 +240,11 @@ public class ProfileFragment extends RecyclerViewFragment {
         });
 
         // Update Profilewidget here
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-        int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
+        }
     }
 
 }

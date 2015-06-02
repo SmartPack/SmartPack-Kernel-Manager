@@ -22,14 +22,21 @@
 
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="wrap_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/background_view"
-        android:orientation="vertical"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical" />
+        android:layout_below="@+id/background_view">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="vertical" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab_view"
@@ -41,11 +48,13 @@
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginTop="-34dp"
+        android:visibility="gone"
         fab:fab_addButtonColorNormal="@color/fab_normal"
         fab:fab_addButtonColorPressed="@color/fab_pressed"
         fab:fab_addButtonPlusIconColor="@color/color_primary"
         fab:fab_expandDirection="down"
-        fab:fab_labelStyle="@style/menu_labels_style">
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_labelsPosition="right">
 
         <net.i2p.android.ext.floatingactionbutton.FloatingActionButton
             android:id="@+id/backup_button"
@@ -53,17 +62,19 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_backup"
             fab:fab_size="mini"
             fab:fab_title="@string/backup" />
 
         <net.i2p.android.ext.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flash_img"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_pen"
             fab:fab_size="mini"
-            fab:fab_title="@string/flash_img" />
+            fab:fab_title="@string/add" />
 
     </net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu>
 

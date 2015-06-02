@@ -173,10 +173,6 @@ public class ViewPagerFragment extends BaseFragment {
                 visible ? View.VISIBLE : View.GONE);
     }
 
-    public ActionBar getActionBar() {
-        return ((AppCompatActivity) getActivity()).getSupportActionBar();
-    }
-
     @Override
     public boolean onBackPressed() {
         return false;

@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -170,11 +171,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        TypedValue outValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
-                outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
-        textView.setAllCaps(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            TypedValue outValue = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+                    outValue, true);
+            textView.setBackgroundResource(outValue.resourceId);
+        }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         textView.setPadding(padding, padding, padding, padding);

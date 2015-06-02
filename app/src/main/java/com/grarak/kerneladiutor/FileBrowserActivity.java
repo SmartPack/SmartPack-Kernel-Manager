@@ -29,6 +29,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -129,7 +130,7 @@ public class FileBrowserActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return (String) fragments.keySet().toArray()[position];
+            return ((String) fragments.keySet().toArray()[position]).toUpperCase();
         }
     }
 
@@ -174,7 +175,7 @@ public class FileBrowserActivity extends AppCompatActivity {
             return storageFragment;
         }
 
-        private TextView pathText;
+        private AppCompatTextView pathText;
         private RecyclerView recyclerView;
         private String current_path;
         private String type;
@@ -187,7 +188,7 @@ public class FileBrowserActivity extends AppCompatActivity {
 
             View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
-            pathText = (TextView) view.findViewById(R.id.path_text);
+            pathText = (AppCompatTextView) view.findViewById(R.id.path_text);
             recyclerView = (RecyclerView) view.findViewById(R.id.list);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

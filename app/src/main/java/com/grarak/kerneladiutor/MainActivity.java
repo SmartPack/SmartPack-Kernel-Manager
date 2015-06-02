@@ -38,6 +38,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -149,19 +150,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
         }
 
         setContentView(R.layout.activity_main);
-        mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mLayoutManager.setSmoothScrollbarEnabled(true);
-        mDrawerList.setLayoutManager(mLayoutManager);
-        mDrawerList.setHasFixedSize(true);
+        setView();
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
         setSupportActionBar(toolbar);
-
-        if (mDrawerLayout != null && mScrimInsetsFrameLayout != null)
-            mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
 
         // Use an AsyncTask to initialize everything
         new Task().execute();
@@ -241,11 +233,34 @@ public class MainActivity extends AppCompatActivity implements Constants {
      * Define all views
      */
     private void setView() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
         mSplashView = (SplashView) findViewById(R.id.splash_view);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mLayoutManager.setSmoothScrollbarEnabled(true);
+        mDrawerList.setLayoutManager(mLayoutManager);
+        mDrawerList.setHasFixedSize(true);
+        mDrawerList.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            }
+
+            @Override
+            public int getItemCount() {
+                return 0;
+            }
+        });
     }
 
     /**
@@ -284,12 +299,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
         private boolean hasRoot;
         private boolean hasBusybox;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            setView();
-        }
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -381,13 +390,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
     protected void onDestroy() {
         RootUtils.closeSU();
         super.onDestroy();
-    }
-
-    /**
-     * Let other Classes kill this activity
-     */
-    public static void destroy() {
-        if (context != null) ((Activity) context).finish();
     }
 
     /**

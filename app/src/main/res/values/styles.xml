@@ -43,6 +43,10 @@
         <item name="colorAccent">@color/white</item>
     </style>
 
+    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>

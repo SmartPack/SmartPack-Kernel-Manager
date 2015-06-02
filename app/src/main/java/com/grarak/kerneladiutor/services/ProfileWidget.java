@@ -81,7 +81,6 @@ public class ProfileWidget extends AppWidgetProvider {
             Intent launch = new Intent(context, MainActivity.class);
             launch.putExtras(args);
             launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            MainActivity.destroy();
             context.startActivity(launch);
         } else if (intent.getAction().equals(LIST_ITEM_CLICK)) {
             if (!Utils.getBoolean("profileclicked", false, context)) {

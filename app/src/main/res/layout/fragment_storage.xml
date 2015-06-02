@@ -9,7 +9,7 @@
         android:layout_height="42dp"
         android:background="@color/color_primary">
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
             android:id="@+id/path_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,6 +19,7 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:paddingLeft="72dp"
+            android:paddingStart="72dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:textColor="@color/white"

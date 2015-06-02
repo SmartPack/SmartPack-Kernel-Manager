@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="72dp"
+            android:paddingStart="72dp"
             android:textColor="@android:color/white"
             android:textSize="17sp" />
 
@@ -37,7 +38,7 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
+    <net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +55,7 @@
         fab:fab_expandDirection="down"
         fab:fab_labelStyle="@style/menu_labels_style">
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
+        <net.i2p.android.ext.floatingactionbutton.FloatingActionButton
             android:id="@+id/backup_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
             fab:fab_size="mini"
             fab:fab_title="@string/backup" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
+        <net.i2p.android.ext.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,6 +75,6 @@
             fab:fab_size="mini"
             fab:fab_title="@string/add" />
 
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </net.i2p.android.ext.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

@@ -17,6 +17,8 @@
 package com.grarak.kerneladiutor.fragments;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 
 import com.grarak.kerneladiutor.MainActivity;
 
@@ -24,4 +26,9 @@ import com.grarak.kerneladiutor.MainActivity;
  * Created by willi on 14.04.15.
  */
 public abstract class BaseFragment extends Fragment implements MainActivity.OnBackButtonListener {
+
+    public ActionBar getActionBar() {
+        return ((AppCompatActivity) getActivity()).getSupportActionBar();
+    }
+
 }

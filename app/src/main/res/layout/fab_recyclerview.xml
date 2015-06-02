@@ -17,6 +17,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="72dp"
+            android:paddingStart="72dp"
             android:textColor="@android:color/white"
             android:textSize="17sp" />
 
@@ -31,7 +32,7 @@
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical" />
 
-    <com.getbase.floatingactionbutton.AddFloatingActionButton
+    <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
         android:id="@+id/fab_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -23,7 +23,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.SwitchCompat;
@@ -74,6 +73,11 @@ public class RecyclerViewFragment extends BaseFragment {
         this.container = container;
 
         Log.i(Constants.TAG, "Opening " + getClassName());
+
+        try {
+            if (view != null) ((ViewGroup) view.getParent()).removeView(view);
+        } catch (NullPointerException ignored) {
+        }
 
         recyclerView = getRecyclerView();
         setRecyclerView(recyclerView);
@@ -346,10 +350,6 @@ public class RecyclerViewFragment extends BaseFragment {
             layoutParams.topMargin = 0;
             onScrollDisappearView.requestLayout();
         }
-    }
-
-    public ActionBar getActionBar() {
-        return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }
 
     public boolean showApplyOnBoot() {
