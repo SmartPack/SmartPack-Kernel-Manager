@@ -7,7 +7,7 @@
     android:paddingEnd="16dp"
     android:paddingLeft="42dp"
     android:paddingRight="16dp"
-    android:paddingStart="72dp">
+    android:paddingStart="42dp">
 
     <TextView
         android:id="@+id/text"
