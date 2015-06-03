@@ -274,4 +274,12 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         });
     }
 
+    @Override
+    public boolean onBackPressed() {
+        if (searchItem != null && MenuItemCompat.isActionViewExpanded(searchItem)) {
+            MenuItemCompat.collapseActionView(searchItem);
+            return true;
+        }
+        return false;
+    }
 }
