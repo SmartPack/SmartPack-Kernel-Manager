@@ -95,7 +95,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 linearLayout.addView(profileName);
 
                 ScrollView scrollView = new ScrollView(getActivity());
-                scrollView.setPadding(0, 10, 0, 10);
+                scrollView.setPadding(0, 0, 0, 10);
                 linearLayout.addView(scrollView);
 
                 LinearLayout checkBoxLayout = new LinearLayout(getActivity());

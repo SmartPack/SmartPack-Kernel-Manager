@@ -26,6 +26,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -128,11 +129,11 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                         PopupCardItem popupCardItem = (PopupCardItem) v;
                         switch (which) {
                             case 0:
-                                addKeyDialog(popupCardItem.getDescription(),
+                                addKeyDialog(popupCardItem.getDescription().toString(),
                                         popupCardItem.getItem(), true);
                                 break;
                             case 1:
-                                deleteDialog(popupCardItem.getDescription(),
+                                deleteDialog(popupCardItem.getDescription().toString(),
                                         popupCardItem.getItem());
                                 break;
                         }
@@ -260,7 +261,9 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 for (int i = 0; i < keys.length; i++)
                     if (((String) keys[i]).contains(newText)) {
                         PopupCardItem.DPopupCard mPopupCard = new PopupCardItem.DPopupCard(null);
-                        mPopupCard.setDescription((String) keys[i]);
+                        mPopupCard.setDescription(newText.isEmpty() ?
+                                (String) keys[i] : Html.fromHtml(((String) keys[i]).replace(newText, "" +
+                                "<b><font color=\"#2A7289\">" + newText + "</font></b>")));
                         mPopupCard.setItem((String) values[i]);
                         mPopupCard.setOnClickListener(BuildpropFragment.this);
 

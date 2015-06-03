@@ -45,7 +45,7 @@ public class PopupCardItem extends BaseCardView {
     private TextView valueView;
 
     private String titleText;
-    private String descriptionText;
+    private CharSequence descriptionText;
     private String valueText;
 
     private PopupMenu popup;
@@ -91,7 +91,7 @@ public class PopupCardItem extends BaseCardView {
         setUpTitle();
     }
 
-    public void setDescription(String description) {
+    public void setDescription(CharSequence description) {
         descriptionText = description;
         setUpDescription();
     }
@@ -106,7 +106,7 @@ public class PopupCardItem extends BaseCardView {
         if (valueView != null) valueView.setText(valueText);
     }
 
-    public String getDescription() {
+    public CharSequence getDescription() {
         return descriptionText;
     }
 
@@ -163,7 +163,7 @@ public class PopupCardItem extends BaseCardView {
         private PopupCardItem popupCardItem;
 
         private String title;
-        private String description;
+        private CharSequence description;
         private String value;
 
         private OnDPopupCardListener onDPopupCardListener;
@@ -204,7 +204,7 @@ public class PopupCardItem extends BaseCardView {
             if (popupCardItem != null) popupCardItem.setTitle(title);
         }
 
-        public void setDescription(String description) {
+        public void setDescription(CharSequence description) {
             this.description = description;
             if (popupCardItem != null) popupCardItem.setDescription(description);
         }

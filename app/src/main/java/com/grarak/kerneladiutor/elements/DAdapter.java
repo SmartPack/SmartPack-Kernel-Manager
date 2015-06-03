@@ -216,7 +216,7 @@ public class DAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title);
+            ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase());
             if (Utils.DARKTHEME)
                 viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(viewHolder.itemView.getResources()
                         .getColor(R.color.divider_background_dark));
