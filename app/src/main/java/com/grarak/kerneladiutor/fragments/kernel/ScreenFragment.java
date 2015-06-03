@@ -958,8 +958,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     private void refreshGammaControl() {
         for (int i = 0; i < mColorCalibrationCard.length; i++)
-            mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                    .indexOf(Screen.getColorCalibration().get(i)));
+            if (mColorCalibrationCard[i] != null)
+                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
+                        .indexOf(Screen.getColorCalibration().get(i)));
 
         String redGreys = Screen.getRedGreys();
         mGammaControlRedGreysCard.setDescription(redGreys);

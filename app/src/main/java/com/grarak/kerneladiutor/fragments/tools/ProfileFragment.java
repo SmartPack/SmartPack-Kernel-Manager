@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -101,6 +102,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                 checkBoxLayout.setOrientation(LinearLayout.VERTICAL);
                 scrollView.addView(checkBoxLayout);
 
+                AppCompatButton selectAllButton = new AppCompatButton(getActivity());
+                selectAllButton.setText(getString(R.string.select_all));
+                checkBoxLayout.addView(selectAllButton);
+
                 boolean load = true;
                 String start = getString(R.string.kernel);
                 String stop = getString(R.string.tools);
@@ -118,6 +123,14 @@ public class ProfileFragment extends RecyclerViewFragment {
                         }
                     }
                 }
+
+                selectAllButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (Object checkbox : items.values().toArray())
+                            ((AppCompatCheckBox) checkbox).setChecked(true);
+                    }
+                });
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setView(linearLayout).setNegativeButton(getString(R.string.cancel),

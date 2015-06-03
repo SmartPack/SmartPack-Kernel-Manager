@@ -55,7 +55,7 @@ public class SeekBarCardView extends BaseCardView {
     public SeekBarCardView(Context context, List<String> list) {
         // Ugly hack, res folders don't do their job
         super(context, Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                R.layout.seekbar_cardview_v11 : R.layout.seekbar_cardview_v7);
+                R.layout.seekbar_cardview_v11 : R.layout.seekbar_cardview_v9);
         this.list = list;
 
         seekBarView.setMax(list.size() - 1);

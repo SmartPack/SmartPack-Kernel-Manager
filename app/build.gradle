@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.grarak.kerneladiutor"
-        minSdkVersion 7
+        minSdkVersion 9
         targetSdkVersion 22
         versionCode 94
         versionName "0.9.4.3"
