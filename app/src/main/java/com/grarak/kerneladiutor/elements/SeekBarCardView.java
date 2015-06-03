@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.elements;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -52,7 +53,9 @@ public class SeekBarCardView extends BaseCardView {
     private OnSeekBarCardListener onSeekBarCardListener;
 
     public SeekBarCardView(Context context, List<String> list) {
-        super(context, R.layout.seekbar_cardview);
+        // Ugly hack, res folders don't do their job
+        super(context, Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
+                R.layout.seekbar_cardview_v11 : R.layout.seekbar_cardview_v7);
         this.list = list;
 
         seekBarView.setMax(list.size() - 1);

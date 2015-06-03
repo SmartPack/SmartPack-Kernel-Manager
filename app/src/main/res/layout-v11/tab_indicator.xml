@@ -18,6 +18,5 @@
     android:gravity="center"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:textAllCaps="true"
     android:textColor="@color/white"
     android:textSize="12sp" />
