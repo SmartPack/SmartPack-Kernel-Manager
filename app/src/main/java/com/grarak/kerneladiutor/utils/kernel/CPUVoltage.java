@@ -60,8 +60,9 @@ public class CPUVoltage implements Constants {
             default:
                 command = "";
                 for (String volt : getVoltages())
-                    command += command.isEmpty() ? (Utils.stringToInt(volt) + adjust) :
-                            " " + (Utils.stringToInt(volt) + adjust);
+                    if (volt != null)
+                        command += command.isEmpty() ? (Utils.stringToInt(volt) + adjust) :
+                                " " + (Utils.stringToInt(volt) + adjust);
                 break;
         }
 
