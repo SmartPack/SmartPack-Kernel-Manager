@@ -293,14 +293,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mDeletePasswordCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                if (!Utils.getString("password", "", getActivity()).isEmpty())
-                    Utils.confirmDialog(null, getString(R.string.confirm), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Utils.saveString("password", "", getActivity());
-                        }
-                    }, getActivity());
-                else Utils.toast(getString(R.string.set_password_first), getActivity());
+                deletePasswordDialog(Utils.getString("password", "", getActivity()));
             }
         });
 
@@ -358,6 +351,36 @@ public class SettingsFragment extends RecyclerViewFragment {
                         }
 
                         Utils.saveString("password", Utils.encodeString(mNewPassword.getText().toString()), getActivity());
+                    }
+                }).show();
+    }
+
+    private void deletePasswordDialog(final String password) {
+        if (password.isEmpty()) {
+            Utils.toast(getString(R.string.set_password_first), getActivity());
+            return;
+        }
+
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        final AppCompatEditText mPassword = new AppCompatEditText(getActivity());
+        mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mPassword.setHint(getString(R.string.password));
+        linearLayout.addView(mPassword);
+
+        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (!mPassword.getText().toString().equals(Utils.decodeString(password))) {
+                            Utils.toast(getString(R.string.password_wrong), getActivity());
+                            return;
+                        }
+
+                        Utils.saveString("password", "", getActivity());
                     }
                 }).show();
     }
