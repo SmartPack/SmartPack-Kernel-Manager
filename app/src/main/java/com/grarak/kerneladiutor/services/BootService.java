@@ -17,14 +17,17 @@
 package com.grarak.kerneladiutor.services;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
@@ -94,6 +97,13 @@ public class BootService extends Service {
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
                     .setContentText(getString(R.string.apply_on_boot_time, delay))
                     .setSmallIcon(R.drawable.ic_launcher_preview);
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(MainActivity.class);
+            stackBuilder.addNextIntent(new Intent(this, MainActivity.class));
+            PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(pendingIntent);
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
