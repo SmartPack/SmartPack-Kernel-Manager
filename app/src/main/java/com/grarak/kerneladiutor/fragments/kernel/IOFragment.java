@@ -57,7 +57,6 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     public void onSwipe(int page) {
         super.onSwipe(page);
         allowSwipe(page == 1);
-        schedulerPart.resetTranslations();
     }
 
     @Override
@@ -86,17 +85,9 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public void preInit(Bundle savedInstanceState) {
-            super.preInit(savedInstanceState);
-            if (ioFragment != null) {
-                viewContainer2 = ioFragment.viewContainer;
-                applyOnBootLayout = ioFragment.applyOnBootLayout;
-            }
-        }
-
-        @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
+            if (ioFragment != null) onScrollDisappearView = ioFragment.applyOnBootLayout;
 
             readheads.clear();
             internalStorageInit();
@@ -192,12 +183,9 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     public static class SchedulerPart extends PathReaderFragment {
 
         @Override
-        public void preInit(Bundle savedInstanceState) {
-            super.preInit(savedInstanceState);
-            if (ioFragment != null) {
-                viewContainer2 = ioFragment.viewContainer;
-                applyOnBootLayout = ioFragment.applyOnBootLayout;
-            }
+        public void init(Bundle savedInstanceState) {
+            super.init(savedInstanceState);
+            if (ioFragment != null) onScrollDisappearView = ioFragment.applyOnBootLayout;
         }
 
         @Override

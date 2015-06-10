@@ -23,6 +23,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,6 @@ public class ViewPagerFragment extends BaseFragment {
 
     private Adapter adapter;
     private CustomViewPager mViewPager;
-    protected View viewContainer;
     protected View applyOnBootLayout;
     protected SwitchCompat applyOnBootView;
 
@@ -82,7 +83,6 @@ public class ViewPagerFragment extends BaseFragment {
                 }
             });
 
-            viewContainer = view.findViewById(R.id.view_container);
             applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
             applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

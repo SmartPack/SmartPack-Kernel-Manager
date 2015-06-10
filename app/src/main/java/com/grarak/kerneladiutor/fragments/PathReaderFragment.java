@@ -47,23 +47,20 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         GOVERNOR, IO
     }
 
-    private TextView title;
-    private SwipeRefreshLayout refreshLayout;
-    private View toolbarsizeView;
-
     @Override
     public boolean showApplyOnBoot() {
         return false;
     }
 
+    private TextView title;
+    private SwipeRefreshLayout refreshLayout;
+
     @Override
     public RecyclerView getRecyclerView() {
         View view = getParentView(R.layout.swiperefresh_recyclerview);
-        toolbarsizeView = view.findViewById(R.id.toolbarsize);
         title = (TextView) view.findViewById(R.id.title_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.color_primary));
-        refreshLayout.setDistanceToTriggerSync(100);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -79,15 +76,6 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         super.preInit(savedInstanceState);
         fabView.setVisibility(View.GONE);
         fabView = null;
-    }
-
-    @Override
-    public void onViewDrew() {
-        super.onViewDrew();
-
-        ViewGroup.LayoutParams params = toolbarsizeView.getLayoutParams();
-        params.height += applyOnBootLayout.getHeight();
-        toolbarsizeView.requestLayout();
     }
 
     private Runnable refresh = new Runnable() {

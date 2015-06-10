@@ -68,7 +68,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public void onSwipe(int page) {
         super.onSwipe(page);
         allowSwipe(page == 1);
-        governorPart.resetTranslations();
     }
 
     @Override
@@ -120,17 +119,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public void preInit(Bundle savedInstanceState) {
-            super.preInit(savedInstanceState);
-            if (cpuFragment != null) {
-                viewContainer2 = cpuFragment.viewContainer;
-                applyOnBootLayout = cpuFragment.applyOnBootLayout;
-            }
-        }
-
-        @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
+            if (cpuFragment != null) onScrollDisappearView = cpuFragment.applyOnBootLayout;
 
             usageInit();
             if (CPU.getFreqs() != null) coreInit();
@@ -501,12 +492,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public static class GovernorPart extends PathReaderFragment {
 
         @Override
-        public void preInit(Bundle savedInstanceState) {
-            super.preInit(savedInstanceState);
-            if (cpuFragment != null) {
-                viewContainer2 = cpuFragment.viewContainer;
-                applyOnBootLayout = cpuFragment.applyOnBootLayout;
-            }
+        public void init(Bundle savedInstanceState) {
+            super.init(savedInstanceState);
+            if (cpuFragment != null) onScrollDisappearView = cpuFragment.applyOnBootLayout;
         }
 
         @Override

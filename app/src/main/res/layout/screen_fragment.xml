@@ -3,11 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/apply_on_boot_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_primary_light"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingEnd="16dp"
+        android:paddingLeft="72dp"
+        android:paddingRight="16dp"
+        android:paddingStart="72dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/apply_on_boot"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/apply_on_boot_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:paddingEnd="1dp"
+                android:paddingRight="1dp"
+                android:theme="@style/SwitchCompat" />
+        </LinearLayout>
+    </FrameLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/colorpalette"
+        android:layout_below="@id/apply_on_boot_layout"
         android:orientation="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical" />
@@ -15,57 +55,7 @@
     <com.grarak.kerneladiutor.elements.ColorPalette
         android:id="@+id/colorpalette"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true" />
-
-    <LinearLayout
-        android:id="@+id/view_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-
-        <FrameLayout
-            android:id="@+id/apply_on_boot_layout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/color_primary_light"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:paddingEnd="16dp"
-            android:paddingLeft="72dp"
-            android:paddingRight="16dp"
-            android:paddingStart="72dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/apply_on_boot"
-                    android:textColor="@android:color/white"
-                    android:textSize="17sp" />
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/apply_on_boot_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:paddingEnd="1dp"
-                    android:paddingRight="1dp"
-                    android:theme="@style/SwitchCompat" />
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
 
 </RelativeLayout>

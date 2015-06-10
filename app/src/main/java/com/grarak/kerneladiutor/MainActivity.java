@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
     /**
      * Views
      */
-    public Toolbar toolbar;
+    private Toolbar toolbar;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -120,11 +120,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
      * Current Fragment position
      */
     private int cur_position;
-
-    /**
-     * Password
-     */
-    private boolean passwordCorrect = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,9 +144,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
         String password;
         if (!(password = Utils.getString("password", "", this)).isEmpty())
             askPassword(password);
-
-        // Use an AsyncTask to initialize everything
-        new Task().execute();
+        else // Use an AsyncTask to initialize everything
+            new Task().execute();
     }
 
     /**
@@ -160,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
      * @param password current encoded password
      */
     private void askPassword(final String password) {
-        passwordCorrect = false;
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
@@ -176,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (mPassword.getText().toString().equals(Utils.decodeString(password)))
-                            passwordCorrect = true;
+                            new Task().execute();
                         else {
                             Utils.toast(getString(R.string.password_wrong), MainActivity.this);
                             finish();
@@ -328,24 +321,19 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
         @Override
         protected Void doInBackground(Void... params) {
-            // Keep looping until the password is correct
-            while (true) {
-                if (passwordCorrect) {
-                    // Check root access and busybox installation
-                    if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-                    if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+            // Check root access and busybox installation
+            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
 
-                    if (hasRoot && hasBusybox) {
-                        // Set permissions to specific files which are not readable by default
-                        String[] writePermission = {LMK_MINFREE};
-                        for (String file : writePermission)
-                            RootUtils.runCommand("chmod 644 " + file);
+            if (hasRoot && hasBusybox) {
+                // Set permissions to specific files which are not readable by default
+                String[] writePermission = {LMK_MINFREE};
+                for (String file : writePermission)
+                    RootUtils.runCommand("chmod 644 " + file);
 
-                        setList();
-                        return null;
-                    }
-                }
+                setList();
             }
+            return null;
         }
 
         @Override
@@ -391,7 +379,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
             }
 
             // If LAUNCH_NAME is not null then open the fragment which matches with the string
-            if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
+            if (LAUNCH_NAME == null)
+                LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
             for (int i = 0; i < ITEMS.size(); i++) {
                 if (ITEMS.get(i).getFragment() != null)
                     if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))

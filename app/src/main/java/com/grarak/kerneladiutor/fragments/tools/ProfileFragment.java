@@ -245,14 +245,12 @@ public class ProfileFragment extends RecyclerViewFragment {
             addView(mProfileCard);
         }
 
-        if (isAdded())
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    title.setText(getCount() < 1 ? getString(R.string.no_profiles) :
-                            getString(R.string.items_found, getCount()));
-                }
-            });
+        if (isAdded()) getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                title.setText(getCount() < 1 ? getString(R.string.no_profiles) : getString(R.string.items_found, getCount()));
+            }
+        });
 
         // Update Profilewidget here
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
