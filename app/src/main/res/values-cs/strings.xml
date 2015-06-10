@@ -10,6 +10,9 @@
   <string name="beta_message">Děkujeme za účast v testování beta verzí aplikace! Pokud narazíte na nějaké problémy, neváhejte nás kontaktovat. Aktuálně používáte verzi %s.</string>
   <string name="select_picture">Vybrat obrázek</string>
   <string name="no_picture">Žádný obrázek</string>
+  <string name="picture_too_big">Vybraný obrázek je příliš velký</string>
+  <string name="password">Heslo</string>
+  <string name="password_wrong">Špatné heslo</string>
   <string name="select_file">Vybrat %s?</string>
   <string name="no_files">V tomto umístění nejsou žádné soubory.</string>
   <string name="apply_on_boot">Použít při spuštění</string>
