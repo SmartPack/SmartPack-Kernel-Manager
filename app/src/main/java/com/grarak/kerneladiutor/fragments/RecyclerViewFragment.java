@@ -382,11 +382,10 @@ public class RecyclerViewFragment extends BaseFragment {
     private final Runnable run = new Runnable() {
         @Override
         public void run() {
-            if (isAdded()) {
-                if (onRefresh()) {
-                    if (hand != null) hand.postDelayed(run, 1000);
+            if (hand != null)
+                if (isAdded() && onRefresh()) {
+                    hand.postDelayed(run, 1000);
                 } else if (hand != null) hand.removeCallbacks(run);
-            } else if (hand != null) hand.postDelayed(run, 1000);
         }
     };
 
