@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +73,24 @@ import java.util.Locale;
 public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
+
+    public static String decodeString(String text) {
+        try {
+            return new String(Base64.decode(text, Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String encodeString(String text) {
+        try {
+            return Base64.encodeToString(text.getBytes("UTF-8"), Base64.DEFAULT);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static void errorDialog(Context context, Exception e) {
         new AlertDialog.Builder(context).setMessage(e.getMessage()).setNeutralButton(context.getString(R.string.ok),

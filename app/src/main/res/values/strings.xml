@@ -11,6 +11,8 @@
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
     <string name="picture_too_big">Selected picture is too big</string>
+    <string name="password">Password</string>
+    <string name="password_wrong">Password is wrong</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>
@@ -579,6 +581,18 @@
     <string name="last_kmsg_summary">Copy /proc/last_kmsg to /sdcard/last_kmsg.txt</string>
     <string name="driver_message">Driver Message</string>
     <string name="driver_message_summary">Copy driver message (dmesg) to /sdcard/dmesg.txt</string>
+    <string name="security">Security</string>
+    <string name="set_password">Set Password</string>
+    <string name="set_password_summary">You can protect Kernel Adiutor by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your phone. Don\'t worry I won\'t share your password. </string>
+    <string name="delete_password">Delete Password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="old_password">Old password</string>
+    <string name="old_password_wrong">Old password is wrong</string>
+    <string name="password_empty">Password is empty</string>
+    <string name="password_not_match">Password doesn\'t match confirmation</string>
+    <string name="password_too_long">Password is too long</string>
+    <string name="set_password_first">Set a password first</string>
 
     <!-- FAQ -->
     <string name="misspelled">Why did you misspell \"Auditor\"?</string>

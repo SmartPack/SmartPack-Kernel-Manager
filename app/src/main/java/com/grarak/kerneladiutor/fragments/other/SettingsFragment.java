@@ -17,11 +17,17 @@
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
@@ -61,6 +67,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
         applyonbootInit();
         debuggingInit();
+        securityInit();
     }
 
     private void darkthemeInit() {
@@ -266,6 +273,98 @@ public class SettingsFragment extends RecyclerViewFragment {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
         }
+    }
+
+    private void securityInit() {
+        DividerCardView.DDividerCard mSecurityDividerCard = new DividerCardView.DDividerCard();
+        mSecurityDividerCard.setText(getString(R.string.security));
+
+        addView(mSecurityDividerCard);
+
+        CardViewItem.DCardView mSetPasswordCard = new CardViewItem.DCardView();
+        mSetPasswordCard.setTitle(getString(R.string.set_password));
+        mSetPasswordCard.setDescription(getString(R.string.set_password_summary));
+        mSetPasswordCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                editPasswordDialog(Utils.getString("password", "", getActivity()));
+            }
+        });
+
+        addView(mSetPasswordCard);
+
+        CardViewItem.DCardView mDeletePasswordCard = new CardViewItem.DCardView();
+        mDeletePasswordCard.setDescription(getString(R.string.delete_password));
+        mDeletePasswordCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                if (!Utils.getString("password", "", getActivity()).isEmpty())
+                    Utils.confirmDialog(null, getString(R.string.confirm), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Utils.saveString("password", "", getActivity());
+                        }
+                    }, getActivity());
+                else Utils.toast(getString(R.string.set_password_first), getActivity());
+            }
+        });
+
+        addView(mDeletePasswordCard);
+    }
+
+    private void editPasswordDialog(final String oldPass) {
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        final AppCompatEditText mOldPassword = new AppCompatEditText(getActivity());
+        mOldPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mOldPassword.setHint(getString(R.string.old_password));
+        if (!oldPass.isEmpty()) linearLayout.addView(mOldPassword);
+
+        final AppCompatEditText mNewPassword = new AppCompatEditText(getActivity());
+        mNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mNewPassword.setHint(getString(R.string.new_password));
+        linearLayout.addView(mNewPassword);
+
+        final AppCompatEditText mConfirmNewPassword = new AppCompatEditText(getActivity());
+        mConfirmNewPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mConfirmNewPassword.setHint(getString(R.string.confirm_new_password));
+        linearLayout.addView(mConfirmNewPassword);
+
+        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (!oldPass.isEmpty() && !mOldPassword.getText().toString().equals(Utils.decodeString(oldPass))) {
+                            Utils.toast(getString(R.string.old_password_wrong), getActivity());
+                            return;
+                        }
+
+                        if (mNewPassword.getText().toString().isEmpty()) {
+                            Utils.toast(getString(R.string.password_empty), getActivity());
+                            return;
+                        }
+
+                        if (!mNewPassword.getText().toString().equals(mConfirmNewPassword.getText().toString())) {
+                            Utils.toast(getString(R.string.password_not_match), getActivity());
+                            return;
+                        }
+
+                        if (mNewPassword.getText().toString().length() > 20) {
+                            Utils.toast(getString(R.string.password_too_long), getActivity());
+                            return;
+                        }
+
+                        Utils.saveString("password", Utils.encodeString(mNewPassword.getText().toString()), getActivity());
+                    }
+                }).show();
     }
 
 }

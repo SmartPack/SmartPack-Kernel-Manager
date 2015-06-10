@@ -32,13 +32,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
@@ -117,7 +121,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
      */
     private int cur_position;
 
-    private AlertDialog betaDialog;
+    /**
+     * Password
+     */
+    private boolean passwordCorrect = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,25 +133,12 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (context != null) ((Activity) context).finish();
         context = this;
 
+        // Set english as default language if option is enabled
+        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
+
         // Check if darktheme is in use and cache it as boolean
         Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
         if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeDark);
-
-        // Show a dialog if user is running a beta version
-        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
-        try {
-            LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_ARG);
-            if (LAUNCH_NAME == null && VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, this))
-                betaDialog = new AlertDialog.Builder(MainActivity.this)
-                        .setMessage(getString(R.string.beta_message, VERSION_NAME))
-                        .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }).show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         setContentView(R.layout.activity_main);
         setView();
@@ -152,8 +146,43 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
         setSupportActionBar(toolbar);
 
+        String password;
+        if (!(password = Utils.getString("password", "", this)).isEmpty())
+            askPassword(password);
+
         // Use an AsyncTask to initialize everything
         new Task().execute();
+    }
+
+    /**
+     * Dialog which asks the user to enter his password
+     *
+     * @param password current encoded password
+     */
+    private void askPassword(final String password) {
+        passwordCorrect = false;
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        final AppCompatEditText mPassword = new AppCompatEditText(this);
+        mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        mPassword.setHint(getString(R.string.password));
+        linearLayout.addView(mPassword);
+
+        new AlertDialog.Builder(this).setView(linearLayout).setCancelable(false)
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mPassword.getText().toString().equals(Utils.decodeString(password)))
+                            passwordCorrect = true;
+                        else {
+                            Utils.toast(getString(R.string.password_wrong), MainActivity.this);
+                            finish();
+                        }
+                    }
+                }).show();
     }
 
     /**
@@ -299,19 +328,24 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
         @Override
         protected Void doInBackground(Void... params) {
-            // Check root access and busybox installation
-            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+            // Keep looping until the password is correct
+            while (true) {
+                if (passwordCorrect) {
+                    // Check root access and busybox installation
+                    if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+                    if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
 
-            if (hasRoot && hasBusybox) {
-                // Set permissions to specific files which are not readable by default
-                String[] writePermission = {LMK_MINFREE};
-                for (String file : writePermission)
-                    RootUtils.runCommand("chmod 644 " + file);
+                    if (hasRoot && hasBusybox) {
+                        // Set permissions to specific files which are not readable by default
+                        String[] writePermission = {LMK_MINFREE};
+                        for (String file : writePermission)
+                            RootUtils.runCommand("chmod 644 " + file);
 
-                setList();
+                        setList();
+                        return null;
+                    }
+                }
             }
-            return null;
         }
 
         @Override
@@ -332,7 +366,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
                     } catch (ActivityNotFoundException ignored) {
                     }
-                if (betaDialog != null) betaDialog.dismiss();
                 cancel(true);
                 finish();
                 return;
@@ -347,6 +380,22 @@ public class MainActivity extends AppCompatActivity implements Constants {
                 if (ITEMS.get(i).getFragment() != null)
                     if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))
                         selectItem(i);
+            }
+
+            try {
+                // Show a dialog if user is running a beta version
+                if (LAUNCH_NAME.equals(KernelInformationFragment.class.getSimpleName())
+                        && VERSION_NAME.contains("beta")
+                        && Utils.getBoolean("betainfo", true, MainActivity.this))
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(getString(R.string.beta_message, VERSION_NAME))
+                            .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }).show();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
