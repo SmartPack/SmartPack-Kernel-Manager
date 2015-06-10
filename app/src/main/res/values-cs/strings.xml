@@ -215,8 +215,6 @@
   <string name="notification_summary">Zobrazit upozornění na spuštění služby po startu systému. Pokud dochází k nějakým problémům, vypněte tuto funkci.</string>
   <string name="show_toast">Zobrazovat rychlá oznámení</string>
   <string name="test_summary">Zkouška použití nastavení při spuštění (včetně prodlevy). Pokud se nic neděje, pak neexistují žádná uložená nastavení.</string>
-  <string name="hide_apply_on_boot">Skrývat „Použít při spuštění“</string>
-  <string name="hide_apply_on_boot_summary">Skrývat zobrazení při posouvání dolů.</string>
   <string name="enable_apply_on_boot_first">Nejprve musíte povolit „Použít při spuštění“ alespoň pro jednu sekci.</string>
   <string name="debugging">Ladění</string>
   <string name="logcat">Logcat</string>

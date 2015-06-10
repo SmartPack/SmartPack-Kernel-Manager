@@ -190,8 +190,6 @@
   <string name="show_toast">Прикажи тост</string>
   <string name="test">Пробај</string>
   <string name="test_summary">Тестирајте примену при подизању (са одлагањем). Ако се ништа не деси то значи да нема сачуваних поставки.</string>
-  <string name="hide_apply_on_boot">Сакриј примену при подизању</string>
-  <string name="hide_apply_on_boot_summary">Сакриј приказ при клизању на доле.</string>
   <string name="enable_apply_on_boot_first">Најпре морате да укључите примену при подизању бар за један одељак.</string>
   <string name="debugging">Исправљање грешака</string>
   <string name="logcat">Логкат</string>

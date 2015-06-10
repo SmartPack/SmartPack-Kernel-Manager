@@ -488,8 +488,6 @@
   <string name="show_toast">Mostrar notificación emergente</string>
   <string name="test">Probar</string>
   <string name="test_summary">Probar a aplicar en el arranque (con retraso). Si no sucede nada, entonces no hay ajustes guardados.</string>
-  <string name="hide_apply_on_boot">Ocultar \"Aplicar en el Arranque\"</string>
-  <string name="hide_apply_on_boot_summary">Ocultar vista cuando deslizas hacia abajo.</string>
   <string name="enable_apply_on_boot_first">Primero tienes que habilitar \"Aplicar en el Arranque\" al menos para una sección.</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>

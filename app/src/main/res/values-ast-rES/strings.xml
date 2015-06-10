@@ -152,8 +152,6 @@
   <string name="force_english_language">Forciar la llingua inglesa</string>
   <string name="beta_info">Información de Beta</string>
   <string name="notification">Notificación</string>
-  <string name="hide_apply_on_boot">Anubrir \"Aplicar nel arranque\"</string>
-  <string name="hide_apply_on_boot_summary">Anubre la so apaición al desplazase p\'abaxo.</string>
   <string name="debugging">Depuración</string>
   <string name="misspelled">¿Por qué escribiesti mal \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor ye llatín y significa \"ayudante\".</string>

@@ -488,8 +488,6 @@
   <string name="show_toast">Показывать всплывающие уведомления</string>
   <string name="test">Проверка настроек</string>
   <string name="test_summary">Тест применения при загрузке (с задержкой). Если ничего не происходит, то у Вас нет сохраненных настроек.</string>
-  <string name="hide_apply_on_boot">Спрятать сообщение о применении во время загрузки</string>
-  <string name="hide_apply_on_boot_summary">Спрятать \"Применить при загрузке\" при пролистывании вниз.</string>
   <string name="enable_apply_on_boot_first">Сначала необходимо включить \"Применить при загрузке\".</string>
   <string name="debugging">Отладка</string>
   <string name="logcat">Logcat</string>

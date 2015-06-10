@@ -448,8 +448,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="show_toast">Mostrar toast</string>
   <string name="test">Teste</string>
   <string name="test_summary">Teste aplicar ao iniciar (com atraso). Se nada acontecer, então não há nenhuna configuração salva.</string>
-  <string name="hide_apply_on_boot">Ocultar aplicar na inicialização</string>
-  <string name="hide_apply_on_boot_summary">Ocultar esta vista quando scroll para baixo.</string>
   <string name="enable_apply_on_boot_first">Você tem que permitir aplicar na inicialização, pelo menos para uma seção primeiro.</string>
   <string name="debugging">Depuração</string>
   <string name="logcat">Logcat</string>

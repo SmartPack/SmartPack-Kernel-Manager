@@ -221,7 +221,6 @@
   <string name="show_toast">Visa avisering</string>
   <string name="test">Testa</string>
   <string name="test_summary">Testa tillämpa vid uppstart (med fördröjning). Om inget händer så har inga inställningar sparats.</string>
-  <string name="hide_apply_on_boot">Dölj tillämpa vid uppstart</string>
   <string name="enable_apply_on_boot_first">Du måste aktivera tillämpa vid uppstart för minst en sektion först.</string>
   <string name="debugging">Felsökning</string>
   <string name="logcat_summary">Kopiera logcat till /sdcard/logcat.txt</string>

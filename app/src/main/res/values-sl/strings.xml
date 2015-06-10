@@ -424,8 +424,6 @@
   <string name="show_toast">Pokaži toast obvestilo</string>
   <string name="test">Preizkus</string>
   <string name="test_summary">Preizkusi uporabo ob zagonu (z zamikom). Če se nič ne zgodi ni shranjenih nastavitev.</string>
-  <string name="hide_apply_on_boot">Skrij Uporaba ob zagonu</string>
-  <string name="hide_apply_on_boot_summary">Skrij pogled pri pomiku navzdol.</string>
   <string name="enable_apply_on_boot_first">Uporabo ob zagonu morate najprej omogočiti vsaj za en odsek.</string>
   <string name="debugging">Razhroščevanje</string>
   <string name="logcat">Logcat</string>

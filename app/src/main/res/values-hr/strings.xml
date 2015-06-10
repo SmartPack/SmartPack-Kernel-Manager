@@ -8,8 +8,13 @@
   <string name="cancel">Poništi</string>
   <string name="current_value_not_supported">Trenutna vrijednost nije podržana</string>
   <string name="beta_message">Hvala Vam što testirate beta-verziju! Ukoliko se suočite s bilo kakvim problemima, molim kontaktirajte me. Trenutno koristite verziju %s.</string>
+  <string name="select_picture">Odaberite sliku</string>
+  <string name="no_picture">Bez Slike</string>
+  <string name="select_file">Odaberite %s?</string>
+  <string name="no_files">Ne postoje datoteke na ovom mjestu.</string>
   <string name="apply_on_boot">Aktiviranje pri pokretanju sustava</string>
   <string name="apply_on_boot_finished">Vaše promjene su primijenjene</string>
+  <string name="apply_on_boot_time">Primjena postavki za %d sekundi</string>
   <string name="apply_on_boot_enabled">Aktivirana je primjena za %s dio pri podizanju sustava</string>
   <string name="apply_on_boot_disabled">Onemogućena je primjena za %s dio pri podizanju sustava</string>
   <string name="apply_on_boot_failed">Nije uspjela primjena postavki pri podizanju sustava</string>
@@ -20,6 +25,7 @@
   <string name="mb">MB</string>
   <string name="min">min</string>
   <string name="sec">sek</string>
+  <string name="ma">mA</string>
   <string name="information">Informacija</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Alatke</string>
@@ -29,6 +35,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Napon CPU-a</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Termalni</string>
   <string name="gpu">GPU</string>
   <string name="screen">Zaslon</string>
   <string name="wake_controls">Postavke buđenja</string>
@@ -39,8 +46,11 @@
   <string name="low_memory_killer">Poništavač niske memorije</string>
   <string name="virtual_memory">Virtualna memorija</string>
   <string name="misc_controls">Razne Kontrole</string>
+  <string name="backup">Sigurnosna kopija</string>
   <string name="build_prop_editor">Build prop podešavanje</string>
   <string name="profile">Profil</string>
+  <string name="recovery">Recovery</string>
+  <string name="initd">Init.d</string>
   <string name="settings">Postavke</string>
   <string name="faq">Najčešća pitanja i odgovori</string>
   <string name="about_us">O autoru</string>
@@ -54,6 +64,7 @@
   <string name="cpu_information">CPU podaci</string>
   <string name="memory_information">O memoriji</string>
   <string name="cpu_usage">Korišćenje CPU-a</string>
+  <string name="cpu_temp">Temperatura CPU-a</string>
   <string name="current_freq">Trenutna frekvencija</string>
   <string name="core">Jezgra %d</string>
   <string name="offline">Offline</string>
@@ -75,6 +86,9 @@
   <string name="disabled">Deaktivirano</string>
   <string name="enabled">Aktivirano</string>
   <string name="aggressive">Agresivno</string>
+  <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_summary">CPUQuiet implementira hot-plug pravila koja prisiljavaju procesorske jezgre u stanje mirovanja. Odgovarajućim postavkama se može uštediti energija bez posljedica na performanse.</string>
+  <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">Ubrzavanje CPU-a</string>
   <string name="debug_mask">Maska za ispravljanje pogrešaka</string>
   <string name="debug_mask_summary">Omogućava Vam aktivirati masku za ispravljanje pogrešaka prouzročenih ubrzavanjem CPU-a.</string>
@@ -87,6 +101,8 @@
   <string name="input_boost_freq">Rast frekvencije pri unosu</string>
   <string name="input_boost_freq_summary">CPU frekvencija će porasti do ove vrijednosti pri otkrivanju unosa.</string>
   <string name="global_offset">Global Offset</string>
+  <string name="override_vmin">Preinači minimalni napon</string>
+  <string name="override_vmin_summary">Iskljuci za uklanjanje ograničenja proizvođača na undervolting</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Qualcomm\'s hotplugging solution.  Ako ovo aktivirate mogli biste se suočiti s teškoćama pri mijenjanju frekvencija.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -184,6 +200,11 @@
   <string name="sampling_rate">Brzina uzorkovanja</string>
   <string name="cpu_down_rate">Učestalost isključivanja CPU-a</string>
   <string name="cpu_up_rate">Učestalost aktiviranja CPU-a</string>
+  <string name="thunderplug">Thunderplug</string>
+  <string name="thunderplug_summary">Zamjena za Qualcommov MPDecision ugrađena u kernel. Razvio varunchitre15.</string>
+  <string name="min_cores_screen_off">Min. broj jezgri pri isključenom zaslonu</string>
+  <string name="min_cores_screen_off_summary">Minimalan broj aktivnih jezgri pri isključenom zaslonu.</string>
+  <string name="endurance_level_summary">Profil za uštedu energije.</string>
   <string name="temp_limit">Toplotna granica</string>
   <string name="temp_limit_summary">Ako se temperatura još više podigne, usporiti će se frekvencija CPU-a da se temperatura snizi.</string>
   <string name="gpu_2d_cur_freq">GPU 2D trenutna frekvencija</string>

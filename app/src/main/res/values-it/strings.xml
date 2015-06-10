@@ -510,8 +510,6 @@
   <string name="show_toast">Mostra la notifica Toast</string>
   <string name="test">Prova</string>
   <string name="test_summary">Test di applicazione al boot (con ritardo). Se non succede niente, allora non ci sono impostazioni salvate.</string>
-  <string name="hide_apply_on_boot">Nascondere Applica all\'avvio</string>
-  <string name="hide_apply_on_boot_summary">Nascondere la sua posizione durante lo scorrimento verso il basso.</string>
   <string name="enable_apply_on_boot_first">Abilitare le impostazioni al boot almeno per una prima sezione.</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>

@@ -405,8 +405,6 @@
   <string name="show_toast">Afficher la bulle d\'infos</string>
   <string name="test">Test</string>
   <string name="test_summary">Test de l\'application des paramètres au démarrage (avec délai). Si rien ne se passe alors il n\'y a pas de paramètres sauvegardés.</string>
-  <string name="hide_apply_on_boot">Cacher \"Appliquer au démarrage\"</string>
-  <string name="hide_apply_on_boot_summary">Masquer l\'affichage lors du défilement vers le bas.</string>
   <string name="enable_apply_on_boot_first">Vous devez au préalable activer \"Appliquer au démarrage\" dans au moins une catégorie.</string>
   <string name="debugging">Débogage</string>
   <string name="logcat">Logcat</string>

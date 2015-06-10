@@ -151,7 +151,9 @@
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von faux123.</string>
   <string name="history_size">Verlaufs-Größe</string>
+  <string name="history_size_summary">Anzahl der Proben, die gemacht werden um die Durchschnittsbelastung der CPU-Kerne zu bestimmen. Ein geringerer Wert bedeutet schnellere und fehlerhaftere Ergebnisse.</string>
   <string name="update_rate">Aktualisierungsrate</string>
+  <string name="update_rate_summary">Abstand zwischen den Proben, die gemacht werden um die Durchschnittsbelastung der CPU-Kerne zu bestimmen. Ein geringerer Wert bedeutet schnellere und fehlerhaftere Ergebnisse.</string>
   <string name="fast_lane_load_summary">Verbesserte Latenz indem alle CPU-Kerne eingeschaltet werden wenn die Belastung auf einem hoch genug ist.</string>
   <string name="offline_load">Offline laden</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
@@ -162,6 +164,7 @@
   <string name="cores_on_touch_summary">Anzahl der CPUs die online bleiben, indem der Bildschirm oder eine Taste berührt wird.</string>
   <string name="first_level">Erste Ebene</string>
   <string name="high_load_counter">Hochlast-Counter</string>
+  <string name="min_time_cpu_online">Minimale Zeit, die eine CPU online ist</string>
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
@@ -180,8 +183,12 @@
   <string name="sampling_rate">Sampling-Rate</string>
   <string name="cpu_down_rate">CPU-Down Rate</string>
   <string name="cpu_up_rate">CPU-Up Rate</string>
+  <string name="thunderplug">Thunderplug</string>
+  <string name="thunderplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von varunchitre15.</string>
+  <string name="min_cores_screen_off_summary">Minimale Anzahl an aktiven Kernen bei ausgeschalteten Bildschirm.</string>
   <string name="quad_core_mode">Quad-Core-Modus</string>
   <string name="dual_core_mode">Dual-Core-Modus</string>
+  <string name="zen_decision">Zen Decision</string>
   <string name="freq_step">Frequenz-Schritt</string>
   <string name="temp_safety">Temperatur-Sicherheit</string>
   <string name="check_interval">Prüfintervall</string>
@@ -382,8 +389,6 @@
   <string name="show_toast">Toast-Benachrichtigungen anzeigen</string>
   <string name="test">Test</string>
   <string name="test_summary">Teste \"Anwenden beim Boot\" mit Verzögerung. Wenn nichts geschieht, existieren keine gespeicherten Einstellungen.</string>
-  <string name="hide_apply_on_boot">\"Beim Systemstart anwenden\" ausblenden</string>
-  <string name="hide_apply_on_boot_summary">Ansicht beim Herunterscrollen ausblenden.</string>
   <string name="enable_apply_on_boot_first">Sie müssen zuerst für einen Abschnitt \"Anwenden beim Boot\" aktivieren.</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
@@ -392,7 +397,7 @@
   <string name="last_kmsg_summary">Kopiere /proc/last_kmsg nach /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Treiber-Nachricht</string>
   <string name="driver_message_summary">Treiber-Nachricht (Dmesg) auf /sdcard/dmesg.txt speichern</string>
-  <string name="misspelled">Ist \"Auditor\" falsch geschrieben?</string>
+  <string name="misspelled">Wieso hast du \"Auditor\" falsch geschrieben?</string>
   <string name="misspelled_summary">Adiutor ist lateinisch und bedeutet Helfer.</string>
   <string name="cpu_freq_not_sticking">Warum bleibt meine eingestellte CPU-Frequenz nicht bestehen?</string>
   <string name="cpu_freq_not_sticking_summary">Dies hat mehrere Gründe. Viele Kernel haben heutzutage ihre eigenen Hotplug-Systeme, die die CPU-Frequenz steuern und CyanogenMod hat eigene CPU-Boost Implementierungen, die die Frequenz steuern. Ich empfehle, dass Sie die CPU-Frequenzen nicht verändern und diese Aufgabe dem Kernel überlassen.</string>

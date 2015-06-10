@@ -35,6 +35,7 @@
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 전압</string>
   <string name="cpu_hotplug">CPU 핫플러그</string>
+  <string name="thermal">열</string>
   <string name="gpu">GPU</string>
   <string name="screen">화면</string>
   <string name="wake_controls">화면 켜기 제어</string>
@@ -87,6 +88,7 @@
   <string name="enabled">사용</string>
   <string name="aggressive">적극적이게</string>
   <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_summary">CPUQuiet는 대기 상태로 CPU 코어를 강제조작하기위한 플러그 정책을 구현합니다. 적절한 정책이 성과를 손상시키지 않고 전력을 절약 할 수 있습니다.</string>
   <string name="cpu_quiet_governor">CPUQuiet 가버너</string>
   <string name="cpu_boost">CPU 가속</string>
   <string name="debug_mask">디버그 마스크</string>
@@ -203,12 +205,17 @@
   <string name="thunderplug_summary">Qualcomm의 MPDecision을 대체합니다. varunchitre15가 개발했습니다.</string>
   <string name="min_cores_screen_off">화면이 꺼져 있을 때의 최소 코어 개수</string>
   <string name="min_cores_screen_off_summary">화면이 꺼져 있을 때 켜지는 코어의 최소 개수입니다.</string>
+  <string name="endurance_level">지구력 레벨</string>
   <string name="endurance_level_summary">절약 모드 프로필입니다.</string>
   <string name="quad_core_mode">쿼드코어 모드</string>
   <string name="dual_core_mode">듀얼코어 모드</string>
   <string name="zen_decision_summary">Qualcomm의 MPDecision을 대체합니다.  bbedward가 개발했습니다.</string>
+  <string name="wake_wait_time">켜짐 대기시간</string>
+  <string name="bat_threshold_ignore">배터리 임계값 무시</string>
   <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">Qualcomm의 MPDecision을 대체합니다.  mrg666이 개발했습니다.</string>
+  <string name="downrate_limits">Downrate 제한</string>
+  <string name="uprate_limits">Uprate 제한</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Qualcomm의 Thermald를 대체합니다. faux123이 개발했습니다.</string>
   <string name="intellithermal_optimized_summary">Qualcomm의 Thermald를 대체합니다. faux123과 alucard_24가 개발했습니다.</string>
@@ -461,8 +468,6 @@
   <string name="show_toast">토스트 메시지 보이기</string>
   <string name="test">\"부팅 시 적용\" 테스트</string>
   <string name="test_summary">\"부팅 시 적용(시간 지연 포함)\"을 테스트합니다. 토스트 메시지가  뜨지 않으면 설정이 저장되지 않은 것입니다.</string>
-  <string name="hide_apply_on_boot">\"부팅 시 적용\" 숨기기</string>
-  <string name="hide_apply_on_boot_summary">스크롤을 내렸을 때 스위치를 숨깁니다.</string>
   <string name="enable_apply_on_boot_first">먼저 커널 설정 중 최소한 한 부분에서 \"부팅 시 적용\"을 활성화해야 합니다.</string>
   <string name="debugging">디버깅</string>
   <string name="logcat">로그캣</string>
