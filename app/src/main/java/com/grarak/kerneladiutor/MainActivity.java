@@ -374,17 +374,9 @@ public class MainActivity extends AppCompatActivity implements Constants {
             mSplashView.finish();
             setInterface();
 
-            // If LAUNCH_NAME is not null then open the fragment which matches with the string
-            if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
-            for (int i = 0; i < ITEMS.size(); i++) {
-                if (ITEMS.get(i).getFragment() != null)
-                    if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))
-                        selectItem(i);
-            }
-
             try {
                 // Show a dialog if user is running a beta version
-                if (LAUNCH_NAME.equals(KernelInformationFragment.class.getSimpleName())
+                if ((LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_ARG)) == null
                         && VERSION_NAME.contains("beta")
                         && Utils.getBoolean("betainfo", true, MainActivity.this))
                     new AlertDialog.Builder(MainActivity.this)
@@ -396,6 +388,14 @@ public class MainActivity extends AppCompatActivity implements Constants {
                             }).show();
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+
+            // If LAUNCH_NAME is not null then open the fragment which matches with the string
+            if (LAUNCH_NAME == null) LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
+            for (int i = 0; i < ITEMS.size(); i++) {
+                if (ITEMS.get(i).getFragment() != null)
+                    if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))
+                        selectItem(i);
             }
         }
     }
