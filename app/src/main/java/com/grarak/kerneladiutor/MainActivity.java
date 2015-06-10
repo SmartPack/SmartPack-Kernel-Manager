@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
     /**
      * Views
      */
-    private Toolbar toolbar;
+    public Toolbar toolbar;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -123,10 +123,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // If there is a previous activity running, kill it
-        if (context != null) {
-            RootUtils.closeSU();
-            ((Activity) context).finish();
-        }
+        if (context != null) ((Activity) context).finish();
         context = this;
 
         // Check if darktheme is in use and cache it as boolean
@@ -307,8 +304,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
             if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
 
             if (hasRoot && hasBusybox) {
-                RootUtils.su = new RootUtils.SU();
-
                 // Set permissions to specific files which are not readable by default
                 String[] writePermission = {LMK_MINFREE};
                 for (String file : writePermission)

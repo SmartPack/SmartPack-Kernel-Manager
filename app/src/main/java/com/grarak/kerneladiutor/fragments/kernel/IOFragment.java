@@ -39,6 +39,7 @@ import java.util.List;
 public class IOFragment extends ViewPagerFragment implements Constants {
 
     private static IOFragment ioFragment;
+    private static IOPart ioPart;
     private static SchedulerPart schedulerPart;
     private static IO.StorageType storageType;
 
@@ -47,16 +48,16 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         super.init(savedInstanceState);
         ioFragment = this;
 
-        schedulerPart = new SchedulerPart();
         allowSwipe(false);
-        addFragment(new IOPart());
-        addFragment(schedulerPart);
+        addFragment(ioPart == null ? ioPart = new IOPart() : ioPart);
+        addFragment(schedulerPart == null ? schedulerPart = new SchedulerPart() : schedulerPart);
     }
 
     @Override
     public void onSwipe(int page) {
         super.onSwipe(page);
         allowSwipe(page == 1);
+        schedulerPart.resetTranslations();
     }
 
     @Override
@@ -85,9 +86,17 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
+        public void preInit(Bundle savedInstanceState) {
+            super.preInit(savedInstanceState);
+            if (ioFragment != null) {
+                viewContainer2 = ioFragment.viewContainer;
+                applyOnBootLayout = ioFragment.applyOnBootLayout;
+            }
+        }
+
+        @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
-            onScrollDisappearView = ioFragment.applyOnBootLayout;
 
             readheads.clear();
             internalStorageInit();
@@ -183,9 +192,12 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     public static class SchedulerPart extends PathReaderFragment {
 
         @Override
-        public void init(Bundle savedInstanceState) {
-            super.init(savedInstanceState);
-            onScrollDisappearView = ioFragment.applyOnBootLayout;
+        public void preInit(Bundle savedInstanceState) {
+            super.preInit(savedInstanceState);
+            if (ioFragment != null) {
+                viewContainer2 = ioFragment.viewContainer;
+                applyOnBootLayout = ioFragment.applyOnBootLayout;
+            }
         }
 
         @Override

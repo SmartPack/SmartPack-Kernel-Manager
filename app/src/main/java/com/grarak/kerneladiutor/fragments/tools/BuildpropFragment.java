@@ -68,7 +68,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                hand.postDelayed(refresh, 500);
+                hand.postDelayed(refresh, 250);
             }
         });
 
@@ -227,12 +227,12 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     private void add(String key, String value) {
         Buildprop.addKey(key, value);
-        hand.postDelayed(refresh, 500);
+        hand.postDelayed(refresh, 250);
     }
 
     private void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
         Buildprop.overwrite(oldKey, oldValue, newKey, newValue);
-        hand.postDelayed(refresh, 500);
+        hand.postDelayed(refresh, 250);
     }
 
     @Override
@@ -245,6 +245,19 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         searchView.setQueryHint(getString(R.string.search));
 
         MenuItemCompat.setActionView(searchItem, searchView);
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                collapseToolbar(false);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                collapseToolbar(true);
+                return true;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

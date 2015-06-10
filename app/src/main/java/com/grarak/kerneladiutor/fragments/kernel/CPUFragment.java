@@ -51,6 +51,7 @@ import java.util.List;
 public class CPUFragment extends ViewPagerFragment implements Constants {
 
     private static CPUFragment cpuFragment;
+    private static CPUPart cpuPart;
     private static GovernorPart governorPart;
 
     @Override
@@ -58,16 +59,16 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         super.init(savedInstanceState);
         cpuFragment = this;
 
-        governorPart = new GovernorPart();
         allowSwipe(false);
-        addFragment(new CPUPart());
-        addFragment(governorPart);
+        addFragment(cpuPart == null ? cpuPart = new CPUPart() : cpuPart);
+        addFragment(governorPart == null ? governorPart = new GovernorPart() : governorPart);
     }
 
     @Override
     public void onSwipe(int page) {
         super.onSwipe(page);
         allowSwipe(page == 1);
+        governorPart.resetTranslations();
     }
 
     @Override
@@ -119,9 +120,17 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
+        public void preInit(Bundle savedInstanceState) {
+            super.preInit(savedInstanceState);
+            if (cpuFragment != null) {
+                viewContainer2 = cpuFragment.viewContainer;
+                applyOnBootLayout = cpuFragment.applyOnBootLayout;
+            }
+        }
+
+        @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
-            onScrollDisappearView = cpuFragment.applyOnBootLayout;
 
             usageInit();
             if (CPU.getFreqs() != null) coreInit();
@@ -492,9 +501,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public static class GovernorPart extends PathReaderFragment {
 
         @Override
-        public void init(Bundle savedInstanceState) {
-            super.init(savedInstanceState);
-            onScrollDisappearView = cpuFragment.applyOnBootLayout;
+        public void preInit(Bundle savedInstanceState) {
+            super.preInit(savedInstanceState);
+            if (cpuFragment != null) {
+                viewContainer2 = cpuFragment.viewContainer;
+                applyOnBootLayout = cpuFragment.applyOnBootLayout;
+            }
         }
 
         @Override

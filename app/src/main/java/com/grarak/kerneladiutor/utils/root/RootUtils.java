@@ -76,7 +76,8 @@ public class RootUtils implements Constants {
 
     private static SU getSU() {
         if (su == null) su = new SU();
-        if (su.closed) su = new SU();
+        else if (su.closed) su = new SU();
+        else if (su.denied) su = new SU();
         return su;
     }
 

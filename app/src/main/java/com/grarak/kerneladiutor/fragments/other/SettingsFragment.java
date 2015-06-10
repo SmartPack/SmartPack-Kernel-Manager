@@ -20,6 +20,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.MainActivity;
@@ -55,6 +56,8 @@ public class SettingsFragment extends RecyclerViewFragment {
         darkthemeInit();
         if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en"))
             forceenglishlanguageInit();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+            hideActionbarInit();
         if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
         applyonbootInit();
         debuggingInit();
@@ -93,6 +96,21 @@ public class SettingsFragment extends RecyclerViewFragment {
         addView(mForceEnglishLanguageCard);
     }
 
+    private void hideActionbarInit() {
+        SwitchCardView.DSwitchCard mHideActionBarCard = new SwitchCardView.DSwitchCard();
+        mHideActionBarCard.setDescription(getString(R.string.hide_actionbar));
+        mHideActionBarCard.setChecked(Utils.getBoolean("hideactionbar", false, getActivity()));
+        mHideActionBarCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+            @Override
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                Utils.saveBoolean("hideactionbar", checked, getActivity());
+                if (!checked) resetTranslations();
+            }
+        });
+
+        addView(mHideActionBarCard);
+    }
+
     private void betainfoInit() {
         SwitchCardView.DSwitchCard mBetaInfoCard = new SwitchCardView.DSwitchCard();
         mBetaInfoCard.setTitle(getString(R.string.beta_info));
@@ -114,19 +132,6 @@ public class SettingsFragment extends RecyclerViewFragment {
         mApplyonBootDividerCard.setText(getString(R.string.apply_on_boot));
 
         addView(mApplyonBootDividerCard);
-
-        SwitchCardView.DSwitchCard mHideApplyOnBootCard = new SwitchCardView.DSwitchCard();
-        mHideApplyOnBootCard.setTitle(getString(R.string.hide_apply_on_boot));
-        mHideApplyOnBootCard.setDescription(getString(R.string.hide_apply_on_boot_summary));
-        mHideApplyOnBootCard.setChecked(Utils.getBoolean("hideapplyonboot", true, getActivity()));
-        mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-            @Override
-            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                Utils.saveBoolean("hideapplyonboot", checked, getActivity());
-            }
-        });
-
-        addView(mHideApplyOnBootCard);
 
         final List<String> list = new ArrayList<>();
         for (int i = 5; i < 421; i *= 2)

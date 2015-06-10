@@ -357,10 +357,15 @@ public class DAdapter {
         }
 
         private static Bitmap contentToBitmap(Uri uri, Context context) throws IOException {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            inputStream.close();
-            return bitmap;
+            try {
+                InputStream inputStream = context.getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
+                return bitmap;
+            } catch (OutOfMemoryError ignored) {
+                Utils.toast(context.getString(R.string.picture_too_big), context);
+            }
+            return null;
         }
 
         private static String getPath(Uri uri, Context context) {

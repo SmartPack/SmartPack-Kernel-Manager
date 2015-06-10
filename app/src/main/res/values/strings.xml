@@ -10,6 +10,7 @@
     <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
+    <string name="picture_too_big">Selected picture is too big</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>
@@ -562,6 +563,7 @@
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
     <string name="force_english_language">Force English Language</string>
+    <string name="hide_actionbar">Hide Actionbar (Experimental)</string>
     <string name="beta_info">Beta Information</string>
     <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
     <string name="notification">Notification</string>
@@ -569,8 +571,6 @@
     <string name="show_toast">Show toast</string>
     <string name="test">Test</string>
     <string name="test_summary">Test apply on boot (with delay). If nothing happens then there are no saved settings.</string>
-    <string name="hide_apply_on_boot">Hide Apply On Boot</string>
-    <string name="hide_apply_on_boot_summary">Hide its view when scrolling down.</string>
     <string name="enable_apply_on_boot_first">You have to enable apply on boot at least for one section first.</string>
     <string name="debugging">Debugging</string>
     <string name="logcat">Logcat</string>

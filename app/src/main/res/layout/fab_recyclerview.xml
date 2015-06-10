@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <FrameLayout
-        android:id="@+id/background_view"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:background="@color/color_primary">
-
-        <TextView
-            android:id="@+id/title_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="72dp"
-            android:paddingStart="72dp"
-            android:textColor="@android:color/white"
-            android:textSize="17sp" />
-
-    </FrameLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/background_view"
         android:orientation="vertical"
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical" />
 
-    <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
-        android:id="@+id/fab_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/background_view"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginTop="-34dp"
-        fab:fab_colorNormal="@color/fab_normal"
-        fab:fab_colorPressed="@color/fab_pressed"
-        fab:fab_plusIconColor="@color/color_primary" />
+    <RelativeLayout
+        android:id="@+id/view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <View
+            android:id="@+id/toolbarsize"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <FrameLayout
+            android:id="@+id/background_view"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_below="@+id/toolbarsize"
+            android:background="@color/color_primary">
+
+            <TextView
+                android:id="@+id/title_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="72dp"
+                android:paddingStart="72dp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+        </FrameLayout>
+
+        <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/background_view"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="-34dp"
+            fab:fab_colorNormal="@color/fab_normal"
+            fab:fab_colorPressed="@color/fab_pressed"
+            fab:fab_plusIconColor="@color/color_primary" />
+
+    </RelativeLayout>
+</FrameLayout>
