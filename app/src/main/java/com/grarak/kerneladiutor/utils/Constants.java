@@ -620,7 +620,10 @@ public interface Constants {
     String MSM_HSIC_WAKELOCK_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
 
     // Logging
+    String LOGGER_MODE = "/sys/kernel/logger_mode/logger_mode";
     String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
+
+    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED};
 
     // Fsync
     String FSYNC = "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled";

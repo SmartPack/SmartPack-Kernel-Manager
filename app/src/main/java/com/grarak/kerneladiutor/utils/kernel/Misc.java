@@ -35,6 +35,8 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    private static String LOGGER_FILE;
+
     public static void setMsmHsicWakelockDivider(int value, Context context) {
         String command = String.valueOf(value + 1);
         if (value == 15) command = "0";
@@ -229,15 +231,20 @@ public class Misc implements Constants {
     }
 
     public static void activateLogger(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", LOGGER_ENABLED, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isLoggerActive() {
-        return Utils.readFile(LOGGER_ENABLED).equals("1");
+        return Utils.readFile(LOGGER_FILE).equals("1");
     }
 
     public static boolean hasLoggerEnable() {
-        return Utils.existFile(LOGGER_ENABLED);
+        if (LOGGER_FILE == null) for (String file : LOGGER_ARRAY)
+            if (Utils.existFile(file)) {
+                LOGGER_FILE = file;
+                return true;
+            }
+        return LOGGER_FILE != null;
     }
 
     public static void setVibration(int value, Context context) {
