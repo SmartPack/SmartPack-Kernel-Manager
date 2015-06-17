@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -139,8 +140,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             mUsageCard = new UsageCardView.DUsageCard();
             mUsageCard.setText(getString(R.string.cpu_usage));
             addView(mUsageCard);
-
-            getHandler().post(cpuUsage);
         }
 
         private void coreInit() {
@@ -482,9 +481,17 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         };
 
         @Override
-        public void onDestroy() {
-            super.onDestroy();
-            getHandler().removeCallbacks(cpuUsage);
+        public void onResume() {
+            super.onResume();
+            Handler hand;
+            if ((hand = getHandler()) != null) hand.post(cpuUsage);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            Handler hand;
+            if ((hand = getHandler()) != null) hand.removeCallbacks(cpuUsage);
         }
 
     }

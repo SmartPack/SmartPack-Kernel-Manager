@@ -12,24 +12,16 @@ public class LinuxUtils {
      * Return the first line of /proc/stat or null if failed.
      */
     public String readSystemStat() {
-
-        RandomAccessFile reader = null;
-        String load = null;
-
         try {
-            reader = new RandomAccessFile("/proc/stat", "r");
-            load = reader.readLine();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
+            String value = reader.readLine();
+            reader.close();
+            return value;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return load;
+        return null;
     }
 
     /**
@@ -74,8 +66,8 @@ public class LinuxUtils {
             if (i != 5) { // bypass any idle mode. There is currently only one.
                 try {
                     l += Long.parseLong(stat[i]);
-                } catch (NumberFormatException ex) {
-                    ex.printStackTrace();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                     return -1L;
                 }
             }
@@ -92,8 +84,8 @@ public class LinuxUtils {
     public long getSystemIdleTime(String[] stat) {
         try {
             return Long.parseLong(stat[5]);
-        } catch (NumberFormatException ex) {
-            ex.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
 
         return -1L;

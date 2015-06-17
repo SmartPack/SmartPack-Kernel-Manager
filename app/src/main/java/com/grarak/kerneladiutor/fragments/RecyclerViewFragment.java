@@ -239,7 +239,6 @@ public class RecyclerViewFragment extends BaseFragment {
 
                 recyclerView.setAdapter(adapter);
                 animateRecyclerView();
-                if (hand != null) hand.post(run);
 
                 try {
                     ((ViewGroup) progressBar.getParent()).removeView(progressBar);
@@ -390,8 +389,14 @@ public class RecyclerViewFragment extends BaseFragment {
     };
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onResume() {
+        super.onResume();
+        if (hand != null) hand.post(run);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         if (hand != null) hand.removeCallbacks(run);
     }
 
