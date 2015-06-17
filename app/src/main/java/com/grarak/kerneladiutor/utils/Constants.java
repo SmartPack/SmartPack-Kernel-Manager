@@ -493,9 +493,10 @@ public interface Constants {
     String[] WAKE_MISC_ARRAY = {SCREEN_WAKE_OPTIONS};
 
     // Sleep Misc
+    String S2S = "/sys/android_touch/sweep2sleep";
     String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
 
-    String[] SLEEP_MISC_ARRAY = {SCREEN_SLEEP_OPTIONS};
+    String[] SLEEP_MISC_ARRAY = {S2S, SCREEN_SLEEP_OPTIONS};
 
     // Gesture
     String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
