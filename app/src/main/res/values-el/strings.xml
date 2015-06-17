@@ -10,6 +10,9 @@
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
   <string name="select_picture">Επιλέξτε Εικόνα</string>
   <string name="no_picture">Δεν υπάρχει εικόνα</string>
+  <string name="picture_too_big">εικόνα_πολύ_μεγάλη</string>
+  <string name="password">Κωδικός</string>
+  <string name="password_wrong">λάθος_κωδικός</string>
   <string name="select_file">Επίλεξε %s;</string>
   <string name="no_files">Δεν υπάρχουν αρχεία σε αυτό το μονοπάτι.</string>
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
@@ -165,6 +168,11 @@
   <string name="load_threshold">Όριο φορτίου</string>
   <string name="load_threshold_summary">Το όριο για ενεργοποίηση όλων των επεξεργαστών.</string>
   <string name="max_load_counter">Μετρητής Ανώτατου Φορτίου</string>
+  <string name="screen_off_single_core_summary">Χρήση ενός πυρήνα όταν η οθόνη είναι σβηστή.</string>
+  <string name="start_delay">Καθυστέρηση εκκίνησης</string>
+  <string name="pause">Παύση</string>
+  <string name="quad_core_mode">Λειτουργία τεσσάρων πυρήνων</string>
+  <string name="dual_core_mode">Λειτουργία δύο πυρήνων</string>
   <string name="core_control">Διαχείριση Πυρήνων</string>
   <string name="freq_throttle_temp">Θερμοκρασία όπου μειώνεται η συχνότητα</string>
   <string name="thermal_limit_low">Θερμικό Κάτω Όριο</string>

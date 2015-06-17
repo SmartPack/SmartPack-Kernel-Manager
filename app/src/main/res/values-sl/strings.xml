@@ -444,7 +444,6 @@
   <string name="add_new_features_summary">To je težko reči. Trudim se dodati vse funkcije, vendar je to aplikacijo težko narediti univerzalno za vse naprave. Imam le Samsung Galaxy S4 (I9500) in HTC Desire 816, zato mi prosim oprostite, če funkcije ne bodo takoj združene.</string>
   <string name="license">Licenca</string>
   <string name="app_license">Kernel Adiutor je licenciran pod Apache licenco, različica 2.0, in uporablja naslednje knjižnice</string>
-  <string name="support_v13">v13 Support Library</string>
   <string name="appcompat_v7">v7 Appcompat Library</string>
   <string name="cardview_v7">v7 Cardview Library</string>
   <string name="recyclerview_v7">v7 Recyclerview Library</string>

@@ -208,7 +208,6 @@
   <string name="add_new_features_summary">Тешко је рећи. Настојаћу да додам све могућности, али тешко је направити универзалну апликацију за све уређаје. Поседујем само Самсунг „Galaxy S4“ (I9500) и ХТЦ „Desire 816“, па немојте мене да кривите ако функционалности не буду одмах додате.</string>
   <string name="license">Лиценца</string>
   <string name="app_license">Кернел Адиутор је лиценциран Апачи лиценцом, издање 2.0, и користи следеће библиотеке</string>
-  <string name="support_v13">v13 библиотека подршке</string>
   <string name="appcompat_v7">v7 Appcompat библиотека</string>
   <string name="cardview_v7">v7 Cardview библиотека</string>
   <string name="recyclerview_v7">v7 Recyclerview библиотека</string>

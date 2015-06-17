@@ -9,6 +9,8 @@
   <string name="current_value_not_supported">La valeur actuelle n\'est pas supportée</string>
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
   <string name="select_picture">Sélectionner une image</string>
+  <string name="no_picture">Pas de photo</string>
+  <string name="picture_too_big">Image sélectionnée est trop grand</string>
   <string name="select_file">Sélectionnez  %s?</string>
   <string name="no_files">Aucun fichier dans ce chemin.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
@@ -24,6 +26,7 @@
   <string name="mb"> MO</string>
   <string name="min">min</string>
   <string name="sec">sec</string>
+  <string name="ma">mA</string>
   <string name="information">Informations </string>
   <string name="kernel">Kernel</string>
   <string name="tools">Outils</string>
@@ -425,7 +428,6 @@
   <string name="add_new_features_summary">C\'est difficile à dire. J\'essaie d\'ajouter toutes les fonctionnalités, mais c\'est difficile de rendre cette application universelle à travers tous les modèles d\'appareils. J\'ai uniquement un Samsung Galaxy S4 (I9500) et un HTC Desire 816, donc ne me reprochez pas si les fonctionnalités ne sont pas ajoutées immédiatement.</string>
   <string name="license">Licence</string>
   <string name="app_license">Kernel Adiutor est sous License Apache, en Version 2.0, et utilise les bibliothèques suivantes</string>
-  <string name="support_v13">Support Bibliothèques v13</string>
   <string name="appcompat_v7">Bibliothèque Appcompat v7</string>
   <string name="cardview_v7">Bibliothèque Cardview v7</string>
   <string name="recyclerview_v7">Bibliothèque Recyclerview v7</string>

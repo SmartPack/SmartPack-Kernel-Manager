@@ -409,7 +409,6 @@
   <string name="add_new_features_summary">Das ist schwer zu sagen. Ich versuche, alle Funktionen hinzuzufügen, aber es ist schwer, diese App universal für alle Geräte machen. Ich habe nur ein Samsung Galaxy S4 (I9500) und ein HTC Desire 816, also bitte keine Beschwerden, wenn Funktionen nicht sofort eingebaut werden.</string>
   <string name="license">Lizenz</string>
   <string name="app_license">Kernel Adiutor ist unter der Apache License, Version 2.0, lizenziert und verwendet folgende Programmbibliotheken</string>
-  <string name="support_v13">v13 Support Library</string>
   <string name="appcompat_v7">v7 Appcompat Library</string>
   <string name="cardview_v7">v7 Cardview Library</string>
   <string name="recyclerview_v7">v7 Recyclerview Library</string>

@@ -10,6 +10,9 @@
   <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
   <string name="select_picture">Selezionare Immagine</string>
   <string name="no_picture">Nessuna foto</string>
+  <string name="picture_too_big">L\'immagine selezionata è troppo grande</string>
+  <string name="password">Password</string>
+  <string name="password_wrong">La password è sbagliata</string>
   <string name="select_file">Selezionare %s?</string>
   <string name="no_files">Non ci sono file in questo percorso.</string>
   <string name="apply_on_boot">Applica all\'avvio</string>
@@ -476,6 +479,7 @@
   <string name="no_profiles">Nessun profilo</string>
   <string name="profile_description">L\'aggiunta di un profilo salverà le impostazioni correnti. È possibile applicarle successivamente.</string>
   <string name="name">Nome</string>
+  <string name="select_all">Seleziona tutto</string>
   <string name="apply">Applica</string>
   <string name="no_settings">Impostazioni non trovate!</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
@@ -510,6 +514,8 @@
   <string name="show_toast">Mostra la notifica Toast</string>
   <string name="test">Prova</string>
   <string name="test_summary">Test di applicazione al boot (con ritardo). Se non succede niente, allora non ci sono impostazioni salvate.</string>
+  <string name="hide_apply_on_boot">Nascondi Applica all\'avvio</string>
+  <string name="hide_apply_on_boot_summary">Nascondere durante lo scorrimento verso il basso.</string>
   <string name="enable_apply_on_boot_first">Abilitare le impostazioni al boot almeno per una prima sezione.</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
@@ -518,6 +524,18 @@
   <string name="last_kmsg_summary">Copia /proc/last_kmsg in /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Messaggio Driver</string>
   <string name="driver_message_summary">Copia messaggio driver (dmesg) in /sdcard/dmesg.txt</string>
+  <string name="security">Sicurezza</string>
+  <string name="set_password">Imposta Password</string>
+  <string name="set_password_summary">Puoi proteggere Kernel Adiutor impostando una password. E\' necessario inserire la password ogni volta che apri l\'applicazione. Se ti dimentichi la password è necessario cancellare i dati dell\'applicazione dalle impostazioni del telefono. Non ti preoccupare non voglio condividere la tua password.</string>
+  <string name="delete_password">Cancella Password</string>
+  <string name="new_password">Nuova Password</string>
+  <string name="confirm_new_password">Conferma la nuova password</string>
+  <string name="old_password">Vecchia Password</string>
+  <string name="old_password_wrong">La vecchia password è sbagliata</string>
+  <string name="password_empty">La password è vuota</string>
+  <string name="password_not_match">La password non corrisponde a conferma</string>
+  <string name="password_too_long">Password troppo lunga</string>
+  <string name="set_password_first">Impostare una password prima</string>
   <string name="misspelled">Perchè hai sbagliato a scrivere \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor, in Latino, significa \"assistente\".</string>
   <string name="cpu_freq_not_sticking">Perchè la frequenza che ho scelto non viene conservata?</string>
@@ -530,7 +548,6 @@
   <string name="add_new_features_summary">Si lo so, ci provo ad aggiungere tutte le caratteristiche, ma è veramente difficile rendere questa applicazione universale e funzionante su tutti i dispositivi. I posseggo solo un S4 (I9500) e un HTC Desire, quindi non datemi la colpa se non riesco ad aggiungere immediatamente le nuove funzioni.</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
-  <string name="support_v13">Libreria di supporto V13</string>
   <string name="appcompat_v7">Libreria Appcompat V7</string>
   <string name="cardview_v7">Libreria Cardview V7</string>
   <string name="recyclerview_v7">Libreria Recyclerview V7</string>

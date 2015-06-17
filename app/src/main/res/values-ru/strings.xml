@@ -10,6 +10,8 @@
   <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
   <string name="select_picture">Выберите изображение</string>
   <string name="no_picture">Нет картинки</string>
+  <string name="picture_too_big">Выбранный рисунок слишком велик</string>
+  <string name="password">Password</string>
   <string name="select_file">Выбрать %s?</string>
   <string name="no_files">Файл не найден.</string>
   <string name="apply_on_boot">Применять при загрузке</string>
@@ -508,7 +510,6 @@
   <string name="add_new_features_summary">Трудно ответить. Я пытаюсь добавить все функции, но это довольно трудно сделать для всех устройств. У меня есть только Samsung Galaxy S4 (I9500) и HTC Desire 816, так что не вините меня в несвоевременном добавлении функционала.</string>
   <string name="license">Лицензия</string>
   <string name="app_license">Kernel Adiutor лицензирован Apache License, Версия 2.0, и использует следующие библиотеки</string>
-  <string name="support_v13">Библиотека поддержки V13</string>
   <string name="appcompat_v7">Библиотека Appcompat V7</string>
   <string name="cardview_v7">Библиотека Cardview V7</string>
   <string name="recyclerview_v7">Библиотека Recyclerview V7</string>

@@ -10,6 +10,9 @@
   <string name="beta_message">Gracias por ser Beta Tester! Si encuentras algún problema, no dudes en ponerte en contacto conmigo. Actualmente está utilizando la versión %s.</string>
   <string name="select_picture">Seleccionar imagen</string>
   <string name="no_picture">Sin imagen</string>
+  <string name="picture_too_big">Imagen seleccionada es demasiado grande</string>
+  <string name="password">Contraseña</string>
+  <string name="password_wrong">La contraseña es incorrecta</string>
   <string name="select_file">Seleccionar %s?</string>
   <string name="no_files">Sin archivos en esta ruta.</string>
   <string name="apply_on_boot">Aplicar al Inicio</string>
@@ -325,6 +328,7 @@
   <string name="mdnie_global_controls">Controles Globales de mDNIe</string>
   <string name="register_hook">Registro hook</string>
   <string name="master_sequence">Secuencia principal</string>
+  <string name="master_sequence_summary">Activando la secuencia principal desactivará e ignorará los perfiles y escenarios de Samsung, los controles de la ROM serán desactivados.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Enciende la pantalla pulsando dos veces la pantalla.</string>
   <string name="center">Centro</string>
@@ -334,6 +338,7 @@
   <string name="halfscreen">Mitad de pantalla</string>
   <string name="fullscreen">Pantalla completa</string>
   <string name="s2w">Sweep2Wake</string>
+  <string name="s2w_summary">Despierta tu terminal deslizando en la pantalla.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Enciende la pantalla pulsandola.</string>
@@ -353,6 +358,7 @@
   <string name="draw_c">Dibujar C</string>
   <string name="draw_m">Dibujar M</string>
   <string name="wake_timeout">Tiempo de espera para Despertar</string>
+  <string name="wake_timeout_summary">Selecciona cuando los controles de desbloqueo se desactivaran tras el apagado de la pantalla.</string>
   <string name="sound_control">Control de sonido</string>
   <string name="headphone_gain">Ganancia de auriculares</string>
   <string name="handset_microphone_gain">Ganancia del micrófono auricular</string>
@@ -454,6 +460,7 @@
   <string name="no_profiles">Sin perfiles</string>
   <string name="profile_description">Agregar un perfil guardará la configuración actual. Más tarde se puede aplicar.</string>
   <string name="name">Nombre</string>
+  <string name="select_all">Selecionar todos</string>
   <string name="apply">Aplicar</string>
   <string name="no_settings">¡Ajustes no encontrados!</string>
   <string name="press_again_to_apply">Pulsa de nuevo para aplicar.</string>
@@ -488,6 +495,8 @@
   <string name="show_toast">Mostrar notificación emergente</string>
   <string name="test">Probar</string>
   <string name="test_summary">Probar a aplicar en el arranque (con retraso). Si no sucede nada, entonces no hay ajustes guardados.</string>
+  <string name="hide_apply_on_boot">Ocultar \"Aplicar en el Arranque\"</string>
+  <string name="hide_apply_on_boot_summary">Ocultar vista cuando deslizas hacia abajo.</string>
   <string name="enable_apply_on_boot_first">Primero tienes que habilitar \"Aplicar en el Arranque\" al menos para una sección.</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
@@ -496,6 +505,18 @@
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg en /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensaje del Controlador</string>
   <string name="driver_message_summary">Copiar mensaje del controlador (dmesg) en /sdcard/dmesg.txt</string>
+  <string name="security">Seguridad</string>
+  <string name="set_password">Establecer contraseña</string>
+  <string name="set_password_summary">Puede proteger Kernel Adiutor estableciendo una contraseña. Cada vez que abra esta aplicación, tienes que entrar en él. Si lo olvida, simplemente Limpie los datos de esta aplicación en ajustes del teléfono. No te preocupes no compartiré la contraseña.</string>
+  <string name="delete_password">Eliminar contraseña</string>
+  <string name="new_password">Contraseña nueva</string>
+  <string name="confirm_new_password">Confirme la nueva contraseña</string>
+  <string name="old_password">Contraseña antigua</string>
+  <string name="old_password_wrong">La contraseña antigua es incorrecta</string>
+  <string name="password_empty">La Contraseña está vacía</string>
+  <string name="password_not_match">la contraseña no coincide con la confirmación</string>
+  <string name="password_too_long">La contraseña es demasiado larga</string>
+  <string name="set_password_first">Establecer una contraseña primero</string>
   <string name="misspelled">¿Por qué se escribe incorrectamente «Auditor»?</string>
   <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
   <string name="cpu_freq_not_sticking">Por que mi frecuencia predeterminada no se guarda?</string>
@@ -508,7 +529,6 @@
   <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las características, pero es difícil hacer la aplicación universal para todos los dispositivos. Sólo tengo un Samsung Galaxy S4 (I9500) y una HTC Desire 816, así que no me culpes si no implemento alguna característica inmediatamente.</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
-  <string name="support_v13">Liberia de apoyo v13</string>
   <string name="appcompat_v7">Librería Appcompat V7</string>
   <string name="cardview_v7">Librería Cardview V7</string>
   <string name="recyclerview_v7">Librería Recyclerview V7</string>

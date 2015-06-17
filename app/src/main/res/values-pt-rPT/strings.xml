@@ -468,7 +468,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos. Eu só tenho um Samsung Galaxy S4 (I9500) e um HTC Desire 816, por isso não me culpe se alguns recursos não ficam disponíveis imediatamente.</string>
   <string name="license">Licença</string>
   <string name="app_license">Adiutor kernel é licenciado sob a licença Apache, versão 2.0 e utiliza as seguintes bibliotecas</string>
-  <string name="support_v13">Biblioteca de suporte v13</string>
   <string name="appcompat_v7">Biblioteca de Appcompat v7</string>
   <string name="cardview_v7">Biblioteca v7 Cardview</string>
   <string name="recyclerview_v7">Biblioteca v7 Recyclerview</string>

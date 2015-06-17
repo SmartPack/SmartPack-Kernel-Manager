@@ -227,7 +227,6 @@
   <string name="driver_message">Sürücü İletisi</string>
   <string name="driver_message_summary">Sürücü iletisi (dmesg)  /sdcard/dmesg.txt adresine kopyalandı</string>
   <string name="license">Lisans</string>
-  <string name="support_v13">v13 Destek Kütüphanesi</string>
   <string name="appcompat_v7">v7 Appcompat Kütüphanesi</string>
   <string name="cardview_v7">v7 Cardview Kütüphanesi</string>
   <string name="recyclerview_v7">v7 Recyclerview Kütüphanesi</string>

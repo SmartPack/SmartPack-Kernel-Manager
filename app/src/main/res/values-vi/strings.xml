@@ -10,6 +10,8 @@
   <string name="beta_message">Cảm ơn bạn đã là một tester để thử nghiệm sản phẩm! Nếu bạn nhận được bất kỳ vấn đề, xin vui lòng liên hệ với tôi. Bạn hiện đang chạy phiên bản %s.</string>
   <string name="select_picture">Chọn hình ảnh</string>
   <string name="no_picture">Không có hình ảnh</string>
+  <string name="picture_too_big">Selected picture is too big</string>
+  <string name="password">Password</string>
   <string name="select_file">Chọn %s?</string>
   <string name="no_files">Không có tệp nào trong đường dẫn này.</string>
   <string name="apply_on_boot">Áp dụng khi khởi động</string>
