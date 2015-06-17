@@ -51,6 +51,8 @@ I used following libraries:
 * Google: [Cardview v7](https://developer.android.com/tools/support-library/features.html#v7-cardview)
 * Google: [Recyclerview v7](https://developer.android.com/tools/support-library/features.html#v7-recyclerview)
 * Jerzy Chałupski: [FloatingActionButton](https://github.com/futuresimple/android-floating-action-button)
+* Roman Nurik: [Dashclock](https://github.com/romannurik/dashclock)
+* Jake Wharton: [NineOldAndroids](https://github.com/JakeWharton/NineOldAndroids)
 
 Also codes from different people:
 
@@ -75,6 +77,10 @@ _(Many sys interface paths has been taken from his [UKM-Project](https://github.
 * [ScrimInsetsFrameLayout](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/elements/ScrimInsetsFrameLayout.java)
 * [SlidingTabLayout](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/elements/SlidingTabLayout.java)
 * [SlidingTabStrip](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/elements/SlidingTabStrip.java)
+
+#### mzgreen
+
+* [HideOnScroll](https://github.com/Grarak/KernelAdiutor/blob/492490f880f74442cae842b180ffa3804198829e/app/src/main/java/com/grarak/kerneladiutor/fragments/RecyclerViewFragment.java#L294)
 
 License
 ----------------

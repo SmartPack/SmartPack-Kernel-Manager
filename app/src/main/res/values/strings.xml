@@ -610,7 +610,6 @@
     <!-- About us -->
     <string name="license">License</string>
     <string name="app_license">Kernel Adiutor is licensed under the Apache License, Version 2.0, and uses following libraries</string>
-    <string name="support_v13">v13 Support Library</string>
     <string name="appcompat_v7">v7 Appcompat Library</string>
     <string name="cardview_v7">v7 Cardview Library</string>
     <string name="recyclerview_v7">v7 Recyclerview Library</string>
