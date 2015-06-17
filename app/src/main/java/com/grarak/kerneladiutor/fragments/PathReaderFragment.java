@@ -57,7 +57,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
 
     @Override
     public RecyclerView getRecyclerView() {
-        View view = getParentView(R.layout.swiperefresh_recyclerview);
+        View view = getParentView(R.layout.swiperefresh_fragment);
         title = (TextView) view.findViewById(R.id.title_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.color_primary));
@@ -68,7 +68,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
             }
         });
 
-        return (RecyclerView) getParentView(R.layout.swiperefresh_recyclerview).findViewById(R.id.recycler_view);
+        return (RecyclerView) view.findViewById(R.id.recycler_view);
     }
 
     @Override

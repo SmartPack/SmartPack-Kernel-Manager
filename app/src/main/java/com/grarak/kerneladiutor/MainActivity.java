@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         context = this;
 
         // Set english as default language if option is enabled
-        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en", this);
+        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en_US", this);
 
         // Check if darktheme is in use and cache it as boolean
         Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);

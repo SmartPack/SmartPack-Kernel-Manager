@@ -23,17 +23,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CustomViewPager;
-import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +40,6 @@ public class ViewPagerFragment extends BaseFragment {
 
     private Adapter adapter;
     private CustomViewPager mViewPager;
-    protected View applyOnBootLayout;
-    protected SwitchCompat applyOnBootView;
 
     private List<Fragment> fragments = new ArrayList<>();
 
@@ -54,9 +47,9 @@ public class ViewPagerFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, final @Nullable Bundle savedInstanceState) {
         fragments.clear();
 
-        View view = inflater.inflate(R.layout.viewpager_fragment, container, false);
-        mViewPager = (CustomViewPager) view.findViewById(R.id.pager);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        View view = inflater.inflate(R.layout.viewpager, container, false);
+        mViewPager = (CustomViewPager) view.findViewById(R.id.view_pager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -70,27 +63,6 @@ public class ViewPagerFragment extends BaseFragment {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
-        if (showApplyOnBoot()) {
-            applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
-            applyOnBootView.setChecked(Utils.getBoolean(getClass().getSimpleName() + "onboot", false, getActivity()));
-            applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Utils.saveBoolean(ViewPagerFragment.this.getClass().getSimpleName() + "onboot", isChecked, getActivity());
-                    Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
-                            getActionBar().getTitle()), getActivity());
-                }
-            });
-
-            applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
-            applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    applyOnBootView.setChecked(!applyOnBootView.isChecked());
-                }
-            });
-        } else showApplyOnBoot(false);
 
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -162,15 +134,6 @@ public class ViewPagerFragment extends BaseFragment {
             return fragments.size();
         }
 
-    }
-
-    public boolean showApplyOnBoot() {
-        return true;
-    }
-
-    public void showApplyOnBoot(boolean visible) {
-        applyOnBootLayout.findViewById(R.id.apply_on_boot_layout).setVisibility(
-                visible ? View.VISIBLE : View.GONE);
     }
 
     @Override

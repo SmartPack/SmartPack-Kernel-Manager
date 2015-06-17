@@ -16,9 +16,13 @@
 
 package com.grarak.kerneladiutor.fragments;
 
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewTreeObserver;
 
 import com.grarak.kerneladiutor.MainActivity;
 
@@ -29,6 +33,26 @@ public abstract class BaseFragment extends Fragment implements MainActivity.OnBa
 
     public ActionBar getActionBar() {
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
+    }
+
+    public void onViewCreated(View view, Bundle saved) {
+        super.onViewCreated(view, saved);
+        final ViewTreeObserver observer = view.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            public void onGlobalLayout() {
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                        observer.removeOnGlobalLayoutListener(this);
+                    else observer.removeGlobalOnLayoutListener(this);
+
+                    onViewCreated();
+                } catch (Exception ignored) {
+                }
+            }
+        });
+    }
+
+    public void onViewCreated() {
     }
 
 }

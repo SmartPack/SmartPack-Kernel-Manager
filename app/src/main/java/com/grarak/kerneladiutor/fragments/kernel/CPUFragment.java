@@ -115,14 +115,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private PopupCardItem.DPopupCard mCpuBoostInputFreqCard;
 
         @Override
-        public boolean showApplyOnBoot() {
-            return false;
+        public String getClassName() {
+            return CPUFragment.class.getSimpleName();
         }
 
         @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
-            if (cpuFragment != null) onScrollDisappearView = cpuFragment.applyOnBootLayout;
 
             usageInit();
             if (CPU.getFreqs() != null) coreInit();
@@ -497,12 +496,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     }
 
     public static class GovernorPart extends PathReaderFragment {
-
-        @Override
-        public void init(Bundle savedInstanceState) {
-            super.init(savedInstanceState);
-            if (cpuFragment != null) onScrollDisappearView = cpuFragment.applyOnBootLayout;
-        }
 
         @Override
         public String getName() {

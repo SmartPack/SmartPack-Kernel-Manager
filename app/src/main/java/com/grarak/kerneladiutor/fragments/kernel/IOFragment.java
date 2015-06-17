@@ -80,14 +80,13 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         private PopupCardItem.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
 
         @Override
-        public boolean showApplyOnBoot() {
-            return false;
+        public String getClassName() {
+            return IOFragment.class.getSimpleName();
         }
 
         @Override
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
-            if (ioFragment != null) onScrollDisappearView = ioFragment.applyOnBootLayout;
 
             readheads.clear();
             internalStorageInit();
@@ -181,12 +180,6 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     }
 
     public static class SchedulerPart extends PathReaderFragment {
-
-        @Override
-        public void init(Bundle savedInstanceState) {
-            super.init(savedInstanceState);
-            if (ioFragment != null) onScrollDisappearView = ioFragment.applyOnBootLayout;
-        }
 
         @Override
         public String getName() {

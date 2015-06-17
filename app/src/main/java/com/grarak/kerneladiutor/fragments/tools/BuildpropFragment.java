@@ -60,7 +60,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public RecyclerView getRecyclerView() {
-        View view = getParentView(R.layout.swiperefresh_recyclerview);
+        View view = getParentView(R.layout.swiperefresh_fragment);
 
         title = (TextView) view.findViewById(R.id.title_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);

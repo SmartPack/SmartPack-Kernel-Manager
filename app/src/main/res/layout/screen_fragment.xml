@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="48dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical" />
+
+    <com.grarak.kerneladiutor.elements.ColorPalette
+        android:id="@+id/colorpalette"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom" />
 
     <FrameLayout
         android:id="@+id/apply_on_boot_layout"
@@ -42,20 +57,4 @@
         </LinearLayout>
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/colorpalette"
-        android:layout_below="@id/apply_on_boot_layout"
-        android:orientation="vertical"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical" />
-
-    <com.grarak.kerneladiutor.elements.ColorPalette
-        android:id="@+id/colorpalette"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentBottom="true" />
-
-</RelativeLayout>
+</FrameLayout>

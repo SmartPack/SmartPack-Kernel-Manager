@@ -34,13 +34,13 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,8 @@ public class RecyclerViewFragment extends BaseFragment {
     protected ViewGroup container;
 
     private ProgressBar progressBar;
-    protected RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private CustomScrollListener onScrollListener;
     protected View applyOnBootLayout;
     protected TextView applyOnBootText;
     protected SwitchCompat applyOnBootView;
@@ -63,7 +64,6 @@ public class RecyclerViewFragment extends BaseFragment {
     private StaggeredGridLayoutManager layoutManager;
     protected View backgroundView;
     protected View fabView;
-    protected View onScrollDisappearView;
     private Handler hand;
 
     @Override
@@ -96,70 +96,6 @@ public class RecyclerViewFragment extends BaseFragment {
                 return 0;
             }
         });
-        int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
-        recyclerView.setPadding(padding, 0, padding, 0);
-        recyclerView.setHasFixedSize(true);
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int scrollMargin = 10;
-            private boolean changing;
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, final int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (!Utils.getBoolean("hideapplyonboot", true, getActivity())) return;
-                try {
-                    if (changing || onScrollDisappearView == null) return;
-                    int y = dy;
-                    if (y < 0) y *= -1;
-                    if (y < 20) return;
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            changing = true;
-                            int actionBarHeight = Utils.getActionBarHeight(getActivity());
-                            for (int i = 0; i <= actionBarHeight / scrollMargin; i++) {
-                                try {
-                                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
-                                            onScrollDisappearView.getLayoutParams();
-
-                                    int margin = params.topMargin;
-                                    if (dy < 0 && margin < 0)
-                                        margin += scrollMargin;
-                                    else if (dy > 0 && margin > -actionBarHeight)
-                                        margin -= scrollMargin;
-
-                                    if (margin > 0) margin = 0;
-                                    if (margin < -actionBarHeight + scrollMargin)
-                                        margin = -actionBarHeight;
-
-                                    params.topMargin = margin;
-                                    getActivity().runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            onScrollDisappearView.requestLayout();
-                                        }
-                                    });
-
-                                    Thread.sleep(17);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            try {
-                                Thread.sleep(100);
-                                changing = false;
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         if (showApplyOnBoot()) {
             applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
@@ -178,7 +114,6 @@ public class RecyclerViewFragment extends BaseFragment {
             applyOnBootText = (TextView) view.findViewById(R.id.apply_on_boot_text);
             applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
             if (applyOnBootLayout != null) {
-                onScrollDisappearView = applyOnBootLayout;
                 applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -203,7 +138,6 @@ public class RecyclerViewFragment extends BaseFragment {
 
         if (!showApplyOnBoot()) showApplyOnBoot(false);
 
-        showOnScrollDisappear();
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected void onPreExecute() {
@@ -339,16 +273,83 @@ public class RecyclerViewFragment extends BaseFragment {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         layoutManager.setSpanCount(getSpan());
-        showOnScrollDisappear();
+        resetTranslations();
     }
 
-    private void showOnScrollDisappear() {
-        if (onScrollDisappearView != null) {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) onScrollDisappearView
-                    .getLayoutParams();
-            layoutParams.topMargin = 0;
-            onScrollDisappearView.requestLayout();
+    @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+
+        if (recyclerView != null && applyOnBootLayout != null &&
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            recyclerView.setClipToPadding(false);
+            int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
+            recyclerView.setPadding(padding, applyOnBootLayout.getHeight(), padding, recyclerView.getPaddingBottom());
+            resetTranslations();
+
+            recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
         }
+    }
+
+    private class CustomScrollListener extends RecyclerView.OnScrollListener {
+        private int offset;
+        private boolean scroll = true;
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+
+            if (scroll && Utils.getBoolean("hideapplyonboot", true, getActivity())) {
+                int height = applyOnBootLayout.getHeight();
+                clipToolbarOffset(height);
+                move(offset);
+
+                if ((offset < height && dy > 0) || (offset > 0 && dy < 0)) offset += dy;
+            }
+            scroll = true;
+        }
+
+        private void clipToolbarOffset(int height) {
+            if (offset > height) offset = height;
+            else if (offset < 0) offset = 0;
+        }
+
+        private void move(int offset) {
+            ViewHelper.setTranslationY(applyOnBootLayout, -offset);
+        }
+
+        public void reset() {
+            scroll = false;
+        }
+
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                int height = applyOnBootLayout.getHeight();
+                if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0)
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                for (; offset >= 0; offset -= 4) {
+                                    move(offset);
+                                    Thread.sleep(16);
+                                }
+                                if (offset != 0) move(offset = 0);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+            }
+        }
+    }
+
+    private void resetTranslations() {
+        if (applyOnBootLayout != null) ViewHelper.setTranslationY(applyOnBootLayout, 0);
+        if (onScrollListener != null) onScrollListener.reset();
     }
 
     public boolean showApplyOnBoot() {
@@ -359,6 +360,9 @@ public class RecyclerViewFragment extends BaseFragment {
         try {
             getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
                     visible ? View.VISIBLE : View.GONE);
+            int paddingTop = visible ? recyclerView.getPaddingTop() + applyOnBootLayout.getHeight() :
+                    recyclerView.getPaddingTop() - applyOnBootLayout.getHeight();
+            recyclerView.setPadding(recyclerView.getPaddingLeft(), paddingTop, recyclerView.getPaddingRight(), 0);
         } catch (NullPointerException ignored) {
         }
     }
