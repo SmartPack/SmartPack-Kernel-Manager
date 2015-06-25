@@ -356,16 +356,23 @@ public interface Constants {
             GPU_AVAILABLE_1C00000_QCOM_GOVERNORS, GPU_AVAILABLE_OMAP_GOVERNORS};
 
     // Simple GPU
-    String SIMPLE_GPU = "/sys/module/simple_gpu_algorithm";
-    String SIMPLE_GPU_ACTIVATE = SIMPLE_GPU + "/parameters/simple_gpu_activate";
-    String SIMPLE_GPU_LAZINESS = SIMPLE_GPU + "/parameters/simple_laziness";
-    String SIMPLE_RAMP_THRESHOLD = SIMPLE_GPU + "/parameters/simple_ramp_threshold";
+    String SIMPLE_GPU_PARAMETERS = "/sys/module/simple_gpu_algorithm/parameters";
+    String SIMPLE_GPU_ACTIVATE = SIMPLE_GPU_PARAMETERS + "/simple_gpu_activate";
+    String SIMPLE_GPU_LAZINESS = SIMPLE_GPU_PARAMETERS + "/simple_laziness";
+    String SIMPLE_RAMP_THRESHOLD = SIMPLE_GPU_PARAMETERS + "/simple_ramp_threshold";
+
+    // Adreno Idler
+    String ADRENO_IDLER_PARAMETERS = "/sys/module/adreno_idler/parameters/";
+    String ADRENO_IDLER_ACTIVATE = ADRENO_IDLER_PARAMETERS + "adreno_idler_active";
+    String ADRENO_IDLER_DOWNDIFFERENTIAL = ADRENO_IDLER_PARAMETERS + "/adreno_idler_downdifferential";
+    String ADRENO_IDLER_IDLEWAIT = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idlewait";
+    String ADRENO_IDLER_IDLEWORKLOAD = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idleworkload";
 
     String[][] GPU_ARRAY = {GPU_2D_CUR_FREQ_ARRAY,
             GPU_2D_MAX_FREQ_ARRAY, GPU_2D_AVAILABLE_FREQS_ARRAY,
             GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_CUR_FREQ_ARRAY,
             GPU_MAX_FREQ_ARRAY, GPU_AVAILABLE_FREQS_ARRAY,
-            GPU_SCALING_GOVERNOR_ARRAY, {SIMPLE_GPU}};
+            GPU_SCALING_GOVERNOR_ARRAY, {SIMPLE_GPU_PARAMETERS, ADRENO_IDLER_PARAMETERS}};
 
     // Screen
     String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";

@@ -46,6 +46,42 @@ public class GPU implements Constants {
 
     private static Integer[] mGpuFreqs;
 
+    public static void setAdrenoIdlerIdleWorkload(int value, Context context) {
+        Control.runCommand(String.valueOf(value * 1000), ADRENO_IDLER_IDLEWORKLOAD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAdrenoIdlerIdleWorkload() {
+        return Utils.stringToInt(Utils.readFile(ADRENO_IDLER_IDLEWORKLOAD)) / 1000;
+    }
+
+    public static void setAdrenoIdlerIdleWait(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ADRENO_IDLER_IDLEWAIT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAdrenoIdlerIdleWait() {
+        return Utils.stringToInt(Utils.readFile(ADRENO_IDLER_IDLEWAIT));
+    }
+
+    public static void setAdrenoIdlerDownDiff(int value, Context context) {
+        Control.runCommand(String.valueOf(value), ADRENO_IDLER_DOWNDIFFERENTIAL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAdrenoIdlerDownDiff() {
+        return Utils.stringToInt(Utils.readFile(ADRENO_IDLER_DOWNDIFFERENTIAL));
+    }
+
+    public static void activateAdrenoIdler(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", ADRENO_IDLER_ACTIVATE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isAdrenoIdlerActive() {
+        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("Y");
+    }
+
+    public static boolean hasAdrenoIdler() {
+        return Utils.existFile(ADRENO_IDLER_PARAMETERS);
+    }
+
     public static void setSimpleGpuRampThreshold(int value, Context context) {
         Control.runCommand(String.valueOf(value * 1000), SIMPLE_RAMP_THRESHOLD, Control.CommandType.GENERIC, context);
     }
@@ -71,7 +107,7 @@ public class GPU implements Constants {
     }
 
     public static boolean hasSimpleGpu() {
-        return Utils.existFile(SIMPLE_GPU_ACTIVATE);
+        return Utils.existFile(SIMPLE_GPU_PARAMETERS);
     }
 
     public static void setGpu2dGovernor(String governor, Context context) {
