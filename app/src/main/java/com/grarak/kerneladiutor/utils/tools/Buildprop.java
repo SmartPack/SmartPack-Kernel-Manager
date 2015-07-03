@@ -44,7 +44,13 @@ public class Buildprop implements Constants {
         for (String prop : values)
             if (!prop.isEmpty() && !prop.startsWith("#")) {
                 String[] line = prop.split("=");
-                list.put(line.length > 0 ? line[0] : "", line.length > 1 ? line[1] : "");
+
+                StringBuilder value = new StringBuilder();
+                if (line.length > 1) {
+                    for (int i = 1; i < line.length; i++) value.append(line[i]).append("=");
+                    value.setLength(value.length() - 1);
+                }
+                list.put(line.length > 0 ? line[0].trim() : "", value.toString().trim());
             }
         return list;
     }

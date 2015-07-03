@@ -30,7 +30,7 @@ public class TextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Utils.getBoolean("darktheme", false, this))
+        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
             super.setTheme(R.style.AppThemeActionBarDark);
 
         TextView text = new TextView(this);

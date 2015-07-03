@@ -20,10 +20,10 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.DividerCardView;
-import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
+import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
@@ -37,112 +37,112 @@ import java.util.List;
  */
 public class CPUHotplugFragment extends RecyclerViewFragment implements
         SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        PopupCardItem.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private SwitchCardView.DSwitchCard mMpdecisionCard;
 
     private SwitchCardView.DSwitchCard mIntelliPlugCard;
-    private PopupCardItem.DPopupCard mIntelliPlugProfileCard;
+    private PopupCardView.DPopupCard mIntelliPlugProfileCard;
     private SwitchCardView.DSwitchCard mIntelliPlugEcoCard;
     private SwitchCardView.DSwitchCard mIntelliPlugTouchBoostCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugHysteresisCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugThresholdCard;
-    private PopupCardItem.DPopupCard mIntelliPlugScreenOffMaxCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugHysteresisCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugThresholdCard;
+    private PopupCardView.DPopupCard mIntelliPlugScreenOffMaxCard;
     private SwitchCardView.DSwitchCard mIntelliPlugDebugCard;
     private SwitchCardView.DSwitchCard mIntelliPlugSuspendCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugCpusBoostedCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugMinCpusOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugMaxCpusOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugMaxCpusOnlineSuspCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugSuspendDeferTimeCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugDeferSamplingCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugBoostLockDurationCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugDownLockDurationCard;
-    private SeekBarCardView.DSeekBarCardView mIntelliPlugFShiftCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugCpusBoostedCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugMinCpusOnlineCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugMaxCpusOnlineCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugMaxCpusOnlineSuspCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugSuspendDeferTimeCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugDeferSamplingCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugBoostLockDurationCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugDownLockDurationCard;
+    private SeekBarCardView.DSeekBarCard mIntelliPlugFShiftCard;
 
     private SwitchCardView.DSwitchCard mBluPlugCard;
     private SwitchCardView.DSwitchCard mBluPlugPowersaverModeCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugMinOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugMaxOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugMaxCoresScreenOffCard;
-    private PopupCardItem.DPopupCard mBluPlugMaxFreqScreenOffCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugUpThresholdCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugUpTimerCntCard;
-    private SeekBarCardView.DSeekBarCardView mBluPlugDownTimerCntCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugMinOnlineCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugMaxOnlineCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugMaxCoresScreenOffCard;
+    private PopupCardView.DPopupCard mBluPlugMaxFreqScreenOffCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugUpThresholdCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugUpTimerCntCard;
+    private SeekBarCardView.DSeekBarCard mBluPlugDownTimerCntCard;
 
     private SwitchCardView.DSwitchCard mMsmHotplugEnabledCard;
     private SwitchCardView.DSwitchCard mMsmHotplugDebugMaskCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugMinCpusOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugMaxCpusOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugCpusBoostedCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugCpusOnlineSuspCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugBoostLockDurationCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugDownLockDurationCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugHistorySizeCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugUpdateRateCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugFastLaneLoadCard;
-    private PopupCardItem.DPopupCard mMsmHotplugFastLaneMinFreqCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugOfflineLoadCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugMinCpusOnlineCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugMaxCpusOnlineCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugCpusBoostedCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugCpusOnlineSuspCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugBoostLockDurationCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugDownLockDurationCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugHistorySizeCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugUpdateRateCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugFastLaneLoadCard;
+    private PopupCardView.DPopupCard mMsmHotplugFastLaneMinFreqCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugOfflineLoadCard;
     private SwitchCardView.DSwitchCard mMsmHotplugIoIsBusyCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugSuspendMaxCpusCard;
-    private PopupCardItem.DPopupCard mMsmHotplugSuspendFreqCard;
-    private SeekBarCardView.DSeekBarCardView mMsmHotplugSuspendDeferTimeCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugSuspendMaxCpusCard;
+    private PopupCardView.DPopupCard mMsmHotplugSuspendFreqCard;
+    private SeekBarCardView.DSeekBarCard mMsmHotplugSuspendDeferTimeCard;
 
     private SwitchCardView.DSwitchCard mMakoHotplugEnableCard;
-    private SeekBarCardView.DSeekBarCardView mMakoCoreOnTouchCard;
-    private PopupCardItem.DPopupCard mMakoHotplugCpuFreqUnplugLimitCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugFirstLevelCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugHighLoadCounterCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugLoadThresholdCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugMaxLoadCounterCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugMinTimeCpuOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugMinCoresOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mMakoHotplugTimerCard;
-    private PopupCardItem.DPopupCard mMakoSuspendFreqCard;
+    private SeekBarCardView.DSeekBarCard mMakoCoreOnTouchCard;
+    private PopupCardView.DPopupCard mMakoHotplugCpuFreqUnplugLimitCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugFirstLevelCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugHighLoadCounterCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugLoadThresholdCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugMaxLoadCounterCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugMinTimeCpuOnlineCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugMinCoresOnlineCard;
+    private SeekBarCardView.DSeekBarCard mMakoHotplugTimerCard;
+    private PopupCardView.DPopupCard mMakoSuspendFreqCard;
 
     private SwitchCardView.DSwitchCard mMBHotplugEnableCard;
     private SwitchCardView.DSwitchCard mMBHotplugScroffSingleCoreCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugMinCpusCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugMaxCpusCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugMaxCpusOnlineSuspCard;
-    private PopupCardItem.DPopupCard mMBHotplugIdleFreqCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugMinCpusCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugMaxCpusCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugMaxCpusOnlineSuspCard;
+    private PopupCardView.DPopupCard mMBHotplugIdleFreqCard;
     private SwitchCardView.DSwitchCard mMBHotplugBoostEnableCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugBoostTimeCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugCpusBoostedCard;
-    private PopupCardItem.DPopupCard[] mMBHotplugBoostFreqsCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugStartDelayCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugDelayCard;
-    private SeekBarCardView.DSeekBarCardView mMBHotplugPauseCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugBoostTimeCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugCpusBoostedCard;
+    private PopupCardView.DPopupCard[] mMBHotplugBoostFreqsCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugStartDelayCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugDelayCard;
+    private SeekBarCardView.DSeekBarCard mMBHotplugPauseCard;
 
     private SwitchCardView.DSwitchCard mAlucardHotplugEnableCard;
     private SwitchCardView.DSwitchCard mAlucardHotplugHpIoIsBusyCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugSamplingRateCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugSamplingRateCard;
     private SwitchCardView.DSwitchCard mAlucardHotplugSuspendCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugMinCpusOnlineCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugMaxCoresLimitCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugMaxCoresLimitSleepCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugCpuDownRateCard;
-    private SeekBarCardView.DSeekBarCardView mAlucardHotplugCpuUpRateCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugMinCpusOnlineCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugMaxCoresLimitCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugMaxCoresLimitSleepCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugCpuDownRateCard;
+    private SeekBarCardView.DSeekBarCard mAlucardHotplugCpuUpRateCard;
 
     private SwitchCardView.DSwitchCard mThunderPlugEnableCard;
-    private SeekBarCardView.DSeekBarCardView mThunderPlugSuspendCpusCard;
-    private PopupCardItem.DPopupCard mThunderPlugEnduranceLevelCard;
-    private SeekBarCardView.DSeekBarCardView mThunderPlugSamplingRateCard;
-    private SeekBarCardView.DSeekBarCardView mThunderPlugLoadThresholdCard;
+    private SeekBarCardView.DSeekBarCard mThunderPlugSuspendCpusCard;
+    private PopupCardView.DPopupCard mThunderPlugEnduranceLevelCard;
+    private SeekBarCardView.DSeekBarCard mThunderPlugSamplingRateCard;
+    private SeekBarCardView.DSeekBarCard mThunderPlugLoadThresholdCard;
     private SwitchCardView.DSwitchCard mThunderPlugTouchBoostCard;
 
     private SwitchCardView.DSwitchCard mZenDecisionEnableCard;
-    private SeekBarCardView.DSeekBarCardView mZenDecisionWakeWaitTimeCard;
-    private SeekBarCardView.DSeekBarCardView mZenDecisionBatThresholdIgnoreCard;
+    private SeekBarCardView.DSeekBarCard mZenDecisionWakeWaitTimeCard;
+    private SeekBarCardView.DSeekBarCard mZenDecisionBatThresholdIgnoreCard;
 
     private SwitchCardView.DSwitchCard mAutoSmpEnableCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpCpufreqDownCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpCpufreqUpCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpCycleDownCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpCycleUpCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpDelayCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpMaxCpusCard;
-    private SeekBarCardView.DSeekBarCardView mAutoSmpMinCpusCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpCpufreqDownCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpCpufreqUpCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpCycleDownCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpCycleUpCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpDelayCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpMaxCpusCard;
+    private SeekBarCardView.DSeekBarCard mAutoSmpMinCpusCard;
     private SwitchCardView.DSwitchCard mAutoSmpScroffSingleCoreCard;
 
     @Override
@@ -185,7 +185,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasIntelliPlugProfile()) {
-            mIntelliPlugProfileCard = new PopupCardItem.DPopupCard(CPUHotplug.getIntelliPlugProfileMenu(getActivity()));
+            mIntelliPlugProfileCard = new PopupCardView.DPopupCard(CPUHotplug.getIntelliPlugProfileMenu(getActivity()));
             mIntelliPlugProfileCard.setTitle(getString(R.string.profile));
             mIntelliPlugProfileCard.setDescription(getString(R.string.profile_summary));
             mIntelliPlugProfileCard.setItem(CPUHotplug.getIntelliPlugProfile());
@@ -219,7 +219,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 17; i++)
                 list.add(String.valueOf(i));
 
-            mIntelliPlugHysteresisCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugHysteresisCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugHysteresisCard.setTitle(getString(R.string.hysteresis));
             mIntelliPlugHysteresisCard.setDescription(getString(R.string.hysteresis_summary));
             mIntelliPlugHysteresisCard.setProgress(CPUHotplug.getIntelliPlugHysteresis());
@@ -233,7 +233,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 1001; i++)
                 list.add(String.valueOf(i));
 
-            mIntelliPlugThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugThresholdCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugThresholdCard.setTitle(getString(R.string.threshold));
             mIntelliPlugThresholdCard.setProgress(CPUHotplug.getIntelliPlugThresold());
             mIntelliPlugThresholdCard.setOnDSeekBarCardListener(this);
@@ -247,7 +247,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mIntelliPlugScreenOffMaxCard = new PopupCardItem.DPopupCard(list);
+            mIntelliPlugScreenOffMaxCard = new PopupCardView.DPopupCard(list);
             mIntelliPlugScreenOffMaxCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
             mIntelliPlugScreenOffMaxCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mIntelliPlugScreenOffMaxCard.setItem(CPUHotplug.getIntelliPlugScreenOffMax());
@@ -281,7 +281,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mIntelliPlugCpusBoostedCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugCpusBoostedCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugCpusBoostedCard.setTitle(getString(R.string.cpus_boosted));
             mIntelliPlugCpusBoostedCard.setDescription(getString(R.string.cpus_boosted_summary));
             mIntelliPlugCpusBoostedCard.setProgress(CPUHotplug.getIntelliPlugCpusBoosted() - 1);
@@ -295,7 +295,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mIntelliPlugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugMinCpusOnlineCard.setTitle(getString(R.string.min_cpu_online));
             mIntelliPlugMinCpusOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
             mIntelliPlugMinCpusOnlineCard.setProgress(CPUHotplug.getIntelliPlugMinCpusOnline() - 1);
@@ -309,7 +309,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mIntelliPlugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugMaxCpusOnlineCard.setTitle(getString(R.string.max_cpu_online));
             mIntelliPlugMaxCpusOnlineCard.setDescription(getString(R.string.max_cpu_online_summary));
             mIntelliPlugMaxCpusOnlineCard.setProgress(CPUHotplug.getIntelliPlugMaxCpusOnline() - 1);
@@ -323,7 +323,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mIntelliPlugMaxCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugMaxCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugMaxCpusOnlineSuspCard.setTitle(getString(R.string.max_cores_screen_off));
             mIntelliPlugMaxCpusOnlineSuspCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mIntelliPlugMaxCpusOnlineSuspCard.setProgress(CPUHotplug.getIntelliPlugMaxCpusOnlineSusp() - 1);
@@ -337,7 +337,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 501; i++)
                 list.add((i * 10) + getString(R.string.ms));
 
-            mIntelliPlugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugSuspendDeferTimeCard.setTitle(getString(R.string.suspend_defer_time));
             mIntelliPlugSuspendDeferTimeCard.setProgress(list.indexOf(String.valueOf(
                     CPUHotplug.getIntelliPlugSuspendDeferTime())));
@@ -351,7 +351,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 1001; i++)
                 list.add(i + getString(R.string.ms));
 
-            mIntelliPlugDeferSamplingCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugDeferSamplingCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugDeferSamplingCard.setTitle(getString(R.string.defer_sampling));
             mIntelliPlugDeferSamplingCard.setProgress(CPUHotplug.getIntelliPlugDeferSampling());
             mIntelliPlugDeferSamplingCard.setOnDSeekBarCardListener(this);
@@ -364,7 +364,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 5001; i++)
                 list.add(i + getString(R.string.ms));
 
-            mIntelliPlugBoostLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugBoostLockDurationCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugBoostLockDurationCard.setTitle(getString(R.string.boost_lock_duration));
             mIntelliPlugBoostLockDurationCard.setDescription(getString(R.string.boost_lock_duration_summary));
             mIntelliPlugBoostLockDurationCard.setProgress(CPUHotplug.getIntelliPlugBoostLockDuration() - 1);
@@ -378,7 +378,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 5001; i++)
                 list.add(i + getString(R.string.ms));
 
-            mIntelliPlugDownLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugDownLockDurationCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugDownLockDurationCard.setTitle(getString(R.string.down_lock_duration));
             mIntelliPlugDownLockDurationCard.setDescription(getString(R.string.down_lock_duration_summary));
             mIntelliPlugDownLockDurationCard.setProgress(CPUHotplug.getIntelliPlugDownLockDuration() - 1);
@@ -392,7 +392,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 4; i++)
                 list.add(String.valueOf(i));
 
-            mIntelliPlugFShiftCard = new SeekBarCardView.DSeekBarCardView(list);
+            mIntelliPlugFShiftCard = new SeekBarCardView.DSeekBarCard(list);
             mIntelliPlugFShiftCard.setTitle(getString(R.string.fshift));
             mIntelliPlugFShiftCard.setProgress(CPUHotplug.getIntelliPlugFShift());
             mIntelliPlugFShiftCard.setOnDSeekBarCardListener(this);
@@ -438,7 +438,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mBluPlugMinOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugMinOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugMinOnlineCard.setTitle(getString(R.string.min_cpu_online));
             mBluPlugMinOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
             mBluPlugMinOnlineCard.setProgress(CPUHotplug.getBluPlugMinOnline() - 1);
@@ -452,7 +452,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mBluPlugMaxOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugMaxOnlineCard.setTitle(getString(R.string.max_cpu_online));
             mBluPlugMaxOnlineCard.setDescription(getString(R.string.max_cpu_online_summary));
             mBluPlugMaxOnlineCard.setProgress(CPUHotplug.getBluPlugMaxOnline() - 1);
@@ -466,7 +466,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i + 1));
 
-            mBluPlugMaxCoresScreenOffCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugMaxCoresScreenOffCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugMaxCoresScreenOffCard.setTitle(getString(R.string.max_cores_screen_off));
             mBluPlugMaxCoresScreenOffCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mBluPlugMaxCoresScreenOffCard.setProgress(CPUHotplug.getBluPlugMaxCoresScreenOff() - 1);
@@ -481,7 +481,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mBluPlugMaxFreqScreenOffCard = new PopupCardItem.DPopupCard(list);
+            mBluPlugMaxFreqScreenOffCard = new PopupCardView.DPopupCard(list);
             mBluPlugMaxFreqScreenOffCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
             mBluPlugMaxFreqScreenOffCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mBluPlugMaxFreqScreenOffCard.setItem(CPUHotplug.getBluPlugMaxFreqScreenOff());
@@ -495,7 +495,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(i + "%");
 
-            mBluPlugUpThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugUpThresholdCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugUpThresholdCard.setTitle(getString(R.string.up_threshold));
             mBluPlugUpThresholdCard.setDescription(getString(R.string.up_threshold_summary));
             mBluPlugUpThresholdCard.setProgress(CPUHotplug.getBluPlugUpThreshold());
@@ -509,7 +509,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (float i = 0; i < 21; i++)
                 list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
-            mBluPlugUpTimerCntCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugUpTimerCntCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugUpTimerCntCard.setTitle(getString(R.string.up_timer_cnt));
             mBluPlugUpTimerCntCard.setDescription(getString(R.string.up_timer_cnt_summary));
             mBluPlugUpTimerCntCard.setProgress(CPUHotplug.getBluPlugUpTimerCnt());
@@ -523,7 +523,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (float i = 0; i < 21; i++)
                 list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
-            mBluPlugDownTimerCntCard = new SeekBarCardView.DSeekBarCardView(list);
+            mBluPlugDownTimerCntCard = new SeekBarCardView.DSeekBarCard(list);
             mBluPlugDownTimerCntCard.setTitle(getString(R.string.down_timer_cnt));
             mBluPlugDownTimerCntCard.setDescription(getString(R.string.down_timer_cnt_summary));
             mBluPlugDownTimerCntCard.setProgress(CPUHotplug.getBluPlugDownTimerCnt());
@@ -570,7 +570,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugMinCpusOnlineCard.setTitle(getString(R.string.min_cpu_online));
             mMsmHotplugMinCpusOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
             mMsmHotplugMinCpusOnlineCard.setProgress(CPUHotplug.getMsmHotplugMinCpusOnline() - 1);
@@ -584,7 +584,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugMaxCpusOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugMaxCpusOnlineCard.setTitle(getString(R.string.max_cpu_online));
             mMsmHotplugMaxCpusOnlineCard.setDescription(getString(R.string.max_cpu_online_summary));
             mMsmHotplugMaxCpusOnlineCard.setProgress(CPUHotplug.getMsmHotplugMaxCpusOnline() - 1);
@@ -599,7 +599,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugCpusBoostedCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugCpusBoostedCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugCpusBoostedCard.setTitle(getString(R.string.cpus_boosted));
             mMsmHotplugCpusBoostedCard.setDescription(getString(R.string.cpus_boosted_summary));
             mMsmHotplugCpusBoostedCard.setProgress(CPUHotplug.getMsmHotplugCpusBoosted());
@@ -613,7 +613,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugCpusOnlineSuspCard.setTitle(getString(R.string.max_cores_screen_off));
             mMsmHotplugCpusOnlineSuspCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mMsmHotplugCpusOnlineSuspCard.setProgress(CPUHotplug.getMsmHotplugMaxCpusOnlineSusp() - 1);
@@ -627,7 +627,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 5001; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugBoostLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugBoostLockDurationCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugBoostLockDurationCard.setTitle(getString(R.string.boost_lock_duration));
             mMsmHotplugBoostLockDurationCard.setDescription(getString(R.string.boost_lock_duration_summary));
             mMsmHotplugBoostLockDurationCard.setProgress(CPUHotplug.getMsmHotplugBoostLockDuration() - 1);
@@ -641,7 +641,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 5001; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugDownLockDurationCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugDownLockDurationCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugDownLockDurationCard.setTitle(getString(R.string.down_lock_duration));
             mMsmHotplugDownLockDurationCard.setDescription(getString(R.string.down_lock_duration_summary));
             mMsmHotplugDownLockDurationCard.setProgress(CPUHotplug.getMsmHotplugDownLockDuration() - 1);
@@ -655,7 +655,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 61; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugHistorySizeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugHistorySizeCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugHistorySizeCard.setTitle(getString(R.string.history_size));
             mMsmHotplugHistorySizeCard.setDescription(getString(R.string.history_size_summary));
             mMsmHotplugHistorySizeCard.setProgress(CPUHotplug.getMsmHotplugHistorySize() - 1);
@@ -669,7 +669,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 61; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugUpdateRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugUpdateRateCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugUpdateRateCard.setTitle(getString(R.string.update_rate));
             mMsmHotplugUpdateRateCard.setDescription(getString(R.string.update_rate_summary));
             mMsmHotplugUpdateRateCard.setProgress(CPUHotplug.getMsmHotplugUpdateRate());
@@ -683,7 +683,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 401; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugFastLaneLoadCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugFastLaneLoadCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugFastLaneLoadCard.setTitle(getString(R.string.fast_lane_load));
             mMsmHotplugFastLaneLoadCard.setDescription(getString(R.string.fast_lane_load_summary));
             mMsmHotplugFastLaneLoadCard.setProgress(CPUHotplug.getMsmHotplugFastLaneLoad());
@@ -697,7 +697,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMsmHotplugFastLaneMinFreqCard = new PopupCardItem.DPopupCard(list);
+            mMsmHotplugFastLaneMinFreqCard = new PopupCardView.DPopupCard(list);
             mMsmHotplugFastLaneMinFreqCard.setTitle(getString(R.string.fast_lane_min_freq));
             mMsmHotplugFastLaneMinFreqCard.setDescription(getString(R.string.fast_lane_min_freq_summary));
             mMsmHotplugFastLaneMinFreqCard.setItem((CPUHotplug.getMsmHotplugFastLaneMinFreq() / 1000) + getString(R.string.mhz));
@@ -711,7 +711,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugOfflineLoadCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugOfflineLoadCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugOfflineLoadCard.setTitle(getString(R.string.offline_load));
             mMsmHotplugOfflineLoadCard.setDescription(getString(R.string.offline_load_summary));
             mMsmHotplugOfflineLoadCard.setProgress(CPUHotplug.getMsmHotplugOfflineLoad());
@@ -736,7 +736,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugSuspendMaxCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugSuspendMaxCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugSuspendMaxCpusCard.setTitle(getString(R.string.max_cores_screen_off));
             mMsmHotplugSuspendMaxCpusCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mMsmHotplugSuspendMaxCpusCard.setProgress(CPUHotplug.getMsmHotplugSuspendMaxCpus());
@@ -750,7 +750,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMsmHotplugSuspendFreqCard = new PopupCardItem.DPopupCard(list);
+            mMsmHotplugSuspendFreqCard = new PopupCardView.DPopupCard(list);
             mMsmHotplugSuspendFreqCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
             mMsmHotplugSuspendFreqCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mMsmHotplugSuspendFreqCard.setItem((CPUHotplug.getMsmHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
@@ -764,7 +764,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i <= 5001; i += 10)
                 list.add(String.valueOf(i));
 
-            mMsmHotplugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMsmHotplugSuspendDeferTimeCard = new SeekBarCardView.DSeekBarCard(list);
             mMsmHotplugSuspendDeferTimeCard.setTitle(getString(R.string.defer_time));
             mMsmHotplugSuspendDeferTimeCard.setProgress(CPUHotplug.getMsmHotplugSuspendDeferTime());
             mMsmHotplugSuspendDeferTimeCard.setOnDSeekBarCardListener(this);
@@ -800,7 +800,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMakoCoreOnTouchCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoCoreOnTouchCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoCoreOnTouchCard.setTitle(getString(R.string.cores_on_touch));
             mMakoCoreOnTouchCard.setDescription(getString(R.string.cores_on_touch_summary));
             mMakoCoreOnTouchCard.setProgress(CPUHotplug.getMakoHotplugCoresOnTouch() - 1);
@@ -814,7 +814,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMakoHotplugCpuFreqUnplugLimitCard = new PopupCardItem.DPopupCard(list);
+            mMakoHotplugCpuFreqUnplugLimitCard = new PopupCardView.DPopupCard(list);
             mMakoHotplugCpuFreqUnplugLimitCard.setDescription(getString(R.string.cpu_freq_unplug_limit));
             mMakoHotplugCpuFreqUnplugLimitCard.setItem((CPUHotplug.getMakoHotplugCpuFreqUnplugLimit() / 1000)
                     + getString(R.string.mhz));
@@ -828,7 +828,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(i + "%");
 
-            mMakoHotplugFirstLevelCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugFirstLevelCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugFirstLevelCard.setTitle(getString(R.string.first_level));
             mMakoHotplugFirstLevelCard.setDescription(getString(R.string.first_level_summary));
             mMakoHotplugFirstLevelCard.setProgress(CPUHotplug.getMakoHotplugFirstLevel());
@@ -842,7 +842,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(String.valueOf(i));
 
-            mMakoHotplugHighLoadCounterCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugHighLoadCounterCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugHighLoadCounterCard.setTitle(getString(R.string.high_load_counter));
             mMakoHotplugHighLoadCounterCard.setProgress(CPUHotplug.getMakoHotplugHighLoadCounter());
             mMakoHotplugHighLoadCounterCard.setOnDSeekBarCardListener(this);
@@ -855,7 +855,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(i + "%");
 
-            mMakoHotplugLoadThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugLoadThresholdCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugLoadThresholdCard.setTitle(getString(R.string.load_threshold));
             mMakoHotplugLoadThresholdCard.setDescription(getString(R.string.load_threshold_summary));
             mMakoHotplugLoadThresholdCard.setProgress(CPUHotplug.getMakoHotplugLoadThreshold());
@@ -869,7 +869,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(String.valueOf(i));
 
-            mMakoHotplugMaxLoadCounterCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMaxLoadCounterCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugMaxLoadCounterCard.setTitle(getString(R.string.max_load_counter));
             mMakoHotplugMaxLoadCounterCard.setProgress(CPUHotplug.getMakoHotplugMaxLoadCounter());
             mMakoHotplugMaxLoadCounterCard.setOnDSeekBarCardListener(this);
@@ -882,7 +882,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(String.valueOf(i));
 
-            mMakoHotplugMinTimeCpuOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMinTimeCpuOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugMinTimeCpuOnlineCard.setTitle(getString(R.string.min_time_cpu_online));
             mMakoHotplugMinTimeCpuOnlineCard.setProgress(CPUHotplug.getMakoHotplugMinTimeCpuOnline());
             mMakoHotplugMinTimeCpuOnlineCard.setOnDSeekBarCardListener(this);
@@ -895,7 +895,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMakoHotplugMinCoresOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugMinCoresOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugMinCoresOnlineCard.setTitle(getString(R.string.min_cpu_online));
             mMakoHotplugMinCoresOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
             mMakoHotplugMinCoresOnlineCard.setProgress(CPUHotplug.getMakoHotplugMinCoresOnline() - 1);
@@ -909,7 +909,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 101; i++)
                 list.add(String.valueOf(i));
 
-            mMakoHotplugTimerCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMakoHotplugTimerCard = new SeekBarCardView.DSeekBarCard(list);
             mMakoHotplugTimerCard.setTitle(getString(R.string.timer));
             mMakoHotplugTimerCard.setProgress(CPUHotplug.getMakoHotplugTimer());
             mMakoHotplugTimerCard.setOnDSeekBarCardListener(this);
@@ -922,7 +922,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMakoSuspendFreqCard = new PopupCardItem.DPopupCard(list);
+            mMakoSuspendFreqCard = new PopupCardView.DPopupCard(list);
             mMakoSuspendFreqCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
             mMakoSuspendFreqCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
             mMakoSuspendFreqCard.setItem((CPUHotplug.getMakoHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
@@ -969,7 +969,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMBHotplugMinCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugMinCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugMinCpusCard.setTitle(getString(R.string.min_cpu_online));
             mMBHotplugMinCpusCard.setDescription(getString(R.string.min_cpu_online_summary));
             mMBHotplugMinCpusCard.setProgress(CPUHotplug.getMBHotplugMinCpus() - 1);
@@ -983,7 +983,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMBHotplugMaxCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugMaxCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugMaxCpusCard.setTitle(getString(R.string.max_cpu_online));
             mMBHotplugMaxCpusCard.setDescription(getString(R.string.max_cpu_online_summary));
             mMBHotplugMaxCpusCard.setProgress(CPUHotplug.getMBHotplugMaxCpus() - 1);
@@ -997,7 +997,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMBHotplugMaxCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugMaxCpusOnlineSuspCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugMaxCpusOnlineSuspCard.setTitle(getString(R.string.max_cores_screen_off));
             mMBHotplugMaxCpusOnlineSuspCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mMBHotplugMaxCpusOnlineSuspCard.setProgress(CPUHotplug.getMBHotplugMaxCpusOnlineSusp() - 1);
@@ -1011,7 +1011,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMBHotplugIdleFreqCard = new PopupCardItem.DPopupCard(list);
+            mMBHotplugIdleFreqCard = new PopupCardView.DPopupCard(list);
             mMBHotplugIdleFreqCard.setTitle(getString(R.string.idle_frequency));
             mMBHotplugIdleFreqCard.setDescription(getString(R.string.idle_frequency_summary));
             mMBHotplugIdleFreqCard.setItem((CPUHotplug.getMBHotplugIdleFreq() / 1000) + getString(R.string.mhz));
@@ -1035,7 +1035,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 51; i++)
                 list.add((i * 100) + getString(R.string.ms));
 
-            mMBHotplugBoostTimeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugBoostTimeCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugBoostTimeCard.setTitle(getString(R.string.touch_boost_time));
             mMBHotplugBoostTimeCard.setProgress(CPUHotplug.getMBHotplugBoostTime() / 100);
             mMBHotplugBoostTimeCard.setOnDSeekBarCardListener(this);
@@ -1049,7 +1049,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mMBHotplugCpusBoostedCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugCpusBoostedCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugCpusBoostedCard.setTitle(getString(R.string.cpus_boosted));
             mMBHotplugCpusBoostedCard.setDescription(getString(R.string.cpus_boosted_summary));
             mMBHotplugCpusBoostedCard.setProgress(CPUHotplug.getMBHotplugCpusBoosted());
@@ -1064,9 +1064,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int freq : CPU.getFreqs())
                 list.add((freq / 1000) + getString(R.string.mhz));
 
-            mMBHotplugBoostFreqsCard = new PopupCardItem.DPopupCard[freqs.size()];
+            mMBHotplugBoostFreqsCard = new PopupCardView.DPopupCard[freqs.size()];
             for (int i = 0; i < freqs.size(); i++) {
-                mMBHotplugBoostFreqsCard[i] = new PopupCardItem.DPopupCard(list);
+                mMBHotplugBoostFreqsCard[i] = new PopupCardView.DPopupCard(list);
                 mMBHotplugBoostFreqsCard[i].setDescription(getString(R.string.boost_frequecy_core, i));
                 mMBHotplugBoostFreqsCard[i].setItem((freqs.get(i) / 1000) + getString(R.string.mhz));
                 mMBHotplugBoostFreqsCard[i].setOnDPopupCardListener(this);
@@ -1080,7 +1080,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 51; i++)
                 list.add((i * 1000) + getString(R.string.ms));
 
-            mMBHotplugStartDelayCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugStartDelayCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugStartDelayCard.setTitle(getString(R.string.start_delay));
             mMBHotplugStartDelayCard.setDescription(getString(R.string.start_delay_summary));
             mMBHotplugStartDelayCard.setProgress(CPUHotplug.getMBHotplugStartDelay() / 1000);
@@ -1094,7 +1094,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 201; i++)
                 list.add(String.valueOf(i));
 
-            mMBHotplugDelayCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugDelayCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugDelayCard.setTitle(getString(R.string.delay));
             mMBHotplugDelayCard.setDescription(getString(R.string.delay_summary));
             mMBHotplugDelayCard.setProgress(CPUHotplug.getMBHotplugDelay());
@@ -1108,7 +1108,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 0; i < 51; i++)
                 list.add((i * 1000) + getString(R.string.ms));
 
-            mMBHotplugPauseCard = new SeekBarCardView.DSeekBarCardView(list);
+            mMBHotplugPauseCard = new SeekBarCardView.DSeekBarCard(list);
             mMBHotplugPauseCard.setTitle(getString(R.string.pause));
             mMBHotplugPauseCard.setDescription(getString(R.string.pause_summary));
             mMBHotplugPauseCard.setProgress(CPUHotplug.getMBHotplugPause() / 1000);
@@ -1155,7 +1155,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 101; i++)
                 list.add(i + "%");
 
-            mAlucardHotplugSamplingRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugSamplingRateCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugSamplingRateCard.setTitle(getString(R.string.sampling_rate));
             mAlucardHotplugSamplingRateCard.setProgress(CPUHotplug.getAlucardHotplugSamplingRate() - 1);
             mAlucardHotplugSamplingRateCard.setOnDSeekBarCardListener(this);
@@ -1178,7 +1178,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mAlucardHotplugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugMinCpusOnlineCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugMinCpusOnlineCard.setTitle(getString(R.string.min_cpu_online));
             mAlucardHotplugMinCpusOnlineCard.setDescription(getString(R.string.min_cpu_online_summary));
             mAlucardHotplugMinCpusOnlineCard.setProgress(CPUHotplug.getAlucardHotplugMinCpusOnline() - 1);
@@ -1192,7 +1192,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mAlucardHotplugMaxCoresLimitCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugMaxCoresLimitCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugMaxCoresLimitCard.setTitle(getString(R.string.max_cpu_online));
             mAlucardHotplugMaxCoresLimitCard.setDescription(getString(R.string.max_cpu_online_summary));
             mAlucardHotplugMaxCoresLimitCard.setProgress(CPUHotplug.getAlucardHotplugMaxCoresLimit() - 1);
@@ -1206,7 +1206,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i <= CPU.getCoreCount(); i++)
                 list.add(String.valueOf(i));
 
-            mAlucardHotplugMaxCoresLimitSleepCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugMaxCoresLimitSleepCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugMaxCoresLimitSleepCard.setTitle(getString(R.string.max_cores_screen_off));
             mAlucardHotplugMaxCoresLimitSleepCard.setDescription(getString(R.string.max_cores_screen_off_summary));
             mAlucardHotplugMaxCoresLimitSleepCard.setProgress(CPUHotplug.getAlucardHotplugMaxCoresLimitSleep() - 1);
@@ -1220,7 +1220,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 101; i++)
                 list.add(i + "%");
 
-            mAlucardHotplugCpuDownRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugCpuDownRateCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugCpuDownRateCard.setTitle(getString(R.string.cpu_down_rate));
             mAlucardHotplugCpuDownRateCard.setProgress(CPUHotplug.getAlucardHotplugCpuDownRate() - 1);
             mAlucardHotplugCpuDownRateCard.setOnDSeekBarCardListener(this);
@@ -1233,7 +1233,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             for (int i = 1; i < 101; i++)
                 list.add(i + "%");
 
-            mAlucardHotplugCpuUpRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAlucardHotplugCpuUpRateCard = new SeekBarCardView.DSeekBarCard(list);
             mAlucardHotplugCpuUpRateCard.setTitle(getString(R.string.cpu_up_rate));
             mAlucardHotplugCpuUpRateCard.setProgress(CPUHotplug.getAlucardHotplugCpuUpRate() - 1);
             mAlucardHotplugCpuUpRateCard.setOnDSeekBarCardListener(this);
@@ -1268,7 +1268,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
-            mThunderPlugSuspendCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugSuspendCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mThunderPlugSuspendCpusCard.setTitle(getString(R.string.min_cores_screen_off));
             mThunderPlugSuspendCpusCard.setDescription(getString(R.string.min_cores_screen_off_summary));
             mThunderPlugSuspendCpusCard.setProgress(CPUHotplug.getThunderPlugSuspendCpus() - 1);
@@ -1278,7 +1278,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (CPUHotplug.hasThunderPlugEnduranceLevel()) {
-            mThunderPlugEnduranceLevelCard = new PopupCardItem.DPopupCard(new ArrayList<>(Arrays
+            mThunderPlugEnduranceLevelCard = new PopupCardView.DPopupCard(new ArrayList<>(Arrays
                     .asList(getResources().getStringArray(R.array.thunderplug_endurance_level_items))));
             mThunderPlugEnduranceLevelCard.setTitle(getString(R.string.endurance_level));
             mThunderPlugEnduranceLevelCard.setDescription(getString(R.string.endurance_level_summary));
@@ -1292,7 +1292,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 51; i++) list.add(String.valueOf(i * 50 + 100));
 
-            mThunderPlugSamplingRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugSamplingRateCard = new SeekBarCardView.DSeekBarCard(list);
             mThunderPlugSamplingRateCard.setTitle(getString(R.string.sampling_rate));
             mThunderPlugSamplingRateCard.setProgress(CPUHotplug.getThunderPlugSamplingRate() / 50);
             mThunderPlugSamplingRateCard.setOnDSeekBarCardListener(this);
@@ -1304,7 +1304,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 11; i < 101; i++) list.add(String.valueOf(i));
 
-            mThunderPlugLoadThresholdCard = new SeekBarCardView.DSeekBarCardView(list);
+            mThunderPlugLoadThresholdCard = new SeekBarCardView.DSeekBarCard(list);
             mThunderPlugLoadThresholdCard.setTitle(getString(R.string.load_threshold));
             mThunderPlugLoadThresholdCard.setDescription(getString(R.string.load_threshold_summary));
             mThunderPlugLoadThresholdCard.setProgress(CPUHotplug.getThunderPlugLoadThreshold() - 11);
@@ -1350,7 +1350,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 61; i++) list.add((i * 1000) + getString(R.string.ms));
 
-            mZenDecisionWakeWaitTimeCard = new SeekBarCardView.DSeekBarCardView(list);
+            mZenDecisionWakeWaitTimeCard = new SeekBarCardView.DSeekBarCard(list);
             mZenDecisionWakeWaitTimeCard.setTitle(getString(R.string.wake_wait_time));
             mZenDecisionWakeWaitTimeCard.setDescription(getString(R.string.wake_wait_time_summary));
             mZenDecisionWakeWaitTimeCard.setProgress(CPUHotplug.getZenDecisionWakeWaitTime() / 1000);
@@ -1364,7 +1364,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             list.add(getString(R.string.disabled));
             for (int i = 1; i < 101; i++) list.add(i + "%");
 
-            mZenDecisionBatThresholdIgnoreCard = new SeekBarCardView.DSeekBarCardView(list);
+            mZenDecisionBatThresholdIgnoreCard = new SeekBarCardView.DSeekBarCard(list);
             mZenDecisionBatThresholdIgnoreCard.setTitle(getString(R.string.bat_threshold_ignore));
             mZenDecisionBatThresholdIgnoreCard.setDescription(getString(R.string.bat_threshold_ignore_summary));
             mZenDecisionBatThresholdIgnoreCard.setProgress(CPUHotplug.getZenDecisionBatThresholdIgnore());
@@ -1399,7 +1399,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 101; i++) list.add(i + "%");
 
-            mAutoSmpCpufreqDownCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCpufreqDownCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpCpufreqDownCard.setTitle(getString(R.string.downrate_limits));
             mAutoSmpCpufreqDownCard.setProgress(CPUHotplug.getAutoSmpCpufreqDown());
             mAutoSmpCpufreqDownCard.setOnDSeekBarCardListener(this);
@@ -1411,7 +1411,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 101; i++) list.add(i + "%");
 
-            mAutoSmpCpufreqUpCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCpufreqUpCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpCpufreqUpCard.setTitle(getString(R.string.uprate_limits));
             mAutoSmpCpufreqUpCard.setProgress(CPUHotplug.getAutoSmpCpufreqUp());
             mAutoSmpCpufreqUpCard.setOnDSeekBarCardListener(this);
@@ -1423,7 +1423,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
-            mAutoSmpCycleDownCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCycleDownCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpCycleDownCard.setTitle(getString(R.string.cycle_down));
             mAutoSmpCycleDownCard.setDescription(getString(R.string.cycle_down_summary));
             mAutoSmpCycleDownCard.setProgress(CPUHotplug.getAutoSmpCycleDown());
@@ -1436,7 +1436,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
-            mAutoSmpCycleUpCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpCycleUpCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpCycleUpCard.setTitle(getString(R.string.cycle_up));
             mAutoSmpCycleUpCard.setDescription(getString(R.string.cycle_up_summary));
             mAutoSmpCycleUpCard.setProgress(CPUHotplug.getAutoSmpCycleUp());
@@ -1449,7 +1449,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 501; i++) list.add(i + getString(R.string.ms));
 
-            mAutoSmpDelayCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpDelayCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpDelayCard.setTitle(getString(R.string.delay));
             mAutoSmpDelayCard.setDescription(getString(R.string.delay_summary));
             mAutoSmpDelayCard.setProgress(CPUHotplug.getAutoSmpDelay());
@@ -1462,7 +1462,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
-            mAutoSmpMaxCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpMaxCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpMaxCpusCard.setTitle(getString(R.string.max_cpu_online));
             mAutoSmpMaxCpusCard.setDescription(getString(R.string.max_cpu_online_summary));
             mAutoSmpMaxCpusCard.setProgress(CPUHotplug.getAutoSmpMaxCpus() - 1);
@@ -1475,7 +1475,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
-            mAutoSmpMinCpusCard = new SeekBarCardView.DSeekBarCardView(list);
+            mAutoSmpMinCpusCard = new SeekBarCardView.DSeekBarCard(list);
             mAutoSmpMinCpusCard.setTitle(getString(R.string.min_cpu_online));
             mAutoSmpMinCpusCard.setDescription(getString(R.string.min_cpu_online_summary));
             mAutoSmpMinCpusCard.setProgress(CPUHotplug.getAutoSmpMinCpus() - 1);
@@ -1554,7 +1554,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
+    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mIntelliPlugProfileCard)
             CPUHotplug.setIntelliPlugProfile(position, getActivity());
         else if (dPopupCard == mIntelliPlugScreenOffMaxCard)
@@ -1583,136 +1583,136 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mIntelliPlugHysteresisCard)
+    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (dSeekBarCard == mIntelliPlugHysteresisCard)
             CPUHotplug.setIntelliPlugHysteresis(position, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugThresholdCard)
+        else if (dSeekBarCard == mIntelliPlugThresholdCard)
             CPUHotplug.setIntelliPlugThresold(position, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugCpusBoostedCard)
+        else if (dSeekBarCard == mIntelliPlugCpusBoostedCard)
             CPUHotplug.setIntelliPlugCpusBoosted(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugMinCpusOnlineCard)
+        else if (dSeekBarCard == mIntelliPlugMinCpusOnlineCard)
             CPUHotplug.setIntelliPlugMinCpusOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineCard)
+        else if (dSeekBarCard == mIntelliPlugMaxCpusOnlineCard)
             CPUHotplug.setIntelliPlugMaxCpusOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugMaxCpusOnlineSuspCard)
+        else if (dSeekBarCard == mIntelliPlugMaxCpusOnlineSuspCard)
             CPUHotplug.setIntelliPlugMaxCpusOnlineSusp(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugSuspendDeferTimeCard)
+        else if (dSeekBarCard == mIntelliPlugSuspendDeferTimeCard)
             CPUHotplug.setIntelliPlugSuspendDeferTime(position * 10, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugDeferSamplingCard)
+        else if (dSeekBarCard == mIntelliPlugDeferSamplingCard)
             CPUHotplug.setIntelliPlugDeferSampling(position, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugBoostLockDurationCard)
+        else if (dSeekBarCard == mIntelliPlugBoostLockDurationCard)
             CPUHotplug.setIntelliPlugBoostLockDuration(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugDownLockDurationCard)
+        else if (dSeekBarCard == mIntelliPlugDownLockDurationCard)
             CPUHotplug.setIntelliPlugDownLockDuration(position + 1, getActivity());
-        else if (dSeekBarCardView == mIntelliPlugFShiftCard)
+        else if (dSeekBarCard == mIntelliPlugFShiftCard)
             CPUHotplug.setIntelliPlugFShift(position, getActivity());
-        else if (dSeekBarCardView == mBluPlugMinOnlineCard)
+        else if (dSeekBarCard == mBluPlugMinOnlineCard)
             CPUHotplug.setBluPlugMinOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mBluPlugMaxOnlineCard)
+        else if (dSeekBarCard == mBluPlugMaxOnlineCard)
             CPUHotplug.setBluPlugMaxOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mBluPlugMaxCoresScreenOffCard)
+        else if (dSeekBarCard == mBluPlugMaxCoresScreenOffCard)
             CPUHotplug.setBluPlugMaxCoresScreenOff(position + 1, getActivity());
-        else if (dSeekBarCardView == mBluPlugUpThresholdCard)
+        else if (dSeekBarCard == mBluPlugUpThresholdCard)
             CPUHotplug.setBluPlugUpThreshold(position, getActivity());
-        else if (dSeekBarCardView == mBluPlugUpTimerCntCard)
+        else if (dSeekBarCard == mBluPlugUpTimerCntCard)
             CPUHotplug.setBluPlugUpTimerCnt(position, getActivity());
-        else if (dSeekBarCardView == mBluPlugDownTimerCntCard)
+        else if (dSeekBarCard == mBluPlugDownTimerCntCard)
             CPUHotplug.setBluPlugDownTimerCnt(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugMinCpusOnlineCard)
+        else if (dSeekBarCard == mMsmHotplugMinCpusOnlineCard)
             CPUHotplug.setMsmHotplugMinCpusOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugMaxCpusOnlineCard)
+        else if (dSeekBarCard == mMsmHotplugMaxCpusOnlineCard)
             CPUHotplug.setMsmHotplugMaxCpusOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugCpusBoostedCard)
+        else if (dSeekBarCard == mMsmHotplugCpusBoostedCard)
             CPUHotplug.setMsmHotplugCpusBoosted(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugCpusOnlineSuspCard)
+        else if (dSeekBarCard == mMsmHotplugCpusOnlineSuspCard)
             CPUHotplug.setMsmHotplugMaxCpusOnlineSusp(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugBoostLockDurationCard)
+        else if (dSeekBarCard == mMsmHotplugBoostLockDurationCard)
             CPUHotplug.setMsmHotplugBoostLockDuration(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugDownLockDurationCard)
+        else if (dSeekBarCard == mMsmHotplugDownLockDurationCard)
             CPUHotplug.setMsmHotplugDownLockDuration(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugHistorySizeCard)
+        else if (dSeekBarCard == mMsmHotplugHistorySizeCard)
             CPUHotplug.setMsmHotplugHistorySize(position + 1, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugUpdateRateCard)
+        else if (dSeekBarCard == mMsmHotplugUpdateRateCard)
             CPUHotplug.setMsmHotplugUpdateRate(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugFastLaneLoadCard)
+        else if (dSeekBarCard == mMsmHotplugFastLaneLoadCard)
             CPUHotplug.setMsmHotplugFastLaneLoad(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugOfflineLoadCard)
+        else if (dSeekBarCard == mMsmHotplugOfflineLoadCard)
             CPUHotplug.setMsmHotplugOfflineLoad(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugSuspendMaxCpusCard)
+        else if (dSeekBarCard == mMsmHotplugSuspendMaxCpusCard)
             CPUHotplug.setMsmHotplugSuspendMaxCpus(position, getActivity());
-        else if (dSeekBarCardView == mMsmHotplugSuspendDeferTimeCard)
+        else if (dSeekBarCard == mMsmHotplugSuspendDeferTimeCard)
             CPUHotplug.setMsmHotplugSuspendDeferTime(position, getActivity());
-        else if (dSeekBarCardView == mMakoCoreOnTouchCard)
+        else if (dSeekBarCard == mMakoCoreOnTouchCard)
             CPUHotplug.setMakoHotplugCoresOnTouch(position + 1, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugFirstLevelCard)
+        else if (dSeekBarCard == mMakoHotplugFirstLevelCard)
             CPUHotplug.setMakoHotplugFirstLevel(position, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugHighLoadCounterCard)
+        else if (dSeekBarCard == mMakoHotplugHighLoadCounterCard)
             CPUHotplug.setMakoHotplugHighLoadCounter(position, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugLoadThresholdCard)
+        else if (dSeekBarCard == mMakoHotplugLoadThresholdCard)
             CPUHotplug.setMakoHotplugLoadThreshold(position, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugMaxLoadCounterCard)
+        else if (dSeekBarCard == mMakoHotplugMaxLoadCounterCard)
             CPUHotplug.setMakoHotplugMaxLoadCounter(position, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugMinTimeCpuOnlineCard)
+        else if (dSeekBarCard == mMakoHotplugMinTimeCpuOnlineCard)
             CPUHotplug.setMakoHotplugMinTimeCpuOnline(position, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugMinCoresOnlineCard)
+        else if (dSeekBarCard == mMakoHotplugMinCoresOnlineCard)
             CPUHotplug.setMakoHotplugMinCoresOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mMakoHotplugTimerCard)
+        else if (dSeekBarCard == mMakoHotplugTimerCard)
             CPUHotplug.setMakoHotplugTimer(position, getActivity());
-        else if (dSeekBarCardView == mMBHotplugMinCpusCard)
+        else if (dSeekBarCard == mMBHotplugMinCpusCard)
             CPUHotplug.setMBHotplugMinCpus(position + 1, getActivity());
-        else if (dSeekBarCardView == mMBHotplugMaxCpusCard)
+        else if (dSeekBarCard == mMBHotplugMaxCpusCard)
             CPUHotplug.setMBHotplugMaxCpus(position + 1, getActivity());
-        else if (dSeekBarCardView == mMBHotplugMaxCpusOnlineSuspCard)
+        else if (dSeekBarCard == mMBHotplugMaxCpusOnlineSuspCard)
             CPUHotplug.setMBHotplugMaxCpusOnlineSusp(position + 1, getActivity());
-        else if (dSeekBarCardView == mMBHotplugBoostTimeCard)
+        else if (dSeekBarCard == mMBHotplugBoostTimeCard)
             CPUHotplug.setMBHotplugBoostTime(position * 100, getActivity());
-        else if (dSeekBarCardView == mMBHotplugCpusBoostedCard)
+        else if (dSeekBarCard == mMBHotplugCpusBoostedCard)
             CPUHotplug.setMBHotplugCpusBoosted(position, getActivity());
-        else if (dSeekBarCardView == mMBHotplugStartDelayCard)
+        else if (dSeekBarCard == mMBHotplugStartDelayCard)
             CPUHotplug.setMBHotplugStartDelay(position * 1000, getActivity());
-        else if (dSeekBarCardView == mMBHotplugDelayCard)
+        else if (dSeekBarCard == mMBHotplugDelayCard)
             CPUHotplug.setMBHotplugDelay(position, getActivity());
-        else if (dSeekBarCardView == mMBHotplugPauseCard)
+        else if (dSeekBarCard == mMBHotplugPauseCard)
             CPUHotplug.setMBHotplugPause(position * 1000, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugSamplingRateCard)
+        else if (dSeekBarCard == mAlucardHotplugSamplingRateCard)
             CPUHotplug.setAlucardHotplugSamplingRate(position + 1, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugMinCpusOnlineCard)
+        else if (dSeekBarCard == mAlucardHotplugMinCpusOnlineCard)
             CPUHotplug.setAlucardHotplugMinCpusOnline(position + 1, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugMaxCoresLimitCard)
+        else if (dSeekBarCard == mAlucardHotplugMaxCoresLimitCard)
             CPUHotplug.setAlucardHotplugMaxCoresLimit(position + 1, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugMaxCoresLimitSleepCard)
+        else if (dSeekBarCard == mAlucardHotplugMaxCoresLimitSleepCard)
             CPUHotplug.setAlucardHotplugMaxCoresLimitSleep(position + 1, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugCpuDownRateCard)
+        else if (dSeekBarCard == mAlucardHotplugCpuDownRateCard)
             CPUHotplug.setAlucardHotplugCpuDownRate(position + 1, getActivity());
-        else if (dSeekBarCardView == mAlucardHotplugCpuUpRateCard)
+        else if (dSeekBarCard == mAlucardHotplugCpuUpRateCard)
             CPUHotplug.setAlucardHotplugCpuUpRate(position + 1, getActivity());
-        else if (dSeekBarCardView == mThunderPlugSuspendCpusCard)
+        else if (dSeekBarCard == mThunderPlugSuspendCpusCard)
             CPUHotplug.setThunderPlugSuspendCpus(position + 1, getActivity());
-        else if (dSeekBarCardView == mThunderPlugSamplingRateCard)
+        else if (dSeekBarCard == mThunderPlugSamplingRateCard)
             CPUHotplug.setThunderPlugSamplingRate(position * 50, getActivity());
-        else if (dSeekBarCardView == mThunderPlugLoadThresholdCard)
+        else if (dSeekBarCard == mThunderPlugLoadThresholdCard)
             CPUHotplug.setThunderPlugLoadThreshold(position + 11, getActivity());
-        else if (dSeekBarCardView == mZenDecisionWakeWaitTimeCard)
+        else if (dSeekBarCard == mZenDecisionWakeWaitTimeCard)
             CPUHotplug.setZenDecisionWakeWaitTime(position * 1000, getActivity());
-        else if (dSeekBarCardView == mZenDecisionBatThresholdIgnoreCard)
+        else if (dSeekBarCard == mZenDecisionBatThresholdIgnoreCard)
             CPUHotplug.setZenDecisionBatThresholdIgnore(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpCpufreqDownCard)
+        else if (dSeekBarCard == mAutoSmpCpufreqDownCard)
             CPUHotplug.setAutoSmpCpufreqDown(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpCpufreqUpCard)
+        else if (dSeekBarCard == mAutoSmpCpufreqUpCard)
             CPUHotplug.setAutoSmpCpufreqUp(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpCycleDownCard)
+        else if (dSeekBarCard == mAutoSmpCycleDownCard)
             CPUHotplug.setAutoSmpCycleDown(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpCycleUpCard)
+        else if (dSeekBarCard == mAutoSmpCycleUpCard)
             CPUHotplug.setAutoSmpCycleUp(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpDelayCard)
+        else if (dSeekBarCard == mAutoSmpDelayCard)
             CPUHotplug.setAutoSmpDelay(position, getActivity());
-        else if (dSeekBarCardView == mAutoSmpMaxCpusCard)
+        else if (dSeekBarCard == mAutoSmpMaxCpusCard)
             CPUHotplug.setAutoSmpMaxCpus(position + 1, getActivity());
-        else if (dSeekBarCardView == mAutoSmpMinCpusCard)
+        else if (dSeekBarCard == mAutoSmpMinCpusCard)
             CPUHotplug.setAutoSmpMinCpus(position + 1, getActivity());
     }
 

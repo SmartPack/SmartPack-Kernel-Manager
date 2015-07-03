@@ -23,14 +23,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
@@ -51,8 +55,12 @@ import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -60,10 +68,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 /**
  * Created by willi on 30.11.14.
@@ -71,6 +86,135 @@ import java.util.Locale;
 public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
+
+    // MD5 code from
+    // https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-12.1/src/com/cyanogenmod/updater/utils/MD5.java
+    public static boolean checkMD5(String md5, File updateFile) {
+        if (TextUtils.isEmpty(md5) || updateFile == null) {
+            Log.e(TAG, "MD5 string empty or updateFile null");
+            return false;
+        }
+
+        String calculatedDigest = calculateMD5(updateFile);
+        if (calculatedDigest == null) {
+            Log.e(TAG, "calculatedDigest null");
+            return false;
+        }
+
+        Log.v(TAG, "Calculated digest: " + calculatedDigest);
+        Log.v(TAG, "Provided digest: " + md5);
+
+        return calculatedDigest.equalsIgnoreCase(md5);
+    }
+
+    public static String calculateMD5(File updateFile) {
+        MessageDigest digest;
+        try {
+            digest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            Log.e(TAG, "Exception while getting digest", e);
+            return null;
+        }
+
+        InputStream is;
+        try {
+            is = new FileInputStream(updateFile);
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "Exception while getting FileInputStream", e);
+            return null;
+        }
+
+        byte[] buffer = new byte[8192];
+        int read;
+        try {
+            while ((read = is.read(buffer)) > 0) {
+                digest.update(buffer, 0, read);
+            }
+            byte[] md5sum = digest.digest();
+            BigInteger bigInt = new BigInteger(1, md5sum);
+            String output = bigInt.toString(16);
+            // Fill to 32 chars
+            output = String.format("%32s", output).replace(' ', '0');
+            return output;
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to process file for MD5", e);
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                Log.e(TAG, "Exception on closing MD5 input stream", e);
+            }
+        }
+    }
+
+    public static boolean isRTL(Context context) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
+                && context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
+
+    public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        int newWidth = width;
+        int newHeight = height;
+
+        if (maxWidth != 0 && newWidth > maxWidth) {
+            newHeight = Math.round((float) maxWidth / newWidth * newHeight);
+            newWidth = maxWidth;
+        }
+
+        if (maxHeight != 0 && newHeight > maxHeight) {
+            newWidth = Math.round((float) maxHeight / newHeight * newWidth);
+            newHeight = maxHeight;
+        }
+
+        return width != newWidth || height != newHeight ? resizeBitmap(bitmap, newWidth, newHeight) : bitmap;
+    }
+
+    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
+    }
+
+    private static final Set<CustomTarget> protectedFromGarbageCollectorTargets = new HashSet<>();
+
+    public static void loadImagefromUrl(String url, ImageView imageView) {
+        CustomTarget target = new CustomTarget().setImageView(imageView);
+        protectedFromGarbageCollectorTargets.add(target);
+        Picasso.with(imageView.getContext()).load(url).into(target);
+    }
+
+    private static class CustomTarget implements Target {
+        private ImageView imageView;
+
+        public CustomTarget setImageView(ImageView imageView) {
+            this.imageView = imageView;
+            return this;
+        }
+
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            imageView.setImageBitmap(scaleDownBitmap(bitmap, 1024, 1024));
+            protectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+            protectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    }
+
+    public static String getDeviceName() {
+        return Build.DEVICE;
+    }
+
+    public static String getVendorName() {
+        return Build.MANUFACTURER;
+    }
 
     public static String decodeString(String text) {
         try {
@@ -218,9 +362,16 @@ public class Utils implements Constants {
         return applys;
     }
 
-    public static double celsiusToFahrenheit(double celsius) {
-        double temp = celsius * 9 / 5 + 32;
-        return (double) Math.round(temp * 100.0) / 100.0;
+    public static String celsiusToFahrenheit(double celsius) {
+        return round(celsius * 9 / 5 + 32, 2) + "°F";
+    }
+
+    public static String round(double value, int places) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < places; i++) stringBuilder.append("#");
+        DecimalFormat df = new DecimalFormat("#." + stringBuilder.toString());
+        df.setRoundingMode(RoundingMode.CEILING);
+        return df.format(value);
     }
 
     public static long stringToLong(String string) {

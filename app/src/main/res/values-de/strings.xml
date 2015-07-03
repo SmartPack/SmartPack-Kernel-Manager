@@ -10,13 +10,16 @@
   <string name="beta_message">Danke dass du Beta Tester bist. Falls du irgendwelche Probleme hast, zögere bitte nicht mich zu kontaktieren. Momentan benutzt du Version %s.</string>
   <string name="select_picture">Bild auswählen</string>
   <string name="no_picture">kein Bild</string>
+  <string name="went_wrong">Etwas ist schief gelaufen!</string>
+  <string name="password">Passwort</string>
+  <string name="password_wrong">Falsches Passwort</string>
   <string name="select_file">Wähle %s?</string>
   <string name="no_files">Keine Dateien in diesem Pfad.</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_finished">Deine Änderungen wurden übernommen</string>
   <string name="apply_on_boot_time">Anwenden der Einstellungen in %d Sekunde/n</string>
-  <string name="apply_on_boot_enabled">Aktiviere beim Booten für %s Abschnitt</string>
-  <string name="apply_on_boot_disabled">Deaktiviere beim Booten für %s Abschnitt</string>
+  <string name="apply_on_boot_enabled">Aktiviere beim Booten für Abschnitt %s</string>
+  <string name="apply_on_boot_disabled">Deaktiviere beim Booten für Abschnitt %s</string>
   <string name="apply_on_boot_failed">Fehler beim Anwenden von Einstellungen beim Booten</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
@@ -30,8 +33,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Werkzeuge</string>
   <string name="other">Anderes</string>
-  <string name="frequency_table">Frequenzübersicht</string>
   <string name="kernel_information">Kernel-Informationen</string>
+  <string name="frequency_table">Frequenzübersicht</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU-Spannung</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -73,7 +76,7 @@
   <string name="cpu_min_freq">Minimale CPU-Frequenz</string>
   <string name="cpu_min_freq_summary">Ändere die minimale Taktfrequenz der CPU.</string>
   <string name="cpu_max_screen_off_freq">Maximale CPU-Taktfrequenz bei ausgeschaltetem Bildschirm</string>
-  <string name="cpu_max_screen_off_freq_summary">Ändere die minimale Taktfrequenz der CPU wenn der Bildschirm aus ist.</string>
+  <string name="cpu_max_screen_off_freq_summary">Ändere die minimale Taktfrequenz der CPU, wenn der Bildschirm aus ist.</string>
   <string name="cpu_governor">CPU-Governor</string>
   <string name="cpu_governor_summary">Der CPU-Governor entscheidet, wie sich die CPU verhält. Die Änderung des Governors hat Auswirkungen darauf, wie sich die CPU zwischen Frequenzen entscheidet.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
@@ -87,7 +90,7 @@
   <string name="enabled">Aktiviert</string>
   <string name="aggressive">Aggressiv</string>
   <string name="cpu_quiet">CPUQuiet</string>
-  <string name="cpu_quiet_governor">CPUQuiet Gouverneur</string>
+  <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">CPU-Boost</string>
   <string name="debug_mask">Debug-Mask</string>
   <string name="debug_mask_summary">Erlaubt dir, Debug-Mask für CPU-Boost-Operationen zu aktivieren.</string>
@@ -168,7 +171,7 @@
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
-  <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Von show-p1984 entwickelt.</string>
+  <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Entwickelt von showp1984.</string>
   <string name="screen_off_single_core_summary">Verwende nur einen Kern, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="idle_frequency">Leerlauf-Frequenz</string>
   <string name="idle_frequency_summary">Wenn der erste Kern unter der eingestellten Frequenz läuft, nicht die anderen Kerne aktivieren.</string>
@@ -189,6 +192,8 @@
   <string name="quad_core_mode">Quad-Core-Modus</string>
   <string name="dual_core_mode">Dual-Core-Modus</string>
   <string name="zen_decision">Zen Decision</string>
+  <string name="autosmp">AutoSMP</string>
+  <string name="autosmp_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von mrg666.</string>
   <string name="freq_step">Frequenz-Schritt</string>
   <string name="temp_safety">Temperatur-Sicherheit</string>
   <string name="check_interval">Prüfintervall</string>
@@ -343,6 +348,7 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
+  <string name="google_plus">Google Plus</string>
   <string name="boot">Boot</string>
   <string name="delete">Löschen</string>
   <string name="items_found">%d Objekt/e gefunden</string>
@@ -369,7 +375,6 @@
   <string name="wipe_data">Daten löschen</string>
   <string name="wipe_cache">Cache löschen</string>
   <string name="flash_zip">Zip flashen</string>
-  <string name="went_wrong">Etwas ist schief gelaufen!</string>
   <string name="flash_now">Jetzt flashen</string>
   <string name="flash_now_confirm">Möchten Sie Ihre Aktionen ausführen? Das Gerät wird ins Recovery-System starten und die Aktionen werden in der Reihenfolge ausgeführt, wie sie hinzugefügt wurden.</string>
   <string name="add_action_first">Sie müssen zunächst eine Aktion hinzufügen.</string>
@@ -419,7 +424,6 @@
   <string name="open_source_summary">Der Quellcode dieser App ist offen und kann auf meinem GitHub Account gefunden werden.</string>
   <string name="feature_request">Funktionsanfrage</string>
   <string name="feature_request_summary">Willst du mehr Funktionen? Öffne einen \"Issue\" auf GitHub und erzähl mir von deiner Idee.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Werde Teil unserer Community.</string>
   <string name="translation">Übersetzung</string>
   <string name="translation_summary">Hilf mir, diese App zu übersetzen!</string>

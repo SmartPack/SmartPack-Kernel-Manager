@@ -19,9 +19,9 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
 
@@ -32,13 +32,13 @@ import java.util.List;
  * Created by willi on 27.12.14.
  */
 public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
 
     private SwitchCardView.DSwitchCard mEnableKsmCard, mDeferredTimerCard;
 
-    private SeekBarCardView.DSeekBarCardView mPagesToScanCard, mSleepMillisecondsCard;
+    private SeekBarCardView.DSeekBarCard mPagesToScanCard, mSleepMillisecondsCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 1025; i++) list.add(String.valueOf(i));
 
-            mPagesToScanCard = new SeekBarCardView.DSeekBarCardView(list);
+            mPagesToScanCard = new SeekBarCardView.DSeekBarCard(list);
             mPagesToScanCard.setTitle(getString(R.string.ksm_pages_to_scan));
             mPagesToScanCard.setProgress(KSM.getPagesToScan());
             mPagesToScanCard.setOnDSeekBarCardListener(this);
@@ -95,7 +95,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
             List<String> list = new ArrayList<>();
             for (int i = 0; i < 5001; i++) list.add(i + getString(R.string.ms));
 
-            mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCardView(list);
+            mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCard(list);
             mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
             mSleepMillisecondsCard.setProgress(KSM.getSleepMilliseconds());
             mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
@@ -113,13 +113,13 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mPagesToScanCard) KSM.setPagesToScan(position, getActivity());
-        else if (dSeekBarCardView == mSleepMillisecondsCard)
+    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (dSeekBarCard == mPagesToScanCard) KSM.setPagesToScan(position, getActivity());
+        else if (dSeekBarCard == mSleepMillisecondsCard)
             KSM.setSleepMilliseconds(position, getActivity());
     }
 

@@ -10,7 +10,7 @@
   <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
   <string name="select_picture">Selezionare Immagine</string>
   <string name="no_picture">Nessuna foto</string>
-  <string name="picture_too_big">L\'immagine selezionata è troppo grande</string>
+  <string name="went_wrong">Qualcosa è andato storto!</string>
   <string name="password">Password</string>
   <string name="password_wrong">La password è sbagliata</string>
   <string name="select_file">Selezionare %s?</string>
@@ -33,8 +33,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Strumenti</string>
   <string name="other">Altro</string>
-  <string name="frequency_table">Tabella Frequenze</string>
   <string name="kernel_information">Informazioni del kernel</string>
+  <string name="frequency_table">Tabella Frequenze</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltaggio della CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -456,6 +456,7 @@
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
+  <string name="google_plus">Google+</string>
   <string name="no_backups">Nessun backup</string>
   <string name="flash_img">Flash IMG</string>
   <string name="flashing">Flash in corso</string>
@@ -494,7 +495,6 @@
   <string name="wipe_data">Cancella dati</string>
   <string name="wipe_cache">Cancella la cache</string>
   <string name="flash_zip">Flash Zip</string>
-  <string name="went_wrong">Qualcosa è andato storto!</string>
   <string name="flash_now">Flash ora</string>
   <string name="flash_now_confirm">Si desidera eseguire le azioni? Il dispositivo si riavvierà in recovery e le azioni verranno eseguite nell\'ordine come aggiunti.</string>
   <string name="add_action_first">Si deve aggiungere prima un\'azione.</string>
@@ -558,7 +558,6 @@
   <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio Github.</string>
   <string name="feature_request">Richiesta di una funzione</string>
   <string name="feature_request_summary">Vuoi più caratteristiche? Apri una nuova segnalazione su Github e dimmi la tua idea.</string>
-  <string name="google_plus">Google+</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
   <string name="translation_summary">Aiutami a tradurre questa app!</string>

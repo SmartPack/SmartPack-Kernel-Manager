@@ -8,5 +8,4 @@
     android:maxLines="1"
     android:minHeight="30dp"
     android:padding="@dimen/card_padding"
-    android:textAllCaps="true"
     android:textColor="@color/white" />

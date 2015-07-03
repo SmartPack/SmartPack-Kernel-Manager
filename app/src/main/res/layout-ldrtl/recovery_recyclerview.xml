@@ -16,7 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:paddingEnd="16dp"
             android:paddingLeft="72dp"
+            android:paddingRight="16dp"
             android:paddingStart="72dp" />
 
     </LinearLayout>

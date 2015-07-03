@@ -29,8 +29,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Araçlar</string>
   <string name="other">Diğer</string>
-  <string name="frequency_table">Frekans Tablosu</string>
   <string name="kernel_information">Kernel Bilgisi</string>
+  <string name="frequency_table">Frekans Tablosu</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">İşlemci Voltajı</string>
   <string name="cpu_hotplug">İşlemci Hotplug</string>
@@ -202,6 +202,7 @@
   <string name="tcp">TCP Congestion Algoritması</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
+  <string name="google_plus">Google Plus</string>
   <string name="delete">Sil</string>
   <string name="edit">Düzenle</string>
   <string name="key">Anahtar</string>
@@ -237,7 +238,6 @@
   <string name="open_source_summary">Bu uygulama açık kaynak sürümüdür. Github\'dan kontrol edin.</string>
   <string name="feature_request">Özellik İsteği</string>
   <string name="feature_request_summary">Daha fazla özellik mi istiyorsun? Github üzerinde yeni bir konu aç ve bana fikrini söyle.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Topluluğumuza katılın.</string>
   <string name="translation">Çeviri</string>
   <string name="translation_summary">Bu uygulamayı çevirmek için yardım edin!</string>

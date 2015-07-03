@@ -4,13 +4,13 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="no_root">Root jogosultság szükséges</string>
   <string name="no_busybox">Busybox szükséges</string>
-  <string name="ok">Ok</string>
+  <string name="ok">OK</string>
   <string name="cancel">Mégse</string>
   <string name="current_value_not_supported">Jelenlegi érték nem támogatott</string>
   <string name="beta_message">Köszönöm, hogy béta teszter! Ha bármilyen probléma merülne fel, ne habozzon a kapcsolatba lépéssel. Az éppen futó változat %s.</string>
   <string name="select_picture">Kép kiválasztása</string>
   <string name="no_picture">Nincs kép</string>
-  <string name="select_file">Kiválasztod: %s?</string>
+  <string name="select_file">%s kiválasztása?</string>
   <string name="no_files">Nem található fájl ezen az útvonalon.</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_finished">A módosítások érvénybe léptek</string>
@@ -30,8 +30,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Eszközök</string>
   <string name="other">Egyéb</string>
-  <string name="frequency_table">Frekvencia táblázat</string>
   <string name="kernel_information">Kernel információ</string>
+  <string name="frequency_table">Frekvencia táblázat</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU feszültség</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -64,7 +64,7 @@
   <string name="cpu_information">CPU információ</string>
   <string name="memory_information">Memória információ</string>
   <string name="cpu_usage">CPU használat</string>
-  <string name="cpu_temp">CPU hőmérséklete</string>
+  <string name="cpu_temp">CPU hőmérséklet</string>
   <string name="current_freq">Jelenlegi frekvencia</string>
   <string name="core">Mag %d</string>
   <string name="offline">Offline</string>
@@ -179,6 +179,7 @@
   <string name="scheduler">Ütemező</string>
   <string name="ksm_enable">KSM engedélyezése</string>
   <string name="ksm_enable_summary">Csökkenti a memória használatot, de hatással van a CPU-használatra.</string>
+  <string name="google_plus">Google+</string>
   <string name="delete">Törlés</string>
   <string name="edit">Szerkesztés</string>
   <string name="key">Kulcs</string>
@@ -186,7 +187,6 @@
   <string name="search">Keresés</string>
   <string name="license">Licenc</string>
   <string name="feature_request">Ötlet, javaslat</string>
-  <string name="google_plus">Google+</string>
   <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
   <string name="translation">Fordítás</string>
   <string name="translation_summary">Segítsen nekem lefordítani ezt az alkalmazást!</string>

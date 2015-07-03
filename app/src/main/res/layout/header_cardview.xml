@@ -6,7 +6,9 @@
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:paddingBottom="6dp"
+    android:paddingEnd="@dimen/card_padding"
     android:paddingLeft="@dimen/card_padding"
     android:paddingRight="@dimen/card_padding"
+    android:paddingStart="@dimen/card_padding"
     android:paddingTop="@dimen/card_padding"
     android:textSize="16sp" />

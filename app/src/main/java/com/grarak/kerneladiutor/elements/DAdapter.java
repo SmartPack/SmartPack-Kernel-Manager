@@ -306,9 +306,9 @@ public class DAdapter {
             }
 
             @Override
-            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+            protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
                 super.onActivityResult(requestCode, resultCode, data);
-                if (resultCode == RESULT_OK && requestCode == 0) {
+                if (resultCode == RESULT_OK && requestCode == 0)
                     try {
                         Uri selectedImageUri = data.getData();
                         setImage(selectedImageUri);
@@ -316,9 +316,8 @@ public class DAdapter {
                         animate();
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Utils.toast(getString(R.string.went_wrong), this);
+                        Utils.toast(getString(R.string.went_wrong), MainHeaderActivity.this);
                     }
-                }
                 finish();
             }
 
@@ -346,31 +345,29 @@ public class DAdapter {
             }
         }
 
-        public static void setImage(Uri uri) throws IOException {
+        public static void setImage(Uri uri) throws IOException, NullPointerException {
             String selectedImagePath = null;
             try {
                 selectedImagePath = getPath(uri, image.getContext());
             } catch (Exception ignored) {
             }
-            image.setImageBitmap(selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
-                    contentToBitmap(uri, image.getContext()));
+            Bitmap bitmap;
+            if ((bitmap = selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
+                    uriToBitmap(uri, image.getContext())) != null)
+                image.setImageBitmap(Utils.scaleDownBitmap(bitmap, 1024, 1024));
+            else throw new NullPointerException("Getting Bitmap failed");
         }
 
-        private static Bitmap contentToBitmap(Uri uri, Context context) throws IOException {
-            try {
-                InputStream inputStream = context.getContentResolver().openInputStream(uri);
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                inputStream.close();
-                return bitmap;
-            } catch (OutOfMemoryError ignored) {
-                Utils.toast(context.getString(R.string.picture_too_big), context);
-            }
-            return null;
+        private static Bitmap uriToBitmap(Uri uri, Context context) throws IOException {
+            InputStream inputStream = context.getContentResolver().openInputStream(uri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            inputStream.close();
+            return bitmap;
         }
 
         private static String getPath(Uri uri, Context context) {
-            String[] projection = {MediaStore.Images.Media.DATA};
-            Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA},
+                    null, null, null);
             if (cursor != null) {
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();

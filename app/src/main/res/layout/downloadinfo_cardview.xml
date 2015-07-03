@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="40dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/links_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/xda_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/xda"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_xda"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/github_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/github"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_github"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/googleplus_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/google_plus"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_googleplus"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/paypal_button"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/paypal"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_paypal"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/links_divider"
+            style="@style/Divider"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/short_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/long_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp" />
+
+</LinearLayout>

@@ -10,8 +10,6 @@
   <string name="beta_message">Cảm ơn bạn đã là một tester để thử nghiệm sản phẩm! Nếu bạn nhận được bất kỳ vấn đề, xin vui lòng liên hệ với tôi. Bạn hiện đang chạy phiên bản %s.</string>
   <string name="select_picture">Chọn hình ảnh</string>
   <string name="no_picture">Không có hình ảnh</string>
-  <string name="picture_too_big">Selected picture is too big</string>
-  <string name="password">Password</string>
   <string name="select_file">Chọn %s?</string>
   <string name="no_files">Không có tệp nào trong đường dẫn này.</string>
   <string name="apply_on_boot">Áp dụng khi khởi động</string>
@@ -30,8 +28,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Công cụ</string>
   <string name="other">Khác</string>
-  <string name="frequency_table">Bảng xung nhịp</string>
   <string name="kernel_information">Thông tin Kernel</string>
+  <string name="frequency_table">Bảng xung nhịp</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Điện áp CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>

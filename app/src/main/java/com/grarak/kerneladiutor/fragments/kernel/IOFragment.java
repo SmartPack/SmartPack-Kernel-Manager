@@ -20,9 +20,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.DividerCardView;
-import com.grarak.kerneladiutor.elements.PopupCardItem;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
@@ -39,9 +39,15 @@ import java.util.List;
 public class IOFragment extends ViewPagerFragment implements Constants {
 
     private static IOFragment ioFragment;
-    private static IOPart ioPart;
-    private static SchedulerPart schedulerPart;
-    private static IO.StorageType storageType;
+    private IOPart ioPart;
+    private SchedulerPart schedulerPart;
+    private IO.StorageType storageType;
+
+    @Override
+    public void preInit(Bundle savedInstanceState) {
+        super.preInit(savedInstanceState);
+        showTabs(false);
+    }
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -49,8 +55,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         ioFragment = this;
 
         allowSwipe(false);
-        addFragment(ioPart == null ? ioPart = new IOPart() : ioPart);
-        addFragment(schedulerPart == null ? schedulerPart = new SchedulerPart() : schedulerPart);
+        addFragment(new ViewPagerItem(ioPart == null ? ioPart = new IOPart() : ioPart, null));
+        addFragment(new ViewPagerItem(schedulerPart == null ? schedulerPart = new SchedulerPart() : schedulerPart, null));
     }
 
     @Override
@@ -68,16 +74,16 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         return false;
     }
 
-    public static class IOPart extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
+    public static class IOPart extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
             CardViewItem.DCardView.OnDCardListener {
 
         List<String> readheads = new ArrayList<>();
 
-        private PopupCardItem.DPopupCard mInternalSchedulerCard, mExternalSchedulerCard;
+        private PopupCardView.DPopupCard mInternalSchedulerCard, mExternalSchedulerCard;
 
         private CardViewItem.DCardView mInternalTunableCard, mExternalTunableCard;
 
-        private PopupCardItem.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
+        private PopupCardView.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
 
         @Override
         public String getClassName() {
@@ -100,7 +106,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
             addView(mInternalStorageDivider);
 
-            mInternalSchedulerCard = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.INTERNAL));
+            mInternalSchedulerCard = new PopupCardView.DPopupCard(IO.getSchedulers(IO.StorageType.INTERNAL));
             mInternalSchedulerCard.setTitle(getString(R.string.scheduler));
             mInternalSchedulerCard.setDescription(getString(R.string.scheduler_summary));
             mInternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.INTERNAL));
@@ -118,7 +124,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             for (int i = 0; i < 32; i++)
                 readheads.add((i * 128 + 128) + getString(R.string.kb));
 
-            mInternalReadAheadCard = new PopupCardItem.DPopupCard(readheads);
+            mInternalReadAheadCard = new PopupCardView.DPopupCard(readheads);
             mInternalReadAheadCard.setTitle(getString(R.string.read_ahead));
             mInternalReadAheadCard.setDescription(getString(R.string.read_ahead_summary));
             mInternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.INTERNAL) + getString(R.string.kb));
@@ -133,7 +139,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
             addView(mExternalStorageDivider);
 
-            mExternalSchedulerCard = new PopupCardItem.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
+            mExternalSchedulerCard = new PopupCardView.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
             mExternalSchedulerCard.setDescription(getString(R.string.scheduler));
             mExternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.EXTERNAL));
             mExternalSchedulerCard.setOnDPopupCardListener(this);
@@ -146,7 +152,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
             addView(mExternalTunableCard);
 
-            mExternalReadAheadCard = new PopupCardItem.DPopupCard(readheads);
+            mExternalReadAheadCard = new PopupCardView.DPopupCard(readheads);
             mExternalReadAheadCard.setDescription(getString(R.string.read_ahead));
             mExternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.EXTERNAL) + getString(R.string.kb));
             mExternalReadAheadCard.setOnDPopupCardListener(this);
@@ -155,7 +161,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         @Override
-        public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
+        public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
             if (dPopupCard == mInternalSchedulerCard)
                 IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
                         .get(position), getActivity());
@@ -172,8 +178,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public void onClick(CardViewItem.DCardView dCardView) {
-            storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
-            schedulerPart.reload();
+            ioFragment.storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
+            ioFragment.schedulerPart.reload();
             ioFragment.setCurrentItem(1);
         }
 
@@ -183,12 +189,14 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getName() {
-            return IO.getScheduler(storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL);
+            return IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL :
+                    IO.StorageType.EXTERNAL);
         }
 
         @Override
         public String getPath() {
-            return storageType == IO.StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER_TUNABLE : IO_EXTERNAL_SCHEDULER_TUNABLE;
+            return ioFragment.storageType == IO.StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER_TUNABLE :
+                    IO_EXTERNAL_SCHEDULER_TUNABLE;
         }
 
         @Override
@@ -198,7 +206,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getError(Context context) {
-            return context.getString(R.string.not_tunable, IO.getScheduler(storageType == IO.StorageType.INTERNAL ?
+            return context.getString(R.string.not_tunable, IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ?
                     IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL));
         }
 

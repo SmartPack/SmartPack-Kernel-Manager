@@ -10,7 +10,6 @@
   <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
   <string name="select_picture">Επιλέξτε Εικόνα</string>
   <string name="no_picture">Δεν υπάρχει εικόνα</string>
-  <string name="picture_too_big">εικόνα_πολύ_μεγάλη</string>
   <string name="password">Κωδικός</string>
   <string name="password_wrong">λάθος_κωδικός</string>
   <string name="select_file">Επίλεξε %s;</string>
@@ -33,8 +32,8 @@
   <string name="kernel">Πυρήνας</string>
   <string name="tools">Εργαλεία</string>
   <string name="other">Άλλα</string>
-  <string name="frequency_table">Πίνακας Συχνοτήτων</string>
   <string name="kernel_information">Πληροφορίες Πυρήνα</string>
+  <string name="frequency_table">Πίνακας Συχνοτήτων</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Τάση CPU</string>
   <string name="cpu_hotplug">Hotplug της CPU</string>

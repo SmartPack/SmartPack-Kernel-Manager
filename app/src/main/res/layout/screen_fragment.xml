@@ -53,7 +53,7 @@
                 android:layout_weight="0"
                 android:paddingEnd="1dp"
                 android:paddingRight="1dp"
-                android:theme="@style/SwitchCompat" />
+                android:theme="@style/WhiteAccent" />
         </LinearLayout>
     </FrameLayout>
 

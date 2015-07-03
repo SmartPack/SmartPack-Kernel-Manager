@@ -10,7 +10,7 @@
   <string name="beta_message">베타 테스트에 참여해 주셔서 감사합니다! 문제가 생기면 꼭 제게 알려주세요. 현재 %s 버전을 사용 중입니다.</string>
   <string name="select_picture">사진 선택</string>
   <string name="no_picture">사진 없음</string>
-  <string name="picture_too_big">선택한 사진이 너무 큽니다.</string>
+  <string name="went_wrong">문제가 발생했습니다!</string>
   <string name="password">비밀번호</string>
   <string name="password_wrong">비밀번호가 잘못 되었습니다</string>
   <string name="select_file">%s 를 선택하시겠습니까?</string>
@@ -33,8 +33,8 @@
   <string name="kernel">커널</string>
   <string name="tools">도구</string>
   <string name="other">기타</string>
-  <string name="frequency_table">클럭 테이블</string>
   <string name="kernel_information">커널 정보</string>
+  <string name="frequency_table">클럭 테이블</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 전압</string>
   <string name="cpu_hotplug">CPU 핫플러그</string>
@@ -231,6 +231,7 @@
   <string name="vdd_restriction">VDD 제한</string>
   <string name="freq_step">클럭 단계</string>
   <string name="msm_thermal_summary">퀄컴의 Thermald를 대체합니다.  show-p1984님이 개발했습니다.</string>
+  <string name="temp_throttle_summary">SoC  온도 제한</string>
   <string name="freq_limit_debug">클럭 제한 디버그</string>
   <string name="temp_limit_min_freq">온도 제한 최소 클럭</string>
   <string name="temp_limit">온도 제한</string>
@@ -420,9 +421,11 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
+  <string name="google_plus">Google Plus</string>
   <string name="no_backups">백업 파일이 없습니다</string>
   <string name="flash_img">IMG 플래싱</string>
   <string name="flashing">플래싱</string>
+  <string name="boot">Boot</string>
   <string name="fota">Fota</string>
   <string name="backing_up">백업</string>
   <string name="empty_name">이름이 없습니다!</string>
@@ -457,7 +460,6 @@
   <string name="wipe_data">데이터 초기화</string>
   <string name="wipe_cache">캐시 초기화</string>
   <string name="flash_zip">Zip 파일 플래싱</string>
-  <string name="went_wrong">문제가 발생했습니다!</string>
   <string name="flash_now">지금 플래싱</string>
   <string name="flash_now_confirm">동작을 실행하시겠습니까? 기기가 리커버리로 다시 시작된 후 추가한 동작들이 순서대로 실행됩니다.</string>
   <string name="add_action_first">동작을 먼저 추가해야 합니다.</string>
@@ -478,6 +480,7 @@
   <string name="test">\"부팅 시 적용\" 테스트</string>
   <string name="test_summary">\"부팅 시 적용(시간 지연 포함)\"을 테스트합니다. 토스트 메시지가  뜨지 않으면 설정이 저장되지 않은 것입니다.</string>
   <string name="hide_apply_on_boot">\"부팅 시 적용\" 숨기기</string>
+  <string name="hide_apply_on_boot_summary">스크롤을 내릴 때 버튼을 숨깁니다.</string>
   <string name="enable_apply_on_boot_first">먼저 커널 설정 중 최소한 한 부분에서 \"부팅 시 적용\"을 활성화해야 합니다.</string>
   <string name="debugging">디버깅</string>
   <string name="logcat">로그캣</string>
@@ -516,11 +519,14 @@
   <string name="google">Google</string>
   <string name="fab">FloatingActionButton</string>
   <string name="jerzy">Jerzy Chalupski</string>
+  <string name="dashclock">Dashclock</string>
+  <string name="nurik">Roman Nurik</string>
+  <string name="nineoldandroids">NineOldAndroids</string>
+  <string name="wharton">Jake Wharton</string>
   <string name="open_source">오픈소스</string>
   <string name="open_source_summary">이 앱은 오픈소스입니다. 제 Github에서 확인해 보세요.</string>
   <string name="feature_request">기능 요청</string>
   <string name="feature_request_summary">더 많은 기능을 원하십니까? Github의 Issues 탭을 열어서 여러분의 아이디어를 말씀해 주세요.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">저희 커뮤니티에 가입하세요.</string>
   <string name="translation">번역</string>
   <string name="translation_summary">앱을 번역해 주세요!</string>

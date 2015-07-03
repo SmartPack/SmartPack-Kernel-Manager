@@ -19,8 +19,8 @@
   <string name="kernel">कर्नल</string>
   <string name="tools">उपकरण</string>
   <string name="other">अन्य</string>
-  <string name="frequency_table">आवृत्ति तालिका</string>
   <string name="kernel_information">कर्नल जानकारी</string>
+  <string name="frequency_table">आवृत्ति तालिका</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU वोल्टेज</string>
   <string name="cpu_hotplug">सीपीयू हॉटप्लग</string>

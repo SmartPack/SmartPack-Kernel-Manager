@@ -10,7 +10,7 @@
   <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
   <string name="select_picture">Выберите изображение</string>
   <string name="no_picture">Нет картинки</string>
-  <string name="picture_too_big">Выбранный рисунок слишком велик</string>
+  <string name="went_wrong">Что-то пошло не так!</string>
   <string name="password">Password</string>
   <string name="select_file">Выбрать %s?</string>
   <string name="no_files">Файл не найден.</string>
@@ -32,8 +32,8 @@
   <string name="kernel">Ядро</string>
   <string name="tools">Инструменты</string>
   <string name="other">Другое</string>
-  <string name="frequency_table">Таблица частот</string>
   <string name="kernel_information">Информация о ядре</string>
+  <string name="frequency_table">Таблица частот</string>
   <string name="cpu">ЦП</string>
   <string name="cpu_voltage">Напряжение процессора</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -433,6 +433,7 @@
   <string name="wlan_wakelock_summary">Предотвратить wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
+  <string name="google_plus">Google +</string>
   <string name="no_backups">Нет резервных копий</string>
   <string name="flash_img">Прошить IMG файл</string>
   <string name="flashing">Прошивка в процессе</string>
@@ -470,7 +471,6 @@
   <string name="wipe_data">Очистить раздел Data</string>
   <string name="wipe_cache">Стереть кэш</string>
   <string name="flash_zip">Сохранить Zip</string>
-  <string name="went_wrong">Что-то пошло не так!</string>
   <string name="flash_now">Применить сейчас</string>
   <string name="flash_now_confirm">Вы уверены? Ваше устройство перезагрузится в Recovery и действия будут выполнены в порядке добавления.</string>
   <string name="add_action_first">Сначала добавьте действие.</string>
@@ -520,7 +520,6 @@
   <string name="open_source_summary">Это приложение с открытым исходным кодом. Проверьте его на моем Github.</string>
   <string name="feature_request">Предложить новую функцию</string>
   <string name="feature_request_summary">Вы хотите больше возможностей? Расскажите вашу идею на Github.</string>
-  <string name="google_plus">Google +</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
   <string name="translation">Перевод</string>
   <string name="translation_summary">Помогите мне перевести это приложение!</string>

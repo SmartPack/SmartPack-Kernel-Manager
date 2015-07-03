@@ -29,8 +29,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.EditTextCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;

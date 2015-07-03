@@ -12,6 +12,7 @@
 Está a usar a versão %s.</string>
   <string name="select_picture">Selecionar Imagem</string>
   <string name="no_picture">Sem imagem</string>
+  <string name="went_wrong">Algo correu mal!</string>
   <string name="select_file">Selecionar %s?</string>
   <string name="no_files">Não há ficheiros neste caminho.</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
@@ -32,8 +33,8 @@ Está a usar a versão %s.</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Ferramentas</string>
   <string name="other">Outros</string>
-  <string name="frequency_table">Tabela de frequência</string>
   <string name="kernel_information">Informações do kernel</string>
+  <string name="frequency_table">Tabela de frequência</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltagem do CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -403,6 +404,7 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
+  <string name="google_plus">Google Plus</string>
   <string name="delete">Excluir</string>
   <string name="items_found">%d item/s encontrado/s</string>
   <string name="add">Adicionar</string>
@@ -428,7 +430,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar Cache</string>
   <string name="flash_zip">Flash Zip</string>
-  <string name="went_wrong">Algo correu mal!</string>
   <string name="flash_now">Flash agora</string>
   <string name="flash_now_confirm">Você quer executar suas ações? Seu dispositivo irá reiniciar para a recuperação e as ações serão executadas na ordem em que elas foram adicionadas.</string>
   <string name="add_action_first">Você tem que adicionar uma ação primeiro.</string>
@@ -478,7 +479,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="open_source_summary">Este aplicativo é open source. Confira no meu Github.</string>
   <string name="feature_request">Pedido de funcionalidade</string>
   <string name="feature_request_summary">Quer mais funionalidades? Abra uma nova edição no Github e explique a sua ideia.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
   <string name="translation">Tradução</string>
   <string name="translation_summary">Ajuda a traduzir esta app!</string>

@@ -8,6 +8,7 @@
   <string name="cancel">Одустани</string>
   <string name="current_value_not_supported">Тренутна вредност није подржана</string>
   <string name="beta_message">Хвала вам што тестирате бета издање. Ако наиђете на проблеме, не оклевајте да ме контактирате. Тренутно издање је%s.</string>
+  <string name="went_wrong">Нешто је пошло по злу!</string>
   <string name="select_file">Изабрати %s?</string>
   <string name="no_files">Нема фајлова на овој путањи.</string>
   <string name="apply_on_boot">Примена при подизању система</string>
@@ -25,17 +26,17 @@
   <string name="kernel">Кернел</string>
   <string name="tools">Алатке</string>
   <string name="other">Остало</string>
-  <string name="frequency_table">Табела фреквенција</string>
   <string name="kernel_information">Подаци о кернелу</string>
+  <string name="frequency_table">Табела фреквенција</string>
   <string name="cpu">Процесор</string>
-  <string name="cpu_voltage">Волтажа</string>
+  <string name="cpu_voltage">Напон</string>
   <string name="cpu_hotplug">Укључење</string>
   <string name="gpu">ГПУ</string>
   <string name="screen">Екран</string>
   <string name="wake_controls">Контрола буђења</string>
   <string name="sound">Звук</string>
   <string name="battery">Батерија</string>
-  <string name="io_scheduler">У/И распоређивач</string>
+  <string name="io_scheduler">У/И планер</string>
   <string name="virtual_memory">Виртуелна меморија</string>
   <string name="misc_controls">Разне контроле</string>
   <string name="build_prop_editor">Уређивач „build.prop“ фајла</string>
@@ -62,11 +63,13 @@
   <string name="cpu_max_freq_summary">Поставите највећу фреквенцију рада процесора.</string>
   <string name="cpu_min_freq">ЦПУ мин. фреквенција</string>
   <string name="cpu_min_freq_summary">Поставите најмању фреквенцију рада процесора.</string>
-  <string name="cpu_governor">ЦПУ управник</string>
-  <string name="cpu_governor_summary">ЦПУ управљач одређује како процесор реагује на промене у радном оптерећењу. Променом управљача утицаћете на скалирање, смену, корака фреквенције доступних процесору.</string>
+  <string name="cpu_governor">ЦПУ управљач</string>
+  <string name="cpu_governor_summary">ЦПУ управљач одређује како процесор реагује на промене у радном оптерећењу. Променом управљача утицаћете на скалирање, смену корака фреквенције доступних процесору.</string>
   <string name="cpu_governor_tunables">Фине поставке ЦПУ управљача</string>
   <string name="not_tunable">%s није подесиво</string>
   <string name="aggressive">Агресивно</string>
+  <string name="global_offset">Глобални помак</string>
+  <string name="override_vmin">Премости минимални напон</string>
   <string name="powersaver_mode">Режим штедње енергије</string>
   <string name="history_size">Величина историјата</string>
   <string name="io_is_busy">У/И је заузет</string>
@@ -126,7 +129,7 @@
   <string name="draw_w">Нацртај W</string>
   <string name="draw_c">Нацртај C</string>
   <string name="draw_m">Нацртај М</string>
-  <string name="battery_voltage">Волтажа батерије</string>
+  <string name="battery_voltage">Напон батерије</string>
   <string name="battery_level">Ниво батерије</string>
   <string name="battery_temperature">Температура батерије</string>
   <string name="internal_storage">Унутрашње складиште</string>
@@ -148,6 +151,7 @@
   <string name="disksize">Величина диска</string>
   <string name="network">Мрежа</string>
   <string name="hostname">Име домаћина</string>
+  <string name="google_plus">Гугл Плус</string>
   <string name="delete">Обриши</string>
   <string name="items_found">%d ставки нађено</string>
   <string name="add">Додај</string>
@@ -170,7 +174,6 @@
   <string name="wipe_data">Обриши податке</string>
   <string name="wipe_cache">Обриши кеш</string>
   <string name="flash_zip">Флешуј зип фајл</string>
-  <string name="went_wrong">Нешто је пошло по злу!</string>
   <string name="flash_now">Флешуј сад</string>
   <string name="flash_now_confirm">Желите ли да покренете ваше радње? Ваш уређај ће бити поново покренут у опоравак а радње ће бити извршене редоследом којим сте их додали.</string>
   <string name="add_action_first">Најпре морате да додате радњу.</string>
@@ -218,7 +221,6 @@
   <string name="open_source_summary">Апликација је отвореног кôда. Прегледајте га на мом Гитхабу.</string>
   <string name="feature_request">Захтеви за функције</string>
   <string name="feature_request_summary">Желите још функција? Направите пријаву на Гитхабу и опишите ми вашу идеју.</string>
-  <string name="google_plus">Гугл Плус</string>
   <string name="google_plus_summary">Придружите се нашој заједници.</string>
   <string name="translation">Превођење</string>
   <string name="translation_summary">Помозите ми превођењем апликације!</string>

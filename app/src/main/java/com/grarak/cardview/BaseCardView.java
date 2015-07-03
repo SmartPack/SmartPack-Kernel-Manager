@@ -19,13 +19,13 @@ package com.grarak.cardview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -48,8 +48,8 @@ public abstract class BaseCardView extends CardView {
     private HeaderCardView headerCardView;
     private LinearLayout headerLayout;
 
-    private AppCompatTextView innerView;
-    private String mTitle;
+    private TextView innerView;
+    private CharSequence mTitle;
 
     protected LinearLayout customLayout;
     private View customView;
@@ -69,14 +69,11 @@ public abstract class BaseCardView extends CardView {
     public BaseCardView(Context context, AttributeSet attributeSet, int layout) {
         super(context, attributeSet);
 
-        // Add a padding
-        int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(padding, padding, padding, padding);
-        setLayoutParams(layoutParams);
+        // Add a margin
+        setMargin();
 
         // Make a rounded card
-        setRadius(getResources().getDimensionPixelSize(R.dimen.basecard_radius));
+        setRadius();
 
         // Set background color depending on the current theme
         setCardBackgroundColor(getResources().getColor(Utils.DARKTHEME ?
@@ -104,12 +101,29 @@ public abstract class BaseCardView extends CardView {
 
         // If sub class overwrites the default layout then don't try to get the TextView
         if (layout == DEFAULT_LAYOUT) {
-            innerView = (AppCompatTextView) layoutView.findViewById(R.id.inner_view);
+            innerView = (TextView) layoutView.findViewById(R.id.inner_view);
             if (mTitle != null) innerView.setText(mTitle);
         } else setUpInnerLayout(layoutView);
 
         // Add innerlayout to base view
         innerLayout.addView(layoutView);
+    }
+
+    /**
+     * Use a function to set margins, so child class can overwrite it
+     */
+    public void setMargin() {
+        int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(padding, padding, padding, padding);
+        setLayoutParams(layoutParams);
+    }
+
+    /**
+     * Use a function to set radius, so child class can overwrite it
+     */
+    public void setRadius() {
+        setRadius(getResources().getDimensionPixelSize(R.dimen.basecard_radius));
     }
 
     /**
@@ -125,7 +139,7 @@ public abstract class BaseCardView extends CardView {
      *
      * @param mTitle new Text of the card
      */
-    public void setText(String mTitle) {
+    public void setText(CharSequence mTitle) {
         this.mTitle = mTitle;
         if (innerView != null) innerView.setText(mTitle);
     }

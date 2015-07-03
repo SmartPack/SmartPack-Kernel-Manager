@@ -10,7 +10,7 @@
   <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
   <string name="select_picture">画像の選択</string>
   <string name="no_picture">画像なし</string>
-  <string name="picture_too_big">選択した画像が大きすぎます</string>
+  <string name="went_wrong">何か問題が起きました。</string>
   <string name="password">パスワード</string>
   <string name="password_wrong">パスワードが間違っています</string>
   <string name="select_file">%sを選択しますか?</string>
@@ -33,8 +33,8 @@
   <string name="kernel">カーネル</string>
   <string name="tools">ツール</string>
   <string name="other">その他</string>
-  <string name="frequency_table">周波数テーブル</string>
   <string name="kernel_information">カーネルの情報</string>
+  <string name="frequency_table">周波数テーブル</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU電圧</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -447,6 +447,7 @@
   <string name="wlan_wakelock_summary">wlan wakelockを防ぎます。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+  <string name="google_plus">Google Plus</string>
   <string name="no_backups">バックアップはありません。</string>
   <string name="flash_img">IMGのフラッシュ</string>
   <string name="flashing">フラッシュ中</string>
@@ -485,7 +486,6 @@
   <string name="wipe_data">データの消去</string>
   <string name="wipe_cache">キャッシュの消去</string>
   <string name="flash_zip">ZIPのインストール</string>
-  <string name="went_wrong">何か問題が起きました。</string>
   <string name="flash_now">インストール</string>
   <string name="flash_now_confirm">本当に実行しますか? リカバリへ再起動し、アクションを実行します。</string>
   <string name="add_action_first">まずアクションを追加してください。</string>
@@ -539,7 +539,6 @@
   <string name="open_source_summary">このアプリはオープンソースです。タップするとGithubページを開きます。</string>
   <string name="feature_request">機能のリクエスト</string>
   <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">コミュニティに参加する</string>
   <string name="translation">翻訳</string>
   <string name="translation_summary">このアプリの翻訳を手伝ってください!</string>

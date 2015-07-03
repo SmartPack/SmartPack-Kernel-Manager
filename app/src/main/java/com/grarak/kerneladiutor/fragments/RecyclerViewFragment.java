@@ -55,13 +55,13 @@ public class RecyclerViewFragment extends BaseFragment {
     protected ViewGroup container;
 
     private ProgressBar progressBar;
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     private CustomScrollListener onScrollListener;
     protected View applyOnBootLayout;
     protected TextView applyOnBootText;
     protected SwitchCompat applyOnBootView;
     private DAdapter.Adapter adapter;
-    private StaggeredGridLayoutManager layoutManager;
+    protected StaggeredGridLayoutManager layoutManager;
     protected View backgroundView;
     protected View fabView;
     private Handler hand;
@@ -272,16 +272,18 @@ public class RecyclerViewFragment extends BaseFragment {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        layoutManager.setSpanCount(getSpan());
+        if (layoutManager != null) layoutManager.setSpanCount(getSpan());
         resetTranslations();
     }
 
     @Override
     public void onViewCreated() {
         super.onViewCreated();
+        setOnScrollListener(recyclerView);
+    }
 
-        if (recyclerView != null && applyOnBootLayout != null &&
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+    public void setOnScrollListener(RecyclerView recyclerView) {
+        if (recyclerView != null && applyOnBootLayout != null) {
             recyclerView.setClipToPadding(false);
             int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
             recyclerView.setPadding(padding, applyOnBootLayout.getHeight(), padding, recyclerView.getPaddingBottom());
@@ -292,6 +294,7 @@ public class RecyclerViewFragment extends BaseFragment {
     }
 
     private class CustomScrollListener extends RecyclerView.OnScrollListener {
+
         private int offset;
         private boolean scroll = true;
 
@@ -301,17 +304,12 @@ public class RecyclerViewFragment extends BaseFragment {
 
             if (scroll && Utils.getBoolean("hideapplyonboot", true, getActivity())) {
                 int height = applyOnBootLayout.getHeight();
-                clipToolbarOffset(height);
+                offset += dy;
+                if (offset > height) offset = height;
+                else if (offset < 0) offset = 0;
                 move(offset);
-
-                if ((offset < height && dy > 0) || (offset > 0 && dy < 0)) offset += dy;
             }
             scroll = true;
-        }
-
-        private void clipToolbarOffset(int height) {
-            if (offset > height) offset = height;
-            else if (offset < 0) offset = 0;
         }
 
         private void move(int offset) {
@@ -319,6 +317,7 @@ public class RecyclerViewFragment extends BaseFragment {
         }
 
         public void reset() {
+            offset = 0;
             scroll = false;
         }
 
@@ -333,11 +332,22 @@ public class RecyclerViewFragment extends BaseFragment {
                         @Override
                         public void run() {
                             try {
-                                for (; offset >= 0; offset -= 4) {
-                                    move(offset);
+                                float density = getResources().getDisplayMetrics().density * 2;
+                                for (; offset >= 0; offset -= density) {
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            move(offset);
+                                        }
+                                    });
                                     Thread.sleep(16);
                                 }
-                                if (offset != 0) move(offset = 0);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (offset != 0) move(offset = 0);
+                                    }
+                                });
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -347,7 +357,7 @@ public class RecyclerViewFragment extends BaseFragment {
         }
     }
 
-    private void resetTranslations() {
+    public void resetTranslations() {
         if (applyOnBootLayout != null) ViewHelper.setTranslationY(applyOnBootLayout, 0);
         if (onScrollListener != null) onScrollListener.reset();
     }

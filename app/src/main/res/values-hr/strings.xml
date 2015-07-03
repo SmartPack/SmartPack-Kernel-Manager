@@ -30,8 +30,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Alatke</string>
   <string name="other">Ostalo</string>
-  <string name="frequency_table">Pregled frekvencija</string>
   <string name="kernel_information">O kernelu</string>
+  <string name="frequency_table">Pregled frekvencija</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Napon CPU-a</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -307,6 +307,7 @@
   <string name="sensor_ind_wakelock_summary">Spriječiti buđenje uređaja pri deaktiviranoj automatskoj svjetlini zaslona.</string>
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
+  <string name="google_plus">Google Plus</string>
   <string name="delete">Izbriši</string>
   <string name="edit">Promjeni</string>
   <string name="key">Ključ</string>
@@ -359,7 +360,6 @@
   <string name="open_source_summary">Ova aplikacija spada pod open source. Provjerite na mom Github-u.</string>
   <string name="feature_request">Predložite novu funkciju</string>
   <string name="feature_request_summary">Želite li više funkcija? Posjetite moj Github i priopćite mi Vašu ideju.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Pridružite se našoj zajednici.</string>
   <string name="translation">Prijevod</string>
   <string name="translation_summary">Pomozite mi s prijevodima ove aplikacije!</string>

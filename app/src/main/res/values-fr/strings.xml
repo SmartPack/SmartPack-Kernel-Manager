@@ -10,7 +10,9 @@
   <string name="beta_message">Merci d\'être un beta testeur ! Si vous avez des problèmes, n\'hésitez pas à me contacter. Vous utilisez actuellement la version %s.</string>
   <string name="select_picture">Sélectionner une image</string>
   <string name="no_picture">Pas de photo</string>
-  <string name="picture_too_big">Image sélectionnée est trop grand</string>
+  <string name="went_wrong">Quelque chose s\'est mal passé !</string>
+  <string name="password">Mot de passe</string>
+  <string name="password_wrong">Le mot de passe est incorrect</string>
   <string name="select_file">Sélectionnez  %s?</string>
   <string name="no_files">Aucun fichier dans ce chemin.</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
@@ -31,8 +33,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Outils</string>
   <string name="other">Autre</string>
-  <string name="frequency_table">Table des Frequences</string>
   <string name="kernel_information">Informations du Kernel</string>
+  <string name="frequency_table">Table des Frequences</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltage du CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -88,6 +90,9 @@
   <string name="disabled">Désactivé</string>
   <string name="enabled">Activé</string>
   <string name="aggressive">Aggresif</string>
+  <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_summary">CPUQuiet implémente une fonction pour forcer la mise en repos des cœurs de processeur. Cette fonctionnalité économisera de l\'énergie sans affecter les performances.</string>
+  <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Masque de débogage</string>
   <string name="debug_mask_summary">Vous permet d\'activer le masque de débogage pour les opérations CPU Boost.</string>
@@ -147,6 +152,8 @@
   <string name="powersaver_mode_summary">Définit 1 CPU maximum en ligne avec la fréquence @1728 MHz.</string>
   <string name="up_threshold">Seuil Supérieur</string>
   <string name="up_threshold_summary">Au-delà de ce seuil le pilote mettra en ligne un cœur de plus.</string>
+  <string name="up_timer_cnt_summary">Gestion de la mise en activité des CPUs.</string>
+  <string name="down_timer_cnt_summary">Gestion de la mise au repos des CPUs.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par myfluxi.</string>
   <string name="history_size">Taille de l\'Historique</string>
@@ -185,6 +192,7 @@
   <string name="delay_summary">Temps entre les contrôles.</string>
   <string name="pause">Pause</string>
   <string name="alucard_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par Alucard.</string>
+  <string name="sampling_rate">Taux d\'échantillonnage</string>
   <string name="thermal_info">N\'utilisez qu\'un seul des pilotes de gestion de température proposés ci-après, en utiliser plus d\'un en même temps peu entrainer des comportements inattendus.</string>
   <string name="temp_limit">Limite de Température</string>
   <string name="temp_limit_summary">Si la température est au dessus, le CPU aura sa fréquence réduite pour abaisser la température.</string>
@@ -356,6 +364,7 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
+  <string name="google_plus">Google Plus</string>
   <string name="backing_up">Sauvegarde en cours</string>
   <string name="empty_name">Le nom n\'est pas renseigné !</string>
   <string name="backup_already_exists">Une sauvegarde avec le même nom existe déjà. Supprimez-la avant !</string>
@@ -388,7 +397,6 @@
   <string name="wipe_data">Effacer les données</string>
   <string name="wipe_cache">Effacer le Cache</string>
   <string name="flash_zip">Flasher le Zip</string>
-  <string name="went_wrong">Quelque chose s\'est mal passé !</string>
   <string name="flash_now">Flasher maintenant</string>
   <string name="flash_now_confirm">Voulez-vous lancer vos actions ? Votre appareil va redémarrer en mode recovery et les actions vont être lancées dans l\'ordre où vous les avez ajoutées.</string>
   <string name="add_action_first">Vous devez d\'abord ajouter une action.</string>
@@ -438,7 +446,6 @@
   <string name="open_source_summary">Cette application est open source. Consultez-la sur mon Github.</string>
   <string name="feature_request">Demande de fonctionnalité</string>
   <string name="feature_request_summary">Vous voulez plus de fonctionnalités ? Ouvrez une nouvelle question sur Github et dites-moi votre idée.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Rejoignez notre communauté.</string>
   <string name="translation">Traduction </string>
   <string name="translation_summary">Aidez moi à traduire cette app !</string>

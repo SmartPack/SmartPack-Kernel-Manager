@@ -24,6 +24,7 @@
         android:layout_weight="0"
         android:paddingEnd="1dp"
         android:paddingLeft="1dp"
-        android:paddingRight="1dp" />
+        android:paddingRight="1dp"
+        android:paddingStart="1dp" />
 
 </LinearLayout>

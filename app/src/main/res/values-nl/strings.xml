@@ -29,8 +29,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Hulpprogramma\'s</string>
   <string name="other">Overige</string>
-  <string name="frequency_table">Frequentietabel</string>
   <string name="kernel_information">Kernel informatie</string>
+  <string name="frequency_table">Frequentietabel</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Voltage</string>
   <string name="cpu_hotplug">CPU Hotplug</string>

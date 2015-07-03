@@ -24,10 +24,10 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.CardViewItem;
-import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
-import com.grarak.kerneladiutor.elements.UsageCardView;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.UsageCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
@@ -40,17 +40,17 @@ import java.util.List;
  */
 public class BatteryFragment extends RecyclerViewFragment implements
         SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mBatteryLevelCard;
     private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
 
     private SwitchCardView.DSwitchCard mForceFastChargeCard;
 
-    private SeekBarCardView.DSeekBarCardView mBlxCard;
+    private SeekBarCardView.DSeekBarCard mBlxCard;
 
     private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard;
-    private SeekBarCardView.DSeekBarCardView mChargingRateCard;
+    private SeekBarCardView.DSeekBarCard mChargingRateCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -107,7 +107,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 101; i++) list.add(String.valueOf(i));
 
-        mBlxCard = new SeekBarCardView.DSeekBarCardView(list);
+        mBlxCard = new SeekBarCardView.DSeekBarCard(list);
         mBlxCard.setTitle(getString(R.string.blx));
         mBlxCard.setDescription(getString(R.string.blx_summary));
         mBlxCard.setProgress(Battery.getCurBlx());
@@ -131,7 +131,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
             List<String> list = new ArrayList<>();
             for (int i = 10; i < 151; i++) list.add((i * 10) + getString(R.string.ma));
 
-            mChargingRateCard = new SeekBarCardView.DSeekBarCardView(list);
+            mChargingRateCard = new SeekBarCardView.DSeekBarCard(list);
             mChargingRateCard.setTitle(getString(R.string.charge_rate));
             mChargingRateCard.setDescription(getString(R.string.charge_rate_summary));
             mChargingRateCard.setProgress((Battery.getChargingRate() / 10) - 10);
@@ -153,8 +153,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
                 mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
             if (mBatteryTemperature != null) {
                 double celsius = (double) temperature / 10;
-                double fahrenheit = Utils.celsiusToFahrenheit(celsius);
-                mBatteryTemperature.setDescription((celsius + "°C " + fahrenheit + "°F"));
+                mBatteryTemperature.setDescription(celsius + "°C " + Utils.celsiusToFahrenheit(celsius));
             }
         }
     };
@@ -168,14 +167,14 @@ public class BatteryFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mBlxCard)
+    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (dSeekBarCard == mBlxCard)
             Battery.setBlx(position, getActivity());
-        else if (dSeekBarCardView == mChargingRateCard)
+        else if (dSeekBarCard == mChargingRateCard)
             Battery.setChargingRate((position * 10) + 100, getActivity());
     }
 

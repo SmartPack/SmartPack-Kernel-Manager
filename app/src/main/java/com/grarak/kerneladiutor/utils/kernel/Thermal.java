@@ -215,7 +215,7 @@ public class Thermal implements Constants {
     public static List<String> getTempLimitList() {
         List<String> list = new ArrayList<>();
         for (double i = getTempLimitMin(); i <= getTempLimitMax(); i++)
-            list.add((i + "°C " + Utils.celsiusToFahrenheit(i) + "°F"));
+            list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
         return list;
     }
 

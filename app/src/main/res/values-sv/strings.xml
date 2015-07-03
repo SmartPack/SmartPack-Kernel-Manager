@@ -27,8 +27,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Verktyg</string>
   <string name="other">Övrigt</string>
-  <string name="frequency_table">Frekvenstabell</string>
   <string name="kernel_information">Information om din Kernel</string>
+  <string name="frequency_table">Frekvenstabell</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Spänning CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>

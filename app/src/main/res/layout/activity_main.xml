@@ -14,9 +14,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/actionbar_color"
-            android:minHeight="?attr/actionBarSize"
             android:theme="@style/ActionBarStyle"
             app:contentInsetLeft="72dp"
             app:contentInsetStart="72dp"
@@ -42,7 +41,7 @@
         android:layout_gravity="start"
         android:background="@color/navigationdrawer_background_light"
         android:fitsSystemWindows="true"
-        app:insetForeground="#4000">
+        app:insetFg="#4000">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_list"

@@ -53,6 +53,8 @@ I used following libraries:
 * Jerzy Chałupski: [FloatingActionButton](https://github.com/futuresimple/android-floating-action-button)
 * Roman Nurik: [Dashclock](https://github.com/romannurik/dashclock)
 * Jake Wharton: [NineOldAndroids](https://github.com/JakeWharton/NineOldAndroids)
+* Square Inc.: [Picasso](https://github.com/square/picasso)
+* Karim Frenn: [MaterialTabs](https://github.com/pizza/MaterialTabs)
 
 Also codes from different people:
 

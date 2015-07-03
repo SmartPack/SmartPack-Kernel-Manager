@@ -8,6 +8,7 @@
   <string name="cancel">Prekliči</string>
   <string name="current_value_not_supported">Vrednost ni podprta</string>
   <string name="beta_message">Hvala, da ste beta preizkuševalec/-ka! Če imate kakršne koli težave prosim ne oklevajte in mi pišete. Trenutno uporabljate različico %s.</string>
+  <string name="went_wrong">Nekaj je šlo narobe!</string>
   <string name="select_file">Izberite %s?</string>
   <string name="no_files">Ni datotek na tej lokaciji.</string>
   <string name="apply_on_boot">Uporabi ob zagonu</string>
@@ -27,8 +28,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Orodja</string>
   <string name="other">Drugo</string>
-  <string name="frequency_table">Tabela frekvenc</string>
   <string name="kernel_information">Kernel informacije</string>
+  <string name="frequency_table">Tabela frekvenc</string>
   <string name="cpu">CPE</string>
   <string name="cpu_voltage">CPE napetost</string>
   <string name="cpu_hotplug">CPE hotplug</string>
@@ -379,6 +380,7 @@
   <string name="wlan_wakelock_summary">Prepreči wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock delilnik</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock delilnik</string>
+  <string name="google_plus">Google Plus</string>
   <string name="delete">Izbriši</string>
   <string name="items_found">%d najdenih predmetov</string>
   <string name="add">Dodaj</string>
@@ -404,7 +406,6 @@
   <string name="wipe_data">Počisti podatke</string>
   <string name="wipe_cache">Počisti predpomnilnik</string>
   <string name="flash_zip">Namesti zip</string>
-  <string name="went_wrong">Nekaj je šlo narobe!</string>
   <string name="flash_now">Namestite zdaj</string>
   <string name="flash_now_confirm">Ali želite zagnati izbrana dejanja? Naprava se bo zagnala v Recovery in dejanja se bodo izvedla v vrstnem redu, kot ste jih dodali.</string>
   <string name="add_action_first">Najprej morate dodati dejanje.</string>
@@ -454,7 +455,6 @@
   <string name="open_source_summary">Aplikacija je odprtokodna. Preverite na moji Github strani.</string>
   <string name="feature_request">Zaželjene funkcije</string>
   <string name="feature_request_summary">Želite več funkcij? Odprite nov issue na Github in mi povejte vaše ideje.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Pridružite se naši skupnosti.</string>
   <string name="translation">Prevod</string>
   <string name="translation_summary">Pomagajte mi prevesti to aplikacijo!</string>

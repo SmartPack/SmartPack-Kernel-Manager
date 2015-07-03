@@ -19,9 +19,9 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.PopupCardItem;
-import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
+import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 
@@ -31,18 +31,18 @@ import java.util.List;
 /**
  * Created by willi on 02.01.15.
  */
-public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.DPopupCard.OnDPopupCardListener,
-        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener,
+public class WakeFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
+        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
         SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-    private PopupCardItem.DPopupCard mDt2wCard;
-    private PopupCardItem.DPopupCard mS2wCard;
-    private PopupCardItem.DPopupCard mT2wCard;
-    private PopupCardItem.DPopupCard mWakeMiscCard;
-    private PopupCardItem.DPopupCard mSleepMiscCard;
+    private PopupCardView.DPopupCard mDt2wCard;
+    private PopupCardView.DPopupCard mS2wCard;
+    private PopupCardView.DPopupCard mT2wCard;
+    private PopupCardView.DPopupCard mWakeMiscCard;
+    private PopupCardView.DPopupCard mSleepMiscCard;
     private SwitchCardView.DSwitchCard[] mGestureCards;
 
-    private SeekBarCardView.DSeekBarCardView mWakeTimeoutCard;
+    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
@@ -60,7 +60,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void dt2wInit() {
-        mDt2wCard = new PopupCardItem.DPopupCard(Wake.getDt2wMenu(getActivity()));
+        mDt2wCard = new PopupCardView.DPopupCard(Wake.getDt2wMenu(getActivity()));
         mDt2wCard.setTitle(getString(R.string.dt2w));
         mDt2wCard.setDescription(getString(R.string.dt2w_summary));
         mDt2wCard.setItem(Wake.getDt2wValue());
@@ -70,7 +70,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void s2wInit() {
-        mS2wCard = new PopupCardItem.DPopupCard(Wake.getS2wMenu(getActivity()));
+        mS2wCard = new PopupCardView.DPopupCard(Wake.getS2wMenu(getActivity()));
         mS2wCard.setTitle(getString(R.string.s2w));
         mS2wCard.setDescription(getString(R.string.s2w_summary));
         mS2wCard.setItem(Wake.getS2wValue());
@@ -80,7 +80,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void t2wInit() {
-        mT2wCard = new PopupCardItem.DPopupCard(Wake.getT2wMenu(getActivity()));
+        mT2wCard = new PopupCardView.DPopupCard(Wake.getT2wMenu(getActivity()));
         mT2wCard.setTitle(getString(R.string.t2w));
         mT2wCard.setDescription(getString(R.string.t2w_summary));
         mT2wCard.setItem(Wake.getT2w());
@@ -90,7 +90,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void wakeMiscInit() {
-        mWakeMiscCard = new PopupCardItem.DPopupCard(Wake.getWakeMiscMenu(getActivity()));
+        mWakeMiscCard = new PopupCardView.DPopupCard(Wake.getWakeMiscMenu(getActivity()));
         mWakeMiscCard.setDescription(getString(R.string.wake));
         mWakeMiscCard.setItem(Wake.getWakeMisc());
         mWakeMiscCard.setOnDPopupCardListener(this);
@@ -99,7 +99,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     private void sleepMiscInit() {
-        mSleepMiscCard = new PopupCardItem.DPopupCard(Wake.getSleepMiscMenu(getActivity()));
+        mSleepMiscCard = new PopupCardView.DPopupCard(Wake.getSleepMiscMenu(getActivity()));
         mSleepMiscCard.setDescription(getString(R.string.sleep));
         mSleepMiscCard.setItem(Wake.getSleepMisc());
         mSleepMiscCard.setOnDPopupCardListener(this);
@@ -126,7 +126,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
         for (int i = 1; i < 31; i++)
             list.add(i + getString(R.string.min));
 
-        mWakeTimeoutCard = new SeekBarCardView.DSeekBarCardView(list);
+        mWakeTimeoutCard = new SeekBarCardView.DSeekBarCard(list);
         mWakeTimeoutCard.setTitle(getString(R.string.wake_timeout));
         mWakeTimeoutCard.setDescription(getString(R.string.wake_timeout_summary));
         mWakeTimeoutCard.setProgress(Wake.getWakeTimeout());
@@ -146,7 +146,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
-    public void onItemSelected(PopupCardItem.DPopupCard dPopupCard, int position) {
+    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
         else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
         else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
@@ -155,12 +155,12 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardItem.
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
+    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
     }
 
     @Override

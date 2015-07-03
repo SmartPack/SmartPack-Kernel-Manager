@@ -10,9 +10,10 @@
   <string name="beta_message">Dziękuję za bycie beta testerem! Jeśli napotykasz jakieś problemy, skontatuj się ze mną. Obecnie używasz wesji %s.</string>
   <string name="select_picture">Wybierz obraz</string>
   <string name="no_picture">Brak obrazka</string>
-  <string name="picture_too_big">Wybrany obraz jest zbyt duży</string>
+  <string name="went_wrong">Ups! Coś poszło nie tak!</string>
   <string name="password">Hasło</string>
   <string name="password_wrong">Złe hasło</string>
+  <string name="press_back_again">Naciśnij ponownie aby wyjść</string>
   <string name="select_file">Wybrać %s?</string>
   <string name="no_files">Brak plików w tym folderze.</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>
@@ -33,8 +34,9 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Narzędzia</string>
   <string name="other">Inne</string>
-  <string name="frequency_table">Tabela częstotliwości</string>
+  <string name="downloads">Pobieranie</string>
   <string name="kernel_information">Informacje o kernelu</string>
+  <string name="frequency_table">Tabela częstotliwości</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Napięcie CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -89,7 +91,9 @@
   <string name="disabled">Wyłączone</string>
   <string name="enabled">Włączone</string>
   <string name="aggressive">Agresywny</string>
+  <string name="cpu_quiet">Cichy CPU</string>
   <string name="cpu_quiet_summary">CPUQuiet implementuje zasady działania zmuszając rdzenie do pozostania w stanie spoczynku. Odpowiednie zasady działalności będą oszczędzać energię bez wpływu na wydajność.</string>
+  <string name="cpu_quiet_governor">Zarządca Cichego CPU</string>
   <string name="cpu_boost">Przyspieszenie CPU</string>
   <string name="debug_mask">Maska Debugowania</string>
   <string name="debug_mask_summary">Pozwala aktywować maskę debugowania by zwiekszyc operacje CPU.</string>
@@ -149,6 +153,7 @@
   <string name="mako_hotplug_summary">Wewnętrzny zamiennik dla MPDecision od Qualcomma. Praca franciscofranco.</string>
   <string name="cores_on_touch">Ile rdzeni powinno się włączyć przy dotknięciu</string>
   <string name="cores_on_touch_summary">Liczba włączonych procesorów podczas dotykania ekranu lub trzymania przycisków.</string>
+  <string name="first_level">Pierwszy poziom</string>
   <string name="load_threshold_summary">Próg do włączenia wszystkich procesorów.</string>
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
@@ -234,6 +239,7 @@
   <string name="lcd_panel">Panel LCD</string>
   <string name="hybrid">Hybrydowa</string>
   <string name="wakelock">Wakelock</string>
+  <string name="google_plus">Google Plus</string>
   <string name="no_backups">Brak kopii zapasowych</string>
   <string name="delete">Usuń</string>
   <string name="edit">Edytuj</string>
@@ -246,7 +252,6 @@
   <string name="press_again_to_apply">Naciśnij ponownie, aby zastosować.</string>
   <string name="applied">Zastosowano</string>
   <string name="reboot">Uruchom ponownie</string>
-  <string name="went_wrong">Ups! Coś poszło nie tak!</string>
   <string name="dark_theme">Ciemny motyw</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Skopiuj logcat do /sdcard/logcat.txt</string>
@@ -258,7 +263,6 @@
   <string name="open_source">Open source</string>
   <string name="open_source_summary">Ta aplikacja jest open source. Zobacz mój Github.</string>
   <string name="feature_request">Prośba o funkcje</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Dołącz do naszej społeczności.</string>
   <string name="translation">Tłumaczenie</string>
   <string name="translation_summary">Pomóż mi przetłumaczyć tą aplikację!</string>

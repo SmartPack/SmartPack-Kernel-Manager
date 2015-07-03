@@ -36,7 +36,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.PopupCardItem;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -103,7 +103,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
         buildpropItem = Buildprop.getProps();
         for (int i = 0; i < buildpropItem.size(); i++) {
-            PopupCardItem.DPopupCard mPropCard = new PopupCardItem.DPopupCard(null);
+            PopupCardView.DPopupCard mPropCard = new PopupCardView.DPopupCard(null);
             mPropCard.setDescription((String) buildpropItem.keySet().toArray()[i]);
             mPropCard.setItem((String) buildpropItem.values().toArray()[i]);
             mPropCard.setOnClickListener(this);
@@ -125,15 +125,15 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PopupCardItem popupCardItem = (PopupCardItem) v;
+                        PopupCardView popupCardView = (PopupCardView) v;
                         switch (which) {
                             case 0:
-                                addKeyDialog(popupCardItem.getDescription().toString(),
-                                        popupCardItem.getItem(), true);
+                                addKeyDialog(popupCardView.getDescription().toString(),
+                                        popupCardView.getItem(), true);
                                 break;
                             case 1:
-                                deleteDialog(popupCardItem.getDescription().toString(),
-                                        popupCardItem.getItem());
+                                deleteDialog(popupCardView.getDescription().toString(),
+                                        popupCardView.getItem());
                                 break;
                         }
                     }
@@ -148,7 +148,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
             removeAllViews();
             buildpropItem = Buildprop.getProps();
             for (int i = 0; i < buildpropItem.size(); i++) {
-                PopupCardItem.DPopupCard mPropCard = new PopupCardItem.DPopupCard(null);
+                PopupCardView.DPopupCard mPropCard = new PopupCardView.DPopupCard(null);
                 mPropCard.setDescription((String) buildpropItem.keySet().toArray()[i]);
                 mPropCard.setItem((String) buildpropItem.values().toArray()[i]);
                 mPropCard.setOnClickListener(BuildpropFragment.this);
@@ -259,7 +259,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 Object[] values = buildpropItem.values().toArray();
                 for (int i = 0; i < keys.length; i++)
                     if (((String) keys[i]).contains(newText)) {
-                        PopupCardItem.DPopupCard mPopupCard = new PopupCardItem.DPopupCard(null);
+                        PopupCardView.DPopupCard mPopupCard = new PopupCardView.DPopupCard(null);
                         mPopupCard.setDescription(newText.isEmpty() ?
                                 (String) keys[i] : Html.fromHtml(((String) keys[i]).replace(newText, "" +
                                 "<b><font color=\"#2A7289\">" + newText + "</font></b>")));

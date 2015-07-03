@@ -8,6 +8,7 @@
   <string name="cancel">إلغاء الأمر</string>
   <string name="current_value_not_supported">القيمة الحالية غير مدعّمة</string>
   <string name="beta_message">شكرا لكونك أحد مختبري الإصدارات التجريبية! إذا كان لديك أي مشاكل، رجاءا لاتتردد في إرسالها إلي. تقوم حاليا بتشغيل الإصدار %s.</string>
+  <string name="select_picture">حدد الصورة</string>
   <string name="apply_on_boot">تطبيق عند التشغيل</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
@@ -19,8 +20,8 @@
   <string name="kernel">النواة</string>
   <string name="tools">الأدوات</string>
   <string name="other">أخرى</string>
-  <string name="frequency_table">جدول الترددات</string>
   <string name="kernel_information">معلونات النوات</string>
+  <string name="frequency_table">جدول الترددات</string>
   <string name="cpu">المعالج</string>
   <string name="cpu_voltage">جهد المعالج</string>
   <string name="cpu_hotplug">إضافات المعالج</string>

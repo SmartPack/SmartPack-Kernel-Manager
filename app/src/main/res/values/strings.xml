@@ -10,9 +10,10 @@
     <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
-    <string name="picture_too_big">Selected picture is too big</string>
+    <string name="went_wrong">Something went wrong!</string>
     <string name="password">Password</string>
     <string name="password_wrong">Password is wrong</string>
+    <string name="press_back_again">Press back again to leave</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>
@@ -47,8 +48,9 @@
     <string name="other">Other</string>
 
     <!-- Tabs -->
-    <string name="frequency_table">Frequency Table</string>
+    <string name="downloads">Downloads</string>
     <string name="kernel_information">Kernel Information</string>
+    <string name="frequency_table">Frequency Table</string>
     <string name="cpu">CPU</string>
     <string name="cpu_voltage">CPU Voltage</string>
     <string name="cpu_hotplug">CPU Hotplug</string>
@@ -503,6 +505,25 @@
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
 
+    <!-- Downloads -->
+    <string name="logo">Logo</string>
+    <string name="features">Features</string>
+    <string name="loading_counting">Loading %1$d/%2$d</string>
+    <string name="downloading_db">Downloading Database</string>
+    <string name="xda">XDA</string>
+    <string name="github">Github</string>
+    <string name="google_plus">Google Plus</string>
+    <string name="paypal">Paypal</string>
+    <string name="download">download</string>
+    <string name="downloading_counting">%1$s/%2$s</string>
+    <string name="resume">Resume</string>
+    <string name="checking_md5">Checking MD5sum</string>
+    <string name="md5_mismatch">MD5 Mismatch</string>
+    <string name="md5_mismatch_summary">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
+    <string name="download_success">Successfully downloaded %s. Do you want to install it now?</string>
+    <string name="manual_flashing">I will use my hands</string>
+    <string name="file_location">Downloaded file is in %s</string>
+
     <!-- Backup -->
     <string name="no_backups">No backups</string>
     <string name="flash_img">Flash IMG</string>
@@ -548,7 +569,6 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
-    <string name="went_wrong">Something went wrong!</string>
     <string name="flash_now">Flash Now</string>
     <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
     <string name="add_action_first">You have to add an action first.</string>
@@ -620,11 +640,14 @@
     <string name="nurik">Roman Nurik</string>
     <string name="nineoldandroids">NineOldAndroids</string>
     <string name="wharton">Jake Wharton</string>
+    <string name="picasso">Picasso</string>
+    <string name="square">Square Inc.</string>
+    <string name="materialtabs">MaterialTabs</string>
+    <string name="frenn">Karim Frenn</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my Github.</string>
     <string name="feature_request">Feature request</string>
     <string name="feature_request_summary">Do you want more features? Open a new issue on Github and tell me your idea.</string>
-    <string name="google_plus">Google Plus</string>
     <string name="google_plus_summary">Join our community.</string>
     <string name="translation">Translation</string>
     <string name="translation_summary">Help me to translate this app!</string>

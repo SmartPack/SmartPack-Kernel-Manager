@@ -22,10 +22,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,14 +38,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.SlidingTabLayout;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -60,7 +55,7 @@ public class FileBrowserActivity extends AppCompatActivity {
     public static final String FILE_TYPE_ARG = "file_type";
 
     private static FileBrowserActivity fileBrowserActivity;
-    private ViewPager mViewPager;
+    private FileBrowserFragment fileBrowserFragment;
     private StorageFragment internalStorage;
     private StorageFragment externalStorage;
 
@@ -68,38 +63,15 @@ public class FileBrowserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fileBrowserActivity = this;
-        boolean dark = Utils.getBoolean("darktheme", false, this);
-        if (dark) super.setTheme(R.style.AppThemeDark);
+        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
+            super.setTheme(R.style.AppThemeDark);
         setContentView(R.layout.activity_filebrowser);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
+        setSupportActionBar(toolbar);
         ActionBar actionBar;
         if ((actionBar = getSupportActionBar()) != null) actionBar.setDisplayHomeAsUpEnabled(true);
-
-        String fileType = getIntent().getExtras().getString(FILE_TYPE_ARG);
-        String externalStorage = Utils.getExternalStorage();
-
-        LinkedHashMap<String, Fragment> fragments = new LinkedHashMap<>();
-        internalStorage = StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);
-        fragments.put(getString(R.string.internal_storage), internalStorage);
-        if (externalStorage != null) {
-            this.externalStorage = StorageFragment.newInstance(externalStorage, fileType);
-            fragments.put(getString(R.string.external_storage), this.externalStorage);
-        }
-
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setAdapter(new Adapter(getSupportFragmentManager(), fragments));
-        if (dark)
-            mViewPager.setBackgroundColor(getResources().getColor(R.color.card_background_dark));
-
-        final SlidingTabLayout mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator, android.R.id.text1);
-        for (int i = 0; i < fragments.keySet().toArray().length; i++)
-            mSlidingTabLayout.setContentDescription(i, (String) fragments.keySet().toArray()[i]);
-        mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(fragments.size() > 1 ?
-                R.color.white : R.color.color_primary));
-        mSlidingTabLayout.setDistributeEvenly(true);
-        mSlidingTabLayout.setViewPager(mViewPager);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -107,30 +79,44 @@ public class FileBrowserActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.color_primary_dark));
         }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
+                fileBrowserFragment = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)))
+                .commitAllowingStateLoss();
     }
 
-    private class Adapter extends FragmentPagerAdapter {
+    public static class FileBrowserFragment extends ViewPagerFragment {
 
-        private final LinkedHashMap<String, Fragment> fragments;
-
-        public Adapter(FragmentManager fm, LinkedHashMap<String, Fragment> fragments) {
-            super(fm);
-            this.fragments = fragments;
+        public static FileBrowserFragment newInstance(String filetype) {
+            Bundle args = new Bundle();
+            args.putString(FILE_TYPE_ARG, filetype);
+            FileBrowserFragment fragment = new FileBrowserFragment();
+            fragment.setArguments(args);
+            return fragment;
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return (Fragment) fragments.values().toArray()[position];
+        public void init(Bundle savedInstanceState) {
+            super.init(savedInstanceState);
+
+            String fileType = getArguments().getString(FILE_TYPE_ARG);
+            String externalStorage = Utils.getExternalStorage();
+
+            fileBrowserActivity.internalStorage =
+                    StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);
+            addFragment(new ViewPagerItem(fileBrowserActivity.internalStorage, getString(R.string.internal_storage)));
+            if (externalStorage != null) {
+                fileBrowserActivity.externalStorage = StorageFragment.newInstance(externalStorage, fileType);
+                addFragment(new ViewPagerItem(fileBrowserActivity.externalStorage, getString(R.string.external_storage)));
+            }
         }
 
         @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return ((String) fragments.keySet().toArray()[position]).toUpperCase();
+        public boolean onBackPressed() {
+            boolean finish;
+            if (getCurrentPage() == 1) finish = fileBrowserActivity.externalStorage.onBackPressed();
+            else finish = fileBrowserActivity.internalStorage.onBackPressed();
+            return finish;
         }
     }
 
@@ -146,10 +132,7 @@ public class FileBrowserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        boolean finish;
-        if (mViewPager.getCurrentItem() == 1) finish = externalStorage.onBackPressed();
-        else finish = internalStorage.onBackPressed();
-        if (finish) super.onBackPressed();
+        if (fileBrowserFragment.onBackPressed()) super.onBackPressed();
     }
 
     protected void finished(String path) {

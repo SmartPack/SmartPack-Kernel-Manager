@@ -10,7 +10,6 @@
   <string name="beta_message">Ďakujem vám za to, že ste beta tester! Ak máte akékoľvek problémy, neváhajte ma kontaktovať. Používate verziu %s.</string>
   <string name="select_picture">Vybrať obrázok</string>
   <string name="no_picture">Žiadny obraz</string>
-  <string name="picture_too_big">Vybratý obrázok je príliš veľký</string>
   <string name="password">Heslo</string>
   <string name="password_wrong">Heslo je zlé</string>
   <string name="select_file">Vybrať %s?</string>
@@ -33,8 +32,8 @@
   <string name="kernel">Jadro</string>
   <string name="tools">Nástroje</string>
   <string name="other">Ostatné</string>
-  <string name="frequency_table">Tabuľka frekvencií</string>
   <string name="kernel_information">Informácie o jadre</string>
+  <string name="frequency_table">Tabuľka frekvencií</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU napätie</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -136,6 +135,7 @@
   <string name="battery_level">Úroveň batérie</string>
   <string name="battery_temperature">Teplota batérie</string>
   <string name="scheduler">Plánovač</string>
+  <string name="google_plus">Google Plus</string>
   <string name="name">Názov</string>
   <string name="reboot">Reštartovať</string>
   <string name="confirm">Ste si istý?</string>
@@ -155,7 +155,6 @@
   <string name="open_source_summary">Táto aplikácia má otvorený zdroj. Pozrite sa na môj Github.</string>
   <string name="feature_request">Žiadosť o funkciu</string>
   <string name="feature_request_summary">Chcete viac funkcií? Otvorte novú tému na Github a povedzte mi svoje nápady.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Pripojte sa k našej komunite.</string>
   <string name="translation">Preklad</string>
   <string name="translation_summary">Pomôžte mi preložiť túto aplikáciu!</string>

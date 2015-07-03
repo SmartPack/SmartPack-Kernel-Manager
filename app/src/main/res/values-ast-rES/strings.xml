@@ -9,6 +9,7 @@
   <string name="current_value_not_supported">Nun ta sofitáu\'l valor actual</string>
   <string name="beta_message">¡Gracies por ser un beta tester! Si alcuentres cualesquier problema, por favor nun dubies en contautame. Anguaño tas executando la versión %s.</string>
   <string name="select_picture">Esbillar semeya</string>
+  <string name="went_wrong">¡Daqué foi mal!</string>
   <string name="select_file">¿Esbillar %s?</string>
   <string name="no_files">Ensin ficheros nesti camín.</string>
   <string name="apply_on_boot">Aplicar nel arranque</string>
@@ -26,8 +27,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Ferramientes</string>
   <string name="other">Otru</string>
-  <string name="frequency_table">Tabla de frecuencies</string>
   <string name="kernel_information">Información del kernel</string>
+  <string name="frequency_table">Tabla de frecuencies</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltaxe de CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -117,6 +118,7 @@
   <string name="network">Rede</string>
   <string name="tcp">Algoritmu de conxestión TCP</string>
   <string name="hostname">Nome d\'agospiu</string>
+  <string name="google_plus">Google Plus</string>
   <string name="empty_name">¡El nome ta baleru!</string>
   <string name="delete">Desaniciar</string>
   <string name="restoring">Restaurando</string>
@@ -140,7 +142,6 @@
   <string name="confirm">¿De xuru?</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
-  <string name="went_wrong">¡Daqué foi mal!</string>
   <string name="flash_now_confirm">¿Quies executar les tos aiciones? El to preséu reaniciaráse nel mou recovery y executaránse les aciones nel orde nes que les amestesti.</string>
   <string name="add_action_first">Tienes d\'amestar una aición primero.</string>
   <string name="emulate_initd">Emular Init.d</string>
@@ -169,7 +170,6 @@
   <string name="open_source_summary">Esta aplicación ye códigu abiertu. Compruébalo nel mio Github.</string>
   <string name="feature_request">Solicitú de carauterístiques</string>
   <string name="feature_request_summary">¿Quies más carauterístiques? Abri un informe en Github y cúntame la to idea.</string>
-  <string name="google_plus">Google Plus</string>
   <string name="google_plus_summary">Xúnite a la nuesa comunidá.</string>
   <string name="translation">Traducciones</string>
   <string name="translation_summary">¡Aídame a tornar esta aplicación!</string>

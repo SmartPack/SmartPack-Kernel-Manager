@@ -27,8 +27,8 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Instrumente</string>
   <string name="other">Altele</string>
-  <string name="frequency_table">Tabelul de frecvenţă</string>
   <string name="kernel_information">Informaţii Kernel</string>
+  <string name="frequency_table">Tabelul de frecvenţă</string>
   <string name="cpu">CPU ( Procesor )</string>
   <string name="cpu_voltage">Tensiunea CPU-lui</string>
   <string name="cpu_hotplug">CPU Hotplug</string>

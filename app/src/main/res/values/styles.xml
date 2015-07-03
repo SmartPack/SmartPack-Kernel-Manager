@@ -35,8 +35,9 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
-    <style name="SwitchCompat">
-        <item name="colorControlActivated">@android:color/white</item>
+    <style name="WhiteAccent">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorAccent">@color/white</item>
     </style>
 
     <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

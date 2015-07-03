@@ -40,7 +40,7 @@ public class HeaderCardView {
      * Views
      */
     private TextView textView;
-    private String title;
+    private CharSequence title;
     private View view;
 
     public HeaderCardView(Context context) {
@@ -77,7 +77,7 @@ public class HeaderCardView {
      *
      * @param title new Text of the header
      */
-    public void setText(String title) {
+    public void setText(CharSequence title) {
         this.title = title;
         if (textView != null) textView.setText(title);
     }

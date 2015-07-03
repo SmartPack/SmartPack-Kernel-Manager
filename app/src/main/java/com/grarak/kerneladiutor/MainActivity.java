@@ -71,7 +71,9 @@ import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
+import com.grarak.kerneladiutor.fragments.tools.download.DownloadsFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -116,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
 
     private DAdapter.Adapter mAdapter;
 
+    private boolean pressAgain = true;
+
     /**
      * Current Fragment position
      */
@@ -132,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en_US", this);
 
         // Check if darktheme is in use and cache it as boolean
-        Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this);
-        if (Utils.DARKTHEME) super.setTheme(R.style.AppThemeDark);
+        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
+            super.setTheme(R.style.AppThemeDark);
 
         setContentView(R.layout.activity_main);
         setView();
@@ -236,6 +240,10 @@ public class MainActivity extends AppCompatActivity implements Constants {
         ITEMS.add(new DAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
+        Downloads downloads;
+        if ((downloads = new Downloads(this)).isSupported())
+            ITEMS.add(new DAdapter.Item(getString(R.string.downloads),
+                    DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
@@ -260,8 +268,7 @@ public class MainActivity extends AppCompatActivity implements Constants {
         mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
         mSplashView = (SplashView) findViewById(R.id.splash_view);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mLayoutManager.setSmoothScrollbarEnabled(true);
         mDrawerList.setLayoutManager(mLayoutManager);
         mDrawerList.setHasFixedSize(true);
@@ -409,8 +416,23 @@ public class MainActivity extends AppCompatActivity implements Constants {
     public void onBackPressed() {
         try {
             if (!ITEMS.get(cur_position).getFragment().onBackPressed())
-                if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) super.onBackPressed();
-                else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+                if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) {
+                    if (pressAgain) {
+                        Utils.toast(getString(R.string.press_back_again), this);
+                        pressAgain = false;
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(2000);
+                                    pressAgain = true;
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                    } else super.onBackPressed();
+                } else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
         } catch (Exception e) {
             e.printStackTrace();
         }

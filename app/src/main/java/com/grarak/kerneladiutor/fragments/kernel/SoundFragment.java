@@ -19,8 +19,8 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.SwitchCardView;
+import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 
@@ -29,16 +29,16 @@ import com.grarak.kerneladiutor.utils.kernel.Sound;
  */
 public class SoundFragment extends RecyclerViewFragment implements
         SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCardView.OnDSeekBarCardListener {
+        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private SwitchCardView.DSwitchCard mSoundControlEnableCard;
-    private SeekBarCardView.DSeekBarCardView mHeadphoneGainCard;
-    private SeekBarCardView.DSeekBarCardView mHandsetMicrophoneGainCard;
-    private SeekBarCardView.DSeekBarCardView mCamMicrophoneGainCard;
-    private SeekBarCardView.DSeekBarCardView mSpeakerGainCard;
-    private SeekBarCardView.DSeekBarCardView mHeadphonePowerAmpGainCard;
-    private SeekBarCardView.DSeekBarCardView mMicrophoneGainCard;
-    private SeekBarCardView.DSeekBarCardView mVolumeGainCard;
+    private SeekBarCardView.DSeekBarCard mHeadphoneGainCard;
+    private SeekBarCardView.DSeekBarCard mHandsetMicrophoneGainCard;
+    private SeekBarCardView.DSeekBarCard mCamMicrophoneGainCard;
+    private SeekBarCardView.DSeekBarCard mSpeakerGainCard;
+    private SeekBarCardView.DSeekBarCard mHeadphonePowerAmpGainCard;
+    private SeekBarCardView.DSeekBarCard mMicrophoneGainCard;
+    private SeekBarCardView.DSeekBarCard mVolumeGainCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void headphoneGainInit() {
-        mHeadphoneGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getHeadphoneGainLimits());
+        mHeadphoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphoneGainLimits());
         mHeadphoneGainCard.setTitle(getString(R.string.headphone_gain));
         mHeadphoneGainCard.setProgress(Sound.getHeadphoneGainLimits().indexOf(Sound.getCurHeadphoneGain()));
         mHeadphoneGainCard.setOnDSeekBarCardListener(this);
@@ -73,7 +73,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void handsetMicrophoneGainInit() {
-        mHandsetMicrophoneGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getHandsetMicrophoneGainLimits());
+        mHandsetMicrophoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHandsetMicrophoneGainLimits());
         mHandsetMicrophoneGainCard.setTitle(getString(R.string.handset_microphone_gain));
         mHandsetMicrophoneGainCard.setProgress(Sound.getHandsetMicrophoneGainLimits().indexOf(
                 Sound.getCurHandsetMicrophoneGain()));
@@ -83,7 +83,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void camMicrophoneGainInit() {
-        mCamMicrophoneGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getCamMicrophoneGainLimits());
+        mCamMicrophoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getCamMicrophoneGainLimits());
         mCamMicrophoneGainCard.setTitle(getString(R.string.cam_microphone_gain));
         mCamMicrophoneGainCard.setProgress(Sound.getCamMicrophoneGainLimits().indexOf(Sound.getCurCamMicrophoneGain()));
         mCamMicrophoneGainCard.setOnDSeekBarCardListener(this);
@@ -92,7 +92,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void speakerGainInit() {
-        mSpeakerGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getSpeakerGainLimits());
+        mSpeakerGainCard = new SeekBarCardView.DSeekBarCard(Sound.getSpeakerGainLimits());
         mSpeakerGainCard.setTitle(getString(R.string.speaker_gain));
         mSpeakerGainCard.setProgress(Sound.getSpeakerGainLimits().indexOf(Sound.getCurSpeakerGain()));
         mSpeakerGainCard.setOnDSeekBarCardListener(this);
@@ -101,7 +101,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void headphonePowerAmpGainInit() {
-        mHeadphonePowerAmpGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getHeadphonePowerAmpGainLimits());
+        mHeadphonePowerAmpGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphonePowerAmpGainLimits());
         mHeadphonePowerAmpGainCard.setTitle(getString(R.string.headphone_poweramp_gain));
         mHeadphonePowerAmpGainCard.setProgress(Sound.getHeadphonePowerAmpGainLimits().indexOf(
                 Sound.getCurHeadphonePowerAmpGain()));
@@ -111,7 +111,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void microphoneGainInit() {
-        mMicrophoneGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getMicrophoneGainLimits());
+        mMicrophoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getMicrophoneGainLimits());
         mMicrophoneGainCard.setTitle(getString(R.string.microphone_gain));
         mMicrophoneGainCard.setProgress(Sound.getMicrophoneGainLimits().indexOf(Sound.getMicrophoneGain()));
         mMicrophoneGainCard.setOnDSeekBarCardListener(this);
@@ -120,7 +120,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     private void volumeGainInit() {
-        mVolumeGainCard = new SeekBarCardView.DSeekBarCardView(Sound.getVolumeGainLimits());
+        mVolumeGainCard = new SeekBarCardView.DSeekBarCard(Sound.getVolumeGainLimits());
         mVolumeGainCard.setTitle(getString(R.string.volume_gain));
         mVolumeGainCard.setProgress(Sound.getVolumeGainLimits().indexOf(Sound.getVolumeGain()));
         mVolumeGainCard.setOnDSeekBarCardListener(this);
@@ -135,24 +135,24 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCardView dSeekBarCardView, int position) {
-        if (dSeekBarCardView == mHeadphoneGainCard)
+    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (dSeekBarCard == mHeadphoneGainCard)
             Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mHandsetMicrophoneGainCard)
+        else if (dSeekBarCard == mHandsetMicrophoneGainCard)
             Sound.setHandsetMicrophoneGain(Sound.getHandsetMicrophoneGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mCamMicrophoneGainCard)
+        else if (dSeekBarCard == mCamMicrophoneGainCard)
             Sound.setCamMicrophoneGain(Sound.getCamMicrophoneGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mSpeakerGainCard)
+        else if (dSeekBarCard == mSpeakerGainCard)
             Sound.setSpeakerGain(Sound.getSpeakerGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mHeadphonePowerAmpGainCard)
+        else if (dSeekBarCard == mHeadphonePowerAmpGainCard)
             Sound.setHeadphonePowerAmpGain(Sound.getHeadphonePowerAmpGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mMicrophoneGainCard)
+        else if (dSeekBarCard == mMicrophoneGainCard)
             Sound.setMicrophoneGain(Sound.getMicrophoneGainLimits().get(position), getActivity());
-        else if (dSeekBarCardView == mVolumeGainCard)
+        else if (dSeekBarCard == mVolumeGainCard)
             Sound.setVolumeGain(Sound.getVolumeGainLimits().get(position), getActivity());
     }
 }
