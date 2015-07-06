@@ -575,7 +575,7 @@ public interface Constants {
 
     String[] SUPPORTED_VM = {"dirty_ratio", "dirty_background_ratio", "dirty_expire_centisecs",
             "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio", "swappiness",
-            "vfs_cache_pressure", "laptop_mode"};
+            "vfs_cache_pressure", "laptop_mode", "extra_free_kbytes"};
 
     String ZRAM = "/sys/block/zram0";
     String ZRAM_BLOCK = "/dev/block/zram0";
