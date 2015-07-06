@@ -61,6 +61,18 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
+    public static boolean hasZaneZam() {
+        return Utils.existFile(CPU_ZANEZAM_PROFILE);
+    }
+
+    public static String getZaneZamProfile(){
+        return Utils.readFile(CPU_ZANEZAM_PROFILE);
+    }
+
+    public static void setZaneZamProfile(String value, Context context) {
+        Control.runCommand(value, CPU_ZANEZAM_PROFILE, Control.CommandType.CPU, context);
+    }
+
     public static void setCpuBoostInputFreq(int value, int core, Context context) {
         String freqs;
         if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {
@@ -309,6 +321,22 @@ public class CPU implements Constants {
         List<Integer> freqs = Arrays.asList(mFreqs[core]);
         Collections.sort(freqs);
         return freqs;
+    }
+
+    public static ArrayList<String> getZaneZamProfiles() {
+        ArrayList<String> zzProfiles = new ArrayList<String>();
+            zzProfiles.add("None");
+            zzProfiles.add("Default");
+            zzProfiles.add("Yank Battery");
+            zzProfiles.add("Yank Battery Extreme");
+            zzProfiles.add("ZaneZam Battery");
+            zzProfiles.add("ZaneZam Battery Plus");
+            zzProfiles.add("ZaneZam Optimized");
+            zzProfiles.add("ZaneZam Moderate");
+            zzProfiles.add("ZaneZam Performance");
+            zzProfiles.add("ZaneZam InZane");
+            zzProfiles.add("ZaneZam Gaming");
+        return zzProfiles;
     }
 
     public static void setMaxScreenOffFreq(int freq, Context context) {
