@@ -10,8 +10,10 @@
   <string name="beta_message">感谢您成为 Beta 版本的测试人员！如果您遇到任何问题，请不要犹豫并立即联系我。您当前运行的版本是 %s。</string>
   <string name="select_picture">选择图片</string>
   <string name="no_picture">没有图片</string>
+  <string name="went_wrong">出现错误</string>
   <string name="password">密码</string>
   <string name="password_wrong">密码错误</string>
+  <string name="press_back_again">再次按返回键退出</string>
   <string name="select_file">选择%s？</string>
   <string name="no_files">在该路径中没有文件</string>
   <string name="apply_on_boot">在启动时自动应用</string>
@@ -32,6 +34,7 @@
   <string name="kernel">内核</string>
   <string name="tools">工具</string>
   <string name="other">其他</string>
+  <string name="downloads">下载</string>
   <string name="kernel_information">内核信息</string>
   <string name="frequency_table">频率表</string>
   <string name="cpu">CPU</string>
@@ -83,6 +86,7 @@
   <string name="not_tunable">%s 无法调节</string>
   <string name="mc_power_saving">多核省电</string>
   <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务。</string>
+  <string name="cfs_scheduler_policy">CFS 调度策略</string>
   <string name="disabled">禁用</string>
   <string name="enabled">启用</string>
   <string name="aggressive">积极</string>
@@ -147,6 +151,9 @@
   <string name="history_size">历史记录大小</string>
   <string name="update_rate">更新率</string>
   <string name="io_is_busy">I/O 繁忙</string>
+  <string name="min_time_cpu_online">最短 CPU 在线时间</string>
+  <string name="timer">定时器</string>
+  <string name="msm_mpdecision_hotplug">MSM MPDecision 热插拔</string>
   <string name="idle_frequency">空闲频率</string>
   <string name="core_control">核心控制</string>
   <string name="vdd_restriction">VDD 限制</string>

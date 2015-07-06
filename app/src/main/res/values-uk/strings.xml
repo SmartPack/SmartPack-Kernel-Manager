@@ -149,6 +149,14 @@
   <string name="up_threshold">Up Threshold</string>
   <string name="up_threshold_summary">Over this threshold the driver will put one more core online.</string>
   <string name="up_timer_cnt">Up Timer Control</string>
+  <string name="delay_summary">Час між перевірками.</string>
   <string name="cpu_up_rate">CPU Up Rate</string>
   <string name="thunderplug">Thunderplug</string>
+  <string name="min_cores_screen_off">Мінімальна кількість ядер при вимкненому дисплеї</string>
+  <string name="min_cores_screen_off_summary">Мінімальна кількість активних ядер при виключеному дисплеї.</string>
+  <string name="endurance_level_summary">Режим енергозбереження.</string>
+  <string name="quad_core_mode">Чотирьохядерний режим</string>
+  <string name="dual_core_mode">Двохядерний режим</string>
+  <string name="wake_wait_time_summary">Час очікування, перед ввімкненням ядер.</string>
+  <string name="autosmp_summary">Вбудована заміна для MPDecision від Qualcomm. Розробник - mrg666.</string>
 </resources>
