@@ -160,7 +160,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasLimitTempDegC()) {
             List<String> list = new ArrayList<>();
             for (double i = 50; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
             mLimitTempDegCCard.setTitle(getString(R.string.freq_throttle_temp));
@@ -174,7 +174,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasCoreLimitTempDegC()) {
             List<String> list = new ArrayList<>();
             for (double i = 50; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mCoreLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
             mCoreLimitTempDegCCard.setTitle(getString(R.string.core_throttle_temp));
@@ -188,7 +188,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasCoreTempHysteresisDegC()) {
             List<String> list = new ArrayList<>();
             for (double i = 0; i < 21; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mCoreTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
             mCoreTempHysteresisDegCCard.setTitle(getString(R.string.core_temp_hysteresis));
@@ -234,7 +234,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasTempHysteresisDegC()) {
             List<String> list = new ArrayList<>();
             for (double i = 0; i < 21; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
             mTempHysteresisDegCCard.setTitle(getString(R.string.temp_hysteresis));
@@ -328,7 +328,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedLowLow()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedLowLowCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedLowLowCard.setTitle(getString(R.string.allowed_low_low));
@@ -341,7 +341,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedLowHigh()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedLowHighCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedLowHighCard.setTitle(getString(R.string.allowed_low_high));
@@ -366,7 +366,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedMidLow()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedMidLowCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedMidLowCard.setTitle(getString(R.string.allowed_mid_low));
@@ -379,7 +379,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedMidHigh()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedMidHighCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedMidHighCard.setTitle(getString(R.string.allowed_mid_high));
@@ -404,7 +404,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedMaxLow()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedMaxLowCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedMaxLowCard.setTitle(getString(R.string.allowed_max_low));
@@ -417,7 +417,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasAllowedMaxHigh()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mAllowedMaxHighCard = new SeekBarCardView.DSeekBarCard(list);
             mAllowedMaxHighCard.setTitle(getString(R.string.allowed_max_high));
@@ -454,7 +454,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         if (Thermal.hasShutdownTemp()) {
             List<String> list = new ArrayList<>();
             for (double i = 40; i < 101; i++)
-                list.add(i + "°C " + Utils.celsiusToFahrenheit(i));
+                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
             mShutdownFreqCard = new SeekBarCardView.DSeekBarCard(list);
             mShutdownFreqCard.setTitle(getString(R.string.shutdown_temp));

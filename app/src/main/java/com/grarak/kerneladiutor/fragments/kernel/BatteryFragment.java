@@ -153,7 +153,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
                 mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
             if (mBatteryTemperature != null) {
                 double celsius = (double) temperature / 10;
-                mBatteryTemperature.setDescription(celsius + "°C " + Utils.celsiusToFahrenheit(celsius));
+                mBatteryTemperature.setDescription(Utils.formatCelsius(celsius) + " " + Utils.celsiusToFahrenheit(celsius));
             }
         }
     };

@@ -362,6 +362,10 @@ public class Utils implements Constants {
         return applys;
     }
 
+    public static String formatCelsius(double celsius) {
+        return round(celsius, 2) + "°C";
+    }
+
     public static String celsiusToFahrenheit(double celsius) {
         return round(celsius * 9 / 5 + 32, 2) + "°F";
     }

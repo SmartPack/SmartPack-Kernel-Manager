@@ -342,7 +342,7 @@ public class CPU implements Constants {
         double temp = Utils.stringToLong(Utils.readFile(TEMP_FILE));
         if (temp > 1000) temp /= 1000;
         else if (temp > 200) temp /= 10;
-        return temp + "°C" + " " + Utils.celsiusToFahrenheit(temp);
+        return Utils.formatCelsius(temp) + " " + Utils.celsiusToFahrenheit(temp);
     }
 
     public static boolean hasTemp() {
