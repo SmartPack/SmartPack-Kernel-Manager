@@ -194,7 +194,7 @@ public class Utils implements Constants {
 
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            imageView.setImageBitmap(scaleDownBitmap(bitmap, 1024, 1024));
+            imageView.setImageBitmap(scaleDownBitmap(bitmap, 1920, 1920));
             protectedFromGarbageCollectorTargets.remove(this);
         }
 

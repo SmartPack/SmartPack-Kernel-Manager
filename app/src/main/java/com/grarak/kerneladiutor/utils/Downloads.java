@@ -34,7 +34,10 @@ public class Downloads {
 
     public Downloads(Context context) {
         try {
-            JSONArray devices = new JSONArray(Utils.readAssetFile(context, "downloads.json"));
+            String json = Utils.existFile(context.getFilesDir() + "/downloads.json") ?
+                    Utils.readFile(context.getFilesDir() + "/downloads.json", false) :
+                    Utils.readAssetFile(context, "downloads.json");
+            JSONArray devices = new JSONArray(json);
             for (int i = 0; i < devices.length(); i++) {
                 JSONObject device = devices.getJSONObject(i);
                 JSONArray vendors = device.getJSONArray("vendor");

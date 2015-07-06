@@ -129,9 +129,8 @@ public class DownloadsFragment extends RecyclerViewFragment {
                             List<String> names = new ArrayList<>();
                             List<Downloads.KernelContent> contents = new ArrayList<>();
                             for (String json : jsons) {
-                                Downloads.KernelContent kernelContent;
-                                if (json != null && !json.isEmpty() && (kernelContent =
-                                        new Downloads.KernelContent(json)).readable()) {
+                                Downloads.KernelContent kernelContent = new Downloads.KernelContent(json);
+                                if (json != null && !json.isEmpty() && kernelContent.readable()) {
                                     names.add(Html.fromHtml(kernelContent.getName()).toString());
                                     contents.add(kernelContent);
                                 }
@@ -139,9 +138,14 @@ public class DownloadsFragment extends RecyclerViewFragment {
 
                             Collections.sort(names);
                             for (String name : names)
-                                for (Downloads.KernelContent content : contents)
-                                    if (name.equals(Html.fromHtml(content.getName()).toString()))
+                                for (Downloads.KernelContent content : contents) {
+                                    String n = content.getName();
+                                    if (n != null && name.equals(Html.fromHtml(n).toString())
+                                            && content.getLogo() != null
+                                            && content.getShortDescription() != null
+                                            && content.getLongDescription() != null)
                                         addView(new KernelCardView.DKernelCard(content));
+                                }
 
                             hideProgress();
                         }

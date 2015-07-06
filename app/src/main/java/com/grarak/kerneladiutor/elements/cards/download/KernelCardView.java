@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -47,17 +48,13 @@ public class KernelCardView extends BaseCardView {
     public KernelCardView(Context context, @NonNull final Downloads.KernelContent kernelContent) {
         super(context, R.layout.kernel_cardview);
 
-        String logoUrl;
-        if (logoView != null && (logoUrl = kernelContent.getLogo()) != null)
-            Utils.loadImagefromUrl(logoUrl, logoView);
+        Utils.loadImagefromUrl(kernelContent.getLogo(), logoView);
 
-        String nameText;
-        if (nameView != null && (nameText = kernelContent.getName()) != null)
-            nameView.setText(Html.fromHtml(nameText));
+        nameView.setText(Html.fromHtml(kernelContent.getName()));
+        nameView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        String descriptionText;
-        if (descriptionView != null && (descriptionText = kernelContent.getShortDescription()) != null)
-            descriptionView.setText(Html.fromHtml(descriptionText));
+        descriptionView.setText(Html.fromHtml(kernelContent.getShortDescription()));
+        descriptionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         setOnClickListener(new OnClickListener() {
             @Override

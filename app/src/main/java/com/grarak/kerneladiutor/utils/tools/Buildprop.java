@@ -39,20 +39,27 @@ public class Buildprop implements Constants {
     }
 
     public static LinkedHashMap<String, String> getProps() {
-        String[] values = Utils.readFile(BUILD_PROP).split("\\r?\\n");
         LinkedHashMap<String, String> list = new LinkedHashMap<>();
-        for (String prop : values)
-            if (!prop.isEmpty() && !prop.startsWith("#")) {
-                String[] line = prop.split("=");
+        String buildprop;
+        if ((buildprop = Utils.readFile(BUILD_PROP)) != null) {
+            String[] values = buildprop.split("\\r?\\n");
+            for (String prop : values)
+                if (!prop.isEmpty() && !prop.startsWith("#")) {
+                    String[] line = prop.split("=");
 
-                StringBuilder value = new StringBuilder();
-                if (line.length > 1) {
-                    for (int i = 1; i < line.length; i++) value.append(line[i]).append("=");
-                    value.setLength(value.length() - 1);
+                    StringBuilder value = new StringBuilder();
+                    if (line.length > 1) {
+                        for (int i = 1; i < line.length; i++) value.append(line[i]).append("=");
+                        value.setLength(value.length() - 1);
+                    }
+                    list.put(line.length > 0 ? line[0].trim() : "", value.toString().trim());
                 }
-                list.put(line.length > 0 ? line[0].trim() : "", value.toString().trim());
-            }
+        }
         return list;
+    }
+
+    public static boolean hasBuildprop() {
+        return getProps().size() > 0;
     }
 
 }
