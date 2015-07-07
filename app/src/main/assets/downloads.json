@@ -26,5 +26,14 @@
       "GT-I9103"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxyr.json"
+  },
+  {
+    "vendor": [
+      "LGE"
+    ],
+    "device": [
+      "hammerhead"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nexus5.json"
   }
 ]
