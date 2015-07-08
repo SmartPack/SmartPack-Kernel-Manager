@@ -3,11 +3,9 @@
 // (C) Brandon Valosek, 2011 <bvalosek@gmail.com>
 //
 //-----------------------------------------------------------------------------
-// Modified by Willi Ye to work as Fragment
+// Modified by Willi Ye to work as Fragment and with with big.LITTLE
 
 package com.grarak.kerneladiutor.fragments.information;
-
-// imports
 
 import android.content.res.Configuration;
 import android.os.AsyncTask;

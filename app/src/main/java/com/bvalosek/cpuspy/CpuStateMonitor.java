@@ -3,10 +3,9 @@
 // (C) Brandon Valosek, 2011 <bvalosek@gmail.com>
 //
 //-----------------------------------------------------------------------------
+// Modified by Willi Ye to work with big.LITTLE
 
 package com.bvalosek.cpuspy;
-
-// imports
 
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
