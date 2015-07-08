@@ -37,7 +37,7 @@
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nexus5.json"
   },
   {
-    "vendor" : [
+    "vendor": [
       "OnePlus"
     ],
     "device": [
@@ -47,7 +47,7 @@
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/oneplusone.json"
   },
   {
-    "vendor" : [
+    "vendor": [
       "Micromax",
       "Spice",
       "Karbonn",
@@ -59,7 +59,7 @@
       "MyPhone",
       "QMobile"
     ],
-    "device" : [
+    "device": [
       "sprout4",
       "sprout8",
       "sprout"
