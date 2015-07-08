@@ -251,7 +251,7 @@ public class CPU implements Constants {
     }
 
     public static List<Integer> getFreqs() {
-        return getFreqs(0);
+        return getFreqs(getBigCore());
     }
 
     public static List<Integer> getFreqs(int core) {
@@ -344,11 +344,13 @@ public class CPU implements Constants {
     }
 
     public static int getLITTLEcore() {
-        return LITTLEcore;
+        isBigLITTLE();
+        return LITTLEcore == -1 ? 0 : LITTLEcore;
     }
 
     public static int getBigCore() {
-        return bigCore;
+        isBigLITTLE();
+        return bigCore == -1 ? 0 : bigCore;
     }
 
     public static boolean isBigLITTLE() {

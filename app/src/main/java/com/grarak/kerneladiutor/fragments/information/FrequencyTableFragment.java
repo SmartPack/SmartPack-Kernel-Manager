@@ -39,12 +39,12 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
     private SwipeRefreshLayout refreshLayout;
 
-    private CpuStateMonitor monitorBig;
+    private CpuStateMonitor monitor;
 
-    private CardViewItem.DCardView uptimeCardBig;
-    private CardViewItem.DCardView frequencyCardBig;
-    private CardViewItem.DCardView additionalCardBig;
-    private LinearLayout uiStatesViewBig;
+    private CardViewItem.DCardView uptimeCard;
+    private CardViewItem.DCardView frequencyCard;
+    private CardViewItem.DCardView additionalCard;
+    private LinearLayout uiStatesView;
 
     private CpuStateMonitor monitorLITTLE;
 
@@ -52,13 +52,6 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     private CardViewItem.DCardView frequencyCardLITTLE;
     private CardViewItem.DCardView additionalCardLITTLE;
     private LinearLayout uiStatesViewLITTLE;
-
-    private CpuStateMonitor monitor;
-
-    private CardViewItem.DCardView uptimeCard;
-    private CardViewItem.DCardView frequencyCard;
-    private CardViewItem.DCardView additionalCard;
-    private LinearLayout uiStatesView;
 
     @Override
     public int getSpan() {
@@ -106,28 +99,30 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (CPU.isBigLITTLE()) {
-            monitorBig = new CpuStateMonitor(CPU.getBigCore());
+        monitor = new CpuStateMonitor(CPU.getBigCore());
 
+        if (CPU.isBigLITTLE()) {
             DividerCardView.DDividerCard bigDivider = new DividerCardView.DDividerCard();
             bigDivider.setText(getString(R.string.big));
             bigDivider.toLowerCase();
             addView(bigDivider);
+        }
 
-            uptimeCardBig = new CardViewItem.DCardView();
-            uptimeCardBig.setTitle(getString(R.string.uptime));
-            addView(uptimeCardBig);
+        uptimeCard = new CardViewItem.DCardView();
+        uptimeCard.setTitle(getString(R.string.uptime));
+        addView(uptimeCard);
 
-            uiStatesViewBig = new LinearLayout(getActivity());
-            uiStatesViewBig.setOrientation(LinearLayout.VERTICAL);
-            frequencyCardBig = new CardViewItem.DCardView();
-            frequencyCardBig.setTitle(getString(R.string.frequency_table));
-            frequencyCardBig.setView(uiStatesViewBig);
-            addView(frequencyCardBig);
+        uiStatesView = new LinearLayout(getActivity());
+        uiStatesView.setOrientation(LinearLayout.VERTICAL);
+        frequencyCard = new CardViewItem.DCardView();
+        frequencyCard.setTitle(getString(R.string.frequency_table));
+        frequencyCard.setView(uiStatesView);
+        addView(frequencyCard);
 
-            additionalCardBig = new CardViewItem.DCardView();
-            additionalCardBig.setTitle(getString(R.string.unused_cpu_states));
+        additionalCard = new CardViewItem.DCardView();
+        additionalCard.setTitle(getString(R.string.unused_cpu_states));
 
+        if (CPU.isBigLITTLE()) {
             monitorLITTLE = new CpuStateMonitor(CPU.getLITTLEcore());
 
             DividerCardView.DDividerCard LITTLEDivider = new DividerCardView.DDividerCard();
@@ -147,22 +142,6 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
             additionalCardLITTLE = new CardViewItem.DCardView();
             additionalCardLITTLE.setTitle(getString(R.string.unused_cpu_states));
-        } else {
-            monitor = new CpuStateMonitor(0);
-
-            uptimeCard = new CardViewItem.DCardView();
-            uptimeCard.setTitle(getString(R.string.uptime));
-            addView(uptimeCard);
-
-            uiStatesView = new LinearLayout(getActivity());
-            uiStatesView.setOrientation(LinearLayout.VERTICAL);
-            frequencyCard = new CardViewItem.DCardView();
-            frequencyCard.setTitle(getString(R.string.frequency_table));
-            frequencyCard.setView(uiStatesView);
-            addView(frequencyCard);
-
-            additionalCard = new CardViewItem.DCardView();
-            additionalCard.setTitle(getString(R.string.unused_cpu_states));
         }
     }
 
@@ -293,10 +272,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         @Override
         protected Void doInBackground(Void... v) {
             try {
-                if (CPU.isBigLITTLE()) {
-                    monitorBig.updateStates();
-                    monitorLITTLE.updateStates();
-                } else monitor.updateStates();
+                monitor.updateStates();
+                if (CPU.isBigLITTLE()) monitorLITTLE.updateStates();
             } catch (CpuStateMonitor.CpuStateMonitorException e) {
                 Log.e(TAG, "FrequencyTable: Problem getting CPU states");
             }
@@ -308,10 +285,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
          */
         @Override
         protected void onPostExecute(Void v) {
-            if (CPU.isBigLITTLE()) {
-                updateView(uiStatesViewBig, monitorBig, frequencyCardBig, uptimeCardBig, additionalCardBig);
-                updateView(uiStatesViewLITTLE, monitorLITTLE, frequencyCardLITTLE, uptimeCardLITTLE, additionalCardLITTLE);
-            } else updateView(uiStatesView, monitor, frequencyCard, uptimeCard, additionalCard);
+            updateView(uiStatesView, monitor, frequencyCard, uptimeCard, additionalCard);
+            updateView(uiStatesViewLITTLE, monitorLITTLE, frequencyCardLITTLE, uptimeCardLITTLE, additionalCardLITTLE);
             refreshLayout.setRefreshing(false);
         }
     }
