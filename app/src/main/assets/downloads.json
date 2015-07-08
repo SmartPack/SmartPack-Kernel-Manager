@@ -35,5 +35,35 @@
       "hammerhead"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nexus5.json"
+  },
+  {
+    "vendor" : [
+      "OnePlus"
+    ],
+    "device": [
+      "A0001",
+      "bacon"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/oneplusone.json"
+  },
+  {
+    "vendor" : [
+      "Micromax",
+      "Spice",
+      "Karbonn",
+      "Symphony",
+      "Mito",
+      "Evercross",
+      "Nexian",
+      "Cherry",
+      "MyPhone",
+      "QMobile"
+    ],
+    "device" : [
+      "sprout4",
+      "sprout8",
+      "sprout"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sprout.json"
   }
 ]
