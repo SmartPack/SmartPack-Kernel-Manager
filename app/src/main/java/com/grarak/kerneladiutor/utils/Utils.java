@@ -330,11 +330,12 @@ public class Utils implements Constants {
         if (mClass == BatteryFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
         else if (mClass == CPUFragment.class) {
-            for (String cpu : CPU_ARRAY)
-                if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
-                    for (int i = 0; i < CPU.getCoreCount(); i++)
-                        applys.add(String.format(cpu, i));
-                else applys.add(cpu);
+            for (String[] array : CPU_ARRAY)
+                for (String cpu : array)
+                    if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
+                        for (int i = 0; i < CPU.getCoreCount(); i++)
+                            applys.add(String.format(cpu, i));
+                    else applys.add(cpu);
         } else if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(array)));
         else if (mClass == CPUVoltageFragment.class)

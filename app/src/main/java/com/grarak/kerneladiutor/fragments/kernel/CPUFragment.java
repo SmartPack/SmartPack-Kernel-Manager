@@ -511,12 +511,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         @Override
         public String getPath() {
             String governor = CPU.getCurGovernor(0);
-            if (Utils.existFile(CPU_GOVERNOR_TUNABLES + "/" + governor))
-                return CPU_GOVERNOR_TUNABLES + "/" + governor;
-            else for (String file : new RootFile(CPU_GOVERNOR_TUNABLES).list())
-                if (governor.contains(file))
-                    return CPU_GOVERNOR_TUNABLES + "/" + file;
-            return CPU_GOVERNOR_TUNABLES + "/" + governor;
+            for (String tunable : CPU_GOVERNOR_TUNABLES)
+                if (Utils.existFile(String.format(tunable, governor)))
+                    return String.format(tunable, governor);
+                else for (String file : new RootFile(tunable).list())
+                    if (governor.contains(file))
+                        return String.format(tunable, file);
+            return null;
         }
 
         @Override

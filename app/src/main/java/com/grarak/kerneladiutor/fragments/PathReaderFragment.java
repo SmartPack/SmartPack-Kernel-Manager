@@ -100,31 +100,33 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         removeAllViews();
 
         final String path = getPath();
-        List<String> files = new RootFile(path).list();
-        for (String file : files) {
-            String value = Utils.readFile(path + "/" + file);
-            if (value != null && !value.isEmpty() && !value.contains("\n")) {
-                PopupCardView.DPopupCard mPathCard = new PopupCardView.DPopupCard(null);
-                mPathCard.setDescription(file);
-                mPathCard.setItem(value);
-                mPathCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
-                                .readFile(path + "/" + ((PopupCardView) v).getDescription()))) > -1;
+        if (path != null) {
+            List<String> files = new RootFile(path).list();
+            for (String file : files) {
+                String value = Utils.readFile(path + "/" + file);
+                if (value != null && !value.isEmpty() && !value.contains("\n")) {
+                    PopupCardView.DPopupCard mPathCard = new PopupCardView.DPopupCard(null);
+                    mPathCard.setDescription(file);
+                    mPathCard.setItem(value);
+                    mPathCard.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
+                                    .readFile(path + "/" + ((PopupCardView) v).getDescription()))) > -1;
 
-                        if (freq && getType() == PATH_TYPE.GOVERNOR) {
-                            String[] values = new String[CPU.getFreqs().size()];
-                            for (int i = 0; i < values.length; i++)
-                                values[i] = String.valueOf(CPU.getFreqs().get(i));
-                            showPopupDialog(path + "/" + ((PopupCardView) v).getDescription(), values);
-                        } else
-                            showDialog(path + "/" + ((PopupCardView) v).getDescription(),
-                                    ((PopupCardView) v).getItem());
-                    }
-                });
+                            if (freq && getType() == PATH_TYPE.GOVERNOR) {
+                                String[] values = new String[CPU.getFreqs().size()];
+                                for (int i = 0; i < values.length; i++)
+                                    values[i] = String.valueOf(CPU.getFreqs().get(i));
+                                showPopupDialog(path + "/" + ((PopupCardView) v).getDescription(), values);
+                            } else
+                                showDialog(path + "/" + ((PopupCardView) v).getDescription(),
+                                        ((PopupCardView) v).getItem());
+                        }
+                    });
 
-                addView(mPathCard);
+                    addView(mPathCard);
+                }
             }
         }
 

@@ -51,7 +51,9 @@ public interface Constants {
     String CPU_TIME_STATE = "/sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state";
     String CPU_SCALING_GOVERNOR = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor";
     String CPU_AVAILABLE_GOVERNORS = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors";
-    String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq";
+
+    String[] CPU_GOVERNOR_TUNABLES = {"/sys/devices/system/cpu/cpufreq/%s", "/sys/devices/system/cpu/cpu0/cpufreq/%s"};
+
     String CPU_MC_POWER_SAVING = "/sys/devices/system/cpu/sched_mc_power_savings";
     String CPU_WQ_POWER_SAVING = "/sys/module/workqueue/parameters/power_efficient";
     String CPU_AVAILABLE_CFS_SCHEDULERS = "/sys/devices/system/cpu/sched_balance_policy/available_sched_balance_policy";
@@ -71,10 +73,10 @@ public interface Constants {
     String CPU_BOOST_INPUT_MS = CPU_BOOST + "/input_boost_ms";
     String CPU_BOOST_INPUT_BOOST_FREQ = CPU_BOOST + "/input_boost_freq";
 
-    String[] CPU_ARRAY = {CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
+    String[][] CPU_ARRAY = {{CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MIN_FREQ,
             CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
-            CPU_AVAILABLE_GOVERNORS, CPU_GOVERNOR_TUNABLES, CPU_MC_POWER_SAVING, CPU_WQ_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS,
-            CPU_CURRENT_CFS_SCHEDULER, CPU_QUIET, CPU_BOOST};
+            CPU_AVAILABLE_GOVERNORS, CPU_MC_POWER_SAVING, CPU_WQ_POWER_SAVING, CPU_AVAILABLE_CFS_SCHEDULERS,
+            CPU_CURRENT_CFS_SCHEDULER, CPU_QUIET, CPU_BOOST}, CPU_GOVERNOR_TUNABLES};
 
     // CPU Voltage
     String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
