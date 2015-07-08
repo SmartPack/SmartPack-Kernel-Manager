@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">Kernel Adiutor</string>
+    <string name="app_name" translatable="false">Kernel Adiutor</string>
     <string name="no_root">No root available</string>
     <string name="no_busybox">No busybox available</string>
     <string name="ok">OK</string>
@@ -68,19 +68,18 @@
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
-    <string name="recovery">Recovery</string>
+    <string name="recovery" translatable="false">Recovery</string>
     <string name="initd">Init.d</string>
     <string name="settings">Settings</string>
     <string name="faq">FAQ</string>
     <string name="about_us">About us</string>
 
     <!-- Frequency Table -->
+    <string name="big" translatable="false">Big</string>
+    <string name="little" translatable="false">Little</string>
     <string name="unused_cpu_states">Unused CPU states</string>
     <string name="uptime">Uptime</string>
     <string name="deep_sleep">Deep Sleep</string>
-    <string name="refresh">Refresh</string>
-    <string name="reset_timer">Reset Timers</string>
-    <string name="restore_timer">Restore Timers</string>
 
     <!-- Kernel Information -->
     <string name="kernel_version">Kernel Version</string>
@@ -528,8 +527,8 @@
     <string name="no_backups">No backups</string>
     <string name="flash_img">Flash IMG</string>
     <string name="flashing">Flashing</string>
-    <string name="boot">Boot</string>
-    <string name="fota">Fota</string>
+    <string name="boot" translatable="false">Boot</string>
+    <string name="fota" translatable="false">Fota</string>
     <string name="backing_up">Backing up</string>
     <string name="empty_name">Name is empty!</string>
     <string name="backup_already_exists">A backup with the same name already exists. Delete it first!</string>

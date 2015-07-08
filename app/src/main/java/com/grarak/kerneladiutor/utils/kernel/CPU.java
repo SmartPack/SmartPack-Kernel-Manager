@@ -23,9 +23,11 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.LinuxUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,7 +35,10 @@ import java.util.List;
  */
 public class CPU implements Constants {
 
-    private static Integer[] mFreqs;
+    private static int cores;
+    private static int bigCore = -1;
+    private static int LITTLEcore = -1;
+    private static Integer[][] mFreqs;
     private static String[] mAvailableGovernors;
     private static String[] mMcPowerSavingItems;
     private static String[] mAvailableCFSSchedulers;
@@ -245,36 +250,38 @@ public class CPU implements Constants {
         return "";
     }
 
-    public static ArrayList<Integer> getFreqs() {
-        if (mFreqs == null) {
-            if (Utils.existFile(CPU_AVAILABLE_FREQS)) {
-                String values = Utils.readFile(CPU_AVAILABLE_FREQS);
-                if (values != null) {
-                    String[] valueArray = values.split(" ");
-                    mFreqs = new Integer[valueArray.length];
-                    for (int i = 0; i < mFreqs.length; i++)
-                        mFreqs[i] = Utils.stringToInt(valueArray[i]);
-                }
-            } else if (Utils.existFile(CPU_TIME_STATE)) {
-                String values = Utils.readFile(CPU_TIME_STATE);
-                if (values != null) {
-                    String[] valueArray = values.split("\\r?\\n");
-                    mFreqs = new Integer[valueArray.length];
-                    for (int i = 0; i < mFreqs.length; i++)
-                        mFreqs[i] = Utils.stringToInt(valueArray[i].split(" ")[0]);
+    public static List<Integer> getFreqs() {
+        return getFreqs(0);
+    }
 
-                    if (mFreqs[0] > mFreqs[mFreqs.length - 1]) {
-                        List<Integer> freqs = new ArrayList<>();
-                        for (int x = mFreqs.length - 1; x >= 0; x--)
-                            freqs.add(mFreqs[x]);
-                        for (int i = 0; i < mFreqs.length; i++)
-                            mFreqs[i] = freqs.get(i);
-                    }
+    public static List<Integer> getFreqs(int core) {
+        if (mFreqs == null) mFreqs = new Integer[getCoreCount()][];
+        if (mFreqs[core] == null)
+            if (Utils.existFile(String.format(CPU_AVAILABLE_FREQS, 0))) {
+                if (core > 0) while (!Utils.existFile(String.format(CPU_AVAILABLE_FREQS, core)))
+                    activateCore(core, true, null);
+                String values;
+                if ((values = Utils.readFile(String.format(CPU_AVAILABLE_FREQS, core))) != null) {
+                    String[] valueArray = values.split(" ");
+                    mFreqs[core] = new Integer[valueArray.length];
+                    for (int i = 0; i < mFreqs[core].length; i++)
+                        mFreqs[core][i] = Utils.stringToInt(valueArray[i]);
+                }
+            } else if (Utils.existFile(String.format(CPU_TIME_STATE, 0))) {
+                if (core > 0) while (!Utils.existFile(String.format(CPU_TIME_STATE, core)))
+                    activateCore(core, true, null);
+                String values;
+                if ((values = Utils.readFile(String.format(CPU_TIME_STATE, core))) != null) {
+                    String[] valueArray = values.split("\\r?\\n");
+                    mFreqs[core] = new Integer[valueArray.length];
+                    for (int i = 0; i < mFreqs[core].length; i++)
+                        mFreqs[core][i] = Utils.stringToInt(valueArray[i].split(" ")[0]);
                 }
             }
-        }
-        if (mFreqs == null) return null;
-        return new ArrayList<>(Arrays.asList(mFreqs));
+        if (mFreqs[core] == null) return null;
+        List<Integer> freqs = Arrays.asList(mFreqs[core]);
+        Collections.sort(freqs);
+        return freqs;
     }
 
     public static void setMaxScreenOffFreq(int freq, Context context) {
@@ -330,12 +337,43 @@ public class CPU implements Constants {
     }
 
     public static void activateCore(int core, boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", String.format(CPU_CORE_ONLINE, core),
-                Control.CommandType.GENERIC, context);
+        if (context != null)
+            Control.runCommand(active ? "1" : "0", String.format(CPU_CORE_ONLINE, core), Control.CommandType.GENERIC, context);
+        else
+            RootUtils.runCommand(String.format("echo %s > " + String.format(CPU_CORE_ONLINE, core), active ? "1" : "0"));
+    }
+
+    public static int getLITTLEcore() {
+        return LITTLEcore;
+    }
+
+    public static int getBigCore() {
+        return bigCore;
+    }
+
+    public static boolean isBigLITTLE() {
+        boolean bigLITTLE = getCoreCount() > 4;
+        if (!bigLITTLE) return false;
+
+        if (bigCore == -1 || LITTLEcore == -1) {
+            List<Integer> cpu0Freqs = getFreqs(0);
+            List<Integer> cpu4Freqs = getFreqs(4);
+            if (cpu0Freqs != null && cpu4Freqs != null) {
+                if (cpu0Freqs.size() > cpu4Freqs.size()) {
+                    bigCore = 0;
+                    LITTLEcore = 4;
+                } else {
+                    bigCore = 4;
+                    LITTLEcore = 0;
+                }
+            }
+        }
+
+        return bigCore != -1 && LITTLEcore != -1;
     }
 
     public static int getCoreCount() {
-        return Runtime.getRuntime().availableProcessors();
+        return cores == 0 ? cores = Runtime.getRuntime().availableProcessors() : cores;
     }
 
     public static String getTemp() {

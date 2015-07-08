@@ -130,7 +130,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             super.init(savedInstanceState);
 
             usageInit();
-            if (CPU.getFreqs() != null) coreInit();
+            coreInit();
             if (CPU.hasTemp()) tempInit();
             if (CPU.getFreqs() != null) freqInit();
             governorInit();

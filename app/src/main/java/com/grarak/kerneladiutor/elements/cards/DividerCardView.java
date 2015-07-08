@@ -40,6 +40,7 @@ public class DividerCardView extends BaseCardView {
 
     private TextView textView;
     private String text;
+    private boolean lowercase;
 
     public DividerCardView(Context context) {
         super(context, R.layout.divider_cardview);
@@ -52,12 +53,19 @@ public class DividerCardView extends BaseCardView {
     public void setUpInnerLayout(View view) {
         textView = (TextView) view;
 
-        if (text != null) textView.setText(text.toUpperCase(Locale.getDefault()));
+        if (text != null)
+            textView.setText(lowercase ? text.toLowerCase(Locale.getDefault()) : text.toUpperCase(Locale.getDefault()));
     }
 
     public void setText(String text) {
         this.text = text;
-        if (textView != null) textView.setText(text.toUpperCase(Locale.getDefault()));
+        if (textView != null)
+            textView.setText(lowercase ? text.toLowerCase(Locale.getDefault()) : text.toUpperCase(Locale.getDefault()));
+    }
+
+    public void toLowerCase() {
+        lowercase = true;
+        setText(text);
     }
 
     public void setDescription(final String description) {
@@ -80,6 +88,7 @@ public class DividerCardView extends BaseCardView {
 
         private String text;
         private String description;
+        private boolean lowercase;
 
         @Override
         public String getTitle() {
@@ -103,6 +112,7 @@ public class DividerCardView extends BaseCardView {
 
             if (text != null) dividerCardView.setText(text);
             if (description != null) dividerCardView.setDescription(description);
+            if (lowercase) dividerCardView.toLowerCase();
 
             StaggeredGridLayoutManager.LayoutParams layoutParams =
                     new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -120,6 +130,11 @@ public class DividerCardView extends BaseCardView {
 
         public void setDescription(String description) {
             this.description = description;
+        }
+
+        public void toLowerCase() {
+            lowercase = true;
+            if (dividerCardView != null) dividerCardView.toLowerCase();
         }
 
     }

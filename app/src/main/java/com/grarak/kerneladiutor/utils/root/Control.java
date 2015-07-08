@@ -95,14 +95,7 @@ public class Control implements Constants {
     }
 
     public static void bringCoresOnline() {
-        try {
-            for (int i = 0; i < CPU.getCoreCount(); i++)
-                RootUtils.runCommand("echo 1 > " + String.format(CPU_CORE_ONLINE, i));
-            // Give CPU some time to bring core online
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        for (int i = 0; i < CPU.getCoreCount(); i++) CPU.activateCore(i, true, null);
     }
 
     private static Thread mThread;

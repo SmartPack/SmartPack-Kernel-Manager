@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -28,10 +29,16 @@ import java.util.Map;
  * the time-in-state information, as well as allowing the user to set/reset
  * offsets to "restart" the state timers
  */
-public class CpuStateMonitor implements Constants {
+public class CpuStateMonitor {
+
+    private final int core;
 
     private List<CpuState> _states = new ArrayList<>();
     private Map<Integer, Long> _offsets = new HashMap<>();
+
+    public CpuStateMonitor(int core) {
+        this.core = core;
+    }
 
     /**
      * exception class
@@ -119,45 +126,15 @@ public class CpuStateMonitor implements Constants {
     }
 
     /**
-     * @return Map of freq->duration of all the offsets
-     */
-    public Map<Integer, Long> getOffsets() {
-        return _offsets;
-    }
-
-    /**
-     * Sets the offset map (freq->duration offset)
-     */
-    public void setOffsets(Map<Integer, Long> offsets) {
-        _offsets = offsets;
-    }
-
-    /**
-     * Updates the current time in states and then sets the offset map to the
-     * current duration, effectively "zeroing out" the timers
-     */
-    public void setOffsets() throws CpuStateMonitorException {
-        _offsets.clear();
-        updateStates();
-
-        for (CpuState state : _states) _offsets.put(state.freq, state.duration);
-    }
-
-    /**
-     * removes state offsets
-     */
-    public void removeOffsets() {
-        _offsets.clear();
-    }
-
-    /**
      * list of all the CPU frequency states, which contains both a
      * frequency and a duration (time spent in that state
      */
     public void updateStates() throws CpuStateMonitorException {
         _states.clear();
         try {
-            FileReader fileReader = new FileReader(CPU_TIME_STATE);
+            if (core > 0) while (!Utils.existFile(String.format(Constants.CPU_TIME_STATE, core)))
+                CPU.activateCore(core, true, null);
+            FileReader fileReader = new FileReader(String.format(Constants.CPU_TIME_STATE, core));
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             readInStates(bufferedReader);
             fileReader.close();
