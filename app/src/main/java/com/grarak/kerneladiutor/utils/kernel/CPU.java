@@ -346,8 +346,14 @@ public class CPU implements Constants {
     }
 
     public static boolean hasTemp() {
-        if (Utils.existFile(CPU_TEMP_ZONE1)) TEMP_FILE = CPU_TEMP_ZONE1;
-        else if (Utils.existFile(CPU_TEMP_ZONE0)) TEMP_FILE = CPU_TEMP_ZONE0;
+        if (Utils.existFile(CPU_TEMP_ZONE1)) {
+            int temp = Utils.stringToInt(Utils.readFile(CPU_TEMP_ZONE1));
+            if (temp > -1 && temp < 1000000) {
+                TEMP_FILE = CPU_TEMP_ZONE1;
+                return true;
+            }
+        }
+        if (Utils.existFile(CPU_TEMP_ZONE0)) TEMP_FILE = CPU_TEMP_ZONE0;
         return TEMP_FILE != null;
     }
 
