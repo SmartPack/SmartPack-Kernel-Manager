@@ -44,6 +44,7 @@ public class Backup {
             "/dev/block/platform/sdhci-tegra.3/by-name/LX",
             "/dev/block/platform/sdhci-tegra.3/by-name/LNX",
             "/dev/block/platform/dw_mmc.0/by-name/BOOT",
+            "/dev/block/platform/12200000.dwmmc0/by-name/BOOT",
             "/dev/block/platform/msm_sdcc.1/by-name/Kernel",
             "/dev/block/platform/msm_sdcc.1/by-name/boot",
             "/dev/block/platform/sdhci.1/by-name/KERNEL",
@@ -64,6 +65,7 @@ public class Backup {
             "/dev/block/platform/sdhci-tegra.3/by-name/USP",
             "/dev/block/platform/dw_mmc.0/by-name/recovery",
             "/dev/block/platform/dw_mmc.0/by-name/RECOVERY",
+            "/dev/block/platform/12200000.dwmmc0/by-name/RECOVERY",
             "/dev/block/platform/hi_mci.1/by-name/recovery",
             "/dev/block/platform/sdhci-tegra.3/by-name/UP",
             "/dev/block/platform/sdhci-tegra.3/by-name/SS",
@@ -86,7 +88,7 @@ public class Backup {
         String sdcard = Environment.getExternalStorageDirectory().getPath();
         if (parentFile.startsWith(sdcard))
             parentFile = parentFile.replace(sdcard, Utils.getInternalStorage());
-        String command = "dd if=" + parentFile + "/" + format(file.getName()) + " of=" + getPartition(partition_type);
+        String command = "dd if='" + parentFile + "/" + file.getName() + "' of=" + getPartition(partition_type);
         Log.i(Constants.TAG, "Executing: " + command);
         RootUtils.runCommand(command);
     }
@@ -94,15 +96,9 @@ public class Backup {
     public static void backup(String name, PARTITION partition_type) {
         if (!name.endsWith(".img")) name += ".img";
 
-        String command = "dd if=" + getPartition(partition_type) + " of=" + getPath(partition_type) + "/" + format(name);
+        String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type) + "/" + name + "'";
         Log.i(Constants.TAG, "Executing: " + command);
         RootUtils.runCommand(command);
-    }
-
-    private static String format(String string) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String c : string.split("")) if (!c.isEmpty()) stringBuilder.append("\\").append(c);
-        return stringBuilder.toString().trim();
     }
 
     public static String getPartition(PARTITION partition_type) {
