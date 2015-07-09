@@ -286,7 +286,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         @Override
         protected void onPostExecute(Void v) {
             updateView(uiStatesView, monitor, frequencyCard, uptimeCard, additionalCard);
-            updateView(uiStatesViewLITTLE, monitorLITTLE, frequencyCardLITTLE, uptimeCardLITTLE, additionalCardLITTLE);
+            if (CPU.isBigLITTLE())
+                updateView(uiStatesViewLITTLE, monitorLITTLE, frequencyCardLITTLE, uptimeCardLITTLE, additionalCardLITTLE);
             refreshLayout.setRefreshing(false);
         }
     }
