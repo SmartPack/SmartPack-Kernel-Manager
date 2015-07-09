@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements.cards;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -85,6 +86,7 @@ public class CardViewItem extends BaseCardView {
         private CharSequence title;
         private CharSequence description;
         private View view;
+        private boolean fullspan;
 
         @Override
         public String getTitle() {
@@ -109,6 +111,17 @@ public class CardViewItem extends BaseCardView {
             if (title != null) cardViewItem.setTitle(title);
             if (description != null) cardViewItem.setDescription(description);
             if (view != null) cardViewItem.setView(view);
+
+            if (fullspan) {
+                StaggeredGridLayoutManager.LayoutParams layoutParams =
+                        new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.setFullSpan(true);
+                int padding = cardViewItem.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+                layoutParams.setMargins(padding, padding, padding, padding);
+                cardViewItem.setLayoutParams(layoutParams);
+            }
+
             setUpListener();
         }
 
@@ -125,6 +138,10 @@ public class CardViewItem extends BaseCardView {
         public void setView(View view) {
             this.view = view;
             if (cardViewItem != null) cardViewItem.setView(view);
+        }
+
+        public void setFullSpan(boolean fullspan) {
+            this.fullspan = fullspan;
         }
 
         public CharSequence getDescription() {

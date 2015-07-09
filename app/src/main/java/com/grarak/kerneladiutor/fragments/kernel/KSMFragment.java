@@ -125,7 +125,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
 
     @Override
     public boolean onRefresh() {
-        for (int i = 0; i < mInfos.length; i++)
+        if (mInfos != null) for (int i = 0; i < mInfos.length; i++)
             if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
         return true;
     }

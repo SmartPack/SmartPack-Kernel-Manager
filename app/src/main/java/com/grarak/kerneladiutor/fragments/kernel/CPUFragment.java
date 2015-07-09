@@ -578,7 +578,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             if (mTempCard != null) mTempCard.setDescription(CPU.getTemp());
 
-            if (mCoreCheckBox != null) {
+            if (mCoreCheckBox != null && mCoreProgressBar != null && mCoreFreqText != null) {
                 List<Integer> range = CPU.getBigCoreRange();
                 for (int i = 0; i < mCoreCheckBox.length; i++) {
                     int cur = CPU.getCurFreq(range.get(i));
@@ -598,7 +598,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (mGovernorCard != null)
                 mGovernorCard.setItem(CPU.getCurGovernor());
 
-            if (mCoreCheckBoxLITTLE != null) {
+            if (mCoreCheckBoxLITTLE != null && mCoreProgressBarLITTLE != null && mCoreFreqTextLITTLE != null) {
                 List<Integer> range = CPU.getLITTLECoreRange();
                 for (int i = 0; i < mCoreCheckBoxLITTLE.length; i++) {
                     int cur = CPU.getCurFreq(range.get(i));
