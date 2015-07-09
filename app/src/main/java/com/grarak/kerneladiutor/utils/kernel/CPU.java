@@ -39,7 +39,7 @@ public class CPU implements Constants {
     private static int bigCore = -1;
     private static int LITTLEcore = -1;
     private static Integer[][] mFreqs;
-    private static String[] mAvailableGovernors;
+    private static String[][] mAvailableGovernors;
     private static String[] mMcPowerSavingItems;
     private static String[] mAvailableCFSSchedulers;
 
@@ -229,24 +229,37 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_WQ_POWER_SAVING);
     }
 
-    public static ArrayList<String> getAvailableGovernors() {
-        if (mAvailableGovernors == null) {
+    public static List<String> getAvailableGovernors() {
+        return getAvailableGovernors(getBigCore());
+    }
+
+    public static List<String> getAvailableGovernors(int core) {
+        if (mAvailableGovernors == null) mAvailableGovernors = new String[getCoreCount()][];
+        if (mAvailableGovernors[core] == null) {
             String value = Utils.readFile(CPU_AVAILABLE_GOVERNORS);
-            if (value != null) mAvailableGovernors = value.split(" ");
-            else return new ArrayList<>();
+            if (value != null) mAvailableGovernors[core] = value.split(" ");
         }
-        return new ArrayList<>(Arrays.asList(mAvailableGovernors));
+        if (mAvailableGovernors[core] == null) return null;
+        return new ArrayList<>(Arrays.asList(mAvailableGovernors[core]));
     }
 
     public static void setGovernor(String governor, Context context) {
-        Control.runCommand(governor, CPU_SCALING_GOVERNOR, Control.CommandType.CPU, context);
+        setGovernor(Control.CommandType.CPU, governor, context);
+    }
+
+    public static void setGovernor(Control.CommandType command, String governor, Context context) {
+        Control.runCommand(governor, CPU_SCALING_GOVERNOR, command, context);
+    }
+
+    public static String getCurGovernor() {
+        return getCurGovernor(getBigCore());
     }
 
     public static String getCurGovernor(int core) {
-        if (Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core))) {
-            String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
-            if (value != null) return value;
-        }
+        if (core > 0) while (!Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core)))
+            activateCore(core, true, null);
+        String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
+        if (value != null) return value;
         return "";
     }
 
@@ -285,14 +298,22 @@ public class CPU implements Constants {
     }
 
     public static void setMaxScreenOffFreq(int freq, Context context) {
-        Control.runCommand(String.valueOf(freq), CPU_MAX_SCREEN_OFF_FREQ, Control.CommandType.CPU, context);
+        setMaxScreenOffFreq(Control.CommandType.CPU, freq, context);
+    }
+
+    public static void setMaxScreenOffFreq(Control.CommandType command, int freq, Context context) {
+        Control.runCommand(String.valueOf(freq), CPU_MAX_SCREEN_OFF_FREQ, command, context);
+    }
+
+    public static int getMaxScreenOffFreq() {
+        return getMaxScreenOffFreq(getBigCore());
     }
 
     public static int getMaxScreenOffFreq(int core) {
-        if (Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (core > 0) while (!Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core)))
+            activateCore(core, true, null);
+        String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
+        if (value != null) return Utils.stringToInt(value);
         return 0;
     }
 
@@ -301,30 +322,48 @@ public class CPU implements Constants {
     }
 
     public static void setMinFreq(int freq, Context context) {
-        if (getMaxFreq(0) < freq) setMaxFreq(freq, context);
-        Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, Control.CommandType.CPU, context);
+        setMinFreq(Control.CommandType.CPU, freq, context);
+    }
+
+    public static void setMinFreq(Control.CommandType command, int freq, Context context) {
+        if (getMaxFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore()) < freq)
+            setMaxFreq(command, freq, context);
+        Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, command, context);
+    }
+
+    public static int getMinFreq() {
+        return getMinFreq(getBigCore());
     }
 
     public static int getMinFreq(int core) {
-        if (Utils.existFile(String.format(CPU_MIN_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (core > 0) while (!Utils.existFile(String.format(CPU_MIN_FREQ, core)))
+            activateCore(core, true, null);
+        String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
+        if (value != null) return Utils.stringToInt(value);
         return 0;
     }
 
     public static void setMaxFreq(int freq, Context context) {
-        if (Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
+        setMaxFreq(Control.CommandType.CPU, freq, context);
+    }
+
+    public static void setMaxFreq(Control.CommandType command, int freq, Context context) {
+        if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
-        if (getMinFreq(0) > freq) setMinFreq(freq, context);
-        Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, Control.CommandType.CPU, context);
+        if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore()) > freq)
+            setMinFreq(command, freq, context);
+        Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
+    }
+
+    public static int getMaxFreq() {
+        return getMaxFreq(getBigCore());
     }
 
     public static int getMaxFreq(int core) {
-        if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
+            activateCore(core, true, null);
+        String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
+        if (value != null) return Utils.stringToInt(value);
         return 0;
     }
 
@@ -341,6 +380,22 @@ public class CPU implements Constants {
             Control.runCommand(active ? "1" : "0", String.format(CPU_CORE_ONLINE, core), Control.CommandType.GENERIC, context);
         else
             RootUtils.runCommand(String.format("echo %s > " + String.format(CPU_CORE_ONLINE, core), active ? "1" : "0"));
+    }
+
+    public static List<Integer> getLITTLECoreRange() {
+        List<Integer> list = new ArrayList<>();
+        if (!isBigLITTLE()) for (int i = 0; i < getCoreCount(); i++) list.add(i);
+        else if (getLITTLEcore() == 0) for (int i = 0; i < 4; i++) list.add(i);
+        else for (int i = getLITTLEcore(); i < getCoreCount(); i++) list.add(i);
+        return list;
+    }
+
+    public static List<Integer> getBigCoreRange() {
+        List<Integer> list = new ArrayList<>();
+        if (!isBigLITTLE()) for (int i = 0; i < getCoreCount(); i++) list.add(i);
+        else if (getBigCore() == 0) for (int i = 0; i < 4; i++) list.add(i);
+        else for (int i = getBigCore(); i < getCoreCount(); i++) list.add(i);
+        return list;
     }
 
     public static int getLITTLEcore() {

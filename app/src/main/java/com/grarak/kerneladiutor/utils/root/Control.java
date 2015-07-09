@@ -33,7 +33,7 @@ import java.util.List;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, FAUX_GENERIC, CUSTOM
+        GENERIC, CPU, CPU_LITTLE, FAUX_GENERIC, CUSTOM
     }
 
     public static void commandSaver(final Context context, final String path, final String command) {
@@ -105,17 +105,18 @@ public class Control implements Constants {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (command == CommandType.CPU) {
+                if (command == CommandType.CPU || command == CommandType.CPU_LITTLE) {
                     boolean mpd = false;
                     if (CPUHotplug.hasMpdecision() && CPUHotplug.isMpdecisionActive()) {
                         mpd = true;
                         stopService(HOTPLUG_MPDEC, false, context);
                     }
 
-                    for (int i = 0; i < CPU.getCoreCount(); i++) {
-                        setPermission(String.format(file, i), 644, context);
-                        runGeneric(String.format(file, i), value, id, context);
-                        setPermission(String.format(file, i), 444, context);
+                    List<Integer> range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
+                    for (int i = 0; i < range.size(); i++) {
+                        setPermission(String.format(file, range.get(i)), 644, context);
+                        runGeneric(String.format(file, range.get(i)), value, id, context);
+                        setPermission(String.format(file, range.get(i)), 444, context);
                     }
 
                     if (mpd) startService(HOTPLUG_MPDEC, false, context);
