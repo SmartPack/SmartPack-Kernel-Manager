@@ -29,6 +29,7 @@ import java.util.List;
 public class Initd implements Constants {
 
     public static String execute(String file) {
+        RootUtils.runCommand("chmod 755 " + INITD + "/" + file);
         return RootUtils.runCommand(INITD + "/" + file);
     }
 

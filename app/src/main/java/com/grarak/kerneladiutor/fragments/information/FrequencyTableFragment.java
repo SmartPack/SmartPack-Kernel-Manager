@@ -121,6 +121,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         additionalCard = new CardViewItem.DCardView();
         additionalCard.setTitle(getString(R.string.unused_cpu_states));
+        addView(additionalCard);
 
         if (CPU.isBigLITTLE()) {
             monitorLITTLE = new CpuStateMonitor(CPU.getLITTLEcore());
@@ -142,6 +143,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
             additionalCardLITTLE = new CardViewItem.DCardView();
             additionalCardLITTLE.setTitle(getString(R.string.unused_cpu_states));
+            addView(additionalCardLITTLE);
         }
     }
 
@@ -197,9 +199,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                 stringBuilder.append(s);
             }
 
-            addView(additionalCard);
             additionalCard.setDescription(stringBuilder.toString());
-        } else removeView(additionalCard);
+        } else additionalCard.setDescription("-");
     }
 
     /**
