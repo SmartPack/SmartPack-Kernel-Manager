@@ -485,14 +485,22 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             for (int i = 0; i < mCoreCheckBox.length; i++)
                 if (v == mCoreCheckBox[i]) {
                     List<Integer> range = CPU.getBigCoreRange();
-                    if (range.get(i) == 0) return;
+                    if (range.get(i) == 0) {
+                        mCoreCheckBox[i].setChecked(true);
+                        return;
+                    }
                     CPU.activateCore(range.get(i), ((CheckBox) v).isChecked(), getActivity());
+                    return;
                 }
-            for (int i = 0; i < mCoreCheckBoxLITTLE.length; i++)
+            if (mCoreCheckBoxLITTLE != null) for (int i = 0; i < mCoreCheckBoxLITTLE.length; i++)
                 if (v == mCoreCheckBoxLITTLE[i]) {
                     List<Integer> range = CPU.getLITTLECoreRange();
-                    if (range.get(i) == 0) return;
+                    if (range.get(i) == 0) {
+                        mCoreCheckBoxLITTLE[i].setChecked(true);
+                        return;
+                    }
                     CPU.activateCore(range.get(i), ((CheckBox) v).isChecked(), getActivity());
+                    return;
                 }
         }
 
