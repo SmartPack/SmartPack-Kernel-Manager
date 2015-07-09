@@ -274,6 +274,16 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                MenuItemCompat.expandActionView(searchItem);
+                break;
+        }
+        return true;
+    }
+
+    @Override
     public boolean onBackPressed() {
         if (searchItem != null && MenuItemCompat.isActionViewExpanded(searchItem)) {
             MenuItemCompat.collapseActionView(searchItem);

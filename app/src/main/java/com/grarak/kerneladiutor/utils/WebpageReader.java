@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -42,16 +43,18 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         InputStream is = null;
         BufferedReader br = null;
+        HttpURLConnection connection = null;
         StringBuilder sb = new StringBuilder();
 
         try {
             String line;
             URL url = new URL(params[0]);
-            is = url.openStream();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            is = connection.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
 
-            while ((line = br.readLine()) != null)
-                sb.append(line).append("\n");
+            while ((line = br.readLine()) != null) sb.append(line).append("\n");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -63,6 +66,8 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            if (connection != null) connection.disconnect();
         }
         return sb.toString();
     }

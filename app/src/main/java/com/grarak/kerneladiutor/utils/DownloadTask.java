@@ -57,6 +57,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         InputStream input = null;
         OutputStream output = null;
         HttpURLConnection connection = null;
+
         try {
             URL url = new URL(strings[0]);
             connection = (HttpURLConnection) url.openConnection();
