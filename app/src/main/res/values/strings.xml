@@ -67,6 +67,7 @@
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
     <string name="virtual_memory">Virtual Memory</string>
+    <string name="entropy">Entropy</string>
     <string name="misc_controls">Misc Controls</string>
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
@@ -472,6 +473,12 @@
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
+
+    <!-- Entropy -->
+    <string name="available">Available</string>
+    <string name="poolsize">Poolsize</string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
 
     <!-- Misc Controls -->
     <string name="vibration_strength">Vibration Strength</string>

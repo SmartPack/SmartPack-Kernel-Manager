@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -55,7 +54,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... strings) {
         InputStream input = null;
-        OutputStream output = null;
+        FileOutputStream output = null;
         HttpURLConnection connection = null;
 
         try {

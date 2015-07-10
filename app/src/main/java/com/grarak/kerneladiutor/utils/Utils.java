@@ -42,6 +42,7 @@ import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
+import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
@@ -286,27 +287,29 @@ public class Utils implements Constants {
     }
 
     public static String readAssetFile(Context context, String file) {
-        BufferedReader in = null;
+        InputStream input = null;
+        BufferedReader buf = null;
         try {
-            StringBuilder buf = new StringBuilder();
-            InputStream is = context.getAssets().open(file);
-            in = new BufferedReader(new InputStreamReader(is));
+            StringBuilder s = new StringBuilder();
+            input = context.getAssets().open(file);
+            buf = new BufferedReader(new InputStreamReader(input));
 
             String str;
             boolean isFirst = true;
-            while ((str = in.readLine()) != null) {
+            while ((str = buf.readLine()) != null) {
                 if (isFirst) isFirst = false;
-                else buf.append('\n');
-                buf.append(str);
+                else s.append("\n");
+                s.append(str);
             }
-            return buf.toString();
+            return s.toString();
         } catch (IOException e) {
             Log.e(TAG, "Unable to read " + file);
         } finally {
-            if (in != null) try {
-                in.close();
+            try {
+                if (input != null) input.close();
+                if (buf != null) buf.close();
             } catch (IOException e) {
-                Log.e(TAG, "Unable to close Reader " + file);
+                e.printStackTrace();
             }
         }
         return null;
@@ -339,6 +342,8 @@ public class Utils implements Constants {
             applys.addAll(new ArrayList<>(Arrays.asList(array)));
         else if (mClass == CPUVoltageFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
+        else if (mClass == EntropyFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(ENTROPY_ARRAY)));
         else if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
         else if (mClass == IOFragment.class)
@@ -465,35 +470,48 @@ public class Utils implements Constants {
     }
 
     public static void writeFile(String path, String text, boolean append) {
+        FileWriter writer = null;
         try {
-            FileWriter fWriter = new FileWriter(path, append);
-            fWriter.write(text);
-            fWriter.flush();
-            fWriter.close();
-        } catch (Exception e) {
+            writer = new FileWriter(path, append);
+            writer.write(text);
+            writer.flush();
+        } catch (IOException e) {
             Log.e(TAG, "Failed to write " + path);
+        } finally {
+            try {
+                if (writer != null) writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static String readFile(String file, boolean root) {
         if (root) return new RootFile(file).readFile();
+
+        StringBuilder s = null;
+        FileReader fileReader = null;
+        BufferedReader buf = null;
         try {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            StringBuilder stringBuilder = new StringBuilder();
+            fileReader = new FileReader(file);
+            buf = new BufferedReader(fileReader);
+
             String line;
-            while ((line = bufferedReader.readLine()) != null)
-                stringBuilder.append(line).append("\n");
-            bufferedReader.close();
-            fileReader.close();
-            return stringBuilder.toString().trim();
+            s = new StringBuilder();
+            while ((line = buf.readLine()) != null) s.append(line).append("\n");
         } catch (FileNotFoundException ignored) {
             Log.e(TAG, "File does not exist " + file);
         } catch (IOException e) {
-            e.printStackTrace();
             Log.e(TAG, "Failed to read " + file);
+        } finally {
+            try {
+                if (fileReader != null) fileReader.close();
+                if (buf != null) buf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return null;
+        return s == null ? null : s.toString().trim();
     }
 
     public static boolean existFile(String file) {

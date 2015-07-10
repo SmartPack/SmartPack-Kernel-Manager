@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.grarak.kerneladiutor.utils.tools;
 
 import android.os.Environment;

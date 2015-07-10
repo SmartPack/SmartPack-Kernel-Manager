@@ -587,6 +587,15 @@ public interface Constants {
 
     String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET};
 
+    // Entropy
+    String PROC_RANDOM = "/proc/sys/kernel/random";
+    String PROC_RANDOM_ENTROPY_AVAILABLE = PROC_RANDOM + "/entropy_avail";
+    String PROC_RANDOM_ENTROPY_POOLSIZE = PROC_RANDOM + "/poolsize";
+    String PROC_RANDOM_ENTROPY_READ = PROC_RANDOM + "/read_wakeup_threshold";
+    String PROC_RANDOM_ENTROPY_WRITE = PROC_RANDOM + "/write_wakeup_threshold";
+
+    String[] ENTROPY_ARRAY = {PROC_RANDOM};
+
     // Misc
 
     // Vibration

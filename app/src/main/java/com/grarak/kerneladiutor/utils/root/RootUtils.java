@@ -101,6 +101,7 @@ public class RootUtils implements Constants {
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
                 Log.e(TAG, "Failed to run shell as su");
+                closed = true;
             }
         }
 
