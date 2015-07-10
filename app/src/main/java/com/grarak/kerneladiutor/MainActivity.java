@@ -317,8 +317,6 @@ public class MainActivity extends BaseActivity implements Constants {
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        if (Utils.DARKTHEME)
-            mDrawerLayout.setBackgroundColor(getResources().getColor(R.color.black));
 
         mDrawerLayout.post(new Runnable() {
             @Override

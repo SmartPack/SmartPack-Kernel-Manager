@@ -43,9 +43,6 @@ public class KernelActivity extends BaseActivity {
         Downloads.KernelContent kernelContent =
                 new Downloads.KernelContent(getIntent().getExtras().getString(KERNEL_JSON_ARG));
 
-        if (Utils.DARKTHEME)
-            findViewById(R.id.container).setBackgroundColor(getResources().getColor(R.color.black));
-
         ActionBar actionBar;
         if ((actionBar = getSupportActionBar()) != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
