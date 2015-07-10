@@ -12,6 +12,7 @@
   <string name="went_wrong">문제가 발생했습니다!</string>
   <string name="password">비밀번호</string>
   <string name="password_wrong">비밀번호가 잘못 되었습니다</string>
+  <string name="press_back_again">뒤로가기 버튼을 한번 더 누르시면 종료됩니다</string>
   <string name="select_file">%s 를 선택하시겠습니까?</string>
   <string name="no_files">이 경로에 파일이 없습니다.</string>
   <string name="apply_on_boot">부팅 시 적용</string>
@@ -32,12 +33,13 @@
   <string name="kernel">커널</string>
   <string name="tools">도구</string>
   <string name="other">기타</string>
+  <string name="downloads">다운로드</string>
   <string name="kernel_information">커널 정보</string>
   <string name="frequency_table">클럭 테이블</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 전압</string>
   <string name="cpu_hotplug">CPU 핫플러그</string>
-  <string name="thermal">열</string>
+  <string name="thermal">Thermal</string>
   <string name="gpu">GPU</string>
   <string name="screen">화면</string>
   <string name="wake_controls">화면 켜기 제어</string>
@@ -416,7 +418,14 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
+  <string name="logo">로고</string>
+  <string name="features">기능</string>
+  <string name="xda">XDA</string>
+  <string name="github">Github</string>
   <string name="google_plus">Google Plus</string>
+  <string name="paypal">Paypal</string>
+  <string name="download">다운로드</string>
+  <string name="downloading_counting">%1$s/%2$s</string>
   <string name="no_backups">백업 파일이 없습니다</string>
   <string name="flash_img">IMG 플래싱</string>
   <string name="flashing">플래싱</string>
@@ -516,6 +525,9 @@
   <string name="nurik">Roman Nurik</string>
   <string name="nineoldandroids">NineOldAndroids</string>
   <string name="wharton">Jake Wharton</string>
+  <string name="picasso">Picasso</string>
+  <string name="square">Square Inc.</string>
+  <string name="frenn">Karim Frenn</string>
   <string name="open_source">오픈소스</string>
   <string name="open_source_summary">이 앱은 오픈소스입니다. 제 Github에서 확인해 보세요.</string>
   <string name="feature_request">기능 요청</string>
