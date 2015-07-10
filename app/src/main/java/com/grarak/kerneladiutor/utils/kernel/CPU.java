@@ -61,18 +61,29 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
-    public static void setCpuBoostInputFreq(int value, Context context) {
-        Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
+    public static void setCpuBoostInputFreq(int value, int core, Context context) {
+        String freqs;
+        if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {
+            StringBuilder command = new StringBuilder();
+            for (String freq : freqs.split(" "))
+                if (freq.startsWith(core + ":"))
+                    command.append(core).append(":").append(value).append(" ");
+                else command.append(freq).append(" ");
+            command.setLength(command.length() - 1);
+            Control.runCommand(command.toString(), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
+        } else
+            Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
     }
 
-    public static int getCpuBootInputFreq() {
+    public static List<Integer> getCpuBootInputFreq() {
+        List<Integer> list = new ArrayList<>();
         String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
-        try {
-            value = value.split("0:")[1].split(" ")[0];
-        } catch (ArrayIndexOutOfBoundsException ignored) {
+        for (String core : value.split(" ")) {
+            if (core.contains(":")) core = core.split(":")[1];
+            if (core.equals("0")) list.add(0);
+            else list.add(CPU.getFreqs().indexOf(Utils.stringToInt(core)) + 1);
         }
-        if (value.equals("0")) return 0;
-        return CPU.getFreqs().indexOf(Utils.stringToInt(value)) + 1;
+        return list;
     }
 
     public static boolean hasCpuBoostInputFreq() {

@@ -129,7 +129,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private SeekBarCardView.DSeekBarCard mCpuBoostMsCard;
         private PopupCardView.DPopupCard mCpuBoostSyncThresholdCard;
         private SeekBarCardView.DSeekBarCard mCpuBoostInputMsCard;
-        private PopupCardView.DPopupCard mCpuBoostInputFreqCard;
+        private PopupCardView.DPopupCard[] mCpuBoostInputFreqCard;
 
         @Override
         public String getClassName() {
@@ -461,13 +461,25 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 for (int freq : CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
-                mCpuBoostInputFreqCard = new PopupCardView.DPopupCard(list);
-                mCpuBoostInputFreqCard.setTitle(getString(R.string.input_boost_freq));
-                mCpuBoostInputFreqCard.setDescription(getString(R.string.input_boost_freq_summary));
-                mCpuBoostInputFreqCard.setItem(CPU.getCpuBootInputFreq());
-                mCpuBoostInputFreqCard.setOnDPopupCardListener(this);
+                List<Integer> freqs = CPU.getCpuBootInputFreq();
+                mCpuBoostInputFreqCard = new PopupCardView.DPopupCard[freqs.size()];
 
-                views.add(mCpuBoostInputFreqCard);
+                for (int i = 0; i < freqs.size(); i++) {
+                    mCpuBoostInputFreqCard[i] = new PopupCardView.DPopupCard(list);
+                    if (i == 0) {
+                        if (freqs.size() > 1)
+                            mCpuBoostInputFreqCard[i].setTitle(getString(R.string.input_boost_freq_core, i + 1));
+                        else
+                            mCpuBoostInputFreqCard[i].setTitle(getString(R.string.input_boost_freq));
+                        mCpuBoostInputFreqCard[i].setDescription(getString(R.string.input_boost_freq_summary));
+                    } else {
+                        mCpuBoostInputFreqCard[i].setDescription(getString(R.string.input_boost_freq_core, i + 1));
+                    }
+                    mCpuBoostInputFreqCard[i].setItem(freqs.get(i));
+                    mCpuBoostInputFreqCard[i].setOnDPopupCardListener(this);
+
+                    views.add(mCpuBoostInputFreqCard[i]);
+                }
             }
 
             if (views.size() > 0) {
@@ -532,8 +544,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setCpuQuietGovernor(CPU.getCpuQuietAvailableGovernors().get(position), getActivity());
             else if (dPopupCard == mCpuBoostSyncThresholdCard)
                 CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
-            else if (dPopupCard == mCpuBoostInputFreqCard)
-                CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
+            else {
+                for (int i = 0; i < mCpuBoostInputFreqCard.length; i++)
+                    if (dPopupCard == mCpuBoostInputFreqCard[i]) {
+                        CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), i, getActivity());
+                        return;
+                    }
+            }
         }
 
         @Override
