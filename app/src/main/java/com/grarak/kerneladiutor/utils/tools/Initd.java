@@ -28,6 +28,13 @@ import java.util.List;
  */
 public class Initd implements Constants {
 
+    public static RootFile delete(String file) {
+        RootUtils.mount(true, "/system");
+        RootFile f = new RootFile(INITD + "/" + file);
+        f.delete();
+        return f;
+    }
+
     public static String execute(String file) {
         RootUtils.runCommand("chmod 755 " + INITD + "/" + file);
         return RootUtils.runCommand(INITD + "/" + file);

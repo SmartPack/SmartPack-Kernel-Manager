@@ -37,6 +37,10 @@
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@style/AppThemeLight" />
         <activity
+            android:name=".EditTextActivity"
+            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppThemeLight" />
+        <activity
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

@@ -17,28 +17,43 @@
 package com.grarak.kerneladiutor;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
-import com.grarak.kerneladiutor.utils.Utils;
-
-public class TextActivity extends AppCompatActivity {
+public class TextActivity extends BaseActivity {
 
     public static final String ARG_TEXT = "text";
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
-            super.setTheme(R.style.AppThemeActionBarDark);
 
-        TextView text = new TextView(this);
-        setContentView(text);
+        textView.setTextSize(20);
+        textView.setGravity(Gravity.CENTER);
+        textView.setText(getIntent().getExtras().getString(ARG_TEXT));
+    }
 
-        text.setTextSize(20);
-        text.setGravity(Gravity.CENTER);
-        text.setText(getIntent().getExtras().getString(ARG_TEXT));
+    @Override
+    public int getParentViewId() {
+        return 0;
+    }
+
+    @Override
+    public View getParentView() {
+        return textView = new TextView(this);
+    }
+
+    @Override
+    public int getDarkTheme() {
+        return R.style.AppThemeActionBarDark;
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return null;
     }
 
 }

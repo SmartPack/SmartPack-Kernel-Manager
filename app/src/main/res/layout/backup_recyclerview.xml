@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_backup"
             fab:fab_size="mini"
             fab:fab_title="@string/backup" />
 
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_flash"
             fab:fab_size="mini"
             fab:fab_title="@string/flash_img" />
 

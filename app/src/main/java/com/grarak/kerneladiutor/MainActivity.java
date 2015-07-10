@@ -31,7 +31,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -91,7 +90,7 @@ import com.grarak.kerneladiutor.utils.tools.Buildprop;
 /**
  * Created by willi on 01.12.14.
  */
-public class MainActivity extends AppCompatActivity implements Constants {
+public class MainActivity extends BaseActivity implements Constants {
 
     /**
      * Cache the context of this activity
@@ -133,24 +132,31 @@ public class MainActivity extends AppCompatActivity implements Constants {
         if (context != null) ((Activity) context).finish();
         context = this;
 
-        // Set english as default language if option is enabled
-        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en_US", this);
-
-        // Check if darktheme is in use and cache it as boolean
-        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
-            super.setTheme(R.style.AppThemeDark);
-
-        setContentView(R.layout.activity_main);
         setView();
-
-        if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
-        setSupportActionBar(toolbar);
-
         String password;
         if (!(password = Utils.getString("password", "", this)).isEmpty())
             askPassword(password);
         else // Use an AsyncTask to initialize everything
             new Task().execute();
+    }
+
+    @Override
+    public int getParentViewId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public View getParentView() {
+        return null;
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return toolbar == null ? toolbar = (Toolbar) findViewById(R.id.toolbar) : toolbar;
+    }
+
+    @Override
+    public void setStatusBarColor() {
     }
 
     /**
@@ -262,7 +268,6 @@ public class MainActivity extends AppCompatActivity implements Constants {
      * Define all views
      */
     private void setView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));

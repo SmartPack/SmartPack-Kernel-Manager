@@ -62,7 +62,8 @@ public class RootUtils implements Constants {
     }
 
     public static void mount(boolean writeable, String mountpoint) {
-        runCommand(writeable ? "mount -o rw,remount " + mountpoint : "mount -o ro,remount " + mountpoint);
+        runCommand(writeable ? "mount -o remount,rw " + mountpoint + " " + mountpoint :
+                "mount -o remount,ro " + mountpoint + " " + mountpoint);
     }
 
     public static void closeSU() {

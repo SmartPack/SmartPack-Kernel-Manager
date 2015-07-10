@@ -11,16 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/actionbar_color"
-            android:theme="@style/ActionBarStyle"
-            app:contentInsetLeft="72dp"
-            app:contentInsetStart="72dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:titleTextAppearance="@style/ToolbarTitle" />
+        <include layout="@layout/toolbar" />
 
         <FrameLayout
             android:id="@+id/content_frame"

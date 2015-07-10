@@ -57,6 +57,11 @@ public class ProfileFragment extends RecyclerViewFragment {
     private TextView title;
 
     @Override
+    public boolean showApplyOnBoot() {
+        return false;
+    }
+
+    @Override
     public int getSpan() {
         int orientation = Utils.getScreenOrientation(getActivity());
         if (Utils.isTablet(getActivity()))

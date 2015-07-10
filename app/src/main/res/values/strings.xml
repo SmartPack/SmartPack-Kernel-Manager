@@ -19,6 +19,9 @@
     <string name="select_file">Select %s?</string>
     <string name="no_files">No files in this path.</string>
 
+    <!-- EditText -->
+    <string name="save">Save</string>
+
     <!-- Apply on boot -->
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_finished">Your changes have been applied</string>
@@ -580,6 +583,7 @@
     <string name="no_scripts_found">No scripts found!</string>
     <string name="starting_initd">Starting Init.d emulation</string>
     <string name="finishing_initd">Finishing Init.d emulation</string>
+    <string name="file_name">Name of file</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>

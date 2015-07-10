@@ -33,15 +33,15 @@ public class RootFile {
     }
 
     public String getName() {
-        return RootUtils.runCommand("basename " + file);
+        return RootUtils.runCommand("basename '" + file + "'");
     }
 
     public void mkdir() {
-        RootUtils.runCommand("mkdir -p " + file);
+        RootUtils.runCommand("mkdir -p '" + file + "'");
     }
 
     public void mv(String newPath) {
-        RootUtils.runCommand("mv -f " + file + " " + newPath);
+        RootUtils.runCommand("mv -f '" + file + "' '" + newPath + "'");
     }
 
     public void write(String text, boolean append) {
@@ -49,12 +49,12 @@ public class RootFile {
     }
 
     public void delete() {
-        RootUtils.runCommand("rm -rf " + file);
+        RootUtils.runCommand("rm -r '" + file + "'");
     }
 
     public List<String> list() {
         List<String> list = new ArrayList<>();
-        String files = RootUtils.runCommand("ls " + file);
+        String files = RootUtils.runCommand("ls '" + file + "'");
         if (files != null)
             // Make sure the file exists
             for (String file : files.split("\\r?\\n"))
@@ -64,16 +64,16 @@ public class RootFile {
     }
 
     public boolean isEmpty() {
-        return RootUtils.runCommand("find " + file + " -mindepth 1 | read || echo false").equals("false");
+        return RootUtils.runCommand("find '" + file + "' -mindepth 1 | read || echo false").equals("false");
     }
 
     public boolean exists() {
-        String output = RootUtils.runCommand("[ -e " + file + " ] && echo true");
+        String output = RootUtils.runCommand("[ -e '" + file + "' ] && echo true");
         return output != null && output.contains("true");
     }
 
     public String readFile() {
-        return RootUtils.runCommand("cat " + file);
+        return RootUtils.runCommand("cat '" + file + "'");
     }
 
     public String toString() {

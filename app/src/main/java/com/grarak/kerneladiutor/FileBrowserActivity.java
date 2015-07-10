@@ -18,13 +18,11 @@ package com.grarak.kerneladiutor;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -33,8 +31,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -50,7 +46,7 @@ import java.util.List;
 /**
  * Created by willi on 24.04.15.
  */
-public class FileBrowserActivity extends AppCompatActivity {
+public class FileBrowserActivity extends BaseActivity {
 
     public static final String FILE_TYPE_ARG = "file_type";
 
@@ -63,26 +59,28 @@ public class FileBrowserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fileBrowserActivity = this;
-        if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this))
-            super.setTheme(R.style.AppThemeDark);
-        setContentView(R.layout.activity_filebrowser);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
-        setSupportActionBar(toolbar);
         ActionBar actionBar;
         if ((actionBar = getSupportActionBar()) != null) actionBar.setDisplayHomeAsUpEnabled(true);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.color_primary_dark));
-        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
                 fileBrowserFragment = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)))
                 .commitAllowingStateLoss();
+    }
+
+    @Override
+    public int getParentViewId() {
+        return R.layout.activity_filebrowser;
+    }
+
+    @Override
+    public View getParentView() {
+        return null;
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return (Toolbar) findViewById(R.id.toolbar);
     }
 
     public static class FileBrowserFragment extends ViewPagerFragment {

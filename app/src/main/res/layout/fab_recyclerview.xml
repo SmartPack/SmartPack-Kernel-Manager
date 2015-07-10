@@ -34,6 +34,47 @@
         android:scrollbarStyle="outsideOverlay"
         android:scrollbars="vertical" />
 
+    <FrameLayout
+        android:id="@+id/apply_on_boot_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/background_view"
+        android:background="@color/color_primary_light"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingEnd="16dp"
+        android:paddingLeft="72dp"
+        android:paddingRight="16dp"
+        android:paddingStart="72dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/apply_on_boot_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/apply_on_boot"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/apply_on_boot_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:paddingEnd="1dp"
+                android:paddingRight="1dp"
+                android:theme="@style/WhiteAccent" />
+        </LinearLayout>
+    </FrameLayout>
+
     <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
         android:id="@+id/fab_view"
         android:layout_width="wrap_content"
@@ -49,5 +90,27 @@
         fab:fab_colorNormal="@color/fab_normal"
         fab:fab_colorPressed="@color/fab_pressed"
         fab:fab_plusIconColor="@color/color_primary" />
+
+    <FrameLayout
+        android:id="@+id/fab2_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone">
+
+        <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
+            android:id="@+id/fab_view2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            fab:fab_colorNormal="@color/color_primary"
+            fab:fab_colorPressed="@color/color_primary_dark"
+            fab:fab_plusIconColor="@color/white" />
+
+    </FrameLayout>
 
 </RelativeLayout>

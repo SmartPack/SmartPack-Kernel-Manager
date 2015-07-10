@@ -84,6 +84,8 @@
     <string-array name="initd_menu">
         <item>@string/information</item>
         <item>@string/execute</item>
+        <item>@string/edit</item>
+        <item>@string/delete</item>
     </string-array>
 
 </resources>
