@@ -545,11 +545,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             else if (dPopupCard == mCpuBoostSyncThresholdCard)
                 CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
             else {
-                for (int i = 0; i < mCpuBoostInputFreqCard.length; i++)
-                    if (dPopupCard == mCpuBoostInputFreqCard[i]) {
-                        CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), i, getActivity());
-                        return;
-                    }
+                if (mCpuBoostInputFreqCard != null)
+                    for (int i = 0; i < mCpuBoostInputFreqCard.length; i++)
+                        if (dPopupCard == mCpuBoostInputFreqCard[i]) {
+                            CPU.setCpuBoostInputFreq(position == 0 ? 0 : CPU.getFreqs().get(position - 1), i, getActivity());
+                            return;
+                        }
             }
         }
 

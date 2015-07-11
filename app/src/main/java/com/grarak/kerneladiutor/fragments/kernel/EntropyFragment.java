@@ -92,10 +92,11 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
     @Override
     public boolean onRefresh() {
         int poolsize = Entropy.getPoolsize();
-        mAvailableCard.setDescription(getAvailableDescription(Entropy.getAvailable(), poolsize));
-        mPoolsizeCard.setDescription(String.valueOf(poolsize));
-        mReadCard.setItem(String.valueOf(Entropy.getRead()));
-        mWriteCard.setItem(String.valueOf(Entropy.getWrite()));
+        if (mAvailableCard != null)
+            mAvailableCard.setDescription(getAvailableDescription(Entropy.getAvailable(), poolsize));
+        if (mPoolsizeCard != null) mPoolsizeCard.setDescription(String.valueOf(poolsize));
+        if (mReadCard != null) mReadCard.setItem(String.valueOf(Entropy.getRead()));
+        if (mWriteCard != null) mWriteCard.setItem(String.valueOf(Entropy.getWrite()));
         return true;
     }
 
