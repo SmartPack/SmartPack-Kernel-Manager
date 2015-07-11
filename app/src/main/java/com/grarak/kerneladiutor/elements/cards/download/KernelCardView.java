@@ -16,10 +16,13 @@
 
 package com.grarak.kerneladiutor.elements.cards.download;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -63,7 +66,11 @@ public class KernelCardView extends BaseCardView {
                 Bundle bundle = new Bundle();
                 bundle.putString(KernelActivity.KERNEL_JSON_ARG, kernelContent.getJSON());
                 i.putExtras(bundle);
-                getContext().startActivity(i);
+
+                ActivityOptionsCompat activityOptions =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) getContext(),
+                                logoView, KernelActivity.LOGO_ARG);
+                ActivityCompat.startActivity((Activity) getContext(), i, activityOptions.toBundle());
             }
         });
     }

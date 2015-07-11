@@ -30,16 +30,13 @@
             android:theme="@style/AppThemeActionBarLight" />
         <activity
             android:name=".KernelActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppThemeLight" />
+            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".FileBrowserActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppThemeLight" />
+            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".EditTextActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppThemeLight" />
+            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize"

@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -33,7 +34,9 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class KernelActivity extends BaseActivity {
 
+    public static final String LOGO_ARG = "logo_view";
     public static final String KERNEL_JSON_ARG = "kernel_json";
+
     private View logoContainer;
     private Toolbar toolbar;
 
@@ -53,6 +56,7 @@ public class KernelActivity extends BaseActivity {
 
         logoContainer = findViewById(R.id.logo_container);
         ImageView logoView = (ImageView) findViewById(R.id.logo);
+        ViewCompat.setTransitionName(logoView, LOGO_ARG);
         Utils.loadImagefromUrl(kernelContent.getLogo(), logoView);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
@@ -88,4 +92,8 @@ public class KernelActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

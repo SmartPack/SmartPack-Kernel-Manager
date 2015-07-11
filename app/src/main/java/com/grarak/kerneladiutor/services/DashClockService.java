@@ -43,22 +43,25 @@ public class DashClockService extends DashClockExtension {
             public void run() {
                 while (true) {
                     try {
-                        String body = "";
+                        StringBuilder message = new StringBuilder();
                         if (RootUtils.rootAccess()) {
-                            String cpu = "";
+                            StringBuilder cpu = new StringBuilder();
                             for (int i = 0; i < cores; i++) {
-                                if (!cpu.isEmpty()) cpu += " | ";
                                 int freq = CPU.getCurFreq(i) / 1000;
-                                cpu += freq == 0 ? "Offline" : freq;
+                                if (i != 0) cpu.append(" | ");
+                                cpu.append(freq == 0 ? getString(R.string.offline) : freq);
                             }
-                            if (!cpu.isEmpty()) body += "CPU: " + cpu + "\n";
-                            body += "GOVERNOR: " + CPU.getCurGovernor(true) + "\n";
+                            if (cpu.length() > 0)
+                                message.append(getString(R.string.cpu)).append(": ").append(cpu.toString()).append("\n");
+                            message.append(getString(R.string.cpu_governor)).append(": ")
+                                    .append(CPU.getCurGovernor(true)).append("\n");
 
                             if (GPU.hasGpuCurFreq())
-                                body += "GPU: " + (GPU.getGpuCurFreq() / 1000000) + "MHz";
-                        } else body = getString(R.string.no_root);
+                                message.append(getString(R.string.gpu)).append(": ")
+                                        .append(GPU.getGpuCurFreq() / 1000000).append(getString(R.string.mhz));
+                        } else message.append(getString(R.string.no_root));
 
-                        publishUpdate(extensionData.status(status).expandedBody(body));
+                        publishUpdate(extensionData.status(status).expandedBody(message.toString()));
                         Thread.sleep(5000);
                     } catch (Exception e) {
                         e.printStackTrace();
