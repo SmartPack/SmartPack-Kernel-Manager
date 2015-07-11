@@ -52,7 +52,7 @@ public class DashClockService extends DashClockExtension {
                                 cpu += freq == 0 ? "Offline" : freq;
                             }
                             if (!cpu.isEmpty()) body += "CPU: " + cpu + "\n";
-                            body += "GOVERNOR: " + CPU.getCurGovernor() + "\n";
+                            body += "GOVERNOR: " + CPU.getCurGovernor(true) + "\n";
 
                             if (GPU.hasGpuCurFreq())
                                 body += "GPU: " + (GPU.getGpuCurFreq() / 1000000) + "MHz";

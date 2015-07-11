@@ -262,15 +262,18 @@ public class CPU implements Constants {
         Control.runCommand(governor, CPU_SCALING_GOVERNOR, command, context);
     }
 
-    public static String getCurGovernor() {
-        return getCurGovernor(getBigCore());
+    public static String getCurGovernor(boolean forceRead) {
+        return getCurGovernor(getBigCore(), forceRead);
     }
 
-    public static String getCurGovernor(int core) {
-        if (core > 0) while (!Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core)))
-            activateCore(core, true, null);
-        String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
-        if (value != null) return value;
+    public static String getCurGovernor(int core, boolean forceRead) {
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core)))
+                activateCore(core, true, null);
+        if (Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core))) {
+            String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
+            if (value != null) return value;
+        }
         return "";
     }
 
@@ -316,15 +319,18 @@ public class CPU implements Constants {
         Control.runCommand(String.valueOf(freq), CPU_MAX_SCREEN_OFF_FREQ, command, context);
     }
 
-    public static int getMaxScreenOffFreq() {
-        return getMaxScreenOffFreq(getBigCore());
+    public static int getMaxScreenOffFreq(boolean forceRead) {
+        return getMaxScreenOffFreq(getBigCore(), forceRead);
     }
 
-    public static int getMaxScreenOffFreq(int core) {
-        if (core > 0) while (!Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core)))
-            activateCore(core, true, null);
-        String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
-        if (value != null) return Utils.stringToInt(value);
+    public static int getMaxScreenOffFreq(int core, boolean forceRead) {
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core)))
+                activateCore(core, true, null);
+        if (Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core))) {
+            String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        }
         return 0;
     }
 
@@ -337,20 +343,22 @@ public class CPU implements Constants {
     }
 
     public static void setMinFreq(Control.CommandType command, int freq, Context context) {
-        if (getMaxFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore()) < freq)
+        if (getMaxFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) < freq)
             setMaxFreq(command, freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, command, context);
     }
 
-    public static int getMinFreq() {
-        return getMinFreq(getBigCore());
+    public static int getMinFreq(boolean forceRead) {
+        return getMinFreq(getBigCore(), forceRead);
     }
 
-    public static int getMinFreq(int core) {
-        if (core > 0) while (!Utils.existFile(String.format(CPU_MIN_FREQ, core)))
+    public static int getMinFreq(int core, boolean forceRead) {
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MIN_FREQ, core)))
             activateCore(core, true, null);
-        String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
-        if (value != null) return Utils.stringToInt(value);
+        if (Utils.existFile(String.format(CPU_MIN_FREQ, core))) {
+            String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        }
         return 0;
     }
 
@@ -361,20 +369,22 @@ public class CPU implements Constants {
     public static void setMaxFreq(Control.CommandType command, int freq, Context context) {
         if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
-        if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore()) > freq)
+        if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
             setMinFreq(command, freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
     }
 
-    public static int getMaxFreq() {
-        return getMaxFreq(getBigCore());
+    public static int getMaxFreq(boolean forceRead) {
+        return getMaxFreq(getBigCore(), forceRead);
     }
 
-    public static int getMaxFreq(int core) {
-        if (core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
+    public static int getMaxFreq(int core, boolean forceRead) {
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
             activateCore(core, true, null);
-        String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
-        if (value != null) return Utils.stringToInt(value);
+        if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
+            String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        }
         return 0;
     }
 

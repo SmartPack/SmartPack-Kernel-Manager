@@ -229,13 +229,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             mMaxFreqCard = new PopupCardView.DPopupCard(freqs);
             mMaxFreqCard.setTitle(getString(R.string.cpu_max_freq));
             mMaxFreqCard.setDescription(getString(R.string.cpu_max_freq_summary));
-            mMaxFreqCard.setItem(CPU.getMaxFreq() / 1000 + getString(R.string.mhz));
+            mMaxFreqCard.setItem(CPU.getMaxFreq(true) / 1000 + getString(R.string.mhz));
             mMaxFreqCard.setOnDPopupCardListener(this);
 
             mMinFreqCard = new PopupCardView.DPopupCard(freqs);
             mMinFreqCard.setTitle(getString(R.string.cpu_min_freq));
             mMinFreqCard.setDescription(getString(R.string.cpu_min_freq_summary));
-            mMinFreqCard.setItem(CPU.getMinFreq() / 1000 + getString(R.string.mhz));
+            mMinFreqCard.setItem(CPU.getMinFreq(true) / 1000 + getString(R.string.mhz));
             mMinFreqCard.setOnDPopupCardListener(this);
 
             addView(mMaxFreqCard);
@@ -245,7 +245,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 mMaxScreenOffFreqCard = new PopupCardView.DPopupCard(freqs);
                 mMaxScreenOffFreqCard.setTitle(getString(R.string.cpu_max_screen_off_freq));
                 mMaxScreenOffFreqCard.setDescription(getString(R.string.cpu_max_screen_off_freq_summary));
-                mMaxScreenOffFreqCard.setItem(CPU.getMaxScreenOffFreq() / 1000 + getString(R.string.mhz));
+                mMaxScreenOffFreqCard.setItem(CPU.getMaxScreenOffFreq(true) / 1000 + getString(R.string.mhz));
                 mMaxScreenOffFreqCard.setOnDPopupCardListener(this);
 
                 addView(mMaxScreenOffFreqCard);
@@ -256,7 +256,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             mGovernorCard = new PopupCardView.DPopupCard(CPU.getAvailableGovernors());
             mGovernorCard.setTitle(getString(R.string.cpu_governor));
             mGovernorCard.setDescription(getString(R.string.cpu_governor_summary));
-            mGovernorCard.setItem(CPU.getCurGovernor());
+            mGovernorCard.setItem(CPU.getCurGovernor(true));
             mGovernorCard.setOnDPopupCardListener(this);
 
             mGovernorTunableCard = new CardViewItem.DCardView();
@@ -304,12 +304,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             mMaxFreqLITTLECard = new PopupCardView.DPopupCard(freqs);
             mMaxFreqLITTLECard.setDescription(getString(R.string.cpu_max_freq));
-            mMaxFreqLITTLECard.setItem(CPU.getMaxFreq(CPU.getLITTLEcore()) / 1000 + getString(R.string.mhz));
+            mMaxFreqLITTLECard.setItem(CPU.getMaxFreq(CPU.getLITTLEcore(), true) / 1000 + getString(R.string.mhz));
             mMaxFreqLITTLECard.setOnDPopupCardListener(this);
 
             mMinFreqLITTLECard = new PopupCardView.DPopupCard(freqs);
             mMinFreqLITTLECard.setDescription(getString(R.string.cpu_min_freq));
-            mMinFreqLITTLECard.setItem(CPU.getMinFreq(CPU.getLITTLEcore()) / 1000 + getString(R.string.mhz));
+            mMinFreqLITTLECard.setItem(CPU.getMinFreq(CPU.getLITTLEcore(), true) / 1000 + getString(R.string.mhz));
             mMinFreqLITTLECard.setOnDPopupCardListener(this);
 
             addView(mMaxFreqLITTLECard);
@@ -318,7 +318,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (CPU.hasMaxScreenOffFreq()) {
                 mMaxScreenOffFreqLITTLECard = new PopupCardView.DPopupCard(freqs);
                 mMaxScreenOffFreqLITTLECard.setDescription(getString(R.string.cpu_max_screen_off_freq));
-                mMaxScreenOffFreqLITTLECard.setItem(CPU.getMaxScreenOffFreq(CPU.getLITTLEcore()) / 1000 +
+                mMaxScreenOffFreqLITTLECard.setItem(CPU.getMaxScreenOffFreq(CPU.getLITTLEcore(), true) / 1000 +
                         getString(R.string.mhz));
                 mMaxScreenOffFreqLITTLECard.setOnDPopupCardListener(this);
 
@@ -329,7 +329,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private void governorLITTLEInit() {
             mGovernorLITTLECard = new PopupCardView.DPopupCard(CPU.getAvailableGovernors(CPU.getLITTLEcore()));
             mGovernorLITTLECard.setDescription(getString(R.string.cpu_governor));
-            mGovernorLITTLECard.setItem(CPU.getCurGovernor(CPU.getLITTLEcore()));
+            mGovernorLITTLECard.setItem(CPU.getCurGovernor(CPU.getLITTLEcore(), true));
             mGovernorLITTLECard.setOnDPopupCardListener(this);
 
             mGovernorTunableLITTLECard = new CardViewItem.DCardView();
@@ -609,12 +609,18 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 }
             }
 
-            if (mMaxFreqCard != null)
-                mMaxFreqCard.setItem(CPU.getMaxFreq() / 1000 + getString(R.string.mhz));
-            if (mMinFreqCard != null)
-                mMinFreqCard.setItem(CPU.getMinFreq() / 1000 + getString(R.string.mhz));
-            if (mGovernorCard != null)
-                mGovernorCard.setItem(CPU.getCurGovernor());
+            if (mMaxFreqCard != null) {
+                int maxFreq = CPU.getMaxFreq(false);
+                if (maxFreq != 0) mMaxFreqCard.setItem(maxFreq / 1000 + getString(R.string.mhz));
+            }
+            if (mMinFreqCard != null) {
+                int minFreq = CPU.getMinFreq(false);
+                if (minFreq != 0) mMinFreqCard.setItem(minFreq / 1000 + getString(R.string.mhz));
+            }
+            if (mGovernorCard != null) {
+                String governor = CPU.getCurGovernor(false);
+                if (!governor.isEmpty()) mGovernorCard.setItem(governor);
+            }
 
             if (mCoreCheckBoxLITTLE != null && mCoreProgressBarLITTLE != null && mCoreFreqTextLITTLE != null) {
                 List<Integer> range = CPU.getLITTLECoreRange();
@@ -629,12 +635,20 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 }
             }
 
-            if (mMaxFreqLITTLECard != null)
-                mMaxFreqLITTLECard.setItem(CPU.getMaxFreq(CPU.getLITTLEcore()) / 1000 + getString(R.string.mhz));
-            if (mMinFreqLITTLECard != null)
-                mMinFreqLITTLECard.setItem(CPU.getMinFreq(CPU.getLITTLEcore()) / 1000 + getString(R.string.mhz));
-            if (mGovernorLITTLECard != null)
-                mGovernorLITTLECard.setItem(CPU.getCurGovernor(CPU.getLITTLEcore()));
+            if (mMaxFreqLITTLECard != null) {
+                int maxFreq = CPU.getMaxFreq(CPU.getLITTLEcore(), false);
+                if (maxFreq != 0)
+                    mMaxFreqLITTLECard.setItem((maxFreq / 1000) + getString(R.string.mhz));
+            }
+            if (mMinFreqLITTLECard != null) {
+                int minFreq = CPU.getMinFreq(CPU.getLITTLEcore(), false);
+                if (minFreq != 0)
+                    mMinFreqLITTLECard.setItem(minFreq / 1000 + getString(R.string.mhz));
+            }
+            if (mGovernorLITTLECard != null) {
+                String governor = CPU.getCurGovernor(CPU.getLITTLEcore(), false);
+                if (!governor.isEmpty()) mGovernorLITTLECard.setItem(governor);
+            }
 
             return true;
         }
@@ -683,13 +697,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getName() {
-            return CPU.getCurGovernor(cpuFragment.core);
+            return CPU.getCurGovernor(cpuFragment.core, true);
         }
 
         @Override
         public String getPath() {
             return getPath(CPU.isBigLITTLE() ? String.format(CPU_GOVERNOR_TUNABLES_CORE, cpuFragment.core) :
-                    CPU_GOVERNOR_TUNABLES, CPU.getCurGovernor(cpuFragment.core));
+                    CPU_GOVERNOR_TUNABLES, CPU.getCurGovernor(cpuFragment.core, true));
         }
 
         private String getPath(String path, String governor) {
@@ -707,7 +721,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getError(Context context) {
-            return context.getString(R.string.not_tunable, CPU.getCurGovernor(cpuFragment.core));
+            return context.getString(R.string.not_tunable, CPU.getCurGovernor(cpuFragment.core, true));
         }
     }
 
