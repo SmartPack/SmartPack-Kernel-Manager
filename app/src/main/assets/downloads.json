@@ -65,5 +65,20 @@
       "sprout"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sprout.json"
+  },
+  {
+    "vendor": [
+      "LGE"
+    ],
+    "device": [
+      "d850",
+      "d851",
+      "d852",
+      "d855",
+      "f400",
+      "ls990",
+      "vs985"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3.json"
   }
 ]
