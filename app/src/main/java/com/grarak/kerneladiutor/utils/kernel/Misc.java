@@ -309,4 +309,16 @@ public class Misc implements Constants {
             }
         return VIBRATION_PATH != null;
     }
+		
+	public static boolean hasGloveMode() {
+        return Utils.existFile(GLOVE_MODE);
+    }
+	
+	public static boolean isGloveModeActive() {
+        return Utils.readFile(GLOVE_MODE).equals("glove");
+    }
+	
+	public static void activateGloveMode(boolean active, Context context) {
+        Control.runCommand(active ? "glove" : "normal", GLOVE_MODE, Control.CommandType.GENERIC, context);
+    }
 }

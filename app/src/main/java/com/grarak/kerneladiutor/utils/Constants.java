@@ -648,6 +648,9 @@ public interface Constants {
     String POWER_SUSPEND_MODE = POWER_SUSPEND + "/power_suspend_mode";
     String POWER_SUSPEND_STATE = POWER_SUSPEND + "/power_suspend_state";
     String POWER_SUSPEND_VERSION = POWER_SUSPEND + "/power_suspend_version";
+	
+	// Glove mode
+	String GLOVE_MODE = "/sys/devices/virtual/touchscreen/touchscreen_dev/mode";
 
     // Network
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
