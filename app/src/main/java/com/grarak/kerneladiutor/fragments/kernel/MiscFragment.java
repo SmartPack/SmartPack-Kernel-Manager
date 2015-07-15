@@ -66,8 +66,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard;
     private SeekBarCardView.DSeekBarCard mMsmHsicWakelockDividerCard;
 	
-	private SwitchCardView.DSwitchCard mGloveModeCard;
-
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -78,7 +76,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (Misc.hasPowerSuspend()) powersuspendInit();
         networkInit();
         wakelockInit();
-        if (Misc.hasGloveMode()) gloveModeInit();
     }
 
     private void vibrationInit() {
@@ -292,16 +289,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
     }
 		
-	private void gloveModeInit() {
-			mGloveModeCard = new SwitchCardView.DSwitchCard();
-			mGloveModeCard.setTitle(getString(R.string.glove_mode));
-			mGloveModeCard.setDescription(getString(R.string.glove_mode_summary));
-			mGloveModeCard.setChecked(Misc.isGloveModeActive());
-			mGloveModeCard.setOnDSwitchCardListener(this);
-
-			addView(mGloveModeCard);
-    }
-
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)
@@ -368,8 +355,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             Misc.activateWlanctrlWakeLock(checked, getActivity());
         else if (dSwitchCard == mWlanWakelockCard)
             Misc.activateWlanWakeLock(checked, getActivity());
-		else if (dSwitchCard == mGloveModeCard)
-            Misc.activateGloveMode(checked, getActivity());
     }
 
     @Override
