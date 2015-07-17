@@ -367,8 +367,15 @@ public class CPU implements Constants {
     }
 
     public static void setMaxFreq(Control.CommandType command, int freq, Context context) {
+        String oc_enable = "1";
         if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
+        if (command == Control.CommandType.CPU && Utils.existFile(CPU_ENABLE_OC_KT))
+            Control.runCommand(oc_enable, CPU_ENABLE_OC_KT, Control.CommandType.CPU, context); {
+            if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
+                setMinFreq(command, freq, context);
+            Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
+	}
         if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
             setMinFreq(command, freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
@@ -381,8 +388,13 @@ public class CPU implements Constants {
     public static int getMaxFreq(int core, boolean forceRead) {
         if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
             activateCore(core, true, null);
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ_KT, core)))
+            activateCore(core, true, null);
         if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        } else if (Utils.existFile(String.format(CPU_MAX_FREQ_KT, core))) {
+            String value = Utils.readFile(String.format(CPU_MAX_FREQ_KT, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
