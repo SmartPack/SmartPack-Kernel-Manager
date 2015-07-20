@@ -698,8 +698,9 @@ public interface Constants {
     // Logging
     String LOGGER_MODE = "/sys/kernel/logger_mode/logger_mode";
     String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
+    String LOGGER_ENABLED1 = "/sys/module/logger/parameters/log_enabled";
 
-    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED};
+    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_ENABLED1};
 
     // CRC
     String[] CRC_ARRAY = {
