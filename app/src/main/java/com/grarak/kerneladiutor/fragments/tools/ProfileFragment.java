@@ -115,7 +115,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 String start = getString(R.string.kernel);
                 String stop = getString(R.string.tools);
                 final LinkedHashMap<Class, AppCompatCheckBox> items = new LinkedHashMap<>();
-                for (DAdapter.DView item : Constants.ITEMS) {
+                for (DAdapter.DView item : Constants.VISIBLE_ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
                         if (item.getTitle().equals(stop)) load = true;
@@ -129,6 +129,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                     }
                 }
 
+                if (items.size() < 1) {
+                    Utils.toast(getString(R.string.removed_all_sections), getActivity());
+                    return;
+                }
                 selectAllButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -57,6 +57,10 @@ public class InformationCardView extends BaseCardView {
             okButton.setOnClickListener(onClickListener);
     }
 
+    @Override
+    public void setFocus() {
+    }
+
     public void setText(String text) {
         infoText = text;
         if (infoView != null) infoView.setText(infoText);

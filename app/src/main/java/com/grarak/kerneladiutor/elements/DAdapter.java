@@ -68,7 +68,7 @@ public class DAdapter {
 
         public List<DView> DViews;
         private OnItemClickListener onItemClickListener;
-        private int selectedItem = 0;
+        private int selectedItem;
         private boolean itemOnly;
 
         public Adapter(List<DView> DViews) {
@@ -173,7 +173,12 @@ public class DAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            text = (TextView) viewHolder.itemView.findViewById(R.id.text);
+            view = viewHolder.itemView;
+            if (Utils.isTV(view.getContext())) {
+                view.setFocusable(true);
+                view.setFocusableInTouchMode(true);
+            }
+            text = (TextView) view.findViewById(R.id.text);
             text.setText(title);
             view.setBackgroundColor(checked ? checkedBackgroundColor : defaultBackgroundColor);
             text.setTextColor(checked ? checkedTextColor : defaultTextColor);
@@ -280,6 +285,11 @@ public class DAdapter {
                     }).show();
                 }
             });
+
+            if (Utils.isTV(view.getContext())) {
+                view.setFocusable(true);
+                view.setFocusableInTouchMode(true);
+            }
             return new RecyclerView.ViewHolder(view) {
             };
         }

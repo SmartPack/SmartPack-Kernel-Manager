@@ -564,6 +564,7 @@
     <string name="name">Name</string>
     <string name="select_all">Select all</string>
     <string name="apply">Apply</string>
+    <string name="removed_all_sections">You removed all sections! No profiles for you.</string>
     <string name="no_settings">No settings found!</string>
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
@@ -625,6 +626,7 @@
     <string name="password_not_match">Password doesn\'t match confirmation</string>
     <string name="password_too_long">Password is too long</string>
     <string name="set_password_first">Set a password first</string>
+    <string name="show_sections">Show sections</string>
 
     <!-- FAQ -->
     <string name="misspelled">Why did you misspell \"Auditor\"?</string>

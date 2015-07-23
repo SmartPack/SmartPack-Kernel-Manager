@@ -80,6 +80,7 @@ public class RecyclerViewFragment extends BaseFragment {
         }
 
         recyclerView = getRecyclerView();
+        recyclerView.setHasFixedSize(true);
         setRecyclerView(recyclerView);
         recyclerView.setAdapter(new RecyclerView.Adapter() {
             @Override
@@ -120,6 +121,12 @@ public class RecyclerViewFragment extends BaseFragment {
                         applyOnBootView.setChecked(!applyOnBootView.isChecked());
                     }
                 });
+                if (Utils.isTV(getActivity())) {
+                    applyOnBootLayout.setFocusable(true);
+                    applyOnBootLayout.setFocusableInTouchMode(true);
+                    applyOnBootView.setFocusable(false);
+                    applyOnBootView.setFocusableInTouchMode(false);
+                }
             }
         }
 
@@ -131,6 +138,11 @@ public class RecyclerViewFragment extends BaseFragment {
                 fabView.setTranslationZ(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
                 fabView.setVisibility(View.INVISIBLE);
             }
+        }
+
+        if (fabView != null && Utils.isTV(getActivity())) {
+            fabView.setFocusable(true);
+            fabView.setFocusableInTouchMode(true);
         }
 
         progressBar = new ProgressBar(getActivity());
@@ -289,7 +301,8 @@ public class RecyclerViewFragment extends BaseFragment {
             recyclerView.setPadding(padding, applyOnBootLayout.getHeight(), padding, recyclerView.getPaddingBottom());
             resetTranslations();
 
-            recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
+            if (!Utils.isTV(getActivity()))
+                recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
         }
     }
 
@@ -379,6 +392,7 @@ public class RecyclerViewFragment extends BaseFragment {
 
     public int getSpan() {
         int orientation = Utils.getScreenOrientation(getActivity());
+        if (Utils.isTV(getActivity())) return 2;
         if (Utils.isTablet(getActivity()))
             return orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
         return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;

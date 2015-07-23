@@ -8,38 +8,53 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
+        android:banner="@drawable/banner"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
         <activity
             android:name=".MainActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".TextActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:theme="@style/AppThemeActionBarLight" />
         <activity
             android:name=".KernelActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
             android:name=".FileBrowserActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
             android:name=".EditTextActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize" />
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver android:name=".services.BootReceiver">

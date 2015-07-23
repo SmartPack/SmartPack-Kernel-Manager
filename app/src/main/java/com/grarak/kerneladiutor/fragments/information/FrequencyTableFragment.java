@@ -8,7 +8,10 @@
 package com.grarak.kerneladiutor.fragments.information;
 
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -252,6 +255,17 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         // add it to parent and return
         parent.addView(layout);
+
+        if (Utils.isTV(getActivity())) {
+            layout.setFocusable(true);
+            layout.setFocusableInTouchMode(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                TypedArray ta = getActivity().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
+                Drawable d = ta.getDrawable(0);
+                ta.recycle();
+                layout.setBackground(d);
+            }
+        }
     }
 
     /**

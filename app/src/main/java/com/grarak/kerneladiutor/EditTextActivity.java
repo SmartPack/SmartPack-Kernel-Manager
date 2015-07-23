@@ -49,11 +49,8 @@ public class EditTextActivity extends BaseActivity {
             editText.setText(originalText);
 
         ActionBar actionBar;
-        if ((actionBar = getSupportActionBar()) != null) {
-            if ((name = getIntent().getExtras().getString(NAME_ARG)) != null)
-                actionBar.setTitle(name);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        if ((name = getIntent().getExtras().getString(NAME_ARG)) != null && (actionBar = getSupportActionBar()) != null)
+            actionBar.setTitle(name);
     }
 
     @Override
@@ -79,20 +76,15 @@ public class EditTextActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_save:
-                Bundle args = new Bundle();
-                args.putString("name", name);
-                if (originalText == null || !originalText.equals(editText.getText().toString()))
-                    args.putString("text", editText.getText().toString());
-                Intent intent = new Intent();
-                intent.putExtras(args);
-                setResult(RESULT_OK, intent);
-                finish();
-                break;
-            case android.R.id.home:
-                finish();
-                break;
+        if (item.getItemId() == R.id.menu_save) {
+            Bundle args = new Bundle();
+            args.putString("name", name);
+            if (originalText == null || !originalText.equals(editText.getText().toString()))
+                args.putString("text", editText.getText().toString());
+            Intent intent = new Intent();
+            intent.putExtras(args);
+            setResult(RESULT_OK, intent);
+            onBackPressed();
         }
         return true;
     }

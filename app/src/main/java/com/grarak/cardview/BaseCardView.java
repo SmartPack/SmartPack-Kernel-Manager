@@ -107,6 +107,7 @@ public abstract class BaseCardView extends CardView {
 
         // Add innerlayout to base view
         innerLayout.addView(layoutView);
+        if (Utils.isTV(getContext())) setFocus();
     }
 
     /**
@@ -117,6 +118,11 @@ public abstract class BaseCardView extends CardView {
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         layoutParams.setMargins(padding, padding, padding, padding);
         setLayoutParams(layoutParams);
+    }
+
+    public void setFocus() {
+        setFocusable(true);
+        setFocusableInTouchMode(true);
     }
 
     /**
@@ -190,6 +196,10 @@ public abstract class BaseCardView extends CardView {
             } catch (NullPointerException ignored) {
             }
             customLayout.addView(customView);
+            if (Utils.isTV(getContext())) {
+                setFocusable(false);
+                setFocusableInTouchMode(false);
+            }
         }
     }
 

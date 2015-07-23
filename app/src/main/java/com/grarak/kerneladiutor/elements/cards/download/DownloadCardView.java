@@ -89,6 +89,15 @@ public class DownloadCardView extends BaseCardView {
                 showDownload(name, download.getMD5sum(), download.getUrl(), download.getInstallMethod());
             }
         });
+
+        if (Utils.isTV(getContext())) {
+            downloadButton.setFocusable(true);
+            downloadButton.setFocusableInTouchMode(true);
+        }
+    }
+
+    @Override
+    public void setFocus() {
     }
 
     private void showDownload(final String name, final String md5, String link, final String installMethod) {

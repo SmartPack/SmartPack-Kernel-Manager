@@ -18,8 +18,10 @@ package com.grarak.kerneladiutor;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -53,6 +55,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
+        ActionBar actionBar;
+        if ((actionBar = getSupportActionBar()) != null)
+            actionBar.setDisplayHomeAsUpEnabled(getDisplayHomeAsUpEnabled());
+
         setStatusBarColor();
     }
 
@@ -73,6 +79,16 @@ public abstract class BaseActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.color_primary_dark));
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean getDisplayHomeAsUpEnabled() {
+        return true;
     }
 
 }

@@ -27,9 +27,7 @@ import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -42,7 +40,6 @@ import java.util.List;
  */
 public class ProfileWidget extends AppWidgetProvider {
 
-    private static final String PROFILE_BUTTON = "profile_button";
     private static final String LIST_ITEM_CLICK = "list_item";
 
     private static final String ITEM_ARG = "item_extra";
@@ -60,7 +57,6 @@ public class ProfileWidget extends AppWidgetProvider {
             widget.setRemoteAdapter(R.id.profile_list, svcIntent);
 
             widget.setPendingIntentTemplate(R.id.profile_list, getPendingIntent(context, LIST_ITEM_CLICK));
-            widget.setOnClickPendingIntent(R.id.profile_button, getPendingIntent(context, PROFILE_BUTTON));
 
             appWidgetManager.updateAppWidget(appWidgetId, widget);
         }
@@ -75,14 +71,7 @@ public class ProfileWidget extends AppWidgetProvider {
 
     @Override
     public void onReceive(@NonNull final Context context, @NonNull Intent intent) {
-        if (intent.getAction().equals(PROFILE_BUTTON)) {
-            Bundle args = new Bundle();
-            args.putString(MainActivity.LAUNCH_ARG, ProfileFragment.class.getSimpleName());
-            Intent launch = new Intent(context, MainActivity.class);
-            launch.putExtras(args);
-            launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(launch);
-        } else if (intent.getAction().equals(LIST_ITEM_CLICK)) {
+        if (intent.getAction().equals(LIST_ITEM_CLICK)) {
             if (!Utils.getBoolean("profileclicked", false, context)) {
                 Utils.saveBoolean("profileclicked", true, context);
                 Utils.toast(context.getString(R.string.press_again_to_apply), context);

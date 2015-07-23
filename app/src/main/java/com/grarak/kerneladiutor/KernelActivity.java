@@ -21,13 +21,13 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.grarak.kerneladiutor.fragments.tools.download.ParentFragment;
 import com.grarak.kerneladiutor.utils.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by willi on 20.06.15.
@@ -47,12 +47,9 @@ public class KernelActivity extends BaseActivity {
                 new Downloads.KernelContent(getIntent().getExtras().getString(KERNEL_JSON_ARG));
 
         ActionBar actionBar;
-        if ((actionBar = getSupportActionBar()) != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            String name;
-            if ((name = kernelContent.getName()) != null)
-                actionBar.setTitle(Html.fromHtml(name).toString());
-        }
+        String name;
+        if ((name = kernelContent.getName()) != null && (actionBar = getSupportActionBar()) != null)
+            actionBar.setTitle(Html.fromHtml(name).toString());
 
         logoContainer = findViewById(R.id.logo_container);
         ImageView logoView = (ImageView) findViewById(R.id.logo);
@@ -83,17 +80,9 @@ public class KernelActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
-        finish();
+        if (logoContainer != null && ViewHelper.getTranslationY(logoContainer) >= -logoContainer.getHeight() / 2)
+            super.onBackPressed();
+        else finish();
     }
 }

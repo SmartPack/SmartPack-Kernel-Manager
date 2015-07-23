@@ -31,7 +31,7 @@ public class TextActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        textView.setTextSize(20);
+        textView.setTextSize(getResources().getDisplayMetrics().density * 20);
         textView.setGravity(Gravity.CENTER);
         textView.setText(getIntent().getExtras().getString(ARG_TEXT));
     }
@@ -56,4 +56,8 @@ public class TextActivity extends BaseActivity {
         return null;
     }
 
+    @Override
+    public boolean getDisplayHomeAsUpEnabled() {
+        return false;
+    }
 }

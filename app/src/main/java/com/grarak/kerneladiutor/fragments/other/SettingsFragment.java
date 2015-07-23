@@ -30,8 +30,8 @@ import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.DividerCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -65,6 +65,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         applyonbootInit();
         debuggingInit();
         securityInit();
+        showSectionsInit();
     }
 
     private void darkthemeInit() {
@@ -122,18 +123,20 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mApplyonBootDividerCard);
 
-        SwitchCardView.DSwitchCard mHideApplyOnBootCard = new SwitchCardView.DSwitchCard();
-        mHideApplyOnBootCard.setTitle(getString(R.string.hide_apply_on_boot));
-        mHideApplyOnBootCard.setDescription(getString(R.string.hide_apply_on_boot_summary));
-        mHideApplyOnBootCard.setChecked(Utils.getBoolean("hideapplyonboot", true, getActivity()));
-        mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-            @Override
-            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                Utils.saveBoolean("hideapplyonboot", checked, getActivity());
-            }
-        });
+        if (!Utils.isTV(getActivity())) {
+            SwitchCardView.DSwitchCard mHideApplyOnBootCard = new SwitchCardView.DSwitchCard();
+            mHideApplyOnBootCard.setTitle(getString(R.string.hide_apply_on_boot));
+            mHideApplyOnBootCard.setDescription(getString(R.string.hide_apply_on_boot_summary));
+            mHideApplyOnBootCard.setChecked(Utils.getBoolean("hideapplyonboot", true, getActivity()));
+            mHideApplyOnBootCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                @Override
+                public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                    Utils.saveBoolean("hideapplyonboot", checked, getActivity());
+                }
+            });
 
-        addView(mHideApplyOnBootCard);
+            addView(mHideApplyOnBootCard);
+        }
 
         final List<String> list = new ArrayList<>();
         for (int i = 5; i < 421; i *= 2)
@@ -383,6 +386,32 @@ public class SettingsFragment extends RecyclerViewFragment {
                         Utils.saveString("password", "", getActivity());
                     }
                 }).show();
+    }
+
+    private void showSectionsInit() {
+        DividerCardView.DDividerCard mShowSectionsDividerCard = new DividerCardView.DDividerCard();
+        mShowSectionsDividerCard.setText(getString(R.string.show_sections));
+        addView(mShowSectionsDividerCard);
+
+        for (final DAdapter.DView section : Constants.ITEMS) {
+            if (section.getFragment() != null
+                    && !section.getFragment().getClass().getSimpleName().equals(getClass().getSimpleName())) {
+                SwitchCardView.DSwitchCard mSectionCard = new SwitchCardView.DSwitchCard();
+                mSectionCard.setDescription(section.getTitle());
+                mSectionCard.setChecked(Utils.getBoolean(section.getFragment().getClass().getSimpleName()
+                        + "visible", true, getActivity()));
+                mSectionCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                    @Override
+                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                        Utils.saveBoolean(section.getFragment().getClass().getSimpleName()
+                                + "visible", checked, getActivity());
+                        ((MainActivity) getActivity()).setItems(SettingsFragment.this);
+                    }
+                });
+
+                addView(mSectionCard);
+            }
+        }
     }
 
 }

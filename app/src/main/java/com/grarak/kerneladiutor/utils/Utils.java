@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -408,6 +409,12 @@ public class Utils implements Constants {
         int actionBarSize = ta.getDimensionPixelSize(0, 112);
         ta.recycle();
         return actionBarSize;
+    }
+
+    public static boolean isTV(Context context) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2 && ((UiModeManager) context
+                .getSystemService(Context.UI_MODE_SERVICE))
+                .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
     }
 
     public static boolean isTablet(Context context) {

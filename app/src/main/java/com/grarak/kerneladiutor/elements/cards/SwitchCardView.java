@@ -30,6 +30,7 @@ import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 22.12.14.
@@ -68,6 +69,11 @@ public class SwitchCardView extends BaseCardView {
                 }
             }
         });
+
+        if (Utils.isTV(getContext())) {
+            switchCompatView.setFocusable(false);
+            switchCompatView.setFocusableInTouchMode(false);
+        }
     }
 
     @Override

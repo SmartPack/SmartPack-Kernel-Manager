@@ -46,6 +46,7 @@ import android.widget.LinearLayout;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.ScrimInsetsFrameLayout;
 import com.grarak.kerneladiutor.elements.SplashView;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.information.FrequencyTableFragment;
 import com.grarak.kerneladiutor.fragments.information.KernelInformationFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -100,13 +101,6 @@ public class MainActivity extends BaseActivity implements Constants {
     private static Context context;
 
     /**
-     * The argument string of LAUNCH_NAME
-     */
-    public static String LAUNCH_ARG = "launch_section";
-
-    private String LAUNCH_NAME;
-
-    /**
      * Views
      */
     private Toolbar toolbar;
@@ -144,7 +138,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
     @Override
     public int getParentViewId() {
-        return R.layout.activity_main;
+        return Utils.isTV(this) ? R.layout.activity_main_tv : R.layout.activity_main;
     }
 
     @Override
@@ -197,9 +191,9 @@ public class MainActivity extends BaseActivity implements Constants {
      * @param position position of the fragment
      */
     private void selectItem(int position) {
-        Fragment fragment = ITEMS.get(position).getFragment();
+        Fragment fragment = VISIBLE_ITEMS.get(position).getFragment();
 
-        mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
+        if (mScrimInsetsFrameLayout != null) mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
         if (fragment == null || cur_position == position) return;
         cur_position = position;
 
@@ -240,7 +234,8 @@ public class MainActivity extends BaseActivity implements Constants {
             ITEMS.add(new DAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
         if (Sound.hasSound())
             ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));
+        if (!Utils.isTV(this))
+            ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
             ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
@@ -274,8 +269,10 @@ public class MainActivity extends BaseActivity implements Constants {
     private void setView() {
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        if (mDrawerLayout != null) {
+            mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
+            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        }
         mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
         mSplashView = (SplashView) findViewById(R.id.splash_view);
 
@@ -300,17 +297,14 @@ public class MainActivity extends BaseActivity implements Constants {
         });
     }
 
-    /**
-     * Setup the views
-     */
-    private void setInterface() {
-        mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
-        if (Utils.DARKTHEME)
-            mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
-
-        mAdapter = new DAdapter.Adapter(ITEMS);
+    public void setItems(BaseFragment fragment) {
+        VISIBLE_ITEMS.clear();
+        for (DAdapter.DView item : ITEMS)
+            if (item.getFragment() == null
+                    || Utils.getBoolean(item.getFragment().getClass().getSimpleName() + "visible", true, this))
+                VISIBLE_ITEMS.add(item);
+        mAdapter = new DAdapter.Adapter(VISIBLE_ITEMS);
         mDrawerList.setAdapter(mAdapter);
-
         mAdapter.setItemOnly(true);
         mAdapter.setOnItemClickListener(new DAdapter.Adapter.OnItemClickListener() {
             @Override
@@ -318,16 +312,36 @@ public class MainActivity extends BaseActivity implements Constants {
                 selectItem(position);
             }
         });
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        mDrawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                if (mDrawerToggle != null) mDrawerToggle.syncState();
+        if (fragment != null) for (int i = 0; i < VISIBLE_ITEMS.size(); i++)
+            if (VISIBLE_ITEMS.get(i).getFragment() != null && VISIBLE_ITEMS.get(i).getFragment() == fragment) {
+                cur_position = i;
+                mAdapter.setItemChecked(i, true);
             }
-        });
+
+    }
+
+    /**
+     * Setup the views
+     */
+    private void setInterface() {
+        if (mScrimInsetsFrameLayout != null) {
+            mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
+            if (Utils.DARKTHEME)
+                mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
+        }
+
+        setItems(null);
+        if (mDrawerLayout != null) {
+            mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+            mDrawerLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mDrawerToggle != null) mDrawerToggle.syncState();
+                }
+            });
+        }
     }
 
     private class Task extends AsyncTask<Void, Void, Void> {
@@ -380,9 +394,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
             try {
                 // Show a dialog if user is running a beta version
-                if ((LAUNCH_NAME = getIntent().getStringExtra(LAUNCH_ARG)) == null
-                        && VERSION_NAME.contains("beta")
-                        && Utils.getBoolean("betainfo", true, MainActivity.this))
+                if (VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, MainActivity.this))
                     new AlertDialog.Builder(MainActivity.this)
                             .setMessage(getString(R.string.beta_message, VERSION_NAME))
                             .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -394,20 +406,24 @@ public class MainActivity extends BaseActivity implements Constants {
                 e.printStackTrace();
             }
 
-            // If LAUNCH_NAME is not null then open the fragment which matches with the string
-            if (LAUNCH_NAME == null)
-                LAUNCH_NAME = KernelInformationFragment.class.getSimpleName();
-            for (int i = 0; i < ITEMS.size(); i++) {
-                if (ITEMS.get(i).getFragment() != null)
-                    if (LAUNCH_NAME.equals(ITEMS.get(i).getFragment().getClass().getSimpleName()))
-                        selectItem(i);
+            // Start with the very first fragment on the list
+            for (int i = 0; i < VISIBLE_ITEMS.size(); i++) {
+                if (VISIBLE_ITEMS.get(i).getFragment() != null) {
+                    selectItem(i);
+                    break;
+                }
             }
         }
     }
 
     @Override
+    public boolean getDisplayHomeAsUpEnabled() {
+        return false;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return mDrawerToggle.onOptionsItemSelected(item);
+        return mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item);
     }
 
     @Override
@@ -424,8 +440,8 @@ public class MainActivity extends BaseActivity implements Constants {
     @Override
     public void onBackPressed() {
         try {
-            if (!ITEMS.get(cur_position).getFragment().onBackPressed())
-                if (!mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) {
+            if (!VISIBLE_ITEMS.get(cur_position).getFragment().onBackPressed())
+                if (mDrawerLayout == null || !mDrawerLayout.isDrawerOpen(mScrimInsetsFrameLayout)) {
                     if (pressAgain) {
                         Utils.toast(getString(R.string.press_back_again), this);
                         pressAgain = false;

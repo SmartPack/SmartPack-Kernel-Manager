@@ -31,6 +31,9 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.KernelActivity;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.cards.download.DownloadCardView;
+import com.grarak.kerneladiutor.elements.cards.download.DownloadInfoCardView;
+import com.grarak.kerneladiutor.elements.cards.download.FeatureCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
 import com.grarak.kerneladiutor.utils.Downloads;
@@ -101,15 +104,18 @@ public class ParentFragment extends ViewPagerFragment {
         super.init(savedInstanceState);
 
         if (kernelContent != null)
-            addFragment(new ViewPagerItem(DownloadInfoFragment.newInstance(kernelContent), getString(R.string.information)));
+            addFragment(new ViewPagerItem(DownloadRecyclerViewFragment.InfoFragment.newInstance(kernelContent),
+                    getString(R.string.information)));
 
         List<Downloads.Feature> features;
         if (kernelContent != null && (features = kernelContent.getFeatures()).size() > 0)
-            addFragment(new ViewPagerItem(FeaturesFragment.newInstance(features), getString(R.string.features)));
+            addFragment(new ViewPagerItem(DownloadRecyclerViewFragment.FeaturesFragment.newInstance(features),
+                    getString(R.string.features)));
 
         List<Downloads.Download> downloads;
         if (kernelContent != null && (downloads = kernelContent.getDownloads()).size() > 0)
-            addFragment(new ViewPagerItem(DownloadFragment.newInstance(downloads), getString(R.string.download)));
+            addFragment(new ViewPagerItem(DownloadRecyclerViewFragment.DownloadFragment.newInstance(downloads),
+                    getString(R.string.download)));
     }
 
     @Override
@@ -245,6 +251,70 @@ public class ParentFragment extends ViewPagerFragment {
             recyclerView.setPadding((int) recyclerviewPadding, recyclerView.getPaddingTop(), (int) recyclerviewPadding,
                     recyclerView.getPaddingBottom());
         }
+
+        public static class InfoFragment extends ParentFragment.DownloadRecyclerViewFragment {
+
+            public static InfoFragment newInstance(Downloads.KernelContent kernelContent) {
+                InfoFragment fragment = new InfoFragment();
+                fragment.kernelContent = kernelContent;
+                return fragment;
+            }
+
+            private Downloads.KernelContent kernelContent;
+
+            @Override
+            public void init(Bundle savedInstanceState) {
+                super.init(savedInstanceState);
+
+                if (kernelContent != null && kernelContent.getShortDescription() != null
+                        && kernelContent.getLongDescription() != null)
+                    addView(new DownloadInfoCardView.DDDownloadInfoCard(kernelContent));
+            }
+
+        }
+
+        public static class FeaturesFragment extends ParentFragment.DownloadRecyclerViewFragment {
+
+            public static FeaturesFragment newInstance(List<Downloads.Feature> features) {
+                FeaturesFragment fragment = new FeaturesFragment();
+                fragment.features = features;
+                return fragment;
+            }
+
+            private List<Downloads.Feature> features;
+
+            @Override
+            public void init(Bundle savedInstanceState) {
+                super.init(savedInstanceState);
+
+                if (features != null) for (Downloads.Feature feature : features)
+                    addView(new FeatureCardView.DFeatureCard(feature));
+            }
+
+        }
+
+        public static class DownloadFragment extends ParentFragment.DownloadRecyclerViewFragment {
+
+            public static DownloadFragment newInstance(List<Downloads.Download> downloads) {
+                DownloadFragment fragment = new DownloadFragment();
+                fragment.downloads = downloads;
+                return fragment;
+            }
+
+            private List<Downloads.Download> downloads;
+
+            @Override
+            public void init(Bundle savedInstanceState) {
+                super.init(savedInstanceState);
+
+                if (downloads != null) for (Downloads.Download download : downloads) {
+                    if (download.getName() != null && download.getMD5sum() != null)
+                        addView(new DownloadCardView.DDownloadCard(download));
+                }
+            }
+
+        }
+
     }
 
 }

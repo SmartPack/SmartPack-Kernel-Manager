@@ -112,7 +112,8 @@ public class InitdFragment extends RecyclerViewFragment {
     @Override
     public void setOnScrollListener(RecyclerView recyclerView) {
         super.setOnScrollListener(recyclerView);
-        recyclerView.addOnScrollListener(fabHideScrollListener = new FabHideScrollListener());
+        if (!Utils.isTV(getActivity()))
+            recyclerView.addOnScrollListener(fabHideScrollListener = new FabHideScrollListener());
     }
 
     private class FabHideScrollListener extends RecyclerView.OnScrollListener {

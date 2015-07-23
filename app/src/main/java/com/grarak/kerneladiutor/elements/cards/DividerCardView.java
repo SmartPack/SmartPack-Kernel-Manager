@@ -68,6 +68,10 @@ public class DividerCardView extends BaseCardView {
         setText(text);
     }
 
+    @Override
+    public void setFocus() {
+    }
+
     public void setDescription(final String description) {
         setOnClickListener(new OnClickListener() {
             @Override
