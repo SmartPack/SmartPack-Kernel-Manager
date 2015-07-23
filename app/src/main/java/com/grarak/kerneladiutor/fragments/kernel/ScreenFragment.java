@@ -110,6 +110,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SwitchCardView.DSwitchCard mRegisterHookCard;
     private SwitchCardView.DSwitchCard mMasterSequenceCard;
 
+    private SwitchCardView.DSwitchCard mGloveModeCard;
+
     @Override
     public RecyclerView getRecyclerView() {
         mColorPalette = (ColorPalette) getParentView(R.layout.screen_fragment).findViewById(R.id.colorpalette);
@@ -132,6 +134,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         backlightDimmerInit();
         if (Screen.hasNegativeToggle()) negativeToggleInit();
         mdnieGlobalInit();
+        if (Misc.hasGloveMode()) gloveModeInit();
     }
 
     @Override
@@ -694,6 +697,16 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             addAllViews(views);
         }
     }
+    
+    private void gloveModeInit() {
+            mGloveModeCard = new SwitchCardView.DSwitchCard();
+            mGloveModeCard.setTitle(getString(R.string.glove_mode));
+            mGloveModeCard.setDescription(getString(R.string.glove_mode_summary));
+            mGloveModeCard.setChecked(Misc.isGloveModeActive());
+            mGloveModeCard.setOnDSwitchCardListener(this);
+
+            addView(mGloveModeCard);
+    }
 
     @Override
     public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
@@ -779,6 +792,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.activateRegisterHook(checked, getActivity());
         else if (dSwitchCard == mMasterSequenceCard)
             Screen.activateMasterSequence(checked, getActivity());
+        else if (dSwitchCard == mGloveModeCard)
+            Misc.activateGloveMode(checked, getActivity());
     }
 
     @Override

@@ -65,7 +65,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mWlanWakelockCard;
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard;
     private SeekBarCardView.DSeekBarCard mMsmHsicWakelockDividerCard;
-
+	
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -288,7 +288,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             addAllViews(views);
         }
     }
-
+		
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)

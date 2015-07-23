@@ -514,6 +514,8 @@
     <string name="wlan_wakelock_summary">Prevent wlan wakelock.</string>
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+	<string name="glove_mode">Glove Mode</string>
+	<string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
     <!-- Downloads -->
     <string name="logo">Logo</string>
