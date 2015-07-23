@@ -172,8 +172,8 @@ public class Misc implements Constants {
 
     public static boolean hasNewPowerSuspendState() {
         if (Utils.existFile(POWER_SUSPEND_STATE) && Utils.existFile(POWER_SUSPEND_VERSION)) {
-            if (Utils.readFile(POWER_SUSPEND_VERSION).contains("1.3")) return true;
-            else if (Utils.readFile(POWER_SUSPEND_VERSION).contains("1.5")) return true;
+            String version = Utils.readFile(POWER_SUSPEND_VERSION);
+            if (version.contains("1.3") || version.contains("1.5")) return true;
         }
         return false;
     }

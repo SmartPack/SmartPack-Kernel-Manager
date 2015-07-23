@@ -377,6 +377,8 @@
     <string name="register_hook_summary">Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook.</string>
     <string name="master_sequence">Master Sequence</string>
     <string name="master_sequence_summary">Enabling the master sequence will disable and ignore Samsungs profiles and scenarios, the ROM controls will be disabled.</string>
+    <string name="glove_mode">Glove Mode</string>
+    <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>
@@ -514,8 +516,6 @@
     <string name="wlan_wakelock_summary">Prevent wlan wakelock.</string>
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
-	<string name="glove_mode">Glove Mode</string>
-	<string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
     <!-- Downloads -->
     <string name="logo">Logo</string>

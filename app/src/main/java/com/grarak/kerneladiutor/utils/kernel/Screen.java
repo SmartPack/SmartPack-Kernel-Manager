@@ -38,6 +38,18 @@ public class Screen implements Constants {
 
     private static String MIN_BRIGHTNESS;
 
+    public static void activateGloveMode(boolean active, Context context) {
+        Control.runCommand(active ? "glove" : "normal", GLOVE_MODE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isGloveModeActive() {
+        return Utils.readFile(GLOVE_MODE).equals("glove");
+    }
+
+    public static boolean hasGloveMode() {
+        return Utils.existFile(GLOVE_MODE);
+    }
+
     public static void activateMasterSequence(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", MASTER_SEQUENCE, Control.CommandType.GENERIC, context);
     }
@@ -649,18 +661,6 @@ public class Screen implements Constants {
         for (String[] array : SCREEN_ARRAY)
             for (String file : array) if (Utils.existFile(file)) return true;
         return false;
-    }
-    	
-    public static boolean hasGloveMode() {
-        return Utils.existFile(GLOVE_MODE);
-    }
-    
-    public static boolean isGloveModeActive() {
-        return Utils.readFile(GLOVE_MODE).equals("glove");
-    }
-    
-    public static void activateGloveMode(boolean active, Context context) {
-        Control.runCommand(active ? "glove" : "normal", GLOVE_MODE, Control.CommandType.GENERIC, context);
     }
 
 }

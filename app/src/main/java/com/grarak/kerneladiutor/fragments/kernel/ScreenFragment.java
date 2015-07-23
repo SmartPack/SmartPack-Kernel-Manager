@@ -25,9 +25,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.ColorPalette;
 import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.DividerCardView;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
@@ -134,7 +134,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         backlightDimmerInit();
         if (Screen.hasNegativeToggle()) negativeToggleInit();
         mdnieGlobalInit();
-        if (Misc.hasGloveMode()) gloveModeInit();
+        if (Screen.hasGloveMode()) gloveModeInit();
     }
 
     @Override
@@ -697,15 +697,15 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             addAllViews(views);
         }
     }
-    
-    private void gloveModeInit() {
-            mGloveModeCard = new SwitchCardView.DSwitchCard();
-            mGloveModeCard.setTitle(getString(R.string.glove_mode));
-            mGloveModeCard.setDescription(getString(R.string.glove_mode_summary));
-            mGloveModeCard.setChecked(Misc.isGloveModeActive());
-            mGloveModeCard.setOnDSwitchCardListener(this);
 
-            addView(mGloveModeCard);
+    private void gloveModeInit() {
+        mGloveModeCard = new SwitchCardView.DSwitchCard();
+        mGloveModeCard.setTitle(getString(R.string.glove_mode));
+        mGloveModeCard.setDescription(getString(R.string.glove_mode_summary));
+        mGloveModeCard.setChecked(Screen.isGloveModeActive());
+        mGloveModeCard.setOnDSwitchCardListener(this);
+
+        addView(mGloveModeCard);
     }
 
     @Override
@@ -793,7 +793,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         else if (dSwitchCard == mMasterSequenceCard)
             Screen.activateMasterSequence(checked, getActivity());
         else if (dSwitchCard == mGloveModeCard)
-            Misc.activateGloveMode(checked, getActivity());
+            Screen.activateGloveMode(checked, getActivity());
     }
 
     @Override
