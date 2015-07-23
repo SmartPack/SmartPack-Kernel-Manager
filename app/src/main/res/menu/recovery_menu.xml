@@ -15,6 +15,9 @@
         android:id="@+id/menu_reboot_bootloader"
         android:title="@string/reboot_bootloader" />
     <item
+        android:id="@+id/menu_reboot_soft"
+        android:title="@string/reboot_soft" />
+    <item
         android:id="@+id/menu_reboot_download"
         android:title="@string/reboot_download" />
 </menu>
