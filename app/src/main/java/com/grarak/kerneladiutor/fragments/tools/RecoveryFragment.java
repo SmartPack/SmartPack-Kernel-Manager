@@ -29,7 +29,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.grarak.kerneladiutor.FileBrowserActivity;
 import com.grarak.kerneladiutor.R;
@@ -196,20 +195,14 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 command = "reboot bootloader";
                 break;
             case R.id.menu_reboot_soft:
-                if (RootUtils.busyboxInstalled()) {
-                    command = "busybox pkill zygote";
-                } else {
-                    command = "nobbox";
-                }
+                command = "pkill zygote";
                 break;
             case R.id.menu_reboot_download:
                 command = "reboot download";
                 break;
         }
 
-        if (command == "nobbox") {
-            Toast.makeText(getActivity().getApplicationContext(), "Busybox is required for soft reboot", Toast.LENGTH_SHORT).show();
-        } else if (command != null) {
+        if (command != null) {
             final String c = command;
             Utils.confirmDialog(null, getString(R.string.confirm), new DialogInterface.OnClickListener() {
                 @Override
