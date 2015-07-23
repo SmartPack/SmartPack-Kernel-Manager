@@ -205,7 +205,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
         ActionBar actionBar;
         if ((actionBar = getSupportActionBar()) != null)
-            actionBar.setTitle(ITEMS.get(position).getTitle());
+            actionBar.setTitle(VISIBLE_ITEMS.get(position).getTitle());
         mAdapter.setItemChecked(position, true);
     }
 

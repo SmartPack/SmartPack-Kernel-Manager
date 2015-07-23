@@ -59,7 +59,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         super.init(savedInstanceState);
 
         darkthemeInit();
-        if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en"))
+        if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en") && !Utils.isTV(getActivity()))
             forceenglishlanguageInit();
         if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
         applyonbootInit();
