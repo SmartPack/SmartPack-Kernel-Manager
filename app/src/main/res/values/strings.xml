@@ -576,6 +576,7 @@
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
     <string name="reboot_download">Reboot Download</string>
+    <string name="reboot_soft">Soft Reboot</string>
     <string name="confirm">Are you sure?</string>
     <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
