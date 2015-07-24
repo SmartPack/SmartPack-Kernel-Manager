@@ -136,6 +136,7 @@ public class BootService extends Service {
         boolean hasBusybox = false;
         if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
         if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+        RootUtils.closeSU();
 
         String message = getString(R.string.apply_on_boot_failed);
         if (!hasRoot) message += ": " + getString(R.string.no_root);

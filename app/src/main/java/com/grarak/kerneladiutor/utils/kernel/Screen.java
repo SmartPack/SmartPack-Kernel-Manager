@@ -561,6 +561,10 @@ public class Screen implements Constants {
 
     public static void setColorCalibration(final String colors, final Context context) {
         if (SCREEN_CALIBRATION == null) return;
+
+        if (hasColorCalibrationCtrl() && SCREEN_CALIBRATION_CTRL.equals(SCREEN_COLOR_CONTROL_CTRL))
+            Control.runCommand("0", SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);
+
         String[] col = colors.split(" ");
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:
@@ -583,9 +587,8 @@ public class Screen implements Constants {
                 break;
         }
 
-        if (hasColorCalibrationCtrl())
-            Control.runCommand(SCREEN_CALIBRATION_CTRL.equals(SCREEN_COLOR_CONTROL_CTRL) ? "0" : "1",
-                    SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);
+        if (hasColorCalibrationCtrl() && !SCREEN_CALIBRATION_CTRL.equals(SCREEN_COLOR_CONTROL_CTRL))
+            Control.runCommand("1", SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);
     }
 
     public static List<String> getColorCalibrationLimits() {
@@ -593,7 +596,7 @@ public class Screen implements Constants {
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:
             case SCREEN_COLOR_CONTROL:
-                for (int i = 0; i < 341; i++)
+                for (int i = 60; i < 401; i++)
                     list.add(String.valueOf(i));
                 break;
             case SCREEN_FB0_RGB:
