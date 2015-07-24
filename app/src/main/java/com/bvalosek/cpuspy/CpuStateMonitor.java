@@ -125,6 +125,38 @@ public class CpuStateMonitor {
     }
 
     /**
+     * @return Map of freq->duration of all the offsets
+     */
+    public Map<Integer, Long> getOffsets() {
+        return _offsets;
+    }
+
+    /**
+     * Sets the offset map (freq->duration offset)
+     */
+    public void setOffsets(Map<Integer, Long> offsets) {
+        _offsets = offsets;
+    }
+
+    /**
+     * Updates the current time in states and then sets the offset map to the
+     * current duration, effectively "zeroing out" the timers
+     */
+    public void setOffsets() throws CpuStateMonitorException {
+        _offsets.clear();
+        updateStates();
+
+        for (CpuState state : _states) _offsets.put(state.freq, state.duration);
+    }
+
+    /**
+     * removes state offsets
+     */
+    public void removeOffsets() {
+        _offsets.clear();
+    }
+
+    /**
      * list of all the CPU frequency states, which contains both a
      * frequency and a duration (time spent in that state
      */

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_reset"
+        android:title="@string/reset_timer" />
+    <item
+        android:id="@+id/menu_restore"
+        android:title="@string/restore_timer" />
+</menu>

@@ -84,6 +84,8 @@
     <string name="unused_cpu_states">Unused CPU states</string>
     <string name="uptime">Uptime</string>
     <string name="deep_sleep">Deep Sleep</string>
+    <string name="reset_timer">Reset Timers</string>
+    <string name="restore_timer">Restore Timers</string>
 
     <!-- Kernel Information -->
     <string name="kernel_version">Kernel Version</string>

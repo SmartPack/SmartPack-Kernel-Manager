@@ -92,15 +92,18 @@ public class RootUtils implements Constants {
         private BufferedReader bufferedReader;
         private boolean closed;
         private boolean denied;
+        private boolean firstTry;
 
         public SU() {
             try {
                 Log.i(TAG, "SU initialized");
+                firstTry = true;
                 process = Runtime.getRuntime().exec("su");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
                 Log.e(TAG, "Failed to run shell as su");
+                denied = true;
                 closed = true;
             }
         }
@@ -121,14 +124,17 @@ public class RootUtils implements Constants {
                         break;
                     }
                 }
+                firstTry = false;
                 return sb.toString().trim();
             } catch (IOException e) {
                 closed = true;
                 e.printStackTrace();
+                if (firstTry) denied = true;
             } catch (ArrayIndexOutOfBoundsException e) {
                 denied = true;
             } catch (Exception e) {
                 e.printStackTrace();
+                denied = true;
             }
             return null;
         }
