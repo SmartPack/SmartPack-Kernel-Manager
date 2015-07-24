@@ -433,7 +433,6 @@
   <string name="driver_message_summary">Treiber-Nachricht (Dmesg) auf /sdcard/dmesg.txt speichern</string>
   <string name="security">Sicherheit</string>
   <string name="set_password">Passwort festlegen</string>
-  <string name="set_password_summary">Du kannst Kernel Adiutor schützen indem du ein Password festlegst. Jedes mal wenn du die App öffnest musst du es eingeben. Falls du es   vergisst lösche einfach die Daten dieser App in den Einstellungen deines Gerätes. Keine Sorge, ich werde dein Password nicht weitergeben. </string>
   <string name="delete_password">Passwort löschen</string>
   <string name="new_password">Neues Passwort</string>
   <string name="confirm_new_password">Bestätige neues Passwort</string>

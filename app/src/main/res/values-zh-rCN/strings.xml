@@ -420,7 +420,6 @@
   <string name="driver_message_summary">将驱动程序消息 (dmesg) 复制到 /sdcard/dmesg.txt</string>
   <string name="security">安全</string>
   <string name="set_password">设置密码</string>
-  <string name="set_password_summary">你可以通过设置密码来保护 Kernel Adiutor。你每次打开此应用时都需要先输入密码才能进入。如果你忘记了它，只需在设置中清除此应用的数据。别担心，我不会分享您的密码。</string>
   <string name="delete_password">删除密码</string>
   <string name="new_password">新密码</string>
   <string name="confirm_new_password">确认新密码</string>

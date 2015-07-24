@@ -95,6 +95,8 @@
   <string name="debug_mask_summary">CPU बूस्ट के संचालन के लिए डिबग नकाब को सक्रिय करने के लिए आपको अनुमति देता है।</string>
   <string name="interval">अंतराल</string>
   <string name="interval_summary">न्यूनतम अंतराल एक CPU को बल मिला है।</string>
+  <string name="debug">डीबग</string>
+  <string name="suspend">सस्पेंड</string>
   <string name="temp_limit">तापमान सीमा</string>
   <string name="temp_limit_summary">यदि तापमान से ऊपर चला जाता है, थर्मल के तापमान को कम करने के लिए CPU आवृत्ति गला घोंटना होगा।</string>
   <string name="feature_request">सुविधा अनुरोध</string>

@@ -546,7 +546,6 @@
   <string name="driver_message_summary">ドライバメッセージ (dmesg) を /sdcard/dmesg.txtにコピーします。</string>
   <string name="security">セキュリティ</string>
   <string name="set_password">パスワードを設定</string>
-  <string name="set_password_summary">パスワードで Kernel Adiutor を保護できます。Kernel Adiutor を開いた時、毎回入力するようになります。パスワードを忘れた場合は Kernel Adiutor のデータを消去してください。パスワードは誰とも共有されません。</string>
   <string name="delete_password">パスワードの削除</string>
   <string name="new_password">新しいパスワード</string>
   <string name="confirm_new_password">新しいパスワードの確認</string>

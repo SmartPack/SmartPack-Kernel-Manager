@@ -510,7 +510,6 @@
   <string name="driver_message_summary">Скопировать dmesg в /sdcard/dmesg.txt</string>
   <string name="security">Безопасность</string>
   <string name="set_password">Установить Пароль</string>
-  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы открываете приложение, вам придется вводить пароль. Если вы забудете его, просто cотрите данные этого приложения в настройках вашего телефона. Не волнуйтесь, я не вижу ваш пароль. </string>
   <string name="delete_password">Удалить пароля</string>
   <string name="new_password">Новый пароль</string>
   <string name="confirm_new_password">Повторите пароль</string>

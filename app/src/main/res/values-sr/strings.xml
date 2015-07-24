@@ -275,7 +275,6 @@
   <string name="driver_message_summary">Копира дневник драјвера (dmesg) у /sdcard/dmesg.txt</string>
   <string name="security">Безбедност</string>
   <string name="set_password">Постави лозинку</string>
-  <string name="set_password_summary">Можете да заштитите Кернел Адиутор лозинком. Сваки пут кад отворите апликацију, мораћете да је унесете. Ако је заборавите, једноставно обришите податке апликације у поставкама вашег телефона. Не брините, ваша лозинка је безбедна. </string>
   <string name="delete_password">Обриши лозинку</string>
   <string name="new_password">Нова лозинка</string>
   <string name="confirm_new_password">Потврдите нову лозинку</string>

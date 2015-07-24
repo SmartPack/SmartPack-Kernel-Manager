@@ -9,8 +9,14 @@
   <string name="current_value_not_supported">Huidige waarde wordt niet ondersteund</string>
   <string name="beta_message">Bedankt voor het zijn van een beta tester! Als er enige problemen zijn, aarzel dan niet en contacteer mij. Jij draait momenteel versie nummer %s.</string>
   <string name="select_picture">Selecteer afbeelding</string>
+  <string name="no_picture">Geen foto</string>
+  <string name="went_wrong">Er is iets fout gegaan!</string>
+  <string name="password">Wachtwoord</string>
+  <string name="password_wrong">Wachtwoord onjuist</string>
+  <string name="press_back_again">Druk opnieuw op terug om te verlaten</string>
   <string name="select_file">Selecteer bestand</string>
   <string name="no_files">Geen bestanden in dit pad.</string>
+  <string name="save">Opslaan</string>
   <string name="apply_on_boot">Toepassen bij het opstarten</string>
   <string name="apply_on_boot_finished">Je wijzigingen zijn toegepast</string>
   <string name="apply_on_boot_time">Uw instellingen worden toegepast in %d seconden</string>
@@ -29,11 +35,13 @@
   <string name="kernel">Kernel</string>
   <string name="tools">Hulpprogramma\'s</string>
   <string name="other">Overige</string>
+  <string name="downloads">Downloads</string>
   <string name="kernel_information">Kernel informatie</string>
   <string name="frequency_table">Frequentietabel</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Voltage</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Thermisch</string>
   <string name="gpu">GPU</string>
   <string name="screen">Scherm</string>
   <string name="sound">Geluid</string>
@@ -42,6 +50,7 @@
   <string name="ksm">Kernel Samepage samenvoegen</string>
   <string name="low_memory_killer">Onvoldoende geheugen Killer</string>
   <string name="virtual_memory">Virtueel geheugen</string>
+  <string name="entropy">Entropie</string>
   <string name="misc_controls">Misc besturingselementen</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop bewerker</string>
@@ -80,6 +89,8 @@
   <string name="disabled">Uitgeschakeld</string>
   <string name="enabled">Ingeschakeld</string>
   <string name="aggressive">Agressieve</string>
+  <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_governor">CPUQuiet gouverneur</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Debug masker</string>
   <string name="debug_mask_summary">Hiermee kunt u foutopsporing voor CPU Boost operaties activeren.</string>
@@ -91,6 +102,8 @@
   <string name="input_interval_summary">Minimuminterval een CPU wordt versterkt wanneer invoer wordt gedetecteerd.</string>
   <string name="input_boost_freq">Input Boost frequentie</string>
   <string name="input_boost_freq_summary">CPU frequentie te stimuleren om deze frequentie na invoer detectie.</string>
+  <string name="override_vmin">Minimale spanning overschrijven</string>
+  <string name="intelliplug">IntelliPlug</string>
   <string name="balanced">Gebalanceerd</string>
   <string name="performance">Prestaties</string>
   <string name="conservative">Conservatief</string>
@@ -99,6 +112,10 @@
   <string name="eco">Eco</string>
   <string name="strict">Strikt</string>
   <string name="eco_mode">Eco-modus</string>
+  <string name="eco_mode_summary">Batterij besparingswijze voor IntelliPlug.</string>
+  <string name="threshold">Drempelwaarde</string>
+  <string name="quad_core_mode">Quad Core-modus</string>
+  <string name="dual_core_mode">Dual Core-modus</string>
   <string name="temp_limit">Temperatuurgrens</string>
   <string name="temp_limit_summary">Als de temperatuur te hoog wordt dan zal de thermische throttle de CPU frequentie om de temperatuur te verlagen.</string>
 </resources>

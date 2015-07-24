@@ -509,7 +509,6 @@
   <string name="driver_message_summary">드라이버 메시지(dmesg)를 /sdcard/dmesg.txt에 복사합니다.</string>
   <string name="security">보안</string>
   <string name="set_password">비밀번호 설정</string>
-  <string name="set_password_summary">비밀번호를 사용하여 Kernel Adiutor를 보호할 수 있습니다. 이 애플리케이션을 열 때 마다 비밀번호를 입력해야 합니다. 만약 비밀번호가 기억이 나지 않는다면 설정에서 이 이 애플리케이션의 데이터를 삭제해 주세요. 비밀번호가 타인에게 노출되지 않도록 주의하시기 바랍니다. </string>
   <string name="delete_password">비밀번호 삭제</string>
   <string name="new_password">새 비밀번호</string>
   <string name="confirm_new_password">새 비밀번호 확인</string>

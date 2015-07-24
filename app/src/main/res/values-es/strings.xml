@@ -543,7 +543,6 @@
   <string name="driver_message_summary">Copiar mensaje del controlador (dmesg) en /sdcard/dmesg.txt</string>
   <string name="security">Seguridad</string>
   <string name="set_password">Establecer contraseña</string>
-  <string name="set_password_summary">Puede proteger Kernel Adiutor estableciendo una contraseña. Cada vez que abra esta aplicación, tienes que entrar en él. Si lo olvida, simplemente Limpie los datos de esta aplicación en ajustes del teléfono. No te preocupes no compartiré la contraseña.</string>
   <string name="delete_password">Eliminar contraseña</string>
   <string name="new_password">Contraseña nueva</string>
   <string name="confirm_new_password">Confirme la nueva contraseña</string>
