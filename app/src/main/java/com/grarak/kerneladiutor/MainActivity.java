@@ -90,6 +90,9 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by willi on 01.12.14.
  */
@@ -298,11 +301,20 @@ public class MainActivity extends BaseActivity implements Constants {
     }
 
     public void setItems(BaseFragment fragment) {
-        VISIBLE_ITEMS.clear();
+        List<DAdapter.DView> tmpViews = new ArrayList<>();
         for (DAdapter.DView item : ITEMS)
             if (item.getFragment() == null
                     || Utils.getBoolean(item.getFragment().getClass().getSimpleName() + "visible", true, this))
-                VISIBLE_ITEMS.add(item);
+                tmpViews.add(item);
+
+        VISIBLE_ITEMS.clear();
+        // Sort out headers without any sections
+        for (int i = 0; i < tmpViews.size(); i++)
+            if ((tmpViews.get(i).getFragment() == null && i < tmpViews.size() && tmpViews.get(i + 1).getFragment() != null)
+                    || tmpViews.get(i).getFragment() != null
+                    || tmpViews.get(i) instanceof DAdapter.MainHeader)
+                VISIBLE_ITEMS.add(tmpViews.get(i));
+
         mAdapter = new DAdapter.Adapter(VISIBLE_ITEMS);
         mDrawerList.setAdapter(mAdapter);
         mAdapter.setItemOnly(true);
