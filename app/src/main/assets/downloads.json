@@ -62,7 +62,8 @@
     "device": [
       "sprout4",
       "sprout8",
-      "sprout"
+      "sprout",
+      "sprout_b"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sprout.json"
   },
