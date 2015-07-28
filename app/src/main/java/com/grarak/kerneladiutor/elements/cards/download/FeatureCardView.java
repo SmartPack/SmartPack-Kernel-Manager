@@ -50,7 +50,6 @@ public class FeatureCardView extends BaseCardView {
                 if (stringBuilder.length() == 0)
                     stringBuilder.append("\u2022").append(" ").append(subFeature);
                 else stringBuilder.append("<br>").append("\u2022").append(" ").append(subFeature);
-            stringBuilder.setLength(stringBuilder.length() - 1);
 
             subFeatureText.setText(Html.fromHtml(stringBuilder.toString()));
             subFeatureText.setMovementMethod(LinkMovementMethod.getInstance());
