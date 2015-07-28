@@ -76,13 +76,15 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
             int count;
             while (true) {
                 if (isCancelled()) {
-                    input.close();
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             onDownloadListener.onCancel();
                         }
                     });
+                    input.close();
+                    output.close();
+                    connection.disconnect();
                     return null;
                 }
 

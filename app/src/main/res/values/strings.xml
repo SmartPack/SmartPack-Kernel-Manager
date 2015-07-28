@@ -572,6 +572,7 @@
     <string name="no_settings">No settings found!</string>
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
+    <string name="applying_profile">Applying %s</string>
 
     <!-- Recovery -->
     <string name="reboot">Reboot</string>

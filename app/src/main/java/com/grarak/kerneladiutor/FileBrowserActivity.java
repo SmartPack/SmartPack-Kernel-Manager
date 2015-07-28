@@ -57,15 +57,13 @@ public class FileBrowserActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fileBrowserActivity = this;
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame,
-                fileBrowserFragment = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)))
-                .commitAllowingStateLoss();
+        setFragment(R.id.content_frame, fileBrowserFragment
+                = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
     }
 
     @Override
     public int getParentViewId() {
-        return R.layout.activity_filebrowser;
+        return R.layout.activity_fragment;
     }
 
     @Override

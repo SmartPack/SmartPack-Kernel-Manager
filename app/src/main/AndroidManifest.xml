@@ -66,6 +66,7 @@
         <service android:name=".services.BootService" />
         <service android:name=".services.InitdService" />
 
+        <!-- Profile Widget -->
         <receiver android:name=".services.ProfileWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -79,6 +80,8 @@
         <service
             android:name=".services.ProfileWidget$WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <!-- DashClock -->
         <service
             android:name=".services.DashClockService"
             android:icon="@drawable/ic_launcher_preview"
@@ -91,6 +94,24 @@
                 android:name="protocolVersion"
                 android:value="1" />
         </service>
+
+        <!-- Tasker -->
+        <activity
+            android:name=".tasker.AddProfileActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation">
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_SETTING" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".tasker.RunProfileReceiver"
+            android:process=":background">
+
+            <intent-filter>
+                <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

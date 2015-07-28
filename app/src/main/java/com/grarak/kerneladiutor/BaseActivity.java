@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
@@ -71,6 +72,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public abstract Toolbar getToolbar();
+
+    public void setFragment(int layout, BaseFragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(layout, fragment).commitAllowingStateLoss();
+    }
 
     public void setStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

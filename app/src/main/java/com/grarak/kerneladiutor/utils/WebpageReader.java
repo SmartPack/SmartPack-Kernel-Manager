@@ -54,7 +54,15 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
             is = connection.getInputStream();
             br = new BufferedReader(new InputStreamReader(is));
 
-            while ((line = br.readLine()) != null) sb.append(line).append("\n");
+            while ((line = br.readLine()) != null) {
+                if (isCancelled()) {
+                    is.close();
+                    br.close();
+                    connection.disconnect();
+                    return "";
+                }
+                sb.append(line).append("\n");
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,7 +77,7 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
 
             if (connection != null) connection.disconnect();
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     @Override

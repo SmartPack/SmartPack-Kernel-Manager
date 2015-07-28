@@ -86,7 +86,7 @@ public class EditTextActivity extends BaseActivity {
             setResult(RESULT_OK, intent);
             onBackPressed();
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 }

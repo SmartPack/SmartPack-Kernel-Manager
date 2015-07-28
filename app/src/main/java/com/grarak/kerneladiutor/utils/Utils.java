@@ -246,20 +246,25 @@ public class Utils implements Constants {
     }
 
     public static void circleAnimate(final View view, int cx, int cy) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view.setVisibility(View.INVISIBLE);
+        if (view == null) return;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                view.setVisibility(View.INVISIBLE);
 
-            int finalRadius = Math.max(view.getWidth(), view.getHeight());
-            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-            anim.setDuration(500);
-            anim.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    super.onAnimationStart(animation);
-                    view.setVisibility(View.VISIBLE);
-                }
-            });
-            anim.start();
+                int finalRadius = Math.max(view.getWidth(), view.getHeight());
+                Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+                anim.setDuration(500);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        super.onAnimationStart(animation);
+                        view.setVisibility(View.VISIBLE);
+                    }
+                });
+                anim.start();
+            }
+        } catch (IllegalStateException e) {
+            view.setVisibility(View.VISIBLE);
         }
     }
 
@@ -296,13 +301,8 @@ public class Utils implements Constants {
             buf = new BufferedReader(new InputStreamReader(input));
 
             String str;
-            boolean isFirst = true;
-            while ((str = buf.readLine()) != null) {
-                if (isFirst) isFirst = false;
-                else s.append("\n");
-                s.append(str);
-            }
-            return s.toString();
+            while ((str = buf.readLine()) != null) s.append(str).append("\n");
+            return s.toString().trim();
         } catch (IOException e) {
             Log.e(TAG, "Unable to read " + file);
         } finally {
@@ -429,7 +429,11 @@ public class Utils implements Constants {
     }
 
     public static void toast(String message, Context context) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        toast(message, context, Toast.LENGTH_SHORT);
+    }
+
+    public static void toast(String message, Context context, int duration) {
+        Toast.makeText(context, message, duration).show();
     }
 
     public static int getInt(String name, int defaults, Context context) {

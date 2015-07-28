@@ -77,7 +77,9 @@ public class DownloadCardView extends BaseCardView {
         if (changelog.size() > 0) {
             StringBuilder stringBuilder = new StringBuilder();
             for (String change : changelog)
-                stringBuilder.append("\u2022").append(" ").append(change).append("<br>");
+                if (stringBuilder.length() == 0)
+                    stringBuilder.append("\u2022").append(" ").append(change);
+                else stringBuilder.append("<br>").append("\u2022").append(" ").append(change);
             stringBuilder.setLength(stringBuilder.length() - 1);
             changelogText.setText(Html.fromHtml(stringBuilder.toString()));
             changelogText.setMovementMethod(LinkMovementMethod.getInstance());

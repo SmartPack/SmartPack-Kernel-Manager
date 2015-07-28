@@ -45,7 +45,9 @@ public class DownloadsFragment extends RecyclerViewFragment {
 
     private ProgressBar progressBar;
     private TextView progressText;
-    private List<String> jsons;
+    private List<String> jsons = new ArrayList<>();
+    private WebpageReader jsonWebpageReader;
+    private List<WebpageReader> kernelWebpageReaders = new ArrayList<>();
 
     public static DownloadsFragment newInstance(String link) {
         Bundle args = new Bundle();
@@ -94,17 +96,17 @@ public class DownloadsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        new WebpageReader(new WebpageReader.WebpageCallback() {
+        jsonWebpageReader = new WebpageReader(new WebpageReader.WebpageCallback() {
             @Override
             public void onCallback(String raw, String html) {
                 if (!isAdded()) return;
                 final Downloads.Kernels kernels;
                 if (raw != null && !raw.isEmpty() && (kernels = new Downloads.Kernels(raw)).readable()) {
-                    jsons = new ArrayList<>();
-
                     progressText.setText(getString(R.string.loading_counting, 0, kernels.length()));
+                    jsons.clear();
+                    kernelWebpageReaders.clear();
                     for (int i = 0; i < kernels.length(); i++) {
-                        new WebpageReader(new WebpageReader.WebpageCallback() {
+                        kernelWebpageReaders.add(new WebpageReader(new WebpageReader.WebpageCallback() {
                             @Override
                             public void onCallback(String raw, String html) {
                                 if (!isAdded()) return;
@@ -113,7 +115,8 @@ public class DownloadsFragment extends RecyclerViewFragment {
                                 progressText.setText(getString(R.string.loading_counting, jsons.size(),
                                         kernels.length()));
                             }
-                        }).execute(kernels.getLink(i));
+                        }));
+                        kernelWebpageReaders.get(i).execute(kernels.getLink(i));
                     }
 
                     new AsyncTask<Void, Void, Void>() {
@@ -152,7 +155,13 @@ public class DownloadsFragment extends RecyclerViewFragment {
                     }.execute();
                 } else hideProgress();
             }
-        }).execute(getArguments().getString(LINK_ARG));
+        });
+    }
+
+    @Override
+    public void postInit(Bundle savedInstanceState) {
+        super.postInit(savedInstanceState);
+        jsonWebpageReader.execute(getArguments().getString(LINK_ARG));
     }
 
     private void hideProgress() {
@@ -161,4 +170,10 @@ public class DownloadsFragment extends RecyclerViewFragment {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        jsonWebpageReader.cancel(true);
+        for (WebpageReader webpageReader : kernelWebpageReaders) webpageReader.cancel(true);
+    }
 }
