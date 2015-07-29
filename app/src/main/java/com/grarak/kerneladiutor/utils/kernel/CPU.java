@@ -61,6 +61,18 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
+    public static boolean hasZaneZam() {
+        return Utils.existFile(CPU_ZANEZAM_PROFILE);
+    }
+
+    public static String getZaneZamProfile(){
+        return Utils.readFile(CPU_ZANEZAM_PROFILE);
+    }
+
+    public static void setZaneZamProfile(String value, Context context) {
+        Control.runCommand(value, CPU_ZANEZAM_PROFILE, Control.CommandType.CPU, context);
+    }
+
     public static void setCpuBoostInputFreq(int value, int core, Context context) {
         String freqs;
         if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {
@@ -311,6 +323,22 @@ public class CPU implements Constants {
         return freqs;
     }
 
+    public static ArrayList<String> getZaneZamProfiles() {
+        ArrayList<String> zzProfiles = new ArrayList<String>();
+            zzProfiles.add("None");
+            zzProfiles.add("Default");
+            zzProfiles.add("Yank Battery");
+            zzProfiles.add("Yank Battery Extreme");
+            zzProfiles.add("ZaneZam Battery");
+            zzProfiles.add("ZaneZam Battery Plus");
+            zzProfiles.add("ZaneZam Optimized");
+            zzProfiles.add("ZaneZam Moderate");
+            zzProfiles.add("ZaneZam Performance");
+            zzProfiles.add("ZaneZam InZane");
+            zzProfiles.add("ZaneZam Gaming");
+        return zzProfiles;
+    }
+
     public static void setMaxScreenOffFreq(int freq, Context context) {
         setMaxScreenOffFreq(Control.CommandType.CPU, freq, context);
     }
@@ -367,8 +395,15 @@ public class CPU implements Constants {
     }
 
     public static void setMaxFreq(Control.CommandType command, int freq, Context context) {
+        String oc_enable = "1";
         if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
+        if (command == Control.CommandType.CPU && Utils.existFile(CPU_ENABLE_OC_KT))
+            Control.runCommand(oc_enable, CPU_ENABLE_OC_KT, Control.CommandType.CPU, context); {
+            if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
+                setMinFreq(command, freq, context);
+            Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
+	}
         if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
             setMinFreq(command, freq, context);
         Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
@@ -381,8 +416,13 @@ public class CPU implements Constants {
     public static int getMaxFreq(int core, boolean forceRead) {
         if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
             activateCore(core, true, null);
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ_KT, core)))
+            activateCore(core, true, null);
         if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
             String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        } else if (Utils.existFile(String.format(CPU_MAX_FREQ_KT, core))) {
+            String value = Utils.readFile(String.format(CPU_MAX_FREQ_KT, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;

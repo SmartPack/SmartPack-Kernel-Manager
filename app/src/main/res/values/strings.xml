@@ -671,4 +671,8 @@
     <string name="translation">Translation</string>
     <string name="translation_summary">Help me to translate this app!</string>
 
+    <!-- Zanezam governor profile -->
+    <string name="zanezam_profile_description">This is the tunable profile for the ZaneZam governor</string>
+    <string name="zanezam_profile_title">ZaneZam Governor Profile</string>
+
 </resources>
