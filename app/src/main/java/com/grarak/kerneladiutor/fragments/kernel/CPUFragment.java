@@ -103,7 +103,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private PopupCardView.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard;
 
-        private PopupCardView.DPopupCard mGovernorCard, mZaneZamCard;
+        private PopupCardView.DPopupCard mGovernorCard;
         private CardViewItem.DCardView mGovernorTunableCard;
 
         private AppCompatCheckBox[] mCoreCheckBoxLITTLE;
@@ -123,6 +123,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private SwitchCardView.DSwitchCard mCpuQuietEnableCard;
         private PopupCardView.DPopupCard mCpuQuietGovernorCard;
+
+        private PopupCardView.DPopupCard mZaneZamProfileCard;
 
         private SwitchCardView.DSwitchCard mCpuBoostEnableCard;
         private SwitchCardView.DSwitchCard mCpuBoostDebugMaskCard;
@@ -170,11 +172,11 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 addView(othersDivider);
             }
             int count = getCount();
-            if (CPU.hasZaneZam()) zaneZamInit();
             if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
             if (CPU.hasPowerSavingWq()) powerSavingWqInit();
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
             if (CPU.hasCpuQuiet()) cpuQuietInit();
+            if (CPU.hasZaneZamProfile()) cpuZaneZamInit();
             if (CPU.hasCpuBoost()) cpuBoostInit();
             if (othersDivider != null && count == getCount()) removeView(othersDivider);
         }
@@ -251,15 +253,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
                 addView(mMaxScreenOffFreqCard);
             }
-        }
-
-        private void zaneZamInit() {
-                mZaneZamCard = new PopupCardView.DPopupCard(CPU.getZaneZamProfiles());
-                mZaneZamCard.setTitle(getString(R.string.zanezam_profile_title));
-                mZaneZamCard.setDescription(getString(R.string.zanezam_profile_description));
-                mZaneZamCard.setItem(CPU.getZaneZamProfile());
-                mZaneZamCard.setOnDPopupCardListener(this);
-            addView(mZaneZamCard);
         }
 
         private void governorInit() {
@@ -399,6 +392,15 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
                 addView(mCpuQuietGovernorCard);
             }
+        }
+
+        private void cpuZaneZamInit() {
+            mZaneZamProfileCard = new PopupCardView.DPopupCard(CPU.getZaneZamProfiles(getActivity()));
+            mZaneZamProfileCard.setDescription(getString(R.string.zanezam_profile));
+            mZaneZamProfileCard.setItem(CPU.getCurZaneZamProfile());
+            mZaneZamProfileCard.setOnDPopupCardListener(this);
+
+            addView(mZaneZamProfileCard);
         }
 
         private void cpuBoostInit() {
@@ -552,10 +554,10 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setCFSScheduler(CPU.getAvailableCFSSchedulers().get(position), getActivity());
             else if (dPopupCard == mCpuQuietGovernorCard)
                 CPU.setCpuQuietGovernor(CPU.getCpuQuietAvailableGovernors().get(position), getActivity());
+            else if (dPopupCard == mZaneZamProfileCard)
+                CPU.setZaneZamProfile(position, getActivity());
             else if (dPopupCard == mCpuBoostSyncThresholdCard)
                 CPU.setCpuBoostSyncThreshold(position == 0 ? 0 : CPU.getFreqs().get(position - 1), getActivity());
-            else if (dPopupCard == mZaneZamCard)
-                     CPU.setZaneZamProfile(position == 0 ? "0" : CPU.getZaneZamProfiles().get(position), getActivity());
             else {
                 if (mCpuBoostInputFreqCard != null)
                     for (int i = 0; i < mCpuBoostInputFreqCard.length; i++)
