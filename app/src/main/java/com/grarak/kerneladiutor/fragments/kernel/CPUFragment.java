@@ -273,8 +273,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             layout.setOrientation(LinearLayout.VERTICAL);
 
             mCoreCheckBoxLITTLE = new AppCompatCheckBox[CPU.getLITTLECoreRange().size()];
-            mCoreProgressBarLITTLE = new ProgressBar[mCoreCheckBox.length];
-            mCoreFreqTextLITTLE = new AppCompatTextView[mCoreCheckBox.length];
+            mCoreProgressBarLITTLE = new ProgressBar[mCoreCheckBoxLITTLE.length];
+            mCoreFreqTextLITTLE = new AppCompatTextView[mCoreCheckBoxLITTLE.length];
             for (int i = 0; i < mCoreCheckBoxLITTLE.length; i++) {
                 View view = inflater.inflate(R.layout.coreview, container, false);
 
