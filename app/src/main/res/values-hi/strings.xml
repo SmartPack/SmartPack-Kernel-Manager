@@ -64,6 +64,8 @@
   <string name="unused_cpu_states">अप्रयुक्त सीपीयू स्थिति</string>
   <string name="uptime">अपटाइम</string>
   <string name="deep_sleep">गहन निद्रा</string>
+  <string name="reset_timer">काल समंजक रिसेट् करें</string>
+  <string name="restore_timer">काल समंजक पुनः स्थापित करें</string>
   <string name="kernel_version">कर्नेल संस्करण</string>
   <string name="cpu_information">CPU जानकारी</string>
   <string name="memory_information">स्मृति सूचना</string>
@@ -90,11 +92,14 @@
   <string name="disabled">असक्षम</string>
   <string name="enabled">सक्षम</string>
   <string name="aggressive">आक्रामक</string>
+  <string name="cpu_quiet">सीपीयू शांत्</string>
   <string name="cpu_boost">CPU बूस्ट</string>
   <string name="debug_mask">मुखौटा डीबग करें</string>
   <string name="debug_mask_summary">CPU बूस्ट के संचालन के लिए डिबग नकाब को सक्रिय करने के लिए आपको अनुमति देता है।</string>
   <string name="interval">अंतराल</string>
   <string name="interval_summary">न्यूनतम अंतराल एक CPU को बल मिला है।</string>
+  <string name="input_interval">निवेश् अन्तराल</string>
+  <string name="input_interval_summary">निवेश् ज्ञात होने पर न्युनतम् अन्तराल का पता चलता हे, व सिपियु बेहतर् कार्य करता हे।</string>
   <string name="debug">डीबग</string>
   <string name="suspend">सस्पेंड</string>
   <string name="temp_limit">तापमान सीमा</string>

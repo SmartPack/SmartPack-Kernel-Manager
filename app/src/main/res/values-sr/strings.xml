@@ -138,6 +138,7 @@
   <string name="full">Читав</string>
   <string name="bottom_half">Доња половина</string>
   <string name="top_half">Горња половина</string>
+  <string name="fullscreen">Цео екран</string>
   <string name="t2w">Тап за буђење</string>
   <string name="t2w_summary">Пробудите ваш уређај тапом на екран.</string>
   <string name="wake">Буђење</string>
@@ -153,6 +154,7 @@
   <string name="draw_w">Нацртај W</string>
   <string name="draw_c">Нацртај C</string>
   <string name="draw_m">Нацртај М</string>
+  <string name="sound_control">Контрола звука</string>
   <string name="battery_voltage">Напон батерије</string>
   <string name="battery_level">Ниво батерије</string>
   <string name="battery_temperature">Температура батерије</string>
@@ -174,6 +176,7 @@
   <string name="ksm_pages_to_scan">Странице за скенирање</string>
   <string name="ksm_sleep_milliseconds">Паузе између скенирања</string>
   <string name="ksm_deferred_timer">Тајмер одгађања</string>
+  <string name="foreground_app">Апликације у првом плану</string>
   <string name="visible_app">Видљиве апликације</string>
   <string name="secondary_server">Секундарни сервер</string>
   <string name="hidden_app">Скривене апликације</string>
@@ -191,10 +194,13 @@
   <string name="vibration_strength">Јачина вибрације</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Динамички Fsync</string>
+  <string name="autosleep">Аутоспавање</string>
   <string name="lcd_panel">ЛЦД панел</string>
   <string name="network">Мрежа</string>
+  <string name="tcp">ТЦП алгоритам загушења</string>
   <string name="hostname">Име домаћина</string>
   <string name="logo">Лого</string>
+  <string name="features">Карактеристике</string>
   <string name="loading_counting">Учитавам %1$d/%2$d</string>
   <string name="downloading_db">Преузимам базу података</string>
   <string name="xda">XDA</string>
@@ -230,10 +236,12 @@
   <string name="name">Назив</string>
   <string name="select_all">Изабери све</string>
   <string name="apply">Примени</string>
+  <string name="removed_all_sections">Уклонили сте све одељке! Нема профила за вас.</string>
   <string name="no_settings">Поставке нису нађене!</string>
   <string name="press_again_to_apply">Притисните опет да примените.</string>
   <string name="applied">Примењено</string>
   <string name="reboot">Поново покрени</string>
+  <string name="reboot_soft">Меко покретање</string>
   <string name="reboot_recovery">Поново покрени у опоравак</string>
   <string name="reboot_bootloader">Поново покрени у учитавач</string>
   <string name="reboot_download">Поново покрени у преузимање</string>
@@ -275,6 +283,7 @@
   <string name="driver_message_summary">Копира дневник драјвера (dmesg) у /sdcard/dmesg.txt</string>
   <string name="security">Безбедност</string>
   <string name="set_password">Постави лозинку</string>
+  <string name="set_password_summary">Можете да заштитите Кернел Адиутор лозинком. Сваки пут кад отворите апликацију, мораћете да је унесете. Ако је заборавите, једноставно обришите податке апликације у поставкама вашег уређаја. Не брините, ваша лозинка је безбедна.</string>
   <string name="delete_password">Обриши лозинку</string>
   <string name="new_password">Нова лозинка</string>
   <string name="confirm_new_password">Потврдите нову лозинку</string>
@@ -284,8 +293,10 @@
   <string name="password_not_match">Лозинке се не поклапају</string>
   <string name="password_too_long">Лозинка је предугачка</string>
   <string name="set_password_first">Најпре поставите лозинку</string>
+  <string name="show_sections">Прикажи одељке</string>
   <string name="misspelled">Зашто „Адиутор“?</string>
   <string name="misspelled_summary">Адиутор је латинска реч и значи „помагач“.</string>
+  <string name="cpu_freq_not_sticking">Зашто се моје фреквенције ЦПУ-а не задржавају?</string>
   <string name="feature_not_appearing">Зашто функције x и y нису доступне?</string>
   <string name="feature_not_appearing_summary">Функције зависе од кернела.</string>
   <string name="feature_function">Шта ради функција x?</string>

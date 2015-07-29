@@ -63,6 +63,8 @@
   <string name="unused_cpu_states">Frecuencias de CPU no utilizadas</string>
   <string name="uptime">Tiempo de actividad</string>
   <string name="deep_sleep">Sueño profundo</string>
+  <string name="reset_timer">Reiniciar Contadores</string>
+  <string name="restore_timer">Restaurar Contadores</string>
   <string name="kernel_version">Version del Kernel</string>
   <string name="cpu_information">Información del CPU</string>
   <string name="memory_information">Información sobre la memoria</string>
@@ -103,6 +105,7 @@
   <string name="input_interval">Intervalo de entrada</string>
   <string name="input_interval_summary">Intervalo mínimo de potenciado de la cpu cuando se detecte una señal.</string>
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
+  <string name="input_boost_freq_core">Impulso Inicial de la Frecuencia del Núcleo %s</string>
   <string name="input_boost_freq_summary">Aumentar el CPU a esta frecuencia al detectar una entrada.</string>
   <string name="global_offset">Ajuste Global</string>
   <string name="override_vmin">Sobrescribir voltaje mínimo</string>
@@ -341,6 +344,7 @@
   <string name="register_hook_summary">Registra actos de intercepción como un gancho y le permitirá capturar configuraciones de escenario y modificarlas a través de controles de delta. Si un escenario no tiene un entorno (registro) en su secuencia de bases, entonces no puede modificarse por el enganche.</string>
   <string name="master_sequence">Secuencia principal</string>
   <string name="master_sequence_summary">Activando la secuencia principal desactivará e ignorará los perfiles y escenarios de Samsung, los controles de la ROM serán desactivados.</string>
+  <string name="glove_mode_summary">Habilitando esto le permitirá usar el teléfono aunque esté con guantes.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Enciende la pantalla pulsando dos veces la pantalla.</string>
   <string name="center">Centro</string>
@@ -424,6 +428,7 @@
   <string name="disksize">Tamaño de memoria</string>
   <string name="disksize_summary">Intenta aumentar el rendimiento evitando la paginación de almacenamiento físico, en su lugar usa un dispositivo de compresión virtual en la RAM. La paginación toma un lugar en la RAM hasta que sea necesario de usar el intercambio de espacio en el almacenamiento físico.</string>
   <string name="available">Disponible</string>
+  <string name="poolsize">Tamaño del Pool</string>
   <string name="read">Lectura</string>
   <string name="write">Escritura</string>
   <string name="vibration_strength">Intensidad de vibración</string>

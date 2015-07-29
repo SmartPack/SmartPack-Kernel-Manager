@@ -11,10 +11,12 @@
   <string name="select_picture">Выберите изображение</string>
   <string name="no_picture">Нет картинки</string>
   <string name="went_wrong">Что-то пошло не так!</string>
-  <string name="password">Password</string>
+  <string name="password">Пароль</string>
   <string name="password_wrong">Пароль неверен</string>
+  <string name="press_back_again">Снова нажмите назад, чтобы оставить</string>
   <string name="select_file">Выбрать %s?</string>
   <string name="no_files">Файл не найден.</string>
+  <string name="save">Сохранить</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_finished">Ваши настройки применены</string>
   <string name="apply_on_boot_time">Применение настроек через %d секунды</string>
@@ -49,6 +51,7 @@
   <string name="ksm">Объединять страницы памяти ядра</string>
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">Виртуальная память</string>
+  <string name="entropy">Энтропия</string>
   <string name="misc_controls">Прочие элементы управления</string>
   <string name="backup">Резервная копия</string>
   <string name="build_prop_editor">Редактор Build prop</string>
@@ -60,6 +63,8 @@
   <string name="unused_cpu_states">Неиспользуемые частоты процессора</string>
   <string name="uptime">Время работы</string>
   <string name="deep_sleep">Глубокий сон</string>
+  <string name="reset_timer">Сброс таймера</string>
+  <string name="restore_timer">Восстановить таймеры</string>
   <string name="kernel_version">Версия ядра</string>
   <string name="cpu_information">Сведения о ЦП</string>
   <string name="memory_information">Информация о памяти</string>
@@ -100,6 +105,7 @@
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал при котором повышается скорость CPU когда происходит прикосновение.</string>
   <string name="input_boost_freq">Укажите частоту разгона</string>
+  <string name="input_boost_freq_core">Ввод увеличить частоту ядра %s</string>
   <string name="input_boost_freq_summary">Скорость CPU будет повышенна на эту скорость при косновении.</string>
   <string name="global_offset">Глобальное смещение</string>
   <string name="override_vmin">Переопределить минимальное напряжение</string>
@@ -122,7 +128,7 @@
   <string name="touch_boost">Ускорение прикосновений</string>
   <string name="touch_boost_summary">Увеличение частоты ЦП при касании экрана или нажатии кнопки.</string>
   <string name="hysteresis">Значение гистерезиса</string>
-  <string name="hysteresis_summary">Чем ниже это, тем быстрее отклик.</string>
+  <string name="hysteresis_summary">Чем это ниже, тем быстрее отклик.</string>
   <string name="threshold">Пороговое значение</string>
   <string name="debug">Отладка</string>
   <string name="debug_summary">Позволяет активировать маску отладки для операций.</string>
@@ -220,6 +226,9 @@
   <string name="autosmp_summary">Замена ядра для Qualcomm MPDecision. Разработанный mrg666.</string>
   <string name="downrate_limits">Ограничения понижения</string>
   <string name="uprate_limits">Ограничения повышения</string>
+  <string name="cycle_down">Цикла вниз</string>
+  <string name="cycle_up">Цикл вверх</string>
+  <string name="cycle_up_summary">Циклы ожидания после последнего события hotplug подключить другое ядро.</string>
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Стоковый термальный драйвер, который предотвращает перегрев. Должен быть отключен, если ядро имеет альтернативу.</string>
@@ -250,6 +259,9 @@
   <string name="allowed_mid_low">Этап 2: Допускается середний низкого</string>
   <string name="allowed_mid_high">Этап 2: Допускается средний высокий</string>
   <string name="allowed_mid_freq">Этап 2: Допускается средней частоты</string>
+  <string name="allowed_max_low">Этап 3: Допускается Max температура</string>
+  <string name="allowed_max_high">Этап 3: Допускается высокой Макс</string>
+  <string name="allowed_max_freq">Этап 2: Допускается средней частоты</string>
   <string name="check_interval">Интервал проверки</string>
   <string name="shutdown_temp">Температура выключения</string>
   <string name="temp_throttle">Троттлинг</string>
@@ -318,6 +330,8 @@
   <string name="mdnie_global_controls">Управление функцией mDNle</string>
   <string name="master_sequence">Мастер последовательности</string>
   <string name="master_sequence_summary">Включение главной последовательности будет отключить и игнорировать Samsungs профили и сценариев, ПЗУ элементы управления будут отключены.</string>
+  <string name="glove_mode">Режим перчаток</string>
+  <string name="glove_mode_summary">Это позволит вам использовать ваш телефон даже при ношении перчатки.</string>
   <string name="dt2w">Дв. нажатие для пробуждения</string>
   <string name="dt2w_summary">Будит устройство двойным тапом по экрану.</string>
   <string name="center">В центре</string>
@@ -400,6 +414,10 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Размер диска</string>
   <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
+  <string name="available">Доступно</string>
+  <string name="poolsize">Размер пула</string>
+  <string name="read">Читать</string>
+  <string name="write">Писать</string>
   <string name="vibration_strength">Интенсивность вибрации</string>
   <string name="android_logger">Логгинг Android</string>
   <string name="fsync">Fsync</string>
@@ -434,9 +452,11 @@
   <string name="logo">Логотип</string>
   <string name="features">Особенности</string>
   <string name="loading_counting">Загрузка %1$d/%2$d</string>
+  <string name="downloading_db">Загрузка базы данных</string>
   <string name="xda">XDA</string>
   <string name="github">GitHub</string>
   <string name="google_plus">Google +</string>
+  <string name="paypal">PayPal</string>
   <string name="download">Скачать</string>
   <string name="resume">Продолжить</string>
   <string name="checking_md5">Проверка MD5sum</string>
@@ -471,6 +491,7 @@
   <string name="press_again_to_apply">Нажмите снова, чтобы применить.</string>
   <string name="applied">Применено</string>
   <string name="reboot">Перезагрузить</string>
+  <string name="reboot_soft">Перезапуск интерфейса</string>
   <string name="reboot_recovery">Перезагрузить в рекавери</string>
   <string name="reboot_bootloader">Восстановить загрузчик</string>
   <string name="reboot_download">Перезагрузить в режим загрузчика</string>
@@ -490,6 +511,7 @@
   <string name="no_scripts_found">Скрипты не найдены!</string>
   <string name="starting_initd">Запуск эмуляции Init.d</string>
   <string name="finishing_initd">Окончание эмуляции init.d</string>
+  <string name="file_name">Имя файла</string>
   <string name="dark_theme">Тёмная тема</string>
   <string name="force_english_language">Принудительно использовать английский язык</string>
   <string name="beta_info">Информация о бета версии</string>
@@ -500,6 +522,7 @@
   <string name="test">Проверка настроек</string>
   <string name="test_summary">Тест применения при загрузке (с задержкой). Если ничего не происходит, то у Вас нет сохраненных настроек.</string>
   <string name="hide_apply_on_boot">Спрятать сообщение о применении во время загрузки</string>
+  <string name="hide_apply_on_boot_summary">Спрятать \"Применить при загрузке\" при пролистывании вниз.</string>
   <string name="enable_apply_on_boot_first">Сначала необходимо включить \"Применить при загрузке\".</string>
   <string name="debugging">Отладка</string>
   <string name="logcat">Logcat</string>
@@ -510,14 +533,17 @@
   <string name="driver_message_summary">Скопировать dmesg в /sdcard/dmesg.txt</string>
   <string name="security">Безопасность</string>
   <string name="set_password">Установить Пароль</string>
+  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы открываете приложение, вам придется вводить пароль. Если вы забудете его, просто cотрите данные этого приложения в настройках вашего телефона. Не волнуйтесь, я не вижу ваш пароль.</string>
   <string name="delete_password">Удалить пароля</string>
   <string name="new_password">Новый пароль</string>
   <string name="confirm_new_password">Повторите пароль</string>
   <string name="old_password">Старый пароль</string>
   <string name="old_password_wrong">Старый пароль не верен</string>
   <string name="password_empty">Пароль не введен</string>
+  <string name="password_not_match">Пароль не соответствует</string>
   <string name="password_too_long">Пароль слишком длинный</string>
   <string name="set_password_first">Сначала установите пароль</string>
+  <string name="show_sections">Показать разделы</string>
   <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
   <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>

@@ -63,6 +63,8 @@
   <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
   <string name="deep_sleep">深度睡眠</string>
+  <string name="reset_timer">重置计时器</string>
+  <string name="restore_timer">还原计时器</string>
   <string name="kernel_version">内核版本</string>
   <string name="cpu_information">CPU 信息</string>
   <string name="memory_information">内存信息</string>
@@ -172,6 +174,7 @@
   <string name="wake_wait_time">唤醒等待时间</string>
   <string name="bat_threshold_ignore">忽略电量阈值</string>
   <string name="bat_threshold_ignore_summary">当电量低于指定容量时不开启任何核心。</string>
+  <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">由 mrg666 开发的高通 MPDecision 替代方案。</string>
   <string name="downrate_limits">降速限制</string>
   <string name="uprate_limits">升速限制</string>
@@ -220,6 +223,8 @@
   <string name="gamma">伽玛</string>
   <string name="gamma_profile">伽玛配置文件</string>
   <string name="red_greys">红灰</string>
+  <string name="contrast">对比度</string>
+  <string name="brightness">亮度</string>
   <string name="gamma_profile_summary">在选择一个配置文件后，请关闭屏幕再开启屏幕。</string>
   <string name="additional_profiles">附加的配置文件</string>
   <string name="additional_profiles_summary">从互联网获取更多配置文件</string>
@@ -236,6 +241,7 @@
   <string name="offset">偏移值</string>
   <string name="negative_toggle">反色开关</string>
   <string name="negative_toggle_summary">快速点按菜单键四次以启用屏幕反色。</string>
+  <string name="glove_mode">手套模式</string>
   <string name="dt2w">双击唤醒</string>
   <string name="dt2w_summary">双击屏幕来唤醒您的设备。</string>
   <string name="center">中心</string>
@@ -310,6 +316,7 @@
   <string name="light">轻度</string>
   <string name="medium">中等</string>
   <string name="very_aggressive">非常积极</string>
+  <string name="zram">Z-RAM</string>
   <string name="disksize_summary">通过阻止对物理存储进行分页以尝试提高性能，而不是在 RAM 中使用被压缩的虚拟设备。分页将在 RAM 中进行直到需要使用物理存储中的交换空间。</string>
   <string name="available">可用熵</string>
   <string name="poolsize">池大小</string>
@@ -348,7 +355,12 @@
   <string name="features">功能</string>
   <string name="loading_counting">正在加载 %1$d/%2$d</string>
   <string name="downloading_db">正在下载数据库</string>
+  <string name="xda">XDA</string>
+  <string name="github">Github</string>
+  <string name="google_plus">Google Plus</string>
+  <string name="paypal">Paypal</string>
   <string name="download">下载</string>
+  <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">还原</string>
   <string name="checking_md5">检查 MD5校验和</string>
   <string name="md5_mismatch">MD5 校验和不匹配</string>
@@ -382,10 +394,12 @@
   <string name="press_again_to_apply">再按一次以应用。</string>
   <string name="applied">已应用</string>
   <string name="reboot">重新启动</string>
+  <string name="reboot_soft">软重启</string>
   <string name="reboot_recovery">重新启动至 Recovery</string>
   <string name="reboot_bootloader">重新启动至 Bootloader</string>
   <string name="reboot_download">重新启动至 Download 模式</string>
   <string name="confirm">你确定吗？</string>
+  <string name="twrp">TWRP</string>
   <string name="wipe_data">擦除数据</string>
   <string name="wipe_cache">擦除缓存</string>
   <string name="flash_zip">刷入 Zip</string>
@@ -413,6 +427,7 @@
   <string name="hide_apply_on_boot_summary">向下滚动时隐藏</string>
   <string name="enable_apply_on_boot_first">你必须先在一个类目中启用在启动时自动应用。</string>
   <string name="debugging">调试</string>
+  <string name="logcat">Logcat</string>
   <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
   <string name="last_kmsg">最近的内核信息</string>
   <string name="last_kmsg_summary">复制 /proc/last_kmsg 到 /sdcard/last_kmsg.txt</string>
@@ -420,6 +435,7 @@
   <string name="driver_message_summary">将驱动程序消息 (dmesg) 复制到 /sdcard/dmesg.txt</string>
   <string name="security">安全</string>
   <string name="set_password">设置密码</string>
+  <string name="set_password_summary">你可以通过设置密码来保护 Kernel Adiutor。你每次打开此应用时都需要先输入密码才能进入。如果你忘记了它，只需在设置中清除此应用的数据。别担心，我不会分享您的密码。</string>
   <string name="delete_password">删除密码</string>
   <string name="new_password">新密码</string>
   <string name="confirm_new_password">确认新密码</string>
@@ -429,6 +445,7 @@
   <string name="password_not_match">两次输入的密码不匹配</string>
   <string name="password_too_long">密码过长</string>
   <string name="set_password_first">先设置密码</string>
+  <string name="show_sections">显示区块</string>
   <string name="misspelled">为什么你把 \"Auditor\" 拼错了？</string>
   <string name="misspelled_summary">Adiutor 是拉丁文,意为\"助手\"。</string>
   <string name="cpu_freq_not_sticking">为什么我设置好的 CPU 频率又变了？</string>

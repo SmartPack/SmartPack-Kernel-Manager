@@ -63,6 +63,8 @@
   <string name="unused_cpu_states">未使用のCPUテーブル</string>
   <string name="uptime">使用時間</string>
   <string name="deep_sleep">Deep Sleep</string>
+  <string name="reset_timer">タイマーのリセット</string>
+  <string name="restore_timer">タイマーのリストア</string>
   <string name="kernel_version">カーネルバージョン</string>
   <string name="cpu_information">CPU情報</string>
   <string name="memory_information">メモリ情報</string>
@@ -342,6 +344,8 @@
   <string name="register_hook_summary">インターセプト機能の有効化によりフックしたように動作しシナリオ設定やデルタ制御の変更を受信出来ます。シナリオが基本シーケンスの設定(登録)にない場合、フックにより変更されることはありません。</string>
   <string name="master_sequence">マスターシーケンス</string>
   <string name="master_sequence_summary">マスターシーケンスを有効にするととサムスンのプロファイルやシナリオを無視し、ROM制御が無効化されます。</string>
+  <string name="glove_mode">手ぶくろモード</string>
+  <string name="glove_mode_summary">手ぶくろをしたままでも操作ができるようになります。</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">画面をダブルタップすることでスリープ状態から復帰できるようになります。</string>
   <string name="center">中央</string>
@@ -501,10 +505,12 @@
   <string name="name">名前</string>
   <string name="select_all">全てを選択</string>
   <string name="apply">適用</string>
+  <string name="removed_all_sections">セクションをすべて削除しました! プロファイルがありません。</string>
   <string name="no_settings">設定がありません!</string>
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
   <string name="reboot">再起動</string>
+  <string name="reboot_soft">ソフトリブート</string>
   <string name="reboot_recovery">リカバリへ再起動</string>
   <string name="reboot_bootloader">Bootloaderへ再起動</string>
   <string name="reboot_download">Downloadへ再起動</string>
@@ -546,6 +552,7 @@
   <string name="driver_message_summary">ドライバメッセージ (dmesg) を /sdcard/dmesg.txtにコピーします。</string>
   <string name="security">セキュリティ</string>
   <string name="set_password">パスワードを設定</string>
+  <string name="set_password_summary">パスワードで Kernel Adiutor を保護できます。Kernel Adiutor を開いた時、毎回入力しないといけないようになります。パスワードを忘れた場合は Kernel Adiutor のデータを消去してください。パスワードは誰とも共有されません。</string>
   <string name="delete_password">パスワードの削除</string>
   <string name="new_password">新しいパスワード</string>
   <string name="confirm_new_password">新しいパスワードの確認</string>
@@ -555,6 +562,7 @@
   <string name="password_not_match">パスワード確認が一致しません</string>
   <string name="password_too_long">パスワードが長すぎます。</string>
   <string name="set_password_first">まずパスワードを設定してください。</string>
+  <string name="show_sections">セクションの表示</string>
   <string name="misspelled">\"Auditor\"って綴り間違いじゃないのぉ?</string>
   <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
   <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
