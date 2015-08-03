@@ -449,8 +449,8 @@ public class Thermal implements Constants {
     }
 
     public static void activateThermald(boolean active, Context context) {
-        if (active) Control.startService(THERMALD, true, context);
-        else Control.stopService(THERMALD, true, context);
+        if (active) Control.startService(THERMALD, context);
+        else Control.stopService(THERMALD, context);
     }
 
     public static boolean isThermaldActive() {

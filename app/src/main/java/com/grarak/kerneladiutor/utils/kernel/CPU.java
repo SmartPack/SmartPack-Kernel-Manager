@@ -403,10 +403,9 @@ public class CPU implements Constants {
             Control.runCommand("1", CPU_ENABLE_OC, Control.CommandType.CPU, context);
         if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
             setMinFreq(command, freq, context);
-        Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
-        if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
-            setMinFreq(command, freq, context);
-        Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
+        if (Utils.existFile(String.format(CPU_MAX_FREQ_KT, 0)))
+            Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
+        else Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
     }
 
     public static int getMaxFreq(boolean forceRead) {
@@ -437,6 +436,10 @@ public class CPU implements Constants {
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
+    }
+
+    public static void onlineAllCores(Context context) {
+        for (int i = 1; i < getCoreCount(); i++) activateCore(i, true, context);
     }
 
     public static void activateCore(int core, boolean active, Context context) {

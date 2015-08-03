@@ -335,7 +335,7 @@ public class Utils implements Constants {
             applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
         else if (mClass == CPUFragment.class) {
             for (String cpu : CPU_ARRAY)
-                if (cpu.startsWith("/sys/devices/system/cpu/cpu%d/cpufreq"))
+                if (cpu.startsWith("/sys/devices/system/cpu/cpu%d"))
                     for (int i = 0; i < CPU.getCoreCount(); i++)
                         applys.add(String.format(cpu, i));
                 else applys.add(cpu);

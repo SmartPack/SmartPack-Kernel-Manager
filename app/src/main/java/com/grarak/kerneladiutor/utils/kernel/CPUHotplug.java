@@ -1323,8 +1323,11 @@ public class CPUHotplug implements Constants {
     }
 
     public static void activateMpdecision(boolean active, Context context) {
-        if (active) Control.startService(HOTPLUG_MPDEC, true, context);
-        else Control.stopService(HOTPLUG_MPDEC, true, context);
+        if (active) Control.startService(HOTPLUG_MPDEC, context);
+        else {
+            Control.stopService(HOTPLUG_MPDEC, context);
+            CPU.onlineAllCores(context);
+        }
     }
 
     public static boolean isMpdecisionActive() {
