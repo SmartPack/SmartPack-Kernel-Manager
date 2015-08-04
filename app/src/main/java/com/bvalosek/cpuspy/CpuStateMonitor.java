@@ -32,7 +32,7 @@ public class CpuStateMonitor {
 
     private final int core;
 
-    private List<CpuState> _states = new ArrayList<>();
+    private final List<CpuState> _states = new ArrayList<>();
     private Map<Integer, Long> _offsets = new HashMap<>();
 
     public CpuStateMonitor(int core) {

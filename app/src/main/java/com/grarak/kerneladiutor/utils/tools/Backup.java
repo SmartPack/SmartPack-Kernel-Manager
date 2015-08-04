@@ -38,7 +38,7 @@ public class Backup {
         BOOT, RECOVERY, FOTA
     }
 
-    private static String[] Boot = {
+    private static final String[] Boot = {
             "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot",
             "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
             "/dev/block/platform/sdhci-tegra.3/by-name/LX",
@@ -53,7 +53,7 @@ public class Backup {
             "/dev/boot"
     };
 
-    private static String[] Recovery = {
+    private static final String[] Recovery = {
             "/dev/block/platform/omap/omap_hsmmc.0/by-name/recovery",
             "/dev/block/platform/omap/omap_hsmmc.1/by-name/recovery",
             "/dev/block/platform/sdhci-tegra.3/by-name/recovery",
@@ -79,7 +79,7 @@ public class Backup {
             "/dev/recovery"
     };
 
-    private static String[] Fota = {
+    private static final String[] Fota = {
             "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
     };
 

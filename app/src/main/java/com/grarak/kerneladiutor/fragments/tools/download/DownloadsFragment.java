@@ -45,9 +45,9 @@ public class DownloadsFragment extends RecyclerViewFragment {
 
     private ProgressBar progressBar;
     private TextView progressText;
-    private List<String> jsons = new ArrayList<>();
+    private final List<String> jsons = new ArrayList<>();
     private WebpageReader jsonWebpageReader;
-    private List<WebpageReader> kernelWebpageReaders = new ArrayList<>();
+    private final List<WebpageReader> kernelWebpageReaders = new ArrayList<>();
 
     public static DownloadsFragment newInstance(String link) {
         Bundle args = new Bundle();

@@ -46,7 +46,7 @@ public class ViewPagerFragment extends BaseFragment {
     private CustomViewPager mViewPager;
     protected MaterialTabs mTabs;
 
-    private List<ViewPagerItem> items = new ArrayList<>();
+    private final List<ViewPagerItem> items = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

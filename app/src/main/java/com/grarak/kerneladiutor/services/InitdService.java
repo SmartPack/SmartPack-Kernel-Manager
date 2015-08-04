@@ -33,7 +33,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
  */
 public class InitdService extends Service {
 
-    private Handler hand = new Handler();
+    private final Handler hand = new Handler();
 
     @Override
     public void onCreate() {

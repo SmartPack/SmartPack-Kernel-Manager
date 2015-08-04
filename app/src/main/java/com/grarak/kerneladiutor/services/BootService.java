@@ -57,9 +57,9 @@ import java.util.List;
  */
 public class BootService extends Service {
 
-    private Handler hand = new Handler();
+    private final Handler hand = new Handler();
 
-    private int id = 1;
+    private final int id = 1;
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
 

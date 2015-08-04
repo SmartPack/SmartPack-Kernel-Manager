@@ -92,7 +92,7 @@ public class Control implements Constants {
         if (context != null) commandSaver(context, service, "stop " + service);
     }
 
-    private static List<Thread> tasks = new ArrayList<>();
+    private static final List<Thread> tasks = new ArrayList<>();
     private static Thread taskThread;
 
     public static void runCommand(final String value, final String file, final CommandType command, final String id,

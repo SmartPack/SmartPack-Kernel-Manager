@@ -61,35 +61,6 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
-    public static void setZaneZamProfile(int value, Context context) {
-        Control.runCommand(value == 0 ? "0" : getZaneZamProfiles(context).get(value),
-                CPU_ZANEZAM_PROFILE, Control.CommandType.GENERIC, context);
-    }
-
-    public static String getCurZaneZamProfile() {
-        return Utils.readFile(CPU_ZANEZAM_PROFILE);
-    }
-
-    public static List<String> getZaneZamProfiles(Context context) {
-        List<String> list = new ArrayList<>();
-        list.add(context.getString(R.string.none));
-        list.add("Default");
-        list.add("Yank Battery");
-        list.add("Yank Battery Extreme");
-        list.add("ZaneZam Battery");
-        list.add("ZaneZam Battery Plus");
-        list.add("ZaneZam Optimized");
-        list.add("ZaneZam Moderate");
-        list.add("ZaneZam Performance");
-        list.add("ZaneZam InZane");
-        list.add("ZaneZam Gaming");
-        return list;
-    }
-
-    public static boolean hasZaneZamProfile() {
-        return Utils.existFile(CPU_ZANEZAM_PROFILE);
-    }
-
     public static void setCpuBoostInputFreq(int value, int core, Context context) {
         String freqs;
         if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {

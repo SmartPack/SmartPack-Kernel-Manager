@@ -36,7 +36,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     private final Activity activity;
     private final OnDownloadListener onDownloadListener;
     private final PowerManager.WakeLock mWakeLock;
-    private String path;
+    private final String path;
     private boolean downloading = true;
 
     public DownloadTask(Context context, OnDownloadListener onDownloadListener, String path) {

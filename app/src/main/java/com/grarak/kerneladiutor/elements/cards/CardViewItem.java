@@ -33,7 +33,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
  */
 public class CardViewItem extends BaseCardView {
 
-    private HeaderCardView headerCardView;
+    private final HeaderCardView headerCardView;
 
     private CharSequence title;
     private CharSequence description;

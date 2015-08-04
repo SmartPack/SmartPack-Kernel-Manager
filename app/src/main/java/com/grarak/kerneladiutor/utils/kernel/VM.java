@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class VM implements Constants {
 
-    private static List<String> vmFiles = new ArrayList<>();
+    private final static List<String> vmFiles = new ArrayList<>();
 
     public static void setZRAMDisksize(final int value, final Context context) {
         int size = value * 1024 * 1024;

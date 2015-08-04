@@ -78,7 +78,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         fabView = null;
     }
 
-    private Runnable refresh = new Runnable() {
+    private final Runnable refresh = new Runnable() {
         @Override
         public void run() {
             refresh();

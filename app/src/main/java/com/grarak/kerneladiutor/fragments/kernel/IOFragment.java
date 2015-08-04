@@ -77,7 +77,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     public static class IOPart extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
             CardViewItem.DCardView.OnDCardListener {
 
-        List<String> readheads = new ArrayList<>();
+        private final List<String> readheads = new ArrayList<>();
 
         private PopupCardView.DPopupCard mInternalSchedulerCard, mExternalSchedulerCard;
 

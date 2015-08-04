@@ -38,7 +38,7 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
     private PopupCardView.DPopupCard mReadCard;
     private PopupCardView.DPopupCard mWriteCard;
 
-    private List<String> items = new ArrayList<>();
+    private final List<String> items = new ArrayList<>();
 
     @Override
     public void init(Bundle savedInstanceState) {

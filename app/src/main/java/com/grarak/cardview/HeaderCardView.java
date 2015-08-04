@@ -41,7 +41,7 @@ public class HeaderCardView {
      */
     private TextView textView;
     private CharSequence title;
-    private View view;
+    private final View view;
 
     public HeaderCardView(Context context) {
         this(context, DEFAULT_LAYOUT);

@@ -33,7 +33,6 @@ public final class BundleScrubber {
      */
     public static boolean scrub(final Intent intent) {
         return null != intent && scrub(intent.getExtras());
-
     }
 
     /**

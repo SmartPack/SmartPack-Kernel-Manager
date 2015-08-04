@@ -33,7 +33,7 @@ public class ColorPalette extends View {
 
     private final Paint mPaintColor;
 
-    private String[][] colors = {
+    private final String[][] colors = {
             {"#000000", "#404040", "#ed0021", "#ef6222", "#f5dc2b", "#b8ff28", "#67ff21"},
             {"#ffffff", "#808080", "#55ff92", "#67fffa", "#528dfb", "#b100fb", "#f00071"}
     };

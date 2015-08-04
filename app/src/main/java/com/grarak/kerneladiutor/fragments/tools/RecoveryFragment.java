@@ -50,7 +50,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
     private AppCompatSpinner mRecoverySpinner;
 
-    private List<Recovery> mCommands = new ArrayList<>();
+    private final List<Recovery> mCommands = new ArrayList<>();
 
     @Override
     public boolean showApplyOnBoot() {

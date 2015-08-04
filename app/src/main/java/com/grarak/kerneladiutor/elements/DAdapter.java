@@ -66,7 +66,7 @@ public class DAdapter {
             void onItemClick(View view, int position);
         }
 
-        public List<DView> DViews;
+        public final List<DView> DViews;
         private OnItemClickListener onItemClickListener;
         private int selectedItem;
         private boolean itemOnly;

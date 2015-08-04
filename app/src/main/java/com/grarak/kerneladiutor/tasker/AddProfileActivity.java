@@ -35,7 +35,7 @@ import java.util.List;
 public class AddProfileActivity extends BaseActivity {
 
     public static final String EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE";
-    public static final String EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB";
+    private static final String EXTRA_STRING_BLURB = "com.twofortyfouram.locale.intent.extra.BLURB";
     public static final String DIVIDER = "wkefnewnfewp";
 
     @Override

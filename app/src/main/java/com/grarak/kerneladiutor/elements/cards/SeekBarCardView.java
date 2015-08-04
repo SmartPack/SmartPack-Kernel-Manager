@@ -40,7 +40,7 @@ public class SeekBarCardView extends BaseCardView {
 
     private final List<String> list;
 
-    private HeaderCardView headerCardView;
+    private final HeaderCardView headerCardView;
     private TextView descriptionView;
     private TextView valueView;
     private SeekBar seekBarView;

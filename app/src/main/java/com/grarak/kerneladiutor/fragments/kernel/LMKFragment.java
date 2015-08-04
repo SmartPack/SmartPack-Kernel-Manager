@@ -36,7 +36,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
     private SeekBarCardView.DSeekBarCard[] mMinFreeCard;
     private CardViewItem.DCardView[] mProfileCard;
 
-    private List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
+    private final List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
 
     private final String[] mProfileValues = new String[]{
             "512,1024,1280,2048,3072,4096", "1024,2048,2560,4096,6144,8192", "1024,2048,4096,8192,12288,16384",
