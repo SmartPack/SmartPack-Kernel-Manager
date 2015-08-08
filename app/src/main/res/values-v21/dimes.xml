@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="basecard_padding">5dp</dimen>
+    <dimen name="basecard_padding">7dp</dimen>
     <dimen name="card_padding">16dp</dimen>
 
     <dimen name="headermain_height">173dp</dimen>

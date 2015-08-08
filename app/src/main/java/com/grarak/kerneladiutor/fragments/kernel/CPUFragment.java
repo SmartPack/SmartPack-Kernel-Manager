@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -46,6 +46,7 @@ import com.grarak.kerneladiutor.utils.root.RootFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 07.04.15.
@@ -144,18 +145,17 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (CPU.hasTemp()) tempInit();
             if (CPU.getFreqs() != null) {
                 if (CPU.isBigLITTLE()) {
-                    DividerCardView.DDividerCard bigDivider = new DividerCardView.DDividerCard();
-                    bigDivider.setText(getString(R.string.big));
-                    bigDivider.toLowerCase();
+                    DDividerCard bigDivider = new DDividerCard();
+                    bigDivider.setText(getString(R.string.big).toLowerCase(Locale.getDefault()));
                     addView(bigDivider);
                 }
                 coreInit();
                 freqInit();
             }
             if (CPU.getAvailableGovernors() != null) governorInit();
-            DividerCardView.DDividerCard othersDivider = null;
+            DDividerCard othersDivider = null;
             if (CPU.isBigLITTLE()) {
-                DividerCardView.DDividerCard LITTLEDivider = new DividerCardView.DDividerCard();
+                DDividerCard LITTLEDivider = new DDividerCard();
                 LITTLEDivider.setText(getString(R.string.little));
                 addView(LITTLEDivider);
 
@@ -165,7 +165,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 }
                 if (CPU.getAvailableGovernors(CPU.getLITTLEcore()) != null) governorLITTLEInit();
 
-                othersDivider = new DividerCardView.DDividerCard();
+                othersDivider = new DDividerCard();
                 othersDivider.setText(getString(R.string.other));
                 addView(othersDivider);
             }
@@ -483,7 +483,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             }
 
             if (views.size() > 0) {
-                DividerCardView.DDividerCard mCpuBoostDividerCard = new DividerCardView.DDividerCard();
+                DDividerCard mCpuBoostDividerCard = new DDividerCard();
                 mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
                 addView(mCpuBoostDividerCard);
 

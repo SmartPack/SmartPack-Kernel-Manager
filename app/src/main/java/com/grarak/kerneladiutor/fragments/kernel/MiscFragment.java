@@ -21,7 +21,7 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
@@ -65,7 +65,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mWlanWakelockCard;
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard;
     private SeekBarCardView.DSeekBarCard mMsmHsicWakelockDividerCard;
-	
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -165,7 +165,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void networkInit() {
-        DividerCardView.DDividerCard mNetworkDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mNetworkDividerCard = new DDividerCard();
         mNetworkDividerCard.setText(getString(R.string.network));
         addView(mNetworkDividerCard);
 
@@ -281,14 +281,14 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
 
         if (views.size() > 0) {
-            DividerCardView.DDividerCard mWakelockDividerCard = new DividerCardView.DDividerCard();
+            DDividerCard mWakelockDividerCard = new DDividerCard();
             mWakelockDividerCard.setText(getString(R.string.wakelock));
             addView(mWakelockDividerCard);
 
             addAllViews(views);
         }
     }
-		
+
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mTcpCongestionCard)

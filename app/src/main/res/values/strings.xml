@@ -14,6 +14,7 @@
     <string name="password">Password</string>
     <string name="password_wrong">Password is wrong</string>
     <string name="press_back_again">Press back again to leave</string>
+    <string name="more">More</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>

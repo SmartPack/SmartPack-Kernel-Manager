@@ -100,7 +100,7 @@ public class InformationCardView extends BaseCardView {
                             ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setFullSpan(true);
             int padding = informationCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-            layoutParams.setMargins(padding, padding, padding, padding);
+            layoutParams.setMargins(padding, padding, padding, 0);
             informationCardView.setLayoutParams(layoutParams);
         }
 

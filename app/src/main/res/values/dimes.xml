@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="basecard_padding">3dp</dimen>
+    <dimen name="basecard_padding">4dp</dimen>
     <dimen name="basecard_radius">3dp</dimen>
     <dimen name="card_padding">10dp</dimen>
 
@@ -14,8 +14,6 @@
     <dimen name="colorpalette_height">100dp</dimen>
 
     <dimen name="headermain_height">150dp</dimen>
-
-    <dimen name="recyclerview_padding">2dp</dimen>
 
     <dimen name="fab_elevation">5dp</dimen>
     <dimen name="divider_card_elevation">5dp</dimen>

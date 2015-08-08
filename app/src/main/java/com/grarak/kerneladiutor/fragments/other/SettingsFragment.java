@@ -32,7 +32,7 @@ import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -118,7 +118,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void applyonbootInit() {
-        DividerCardView.DDividerCard mApplyonBootDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mApplyonBootDividerCard = new DDividerCard();
         mApplyonBootDividerCard.setText(getString(R.string.apply_on_boot));
 
         addView(mApplyonBootDividerCard);
@@ -204,7 +204,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void debuggingInit() {
-        DividerCardView.DDividerCard mDebuggingDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mDebuggingDividerCard = new DDividerCard();
         mDebuggingDividerCard.setText(getString(R.string.debugging));
 
         addView(mDebuggingDividerCard);
@@ -274,7 +274,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void securityInit() {
-        DividerCardView.DDividerCard mSecurityDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mSecurityDividerCard = new DDividerCard();
         mSecurityDividerCard.setText(getString(R.string.security));
 
         addView(mSecurityDividerCard);
@@ -389,7 +389,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void showSectionsInit() {
-        DividerCardView.DDividerCard mShowSectionsDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mShowSectionsDividerCard = new DDividerCard();
         mShowSectionsDividerCard.setText(getString(R.string.show_sections));
         addView(mShowSectionsDividerCard);
 

@@ -28,7 +28,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.ColorPalette;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
@@ -249,7 +249,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void kgammaInit() {
-        DividerCardView.DDividerCard mKGammaDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mKGammaDividerCard = new DDividerCard();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -297,7 +297,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void gammacontrolInit() {
-        DividerCardView.DDividerCard mKGammaDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mKGammaDividerCard = new DDividerCard();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -453,7 +453,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void dsipanelInit() {
-        DividerCardView.DDividerCard mKGammaDividerCard = new DividerCardView.DDividerCard();
+        DDividerCard mKGammaDividerCard = new DDividerCard();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -586,7 +586,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DividerCardView.DDividerCard mLcdBackLightDividerCard = new DividerCardView.DDividerCard();
+            DDividerCard mLcdBackLightDividerCard = new DDividerCard();
             mLcdBackLightDividerCard.setText(getString(R.string.lcd_backlight));
             addView(mLcdBackLightDividerCard);
 
@@ -647,7 +647,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DividerCardView.DDividerCard mBackLightDimmerDividerCard = new DividerCardView.DDividerCard();
+            DDividerCard mBackLightDimmerDividerCard = new DDividerCard();
             mBackLightDimmerDividerCard.setText(getString(R.string.backlight_dimmer));
             addView(mBackLightDimmerDividerCard);
 
@@ -690,7 +690,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DividerCardView.DDividerCard mMdnieGlobalDivider = new DividerCardView.DDividerCard();
+            DDividerCard mMdnieGlobalDivider = new DDividerCard();
             mMdnieGlobalDivider.setText(getString(R.string.mdnie_global_controls));
             addView(mMdnieGlobalDivider);
 

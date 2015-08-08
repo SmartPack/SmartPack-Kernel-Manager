@@ -116,7 +116,7 @@ public abstract class BaseCardView extends CardView {
     public void setMargin() {
         int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(padding, padding, padding, padding);
+        layoutParams.setMargins(padding, padding, padding, 0);
         setLayoutParams(layoutParams);
     }
 

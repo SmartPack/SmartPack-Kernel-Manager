@@ -295,14 +295,17 @@ public class RecyclerViewFragment extends BaseFragment {
     }
 
     public void setOnScrollListener(RecyclerView recyclerView) {
-        if (recyclerView != null && applyOnBootLayout != null) {
-            recyclerView.setClipToPadding(false);
-            int padding = getResources().getDimensionPixelSize(R.dimen.recyclerview_padding);
-            recyclerView.setPadding(padding, applyOnBootLayout.getHeight(), padding, recyclerView.getPaddingBottom());
-            resetTranslations();
+        if (recyclerView != null) {
+            if (applyOnBootLayout != null) {
+                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, recyclerView.getPaddingBottom()
+                        + getResources().getDimensionPixelSize(R.dimen.basecard_padding));
+                resetTranslations();
 
-            if (!Utils.isTV(getActivity()))
-                recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
+                if (!Utils.isTV(getActivity()))
+                    recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
+            } else recyclerView.setPadding(0, 0, 0, recyclerView.getPaddingBottom()
+                    + getResources().getDimensionPixelSize(R.dimen.basecard_padding));
+            recyclerView.setClipToPadding(false);
         }
     }
 

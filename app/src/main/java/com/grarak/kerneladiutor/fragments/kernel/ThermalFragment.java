@@ -21,7 +21,7 @@ import android.view.View;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.DividerCardView;
+import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.InformationCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
@@ -465,7 +465,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (views.size() > 0) {
-            DividerCardView.DDividerCard mMsmThermalDividerCard = new DividerCardView.DDividerCard();
+            DDividerCard mMsmThermalDividerCard = new DDividerCard();
             mMsmThermalDividerCard.setText(getString(R.string.msm_thermal));
             mMsmThermalDividerCard.setDescription(getString(R.string.msm_thermal_summary));
             addView(mMsmThermalDividerCard);
