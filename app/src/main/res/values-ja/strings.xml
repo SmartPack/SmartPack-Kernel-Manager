@@ -427,7 +427,7 @@
   <string name="very_aggressive">積極的 (強)</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">ディスクサイズ</string>
-  <string name="disksize_summary">物理ストレージに代わりにRAM上の圧縮された仮想デバイスを使用してページングを避けることによってパフォーマンスを向上しようとするとします。物理ストレージにスワップスペースを使用する必要が生じるまでページングはRAM上で行われます。</string>
+  <string name="disksize_summary">物理ストレージに代わりにRAM上の圧縮された仮想デバイスを使用してページングを避けることによってパフォーマンスを向上しようとします。物理ストレージにスワップスペースを使用する必要が生じるまでページングはRAM上で行われます。</string>
   <string name="available">利用可能</string>
   <string name="poolsize">プールサイズ</string>
   <string name="read">読み込み</string>
@@ -445,7 +445,7 @@
   <string name="lcd_panel">LCD Panel</string>
   <string name="hybrid">Hybrid</string>
   <string name="power_suspend_state">Power Suspend State</string>
-  <string name="power_suspend_state_summary">画面消灯時のカーネル電源管理ドライバーです。有効にするとバッテリーを節約できます。注意: Power Suspend ModeがUser Modeの倍のみ変更できます。</string>
+  <string name="power_suspend_state_summary">画面消灯時のカーネル電源管理ドライバーです。有効にするとバッテリーを節約できます。注意: Power Suspend ModeがUser Modeの場合のみ変更できます。</string>
   <string name="network">ネットワーク</string>
   <string name="tcp">TCP輻輳アルゴリズム</string>
   <string name="tcp_summary">TCPとは、伝送制御プロトコルといわれる、インターネット・プロトコル・スイートの中核プロトコルのひとつです。</string>
@@ -509,6 +509,7 @@
   <string name="no_settings">設定がありません!</string>
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
+  <string name="applying_profile">%s を適用中</string>
   <string name="reboot">再起動</string>
   <string name="reboot_soft">ソフトリブート</string>
   <string name="reboot_recovery">リカバリへ再起動</string>

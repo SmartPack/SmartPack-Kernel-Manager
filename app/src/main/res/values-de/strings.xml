@@ -63,6 +63,8 @@
   <string name="unused_cpu_states">Ungenutzte CPU-Stadien</string>
   <string name="uptime">Laufzeit</string>
   <string name="deep_sleep">Tiefschlaf</string>
+  <string name="reset_timer">Timer zurücksetzen</string>
+  <string name="restore_timer">Timer wiederherstellen</string>
   <string name="kernel_version">Kernel-Version</string>
   <string name="cpu_information">CPU-Information</string>
   <string name="memory_information">Speicherinformation</string>
@@ -90,6 +92,7 @@
   <string name="enabled">Aktiviert</string>
   <string name="aggressive">Aggressiv</string>
   <string name="cpu_quiet">CPUQuiet</string>
+  <string name="cpu_quiet_summary">CPUQuiet implementiert austauschbare Richtlinien für CPU-Kerne diese in den Ruhezustand zu zwingen. Entsprechende Richtlinien Strom zu sparen ohne die Leistung zu beeinflussen.</string>
   <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">CPU-Boost</string>
   <string name="debug_mask">Debug-Mask</string>
@@ -101,6 +104,7 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall des CPU-Boost, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
+  <string name="input_boost_freq_core">Eingang Frequenz Core Boost %s</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
   <string name="global_offset">Globaler Offset</string>
   <string name="override_vmin">Mindestspannung überschreiben</string>
@@ -141,6 +145,7 @@
   <string name="defer_sampling">Verzögerungssampling</string>
   <string name="boost_lock_duration">Sperrdauer des Boosts</string>
   <string name="boost_lock_duration_summary">Minimale Zeit die ein CPU beschleunigt wird.</string>
+  <string name="down_lock_duration">Sperrdauer</string>
   <string name="down_lock_duration_summary">Minimales Intervall das ein CPU-Kern aktiv bleibt.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
@@ -158,6 +163,7 @@
   <string name="update_rate">Aktualisierungsrate</string>
   <string name="update_rate_summary">Abstand zwischen den Proben, die gemacht werden um die Durchschnittsbelastung der CPU-Kerne zu bestimmen. Ein geringerer Wert bedeutet schnellere und fehlerhaftere Ergebnisse.</string>
   <string name="fast_lane_load_summary">Verbesserte Latenz indem alle CPU-Kerne eingeschaltet werden wenn die Belastung auf einem hoch genug ist.</string>
+  <string name="fast_lane_min_freq">Fast Lane min. Frequenz</string>
   <string name="offline_load">Offline laden</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="defer_time">Suspend Zeit verzögern</string>
@@ -165,6 +171,7 @@
   <string name="mako_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von franciscofranco.</string>
   <string name="cores_on_touch">Kerne während einer Eingabe</string>
   <string name="cores_on_touch_summary">Anzahl der CPUs die online bleiben, indem der Bildschirm oder eine Taste berührt wird.</string>
+  <string name="cpu_freq_unplug_limit">CPU-Frequenz Unplug Limit</string>
   <string name="first_level">Erste Ebene</string>
   <string name="high_load_counter">Hochlast-Counter</string>
   <string name="min_time_cpu_online">Minimale Zeit, die eine CPU online ist</string>
@@ -188,13 +195,27 @@
   <string name="cpu_up_rate">CPU-Up Rate</string>
   <string name="thunderplug">Thunderplug</string>
   <string name="thunderplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von varunchitre15.</string>
+  <string name="min_cores_screen_off">Maximale CPU Kerne bei ausgeschaltetem Bildschirm</string>
   <string name="min_cores_screen_off_summary">Minimale Anzahl an aktiven Kernen bei ausgeschalteten Bildschirm.</string>
+  <string name="endurance_level_summary">Ein Stromeinsparungsprofil.</string>
   <string name="quad_core_mode">Quad-Core-Modus</string>
   <string name="dual_core_mode">Dual-Core-Modus</string>
   <string name="zen_decision">Zen Decision</string>
+  <string name="zen_decision_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von Alucard.</string>
+  <string name="wake_wait_time">Wake Wartezeit</string>
+  <string name="wake_wait_time_summary">Wie lange warten bis alle Kerne eingeschalten werden. </string>
+  <string name="bat_threshold_ignore">Batterie Schwellwert ignorieren</string>
   <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von mrg666.</string>
+  <string name="cycle_down">Zyklus nach unten</string>
+  <string name="cycle_up">Zyklus nach oben</string>
   <string name="intellithermal">Intellithermal</string>
+  <string name="intellithermal_summary">Ein Kernel-Ersatz für Qualcomms Thermald. Von faux123 entwickelt.</string>
+  <string name="intellithermal_optimized">Intellithermal optimiert</string>
+  <string name="intellithermal_optimized_summary">Ein Kernel-Ersatz für Qualcomms Thermald. Entwickelt von faux123 und alucard_24.</string>
+  <string name="core_control">Kern Steuerung</string>
+  <string name="vdd_restriction">VDD Beschränkung</string>
+  <string name="freq_throttle_temp">Frequenz Trottel Temperatur</string>
   <string name="freq_step">Frequenz-Schritt</string>
   <string name="thermal_limit_low">Thermales Limit niedrig</string>
   <string name="thermal_limit_high">Thermales Limit hoch</string>
@@ -260,6 +281,7 @@
   <string name="max_brightness">Maximale Helligkeit</string>
   <string name="max_brightness_summary">Erlaubt Ihnen die Helligkeit des Bildschirms höher als gewöhnlich einzustellen.</string>
   <string name="backlight_dimmer">Hintergrundbeleuchtungs-Dimmer</string>
+  <string name="offset">Offset</string>
   <string name="master_sequence">Haupt-Sequenz</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Wecken Sie Ihr Gerät durch doppeltes Antippen des Bildschirms auf.</string>

@@ -63,6 +63,8 @@
   <string name="unused_cpu_states">Stati inutilizzati della cpu</string>
   <string name="uptime">Tempo di attività</string>
   <string name="deep_sleep">Deep Sleep</string>
+  <string name="reset_timer">Azzera timer</string>
+  <string name="restore_timer">Ripristina timer</string>
   <string name="kernel_version">Versione del kernel</string>
   <string name="cpu_information">Informazioni CPU</string>
   <string name="memory_information">Informazioni memoria</string>
@@ -342,6 +344,8 @@
   <string name="register_hook_summary">Il registro intercetta gli atti come un gancio e attiverà l\'acquisizione delle impostazioni degli scenari e la loro modifica attraverso controlli delta. Se uno scenario non ha un\'impostazione, non potrà essere modificato dal registro.</string>
   <string name="master_sequence">Sequenza principale</string>
   <string name="master_sequence_summary">Attivare la sequenza principale disabiliterà e ignorerà i profili e gli scenari Samsung, i controlli della ROM saranno disattivati.</string>
+  <string name="glove_mode">Modalità guanti</string>
+  <string name="glove_mode_summary">L\'attivazione di questa funzione vi permetterà di utilizzare il telefono anche con i guanti.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Sveglia il dispositivo con doppio tap sullo schermo.</string>
   <string name="center">Centro</string>
@@ -501,10 +505,13 @@
   <string name="name">Nome</string>
   <string name="select_all">Seleziona tutto</string>
   <string name="apply">Applica</string>
+  <string name="removed_all_sections">Sono state rimosse tutte le sezioni! Nessun profilo presente.</string>
   <string name="no_settings">Impostazioni non trovate!</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
   <string name="applied">Applicato</string>
+  <string name="applying_profile">Applicare %s</string>
   <string name="reboot">Riavvia</string>
+  <string name="reboot_soft">Riavvio veloce</string>
   <string name="reboot_recovery">Riavviare in recovery</string>
   <string name="reboot_bootloader">Riavvia in modalità Bootloader</string>
   <string name="reboot_download">Riavvia download</string>
@@ -546,6 +553,7 @@
   <string name="driver_message_summary">Copia messaggio driver (dmesg) in /sdcard/dmesg.txt</string>
   <string name="security">Sicurezza</string>
   <string name="set_password">Imposta Password</string>
+  <string name="set_password_summary">È possibile proteggere Kernel Adiutor impostando una password. Ogni volta che si aprirà questa applicazione, sarà necessario inserirla. Se si dimentica, è sufficiente pulire i dati di questa applicazione nelle impostazioni del vostro dispositivo. Non ti preoccupare non voglio condividere la tua password.</string>
   <string name="delete_password">Cancella Password</string>
   <string name="new_password">Nuova Password</string>
   <string name="confirm_new_password">Conferma la nuova password</string>
@@ -555,6 +563,7 @@
   <string name="password_not_match">La password non corrisponde a conferma</string>
   <string name="password_too_long">Password troppo lunga</string>
   <string name="set_password_first">Impostare una password prima</string>
+  <string name="show_sections">Visualizza le sezioni</string>
   <string name="misspelled">Perchè hai sbagliato a scrivere \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor, in Latino, significa \"assistente\".</string>
   <string name="cpu_freq_not_sticking">Perchè la frequenza che ho scelto non viene conservata?</string>

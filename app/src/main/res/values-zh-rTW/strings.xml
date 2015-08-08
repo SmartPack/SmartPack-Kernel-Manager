@@ -34,6 +34,7 @@
   <string name="kernel">核心</string>
   <string name="tools">工具</string>
   <string name="other">其他</string>
+  <string name="downloads">下載</string>
   <string name="kernel_information">核心資訊</string>
   <string name="frequency_table">頻率表</string>
   <string name="cpu">CPU</string>
@@ -49,6 +50,7 @@
   <string name="ksm">核心同頁合併(Kernel Samepage Merging)</string>
   <string name="low_memory_killer">低記憶體清除機制</string>
   <string name="virtual_memory">虛擬記憶體</string>
+  <string name="entropy">熵</string>
   <string name="misc_controls">Misc 控制項</string>
   <string name="backup">備份</string>
   <string name="build_prop_editor">Build prop 編輯器</string>
@@ -60,6 +62,8 @@
   <string name="unused_cpu_states">未使用的 CPU 頻率</string>
   <string name="uptime">核心啟用時間</string>
   <string name="deep_sleep">深度睡眠</string>
+  <string name="reset_timer">重置計時器</string>
+  <string name="restore_timer">還原計時器</string>
   <string name="kernel_version">核心版本</string>
   <string name="cpu_information">CPU 資訊</string>
   <string name="memory_information">記憶體資訊</string>
@@ -75,11 +79,17 @@
   <string name="cpu_max_screen_off_freq">CPU 最大螢幕關閉頻率</string>
   <string name="cpu_max_screen_off_freq_summary">設定CPU在螢幕關閉時的最大頻率</string>
   <string name="cpu_governor">CPU頻率管理</string>
+  <string name="cpu_governor_summary">CPU 頻率管理決定CPU 在對各種工作負載情形時的行為。更改頻率管理會影響CPU 如何在可用頻率間切換頻率。</string>
   <string name="cpu_governor_tunables">CPU 頻率參數調整</string>
+  <string name="cpu_governor_tunables_summary">這些配置項與您使用的頻率管理有關</string>
+  <string name="not_tunable">%s 不可調整</string>
   <string name="mc_power_saving">多核心省電</string>
+  <string name="mc_power_saving_summary">盡可能用最少的核心來分配處理任務</string>
+  <string name="cfs_scheduler_policy">CFS 調度策略</string>
   <string name="disabled">已禁用</string>
   <string name="enabled">啟用</string>
   <string name="aggressive">積極的</string>
+  <string name="cpu_quiet_governor">CPUQuiet 頻率管理</string>
   <string name="interval">時間間隔</string>
   <string name="input_interval">輸入時間間隔</string>
   <string name="input_boost_freq">輸入Boost的頻率</string>

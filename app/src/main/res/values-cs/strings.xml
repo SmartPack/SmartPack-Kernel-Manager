@@ -110,9 +110,14 @@
   <string name="min_cores_screen_off">Min. jader při vypnuté obrazovce</string>
   <string name="min_cores_screen_off_summary">Minimální počet online jader při vypnuté obrazovce.</string>
   <string name="endurance_level_summary">Úsporný profil.</string>
+  <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Tepelný senzor Qualcomm zabraňuje přehřátí zařízení. Výchozí ovladač lze deaktivovat, pokud aktuální jádro operačního systému nabízí alternativu.</string>
+  <string name="intellithermal_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123.</string>
+  <string name="intellithermal_optimized_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123 a alucard_24.</string>
   <string name="core_throttle_temp_summary">Teplota pro zahájení odstavování jader.</string>
   <string name="core_temp_hysteresis">Hystereze teploty jádra</string>
   <string name="temp_hysteresis">Teplotní hystereze</string>
+  <string name="msm_thermal_summary">Náhrada za Thermald od Qualcommu. Vyvinul show-p1984.</string>
   <string name="check_interval">Interval kontroly</string>
   <string name="shutdown_temp">Teplota vypnutí</string>
   <string name="temp_limit">Teplotní limit</string>
@@ -218,6 +223,7 @@
   <string name="network">Síť</string>
   <string name="tcp_summary">„Transmission Control Protocol“ je jedním z hlavních protokolů sady internetových protokolů (IP) a je natolik běžný, že se pro celou sadu běžně používá označení TCP/IP.</string>
   <string name="hostname">Název hostitele</string>
+  <string name="logo">Logo</string>
   <string name="features">Funkce</string>
   <string name="loading_counting">Načítání %1$d/%2$d</string>
   <string name="downloading_db">Stahování databáze</string>
@@ -261,6 +267,7 @@
   <string name="no_settings">Nastavení nenalezeno!</string>
   <string name="press_again_to_apply">Pro použití stiskněte znovu.</string>
   <string name="applied">Použito</string>
+  <string name="applying_profile">Používání %s</string>
   <string name="reboot">Restartovat</string>
   <string name="reboot_soft">Rychlý restart</string>
   <string name="reboot_recovery">Restartovat do Recovery menu</string>
@@ -307,7 +314,7 @@
   <string name="set_password_summary">Přístup k funkcím aplikace Kernel Adiutor můžete chránit heslem. Při každém spuštění aplikace jej budete muset zadat. Pokud ho zapomenete, jednoduše vymažte data této aplikace v nastavení svého zařízení.</string>
   <string name="delete_password">Odstranit heslo</string>
   <string name="new_password">Nové heslo</string>
-  <string name="confirm_new_password">Potvrďte nové heslo</string>
+  <string name="confirm_new_password">Potvrzení nového hesla</string>
   <string name="old_password">Původní heslo</string>
   <string name="old_password_wrong">Původní heslo je neplatné</string>
   <string name="password_empty">Heslo nebylo vyplněno</string>

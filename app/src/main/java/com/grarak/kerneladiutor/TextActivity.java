@@ -31,7 +31,7 @@ public class TextActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        textView.setTextSize(getResources().getDisplayMetrics().density * 10);
+        textView.setTextSize(getResources().getDisplayMetrics().density * 7);
         textView.setGravity(Gravity.CENTER);
         textView.setText(getIntent().getExtras().getString(ARG_TEXT));
     }
