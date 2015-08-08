@@ -26,6 +26,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -93,11 +94,10 @@ public class Control implements Constants {
     }
 
     private static final List<Thread> tasks = new ArrayList<>();
-    private static Thread taskThread;
 
     public static void runCommand(final String value, final String file, final CommandType command, final String id,
                                   final Context context) {
-        Thread thread = new Thread(new Runnable() {
+        final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 if (command == CommandType.CPU || command == CommandType.CPU_LITTLE) {
@@ -129,32 +129,21 @@ public class Control implements Constants {
         });
 
         tasks.add(thread);
-        if (taskThread == null) {
-            taskThread = new Thread(new Runnable() {
-                private Thread currentTask;
-
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            if (currentTask != null) {
-                                tasks.remove(currentTask);
-                                currentTask.join();
-                            }
-                            if (tasks.size() > 0) {
-                                tasks.get(0).start();
-                                currentTask = tasks.get(0);
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                            taskThread = null;
-                            break;
-                        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) if (tasks.get(0) == thread) {
+                    thread.start();
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    tasks.remove(thread);
+                    break;
                 }
-            });
-            taskThread.start();
-        }
+            }
+        }).start();
     }
 
     public static void runCommand(final String value, final String file, final CommandType command, final Context context) {
