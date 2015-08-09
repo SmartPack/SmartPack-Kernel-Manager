@@ -24,7 +24,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -43,6 +45,8 @@ public class SplashView extends View {
     private int rotate = 0;
     private final Bitmap icon;
     private final Matrix matrix;
+    private final int textColor;
+    private final int textSize;
     private boolean finished = false;
 
     public SplashView(Context context) {
@@ -58,6 +62,8 @@ public class SplashView extends View {
 
         setBackgroundColor(getResources().getColor(R.color.color_primary));
         density = getResources().getDisplayMetrics().density;
+        textColor = getResources().getColor(R.color.white);
+        textSize = getResources().getDimensionPixelSize(R.dimen.splashview_textsize);
 
         mPaintCircle = new Paint();
         mPaintCircle.setAntiAlias(true);
@@ -134,6 +140,17 @@ public class SplashView extends View {
         matrix.postRotate(rotate);
         Bitmap iconRotate = Bitmap.createBitmap(icon, 0, 0, icon.getWidth(), icon.getHeight(), matrix, false);
         canvas.drawBitmap(iconRotate, x / 2 - iconRotate.getWidth() / 2, y / 2 - iconRotate.getHeight() / 2, mPaintCircle);
+
+        TextPaint textPaint = new TextPaint();
+        textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        textPaint.setColor(textColor);
+        textPaint.setAntiAlias(true);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(textSize);
+        float textHeight = textPaint.descent() - textPaint.ascent();
+        float textOffset = (textHeight / 2) - textPaint.descent();
+
+        canvas.drawText(getResources().getString(R.string.root_waiting), x / 2, y - textOffset - y / 4, textPaint);
     }
 
 }
