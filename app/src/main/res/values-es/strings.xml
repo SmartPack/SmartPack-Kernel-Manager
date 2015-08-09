@@ -14,6 +14,7 @@
   <string name="password">Contraseña</string>
   <string name="password_wrong">La contraseña es incorrecta</string>
   <string name="press_back_again">Pulse de nuevo para salir</string>
+  <string name="more">Mas</string>
   <string name="select_file">Seleccionar %s?</string>
   <string name="no_files">Sin archivos en esta ruta.</string>
   <string name="save">Guardar</string>

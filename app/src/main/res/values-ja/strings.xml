@@ -14,6 +14,7 @@
   <string name="password">パスワード</string>
   <string name="password_wrong">パスワードが間違っています</string>
   <string name="press_back_again">もう一度押すと終了します</string>
+  <string name="more">その他</string>
   <string name="select_file">%sを選択しますか?</string>
   <string name="no_files">このパスにはファイルがありません。</string>
   <string name="save">保存</string>

@@ -14,6 +14,7 @@
   <string name="password">Senha</string>
   <string name="password_wrong">A senha está errada</string>
   <string name="press_back_again">Pressione voltar novamente para sair</string>
+  <string name="more">Português BR</string>
   <string name="select_file">Selecione a %s</string>
   <string name="no_files">Não há arquivos neste caminho.</string>
   <string name="save">Salvar</string>
