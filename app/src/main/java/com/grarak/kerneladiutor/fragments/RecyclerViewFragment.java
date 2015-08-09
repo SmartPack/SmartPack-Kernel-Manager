@@ -65,6 +65,7 @@ public class RecyclerViewFragment extends BaseFragment {
     protected View backgroundView;
     protected View fabView;
     private Handler hand;
+    private boolean firstOpening = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
@@ -202,6 +203,7 @@ public class RecyclerViewFragment extends BaseFragment {
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
+                firstOpening = false;
             }
         }.execute();
 
@@ -296,15 +298,17 @@ public class RecyclerViewFragment extends BaseFragment {
 
     public void setOnScrollListener(RecyclerView recyclerView) {
         if (recyclerView != null) {
+            int paddingBottom = recyclerView.getPaddingBottom()
+                    + getResources().getDimensionPixelSize(R.dimen.basecard_padding);
             if (applyOnBootLayout != null) {
-                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, recyclerView.getPaddingBottom()
-                        + getResources().getDimensionPixelSize(R.dimen.basecard_padding));
+                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, firstOpening ? paddingBottom
+                        : recyclerView.getPaddingBottom());
                 resetTranslations();
 
                 if (!Utils.isTV(getActivity()))
                     recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
-            } else recyclerView.setPadding(0, 0, 0, recyclerView.getPaddingBottom()
-                    + getResources().getDimensionPixelSize(R.dimen.basecard_padding));
+            } else recyclerView.setPadding(0, 0, 0, firstOpening ? paddingBottom
+                    : recyclerView.getPaddingBottom());
             recyclerView.setClipToPadding(false);
         }
     }
