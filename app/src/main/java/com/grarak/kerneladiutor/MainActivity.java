@@ -210,6 +210,29 @@ public class MainActivity extends BaseActivity implements Constants {
         if ((actionBar = getSupportActionBar()) != null)
             actionBar.setTitle(VISIBLE_ITEMS.get(position).getTitle());
         mAdapter.setItemChecked(position, true);
+
+        if (Utils.getInt("tabsclicked", 0, this) == 30
+                && !Utils.isAppInstalled("com.grarak.kerneladiutordonate", MainActivity.this))
+            new AlertDialog.Builder(this).setTitle(getString(R.string.thank_you))
+                    .setMessage(getString(R.string.heavy_user_message))
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.rate_app), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.openAppInStore(getPackageName(), MainActivity.this);
+                        }
+                    })
+                    .setNeutralButton(getString(R.string.donate), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.openAppInStore("com.grarak.kerneladiutordonate", MainActivity.this);
+                        }
+                    }).show();
+        Utils.saveInt("tabsclicked", Utils.getInt("tabsclicked", 0, this) + 1, this);
     }
 
     /**

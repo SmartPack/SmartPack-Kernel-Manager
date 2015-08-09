@@ -15,6 +15,10 @@
     <string name="password_wrong">Password is wrong</string>
     <string name="press_back_again">Press back again to leave</string>
     <string name="more">More</string>
+    <string name="thank_you">Thank you!</string>
+    <string name="heavy_user_message">It seems like your are really enjoying this application! Thank you for using it!</string>
+    <string name="rate_app">Rate the app</string>
+    <string name="donate">Donate to me</string>
 
     <!-- FileBrowser -->
     <string name="select_file">Select %s?</string>

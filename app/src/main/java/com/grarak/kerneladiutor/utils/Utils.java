@@ -19,9 +19,11 @@ package com.grarak.kerneladiutor.utils;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.UiModeManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -88,6 +90,24 @@ import java.util.Set;
 public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
+
+    public static boolean isAppInstalled(String packagename, Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo(packagename, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    public static void openAppInStore(String packagename, Context context) {
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packagename)));
+        } catch (ActivityNotFoundException ignored) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + packagename)));
+        }
+    }
 
     // MD5 code from
     // https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-12.1/src/com/cyanogenmod/updater/utils/MD5.java
