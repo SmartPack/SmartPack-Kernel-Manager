@@ -156,7 +156,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             DDividerCard othersDivider = null;
             if (CPU.isBigLITTLE()) {
                 DDividerCard LITTLEDivider = new DDividerCard();
-                LITTLEDivider.setText(getString(R.string.little));
+                LITTLEDivider.setText(getString(R.string.little).toUpperCase(Locale.getDefault()));
                 addView(LITTLEDivider);
 
                 if (CPU.getFreqs(CPU.getLITTLEcore()) != null) {
