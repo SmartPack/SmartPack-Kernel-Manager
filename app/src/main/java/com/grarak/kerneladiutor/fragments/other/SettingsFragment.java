@@ -37,8 +37,10 @@ import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.BootService;
+import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -62,6 +64,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en") && !Utils.isTV(getActivity()))
             forceenglishlanguageInit();
         if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
+        if (Utils.hasCMSDK()) profileTileInit();
         applyonbootInit();
         debuggingInit();
         securityInit();
@@ -115,6 +118,22 @@ public class SettingsFragment extends RecyclerViewFragment {
                 });
 
         addView(mBetaInfoCard);
+    }
+
+    private void profileTileInit() {
+        SwitchCardView.DSwitchCard mShowProfileTileCard = new SwitchCardView.DSwitchCard();
+        mShowProfileTileCard.setDescription(getString(R.string.show_profile_tile));
+        mShowProfileTileCard.setChecked(Utils.getBoolean("profiletile", true, getActivity()));
+        mShowProfileTileCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+            @Override
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                Utils.saveBoolean("profiletile", checked, getActivity());
+                ProfileTileReceiver.publishProfileTile(checked ? new ProfileDB(getActivity())
+                        .getAllProfiles() : null, getActivity());
+            }
+        });
+
+        addView(mShowProfileTileCard);
     }
 
     private void applyonbootInit() {

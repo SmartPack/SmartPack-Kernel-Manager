@@ -610,6 +610,7 @@
     <string name="force_english_language">Force English Language</string>
     <string name="beta_info">Beta Information</string>
     <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
+    <string name="show_profile_tile">Show Profile Tile</string>
     <string name="notification">Notification</string>
     <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>
     <string name="show_toast">Show toast</string>

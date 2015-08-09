@@ -91,6 +91,10 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
+    public static boolean hasCMSDK() {
+        return cyanogenmod.os.Build.CM_VERSION.SDK_INT >= cyanogenmod.os.Build.CM_VERSION_CODES.APRICOT;
+    }
+
     public static boolean isAppInstalled(String packagename, Context context) {
         try {
             context.getPackageManager().getApplicationInfo(packagename, 0);

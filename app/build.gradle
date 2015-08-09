@@ -29,4 +29,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.karim:materialtabs:2.0.2'
     compile 'net.i2p.android.ext:floatingactionbutton:1.9.0'
+    compile 'org.cyanogenmod:platform.sdk:1.0'
 }

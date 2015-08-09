@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="cyanogenmod.permission.PUBLISH_CUSTOM_TILE" />
 
     <uses-feature
         android:name="android.software.leanback"
@@ -110,6 +111,13 @@
 
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
+            </intent-filter>
+        </receiver>
+
+        <!-- CM SDK -->
+        <receiver android:name=".services.ProfileTileReceiver">
+            <intent-filter>
+                <action android:name="com.grarak.kerneladiutor.ACTION_TOGGLE_STATE" />
             </intent-filter>
         </receiver>
     </application>

@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.database.ProfileDB;
 
 /**
  * Created by willi on 27.12.14.
@@ -32,6 +33,7 @@ public class BootReceiver extends BroadcastReceiver {
         if (Utils.getBoolean("emulateinit.d", false, context))
             context.startService(new Intent(context, InitdService.class));
         context.startService(new Intent(context, BootService.class));
+        ProfileTileReceiver.publishProfileTile(new ProfileDB(context).getAllProfiles(), context);
     }
 
 }
