@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
@@ -90,10 +89,13 @@ public class ProfileTileReceiver extends BroadcastReceiver {
         CustomTile mCustomTile = new CustomTile.Builder(context)
                 .setExpandedStyle(gridExpandedStyle)
                 .setLabel(R.string.profile)
-                .setContentDescription("lololo")
                 .setIcon(R.drawable.ic_launcher_preview)
                 .build();
-        CMStatusBarManager.getInstance(context).publishTile(0, mCustomTile);
+        try {
+            CMStatusBarManager.getInstance(context).publishTile(0, mCustomTile);
+        } catch (IllegalArgumentException ignored) {
+            Utils.saveBoolean("profiletile", false, context);
+        }
     }
 
 }
