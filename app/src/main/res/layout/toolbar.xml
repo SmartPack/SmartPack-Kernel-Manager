@@ -6,7 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/actionbar_color"
     android:theme="@style/ActionBarStyle"
-    app:contentInsetLeft="72dp"
-    app:contentInsetStart="72dp"
+    app:contentInsetLeft="@dimen/toolbar_left_padding"
+    app:contentInsetStart="@dimen/toolbar_left_padding"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:titleTextAppearance="@style/ToolbarTitle" />

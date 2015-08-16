@@ -34,6 +34,9 @@ import java.net.URL;
 public class WebpageReader extends AsyncTask<String, Void, String> {
 
     private final WebpageCallback webpageCallback;
+    private HttpURLConnection connection;
+    private boolean connected;
+    private boolean cancelled;
 
     public WebpageReader(WebpageCallback webpageCallback) {
         this.webpageCallback = webpageCallback;
@@ -43,26 +46,38 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         InputStream is = null;
         BufferedReader br = null;
-        HttpURLConnection connection = null;
         StringBuilder sb = new StringBuilder();
 
         try {
             String line;
             URL url = new URL(params[0]);
             connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-            is = connection.getInputStream();
-            br = new BufferedReader(new InputStreamReader(is));
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        connection.connect();
+                        connected = true;
+                    } catch (IOException e) {
+                        cancelled = true;
+                    }
+                }
+            }).start();
+            while (true)
+                if (connected) {
+                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK)
+                        return "";
+                    is = connection.getInputStream();
+                    br = new BufferedReader(new InputStreamReader(is));
 
-            while ((line = br.readLine()) != null) {
-                if (isCancelled()) {
-                    is.close();
-                    br.close();
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line).append("\n");
+                    }
+                    break;
+                } else if (cancelled) {
                     connection.disconnect();
                     return "";
                 }
-                sb.append(line).append("\n");
-            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -85,6 +100,10 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
         super.onPostExecute(s);
 
         webpageCallback.onCallback(s, Html.fromHtml(s).toString());
+    }
+
+    public void cancel() {
+        cancelled = true;
     }
 
     public interface WebpageCallback {

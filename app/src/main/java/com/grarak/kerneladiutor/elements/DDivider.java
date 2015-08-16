@@ -1,21 +1,34 @@
-package com.grarak.kerneladiutor.elements.cards;
+/*
+ * Copyright (C) 2015 Willi Ye
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.grarak.kerneladiutor.elements;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
  * Created by willi on 08.08.15.
  */
-public class DDividerCard implements DAdapter.DView {
+public class DDivider extends DParent {
 
     private View parentView;
 
@@ -26,17 +39,9 @@ public class DDividerCard implements DAdapter.DView {
     private String descriptionText;
 
     @Override
-    public String getTitle() {
-        return null;
-    }
-
-    @Override
-    public BaseFragment getFragment() {
-        return null;
-    }
-
-    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+        super.onBindViewHolder(viewHolder);
+
         parentView = viewHolder.itemView;
 
         titleView = (TextView) parentView.findViewById(R.id.title);
@@ -44,14 +49,7 @@ public class DDividerCard implements DAdapter.DView {
 
         if (titleText != null) titleView.setText(titleText);
         setUpDescription();
-
-        StaggeredGridLayoutManager.LayoutParams layoutParams =
-                new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setFullSpan(true);
-        int padding = parentView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-        layoutParams.setMargins(0, padding, 0, 0);
-        parentView.setLayoutParams(layoutParams);
+        setFullSpan(true);
     }
 
     public void setText(String text) {
@@ -77,10 +75,8 @@ public class DDividerCard implements DAdapter.DView {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-        return new RecyclerView.ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.divider_view, viewGroup, false)) {
-        };
+    public View getView(ViewGroup viewGroup) {
+        return LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.divider_view, viewGroup, false);
     }
 
 }

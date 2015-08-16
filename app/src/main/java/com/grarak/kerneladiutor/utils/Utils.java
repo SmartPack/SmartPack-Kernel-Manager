@@ -30,7 +30,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -57,8 +56,8 @@ import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
-import com.grarak.kerneladiutor.utils.root.RootFile;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.kerneladiutor.library.Tools;
+import com.kerneladiutor.library.root.RootUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -66,8 +65,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -292,18 +289,6 @@ public class Utils implements Constants {
         }
     }
 
-    public static String getExternalStorage() {
-        String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
-        return path.contains("/") ? path : null;
-    }
-
-    public static String getInternalStorage() {
-        String dataPath = existFile("/data/media/0") ? "/data/media/0" : "/data/media";
-        if (!new RootFile(dataPath).isEmpty()) return dataPath;
-        if (existFile("/sdcard")) return "/sdcard";
-        return Environment.getExternalStorageDirectory().getPath();
-    }
-
     public static void confirmDialog(String title, String message, DialogInterface.OnClickListener onClickListener,
                                      Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -425,7 +410,11 @@ public class Utils implements Constants {
     }
 
     public static void launchUrl(Context context, String link) {
-        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static int getActionBarHeight(Context context) {
@@ -504,57 +493,16 @@ public class Utils implements Constants {
         }
     }
 
-    public static void writeFile(String path, String text, boolean append) {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(path, append);
-            writer.write(text);
-            writer.flush();
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to write " + path);
-        } finally {
-            try {
-                if (writer != null) writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static String readFile(String file, boolean root) {
-        if (root) return new RootFile(file).readFile();
-
-        StringBuilder s = null;
-        FileReader fileReader = null;
-        BufferedReader buf = null;
-        try {
-            fileReader = new FileReader(file);
-            buf = new BufferedReader(fileReader);
-
-            String line;
-            s = new StringBuilder();
-            while ((line = buf.readLine()) != null) s.append(line).append("\n");
-        } catch (FileNotFoundException ignored) {
-            Log.e(TAG, "File does not exist " + file);
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to read " + file);
-        } finally {
-            try {
-                if (fileReader != null) fileReader.close();
-                if (buf != null) buf.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return s == null ? null : s.toString().trim();
-    }
-
     public static boolean existFile(String file) {
-        return new RootFile(file).exists();
+        return Tools.existFile(file, true);
+    }
+
+    public static void writeFile(String path, String text, boolean append) {
+        Tools.writeFile(path, text, append, true);
     }
 
     public static String readFile(String file) {
-        return readFile(file, true);
+        return Tools.readFile(file, true);
     }
 
 }

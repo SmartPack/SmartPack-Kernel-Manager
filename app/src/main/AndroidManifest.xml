@@ -30,8 +30,7 @@
         android:theme="@style/AppThemeLight">
         <activity
             android:name=".MainActivity"
-            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
-            android:label="@string/app_name">
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,6 +51,9 @@
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
             android:name=".EditTextActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
+        <activity
+            android:name=".DownloadPluginsActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
@@ -117,9 +119,10 @@
         <!-- CM SDK -->
         <receiver android:name=".services.ProfileTileReceiver">
             <intent-filter>
-                <action android:name="com.grarak.kerneladiutor.ACTION_TOGGLE_STATE" />
+                <action android:name="com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.utils;
+package com.grarak.kerneladiutor.utils.json;
 
 import android.content.Context;
+
+import com.grarak.kerneladiutor.utils.Utils;
+import com.kerneladiutor.library.Tools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +38,7 @@ public class Downloads {
     public Downloads(Context context) {
         try {
             String json = Utils.existFile(context.getFilesDir() + "/downloads.json") ?
-                    Utils.readFile(context.getFilesDir() + "/downloads.json", false) :
+                    Tools.readFile(context.getFilesDir() + "/downloads.json", false) :
                     Utils.readAssetFile(context, "downloads.json");
             JSONArray devices = new JSONArray(json);
             for (int i = 0; i < devices.length(); i++) {

@@ -16,7 +16,7 @@
 
 package com.grarak.kerneladiutor.utils.database;
 
-import com.grarak.kerneladiutor.utils.Utils;
+import com.kerneladiutor.library.Tools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +50,7 @@ public abstract class JsonDB {
     public JsonDB(String path, int version) {
         this.path = path;
         try {
-            String json = Utils.readFile(path, false);
+            String json = Tools.readFile(path, false);
             if (json != null) {
                 databaseMain = new JSONObject(json);
                 if (databaseMain.getInt("version") == version)
@@ -116,7 +116,7 @@ public abstract class JsonDB {
     public void commit() {
         try {
             databaseMain.put("database", databaseItems);
-            Utils.writeFile(path, databaseMain.toString(), false);
+            Tools.writeFile(path, databaseMain.toString(), false, false);
         } catch (JSONException e) {
             e.printStackTrace();
         }

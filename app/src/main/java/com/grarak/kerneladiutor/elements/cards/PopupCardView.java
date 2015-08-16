@@ -28,8 +28,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.elements.DParent;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class PopupCardView extends BaseCardView {
     private TextView descriptionView;
     private TextView valueView;
 
-    private String titleText;
+    private CharSequence titleText;
     private CharSequence descriptionText;
     private String valueText;
 
@@ -87,7 +86,7 @@ public class PopupCardView extends BaseCardView {
         if (valueText != null) valueView.setText(valueText);
     }
 
-    public void setTitle(String title) {
+    public void setTitle(CharSequence title) {
         titleText = title;
         setUpTitle();
     }
@@ -157,13 +156,13 @@ public class PopupCardView extends BaseCardView {
         void onItemSelected(PopupCardView popupCardView, int position);
     }
 
-    public static class DPopupCard implements DAdapter.DView {
+    public static class DPopupCard extends DParent {
 
         private final List<String> list;
 
         private PopupCardView popupCardView;
 
-        private String title;
+        private CharSequence title;
         private CharSequence description;
         private String value;
 
@@ -175,32 +174,24 @@ public class PopupCardView extends BaseCardView {
         }
 
         @Override
-        public String getTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseFragment getFragment() {
-            return null;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new PopupCardView(viewGroup.getContext(), list)) {
-            };
-        }
-
-        @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             popupCardView = (PopupCardView) viewHolder.itemView;
 
             if (title != null) popupCardView.setTitle(title);
             if (description != null) popupCardView.setDescription(description);
             if (value != null) popupCardView.setItem(value);
+
             setListener();
         }
 
-        public void setTitle(String title) {
+        @Override
+        public View getView(ViewGroup viewGroup) {
+            return new PopupCardView(viewGroup.getContext(), list);
+        }
+
+        public void setTitle(CharSequence title) {
             this.title = title;
             if (popupCardView != null) popupCardView.setTitle(title);
         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/color_primary"
     android:orientation="vertical"
     android:padding="@dimen/card_padding">
@@ -19,21 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:paddingBottom="20dp"
         android:paddingEnd="30dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:paddingStart="30dp"
-        android:textColor="@color/white" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/ok_button"
-        android:layout_width="80dp"
-        android:layout_height="35dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_bg"
-        android:gravity="center"
-        android:text="@string/ok"
         android:textColor="@color/white" />
 
 </LinearLayout>

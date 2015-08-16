@@ -29,7 +29,7 @@ import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
-import com.grarak.kerneladiutor.utils.Downloads;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 
 /**
  * Created by willi on 01.07.15.
@@ -66,7 +66,7 @@ public class FeatureCardView extends BaseCardView {
     public void setMargin() {
         int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(0, padding, 0, padding);
+        layoutParams.setMargins(0, padding, 0, 0);
         setLayoutParams(layoutParams);
     }
 

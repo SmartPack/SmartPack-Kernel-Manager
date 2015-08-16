@@ -17,11 +17,10 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.InformationCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
@@ -78,20 +77,10 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (!Utils.getBoolean("hideinfocardthermal", false, getActivity())) {
-            final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
-            mInformationCard.setText(getString(R.string.thermal_info));
-            mInformationCard.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO: Recyclerview is bugged
-                    //removeView(mInformationCard);
-                    Utils.saveBoolean("hideinfocardthermal", true, getActivity());
-                }
-            });
+        final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
+        mInformationCard.setText(getString(R.string.thermal_info));
 
-            addView(mInformationCard);
-        }
+        addView(mInformationCard);
 
         if (Thermal.hasThermald()) thermaldInit();
         if (Thermal.hasThermalSettings()) thermalInit();
@@ -465,7 +454,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (views.size() > 0) {
-            DDividerCard mMsmThermalDividerCard = new DDividerCard();
+            DDivider mMsmThermalDividerCard = new DDivider();
             mMsmThermalDividerCard.setText(getString(R.string.msm_thermal));
             mMsmThermalDividerCard.setDescription(getString(R.string.msm_thermal_summary));
             addView(mMsmThermalDividerCard);

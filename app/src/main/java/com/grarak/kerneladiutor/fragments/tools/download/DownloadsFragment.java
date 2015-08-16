@@ -28,9 +28,9 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.download.KernelCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.WebpageReader;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -165,7 +165,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
     }
 
     private void hideProgress() {
-        if (getCount() < 1) progressText.setText(getString(R.string.no_internet));
+        if (getCount() < 1) progressText.setText(getString(R.string.no_kernels));
         else progressText.setVisibility(View.GONE);
         progressBar.setVisibility(View.INVISIBLE);
     }
@@ -173,7 +173,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        jsonWebpageReader.cancel(true);
-        for (WebpageReader webpageReader : kernelWebpageReaders) webpageReader.cancel(true);
+        jsonWebpageReader.cancel();
+        for (WebpageReader webpageReader : kernelWebpageReaders) webpageReader.cancel();
     }
 }

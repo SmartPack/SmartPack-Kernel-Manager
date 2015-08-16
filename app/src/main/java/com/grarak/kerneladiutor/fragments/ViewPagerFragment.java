@@ -108,7 +108,10 @@ public class ViewPagerFragment extends BaseFragment {
 
                     mTabs.setTextColorSelected(getResources().getColor(R.color.white));
                     mTabs.setTextColorUnselected(getResources().getColor(R.color.textcolor_dark));
-                    mTabs.setIndicatorColor(getResources().getColor(R.color.white));
+                    if (getCount() > 1)
+                        mTabs.setIndicatorColor(getResources().getColor(R.color.white));
+                    else
+                        mTabs.setIndicatorColor(getResources().getColor(R.color.color_primary));
                     mTabs.setViewPager(mViewPager);
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
@@ -152,6 +155,8 @@ public class ViewPagerFragment extends BaseFragment {
             items.add(item);
             adapter.notifyDataSetChanged();
         }
+        if (getCount() > 1)
+            mTabs.setIndicatorColor(getResources().getColor(R.color.white));
     }
 
     public int getCount() {
@@ -164,6 +169,10 @@ public class ViewPagerFragment extends BaseFragment {
 
     public void showTabs(boolean visible) {
         mTabs.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public List<ViewPagerItem> getItems() {
+        return items;
     }
 
     private class Adapter extends FragmentPagerAdapter {

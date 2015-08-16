@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.CircleChart;
-import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DParent;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 
 /**
@@ -38,6 +38,7 @@ public class UsageCardView extends BaseCardView {
 
     private int progress;
     private String text;
+    private int max;
 
     public UsageCardView(Context context) {
         super(context, R.layout.usage_cardview);
@@ -50,6 +51,7 @@ public class UsageCardView extends BaseCardView {
 
         textView = (TextView) view.findViewById(R.id.text);
         if (text != null) textView.setText(text);
+        if (max > 0) circleChart.setMax(max);
     }
 
     public void setProgress(int progress) {
@@ -62,12 +64,17 @@ public class UsageCardView extends BaseCardView {
         if (textView != null) textView.setText(text);
     }
 
-    public static class DUsageCard implements DAdapter.DView {
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public static class DUsageCard extends DParent {
 
         private UsageCardView usageCardView;
 
         private int progress;
         private String text;
+        private int max;
 
         @Override
         public String getTitle() {
@@ -81,15 +88,17 @@ public class UsageCardView extends BaseCardView {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             usageCardView = (UsageCardView) viewHolder.itemView;
             usageCardView.setProgress(progress);
             if (text != null) usageCardView.setText(text);
+            if (max > 0) usageCardView.setMax(max);
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new UsageCardView(viewGroup.getContext())) {
-            };
+        public View getView(ViewGroup viewGroup) {
+            return new UsageCardView(viewGroup.getContext());
         }
 
         public void setProgress(int progress) {
@@ -100,6 +109,10 @@ public class UsageCardView extends BaseCardView {
         public void setText(String text) {
             this.text = text;
             if (usageCardView != null) usageCardView.setText(text);
+        }
+
+        public void setMax(int max) {
+            this.max = max;
         }
 
     }

@@ -27,8 +27,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.elements.DParent;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.List;
@@ -197,7 +196,7 @@ public class SeekBarCardView extends BaseCardView {
         void onStop(SeekBarCardView seekBarCardView, int progress);
     }
 
-    public static class DSeekBarCard implements DAdapter.DView {
+    public static class DSeekBarCard extends DParent {
 
         private final List<String> list;
 
@@ -215,23 +214,9 @@ public class SeekBarCardView extends BaseCardView {
         }
 
         @Override
-        public String getTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseFragment getFragment() {
-            return null;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new SeekBarCardView(viewGroup.getContext(), list)) {
-            };
-        }
-
-        @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             seekBarCardView = (SeekBarCardView) viewHolder.itemView;
 
             if (title != null) seekBarCardView.setTitle(title);
@@ -256,6 +241,11 @@ public class SeekBarCardView extends BaseCardView {
                         onDSeekBarCardListener.onStop(DSeekBarCard.this, progress);
                 }
             });
+        }
+
+        @Override
+        public View getView(ViewGroup viewGroup) {
+            return new SeekBarCardView(viewGroup.getContext(), list);
         }
 
         public void setTitle(String title) {

@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.utils.root;
+package com.kerneladiutor.library.root;
 
-import com.grarak.kerneladiutor.utils.Utils;
+import com.kerneladiutor.library.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by willi on 08.02.15.
+ */
+
+/**
+ * This class is kinda similar to {@link java.io.File}.
+ * Only difference is that this class runs as Root.
  */
 public class RootFile {
 
@@ -45,7 +50,10 @@ public class RootFile {
     }
 
     public void write(String text, boolean append) {
-        RootUtils.runCommand(append ? "echo '" + text + "' >> " + file : "echo '" + text + "' > " + file);
+        String[] textarray = text.split("\\r?\\n");
+        RootUtils.runCommand(append ? "echo '" + textarray[0] + "' >> " + file : "echo '" + textarray[0] + "' > " + file);
+        if (textarray.length > 1) for (int i = 1; i < textarray.length; i++)
+            RootUtils.runCommand("echo '" + textarray[i] + "' >> " + file);
     }
 
     public void delete() {
@@ -58,7 +66,7 @@ public class RootFile {
         if (files != null)
             // Make sure the file exists
             for (String file : files.split("\\r?\\n"))
-                if (file != null && !file.isEmpty() && Utils.existFile(this.file + "/" + file))
+                if (file != null && !file.isEmpty() && Tools.existFile(this.file + "/" + file, true))
                     list.add(file);
         return list;
     }

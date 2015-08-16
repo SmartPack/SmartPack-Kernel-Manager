@@ -19,16 +19,13 @@ package com.grarak.kerneladiutor.elements.cards;
 import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.elements.DParent;
 
 /**
  * Created by willi on 25.04.15.
@@ -36,9 +33,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 public class InformationCardView extends BaseCardView {
 
     private TextView infoView;
-    private Button okButton;
     private String infoText;
-    private OnClickListener onClickListener;
 
     public InformationCardView(Context context) {
         super(context, R.layout.information_cardview);
@@ -50,11 +45,8 @@ public class InformationCardView extends BaseCardView {
     @Override
     public void setUpInnerLayout(View view) {
         infoView = (TextView) view.findViewById(R.id.info_text);
-        okButton = (Button) view.findViewById(R.id.ok_button);
 
         if (infoText != null) infoView.setText(infoText);
-        if (onClickListener != null)
-            okButton.setOnClickListener(onClickListener);
     }
 
     @Override
@@ -66,59 +58,29 @@ public class InformationCardView extends BaseCardView {
         if (infoView != null) infoView.setText(infoText);
     }
 
-    public void setOnClickListener(OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
-        if (okButton != null) okButton.setOnClickListener(onClickListener);
-    }
-
-    public static class DInformationCard implements DAdapter.DView {
+    public static class DInformationCard extends DParent {
 
         private InformationCardView informationCardView;
         private String infoText;
-        private OnClickListener onClickListener;
-
-        @Override
-        public String getTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseFragment getFragment() {
-            return null;
-        }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             informationCardView = (InformationCardView) viewHolder.itemView;
 
             if (infoText != null) informationCardView.setText(infoText);
-            if (onClickListener != null)
-                informationCardView.setOnClickListener(onClickListener);
-
-            StaggeredGridLayoutManager.LayoutParams layoutParams =
-                    new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setFullSpan(true);
-            int padding = informationCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-            layoutParams.setMargins(padding, padding, padding, 0);
-            informationCardView.setLayoutParams(layoutParams);
+            setFullSpan(true);
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new InformationCardView(viewGroup.getContext())) {
-            };
+        public View getView(ViewGroup viewGroup) {
+            return new InformationCardView(viewGroup.getContext());
         }
 
         public void setText(String text) {
             infoText = text;
             if (informationCardView != null) informationCardView.setText(infoText);
-        }
-
-        public void setOnClickListener(OnClickListener onClickListener) {
-            this.onClickListener = onClickListener;
-            if (informationCardView != null)
-                informationCardView.setOnClickListener(onClickListener);
         }
 
     }

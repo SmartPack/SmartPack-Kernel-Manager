@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="toolbar_left_padding">72dp</dimen>
+
     <dimen name="basecard_padding">4dp</dimen>
     <dimen name="basecard_radius">3dp</dimen>
-    <dimen name="card_padding">10dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
 
     <dimen name="splashview_textsize">17sp</dimen>
 

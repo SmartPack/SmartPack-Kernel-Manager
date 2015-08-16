@@ -183,8 +183,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
         super.onDestroy();
         try {
             getActivity().unregisterReceiver(mBatInfoReceiver);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException ignored) {
         }
     }
 }

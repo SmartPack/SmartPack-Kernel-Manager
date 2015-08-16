@@ -47,7 +47,7 @@ import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +77,7 @@ public class BootService extends Service {
 
     private void init() {
         final List<String> applys = new ArrayList<>();
+        final List<String> plugins = new ArrayList<>();
 
         Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
                 CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,
@@ -91,7 +92,14 @@ public class BootService extends Service {
                 applys.addAll(Utils.getApplys(mClass));
             }
 
-        if (applys.size() > 0) {
+        String plugs;
+        if (!(plugs = Utils.getString("plugins", "", this)).isEmpty()) {
+            String[] ps = plugs.split("wefewfewwgwe");
+            for (String plug : ps)
+                if (Utils.getBoolean(plug + "onboot", false, this)) plugins.add(plug);
+        }
+
+        if (applys.size() > 0 || plugins.size() > 0) {
             final int delay = Utils.getInt("applyonbootdelay", 5, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this);
@@ -124,14 +132,14 @@ public class BootService extends Service {
                         mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
                         mNotifyManager.notify(id, mBuilder.build());
                     }
-                    apply(applys);
+                    apply(applys, plugins);
                     stopSelf();
                 }
             }).start();
         } else stopSelf();
     }
 
-    private void apply(List<String> applys) {
+    private void apply(List<String> applys, List<String> plugins) {
         boolean hasRoot = false;
         boolean hasBusybox = false;
         if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
@@ -154,16 +162,27 @@ public class BootService extends Service {
         for (String file : writePermission)
             su.runCommand("chmod 644 " + file);
 
+        List<CommandDB.CommandItem> allCommands = new CommandDB(this).getAllCommands();
         List<String> commands = new ArrayList<>();
-        for (CommandDB.CommandItem commandItem : new CommandDB(this).getAllCommands())
-            for (String sys : applys) {
-                String path = commandItem.getPath();
-                if ((sys.contains(path) || path.contains(sys))) {
-                    String command = commandItem.getCommand();
-                    if (commands.indexOf(command) < 0)
-                        commands.add(command);
+        if (applys.size() > 0)
+            for (CommandDB.CommandItem commandItem : allCommands)
+                for (String sys : applys) {
+                    String path = commandItem.getPath();
+                    if ((sys.contains(path) || path.contains(sys))) {
+                        String command = commandItem.getCommand();
+                        if (commands.indexOf(command) < 0)
+                            commands.add(command);
+                    }
                 }
-            }
+
+        if (plugins.size() > 0)
+            for (CommandDB.CommandItem commandItem : allCommands)
+                for (String pluginName : plugins)
+                    if (commandItem.getPath().endsWith(pluginName)) {
+                        String command = commandItem.getCommand();
+                        if (commands.indexOf(command) < 0)
+                            commands.add(command);
+                    }
 
         for (String command : commands) {
             log("run: " + command);

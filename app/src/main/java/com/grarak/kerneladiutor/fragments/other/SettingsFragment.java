@@ -32,7 +32,7 @@ import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -41,7 +41,7 @@ import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,7 +137,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void applyonbootInit() {
-        DDividerCard mApplyonBootDividerCard = new DDividerCard();
+        DDivider mApplyonBootDividerCard = new DDivider();
         mApplyonBootDividerCard.setText(getString(R.string.apply_on_boot));
 
         addView(mApplyonBootDividerCard);
@@ -223,7 +223,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void debuggingInit() {
-        DDividerCard mDebuggingDividerCard = new DDividerCard();
+        DDivider mDebuggingDividerCard = new DDivider();
         mDebuggingDividerCard.setText(getString(R.string.debugging));
 
         addView(mDebuggingDividerCard);
@@ -293,7 +293,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void securityInit() {
-        DDividerCard mSecurityDividerCard = new DDividerCard();
+        DDivider mSecurityDividerCard = new DDivider();
         mSecurityDividerCard.setText(getString(R.string.security));
 
         addView(mSecurityDividerCard);
@@ -408,7 +408,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void showSectionsInit() {
-        DDividerCard mShowSectionsDividerCard = new DDividerCard();
+        DDivider mShowSectionsDividerCard = new DDivider();
         mShowSectionsDividerCard.setText(getString(R.string.show_sections));
         addView(mShowSectionsDividerCard);
 

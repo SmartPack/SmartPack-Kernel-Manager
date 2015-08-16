@@ -21,7 +21,7 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
@@ -165,7 +165,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void networkInit() {
-        DDividerCard mNetworkDividerCard = new DDividerCard();
+        DDivider mNetworkDividerCard = new DDivider();
         mNetworkDividerCard.setText(getString(R.string.network));
         addView(mNetworkDividerCard);
 
@@ -281,7 +281,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
 
         if (views.size() > 0) {
-            DDividerCard mWakelockDividerCard = new DDividerCard();
+            DDivider mWakelockDividerCard = new DDivider();
             mWakelockDividerCard.setText(getString(R.string.wakelock));
             addView(mWakelockDividerCard);
 

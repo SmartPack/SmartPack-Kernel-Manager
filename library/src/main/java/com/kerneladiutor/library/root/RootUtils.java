@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.utils.root;
+package com.kerneladiutor.library.root;
 
 import android.util.Log;
 
-import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
+import com.kerneladiutor.library.Tools;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -31,9 +30,14 @@ import java.io.OutputStreamWriter;
 /**
  * Created by willi on 14.12.14.
  */
-public class RootUtils implements Constants {
 
-    public static SU su;
+/**
+ * Here you have different functions which will help you with root commands.
+ * I think they are self explained and do no need any further descriptions.
+ */
+public class RootUtils {
+
+    private static SU su;
 
     public static boolean rooted() {
         return existBinary("su");
@@ -52,7 +56,8 @@ public class RootUtils implements Constants {
     private static boolean existBinary(String binary) {
         for (String path : System.getenv("PATH").split(":")) {
             if (!path.endsWith("/")) path += "/";
-            if (new File(path + binary).exists() || Utils.existFile(path + binary)) return true;
+            if (new File(path + binary).exists() || Tools.existFile(path + binary, true))
+                return true;
         }
         return false;
     }
@@ -81,7 +86,7 @@ public class RootUtils implements Constants {
         return su;
     }
 
-    /**
+    /*
      * Based on AndreiLux's SU code in Synapse
      * https://github.com/AndreiLux/Synapse/blob/master/src/main/java/com/af/synapse/utils/Utils.java#L238
      */
@@ -96,13 +101,13 @@ public class RootUtils implements Constants {
 
         public SU() {
             try {
-                Log.i(TAG, "SU initialized");
+                Log.i(Tools.TAG, "SU initialized");
                 firstTry = true;
                 process = Runtime.getRuntime().exec("su");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
-                Log.e(TAG, "Failed to run shell as su");
+                Log.e(Tools.TAG, "Failed to run shell as su");
                 denied = true;
                 closed = true;
             }
@@ -145,7 +150,7 @@ public class RootUtils implements Constants {
                 bufferedWriter.flush();
 
                 process.waitFor();
-                Log.i(TAG, "SU closed: " + process.exitValue());
+                Log.i(Tools.TAG, "SU closed: " + process.exitValue());
                 closed = true;
             } catch (Exception e) {
                 e.printStackTrace();

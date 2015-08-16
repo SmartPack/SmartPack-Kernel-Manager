@@ -31,6 +31,12 @@ import com.grarak.kerneladiutor.MainActivity;
  */
 public abstract class BaseFragment extends Fragment implements MainActivity.OnBackButtonListener {
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     public ActionBar getActionBar() {
         return ((AppCompatActivity) getActivity()).getSupportActionBar();
     }

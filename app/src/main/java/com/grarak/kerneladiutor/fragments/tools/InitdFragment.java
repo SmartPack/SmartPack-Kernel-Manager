@@ -35,9 +35,9 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.InformationCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootFile;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Initd;
+import com.kerneladiutor.library.root.RootFile;
+import com.kerneladiutor.library.root.RootUtils;
 import com.nineoldandroids.view.ViewHelper;
 
 import net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton;
@@ -197,19 +197,10 @@ public class InitdFragment extends RecyclerViewFragment {
     private void refresh() {
         removeAllViews();
 
-        if (!Utils.getBoolean("hideinfocardinit.d", false, getActivity())) {
-            final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
-            mInformationCard.setText(getString(R.string.emulate_initd_summary));
-            mInformationCard.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeView(mInformationCard);
-                    Utils.saveBoolean("hideinfocardinit.d", true, getActivity());
-                }
-            });
+        final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
+        mInformationCard.setText(getString(R.string.emulate_initd_summary));
 
-            addView(mInformationCard);
-        }
+        addView(mInformationCard);
 
         for (final String file : Initd.getInitds()) {
             if (file == null || file.isEmpty()) return;
@@ -282,8 +273,7 @@ public class InitdFragment extends RecyclerViewFragment {
     @Override
     public void postInit(Bundle savedInstanceState) {
         super.postInit(savedInstanceState);
-        int count = Utils.getBoolean("hideinfocardinit.d", false, getActivity()) ? 1 : 2;
-        if (getCount() < count) Utils.toast(getString(R.string.no_scripts_found), getActivity());
+        if (getCount() < 1) Utils.toast(getString(R.string.no_scripts_found), getActivity());
     }
 
     @Override

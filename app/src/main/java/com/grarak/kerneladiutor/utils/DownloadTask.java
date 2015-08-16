@@ -38,6 +38,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     private final PowerManager.WakeLock mWakeLock;
     private final String path;
     private boolean downloading = true;
+    private boolean cancelled;
 
     public DownloadTask(Context context, OnDownloadListener onDownloadListener, String path) {
         activity = (Activity) context;
@@ -75,7 +76,7 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
             int currentSize = 0;
             int count;
             while (true) {
-                if (isCancelled()) {
+                if (cancelled) {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -132,6 +133,10 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
     public void resume() {
         downloading = true;
+    }
+
+    public void cancel() {
+        cancelled = true;
     }
 
     public interface OnDownloadListener {

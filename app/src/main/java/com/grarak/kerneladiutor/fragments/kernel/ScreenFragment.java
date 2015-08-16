@@ -27,18 +27,19 @@ import android.view.View;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.ColorPalette;
 import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.GammaProfiles;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.WebpageReader;
+import com.grarak.kerneladiutor.utils.json.GammaProfiles;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
+import com.kerneladiutor.library.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -249,7 +250,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void kgammaInit() {
-        DDividerCard mKGammaDividerCard = new DDividerCard();
+        DDivider mKGammaDividerCard = new DDivider();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -297,7 +298,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void gammacontrolInit() {
-        DDividerCard mKGammaDividerCard = new DDividerCard();
+        DDivider mKGammaDividerCard = new DDivider();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -453,7 +454,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void dsipanelInit() {
-        DDividerCard mKGammaDividerCard = new DDividerCard();
+        DDivider mKGammaDividerCard = new DDivider();
         mKGammaDividerCard.setText(getString(R.string.gamma));
         addView(mKGammaDividerCard);
 
@@ -586,7 +587,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DDividerCard mLcdBackLightDividerCard = new DDividerCard();
+            DDivider mLcdBackLightDividerCard = new DDivider();
             mLcdBackLightDividerCard.setText(getString(R.string.lcd_backlight));
             addView(mLcdBackLightDividerCard);
 
@@ -647,7 +648,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DDividerCard mBackLightDimmerDividerCard = new DDividerCard();
+            DDivider mBackLightDimmerDividerCard = new DDivider();
             mBackLightDimmerDividerCard.setText(getString(R.string.backlight_dimmer));
             addView(mBackLightDimmerDividerCard);
 
@@ -690,7 +691,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (views.size() > 0) {
-            DDividerCard mMdnieGlobalDivider = new DDividerCard();
+            DDivider mMdnieGlobalDivider = new DDivider();
             mMdnieGlobalDivider.setText(getString(R.string.mdnie_global_controls));
             addView(mMdnieGlobalDivider);
 
@@ -870,6 +871,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         if (dCardView == mAdditionalProfilesCard) {
             final ProgressDialog progressDialog = new ProgressDialog(getActivity());
             progressDialog.setMessage(getString(R.string.loading));
+            progressDialog.setCancelable(false);
             progressDialog.show();
             new WebpageReader(new WebpageReader.WebpageCallback() {
                 @Override
@@ -879,7 +881,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                     GammaProfiles gammaProfiles = new GammaProfiles(raw);
                     String path = getActivity().getApplicationContext().getCacheDir() + "/gamma_profiles.json";
                     if (gammaProfiles.readable()) {
-                        Utils.writeFile(path, raw, false);
+                        Tools.writeFile(path, raw, false, false);
                         showMoreGammaProfiles(gammaProfiles);
                     } else {
                         if (Utils.existFile(path)) {

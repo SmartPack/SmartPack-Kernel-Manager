@@ -21,7 +21,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -101,7 +101,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         private void internalStorageInit() {
-            DDividerCard mInternalStorageDivider = new DDividerCard();
+            DDivider mInternalStorageDivider = new DDivider();
             mInternalStorageDivider.setText(getString(R.string.internal_storage));
 
             addView(mInternalStorageDivider);
@@ -134,7 +134,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         private void externalStorageInit() {
-            DDividerCard mExternalStorageDivider = new DDividerCard();
+            DDivider mExternalStorageDivider = new DDivider();
             mExternalStorageDivider.setText(getString(R.string.external_storage));
 
             addView(mExternalStorageDivider);

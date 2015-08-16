@@ -27,8 +27,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.elements.DParent;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
@@ -94,7 +93,7 @@ public class EditTextCardView extends CardViewItem {
         void onApply(EditTextCardView editTextCardView, String value);
     }
 
-    public static class DEditTextCard implements DAdapter.DView {
+    public static class DEditTextCard extends DParent {
 
         private EditTextCardView editTextCardView;
 
@@ -106,23 +105,9 @@ public class EditTextCardView extends CardViewItem {
         private OnDEditTextCardListener onDEditTextCardListener;
 
         @Override
-        public String getTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseFragment getFragment() {
-            return null;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new EditTextCardView(viewGroup.getContext())) {
-            };
-        }
-
-        @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             editTextCardView = (EditTextCardView) viewHolder.itemView;
 
             if (title != null) editTextCardView.setTitle(title);
@@ -137,6 +122,11 @@ public class EditTextCardView extends CardViewItem {
                         onDEditTextCardListener.onApply(DEditTextCard.this, value);
                 }
             });
+        }
+
+        @Override
+        public View getView(ViewGroup viewGroup) {
+            return new EditTextCardView(viewGroup.getContext());
         }
 
         public void setTitle(String title) {

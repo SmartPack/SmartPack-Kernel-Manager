@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -401,7 +401,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mIntelliPlugDividerCard = new DDividerCard();
+            DDivider mIntelliPlugDividerCard = new DDivider();
             mIntelliPlugDividerCard.setText(getString(R.string.intelliplug));
             addView(mIntelliPlugDividerCard);
 
@@ -533,7 +533,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mBluPlugDividerCard = new DDividerCard();
+            DDivider mBluPlugDividerCard = new DDivider();
             mBluPlugDividerCard.setText(getString(R.string.blu_plug));
 
             addView(mBluPlugDividerCard);
@@ -773,7 +773,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mMsmHotplugDividerCard = new DDividerCard();
+            DDivider mMsmHotplugDividerCard = new DDivider();
             mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
 
             addView(mMsmHotplugDividerCard);
@@ -932,7 +932,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mMakoHotplugDividerCard = new DDividerCard();
+            DDivider mMakoHotplugDividerCard = new DDivider();
             mMakoHotplugDividerCard.setText(getString(R.string.mako_hotplug));
             addView(mMakoHotplugDividerCard);
 
@@ -1118,7 +1118,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mMBHotplugDividerCard = new DDividerCard();
+            DDivider mMBHotplugDividerCard = new DDivider();
             mMBHotplugDividerCard.setText(CPUHotplug.getMBName(getActivity()));
             addView(mMBHotplugDividerCard);
 
@@ -1242,9 +1242,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mAlucardDividerCard = new DDividerCard();
-            mAlucardDividerCard.setText(getString(R.string.alucard_hotplug));
-            addView(mAlucardDividerCard);
+            DDivider mAlucardDivider = new DDivider();
+            mAlucardDivider.setText(getString(R.string.alucard_hotplug));
+            addView(mAlucardDivider);
 
             addAllViews(views);
         }
@@ -1324,7 +1324,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mThunderPlugDividerCard = new DDividerCard();
+            DDivider mThunderPlugDividerCard = new DDivider();
             mThunderPlugDividerCard.setText(getString(R.string.thunderplug));
             addView(mThunderPlugDividerCard);
 
@@ -1374,7 +1374,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mZenDecisionDividerCard = new DDividerCard();
+            DDivider mZenDecisionDividerCard = new DDivider();
             mZenDecisionDividerCard.setText(getString(R.string.zen_decision));
             addView(mZenDecisionDividerCard);
 
@@ -1495,7 +1495,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDividerCard mAutoSmpDividerCard = new DDividerCard();
+            DDivider mAutoSmpDividerCard = new DDivider();
             mAutoSmpDividerCard.setText(getString(R.string.autosmp));
             addView(mAutoSmpDividerCard);
 

@@ -18,7 +18,7 @@ package com.grarak.kerneladiutor.utils.tools;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.LinkedHashMap;
 

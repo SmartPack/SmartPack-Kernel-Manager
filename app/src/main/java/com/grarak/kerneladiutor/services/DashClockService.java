@@ -21,7 +21,7 @@ import com.google.android.apps.dashclock.api.ExtensionData;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.kerneladiutor.library.root.RootUtils;
 
 /**
  * Created by willi on 25.03.15.

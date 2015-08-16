@@ -18,7 +18,6 @@ package com.grarak.kerneladiutor.elements.cards;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +27,7 @@ import android.widget.TextView;
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.elements.DParent;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
@@ -126,52 +124,32 @@ public class SwitchCardView extends BaseCardView {
         void onChecked(SwitchCardView switchCardView, boolean checked);
     }
 
-    public static class DSwitchCard implements DAdapter.DView {
+    public static class DSwitchCard extends DParent {
 
         private SwitchCardView switchCardView;
 
         private String title;
         private String description;
         private boolean checked;
-        private boolean fullspan;
 
         private OnDSwitchCardListener onDSwitchCardListener;
 
         @Override
-        public String getTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseFragment getFragment() {
-            return null;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-            return new RecyclerView.ViewHolder(new SwitchCardView(viewGroup.getContext())) {
-            };
-        }
-
-        @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
+            super.onBindViewHolder(viewHolder);
+
             switchCardView = (SwitchCardView) viewHolder.itemView;
 
             if (title != null) switchCardView.setTitle(title);
             if (description != null) switchCardView.setDescription(description);
             switchCardView.setChecked(checked);
 
-            if (fullspan) {
-                StaggeredGridLayoutManager.LayoutParams layoutParams =
-                        new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT);
-                layoutParams.setFullSpan(true);
-                int padding = switchCardView.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-                layoutParams.setMargins(padding, padding, padding, padding);
-                switchCardView.setLayoutParams(layoutParams);
-            }
-
             setUpListener();
+        }
+
+        @Override
+        public View getView(ViewGroup viewGroup) {
+            return new SwitchCardView(viewGroup.getContext());
         }
 
         public void setTitle(String title) {
@@ -187,10 +165,6 @@ public class SwitchCardView extends BaseCardView {
         public void setChecked(boolean checked) {
             this.checked = checked;
             if (switchCardView != null) switchCardView.setChecked(checked);
-        }
-
-        public void setFullSpan(boolean fullspan) {
-            this.fullspan = fullspan;
         }
 
         public void setOnDSwitchCardListener(OnDSwitchCardListener onDSwitchCardListener) {

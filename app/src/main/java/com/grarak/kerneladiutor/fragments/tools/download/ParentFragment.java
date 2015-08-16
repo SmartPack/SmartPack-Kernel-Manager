@@ -36,7 +36,7 @@ import com.grarak.kerneladiutor.elements.cards.download.DownloadInfoCardView;
 import com.grarak.kerneladiutor.elements.cards.download.FeatureCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
-import com.grarak.kerneladiutor.utils.Downloads;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.nineoldandroids.view.ViewHelper;
 

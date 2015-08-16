@@ -107,8 +107,8 @@
             android:layout_marginBottom="7dp"
             android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            fab:fab_colorNormal="@color/color_primary"
-            fab:fab_colorPressed="@color/color_primary_dark"
+            fab:fab_colorNormal="@color/fab_normal_pink"
+            fab:fab_colorPressed="@color/fab_pressed_pink"
             fab:fab_plusIconColor="@color/white" />
 
     </FrameLayout>

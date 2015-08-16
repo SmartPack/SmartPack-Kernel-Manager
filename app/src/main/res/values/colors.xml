@@ -13,6 +13,8 @@
     <color name="fab_pressed">#E6E6E6</color>
     <color name="fab_normal_menu">@color/white</color>
     <color name="fab_pressed_menu">#E8E8E8</color>
+    <color name="fab_normal_pink">#E91E63</color>
+    <color name="fab_pressed_pink">#C2185B</color>
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

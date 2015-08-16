@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.grarak.kerneladiutor.utils;
+package com.grarak.kerneladiutor.utils.json;
 
 import android.util.Log;
+
+import com.grarak.kerneladiutor.utils.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;

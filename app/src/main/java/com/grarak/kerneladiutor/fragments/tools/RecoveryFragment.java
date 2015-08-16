@@ -35,9 +35,9 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootFile;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
+import com.kerneladiutor.library.root.RootFile;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
 import java.util.ArrayList;

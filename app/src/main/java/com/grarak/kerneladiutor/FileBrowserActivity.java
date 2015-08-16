@@ -35,6 +35,7 @@ import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.kerneladiutor.library.Tools;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class FileBrowserActivity extends BaseActivity {
             super.init(savedInstanceState);
 
             String fileType = getArguments().getString(FILE_TYPE_ARG);
-            String externalStorage = Utils.getExternalStorage();
+            String externalStorage = Tools.getExternalStorage();
 
             fileBrowserActivity.internalStorage =
                     StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);

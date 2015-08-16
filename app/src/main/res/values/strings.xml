@@ -75,6 +75,7 @@
     <string name="virtual_memory">Virtual Memory</string>
     <string name="entropy">Entropy</string>
     <string name="misc_controls">Misc Controls</string>
+    <string name="plugins">Plugins</string>
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
@@ -525,7 +526,17 @@
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
 
+    <!-- Plugins -->
+    <string name="loading_plugins">Loading Plugins</string>
+    <string name="download_plugins">Download Plugins</string>
+    <string name="looking_plugins">Looking for plugins</string>
+    <string name="no_plugins">No plugins found</string>
+    <string name="installed">Installed</string>
+    <string name="update_available">Update available</string>
+    <string name="not_installed">Not installed</string>
+
     <!-- Downloads -->
+    <string name="no_kernels">No kernels found</string>
     <string name="logo">Logo</string>
     <string name="features">Features</string>
     <string name="loading_counting">Loading %1$d/%2$d</string>

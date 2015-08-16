@@ -39,11 +39,12 @@ import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.DownloadTask;
-import com.grarak.kerneladiutor.utils.Downloads;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootFile;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
+import com.kerneladiutor.library.Tools;
+import com.kerneladiutor.library.root.RootFile;
+import com.kerneladiutor.library.root.RootUtils;
 
 import net.i2p.android.ext.floatingactionbutton.FloatingActionButton;
 
@@ -150,7 +151,7 @@ public class DownloadCardView extends BaseCardView {
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloadTask.cancel(true);
+                downloadTask.cancel();
                 alertDialog.dismiss();
             }
         });
@@ -207,9 +208,9 @@ public class DownloadCardView extends BaseCardView {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (installMethod != null) {
                                         RootUtils.runCommand(installMethod.replace("$FILE",
-                                                Utils.getInternalStorage() + "/KernelAdiutor/download.zip"));
+                                                Tools.getInternalStorage() + "/KernelAdiutor/download.zip"));
                                         RootUtils.runCommand("rm -f " +
-                                                Utils.getInternalStorage() + "/KernelAdiutor/download.zip");
+                                                Tools.getInternalStorage() + "/KernelAdiutor/download.zip");
                                         RootUtils.runCommand("reboot");
                                     } else {
                                         final Recovery recovery =
@@ -264,7 +265,7 @@ public class DownloadCardView extends BaseCardView {
     public void setMargin() {
         int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(0, padding, 0, padding);
+        layoutParams.setMargins(0, padding, 0, 0);
         setLayoutParams(layoutParams);
     }
 

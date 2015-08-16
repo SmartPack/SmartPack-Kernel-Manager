@@ -30,7 +30,7 @@ import com.bvalosek.cpuspy.CpuSpyApp;
 import com.bvalosek.cpuspy.CpuStateMonitor;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -107,7 +107,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         super.init(savedInstanceState);
 
         if (CPU.isBigLITTLE()) {
-            DDividerCard bigDivider = new DDividerCard();
+            DDivider bigDivider = new DDivider();
             bigDivider.setText(getString(R.string.big).toLowerCase());
             addView(bigDivider);
         }
@@ -129,7 +129,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         addView(frequencyCard);
 
         if (CPU.isBigLITTLE()) {
-            DDividerCard LITTLEDivider = new DDividerCard();
+            DDivider LITTLEDivider = new DDivider();
             LITTLEDivider.setText(getString(R.string.little));
             addView(LITTLEDivider);
 

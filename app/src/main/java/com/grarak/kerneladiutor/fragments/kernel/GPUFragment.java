@@ -20,7 +20,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.DDividerCard;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -125,7 +125,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
     }
 
     private void simpleGpuInit() {
-        DDividerCard mSimpleGpuDividerCard = new DDividerCard();
+        DDivider mSimpleGpuDividerCard = new DDivider();
         mSimpleGpuDividerCard.setText(getString(R.string.simple_gpu_algorithm));
 
         addView(mSimpleGpuDividerCard);

@@ -69,7 +69,6 @@ public class RecyclerViewFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         this.inflater = inflater;
         this.container = container;
 
@@ -106,9 +105,7 @@ public class RecyclerViewFragment extends BaseFragment {
                 applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Utils.saveBoolean(getClassName() + "onboot", isChecked, getActivity());
-                        Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
-                                getActionBar().getTitle()), getActivity());
+                        applyOnBootChecked(isChecked);
                     }
                 });
             }
@@ -156,12 +153,13 @@ public class RecyclerViewFragment extends BaseFragment {
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        hand = new Handler();
-                    }
-                });
+                if (hand == null)
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            hand = new Handler();
+                        }
+                    });
                 adapter = new DAdapter.Adapter(new ArrayList<DAdapter.DView>());
                 try {
                     if (isAdded()) preInit(savedInstanceState);
@@ -227,6 +225,12 @@ public class RecyclerViewFragment extends BaseFragment {
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    public void applyOnBootChecked(boolean isChecked) {
+        Utils.saveBoolean(getClassName() + "onboot", isChecked, getActivity());
+        Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
+                getActionBar().getTitle()), getActivity());
+    }
+
     public void setProgressBar(ProgressBar progressBar) {
         progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
                 getResources().getColor(android.R.color.white)));
@@ -270,6 +274,10 @@ public class RecyclerViewFragment extends BaseFragment {
     public void addAllViews(List<DAdapter.DView> views) {
         adapter.DViews.addAll(views);
         adapter.notifyDataSetChanged();
+    }
+
+    public void resetRecyclerview() {
+        recyclerView.setAdapter(adapter);
     }
 
     public int getCount() {
