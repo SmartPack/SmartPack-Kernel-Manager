@@ -29,8 +29,8 @@ import android.widget.TextView;
 import com.bvalosek.cpuspy.CpuSpyApp;
 import com.bvalosek.cpuspy.CpuStateMonitor;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DDivider;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -38,6 +38,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * main activity class
@@ -108,7 +109,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         if (CPU.isBigLITTLE()) {
             DDivider bigDivider = new DDivider();
-            bigDivider.setText(getString(R.string.big).toLowerCase());
+            bigDivider.setText(getString(R.string.big).toLowerCase(Locale.getDefault()));
             addView(bigDivider);
         }
 
@@ -130,7 +131,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         if (CPU.isBigLITTLE()) {
             DDivider LITTLEDivider = new DDivider();
-            LITTLEDivider.setText(getString(R.string.little));
+            LITTLEDivider.setText(getString(R.string.little).toUpperCase(Locale.getDefault()));
             addView(LITTLEDivider);
 
             uptimeCardLITTLE = new CardViewItem.DCardView();

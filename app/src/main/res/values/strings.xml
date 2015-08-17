@@ -527,6 +527,7 @@
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
 
     <!-- Plugins -->
+    <string name="plugin_warning">I, the creator of this application, am not responsible for any damages that third party apps produce! I also can\'t guarantee for the functionality of them. Please be careful which applications you download!</string>
     <string name="loading_plugins">Loading Plugins</string>
     <string name="download_plugins">Download Plugins</string>
     <string name="looking_plugins">Looking for plugins</string>

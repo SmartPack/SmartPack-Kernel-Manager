@@ -207,6 +207,15 @@ public class PluginsFragment extends ViewPagerFragment {
         super.mTabs.setPaddingMiddle(false);
         super.mTabs.setSameWeightTabs(false);
         super.mTabs.setTabPaddingLeftRight(getResources().getDimensionPixelSize(R.dimen.toolbar_left_padding));
+
+        if (Utils.getBoolean("showpluginwarning", true, getActivity()))
+            new AlertDialog.Builder(getActivity()).setMessage(getString(R.string.plugin_warning))
+                    .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.saveBoolean("showpluginwarning", false, getActivity());
+                        }
+                    }).show();
     }
 
     private int supportedApps(Intent i) {

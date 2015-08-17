@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.View;
@@ -40,6 +41,9 @@ public class DownloadPluginsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setFragment(R.id.content_frame, DownloadPluginFragment.newInstance(getIntent().getExtras().getString(JSON_ARG)));
+        ActionBar actionBar;
+        if ((actionBar = getSupportActionBar()) != null)
+            actionBar.setTitle(getString(R.string.plugins));
     }
 
     @Override
