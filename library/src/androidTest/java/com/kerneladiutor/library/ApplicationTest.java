@@ -1,4 +1,4 @@
-package com.kerneladiutor.ka_library;
+package com.kerneladiutor.library;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

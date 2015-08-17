@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -53,7 +54,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toolbar toolbar;
         if ((toolbar = getToolbar()) != null) {
             if (Utils.DARKTHEME) toolbar.setPopupTheme(R.style.ThemeOverlay_AppCompat_Dark);
-            setSupportActionBar(toolbar);
+            try {
+                setSupportActionBar(toolbar);
+            } catch (NoClassDefFoundError e) {
+                Utils.toast(e.getMessage(), this, Toast.LENGTH_LONG);
+                finish();
+            }
         }
 
         ActionBar actionBar;

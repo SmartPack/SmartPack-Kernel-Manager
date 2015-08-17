@@ -273,7 +273,7 @@ public class PluginsFragment extends ViewPagerFragment {
                 });
                 mProgressDialog.show();
 
-                webpageReader.execute("https://raw.githubusercontent.com/Grarak/grarak.github.io/master/plugins.json");
+                webpageReader.execute("https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/plugins.json");
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -65,7 +65,7 @@ Also codes from different people:
 
 #### Andrei F.
 
-* [RootUtils](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/utils/root/RootUtils.java)
+* [RootUtils](https://github.com/Grarak/KernelAdiutor/blob/master/library/src/main/java/com/kerneladiutor/library/root/RootUtils.java)
 
 #### apbaxel
 
