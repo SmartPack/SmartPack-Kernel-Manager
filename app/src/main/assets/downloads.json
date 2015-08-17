@@ -42,9 +42,9 @@
       "Micromax",
       "Spice",
       "Karbonn",
-      "Symphony",
+      "Roar",
       "Mito",
-      "Evercross",
+      "Evercoss",
       "Nexian",
       "Cherry Mobile",
       "MyPhone",
@@ -72,5 +72,15 @@
       "vs985"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "SM-G900T",
+      "kltetmo"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sm-g900t.json"
   }
 ]
