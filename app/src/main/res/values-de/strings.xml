@@ -59,6 +59,7 @@
   <string name="virtual_memory">Virtueller Speicher</string>
   <string name="entropy">Entropie</string>
   <string name="misc_controls">Verschiedene Einstellungen</string>
+  <string name="plugins">Erweiterungen</string>
   <string name="backup">Sicherung</string>
   <string name="build_prop_editor">Build prop-Bearbeiter</string>
   <string name="profile">Profil</string>
@@ -339,6 +340,7 @@
   <string name="usb_fast_charge_summary">Das Gerät lädt schneller, falls verbunden via USB.</string>
   <string name="blx">Akkulaufzeit verlängern</string>
   <string name="blx_summary">Maximale Kapazität die aufgeladen werden soll.</string>
+  <string name="charge_rate_summary">Legen Sie eine benutzerdefinierte Ladegeschwindigkeit fest. Vorsicht: Überschreitung von 1250mA kann Ihr Ladegerät beschädigt.</string>
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
   <string name="scheduler">Scheduler</string>
@@ -390,6 +392,15 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
+  <string name="plugin_warning">Ich, der Autor dieser Anwendung, bin nicht verantwortlich für Schäden, die Dritt-Anwendungen verursachen! Ich kann auch nicht für die Funktionalität von ihnen garantieren. Seien Sie bitte vorsichtig, welche Anwendungen Sie herunterladen!</string>
+  <string name="loading_plugins">Erweiterungen laden</string>
+  <string name="download_plugins">Erweiterungen herunterladen</string>
+  <string name="looking_plugins">Suche nach Erweiterungen</string>
+  <string name="no_plugins">Keine Erweiterungen gefunden</string>
+  <string name="installed">Installiert</string>
+  <string name="update_available">Aktualisierungen verfügbar</string>
+  <string name="not_installed">Nicht installiert</string>
+  <string name="no_kernels">Keine Kernels gefunden</string>
   <string name="logo">Logo</string>
   <string name="features">Features</string>
   <string name="loading_counting">Lade %1$d/%2$d</string>
@@ -461,6 +472,7 @@
   <string name="force_english_language">Englische Sprache erzwingen</string>
   <string name="beta_info">Beta-Informationen</string>
   <string name="beta_info_summary">Zeige ein Dialogfeld beim Start, wenn Sie eine Beta-Version verwenden.</string>
+  <string name="show_profile_tile">Zeige Profil-Kachel (Benachrichtigungsanzeige)</string>
   <string name="notification">Benachrichtigung</string>
   <string name="notification_summary">Zeige eine Benachrichtigung wenn \"Beim Systemstart anwenden\" gestartet wird. Bei Problemen bitte deaktivieren.</string>
   <string name="show_toast">Toast-Benachrichtigungen anzeigen</string>
