@@ -37,6 +37,11 @@ public class Misc implements Constants {
 
     private static String LOGGER_FILE;
 
+    private static String SMB135X_WAKELOCK_FILE;
+    private static String WLAN_RX_WAKELOCK_FILE;
+    private static String WLAN_CTRL_WAKELOCK_FILE;
+    private static String WLAN_WAKELOCK_FILE;
+
     public static void setMsmHsicWakelockDivider(int value, Context context) {
         String command = String.valueOf(value + 1);
         if (value == 15) command = "0";
@@ -70,39 +75,54 @@ public class Misc implements Constants {
     }
 
     public static void activateWlanWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_WAKELOCK, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "Y" : "N", WLAN_WAKELOCK_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isWlanWakeLockActive() {
-        return Utils.readFile(WLAN_WAKELOCK).equals("Y");
+        return Utils.readFile(WLAN_WAKELOCK_FILE).equals("Y");
     }
 
     public static boolean hasWlanWakeLock() {
-        return Utils.existFile(WLAN_WAKELOCK);
+        for (String file : WLAN_WAKELOCKS)
+            if (Utils.existFile(file)) {
+                WLAN_WAKELOCK_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateWlanctrlWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_CTRL_WAKELOCK, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "Y" : "N", WLAN_CTRL_WAKELOCK_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isWlanctrlWakeLockActive() {
-        return Utils.readFile(WLAN_CTRL_WAKELOCK).equals("Y");
+        return Utils.readFile(WLAN_CTRL_WAKELOCK_FILE).equals("Y");
     }
 
     public static boolean hasWlanctrlWakeLock() {
-        return Utils.existFile(WLAN_CTRL_WAKELOCK);
+        for (String file : WLAN_CTRL_WAKELOCKS)
+            if (Utils.existFile(file)) {
+                WLAN_CTRL_WAKELOCK_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateWlanrxWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WLAN_RX_WAKELOCK, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "Y" : "N", WLAN_RX_WAKELOCK_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isWlanrxWakeLockActive() {
-        return Utils.readFile(WLAN_RX_WAKELOCK).equals("Y");
+        return Utils.readFile(WLAN_RX_WAKELOCK_FILE).equals("Y");
     }
 
     public static boolean hasWlanrxWakeLock() {
-        return Utils.existFile(WLAN_RX_WAKELOCK);
+        for (String file : WLAN_RX_WAKELOCKS)
+            if (Utils.existFile(file)) {
+                WLAN_RX_WAKELOCK_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateMsmHsicHostWakeLock(boolean active, Context context) {
@@ -130,15 +150,20 @@ public class Misc implements Constants {
     }
 
     public static void activateSmb135xWakeLock(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "Y" : "N", SMB135X_WAKELOCK_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isSmb135xWakeLockActive() {
-        return Utils.readFile(SMB135X_WAKELOCK).equals("Y");
+        return Utils.readFile(SMB135X_WAKELOCK_FILE).equals("Y");
     }
 
     public static boolean hasSmb135xWakeLock() {
-        return Utils.existFile(SMB135X_WAKELOCK);
+        for (String file : SMB135X_WAKELOCKS)
+            if (Utils.existFile(file)) {
+                SMB135X_WAKELOCK_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void setHostname(String value, Context context) {

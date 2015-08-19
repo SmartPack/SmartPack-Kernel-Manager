@@ -280,7 +280,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             views.add(mMsmHsicWakelockDividerCard);
         }
 
-        if (views.size() > 0) {
+        if (!views.isEmpty()) {
             DDivider mWakelockDividerCard = new DDivider();
             mWakelockDividerCard.setText(getString(R.string.wakelock));
             addView(mWakelockDividerCard);

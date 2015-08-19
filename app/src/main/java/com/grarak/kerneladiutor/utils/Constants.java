@@ -636,12 +636,29 @@ public interface Constants {
     String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
 
     // Wakelock
-    String SMB135X_WAKELOCK = "/sys/module/smb135x_charger/parameters/use_wlock";
+    String[] SMB135X_WAKELOCKS = {
+            "/sys/module/smb135x_charger/parameters/use_wlock",
+            "/sys/module/wakeup/parameters/enable_smb135x_wake_ws"
+    };
+
     String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
     String MSM_HSIC_HOST_WAKELOCK = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
-    String WLAN_RX_WAKELOCK = "/sys/module/wakeup/parameters/wlan_rx_wake";
-    String WLAN_CTRL_WAKELOCK = "/sys/module/wakeup/parameters/wlan_ctrl_wake";
-    String WLAN_WAKELOCK = "/sys/module/wakeup/parameters/wlan_wake";
+
+    String[] WLAN_RX_WAKELOCKS = {
+            "/sys/module/wakeup/parameters/wlan_rx_wake",
+            "/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws"
+    };
+
+    String[] WLAN_CTRL_WAKELOCKS = {
+            "/sys/module/wakeup/parameters/wlan_ctrl_wake",
+            "/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws"
+    };
+
+    String[] WLAN_WAKELOCKS = {
+            "/sys/module/wakeup/parameters/wlan_wake",
+            "/sys/module/wakeup/parameters/enable_wlan_wake_ws"
+    };
+
     String WLAN_RX_WAKELOCK_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     String MSM_HSIC_WAKELOCK_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
 
@@ -665,9 +682,10 @@ public interface Constants {
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
     String HOSTNAME_KEY = "net.hostname";
 
-    String[][] MISC_ARRAY = {{VIB_ENABLE, SMB135X_WAKELOCK, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK,
-            WLAN_CTRL_WAKELOCK, WLAN_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER, MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC,
-            DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY}, VIBRATION_ARRAY};
+    String[][] MISC_ARRAY = {{VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
+            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
+            TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
+            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";
