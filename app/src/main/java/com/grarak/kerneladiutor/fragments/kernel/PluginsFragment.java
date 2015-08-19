@@ -170,33 +170,36 @@ public class PluginsFragment extends ViewPagerFragment {
             super.mTabs.setVisibility(View.GONE);
             Utils.toast(getString(R.string.no_plugins), getActivity());
         } else {
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage(getString(R.string.loading_plugins));
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.show();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            try {
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.loading_plugins));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Activity activity;
+                        if ((activity = getActivity()) != null)
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (mProgressDialog != null) mProgressDialog.dismiss();
+                                }
+                            });
                     }
-                    Activity activity;
-                    if ((activity = getActivity()) != null)
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (mProgressDialog != null) mProgressDialog.dismiss();
-                            }
-                        });
-                }
-            }).start();
+                }).start();
 
-            getActivity().sendBroadcast(i);
-            getActivity().registerReceiver(tabReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.RECEIVE_DATA));
-            getActivity().registerReceiver(commandReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.EXECUTE_COMMAND));
-            getActivity().registerReceiver(updateReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.RECEIVE_UPDATE));
+                getActivity().sendBroadcast(i);
+                getActivity().registerReceiver(tabReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.RECEIVE_DATA));
+                getActivity().registerReceiver(commandReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.EXECUTE_COMMAND));
+                getActivity().registerReceiver(updateReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.RECEIVE_UPDATE));
+            } catch (Exception ignored) {
+            }
         }
     }
 
@@ -233,7 +236,8 @@ public class PluginsFragment extends ViewPagerFragment {
             getActivity().unregisterReceiver(tabReceiver);
             getActivity().unregisterReceiver(commandReceiver);
             getActivity().unregisterReceiver(updateReceiver);
-        } catch (IllegalArgumentException ignored) {
+            mProgressDialog.dismiss();
+        } catch (Exception ignored) {
         }
     }
 

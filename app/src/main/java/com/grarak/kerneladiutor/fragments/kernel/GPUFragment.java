@@ -250,15 +250,11 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
     @Override
     public boolean onRefresh() {
-
-        String MHZ = getString(R.string.mhz);
-
         if (mCur2dFreqCard != null)
-            mCur2dFreqCard.setDescription(GPU.getGpu2dCurFreq() / 1000000 + MHZ);
+            mCur2dFreqCard.setDescription((GPU.getGpu2dCurFreq() / 1000000) + getString(R.string.mhz));
 
         if (mCurFreqCard != null)
-            mCurFreqCard.setDescription(GPU.getGpuCurFreq() / 1000000 + MHZ);
-
+            mCurFreqCard.setDescription((GPU.getGpuCurFreq() / 1000000) + getString(R.string.mhz));
         return true;
     }
 }
