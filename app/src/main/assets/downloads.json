@@ -82,5 +82,14 @@
       "kltetmo"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sm-g900t.json"
+  },
+  {
+    "vendor": [
+      "Sony"
+    ],
+    "device": [
+      "huashan"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/xperiasp.json"
   }
 ]
