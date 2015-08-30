@@ -276,6 +276,10 @@ public class RecyclerViewFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
+    public DAdapter.DView getView(int position) {
+        return adapter.DViews.get(position);
+    }
+
     public void resetRecyclerview() {
         recyclerView.setAdapter(adapter);
     }

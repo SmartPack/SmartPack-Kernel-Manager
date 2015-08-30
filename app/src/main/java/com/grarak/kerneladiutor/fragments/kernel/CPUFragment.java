@@ -28,8 +28,8 @@ import android.widget.ProgressBar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DDivider;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -175,7 +175,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
             if (CPU.hasCpuQuiet()) cpuQuietInit();
             if (CPU.hasCpuBoost()) cpuBoostInit();
-            if (othersDivider != null && count == getCount()) removeView(othersDivider);
+            if (othersDivider != null && (count == getCount() || getView(count) instanceof DDivider))
+                removeView(othersDivider);
         }
 
         private void usageInit() {
