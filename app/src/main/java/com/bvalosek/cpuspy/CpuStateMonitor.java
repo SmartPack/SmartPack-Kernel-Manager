@@ -163,19 +163,13 @@ public class CpuStateMonitor {
     public void updateStates() throws CpuStateMonitorException {
         _states.clear();
         try {
-            String file = null;
+            String file;
             if (Utils.existFile(String.format(Constants.CPU_TIME_STATE, core))) {
                 file = String.format(Constants.CPU_TIME_STATE, core);
             } else {
                 if (core > 0) {
-                    List<Integer> cores = CPU.getCoreRange(core);
-                    for (int i = 0; i < cores.size(); i++) {
-                        CPU.activateCore(cores.get(i), true, null);
-                        if (Utils.existFile(String.format(Constants.CPU_TIME_STATE_2, cores.get(i)))) {
-                            file = String.format(Constants.CPU_TIME_STATE_2, cores.get(i));
-                            break;
-                        }
-                    }
+                    CPU.activateCore(core, true, null);
+                    file = String.format(Constants.CPU_TIME_STATE_2, core);
                 } else file = String.format(Constants.CPU_TIME_STATE_2, 0);
             }
             if (file == null)

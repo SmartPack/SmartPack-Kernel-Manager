@@ -286,17 +286,13 @@ public class CPU implements Constants {
         if (mFreqs[core] == null)
             if (Utils.existFile(String.format(CPU_TIME_STATE, core))
                     || Utils.existFile(String.format(CPU_TIME_STATE_2, 0))) {
-                String file = null;
+                String file;
                 if (Utils.existFile(String.format(CPU_TIME_STATE, core))) {
                     file = String.format(CPU_TIME_STATE, core);
                 } else {
                     if (core > 0) {
-                        List<Integer> cores = getCoreRange(core);
-                        for (int i = 0; i < cores.size(); i++) {
-                            activateCore(cores.get(i), true, null);
-                            if (Utils.existFile(String.format(CPU_TIME_STATE_2, cores.get(i))))
-                                file = String.format(CPU_TIME_STATE_2, cores.get(i));
-                        }
+                        activateCore(core, true, null);
+                        file = String.format(CPU_TIME_STATE_2, core);
                     } else file = String.format(CPU_TIME_STATE_2, 0);
                 }
                 String values;
@@ -432,12 +428,6 @@ public class CPU implements Constants {
             Control.runCommand(active ? "1" : "0", String.format(CPU_CORE_ONLINE, core), Control.CommandType.GENERIC, context);
         else
             RootUtils.runCommand(String.format("echo %s > " + String.format(CPU_CORE_ONLINE, core), active ? "1" : "0"));
-    }
-
-    public static List<Integer> getCoreRange(int core) {
-        List<Integer> litteCores = getLITTLECoreRange();
-        if (litteCores.contains(core)) return litteCores;
-        return getBigCoreRange();
     }
 
     public static List<Integer> getLITTLECoreRange() {
