@@ -3,7 +3,7 @@
     "name": "Selinux Changer",
     "description": "Allows you to change Selinux to Permissive/Enforcing. May not work on some devices. Only for Android 4.3 and above.",
     "packagename": "com.kerneladiutor.selinux_plugin",
-    "version": "1.0",
+    "version": "1.0.1",
     "download": "https://github.com/Grarak/Selinux-Plugin/blob/master/Selinux-Plugin.apk?raw=true"
   }
 ]
