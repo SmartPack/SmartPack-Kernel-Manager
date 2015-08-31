@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.fragments;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -155,8 +156,17 @@ public class ViewPagerFragment extends BaseFragment {
             items.add(item);
             adapter.notifyDataSetChanged();
         }
-        if (getCount() > 1)
-            mTabs.setIndicatorColor(getResources().getColor(R.color.white));
+        if (getCount() > 1) {
+            Activity activity;
+            if ((activity = getActivity()) != null)
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mTabs != null)
+                            mTabs.setIndicatorColor(getResources().getColor(R.color.white));
+                    }
+                });
+        }
     }
 
     public int getCount() {

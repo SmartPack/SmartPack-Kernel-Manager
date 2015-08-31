@@ -16,7 +16,6 @@
 
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -74,13 +73,11 @@ public class PluginsFragment extends ViewPagerFragment {
     private final HashMap<Handler, Runnable> handlers = new HashMap<>();
     private final List<Tab> mTabs = new ArrayList<>();
     private boolean runOnResumeHandlers;
-    private ProgressDialog mProgressDialog;
     private int count;
 
     private final BroadcastReceiver tabReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (mProgressDialog != null) mProgressDialog.dismiss();
             PluginsFragment.super.mTabs.setVisibility(View.VISIBLE);
             final Tab tab = intent.getParcelableExtra(com.kerneladiutor.library.action.Intent.TAB);
             if (tab == null) return;
@@ -171,29 +168,6 @@ public class PluginsFragment extends ViewPagerFragment {
             Utils.toast(getString(R.string.no_plugins), getActivity());
         } else {
             try {
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage(getString(R.string.loading_plugins));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(10000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        Activity activity;
-                        if ((activity = getActivity()) != null)
-                            activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (mProgressDialog != null) mProgressDialog.dismiss();
-                                }
-                            });
-                    }
-                }).start();
-
                 getActivity().sendBroadcast(i);
                 getActivity().registerReceiver(tabReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.RECEIVE_DATA));
                 getActivity().registerReceiver(commandReceiver, new IntentFilter(com.kerneladiutor.library.action.Intent.EXECUTE_COMMAND));
@@ -236,7 +210,6 @@ public class PluginsFragment extends ViewPagerFragment {
             getActivity().unregisterReceiver(tabReceiver);
             getActivity().unregisterReceiver(commandReceiver);
             getActivity().unregisterReceiver(updateReceiver);
-            mProgressDialog.dismiss();
         } catch (Exception ignored) {
         }
     }

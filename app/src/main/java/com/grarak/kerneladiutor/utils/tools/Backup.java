@@ -40,6 +40,7 @@ public class Backup {
     }
 
     private static final String[] Boot = {
+            "/dev/block/bootdevice/by-name/boot",
             "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot",
             "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
             "/dev/block/platform/sdhci-tegra.3/by-name/LX",
@@ -55,6 +56,7 @@ public class Backup {
     };
 
     private static final String[] Recovery = {
+            "/dev/block/bootdevice/by-name/recovery",
             "/dev/block/platform/omap/omap_hsmmc.0/by-name/recovery",
             "/dev/block/platform/omap/omap_hsmmc.1/by-name/recovery",
             "/dev/block/platform/sdhci-tegra.3/by-name/recovery",

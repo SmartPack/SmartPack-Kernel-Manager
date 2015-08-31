@@ -95,19 +95,25 @@ public class RootUtils {
         private Process process;
         private BufferedWriter bufferedWriter;
         private BufferedReader bufferedReader;
+        private final boolean root;
         private boolean closed;
         private boolean denied;
         private boolean firstTry;
 
         public SU() {
+            this(true);
+        }
+
+        public SU(boolean root) {
+            this.root = root;
             try {
-                Log.i(Tools.TAG, "SU initialized");
+                Log.i(Tools.TAG, root ? "SU initialized" : "SH initialized");
                 firstTry = true;
-                process = Runtime.getRuntime().exec("su");
+                process = Runtime.getRuntime().exec(root ? "su" : "sh");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
-                Log.e(Tools.TAG, "Failed to run shell as su");
+                Log.e(Tools.TAG, root ? "Failed to run shell as su" : "Failed to run shell as sh");
                 denied = true;
                 closed = true;
             }
@@ -150,7 +156,7 @@ public class RootUtils {
                 bufferedWriter.flush();
 
                 process.waitFor();
-                Log.i(Tools.TAG, "SU closed: " + process.exitValue());
+                Log.i(Tools.TAG, root ? "SU closed: " + process.exitValue() : "SH closed: " + process.exitValue());
                 closed = true;
             } catch (Exception e) {
                 e.printStackTrace();
