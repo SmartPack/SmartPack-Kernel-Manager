@@ -470,7 +470,6 @@
   <string name="feature_function">功能 x 有什么作用？</string>
   <string name="feature_function_summary">如果你不知道这项控制会起什么样的作用,那就先不要碰它.谨记在调校你昂贵的硬件之前做好充分的研究.</string>
   <string name="add_new_features">您可以添加功能 x 和 y 吗？</string>
-  <string name="add_new_features_summary">那很难说。我会尽力去添加所有的功能，但要让这个应用适合所有的设备是很难的。我只有一台 Samsung Galaxy S4 (I9500) 和一台 HTC Desire 816 ，所以提交的功能没有马上合并的话请不要责怪我。</string>
   <string name="license">许可</string>
   <string name="app_license">内核助手在 Apache License Version 2.0 下授权, 并使用了以下库</string>
   <string name="open_source">开放源代码</string>

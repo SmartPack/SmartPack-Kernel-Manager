@@ -462,7 +462,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="feature_function">O que uma característica x faz?</string>
   <string name="feature_function_summary">Se você não sabe o que faz esse controlador, então simplesmente não toque. Por favor, faça uma investigação adequada antes de brincar com seu hardware caro.</string>
   <string name="add_new_features">Pode adicionar o recurso de x e y?</string>
-  <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos. Eu só tenho um Samsung Galaxy S4 (I9500) e um HTC Desire 816, por isso não me culpe se alguns recursos não ficam disponíveis imediatamente.</string>
   <string name="license">Licença</string>
   <string name="app_license">Adiutor kernel é licenciado sob a licença Apache, versão 2.0 e utiliza as seguintes bibliotecas</string>
   <string name="open_source">Código-fonte aberto</string>

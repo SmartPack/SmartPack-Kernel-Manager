@@ -8,7 +8,7 @@
   <string name="ok">OK</string>
   <string name="cancel">Zrušit</string>
   <string name="current_value_not_supported">Aktuální hodnota není podporována</string>
-  <string name="beta_message">Děkujeme za účast v testování beta verzí aplikace! Pokud narazíte na nějaké problémy, neváhejte nás kontaktovat. Aktuálně používáte verzi %s.</string>
+  <string name="beta_message">Děkujeme za účast v testování beta verzí aplikace! Pokud narazíte na nějaké problémy, neváhejte mě kontaktovat. Aktuálně používáte verzi %s.</string>
   <string name="select_picture">Vybrat obrázek</string>
   <string name="no_picture">Žádný obrázek</string>
   <string name="went_wrong">Něco se pokazilo!</string>
@@ -337,7 +337,6 @@
   <string name="feature_function">Co dělá funkce X?</string>
   <string name="feature_function_summary">Pokud nevíte, co daná funkce dělá, prostě na ni nesahejte. Předtím, než si začnete hrát se svým drahým hardwarem, najděte si raději více informací.</string>
   <string name="add_new_features">Bylo by možné přidat funkci X či Y?</string>
-  <string name="add_new_features_summary">Těžko říci. Snažím se přidat podporu pro všechny funkce, ale je obtížné udělat aplikaci univerzální pro všechna zařízení. Vlastním pouze Samsung Galaxy S4 (I9500) a HTC Desire 816, tak se na mě, prosím, nezlobte, pokud nebudou všechny funkce přidány okamžitě.</string>
   <string name="license">Licence</string>
   <string name="app_license">Aplikace Kernel Adiutor je licencována pod licencí Apache, verze 2.0 a používá následující knihovny:</string>
   <string name="open_source">Open source</string>

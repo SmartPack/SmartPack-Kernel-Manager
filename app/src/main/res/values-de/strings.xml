@@ -393,7 +393,6 @@
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
   <string name="plugin_warning">Ich, der Autor dieser Anwendung, bin nicht verantwortlich für Schäden, die Dritt-Anwendungen verursachen! Ich kann auch nicht für die Funktionalität von ihnen garantieren. Seien Sie bitte vorsichtig, welche Anwendungen Sie herunterladen!</string>
-  <string name="loading_plugins">Erweiterungen laden</string>
   <string name="download_plugins">Erweiterungen herunterladen</string>
   <string name="looking_plugins">Suche nach Erweiterungen</string>
   <string name="no_plugins">Keine Erweiterungen gefunden</string>
@@ -510,7 +509,6 @@
   <string name="feature_function">Was macht die Einstellung \"X\"?</string>
   <string name="feature_function_summary">Wenn Sie nicht wissen, was diese Einstellung tut, verändern Sie diese auch nicht. Informieren Sie sich vorher gut, bevor Sie mit Ihrer teuren Hardware experimentieren.</string>
   <string name="add_new_features">Kannst du Funktion x und y hinzufügen?</string>
-  <string name="add_new_features_summary">Das ist schwer zu sagen. Ich versuche, alle Funktionen hinzuzufügen, aber es ist schwer, diese App universal für alle Geräte machen. Ich habe nur ein Samsung Galaxy S4 (I9500) und ein HTC Desire 816, also bitte keine Beschwerden, wenn Funktionen nicht sofort eingebaut werden.</string>
   <string name="license">Lizenz</string>
   <string name="app_license">Kernel Adiutor ist unter der Apache License, Version 2.0, lizenziert und verwendet folgende Programmbibliotheken</string>
   <string name="open_source">Open Source</string>

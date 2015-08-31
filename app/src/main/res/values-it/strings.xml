@@ -59,6 +59,7 @@
   <string name="virtual_memory">Memoria virtuale</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controlli vari</string>
+  <string name="plugins">Plugins</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profilo</string>
@@ -471,6 +472,14 @@
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
+  <string name="plugin_warning">Io, il creatore di questa applicazione, non sono responsabile per eventuali danni che producono applicazioni di terze parti! Inoltre non posso garantire per il loro corretto funzionamento. Fate attenzione alle applicazioni che scaricate!</string>
+  <string name="download_plugins">Download Plugins</string>
+  <string name="looking_plugins">Sto cercando i plugin</string>
+  <string name="no_plugins">Nessun plugin trovato</string>
+  <string name="installed">Installato</string>
+  <string name="update_available">Aggiornamento disponibile</string>
+  <string name="not_installed">Non installato</string>
+  <string name="no_kernels">Nessun kernel trovato</string>
   <string name="logo">Logo</string>
   <string name="features">Funzioni</string>
   <string name="loading_counting">Caricamento %1$d/%2$d</string>
@@ -580,7 +589,6 @@
   <string name="feature_function">Cosa fa la caratteristica X?</string>
   <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso Smartphone.</string>
   <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
-  <string name="add_new_features_summary">Si lo so, ci provo ad aggiungere tutte le caratteristiche, ma è veramente difficile rendere questa applicazione universale e funzionante su tutti i dispositivi. I posseggo solo un S4 (I9500) e un HTC Desire, quindi non datemi la colpa se non riesco ad aggiungere immediatamente le nuove funzioni.</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>

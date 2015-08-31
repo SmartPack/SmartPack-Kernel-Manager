@@ -481,7 +481,6 @@
   <string name="feature_function">Kaj stori funkcija x?</string>
   <string name="feature_function_summary">Če ne poznate funkcije te nastavitve, jo preprosto pustite pri miru. Prosim, da jo natančno raziščite pred igranjem z vašo drago strojno opremo.</string>
   <string name="add_new_features">Ali lahko dodate funkciji x in y?</string>
-  <string name="add_new_features_summary">To je težko reči. Trudim se dodati vse funkcije, vendar je to aplikacijo težko narediti univerzalno za vse naprave. Imam le Samsung Galaxy S4 (I9500) in HTC Desire 816, zato mi prosim oprostite, če funkcije ne bodo takoj združene.</string>
   <string name="license">Licenca</string>
   <string name="app_license">Kernel Adiutor je licenciran pod Apache licenco, različica 2.0, in uporablja naslednje knjižnice</string>
   <string name="open_source">Odprta koda</string>

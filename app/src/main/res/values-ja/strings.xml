@@ -59,6 +59,7 @@
   <string name="virtual_memory">仮想メモリ</string>
   <string name="entropy">エントロピー</string>
   <string name="misc_controls">その他の操作</string>
+  <string name="plugins">プラグイン</string>
   <string name="backup">バックアップ</string>
   <string name="build_prop_editor">Build propエディタ</string>
   <string name="profile">プロファイル</string>
@@ -445,13 +446,13 @@
   <string name="dynamic_fsync">Dynamic Fsync</string>
   <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
-  <string name="power_suspend_mode_summary">Kernel Mode、LCD HooksとHighest Level Hookはカーネルによって自動的に制御されます。Power Suspend Stateを手動で有効/無効にしたい場合はUser Modeを選んでください。</string>
+  <string name="power_suspend_mode_summary">Userspace以外のモードではカーネルによって自動的に制御されます。Power Suspend Stateを手動で有効/無効にしたい場合はUserspaceを選んでください。</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>
   <string name="lcd_panel">LCD Panel</string>
   <string name="hybrid">Hybrid</string>
   <string name="power_suspend_state">Power Suspend State</string>
-  <string name="power_suspend_state_summary">画面消灯時のカーネル電源管理ドライバーです。有効にするとバッテリーを節約できます。注意: Power Suspend ModeがUser Modeの場合のみ変更できます。</string>
+  <string name="power_suspend_state_summary">画面消灯時のカーネル電源管理ドライバーです。有効にするとバッテリーを節約できます。注意: Power Suspend ModeがUserspaceの場合のみ変更できます。</string>
   <string name="network">ネットワーク</string>
   <string name="tcp">TCP輻輳アルゴリズム</string>
   <string name="tcp_summary">TCPとは、伝送制御プロトコルといわれる、インターネット・プロトコル・スイートの中核プロトコルのひとつです。</string>
@@ -471,6 +472,14 @@
   <string name="wlan_wakelock_summary">wlan wakelockを防ぎます。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+  <string name="plugin_warning">開発者はサードパーティー製アプリによる損害に対する責任は一切取りません。また、動作も保証しませんので、ダウンロードは自己責任でしてください。</string>
+  <string name="download_plugins">プラグインのダウンロード</string>
+  <string name="looking_plugins">プラグインの検索中</string>
+  <string name="no_plugins">プラグインがありません</string>
+  <string name="installed">インストール済み</string>
+  <string name="update_available">更新あり</string>
+  <string name="not_installed">未インストール</string>
+  <string name="no_kernels">カーネルがありません</string>
   <string name="logo">ロゴ</string>
   <string name="features">機能</string>
   <string name="loading_counting">読み込み中 %1$d/%2$d</string>
@@ -580,7 +589,6 @@
   <string name="feature_function">x機能って何なの?</string>
   <string name="feature_function_summary">何をするものなのか知らないなら、触らないでください。文鎮化を避けるためにも、設定を変える前によく検索してください。</string>
   <string name="add_new_features">xとy機能を追加してもらえますか?</string>
-  <string name="add_new_features_summary">場合によります。様々な機能を追加しようとは考えていますが、あらゆる機器に対応させるのは難しいのです。私はSamsung Galaxy S4 (I9500)とHTC Desire 816しか持っていないので、リクエストした機能がすぐ追加されなくても文句を言わないでください。</string>
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>

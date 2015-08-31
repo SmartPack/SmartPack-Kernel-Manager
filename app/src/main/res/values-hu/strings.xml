@@ -473,7 +473,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx wakelock elválasztó</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="plugin_warning">Én, az alkalmazás alkotója, nem vagyok felelős semmilyen kárért, amelyet a harmadik féltől származó alkalmazás okoz! Nem garantálhatom azok funkcionalitását sem. Kérem, legyen óvatos, mely alkalmazásokat tölti le!</string>
-  <string name="loading_plugins">Beépülők betöltése</string>
   <string name="download_plugins">Beépülők letöltése</string>
   <string name="looking_plugins">Beépülők keresése</string>
   <string name="no_plugins">Beépülő nem található</string>
@@ -590,7 +589,6 @@
   <string name="feature_function">Mit csinál az x funkció?</string>
   <string name="feature_function_summary">Ha nem tudja, mit csinál ez a vezérlő, akkor egyszerűen ne érintse meg. Kérjük, végezzen megfelelő kutatást, mielőtt a drága hardverével játszana.</string>
   <string name="add_new_features">Hozzáadná x vagy  y funciót?</string>
-  <string name="add_new_features_summary">Ezt nehéz megmondani. Én megpróbálom az összes funció hozzáadását, de nehéz univerzális alkalmazást készíteni minden eszköz számára. Nekem csak egy Samsung Galaxy-S4 (I9500) és egy HTC Desire 816 készülékem van, így ne engem hibáztass, ha bizonyos funkciók nem kerülnek azonnal bele.</string>
   <string name="license">Licenc</string>
   <string name="app_license">Kernel Adiutor az Apache liszensz, 2.0 verziója szerint liszenszelt, és a következő könyvtárakat használja</string>
   <string name="open_source">Nyílt forráskódú</string>

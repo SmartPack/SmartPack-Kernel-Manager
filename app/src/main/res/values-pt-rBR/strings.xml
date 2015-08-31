@@ -59,6 +59,7 @@
   <string name="virtual_memory">Memória virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controles variados</string>
+  <string name="plugins">plugins</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil	</string>
@@ -343,6 +344,7 @@
   <string name="max_brightness_summary">Permite aumentar o brilho da tela LCD além do que é possível por padrão.</string>
   <string name="backlight_dimmer">Atenuador de luz de fundo</string>
   <string name="offset">Deslocamento</string>
+  <string name="negative_toggle">Alternativa negativa</string>
   <string name="negative_toggle_summary">Permite inverter as cores de tela pressionando rapidamente o botão de MENU 4 vezes.</string>
   <string name="mdnie_global_controls">Controles globais do mDNIe</string>
   <string name="register_hook">Registrar Hook</string>
@@ -467,6 +469,12 @@
   <string name="wlan_wakelock_summary">Prevenir wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Divisor wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
+  <string name="download_plugins">Baixando plugins</string>
+  <string name="looking_plugins">Procurando plugins</string>
+  <string name="no_plugins">Nenhum plugin foi encontrado</string>
+  <string name="installed">Instalado</string>
+  <string name="update_available">Atualização disponível</string>
+  <string name="not_installed">Erro na instalação</string>
   <string name="logo">Logotipo</string>
   <string name="features">Características</string>
   <string name="loading_counting">Carregando %1$d/%2$d</string>
@@ -575,7 +583,6 @@
   <string name="feature_function">O que a característica x faz?</string>
   <string name="feature_function_summary">Se você não sabe o que faz esse controle, então simplesmente não toque. Por favor, faça uma pesquisa adequada antes de brincar com seu hardware caro.</string>
   <string name="add_new_features">Você poderia adicionar o recurso x e y?</string>
-  <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos. Eu só tenho um Samsung Galaxy S4 (I9500) e um HTC Desire 816, então não me culpe se recursos não aparecerem imediatamente.</string>
   <string name="license">Licença</string>
   <string name="app_license">Kernel Adiutor é licenciado sob a licença Apache, Versão 2.0, e suas respectivas bibliotecas</string>
   <string name="open_source">Código aberto</string>

@@ -59,6 +59,7 @@
   <string name="virtual_memory">Virtualna memorija</string>
   <string name="entropy">Entropija</string>
   <string name="misc_controls">Razne Kontrole</string>
+  <string name="plugins">Plug-inovi</string>
   <string name="backup">Sigurnosna kopija</string>
   <string name="build_prop_editor">Build prop podešavanje</string>
   <string name="profile">Profil</string>
@@ -381,7 +382,6 @@
   <string name="feature_function">Što značajka x čini?</string>
   <string name="feature_function_summary">Ako ne znate što neka postavka izvršava, onda je jednostavno ne dirajte. Molimo Vas dovoljno se unaprijed raspitajte prije igranja s Vašim dragocjenim hardverom.</string>
   <string name="add_new_features">Možete li dodati značajku x i y?</string>
-  <string name="add_new_features_summary">To je teško reći. Pokušavam dodati što više mogućnosti, ali tako je teško napraviti ovu aplikaciju univerzalnom za sve uređaje. Imam Samsung Galaxy S4 (I9500) i HTC Desire 816, pa nemojte me kriviti ako neke značajke ne budu dodane odmah.</string>
   <string name="license">Dozvola</string>
   <string name="app_license">Kernel Adiutor je odobren Apache Licencom, verzija 2.0, i koristi slijedeće banke podataka</string>
   <string name="open_source">Open source</string>

@@ -535,7 +535,6 @@
   <string name="feature_function">Que fait la fonctionnalité x?</string>
   <string name="feature_function_summary">Si vous ne savez pas ce que fait cette fonction, alors n\'y touchez pas. Renseignez-vous correctement avant d\'expérimenter avec du matériel couteux.</string>
   <string name="add_new_features">Y aurait-il moyen d\'ajouter les fonctionnalités x et y?</string>
-  <string name="add_new_features_summary">C\'est difficile à dire. J\'essaie d\'ajouter toutes les fonctionnalités, mais c\'est difficile de rendre cette application universelle à travers tous les modèles d\'appareils. J\'ai uniquement un Samsung Galaxy S4 (I9500) et un HTC Desire 816, donc ne me reprochez pas si les fonctionnalités ne sont pas ajoutées immédiatement.</string>
   <string name="license">Licence</string>
   <string name="app_license">Kernel Adiutor est sous License Apache, en Version 2.0, et utilise les bibliothèques suivantes</string>
   <string name="open_source">Open source</string>
