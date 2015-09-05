@@ -91,5 +91,15 @@
       "huashan"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/xperiasp.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "SM-G900F",
+      "klte"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys5.json"
   }
 ]
