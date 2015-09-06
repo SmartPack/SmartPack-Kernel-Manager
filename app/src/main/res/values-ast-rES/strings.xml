@@ -26,8 +26,8 @@
   <string name="apply_on_boot">Aplicar nel arranque</string>
   <string name="apply_on_boot_finished">Aplicáronse les tos camudancies</string>
   <string name="apply_on_boot_time">Aplicando los tos axustes en %d segundu/os</string>
-  <string name="apply_on_boot_enabled">Habilitóse la estaya %s nel arranque</string>
-  <string name="apply_on_boot_disabled">Deshabilitóse la estaya %s nel arranque</string>
+  <string name="apply_on_boot_enabled">Habilitóse nel arranque la estaya «%s»</string>
+  <string name="apply_on_boot_disabled">Deshabilitóse nel arranque la estaya «%s»</string>
   <string name="apply_on_boot_failed">Fallu al aplicar los axustes nel arranque</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
@@ -90,7 +90,7 @@
   <string name="cpu_governor_summary">El gobernador de CPU determina como la CPU se comporta en rempuesta a camudancies na carga de trabayu. El cambéu de gobernador tendrá impautu de como la CPU escala pente los pasos de frecuencia disponibles na to CPU.</string>
   <string name="cpu_governor_tunables">Axustes finos del gobernador de CPU</string>
   <string name="cpu_governor_tunables_summary">Los elementos de delles configuraciones que tán venceyaes al gobernador.</string>
-  <string name="not_tunable">%s nun pue afinase</string>
+  <string name="not_tunable">«%s» nun pue afinase</string>
   <string name="mc_power_saving">Aforru d\'enerxía multi-nucleu</string>
   <string name="mc_power_saving_summary">Intenta axuntar les xeres nos menos nucleos posibles.</string>
   <string name="power_saving_wq">Planifica les solicitúes de trabayu en CPUs esconsoñaes p\'aforrar enerxía.</string>
@@ -116,7 +116,7 @@
   <string name="override_vmin">Anular voltaxe mínimu</string>
   <string name="override_vmin_summary">Deshabilítalu pa desaniciar les llendes de undervolting pol fabricante</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">La solución hotplug de Qualcomm. Quiciabes tengas problemes cola camudancia de frecuencies cuando esto tea habiliutao.</string>
+  <string name="mpdecision_summary">La solución hotplug de Qualcomm. Quiciabes tengas problemes cola camudancia de frecuencies cuando esto tea habilitao.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolacáu por faux123.</string>
   <string name="profile_summary">El númberu ente paréntesis indica la cantidá de nucleos en llinia en cualesquier momentu.</string>
@@ -182,6 +182,7 @@
   <string name="load_threshold_summary">La llende pa toles CPUs en llinia.</string>
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Tiempu mínimu de CPU en llinia</string>
+  <string name="timer">Temporizador</string>
   <string name="msm_mpdecision_hotplug">Hotplug MPDecision de MSM</string>
   <string name="bricked_hotplug">Hotplug de Bricked</string>
   <string name="mb_hotplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolcáu por show-p1984.</string>
@@ -190,11 +191,13 @@
   <string name="idle_frequency">Frecuencia d\'inactividá</string>
   <string name="idle_frequency_summary">Si\'l primer nucleu ta pembaxo d\'esta frecuencia, nun priende los otros nucleos.</string>
   <string name="touch_boost_time">Tiempu de puxu al tocar</string>
+  <string name="boost_frequecy_core">Frecuencia de puxu del nucleu %d</string>
   <string name="start_delay">Retrasu d\'aniciu</string>
   <string name="start_delay_summary">Tiempu fasta que\'l hotplug entame a furrular.</string>
   <string name="delay">Retrasu</string>
   <string name="delay_summary">Tiempu ente comprobaciones.</string>
   <string name="pause">Posa</string>
+  <string name="pause_summary">Si daqué más priende la CPU, ésta duérmese por esta cantidá de tiempu.</string>
   <string name="alucard_hotplug">Hotplug d\'Alucard</string>
   <string name="alucard_hotplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolcáu por Alucard.</string>
   <string name="sampling_rate">Tasa d\'amuesa</string>
@@ -264,6 +267,9 @@
   <string name="simple_gpu_algorithm">Algoritmu de GPU cenciellu</string>
   <string name="simple_gpu_algorithm_summary">Un amiestu pal gobernador de GPU TZ d\'Adreno MSM. Desendolcáu por faux123.</string>
   <string name="laziness">Farria</string>
+  <string name="adreno_idler_summary">Una igua alternativa pa les cargues xenerales de msm-adreno-tz.</string>
+  <string name="idle_wait">Espera d\'inactividá</string>
+  <string name="workload">Carga de trabayu</string>
   <string name="red">Colloráu</string>
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
@@ -319,7 +325,7 @@
   <string name="glove_mode">Mou guantes</string>
   <string name="glove_mode_summary">Habilitando esto dexaráte usar el to móvil magar que teas con guantes.</string>
   <string name="dt2w">DoubleTap2Wake</string>
-  <string name="dt2w_summary">Espierta\'l to preséu calcando dos vegaes na pantalla.</string>
+  <string name="dt2w_summary">Esconsueña\'l to preséu calcando dos vegaes na pantalla.</string>
   <string name="center">Centru</string>
   <string name="bottom_half">Metá baxera</string>
   <string name="top_half">Metá cimera</string>
@@ -329,7 +335,7 @@
   <string name="s2w_summary">Esconsoña\'l to preséu eslizando\'l deu pela pantalla.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
-  <string name="t2w_summary">Espierta\'l to preséu calcando na pantalla.</string>
+  <string name="t2w_summary">Esconsueña\'l to preséu calcando na pantalla.</string>
   <string name="dt2w_charging">DoubleTap2Wake na carga</string>
   <string name="s2w_charging">Sweep2Wake na carga</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake na carga</string>
@@ -348,14 +354,14 @@
   <string name="handset_microphone_gain">Ganancia de micrófonu de cascos</string>
   <string name="cam_microphone_gain">Ganancia de micrófonu de cámara</string>
   <string name="speaker_gain">Ganancia d\'altavoces</string>
-  <string name="headphone_poweramp_gain">Ganancia PowerAamo d\'auriculares</string>
+  <string name="headphone_poweramp_gain">Ganancia PowerAmp d\'auriculares</string>
   <string name="microphone_gain">Ganacia de micrófonu</string>
   <string name="volume_gain">Ganancia de volume</string>
   <string name="battery_voltage">Voltaxe de batería</string>
   <string name="battery_level">Nivel de batería</string>
   <string name="battery_temperature">Temperatura de batería</string>
   <string name="usb_fast_charge">Carga rápida pente USB</string>
-  <string name="usb_fast_charge_summary">El preséu cargaráse más aína al coneutalu al USB. Vuelvi a enchufar el to cargador al camudar esta opción.</string>
+  <string name="usb_fast_charge_summary">El preséu cargaráse aína al coneutalu al USB. Vuelvi a enchufar el to cargador al camudar esta opción.</string>
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">Afita una llende pa la capacidá a la que la batería cargará pasando\'l valor ente 0 y 100.</string>
   <string name="custom_charge_rate">Tasa de carga</string>
@@ -375,9 +381,10 @@
   <string name="ksm_pages_unshared">Páxines non compartíes</string>
   <string name="ksm_pages_volatile">Páxines volátiles</string>
   <string name="ksm_enable">Habilitar KSM</string>
-  <string name="ksm_enable_summary">Amenorga l\'usu de CPU pero tien un impautu nel usu de CPU.</string>
+  <string name="ksm_enable_summary">Amenorga l\'usu de memoria pero tien un impautu nel usu de CPU.</string>
   <string name="ksm_pages_to_scan">Páxines pa escaniar</string>
   <string name="ksm_sleep_milliseconds">Dormición ente escaneos</string>
+  <string name="ksm_deferred_timer">Temporizador apostalgáu</string>
   <string name="ksm_deferred_timer_summary">Amenorga dél usu de CPU empara de menos aforros d\'enerxía.</string>
   <string name="foreground_app">Aplicaciones nel primer planu</string>
   <string name="visible_app">Aplicaciones visibles</string>
@@ -444,6 +451,7 @@
   <string name="paypal">Paypal</string>
   <string name="download">Baxar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="resume">Siguir</string>
   <string name="checking_md5">Comprobando MD5</string>
   <string name="md5_mismatch">El MD5 nun concasa</string>
   <string name="md5_mismatch_summary">El ficheru baxáu tien un MD5 diferente. Esto tien les razones de darréu:\n\nu2022El ficheru baxáu ta toyíu\n\u2022 El desendolcador declaró un MD5 incorreutu\n\nIntenta baxar el ficheru de nueves. Si entá tienes esti fallu, por favor contauta col desendolcador d\'esti kernel.</string>
@@ -542,6 +550,7 @@
   <string name="feature_function">¿Qué fai la carauterística X?</string>
   <string name="feature_function_summary">Si nun sabes lo que fai esi control, cenciellamente nun lu toques. Por favor, fai una gueta afayadiza enantes de xugar col to hardware caru.</string>
   <string name="add_new_features">¿Podríes amestar les carauterístiques X ya Y?</string>
+  <string name="add_new_features_summary">Ye difícil de dicir. Intentaré amestar toles carauterístiques pero nun ye cenciello facer esta aplicación universal pa tolos preseos. Namái teo un Samsung Galaxy S4 (I9500), un HTC Desire 816 y apocayá consiguí un OnePlus 2, asina que nun me culpar si nun amiesto nel intre les carauterístiques.</string>
   <string name="license">Llicencia</string>
   <string name="app_license">Kernel Adiutor ta llicenciáu so l\'Apache License, Version 2.0 y usa les biblioteques de darréu</string>
   <string name="open_source">Códigu abiertu</string>

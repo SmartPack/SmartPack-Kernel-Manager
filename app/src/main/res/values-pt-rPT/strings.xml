@@ -3,18 +3,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="app_name">Kernel Adiutor
 </string>
+  <string name="root_waiting">À espera de acesso de administrador</string>
   <string name="no_root">Root não disponível </string>
-  <string name="no_busybox">Busybox não disponível</string>
+  <string name="no_busybox">Busybox não disponível </string>
   <string name="ok">OK</string>
   <string name="cancel">Cancelar </string>
-  <string name="current_value_not_supported">Valor não suportado</string>
+  <string name="current_value_not_supported">Valor não suportado </string>
   <string name="beta_message">Obrigado por testar a beta! Se tiver problemas, não hesite em contactar-me.
 Está a usar a versão %s.</string>
   <string name="select_picture">Selecionar Imagem</string>
   <string name="no_picture">Sem imagem</string>
   <string name="went_wrong">Algo correu mal!</string>
+  <string name="password">Palavra-passe</string>
+  <string name="password_wrong">A palavra-passe está errada</string>
+  <string name="press_back_again">Pressione voltar novamente para sair</string>
+  <string name="more">Mais</string>
+  <string name="thank_you">Obrigado!</string>
+  <string name="heavy_user_message">Parece que você está adorando esta aplicação! Obrigado por usá-la!</string>
+  <string name="rate_app">Avalie a aplicação</string>
+  <string name="donate">Contribua para mim</string>
   <string name="select_file">Selecionar %s?</string>
   <string name="no_files">Não há ficheiros neste caminho.</string>
+  <string name="save">Guardar</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
   <string name="apply_on_boot_finished">As suas alterações foram aplicadas</string>
   <string name="apply_on_boot_time">Aplicando as suas defenições em %d segundo/s</string>
@@ -33,6 +43,7 @@ Está a usar a versão %s.</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Ferramentas</string>
   <string name="other">Outros</string>
+  <string name="downloads">Transferências</string>
   <string name="kernel_information">Informações do kernel</string>
   <string name="frequency_table">Tabela de frequência</string>
   <string name="cpu">CPU</string>
@@ -48,17 +59,21 @@ Está a usar a versão %s.</string>
   <string name="ksm">Kernel Samepage Merging</string>
   <string name="low_memory_killer">Low Memory Killer</string>
   <string name="virtual_memory">Memória virtual</string>
+  <string name="entropy">Entropia</string>
   <string name="misc_controls">Controles variados</string>
+  <string name="plugins">Extensões</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop Editor</string>
-  <string name="profile">Profil</string>
+  <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Definições</string>
-  <string name="faq">FAQ</string>
+  <string name="faq">Perguntas Frequentes</string>
   <string name="about_us">Sobre nós</string>
   <string name="unused_cpu_states">Estados do CPU não usados</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Sono profundo</string>
+  <string name="reset_timer">Reiniciar Temporizadores</string>
+  <string name="restore_timer">Restaurar Temporizadores</string>
   <string name="kernel_version">Versão do Kernel</string>
   <string name="cpu_information">Informações do CPU</string>
   <string name="memory_information">Informações da Memória</string>
@@ -214,6 +229,7 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="intellithermal_optimized">Intellithermal otimizado</string>
   <string name="intellithermal_optimized_summary">Uma substituição no kernel para Thermald da Qualcomm. Desenvolvido por faux123 e alucard_24.</string>
   <string name="debug_mask_thermal">Permite que você ative depuração máscara para operações térmicas.</string>
+  <string name="temp_safety">Segurança de temperatura</string>
   <string name="temp_limit">Limite de temperatura</string>
   <string name="temp_limit_summary">Se a temperatura for maior, o CPU vai ser regulada para descer a temperatura.</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequência atual</string>
@@ -367,6 +383,8 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disksize</string>
   <string name="disksize_summary">Tenta aumentar o desempenho, evitando a paginação no armazenamento físico, em vez de usar um dispositivo virtual compactado na RAM. Paginação ocorre na RAM até que é necessário usar o espaço de em armazenamento físico.</string>
+  <string name="read">Ler</string>
+  <string name="write">Escrever</string>
   <string name="vibration_strength">Força de vibração</string>
   <string name="android_logger">Android log</string>
   <string name="fsync">Fsync</string>
@@ -400,8 +418,11 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
+  <string name="plugin_warning">Eu, o criador desta aplicação, não sou responsável por quaisquer danos que aplicações de terceiros produzem! Também não posso garantir para a funcionalidade deles. Por favor tenha com as aplicações que instalar!</string>
   <string name="google_plus">Google Plus</string>
+  <string name="restore">Restaurar</string>
   <string name="delete">Excluir</string>
+  <string name="restoring">A restaurar</string>
   <string name="items_found">%d item/s encontrado/s</string>
   <string name="add">Adicionar</string>
   <string name="edit">Editar</string>
@@ -436,6 +457,7 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="no_scripts_found">Sem scripts encontrados!</string>
   <string name="starting_initd">Começar emulação Init.d</string>
   <string name="finishing_initd">Acabar com a emulação init.d</string>
+  <string name="file_name">Nome do ficheiro</string>
   <string name="dark_theme">Tema escuro</string>
   <string name="force_english_language">Força de língua inglesa</string>
   <string name="beta_info">Informações beta</string>
@@ -453,6 +475,13 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="last_kmsg_summary">Copiar /Proc/last_kmsg para /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensagem do Driver</string>
   <string name="driver_message_summary">Copiar a mensagem do driver (dmesg) para /sdcard/dmesg.txt</string>
+  <string name="security">Segurança</string>
+  <string name="set_password">Definir palavra-passe</string>
+  <string name="delete_password">Apagar palavra-passe</string>
+  <string name="new_password">Nova palavra-passe</string>
+  <string name="confirm_new_password">Confirme a nova palavra-passe</string>
+  <string name="old_password">Palavra-passe antiga</string>
+  <string name="show_sections">Mostrar secções</string>
   <string name="misspelled">Porque é que \"Auditor\" está mal escrito?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
   <string name="cpu_freq_not_sticking">Por que determinada CPU freq não cumpre?</string>

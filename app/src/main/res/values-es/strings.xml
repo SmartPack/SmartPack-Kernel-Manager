@@ -59,6 +59,7 @@
   <string name="virtual_memory">Memoria Virtual</string>
   <string name="entropy">Entropía</string>
   <string name="misc_controls">Controles Varios</string>
+  <string name="plugins">Extensiones</string>
   <string name="backup">Copia de seguridad</string>
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil</string>
@@ -294,6 +295,10 @@
   <string name="laziness_summary">Esto aumenta el limite, bajando o subiendo las frecuencias del GPU. Mientras más bajo, más rendimiento obtienes.</string>
   <string name="ramp_thresold">Límite de rampa</string>
   <string name="ramp_thresold_summary">Esto incrementa el número de veces que el Gobernador del CPU  frena solicitudes. Cuanto mayor sea, mayor rendimiento.</string>
+  <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Una solución eficiente para gastos generales de msm-adreno-tz.</string>
+  <string name="down_differential_summary">Umbral para determinar si la carga de trabajo dada está inactivo.</string>
+  <string name="workload">Carga de trabajo</string>
   <string name="red">Rojo</string>
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
@@ -471,6 +476,13 @@
   <string name="wlan_wakelock_summary">Evitar wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor de Wakelock de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
+  <string name="plugin_warning">Yo, el creador de esta aplicación, no soy responsable de los daños y perjuicios que producen aplicaciones de terceros! También no puedo garantizar la funcionalidad de ellos. Por favor, tenga cuidado de que aplicaciones descargar!</string>
+  <string name="looking_plugins">Buscando plugins</string>
+  <string name="no_plugins">No se encontraron plugins</string>
+  <string name="installed">Instalado</string>
+  <string name="update_available">Actualizacion disponible</string>
+  <string name="not_installed">No instalado</string>
+  <string name="no_kernels">No se encontraron kernels</string>
   <string name="logo">Logo</string>
   <string name="features">Características</string>
   <string name="loading_counting">Cargando %1$d/%2$d</string>

@@ -215,6 +215,7 @@
   <string name="dual_core_mode">Mode Dual-Core</string>
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">Un remplacement dans le noyau pour MPDecision de Qualcomm. Développé par bbedward.</string>
+  <string name="wake_wait_time">Temps d\'attente au réveil</string>
   <string name="wake_wait_time_summary">Temps d\'attente avant d\'activer les cœurs.</string>
   <string name="bat_threshold_ignore">Ignorer en fonction du seuil de batterie</string>
   <string name="bat_threshold_ignore_summary">Ne pas activer les cœurs lorsque le niveau de batterie est inférieur au seuil.</string>
@@ -232,9 +233,12 @@
   <string name="vdd_restriction">Restriction du VDD</string>
   <string name="freq_throttle_temp">Temp. avant limitation des fréquences</string>
   <string name="freq_throttle_temp_summary">Température à atteindre avant de commencer à limiter les fréquences.</string>
+  <string name="core_throttle_temp">Contrôle de la température du coeur</string>
   <string name="core_throttle_temp_summary">Température pour allumer les coeurs CPU éteints.</string>
   <string name="freq_step">Palier de fréquence</string>
+  <string name="poll">Sondage</string>
   <string name="thermal_limit_low">Limite thermique faible</string>
+  <string name="thermal_limit_high">Limite maximal de température</string>
   <string name="msm_thermal">MSM Thermal</string>
   <string name="msm_thermal_summary">Un remplacement dans le noyau pour Thermald de Qualcomm. Développé par show-p1984.</string>
   <string name="check_interval">Intervalle de vérification</string>

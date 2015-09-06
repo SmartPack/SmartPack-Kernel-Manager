@@ -392,6 +392,8 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
+  <string name="wlan_wakelock">WLAN Wakelock</string>
+  <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
   <string name="plugin_warning">Ich, der Autor dieser Anwendung, bin nicht verantwortlich für Schäden, die Dritt-Anwendungen verursachen! Ich kann auch nicht für die Funktionalität von ihnen garantieren. Seien Sie bitte vorsichtig, welche Anwendungen Sie herunterladen!</string>
   <string name="download_plugins">Erweiterungen herunterladen</string>
   <string name="looking_plugins">Suche nach Erweiterungen</string>

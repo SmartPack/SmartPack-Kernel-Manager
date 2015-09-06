@@ -295,6 +295,15 @@
   <string name="laziness_summary">GPU周波数を上昇/下降するしきい値を高くします。低くすると、パフォーマンスが良くなります。</string>
   <string name="ramp_thresold">ランプしきい値</string>
   <string name="ramp_thresold_summary">GPUガバナのランプダウン要求の回数を増やします。高くすると、パフォーマンスが良くなります。</string>
+  <string name="adreno_idler">Adreno アイドラー</string>
+  <string name="adreno_idler_summary">msm-adreno-tz のオーバヘッドのための効率向上策</string>
+  <string name="down_differential">ダウンデファレンシャル</string>
+  <string name="down_differential_summary">特定の作業負荷がアイドル状態かを判断するしきい値。</string>
+  <string name="idle_wait">アイドル状態の待機</string>
+  <string name="idle_wait_summary">周波数を低下させる前に待機するイベント数のことです。Adreno アイドラが周波数を下げる前に
+現在のイベントより以前のアイドルウェイトイベントは全てアイドル状態である必要があります。本実装はスクロール中やゲームのプレー中に発生するマイクロラグを防止するためのものです。低い値を設定した場合、Adreno アイドラは積極的に周波数を下げようとします。</string>
+  <string name="workload">ワークロード</string>
+  <string name="workload_summary">より高い値を設定した場合、Adreno アイドラは頻繁に周波数を下げようとします。</string>
   <string name="red">赤</string>
   <string name="green">緑</string>
   <string name="blue">青</string>
@@ -589,6 +598,7 @@
   <string name="feature_function">x機能って何なの?</string>
   <string name="feature_function_summary">何をするものなのか知らないなら、触らないでください。文鎮化を避けるためにも、設定を変える前によく検索してください。</string>
   <string name="add_new_features">xとy機能を追加してもらえますか?</string>
+  <string name="add_new_features_summary">非常に話しにくいのですが、このアプリに全機能を追加したいのですが全てのデバイス向けには提供出来ません。私は Samsung Galxy S4（I9500), HTC Desire 816, そして近々 OnePlus2を入手予定ですが、機能が直ちに追加されないことをご容赦下さい。</string>
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>
