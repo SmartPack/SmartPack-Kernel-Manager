@@ -40,6 +40,19 @@ public class ProfileDB extends JsonDB {
         return new ProfileItem(item);
     }
 
+    public boolean containProfile(String name) {
+        List<ProfileItem> profiles = getAllProfiles();
+
+        for (ProfileItem profile : profiles) {
+            if (profile.getName().equals(name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public void putProfile(String name, LinkedHashMap<String, String> commands) {
         try {
             JSONObject items = new JSONObject();
