@@ -598,6 +598,7 @@
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
     <string name="applying_profile">Applying %s</string>
+    <string name="replace_profile">You sure want to replace %s profile?</string>
 
     <!-- Recovery -->
     <string name="reboot">Reboot</string>

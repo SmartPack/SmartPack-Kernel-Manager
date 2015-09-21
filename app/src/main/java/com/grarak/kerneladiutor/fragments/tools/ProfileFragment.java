@@ -193,7 +193,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                                 @Override
                                                 public void run() {
                                                     AlertDialog.Builder replaceDialog = new AlertDialog.Builder(getActivity());
-                                                    replaceDialog.setTitle("You sure want to replace " + name + " profile?");
+                                                    replaceDialog.setTitle(getString(R.string.replace_profile, name));
                                                     replaceDialog.setNegativeButton(getString(R.string.cancel),
                                                             new DialogInterface.OnClickListener() {
                                                                 @Override
