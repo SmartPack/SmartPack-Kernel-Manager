@@ -101,5 +101,15 @@
       "klte"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys5.json"
+  },
+  {
+    "vendor": [
+      "LGE"
+    ],
+    "device": [
+      "D722",
+      "D724"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3beat.json"
   }
 ]
