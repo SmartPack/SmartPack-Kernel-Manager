@@ -104,7 +104,9 @@
   },
   {
     "vendor": [
-      "LGE"
+      "LGE",
+      "lge",
+      "lge LGE"
     ],
     "device": [
       "jagnm",
