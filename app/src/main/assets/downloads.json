@@ -101,5 +101,17 @@
       "klte"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys5.json"
+  },
+  {
+    "vendor": [
+      "LGE",
+      "lge",
+      "lge LGE"
+    ],
+    "device": [
+      "jagnm",
+      "jag3gds"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3beat.json"
   }
 ]
