@@ -48,7 +48,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
 
         values.clear();
         modifiedvalues.clear();
-        for (int x = 0; x < 257; x++) {
+        for (int x = 0; x < 513; x++) {
             modifiedvalues.add(x + getString(R.string.mb));
             values.add(String.valueOf(x * 256));
         }
