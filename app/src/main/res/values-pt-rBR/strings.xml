@@ -295,6 +295,10 @@
   <string name="laziness_summary">Isto aumenta o limite para cima ou para baixo das frequências da GPU. Quanto menor, maior a performance que você tem.</string>
   <string name="ramp_thresold">Rampa do início</string>
   <string name="ramp_thresold_summary">Isso aumenta o número de vezes que o governador da GPU suprime as exigências. Assim, quando um valor mais alto, maior a performance.</string>
+  <string name="adreno_idler">Adreno inativo</string>
+  <string name="adreno_idler_summary">Uma solução eficiente para os overheads do msm-adreno-tz.</string>
+  <string name="down_differential_summary">Limite para determinar se a carga do sistema está ociosa.</string>
+  <string name="idle_wait">Espera ociosa</string>
   <string name="red">Vermelho</string>
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
@@ -480,9 +484,7 @@
   <string name="loading_counting">Carregando %1$d/%2$d</string>
   <string name="downloading_db">Baixando o banco de dados</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="download">baixar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Continuar</string>
@@ -586,9 +588,7 @@
   <string name="license">Licença</string>
   <string name="app_license">Kernel Adiutor é licenciado sob a licença Apache, Versão 2.0, e suas respectivas bibliotecas</string>
   <string name="open_source">Código aberto</string>
-  <string name="open_source_summary">Este aplicativo tem o código aberto. Confira no meu GitHub.</string>
   <string name="feature_request">Solicitação de recurso</string>
-  <string name="feature_request_summary">Você quer mais recursos? Abra uma nova questão no GitHub e me conte sua idéia.</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
   <string name="translation">Tradução</string>
   <string name="translation_summary">Me ajude a traduzir este app!</string>

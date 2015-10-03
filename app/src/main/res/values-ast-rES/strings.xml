@@ -111,6 +111,7 @@
   <string name="input_interval">Intervalu d\'entrada</string>
   <string name="input_interval_summary">Interválu mínimu nel qu\'una CPU puxa al deteutase entrada.</string>
   <string name="input_boost_freq">Frecuencia de puxu d\'entrada</string>
+  <string name="input_boost_freq_core">Frecuencia de puxu d\'entrada\'l nucleu %s</string>
   <string name="input_boost_freq_summary">La frecuencia de CPU puxaráse a esta frecuencia fasta la deteición d\'entrada.</string>
   <string name="global_offset">Igua global</string>
   <string name="override_vmin">Anular voltaxe mínimu</string>
@@ -229,6 +230,9 @@
   <string name="debug_mask_thermal">Permítete activar la mázcara de depuración pa les operaciones térmiques.</string>
   <string name="core_control">Control de nucleos</string>
   <string name="vdd_restriction">Restricción VDD</string>
+  <string name="freq_throttle_temp">Temperatura de regulación de frecuencia</string>
+  <string name="freq_throttle_temp_summary">Temperatura pa entamar cola regulación de frecuencies.</string>
+  <string name="core_throttle_temp">Temperatura de regulación del nucleu</string>
   <string name="core_throttle_temp_summary">La temperatura pa entamar a apagar los nucleos.</string>
   <string name="core_temp_hysteresis">Histérisis de temperatura\'l nucleu</string>
   <string name="freq_step">Pasu de frecuencia</string>
@@ -251,7 +255,10 @@
   <string name="allowed_max_freq">Fas 3: Frecuencia máxima almitida</string>
   <string name="check_interval">Intervalu de comprobación</string>
   <string name="shutdown_temp">Temperatura d\'apagáu</string>
+  <string name="temp_throttle">Regulación de temperatura</string>
   <string name="temp_throttle_summary">Alternancia de la llende de temperatura\'l SoC.</string>
+  <string name="freq_limit_debug">Depuración de llende de frecuencia</string>
+  <string name="freq_limit_debug_summary">Esto permite depurar les regulaciones de CPUs cuando la temperatura algame\'l máximu.</string>
   <string name="temp_limit_min_freq">Frecuéncia mínima de llende de temperatura</string>
   <string name="temp_limit">Llende de temperatura</string>
   <string name="gpu_2d_cur_freq">Frecuencia actual de GPU 2D</string>
@@ -267,6 +274,7 @@
   <string name="simple_gpu_algorithm">Algoritmu de GPU cenciellu</string>
   <string name="simple_gpu_algorithm_summary">Un amiestu pal gobernador de GPU TZ d\'Adreno MSM. Desendolcáu por faux123.</string>
   <string name="laziness">Farria</string>
+  <string name="ramp_thresold_summary">Esto aumenta\'l númberu de vegaes que\'l gobernador de GPU amenorga les solicitúes. Col valor más altu, más rindimientu consigues.</string>
   <string name="adreno_idler_summary">Una igua alternativa pa les cargues xenerales de msm-adreno-tz.</string>
   <string name="idle_wait">Espera d\'inactividá</string>
   <string name="workload">Carga de trabayu</string>
@@ -332,7 +340,7 @@
   <string name="halfscreen">Metá de pantalla</string>
   <string name="fullscreen">Pantalla completa</string>
   <string name="s2w">Sweep2Wake</string>
-  <string name="s2w_summary">Esconsoña\'l to preséu eslizando\'l deu pela pantalla.</string>
+  <string name="s2w_summary">Esconsueña\'l to preséu eslizando\'l deu penriba la pantalla.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Esconsueña\'l to preséu calcando na pantalla.</string>
@@ -345,6 +353,11 @@
   <string name="slide_down">Esliza p\'abaxo</string>
   <string name="slide_left">Esliza pa la drecha</string>
   <string name="slide_right">Esliza pa la izquierda</string>
+  <string name="draw_e">Dibuxar E</string>
+  <string name="draw_o">Dibuxar O</string>
+  <string name="draw_w">Dibuxar W</string>
+  <string name="draw_c">Dibuxar C</string>
+  <string name="draw_m">Dibuxar M</string>
   <string name="wake_timeout">Tiempu escosao d\'esconsueñu</string>
   <string name="wake_timeout_summary">Afita una duración cuando los controles d\'esconsueñu deshabilítense dempués d\'apagase la pantalla.</string>
   <string name="power_key_suspend">Suspensión de tecla prendíu</string>
@@ -400,6 +413,7 @@
   <string name="disksize">Tamañu del discu</string>
   <string name="disksize_summary">Intenta aumentar el rindimientu evitando\'l paxináu nel almacenamientu físicu, en cuantes d\'usar un preséu virtual comprimíu na RAM. El paxináu cueye espaciu na RAM fasta que sía preciso pa usar l\'espaciu d\'intercambéu nel almacenamientu físicu.</string>
   <string name="available">Disponible</string>
+  <string name="poolsize">Tamañu de reserva</string>
   <string name="read">Llectura</string>
   <string name="write">Escritura</string>
   <string name="vibration_strength">Fuercia de vibración</string>
@@ -410,8 +424,10 @@
   <string name="dynamic_fsync_summary">Al tar habilitáu y cola pantalla encesa, la operación fsync ye asincrónica. Tando la pantalla apagada, esta operación únviase sincrónicamente.</string>
   <string name="power_suspend_mode">Mou de suspensión d\'enerxía</string>
   <string name="power_suspend_mode_summary">El mou kernel, los gabitos LCD y el gabitu de nivel más altu tán xestionaos pol kernel. Pa habilitar o deshabilitar a mano l\'estáu de suspensión d\'enerxía, escueyi\'l mou usuariu.</string>
+  <string name="autosleep">Auto-dormición</string>
   <string name="userspace">Espaciu d\'usuariu</string>
   <string name="lcd_panel">Panel LCD</string>
+  <string name="hybrid">Híbridu</string>
   <string name="power_suspend_state">Estáu de suspensión d\'enerxía</string>
   <string name="power_suspend_state_summary">Controlador de xestión d\'enerxía cuanto tea la pantalla apagada. Aforros d\'enerxía meyores si s\'habilita. Nota: Namái pues camudar esti axuste si\'l mou suspensión d\'enerxía ta nel mou usuariu.</string>
   <string name="network">Rede</string>
@@ -446,9 +462,7 @@
   <string name="loading_counting">Cargando %1$d/%2$d</string>
   <string name="downloading_db">Baxando base de datos</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="download">Baxar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Siguir</string>
@@ -554,9 +568,7 @@
   <string name="license">Llicencia</string>
   <string name="app_license">Kernel Adiutor ta llicenciáu so l\'Apache License, Version 2.0 y usa les biblioteques de darréu</string>
   <string name="open_source">Códigu abiertu</string>
-  <string name="open_source_summary">Esta aplicación ye códigu abiertu. Compruébalo nel mio GitHub.</string>
   <string name="feature_request">Solicitú de carauterístiques</string>
-  <string name="feature_request_summary">¿Quies más carauterístiques? Abri un informe en GitHub y cúntame la to idea.</string>
   <string name="google_plus_summary">Xúnite a la nuesa comunidá.</string>
   <string name="translation">Traducciones</string>
   <string name="translation_summary">¡Aídame a tornar esta aplicación!</string>

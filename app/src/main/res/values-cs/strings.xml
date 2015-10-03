@@ -266,9 +266,7 @@
   <string name="loading_counting">Načítání %1$d/%2$d</string>
   <string name="downloading_db">Stahování databáze</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="download">stáhnout</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Pokračovat</string>
@@ -374,9 +372,7 @@
   <string name="license">Licence</string>
   <string name="app_license">Aplikace Kernel Adiutor je licencována pod licencí Apache, verze 2.0 a používá následující knihovny:</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Tato aplikace je open source. Naleznete ji na GitHubu.</string>
   <string name="feature_request">Žádost o novou funkci</string>
-  <string name="feature_request_summary">Chcete více funkcí? Založte nový požadavek na GitHubu a řekněte, co máte na srdci.</string>
   <string name="google_plus_summary">Připojte se k naší komunitě.</string>
   <string name="translation">Překlad</string>
   <string name="translation_summary">Pomozte vylepšit překlad této aplikace!</string>

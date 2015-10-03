@@ -59,6 +59,7 @@
   <string name="virtual_memory">Mémoire Virtuelle</string>
   <string name="entropy">Entropie</string>
   <string name="misc_controls">Contrôles Divers</string>
+  <string name="plugins">Plugins</string>
   <string name="backup">Sauvegarde</string>
   <string name="build_prop_editor">Editeur Build prop</string>
   <string name="profile">Profile</string>
@@ -173,8 +174,10 @@
   <string name="fast_lane_min_freq">Fréquence Min Voie Rapide</string>
   <string name="fast_lane_min_freq_summary">Fixe la fréquence minimum à laquelle les cœurs descendent quand la voie rapide atteint la charge ci-dessus.</string>
   <string name="offline_load">Charge Hors Ligne</string>
+  <string name="offline_load_summary">Ne pas déconnecter un CPU si elle tombe en dessous du seuil le plus bas.</string>
   <string name="io_is_busy">Les E/S sont Occupées</string>
   <string name="io_is_busy_summary">Utilisé pour que le hotplug considère le temps I/O comme une charge CPU.</string>
+  <string name="defer_time">Suspendre le temps différé</string>
   <string name="mako_hotplug">Hotplug Mako</string>
   <string name="mako_hotplug_summary">Un remplacement du noyau pour MPDecision de Qualcomm. Développé par franciscofranco.</string>
   <string name="cores_on_touch">Cœurs au toucher</string>
@@ -202,6 +205,7 @@
   <string name="delay">Délai</string>
   <string name="delay_summary">Temps entre les contrôles.</string>
   <string name="pause">Pause</string>
+  <string name="pause_summary">Si quelque chose d\'autre se branche sur le CPU, mettre en veille pour ce laps de temps.</string>
   <string name="alucard_hotplug">Hotplug Alucard</string>
   <string name="alucard_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par Alucard.</string>
   <string name="sampling_rate">Taux d\'échantillonnage</string>
@@ -239,6 +243,7 @@
   <string name="poll">Sondage</string>
   <string name="thermal_limit_low">Limite thermique faible</string>
   <string name="thermal_limit_high">Limite maximal de température</string>
+  <string name="temp_safety">Température de sécurité</string>
   <string name="msm_thermal">MSM Thermal</string>
   <string name="msm_thermal_summary">Un remplacement dans le noyau pour Thermald de Qualcomm. Développé par show-p1984.</string>
   <string name="check_interval">Intervalle de vérification</string>
@@ -260,6 +265,8 @@
   <string name="simple_gpu_algorithm">Algorithme GPU Simple</string>
   <string name="simple_gpu_algorithm_summary">Un Add-on pour le gouverneur GPU MSM Adreno TZ. Développé par faux123.</string>
   <string name="laziness">Laziness</string>
+  <string name="adreno_idler">Pause de l\'Adreno</string>
+  <string name="adreno_idler_summary">Une solution efficace contre les surchauffes de msm-adreno-tz.</string>
   <string name="red">Rouge</string>
   <string name="green">Vert</string>
   <string name="blue">Bleu</string>
@@ -431,14 +438,14 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
+  <string name="plugin_warning">Moi, créateur de cette application, ne suis pas responsable des dégâts causés par des applications tierces ! Je ne peux pas non plus vous garantir leurs bon fonctionnement. Soyez prudent vis-à-vis des applications que vous téléchargez!</string>
+  <string name="download_plugins">Télécharger des plugins</string>
   <string name="logo">Logo</string>
   <string name="features">Caractèristiques</string>
   <string name="loading_counting">Chargement %1$d/%2$d</string>
   <string name="downloading_db">Téléchargement de la base de données</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="download">Téléchargement</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Reprendre</string>
@@ -542,9 +549,7 @@
   <string name="license">Licence</string>
   <string name="app_license">Kernel Adiutor est sous License Apache, en Version 2.0, et utilise les bibliothèques suivantes</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Cette application est open source. Consultez-la sur mon GitHub.</string>
   <string name="feature_request">Demande de fonctionnalité</string>
-  <string name="feature_request_summary">Vous voulez plus de fonctionnalités ? Ouvrez une nouvelle question sur GitHub et dites-moi votre idée.</string>
   <string name="google_plus_summary">Rejoignez notre communauté.</string>
   <string name="translation">Traduction </string>
   <string name="translation_summary">Aidez moi à traduire cette app !</string>

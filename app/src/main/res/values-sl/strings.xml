@@ -417,9 +417,7 @@
   <string name="logo">Logo</string>
   <string name="downloading_db">Prenašam podatkovno bazo</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="delete">Izbriši</string>
   <string name="items_found">%d najdenih predmetov</string>
   <string name="add">Dodaj</string>
@@ -484,9 +482,7 @@
   <string name="license">Licenca</string>
   <string name="app_license">Kernel Adiutor je licenciran pod Apache licenco, različica 2.0, in uporablja naslednje knjižnice</string>
   <string name="open_source">Odprta koda</string>
-  <string name="open_source_summary">Aplikacija je odprtokodna. Preverite na moji GitHub strani.</string>
   <string name="feature_request">Zaželjene funkcije</string>
-  <string name="feature_request_summary">Želite več funkcij? Odprite nov issue na GitHub in mi povejte vaše ideje.</string>
   <string name="google_plus_summary">Pridružite se naši skupnosti.</string>
   <string name="translation">Prevod</string>
   <string name="translation_summary">Pomagajte mi prevesti to aplikacijo!</string>

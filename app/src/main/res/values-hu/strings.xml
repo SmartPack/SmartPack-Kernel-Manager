@@ -295,6 +295,13 @@
   <string name="laziness_summary">Ez növeli a GPU frekvencia növelési és csökkentési küszöböt. Minél alacsonyabb, annál nagyobb teljesítményt kap.</string>
   <string name="ramp_thresold">Lefutási küszöb</string>
   <string name="ramp_thresold_summary">Ez növeli a GPU irányító lefutási kéréseinek számát. Minél nagyobb ez, annál nagyobb teljesítményt kap.</string>
+  <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Egy hatékony megoldás az msm-adreno-tz felülvezérlésére.</string>
+  <string name="down_differential_summary">Küszöb annak meghatározására, hogy az adott munkateher tétlen.</string>
+  <string name="idle_wait">Üresjárat</string>
+  <string name="idle_wait_summary">Megadott események számára való várakozás, mielőtt a frekvenciát lefelé léptetné. A tétlenül várakozó események száma, mielőtt a jelenlegi is tétlen lesz, mielőtt Adreno idler lefelé lépteti a frekvenciát. Ez a megközelítés megakadályozza a mikro-lagokat a görgetés, illetve játék esetén. Adreno idler aktívabban próbálja lefelé léptetni a frekvenciát, ha ez egy alacsonyabb értékre van beállítva.</string>
+  <string name="workload">Munkaterhelés</string>
+  <string name="workload_summary">Adreno idler aktívabban próbálja lefelé léptetni a frekvenciát, ha ez egy magasabb értékre van állítva.</string>
   <string name="red">Vörös</string>
   <string name="green">Zöld</string>
   <string name="blue">Kék</string>
@@ -485,9 +492,7 @@
   <string name="loading_counting">%1$d/%2$d betöltése</string>
   <string name="downloading_db">Adatbázis letöltése</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
-  <string name="paypal">PayPal</string>
   <string name="download">letöltés</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Folytatás</string>
@@ -589,12 +594,11 @@
   <string name="feature_function">Mit csinál az x funkció?</string>
   <string name="feature_function_summary">Ha nem tudja, mit csinál ez a vezérlő, akkor egyszerűen ne érintse meg. Kérjük, végezzen megfelelő kutatást, mielőtt a drága hardverével játszana.</string>
   <string name="add_new_features">Hozzáadná x vagy  y funciót?</string>
+  <string name="add_new_features_summary">Ezt nehéz megmondani. Megpróbálok felvenni minden funkciót, de számomra nehéz megoldani, hogy ez az alkalmazás univerzális legyen minden eszközre. Én csak egy Samsung Galaxy S4 (I9500), egy HTC Desire 816 és egy nemrég kapott egy OnePlus 2 készülékkel rendelkezem, így ne hibáztasson, ha egyes funkciók nem kerülnek bele azonnal.</string>
   <string name="license">Licenc</string>
   <string name="app_license">Kernel Adiutor az Apache liszensz, 2.0 verziója szerint liszenszelt, és a következő könyvtárakat használja</string>
   <string name="open_source">Nyílt forráskódú</string>
-  <string name="open_source_summary">Ez az alkalmazás nyílt forráskódú. Nézze meg a GitHub fiókomat.</string>
   <string name="feature_request">Ötlet, javaslat</string>
-  <string name="feature_request_summary">Több szolgáltatásra vágyik? Nyisson meg egy új problémát a GitHubon, és mondja el ötletét.</string>
   <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
   <string name="translation">Fordítás</string>
   <string name="translation_summary">Segítsen nekem lefordítani ezt az alkalmazást!</string>

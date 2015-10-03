@@ -298,6 +298,7 @@
   <string name="adreno_idler">Adreno Idler</string>
   <string name="adreno_idler_summary">Una solución eficiente para gastos generales de msm-adreno-tz.</string>
   <string name="down_differential_summary">Umbral para determinar si la carga de trabajo dada está inactivo.</string>
+  <string name="idle_wait">Espera inactiva</string>
   <string name="workload">Carga de trabajo</string>
   <string name="red">Rojo</string>
   <string name="green">Verde</string>
@@ -477,6 +478,7 @@
   <string name="wlan_rx_wakelock_divider">Divisor de Wakelock de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
   <string name="plugin_warning">Yo, el creador de esta aplicación, no soy responsable de los daños y perjuicios que producen aplicaciones de terceros! También no puedo garantizar la funcionalidad de ellos. Por favor, tenga cuidado de que aplicaciones descargar!</string>
+  <string name="download_plugins">Descargar complementos</string>
   <string name="looking_plugins">Buscando plugins</string>
   <string name="no_plugins">No se encontraron plugins</string>
   <string name="installed">Instalado</string>
@@ -488,9 +490,7 @@
   <string name="loading_counting">Cargando %1$d/%2$d</string>
   <string name="downloading_db">Descargando base de datos</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
-  <string name="paypal">PayPal</string>
   <string name="download">Descargar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Renaudar</string>
@@ -592,12 +592,11 @@
   <string name="feature_function">Que hace la función x?</string>
   <string name="feature_function_summary">Si no sabe lo que hace este control, entonces simplemente no lo toques. Por favor, investiga antes de modificar una característica de su caro hardware.</string>
   <string name="add_new_features">Podría añadir la función x o y?</string>
+  <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las funciones, pero es difícil hacer esta aplicación universal para todos los dispositivos. Sólo tengo un Samsung Galaxy S4 (I9500), una HTC Deseo 816 y recientemente consiguió un OnePlus 2, así que no culpen a me si características no obtener combinadas inmediatamente.</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="open_source">Código abierto</string>
-  <string name="open_source_summary">Esta aplicación es de código abierto. Mira en mi GitHub.</string>
   <string name="feature_request">Sugerir una idea</string>
-  <string name="feature_request_summary">¿Quieres más características? Abre un tema nuevo en GitHub y dime tu idea.</string>
   <string name="google_plus_summary">Únete a nuestra comunidad.</string>
   <string name="translation">Traducción</string>
   <string name="translation_summary">Ayúdame a traducir esta aplicación!</string>

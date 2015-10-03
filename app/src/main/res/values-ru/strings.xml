@@ -234,6 +234,7 @@
   <string name="downrate_limits">Ограничения понижения</string>
   <string name="uprate_limits">Ограничения повышения</string>
   <string name="cycle_down">Цикла вниз</string>
+  <string name="cycle_down_summary">Количество циклов после последнего события hotplug до отключения следующего ядра.</string>
   <string name="cycle_up">Цикл вверх</string>
   <string name="cycle_up_summary">Циклы ожидания после последнего события hotplug подключить другое ядро.</string>
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
@@ -295,6 +296,11 @@
   <string name="laziness">Ленивость</string>
   <string name="laziness_summary">Увеличивает порог увеличения или уменьшения частоты GPU. Чем меньше значение тем больше производительность.</string>
   <string name="ramp_thresold_summary">Увеличивает частоту запроса частот у GPU. Чем выше значение, тем выше производительность.</string>
+  <string name="down_differential_summary">Пороговое значение нагрузки простоя.</string>
+  <string name="idle_wait">Режим ожидания</string>
+  <string name="idle_wait_summary">Количество событий, после которого частота будет понижена. Adreno idler понизит частоту только если эти события были событиями простоя. Это нужно для того, чтобы избавиться от микро-лагов при листании или во время игры. Чем меньше значение, тем более активно idler будет понижать частоту.</string>
+  <string name="workload">Рабочая нагрузка</string>
+  <string name="workload_summary">Чем больше значение, тем более активно Adreno idler будет понижать частоту.</string>
   <string name="red">Красный</string>
   <string name="green">Зелёный</string>
   <string name="blue">Cиний</string>
@@ -470,9 +476,7 @@
   <string name="loading_counting">Загрузка %1$d/%2$d</string>
   <string name="downloading_db">Загрузка базы данных</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google +</string>
-  <string name="paypal">PayPal</string>
   <string name="download">Скачать</string>
   <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="resume">Возобновить</string>
@@ -576,9 +580,7 @@
   <string name="license">Лицензия</string>
   <string name="app_license">Kernel Adiutor лицензирован Apache License, Версия 2.0, и использует следующие библиотеки</string>
   <string name="open_source">Открытый исходный код</string>
-  <string name="open_source_summary">Это приложение с открытым исходным кодом. Проверьте его на моем GitHub.</string>
   <string name="feature_request">Предложить новую функцию</string>
-  <string name="feature_request_summary">Вы хотите больше возможностей? Расскажите вашу идею на GitHub.</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
   <string name="translation">Перевод</string>
   <string name="translation_summary">Помогите мне перевести это приложение!</string>

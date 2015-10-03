@@ -441,9 +441,7 @@
   <string name="logo">로고</string>
   <string name="features">기능</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="download">다운로드</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="checking_md5">MD5sum을 확인합니다</string>
@@ -543,9 +541,7 @@
   <string name="license">라이선스</string>
   <string name="app_license">Kernel Adiutor는 아파치 라이선스 2.0 버전을 따르며 다음의 라이브러리들을 사용합니다.</string>
   <string name="open_source">오픈소스</string>
-  <string name="open_source_summary">이 앱은 오픈소스입니다. 제 GitHub에서 확인해 보세요.</string>
   <string name="feature_request">기능 요청</string>
-  <string name="feature_request_summary">더 많은 기능을 원하십니까? GitHub의 Issues 탭을 열어서 여러분의 아이디어를 말씀해 주세요.</string>
   <string name="google_plus_summary">저희 커뮤니티에 가입하세요.</string>
   <string name="translation">번역</string>
   <string name="translation_summary">앱을 번역해 주세요!</string>

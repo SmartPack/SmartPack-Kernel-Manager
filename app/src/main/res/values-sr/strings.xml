@@ -235,9 +235,7 @@
   <string name="loading_counting">Учитавам %1$d/%2$d</string>
   <string name="downloading_db">Преузимам базу података</string>
   <string name="xda">XDA</string>
-  <string name="github">Гитхаб</string>
   <string name="google_plus">Гугл Плус</string>
-  <string name="paypal">Пејпел</string>
   <string name="download">преузми</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Настави</string>
@@ -245,6 +243,7 @@
   <string name="md5_mismatch">МД5 се не поклапа</string>
   <string name="download_success">Успешно преузет %s. Желите ли да га инсталирате одмах?</string>
   <string name="manual_flashing">Ручно ћу</string>
+  <string name="file_location">Преузети фајл је у %s</string>
   <string name="no_backups">Нема резервних копија</string>
   <string name="flash_img">Флешуј одраз (IMG)</string>
   <string name="flashing">Флешујем</string>
@@ -271,6 +270,7 @@
   <string name="no_settings">Поставке нису нађене!</string>
   <string name="press_again_to_apply">Притисните опет да примените.</string>
   <string name="applied">Примењено</string>
+  <string name="applying_profile">Примењујем %s</string>
   <string name="reboot">Поново покрени</string>
   <string name="reboot_soft">Меко покретање</string>
   <string name="reboot_recovery">Поново покрени у опоравак</string>
@@ -297,6 +297,7 @@
   <string name="force_english_language">Присили енглески језик</string>
   <string name="beta_info">Инфо о бета издању</string>
   <string name="beta_info_summary">Прикажи дијалог по покретању ако користим бета издање.</string>
+  <string name="show_profile_tile">Прикажи плочицу профила</string>
   <string name="notification">Обавештење</string>
   <string name="notification_summary">Приказ обавештења када се покрене сервис примене при подизању. Искључите ово ако дође до било каквих проблема.</string>
   <string name="show_toast">Прикажи тост</string>
@@ -333,12 +334,11 @@
   <string name="feature_function">Шта ради функција x?</string>
   <string name="feature_function_summary">Ако не знате шта нека поставка ради, једноставно је не дирајте. Подробно се распитајте пре него што се почнете играти вашим скупим хардвером.</string>
   <string name="add_new_features">Можеш ли да додаш функције x и y?</string>
+  <string name="add_new_features_summary">Тешко је рећи. Настојим да додам све могућности, али тешко је направити универзалну апликацију за све уређаје. Поседујем само Самсунг „Galaxy S4“ (I9500), ХТЦ „Desire 816“ и недавно сам добио „OnePlus 2“, па немојте мене да кривите ако функционалности не буду одмах додате.</string>
   <string name="license">Лиценца</string>
   <string name="app_license">Кернел Адиутор је лиценциран Апачи лиценцом, издање 2.0, и користи следеће библиотеке</string>
   <string name="open_source">Отворени кôд</string>
-  <string name="open_source_summary">Апликација је отвореног кôда. Прегледајте га на мом Гитхабу.</string>
   <string name="feature_request">Захтеви за функције</string>
-  <string name="feature_request_summary">Желите још функција? Направите пријаву на Гитхабу и опишите ми вашу идеју.</string>
   <string name="google_plus_summary">Придружите се нашој заједници.</string>
   <string name="translation">Превођење</string>
   <string name="translation_summary">Помозите ми превођењем апликације!</string>

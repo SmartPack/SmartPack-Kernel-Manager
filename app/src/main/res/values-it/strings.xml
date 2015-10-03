@@ -295,6 +295,13 @@
   <string name="laziness_summary">Questo aumenta la soglia di rampa verso l\'alto o verso il basso delle frequenze GPU. Più il valore è basso più si ottengono prestazioni.</string>
   <string name="ramp_thresold">Soglia della rampa</string>
   <string name="ramp_thresold_summary">Questo aumenta il numero di richieste per abbassare la rampa del GPU governor. Più alto è, più prestazioni si ottiene.</string>
+  <string name="adreno_idler">Inattività Adreno</string>
+  <string name="adreno_idler_summary">Una soluzione efficiente per i consumi generali di msm-adreno-tz.</string>
+  <string name="down_differential_summary">Soglia per determinare se il carico di lavoro è inattivo.</string>
+  <string name="idle_wait">Attesa Inattività</string>
+  <string name="idle_wait_summary">Numero di eventi da attendere prima di abbassare la frequenza. Gli eventi di attesa prima di quello corrente devono essere tutti inattivi prima di Adrenoabbassi la frequenza. Questa implementazione è fatta per impedire micro-ritardi sullo scrolling o giochi. Adreno idler cercherà più attivamente di abbassare la rampa di frequenza, se questo è impostato su un valore inferiore.</string>
+  <string name="workload">Carico di lavoro</string>
+  <string name="workload_summary">Adreno cercherà più attivamente di spostare la rampa di frequenza verso il basso, se questo è impostato su un valore superiore.</string>
   <string name="red">Rosso</string>
   <string name="green">Verde</string>
   <string name="blue">Blu</string>
@@ -485,9 +492,7 @@
   <string name="loading_counting">Caricamento %1$d/%2$d</string>
   <string name="downloading_db">Scaricando l\'archivio</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
-  <string name="paypal">PayPal</string>
   <string name="download">Scarica</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Riprendi</string>
@@ -589,12 +594,11 @@
   <string name="feature_function">Cosa fa la caratteristica X?</string>
   <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso Smartphone.</string>
   <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
+  <string name="add_new_features_summary">Che è difficile da dire. Provo ad aggiungere tutte le funzionalità, ma è difficile fare questa app universale per tutti i dispositivi. Ho solo un Samsung Galaxy S4 (I9500), un HTC Desire 816 e recentemente ha ottenuto un OnePlus 2, quindi non prendertela con me se caratteristiche non ottenere Unite immediatamente.</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio GitHub.</string>
   <string name="feature_request">Richiesta di una funzione</string>
-  <string name="feature_request_summary">Vuoi più caratteristiche? Apri una nuova segnalazione su GitHub e dimmi la tua idea.</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
   <string name="translation_summary">Aiutami a tradurre questa app!</string>

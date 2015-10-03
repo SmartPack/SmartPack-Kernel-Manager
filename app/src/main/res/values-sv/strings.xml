@@ -228,9 +228,7 @@
   <string name="sensor_ind_wakelock_summary">Förhindra \"wakelock\" när \"Ambient Display\" inaktiveras.</string>
   <string name="features">Funktioner</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
   <string name="restore">Återställ</string>
   <string name="delete">Radera</string>
   <string name="overwrite_question">Skriva över %s?</string>
@@ -276,9 +274,7 @@
   <string name="license">Licens</string>
   <string name="app_license">Kernel Adiutor licensieras under Apache License, Version 2.0, och använder följande bibliotek</string>
   <string name="open_source">Öppen källkod</string>
-  <string name="open_source_summary">Källkoden till denna applikation är öppen. Kolla in min GitHub-sida.</string>
   <string name="feature_request">Funktionönskemål</string>
-  <string name="feature_request_summary">Vill du ha fler funktioner? Skapa ett ärende på GitHub och berätta om din idé.</string>
   <string name="google_plus_summary">Gå med i vår gemenskap.</string>
   <string name="translation">Översättning</string>
   <string name="translation_summary">Hjälp mig översätta denna app!</string>
