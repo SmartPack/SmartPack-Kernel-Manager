@@ -494,9 +494,9 @@
   <string name="loading_counting">読み込み中 %1$d/%2$d</string>
   <string name="downloading_db">データベースのダウンロード中</string>
   <string name="xda">XDA</string>
-  <string name="github">Github</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">Paypal</string>
+  <string name="paypal">PayPal</string>
   <string name="download">ダウンロード</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">再開</string>
@@ -602,9 +602,9 @@
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>
-  <string name="open_source_summary">このアプリはオープンソースです。タップするとGithubページを開きます。</string>
+  <string name="open_source_summary">このアプリはオープンソースです。タップするとGitHubページを開きます。</string>
   <string name="feature_request">機能のリクエスト</string>
-  <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
+  <string name="feature_request_summary">もっと機能を増やして欲しいですか? GitHubでissueを開いてアイデアをお聞かせください。</string>
   <string name="google_plus_summary">コミュニティに参加する</string>
   <string name="translation">翻訳</string>
   <string name="translation_summary">このアプリの翻訳を手伝ってください!</string>

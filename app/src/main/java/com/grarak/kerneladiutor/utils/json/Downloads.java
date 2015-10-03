@@ -129,7 +129,7 @@ public class Downloads {
             return getString("xda");
         }
 
-        public String getGithub() {
+        public String getGitHub() {
             return getString("github");
         }
 
@@ -137,7 +137,7 @@ public class Downloads {
             return getString("google_plus");
         }
 
-        public String getPaypal() {
+        public String getPayPal() {
             return getString("paypal");
         }
 

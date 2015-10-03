@@ -51,9 +51,9 @@ public class DownloadInfoCardView extends BaseCardView {
         super(context, R.layout.downloadinfo_cardview);
 
         final String xda = kernelContent.getXDA();
-        final String github = kernelContent.getGithub();
+        final String github = kernelContent.getGitHub();
         final String googlePlus = kernelContent.getGooglePlus();
-        final String paypal = kernelContent.getPaypal();
+        final String paypal = kernelContent.getPayPal();
 
         if (xda != null || github != null || googlePlus != null || paypal != null) {
             linksLayout.setVisibility(VISIBLE);

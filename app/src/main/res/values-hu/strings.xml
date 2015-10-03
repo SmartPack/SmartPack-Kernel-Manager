@@ -485,9 +485,9 @@
   <string name="loading_counting">%1$d/%2$d betöltése</string>
   <string name="downloading_db">Adatbázis letöltése</string>
   <string name="xda">XDA</string>
-  <string name="github">Github</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
-  <string name="paypal">Paypal</string>
+  <string name="paypal">PayPal</string>
   <string name="download">letöltés</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Folytatás</string>
@@ -594,7 +594,7 @@
   <string name="open_source">Nyílt forráskódú</string>
   <string name="open_source_summary">Ez az alkalmazás nyílt forráskódú. Nézze meg a GitHub fiókomat.</string>
   <string name="feature_request">Ötlet, javaslat</string>
-  <string name="feature_request_summary">Több szolgáltatásra vágyik? Nyisson meg egy új problémát a Githubon, és mondja el ötletét.</string>
+  <string name="feature_request_summary">Több szolgáltatásra vágyik? Nyisson meg egy új problémát a GitHubon, és mondja el ötletét.</string>
   <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
   <string name="translation">Fordítás</string>
   <string name="translation_summary">Segítsen nekem lefordítani ezt az alkalmazást!</string>

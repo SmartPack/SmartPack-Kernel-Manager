@@ -385,9 +385,9 @@
   <string name="license">Dozvola</string>
   <string name="app_license">Kernel Adiutor je odobren Apache Licencom, verzija 2.0, i koristi slijedeće banke podataka</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Ova aplikacija spada pod open source. Provjerite na mom Github-u.</string>
+  <string name="open_source_summary">Ova aplikacija spada pod open source. Provjerite na mom GitHub-u.</string>
   <string name="feature_request">Predložite novu funkciju</string>
-  <string name="feature_request_summary">Želite li više funkcija? Posjetite moj Github i priopćite mi Vašu ideju.</string>
+  <string name="feature_request_summary">Želite li više funkcija? Posjetite moj GitHub i priopćite mi Vašu ideju.</string>
   <string name="google_plus_summary">Pridružite se našoj zajednici.</string>
   <string name="translation">Prijevod</string>
   <string name="translation_summary">Pomozite mi s prijevodima ove aplikacije!</string>

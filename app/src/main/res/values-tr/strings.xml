@@ -225,9 +225,9 @@
   <string name="driver_message_summary">Sürücü iletisi (dmesg)  /sdcard/dmesg.txt adresine kopyalandı</string>
   <string name="license">Lisans</string>
   <string name="open_source">Açık Kaynak</string>
-  <string name="open_source_summary">Bu uygulama açık kaynak sürümüdür. Github\'dan kontrol edin.</string>
+  <string name="open_source_summary">Bu uygulama açık kaynak sürümüdür. GitHub\'dan kontrol edin.</string>
   <string name="feature_request">Özellik İsteği</string>
-  <string name="feature_request_summary">Daha fazla özellik mi istiyorsun? Github üzerinde yeni bir konu aç ve bana fikrini söyle.</string>
+  <string name="feature_request_summary">Daha fazla özellik mi istiyorsun? GitHub üzerinde yeni bir konu aç ve bana fikrini söyle.</string>
   <string name="google_plus_summary">Topluluğumuza katılın.</string>
   <string name="translation">Çeviri</string>
   <string name="translation_summary">Bu uygulamayı çevirmek için yardım edin!</string>
