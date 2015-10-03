@@ -171,7 +171,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                 new Thread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        ProfileDB profileDB = new ProfileDB(getActivity());
+                                        final ProfileDB profileDB = new ProfileDB(getActivity());
 
                                         List<String> applys = new ArrayList<>();
                                         for (int i = 0; i < items.size(); i++)
@@ -187,7 +187,31 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             }
 
                                         final String name = profileName.getText().toString();
-                                        if (!name.isEmpty() && commands.size() > 0)
+
+                                        if (!name.isEmpty() && commands.size() > 0 && profileDB.containProfile(name)) {
+                                            getHandler().post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    AlertDialog.Builder replaceDialog = new AlertDialog.Builder(getActivity());
+                                                    replaceDialog.setTitle(getString(R.string.replace_profile, name));
+                                                    replaceDialog.setNegativeButton(getString(R.string.cancel),
+                                                            new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                }
+                                                            }).setPositiveButton(getString(R.string.ok),
+                                                            new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    profileDB.delete(profileDB.getProfileId(name));
+                                                                    profileDB.putProfile(name, commands);
+                                                                    profileDB.commit();
+                                                                }
+                                                            }).show();
+                                                }
+                                            });
+                                        }
+                                        else if (!name.isEmpty() && commands.size() > 0)
                                             profileDB.putProfile(name, commands);
                                         profileDB.commit();
 
