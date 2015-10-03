@@ -485,9 +485,9 @@
   <string name="loading_counting">Caricamento %1$d/%2$d</string>
   <string name="downloading_db">Scaricando l\'archivio</string>
   <string name="xda">XDA</string>
-  <string name="github">Github</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
-  <string name="paypal">Paypal</string>
+  <string name="paypal">PayPal</string>
   <string name="download">Scarica</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Riprendi</string>
@@ -592,9 +592,9 @@
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio Github.</string>
+  <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio GitHub.</string>
   <string name="feature_request">Richiesta di una funzione</string>
-  <string name="feature_request_summary">Vuoi più caratteristiche? Apri una nuova segnalazione su Github e dimmi la tua idea.</string>
+  <string name="feature_request_summary">Vuoi più caratteristiche? Apri una nuova segnalazione su GitHub e dimmi la tua idea.</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
   <string name="translation_summary">Aiutami a tradurre questa app!</string>

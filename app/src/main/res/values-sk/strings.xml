@@ -148,9 +148,9 @@
   <string name="last_kmsg">Posledná správa jadra</string>
   <string name="driver_message">Správa ovládača</string>
   <string name="open_source">Otvorený zdroj</string>
-  <string name="open_source_summary">Táto aplikácia má otvorený zdroj. Pozrite sa na môj Github.</string>
+  <string name="open_source_summary">Táto aplikácia má otvorený zdroj. Pozrite sa na môj GitHub.</string>
   <string name="feature_request">Žiadosť o funkciu</string>
-  <string name="feature_request_summary">Chcete viac funkcií? Otvorte novú tému na Github a povedzte mi svoje nápady.</string>
+  <string name="feature_request_summary">Chcete viac funkcií? Otvorte novú tému na GitHub a povedzte mi svoje nápady.</string>
   <string name="google_plus_summary">Pripojte sa k našej komunite.</string>
   <string name="translation">Preklad</string>
   <string name="translation_summary">Pomôžte mi preložiť túto aplikáciu!</string>

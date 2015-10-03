@@ -1,28 +1,22 @@
-KernelAdiutor
-=============
+# KernelAdiutor
+
+[![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
 
-<img alt="Screenshot"
-   src="https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png" />
+![Screenshot](https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png)
 
 * [Join Google+ Community](https://plus.google.com/communities/108445529270785762340) (Beta Testing)
 
-<a href="https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor">
-  <img alt="Google Play"
-       src="http://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-</a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG">
-  <img alt="PayPal" width="200" height="70"
-       src="https://support.ankama.com/hc/fr/article_attachments/200892097/Paypal.jpg" />
-</a>
+[![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
+[![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSCNTZC4H73JG)
 
-Kernel Downloader
-----------------
+## Kernel Downloader
 
 This is a feature which allows the user to download different custom kernels for their device. To add more kernel the developers have to add support by their own. I wrote up a [documentation](https://github.com/Grarak/KernelAdiutor/wiki/Adding-Download-Support) which explains how to do this.
 
-Report a bug or request a feature
-----------------
-You can report or request a features by opening an issue [Open new issue][1]
+## Report a bug or request a feature
+
+You can report a bug or request a feature by [opening an issue](https://github.com/Grarak/KernelAdiutor/issues/new).
 
 #### How to report a bug
 * A detailed description of the bug
@@ -30,15 +24,15 @@ You can report or request a features by opening an issue [Open new issue][1]
 * Make sure there are no similar bug reports already
 
 #### How to request a feature
-* A detailed description of the features
+* A detailed description of the feature
 * All kind of information
 * Paths to sys interface
 * What's the content if the sys file
 * How to apply a new value
 * Make sure there are no similar feature requests already
 
-Download & Build
-----------------
+## Download & Build
+
 Clone the project and come in:
 
 ``` bash
@@ -47,8 +41,7 @@ $ cd KernelAdiutor
 $ ./gradlew build
 ```
 
-Credits
-----------------
+## Credits
 
 I used following libraries:
 
@@ -83,8 +76,7 @@ _(Many sys interface paths has been taken from his [UKM-Project](https://github.
 
 * [ScrimInsetsFrameLayout](https://github.com/Grarak/KernelAdiutor/blob/master/app/src/main/java/com/grarak/kerneladiutor/elements/ScrimInsetsFrameLayout.java)
 
-License
-----------------
+## License
 
     Copyright (C) 2015 Willi Ye
 

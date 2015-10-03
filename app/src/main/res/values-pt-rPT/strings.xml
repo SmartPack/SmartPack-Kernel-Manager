@@ -494,9 +494,9 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="license">Licença</string>
   <string name="app_license">Adiutor kernel é licenciado sob a licença Apache, versão 2.0 e utiliza as seguintes bibliotecas</string>
   <string name="open_source">Código-fonte aberto</string>
-  <string name="open_source_summary">Este aplicativo é open source. Confira no meu Github.</string>
+  <string name="open_source_summary">Este aplicativo é open source. Confira no meu GitHub.</string>
   <string name="feature_request">Pedido de funcionalidade</string>
-  <string name="feature_request_summary">Quer mais funionalidades? Abra uma nova edição no Github e explique a sua ideia.</string>
+  <string name="feature_request_summary">Quer mais funionalidades? Abra uma nova edição no GitHub e explique a sua ideia.</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
   <string name="translation">Tradução</string>
   <string name="translation_summary">Ajuda a traduzir esta app!</string>

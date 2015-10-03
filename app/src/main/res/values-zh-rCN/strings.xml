@@ -401,9 +401,9 @@
   <string name="loading_counting">正在加载 %1$d/%2$d</string>
   <string name="downloading_db">正在下载数据库</string>
   <string name="xda">XDA</string>
-  <string name="github">Github</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
-  <string name="paypal">Paypal</string>
+  <string name="paypal">PayPal</string>
   <string name="download">下载</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">还原</string>
@@ -509,9 +509,9 @@
   <string name="license">许可</string>
   <string name="app_license">内核助手在 Apache License Version 2.0 下授权, 并使用了以下库</string>
   <string name="open_source">开放源代码</string>
-  <string name="open_source_summary">此应用是开源的。在我的 Github 上查看它。</string>
+  <string name="open_source_summary">此应用是开源的。在我的 GitHub 上查看它。</string>
   <string name="feature_request">功能请求</string>
-  <string name="feature_request_summary">你想要更多的功能吗? 请在 Github 上新开一个 issue 并告知您的建议。</string>
+  <string name="feature_request_summary">你想要更多的功能吗? 请在 GitHub 上新开一个 issue 并告知您的建议。</string>
   <string name="google_plus_summary">加入我们的社群。</string>
   <string name="translation">翻译</string>
   <string name="translation_summary">帮助我翻译这个应用！</string>
