@@ -622,6 +622,7 @@ public interface Constants {
     String[] VIBRATION_ARRAY = {
             "/sys/vibrator/pwmvalue",
             "/sys/class/timed_output/vibrator/amp",
+            "/sys/class/timed_output/vibrator/level",
             "/sys/class/timed_output/vibrator/vtg_level",
             "/sys/devices/platform/tspdrv/nforce_timed",
             "/sys/class/timed_output/vibrator/pwm_value",
@@ -634,6 +635,7 @@ public interface Constants {
     int[][] VIBRATION_MAX_MIN_ARRAY = {
             {127, 0},
             {100, 0},
+            {31, 12},
             {31, 12}, // Read MAX MIN from sys
             {127, 1},
             {100, 0}, // Read MAX MIN from sys
