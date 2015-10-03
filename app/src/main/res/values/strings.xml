@@ -330,7 +330,7 @@
     <string name="ramp_thresold_summary">This increases the number of times the GPU governor ramp down requests. The higher it is, the more performance you get.</string>
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads.</string>
-    <string name="down_differential">Down Differenctial</string>
+    <string name="down_differential">Down Differential</string>
     <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
     <string name="idle_wait">Idle Wait</string>
     <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'th events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
@@ -598,7 +598,7 @@
     <string name="press_again_to_apply">Press again to apply.</string>
     <string name="applied">Applied</string>
     <string name="applying_profile">Applying %s</string>
-    <string name="replace_profile">You sure want to replace %s profile?</string>
+    <string name="replace_profile">Do you want to replace %s?</string>
 
     <!-- Recovery -->
     <string name="reboot">Reboot</string>
