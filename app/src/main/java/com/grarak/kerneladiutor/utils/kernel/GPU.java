@@ -40,6 +40,7 @@ public class GPU implements Constants {
 
     private static String GPU_CUR_FREQ;
     private static String GPU_MAX_FREQ;
+    private static String GPU_MIN_FREQ;
     private static String GPU_AVAILABLE_FREQS;
     private static String GPU_SCALING_GOVERNOR;
     private static String[] GPU_AVAILABLE_GOVERNORS;
@@ -236,6 +237,11 @@ public class GPU implements Constants {
             Control.runCommand(String.valueOf(freq), GPU_MAX_FREQ, Control.CommandType.GENERIC, context);
     }
 
+    public static void setGpuMinFreq(int freq, Context context) {
+        if (GPU_MIN_FREQ != null)
+            Control.runCommand(String.valueOf(freq), GPU_MIN_FREQ, Control.CommandType.GENERIC, context);
+    }
+
     public static List<Integer> getGpuFreqs() {
         if (GPU_AVAILABLE_FREQS != null)
             if (mGpuFreqs == null)
@@ -273,6 +279,22 @@ public class GPU implements Constants {
                 if (Utils.existFile(file)) GPU_MAX_FREQ = file;
         }
         return GPU_MAX_FREQ != null;
+    }
+
+    public static int getGpuMinFreq() {
+        if (GPU_MIN_FREQ != null) if (Utils.existFile(GPU_MIN_FREQ)) {
+            String value = Utils.readFile(GPU_MIN_FREQ);
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static boolean hasGpuMinFreq() {
+        if (GPU_MIN_FREQ == null) {
+            for (String file : GPU_MIN_FREQ_ARRAY)
+                if (Utils.existFile(file)) GPU_MIN_FREQ = file;
+        }
+        return GPU_MIN_FREQ != null;
     }
 
     public static int getGpuCurFreq() {

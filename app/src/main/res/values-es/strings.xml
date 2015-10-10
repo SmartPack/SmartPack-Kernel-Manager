@@ -285,6 +285,8 @@
   <string name="gpu_2d_max_freq_summary">Establecer la frecuencia máxima de la GPU 2D.</string>
   <string name="gpu_max_freq">Frecuencia máxima del GPU</string>
   <string name="gpu_max_freq_summary">Establecer la frecuencia máxima del GPU.</string>
+  <string name="gpu_min_freq">Frecuencia mínima del GPU</string>
+  <string name="gpu_min_freq_summary">Establecer la frecuencia mínima del GPU.</string>
   <string name="gpu_2d_governor">Gobernador de GPU 2D</string>
   <string name="gpu_2d_governor_summary">Establecer el gobernador del GPU 2D.</string>
   <string name="gpu_governor">Gobernador del GPU</string>

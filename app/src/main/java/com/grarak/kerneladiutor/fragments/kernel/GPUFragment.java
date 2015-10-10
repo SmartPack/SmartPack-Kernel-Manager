@@ -41,6 +41,8 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
     private PopupCardView.DPopupCard mMax2dFreqCard, mMaxFreqCard;
 
+    private PopupCardView.DPopupCard mMinFreqCard;
+
     private PopupCardView.DPopupCard m2dGovernorCard, mGovernorCard;
 
     private SwitchCardView.DSwitchCard mSimpleGpuCard;
@@ -55,6 +57,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
         curFreqInit();
         maxFreqInit();
+        minFreqInit();
         governorInit();
         if (GPU.hasSimpleGpu()) simpleGpuInit();
         if (GPU.hasAdrenoIdler()) adrenoIdlerInit();
@@ -103,6 +106,22 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             mMaxFreqCard.setOnDPopupCardListener(this);
 
             addView(mMaxFreqCard);
+        }
+    }
+
+    private void minFreqInit() {
+        if (GPU.hasGpuMinFreq() && GPU.hasGpuFreqs()) {
+            List<String> freqs = new ArrayList<>();
+            for (int freq : GPU.getGpuFreqs())
+                freqs.add(freq / 1000000 + getString(R.string.mhz));
+
+            mMinFreqCard = new PopupCardView.DPopupCard(freqs);
+            mMinFreqCard.setTitle(getString(R.string.gpu_min_freq));
+            mMinFreqCard.setDescription(getString(R.string.gpu_min_freq_summary));
+            mMinFreqCard.setItem(GPU.getGpuMinFreq() / 1000000 + getString(R.string.mhz));
+            mMinFreqCard.setOnDPopupCardListener(this);
+
+            addView(mMinFreqCard);
         }
     }
 
@@ -218,6 +237,8 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             GPU.setGpu2dMaxFreq(GPU.getGpu2dFreqs().get(position), getActivity());
         else if (dPopupCard == mMaxFreqCard)
             GPU.setGpuMaxFreq(GPU.getGpuFreqs().get(position), getActivity());
+        else if (dPopupCard == mMinFreqCard)
+            GPU.setGpuMinFreq(GPU.getGpuFreqs().get(position), getActivity());
         else if (dPopupCard == m2dGovernorCard)
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
         else if (dPopupCard == mGovernorCard)
