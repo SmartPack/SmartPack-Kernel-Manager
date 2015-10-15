@@ -149,6 +149,32 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST);
     }
 
+    public static void activateCpuBoostWakeup(boolean active, Context context) {
+	String command = active ? "Y" : "N";
+        Control.runCommand(command, CPU_BOOST_WAKEUP, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostWakeupActive() {
+        return Utils.readFile(CPU_BOOST_WAKEUP).equals("Y");
+    }
+
+    public static boolean hasCpuBoostWakeup() {
+        return Utils.existFile(CPU_BOOST_WAKEUP);
+    }
+
+    public static void activateCpuBoostHotplug(boolean active, Context context) {
+	String command = active ? "Y" : "N";
+        Control.runCommand(command, CPU_BOOST_HOTPLUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostHotplugActive() {
+        return Utils.readFile(CPU_BOOST_HOTPLUG).equals("Y");
+    }
+
+    public static boolean hasCpuBoostHotplug() {
+        return Utils.existFile(CPU_BOOST_HOTPLUG);
+    }
+
     public static void setCpuQuietGovernor(String value, Context context) {
         Control.runCommand(value, CPU_QUIET_CURRENT_GOVERNOR, Control.CommandType.GENERIC, context);
     }

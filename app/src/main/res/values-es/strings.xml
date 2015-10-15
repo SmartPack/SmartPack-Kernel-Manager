@@ -114,6 +114,10 @@
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
   <string name="input_boost_freq_core">Impulso Inicial de la Frecuencia del Núcleo %s</string>
   <string name="input_boost_freq_summary">Aumentar el CPU a esta frecuencia al detectar una entrada.</string>
+  <string name="wakeup">Wakeup boost</string>
+  <string name="wakeup_summary">Wakeup Boost impulsa la CPU cuando la pantalla se enciende.</string>
+  <string name="cpuboost_hotplug">Hotplug boost</string>
+  <string name="hotplug_summary">Hotplug Boost impulsa la CPU cuando los núcleos se activan.</string>
   <string name="global_offset">Ajuste Global</string>
   <string name="override_vmin">Sobrescribir voltaje mínimo</string>
   <string name="override_vmin_summary">Desactivar para eliminar los límites del fabricante en undervolting</string>

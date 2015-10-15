@@ -139,6 +139,10 @@
     <string name="input_boost_freq">Input Boost Frequency</string>
     <string name="input_boost_freq_core">Input Boost Frequency Core %s</string>
     <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
+    <string name="wakeup">Wakeup boost</string>
+    <string name="wakeup_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
+    <string name="cpuboost_hotplug">Hotplug boost</string>
+    <string name="hotplug_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>

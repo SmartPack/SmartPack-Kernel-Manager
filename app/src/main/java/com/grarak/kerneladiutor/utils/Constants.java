@@ -78,6 +78,8 @@ public interface Constants {
     String CPU_BOOST_SYNC_THRESHOLD = CPU_BOOST + "/sync_threshold";
     String CPU_BOOST_INPUT_MS = CPU_BOOST + "/input_boost_ms";
     String CPU_BOOST_INPUT_BOOST_FREQ = CPU_BOOST + "/input_boost_freq";
+    String CPU_BOOST_WAKEUP = CPU_BOOST + "/wakeup_boost";
+    String CPU_BOOST_HOTPLUG = CPU_BOOST + "/hotplug_boost";
 
     String[] CPU_ARRAY = {CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MAX_FREQ_KT, CPU_ENABLE_OC,
             CPU_MIN_FREQ, CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
