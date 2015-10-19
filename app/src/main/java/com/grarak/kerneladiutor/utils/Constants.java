@@ -693,7 +693,10 @@ public interface Constants {
     String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED};
 
     // Fsync
-    String FSYNC = "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled";
+    String[] FSYNC = {
+            "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled",
+            "/sys/module/sync/parameters/fsync_enabled"
+    };
     String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
     // Power suspend
@@ -707,9 +710,9 @@ public interface Constants {
     String HOSTNAME_KEY = "net.hostname";
 
     String[][] MISC_ARRAY = {{VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
-            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
+            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
             TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
-            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY};
+            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY, FSYNC};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

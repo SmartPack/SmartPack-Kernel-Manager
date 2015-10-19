@@ -37,6 +37,8 @@ public class Misc implements Constants {
 
     private static String LOGGER_FILE;
 
+    private static String FSYNC_FILE;
+
     private static String SMB135X_WAKELOCK_FILE;
     private static String WLAN_RX_WAKELOCK_FILE;
     private static String WLAN_CTRL_WAKELOCK_FILE;
@@ -246,15 +248,20 @@ public class Misc implements Constants {
     }
 
     public static void activateFsync(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", FSYNC, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", FSYNC_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isFsyncActive() {
-        return Utils.readFile(FSYNC).equals("1");
+        return Utils.readFile(FSYNC_FILE).equals("1");
     }
 
     public static boolean hasFsync() {
-        return Utils.existFile(FSYNC);
+        for (String file : FSYNC)
+            if (Utils.existFile(file)) {
+                FSYNC_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateLogger(boolean active, Context context) {
