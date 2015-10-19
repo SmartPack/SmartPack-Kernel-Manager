@@ -114,10 +114,6 @@
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
   <string name="input_boost_freq_core">Impulso Inicial de la Frecuencia del Núcleo %s</string>
   <string name="input_boost_freq_summary">Aumentar el CPU a esta frecuencia al detectar una entrada.</string>
-  <string name="wakeup">Wakeup boost</string>
-  <string name="wakeup_summary">Wakeup Boost impulsa la CPU cuando la pantalla se enciende.</string>
-  <string name="cpuboost_hotplug">Hotplug boost</string>
-  <string name="hotplug_summary">Hotplug Boost impulsa la CPU cuando los núcleos se activan.</string>
   <string name="global_offset">Ajuste Global</string>
   <string name="override_vmin">Sobrescribir voltaje mínimo</string>
   <string name="override_vmin_summary">Desactivar para eliminar los límites del fabricante en undervolting</string>
@@ -372,14 +368,6 @@
   <string name="fullscreen">Pantalla completa</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Despierta tu terminal deslizando en la pantalla.</string>
-  <string name="s2w_right">Deslizar hacia la Derecha</string>
-  <string name="s2w_left">Deslizar hacia la Izquierda</string>
-  <string name="s2w_up">Deslizar hacia Arriba</string>
-  <string name="s2w_down">Deslizar hacia Abajo</string>
-  <string name="s2w_any">Deslizar en todas las direcciones</string>
-  <string name="s2s_right">Deslizar hacía la derecha</string>
-  <string name="s2s_left">Deslizar hacía la izquierda</string>
-  <string name="s2s_any">Deslizar hacía la derecha o izquierda</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Enciende la pantalla pulsandola.</string>
@@ -389,7 +377,6 @@
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake mientras se está cargando</string>
   <string name="sleep">Suspensión</string>
   <string name="dt2s">DoubleTap2Sleep (Doble Toque para Suspender)</string>
-    <string name="dt2s_summary">Pulse dos veces en la parte superior de la pantalla para apagarla.</string>
   <string name="slide_up">Deslizar hacia arriba</string>
   <string name="slide_down">Deslizar hacia abajo</string>
   <string name="slide_left">Deslizar a la izquierda</string>

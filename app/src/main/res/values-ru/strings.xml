@@ -13,7 +13,7 @@
   <string name="no_picture">Нет картинки</string>
   <string name="went_wrong">Что-то пошло не так!</string>
   <string name="password">Пароль</string>
-  <string name="password_wrong">Пароль неверен</string>
+  <string name="password_wrong">Неверный пароль</string>
   <string name="press_back_again">Снова нажмите назад, чтобы оставить</string>
   <string name="more">Ещё</string>
   <string name="thank_you">Спасибо!</string>
@@ -295,7 +295,9 @@
 Разработано faux123.</string>
   <string name="laziness">Ленивость</string>
   <string name="laziness_summary">Увеличивает порог увеличения или уменьшения частоты GPU. Чем меньше значение тем больше производительность.</string>
+  <string name="ramp_thresold">Ramp Thresold</string>
   <string name="ramp_thresold_summary">Увеличивает частоту запроса частот у GPU. Чем выше значение, тем выше производительность.</string>
+  <string name="adreno_idler">Adreno Idler</string>
   <string name="down_differential_summary">Пороговое значение нагрузки простоя.</string>
   <string name="idle_wait">Режим ожидания</string>
   <string name="idle_wait_summary">Количество событий, после которого частота будет понижена. Adreno idler понизит частоту только если эти события были событиями простоя. Это нужно для того, чтобы избавиться от микро-лагов при листании или во время игры. Чем меньше значение, тем более активно idler будет понижать частоту.</string>
@@ -341,6 +343,7 @@
   <string name="negative_toggle">Отрицательный рычаг</string>
   <string name="negative_toggle_summary">Чтобы Вкл. инвертирование цвета экрана, быстро нажимая кнопку меню 4 раза.</string>
   <string name="mdnie_global_controls">Управление функцией mDNle</string>
+  <string name="register_hook">Зарегистрировать хук</string>
   <string name="master_sequence">Мастер последовательности</string>
   <string name="master_sequence_summary">Включение главной последовательности будет отключить и игнорировать Samsungs профили и сценариев, ПЗУ элементы управления будут отключены.</string>
   <string name="glove_mode">Режим перчаток</string>
@@ -463,7 +466,7 @@
   <string name="wlan_wakelock_summary">Предотвратить wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
-  <string name="plugin_warning">Я, создатель этого приложения, не несу ответственность за любые повреждения которые могут нанести сторонние приложения! Также я не могу гарантировать их полноценное функционирование. Пожалуйста будьте осторожны с устанавлиевыми приложениями!</string>
+  <string name="plugin_warning">Я, создатель этого приложения, не несу ответственности за любой ущерб, который может нанести сторонняя продукция! Также я не гарантирую её полноценную функциональность. Пожалуйста, будьте осторожны с тем, что вы устанавливаете!</string>
   <string name="download_plugins">Скачать плагины</string>
   <string name="looking_plugins">Поиск плагинов</string>
   <string name="no_plugins">Плагины не найдены</string>
@@ -476,12 +479,15 @@
   <string name="loading_counting">Загрузка %1$d/%2$d</string>
   <string name="downloading_db">Загрузка базы данных</string>
   <string name="xda">XDA</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google +</string>
+  <string name="paypal">PayPal</string>
   <string name="download">Скачать</string>
   <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="resume">Возобновить</string>
   <string name="checking_md5">Проверка MD5sum</string>
   <string name="md5_mismatch">Несоответствие MD5</string>
+  <string name="md5_mismatch_summary">MD5 хэш загруженного файла другой. Скорее всего, это вызвано тем, что:\n\n\u2022 загруженный файл повреждён\n\u2022 разработчик выложил неверный хэш\n\nПопробуйте загрузить файл заново. Если вы продолжите получать эту ошибку, свяжитесь с разработчиком данного ядра.</string>
   <string name="download_success">Успешно загружено %s. Вы хотите установить его сейчас?</string>
   <string name="manual_flashing">Я буду использовать мои руки</string>
   <string name="file_location">Загрузится через %s</string>
@@ -513,6 +519,7 @@
   <string name="press_again_to_apply">Нажмите снова, чтобы применить.</string>
   <string name="applied">Применено</string>
   <string name="applying_profile">Примененить профиль</string>
+  <string name="replace_profile">Вы хотите заменить %s?</string>
   <string name="reboot">Перезагрузить</string>
   <string name="reboot_soft">Перезапуск интерфейса</string>
   <string name="reboot_recovery">Перезагрузить в рекавери</string>
@@ -557,8 +564,8 @@
   <string name="driver_message_summary">Скопировать dmesg в /sdcard/dmesg.txt</string>
   <string name="security">Безопасность</string>
   <string name="set_password">Установить Пароль</string>
-  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы открываете приложение, вам придется вводить пароль. Если вы забудете его, просто cотрите данные этого приложения в настройках вашего телефона. Не волнуйтесь, я не вижу ваш пароль.</string>
-  <string name="delete_password">Удалить пароля</string>
+  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы открываете приложение, вам придется его вводить Если вы забудете его, просто cотрите данные этого приложения в настройках вашего телефона. Не волнуйтесь, я не делюсь им ни с кем.</string>
+  <string name="delete_password">Удалить пароль</string>
   <string name="new_password">Новый пароль</string>
   <string name="confirm_new_password">Повторите пароль</string>
   <string name="old_password">Старый пароль</string>
@@ -571,16 +578,19 @@
   <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
   <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
-  <string name="cpu_freq_not_sticking_summary">В этом может быть много причин. Многие ядра имеют свои системы контроля ядер, CyanogenMod имеет свой собственный режим ускорения ЦП. Рекомендуется не трогать частоты ЦП и позволить ядру делать своё дело.</string>
+  <string name="cpu_freq_not_sticking_summary">Существует множество причин. Большинство ядер имеют свои системы контроля частоты процессора, а у CyanogenMod даже свой собственный режим ускорения ЦП. Я бы рекомендовал не трогать настройки частот и дать ядру заниматься своим делом.</string>
   <string name="feature_not_appearing">Почему нет функции x и y?</string>
-  <string name="feature_not_appearing_summary">Функции зависят от ядра.</string>
+  <string name="feature_not_appearing_summary">Функционал зависит от ядра.</string>
   <string name="feature_function">Что делает функция x?</string>
-  <string name="feature_function_summary">Если Вы не знаете, что делает функция, то просто не трогайте ее. Узнайте что она делает перед игрой с вашей дорогой железкой.</string>
+  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Узнайте о его предназначении перед попыткой сжечь ваше дорогое устройство.</string>
   <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
+  <string name="add_new_features_summary">Трудно сказать. Я стараюсь добавлять весь функционал, но сделать универсальное приложение для всех устройств очень трудно. Лично у меня есть только Samsung Galaxy S4(i9509) и HTC Desire 816; также с недавнего времени OnePlus 2, так что не вините меня, если новые возможности появятся не сразу.</string>
   <string name="license">Лицензия</string>
   <string name="app_license">Kernel Adiutor лицензирован Apache License, Версия 2.0, и использует следующие библиотеки</string>
   <string name="open_source">Открытый исходный код</string>
+  <string name="open_source_summary">Это приложение с открытым исходным кодом. Вы можете посмотреть его на GitHub.</string>
   <string name="feature_request">Предложить новую функцию</string>
+  <string name="feature_request_summary">Хотите новых возможностей? Создайте запрос на GitHub и объясните мне свою идею.</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
   <string name="translation">Перевод</string>
   <string name="translation_summary">Помогите мне перевести это приложение!</string>

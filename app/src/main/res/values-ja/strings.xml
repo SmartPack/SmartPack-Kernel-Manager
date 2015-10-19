@@ -297,6 +297,7 @@
   <string name="ramp_thresold_summary">GPUガバナのランプダウン要求の回数を増やします。高くすると、パフォーマンスが良くなります。</string>
   <string name="adreno_idler">Adreno Idler</string>
   <string name="adreno_idler_summary">msm-adreno-tz のオーバヘッドに対する効果的な対策です。</string>
+  <string name="down_differential">Down Differential</string>
   <string name="down_differential_summary">ワークロードがアイドル状態かを判断するしきい値です。</string>
   <string name="idle_wait">アイドル待機</string>
   <string name="idle_wait_summary">周波数を低下させる前に待機するイベント数のことです。Adreno idlerが周波数を下げる前に
@@ -493,7 +494,9 @@
   <string name="loading_counting">読み込み中 %1$d/%2$d</string>
   <string name="downloading_db">データベースのダウンロード中</string>
   <string name="xda">XDA</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
+  <string name="paypal">PayPal</string>
   <string name="download">ダウンロード</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">再開</string>
@@ -531,6 +534,7 @@
   <string name="press_again_to_apply">もう一度タップすると適用します。</string>
   <string name="applied">適用しました。</string>
   <string name="applying_profile">%s を適用中</string>
+  <string name="replace_profile">%s を置換しますか?</string>
   <string name="reboot">再起動</string>
   <string name="reboot_soft">ソフトリブート</string>
   <string name="reboot_recovery">リカバリへ再起動</string>
@@ -599,7 +603,9 @@
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>
+  <string name="open_source_summary">このアプリはオープンソースです。タップでGithubページを開きます。</string>
   <string name="feature_request">機能のリクエスト</string>
+  <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
   <string name="google_plus_summary">コミュニティに参加する</string>
   <string name="translation">翻訳</string>
   <string name="translation_summary">このアプリの翻訳を手伝ってください!</string>
