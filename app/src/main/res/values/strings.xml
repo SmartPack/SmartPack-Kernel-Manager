@@ -139,6 +139,10 @@
     <string name="input_boost_freq">Input Boost Frequency</string>
     <string name="input_boost_freq_core">Input Boost Frequency Core %s</string>
     <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
+    <string name="wakeup">Wakeup boost</string>
+    <string name="wakeup_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
+    <string name="cpuboost_hotplug">Hotplug boost</string>
+    <string name="hotplug_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
@@ -409,6 +413,14 @@
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen.</string>
     <string name="s2s">Sweep2Sleep</string>
+    <string name="s2w_right">Sweep2Wake Right</string>
+    <string name="s2w_left">Sweep2Wake Left</string>
+    <string name="s2w_up">Sweep2Wake Up</string>
+    <string name="s2w_down">Sweep2Wake Down</string>
+    <string name="s2w_any">Sweep2Wake Any</string>
+    <string name="s2s_right">Sweep Right</string>
+    <string name="s2s_left">Sweep Left</string>
+    <string name="s2s_any">Sweep Left or Right</string>
     <string name="t2w">Tap2Wake</string>
     <string name="t2w_summary">Wake up your device by tapping the screen.</string>
     <string name="wake">Wake</string>
@@ -417,6 +429,7 @@
     <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
     <string name="sleep">Sleep</string>
     <string name="dt2s">DoubleTap2Sleep</string>
+    <string name="dt2s_summary">Allows you to sleep the device by double tapping on the top of the screen.</string>
     <string name="slide_up">Slide up</string>
     <string name="slide_down">Slide down</string>
     <string name="slide_left">Slide left</string>
