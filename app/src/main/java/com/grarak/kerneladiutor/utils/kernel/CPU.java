@@ -86,16 +86,9 @@ public class CPU implements Constants {
     }
 
     public static void setCpuBoostInputFreq(int value, int core, Context context) {
-        String freqs;
-        if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {
-            StringBuilder command = new StringBuilder();
-            for (String freq : freqs.split(" "))
-                if (freq.startsWith(core + ":"))
-                    command.append(core).append(":").append(value).append(" ");
-                else command.append(freq).append(" ");
-            command.setLength(command.length() - 1);
-            Control.runCommand(command.toString(), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
-        } else
+        if (Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ).contains(":"))
+            Control.runCommand(core + ":" + value, CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
+        else
             Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
     }
 
