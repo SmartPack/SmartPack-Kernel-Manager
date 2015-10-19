@@ -49,6 +49,30 @@ public class CPU implements Constants {
 
     private static String CPU_BOOST_ENABLE_FILE;
 
+    public static void activateCpuBoostWakeup(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", CPU_BOOST_WAKEUP, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostWakeupActive() {
+        return Utils.readFile(CPU_BOOST_WAKEUP).equals("Y");
+    }
+
+    public static boolean hasCpuBoostWakeup() {
+        return Utils.existFile(CPU_BOOST_WAKEUP);
+    }
+
+    public static void activateCpuBoostHotplug(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", CPU_BOOST_HOTPLUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostHotplugActive() {
+        return Utils.readFile(CPU_BOOST_HOTPLUG).equals("Y");
+    }
+
+    public static boolean hasCpuBoostHotplug() {
+        return Utils.existFile(CPU_BOOST_HOTPLUG);
+    }
+
     public static void setCpuBoostInputMs(int value, Context context) {
         Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_MS, Control.CommandType.GENERIC, context);
     }
@@ -147,32 +171,6 @@ public class CPU implements Constants {
 
     public static boolean hasCpuBoost() {
         return Utils.existFile(CPU_BOOST);
-    }
-
-    public static void activateCpuBoostWakeup(boolean active, Context context) {
-	String command = active ? "Y" : "N";
-        Control.runCommand(command, CPU_BOOST_WAKEUP, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isCpuBoostWakeupActive() {
-        return Utils.readFile(CPU_BOOST_WAKEUP).equals("Y");
-    }
-
-    public static boolean hasCpuBoostWakeup() {
-        return Utils.existFile(CPU_BOOST_WAKEUP);
-    }
-
-    public static void activateCpuBoostHotplug(boolean active, Context context) {
-	String command = active ? "Y" : "N";
-        Control.runCommand(command, CPU_BOOST_HOTPLUG, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isCpuBoostHotplugActive() {
-        return Utils.readFile(CPU_BOOST_HOTPLUG).equals("Y");
-    }
-
-    public static boolean hasCpuBoostHotplug() {
-        return Utils.existFile(CPU_BOOST_HOTPLUG);
     }
 
     public static void setCpuQuietGovernor(String value, Context context) {

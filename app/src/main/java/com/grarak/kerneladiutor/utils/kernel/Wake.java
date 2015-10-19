@@ -37,6 +37,7 @@ public class Wake implements Constants {
     private static String WAKE_MISC_FILE;
     private static String SLEEP_MISC_FILE;
     private static String DT2S_FILE;
+    private static String WAKE_TIMEOUT_FILE;
 
     public static void activatePowerKeySuspend(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
@@ -51,27 +52,25 @@ public class Wake implements Constants {
     }
 
     public static void setWakeTimeout(int value, Context context) {
-        Control.runCommand(String.valueOf(value), WAKE_TIMEOUT, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), WAKE_TIMEOUT_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static int getWakeTimeout() {
-        return Utils.stringToInt(Utils.readFile(WAKE_TIMEOUT));
+        return Utils.stringToInt(Utils.readFile(WAKE_TIMEOUT_FILE));
+    }
+
+    public static int getWakeTimeoutMax() {
+        if (WAKE_TIMEOUT_FILE.equals(WAKE_TIMEOUT)) return 30;
+        return 10;
     }
 
     public static boolean hasWakeTimeout() {
-        return Utils.existFile(WAKE_TIMEOUT);
-    }
-
-    public static void setWakeTimeoutN(int value, Context context) {
-        Control.runCommand(String.valueOf(value), WAKE_TIMEOUTN, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getWakeTimeoutN() {
-        return Utils.stringToInt(Utils.readFile(WAKE_TIMEOUTN));
-    }
-
-    public static boolean hasWakeTimeoutN() {
-        return Utils.existFile(WAKE_TIMEOUTN);
+        for (String file : WAKE_TIMEOUT_ARRAY)
+            if (Utils.existFile(file)) {
+                WAKE_TIMEOUT_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateGesture(boolean active, int gesture, Context context) {
@@ -107,6 +106,33 @@ public class Wake implements Constants {
         return Utils.existFile(GESTURE_CRTL);
     }
 
+    public static void setDt2s(int value, Context context) {
+        Control.runCommand(String.valueOf(value), DT2S_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDt2sValue() {
+        return Utils.stringToInt(Utils.readFile(DT2S_FILE));
+    }
+
+    public static List<String> getDt2sMenu(Context context) {
+        List<String> list = new ArrayList<>();
+        if (DT2S_FILE != null) {
+            list.add(context.getString(R.string.disabled));
+            list.add(context.getString(R.string.enabled));
+        }
+        return list;
+    }
+
+    public static boolean hasDt2s() {
+        if (DT2S_FILE == null)
+            for (String file : DT2S_ARRAY)
+                if (Utils.existFile(file)) {
+                    DT2S_FILE = file;
+                    return true;
+                }
+        return DT2S_FILE != null;
+    }
+
     public static void setSleepMisc(int value, Context context) {
         Control.runCommand(String.valueOf(value), SLEEP_MISC_FILE, Control.CommandType.GENERIC, context);
     }
@@ -126,7 +152,7 @@ public class Wake implements Constants {
                 case SCREEN_SLEEP_OPTIONS:
                     list.add(context.getString(R.string.dt2s));
                     break;
-                case S2SN:
+                case S2S_2:
                     list.add(context.getString(R.string.s2s_right));
                     list.add(context.getString(R.string.s2s_left));
                     list.add(context.getString(R.string.s2s_any));
@@ -232,7 +258,7 @@ public class Wake implements Constants {
                     list.add(context.getString(R.string.s2w) + " + " + context.getString(R.string.s2s));
                     list.add(context.getString(R.string.s2s));
                     break;
-                case SW2N:
+                case SW2_2:
                     list.add(context.getString(R.string.s2w_right));
                     list.add(context.getString(R.string.s2w_left));
                     list.add(context.getString(R.string.s2w_up));
@@ -255,35 +281,6 @@ public class Wake implements Constants {
                     break;
                 }
         return S2W_FILE != null;
-    }
-
-    public static void setDt2s(int value, Context context) {
-        Control.runCommand(String.valueOf(value), DT2S_FILE, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getDt2sValue() {
-        if (Utils.existFile(DT2S_FILE))
-            return Utils.stringToInt(Utils.readFile(DT2S_FILE));
-        return 0;
-    }
-
-    public static List<String> getDt2sMenu(Context context) {
-        List<String> list = new ArrayList<>();
-        if (DT2S_FILE != null) {
-            list.add(context.getString(R.string.disabled));
-            list.add(context.getString(R.string.enabled));
-        }
-        return list;
-    }
-
-    public static boolean hasDt2s() {
-        if (DT2S_FILE == null)
-            for (String file : DT2S_ARRAY)
-                if (Utils.existFile(file)) {
-                    DT2S_FILE = file;
-                    return true;
-                }
-        return DT2S_FILE != null;
     }
 
     public static void setDt2w(int value, Context context) {
@@ -311,7 +308,7 @@ public class Wake implements Constants {
                     list.add(context.getString(R.string.halfscreen));
                     list.add(context.getString(R.string.fullscreen));
                     break;
-                case DT2WN:
+                case DT2W_2:
                     list.add(context.getString(R.string.enabled));
                     break;
                 default:

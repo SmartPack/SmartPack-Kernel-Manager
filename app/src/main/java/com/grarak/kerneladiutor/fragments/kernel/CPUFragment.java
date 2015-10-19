@@ -131,8 +131,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private PopupCardView.DPopupCard mCpuBoostSyncThresholdCard;
         private SeekBarCardView.DSeekBarCard mCpuBoostInputMsCard;
         private PopupCardView.DPopupCard[] mCpuBoostInputFreqCard;
-	private SwitchCardView.DSwitchCard mCpuBoostWakeupCard;
-	private SwitchCardView.DSwitchCard mCpuBoostHotplugCard;
+        private SwitchCardView.DSwitchCard mCpuBoostWakeupCard;
+        private SwitchCardView.DSwitchCard mCpuBoostHotplugCard;
 
         @Override
         public String getClassName() {
@@ -415,26 +415,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 views.add(mCpuBoostDebugMaskCard);
             }
 
-            if (CPU.hasCpuBoostWakeup()) {
-                mCpuBoostWakeupCard = new SwitchCardView.DSwitchCard();
-                mCpuBoostWakeupCard.setTitle(getString(R.string.wakeup));
-                mCpuBoostWakeupCard.setDescription(getString(R.string.wakeup_summary));
-                mCpuBoostWakeupCard.setChecked(CPU.isCpuBoostWakeupActive());
-                mCpuBoostWakeupCard.setOnDSwitchCardListener(this);
-
-                views.add(mCpuBoostWakeupCard);
-            }
-
-            if (CPU.hasCpuBoostHotplug()) {
-                mCpuBoostHotplugCard = new SwitchCardView.DSwitchCard();
-                mCpuBoostHotplugCard.setTitle(getString(R.string.cpuboost_hotplug));
-                mCpuBoostHotplugCard.setDescription(getString(R.string.hotplug_summary));
-                mCpuBoostHotplugCard.setChecked(CPU.isCpuBoostHotplugActive());
-                mCpuBoostHotplugCard.setOnDSwitchCardListener(this);
-
-                views.add(mCpuBoostHotplugCard);
-            }
-
             if (CPU.hasCpuBoostMs()) {
                 List<String> list = new ArrayList<>();
                 for (int i = 0; i < 5001; i += 10)
@@ -503,6 +483,26 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
                     views.add(mCpuBoostInputFreqCard[i]);
                 }
+            }
+
+            if (CPU.hasCpuBoostWakeup()) {
+                mCpuBoostWakeupCard = new SwitchCardView.DSwitchCard();
+                mCpuBoostWakeupCard.setTitle(getString(R.string.wakeup));
+                mCpuBoostWakeupCard.setDescription(getString(R.string.wakeup_summary));
+                mCpuBoostWakeupCard.setChecked(CPU.isCpuBoostWakeupActive());
+                mCpuBoostWakeupCard.setOnDSwitchCardListener(this);
+
+                views.add(mCpuBoostWakeupCard);
+            }
+
+            if (CPU.hasCpuBoostHotplug()) {
+                mCpuBoostHotplugCard = new SwitchCardView.DSwitchCard();
+                mCpuBoostHotplugCard.setTitle(getString(R.string.hotplug_boost));
+                mCpuBoostHotplugCard.setDescription(getString(R.string.hotplug_boost_summary));
+                mCpuBoostHotplugCard.setChecked(CPU.isCpuBoostHotplugActive());
+                mCpuBoostHotplugCard.setOnDSwitchCardListener(this);
+
+                views.add(mCpuBoostHotplugCard);
             }
 
             if (views.size() > 0) {

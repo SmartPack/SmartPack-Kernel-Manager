@@ -44,7 +44,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard[] mGestureCards;
 
     private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
-    private SeekBarCardView.DSeekBarCard mWakeTimeoutNCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
@@ -59,7 +58,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasDt2s()) dt2sInit();
         if (Wake.hasGesture()) gestureInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
-        if (Wake.hasWakeTimeoutN()) wakeTimeoutNInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
     }
 
@@ -137,7 +135,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private void wakeTimeoutInit() {
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.disabled));
-        for (int i = 1; i < 31; i++)
+        for (int i = 1; i <= Wake.getWakeTimeoutMax(); i++)
             list.add(i + getString(R.string.min));
 
         mWakeTimeoutCard = new SeekBarCardView.DSeekBarCard(list);
@@ -147,21 +145,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         mWakeTimeoutCard.setOnDSeekBarCardListener(this);
 
         addView(mWakeTimeoutCard);
-    }
-
-    private void wakeTimeoutNInit() {
-        List<String> list = new ArrayList<>();
-        list.add(getString(R.string.disabled));
-        for (int i = 1; i < 11; i++)
-            list.add(i + getString(R.string.min));
-
-        mWakeTimeoutNCard = new SeekBarCardView.DSeekBarCard(list);
-        mWakeTimeoutNCard.setTitle(getString(R.string.wake_timeout));
-        mWakeTimeoutNCard.setDescription(getString(R.string.wake_timeout_summary));
-        mWakeTimeoutNCard.setProgress(Wake.getWakeTimeoutN());
-        mWakeTimeoutNCard.setOnDSeekBarCardListener(this);
-
-        addView(mWakeTimeoutNCard);
     }
 
     private void powerKeySuspendInit() {
@@ -191,7 +174,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
-        else if (dSeekBarCard == mWakeTimeoutNCard) Wake.setWakeTimeoutN(position, getActivity());
     }
 
     @Override

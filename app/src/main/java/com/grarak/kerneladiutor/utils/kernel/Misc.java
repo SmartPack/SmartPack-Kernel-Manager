@@ -256,7 +256,7 @@ public class Misc implements Constants {
     }
 
     public static boolean hasFsync() {
-        for (String file : FSYNC)
+        for (String file : FSYNC_ARRAY)
             if (Utils.existFile(file)) {
                 FSYNC_FILE = file;
                 return true;
