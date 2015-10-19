@@ -240,14 +240,18 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mLogcatCard);
 
-        if (Utils.existFile("/proc/last_kmsg")) {
+        if (Utils.existFile("/proc/last_kmsg") || Utils.existFile("/sys/fs/pstore/console-ramoops")) {
             CardViewItem.DCardView mLastKmsgCard = new CardViewItem.DCardView();
             mLastKmsgCard.setTitle(getString(R.string.last_kmsg));
             mLastKmsgCard.setDescription(getString(R.string.last_kmsg_summary));
             mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
+                    if (Utils.existFile("/proc/last_kmsg")) {
+                        new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
+                    } else {
+                        new Execute().execute("cat /sys/fs/pstore/console-ramoops > /sdcard/last_kmsg.txt");
+                    }
                 }
             });
 
