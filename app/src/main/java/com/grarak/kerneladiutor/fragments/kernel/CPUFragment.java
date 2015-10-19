@@ -487,8 +487,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             if (CPU.hasCpuBoostWakeup()) {
                 mCpuBoostWakeupCard = new SwitchCardView.DSwitchCard();
-                mCpuBoostWakeupCard.setTitle(getString(R.string.wakeup));
-                mCpuBoostWakeupCard.setDescription(getString(R.string.wakeup_summary));
+                mCpuBoostWakeupCard.setTitle(getString(R.string.wakeup_boost));
+                mCpuBoostWakeupCard.setDescription(getString(R.string.wakeup_boost_summary));
                 mCpuBoostWakeupCard.setChecked(CPU.isCpuBoostWakeupActive());
                 mCpuBoostWakeupCard.setOnDSwitchCardListener(this);
 
