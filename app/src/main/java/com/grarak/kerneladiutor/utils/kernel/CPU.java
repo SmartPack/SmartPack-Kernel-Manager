@@ -22,7 +22,6 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.LinuxUtils;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
@@ -517,25 +516,69 @@ public class CPU implements Constants {
         return TEMP_FILE != null;
     }
 
-    /**
-     * This code is from http://stackoverflow.com/a/13342738
+    /*
+     * Explained here: http://codereview.stackexchange.com/a/62414
      */
-    private static LinuxUtils linuxUtils;
-
-    public static float getCpuUsage() {
-        if (linuxUtils == null) linuxUtils = new LinuxUtils();
-
+    public static int getCpuUsage() {
         try {
-            String cpuStat1 = linuxUtils.readSystemStat();
+            Usage usage = new Usage(-1);
             Thread.sleep(1000);
-            String cpuStat2 = linuxUtils.readSystemStat();
-            float usage = linuxUtils.getSystemCpuUsage(cpuStat1, cpuStat2);
-            if (usage > -1) return usage;
-        } catch (Exception e) {
+            Usage usage1 = new Usage(-1);
+
+            int user = usage1.getUser() - usage.getUser();
+            int sys = usage1.getSys() - usage.getSys();
+            int idle = usage1.getIdle() - usage.getIdle();
+            int iowait = usage1.getIOWait() - usage.getIOWait();
+
+            int active = user + sys + iowait;
+            int total = active + idle;
+
+            return Math.round(active * 100 / total);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         return 0;
+    }
+
+    private static class Usage {
+
+        private Integer[] stats;
+
+        public Usage(int core) {
+            String stats = Utils.readFile("/proc/stat");
+            if (stats == null) return;
+
+            String cpuLine = null;
+            for (String line : stats.split("\\r?\\n"))
+                if ((core < 0 && line.startsWith("cpu")) || line.startsWith("cpu" + core)) {
+                    cpuLine = line.replace("  ", " ");
+                    break;
+                }
+
+            if (cpuLine == null) return;
+            this.stats = new Integer[5];
+            String[] values = cpuLine.split(" ");
+            for (int i = 0; i < this.stats.length; i++)
+                this.stats[i] = Utils.stringToInt(values[i + 1]);
+        }
+
+        public int getUser() {
+            return stats[0];
+        }
+
+        public int getSys() {
+            return stats[2];
+        }
+
+        public int getIdle() {
+            return stats[3];
+        }
+
+        public int getIOWait() {
+            return stats[4];
+        }
+
     }
 
 }

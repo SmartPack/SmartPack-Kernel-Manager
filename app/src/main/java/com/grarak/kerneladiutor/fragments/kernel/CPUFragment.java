@@ -687,12 +687,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            final float usage = CPU.getCpuUsage();
+                            final int usage = CPU.getCpuUsage();
                             try {
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mUsageCard.setProgress(Math.round(usage));
+                                        mUsageCard.setProgress(usage);
                                     }
                                 });
                             } catch (NullPointerException ignored) {
@@ -700,7 +700,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                         }
                     }).start();
 
-                getHandler().postDelayed(cpuUsage, 3000);
+                getHandler().postDelayed(cpuUsage, 1000);
             }
         };
 
