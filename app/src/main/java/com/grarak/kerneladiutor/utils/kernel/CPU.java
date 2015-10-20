@@ -519,34 +519,47 @@ public class CPU implements Constants {
     /*
      * Explained here: http://codereview.stackexchange.com/a/62414
      */
-    public static int getCpuUsage() {
+    public static Integer[] getCpuUsage() {
         try {
-            Usage usage = new Usage(-1);
+            Usage[] usage = getUsages();
             Thread.sleep(1000);
-            Usage usage1 = new Usage(-1);
+            Usage[] usage1 = getUsages();
 
-            int user = usage1.getUser() - usage.getUser();
-            int sys = usage1.getSys() - usage.getSys();
-            int idle = usage1.getIdle() - usage.getIdle();
-            int iowait = usage1.getIOWait() - usage.getIOWait();
+            Integer[] pers = new Integer[usage.length];
+            for (int i = 0; i < usage.length; i++) {
+                int user = usage1[i].getUser() - usage[i].getUser();
+                int sys = usage1[i].getSys() - usage[i].getSys();
+                int idle = usage1[i].getIdle() - usage[i].getIdle();
+                int iowait = usage1[i].getIOWait() - usage[i].getIOWait();
 
-            int active = user + sys + iowait;
-            int total = active + idle;
+                int active = user + sys + iowait;
+                int total = active + idle;
 
-            return Math.round(active * 100 / total);
+                if (total < 1) pers[i] = 1;
+                else pers[i] = Math.round(active * 100 / total);
+            }
+
+            return pers;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return null;
+    }
+
+    private static Usage[] getUsages() {
+        String stats = Utils.readFile("/proc/stat");
+        Usage[] usage = new Usage[getCoreCount() + 1];
+        for (int i = 0; i < usage.length; i++)
+            usage[i] = new Usage(stats, i - 1);
+        return usage;
     }
 
     private static class Usage {
 
         private Integer[] stats;
 
-        public Usage(int core) {
-            String stats = Utils.readFile("/proc/stat");
+        public Usage(String stats, int core) {
             if (stats == null) return;
 
             String cpuLine = null;
