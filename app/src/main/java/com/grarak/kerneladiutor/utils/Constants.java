@@ -78,6 +78,8 @@ public interface Constants {
     String CPU_BOOST_SYNC_THRESHOLD = CPU_BOOST + "/sync_threshold";
     String CPU_BOOST_INPUT_MS = CPU_BOOST + "/input_boost_ms";
     String CPU_BOOST_INPUT_BOOST_FREQ = CPU_BOOST + "/input_boost_freq";
+    String CPU_BOOST_WAKEUP = CPU_BOOST + "/wakeup_boost";
+    String CPU_BOOST_HOTPLUG = CPU_BOOST + "/hotplug_boost";
 
     String[] CPU_ARRAY = {CPU_CUR_FREQ, CPU_TEMP_ZONE0, CPU_TEMP_ZONE1, CPU_CORE_ONLINE, CPU_MAX_FREQ, CPU_MAX_FREQ_KT, CPU_ENABLE_OC,
             CPU_MIN_FREQ, CPU_MAX_SCREEN_OFF_FREQ, CPU_MSM_CPUFREQ_LIMIT, CPU_AVAILABLE_FREQS, CPU_TIME_STATE, CPU_SCALING_GOVERNOR,
@@ -495,19 +497,21 @@ public interface Constants {
     String LGE_TOUCH_CORE_DT2W = "/sys/module/lge_touch_core/parameters/doubletap_to_wake";
     String LGE_TOUCH_GESTURE = "/sys/devices/virtual/input/lge_touch/touch_gesture";
     String DT2W = "/sys/android_touch/doubletap2wake";
+    String DT2W_2 = "/sys/android_touch2/doubletap2wake";
     String TOUCH_PANEL_DT2W = "/proc/touchpanel/double_tap_enable";
     String DT2W_WAKEUP_GESTURE = "/sys/devices/virtual/input/input1/wakeup_gesture";
     String DT2W_ENABLE = "/sys/devices/platform/s3c2440-i2c.3/i2c-3/3-004a/dt2w_enable";
     String DT2W_WAKE_GESTURE = "/sys/devices/platform/spi-tegra114.2/spi_master/spi2/spi2.0/input/input0/wake_gesture";
 
-    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, TOUCH_PANEL_DT2W,
-            DT2W_WAKEUP_GESTURE, DT2W_ENABLE, DT2W_WAKE_GESTURE};
+    String[] DT2W_ARRAY = {LGE_TOUCH_DT2W, LGE_TOUCH_CORE_DT2W, LGE_TOUCH_GESTURE, DT2W, DT2W_2,
+            TOUCH_PANEL_DT2W, DT2W_WAKEUP_GESTURE, DT2W_ENABLE, DT2W_WAKE_GESTURE};
 
     // S2W
     String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     String SW2 = "/sys/android_touch/sweep2wake";
+    String SW2_2 = "/sys/android_touch2/sweep2wake";
 
-    String[] S2W_ARRY = {S2W_ONLY, SW2};
+    String[] S2W_ARRY = {S2W_ONLY, SW2, SW2_2};
 
     // T2W
     String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
@@ -522,9 +526,15 @@ public interface Constants {
 
     // Sleep Misc
     String S2S = "/sys/android_touch/sweep2sleep";
+    String S2S_2 = "/sys/android_touch2/sweep2sleep";
     String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
 
-    String[] SLEEP_MISC_ARRAY = {S2S, SCREEN_SLEEP_OPTIONS};
+    String[] SLEEP_MISC_ARRAY = {S2S, S2S_2, SCREEN_SLEEP_OPTIONS};
+
+    // DT2S
+    String DT2S = "/sys/android_touch2/doubletap2sleep";
+
+    String[] DT2S_ARRAY = {DT2S};
 
     // Gesture
     String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
@@ -533,10 +543,16 @@ public interface Constants {
     String[] GESTURE_STRING_VALUES = {"up", "down", "left", "right", "e", "o", "w", "c", "m", "double_click"};
 
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
+    String WAKE_TIMEOUT_2 = "/sys/android_touch2/wake_timeout";
+
+    String[] WAKE_TIMEOUT_ARRAY = {
+            WAKE_TIMEOUT, WAKE_TIMEOUT_2
+    };
+
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
-    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY,
-            {GESTURE_CRTL, WAKE_TIMEOUT, POWER_KEY_SUSPEND}};
+    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
+            {GESTURE_CRTL, POWER_KEY_SUSPEND}};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
@@ -684,7 +700,10 @@ public interface Constants {
     String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED};
 
     // Fsync
-    String FSYNC = "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled";
+    String[] FSYNC_ARRAY = {
+            "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled",
+            "/sys/module/sync/parameters/fsync_enabled"
+    };
     String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
     // Power suspend
@@ -698,9 +717,9 @@ public interface Constants {
     String HOSTNAME_KEY = "net.hostname";
 
     String[][] MISC_ARRAY = {{VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
-            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, FSYNC, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
+            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
             TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
-            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY};
+            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY, FSYNC_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

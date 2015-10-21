@@ -100,6 +100,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private AppCompatCheckBox[] mCoreCheckBox;
         private ProgressBar[] mCoreProgressBar;
+        private AppCompatTextView[] mCoreUsageText;
         private AppCompatTextView[] mCoreFreqText;
 
         private PopupCardView.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard;
@@ -109,6 +110,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private AppCompatCheckBox[] mCoreCheckBoxLITTLE;
         private ProgressBar[] mCoreProgressBarLITTLE;
+        private AppCompatTextView[] mCoreUsageTextLITTLE;
         private AppCompatTextView[] mCoreFreqTextLITTLE;
 
         private PopupCardView.DPopupCard mMaxFreqLITTLECard, mMinFreqLITTLECard, mMaxScreenOffFreqLITTLECard;
@@ -131,6 +133,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private PopupCardView.DPopupCard mCpuBoostSyncThresholdCard;
         private SeekBarCardView.DSeekBarCard mCpuBoostInputMsCard;
         private PopupCardView.DPopupCard[] mCpuBoostInputFreqCard;
+        private SwitchCardView.DSwitchCard mCpuBoostWakeupCard;
+        private SwitchCardView.DSwitchCard mCpuBoostHotplugCard;
 
         @Override
         public String getClassName() {
@@ -199,16 +203,19 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             mCoreCheckBox = new AppCompatCheckBox[CPU.getBigCoreRange().size()];
             mCoreProgressBar = new ProgressBar[mCoreCheckBox.length];
+            mCoreUsageText = new AppCompatTextView[mCoreCheckBox.length];
             mCoreFreqText = new AppCompatTextView[mCoreCheckBox.length];
             for (int i = 0; i < mCoreCheckBox.length; i++) {
                 View view = inflater.inflate(R.layout.coreview, container, false);
 
-                mCoreCheckBox[i] = (AppCompatCheckBox) view.findViewById(R.id.checkbox);
+                mCoreCheckBox[i] = (AppCompatCheckBox) view.findViewById(R.id.core_checkbox);
                 mCoreCheckBox[i].setText(getString(R.string.core, i + 1));
                 mCoreCheckBox[i].setOnClickListener(this);
 
                 mCoreProgressBar[i] = (ProgressBar) view.findViewById(R.id.progressbar);
                 mCoreProgressBar[i].setMax(CPU.getFreqs().size());
+
+                mCoreUsageText[i] = (AppCompatTextView) view.findViewById(R.id.usage);
 
                 mCoreFreqText[i] = (AppCompatTextView) view.findViewById(R.id.freq);
 
@@ -275,16 +282,19 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             mCoreCheckBoxLITTLE = new AppCompatCheckBox[CPU.getLITTLECoreRange().size()];
             mCoreProgressBarLITTLE = new ProgressBar[mCoreCheckBoxLITTLE.length];
+            mCoreUsageTextLITTLE = new AppCompatTextView[mCoreCheckBoxLITTLE.length];
             mCoreFreqTextLITTLE = new AppCompatTextView[mCoreCheckBoxLITTLE.length];
             for (int i = 0; i < mCoreCheckBoxLITTLE.length; i++) {
                 View view = inflater.inflate(R.layout.coreview, container, false);
 
-                mCoreCheckBoxLITTLE[i] = (AppCompatCheckBox) view.findViewById(R.id.checkbox);
+                mCoreCheckBoxLITTLE[i] = (AppCompatCheckBox) view.findViewById(R.id.core_checkbox);
                 mCoreCheckBoxLITTLE[i].setText(getString(R.string.core, i + 1));
                 mCoreCheckBoxLITTLE[i].setOnClickListener(this);
 
                 mCoreProgressBarLITTLE[i] = (ProgressBar) view.findViewById(R.id.progressbar);
                 mCoreProgressBarLITTLE[i].setMax(CPU.getFreqs(CPU.getLITTLEcore()).size());
+
+                mCoreUsageTextLITTLE[i] = (AppCompatTextView) view.findViewById(R.id.usage);
 
                 mCoreFreqTextLITTLE[i] = (AppCompatTextView) view.findViewById(R.id.freq);
 
@@ -483,6 +493,26 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 }
             }
 
+            if (CPU.hasCpuBoostWakeup()) {
+                mCpuBoostWakeupCard = new SwitchCardView.DSwitchCard();
+                mCpuBoostWakeupCard.setTitle(getString(R.string.wakeup_boost));
+                mCpuBoostWakeupCard.setDescription(getString(R.string.wakeup_boost_summary));
+                mCpuBoostWakeupCard.setChecked(CPU.isCpuBoostWakeupActive());
+                mCpuBoostWakeupCard.setOnDSwitchCardListener(this);
+
+                views.add(mCpuBoostWakeupCard);
+            }
+
+            if (CPU.hasCpuBoostHotplug()) {
+                mCpuBoostHotplugCard = new SwitchCardView.DSwitchCard();
+                mCpuBoostHotplugCard.setTitle(getString(R.string.hotplug_boost));
+                mCpuBoostHotplugCard.setDescription(getString(R.string.hotplug_boost_summary));
+                mCpuBoostHotplugCard.setChecked(CPU.isCpuBoostHotplugActive());
+                mCpuBoostHotplugCard.setOnDSwitchCardListener(this);
+
+                views.add(mCpuBoostHotplugCard);
+            }
+
             if (views.size() > 0) {
                 DDivider mCpuBoostDividerCard = new DDivider();
                 mCpuBoostDividerCard.setText(getString(R.string.cpu_boost));
@@ -590,6 +620,10 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.activateCpuBoostDebugMask(checked, getActivity());
             else if (dSwitchCard == mPowerSavingWqCard)
                 CPU.activatePowerSavingWq(checked, getActivity());
+            else if (dSwitchCard == mCpuBoostWakeupCard)
+                CPU.activateCpuBoostWakeup(checked, getActivity());
+            else if (dSwitchCard == mCpuBoostHotplugCard)
+                CPU.activateCpuBoostHotplug(checked, getActivity());
         }
 
         @Override
@@ -657,24 +691,43 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private final Runnable cpuUsage = new Runnable() {
             @Override
             public void run() {
-                if (mUsageCard != null)
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            final float usage = CPU.getCpuUsage();
-                            try {
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mUsageCard.setProgress(Math.round(usage));
-                                    }
-                                });
-                            } catch (NullPointerException ignored) {
-                            }
-                        }
-                    }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Integer[] usage = CPU.getCpuUsage();
+                        try {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (usage != null) {
+                                        if (mUsageCard != null) mUsageCard.setProgress(usage[0]);
 
-                getHandler().postDelayed(cpuUsage, 3000);
+                                        if (mCoreUsageText != null) {
+                                            List<Integer> cores = CPU.getBigCoreRange();
+                                            for (int i = 0; i < mCoreUsageText.length; i++) {
+                                                mCoreUsageText[i].setText(usage[cores.get(i) + 1] + "%");
+                                                if (mCoreProgressBar != null && mCoreProgressBar[i].getProgress() == 0)
+                                                    mCoreUsageText[i].setText("");
+                                            }
+                                        }
+
+                                        if (mCoreUsageTextLITTLE != null) {
+                                            List<Integer> cores = CPU.getLITTLECoreRange();
+                                            for (int i = 0; i < mCoreUsageTextLITTLE.length; i++) {
+                                                mCoreUsageTextLITTLE[i].setText(usage[cores.get(i) + 1] + "%");
+                                                if (mCoreProgressBarLITTLE != null && mCoreProgressBarLITTLE[i].getProgress() == 0)
+                                                    mCoreUsageTextLITTLE[i].setText("");
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        } catch (NullPointerException ignored) {
+                        }
+                    }
+                }).start();
+
+                getHandler().postDelayed(cpuUsage, 1000);
             }
         };
 

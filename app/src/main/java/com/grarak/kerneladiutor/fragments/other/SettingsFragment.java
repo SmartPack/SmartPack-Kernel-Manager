@@ -31,8 +31,8 @@ import android.widget.LinearLayout;
 import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DDivider;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -240,14 +240,18 @@ public class SettingsFragment extends RecyclerViewFragment {
 
         addView(mLogcatCard);
 
-        if (Utils.existFile("/proc/last_kmsg")) {
+        final StringBuilder lastKmsg = new StringBuilder();
+        if (Utils.existFile("/proc/last_kmsg")) lastKmsg.append("/proc/last_kmsg");
+        else if (Utils.existFile("/sys/fs/pstore/console-ramoops"))
+            lastKmsg.append("/sys/fs/pstore/console-ramoops");
+        if (lastKmsg.length() > 0) {
             CardViewItem.DCardView mLastKmsgCard = new CardViewItem.DCardView();
             mLastKmsgCard.setTitle(getString(R.string.last_kmsg));
             mLastKmsgCard.setDescription(getString(R.string.last_kmsg_summary));
             mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
+                    new Execute().execute("cat " + lastKmsg.toString() + " > /sdcard/last_kmsg.txt");
                 }
             });
 

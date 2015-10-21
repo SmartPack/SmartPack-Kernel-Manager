@@ -61,7 +61,7 @@
   <string name="misc_controls">Controlli vari</string>
   <string name="plugins">Plugins</string>
   <string name="backup">Backup</string>
-  <string name="build_prop_editor">Build prop Editor</string>
+  <string name="build_prop_editor">Editor Build prop</string>
   <string name="profile">Profilo</string>
   <string name="initd">Init.d</string>
   <string name="settings">Impostazioni</string>
@@ -95,7 +95,7 @@
   <string name="mc_power_saving_summary">Prova a raggruppare le attività nel minor numero di core disponibili.</string>
   <string name="power_saving_wq">Pianificazione per risveglio CPU per risparmiare energia.</string>
   <string name="cfs_scheduler_policy">Linea di condotta Scheduler CFS</string>
-  <string name="cfs_scheduler_policy_summary">La linea di condotta regola come lo scheduler CFS distribuirà i processi sui core disponibili.</string>
+  <string name="cfs_scheduler_policy_summary">La linea di condotta che regola come lo scheduler CFS distribuirà i processi sui core disponibili.</string>
   <string name="disabled">Disabilitato</string>
   <string name="enabled">Abilitato</string>
   <string name="aggressive">Aggressivo</string>
@@ -126,7 +126,7 @@
   <string name="performance">Performante</string>
   <string name="conservative">Conservativo</string>
   <string name="eco_performance">Prestazioni eco</string>
-  <string name="eco_conservative">Conservativo ecologico</string>
+  <string name="eco_conservative">Conservativo eco</string>
   <string name="tri">Tri</string>
   <string name="eco">Eco</string>
   <string name="strict">Rigoroso</string>
@@ -492,7 +492,9 @@
   <string name="loading_counting">Caricamento %1$d/%2$d</string>
   <string name="downloading_db">Scaricando l\'archivio</string>
   <string name="xda">XDA</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
+  <string name="paypal">PayPal</string>
   <string name="download">Scarica</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Riprendi</string>
@@ -530,6 +532,7 @@
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
   <string name="applied">Applicato</string>
   <string name="applying_profile">Applicare %s</string>
+  <string name="replace_profile">Vuoi sostituire %s?</string>
   <string name="reboot">Riavvia</string>
   <string name="reboot_soft">Riavvio veloce</string>
   <string name="reboot_recovery">Riavviare in recovery</string>
@@ -594,11 +597,13 @@
   <string name="feature_function">Cosa fa la caratteristica X?</string>
   <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso Smartphone.</string>
   <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
-  <string name="add_new_features_summary">Che è difficile da dire. Provo ad aggiungere tutte le funzionalità, ma è difficile fare questa app universale per tutti i dispositivi. Ho solo un Samsung Galaxy S4 (I9500), un HTC Desire 816 e recentemente ha ottenuto un OnePlus 2, quindi non prendertela con me se caratteristiche non ottenere Unite immediatamente.</string>
+  <string name="add_new_features_summary">E\' difficile dirlo. Provo ad aggiungere tutte le funzionalità, ma è difficile rendere questa app universale per tutti i dispositivi. Ho solo un Samsung Galaxy S4 (I9500), un HTC Desire 816 e recentemente ho ottenuto un OnePlus 2, quindi non prendertela con me se le caratteristiche non vengono integrare immediatamente.</string>
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>
+  <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio Github.</string>
   <string name="feature_request">Richiesta di una funzione</string>
+  <string name="feature_request_summary">Vuoi altre funzioni? Apri una nuova segnalazione su Github e dimmi la tua idea.</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
   <string name="translation_summary">Aiutami a tradurre questa app!</string>

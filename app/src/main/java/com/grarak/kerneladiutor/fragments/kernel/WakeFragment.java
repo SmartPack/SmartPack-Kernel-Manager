@@ -40,6 +40,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private PopupCardView.DPopupCard mT2wCard;
     private PopupCardView.DPopupCard mWakeMiscCard;
     private PopupCardView.DPopupCard mSleepMiscCard;
+    private PopupCardView.DPopupCard mDt2sCard;
     private SwitchCardView.DSwitchCard[] mGestureCards;
 
     private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
@@ -54,6 +55,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasT2w()) t2wInit();
         if (Wake.hasWakeMisc()) wakeMiscInit();
         if (Wake.hasSleepMisc()) sleepMiscInit();
+        if (Wake.hasDt2s()) dt2sInit();
         if (Wake.hasGesture()) gestureInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
@@ -107,6 +109,16 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         addView(mSleepMiscCard);
     }
 
+    private void dt2sInit() {
+        mDt2sCard = new PopupCardView.DPopupCard(Wake.getDt2sMenu(getActivity()));
+        mDt2sCard.setTitle(getString(R.string.dt2s));
+        mDt2sCard.setDescription(getString(R.string.dt2s_summary));
+        mDt2sCard.setItem(Wake.getDt2sValue());
+        mDt2sCard.setOnDPopupCardListener(this);
+
+        addView(mDt2sCard);
+    }
+
     private void gestureInit() {
         List<String> gestures = Wake.getGestures(getActivity());
         mGestureCards = new SwitchCardView.DSwitchCard[gestures.size()];
@@ -123,7 +135,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private void wakeTimeoutInit() {
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.disabled));
-        for (int i = 1; i < 31; i++)
+        for (int i = 1; i <= Wake.getWakeTimeoutMax(); i++)
             list.add(i + getString(R.string.min));
 
         mWakeTimeoutCard = new SeekBarCardView.DSeekBarCard(list);
@@ -152,6 +164,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mSleepMiscCard) Wake.setSleepMisc(position, getActivity());
+        else if (dPopupCard == mDt2sCard) Wake.setDt2s(position, getActivity());
     }
 
     @Override

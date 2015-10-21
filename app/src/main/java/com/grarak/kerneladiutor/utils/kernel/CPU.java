@@ -22,7 +22,6 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.LinuxUtils;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
@@ -49,6 +48,30 @@ public class CPU implements Constants {
 
     private static String CPU_BOOST_ENABLE_FILE;
 
+    public static void activateCpuBoostWakeup(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", CPU_BOOST_WAKEUP, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostWakeupActive() {
+        return Utils.readFile(CPU_BOOST_WAKEUP).equals("Y");
+    }
+
+    public static boolean hasCpuBoostWakeup() {
+        return Utils.existFile(CPU_BOOST_WAKEUP);
+    }
+
+    public static void activateCpuBoostHotplug(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", CPU_BOOST_HOTPLUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuBoostHotplugActive() {
+        return Utils.readFile(CPU_BOOST_HOTPLUG).equals("Y");
+    }
+
+    public static boolean hasCpuBoostHotplug() {
+        return Utils.existFile(CPU_BOOST_HOTPLUG);
+    }
+
     public static void setCpuBoostInputMs(int value, Context context) {
         Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_MS, Control.CommandType.GENERIC, context);
     }
@@ -62,16 +85,9 @@ public class CPU implements Constants {
     }
 
     public static void setCpuBoostInputFreq(int value, int core, Context context) {
-        String freqs;
-        if ((freqs = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ)).contains(":")) {
-            StringBuilder command = new StringBuilder();
-            for (String freq : freqs.split(" "))
-                if (freq.startsWith(core + ":"))
-                    command.append(core).append(":").append(value).append(" ");
-                else command.append(freq).append(" ");
-            command.setLength(command.length() - 1);
-            Control.runCommand(command.toString(), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
-        } else
+        if (Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ).contains(":"))
+            Control.runCommand(core + ":" + value, CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
+        else
             Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
     }
 
@@ -500,25 +516,82 @@ public class CPU implements Constants {
         return TEMP_FILE != null;
     }
 
-    /**
-     * This code is from http://stackoverflow.com/a/13342738
+    /*
+     * Explained here: http://codereview.stackexchange.com/a/62414
      */
-    private static LinuxUtils linuxUtils;
-
-    public static float getCpuUsage() {
-        if (linuxUtils == null) linuxUtils = new LinuxUtils();
-
+    public static Integer[] getCpuUsage() {
         try {
-            String cpuStat1 = linuxUtils.readSystemStat();
+            Usage[] usage = getUsages();
             Thread.sleep(1000);
-            String cpuStat2 = linuxUtils.readSystemStat();
-            float usage = linuxUtils.getSystemCpuUsage(cpuStat1, cpuStat2);
-            if (usage > -1) return usage;
-        } catch (Exception e) {
+            Usage[] usage1 = getUsages();
+
+            Integer[] pers = new Integer[usage.length];
+            for (int i = 0; i < usage.length; i++) {
+                int user = usage1[i].getUser() - usage[i].getUser();
+                int sys = usage1[i].getSys() - usage[i].getSys();
+                int idle = usage1[i].getIdle() - usage[i].getIdle();
+                int iowait = usage1[i].getIOWait() - usage[i].getIOWait();
+
+                int active = user + sys + iowait;
+                int total = active + idle;
+
+                if (total < 1) pers[i] = 1;
+                else pers[i] = Math.round(active * 100 / total);
+            }
+
+            return pers;
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return null;
+    }
+
+    private static Usage[] getUsages() {
+        String stats = Utils.readFile("/proc/stat");
+        Usage[] usage = new Usage[getCoreCount() + 1];
+        for (int i = 0; i < usage.length; i++)
+            usage[i] = new Usage(stats, i - 1);
+        return usage;
+    }
+
+    private static class Usage {
+
+        private Integer[] stats;
+
+        public Usage(String stats, int core) {
+            if (stats == null) return;
+
+            String cpuLine = null;
+            for (String line : stats.split("\\r?\\n"))
+                if ((core < 0 && line.startsWith("cpu")) || line.startsWith("cpu" + core)) {
+                    cpuLine = line.replace("  ", " ");
+                    break;
+                }
+
+            if (cpuLine == null) return;
+            this.stats = new Integer[5];
+            String[] values = cpuLine.split(" ");
+            for (int i = 0; i < this.stats.length; i++)
+                this.stats[i] = Utils.stringToInt(values[i + 1]);
+        }
+
+        public int getUser() {
+            return stats[0];
+        }
+
+        public int getSys() {
+            return stats[2];
+        }
+
+        public int getIdle() {
+            return stats[3];
+        }
+
+        public int getIOWait() {
+            return stats[4];
+        }
+
     }
 
 }

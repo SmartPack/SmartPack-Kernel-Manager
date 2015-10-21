@@ -62,8 +62,10 @@ public class PopupCardView extends BaseCardView {
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    if (valueView != null)
+                    if (valueView != null) {
+                        valueText = list.get(item.getItemId()) + " ";
                         valueView.setText(list.get(item.getItemId()) + " ");
+                    }
                     if (onPopupCardListener != null)
                         onPopupCardListener.onItemSelected(PopupCardView.this, item.getItemId());
                     return false;
@@ -182,6 +184,7 @@ public class PopupCardView extends BaseCardView {
             if (title != null) popupCardView.setTitle(title);
             if (description != null) popupCardView.setDescription(description);
             if (value != null) popupCardView.setItem(value);
+            value = null;
 
             setListener();
         }

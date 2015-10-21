@@ -10,17 +10,26 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/checkbox"
+            android:id="@+id/core_checkbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/usage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/freq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end|center_vertical" />
+            android:ellipsize="end"
+            android:gravity="end|center_vertical"
+            android:singleLine="true" />
 
     </LinearLayout>
 
