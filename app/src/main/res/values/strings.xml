@@ -517,6 +517,8 @@
     <!-- Misc Controls -->
     <string name="vibration_strength">Vibration Strength</string>
     <string name="android_logger">Android logging</string>
+    <string name="crc">Software CRC control</string>
+    <string name="crc_summary">Enabling software CRCs on the data blocks can be a significant (30%) performance cost. CRC is a mechanism aiming to prevent data corruption when enabled. Use it at your risk</string>
     <string name="fsync">Fsync</string>
     <string name="fsync_summary">Disable for better file system performance at the risk of data lost when phone crashes.</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>

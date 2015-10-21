@@ -448,6 +448,8 @@
   <string name="write">Escritura</string>
   <string name="vibration_strength">Intensidad de vibración</string>
   <string name="android_logger">Registro de Android</string>
+  <string name="crc">Software CRC control</string>
+  <string name="crc_summary">Habilitar el software de CRC en los bloques de datos puede suponer una perdida de rendimiento ( 30 % ). CRC es un mecanismo con el objetivo de prevenir la corrupción de datos cuando está habilitado. Úsalo bajo tu responsabilidad</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Desactivar para un mejor rendimiento en el sistema a riesgo de poder perder datos si se bloquea (crash).</string>
   <string name="dynamic_fsync">Fsync dinámico</string>

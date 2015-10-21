@@ -699,6 +699,12 @@ public interface Constants {
 
     String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED};
 
+    // CRC
+    String[] CRC_ARRAY = {
+            "/sys/module/mmc_core/parameters/crc",
+            "/sys/module/mmc_core/parameters/use_spi_crc"
+    };
+
     // Fsync
     String[] FSYNC_ARRAY = {
             "/sys/devices/virtual/misc/fsynccontrol/fsync_enabled",
