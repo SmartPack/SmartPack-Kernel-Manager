@@ -364,6 +364,60 @@ public class CPU implements Constants {
         return Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, 0));
     }
 
+    public static void setHardMaxFreq(int freq, Context context) {
+        setHardMaxFreq(Control.CommandType.CPU, freq, context);
+    }
+
+    public static void setHardMaxFreq(Control.CommandType command, int freq, Context context) {
+        Control.runCommand(String.valueOf(freq), HARD_CPU_MAX_FREQ, command, context);
+    }
+
+    public static int getHardMaxFreq(boolean forceRead) {
+        return getHardMaxFreq(getBigCore(), forceRead);
+    }
+
+    public static int getHardMaxFreq(int core, boolean forceRead) {
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(HARD_CPU_MAX_FREQ, core)))
+                activateCore(core, true, null);
+        if (Utils.existFile(String.format(HARD_CPU_MAX_FREQ, core))) {
+            String value = Utils.readFile(String.format(HARD_CPU_MAX_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static boolean hasHardMaxFreq() {
+        return Utils.existFile(String.format(HARD_CPU_MAX_FREQ, 0));
+    }
+
+    public static void setHardMinFreq(int freq, Context context) {
+        setHardMinFreq(Control.CommandType.CPU, freq, context);
+    }
+
+    public static void setHardMinFreq(Control.CommandType command, int freq, Context context) {
+        Control.runCommand(String.valueOf(freq), HARD_CPU_MIN_FREQ, command, context);
+    }
+
+    public static int getHardMinFreq(boolean forceRead) {
+        return getHardMinFreq(getBigCore(), forceRead);
+    }
+
+    public static int getHardMinFreq(int core, boolean forceRead) {
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(HARD_CPU_MIN_FREQ, core)))
+                activateCore(core, true, null);
+        if (Utils.existFile(String.format(HARD_CPU_MIN_FREQ, core))) {
+            String value = Utils.readFile(String.format(HARD_CPU_MIN_FREQ, core));
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static boolean hasHardMinFreq() {
+        return Utils.existFile(String.format(HARD_CPU_MIN_FREQ, 0));
+    }
+
     public static void setMinFreq(int freq, Context context) {
         setMinFreq(Control.CommandType.CPU, freq, context);
     }

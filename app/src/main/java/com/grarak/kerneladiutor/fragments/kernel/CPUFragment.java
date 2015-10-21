@@ -103,7 +103,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private AppCompatTextView[] mCoreUsageText;
         private AppCompatTextView[] mCoreFreqText;
 
-        private PopupCardView.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard;
+        private PopupCardView.DPopupCard mMaxFreqCard, mMinFreqCard, mMaxScreenOffFreqCard, mHardMaxFreqCard, mHardMinFreqCard;
 
         private PopupCardView.DPopupCard mGovernorCard;
         private CardViewItem.DCardView mGovernorTunableCard;
@@ -233,6 +233,26 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             List<String> freqs = new ArrayList<>();
             for (int freq : CPU.getFreqs())
                 freqs.add(freq / 1000 + getString(R.string.mhz));
+
+            if (CPU.hasHardMaxFreq()) {
+                mHardMaxFreqCard = new PopupCardView.DPopupCard(freqs);
+                mHardMaxFreqCard.setTitle(getString(R.string.hard_cpu_max_freq));
+                mHardMaxFreqCard.setDescription(getString(R.string.hard_cpu_max_freq_summary));
+                mHardMaxFreqCard.setItem(CPU.getHardMaxFreq(true) / 1000 + getString(R.string.mhz));
+                mHardMaxFreqCard.setOnDPopupCardListener(this);
+
+                addView(mHardMaxFreqCard);
+            }
+
+            if (CPU.hasHardMinFreq()) {
+                mHardMinFreqCard = new PopupCardView.DPopupCard(freqs);
+                mHardMinFreqCard.setTitle(getString(R.string.hard_cpu_min_freq));
+                mHardMinFreqCard.setDescription(getString(R.string.hard_cpu_min_freq_summary));
+                mHardMinFreqCard.setItem(CPU.getHardMinFreq(true) / 1000 + getString(R.string.mhz));
+                mHardMinFreqCard.setOnDPopupCardListener(this);
+
+                addView(mHardMinFreqCard);
+            }
 
             mMaxFreqCard = new PopupCardView.DPopupCard(freqs);
             mMaxFreqCard.setTitle(getString(R.string.cpu_max_freq));
@@ -555,6 +575,10 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
             else if (dPopupCard == mMaxScreenOffFreqCard)
                 CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
+            else if (dPopupCard == mHardMaxFreqCard)
+                CPU.setHardMaxFreq(CPU.getFreqs().get(position), getActivity());
+            else if (dPopupCard == mHardMinFreqCard)
+                CPU.setHardMinFreq(CPU.getFreqs().get(position), getActivity());
             else if (dPopupCard == mGovernorCard)
                 CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
             if (dPopupCard == mMaxFreqLITTLECard)
