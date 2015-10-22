@@ -231,7 +231,7 @@ public interface Constants {
     String[] HOTPLUG_ZEN_DECISION_ARRAY = {HOTPLUG_ZEN_DECISION};
 
     String HOTPLUG_AUTOSMP_PARAMETERS = "/sys/module/autosmp/parameters";
-    String HOTPLUG_AUTOSMP_CONF = "/sys/module/autosmp/conf";
+    String HOTPLUG_AUTOSMP_CONF = "/sys/kernel/autosmp/conf";
     String HOTPLUG_AUTOSMP_ENABLE = HOTPLUG_AUTOSMP_PARAMETERS + "/enabled";
     String HOTPLUG_AUTOSMP_CPUFREQ_DOWN = HOTPLUG_AUTOSMP_CONF + "/cpufreq_down";
     String HOTPLUG_AUTOSMP_CPUFREQ_UP = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up";
