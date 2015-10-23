@@ -112,9 +112,11 @@
     <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
     <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="hard_cpu_max_freq">Hard Limit CPU Maximum Frequency</string>
-    <string name="hard_cpu_max_freq_summary">Set the real hard CPU max frequency limit.</string>
-    <string name="hard_cpu_min_freq">Hard Limit CPU Minumum Frequency</string>
-    <string name="hard_cpu_min_freq_summary">Set the real hard CPU min frequency limit.</string>
+    <string name="hard_cpu_max_freq_summary">Set the real hard CPU maximum frequency limit.</string>
+    <string name="hard_cpu_min_freq">Hard Limit CPU Minimum Frequency</string>
+    <string name="hard_cpu_min_freq_summary">Set the real hard CPU minimun frequency limit.</string>
+    <string name="cpu_lock_freq">Lock CPU Frequency</string>
+    <string name="cpu_lock_freq_summary">Lock the minimum and maximum frequency to prevent overwriting by another drivers. First set your min/max frequency and then enable it.</string>
     <string name="cpu_governor">CPU Governor</string>
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to you CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>

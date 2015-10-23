@@ -364,6 +364,20 @@ public class CPU implements Constants {
         return Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, 0));
     }
 
+    public static void activateLockFreq(boolean active, Context context) {
+        String command = active ? "1" : "0";
+        Control.runCommand(command, CPU_LOCK_FREQ, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLockFreqActive() {
+        String value = Utils.readFile(CPU_LOCK_FREQ);
+        return value.equals("1");
+    }
+
+    public static boolean hasLockFreq() {
+        return Utils.existFile(CPU_LOCK_FREQ);
+    }
+
     public static void setHardMaxFreq(int freq, Context context) {
         setHardMaxFreq(Control.CommandType.CPU, freq, context);
     }
