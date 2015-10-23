@@ -133,6 +133,41 @@ public class Wake implements Constants {
         return DT2S_FILE != null;
     }
 
+    public static void setDt2sWidth(int value, Context context) {
+    Control.runCommand(String.valueOf(value), DT2S_WIDTH, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDt2sWidth() {
+        return Utils.stringToInt(Utils.readFile(DT2S_WIDTH));
+    }
+
+    public static boolean hasDt2sWidth() {
+        return Utils.existFile(DT2S_WIDTH);
+    }
+
+    public static void setDt2sHeight(int value, Context context) {
+    Control.runCommand(String.valueOf(value), DT2S_HEIGHT, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDt2sHeight() {
+        return Utils.stringToInt(Utils.readFile(DT2S_HEIGHT));
+    }
+
+    public static boolean hasDt2sHeight() {
+        return Utils.existFile(DT2S_HEIGHT);
+    }
+
+    public static void setWakeVibration(int value, Context context) {
+    Control.runCommand(String.valueOf(value), WAKE_VIBRATION, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getWakeVibration() {
+        return Utils.stringToInt(Utils.readFile(WAKE_VIBRATION));
+    }
+
+    public static boolean hasWakeVibration() {
+        return Utils.existFile(WAKE_VIBRATION);
+    }
     public static void setSleepMisc(int value, Context context) {
         Control.runCommand(String.valueOf(value), SLEEP_MISC_FILE, Control.CommandType.GENERIC, context);
     }

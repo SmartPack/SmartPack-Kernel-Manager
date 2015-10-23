@@ -41,10 +41,13 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private PopupCardView.DPopupCard mWakeMiscCard;
     private PopupCardView.DPopupCard mSleepMiscCard;
     private PopupCardView.DPopupCard mDt2sCard;
+    private SeekBarCardView.DSeekBarCard mDt2sWidthCard;
+    private SeekBarCardView.DSeekBarCard mDt2sHeightCard;
     private SwitchCardView.DSwitchCard[] mGestureCards;
 
     private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
+    private SeekBarCardView.DSeekBarCard mWakeVibrationCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -56,9 +59,12 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasWakeMisc()) wakeMiscInit();
         if (Wake.hasSleepMisc()) sleepMiscInit();
         if (Wake.hasDt2s()) dt2sInit();
+        if (Wake.hasDt2sWidth()) dt2sWidthInit();
+        if (Wake.hasDt2sHeight()) dt2sHeightInit();
         if (Wake.hasGesture()) gestureInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
+        if (Wake.hasWakeVibration()) wakeVibrationInit();
     }
 
     private void dt2wInit() {
@@ -119,6 +125,34 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         addView(mDt2sCard);
     }
 
+    private void dt2sWidthInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 50; i < 1441; i++)
+            list.add(i + getString(R.string.px));
+
+        mDt2sWidthCard = new SeekBarCardView.DSeekBarCard(list);
+        mDt2sWidthCard.setTitle(getString(R.string.dt2s_width));
+        mDt2sWidthCard.setDescription(getString(R.string.dt2s_width_summary));
+        mDt2sWidthCard.setProgress(Wake.getDt2sWidth());
+        mDt2sWidthCard.setOnDSeekBarCardListener(this);
+
+        addView(mDt2sWidthCard);
+    }
+
+    private void dt2sHeightInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 50; i < 2561; i++)
+            list.add(i + getString(R.string.px));
+
+        mDt2sHeightCard = new SeekBarCardView.DSeekBarCard(list);
+        mDt2sHeightCard.setTitle(getString(R.string.dt2s_height));
+        mDt2sHeightCard.setDescription(getString(R.string.dt2s_height_summary));
+        mDt2sHeightCard.setProgress(Wake.getDt2sHeight());
+        mDt2sHeightCard.setOnDSeekBarCardListener(this);
+
+        addView(mDt2sHeightCard);
+    }
+
     private void gestureInit() {
         List<String> gestures = Wake.getGestures(getActivity());
         mGestureCards = new SwitchCardView.DSwitchCard[gestures.size()];
@@ -157,6 +191,21 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         addView(mPowerKeySuspendCard);
     }
 
+    private void wakeVibrationInit() {
+        List<String> list = new ArrayList<>();
+        list.add(getString(R.string.disabled));
+        for (int i = 1; i < 91; i++)
+            list.add(i + "%");
+
+        mWakeVibrationCard = new SeekBarCardView.DSeekBarCard(list);
+        mWakeVibrationCard.setTitle(getString(R.string.wake_vibration));
+        mWakeVibrationCard.setDescription(getString(R.string.wake_vibration_summary));
+        mWakeVibrationCard.setProgress(Wake.getWakeVibration());
+        mWakeVibrationCard.setOnDSeekBarCardListener(this);
+
+        addView(mWakeVibrationCard);
+    }
+
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
@@ -174,6 +223,9 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
+        else if (dSeekBarCard == mWakeVibrationCard) Wake.setWakeVibration(position, getActivity());
+        else if (dSeekBarCard == mDt2sWidthCard) Wake.setDt2sWidth(position, getActivity());
+        else if (dSeekBarCard == mDt2sHeightCard) Wake.setDt2sHeight(position, getActivity());
     }
 
     @Override

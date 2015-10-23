@@ -45,6 +45,7 @@
     <string name="min">min</string>
     <string name="sec">sec</string>
     <string name="ma">mA</string>
+    <string name="px">pixels</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
@@ -436,6 +437,12 @@
     <string name="sleep">Sleep</string>
     <string name="dt2s">DoubleTap2Sleep</string>
     <string name="dt2s_summary">Lock your device by double tapping on the top of the screen.</string>
+    <string name="dt2s_width">DoubleTap2Sleep width size</string>
+    <string name="dt2s_width_summary">You can to control the width allowed of the screen for the dt2s. The value goes from left to right</string>
+    <string name="dt2s_height">DoubleTap2Sleep height size</string>
+    <string name="dt2s_height_summary">You can to control the height allowed of the screen for the dt2s. The value goes from top to bottom</string>
+    <string name="wake_vibration">Vibrator Strength</string>
+    <string name="wake_vibration_summary">Allows to set the intensity of the vibrator while using wake controls.</string>
     <string name="slide_up">Slide up</string>
     <string name="slide_down">Slide down</string>
     <string name="slide_left">Slide left</string>
