@@ -337,7 +337,7 @@
     <string name="down_differential">Down Differential</string>
     <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
     <string name="idle_wait">Idle Wait</string>
-    <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'th events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
+    <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'s events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
     <string name="workload">Workload</string>
     <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
 
