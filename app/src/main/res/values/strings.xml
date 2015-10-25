@@ -678,7 +678,7 @@
     <string name="misspelled">Why did you misspell \"Auditor\"?</string>
     <string name="misspelled_summary">Adiutor is Latin and means helper.</string>
     <string name="cpu_freq_not_sticking">Why doesn\'t my determined CPU freq stick?</string>
-    <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don't touch the CPU frequencies and let the kernel do its job.</string>
+    <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don\'t touch the CPU frequencies and let the kernel do its job.</string>
     <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
     <string name="feature_not_appearing_summary">Features depend on the kernel.</string>
     <string name="feature_function">What does feature x do?</string>
