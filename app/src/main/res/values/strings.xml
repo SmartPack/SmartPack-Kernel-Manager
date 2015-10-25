@@ -83,7 +83,7 @@
     <string name="initd">Init.d</string>
     <string name="settings">Settings</string>
     <string name="faq">FAQ</string>
-    <string name="about_us">About us</string>
+    <string name="about_us">About Us</string>
 
     <!-- Frequency Table -->
     <string name="big" translatable="false">Big</string>
@@ -112,7 +112,7 @@
     <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
     <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="cpu_governor">CPU Governor</string>
-    <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to you CPU.</string>
+    <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
     <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
     <string name="not_tunable">%s is not tunable</string>
@@ -516,11 +516,11 @@
     <string name="vibration_strength">Vibration Strength</string>
     <string name="android_logger">Android logging</string>
     <string name="fsync">Fsync</string>
-    <string name="fsync_summary">Disable for better file system performance at the risk of data lost when phone crashes.</string>
+    <string name="fsync_summary">Disable for better file system performance at the risk of data lost when your phone crashes.</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
     <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is committed synchronously.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
-    <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel, to manually enable or disable the Power Suspend State choose User Mode.</string>
+    <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="autosleep">Autosleep</string>
     <string name="userspace">Userspace</string>
     <string name="lcd_panel">LCD Panel</string>
@@ -566,7 +566,7 @@
     <string name="github">GitHub</string>
     <string name="google_plus">Google Plus</string>
     <string name="paypal">PayPal</string>
-    <string name="download">download</string>
+    <string name="download">Download</string>
     <string name="downloading_counting">%1$s/%2$s</string>
     <string name="resume">Resume</string>
     <string name="checking_md5">Checking MD5sum</string>
@@ -678,7 +678,7 @@
     <string name="misspelled">Why did you misspell \"Auditor\"?</string>
     <string name="misspelled_summary">Adiutor is Latin and means helper.</string>
     <string name="cpu_freq_not_sticking">Why doesn\'t my determined CPU freq stick?</string>
-    <string name="cpu_freq_not_sticking_summary">This has many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you to not touching the CPU frequencies and let the kernel do its job.</string>
+    <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don't touch the CPU frequencies and let the kernel do its job.</string>
     <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
     <string name="feature_not_appearing_summary">Features depend on the kernel.</string>
     <string name="feature_function">What does feature x do?</string>
@@ -704,11 +704,11 @@
     <string name="materialtabs" translatable="false">MaterialTabs</string>
     <string name="frenn" translatable="false">Karim Frenn</string>
     <string name="open_source">Open source</string>
-    <string name="open_source_summary">This application is open source. Check it out on my GitHub.</string>
+    <string name="open_source_summary">This application is open source. Check it out on my GitHub!</string>
     <string name="feature_request">Feature request</string>
-    <string name="feature_request_summary">Do you want more features? Open a new issue on GitHub and tell me your idea.</string>
+    <string name="feature_request_summary">Do you want more features? Open a new issue on GitHub and submit your idea.</string>
     <string name="google_plus_summary">Join our community.</string>
     <string name="translation">Translation</string>
-    <string name="translation_summary">Help me to translate this app!</string>
+    <string name="translation_summary">Help me translate this app!</string>
 
 </resources>
