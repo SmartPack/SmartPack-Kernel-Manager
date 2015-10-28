@@ -194,4 +194,28 @@ public class Sound implements Constants {
         return false;
     }
 
+    public static void activateLockOutputGain(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LOCK_OUTPUT_GAIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLockOutputGainActive() {
+        return Utils.readFile(LOCK_OUTPUT_GAIN).equals("1");
+    }
+
+    public static boolean hasLockOutputGain() {
+        return Utils.existFile(LOCK_OUTPUT_GAIN);
+    }
+
+    public static void activateLockMicGain(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LOCK_MIC_GAIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLockMicGainActive() {
+        return Utils.readFile(LOCK_MIC_GAIN).equals("1");
+    }
+
+    public static boolean hasLockMicGain() {
+        return Utils.existFile(LOCK_MIC_GAIN);
+    }
+
 }

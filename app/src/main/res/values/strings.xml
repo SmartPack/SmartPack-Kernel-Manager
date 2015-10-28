@@ -480,6 +480,10 @@
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>
+    <string name="lock_output_gain">Lock Output Gain</string>
+    <string name="lock_output_gain_summary">Prevent modifications to headphone/speaker gains</string>
+    <string name="lock_mic_gain">Lock Microphone Gain</string>
+    <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
     <string name="headphone_gain">Headphone Gain</string>
     <string name="handset_microphone_gain">Handset Microphone Gain</string>
     <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
