@@ -67,6 +67,7 @@
     <string name="thermal">Thermal</string>
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
+    <string name="led">Led</string>
     <string name="wake_controls">Wake Controls</string>
     <string name="sound">Sound</string>
     <string name="battery">Battery</string>
@@ -407,6 +408,26 @@
     <string name="master_sequence_summary">Enabling the master sequence will disable and ignore Samsung\'s profiles and scenarios, the ROM controls will be disabled.</string>
     <string name="glove_mode">Glove Mode</string>
     <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
+
+    <!-- Led Control -->
+    <string name="led_brightness">LED Brightness</string>
+    <string name="led_highpower_current">Bright light environment</string>
+    <string name="led_highpower_current_summary">Set the relative intensity of the LED when in bright environments.</string>
+    <string name="led_lowpower_current">Low light environment</string>
+    <string name="led_lowpower_current_summary">Set the relative intensity of the LED when in low brightness environments.</string>
+    <string name="led_notification_delay">LED Notification Delay</string>
+    <string name="led_notification_delay_on">Delay ON</string>
+    <string name="led_notification_delay_on_summary">Divider for delay on.</string>
+    <string name="led_notification_delay_off">Delay OFF</string>
+    <string name="led_notification_delay_off_summary">Divider for delay off.</string>
+    <string name="led_notification_ramp_control">Fade Ramp Control</string>
+    <string name="led_notification_ramp_control_summary">Enable or disable LED fade-in/out (ramp) control.</string>
+    <string name="led_notification_ramp_up">Fade-in</string>
+    <string name="led_notification_ramp_up_summary">Sets the time period of the rising slope.</string>
+    <string name="led_notification_ramp_down">Fade-out</string>
+    <string name="led_notification_ramp_down_summary">Sets the time period of the falling slope.</string>
+    <string name="led_pattern">Test Led Notification</string>
+    <string name="led_pattern_summary">Check how is working the led with your desired values.</string>
 
     <!-- Wake Controls -->
     <string name="dt2w">DoubleTap2Wake</string>

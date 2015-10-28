@@ -538,6 +538,11 @@ public interface Constants {
 
     String[] DT2S_ARRAY = {DT2S, DT2S_WIDTH, DT2S_HEIGHT};
 
+    //Wake Gesture Vibration 
+    String WAKE_VIBRATION = "/sys/android_touch2/vib_strength";
+
+    String[] WAKE_VIBRATION_ARRAY = {WAKE_VIBRATION};
+
     // Gesture
     String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
 
@@ -553,13 +558,20 @@ public interface Constants {
 
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
-    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
+    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, DT2S_ARRAY, WAKE_VIBRATION_ARRAY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
             {GESTURE_CRTL, POWER_KEY_SUSPEND}};
 
-    //Wake Gesture Vibration 
-    String WAKE_VIBRATION = "/sys/android_touch2/vib_strength";
+    // LED
+    String LHC = "/sys/class/sec/led/led_highpower_current";
+    String LLC = "/sys/class/sec/led/led_lowpower_current";
+    String LNDO = "/sys/class/sec/led/led_notification_delay_on";
+    String LNDOFF = "/sys/class/sec/led/led_notification_delay_off";
+    String LNRC = "/sys/class/sec/led/led_notification_ramp_control";
+    String LNRU = "/sys/class/sec/led/led_notification_ramp_up";
+    String LNRD = "/sys/class/sec/led/led_notification_ramp_down";
+    String LP = "/sys/class/sec/led/led_pattern";
 
-    String[] WAKE_VIBRATION_ARRAY = {WAKE_VIBRATION};
+    String[] LED_ARRAY = {LHC, LLC, LNDO, LNDOFF, LNRC, LNRU, LNRD, LP};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
