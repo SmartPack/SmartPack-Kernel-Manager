@@ -232,14 +232,14 @@ public class GPU implements Constants {
         return GPU_SCALING_GOVERNOR != null;
     }
 
-    public static void setGpuMaxFreq(int freq, Context context) {
-        if (GPU_MAX_FREQ != null)
-            Control.runCommand(String.valueOf(freq), GPU_MAX_FREQ, Control.CommandType.GENERIC, context);
-    }
-
     public static void setGpuMinFreq(int freq, Context context) {
         if (GPU_MIN_FREQ != null)
             Control.runCommand(String.valueOf(freq), GPU_MIN_FREQ, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setGpuMaxFreq(int freq, Context context) {
+        if (GPU_MAX_FREQ != null)
+            Control.runCommand(String.valueOf(freq), GPU_MAX_FREQ, Control.CommandType.GENERIC, context);
     }
 
     public static List<Integer> getGpuFreqs() {
@@ -265,22 +265,6 @@ public class GPU implements Constants {
         return GPU_AVAILABLE_FREQS != null;
     }
 
-    public static int getGpuMaxFreq() {
-        if (GPU_MAX_FREQ != null) if (Utils.existFile(GPU_MAX_FREQ)) {
-            String value = Utils.readFile(GPU_MAX_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
-        return 0;
-    }
-
-    public static boolean hasGpuMaxFreq() {
-        if (GPU_MAX_FREQ == null) {
-            for (String file : GPU_MAX_FREQ_ARRAY)
-                if (Utils.existFile(file)) GPU_MAX_FREQ = file;
-        }
-        return GPU_MAX_FREQ != null;
-    }
-
     public static int getGpuMinFreq() {
         if (GPU_MIN_FREQ != null) if (Utils.existFile(GPU_MIN_FREQ)) {
             String value = Utils.readFile(GPU_MIN_FREQ);
@@ -295,6 +279,22 @@ public class GPU implements Constants {
                 if (Utils.existFile(file)) GPU_MIN_FREQ = file;
         }
         return GPU_MIN_FREQ != null;
+    }
+
+    public static int getGpuMaxFreq() {
+        if (GPU_MAX_FREQ != null) if (Utils.existFile(GPU_MAX_FREQ)) {
+            String value = Utils.readFile(GPU_MAX_FREQ);
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static boolean hasGpuMaxFreq() {
+        if (GPU_MAX_FREQ == null) {
+            for (String file : GPU_MAX_FREQ_ARRAY)
+                if (Utils.existFile(file)) GPU_MAX_FREQ = file;
+        }
+        return GPU_MAX_FREQ != null;
     }
 
     public static int getGpuCurFreq() {

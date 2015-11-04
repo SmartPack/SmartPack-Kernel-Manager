@@ -266,6 +266,23 @@ public class Misc implements Constants {
         return false;
     }
 
+    public static void activateCrc(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CRC_FILE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCrcActive() {
+        return Utils.readFile(CRC_FILE).equals("1");
+    }
+
+    public static boolean hasCrc() {
+        if (CRC_FILE == null) for (String file : CRC_ARRAY)
+            if (Utils.existFile(file)) {
+                CRC_FILE = file;
+                return true;
+            }
+        return CRC_FILE != null;
+    }
+
     public static void activateLogger(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
     }
@@ -281,23 +298,6 @@ public class Misc implements Constants {
                 return true;
             }
         return LOGGER_FILE != null;
-    }
-
-    public static void activateCrc(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CRC_FILE, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isCrcActive() {
-        return Utils.readFile(CRC_FILE).equals("1");
-    }
-
-    public static boolean hasCrcEnable() {
-        if (CRC_FILE == null) for (String file : CRC_ARRAY)
-            if (Utils.existFile(file)) {
-                CRC_FILE = file;
-                return true;
-            }
-        return CRC_FILE != null;
     }
 
     public static void setVibration(int value, Context context) {

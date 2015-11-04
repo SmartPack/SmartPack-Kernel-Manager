@@ -74,7 +74,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasLoggerEnable()) loggerInit();
-        if (Misc.hasCrcEnable()) crcInit();
+        if (Misc.hasCrc()) crcInit();
         fsyncInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
         networkInit();
@@ -108,14 +108,14 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void crcInit() {
-            mCrcCard = new SwitchCardView.DSwitchCard();
-            mCrcCard.setTitle(getString(R.string.crc));
-            mCrcCard.setDescription(getString(R.string.crc_summary));
-            mCrcCard.setChecked(Misc.isCrcActive());
-            mCrcCard.setOnDSwitchCardListener(this);
+        mCrcCard = new SwitchCardView.DSwitchCard();
+        mCrcCard.setTitle(getString(R.string.crc));
+        mCrcCard.setDescription(getString(R.string.crc_summary));
+        mCrcCard.setChecked(Misc.isCrcActive());
+        mCrcCard.setOnDSwitchCardListener(this);
 
-            addView(mCrcCard);
-        }
+        addView(mCrcCard);
+    }
 
     private void fsyncInit() {
         if (Misc.hasFsync()) {
