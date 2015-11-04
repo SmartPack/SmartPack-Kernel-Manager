@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 115
-        versionName "0.9.9.2.2"
+        versionCode 116
+        versionName "0.9.9.2.2.1"
     }
     buildTypes {
         release {
