@@ -57,7 +57,7 @@ public class Led implements Constants {
     }
 
     public static int getLedNotificationDelayOn() {
-        return translate_value_to_position(Utils.stringToInt(Utils.readFile(LNDO)));
+        return Utils.stringToInt(Utils.readFile(LNDO));
     }
 
     public static boolean hasLedNotificationDelayOn() {
@@ -69,7 +69,7 @@ public class Led implements Constants {
     }
 
     public static int getLedNotificationDelayOff() {
-        return translate_value_to_position(Utils.stringToInt(Utils.readFile(LNDOFF)));
+        return Utils.stringToInt(Utils.readFile(LNDOFF));
     }
 
     public static boolean hasLedNotificationDelayOff() {
@@ -128,76 +128,4 @@ public class Led implements Constants {
         return Utils.existFile(LP);
     }
 
-    private static int translate_value_to_position(int value){
-        int result = 0;
-        switch (value){
-            case 0:
-                result = 0;
-                break;
-            case 500:
-                result = 1;
-                break;
-            case 1000:
-                result = 2;
-                break;
-            case 1500:
-                result = 3;
-                break;
-            case 2000:
-                result = 4;
-                break;
-            case 2500:
-                result = 5;
-                break;
-            case 3000:
-                result = 6;
-                break;
-            case 3500:
-                result = 7;
-                break;
-            case 4000:
-                result = 8;
-                break;
-            case 4500:
-                result = 9;
-                break;
-            case 5000:
-                result = 10;
-                break;
-            case 5500:
-                result = 11;
-                break;
-            case 6000:
-                result = 12;
-                break;
-            case 6500:
-                result = 13;
-                break;
-            case 7000:
-                result = 14;
-                break;
-            case 7500:
-                result = 15;
-                break;
-            case 8000:
-                result = 16;
-                break;
-            case 8500:
-                result = 17;
-                break;
-            case 9000:
-                result = 18;
-                break;
-            case 9500:
-                result = 19;
-                break;
-            case 10000:
-                result = 20;
-                break;
-            default:
-                result = 1000;
-                break;
-        }
-        return result;
-    }
 }

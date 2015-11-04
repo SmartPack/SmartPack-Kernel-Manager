@@ -103,7 +103,7 @@ public class LedFragment extends RecyclerViewFragment implements SeekBarCardView
         mLedNotificationDelayOnCard = new SeekBarCardView.DSeekBarCard(list);
         mLedNotificationDelayOnCard.setTitle(getString(R.string.led_notification_delay_on));
         mLedNotificationDelayOnCard.setDescription(getString(R.string.led_notification_delay_on_summary));
-        mLedNotificationDelayOnCard.setProgress(Led.getLedNotificationDelayOn());
+        mLedNotificationDelayOnCard.setProgress(Led.getLedNotificationDelayOn() / 500);
         mLedNotificationDelayOnCard.setOnDSeekBarCardListener(this);
 
         addView(mLedNotificationDelayOnCard);
@@ -117,7 +117,7 @@ public class LedFragment extends RecyclerViewFragment implements SeekBarCardView
         mLedNotificationDelayOffCard = new SeekBarCardView.DSeekBarCard(list);
         mLedNotificationDelayOffCard.setTitle(getString(R.string.led_notification_delay_off));
         mLedNotificationDelayOffCard.setDescription(getString(R.string.led_notification_delay_off_summary));
-        mLedNotificationDelayOffCard.setProgress(Led.getLedNotificationDelayOff());
+        mLedNotificationDelayOffCard.setProgress(Led.getLedNotificationDelayOff() / 500);
         mLedNotificationDelayOffCard.setOnDSeekBarCardListener(this);
 
         addView(mLedNotificationDelayOffCard);
@@ -197,84 +197,10 @@ public class LedFragment extends RecyclerViewFragment implements SeekBarCardView
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mLedHighpowerCurrentCard) Led.setLedHighpowerCurrent(position * 5, getActivity());
         else if (dSeekBarCard == mLedLowpowerCurrentCard) Led.setLedLowpowerCurrent(position * 5, getActivity());
-        else if (dSeekBarCard == mLedNotificationDelayOnCard) Led.setLedNotificationDelayOn(position_translate(position), getActivity());
-        else if (dSeekBarCard == mLedNotificationDelayOffCard) Led.setLedNotificationDelayOff(position_translate(position), getActivity());
+        else if (dSeekBarCard == mLedNotificationDelayOnCard) Led.setLedNotificationDelayOn(position * 500, getActivity());
+        else if (dSeekBarCard == mLedNotificationDelayOffCard) Led.setLedNotificationDelayOff(position * 500, getActivity());
         else if (dSeekBarCard == mLedNotificationRampUpCard) Led.setLedNotificationRampUp(position * 100, getActivity());
         else if (dSeekBarCard == mLedNotificationRampDownCard) Led.setLedNotificationRampDown(position * 100, getActivity());
-    }
-
-    private Integer position_translate(Integer position){
-        Integer result = 0;
-        switch (position){
-            case 0:
-                result = 0;
-                break;
-            case 1:
-                result = 500;
-                break;
-            case 2:
-                result = 1000;
-                break;
-            case 3:
-                result = 1500;
-                break;
-            case 4:
-                result = 2000;
-                break;
-            case 5:
-                result = 2500;
-                break;
-            case 6:
-                result = 3000;
-                break;
-            case 7:
-                result = 3500;
-                break;
-            case 8:
-                result = 4000;
-                break;
-            case 9:
-                result = 4500;
-                break;
-            case 10:
-                result = 5000;
-                break;
-            case 11:
-                result = 5500;
-                break;
-            case 12:
-                result = 6000;
-                break;
-            case 13:
-                result = 6500;
-                break;
-            case 14:
-                result = 7000;
-                break;
-            case 15:
-                result = 7500;
-                break;
-            case 16:
-                result = 8000;
-                break;
-            case 17:
-                result = 8500;
-                break;
-            case 18:
-                result = 9000;
-                break;
-            case 19:
-                result = 9500;
-                break;
-            case 20:
-                result = 10000;
-                break;
-            default:
-                result = 1000;
-                break;
-        }
-        return result;
-
     }
 
 }
