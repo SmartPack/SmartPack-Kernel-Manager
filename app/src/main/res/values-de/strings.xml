@@ -114,6 +114,8 @@
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
   <string name="input_boost_freq_core">Eingang Frequenz Core Boost %s</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
+  <string name="wakeup_boost">Wakeup-Boost</string>
+  <string name="wakeup_boost_summary">\"Wakeup Boost\" ist ähnlich wie \"input boost\" aber es wird angewendet, wenn der Bildschirm an ist</string>
   <string name="global_offset">Globaler Offset</string>
   <string name="override_vmin">Mindestspannung überschreiben</string>
   <string name="override_vmin_summary">Hersteller Undervolting Begrenzung deaktivieren</string>

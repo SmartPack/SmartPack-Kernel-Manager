@@ -114,6 +114,8 @@
   <string name="input_boost_freq">Укажите частоту разгона</string>
   <string name="input_boost_freq_core">Ввод увеличить частоту ядра %s</string>
   <string name="input_boost_freq_summary">Скорость CPU будет повышенна на эту скорость при косновении.</string>
+  <string name="wakeup_boost">Усиление пробуждения</string>
+  <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>
   <string name="global_offset">Глобальное смещение</string>
   <string name="override_vmin">Переопределить минимальное напряжение</string>
   <string name="override_vmin_summary">Отключить ограничения производителя на undervolting</string>
@@ -322,6 +324,7 @@
   <string name="blue_greys">Синий серый</string>
   <string name="contrast">Контрастность</string>
   <string name="brightness">Яркость</string>
+  <string name="red_positive">Красный положительный</string>
   <string name="green_negative">Зелёный отрицательный</string>
   <string name="blue_positive">Синий положительный</string>
   <string name="blue_negative">Синий отрицательный</string>
@@ -359,6 +362,14 @@
   <string name="s2w">Жест для пробуждения</string>
   <string name="s2w_summary">Пробуждение свайпом по экрану.</string>
   <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Сдвинуть вправо, чтобы разблокировать</string>
+  <string name="s2w_left">Сдвинуть влево, чтобы разблокировать</string>
+  <string name="s2w_up">Сдвинуть вверх, чтобы разблокировать</string>
+  <string name="s2w_down">Сдвинуть вниз, чтобы разблокировать</string>
+  <string name="s2w_any">Сдвинуть в любую сторону, чтобы разблокировать</string>
+  <string name="s2s_right">Сдвинуть вправо</string>
+  <string name="s2s_left">Сдвинуть влево</string>
+  <string name="s2s_any">Сдвинуть влево или вправо</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Пробуждение устройства тапом по экрану.</string>
   <string name="wake">Пробуждение</string>

@@ -95,10 +95,12 @@
   <string name="mc_power_saving_summary">İşlemleri olabilecek en az sayıda çekirdeğe gruplamaya çalış.</string>
   <string name="power_saving_wq">Güç tüketimini azaltmak için yapılması gereken işleri uyanık CPU\'lara yönlendir.</string>
   <string name="cfs_scheduler_policy">CFS Zamanlayıcı İlkesi</string>
+  <string name="cfs_scheduler_policy_summary">İlke CFS Zamanlayıcısı görevleri farklı CPU birim üzerine nasıl karar verir.</string>
   <string name="disabled">Etkin Değil</string>
   <string name="enabled">Etkin</string>
   <string name="aggressive">Agresif</string>
   <string name="cpu_quiet">Sessiz İşlemci</string>
+  <string name="cpu_quiet_governor">CPUQuiet Govenoru</string>
   <string name="cpu_boost">İşlemci Hızlandırıcı</string>
   <string name="debug_mask">Hata Ayıklama Maskesi</string>
   <string name="debug_mask_summary">CPU Kuvvetlendirme işlemleri için hata ayıklama maskesini etkinleştirmek için izin verir.</string>
@@ -108,6 +110,8 @@
   <string name="input_interval">Giriş Aralığı</string>
   <string name="input_interval_summary">Giriş algılandığında İşlemci Hızlandırma için minimum aralık.</string>
   <string name="input_boost_freq">Giriş Arttırma Frekansı</string>
+  <string name="wakeup_boost">Uyandırma hızlandırması</string>
+  <string name="wakeup_boost_summary">Uyandırma Boost hızlandırma girişine benzer, ancak ekran açık olduğunda oluşur.</string>
   <string name="override_vmin">Minimum Voltajı Geçersiz Kıl</string>
   <string name="override_vmin_summary">Üreticinin belirlediği düşük voltaj limitlerini kaldırmak için devre dışı bırakın</string>
   <string name="mpdecision">MPDecision</string>

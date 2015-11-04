@@ -17,6 +17,7 @@
   <string name="press_back_again">Πατήστε πίσο ξανά για έξοδο</string>
   <string name="more">Περισσότερα</string>
   <string name="thank_you">Ευχαριστώ!</string>
+  <string name="heavy_user_message">Φαίνεται οτι σας αρέσει αυτή η εφαρμογή! Ευχαριστώ που την χρησιμοποιείτε!</string>
   <string name="rate_app">Αξιολογήστε την εφαρμογή</string>
   <string name="donate">Κάνε μου δωρεά</string>
   <string name="select_file">Επίλεξε %s;</string>
@@ -56,6 +57,7 @@
   <string name="ksm">Kernel Samepage Merging</string>
   <string name="low_memory_killer">Τερματισμός σε λίγη Μνήμη</string>
   <string name="virtual_memory">Εικονική Μνήμη</string>
+  <string name="entropy">Εντροπία</string>
   <string name="misc_controls">Διάφορα Στοιχεία Ελέγχου</string>
   <string name="plugins">Πρόσθετα</string>
   <string name="backup">Δημιουργία αντιγράφου</string>
