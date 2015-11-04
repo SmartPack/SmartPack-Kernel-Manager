@@ -124,5 +124,19 @@
 
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/Inazuma.json"
-  }
+  },
+    {
+        "vendor": [
+            "motorola",
+            "Motorola"
+        ],
+        "device": [
+            "quark",
+            "Quark",
+            "Moto MAXX",
+            "xt1225",
+            "XT1225"
+        ],
+        "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/quark.json"
+    }
 ]
