@@ -694,18 +694,20 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        final Integer[] usage = CPU.getCpuUsage();
+                        final float[] usage = CPU.getCpuUsage();
                         try {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     if (usage != null) {
-                                        if (mUsageCard != null) mUsageCard.setProgress(usage[0]);
+                                        if (mUsageCard != null)
+                                            mUsageCard.setProgress(Math.round(usage[0]));
 
                                         if (mCoreUsageText != null) {
                                             List<Integer> cores = CPU.getBigCoreRange();
                                             for (int i = 0; i < mCoreUsageText.length; i++) {
-                                                mCoreUsageText[i].setText(usage[cores.get(i) + 1] + "%");
+                                                String message = Math.round(usage[cores.get(i) + 1]) + "%";
+                                                mCoreUsageText[i].setText(message);
                                                 if (mCoreProgressBar != null && mCoreProgressBar[i].getProgress() == 0)
                                                     mCoreUsageText[i].setText("");
                                             }
@@ -714,7 +716,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                                         if (mCoreUsageTextLITTLE != null) {
                                             List<Integer> cores = CPU.getLITTLECoreRange();
                                             for (int i = 0; i < mCoreUsageTextLITTLE.length; i++) {
-                                                mCoreUsageTextLITTLE[i].setText(usage[cores.get(i) + 1] + "%");
+                                                String message = Math.round(usage[cores.get(i) + 1]) + "%";
+                                                mCoreUsageTextLITTLE[i].setText(message);
                                                 if (mCoreProgressBarLITTLE != null && mCoreProgressBarLITTLE[i].getProgress() == 0)
                                                     mCoreUsageTextLITTLE[i].setText("");
                                             }

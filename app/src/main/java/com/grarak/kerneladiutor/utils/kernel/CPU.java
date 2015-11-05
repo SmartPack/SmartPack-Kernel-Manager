@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -24,6 +25,9 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -516,30 +520,33 @@ public class CPU implements Constants {
         return TEMP_FILE != null;
     }
 
-    /*
-     * Explained here: http://codereview.stackexchange.com/a/62414
-     */
-    public static Integer[] getCpuUsage() {
+    public static float[] getCpuUsage() {
         try {
-            Usage[] usage = getUsages();
-            Thread.sleep(1000);
             Usage[] usage1 = getUsages();
+            Thread.sleep(1000);
+            Usage[] usage2 = getUsages();
 
-            Integer[] pers = new Integer[usage.length];
-            for (int i = 0; i < usage.length; i++) {
-                int user = usage1[i].getUser() - usage[i].getUser();
-                int sys = usage1[i].getSys() - usage[i].getSys();
-                int idle = usage1[i].getIdle() - usage[i].getIdle();
-                int iowait = usage1[i].getIOWait() - usage[i].getIOWait();
+            if (usage1 != null && usage2 != null) {
+                float[] pers = new float[usage1.length];
+                for (int i = 0; i < usage1.length; i++) {
+                    long idle1 = usage1[i].getIdle();
+                    long up1 = usage1[i].getUptime();
 
-                int active = user + sys + iowait;
-                int total = active + idle;
+                    long idle2 = usage2[i].getIdle();
+                    long up2 = usage2[i].getUptime();
 
-                if (total < 1) pers[i] = 1;
-                else pers[i] = Math.round(active * 100 / total);
+                    float cpu = -1f;
+                    if (idle1 >= 0 && up1 >= 0 && idle2 >= 0 && up2 >= 0) {
+                        if ((up2 + idle2) > (up1 + idle1) && up2 >= up1) {
+                            cpu = (up2 - up1) / (float) ((up2 + idle2) - (up1 + idle1));
+                            cpu *= 100.0f;
+                        }
+                    }
+
+                    pers[i] = cpu;
+                }
+                return pers;
             }
-
-            return pers;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -548,48 +555,44 @@ public class CPU implements Constants {
     }
 
     private static Usage[] getUsages() {
-        String stats = Utils.readFile("/proc/stat");
-        Usage[] usage = new Usage[getCoreCount() + 1];
-        for (int i = 0; i < usage.length; i++)
-            usage[i] = new Usage(stats, i - 1);
-        return usage;
+        try {
+            RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
+            Usage[] usage = new Usage[getCoreCount() + 1];
+            for (int i = 0; i < usage.length; i++)
+                usage[i] = new Usage(reader.readLine());
+            reader.close();
+            return usage;
+        } catch (FileNotFoundException e) {
+            Log.i(TAG, "/proc/stat does not exist");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static class Usage {
 
-        private Integer[] stats;
+        private long[] stats;
 
-        public Usage(String stats, int core) {
+        public Usage(String stats) {
             if (stats == null) return;
 
-            String cpuLine = null;
-            for (String line : stats.split("\\r?\\n"))
-                if ((core < 0 && line.startsWith("cpu")) || line.startsWith("cpu" + core)) {
-                    cpuLine = line.replace("  ", " ");
-                    break;
-                }
-
-            if (cpuLine == null) return;
-            this.stats = new Integer[5];
-            String[] values = cpuLine.split(" ");
+            String[] values = stats.replace("  ", " ").split(" ");
+            this.stats = new long[values.length - 1];
             for (int i = 0; i < this.stats.length; i++)
-                this.stats[i] = Utils.stringToInt(values[i + 1]);
+                this.stats[i] = Utils.stringToLong(values[i + 1]);
         }
 
-        public int getUser() {
-            return stats[0];
+        public long getUptime() {
+            if (stats == null) return 0;
+            long l = 0L;
+            for (int i = 0; i < stats.length; i++)
+                if (i != 3) l += stats[i];
+            return l;
         }
 
-        public int getSys() {
-            return stats[2];
-        }
-
-        public int getIdle() {
-            return stats[3];
-        }
-
-        public int getIOWait() {
-            return stats[4];
+        public long getIdle() {
+            return stats == null ? 0 : stats[3];
         }
 
     }
