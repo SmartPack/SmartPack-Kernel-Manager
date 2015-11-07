@@ -131,9 +131,15 @@
     "device": [
       "quark",
       "Quark",
+      "quark_lra",
+      "quark_umts",
       "Moto MAXX",
       "xt1225",
-      "XT1225"
+      "XT1225",
+      "xt1250",
+      "XT1250",
+      "xt1254",
+      "XT1254"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/quark.json"
   }
