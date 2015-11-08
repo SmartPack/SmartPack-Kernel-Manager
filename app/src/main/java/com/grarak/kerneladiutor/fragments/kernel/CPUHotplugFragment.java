@@ -557,8 +557,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
         if (CPUHotplug.hasMsmHotplugDebugMask()) {
             mMsmHotplugDebugMaskCard = new SwitchCardView.DSwitchCard();
-            mMsmHotplugDebugMaskCard.setTitle(getString(R.string.debug_mask));
-            mMsmHotplugDebugMaskCard.setDescription(getString(R.string.debug_mask_summary));
+            mMsmHotplugDebugMaskCard.setTitle(getString(R.string.debug));
+            mMsmHotplugDebugMaskCard.setDescription(getString(R.string.debug_summary));
             mMsmHotplugDebugMaskCard.setChecked(CPUHotplug.isMsmHotplugDebugMaskActive());
             mMsmHotplugDebugMaskCard.setOnDSwitchCardListener(this);
 
