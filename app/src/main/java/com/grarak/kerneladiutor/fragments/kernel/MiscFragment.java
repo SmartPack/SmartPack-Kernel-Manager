@@ -52,6 +52,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mFsyncCard;
     private SwitchCardView.DSwitchCard mDynamicFsyncCard;
 
+    private SwitchCardView.DSwitchCard mGentleFairSleepersCard;
+
     private PopupCardView.DPopupCard mPowerSuspendModeCard;
     private SwitchCardView.DSwitchCard mOldPowerSuspendStateCard;
     private SeekBarCardView.DSeekBarCard mNewPowerSuspendStateCard;
@@ -76,6 +78,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasCrc()) crcInit();
         fsyncInit();
+	if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
         networkInit();
         wakelockInit();
@@ -139,6 +142,15 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
     }
 
+    private void gentlefairsleepersInit() {
+        mGentleFairSleepersCard = new SwitchCardView.DSwitchCard();
+        mGentleFairSleepersCard.setTitle(getString(R.string.gentlefairsleepers));
+        mGentleFairSleepersCard.setDescription(getString(R.string.gentlefairsleepers_summary));
+        mGentleFairSleepersCard.setChecked(Misc.isGentleFairSleepersActive());
+        mGentleFairSleepersCard.setOnDSwitchCardListener(this);
+
+        addView(mGentleFairSleepersCard);
+    }
 
     private void powersuspendInit() {
         if (Misc.hasPowerSuspendMode()) {
@@ -354,6 +366,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             Misc.activateFsync(checked, getActivity());
         else if (dSwitchCard == mDynamicFsyncCard)
             Misc.activateDynamicFsync(checked, getActivity());
+        else if (dSwitchCard == mGentleFairSleepersCard)
+            Misc.activateGentleFairSleepers(checked, getActivity());
         else if (dSwitchCard == mOldPowerSuspendStateCard)
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());

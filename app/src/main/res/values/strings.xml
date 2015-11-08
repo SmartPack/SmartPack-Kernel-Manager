@@ -523,6 +523,8 @@
     <string name="fsync_summary">Disable for better file system performance at the risk of data lost when your phone crashes.</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
     <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is committed synchronously.</string>
+    <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
+    <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. disable this can save a little battery power.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="autosleep">Autosleep</string>
