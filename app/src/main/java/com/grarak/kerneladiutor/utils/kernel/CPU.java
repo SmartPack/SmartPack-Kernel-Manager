@@ -543,7 +543,7 @@ public class CPU implements Constants {
                         }
                     }
 
-                    pers[i] = cpu;
+                    pers[i] = cpu > -1 ? cpu : 0;
                 }
                 return pers;
             }
@@ -584,7 +584,7 @@ public class CPU implements Constants {
         }
 
         public long getUptime() {
-            if (stats == null) return 0;
+            if (stats == null) return -1L;
             long l = 0L;
             for (int i = 0; i < stats.length; i++)
                 if (i != 3) l += stats[i];
@@ -592,7 +592,11 @@ public class CPU implements Constants {
         }
 
         public long getIdle() {
-            return stats == null ? 0 : stats[3];
+            try {
+                return stats == null ? -1L : stats[3];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                return -1L;
+            }
         }
 
     }
