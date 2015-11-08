@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Réglages</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">À propos de nous</string>
   <string name="unused_cpu_states">États de processeur inutilisés</string>
   <string name="uptime">Temps de fonctionnement</string>
   <string name="deep_sleep">Sommeil profond</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Fréquence Maximale du CPU l\'Ecran Eteint</string>
   <string name="cpu_max_screen_off_freq_summary">Définissez la fréquence maximale du CPU quand l\'écran est éteint.</string>
   <string name="cpu_governor">Gouverneur de CPU</string>
-  <string name="cpu_governor_summary">Le gouverneur de CPU détermine la façon dont le CPU se comporte en réponse à des changements dans la charge de travail. Changer le gouverneur aura un impact sur la manière dont le CPU s\'adapte selon les fréquences disponibles du CPU.</string>
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
   <string name="cpu_governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
   <string name="not_tunable">%s n\'est pas tunable</string>
@@ -409,10 +407,8 @@
   <string name="vibration_strength">Intensité de la Vibration</string>
   <string name="android_logger">Journalisation Android</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Désactivez pour de meilleures performances du système de fichier, au risque de perdre des données en cas de plantage du téléphone.</string>
   <string name="dynamic_fsync">Fsync dynamique</string>
   <string name="power_suspend_mode">Mode de suspension de l\'alimentation</string>
-  <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks et Highest Level Hook sont automatiquement gérés par le kernel, pour les activer manuellement ou désactiver la suspension de l\'alimentation ( Power Suspend State) choisissez le User Mode.</string>
   <string name="autosleep">Mise en veille automatique</string>
   <string name="userspace">Espace utilisateur</string>
   <string name="lcd_panel">Panneau LCD</string>
@@ -446,7 +442,6 @@
   <string name="downloading_db">Téléchargement de la base de données</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google Plus</string>
-  <string name="download">Téléchargement</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Reprendre</string>
   <string name="checking_md5">Vérification de MD5sum</string>
@@ -540,7 +535,6 @@
   <string name="misspelled">Pourquoi avoir mal épelé «Auditor»?</string>
   <string name="misspelled_summary">Adiutor signifie assistant en latin.</string>
   <string name="cpu_freq_not_sticking">Pourquoi la fréquence CPU que j\'ai paramétrée n\'est pas conservée ?</string>
-  <string name="cpu_freq_not_sticking_summary">Il y\'a plusieurs raisons à cela. De nos jours, la plupart des noyaux intègrent un système \"hotplug\" qui contrôle la fréquence du CPU et CyanogenMod ont leur propre implémentation \"CPU Boost\" qui régule cette fréquence également. Je vous suggère de ne pas modifier les fréquences CPU et de laisser le noyau faire son travail.</string>
   <string name="feature_not_appearing">Pourquoi les fonctionnalités x et y n\'apparaissent t\'elles pas?</string>
   <string name="feature_not_appearing_summary">Les fonctionnalités dépendent du noyau.</string>
   <string name="feature_function">Que fait la fonctionnalité x?</string>
@@ -552,5 +546,4 @@
   <string name="feature_request">Demande de fonctionnalité</string>
   <string name="google_plus_summary">Rejoignez notre communauté.</string>
   <string name="translation">Traduction </string>
-  <string name="translation_summary">Aidez moi à traduire cette app !</string>
 </resources>

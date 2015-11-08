@@ -65,7 +65,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Instellingen</string>
   <string name="faq">Veelgestelde Vragen</string>
-  <string name="about_us">Over ons</string>
   <string name="unused_cpu_states">Ongebruikte CPU Staten</string>
   <string name="uptime">Bedrijfstijd</string>
   <string name="deep_sleep">Diepe slaap</string>
@@ -86,7 +85,6 @@
   <string name="cpu_max_screen_off_freq">CPU Maximum scherm uit frequentie</string>
   <string name="cpu_max_screen_off_freq_summary">Stel de maximale frequentie in die de CPU kan schalen wanneer het scherm uitgeschakeld is.</string>
   <string name="cpu_governor">CPU governor</string>
-  <string name="cpu_governor_summary">De CPU governor bepaalt hoe de CPU zich gedraagt op veranderingen in de werklast. Wijzigt de governor dan zal invloed hebben op hoe de CPU wordt geschaald door de frequentiestappen die beschikbaar zijn voor jou CPU.</string>
   <string name="cpu_governor_tunables">CPU governor Tunables</string>
   <string name="cpu_governor_tunables_summary">De verschillende configuratie-items die afhankelijk van de governor zijn.</string>
   <string name="not_tunable">%s is niet afstembare</string>

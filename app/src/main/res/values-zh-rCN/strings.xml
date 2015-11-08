@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">设置</string>
   <string name="faq">疑问与解答</string>
-  <string name="about_us">关于我们</string>
   <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
   <string name="deep_sleep">深度睡眠</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">CPU 最高灭屏频率</string>
   <string name="cpu_max_screen_off_freq_summary">设定屏幕关闭状态下的CPU最大频率</string>
   <string name="cpu_governor">CPU 调速器</string>
-  <string name="cpu_governor_summary">CPU 调速器决定 CPU 在应对各种工作负载情形时的行为。更改调速器会影响 CPU 如何在可用频率间切换频率大小。</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
   <string name="cpu_governor_tunables_summary">这些配置项与您使用的调速器有关</string>
   <string name="not_tunable">%s 无法调节</string>
@@ -371,11 +369,9 @@
   <string name="write">写入</string>
   <string name="vibration_strength">震动长度</string>
   <string name="android_logger">Android 日志记录</string>
-  <string name="fsync_summary">禁用获得更好的文件系统性能，同时需要承担设备崩溃时数据丢失的风险。</string>
   <string name="dynamic_fsync">动态 Fsync</string>
   <string name="dynamic_fsync_summary">启用后，当屏幕开启时 fsync 操作为异步。当屏幕关闭后，fsync 操作将变为同步。</string>
   <string name="power_suspend_mode">电源延迟模式</string>
-  <string name="power_suspend_mode_summary">内核模式，LCD 钩子和最高等级钩子将自动由内核管理，要手动启用或禁用电源延迟状态请选择用户模式</string>
   <string name="autosleep">自动休眠</string>
   <string name="userspace">用户空间</string>
   <string name="lcd_panel">LCD 面板</string>
@@ -413,7 +409,6 @@
   <string name="downloading_db">正在下载数据库</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google Plus</string>
-  <string name="download">下载</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">还原</string>
   <string name="checking_md5">检查 MD5校验和</string>
@@ -508,7 +503,6 @@
   <string name="misspelled">为什么你把 \"Auditor\" 拼错了？</string>
   <string name="misspelled_summary">Adiutor 是拉丁文,意为\"助手\"。</string>
   <string name="cpu_freq_not_sticking">为什么我设置好的 CPU 频率又变了？</string>
-  <string name="cpu_freq_not_sticking_summary">这其中存在许多原因。目前许多内核都有其独有的热插拔机制，此机制将会控制CPU频率。同时 CyanogenMod 还存在自动固定频率的 CPU Boost 机制。我的建议是不要干扰内核的工作随他们去吧。</string>
   <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
   <string name="feature_not_appearing_summary">取决于内核的功能。</string>
   <string name="feature_function">功能 x 有什么作用？</string>
@@ -521,5 +515,4 @@
   <string name="feature_request">功能请求</string>
   <string name="google_plus_summary">加入我们的社群。</string>
   <string name="translation">翻译</string>
-  <string name="translation_summary">帮助我翻译这个应用！</string>
 </resources>

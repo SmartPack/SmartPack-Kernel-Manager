@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Opțiuni</string>
   <string name="faq">Întrebări frecvente</string>
-  <string name="about_us">Despre noi</string>
   <string name="unused_cpu_states">Stări neutilizate CPU</string>
   <string name="uptime">Timp de funcționare</string>
   <string name="deep_sleep">Somn profund</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Frecvența CPU-lui maxim la Ecran oprit</string>
   <string name="cpu_max_screen_off_freq_summary">Setaţi frecvenţa maximă CPU atunci, când ecranul este dezactivat.</string>
   <string name="cpu_governor">CPU Governor</string>
-  <string name="cpu_governor_summary">Guvernatorul CPU determină modul în care Procesorul se comportă al răspunsului la schimbările de muncă. Schimbarea guvernatorului va avea un impact pe CPU prin frecvenţa disponibila. </string>
   <string name="cpu_governor_tunables">CPU Governor Turnables</string>
   <string name="cpu_governor_tunables_summary">Diferite elemente de configurare care sunt dependente de guvernator.</string>
   <string name="not_tunable">%s nu este reglabilă</string>

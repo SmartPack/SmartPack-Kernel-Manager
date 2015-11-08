@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Axustes</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">Tocante a nós</string>
   <string name="unused_cpu_states">Estaos de CPU ensin usu</string>
   <string name="uptime">Tiempu prendíu</string>
   <string name="deep_sleep">Sueñu fondo</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Frecuencia máxima cola pantalla apagada</string>
   <string name="cpu_max_screen_off_freq_summary">Afita la frecuencia máxima a la que la CPU escala tando la pantalla apagada.</string>
   <string name="cpu_governor">Gobernador de CPU</string>
-  <string name="cpu_governor_summary">El gobernador de CPU determina como la CPU se comporta en rempuesta a camudancies na carga de trabayu. El cambéu de gobernador tendrá impautu de como la CPU escala pente los pasos de frecuencia disponibles na to CPU.</string>
   <string name="cpu_governor_tunables">Axustes finos del gobernador de CPU</string>
   <string name="cpu_governor_tunables_summary">Los elementos de delles configuraciones que tán venceyaes al gobernador.</string>
   <string name="not_tunable">«%s» nun pue afinase</string>
@@ -427,12 +425,11 @@
   <string name="write">Escritura</string>
   <string name="vibration_strength">Fuercia de vibración</string>
   <string name="android_logger">Rexistru d\'Android</string>
+  <string name="crc_summary">CRC ye un mecanismu que tien como oxetivu evitar el toyimientu de datos al habilitase. Los bloques de datos puen perder fasta un 30% del so rindimientu.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Deshabilitar pa un rindimientu meyor del sistema ficheros col riesgu de perda de datos al cascar el teléfonu.</string>
   <string name="dynamic_fsync">Fsync dinámicu</string>
   <string name="dynamic_fsync_summary">Al tar habilitáu y cola pantalla encesa la operación fsync ye asincrónica. Tando la pantalla apagada esta operación únviase sincrónicamente.</string>
   <string name="power_suspend_mode">Mou de suspensión d\'enerxía</string>
-  <string name="power_suspend_mode_summary">El mou kernel, los gabitos LCD y el gabitu de nivel más altu tán xestionaos pol kernel. Pa habilitar o deshabilitar a mano l\'estáu de suspensión d\'enerxía, escueyi\'l mou usuariu.</string>
   <string name="autosleep">Auto-dormición</string>
   <string name="userspace">Espaciu d\'usuariu</string>
   <string name="lcd_panel">Panel LCD</string>
@@ -474,7 +471,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
-  <string name="download">Baxar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Siguir</string>
   <string name="checking_md5">Comprobando MD5</string>
@@ -570,7 +566,6 @@
   <string name="misspelled">¿Por qué escribiesti mal «Auditor»?</string>
   <string name="misspelled_summary">«Adiutor» ye llatín y significa «ayudante».</string>
   <string name="cpu_freq_not_sticking">¿Por qué nun se caltién la mio frecuencia de CPU afitada?</string>
-  <string name="cpu_freq_not_sticking_summary">Esto tien munches razones. Anguaño munchos kernels tienen el so sistema hotplug propiu que controla les frecuencies de CPU y CyanogenMod tien la so propia implementación de puxu de CPU que regula la frecuencia. Suxérote que nun toques les frecuencies de CPU y dexes facer al kernel el trabayu de so.</string>
   <string name="feature_not_appearing">¿Por qué nun s\'amuesen les carauterístiques X ya Y?</string>
   <string name="feature_not_appearing_summary">Les carauterístiques tán arreyaes al kernel.</string>
   <string name="feature_function">¿Qué fai la carauterística X?</string>
@@ -580,10 +575,7 @@
   <string name="license">Llicencia</string>
   <string name="app_license">Kernel Adiutor ta llicenciáu so l\'Apache License, Version 2.0 y usa les biblioteques de darréu</string>
   <string name="open_source">Códigu abiertu</string>
-  <string name="open_source_summary">Esta aplicación ye códigu abiertu. Compruébalo nel mio Github.</string>
   <string name="feature_request">Solicitú de carauterístiques</string>
-  <string name="feature_request_summary">¿Quies más carauterístiques? Abri un informe en Github y cúntame la to idea.</string>
   <string name="google_plus_summary">Xúnite a la nuesa comunidá.</string>
   <string name="translation">Traducciones</string>
-  <string name="translation_summary">¡Aídame a tornar esta aplicación!</string>
 </resources>

@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">الاعدادات</string>
   <string name="faq">الاسئلة الاكثر شيوعا</string>
-  <string name="about_us">عننا</string>
   <string name="unused_cpu_states">حالات المعالج الغير نشطة</string>
   <string name="uptime">مدة التشغيل</string>
   <string name="deep_sleep">خمول</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">التردد الأقصى عند اطفاء الشاشة للمعالج</string>
   <string name="cpu_max_screen_off_freq_summary">تعيين الجداول الخاصة بل ترددات القصوى عند اطفاء الشاشة للمعالج.</string>
   <string name="cpu_governor">مدير وحدة المعالج</string>
-  <string name="cpu_governor_summary">المتحكم الخاص بل معالج يقوم بتحديد كيفة تصرف المعالج بل استجابة للتغييرات الخاصة بل زخم. تغيير المتحكم سوف يؤثر بكيفية الجدولة من خلال الخطوات المتوفرة للترددات الخاصة بل معالج.</string>
   <string name="cpu_governor_tunables">متحكم الموجة للمعالج</string>
   <string name="cpu_governor_tunables_summary">الاعدادت المتنوعة للعناصر التي يعامد عليها المتحكم.</string>
   <string name="not_tunable">غير قابل للضبط %s</string>
@@ -168,7 +166,6 @@
   <string name="show_sections">أضهار الحقول</string>
   <string name="misspelled">لماذا أخطأت في كلمة \"Auditor\"؟</string>
   <string name="misspelled_summary">كلمة \"Adiutor\" اصلها لاتيني وتعني المساعد.</string>
-  <string name="cpu_freq_not_sticking_summary">هذا الشئ له عدة أسباب. العديد من الانظمة هذه الايام لديها انظمة توصيل خاصة بها التي بدورها تقوم بالتحكم بتردد المعالج ونظام السايجون مود لديه نظام تطبيق التعزيز الخاص بالمعالج الذي يقوم بضبط التردد. أود أن اقترح عليك عدم العبث بتردد المعالج وفقط دع النظام يقوم بعمله.</string>
   <string name="feature_not_appearing">لماذا الخاصيتان أكس و واي لا تظهر ؟</string>
   <string name="feature_not_appearing_summary">الخصائص تعتمد على النظام.</string>
   <string name="feature_function">ماذا يقوم الخصيصة أكس بالفعل؟</string>
@@ -181,5 +178,4 @@
   <string name="feature_request">الخصائص التي تم طلبها مسبقا</string>
   <string name="google_plus_summary">قم بالانظمام للمجتمع الخاص بنا.</string>
   <string name="translation">الترجمة</string>
-  <string name="translation_summary">قم بمساعدتي بترجمة هذا التطبيق!</string>
 </resources>

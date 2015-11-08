@@ -41,7 +41,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Seaded</string>
   <string name="faq">KKK</string>
-  <string name="about_us">Meist</string>
   <string name="kernel_version">Tuuma versioon</string>
   <string name="cpu_information">CPU andmed</string>
   <string name="cpu_usage">CPU kasutus</string>
@@ -99,7 +98,6 @@
   <string name="downloading_db">Andmebaasi allalaadimine</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google Plus</string>
-  <string name="download">Lae alla</string>
   <string name="resume">Jätka</string>
   <string name="no_backups">Varundused puuduvad</string>
   <string name="backing_up">Varundamine</string>
@@ -140,5 +138,4 @@
   <string name="open_source">Avatud lähtekoodiga</string>
   <string name="google_plus_summary">Liituge meie kommuuniga.</string>
   <string name="translation">Tõlge</string>
-  <string name="translation_summary">Aidake tõlkida see äppi!</string>
 </resources>

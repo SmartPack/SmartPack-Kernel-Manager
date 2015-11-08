@@ -19,8 +19,14 @@
   <string name="password">Hasło</string>
   <string name="password_wrong">Złe hasło</string>
   <string name="press_back_again">Naciśnij ponownie aby wyjść</string>
+  <string name="more">Więcej</string>
+  <string name="thank_you">Dziękujemy!</string>
+  <string name="heavy_user_message">Wygląda na to, że ta aplikacja ci się spodobała. Dziękujemy za korzystanie!</string>
+  <string name="rate_app">Oceń aplikację</string>
+  <string name="donate">Przekaż darowiznę</string>
   <string name="select_file">Wybrać %s?</string>
   <string name="no_files">Brak plików w tym folderze.</string>
+  <string name="save">Zapisz</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>
   <string name="apply_on_boot_finished">Twoje zmiany zostały zastosowane</string>
   <string name="apply_on_boot_time">Zastosowanie twoich ustawień w %d sekund</string>
@@ -56,13 +62,13 @@
   <string name="low_memory_killer">Zarządca niskiego poziomu pamięci</string>
   <string name="virtual_memory">Pamięć wirtualna</string>
   <string name="misc_controls">Różne Ustawienia</string>
+  <string name="plugins">Wtyczki</string>
   <string name="backup">Kopia zapasowa</string>
   <string name="build_prop_editor">Edytor build prop</string>
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Ustawienia</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">O nas</string>
   <string name="unused_cpu_states">Nieużywane stany CPU</string>
   <string name="uptime">Czas działania</string>
   <string name="deep_sleep">Głęboki sen</string>
@@ -81,7 +87,6 @@
   <string name="cpu_max_screen_off_freq">Maksymalna częstotliwość procesora gdy ekran jest wyłączony</string>
   <string name="cpu_max_screen_off_freq_summary">Maksymalna częstotliwość do której skaluje się procesor gdy ekran jest wyłączony.</string>
   <string name="cpu_governor">Zarządca CPU</string>
-  <string name="cpu_governor_summary">Zarządca CPU określa w jaki sposób CPU się zachowuje w odpowiedzi na obciążenie. Zmiana zarządcy ma wpływ na to, w jaki sposób CPU zmienia różne dostępne częstotliwości.</string>
   <string name="cpu_governor_tunables">Konfiguracja zarządcy procesora</string>
   <string name="cpu_governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
   <string name="not_tunable">Nie można zmienić %s</string>
@@ -263,5 +268,4 @@
   <string name="feature_request">Prośba o funkcje</string>
   <string name="google_plus_summary">Dołącz do naszej społeczności.</string>
   <string name="translation">Tłumaczenie</string>
-  <string name="translation_summary">Pomóż mi przetłumaczyć tą aplikację!</string>
 </resources>

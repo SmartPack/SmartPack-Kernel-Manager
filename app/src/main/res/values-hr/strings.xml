@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Postavke</string>
   <string name="faq">Najčešća pitanja i odgovori</string>
-  <string name="about_us">O autoru</string>
   <string name="unused_cpu_states">Statistika nekorištenog dijela CPU-a</string>
   <string name="uptime">Vrijeme u pogonu</string>
   <string name="deep_sleep">Stanje mirovanja</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Najviša CPU frekvencija pri isključenom zaslonu</string>
   <string name="cpu_max_screen_off_freq_summary">Postavi najvišu frekvenciju koju će CPU doseći pri isključenom zaslonu.</string>
   <string name="cpu_governor">CPU Governor</string>
-  <string name="cpu_governor_summary">CPU Governor određuje kako će CPU obavljati zadaće. Promjena unesenih vrijednosti će utjecati na promjene CPU frekvencija u skladu s mogućnostima.</string>
   <string name="cpu_governor_tunables">Postavke CPU Governora</string>
   <string name="cpu_governor_tunables_summary">Razne konfiguracijske vrijednosti koje ovise o Governoru.</string>
   <string name="not_tunable">%s se ne može mijenjati</string>
@@ -376,7 +374,6 @@
   <string name="misspelled">Zašto ste pogriješili utipkujući \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor je latinski a znači pomagač.</string>
   <string name="cpu_freq_not_sticking">Zašto moja odabrana CPU frekvencija ne radi?</string>
-  <string name="cpu_freq_not_sticking_summary">To može imati puno razloga. Mnogi kerneli danas imaju vlastiti hotplugging sustav koji kontrolira CPU frekvencije, a CyanogenMod ima svoju provedbu poticanja CPU-a koja regulira frekvenciju. Predložio bih Vam ne dirati CPU frekvencije i pustiti neka kernel radi svoj posao.</string>
   <string name="feature_not_appearing">Zašto se značajke x i y ne mogu nigdje pronaći?</string>
   <string name="feature_not_appearing_summary">Značajke ovise o kernelu.</string>
   <string name="feature_function">Što značajka x čini?</string>
@@ -388,5 +385,4 @@
   <string name="feature_request">Predložite novu funkciju</string>
   <string name="google_plus_summary">Pridružite se našoj zajednici.</string>
   <string name="translation">Prijevod</string>
-  <string name="translation_summary">Pomozite mi s prijevodima ove aplikacije!</string>
 </resources>

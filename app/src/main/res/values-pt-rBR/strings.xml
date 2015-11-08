@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Configurações</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">Sobre nós</string>
   <string name="unused_cpu_states">Estados de CPU não utilizados</string>
   <string name="uptime">Tempo de atividade</string>
   <string name="deep_sleep">Sono profundo</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Frequência máxima da CPU com a tela desligada</string>
   <string name="cpu_max_screen_off_freq_summary">Defina a frequência máxima da CPU enquanto a tela estiver desligada.</string>
   <string name="cpu_governor">Governador da CPU</string>
-  <string name="cpu_governor_summary">O governador de CPU determina como a CPU se comporta em resposta a mudanças na carga de trabalho. Mudar o governador terá um impacto como a CPU pode ser dimensionado através das etapas de frequência disponíveis para a CPU.</string>
   <string name="cpu_governor_tunables">Ajustes do Governador da CPU</string>
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="not_tunable">%s não é ajustável</string>
@@ -459,11 +457,9 @@
   <string name="vibration_strength">Intensidade da vibração</string>
   <string name="android_logger">Android log</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Desabilite para melhor desempenho de sistema de arquivos, correndo o risco de perder dados quando o telefone trava.</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>
   <string name="dynamic_fsync_summary">Quando habilitada e a tela estiver acesa, a operação fsync é assíncrona. Quando a tela estiver desligada, esta operação é comprometida sincronicamente.</string>
   <string name="power_suspend_mode">Ligar modo de suspenção</string>
-  <string name="power_suspend_mode_summary">Modo kernel, ganchos de LCD e gancho de nível mais alto são gerenciados automaticamente pelo kernel, para habilitar ou desabilitar manualmente o estado de suspensão, escolha o Modo Usuário.</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>
   <string name="lcd_panel">Painel LCD</string>
@@ -505,7 +501,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
-  <string name="download">baixar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Continuar</string>
   <string name="checking_md5">Verificando MD5sum</string>
@@ -601,7 +596,6 @@
   <string name="misspelled">Por que você confundiu \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
   <string name="cpu_freq_not_sticking">Por que minha frequência determinada da CPU não é cumprida?</string>
-  <string name="cpu_freq_not_sticking_summary">Isto tem muitas razões. Muitos kernels, hoje em dia, têm seu próprio sistema de hotplugging que controla a frequência da CPU e CyanogenMod tem sua própria implementação de impulso de CPU que regulam a frequência. Gostaria de sugerir-lhe para não tocar as frequências de CPU e deixar o kernel a fazer o seu trabalho.</string>
   <string name="feature_not_appearing">Por que características x e y não aparecem?</string>
   <string name="feature_not_appearing_summary">Características dependem do kernel.</string>
   <string name="feature_function">O que a característica x faz?</string>
@@ -611,10 +605,7 @@
   <string name="license">Licença</string>
   <string name="app_license">Kernel Adiutor é licenciado sob a licença Apache, Versão 2.0, e suas respectivas bibliotecas</string>
   <string name="open_source">Código aberto</string>
-  <string name="open_source_summary">Este aplicativo tem o código aberto. Confira no meu Github.</string>
   <string name="feature_request">Solicitação de recurso</string>
-  <string name="feature_request_summary">Você quer mais recursos? Abra uma nova edição no GitHub e me conte sua idéia.</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
   <string name="translation">Tradução</string>
-  <string name="translation_summary">Me ajude a traduzir este app!</string>
 </resources>

@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Inställningar</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">Om oss</string>
   <string name="unused_cpu_states">Oanvända CPU-lägen</string>
   <string name="uptime">Drifttid</string>
   <string name="deep_sleep">Djup Sömn</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Högsta CPU-frekvensen då skärmen är släckt</string>
   <string name="cpu_max_screen_off_freq_summary">Ange den högsta frekvensen CPUn skalar upp till då skärmen är släckt.</string>
   <string name="cpu_governor">CPU Governor</string>
-  <string name="cpu_governor_summary">En \"CPU Governor\" bestämmer hur CPU:n agerar i förhållande till förändringar i belastningen. När du ändrar governor påverkar detta hur CPU:n byter mellan de frekvenser som finns tillgängliga för din CPU.</string>
   <string name="cpu_governor_tunables">CPU Governor Finputsningar</string>
   <string name="cpu_governor_tunables_summary">Diverse konfigurationstyper som är beroende av en specifik governor.</string>
   <string name="not_tunable">%s går inte att finputsa</string>
@@ -232,7 +230,6 @@
   <string name="vibration_strength">Vibrationsstyrka</string>
   <string name="android_logger">Android-loggning</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Inaktivera för bättre filsystem-prestanda med risk för att data förloras när telefonen kraschar.</string>
   <string name="dynamic_fsync">Dynamisk Fsync</string>
   <string name="hybrid">Hybrid</string>
   <string name="network">Nätverk</string>
@@ -290,5 +287,4 @@
   <string name="feature_request">Funktionönskemål</string>
   <string name="google_plus_summary">Gå med i vår gemenskap.</string>
   <string name="translation">Översättning</string>
-  <string name="translation_summary">Hjälp mig översätta denna app!</string>
 </resources>

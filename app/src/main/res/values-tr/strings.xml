@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ayarlar</string>
   <string name="faq">S.S.S</string>
-  <string name="about_us">Hakkımızda</string>
   <string name="unused_cpu_states">Kullanılmayan CPU bölümü</string>
   <string name="uptime">Çalışma süresi</string>
   <string name="deep_sleep">Derin Uyku</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Ekran Kapalıyken Maksimum İşlemci Frekansı</string>
   <string name="cpu_max_screen_off_freq_summary">İşlemci ölçeklerini yükseltmek için ekran kapalıyken maksimum İşlemci frekansını belirler.</string>
   <string name="cpu_governor">İşlemci Düzenleyici</string>
-  <string name="cpu_governor_summary">İşlemci Düzenleyici iş yüküne göre değişiklik yaparak çalışma şeklini belirler.</string>
   <string name="cpu_governor_tunables">İşlemci Düzenleyicisi Ayarları</string>
   <string name="cpu_governor_tunables_summary">İşlemci Düzenleyicisine bağlı çeşitli yapılandırmalar.</string>
   <string name="not_tunable">%s ayarlanabilir değil</string>
@@ -147,6 +145,8 @@
   <string name="suspend_defer_time">Askıya Alma Zamanını Erteleme</string>
   <string name="defer_sampling">Örnekleme Erteleme</string>
   <string name="boost_lock_duration_summary">İşlemciyi hızlandırmak için minimum aralık.</string>
+  <string name="fshift">FShift</string>
+  <string name="blu_plug">Blu_Plug</string>
   <string name="powersaver_mode">Güc tasarruf modu</string>
   <string name="update_rate">Güncelleme Hızı</string>
   <string name="first_level">İlk seviye</string>
@@ -308,7 +308,6 @@
   <string name="dynamic_fsync">Dinamik Fsync</string>
   <string name="dynamic_fsync_summary">Etkin olduğunda ve ekran üzerinde fsync işlemi zaman uyumsuz. Ekran kapalı iken, bu işlem zaman uyumlu olarak taahhüt eder.</string>
   <string name="power_suspend_mode">Güç Askıya Alma Modu</string>
-  <string name="power_suspend_mode_summary">Çekirdek modu, LCD kanca ve en yüksek düzey kanca çekirdek tarafından otomatik olarak yönetilir, için el ile etkinleştirmek veya devre dışı bırak güç askıya alma durumu kullanıcı modu seçin.</string>
   <string name="autosleep">Oto uyku</string>
   <string name="userspace">Kullanıcı Alanı</string>
   <string name="lcd_panel">LCD Panel</string>
@@ -399,5 +398,4 @@
   <string name="feature_request">Özellik İsteği</string>
   <string name="google_plus_summary">Topluluğumuza katılın.</string>
   <string name="translation">Çeviri</string>
-  <string name="translation_summary">Bu uygulamayı çevirmek için yardım edin!</string>
 </resources>

@@ -64,7 +64,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">הגדרות</string>
   <string name="faq">שאלות נפוצות</string>
-  <string name="about_us">אודות</string>
   <string name="unused_cpu_states">סטטיסטיקות מעבד שאינן בשימוש</string>
   <string name="uptime">זמן ריצה</string>
   <string name="deep_sleep">שינה עמוקה</string>
@@ -85,7 +84,6 @@
   <string name="cpu_max_screen_off_freq">תדר מעבד מקסימלי למסך כבוי</string>
   <string name="cpu_max_screen_off_freq_summary">הכנס את התדר המקסימלי שהמעבד יגיע אליו כשהמסך כבוי.</string>
   <string name="cpu_governor">GPU Governor</string>
-  <string name="cpu_governor_summary">CPU governor קובע איך המעבד מתנהג בתגובה לשינויים ב- workload. שינוי של ה- governor ישפיע על הדרך שבה המעבד עובר בין התדרים שזמינים למעבד.</string>
   <string name="not_tunable">לא ניתן לכוון את %s</string>
   <string name="mc_power_saving">חיסכון חשמל מרובה ליבות</string>
   <string name="mc_power_saving_summary">נסה לאחד משימות לכמות המינ\' האפשרית של ליבות.</string>

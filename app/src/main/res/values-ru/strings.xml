@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Настройки</string>
   <string name="faq">Часто задаваемые вопросы</string>
-  <string name="about_us">О нас</string>
   <string name="unused_cpu_states">Неиспользуемые частоты процессора</string>
   <string name="uptime">Время работы</string>
   <string name="deep_sleep">Глубокий сон</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Максимальная частота ЦП при выключенном экране</string>
   <string name="cpu_max_screen_off_freq_summary">Максимальная частота ЦП при выключенном экране</string>
   <string name="cpu_governor">Планировщик процессора</string>
-  <string name="cpu_governor_summary">Планировщик процессора определяет, как ведет себя процессор в ответ на изменения рабочей нагрузки. Изменение планировщика будет влиять на то, как ЦП изменяет рабочие частоты, доступные для вашего процессора.</string>
   <string name="cpu_governor_tunables">Переменные планировщика CPU</string>
   <string name="cpu_governor_tunables_summary">Различные элементы конфигурации, которые зависят от планировщика.</string>
   <string name="not_tunable">%s не настраиваемый</string>
@@ -448,7 +446,6 @@
   <string name="vibration_strength">Интенсивность вибрации</string>
   <string name="android_logger">Логгинг Android</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Выключите для лучшей производительности, жертвуя шансом потери данных в таких ситуациях, как резкая потеря питания.</string>
   <string name="dynamic_fsync">Динамический Fsync</string>
   <string name="dynamic_fsync_summary">Когда экран включен, Fsync асинхронен. Однако когда экран выключен, данные записываются.</string>
   <string name="power_suspend_mode">Режим понижения питания</string>
@@ -493,7 +490,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google +</string>
   <string name="paypal">PayPal</string>
-  <string name="download">Скачать</string>
   <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="resume">Возобновить</string>
   <string name="checking_md5">Проверка MD5sum</string>
@@ -589,7 +585,6 @@
   <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
   <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
-  <string name="cpu_freq_not_sticking_summary">Существует множество причин. Большинство ядер имеют свои системы контроля частоты процессора, а у CyanogenMod даже свой собственный режим ускорения ЦП. Я бы рекомендовал не трогать настройки частот и дать ядру заниматься своим делом.</string>
   <string name="feature_not_appearing">Почему нет функции x и y?</string>
   <string name="feature_not_appearing_summary">Функционал зависит от ядра.</string>
   <string name="feature_function">Что делает функция x?</string>
@@ -599,10 +594,7 @@
   <string name="license">Лицензия</string>
   <string name="app_license">Kernel Adiutor лицензирован Apache License, Версия 2.0, и использует следующие библиотеки</string>
   <string name="open_source">Открытый исходный код</string>
-  <string name="open_source_summary">Это приложение с открытым исходным кодом. Вы можете посмотреть его на GitHub.</string>
   <string name="feature_request">Предложить новую функцию</string>
-  <string name="feature_request_summary">Хотите новых возможностей? Создайте запрос на GitHub и объясните мне свою идею.</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
   <string name="translation">Перевод</string>
-  <string name="translation_summary">Помогите мне перевести это приложение!</string>
 </resources>

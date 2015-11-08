@@ -65,7 +65,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Pengaturan</string>
   <string name="faq">Tanya Jawab Umum</string>
-  <string name="about_us">Tentang kami</string>
   <string name="unused_cpu_states">CPU tak terpakai</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Deep sleep</string>
@@ -86,7 +85,6 @@
   <string name="cpu_max_screen_off_freq">Frekuensi CPU Tertinggi Saat Layar Mati</string>
   <string name="cpu_max_screen_off_freq_summary">Atur skala frekuensi tertinggi CPU ketika layar sedang tidak aktif.</string>
   <string name="cpu_governor">Pengontrol CPU</string>
-  <string name="cpu_governor_summary">Pengontrol CPU menentukan perubahan perilaku CPU ketika kelebihan beban. Merubah Pengontrol akan mempengaruhi nilai skala fekuensi CPU yang tersedia.</string>
   <string name="cpu_governor_tunables">Pengontrol CPU Yang Bisa Dirubah</string>
   <string name="cpu_governor_tunables_summary">Ragam item konfigurasi berdasarkan Pengontrol yang dipilih.</string>
   <string name="not_tunable">%s tidak bisa dirubah</string>
@@ -434,15 +432,12 @@
   <string name="vibration_strength">Kekuatan Getaran</string>
   <string name="android_logger">Pencatatan Android</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Nonaktifkan agar kinerja file sistem lebih baik pada risiko kehilangan data saat ponsel crash.</string>
   <string name="dynamic_fsync">Dinamis Fsync</string>
   <string name="dynamic_fsync_summary">Bila diaktifkan dan layar menyala, operasi fsync menjadi asynchronous. Ketika layar dimatikan, operasi ini menjadi syncronous.</string>
   <string name="power_suspend_mode">Modus Penangguh Daya</string>
-  <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks dan Tingkat Hook Tertinggi otomatis dikelola oleh kernel, untuk mengaktifkan atau menonaktifkan Kondisi Penangguh Daya secara manual, pilih Modus Pengguna.</string>
   <string name="autosleep">Autosleep</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google Plus</string>
-  <string name="download">unduh</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Teruskan</string>
   <string name="checking_md5">Memeriksa MD5sum</string>
@@ -537,5 +532,4 @@
   <string name="misspelled">Mengapa Anda melakukan misspell \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor itu latin dan berharap membantu.</string>
   <string name="cpu_freq_not_sticking">Mengapa saya tidak bisa menentukan CPU freq?</string>
-  <string name="cpu_freq_not_sticking_summary">Ini memiliki banyak alasan. Banyak kernel saat ini memiliki sistem hotplugging sendiri yang mengontrol frekuensi CPU dan CyanogenMod memiliki implementasi CPU meningkatkan mereka sendiri yang mengatur frekuensi. Saya akan menyarankan Anda untuk tidak menyentuh frekuensi CPU dan membiarkan kernel melakukan tugasnya.</string>
 </resources>

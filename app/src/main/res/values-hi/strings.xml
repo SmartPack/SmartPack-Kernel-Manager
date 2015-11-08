@@ -67,7 +67,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">सेटिंग</string>
   <string name="faq">आम सवाल</string>
-  <string name="about_us">हमारे बारे में</string>
   <string name="unused_cpu_states">अप्रयुक्त सीपीयू स्थिति</string>
   <string name="uptime">अपटाइम</string>
   <string name="deep_sleep">गहन निद्रा</string>
@@ -88,7 +87,6 @@
   <string name="cpu_max_screen_off_freq">CPU अधिकतम आवृत्ति बंद स्क्रीन</string>
   <string name="cpu_max_screen_off_freq_summary">अधिकतम CPU को मापता है अप करने के लिए स्क्रीन बंद है जब आवृत्ति सेट करें।</string>
   <string name="cpu_governor">CPU नियंत्रक</string>
-  <string name="cpu_governor_summary">CPU राज्यपाल कैसे CPU बर्ताव करता है काम का बोझ में परिवर्तनों की प्रतिक्रिया में निर्धारित करता है। राज्यपाल को बदलने कैसे CPU आवृत्ति उपलब्ध करने के लिए कदम आपको CPU के माध्यम से तराजू प्रभाव होगा।</string>
   <string name="cpu_governor_tunables">सीपीयू राज्यपाल संपादन </string>
   <string name="cpu_governor_tunables_summary">विभिन्न कॉन्फ़िगरेशन आइटम जो राज्यपाल पर निर्भर कर रहे हैं।</string>
   <string name="not_tunable">%s स्वर योग्य नहीं है</string>
@@ -115,5 +113,4 @@
   <string name="feature_request">सुविधा अनुरोध</string>
   <string name="google_plus_summary">हमारे समुदाय में शामिल हों।</string>
   <string name="translation">अनुवाद</string>
-  <string name="translation_summary">इस ऐप का अनुवाद करने के लिए मेरी मदद करे!</string>
 </resources>

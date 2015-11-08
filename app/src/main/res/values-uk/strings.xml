@@ -51,7 +51,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Налаштування</string>
   <string name="faq">Питання та відповіді (FAQ)</string>
-  <string name="about_us">Про нас</string>
   <string name="unused_cpu_states">Незадіяні частоти CPU</string>
   <string name="uptime">Час роботи</string>
   <string name="deep_sleep">Глибокий сон</string>
@@ -70,7 +69,6 @@
   <string name="cpu_max_screen_off_freq">Макс. частота CPU при вимкненому дисплеї</string>
   <string name="cpu_max_screen_off_freq_summary">Встановлення максимальної частоти CPU коли дисплей вимкнений.</string>
   <string name="cpu_governor">Планувальник CPU</string>
-  <string name="cpu_governor_summary">Планувальник CPU визначає, як буде поводити себе процесор у відповідь на зміни робочого навантаження. Зміна планувальника буде впливати на те, як CPU змінює робочі частоти.</string>
   <string name="cpu_governor_tunables">Параметри планувальника CPU</string>
   <string name="cpu_governor_tunables_summary">Різні параметри конфігурації які залежать від планувальника.</string>
   <string name="not_tunable">%s не може бути налаштований</string>

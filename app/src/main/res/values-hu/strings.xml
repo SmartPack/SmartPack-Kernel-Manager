@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Beállítások</string>
   <string name="faq">GYIK</string>
-  <string name="about_us">Rólunk</string>
   <string name="unused_cpu_states">Nem használt CPU frekvenciák</string>
   <string name="uptime">Üzemidő</string>
   <string name="deep_sleep">Mélyalvás</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Maximális CPU frekvencia kikapcsolt képernyőnél</string>
   <string name="cpu_max_screen_off_freq_summary">A maximális frekvencia beállítása, amit a CPU használhat kikapcsolt képernyő mellett.</string>
   <string name="cpu_governor">CPU ütemező</string>
-  <string name="cpu_governor_summary">A CPU iránytó határozza meg, hogyan viselkedik a CPU a változó terhelés alatt. Az irányító módosítása hatással lesz arra, hogy hogyan fog lépkedni a CPU az elérhető frekvenciákon.</string>
   <string name="cpu_governor_tunables">CPU ütemező beállítások</string>
   <string name="cpu_governor_tunables_summary">Az aktuális CPU ütemező finomhangolási lehetőségei.</string>
   <string name="not_tunable">%s nem állítható</string>
@@ -450,11 +448,9 @@
   <string name="vibration_strength">Rezgés erőssége</string>
   <string name="android_logger">Android naplózás</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Tiltsa le a jobb fájlrendszer teljesítmény érdekében, kockáztatva adatai elvesztését, ha lefagy a telefon.</string>
   <string name="dynamic_fsync">Dinamikus Fsync</string>
   <string name="dynamic_fsync_summary">Amikor engedélyezett és a képernyő be van kapcsolva, az fsync művelet aszinkron működik. Amikor a képernyő ki van kapcsolva, ez a művelet elkötelezetten szinkron működik.</string>
   <string name="power_suspend_mode">Energia felfüggesztési üzemmód</string>
-  <string name="power_suspend_mode_summary">Kernel üzemmód, az LCD Hook-ok és a Legmagasabb Szintű Hook-ok automatikusan a kernel által kezeltek, manuálisan engedélyezheti vagy letilthatja az Energia felfüggesztési állapotot, ha a felhasználói módot választja.</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>
   <string name="lcd_panel">LCD Panel</string>
@@ -496,7 +492,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
   <string name="paypal">PayPal</string>
-  <string name="download">letöltés</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Folytatás</string>
   <string name="checking_md5">MD5sum ellenőrzése</string>
@@ -592,7 +587,6 @@
   <string name="misspelled">Miért gépelte félre az \"Auditor\"-t?</string>
   <string name="misspelled_summary">Adiutor egy latin szó, és azt jelenti, segítő.</string>
   <string name="cpu_freq_not_sticking">Miért nem jegyzi meg az általam beállított CPU frekvenciákat?</string>
-  <string name="cpu_freq_not_sticking_summary">Ennek számos oka van. Sok kernel manapság saját hotplug-rendszert használ, amely  a CPU frekvenciát szabályozza, és CyanogenMod saját CPU gyorsítási végrehajtót használ, amely a frekvenciát szabályozza. Azt javaslom, hogy ne válzotassa a CPU frekvenciát és hagyja, hogy a kernel tegye a dolgát.</string>
   <string name="feature_not_appearing">Miért nem jelenik meg az x és y funkció?</string>
   <string name="feature_not_appearing_summary">Funkciók a kerneltől függnek.</string>
   <string name="feature_function">Mit csinál az x funkció?</string>
@@ -602,10 +596,7 @@
   <string name="license">Licenc</string>
   <string name="app_license">Kernel Adiutor az Apache liszensz, 2.0 verziója szerint liszenszelt, és a következő könyvtárakat használja</string>
   <string name="open_source">Nyílt forráskódú</string>
-  <string name="open_source_summary">Ez az alkalmazás nyílt forráskódú. Nézze meg a GitHub fiókomat.</string>
   <string name="feature_request">Ötlet, javaslat</string>
-  <string name="feature_request_summary">Több szolgáltatásra vágyik? Nyisson meg egy új problémát a Githubon, és mondja el ötletét.</string>
   <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
   <string name="translation">Fordítás</string>
-  <string name="translation_summary">Segítsen nekem lefordítani ezt az alkalmazást!</string>
 </resources>

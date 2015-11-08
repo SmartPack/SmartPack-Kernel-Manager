@@ -65,7 +65,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Nastavenia</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">O nás</string>
   <string name="unused_cpu_states">Nepoužité stavy CPU</string>
   <string name="uptime">V prevádzke</string>
   <string name="deep_sleep">Hlboký spánok</string>
@@ -85,7 +84,6 @@
   <string name="cpu_max_screen_off_freq">Maximálna frekvencia CPU pri vypnutej obrazovke</string>
   <string name="cpu_max_screen_off_freq_summary">Nastaviť maximálnu frekvenciu CPU keď je obrazovka vypnutá.</string>
   <string name="cpu_governor">CPU správca</string>
-  <string name="cpu_governor_summary">CPU guvernérom určuje, ako CPU chová v reakcii na zmeny zaťaženia. Zmena guvernér ovplyvní, ako CPU váhy pomocou frekvencie kroky k dispozícii CPU.</string>
   <string name="disabled">Zakázané</string>
   <string name="enabled">Povolené</string>
   <string name="aggressive">Agresívne</string>
@@ -165,5 +163,4 @@
   <string name="feature_request">Žiadosť o funkciu</string>
   <string name="google_plus_summary">Pripojte sa k našej komunite.</string>
   <string name="translation">Preklad</string>
-  <string name="translation_summary">Pomôžte mi preložiť túto aplikáciu!</string>
 </resources>

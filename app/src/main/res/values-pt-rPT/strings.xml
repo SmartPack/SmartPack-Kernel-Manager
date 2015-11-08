@@ -68,7 +68,6 @@ Está a usar a versão %s.</string>
   <string name="initd">Init.d</string>
   <string name="settings">Definições</string>
   <string name="faq">Perguntas Frequentes</string>
-  <string name="about_us">Sobre nós</string>
   <string name="unused_cpu_states">Estados do CPU não usados</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Sono profundo</string>
@@ -89,8 +88,6 @@ Está a usar a versão %s.</string>
   <string name="cpu_max_screen_off_freq">Frequência máxima de CPU com ecrã desligado</string>
   <string name="cpu_max_screen_off_freq_summary">Defina a frequência máxima da CPU quando o ecrã estiver desligado.</string>
   <string name="cpu_governor">Governador CPU</string>
-  <string name="cpu_governor_summary">O governador CPU determina como o CPU responde as tarefas.
-Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequências disponíveis.</string>
   <string name="cpu_governor_tunables">Parâmetros governador CPU</string>
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="not_tunable">%s não é ajustável</string>
@@ -388,11 +385,9 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="vibration_strength">Força de vibração</string>
   <string name="android_logger">Android log</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Desabilite para melhor desempenho de sistema de ficheiros, correndo o risco de perda de dados quando o telefone bloqueia.</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>
   <string name="dynamic_fsync_summary">Quando ligado juntamente com o ecrã, operação fsync assíncrona. Quando o ecrã estiver desligado, esta operação está sincrona.</string>
   <string name="power_suspend_mode">Ligar modo de suspenção</string>
-  <string name="power_suspend_mode_summary">Modo kernel, ganchos de LCD e gancho de nível mais alto são gerenciados automaticamente pelo kernel, para habilitar ou desabilitar manualmente o estado de suspensão, escolher o modo de usuário.</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>
   <string name="lcd_panel">Painel LCD</string>
@@ -485,7 +480,6 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="misspelled">Porque é que \"Auditor\" está mal escrito?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
   <string name="cpu_freq_not_sticking">Por que determinada CPU freq não cumpre?</string>
-  <string name="cpu_freq_not_sticking_summary">Isto tem muitas razões. Muitas kernels, hoje em dia, têm seu próprio sistema de hotplugging que controla a frequência da CPU e CyanogenMod tem sua própria implementação de impulso de CPU que regulam a frequência. Recomenda-se não tocar as frequências de CPU e deixar o kernel a fazer o seu trabalho.</string>
   <string name="feature_not_appearing">Por que não aparecem as características x e y?</string>
   <string name="feature_not_appearing_summary">Características dependem do kernel.</string>
   <string name="feature_function">O que uma característica x faz?</string>
@@ -497,5 +491,4 @@ Mudar de governador vai ter impacto no CPU na forma como ele  utiliza as frequê
   <string name="feature_request">Pedido de funcionalidade</string>
   <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
   <string name="translation">Tradução</string>
-  <string name="translation_summary">Ajuda a traduzir esta app!</string>
 </resources>

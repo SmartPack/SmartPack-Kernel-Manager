@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Impostazioni</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">Chi Siamo</string>
   <string name="unused_cpu_states">Stati inutilizzati della cpu</string>
   <string name="uptime">Tempo di attività</string>
   <string name="deep_sleep">Deep Sleep</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Massima frequenza CPU a schermo spento</string>
   <string name="cpu_max_screen_off_freq_summary">Imposta la frequenza massima della CPU da scalare fino a quando lo schermo è spento.</string>
   <string name="cpu_governor">Governor CPU</string>
-  <string name="cpu_governor_summary">Il governor della CPU determina il comportamento in risposta alla potenza di calcolo richiesta. Cambiandolo si avranno effetti su come vengono scelte le frequenze dei Core e sulle modalità di passaggio tra i livelli di frequenza disponibili.</string>
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
   <string name="cpu_governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
   <string name="not_tunable">%s non si può modificare</string>
@@ -114,6 +112,8 @@
   <string name="input_boost_freq">Boost frequenza al tocco</string>
   <string name="input_boost_freq_core">Boost della frequenza al tocco %s</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
+  <string name="wakeup_boost">Accellerazione al risveglio</string>
+  <string name="hotplug_boost">Accellerazione dell\'hotplug</string>
   <string name="global_offset">Offset Generale</string>
   <string name="override_vmin">Eseguire l\'abbassamento alla minima tensione</string>
   <string name="override_vmin_summary">Disabilitare per rimuovere i limiti di undervolt stabiliti dal produttore</string>
@@ -285,6 +285,8 @@
   <string name="gpu_2d_max_freq_summary">Imposta la massima frequenza della GPU.</string>
   <string name="gpu_max_freq">Massima frequenza GPU</string>
   <string name="gpu_max_freq_summary">Imposta la massima frequenza della GPU.</string>
+  <string name="gpu_min_freq">Frequenza minima GPU</string>
+  <string name="gpu_min_freq_summary">Imposta la frequenza minima a cui la GPU deve scalare.</string>
   <string name="gpu_2d_governor">GPU 2D Governor</string>
   <string name="gpu_2d_governor_summary">Imposta il governor 2D della GPU.</string>
   <string name="gpu_governor">Governor GPU</string>
@@ -379,6 +381,7 @@
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake durante la ricarica</string>
   <string name="sleep">Sospendi</string>
   <string name="dt2s">DoubleTap2Sleep</string>
+  <string name="dt2s_summary">Blocca il dispositivo cliccando due volte nella parte alta dello schermo.</string>
   <string name="slide_up">Scorrere verso l\'alto</string>
   <string name="slide_down">Far scorrere verso il basso</string>
   <string name="slide_left">Scorri a sinistra</string>
@@ -449,11 +452,9 @@
   <string name="vibration_strength">Intensità di vibrazione</string>
   <string name="android_logger">Registrazione Android</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Disabilitare per migliorare le prestazioni del file di sistema a rischio di perdita di dati se il telefono si dovesse bloccare.</string>
   <string name="dynamic_fsync">Fsync dimanico</string>
   <string name="dynamic_fsync_summary">Quando è abilitata e lo schermo è acceso, fsync è asincrona. Quando lo schermo è spento, l\'operazione è sincrona.</string>
   <string name="power_suspend_mode">Modalità Sospensione Energia</string>
-  <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks e Highest Level Hook sono gestiti automaticamente dal kernel, per attivare o disattivare lo stato si sospensione Energia scegliere \"Modalità utente\".</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Spazio Utente</string>
   <string name="lcd_panel">Pannello LCD</string>
@@ -495,7 +496,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
   <string name="paypal">PayPal</string>
-  <string name="download">Scarica</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Riprendi</string>
   <string name="checking_md5">Controllo MD5sum</string>
@@ -591,7 +591,6 @@
   <string name="misspelled">Perchè hai sbagliato a scrivere \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor, in Latino, significa \"assistente\".</string>
   <string name="cpu_freq_not_sticking">Perchè la frequenza che ho scelto non viene conservata?</string>
-  <string name="cpu_freq_not_sticking_summary">Questo ha molte ragioni. Molti kernel hanno oggi un proprio sistema hotplugging che controlla la frequenza della CPU e CyanogenMod ha una propria implementazione CPU Boost che regolano la frequenza. Vorrei suggerire di non toccare le frequenze della CPU e lasciare che il kernel faccia il suo lavoro.</string>
   <string name="feature_not_appearing">Perché le caratteristiche X e Y non sono disponibili?</string>
   <string name="feature_not_appearing_summary">Le caratteristiche utilizzabili dipendono dal Kernel.</string>
   <string name="feature_function">Cosa fa la caratteristica X?</string>
@@ -601,10 +600,7 @@
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>
-  <string name="open_source_summary">Questa applicazione è open source. Dai un\'occhiata sul mio Github.</string>
   <string name="feature_request">Richiesta di una funzione</string>
-  <string name="feature_request_summary">Vuoi altre funzioni? Apri una nuova segnalazione su Github e dimmi la tua idea.</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
-  <string name="translation_summary">Aiutami a tradurre questa app!</string>
 </resources>

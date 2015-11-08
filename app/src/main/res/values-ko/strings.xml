@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">제작자 소개</string>
   <string name="unused_cpu_states">사용되지 않은 CPU 클럭</string>
   <string name="uptime">가동 시간</string>
   <string name="deep_sleep">딥슬립</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">화면이 꺼져있을 때의 최대 CPU 클럭</string>
   <string name="cpu_max_screen_off_freq_summary">화면이 꺼져 있을 때 사용할 최대 CPU 클럭을 설정합니다.</string>
   <string name="cpu_governor">CPU 가버너</string>
-  <string name="cpu_governor_summary">CPU 가버너는 작업량의 변화에 따라 CPU가 어떻게 작동할 지 결정합니다. 주어진 클럭 테이블 내에서 CPU가 클럭을 분배하는 데 영향을 줍니다.</string>
   <string name="cpu_governor_tunables">CPU 가버너 고급 설정</string>
   <string name="cpu_governor_tunables_summary">각 가버너에 따라 달라지는 설정 항목들입니다.</string>
   <string name="not_tunable">%s는 조절할 수 없습니다.</string>
@@ -266,6 +264,7 @@
   <string name="laziness_summary">GPU 클럭의 증가, 감소 한계값을 높입니다. 낮을수록 성능이 좋아집니다.</string>
   <string name="ramp_thresold">램프 한계값</string>
   <string name="ramp_thresold_summary">GPU 가버너의 램프 감소 요청 횟수를 높입니다. 높을수록 성능이 좋아집니다.</string>
+  <string name="adreno_idler">Adreno Idler</string>
   <string name="red">빨간색</string>
   <string name="green">초록색</string>
   <string name="blue">파란색</string>
@@ -409,7 +408,6 @@
   <string name="vibration_strength">진동 세기</string>
   <string name="android_logger">안드로이드 로깅</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">파일 시스템 성능을 향상시키기 위해 기기가 갑자기 종료되었을 때 데이터를 잃을 위험을 감수하고 비활성화합니다.</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
   <string name="dynamic_fsync_summary">화면이 켜져 있을 때 fsync 작업이 비동기식으로 진행됩니다. 화면이 꺼지면 작업이 동기식으로 진행됩니다.</string>
   <string name="power_suspend_mode">Power Suspend 모드</string>
@@ -454,7 +452,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
-  <string name="download">다운로드</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="checking_md5">MD5sum을 확인합니다</string>
   <string name="md5_mismatch">MD5가 일치하지 않습니다</string>
@@ -549,7 +546,6 @@
   <string name="misspelled">왜 \"Auditor\"가 아닌가요? 오타인가요?</string>
   <string name="misspelled_summary">Adiutor는 라틴어로 도우미를 뜻합니다.</string>
   <string name="cpu_freq_not_sticking">설정한 CPU 클럭으로 변경되지 않는데 왜 그런가요?</string>
-  <string name="cpu_freq_not_sticking_summary">많은 이유가 있습니다. 요즘 대부분의 커널은 클럭을 조절하는 독자적인 핫플러깅 시스템을 가지고 있으며, CyanogenMod는 클럭을 조절하는 독자적인 CPU 부스트 기능을 사용하고 있습니다. 이 경우에는 CPU 클럭을 건드리지 마시고, 커널에 맡기는 것을 추천합니다.</string>
   <string name="feature_not_appearing">왜 X와 Y라는 기능이 보이지 않나요?</string>
   <string name="feature_not_appearing_summary">기능은 커널에 따라 차이가 있습니다.</string>
   <string name="feature_function">X라는 기능이 무엇인가요?</string>
@@ -559,10 +555,7 @@
   <string name="license">라이선스</string>
   <string name="app_license">Kernel Adiutor는 아파치 라이선스 2.0 버전을 따르며 다음의 라이브러리들을 사용합니다.</string>
   <string name="open_source">오픈소스</string>
-  <string name="open_source_summary">이 애플리케이션은 오픈소스 입니다. 제 GitHub에서 확인하세요.</string>
   <string name="feature_request">기능 요청</string>
-  <string name="feature_request_summary">기능을 늘리고 싶나요? GitHub에 새로운 이슈를 열고 나에게 아이디어를 말해주세요.</string>
   <string name="google_plus_summary">저희 커뮤니티에 가입하세요.</string>
   <string name="translation">번역</string>
-  <string name="translation_summary">앱을 번역해 주세요!</string>
 </resources>

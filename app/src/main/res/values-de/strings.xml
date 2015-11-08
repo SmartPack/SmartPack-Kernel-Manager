@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Einstellungen</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">Über uns</string>
   <string name="unused_cpu_states">Ungenutzte CPU-Stadien</string>
   <string name="uptime">Laufzeit</string>
   <string name="deep_sleep">Tiefschlaf</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Maximale CPU-Taktfrequenz bei ausgeschaltetem Bildschirm</string>
   <string name="cpu_max_screen_off_freq_summary">Ändere die minimale Taktfrequenz der CPU, wenn der Bildschirm aus ist.</string>
   <string name="cpu_governor">CPU-Governor</string>
-  <string name="cpu_governor_summary">Der CPU-Governor entscheidet, wie sich die CPU verhält. Die Änderung des Governors hat Auswirkungen darauf, wie sich die CPU zwischen Frequenzen entscheidet.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
   <string name="cpu_governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="not_tunable">%s ist nicht einstellbar</string>
@@ -425,7 +423,6 @@
   <string name="downloading_db">Lade Datenbank herunter</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google Plus</string>
-  <string name="download">Download</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Zurück</string>
   <string name="checking_md5">Überprüfen der MD5 Summe</string>
@@ -520,7 +517,6 @@
   <string name="misspelled">Wieso hast du \"Auditor\" falsch geschrieben?</string>
   <string name="misspelled_summary">Adiutor ist lateinisch und bedeutet Helfer.</string>
   <string name="cpu_freq_not_sticking">Warum bleibt meine eingestellte CPU-Frequenz nicht bestehen?</string>
-  <string name="cpu_freq_not_sticking_summary">Dies hat mehrere Gründe. Viele Kernel haben heutzutage ihre eigenen Hotplug-Systeme, die die CPU-Frequenz steuern und CyanogenMod hat eigene CPU-Boost Implementierungen, die die Frequenz steuern. Ich empfehle, dass Sie die CPU-Frequenzen nicht verändern und diese Aufgabe dem Kernel überlassen.</string>
   <string name="feature_not_appearing">Warum werden einige Funktionen nicht angezeigt?</string>
   <string name="feature_not_appearing_summary">Die Einstellmöglichkeiten sind vom Kernel abhängig.</string>
   <string name="feature_function">Was macht die Einstellung \"X\"?</string>
@@ -532,5 +528,4 @@
   <string name="feature_request">Funktionsanfrage</string>
   <string name="google_plus_summary">Werde Teil unserer Community.</string>
   <string name="translation">Übersetzung</string>
-  <string name="translation_summary">Hilf mir, diese App zu übersetzen!</string>
 </resources>

@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">設定</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">このアプリについて</string>
   <string name="unused_cpu_states">未使用のCPUテーブル</string>
   <string name="uptime">使用時間</string>
   <string name="deep_sleep">Deep Sleep</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">画面消灯時のCPU最大周波数</string>
   <string name="cpu_max_screen_off_freq_summary">画面消灯時に使用するCPU周波数の最大値を設定します。</string>
   <string name="cpu_governor">CPUガバナ</string>
-  <string name="cpu_governor_summary">CPUガバナはCPUがどのように動作するか決定するものです。ガバナを変更すると、CPU周波数の上昇/下降の仕方が変わります。</string>
   <string name="cpu_governor_tunables">CPUガバナ設定</string>
   <string name="cpu_governor_tunables_summary">ガバナ毎の設定可能な項目を設定します。</string>
   <string name="not_tunable">%sは設定が出来ません。</string>
@@ -114,6 +112,10 @@
   <string name="input_boost_freq">入力ブースト周波数</string>
   <string name="input_boost_freq_core">入力ブースト周波数 コア%s</string>
   <string name="input_boost_freq_summary">入力が検出されたときにこの周波数までCPU周波数をブーストします。</string>
+  <string name="wakeup_boost">ウェイクアップブースト</string>
+  <string name="wakeup_boost_summary">ウェイクアップブーストは入力ブーストに似ていますが、画面がオンになっているときに発生するという違いがあります。</string>
+  <string name="hotplug_boost">Hotplug ブースト</string>
+  <string name="hotplug_boost_summary">Hotplug ブーストは入力ブーストに似ていますが、CPU がオンラインになるときに発生するという違いがあります。</string>
   <string name="global_offset">全体のオフセット</string>
   <string name="override_vmin">最小電圧を上書きする</string>
   <string name="override_vmin_summary">下げられる電圧の制限を無効にします。</string>
@@ -285,6 +287,8 @@
   <string name="gpu_2d_max_freq_summary">使用するGPU 2D周波数の最大値を設定します。</string>
   <string name="gpu_max_freq">GPU 最大周波数</string>
   <string name="gpu_max_freq_summary">使用するGPU周波数の最大値を設定します。</string>
+  <string name="gpu_min_freq">GPU 最小周波数</string>
+  <string name="gpu_min_freq_summary">使用する GPU 周波数の最小値を設定します。</string>
   <string name="gpu_2d_governor">GPU 2D ガバナ</string>
   <string name="gpu_2d_governor_summary">GPU 2Dガバナを設定します。</string>
   <string name="gpu_governor">GPU ガバナ</string>
@@ -373,6 +377,14 @@
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">画面をスワイプすることでスリープ状態から復帰できます</string>
   <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Sweep2Wake 右</string>
+  <string name="s2w_left">Sweep2Wake 左</string>
+  <string name="s2w_up">Sweep2Wake 上</string>
+  <string name="s2w_down">Sweep2Wake 下</string>
+  <string name="s2w_any">Sweep2Wake すべて</string>
+  <string name="s2s_right">右にスワイプ</string>
+  <string name="s2s_left">左にスワイプ</string>
+  <string name="s2s_any">左か右にスワイプ</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">画面をタップすることでスリープ状態から復帰できるようになります。</string>
   <string name="wake">起動</string>
@@ -381,6 +393,7 @@
   <string name="dt2w_s2w_charging">充電中のDoubleTap2Wake + Sweep2Wake</string>
   <string name="sleep">スリープ</string>
   <string name="dt2s">DoubleTap2Sleep</string>
+  <string name="dt2s_summary">画面の上部をタップして機器をロックします。</string>
   <string name="slide_up">上へスライド</string>
   <string name="slide_down">下へスライド</string>
   <string name="slide_left">左へスライド</string>
@@ -450,12 +463,12 @@
   <string name="write">書き込み</string>
   <string name="vibration_strength">バイブの強さ</string>
   <string name="android_logger">Androidログ出力</string>
+  <string name="crc">ソフトウェア CRC 制御</string>
+  <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30% 低下することがあります。</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">無効にするとファイルシステムのパフォーマンスが向上しますが、クラッシュした際にデータが破損する可能性があります。</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
   <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
-  <string name="power_suspend_mode_summary">Userspace以外のモードではカーネルによって自動的に制御されます。Power Suspend Stateを手動で有効/無効にしたい場合はUserspaceを選んでください。</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>
   <string name="lcd_panel">LCD Panel</string>
@@ -497,7 +510,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
-  <string name="download">ダウンロード</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">再開</string>
   <string name="checking_md5">MD5の確認中</string>
@@ -593,7 +605,6 @@
   <string name="misspelled">\"Auditor\"って綴り間違いじゃないのぉ?</string>
   <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
   <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
-  <string name="cpu_freq_not_sticking_summary">これは多くの理由があります。大多数のカーネルはCPU 周波数を制御する独自のHotplugシステムを持っており、またCyanogenModは独自にCPU ブースト機能を実装しています。その場合周波数の固定に固執せず、カーネルに任せるのがおすすめです。</string>
   <string name="feature_not_appearing">なぜxとy機能が表示されないの?</string>
   <string name="feature_not_appearing_summary">カーネルによって実装されている機能に違いがあります。</string>
   <string name="feature_function">x機能って何なの?</string>
@@ -603,10 +614,7 @@
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel AdiutorはApache License, Version 2.0でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>
-  <string name="open_source_summary">このアプリはオープンソースです。タップでGithubページを開きます。</string>
   <string name="feature_request">機能のリクエスト</string>
-  <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
   <string name="google_plus_summary">コミュニティに参加する</string>
   <string name="translation">翻訳</string>
-  <string name="translation_summary">このアプリの翻訳を手伝ってください!</string>
 </resources>

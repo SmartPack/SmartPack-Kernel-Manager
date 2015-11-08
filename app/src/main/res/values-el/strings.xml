@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ρυθμίσεις</string>
   <string name="faq">ΣΥΧΝΈΣ ΕΡΩΤΉΣΕΙΣ</string>
-  <string name="about_us">Σχετικά με εμάς</string>
   <string name="unused_cpu_states">Αχρησιμοποίητες καταστάσεις CPU</string>
   <string name="uptime">Χρόνος Uptime</string>
   <string name="deep_sleep">Deep Sleep</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Μέγιστη Συχνότητα Επεξεργαστή με κλειστή οθόνη</string>
   <string name="cpu_max_screen_off_freq_summary">Ορίστε την μέγιστη συχνότητα του Επεξεργαστή όταν η οθόνη είναι κλειστή.</string>
   <string name="cpu_governor">Governor Επεξεργαστή</string>
-  <string name="cpu_governor_summary">Ο governor του επεξεργαστή ορίζει πως συμπεριφέρεται εκείνος ανάλογα με τις αλλαγές στο φόρτο εργασίας. Αλλαγή του governor θα επηρεάσει το πως ο επεξεργαστής θα κινείται μεταξύ των συχνότητων που είναι διαθέσιμες.</string>
   <string name="cpu_governor_tunables">Πίνακες αλλαγών Governor επεξεργαστή</string>
   <string name="cpu_governor_tunables_summary">Τα διάφορα στοιχεία ρύθμισης παραμέτρων που εξαρτώνται από τον governor.</string>
   <string name="not_tunable">%s δεν είναι διαθέσιμα προς επεξεργασία</string>

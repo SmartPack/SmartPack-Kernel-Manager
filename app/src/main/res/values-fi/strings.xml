@@ -64,7 +64,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Asetukset</string>
   <string name="faq">Usein kysyttyä</string>
-  <string name="about_us">Tietoa meistä</string>
   <string name="unused_cpu_states">Käyttömättömät CPU tilat</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Syvä_uni</string>
@@ -85,7 +84,6 @@
   <string name="cpu_max_screen_off_freq">CPU:n maksimi kellotaajuus kun näyttö on kiinni</string>
   <string name="cpu_max_screen_off_freq_summary">Aseta suurin kellotaajuus minkä CPU saavuttaa kun näyttö on suljettu.</string>
   <string name="cpu_governor">CPU governor</string>
-  <string name="cpu_governor_summary">CPU tila määrittää kuinka CPU toimii rasituksessa. Tilan vaihtaminen vaikuttaa kuinka CPU:n kellotaajuudet vaihtuu olosuhteiden mukaan.</string>
   <string name="cpu_governor_tunables">CPU-tilan säätö</string>
   <string name="cpu_governor_tunables_summary">Monenlaisia kokoonpano nimikkeitä jotka ovat riippuvaisia CPU tilasta.</string>
   <string name="not_tunable">%s ei ole säädettävissä</string>

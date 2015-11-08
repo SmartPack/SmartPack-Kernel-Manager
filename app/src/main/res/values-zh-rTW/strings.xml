@@ -66,7 +66,6 @@
   <string name="initd">啟動腳本</string>
   <string name="settings">設定</string>
   <string name="faq">FAQ</string>
-  <string name="about_us">關於我們</string>
   <string name="unused_cpu_states">未使用的 CPU 頻率</string>
   <string name="uptime">核心啟用時間</string>
   <string name="deep_sleep">深度睡眠</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">CPU 最大頻率(螢幕關閉)</string>
   <string name="cpu_max_screen_off_freq_summary">設定 CPU 在螢幕關閉時可提升的最大頻率</string>
   <string name="cpu_governor">CPU 管理模式</string>
-  <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應工作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
   <string name="cpu_governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
   <string name="not_tunable">%s 不可調整</string>
@@ -406,7 +404,6 @@
   <string name="downloading_db">下載資料庫中</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Google+</string>
-  <string name="download">下載</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">恢復</string>
   <string name="checking_md5">檢查 MD5 演算碼</string>
@@ -477,7 +474,6 @@
   <string name="misspelled">為什麼你把\"Auditor\"拼錯？</string>
   <string name="misspelled_summary">Adiutor 是拉丁語意思是幫手</string>
   <string name="cpu_freq_not_sticking">我設定的 CPU 頻率為什麼不會持續保持著？</string>
-  <string name="cpu_freq_not_sticking_summary">這有很多原因。現今很多核心使用獨有的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 使用獨有的 CPU 加速補償來管理頻率。我建議您不要更改 CPU 頻率，讓核心來處理。</string>
   <string name="feature_not_appearing">為什麼功能 x 和 y 沒有出現？</string>
   <string name="feature_not_appearing_summary">此功能取決於核心</string>
   <string name="feature_function">什麼是功能 x？</string>
@@ -490,5 +486,4 @@
   <string name="feature_request">新功能請求</string>
   <string name="google_plus_summary">加入我們的社群</string>
   <string name="translation">翻譯</string>
-  <string name="translation_summary">協助我翻譯這個應用程式！</string>
 </resources>

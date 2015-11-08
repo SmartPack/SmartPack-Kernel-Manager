@@ -64,7 +64,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
   <string name="faq">Најчешћа питања</string>
-  <string name="about_us">О нама</string>
   <string name="unused_cpu_states">Неискоришћена стања ЦПУ-а</string>
   <string name="uptime">Време рада</string>
   <string name="deep_sleep">Дубоки сан</string>
@@ -85,7 +84,6 @@
   <string name="cpu_max_screen_off_freq">ЦПУ макс. фреквенција кад је екран искључен</string>
   <string name="cpu_max_screen_off_freq_summary">Подешавање максималне фреквенције CPU када је екран искључен</string>
   <string name="cpu_governor">ЦПУ управљач</string>
-  <string name="cpu_governor_summary">ЦПУ управљач одређује како процесор реагује на промене у радном оптерећењу. Променом управљача утицаћете на скалирање, смену корака фреквенције доступних процесору.</string>
   <string name="cpu_governor_tunables">Фине поставке ЦПУ управљача</string>
   <string name="cpu_governor_tunables_summary">Разне конфигурације ставки које зависе од Governor-а</string>
   <string name="not_tunable">%s није подесиво</string>
@@ -236,7 +234,6 @@
   <string name="downloading_db">Преузимам базу података</string>
   <string name="xda">XDA</string>
   <string name="google_plus">Гугл Плус</string>
-  <string name="download">преузми</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Настави</string>
   <string name="checking_md5">Проверавам МД5 суму</string>
@@ -341,5 +338,4 @@
   <string name="feature_request">Захтеви за функције</string>
   <string name="google_plus_summary">Придружите се нашој заједници.</string>
   <string name="translation">Превођење</string>
-  <string name="translation_summary">Помозите ми превођењем апликације!</string>
 </resources>

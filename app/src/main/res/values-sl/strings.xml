@@ -66,7 +66,6 @@
   <string name="initd">Init.d</string>
   <string name="settings">Nastavitve</string>
   <string name="faq">Pogosto zastavljena vprašanja</string>
-  <string name="about_us">O nas</string>
   <string name="unused_cpu_states">Neuporabljene frekvence</string>
   <string name="uptime">Čas delovanja od zadnjega vklopa</string>
   <string name="deep_sleep">Globoko spanje</string>
@@ -87,7 +86,6 @@
   <string name="cpu_max_screen_off_freq">Najvišja frekvenca, ki jo CPU lahko doseže ko je zaslon ugasnjen</string>
   <string name="cpu_max_screen_off_freq_summary">Nastavite najvišjo frekvenco, kateri dovolite da jo CPU uporabi ko je zaslon ugasnjen.</string>
   <string name="cpu_governor">Governor CPU</string>
-  <string name="cpu_governor_summary">Governor določa kako se CPE odziva na spremembe v delovni obremenitvi. Spreminjanje Governorja bo vplivalo na način kako CPE spreminja frekvence, ki jih ima na voljo.</string>
   <string name="cpu_governor_tunables">Napredne nastavitve governorja CPU</string>
   <string name="cpu_governor_tunables_summary">Različne vrednosti CPU governoja, ki jih lahko spreminjamo (odvisno od tega, kateri CPU governor uporabljamo).</string>
   <string name="not_tunable">%s ni nastavljiv</string>
@@ -463,11 +461,9 @@
   <string name="vibration_strength">Moč vibriranja</string>
   <string name="android_logger">Android beleženje</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Onemogočite za boljše delovanje sistema ob tveganju izgube podatkov po sesutju telefona.</string>
   <string name="dynamic_fsync">Dinamični Fsync</string>
   <string name="dynamic_fsync_summary">Ko je omogočeno in je zaslon vklopljen, je fsync operacija asinhrona. Ko je zaslon izklopljen, je operacija potrjena sinhrono.</string>
   <string name="power_suspend_mode">Moč pripravljenosti</string>
-  <string name="power_suspend_mode_summary">Kernel način, LCD trnke in trnke najvišjih ravni samodejno upravlja Kernel, za ročno omogočanje ali onemogočanje Stanja odloga moči izberite uporabniški način.</string>
   <string name="autosleep">Samodejno spanje</string>
   <string name="userspace">Uporabniški prostor</string>
   <string name="lcd_panel">LCD plošča</string>
@@ -509,7 +505,6 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
-  <string name="download">prenos</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Nadaljuj</string>
   <string name="checking_md5">Preverjam MD5sum</string>
@@ -605,7 +600,6 @@
   <string name="misspelled">Zakaj ste napačno napisali \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor v latinščini pomeni pomočnik.</string>
   <string name="cpu_freq_not_sticking">Zakaj se moja določena frekvenca CPE ne obdrži?</string>
-  <string name="cpu_freq_not_sticking_summary">Za to je veliko razlogov. Veliko Kernelov ima dandanes svoj hotplugging sistem, ki nadzira frekvenco CPE, CyanogenMod pa ima svoj način izvajanja pospešitve CPE, s čimer uravnava frekvenco. Jaz bi vam predlagal, da ne spreminjate CPE frekvence in pustite Kernelu naj opravi svoje delo.</string>
   <string name="feature_not_appearing">Zakaj se funkcije x in y ne pokažejo?</string>
   <string name="feature_not_appearing_summary">Funkcije so odvisne od Kernela.</string>
   <string name="feature_function">Kaj stori funkcija x?</string>
@@ -615,10 +609,7 @@
   <string name="license">Licenca</string>
   <string name="app_license">Kernel Adiutor je licenciran pod Apache licenco, različica 2.0, in uporablja naslednje knjižnice</string>
   <string name="open_source">Odprta koda</string>
-  <string name="open_source_summary">Ta aplikacija je odprtokodna. Preverite na mojem GitHubu.</string>
   <string name="feature_request">Zaželjene funkcije</string>
-  <string name="feature_request_summary">Želite več funkcij? Odprite novo težavo na GitHubu in mi povejte svojo idejo.</string>
   <string name="google_plus_summary">Pridružite se naši skupnosti.</string>
   <string name="translation">Prevod</string>
-  <string name="translation_summary">Pomagajte mi prevesti to aplikacijo!</string>
 </resources>
