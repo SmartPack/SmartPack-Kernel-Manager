@@ -63,7 +63,10 @@ public class BatteryFragment extends RecyclerViewFragment implements
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
 
-        getActivity().registerReceiver(this.mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        try {
+            getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Override
