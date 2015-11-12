@@ -645,7 +645,11 @@ public interface Constants {
     String ZRAM_DISKSIZE = "/sys/block/zram0/disksize";
     String ZRAM_RESET = "/sys/block/zram0/reset";
 
-    String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET};
+    String ZSWAP = "/sys/module/zswap/parameters/enabled";
+    String ZSWAP_POOL = "/sys/module/zswap/parameters/max_pool_percent";
+    String ZSWAP_RATIO = "/sys/module/zswap/parameters/max_compression_ratio";
+
+    String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET, ZSWAP, ZSWAP_POOL, ZSWAP_RATIO};
 
     // Entropy
     String PROC_RANDOM = "/proc/sys/kernel/random";

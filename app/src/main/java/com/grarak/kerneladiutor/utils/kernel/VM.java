@@ -79,4 +79,42 @@ public class VM implements Constants {
         return vmFiles;
     }
 
+    public static void activateZSwap(boolean active, Context context) {
+        String command = active ? "Y" : "N";
+        Control.runCommand(command, ZSWAP, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isZSwapActive() {
+        String value = Utils.readFile(ZSWAP);
+        return value.equals("Y");
+    }
+
+    public static boolean hasZSwap() {
+        return Utils.existFile(ZSWAP);
+    }
+
+    public static void setZSwapPool(int value, Context context) {
+    Control.runCommand(String.valueOf(value), ZSWAP_POOL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getZSwapPool() {
+        return Utils.stringToInt(Utils.readFile(ZSWAP_POOL));
+    }
+
+    public static boolean hasZSwapPool() {
+        return Utils.existFile(ZSWAP_POOL);
+    }
+
+    public static void setZSwapRatio(int value, Context context) {
+    Control.runCommand(String.valueOf(value), ZSWAP_RATIO, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getZSwapRatio() {
+        return Utils.stringToInt(Utils.readFile(ZSWAP_RATIO));
+    }
+
+    public static boolean hasZSwapRatio() {
+        return Utils.existFile(ZSWAP_RATIO);
+    }
+
 }

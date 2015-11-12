@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.utils.kernel.VM;
 
 import java.util.ArrayList;
@@ -32,11 +33,16 @@ import java.util.List;
 /**
  * Created by willi on 27.12.14.
  */
-public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, 
+SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private EditTextCardView.DEditTextCard[] mVMCard;
 
     private SeekBarCardView.DSeekBarCard mZRAMDisksizeCard;
+
+    private SwitchCardView.DSwitchCard mZSwapCard;
+    private SeekBarCardView.DSeekBarCard mZSwapPoolCard;
+    private SeekBarCardView.DSeekBarCard mZSwapRatioCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -86,6 +92,9 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         }
 
         if (VM.hasZRAM()) zramInit();
+        if (VM.hasZSwap()) zSwapInit();
+        if (VM.hasZSwapPool()) zSwapPoolInit();
+        if (VM.hasZSwapRatio()) zSwapRatioInit();
     }
 
     private void zramInit() {
@@ -106,6 +115,49 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         addView(mZRAMDisksizeCard);
     }
 
+    private void zSwapInit() {
+        DDivider mZSwapDivider = new DDivider();
+        mZSwapDivider.setText(getString(R.string.zswap));
+
+        addView(mZSwapDivider);
+
+        mZSwapCard = new SwitchCardView.DSwitchCard();
+        mZSwapCard.setTitle(getString(R.string.zswap));
+        mZSwapCard.setDescription(getString(R.string.zswap_summary));
+        mZSwapCard.setChecked(VM.isZSwapActive());
+        mZSwapCard.setOnDSwitchCardListener(this);
+
+        addView(mZSwapCard);
+    }
+
+    private void zSwapPoolInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 51; i++)
+            list.add(i + getString(R.string.percent));
+
+        mZSwapPoolCard = new SeekBarCardView.DSeekBarCard(list);
+        mZSwapPoolCard.setTitle(getString(R.string.zswap_memory_pool));
+        mZSwapPoolCard.setDescription(getString(R.string.zswap_memory_pool_summary));
+        mZSwapPoolCard.setProgress(VM.getZSwapPool());
+        mZSwapPoolCard.setOnDSeekBarCardListener(this);
+
+        addView(mZSwapPoolCard);
+    }
+
+    private void zSwapRatioInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 101; i++)
+            list.add(i + getString(R.string.percent));
+
+        mZSwapRatioCard = new SeekBarCardView.DSeekBarCard(list);
+        mZSwapRatioCard.setTitle(getString(R.string.zswap_ratio));
+        mZSwapRatioCard.setDescription(getString(R.string.zswap_ratio_summary));
+        mZSwapRatioCard.setProgress(VM.getZSwapRatio());
+        mZSwapRatioCard.setOnDSeekBarCardListener(this);
+
+        addView(mZSwapRatioCard);
+    }
+
     @Override
     public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
     }
@@ -113,6 +165,14 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAMDisksize(position * 10, getActivity());
+        else if (dSeekBarCard == mZSwapPoolCard) VM.setZSwapPool(position, getActivity());
+        else if (dSeekBarCard == mZSwapRatioCard) VM.setZSwapRatio(position, getActivity());
+    }
+
+    @Override
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mZSwapCard)
+            VM.activateZSwap(checked, getActivity());
     }
 
 }
