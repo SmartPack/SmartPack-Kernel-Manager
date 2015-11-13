@@ -21,6 +21,7 @@ import android.os.Bundle;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
@@ -31,10 +32,11 @@ import java.util.List;
 /**
  * Created by willi on 27.12.14.
  */
-public class LMKFragment extends RecyclerViewFragment implements Constants {
+public class LMKFragment extends RecyclerViewFragment implements Constants, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private SeekBarCardView.DSeekBarCard[] mMinFreeCard;
     private CardViewItem.DCardView[] mProfileCard;
+    private SwitchCardView.DSwitchCard mAdaptiveCard;
 
     private final List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
 
@@ -51,6 +53,16 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
         for (int x = 0; x < 513; x++) {
             modifiedvalues.add(x + getString(R.string.mb));
             values.add(String.valueOf(x * 256));
+        }
+
+        if (LMK.hasAdaptive()) {
+            mAdaptiveCard = new SwitchCardView.DSwitchCard();
+            mAdaptiveCard.setTitle(getString(R.string.adaptive));
+            mAdaptiveCard.setDescription(getString(R.string.adaptive_summary));
+            mAdaptiveCard.setChecked(LMK.getAdaptive());
+            mAdaptiveCard.setOnDSwitchCardListener(this);
+
+            addView(mAdaptiveCard);
         }
 
         List<String> minfrees = LMK.getMinFrees();
@@ -133,6 +145,12 @@ public class LMKFragment extends RecyclerViewFragment implements Constants {
 
             }
         }.start();
+    }
+
+    @Override
+    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+        if (dSwitchCard == mAdaptiveCard)
+            LMK.setAdaptive(checked, getActivity());
     }
 
 }

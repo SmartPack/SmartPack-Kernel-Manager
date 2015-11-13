@@ -502,6 +502,8 @@
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
+    <string name="adaptive">Adaptive Low Memory Killer</string>
+    <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
 
     <!-- Virtual Memory -->
     <string name="zram">Z-RAM</string>
