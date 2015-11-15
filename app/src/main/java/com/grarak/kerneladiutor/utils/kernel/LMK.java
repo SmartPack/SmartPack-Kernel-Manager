@@ -45,4 +45,15 @@ public class LMK implements Constants {
         return null;
     }
 
+    public static boolean hasAdaptive() {
+        return Utils.existFile(LMK_ADAPTIVE);
+    }
+
+    public static void setAdaptive(boolean enable, Context context) {
+        Control.runCommand(enable ? "1" : "0", LMK_ADAPTIVE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean getAdaptive() {
+        return Utils.readFile(LMK_ADAPTIVE).equals("1");
+    }
 }
