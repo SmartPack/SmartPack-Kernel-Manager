@@ -131,7 +131,7 @@
     "device": [
       "Condor"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/Inazuma.json"
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/condor.json"
   },
   {
     "vendor": [
@@ -154,12 +154,12 @@
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/quark.json"
   },
   {
-   "vendor": [
-     "YU"
-   ],
-   "device": [
-     "YUREKA"
-   ],
-   "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
+    "vendor": [
+      "YU"
+    ],
+    "device": [
+      "YUREKA"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
   }
 ]

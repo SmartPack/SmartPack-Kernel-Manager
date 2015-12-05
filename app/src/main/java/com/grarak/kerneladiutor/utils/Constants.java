@@ -698,9 +698,9 @@ public interface Constants {
     // Logging
     String LOGGER_MODE = "/sys/kernel/logger_mode/logger_mode";
     String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
-    String LOGGER_ENABLED1 = "/sys/module/logger/parameters/log_enabled";
+    String LOGGER_LOG_ENABLED = "/sys/module/logger/parameters/log_enabled";
 
-    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_ENABLED1};
+    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_LOG_ENABLED};
 
     // CRC
     String[] CRC_ARRAY = {
@@ -729,8 +729,8 @@ public interface Constants {
     String HOSTNAME_KEY = "net.hostname";
 
     String[][] MISC_ARRAY = {{VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
-            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, POWER_SUSPEND_MODE, POWER_SUSPEND_STATE,
-            TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
+            MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS, POWER_SUSPEND_MODE,
+            POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
             SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY, CRC_ARRAY, FSYNC_ARRAY};
 
     // Build prop
