@@ -237,6 +237,18 @@ public class Misc implements Constants {
         return Utils.existFile(POWER_SUSPEND);
     }
 
+    public static void activateGentleFairSleepers(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", GENTLE_FAIR_SLEEPERS, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isGentleFairSleepersActive() {
+        return Utils.readFile(GENTLE_FAIR_SLEEPERS).equals("1");
+    }
+
+    public static boolean hasGentleFairSleepers() {
+        return Utils.existFile(GENTLE_FAIR_SLEEPERS);
+    }
+
     public static void activateDynamicFsync(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", DYNAMIC_FSYNC, Control.CommandType.GENERIC, context);
     }

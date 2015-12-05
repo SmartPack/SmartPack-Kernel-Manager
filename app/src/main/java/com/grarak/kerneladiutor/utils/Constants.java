@@ -715,6 +715,9 @@ public interface Constants {
     };
     String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
 
+    // Gentle fair sleepers
+    String GENTLE_FAIR_SLEEPERS = "/sys/kernel/sched/gentle_fair_sleepers";
+
     // Power suspend
     String POWER_SUSPEND = "/sys/kernel/power_suspend";
     String POWER_SUSPEND_MODE = POWER_SUSPEND + "/power_suspend_mode";
