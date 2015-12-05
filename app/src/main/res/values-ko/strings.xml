@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
   <string name="faq">FAQ</string>
+  <string name="about_us">정보</string>
   <string name="unused_cpu_states">사용되지 않은 CPU 클럭</string>
   <string name="uptime">가동 시간</string>
   <string name="deep_sleep">딥슬립</string>
@@ -309,9 +310,7 @@
   <string name="lcd_backlight">LCD 백라이트</string>
   <string name="brightness_mode">선형 모드 대신 지수 백라이트 모드를 사용합니다.</string>
   <string name="min_brightness">최소 밝기</string>
-  <string name="min_brightness_summary">액정의 밝기를 기존보다 더 어둡게 할 수 있습니다.</string>
   <string name="max_brightness">최대 밝기</string>
-  <string name="max_brightness_summary">액정의 밝기를 기존보다 더 밝게 할 수 있습니다.</string>
   <string name="backlight_dimmer">더 어두운 최소 밝기</string>
   <string name="offset">오프셋</string>
   <string name="negative_toggle">색상 반전</string>

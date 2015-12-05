@@ -309,9 +309,7 @@
   <string name="lcd_backlight">Rétro-éclairage LCD</string>
   <string name="brightness_mode">Utilisé le rétro-éclairage exponentiel plutôt que le mode linéaire.</string>
   <string name="min_brightness">Luminosité Minimum</string>
-  <string name="min_brightness_summary">Permet de régler la luminosité de votre écran LCD à une valeur moins élevée qu\'en stock.</string>
   <string name="max_brightness">Luminosité maximale</string>
-  <string name="max_brightness_summary">Vous autorise à augmenter la luminosité de l\'écran LCD au delà de ce qui est possible de base.</string>
   <string name="backlight_dimmer">Variateur de Rétroéclairage</string>
   <string name="negative_toggle_summary">Active l\'inversion des couleurs de l\'écran en appuyant rapidement 4 fois sur le bouton MENU.</string>
   <string name="mdnie_global_controls">Contrôles globaux mDNIe</string>

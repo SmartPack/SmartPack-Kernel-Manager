@@ -54,8 +54,12 @@
   <string name="sound">Âm thanh</string>
   <string name="battery">Pin</string>
   <string name="io_scheduler">Lịch trình nhập xuất I/O</string>
+  <string name="ksm">Hạt nhân Samepage hợp nhất</string>
+  <string name="low_memory_killer">Kẻ giết người thiếu bộ nhớ</string>
   <string name="virtual_memory">Bộ nhớ ảo</string>
+  <string name="entropy">Dữ liệu ngẫu nhiên</string>
   <string name="misc_controls">Linh tinh</string>
+  <string name="plugins">Plugins</string>
   <string name="backup">Sao lưu</string>
   <string name="build_prop_editor">Sửa build.prop</string>
   <string name="profile">Hồ sơ</string>
@@ -71,6 +75,7 @@
   <string name="cpu_temp">Nhiệt độ vi xử lí</string>
   <string name="current_freq">Xung nhịp hiện tại</string>
   <string name="cpu_max_freq">Xung nhịp xử lý tối đa</string>
+  <string name="cpu_max_freq_summary">Cài tần số tối đa CPU quy mô lên đến.</string>
   <string name="cpu_min_freq">Xung nhịp xử lý thiểu</string>
   <string name="disabled">Đã tắt</string>
   <string name="override_vmin">Ghi đè lên điện áp tối thiểu</string>

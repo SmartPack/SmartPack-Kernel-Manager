@@ -345,9 +345,7 @@
   <string name="lcd_backlight">LCD háttérvilágítás</string>
   <string name="brightness_mode">Exponenciális háttérvilágítás használata a lineáris mód helyett.</string>
   <string name="min_brightness">Minimum fényerő</string>
-  <string name="min_brightness_summary">Lehetővé teszi, hogy a gyári érték alá csökkentse az LCD képernyő fényerejét.</string>
   <string name="max_brightness">Maximális fényerő</string>
-  <string name="max_brightness_summary">Lehetővé teszi, hogy a gyári érték fölé növelje az LCD képernyő fényerejét.</string>
   <string name="backlight_dimmer">Háttérvilágítás tompító</string>
   <string name="offset">Eltolás</string>
   <string name="negative_toggle">Negatív kapcsoló</string>

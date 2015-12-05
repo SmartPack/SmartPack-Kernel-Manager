@@ -135,9 +135,7 @@
   <string name="lcd_backlight">LCD podsvietenie</string>
   <string name="brightness_mode">Použiť exponenciálny režim podsvietenia  namiesto lineárneho režimu.</string>
   <string name="min_brightness">Minimálny jas</string>
-  <string name="min_brightness_summary">Umožňuje znížiť jas obrazovky LCD nižšie ako je to možné v základnom nastavení.</string>
   <string name="max_brightness">Maximálny jas</string>
-  <string name="max_brightness_summary">Umožňuje zvýšiť jas obrazovky LCD vyššie ako je to možné v základnom nastavení.</string>
   <string name="sound_control">Ovládanie zvuku</string>
   <string name="battery_voltage">Napätie batérie</string>
   <string name="battery_level">Úroveň batérie</string>

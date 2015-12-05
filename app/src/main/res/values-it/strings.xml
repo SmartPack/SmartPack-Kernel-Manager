@@ -348,9 +348,7 @@
   <string name="lcd_backlight">Retroilluminazione LCD</string>
   <string name="brightness_mode">Utilizzare la modalità retroilluminazione esponenziale invece che in modalità lineare.</string>
   <string name="min_brightness">Luminosità minima</string>
-  <string name="min_brightness_summary">Consenti di diminuire la luminosità dello schermo LCD a valori più bassi di quanto permesso dalla stock.</string>
   <string name="max_brightness">Luminosità massima</string>
-  <string name="max_brightness_summary">Consenti di diminuire la luminosità dello schermo LCD a valori più bassi di quanto permesso dalla stock.</string>
   <string name="backlight_dimmer">Dimmer di retroilluminazione</string>
   <string name="offset">Offset</string>
   <string name="negative_toggle">Toggle negativo</string>

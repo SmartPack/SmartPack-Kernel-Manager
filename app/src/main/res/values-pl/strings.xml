@@ -187,7 +187,6 @@
   <string name="lcd_backlight">Podświetlenie LCD</string>
   <string name="min_brightness">Minimalna jasność</string>
   <string name="max_brightness">Maksymalna jasność</string>
-  <string name="max_brightness_summary">Pozwala na większe rozjaśnienie ekranu LCD, niż jest to możliwe w wersji fabrycznej.</string>
   <string name="offset">Przesunięcie</string>
   <string name="dt2w">Podwójne Klikniecie By Wybudzić</string>
   <string name="dt2w_summary">Wybudź swoje urządzenie poprzez podwójne dotknięcie ekranu.</string>

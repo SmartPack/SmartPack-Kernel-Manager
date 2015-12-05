@@ -64,6 +64,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
   <string name="faq">Најчешћа питања</string>
+  <string name="about_us">О нама</string>
   <string name="unused_cpu_states">Неискоришћена стања ЦПУ-а</string>
   <string name="uptime">Време рада</string>
   <string name="deep_sleep">Дубоки сан</string>

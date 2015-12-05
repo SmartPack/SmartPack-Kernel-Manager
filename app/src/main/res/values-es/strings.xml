@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ajustes</string>
   <string name="faq">FAQ</string>
+  <string name="about_us">Acerca de Nosotros</string>
   <string name="unused_cpu_states">Frecuencias de CPU no utilizadas</string>
   <string name="uptime">Tiempo de actividad</string>
   <string name="deep_sleep">Sueño profundo</string>
@@ -86,6 +87,7 @@
   <string name="cpu_max_screen_off_freq">Frecuencia máxima del CPU con la pantalla apagada</string>
   <string name="cpu_max_screen_off_freq_summary">Ajustar la frecuencia máxima de la CPU cuando la pantalla está apagada.</string>
   <string name="cpu_governor">Gobernador del CPU</string>
+  <string name="cpu_governor_summary">El gobernador de CPU determina la forma en que la CPU se comporta en respuesta a los cambios en la carga de trabajo. Cambiar el gobernador tendrá impacto sobre cómo la CPU escala a través de los pasos de frecuencia disponibles para tu CPU.</string>
   <string name="cpu_governor_tunables">Optimizadores del Gobernador del CPU</string>
   <string name="cpu_governor_tunables_summary">Varios parámetros configurables que dependen del Gobernador.</string>
   <string name="not_tunable">%s no se puede ajustar</string>
@@ -288,6 +290,7 @@
   <string name="gpu_max_freq">Frecuencia máxima del GPU</string>
   <string name="gpu_max_freq_summary">Establecer la frecuencia máxima del GPU.</string>
   <string name="gpu_min_freq">Frecuencia mínima del GPU</string>
+  <string name="gpu_min_freq_summary">Ajusta la frecuencia mínima a la que la GPU escalará.</string>
   <string name="gpu_2d_governor">Gobernador de GPU 2D</string>
   <string name="gpu_2d_governor_summary">Establecer el gobernador del GPU 2D.</string>
   <string name="gpu_governor">Gobernador del GPU</string>
@@ -303,7 +306,9 @@
   <string name="down_differential">Diferencial mínima</string>
   <string name="down_differential_summary">Umbral para determinar si la carga de trabajo dada está inactivo.</string>
   <string name="idle_wait">Espera inactiva</string>
+  <string name="idle_wait_summary">Número de eventos para esperar antes de disminuir las frecuencias. Los eventos de idlewait\'th antes del actual deben ser todos inactivos antes de que Adreno Idler disminuya las frecuencias. Esta implementación se usa para prevenir micro-lags en el desplazamiento al jugar a juegos. Adreno Idler tratará de reducir la frecuencia más activamente si se establece a un valor inferior.</string>
   <string name="workload">Carga de trabajo</string>
+  <string name="workload_summary">Adreno Idler tratará de reducir la frecuencia más activamente si éste se establece en un valor más alto.</string>
   <string name="red">Rojo</string>
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
@@ -348,9 +353,7 @@
   <string name="lcd_backlight">Contraluz LCD</string>
   <string name="brightness_mode">Usar modo de contraluz exponencial en vez del modo lineal.</string>
   <string name="min_brightness">Brillo Mínimo</string>
-  <string name="min_brightness_summary">Permite disminuir el brillo de la pantalla LCD inclusive mas que en stock.</string>
   <string name="max_brightness">Brillo máximo</string>
-  <string name="max_brightness_summary">Permite aumentar el brillo de la pantalla LCD mas de lo normal.</string>
   <string name="backlight_dimmer">Atenuador de luz de fondo</string>
   <string name="offset">Compensación</string>
   <string name="negative_toggle">Toggle negativo</string>
@@ -459,10 +462,14 @@
   <string name="write">Escritura</string>
   <string name="vibration_strength">Intensidad de vibración</string>
   <string name="android_logger">Registro de Android</string>
+  <string name="crc">Control de CRC por Software</string>
+  <string name="crc_summary">CRC es un mecanismo que apunta a prevenir la corrupción de datos cuando está activado. Los bloques de datos pueden perder hasta un 30% de su rendimiento.</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Desactivar para mejor rendimiento del sistema de archivos con el riesgo de pérdida de datos cuando el teléfono deje de responder.</string>
   <string name="dynamic_fsync">Fsync dinámico</string>
   <string name="dynamic_fsync_summary">Cuando está activado y la pantalla está activada, la operación fsync es asincrónica. Cuando la pantalla está apagada, esta operación es sincrónica.</string>
   <string name="power_suspend_mode">Modo de suspensión de energía</string>
+  <string name="power_suspend_mode_summary">El modo de Kernel, Ganchos de LCD y El gancho de nivel más alto son gestionados automáticamente por el Kernel. Para activar o desactivar manualmente el Estado de Suspensión de Energía elige el Modo de Usuario.</string>
   <string name="autosleep">AutoSuspensión</string>
   <string name="userspace">Espacio de Usuario</string>
   <string name="lcd_panel">Panel LCD</string>
@@ -504,6 +511,7 @@
   <string name="github">Github</string>
   <string name="google_plus">Google+</string>
   <string name="paypal">PayPal</string>
+  <string name="download">Descargar</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Renaudar</string>
   <string name="checking_md5">Verificación de MD5sum</string>
@@ -599,6 +607,7 @@
   <string name="misspelled">¿Por qué se escribe incorrectamente «Auditor»?</string>
   <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
   <string name="cpu_freq_not_sticking">Por que mi frecuencia predeterminada no se guarda?</string>
+  <string name="cpu_freq_not_sticking_summary">Esto podría ser debido a muchas razones. Muchos Kernels hoy en día tienen su propio sistema de hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia implementación de CPU Boost que regula la frecuencia. Le sugiero que no toque las frecuencias de CPU y que el Kernel haga su trabajo.</string>
   <string name="feature_not_appearing">Por que no aparecen algunas características?</string>
   <string name="feature_not_appearing_summary">Las características dependen del kernel.</string>
   <string name="feature_function">Que hace la función x?</string>
@@ -608,7 +617,10 @@
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="open_source">Código abierto</string>
+  <string name="open_source_summary">Esta aplicación es de código abierto. Revísala en mi GitHub!</string>
   <string name="feature_request">Sugerir una idea</string>
+  <string name="feature_request_summary">¿Quieres más funciones? Abre un nuevo tema en GitHub y envíanos tu idea.</string>
   <string name="google_plus_summary">Únete a nuestra comunidad.</string>
   <string name="translation">Traducción</string>
+  <string name="translation_summary">Ayúdame a traducir esta aplicación!</string>
 </resources>

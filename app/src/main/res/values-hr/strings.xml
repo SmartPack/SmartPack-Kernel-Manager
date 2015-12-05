@@ -267,7 +267,6 @@
   <string name="loading">Učitavanje</string>
   <string name="no_internet">Nema internetske veze</string>
   <string name="min_brightness">Minimalna svjetlina</string>
-  <string name="min_brightness_summary">Omogućava Vam zatamniti LCD zaslon do ispod tvorničkih granica.</string>
   <string name="max_brightness">Maksimalno osvjetljenje</string>
   <string name="backlight_dimmer">Prigušivač pozadinskog osvjetljenja</string>
   <string name="dt2w">Dvaput-Dirni-Pa-Probudi</string>

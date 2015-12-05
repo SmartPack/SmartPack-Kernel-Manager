@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Nastavení</string>
   <string name="faq">Nejčastější dotazy</string>
+  <string name="about_us">O aplikaci</string>
   <string name="unused_cpu_states">Nepoužívané frekvence procesoru</string>
   <string name="uptime">Doba provozu</string>
   <string name="deep_sleep">Hluboký spánek</string>
@@ -86,6 +87,7 @@
   <string name="cpu_max_screen_off_freq">Maximální frekvence procesoru při vypnuté obrazovce</string>
   <string name="cpu_max_screen_off_freq_summary">Nastavení maximální frekvence procesoru při vypnutém displeji.</string>
   <string name="cpu_governor">Správce procesoru</string>
+  <string name="cpu_governor_summary">Správce procesoru (governor) určuje, jak procesor reaguje na změny v zatížení. Změna správce zdrojů ovlivní způsob přepínání mezi frekvencemi procesoru.</string>
   <string name="cpu_governor_tunables">Ladění správce procesoru</string>
   <string name="cpu_governor_tunables_summary">Různé možnosti konfigurace, které závisí na použitém správci procesoru.</string>
   <string name="not_tunable">%s nelze upravit</string>
@@ -113,9 +115,9 @@
   <string name="input_boost_freq_core">Zvýšení vstupní frekvence jádra %s</string>
   <string name="input_boost_freq_summary">CPU frekvence zvýšena na tuto frekvenci vstupního odhalení.</string>
   <string name="wakeup_boost">Wakeup zrychlení</string>
-  <string name="wakeup_boost_summary">Wakeup zrychlení je podobný vstup zrychlení, ale vyskytuje se, když obrazovka je zapnuta.</string>
+  <string name="wakeup_boost_summary">Wakeup zrychlení je podobné zrychlení na vstupu, ale vyskytuje se, když je obrazovka zapnuta.</string>
   <string name="hotplug_boost">Hotplug zrychlení</string>
-  <string name="hotplug_boost_summary">Hotplug zrychlení je podobný vstup vzpruhu, ale vyskytuje se při přechodu do online režimu procesorů.</string>
+  <string name="hotplug_boost_summary">Hotplug zrychlení je podobné zrychlení na vstupu, ale vyskytuje se při přechodu procesoru do online režimu.</string>
   <string name="global_offset">Globální nastavení</string>
   <string name="override_vmin">Přepsat minimální napětí</string>
   <string name="override_vmin_summary">Vypněte tuto volbu pro odstranění undervolting omezení od výrobce zařízení</string>
@@ -287,7 +289,7 @@
   <string name="gpu_2d_max_freq_summary">Nastavení maximální frekvence 2D grafiky.</string>
   <string name="gpu_max_freq">Maximální frekvence grafiky</string>
   <string name="gpu_max_freq_summary">Nastavení maximální frekvence grafiky.</string>
-  <string name="gpu_min_freq">Minimální frekvence GPU</string>
+  <string name="gpu_min_freq">Minimální frekvence grafiky</string>
   <string name="gpu_min_freq_summary">Nastavení minimální frekvence procesoru.</string>
   <string name="gpu_2d_governor">Správce 2D grafiky</string>
   <string name="gpu_2d_governor_summary">Nastavení správce 2D grafiky.</string>
@@ -351,9 +353,7 @@
   <string name="lcd_backlight">Podsvícení LCD</string>
   <string name="brightness_mode">Použít exponenciální režim podsvícení místo lineárního režimu.</string>
   <string name="min_brightness">Minimální jas</string>
-  <string name="min_brightness_summary">Umožňuje snížit jas LCD obrazovky níže, než je to možné v základním nastavení.</string>
   <string name="max_brightness">Maximální jas</string>
-  <string name="max_brightness_summary">Umožňuje zvýšit jas LCD obrazovky více, než je to možné v základním nastavení.</string>
   <string name="backlight_dimmer">Snížení podsvícení</string>
   <string name="offset">Posun</string>
   <string name="negative_toggle">Přepínač inverzních barev</string>
@@ -463,8 +463,9 @@
   <string name="vibration_strength">Intenzita vibrace</string>
   <string name="android_logger">Android protokolování</string>
   <string name="crc">Softwarové řízení CRC</string>
-  <string name="crc_summary">CRC je mechanismus, jehož cílem je zabránit poškození dat, pokud je povoleno. Datové bloky mohou ztratit až o 30 % jejich výkonnosti.</string>
+  <string name="crc_summary">CRC je mechanismus, jehož cílem v případě povolení je zabránit poškození dat. Datové bloky mohou ztratit až 30 % jejich výkonu.</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Vypněte tuto volbu pro lepší výkon systému souborů v případě rizika ztráty dat při selhání zařízení.</string>
   <string name="dynamic_fsync">Dynamické Fsync</string>
   <string name="dynamic_fsync_summary">Pokud je povoleno a obrazovka je na, fsync operace je asynchronní. Když obrazovka je vypnuta, tato operace je potvrzena synchronně.</string>
   <string name="power_suspend_mode">Napájení Úsporný režim</string>
@@ -509,6 +510,7 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
   <string name="paypal">PayPal</string>
+  <string name="download">Stáhnout</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Pokračovat</string>
   <string name="checking_md5">Ověřování kontrolního součtu MD5</string>
@@ -604,6 +606,7 @@
   <string name="misspelled">Není „Adiutor“ překlep?</string>
   <string name="misspelled_summary">Výraz „adiutor“ pochází z latiny a znamená „pomocník“.</string>
   <string name="cpu_freq_not_sticking">Proč je mnou nastavená frekvence procesoru ignorována?</string>
+  <string name="cpu_freq_not_sticking_summary">To může mít více důvodů. Mnoho dnešních kernelů používá vlastní „hotplugging“ systémy (tj. zapojení za běhu), které kontrolují frekvenci procesoru. Například CyanogenMod má vlastní implementaci „CPU Boost“. Doporučuji tedy nezasahovat do nastavení frekvencí procesoru a nechat jádro systému dělat svou práci.</string>
   <string name="feature_not_appearing">Proč se nezobrazují funkce X a Y?</string>
   <string name="feature_not_appearing_summary">Funkce záleží na jádře operačního systému.</string>
   <string name="feature_function">Co dělá funkce X?</string>
@@ -613,7 +616,10 @@
   <string name="license">Licence</string>
   <string name="app_license">Aplikace Kernel Adiutor je licencována pod licencí Apache, verze 2.0 a používá následující knihovny:</string>
   <string name="open_source">Open source</string>
+  <string name="open_source_summary">Tato aplikace je open source. Naleznete ji na GitHubu.</string>
   <string name="feature_request">Žádost o novou funkci</string>
+  <string name="feature_request_summary">Chcete více funkcí? Založte nový požadavek na GitHubu a podělte se o svůj nápad.</string>
   <string name="google_plus_summary">Připojte se k naší komunitě.</string>
   <string name="translation">Překlad</string>
+  <string name="translation_summary">Pomozte vylepšit překlad této aplikace!</string>
 </resources>

@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">设置</string>
   <string name="faq">疑问与解答</string>
+  <string name="about_us">关于我们</string>
   <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
   <string name="deep_sleep">深度睡眠</string>
@@ -275,9 +276,7 @@
   <string name="lcd_backlight">LCD 背光</string>
   <string name="brightness_mode">使用指数背光模式以取代线性模式。</string>
   <string name="min_brightness">最小亮度</string>
-  <string name="min_brightness_summary">允许你尽可能降低 LCD 屏幕亮度。</string>
   <string name="max_brightness">最大亮度</string>
-  <string name="max_brightness_summary">允许你尽可能提高 LCD 屏幕亮度。</string>
   <string name="backlight_dimmer">背光调光器</string>
   <string name="offset">偏移值</string>
   <string name="negative_toggle">反色开关</string>

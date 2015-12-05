@@ -289,9 +289,7 @@ Está a usar a versão %s.</string>
   <string name="lcd_backlight">Retroiluminação do LCD</string>
   <string name="brightness_mode">Use o modo de contraluz exponencial em vez de modo linear.</string>
   <string name="min_brightness">Brilho mínimo</string>
-  <string name="min_brightness_summary">Permite diminuir o brilho da tela LCD inferior ao possível em stock.</string>
   <string name="max_brightness">Brilho máximo</string>
-  <string name="max_brightness_summary">Permite aumentar o brilho do ecrã LCD mais do que é possível em stock.</string>
   <string name="backlight_dimmer">Controlador da luz de fundo</string>
   <string name="offset">Deslocamento</string>
   <string name="negative_toggle">Alternância negativa</string>
