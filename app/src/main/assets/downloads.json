@@ -152,5 +152,14 @@
       "XT1254"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/quark.json"
+  },
+  {
+   "vendor": [
+     "YU"
+   ],
+   "device": [
+     "YUREKA"
+   ],
+   "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
   }
 ]
