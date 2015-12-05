@@ -161,5 +161,14 @@
       "YUREKA"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
+  },
+  {
+    "vendor": [
+      "huawei"
+    ],
+    "device": [
+      "Angler"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/Angler.json"    
   }
 ]
