@@ -110,6 +110,18 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ);
     }
 
+    public static void activateCpuTouchBoost(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_TOUCH_BOOST, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuTouchBoostEnabled() {
+        return Utils.readFile(CPU_TOUCH_BOOST).equals("1");
+    }
+
+    public static boolean hasCpuTouchBoost() {
+        return Utils.existFile(CPU_TOUCH_BOOST);
+    }
+
     public static void setCpuBoostSyncThreshold(int value, Context context) {
         Control.runCommand(String.valueOf(value), CPU_BOOST_SYNC_THRESHOLD, Control.CommandType.GENERIC, context);
     }
