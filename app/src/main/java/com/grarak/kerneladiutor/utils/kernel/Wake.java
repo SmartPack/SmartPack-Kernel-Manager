@@ -39,6 +39,18 @@ public class Wake implements Constants {
     private static String DT2S_FILE;
     private static String WAKE_TIMEOUT_FILE;
 
+    public static void activateCameraGesture(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CAMERA_GESTURE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCameraGestureActive() {
+        return Utils.readFile(CAMERA_GESTURE).equals("1");
+    }
+
+    public static boolean hasCameraGesture() {
+        return Utils.existFile(CAMERA_GESTURE);
+    }
+
     public static void activatePowerKeySuspend(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
     }
