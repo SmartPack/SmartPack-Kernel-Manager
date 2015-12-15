@@ -152,6 +152,18 @@ public class Screen implements Constants {
         return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
     }
 
+    public static void activateMdssBackLightDimmer(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", MDSS_BACKLIGHT_DIMMER, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMdssBackLightDimmerActive() {
+        return Utils.readFile(MDSS_BACKLIGHT_DIMMER).equals("Y");
+    }
+
+    public static boolean hasMdssBackLightDimmerEnable() {
+        return Utils.existFile(MDSS_BACKLIGHT_DIMMER);
+    }
+
     public static void setLcdMaxBrightness(int value, Context context) {
         Control.runCommand(String.valueOf(value), LM3530_MAX_BRIGHTNESS, Control.CommandType.GENERIC, context);
     }

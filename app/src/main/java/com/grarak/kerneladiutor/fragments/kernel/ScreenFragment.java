@@ -106,6 +106,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private SeekBarCardView.DSeekBarCard mBackLightDimmerThresholdCard;
     private SeekBarCardView.DSeekBarCard mBackLightDimmerOffsetCard;
 
+    private SwitchCardView.DSwitchCard mMdssBackLightDimmerEnableCard;
+
     private SwitchCardView.DSwitchCard mNegativeToggleCard;
 
     private SwitchCardView.DSwitchCard mRegisterHookCard;
@@ -133,6 +135,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             additionalProfilesInit();
         lcdBackLightInit();
         backlightDimmerInit();
+        mdssBacklightDimmerInit();
         if (Screen.hasNegativeToggle()) negativeToggleInit();
         mdnieGlobalInit();
         if (Screen.hasGloveMode()) gloveModeInit();
@@ -657,6 +660,17 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
     }
 
+    private void mdssBacklightDimmerInit() {
+        if (Screen.hasMdssBackLightDimmerEnable()) {
+            mMdssBackLightDimmerEnableCard = new SwitchCardView.DSwitchCard();
+            mMdssBackLightDimmerEnableCard.setTitle(getString(R.string.backlight_dimmer));
+            mMdssBackLightDimmerEnableCard.setDescription(getString(R.string.brightness_mode));
+            mMdssBackLightDimmerEnableCard.setChecked(Screen.isMdssBackLightDimmerActive());
+            mMdssBackLightDimmerEnableCard.setOnDSwitchCardListener(this);
+            addView(mMdssBackLightDimmerEnableCard);
+        }
+    }
+
     private void negativeToggleInit() {
         mNegativeToggleCard = new SwitchCardView.DSwitchCard();
         mNegativeToggleCard.setTitle(getString(R.string.negative_toggle));
@@ -785,6 +799,8 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             Screen.activateScreenHBM(checked, getActivity());
         else if (dSwitchCard == mBackLightDimmerEnableCard)
             Screen.activateBackLightDimmer(checked, getActivity());
+        else if (dSwitchCard == mMdssBackLightDimmerEnableCard)
+            Screen.activateMdssBackLightDimmer(checked, getActivity());
         else if (dSwitchCard == mBrightnessModeCard)
             Screen.activateBrightnessMode(checked, getActivity());
         else if (dSwitchCard == mNegativeToggleCard)
