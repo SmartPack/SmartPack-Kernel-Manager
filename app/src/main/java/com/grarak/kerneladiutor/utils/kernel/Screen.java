@@ -603,6 +603,10 @@ public class Screen implements Constants {
                 for (int i = 255; i < 32769; i++)
                     list.add(String.valueOf(i));
                 break;
+            case SCREEN_FB_KCAL:
+                for (int i = 0; i < 256; i++)
+                    list.add(String.valueOf(i));
+                break;
             default:
                 int max = 255;
                 for (String file : SCREEN_KCAL_CTRL_NEW_ARRAY)
