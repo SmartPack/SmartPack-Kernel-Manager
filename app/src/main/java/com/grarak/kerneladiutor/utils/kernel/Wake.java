@@ -283,6 +283,18 @@ public class Wake implements Constants {
         return S2W_FILE != null;
     }
 
+    public static void activateLenient(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LENIENT, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLenientActive() {
+        return Utils.readFile(LENIENT).equals("1");
+    }
+
+    public static boolean hasLenient() {
+        return Utils.existFile(LENIENT);
+    }
+
     public static void setDt2w(int value, Context context) {
         Control.runCommand(String.valueOf(value), DT2W_FILE, Control.CommandType.GENERIC, context);
     }

@@ -414,6 +414,8 @@
     <string name="fullscreen">Fullscreen</string>
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen.</string>
+    <string name="lenient">Sweep2Wake Leniency</string>
+    <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">Sweep2Sleep</string>
     <string name="s2w_right">Sweep2Wake Right</string>
     <string name="s2w_left">Sweep2Wake Left</string>
