@@ -161,5 +161,14 @@
       "YUREKA"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
+  },
+  {
+    "vendor": [
+      "YU"
+    ],
+    "device": [
+      "YUPHORIA"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/lettuce.json"
   }
 ]
