@@ -136,6 +136,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private SwitchCardView.DSwitchCard mCpuBoostWakeupCard;
         private SwitchCardView.DSwitchCard mCpuBoostHotplugCard;
 
+        private SwitchCardView.DSwitchCard mCpuTouchBoostCard;
+
         @Override
         public String getClassName() {
             return CPUFragment.class.getSimpleName();
@@ -179,6 +181,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
             if (CPU.hasCpuQuiet()) cpuQuietInit();
             if (CPU.hasCpuBoost()) cpuBoostInit();
+            if (CPU.hasCpuTouchBoost()) cpuTouchBoostInit();
             if (othersDivider != null && (count == getCount() || getView(count) instanceof DDivider))
                 removeView(othersDivider);
         }
@@ -523,6 +526,15 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         }
 
+        private void cpuTouchBoostInit() {
+            mCpuTouchBoostCard = new SwitchCardView.DSwitchCard();
+            mCpuTouchBoostCard.setTitle(getString(R.string.touch_boost));
+            mCpuTouchBoostCard.setDescription(getString(R.string.touch_boost_summary));
+            mCpuTouchBoostCard.setChecked(CPU.isCpuTouchBoostEnabled());
+            mCpuTouchBoostCard.setOnDSwitchCardListener(this);
+            addView(mCpuTouchBoostCard);
+        }
+
         @Override
         public void onClick(View v) {
             for (int i = 0; i < mCoreCheckBox.length; i++)
@@ -624,6 +636,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.activateCpuBoostWakeup(checked, getActivity());
             else if (dSwitchCard == mCpuBoostHotplugCard)
                 CPU.activateCpuBoostHotplug(checked, getActivity());
+            else if (dSwitchCard == mCpuTouchBoostCard)
+                CPU.activateCpuTouchBoost(checked, getActivity());
         }
 
         @Override
