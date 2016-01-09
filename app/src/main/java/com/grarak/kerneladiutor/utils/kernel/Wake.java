@@ -51,6 +51,18 @@ public class Wake implements Constants {
         return Utils.existFile(CAMERA_GESTURE);
     }
 
+    public static void activatePocketMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", POCKET_MODE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isPocketModeActive() {
+        return Utils.readFile(POCKET_MODE).equals("1");
+    }
+
+    public static boolean hasPocketMode() {
+        return Utils.existFile(POCKET_MODE);
+    }
+
     public static void activatePowerKeySuspend(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
     }
