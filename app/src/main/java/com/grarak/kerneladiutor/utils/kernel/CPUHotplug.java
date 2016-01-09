@@ -32,7 +32,7 @@ import java.util.List;
 public class CPUHotplug implements Constants {
 
     private enum INTELLIPLUG_TYPE {
-        INTELLIPLUG, INTELLIPLUG_5
+        INTELLIPLUG, INTELLIPLUG_5, INSANITY
     }
 
     private static INTELLIPLUG_TYPE TYPE;
@@ -1277,6 +1277,9 @@ public class CPUHotplug implements Constants {
 
     public static List<String> getIntelliPlugProfileMenu(Context context) {
         List<String> list = new ArrayList<>();
+        if (TYPE == INTELLIPLUG_TYPE.INSANITY) {
+            list.add(context.getString(R.string.insanity));
+        }
         list.add(context.getString(R.string.balanced));
         list.add(context.getString(R.string.performance));
         list.add(context.getString(R.string.conservative));
@@ -1286,6 +1289,9 @@ public class CPUHotplug implements Constants {
             list.add(context.getString(R.string.eco));
             list.add(context.getString(R.string.strict));
         } else {
+            if (TYPE == INTELLIPLUG_TYPE.INSANITY) {
+                list.add(context.getString(R.string.eco_insanity));
+            }
             list.add(context.getString(R.string.eco_performance));
             list.add(context.getString(R.string.eco_conservative));
         }
@@ -1319,6 +1325,7 @@ public class CPUHotplug implements Constants {
     public static boolean hasIntelliPlug() {
         if (Utils.existFile(HOTPLUG_INTELLI_PLUG)) TYPE = INTELLIPLUG_TYPE.INTELLIPLUG;
         else if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5)) TYPE = INTELLIPLUG_TYPE.INTELLIPLUG_5;
+        if (Utils.existFile(HOTPLUG_INTELLI_PLUG_INSANITY)) TYPE = INTELLIPLUG_TYPE.INSANITY;
         return TYPE != null;
     }
 
