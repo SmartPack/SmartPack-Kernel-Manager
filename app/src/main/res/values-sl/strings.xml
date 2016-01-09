@@ -465,9 +465,7 @@
   <string name="crc">Nadzor CRC stikala</string>
   <string name="crc_summary">CRC je mehanizem, namenjen preprečevanju podatkovnih napak. Bloki podatkov lahko izgubijo na hitrosti do 30%, ko je ta vklopljen.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Izključi za večjo odzivnost datotečnega sistema, a s tem reskiraj izgubo podatkov, če se telefon sesuje.</string>
   <string name="dynamic_fsync">Dinamični Fsync</string>
-  <string name="dynamic_fsync_summary">Ko je omogočeno in je zaslon vklopljen, je fsync operacija asinhrona. Ko je zaslon izklopljen, je operacija potrjena sinhrono.</string>
   <string name="power_suspend_mode">Moč pripravljenosti</string>
   <string name="power_suspend_mode_summary">Kernel Mode (Način Jedra), LCD Hooks (Kavlji Zaslona) in Highest Level Hook (Kavelj najvišje stopnje) so uravnavani avtomatsko iz strani jedra. Za ročno nastavljanje Power Suspend stanja izberi User Mode (Uporabniški Način).</string>
   <string name="autosleep">Samodejno spanje</string>

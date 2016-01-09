@@ -429,9 +429,7 @@
   <string name="android_logger">Rexistru d\'Android</string>
   <string name="crc_summary">CRC ye un mecanismu que tien como oxetivu evitar el toyimientu de datos al habilitase. Los bloques de datos puen perder fasta un 30% del so rindimientu.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Deshabilitar pa un rindimientu meyor del sistema ficheros col riesgu de perda de datos al cascar el teléfonu.</string>
   <string name="dynamic_fsync">Fsync dinámicu</string>
-  <string name="dynamic_fsync_summary">Al tar habilitáu y cola pantalla encesa la operación fsync ye asincrónica. Tando la pantalla apagada esta operación únviase sincrónicamente.</string>
   <string name="power_suspend_mode">Mou de suspensión d\'enerxía</string>
   <string name="power_suspend_mode_summary">El mou kernel, los gabitos LCD y el gabitu de nivel más altu tán xestionaos automáticamente pol kernel. P\'habilitar o deshabilitar a mano l\'estáu de suspensión d\'enerxía, escueyi\'l mou usuariu.</string>
   <string name="autosleep">Auto-dormición</string>

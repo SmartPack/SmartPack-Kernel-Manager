@@ -68,6 +68,7 @@ Está a usar a versão %s.</string>
   <string name="initd">Init.d</string>
   <string name="settings">Definições</string>
   <string name="faq">Perguntas Frequentes</string>
+  <string name="about_us">Sobre nós</string>
   <string name="unused_cpu_states">Estados do CPU não usados</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Sono profundo</string>
@@ -218,6 +219,7 @@ Está a usar a versão %s.</string>
   <string name="endurance_level_summary">Um perfil de economia de energia.</string>
   <string name="quad_core_mode">Modo Quad-Core</string>
   <string name="dual_core_mode">Modo Dual-Core</string>
+  <string name="wake_wait_time_summary">Tempo de espera antes de ligar qualquer núcleo.</string>
   <string name="thermal_info">Use apenas um condutor térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Condutor térmico Stock da Qualcomm que impede sobreaquecimento do dispositivo. Isto deve ser desabilitado se o kernel atual tem uma alternativa.</string>
@@ -227,6 +229,8 @@ Está a usar a versão %s.</string>
   <string name="intellithermal_optimized_summary">Uma substituição no kernel para Thermald da Qualcomm. Desenvolvido por faux123 e alucard_24.</string>
   <string name="debug_mask_thermal">Permite que você ative depuração máscara para operações térmicas.</string>
   <string name="temp_safety">Segurança de temperatura</string>
+  <string name="check_interval">Intervalo de verificação</string>
+  <string name="shutdown_temp">Temperatura de encerramento</string>
   <string name="temp_limit">Limite de temperatura</string>
   <string name="temp_limit_summary">Se a temperatura for maior, o CPU vai ser regulada para descer a temperatura.</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequência atual</string>
@@ -235,6 +239,7 @@ Está a usar a versão %s.</string>
   <string name="gpu_2d_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
   <string name="gpu_max_freq">Frequência máxima CPU</string>
   <string name="gpu_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
+  <string name="gpu_min_freq">Frequência mínima de GPU</string>
   <string name="gpu_2d_governor">GPU 2D Governador</string>
   <string name="gpu_2d_governor_summary">Defina o governador 2D da GPU.</string>
   <string name="gpu_governor">Governador CPU</string>
@@ -299,6 +304,8 @@ Está a usar a versão %s.</string>
   <string name="register_hook_summary">Atos de interceptação de registo como um gancho, e permitirá capturar as configurações do cenário e modificá-los por meio de controles de delta. Se um cenário não tem uma configuração (registo) na sua sequência de base, então o gancho não pode ser modificado.</string>
   <string name="master_sequence">Sequência Master</string>
   <string name="master_sequence_summary">Ligando a sequência mestre irá desativar e ignorar os perfis Samsung e cenários, os controles ROM serão desabilitados.</string>
+  <string name="glove_mode">Modo de luvas</string>
+  <string name="glove_mode_summary">Activar isto permitirá que use o seu telefone mesmo usando luvas.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Acorda seu dispositivo com duplo toque no ecrã.</string>
   <string name="center">Centro</string>
@@ -384,7 +391,6 @@ Está a usar a versão %s.</string>
   <string name="android_logger">Android log</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>
-  <string name="dynamic_fsync_summary">Quando ligado juntamente com o ecrã, operação fsync assíncrona. Quando o ecrã estiver desligado, esta operação está sincrona.</string>
   <string name="power_suspend_mode">Ligar modo de suspenção</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Userspace</string>

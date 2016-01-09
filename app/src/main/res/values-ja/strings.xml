@@ -354,7 +354,9 @@
   <string name="lcd_backlight">液晶バックライト</string>
   <string name="brightness_mode">linear modeの代わりにexponential backlight modeを使用します。</string>
   <string name="min_brightness">明るさの最小値</string>
+  <string name="min_brightness_summary">デフォルト以上に画面の明るさを下げられます。</string>
   <string name="max_brightness">最大輝度</string>
+  <string name="max_brightness_summary">デフォルト以上に画面の明るさを上げられます。</string>
   <string name="backlight_dimmer">バックライト調整</string>
   <string name="offset">オフセット</string>
   <string name="negative_toggle">ネガトグル</string>
@@ -454,6 +456,8 @@
   <string name="light">緩め</string>
   <string name="medium">中</string>
   <string name="very_aggressive">積極的 (強)</string>
+  <string name="adaptive">Adaptive Low Memory Killer</string>
+  <string name="adaptive_summary">スラッシング状態を検出した時、LMKを動的によりアグレッシブにします。</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">ディスクサイズ</string>
   <string name="disksize_summary">物理ストレージに代わりにRAM上の圧縮された仮想デバイスを使用してページングを避けることによってパフォーマンスを向上しようとします。物理ストレージにスワップスペースを使用する必要が生じるまでページングはRAM上で行われます。</string>
@@ -466,9 +470,8 @@
   <string name="crc">ソフトウェア CRC 制御</string>
   <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30% 低下することがあります。</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">無効にするとファイルシステムのパフォーマンスが向上しますが、機器がクラッシュした際にデータが破損する可能性があります。</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
-  <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
+  <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
   <string name="power_suspend_mode_summary">Kernel Mode、LCD Hooks、Highest Level Hookはカーネルによって自動的に制御されます。Power Suspend State を手動で有効/無効化したい場合は User Mode を選択してください。</string>
   <string name="autosleep">Autosleep</string>

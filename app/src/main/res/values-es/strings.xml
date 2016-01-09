@@ -353,7 +353,9 @@
   <string name="lcd_backlight">Contraluz LCD</string>
   <string name="brightness_mode">Usar modo de contraluz exponencial en vez del modo lineal.</string>
   <string name="min_brightness">Brillo Mínimo</string>
+  <string name="min_brightness_summary">Permite disminuir el brillo de la pantalla LCD inclusive mas que en stock.</string>
   <string name="max_brightness">Brillo máximo</string>
+  <string name="max_brightness_summary">Permite aumentar el brillo de la pantalla LCD inclusive mas que en stock.</string>
   <string name="backlight_dimmer">Atenuador de luz de fondo</string>
   <string name="offset">Compensación</string>
   <string name="negative_toggle">Toggle negativo</string>
@@ -465,9 +467,7 @@
   <string name="crc">Control de CRC por Software</string>
   <string name="crc_summary">CRC es un mecanismo que apunta a prevenir la corrupción de datos cuando está activado. Los bloques de datos pueden perder hasta un 30% de su rendimiento.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Desactivar para mejor rendimiento del sistema de archivos con el riesgo de pérdida de datos cuando el teléfono deje de responder.</string>
   <string name="dynamic_fsync">Fsync dinámico</string>
-  <string name="dynamic_fsync_summary">Cuando está activado y la pantalla está activada, la operación fsync es asincrónica. Cuando la pantalla está apagada, esta operación es sincrónica.</string>
   <string name="power_suspend_mode">Modo de suspensión de energía</string>
   <string name="power_suspend_mode_summary">El modo de Kernel, Ganchos de LCD y El gancho de nivel más alto son gestionados automáticamente por el Kernel. Para activar o desactivar manualmente el Estado de Suspensión de Energía elige el Modo de Usuario.</string>
   <string name="autosleep">AutoSuspensión</string>

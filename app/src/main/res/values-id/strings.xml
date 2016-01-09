@@ -464,9 +464,7 @@
   <string name="crc">Kontrol CRC Perangkat Lunak</string>
   <string name="crc_summary">CRC adalah suatu mekanisme yang bertujuan untuk mencegah korupsi data ketika diaktifkan. Blok data dapat membebaskan hingga 30% dari kinerja mereka.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Nonaktifkan agar kinerja file sistem lebih baik dengan risiko kehilangan data saat ponsel crash.</string>
   <string name="dynamic_fsync">Dinamis Fsync</string>
-  <string name="dynamic_fsync_summary">Bila diaktifkan dan layar menyala, operasi fsync menjadi asynchronous. Ketika layar dimatikan, operasi ini menjadi syncronous.</string>
   <string name="power_suspend_mode">Modus Penangguh Daya</string>
   <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks dan Tingkat Hook Tertinggi otomatis dikelola oleh kernel, untuk mengaktifkan atau menonaktifkan Kondisi Penangguh Daya secara manual, pilih Modus Pengguna.</string>
   <string name="autosleep">Autosleep</string>

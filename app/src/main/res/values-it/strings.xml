@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Impostazioni</string>
   <string name="faq">FAQ</string>
+  <string name="about_us">Contatti</string>
   <string name="unused_cpu_states">Stati inutilizzati della cpu</string>
   <string name="uptime">Tempo di attività</string>
   <string name="deep_sleep">Deep Sleep</string>
@@ -86,6 +87,7 @@
   <string name="cpu_max_screen_off_freq">Massima frequenza CPU a schermo spento</string>
   <string name="cpu_max_screen_off_freq_summary">Imposta la frequenza massima della CPU da scalare fino a quando lo schermo è spento.</string>
   <string name="cpu_governor">Governor CPU</string>
+  <string name="cpu_governor_summary">Lo scheduler della CPU determina come la CPU viene usata in base al carico di lavoro. Cambiare lo scheduler impatterà il modo in cui la CPU scalerà tra le frequenze disponibili per la tua CPU.</string>
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
   <string name="cpu_governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
   <string name="not_tunable">%s non si può modificare</string>
@@ -113,7 +115,9 @@
   <string name="input_boost_freq_core">Boost della frequenza al tocco %s</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
   <string name="wakeup_boost">Accellerazione al risveglio</string>
+  <string name="wakeup_boost_summary">Il Boost di risveglio è simile al boot di input ma si verifica quando lo schermo viene acceso.</string>
   <string name="hotplug_boost">Accellerazione dell\'hotplug</string>
+  <string name="hotplug_boost_summary">Il boost hotplug è simile al boost di input ma si verifica quando le CPUs si attivano.</string>
   <string name="global_offset">Offset Generale</string>
   <string name="override_vmin">Eseguire l\'abbassamento alla minima tensione</string>
   <string name="override_vmin_summary">Disabilitare per rimuovere i limiti di undervolt stabiliti dal produttore</string>
@@ -348,7 +352,9 @@
   <string name="lcd_backlight">Retroilluminazione LCD</string>
   <string name="brightness_mode">Utilizzare la modalità retroilluminazione esponenziale invece che in modalità lineare.</string>
   <string name="min_brightness">Luminosità minima</string>
+  <string name="min_brightness_summary">Permette di diminuire la luminosità dello schermo LCD sotto la soglia imposta da stock.</string>
   <string name="max_brightness">Luminosità massima</string>
+  <string name="max_brightness_summary">Permette di aumentare la luminosità dello schermo LCD sopra la soglia imposta da stock.</string>
   <string name="backlight_dimmer">Dimmer di retroilluminazione</string>
   <string name="offset">Offset</string>
   <string name="negative_toggle">Toggle negativo</string>
@@ -440,6 +446,7 @@
   <string name="light">Leggero</string>
   <string name="medium">Medio</string>
   <string name="very_aggressive">Molto aggressivo</string>
+  <string name="adaptive_summary">Imposta il Low Memory Killer in modalità più dinamicamente aggressiva quando un\'app si blocca.</string>
   <string name="zram">ZRAM</string>
   <string name="disksize">Dimensione Disco</string>
   <string name="disksize_summary">Tentare di aumentare le prestazioni evitando il paging su storage fisico, invece di utilizzare un dispositivo virtuale compresso in RAM. Paging avviene nella RAM finché non è necessario utilizzare lo spazio di swap su memoria fisica.</string>
@@ -449,10 +456,12 @@
   <string name="write">Scrittura</string>
   <string name="vibration_strength">Intensità di vibrazione</string>
   <string name="android_logger">Registrazione Android</string>
+  <string name="crc">Controllo CRC del software</string>
+  <string name="crc_summary">CRC è un meccanisco che permette di prevenire la corruzione dei dati. I blocchi di dati possono perdere fino al 30% delle loro performance.</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Fsync dimanico</string>
-  <string name="dynamic_fsync_summary">Quando è abilitata e lo schermo è acceso, fsync è asincrona. Quando lo schermo è spento, l\'operazione è sincrona.</string>
   <string name="power_suspend_mode">Modalità Sospensione Energia</string>
+  <string name="power_suspend_mode_summary">La modalità kernel, hooks LED e hooks di alto livello sono gestiti automaticamente dal kernel. Per settare manualmente il Power Suspend State selezionare User Mode.</string>
   <string name="autosleep">Autosleep</string>
   <string name="userspace">Spazio Utente</string>
   <string name="lcd_panel">Pannello LCD</string>
@@ -494,6 +503,7 @@
   <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
   <string name="paypal">PayPal</string>
+  <string name="download">Download</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">Riprendi</string>
   <string name="checking_md5">Controllo MD5sum</string>
@@ -589,6 +599,7 @@
   <string name="misspelled">Perchè hai sbagliato a scrivere \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor, in Latino, significa \"assistente\".</string>
   <string name="cpu_freq_not_sticking">Perchè la frequenza che ho scelto non viene conservata?</string>
+  <string name="cpu_freq_not_sticking_summary">Questo può essere causato da diverse ragioni. Molti kernel attuali posseggono un proprio sistema di hotplugging che controlla le frequenze della CPU; la rom CyanogenMod implementa il proprio boot per la CPU per regolare le frequenze. Ti suggerirei di non modificare queste impostazioni e lasciare che sia il kernel a controllarle.</string>
   <string name="feature_not_appearing">Perché le caratteristiche X e Y non sono disponibili?</string>
   <string name="feature_not_appearing_summary">Le caratteristiche utilizzabili dipendono dal Kernel.</string>
   <string name="feature_function">Cosa fa la caratteristica X?</string>
@@ -598,7 +609,10 @@
   <string name="license">Licenza</string>
   <string name="app_license">Kernel Adiutor è rilasciato sotto licenza Apache, versione 2.0 e utilizza le seguenti librerie</string>
   <string name="open_source">Open source</string>
+  <string name="open_source_summary">Questa è un\'applicazione open source. Dalle un\'occhiata sul mio GitHub!</string>
   <string name="feature_request">Richiesta di una funzione</string>
+  <string name="feature_request_summary">Vuoi richiedere funzioni aggiuntive? Apri una richiesta su GitHub dell\'app e invia la tua idea.</string>
   <string name="google_plus_summary">Unisciti alla nostra community.</string>
   <string name="translation">Traduzione</string>
+  <string name="translation_summary">Aiutami a tradurre questa app!</string>
 </resources>

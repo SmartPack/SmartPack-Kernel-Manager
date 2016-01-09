@@ -60,7 +60,7 @@
   <string name="entropy">Энтропия</string>
   <string name="misc_controls">Прочие элементы управления</string>
   <string name="plugins">Плагины</string>
-  <string name="backup">Резервная копия</string>
+  <string name="backup">Создать копию</string>
   <string name="build_prop_editor">Редактор Build prop</string>
   <string name="profile">Профиль</string>
   <string name="initd">Init.d</string>
@@ -355,7 +355,9 @@
   <string name="lcd_backlight">Подсветка дисплея</string>
   <string name="brightness_mode">Используйте режим экспоненциального подсветки вместо линейного режима.</string>
   <string name="min_brightness">Минимальная яркость</string>
+  <string name="min_brightness_summary">Позволяет уменьшить яркость экрана ниже, чем возможно в штатном режиме.</string>
   <string name="max_brightness">Максимальная яркость</string>
+  <string name="max_brightness_summary">Позволяет увеличить яркость экрана LCD, выше, чем это возможно штатном режиме.</string>
   <string name="backlight_dimmer">Уменьшение яркости экрана</string>
   <string name="offset">Смещение</string>
   <string name="negative_toggle">Отрицательный рычаг</string>
@@ -455,6 +457,7 @@
   <string name="light">Легкий</string>
   <string name="medium">Средний</string>
   <string name="very_aggressive">Очень агрессивный</string>
+  <string name="adaptive">Adaptive Low Memory Killer</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">Размер диска</string>
   <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
@@ -467,9 +470,7 @@
   <string name="crc">Управление CRC программ</string>
   <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30% своей производительности.</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">Отключение обеспечивает лучшую производительность файловой системы, однако, при этом возможна потеря данных во время сбоев телефона.</string>
   <string name="dynamic_fsync">Динамический Fsync</string>
-  <string name="dynamic_fsync_summary">Когда экран включен, Fsync асинхронен. Однако когда экран выключен, данные записываются.</string>
   <string name="power_suspend_mode">Режим понижения питания</string>
   <string name="power_suspend_mode_summary">Режим ядра, инструменты LCD и средства высшего уровня автоматически управляются ядром. Чтобы вручную включить или отключить состояние приостановки питания, выберите режим пользователя.</string>
   <string name="autosleep">Автосон</string>
@@ -624,5 +625,5 @@
   <string name="feature_request_summary">Хотите новых возможностей? Создайте запрос на GitHub и предложите свою идею.</string>
   <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
   <string name="translation">Перевод</string>
-  <string name="translation_summary">Ппомогите с переводом приложения!</string>
+  <string name="translation_summary">Помогите с переводом приложения!</string>
 </resources>
