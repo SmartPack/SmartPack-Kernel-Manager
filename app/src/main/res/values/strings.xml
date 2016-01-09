@@ -445,14 +445,14 @@
     <string name="draw_w">Draw W</string>
     <string name="draw_c">Draw C</string>
     <string name="draw_m">Draw M</string>
-    <string name="wake_timeout">Wake Timeout</string>
-    <string name="wake_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
-    <string name="power_key_suspend">Power Key Suspend</string>
-    <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
     <string name="camera_gesture">Camera Gesture</string>
     <string name="camera_gesture_summary">Launch default camera by drawing a circle on the screen.</string>
     <string name="pocket_mode">Pocket Mode</string>
     <string name="pocket_mode_summary">Enabling this will turn off wake controls when device in pocket.</string>
+    <string name="wake_timeout">Wake Timeout</string>
+    <string name="wake_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
+    <string name="power_key_suspend">Power Key Suspend</string>
+    <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>

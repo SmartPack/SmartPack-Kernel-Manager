@@ -43,11 +43,11 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private PopupCardView.DPopupCard mSleepMiscCard;
     private PopupCardView.DPopupCard mDt2sCard;
     private SwitchCardView.DSwitchCard[] mGestureCards;
+    private SwitchCardView.DSwitchCard mCameraGestureCard;
+    private SwitchCardView.DSwitchCard mPocketModeCard;
 
     private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
-    private SwitchCardView.DSwitchCard mCameraGestureCard;
-    private SwitchCardView.DSwitchCard mPocketModeCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -61,10 +61,10 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasSleepMisc()) sleepMiscInit();
         if (Wake.hasDt2s()) dt2sInit();
         if (Wake.hasGesture()) gestureInit();
-        if (Wake.hasWakeTimeout()) wakeTimeoutInit();
-        if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
         if (Wake.hasCameraGesture()) cameraGestureInit();
         if (Wake.hasPocketMode()) pocketModeInit();
+        if (Wake.hasWakeTimeout()) wakeTimeoutInit();
+        if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
     }
 
     private void dt2wInit() {
@@ -148,6 +148,26 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         }
     }
 
+    private void cameraGestureInit() {
+        mCameraGestureCard = new SwitchCardView.DSwitchCard();
+        mCameraGestureCard.setTitle(getString(R.string.camera_gesture));
+        mCameraGestureCard.setDescription(getString(R.string.camera_gesture_summary));
+        mCameraGestureCard.setChecked(Wake.isCameraGestureActive());
+        mCameraGestureCard.setOnDSwitchCardListener(this);
+
+        addView(mCameraGestureCard);
+    }
+
+    private void pocketModeInit() {
+        mPocketModeCard = new SwitchCardView.DSwitchCard();
+        mPocketModeCard.setTitle(getString(R.string.pocket_mode));
+        mPocketModeCard.setDescription(getString(R.string.pocket_mode_summary));
+        mPocketModeCard.setChecked(Wake.isPocketModeActive());
+        mPocketModeCard.setOnDSwitchCardListener(this);
+
+        addView(mPocketModeCard);
+    }
+
     private void wakeTimeoutInit() {
         List<String> list = new ArrayList<>();
         list.add(getString(R.string.disabled));
@@ -173,26 +193,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         addView(mPowerKeySuspendCard);
     }
 
-    private void cameraGestureInit() {
-        mCameraGestureCard = new SwitchCardView.DSwitchCard();
-        mCameraGestureCard.setTitle(getString(R.string.camera_gesture));
-        mCameraGestureCard.setDescription(getString(R.string.camera_gesture_summary));
-        mCameraGestureCard.setChecked(Wake.isCameraGestureActive());
-        mCameraGestureCard.setOnDSwitchCardListener(this);
-
-        addView(mCameraGestureCard);
-    }
-
-    private void pocketModeInit() {
-        mPocketModeCard = new SwitchCardView.DSwitchCard();
-        mPocketModeCard.setTitle(getString(R.string.pocket_mode));
-        mPocketModeCard.setDescription(getString(R.string.pocket_mode_summary));
-        mPocketModeCard.setChecked(Wake.isPocketModeActive());
-        mPocketModeCard.setOnDSwitchCardListener(this);
-
-        addView(mPocketModeCard);
-    }
-
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
@@ -216,12 +216,12 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mLenientCard)
             Wake.activateLenient(checked, getActivity());
-        else if (dSwitchCard == mPowerKeySuspendCard)
-            Wake.activatePowerKeySuspend(checked, getActivity());
         else if (dSwitchCard == mCameraGestureCard)
             Wake.activateCameraGesture(checked, getActivity());
         else if (dSwitchCard == mPocketModeCard)
             Wake.activatePocketMode(checked, getActivity());
+        else if (dSwitchCard == mPowerKeySuspendCard)
+            Wake.activatePowerKeySuspend(checked, getActivity());
         else {
             for (int i = 0; i < mGestureCards.length; i++)
                 if (dSwitchCard == mGestureCards[i]) {

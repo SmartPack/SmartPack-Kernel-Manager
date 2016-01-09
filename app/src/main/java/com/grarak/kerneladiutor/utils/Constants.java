@@ -551,6 +551,12 @@ public interface Constants {
     Integer[] GESTURE_HEX_VALUES = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
     String[] GESTURE_STRING_VALUES = {"up", "down", "left", "right", "e", "o", "w", "c", "m", "double_click"};
 
+    // Camera Gesture
+    String CAMERA_GESTURE = "/sys/android_touch/camera_gesture";
+
+    // Pocket mode for Gesture
+    String POCKET_MODE = "/sys/android_touch/pocket_mode";
+
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
     String WAKE_TIMEOUT_2 = "/sys/android_touch2/wake_timeout";
 
@@ -561,13 +567,7 @@ public interface Constants {
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
     String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
-            {GESTURE_CRTL, POWER_KEY_SUSPEND, LENIENT}};
-
-    // Camera Gesture
-    String CAMERA_GESTURE = "/sys/android_touch/camera_gesture";
-
-    // Pocket mode for Gesture
-    String POCKET_MODE = "/sys/android_touch/pocket_mode";
+            {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND}};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
@@ -584,7 +584,7 @@ public interface Constants {
 
     String[] SPEAKER_GAIN_ARRAY = {SPEAKER_GAIN, SPEAKER_BOOST};
 
-    String[][] SOUND_ARRAY = {SPEAKER_GAIN_ARRAY, {SOUND_CONTROL_ENABLE, HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN,
+    String[][] SOUND_ARRAY = {SPEAKER_GAIN_ARRAY, {SOUND_CONTROL_ENABLE, HIGHPERF_MODE_ENABLE, HEADPHONE_GAIN, HANDSET_MICROPONE_GAIN,
             CAM_MICROPHONE_GAIN, HEADPHONE_POWERAMP_GAIN, MIC_BOOST, VOLUME_BOOST}};
 
     // Battery
@@ -683,8 +683,8 @@ public interface Constants {
             {3596, 116}
     };
 
-    String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
     String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
+    String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
 
     // Wakelock
     String[] SMB135X_WAKELOCKS = {
@@ -746,7 +746,7 @@ public interface Constants {
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
     String HOSTNAME_KEY = "net.hostname";
 
-    String[][] MISC_ARRAY = {{VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
+    String[][] MISC_ARRAY = {{VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
             MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS, POWER_SUSPEND_MODE,
             POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
             SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, VIBRATION_ARRAY, CRC_ARRAY, FSYNC_ARRAY};

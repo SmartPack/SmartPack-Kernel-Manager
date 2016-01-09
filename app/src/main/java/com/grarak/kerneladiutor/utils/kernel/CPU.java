@@ -52,6 +52,18 @@ public class CPU implements Constants {
 
     private static String CPU_BOOST_ENABLE_FILE;
 
+    public static void activateCpuTouchBoost(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", CPU_TOUCH_BOOST, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isCpuTouchBoostEnabled() {
+        return Utils.readFile(CPU_TOUCH_BOOST).equals("1");
+    }
+
+    public static boolean hasCpuTouchBoost() {
+        return Utils.existFile(CPU_TOUCH_BOOST);
+    }
+
     public static void activateCpuBoostWakeup(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", CPU_BOOST_WAKEUP, Control.CommandType.GENERIC, context);
     }
@@ -108,18 +120,6 @@ public class CPU implements Constants {
 
     public static boolean hasCpuBoostInputFreq() {
         return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ);
-    }
-
-    public static void activateCpuTouchBoost(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CPU_TOUCH_BOOST, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isCpuTouchBoostEnabled() {
-        return Utils.readFile(CPU_TOUCH_BOOST).equals("1");
-    }
-
-    public static boolean hasCpuTouchBoost() {
-        return Utils.existFile(CPU_TOUCH_BOOST);
     }
 
     public static void setCpuBoostSyncThreshold(int value, Context context) {

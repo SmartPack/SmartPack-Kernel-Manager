@@ -175,18 +175,6 @@ public class Sound implements Constants {
         return Utils.existFile(HEADPHONE_GAIN);
     }
 
-    public static void activateSoundControl(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", SOUND_CONTROL_ENABLE, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isSoundControlActive() {
-        return Utils.readFile(SOUND_CONTROL_ENABLE).equals("Y");
-    }
-
-    public static boolean hasSoundControlEnable() {
-        return Utils.existFile(SOUND_CONTROL_ENABLE);
-    }
-    
     public static void activateHighPerfMode(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HIGHPERF_MODE_ENABLE, Control.CommandType.GENERIC, context);
     }
@@ -197,6 +185,18 @@ public class Sound implements Constants {
 
     public static boolean hasHighPerfModeEnable() {
         return Utils.existFile(HIGHPERF_MODE_ENABLE);
+    }
+
+    public static void activateSoundControl(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", SOUND_CONTROL_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSoundControlActive() {
+        return Utils.readFile(SOUND_CONTROL_ENABLE).equals("Y");
+    }
+
+    public static boolean hasSoundControlEnable() {
+        return Utils.existFile(SOUND_CONTROL_ENABLE);
     }
 
     public static boolean hasSound() {

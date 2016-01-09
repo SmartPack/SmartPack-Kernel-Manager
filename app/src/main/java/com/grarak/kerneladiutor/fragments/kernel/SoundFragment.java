@@ -64,7 +64,7 @@ public class SoundFragment extends RecyclerViewFragment implements
 
         addView(mSoundControlEnableCard);
     }
-    
+
     private void highPerfModeEnableInit() {
         mHighPerfModeEnableCard = new SwitchCardView.DSwitchCard();
         mHighPerfModeEnableCard.setDescription(getString(R.string.headset_highperf_mode));

@@ -19,8 +19,8 @@ package com.grarak.kerneladiutor.utils.kernel;
 import android.content.Context;
 
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.json.GammaProfiles;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.json.GammaProfiles;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
