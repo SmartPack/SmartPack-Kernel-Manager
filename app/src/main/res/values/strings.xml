@@ -452,6 +452,7 @@
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>
+    <string name="headset_highperf_mode">Headset High Performance Mode</string>
     <string name="headphone_gain">Headphone Gain</string>
     <string name="handset_microphone_gain">Handset Microphone Gain</string>
     <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
@@ -526,11 +527,11 @@
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
     <string name="fsync">Fsync</string>
-    <string name="fsync_summary">Disable for better file system performance at the risk of data lost when your phone crashes.</string>
+    <string name="fsync_summary">Disable for better file system performance at the risk of data loss in case of a system crash.</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
-    <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is committed synchronously.</string>
+    <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is done synchronously.</string>
     <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-    <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. disable this can save a little battery power.</string>
+    <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. Disabling this can save a little battery power.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="autosleep">Autosleep</string>

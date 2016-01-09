@@ -186,6 +186,18 @@ public class Sound implements Constants {
     public static boolean hasSoundControlEnable() {
         return Utils.existFile(SOUND_CONTROL_ENABLE);
     }
+    
+    public static void activateHighPerfMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", HIGHPERF_MODE_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isHighPerfModeActive() {
+        return Utils.readFile(HIGHPERF_MODE_ENABLE).equals("1");
+    }
+
+    public static boolean hasHighPerfModeEnable() {
+        return Utils.existFile(HIGHPERF_MODE_ENABLE);
+    }
 
     public static boolean hasSound() {
         for (String[] array : SOUND_ARRAY)

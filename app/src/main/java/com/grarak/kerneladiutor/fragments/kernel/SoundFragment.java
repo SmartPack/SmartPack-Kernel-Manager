@@ -32,6 +32,7 @@ public class SoundFragment extends RecyclerViewFragment implements
         SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private SwitchCardView.DSwitchCard mSoundControlEnableCard;
+    private SwitchCardView.DSwitchCard mHighPerfModeEnableCard;
     private SeekBarCardView.DSeekBarCard mHeadphoneGainCard;
     private SeekBarCardView.DSeekBarCard mHandsetMicrophoneGainCard;
     private SeekBarCardView.DSeekBarCard mCamMicrophoneGainCard;
@@ -45,6 +46,7 @@ public class SoundFragment extends RecyclerViewFragment implements
         super.init(savedInstanceState);
 
         if (Sound.hasSoundControlEnable()) soundControlEnableInit();
+        if (Sound.hasHighPerfModeEnable()) highPerfModeEnableInit();
         if (Sound.hasHeadphoneGain()) headphoneGainInit();
         if (Sound.hasHandsetMicrophoneGain()) handsetMicrophoneGainInit();
         if (Sound.hasCamMicrophoneGain()) camMicrophoneGainInit();
@@ -61,6 +63,15 @@ public class SoundFragment extends RecyclerViewFragment implements
         mSoundControlEnableCard.setOnDSwitchCardListener(this);
 
         addView(mSoundControlEnableCard);
+    }
+    
+    private void highPerfModeEnableInit() {
+        mHighPerfModeEnableCard = new SwitchCardView.DSwitchCard();
+        mHighPerfModeEnableCard.setDescription(getString(R.string.headset_highperf_mode));
+        mHighPerfModeEnableCard.setChecked(Sound.isHighPerfModeActive());
+        mHighPerfModeEnableCard.setOnDSwitchCardListener(this);
+
+        addView(mHighPerfModeEnableCard);
     }
 
     private void headphoneGainInit() {
@@ -132,6 +143,8 @@ public class SoundFragment extends RecyclerViewFragment implements
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSoundControlEnableCard)
             Sound.activateSoundControl(checked, getActivity());
+        else if (dSwitchCard == mHighPerfModeEnableCard)
+            Sound.activateHighPerfMode(checked, getActivity());
     }
 
     @Override
