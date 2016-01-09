@@ -652,6 +652,7 @@ public interface Constants {
             "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle",
             "/sys/devices/virtual/timed_output/vibrator/voltage_level",
             "/sys/devices/virtual/timed_output/vibrator/pwm_value_1p",
+            "/sys/devices/virtual/timed_output/vibrator/vmax_mv_strong",
             "/sys/devices/virtual/timed_output/vibrator/vmax_mv"
     };
 
@@ -665,10 +666,12 @@ public interface Constants {
             {100, 25}, // Needs enable path
             {3199, 1200},
             {99, 53},
+            {3596, 116}, // Needs VIB_LIGHT path
             {3596, 116}
     };
 
     String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
+    String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
 
     // Wakelock
     String[] SMB135X_WAKELOCKS = {

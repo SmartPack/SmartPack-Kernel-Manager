@@ -46,6 +46,12 @@ public class Misc implements Constants {
     private static String WLAN_CTRL_WAKELOCK_FILE;
     private static String WLAN_WAKELOCK_FILE;
 
+  private enum VIBRATION_TYPE {
+        SIXP, NOTSIXP
+    }
+
+    private static VIBRATION_TYPE TYPE;
+
     public static void setMsmHsicWakelockDivider(int value, Context context) {
         String command = String.valueOf(value + 1);
         if (value == 15) command = "0";
@@ -313,10 +319,13 @@ public class Misc implements Constants {
     }
 
     public static void setVibration(int value, Context context) {
+        int lightvalue = value - 300;
+        if (value < 416) lightvalue = 116;
         String enablePath = VIB_ENABLE;
         boolean enable = Utils.existFile(enablePath);
         if (enable) Control.runCommand("1", enablePath, Control.CommandType.GENERIC, context);
         Control.runCommand(String.valueOf(value), VIBRATION_PATH, Control.CommandType.GENERIC, context);
+        if (TYPE == VIBRATION_TYPE.SIXP) Control.runCommand(String.valueOf(lightvalue), VIB_LIGHT, Control.CommandType.GENERIC, context);
         if (enable) Control.runCommand("0", enablePath, Control.CommandType.GENERIC, context);
     }
 
@@ -367,6 +376,8 @@ public class Misc implements Constants {
     }
 
     public static boolean hasVibration() {
+        if (Utils.existFile(VIB_LIGHT)) TYPE = VIBRATION_TYPE.SIXP;
+        else TYPE = VIBRATION_TYPE.NOTSIXP;
         for (String vibration : VIBRATION_ARRAY)
             if (Utils.existFile(vibration)) {
                 VIBRATION_PATH = vibration;
