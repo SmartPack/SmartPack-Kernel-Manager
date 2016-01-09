@@ -445,6 +445,8 @@
     <string name="wake_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
     <string name="power_key_suspend">Power Key Suspend</string>
     <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
+    <string name="camera_gesture">Camera Gesture</string>
+    <string name="camera_gesture_summary">Launch default camera by drawing a circle on the screen.</string>
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>
