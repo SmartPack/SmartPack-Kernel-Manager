@@ -170,5 +170,14 @@
       "YUPHORIA"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/lettuce.json"
+  },
+  {
+    "vendor": [
+      "YU"
+    ],
+    "device": [
+      "YUNIQUE"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/jalebi.json"
   }
 ]
