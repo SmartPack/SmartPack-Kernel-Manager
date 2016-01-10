@@ -22,6 +22,7 @@
     <string name="donate">Donate to me</string>
 
     <!-- FileBrowser -->
+    <string name="no_permission">No permission</string>
     <string name="select_file">Select %s?</string>
     <string name="no_files">No files in this path.</string>
 

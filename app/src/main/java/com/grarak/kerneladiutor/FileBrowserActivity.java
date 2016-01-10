@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
+import com.grarak.kerneladiutor.utils.GetPermission;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.kerneladiutor.library.Tools;
 
@@ -57,9 +59,21 @@ public class FileBrowserActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fileBrowserActivity = this;
-        setFragment(R.id.content_frame, fileBrowserFragment
-                = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
+
+        new GetPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
+            @Override
+            public void granted(String permission) {
+                fileBrowserActivity = FileBrowserActivity.this;
+                setFragment(R.id.content_frame, fileBrowserFragment
+                        = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
+            }
+
+            @Override
+            public void denied(String permission) {
+                Utils.toast(getString(R.string.no_permission), FileBrowserActivity.this);
+                finish();
+            }
+        });
     }
 
     @Override

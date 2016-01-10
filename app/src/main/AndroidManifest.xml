@@ -60,6 +60,10 @@
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".utils.GetPermission$PermissionActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver android:name=".services.BootReceiver">
             <intent-filter>

@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +36,8 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
+import com.kerneladiutor.library.Tools;
+import com.kerneladiutor.library.root.RootFile;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
@@ -49,9 +50,9 @@ public class BackupFragment extends RecyclerViewFragment {
 
     private TextView title;
 
-    private File boot;
-    private File recovery;
-    private File fota;
+    private RootFile boot;
+    private RootFile recovery;
+    private RootFile fota;
 
     @Override
     public int getSpan() {
@@ -90,10 +91,10 @@ public class BackupFragment extends RecyclerViewFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) options(true, new File(data.getExtras().getString("path")));
+        if (data != null) options(true, new RootFile(data.getExtras().getString("path")));
     }
 
-    private void options(final boolean flashing, final File file) {
+    private void options(final boolean flashing, final RootFile file) {
         final LinkedHashMap<String, Backup.PARTITION> menu = new LinkedHashMap<>();
         if (Backup.getBootPartition() != null)
             menu.put(getString(R.string.boot), Backup.PARTITION.BOOT);
@@ -144,7 +145,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     return;
                 }
 
-                File file = null;
+                RootFile file = null;
                 switch (partition_type) {
                     case BOOT:
                         file = boot;
@@ -199,11 +200,11 @@ public class BackupFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-        String sdcard = Environment.getExternalStorageDirectory().getPath();
+        String sdcard = Tools.getInternalStorage();
         String name = "/KernelAdiutor/";
-        boot = new File(sdcard + name + "boot");
-        recovery = new File(sdcard + name + "recovery");
-        fota = new File(sdcard + name + "fota");
+        boot = new RootFile(sdcard + name + "boot");
+        recovery = new RootFile(sdcard + name + "recovery");
+        fota = new RootFile(sdcard + name + "fota");
     }
 
     @Override
@@ -226,8 +227,8 @@ public class BackupFragment extends RecyclerViewFragment {
         });
     }
 
-    private long viewInit(File folder, final Backup.PARTITION partition_type) {
-        if (!folder.exists()) if (!folder.mkdirs()) return 0;
+    private long viewInit(RootFile folder, final Backup.PARTITION partition_type) {
+        folder.mkdir();
 
         long size = 0;
         String text = null;
@@ -235,11 +236,11 @@ public class BackupFragment extends RecyclerViewFragment {
         else if (folder.toString().endsWith("recovery")) text = getString(R.string.recovery);
         else if (folder.toString().endsWith("fota")) text = getString(R.string.fota);
         if (text == null) return 0;
-        for (final File file : folder.listFiles())
+        for (final RootFile file : folder.listFiles())
             if (file.getName().endsWith(".img")) {
                 CardViewItem.DCardView cardView = new CardViewItem.DCardView();
                 cardView.setTitle(file.getName().replace(".img", ""));
-                long fileSize = file.length() / 1024 / 1024;
+                float fileSize = file.length() / 1024;
                 size += fileSize;
                 cardView.setDescription(text + ", " + fileSize + getString(R.string.mb));
                 cardView.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
@@ -267,7 +268,7 @@ public class BackupFragment extends RecyclerViewFragment {
         return size;
     }
 
-    private void restoreDialog(final File file, final Backup.PARTITION partition_type, final boolean restoring) {
+    private void restoreDialog(final RootFile file, final Backup.PARTITION partition_type, final boolean restoring) {
         Utils.confirmDialog(null, getString(R.string.overwrite_question, Backup.getPartition(partition_type)), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -299,12 +300,12 @@ public class BackupFragment extends RecyclerViewFragment {
         }, getActivity());
     }
 
-    private void deleteDialog(final File file) {
+    private void deleteDialog(final RootFile file) {
         Utils.confirmDialog(null, getString(R.string.delete_question, file.getName()), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!file.delete()) Utils.toast(getString(R.string.went_wrong), getActivity());
-                else getHandler().post(new Runnable() {
+                file.delete();
+                getHandler().post(new Runnable() {
                     @Override
                     public void run() {
                         create();

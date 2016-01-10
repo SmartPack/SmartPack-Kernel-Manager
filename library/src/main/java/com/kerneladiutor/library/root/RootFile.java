@@ -16,6 +16,8 @@
 
 package com.kerneladiutor.library.root;
 
+import android.util.Log;
+
 import com.kerneladiutor.library.Tools;
 
 import java.util.ArrayList;
@@ -69,6 +71,29 @@ public class RootFile {
                 if (file != null && !file.isEmpty() && Tools.existFile(this.file + "/" + file, true))
                     list.add(file);
         return list;
+    }
+
+    public List<RootFile> listFiles() {
+        List<RootFile> list = new ArrayList<>();
+        String files = RootUtils.runCommand("ls '" + file + "'");
+        if (files != null)
+            // Make sure the file exists
+            for (String file : files.split("\\r?\\n"))
+                if (file != null && !file.isEmpty() && Tools.existFile(this.file + "/" + file, true))
+                    list.add(new RootFile(this.file + "/" + file));
+        return list;
+    }
+
+    public float length() {
+        try {
+            return Float.parseFloat(RootUtils.runCommand("du '" + file + "'").split(file)[0].trim());
+        } catch (Exception ignored) {
+            return 0;
+        }
+    }
+
+    public String getParent() {
+        return RootUtils.runCommand("dirname '" + file + "'");
     }
 
     public boolean isEmpty() {

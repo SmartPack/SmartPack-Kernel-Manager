@@ -22,6 +22,7 @@ import android.util.Log;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.kerneladiutor.library.Tools;
+import com.kerneladiutor.library.root.RootFile;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
@@ -86,7 +87,7 @@ public class Backup {
             "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
     };
 
-    public static void restore(File file, PARTITION partition_type) {
+    public static void restore(RootFile file, PARTITION partition_type) {
         String parentFile = file.getParent();
         String sdcard = Environment.getExternalStorageDirectory().getPath();
         if (parentFile.startsWith(sdcard))
@@ -130,9 +131,12 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        folder = Tools.getInternalStorage() + "/KernelAdiutor/" + folder;
-        if (Utils.existFile(folder)) return folder;
-        return "/sdcard/KernelAdiutor/" + folder;
+        RootFile genericFolder = new RootFile(Tools.getInternalStorage() + "/KernelAdiutor/" + folder);
+        genericFolder.mkdir();
+        if (genericFolder.exists()) return genericFolder.toString();
+        RootFile genericFolder2 = new RootFile("/sdcard/KernelAdiutor/" + folder);
+        genericFolder2.mkdir();
+        return genericFolder2.toString();
     }
 
     public static String getBootPartition() {
