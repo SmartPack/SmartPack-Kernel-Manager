@@ -8,8 +8,8 @@ android {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode 119
-        versionName "0.9.9.2.3"
+        versionCode 120
+        versionName "0.9.9.3"
     }
     buildTypes {
         release {
