@@ -50,7 +50,7 @@ public class RootUtils {
     }
 
     public static boolean busyboxInstalled() {
-        return existBinary("busybox");
+        return existBinary("busybox") || existBinary("toybox");
     }
 
     private static boolean existBinary(String binary) {
