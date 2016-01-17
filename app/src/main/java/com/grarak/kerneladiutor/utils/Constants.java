@@ -556,6 +556,11 @@ public interface Constants {
 
     // Pocket mode for Gesture
     String POCKET_MODE = "/sys/android_touch/pocket_mode";
+    String POCKET_DETECT = "/sys/android_touch/pocket_detect";
+
+    String[] POCKET_MODE_ARRAY = {
+            POCKET_MODE, POCKET_DETECT
+    };
 
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
     String WAKE_TIMEOUT_2 = "/sys/android_touch2/wake_timeout";
@@ -567,7 +572,7 @@ public interface Constants {
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
     String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
-            {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND}};
+            POCKET_MODE_ARRAY, {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POWER_KEY_SUSPEND}};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
