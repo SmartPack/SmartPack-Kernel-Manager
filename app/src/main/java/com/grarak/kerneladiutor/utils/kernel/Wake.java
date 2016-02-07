@@ -38,6 +38,7 @@ public class Wake implements Constants {
     private static String SLEEP_MISC_FILE;
     private static String DT2S_FILE;
     private static String WAKE_TIMEOUT_FILE;
+    private static String POCKET_MODE_FILE;
 
     public static void activatePowerKeySuspend(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", POWER_KEY_SUSPEND, Control.CommandType.GENERIC, context);
@@ -74,15 +75,20 @@ public class Wake implements Constants {
     }
 
     public static void activatePocketMode(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", POCKET_MODE, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", POCKET_MODE_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isPocketModeActive() {
-        return Utils.readFile(POCKET_MODE).equals("1");
+        return Utils.readFile(POCKET_MODE_FILE).equals("1");
     }
 
     public static boolean hasPocketMode() {
-        return Utils.existFile(POCKET_MODE);
+        for (String file : POCKET_MODE_ARRAY)
+            if (Utils.existFile(file)) {
+                POCKET_MODE_FILE = file;
+                return true;
+            }
+        return false;
     }
 
     public static void activateCameraGesture(boolean active, Context context) {
