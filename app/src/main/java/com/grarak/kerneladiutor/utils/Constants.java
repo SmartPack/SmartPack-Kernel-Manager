@@ -656,6 +656,7 @@ public interface Constants {
 
     // Vibration
     String[] VIBRATION_ARRAY = {
+            "/sys/module/qpnp_vibrator/parameters/vib_voltage",
             "/sys/vibrator/pwmvalue",
             "/sys/class/timed_output/vibrator/amp",
             "/sys/class/timed_output/vibrator/level",
@@ -670,6 +671,7 @@ public interface Constants {
     };
 
     int[][] VIBRATION_MAX_MIN_ARRAY = {
+            {31, 12},
             {127, 0},
             {100, 0},
             {31, 12},
