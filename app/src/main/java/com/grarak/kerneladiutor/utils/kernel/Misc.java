@@ -318,7 +318,7 @@ public class Misc implements Constants {
         if (enable) Control.runCommand("1", enablePath, Control.CommandType.GENERIC, context);
         Control.runCommand(String.valueOf(value), VIBRATION_PATH, Control.CommandType.GENERIC, context);
         if (Utils.existFile(VIB_LIGHT))
-            Control.runCommand(String.valueOf(value - 300 < 416 ? 116 : value - 300), VIB_LIGHT,
+            Control.runCommand(String.valueOf(value - 300 < 116 ? 116 : value - 300), VIB_LIGHT,
                     Control.CommandType.GENERIC, context);
         if (enable) Control.runCommand("0", enablePath, Control.CommandType.GENERIC, context);
     }
