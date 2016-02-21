@@ -343,7 +343,12 @@ public interface Constants {
     String GPU_AVAILABLE_OMAP_FREQS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/frequency_list";
     String GPU_SCALING_OMAP_GOVERNOR = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor";
     String GPU_AVAILABLE_OMAP_GOVERNORS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor_list";
-
+    
+    String GPU_CUR_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_rate";
+    String GPU_MAX_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_cap_rate";
+    String GPU_MIN_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_floor_rate";
+    String GPU_AVAILABLE_TEGRA_FREQS = "/sys/kernel/tegra_gpu/gpu_available_rates";
+    
     String[] GPU_2D_CUR_FREQ_ARRAY = {GPU_CUR_KGSL2D0_QCOM_FREQ};
 
     String[] GPU_2D_MAX_FREQ_ARRAY = {GPU_MAX_KGSL2D0_QCOM_FREQ};
@@ -353,16 +358,16 @@ public interface Constants {
     String[] GPU_2D_SCALING_GOVERNOR_ARRAY = {GPU_SCALING_KGSL2D0_QCOM_GOVERNOR};
 
     String[] GPU_CUR_FREQ_ARRAY = {GPU_CUR_KGSL3D0_QCOM_FREQ, GPU_CUR_FDB00000_QCOM_FREQ, GPU_CUR_FDC00000_QCOM_FREQ,
-            GPU_CUR_SOC0_FDB00000_QCOM_FREQ, GPU_CUR_1C00000_QCOM_FREQ, GPU_CUR_OMAP_FREQ};
+            GPU_CUR_SOC0_FDB00000_QCOM_FREQ, GPU_CUR_1C00000_QCOM_FREQ, GPU_CUR_OMAP_FREQ, GPU_CUR_TEGRA_FREQ};
 
     String[] GPU_MAX_FREQ_ARRAY = {GPU_MAX_KGSL3D0_QCOM_FREQ, GPU_MAX_FDB00000_QCOM_FREQ, GPU_MAX_FDC00000_QCOM_FREQ,
-            GPU_MAX_SOC0_FDB00000_QCOM_FREQ, GPU_MAX_1C00000_QCOM_FREQ, GPU_MAX_OMAP_FREQ};
+            GPU_MAX_SOC0_FDB00000_QCOM_FREQ, GPU_MAX_1C00000_QCOM_FREQ, GPU_MAX_OMAP_FREQ, GPU_MAX_TEGRA_FREQ};
 
-    String[] GPU_MIN_FREQ_ARRAY = {GPU_MIN_FDB00000_QCOM_FREQ};
+    String[] GPU_MIN_FREQ_ARRAY = {GPU_MIN_FDB00000_QCOM_FREQ, GPU_MIN_TEGRA_FREQ};
 
     String[] GPU_AVAILABLE_FREQS_ARRAY = {GPU_AVAILABLE_KGSL3D0_QCOM_FREQS, GPU_AVAILABLE_FDB00000_QCOM_FREQS,
             GPU_AVAILABLE_SOC0_FDB00000_QCOM_FREQS, GPU_AVAILABLE_FDC00000_QCOM_FREQS, GPU_AVAILABLE_1C00000_QCOM_FREQ,
-            GPU_AVAILABLE_OMAP_FREQS};
+            GPU_AVAILABLE_OMAP_FREQS, GPU_AVAILABLE_TEGRA_FREQS};
 
     String[] GPU_SCALING_GOVERNOR_ARRAY = {GPU_SCALING_KGSL3D0_QCOM_GOVERNOR, GPU_SCALING_FDB00000_QCOM_GOVERNOR,
             GPU_SCALING_PWRSCALE_GOVERNOR, GPU_SCALING_FDC00000_QCOM_GOVERNOR, GPU_SCALING_SOC0_FDB00000_QCOM_GOVERNOR,
@@ -556,6 +561,11 @@ public interface Constants {
 
     // Pocket mode for Gesture
     String POCKET_MODE = "/sys/android_touch/pocket_mode";
+    String POCKET_DETECT = "/sys/android_touch/pocket_detect";
+
+    String[] POCKET_MODE_ARRAY = {
+            POCKET_MODE, POCKET_DETECT
+    };
 
     String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
     String WAKE_TIMEOUT_2 = "/sys/android_touch2/wake_timeout";
@@ -567,7 +577,7 @@ public interface Constants {
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
     String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
-            {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND}};
+            POCKET_MODE_ARRAY, {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POWER_KEY_SUSPEND}};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
@@ -656,6 +666,7 @@ public interface Constants {
 
     // Vibration
     String[] VIBRATION_ARRAY = {
+            "/sys/module/qpnp_vibrator/parameters/vib_voltage",
             "/sys/vibrator/pwmvalue",
             "/sys/class/timed_output/vibrator/amp",
             "/sys/class/timed_output/vibrator/level",
@@ -670,6 +681,7 @@ public interface Constants {
     };
 
     int[][] VIBRATION_MAX_MIN_ARRAY = {
+            {31, 12},
             {127, 0},
             {100, 0},
             {31, 12},
