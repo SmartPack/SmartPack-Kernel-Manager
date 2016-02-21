@@ -350,9 +350,9 @@ public class Misc implements Constants {
                 return VIBRATION_MIN;
             }
 
-            for (int i = 0; i < VIBRATION_ARRAY.length; i++)
-                if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
-                    VIBRATION_MIN = VIBRATION_MAX_MIN_ARRAY[i][1];
+            for (Object[] vibs : VIBRATION_ARRAY)
+                if (VIBRATION_PATH.equals(vibs[0]))
+                    VIBRATION_MIN = (int) vibs[2];
         }
         return VIBRATION_MIN != null ? VIBRATION_MIN : 0;
     }
@@ -371,9 +371,9 @@ public class Misc implements Constants {
                 return VIBRATION_MAX;
             }
 
-            for (int i = 0; i < VIBRATION_ARRAY.length; i++)
-                if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
-                    VIBRATION_MAX = VIBRATION_MAX_MIN_ARRAY[i][0];
+            for (Object[] vibs : VIBRATION_ARRAY)
+                if (VIBRATION_PATH.equals(vibs[0]))
+                    VIBRATION_MAX = (int) vibs[1];
         }
         return VIBRATION_MAX != null ? VIBRATION_MAX : 0;
     }
@@ -383,9 +383,9 @@ public class Misc implements Constants {
     }
 
     public static boolean hasVibration() {
-        for (String vibration : VIBRATION_ARRAY)
-            if (Utils.existFile(vibration)) {
-                VIBRATION_PATH = vibration;
+        for (Object[] vibs : VIBRATION_ARRAY)
+            if (Utils.existFile(vibs[0].toString())) {
+                VIBRATION_PATH = vibs[0].toString();
                 break;
             }
         return VIBRATION_PATH != null;
