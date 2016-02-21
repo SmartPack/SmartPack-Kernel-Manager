@@ -40,6 +40,7 @@ public class Misc implements Constants {
     private static String CRC_FILE;
 
     private static String FSYNC_FILE;
+    private static boolean FSYNC_USE_INTEGER;
 
     private static String SMB135X_WAKELOCK_FILE;
     private static String WLAN_RX_WAKELOCK_FILE;
@@ -262,17 +263,29 @@ public class Misc implements Constants {
     }
 
     public static void activateFsync(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", FSYNC_FILE, Control.CommandType.GENERIC, context);
+        if (FSYNC_USE_INTEGER)
+            Control.runCommand(active ? "1" : "0", FSYNC_FILE, Control.CommandType.GENERIC, context);
+        else
+            Control.runCommand(active ? "Y" : "N", FSYNC_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isFsyncActive() {
-        return Utils.readFile(FSYNC_FILE).equals("1");
+        if (FSYNC_USE_INTEGER)
+            return Utils.readFile(FSYNC_FILE).equals("1");
+        else
+            return Utils.readFile(FSYNC_FILE).equals("Y");
     }
 
     public static boolean hasFsync() {
         for (String file : FSYNC_ARRAY)
             if (Utils.existFile(file)) {
                 FSYNC_FILE = file;
+                try {
+                    Integer.parseInt(Utils.readFile(FSYNC_FILE));
+                    FSYNC_USE_INTEGER = true;
+                } catch (NumberFormatException ignored) {
+                    FSYNC_USE_INTEGER = false;
+                }
                 return true;
             }
         return false;
