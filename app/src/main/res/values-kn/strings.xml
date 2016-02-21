@@ -86,6 +86,7 @@
   <string name="cpu_max_screen_off_freq">ಸಿಪಿಯು ಗರಿಷ್ಠ ಪರದೆ ಆಫ್ ಆವರ್ತನ</string>
   <string name="cpu_max_screen_off_freq_summary">ಪರದೆ ಆಫ್ ಆದಾಗ ಮಾಪನವನ್ನು ಮಿತಿಗೊಳಿಸಲು ಗರಿಷ್ಠ ಸಿಪಿಯು ಆವರ್ತನವನ್ನು ಹೊಂದಿಸಿ.</string>
   <string name="cpu_governor">ಸಿಪಿಯು ಗವರ್ನರ್</string>
+  <string name="cpu_governor_summary">Hi</string>
   <string name="cpu_governor_tunables">ಸಿಪಿಯು ಗವರ್ನರ್ ಸಂಯೋಜನೆಗಳು</string>
   <string name="cpu_governor_tunables_summary">ಗವರ್ನರ್ ಅವಲಂಭಿತವಾದ ವಿವಿಧ ಸಂರಚನಾಂಶಗಳು.</string>
   <string name="not_tunable">%s ಸಂಯೋಜನೆ ಮಾಡಲಾಗುವುದಿಲ್ಲ</string>

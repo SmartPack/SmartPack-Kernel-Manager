@@ -50,6 +50,7 @@
   <string name="thermal">Thermisch</string>
   <string name="gpu">GPU</string>
   <string name="screen">Scherm</string>
+  <string name="wake_controls">Ontwaken Instellingen</string>
   <string name="sound">Geluid</string>
   <string name="battery">Batterij</string>
   <string name="io_scheduler">I/o-Scheduler</string>
@@ -65,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Instellingen</string>
   <string name="faq">Veelgestelde Vragen</string>
+  <string name="about_us">Over ons</string>
   <string name="unused_cpu_states">Ongebruikte CPU Staten</string>
   <string name="uptime">Bedrijfstijd</string>
   <string name="deep_sleep">Diepe slaap</string>
@@ -85,6 +87,7 @@
   <string name="cpu_max_screen_off_freq">CPU Maximum scherm uit frequentie</string>
   <string name="cpu_max_screen_off_freq_summary">Stel de maximale frequentie in die de CPU kan schalen wanneer het scherm uitgeschakeld is.</string>
   <string name="cpu_governor">CPU governor</string>
+  <string name="cpu_governor_summary">DE CPU govenor bepaalt hoe de CPU zich gedraagt op veranderingen in de werklast. Als je de CPU govenor verandert, heeft dat impact op hoe de CPU schaalt tussen de frequentiestappen welke beschikbaar zijn voor jouw CPU.</string>
   <string name="cpu_governor_tunables">CPU governor Tunables</string>
   <string name="cpu_governor_tunables_summary">De verschillende configuratie-items die afhankelijk van de governor zijn.</string>
   <string name="not_tunable">%s is niet afstembare</string>
@@ -128,6 +131,11 @@
   <string name="eco_mode">Eco-modus</string>
   <string name="eco_mode_summary">Batterij besparingswijze voor IntelliPlug.</string>
   <string name="threshold">Drempelwaarde</string>
+  <string name="debug">Debug</string>
+  <string name="min_cpu_online">Minimale CPU\'s online</string>
+  <string name="min_cpu_online_summary">Minimaal aantal CPU\'s die altijd online zullen zijn.</string>
+  <string name="max_cpu_online">Maximaal aantal CPU\'s online</string>
+  <string name="max_cpu_online_summary">Maximaal aantal CPU\'s die altijd online zullen zijn.</string>
   <string name="quad_core_mode">Quad Core-modus</string>
   <string name="dual_core_mode">Dual Core-modus</string>
   <string name="temp_limit">Temperatuurgrens</string>

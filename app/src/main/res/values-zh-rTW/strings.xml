@@ -66,6 +66,7 @@
   <string name="initd">啟動腳本</string>
   <string name="settings">設定</string>
   <string name="faq">FAQ</string>
+  <string name="about_us">關於我們</string>
   <string name="unused_cpu_states">未使用的 CPU 頻率</string>
   <string name="uptime">核心啟用時間</string>
   <string name="deep_sleep">深度睡眠</string>
@@ -316,6 +317,8 @@
   <string name="max_brightness">最大亮度</string>
   <string name="backlight_dimmer">背光源調光器</string>
   <string name="offset">偏移量</string>
+  <string name="register_hook">註冊勾點</string>
+  <string name="master_sequence">主序列</string>
   <string name="dt2w">雙擊螢幕喚醒</string>
   <string name="dt2w_summary">雙擊螢幕來喚醒您的裝置</string>
   <string name="bottom_half">下半部</string>
@@ -325,6 +328,9 @@
   <string name="s2w">滑動螢幕喚醒</string>
   <string name="s2w_summary">滑動螢幕來喚醒您的裝置</string>
   <string name="s2s">滑動睡眠</string>
+  <string name="s2s_right">滑動至右側</string>
+  <string name="s2s_left">滑動至左側</string>
+  <string name="s2s_any">滑動至左側或右側</string>
   <string name="t2w">觸碰喚醒</string>
   <string name="t2w_summary">觸碰螢幕來喚醒您的裝置</string>
   <string name="wake">喚醒</string>
@@ -339,6 +345,9 @@
   <string name="draw_w">畫 W</string>
   <string name="draw_c">畫 C</string>
   <string name="draw_m">畫M</string>
+  <string name="camera_gesture">相機手勢</string>
+  <string name="camera_gesture_summary">藉由劃一圈圈於螢幕上來執行預設的相機APP。</string>
+  <string name="pocket_mode">口袋模式</string>
   <string name="wake_timeout">喚醒逾時</string>
   <string name="wake_timeout_summary">在螢幕關閉之後，設定將喚醒控制停用的時間。</string>
   <string name="power_key_suspend">電源鍵暫停</string>
@@ -381,6 +390,9 @@
   <string name="light">小</string>
   <string name="very_aggressive">非常積極的</string>
   <string name="zram">Z-RAM</string>
+  <string name="available">可用</string>
+  <string name="read">讀取</string>
+  <string name="write">寫入</string>
   <string name="vibration_strength">震動強度</string>
   <string name="autosleep">自動睡眠</string>
   <string name="userspace">使用者空間</string>
@@ -403,7 +415,10 @@
   <string name="loading_counting">載入 %1$d/%2$d</string>
   <string name="downloading_db">下載資料庫中</string>
   <string name="xda">XDA</string>
+  <string name="github">GitHub</string>
   <string name="google_plus">Google+</string>
+  <string name="paypal">PayPal</string>
+  <string name="download">下載</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="resume">恢復</string>
   <string name="checking_md5">檢查 MD5 演算碼</string>
@@ -438,14 +453,22 @@
   <string name="press_again_to_apply">再次按下以套用。</string>
   <string name="applied">套用成功</string>
   <string name="applying_profile">套用 %s</string>
+  <string name="replace_profile">您是否想取代 %s？</string>
   <string name="reboot">重新開機</string>
   <string name="reboot_recovery">重新開機進入 Recovery</string>
   <string name="reboot_bootloader">重新開機進入 Bootloader</string>
+  <string name="reboot_download">重啟下載</string>
   <string name="confirm">您確定嗎?</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Wipe Data</string>
   <string name="wipe_cache">Wipe Cache</string>
+  <string name="add_action_first">您必須先新增一個動作。</string>
+  <string name="emulate_initd">模擬 Init.d</string>
+  <string name="executing">執行中</string>
+  <string name="execute">執行</string>
+  <string name="no_scripts_found">未發現腳本！</string>
+  <string name="starting_initd">開始 Init.d 模擬</string>
   <string name="dark_theme">深色主題</string>
   <string name="force_english_language">強制使用英語</string>
   <string name="beta_info">測試版資訊</string>
@@ -470,6 +493,10 @@
   <string name="confirm_new_password">確認新密碼</string>
   <string name="old_password">舊密碼</string>
   <string name="old_password_wrong">舊密碼錯誤</string>
+  <string name="password_empty">密碼為空值</string>
+  <string name="password_not_match">密碼不符合確認</string>
+  <string name="password_too_long">密碼長度太長</string>
+  <string name="set_password_first">請先設定密碼</string>
   <string name="show_sections">顯示區塊</string>
   <string name="misspelled">為什麼你把\"Auditor\"拼錯？</string>
   <string name="misspelled_summary">Adiutor 是拉丁語意思是幫手</string>
@@ -483,7 +510,10 @@
   <string name="license">授權協議</string>
   <string name="app_license">Kernel Adiutor 被授權在 Apache 授權之下，2.0 版本，並使用以下函式庫</string>
   <string name="open_source">開放原始碼</string>
+  <string name="open_source_summary">此為開放原始碼的APP。前往我的 Github 以了解更多。</string>
   <string name="feature_request">新功能請求</string>
+  <string name="feature_request_summary">您想要更多功能嗎？開啟一新的問題討論於 GitHub 並提交您的想法。</string>
   <string name="google_plus_summary">加入我們的社群</string>
   <string name="translation">翻譯</string>
+  <string name="translation_summary">幫助我們翻譯此APP！</string>
 </resources>

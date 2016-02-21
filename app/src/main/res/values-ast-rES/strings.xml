@@ -125,6 +125,7 @@
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolacáu por faux123.</string>
   <string name="profile_summary">El númberu ente paréntesis indica la cantidá de nucleos en llinia en cualesquier momentu.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Balanceáu</string>
   <string name="performance">Rindimientu</string>
   <string name="conservative">Conservador</string>
@@ -367,6 +368,9 @@
   <string name="draw_w">Dibuxar W</string>
   <string name="draw_c">Dibuxar C</string>
   <string name="draw_m">Dibuxar M</string>
+  <string name="camera_gesture">Xestu de cámara</string>
+  <string name="camera_gesture_summary">Llancia la cámara por defeutu dibuxando un círculu na pantalla.</string>
+  <string name="pocket_mode">Mou cartera</string>
   <string name="wake_timeout">Tiempu escosao d\'esconsueñu</string>
   <string name="wake_timeout_summary">Afita una duración cuando los controles d\'esconsueñu deshabilítense dempués d\'apagase la pantalla.</string>
   <string name="power_key_suspend">Suspensión de tecla prendíu</string>

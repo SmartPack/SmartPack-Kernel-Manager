@@ -124,9 +124,11 @@
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Ein interner Kernel-Ersatz für Qualcomms MPDecision, entwickelt von faux123.</string>
   <string name="profile_summary">Die eingeklammerte Zahl zeigt jene Kerne, die immer online sind.</string>
+  <string name="insanity">Wahnsinn</string>
   <string name="balanced">Ausgeglichen</string>
   <string name="performance">Leistung</string>
   <string name="conservative">Konservativ</string>
+  <string name="eco_insanity">Öko-Wahnsinn</string>
   <string name="eco_performance">Eco-Leistung</string>
   <string name="eco_conservative">Eco-Konservativ</string>
   <string name="tri">Tri</string>
@@ -234,6 +236,7 @@
   <string name="cycle_down">Zyklus nach unten</string>
   <string name="cycle_up">Zyklus nach oben</string>
   <string name="thermal_info">Verwenden sie nur einen thermischen Sensor für folgende Optionen. Die Verwendung von mehreren kann zu unerwartetem Verhalten führen.</string>
+  <string name="thermald">Thermal</string>
   <string name="thermald_summary">Thermischer Qualcomm-Treiber, der das Gerät vor Überhitzung hindert. Dies sollte deaktiviert werden, wenn der aktuelle Kernel eine Alternative hat.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Ein interner Kernel-Ersatz für Qualcomms Thermald. Von faux123 entwickelt.</string>
@@ -248,6 +251,7 @@
   <string name="core_throttle_temp_summary">Kerne ausschalten bei dieser Temperatur.</string>
   <string name="core_temp_hysteresis">Kern-Temperatur-Hysterese</string>
   <string name="freq_step">Frequenz-Schritt</string>
+  <string name="immediately_limit_stop">Sofortiges Beenden des Limits</string>
   <string name="poll">Umfrage</string>
   <string name="temp_hysteresis">Temperatur-Hysterese</string>
   <string name="thermal_limit_low">Thermales Limit niedrig</string>
@@ -255,8 +259,14 @@
   <string name="temp_safety">Temperatur-Sicherheit</string>
   <string name="msm_thermal">MSM Thermal</string>
   <string name="msm_thermal_summary">Ein Kernel-Ersatz für Qualcomms Thermald. Entwickelt von show-p1984.</string>
+  <string name="allowed_low_low">Phase 1: Erlaube niedrige</string>
+  <string name="allowed_low_high">Phase 1: Erlaube niedrig hoch</string>
   <string name="allowed_low_freq">Phase 1: niedrigste erlaubte Frequenz</string>
+  <string name="allowed_mid_low">Phase 2: Zulässige Mitte Niedrig</string>
+  <string name="allowed_mid_high">Phase 2: Zulässige Mitte hoch</string>
   <string name="allowed_mid_freq">Phase 2: Zulässige mittlere Frequenz</string>
+  <string name="allowed_max_low">Phase 3: Zulässige Max Low</string>
+  <string name="allowed_max_high">Phase 3: Zulässige Max High</string>
   <string name="allowed_max_freq">Phase 3: Höchste zulässige Frequenz</string>
   <string name="check_interval">Prüfintervall</string>
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
@@ -265,6 +275,7 @@
   <string name="freq_limit_debug">Frequenzbegrenzung untersuchen</string>
   <string name="freq_limit_debug_summary">Wenn die Temperatur das Maximum erreicht können sie damit die CPU Drosselklappe debuggen.</string>
   <string name="temp_limit_min_freq">Temperaturgrenze für minimale Frequenz</string>
+  <string name="temp_limit_min_freq_summary">Die Einstellung wird diese Frequenz verwenden, um die maximale Temperatur drosseln.</string>
   <string name="temp_limit">Temperatur-Begrenzung</string>
   <string name="temp_limit_summary">Wenn die Temperatur höher ist, wird die CPU-Frequenz gemindert, um die Temperatur zu senken.</string>
   <string name="gpu_2d_cur_freq">Aktuelle GPU 2D-Frequenz</string>
@@ -283,6 +294,10 @@
   <string name="simple_gpu_algorithm_summary">Ein Add-on für MSM Adreno TZ GPU Gouvernor. Von faux123 entwickelt.</string>
   <string name="laziness">Trägheit</string>
   <string name="laziness_summary">Dies erhöht die Schwelle für die GPU-Frequenzen. Die Leistung wird gesteigert, je niedriger die Schwelle ist.</string>
+  <string name="ramp_thresold_summary">Dies erhöht die Anzahl der Zeiten die der GPU Gouverneur Rampe hinunter Anfragen. Je höher es ist, umso mehr Leistung erhälst du.</string>
+  <string name="adreno_idler">Adreno Rad</string>
+  <string name="adreno_idler_summary">Eine effiziente Workaround für Msm-Adreno-Tz.</string>
+  <string name="down_differential">Nach unten Differential</string>
   <string name="red">Rot</string>
   <string name="green">Grün</string>
   <string name="blue">Blau</string>

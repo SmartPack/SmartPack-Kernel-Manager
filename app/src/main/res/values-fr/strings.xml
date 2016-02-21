@@ -16,7 +16,7 @@
   <string name="password_wrong">Le mot de passe est incorrect</string>
   <string name="press_back_again">Appuyez sur Retour une nouvelle fois pour quitter</string>
   <string name="more">Plus</string>
-  <string name="thank_you">Merci!</string>
+  <string name="thank_you">Merci !</string>
   <string name="heavy_user_message">Il semble que vous aimiez vraiment de cette application ! Je vous remercie pour l\'utiliser !</string>
   <string name="rate_app">Évaluer l\'application</string>
   <string name="donate">Me faire un don</string>
@@ -123,7 +123,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solution Hotplug de Qualcomm. Vous pourriez avoir des problèmes au changement des fréquences lorsque cette option est activée.</string>
   <string name="intelliplug">IntelliPlug</string>
-  <string name="intelliplug_summary">Une alternative pour MPDecision par Qualcomm. Développé par faux123.</string>
+  <string name="intelliplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par faux123.</string>
   <string name="profile_summary">Le nombre entre parenthèses indique la quantité de cœurs en ligne à tout moment.</string>
   <string name="balanced">Équilibré</string>
   <string name="performance">Performance</string>
@@ -170,11 +170,11 @@
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par myfluxi.</string>
   <string name="history_size">Taille de l\'Historique</string>
-  <string name="history_size_summary">Nombre d\'échantillons pris en compte pour la charge moyenne sur les CPUs. Moins signifie plus rapide / plus erratique.</string>
+  <string name="history_size_summary">Nombre d\'échantillons pris en compte pour la charge moyenne sur les CPU. Un nombre plus petit signifie plus rapide / plus erratique.</string>
   <string name="update_rate">Taux de mise à jour</string>
-  <string name="update_rate_summary">Intervalle entre chaque échantillons de charges sur les CPUs. Moins signifie plus rapide / plus erratique.</string>
+  <string name="update_rate_summary">Intervalle entre chaque prise d\'échantillons de charges sur les CPU. Un nombre plus petit signifie plus rapide / plus erratique.</string>
   <string name="fast_lane_load">Charge de la Voie Rapide</string>
-  <string name="fast_lane_load_summary">Améliore le temps de latence en mettant en ligne tous les CPUs si la charge actuelle sur un des cœurs est au dessus d\'un seuil.</string>
+  <string name="fast_lane_load_summary">Améliore le temps de latence en mettant instantanément en ligne tous les cœurs CPU si la charge actuelle sur un des cœurs est au dessus d\'un certain seuil.</string>
   <string name="fast_lane_min_freq">Fréquence Min Voie Rapide</string>
   <string name="fast_lane_min_freq_summary">Fixe la fréquence minimum à laquelle les cœurs descendent quand la voie rapide atteint la charge ci-dessus.</string>
   <string name="offline_load">Charge Hors Ligne</string>
@@ -185,7 +185,7 @@
   <string name="mako_hotplug">Hotplug Mako</string>
   <string name="mako_hotplug_summary">Un remplacement du noyau pour MPDecision de Qualcomm. Développé par franciscofranco.</string>
   <string name="cores_on_touch">Cœurs au toucher</string>
-  <string name="cores_on_touch_summary">Nombre de CPUs en ligne lors d\'une pression sur l\'écran ou un bouton.</string>
+  <string name="cores_on_touch_summary">Nombre de cœurs CPU en ligne lors d\'une pression sur l\'écran ou un bouton.</string>
   <string name="cpu_freq_unplug_limit">Fréquence limite de mise hors-ligne du CPU</string>
   <string name="first_level">Premier Niveau</string>
   <string name="first_level_summary">Seuil de mise en ligne de tous les CPU.</string>
@@ -294,7 +294,7 @@
   <string name="screen_hue_summary">Vous pourriez rencontrer des problèmes avec le SoC MSM8x26 lorsque vous définissez une valeur élevée.</string>
   <string name="screen_value">Valeur de l\'Ecran</string>
   <string name="screen_contrast">Contraste de l\'Ecran</string>
-  <string name="high_brightness_mode">Mode Haute Luminosité</string>
+  <string name="high_brightness_mode">Mode haute luminosité</string>
   <string name="gamma">Gamma</string>
   <string name="gamma_profile">Profil Gamma</string>
   <string name="red_greys">Rouges Gris</string>
@@ -319,8 +319,8 @@
   <string name="blue_negative">Bleu Négatif</string>
   <string name="white_point">Point Blanc</string>
   <string name="gamma_profile_summary">Après avoir sélectionné un profil, veuillez éteindre puis rallumer votre écran.</string>
-  <string name="additional_profiles">Profils Supplémentaires</string>
-  <string name="additional_profiles_summary">Obtenir plus de profils de l\'internet.</string>
+  <string name="additional_profiles">Profils supplémentaires</string>
+  <string name="additional_profiles_summary">Obtenir plus de profils sur Internet.</string>
   <string name="loading">Chargement</string>
   <string name="no_internet">Aucune connexion internet</string>
   <string name="no_additional_profiles">Aucun profil supplémentaire trouvé</string>
@@ -382,6 +382,7 @@
   <string name="power_key_suspend">Suspension de la touche Power</string>
   <string name="power_key_suspend_summary">Lorsqu\'il est activé, ce paramètre va inhiber les fonctions de réveil lorsque l\'écran est éteint par la touche power.</string>
   <string name="sound_control">Contrôle Audio</string>
+  <string name="headset_highperf_mode">Mode casque haute performance</string>
   <string name="headphone_gain">Gain du Casque</string>
   <string name="handset_microphone_gain">Gain du Microphone Casque</string>
   <string name="cam_microphone_gain">Gain Microphone Caméra</string>
@@ -402,7 +403,7 @@
   <string name="internal_storage">Stockage interne</string>
   <string name="external_storage">Stockage externe</string>
   <string name="scheduler">Scheduler</string>
-  <string name="scheduler_summary">Définissez l\'algorithme d\'ordonnancement des E/S actif. Cet ordonnanceur a pour fonction la gestion des requêtes d\'E/S.</string>
+  <string name="scheduler_summary">Définissez l\'algorithme d\'ordonnancement des E/S actif. L\'ordonnanceur a pour fonction la gestion des requêtes d\'E/S.</string>
   <string name="scheduler_tunable">Réglages de l\'ordonnanceur</string>
   <string name="scheduler_tunable_summary">Les divers éléments de configuration qui dépendent de l\'ordonnanceur.</string>
   <string name="read_ahead">Lecture anticipée</string>
@@ -442,7 +443,9 @@
   <string name="crc">Contrôle CRC logiciel</string>
   <string name="crc_summary">Le CRC , contrôle de redondance cyclique, est un mécanisme permettant de détecter des erreurs dans les données et de les corriger. Jusqu\'à 30% de pertes de performances si activé.</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Désactiver pour une meilleure performance du système de fichier au risque de perte de données dans le cas d\'une panne système.</string>
   <string name="dynamic_fsync">Fsync dynamique</string>
+  <string name="dynamic_fsync_summary">Lorsque que activé et que l\'écran est allumé, l\'opération fsync est asynchrone. Lorsque que l\'écran est éteint, cette opération s\'effectue de manière synchrone.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="power_suspend_mode">Mode de suspension de l\'alimentation</string>
   <string name="power_suspend_mode_summary">Les paramètres Kernel Mode, LCD Hooks et Highest Level Hook sont automatiquement gérés par le noyau. Pour gérer manuellement l\'état d\'alimentation en veille (RAM toujours sous tension), choisissez le mode utilisateur (User Mode).</string>
@@ -527,8 +530,8 @@
   <string name="replace_profile">Voulez-vous remplacer %s ?</string>
   <string name="reboot">Redémarrer</string>
   <string name="reboot_soft">Redémarrage logiciel</string>
-  <string name="reboot_recovery">Redémarrer Recovery</string>
-  <string name="reboot_bootloader">Redémarrer Bootloader</string>
+  <string name="reboot_recovery">Redémarrer en Recovery</string>
+  <string name="reboot_bootloader">Redémarrer en mode Bootloader</string>
   <string name="reboot_download">Redémarrer Téléchargement</string>
   <string name="confirm">Êtes-vous sûr ?</string>
   <string name="cwm_recovery">CWM Recovery</string>

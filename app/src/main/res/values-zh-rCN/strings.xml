@@ -3,7 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="app_name">Kernel Adiutor</string>
   <string name="root_waiting">正在获取root权限</string>
-  <string name="no_root">没有可用的根</string>
+  <string name="no_root">无法获取root权限</string>
   <string name="no_busybox">没有可用的 busybox</string>
   <string name="ok">确定</string>
   <string name="cancel">取消 </string>
@@ -33,7 +33,7 @@
   <string name="mv">mV</string>
   <string name="kb">kB</string>
   <string name="ms">微秒</string>
-  <string name="mb">兆字节</string>
+  <string name="mb">MB</string>
   <string name="min"> 分钟</string>
   <string name="sec">秒</string>
   <string name="ma">mA</string>
@@ -52,7 +52,7 @@
   <string name="screen">屏幕</string>
   <string name="wake_controls">唤醒控制</string>
   <string name="sound">声音</string>
-  <string name="battery">电源</string>
+  <string name="battery">电池</string>
   <string name="io_scheduler">I/O 调度器</string>
   <string name="ksm">内核同页合并(KSM)</string>
   <string name="low_memory_killer">低内存管理</string>
@@ -122,12 +122,12 @@
   <string name="override_vmin">覆盖最低电压</string>
   <string name="override_vmin_summary">取消厂商对降压的限制</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">高通的热拔插方案。当启用此功能时，您可能会在调频上遇到问题。</string>
+  <string name="mpdecision_summary">高通的热插拔方案。当它启用时你可能无法正常地调整各核心的频率。</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">由 faux123 开发的高通 MPDecision 替代方案。</string>
   <string name="profile_summary">括号中的数字指示核心在线的量在任何时候。</string>
   <string name="balanced">平衡</string>
-  <string name="performance">性能</string>
+  <string name="performance">高性能</string>
   <string name="conservative">节能</string>
   <string name="eco_performance">Eco 性能模式</string>
   <string name="eco_conservative">Eco 节能模式</string>
@@ -183,7 +183,7 @@
   <string name="offline_load">离线负载</string>
   <string name="offline_load_summary">如果它滴下了阈值负载较低的级别，不脱机的 CPU。</string>
   <string name="io_is_busy">I/O 繁忙</string>
-  <string name="io_is_busy_summary">用来做考虑将 I/O 时间作为 CPU 负载时间热插拔。</string>
+  <string name="io_is_busy_summary">让热插拔程序把 I/O 时间当做 CPU 负载时间</string>
   <string name="defer_time">暂停时间推迟</string>
   <string name="mako_hotplug">Mako 热插拔</string>
   <string name="mako_hotplug_summary">由 franciscofranco 开发的高通 MPDecision 替代方案。</string>
@@ -359,6 +359,7 @@
   <string name="offset">偏移值</string>
   <string name="negative_toggle">反色开关</string>
   <string name="negative_toggle_summary">快速点按菜单键四次以启用屏幕反色。</string>
+  <string name="mdnie_global_controls">mDNIe 全局控制</string>
   <string name="register_hook">注册台钩子</string>
   <string name="master_sequence">主序列</string>
   <string name="master_sequence_summary">使主序列将禁用并忽略三星的配置文件和方案、 ROM 的控件将被禁用。</string>
@@ -375,6 +376,9 @@
   <string name="s2w">滑动唤醒</string>
   <string name="s2w_summary">在屏幕上滑动以唤醒您的设备</string>
   <string name="s2s">滑动睡眠</string>
+  <string name="s2s_right">向右滑动</string>
+  <string name="s2s_left">向左滑动</string>
+  <string name="s2s_any">向左或向右滑动</string>
   <string name="t2w">单击唤醒</string>
   <string name="t2w_summary">点触屏幕来唤醒您的设备。</string>
   <string name="wake">唤醒</string>
@@ -388,11 +392,15 @@
   <string name="slide_down">向下滑动</string>
   <string name="slide_left">向左滑动</string>
   <string name="slide_right">向右滑动</string>
+  <string name="camera_gesture">相机手势</string>
+  <string name="camera_gesture_summary">通过在屏幕上画一个圈来启动默认的相机应用。</string>
+  <string name="pocket_mode">口袋模式</string>
   <string name="wake_timeout">唤醒超时</string>
   <string name="wake_timeout_summary">设置在屏幕关闭多久后唤醒控制失效。</string>
   <string name="power_key_suspend">电源键延迟</string>
   <string name="power_key_suspend_summary">启用此项后当屏幕由电源键关闭时唤醒控制将会被禁用。</string>
   <string name="sound_control">声音控制</string>
+  <string name="headset_highperf_mode">耳机高性能模式</string>
   <string name="headphone_gain">耳机增益</string>
   <string name="handset_microphone_gain">手机听筒麦克风增益</string>
   <string name="cam_microphone_gain">录音麦克风增益</string>
@@ -450,7 +458,9 @@
   <string name="vibration_strength">震动长度</string>
   <string name="android_logger">Android 日志记录</string>
   <string name="crc">软件 CRC 控制</string>
+  <string name="fsync_summary">禁用以获得更高的文件系统性能，但会增加在系统崩溃时发生数据丢失的风险。</string>
   <string name="dynamic_fsync">动态 Fsync</string>
+  <string name="dynamic_fsync_summary">启用后，当屏幕开启时 fsync 操作为异步。当屏幕关闭后，fsync 操作将变为同步。</string>
   <string name="gentlefairsleepers">温柔的公平露宿者</string>
   <string name="power_suspend_mode">电源延迟模式</string>
   <string name="power_suspend_mode_summary">内核模式，LCD 钩子和最高等级钩子将自动由内核管理，要手动启用或禁用电源延迟状态请选择用户模式</string>
@@ -479,7 +489,7 @@
   <string name="wlan_wakelock_summary">阻止 wlan 取得唤醒锁</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
-  <string name="plugin_warning">作为此应用的的制作者，我对第三方程序对手机造成的伤害不负责任，我也不能保证他们的功能，当你下载程序时请小心谨慎</string>
+  <string name="plugin_warning">我，作为这个应用的开发者，对第三方应用产生的损坏不负任何责任！我同样无法保证它们能否工作。请谨慎对待任何你下载的应用程序！</string>
   <string name="download_plugins">下载插件</string>
   <string name="looking_plugins">查找插件中</string>
   <string name="no_plugins">没有发现插件</string>
@@ -597,7 +607,7 @@
   <string name="feature_function">功能 x 有什么作用？</string>
   <string name="feature_function_summary">如果你不知道这项控制会起什么样的作用,那就先不要碰它.谨记在调校你昂贵的硬件之前做好充分的研究.</string>
   <string name="add_new_features">您可以添加功能 x 和 y 吗？</string>
-  <string name="add_new_features_summary">这很难说。我试着添加所有功能，但很难使这个应用支持所有设备。我只有三星Galaxy S4 (I9500)，HTC Desire 816， 而最近得了 OnePlus 2，所以别怪我不能立即合并功能。</string>
+  <string name="add_new_features_summary">这很难说。我试着添加所有功能，但很难使这个应用支持所有设备。我只有一台三星 Galaxy S4 (I9500)，一台 HTC Desire 816， 而最近入手了 OnePlus 2，所以别怪我不能立即合并功能。</string>
   <string name="license">许可</string>
   <string name="app_license">内核助手在 Apache License Version 2.0 下授权, 并使用了以下库</string>
   <string name="open_source">开放源代码</string>

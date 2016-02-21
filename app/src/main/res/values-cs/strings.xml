@@ -126,9 +126,11 @@
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinutý faux123.</string>
   <string name="profile_summary">Číslo v závorkách označuje množství procesorových jader, která mohou být online kdykoli.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Vyvážený</string>
   <string name="performance">Výkon</string>
   <string name="conservative">Konzervativní</string>
+  <string name="eco_insanity">Eco InSaNiTy</string>
   <string name="eco_performance">Eko výkon</string>
   <string name="eco_conservative">Eko konzervativní</string>
   <string name="tri">Tri</string>
@@ -167,6 +169,7 @@
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
   <string name="defer_time">Doba odložení odstavení</string>
   <string name="cores_on_touch_summary">Počet probuzených procesorů při dotyku obrazovky či stisku tlačítka.</string>
+  <string name="first_level">První úroveň</string>
   <string name="screen_off_single_core">Jedno jádro při vypnutém displeji</string>
   <string name="screen_off_single_core_summary">Používat pouze jedno jádro, když je displej vypnut.</string>
   <string name="start_delay">Prodleva spuštění</string>

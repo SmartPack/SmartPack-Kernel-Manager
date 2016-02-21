@@ -180,6 +180,10 @@
   <string name="delay">Opóźnienie</string>
   <string name="delay_summary">Czas między sprawdzeniami.</string>
   <string name="pause">Pause</string>
+  <string name="endurance_level_summary">Profil oszczędzania energii.</string>
+  <string name="dual_core_mode">Tryb dwurdzeniowy</string>
+  <string name="zen_decision_summary">Zaimplementowany w kernelu zamiennik dla MPDecision Qualcomma. Rozwijany przez bbedward.</string>
+  <string name="wake_wait_time_summary">Czas oczekiwania przed włączeniem jakichkolwiek rdzeni.</string>
   <string name="poll">Ankieta</string>
   <string name="temp_limit">Limit temperatury</string>
   <string name="temp_limit_summary">Jeśli temperatura przekroczy wybraną, częstotliwość procesora zostanie zmniejszona by uregulować temperaturę.</string>

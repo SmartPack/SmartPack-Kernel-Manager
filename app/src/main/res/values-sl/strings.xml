@@ -126,9 +126,11 @@
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Zamenjava v kernelu za Qualcommov MPDecision. Razvijalec je faux123.</string>
   <string name="profile_summary">Število v oklepajih označuje količino jeder, ki so lahko kadarkoli vklopljena.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Balancirano</string>
   <string name="performance">Odzivnost</string>
   <string name="conservative">Konzervativno</string>
+  <string name="eco_insanity">Ekonomični InSaNiTy</string>
   <string name="eco_performance">Eko odzivnost</string>
   <string name="eco_conservative">Eko konzervativno</string>
   <string name="tri">Tri</string>
@@ -353,7 +355,9 @@
   <string name="lcd_backlight">LCD osvetlitev ozadja</string>
   <string name="brightness_mode">Uporabi način eksponentne osvetlitve ozadja namesto linearni način.</string>
   <string name="min_brightness">Največja svetlost</string>
+  <string name="min_brightness_summary">Dovoljuje, da zmanjšate svetlost zaslona pod najnižjo privzeto vrednost.</string>
   <string name="max_brightness">Največja svetlost</string>
+  <string name="max_brightness_summary">Dovoljuje, da povečate svetlost zaslona nad najvišjo privzeto vrednost.</string>
   <string name="backlight_dimmer">Senčnik osvetlitve</string>
   <string name="offset">Odmik</string>
   <string name="negative_toggle">Negativno stikalo</string>
@@ -375,6 +379,8 @@
   <string name="fullscreen">Polni zaslon</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Zbudite napravo s podrsavanjem po zaslonu.</string>
+  <string name="lenient">Ugodni Sweep2Wake</string>
+  <string name="lenient_summary">Zahteva samo prvi in četrti gumb za vklop/izklop Sweep2Wake.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Podrsaj v desno za vklop</string>
   <string name="s2w_left">Podrsaj v levo za vklop</string>
@@ -402,11 +408,15 @@
   <string name="draw_w">Nariši W</string>
   <string name="draw_c">Nariši C</string>
   <string name="draw_m">Nariši M</string>
+  <string name="camera_gesture">Vzorec za kamero</string>
+  <string name="camera_gesture_summary">Zaženi kamero z risanjem kroga na zaslon.</string>
+  <string name="pocket_mode">Žepni način</string>
   <string name="wake_timeout">Časovna omejitev zbujanja</string>
   <string name="wake_timeout_summary">Nastavite za koliko časo bodo wake nastavitve onemogočene po izklopu zaslona.</string>
   <string name="power_key_suspend">Power Key Suspend</string>
   <string name="power_key_suspend_summary">Ko je to omogočeno bo onemogočen nadzor zbujanja pri izklopu zaslona s power gumbom.</string>
   <string name="sound_control">Nadzor zvoka</string>
+  <string name="headset_highperf_mode">Visokoodzivni način za slušalke</string>
   <string name="headphone_gain">Ojačanje slušalk</string>
   <string name="handset_microphone_gain">Ojačanje mikrofona slušalk</string>
   <string name="cam_microphone_gain">Ojačanje mikrofona kamere</string>
@@ -453,6 +463,8 @@
   <string name="light">Lahko</string>
   <string name="medium">Srednje</string>
   <string name="very_aggressive">Zelo agresivno</string>
+  <string name="adaptive">Adaptivni Low Memory Killer</string>
+  <string name="adaptive_summary">Dinamično naredi LMK bolj agresiven pri razlićnih scenarijih porabe pomnilnika.</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">Velikost diska</string>
   <string name="disksize_summary">Poskuša povečati učinkovitost z izogibanjem odstranjevanja na fizični shrambi, namesto tega uporablja stisnjeno navidezno napravo v RAM-u. Ostranjevanje poteka v RAM-u dokler ni potrebna uporaba menjalnega prostora na fizični shrambi.</string>
@@ -465,7 +477,11 @@
   <string name="crc">Nadzor CRC stikala</string>
   <string name="crc_summary">CRC je mehanizem, namenjen preprečevanju podatkovnih napak. Bloki podatkov lahko izgubijo na hitrosti do 30%, ko je ta vklopljen.</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Izključi za boljšo odzivnost datotečnega sistema, pri čemer lahko pride do izgube podatkov ob sesutju sistema.</string>
   <string name="dynamic_fsync">Dinamični Fsync</string>
+  <string name="dynamic_fsync_summary">Ko je to omogočeno in je zaslon vklopljen, je fsync operacija asinhrona. Ko je zaslon izklopljen, je operacija opravljena sinhrono.</string>
+  <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
+  <string name="gentlefairsleepers_summary">Dodeljeno jih je le 50% zmožnosti. Izklapljanje tega lahko privarčuje nekaj baterije.</string>
   <string name="power_suspend_mode">Moč pripravljenosti</string>
   <string name="power_suspend_mode_summary">Kernel Mode (Način Jedra), LCD Hooks (Kavlji Zaslona) in Highest Level Hook (Kavelj najvišje stopnje) so uravnavani avtomatsko iz strani jedra. Za ročno nastavljanje Power Suspend stanja izberi User Mode (Uporabniški Način).</string>
   <string name="autosleep">Samodejno spanje</string>

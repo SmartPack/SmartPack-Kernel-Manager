@@ -66,6 +66,7 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ρυθμίσεις</string>
   <string name="faq">ΣΥΧΝΈΣ ΕΡΩΤΉΣΕΙΣ</string>
+  <string name="about_us">Σχετικά με εμας</string>
   <string name="unused_cpu_states">Αχρησιμοποίητες καταστάσεις CPU</string>
   <string name="uptime">Χρόνος Uptime</string>
   <string name="deep_sleep">Deep Sleep</string>
@@ -86,6 +87,7 @@
   <string name="cpu_max_screen_off_freq">Μέγιστη Συχνότητα Επεξεργαστή με κλειστή οθόνη</string>
   <string name="cpu_max_screen_off_freq_summary">Ορίστε την μέγιστη συχνότητα του Επεξεργαστή όταν η οθόνη είναι κλειστή.</string>
   <string name="cpu_governor">Governor Επεξεργαστή</string>
+  <string name="cpu_governor_summary">Ο κυβερνήτης της CPU καθορίζει πως συμπεριφέρεται η CPU ανάλογα με τις αλλαγές που συμβαίνουν στο φόρτο εργασίας. Αλλάζοντας τον κυβερνήτη επηρεάζει πως θα αλλάζει τις συχνότητες λειτουργίας που είναι διαθέσιμες η CPU.</string>
   <string name="cpu_governor_tunables">Πίνακες αλλαγών Governor επεξεργαστή</string>
   <string name="cpu_governor_tunables_summary">Τα διάφορα στοιχεία ρύθμισης παραμέτρων που εξαρτώνται από τον governor.</string>
   <string name="not_tunable">%s δεν είναι διαθέσιμα προς επεξεργασία</string>
@@ -176,9 +178,18 @@
   <string name="load_threshold">Όριο φορτίου</string>
   <string name="load_threshold_summary">Το όριο για ενεργοποίηση όλων των επεξεργαστών.</string>
   <string name="max_load_counter">Μετρητής Ανώτατου Φορτίου</string>
+  <string name="timer">Χρονομετρητής</string>
   <string name="screen_off_single_core_summary">Χρήση ενός πυρήνα όταν η οθόνη είναι σβηστή.</string>
+  <string name="idle_frequency">Συχνότητα ηρεμίας</string>
   <string name="start_delay">Καθυστέρηση εκκίνησης</string>
+  <string name="delay">Καθυστέρηση</string>
+  <string name="delay_summary">Χρόνος μεταξύ ελέγχων.</string>
   <string name="pause">Παύση</string>
+  <string name="sampling_rate">Ρυθμός δειγματοληψίας</string>
+  <string name="cpu_down_rate">Ρυθμός καθόδου CPU</string>
+  <string name="cpu_up_rate">Ρυθμός ανόδου CPU</string>
+  <string name="endurance_level">Επίπεδο αντοχής</string>
+  <string name="endurance_level_summary">Ένα προφίλ εξοικονόμησης ενέργειας.</string>
   <string name="quad_core_mode">Λειτουργία τεσσάρων πυρήνων</string>
   <string name="dual_core_mode">Λειτουργία δύο πυρήνων</string>
   <string name="core_control">Διαχείριση Πυρήνων</string>

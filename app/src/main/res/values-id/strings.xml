@@ -352,7 +352,9 @@
   <string name="lcd_backlight">Lampu latar LCD</string>
   <string name="brightness_mode">Gunakan lampu latar modus eksponensial daripada modus linier.</string>
   <string name="min_brightness">Kecerahan Terendah</string>
+  <string name="min_brightness_summary">Mengijinkan Anda untuk mengurangi kecerahan layar LCD lebih rendah dari pada bawaan.</string>
   <string name="max_brightness">Kecerahan Tertinggi</string>
+  <string name="max_brightness_summary">Mengijinkan Anda untuk meningkatkan kecerahan layar LCD lebih tinggi dari pada bawaan.</string>
   <string name="backlight_dimmer">Pengedip Lampu latar</string>
   <string name="offset">Offset</string>
   <string name="negative_toggle">Saklar Negatif</string>
@@ -374,6 +376,8 @@
   <string name="fullscreen">Layar penuh</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Bangunkan perangkat Anda dengan meng-usap layar.</string>
+  <string name="lenient">Kelonggaran usap untuk membangunkan</string>
+  <string name="lenient_summary">Hanya membutuhkan tombol ke-1 dan ke-4 untuk Sweep2Wake.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Sweep2Wake Kanan</string>
   <string name="s2w_left">Sweep2Wake Kiri</string>
@@ -401,11 +405,15 @@
   <string name="draw_w">Menggambar W</string>
   <string name="draw_c">Menggambar C</string>
   <string name="draw_m">Menggambar M</string>
+  <string name="camera_gesture">Gerakan kamera</string>
+  <string name="camera_gesture_summary">Aktifkan kamera dengan menggambar lingkaran pada layar.</string>
+  <string name="pocket_mode">Mode saku</string>
   <string name="wake_timeout">Batas Nyala</string>
   <string name="wake_timeout_summary">Mengatur durasi kapan wake control akan dinonaktifkan setelah layar mati.</string>
   <string name="power_key_suspend">Pengangguhan Tombol Daya</string>
   <string name="power_key_suspend_summary">Mengaktifkan ini akan mematikan fungsi menyalakan layar dengan tombol daya ketika layar mati.</string>
   <string name="sound_control">Kontrol Suara</string>
+  <string name="headset_highperf_mode">Mode tinggi performa headset</string>
   <string name="headphone_gain">Peningkatan Headphone</string>
   <string name="handset_microphone_gain">Peningkatan Microfon Perangkat</string>
   <string name="cam_microphone_gain">Peningkatan Mikrofon Camcorder</string>
@@ -465,6 +473,9 @@
   <string name="crc_summary">CRC adalah suatu mekanisme yang bertujuan untuk mencegah korupsi data ketika diaktifkan. Blok data dapat membebaskan hingga 30% dari kinerja mereka.</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Dinamis Fsync</string>
+  <string name="dynamic_fsync_summary">Ketika aktif dan layar hidup, operasi fsync menjadi asynchronous. Ketika layar mati, operasi ini menjadi synchronously</string>
+  <string name="gentlefairsleepers">Keadilan adil sleepers</string>
+  <string name="gentlefairsleepers_summary">Hanya memberikan 50% sleepers dari layanan. Menonaktifkan dapat menghemat sedikit daya baterai.</string>
   <string name="power_suspend_mode">Modus Penangguh Daya</string>
   <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks dan Tingkat Hook Tertinggi otomatis dikelola oleh kernel, untuk mengaktifkan atau menonaktifkan Kondisi Penangguh Daya secara manual, pilih Modus Pengguna.</string>
   <string name="autosleep">Autosleep</string>
