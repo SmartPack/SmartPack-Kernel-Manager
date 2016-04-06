@@ -191,4 +191,28 @@
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/jalebi.json"
   }
+  {
+    "vendor" : [
+      "Xiaomi"
+      "XIAOMI"
+      "xiaomi"
+      "Wingtech"
+      "wingtech"
+      "WINGTECH"
+      ],
+      "device": [
+        "HM2014811"
+        "HM2014812" 
+        "HM2014813" 
+        "HM2014814" 
+        "HM2014815" 
+        "HM2014816" 
+        "HM2014817" 
+        "HM2014818" 
+        "HM2014819" 
+        "HM2014820" 
+        "HM2014821"
+      ],
+      "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/elixir_r2.json"
+  }
 ]
