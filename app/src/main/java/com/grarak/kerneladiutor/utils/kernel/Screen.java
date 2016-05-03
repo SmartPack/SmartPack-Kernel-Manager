@@ -122,7 +122,7 @@ public class Screen implements Constants {
                 case MSM_BACKLIGHT_DIMMER:
                     return 100;
                 case ZE551ML_MIN_BRIGHTNESS:
-                    return 15;
+                    return 13;
             }
         }
         return 0;

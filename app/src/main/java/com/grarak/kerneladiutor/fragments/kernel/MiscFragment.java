@@ -84,7 +84,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         fsyncInit();
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
-	LedControlInit();
+        if (Misc.hasLedSpeed())LedControlInit();
         networkInit();
         wakelockInit();
     }
