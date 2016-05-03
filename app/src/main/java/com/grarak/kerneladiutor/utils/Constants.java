@@ -487,6 +487,9 @@ public interface Constants {
     String LM3530_MIN_BRIGHTNESS = "/sys/devices/i2c-0/0-0038/lm3530_min_br";
     String LM3530_MAX_BRIGHTNESS = "/sys/devices/i2c-0/0-0038/lm3530_max_br";
 
+    String ZE551ML_MIN_BRIGHTNESS = "/sys/class/backlight/psb-bl/min_brightness";
+    String LE551ML_MAX_BRIGHTNESS = "/sys/class/backlight/psb-bl/max_brightness";
+
     // Backlight Dimmer
     String LM3630_BACKLIGHT_DIMMER = "/sys/module/lm3630_bl/parameters/backlight_dimmer";
     String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
@@ -495,7 +498,7 @@ public interface Constants {
 
     String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
 
-    String[] MIN_BRIGHTNESS_ARRAY = {LM3630_MIN_BRIGHTNESS, MSM_BACKLIGHT_DIMMER};
+    String[] MIN_BRIGHTNESS_ARRAY = {LM3630_MIN_BRIGHTNESS, MSM_BACKLIGHT_DIMMER, ZE551ML_MIN_BRIGHTNESS};
 
     String NEGATIVE_TOGGLE = "/sys/module/cypress_touchkey/parameters/mdnie_shortcut_enabled";
     String REGISTER_HOOK = "/sys/class/misc/mdnie/hook_intercept";
