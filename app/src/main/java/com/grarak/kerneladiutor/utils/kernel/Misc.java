@@ -35,6 +35,10 @@ public class Misc implements Constants {
     private static Integer VIBRATION_MAX;
     private static Integer VIBRATION_MIN;
 
+    private static String LED_SPEED;
+
+    private static String LED_BLINK;
+
     private static String LOGGER_FILE;
 
     private static String CRC_FILE;
@@ -190,6 +194,52 @@ public class Misc implements Constants {
 
     public static List<String> getTcpAvailableCongestions() {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
+    }
+
+    public static boolean hasLedSpeed() {
+        if (LED_SPEED == null)
+            for (String file : LED_ARRAY)
+                if (Utils.existFile(file)) {
+                    LED_SPEED = file;
+                    return true;
+                }
+        return LED_SPEED != null;
+    }
+
+    public static int getMaxMinLedSpeed() {
+        if (LED_SPEED != null) {
+            return 3;
+        }
+        return 0;
+    }
+
+    public static int getCurLedSpeed() {
+        return Utils.stringToInt(Utils.readFile(LED_SPEED));
+    }
+
+    public static void setLedSpeed(int value, Context context) {
+		for (String file : LED_ARRAY)
+                if (Utils.existFile(file)) {
+                    LED_SPEED = file; }
+                Control.runCommand(String.valueOf(value), LED_SPEED, Control.CommandType.GENERIC, context); 
+    }
+
+    public static boolean isLedActive() {
+ 		return Utils.readFile(LED_BLINK).equals("1");
+    }
+
+    public static void activateLedMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", LED_BLINK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasLedMode() {
+        if (LED_BLINK == null)
+            for (String file : LED_ACT)
+                if (Utils.existFile(file)) {
+                    LED_BLINK = file;
+                    return true;
+                }
+        return LED_BLINK != null;
     }
 
     public static void setNewPowerSuspend(int value, Context context) {

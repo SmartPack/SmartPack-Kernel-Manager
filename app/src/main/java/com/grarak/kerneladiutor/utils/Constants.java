@@ -440,7 +440,7 @@ public interface Constants {
     String[] SCREEN_RGB_CTRL_ARRAY = {SCREEN_KCAL_CTRL_ENABLE, SCREEN_KCAL_CTRL_CTRL,
             SCREEN_DIAG0_POWER_CTRL, SCREEN_COLOR_CONTROL_CTRL};
 
-    String SCREEN_HBM = "/sys/devices/virtual/graphics/fb0/hbm";
+    String SCREEN_HBM = "/sys/devices/virtual/graphics/fb0/hbm";   
 
     // Gamma
     String K_GAMMA_R = "/sys/devices/platform/mipi_lgit.1537/kgamma_r";
@@ -692,6 +692,15 @@ public interface Constants {
             {"/sys/vibrator/pwmvalue", 127, 0}
     };
 
+    //LED
+    String LED_SPEED_GREEN = "/sys/class/leds/green/rate";
+    
+    String[] LED_ARRAY = {LED_SPEED_GREEN};
+	
+    String LED_ACTIVE = "/sys/class/leds/green/blink";
+
+    String[] LED_ACT = {LED_ACTIVE};
+
     String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
     String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
 
@@ -756,7 +765,7 @@ public interface Constants {
     String HOSTNAME_KEY = "net.hostname";
 
     Object[][] MISC_ARRAY = {
-            VIBRATION_ARRAY,
+            VIBRATION_ARRAY, LED_ARRAY, LED_ACT,
             {VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
                     MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS, POWER_SUSPEND_MODE,
                     POWER_SUSPEND_STATE, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY},
