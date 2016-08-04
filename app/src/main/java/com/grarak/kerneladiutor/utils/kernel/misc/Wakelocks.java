@@ -38,6 +38,7 @@ public class Wakelocks {
     private static final String BLUESLEEP = "/sys/module/wakeup/parameters/enable_bluesleep_ws";
     private static final String WLAN_RX_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     private static final String MSM_HSIC_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
+    private static final String BCMDHD_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
 
     private static final List<String> sSMB135 = new ArrayList<>();
     private static final List<String> sWlanRx = new ArrayList<>();
@@ -62,6 +63,18 @@ public class Wakelocks {
     private static String WLAN_RX;
     private static String WLAN_CTRL;
     private static String WLAN;
+
+    public static void setBCMDHDDivider(int value, Context context) {
+        run(Control.write(String.valueOf(value), BCMDHD_DIVIDER), BCMDHD_DIVIDER, context);
+    }
+
+    public static int getBCMDHDDivider() {
+        return Utils.strToInt(Utils.readFile(BCMDHD_DIVIDER));
+    }
+
+    public static boolean hasBCMDHDDivider() {
+        return Utils.existFile(BCMDHD_DIVIDER);
+    }
 
     public static void setMsmHsicDivider(int value, Context context) {
         run(Control.write(String.valueOf(value == 15 ? 0 : value + 1), MSM_HSIC_DIVIDER),

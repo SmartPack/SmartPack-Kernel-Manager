@@ -397,7 +397,7 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(blueSleep);
+            wakelocks.add(blueSleep);
         }
 
         if (Wakelocks.hasWlanrxDivider()) {
@@ -448,6 +448,26 @@ public class MiscFragment extends RecyclerViewFragment {
             });
 
             wakelocks.add(msmHsicDivider);
+        }
+
+        if (Wakelocks.hasBCMDHDDivider()) {
+            SeekBarView bcmdhdDivider = new SeekBarView();
+            bcmdhdDivider.setTitle(getString(R.string.bcmdhd_wakelock_divider));
+            bcmdhdDivider.setMax(9);
+            bcmdhdDivider.setMin(1);
+            bcmdhdDivider.setProgress(Wakelocks.getBCMDHDDivider() - 1);
+            bcmdhdDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Wakelocks.setBCMDHDDivider(position + 1, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            wakelocks.add(bcmdhdDivider);
         }
 
         if (wakelocks.size() > 0) {
