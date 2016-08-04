@@ -30,7 +30,9 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,8 +63,9 @@ public class IOFragment extends RecyclerViewFragment {
     }
 
     private void storageInit(final IO.Storage storage, List<RecyclerViewItem> items) {
-        CardView card = new CardView(getActivity());
-        card.setTitle(getString(storage == IO.Storage.Internal ? R.string.internal_storage
+        List<RecyclerViewItem> views = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(storage == IO.Storage.Internal ? R.string.internal_storage
                 : R.string.external_storage));
 
         if (IO.hasScheduler(storage)) {
@@ -78,7 +81,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            card.addItem(scheduler);
+            views.add(scheduler);
 
             DescriptionView tunable = new DescriptionView();
             tunable.setTitle(getString(R.string.scheduler_tunable));
@@ -90,7 +93,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            card.addItem(tunable);
+            views.add(tunable);
         }
 
         if (IO.hasReadahead(storage)) {
@@ -113,7 +116,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            card.addItem(readahead);
+            views.add(readahead);
         }
 
         if (IO.hasRotational(storage)) {
@@ -128,7 +131,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            card.addItem(rotational);
+            views.add(rotational);
         }
 
         if (IO.hasIOStats(storage)) {
@@ -143,11 +146,12 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            card.addItem(iostats);
+            views.add(iostats);
         }
 
-        if (card.size() > 0) {
-            items.add(card);
+        if (views.size() > 0) {
+            items.add(title);
+            items.addAll(views);
         }
     }
 
