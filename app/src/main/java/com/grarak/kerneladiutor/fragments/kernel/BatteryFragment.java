@@ -68,12 +68,12 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void postInit() {
         super.postInit();
 
+        if (itemsSize() > 2) {
+            addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.BATTERY));
+        }
         if (Battery.hasCapacity(getActivity())) {
             addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
                     Battery.getCapacity(getActivity()) + getString(R.string.mah)));
-        }
-        if (itemsSize() > 2) {
-            addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.BATTERY));
         }
     }
 

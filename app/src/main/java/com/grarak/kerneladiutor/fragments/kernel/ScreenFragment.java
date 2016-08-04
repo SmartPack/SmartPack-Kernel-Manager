@@ -86,8 +86,8 @@ public class ScreenFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(new ColorTableFragment());
         addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.SCREEN));
+        addViewPagerFragment(new ColorTableFragment());
     }
 
     @Override

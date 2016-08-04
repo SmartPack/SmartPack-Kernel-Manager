@@ -90,14 +90,14 @@ public class CPUFragment extends RecyclerViewFragment {
         super.init();
 
         if (mPool == null) {
-            mPool = new ThreadPoolExecutor(CPUFreq.getCpuCount() << 1, Integer.MAX_VALUE, 1,
+            mPool = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() << 1, Integer.MAX_VALUE, 1,
                     TimeUnit.MINUTES, new SynchronousQueue<Runnable>());
         }
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU));
         if (CPUFreq.getCpuCount() > 1) {
             addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.cores,
                     CPUFreq.getCpuCount()), null));
         }
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU));
 
         if (mGovernorTunableErrorDialog != null) {
             mGovernorTunableErrorDialog.show();

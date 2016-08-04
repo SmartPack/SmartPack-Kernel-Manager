@@ -44,9 +44,9 @@ public class ThermalFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.THERMAL));
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.warning),
                 getString(R.string.thermal_info)));
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.THERMAL));
     }
 
     @Override
