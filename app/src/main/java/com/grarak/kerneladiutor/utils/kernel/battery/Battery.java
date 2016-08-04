@@ -45,11 +45,11 @@ public class Battery {
     private static Integer sCapacity;
 
     public static void enableBcl(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", BCL), BCL, context);
+        run(Control.write(enable ? "Y" : "N", BCL), BCL, context);
     }
 
     public static boolean isBclEnabled() {
-        return Utils.readFile(BCL).equals("1");
+        return Utils.readFile(BCL).equals("Y");
     }
 
     public static boolean hasBcl() {
