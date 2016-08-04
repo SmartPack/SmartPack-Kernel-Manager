@@ -94,10 +94,8 @@ public class CPUFragment extends RecyclerViewFragment {
                     TimeUnit.MINUTES, new SynchronousQueue<Runnable>());
         }
         addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU));
-        if (CPUFreq.getCpuCount() > 1) {
-            addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.cores,
-                    CPUFreq.getCpuCount()), null));
-        }
+        addViewPagerFragment(DescriptionFragment.newInstance(getString(CPUFreq.getCpuCount() > 1 ?
+                R.string.cores : R.string.core, CPUFreq.getCpuCount()), null));
 
         if (mGovernorTunableErrorDialog != null) {
             mGovernorTunableErrorDialog.show();
