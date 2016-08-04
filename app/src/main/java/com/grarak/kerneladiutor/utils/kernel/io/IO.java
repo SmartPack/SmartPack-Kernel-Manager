@@ -33,154 +33,92 @@ import java.util.List;
  */
 public abstract class IO {
 
-    private static final List<String> sInternalScheduler = new ArrayList<>();
-    private static final List<String> sInternalIOSched = new ArrayList<>();
-    private static final List<String> sInternalReadAhead = new ArrayList<>();
-    private static final List<String> sInternalRotational = new ArrayList<>();
+    private static final String SCHEDULER = "scheduler";
+    private static final String IOSCHED = "iosched";
+    private static final String READ_AHEAD = "read_ahead_kb";
+    private static final String ROTATIONAL = "rotational";
 
-    private static final List<String> sExternalScheduler = new ArrayList<>();
-    private static final List<String> sExternalIOSched = new ArrayList<>();
-    private static final List<String> sExternalReadAhead = new ArrayList<>();
-    private static final List<String> sExternalRotational = new ArrayList<>();
+    private static final List<String> sInternal = new ArrayList<>();
+    private static final List<String> sExternal = new ArrayList<>();
 
     static {
-        sInternalScheduler.add("/sys/block/mmcblk0/queue/scheduler");
-        sInternalScheduler.add("/sys/block/dm-0/queue/scheduler");
-        sInternalScheduler.add("/sys/block/sda/queue/scheduler");
+        sInternal.add("/sys/block/mmcblk0/queue");
+        sInternal.add("/sys/block/dm-0/queue");
+        sInternal.add("/sys/block/sda/queue");
 
-        sInternalIOSched.add("/sys/block/mmcblk0/queue/iosched");
-        sInternalIOSched.add("/sys/block/dm-0/queue/iosched");
-        sInternalIOSched.add("/sys/block/sda/queue/iosched");
-
-        sInternalReadAhead.add("/sys/block/mmcblk0/queue/read_ahead_kb");
-        sInternalReadAhead.add("/sys/block/dm-0/queue/read_ahead_kb");
-        sInternalReadAhead.add("/sys/block/sda/queue/read_ahead_kb");
-
-        sInternalRotational.add("/sys/block/mmcblk0/queue/rotational");
-        sInternalRotational.add("/sys/block/dm-0/queue/rotational");
-        sInternalRotational.add("/sys/block/sda/queue/rotational");
-
-        sExternalScheduler.add("/sys/block/mmcblk1/queue/scheduler");
-
-        sExternalIOSched.add("/sys/block/mmcblk1/queue/iosched");
-
-        sExternalReadAhead.add("/sys/block/mmcblk1/queue/read_ahead_kb");
-
-        sExternalReadAhead.add("/sys/block/mmcblk1/queue/rotational");
+        sExternal.add("/sys/block/mmcblk1/queue");
     }
 
-    private static String INTERNAL_SCHEDULER;
-    private static String INTERNAL_IOSCHED;
-    private static String INTERNAL_READ_AHEAD;
-    private static String INTERNAL_ROTATIONAL;
-
-    private static String EXTERNAL_SCHEDULER;
-    private static String EXTERNAL_IOSCHED;
-    private static String EXTERNAL_READ_AHEAD;
-    private static String EXTERNAL_ROTATIONAL;
-
-    public static void enableExternalRotational(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", EXTERNAL_ROTATIONAL), EXTERNAL_ROTATIONAL, context);
+    public enum Storage {
+        Internal,
+        External
     }
 
-    public static boolean isExternalRotationalEnabled() {
-        return Utils.readFile(EXTERNAL_ROTATIONAL).equals("1");
-    }
-
-    public static boolean hasExternalRotational() {
-        return EXTERNAL_ROTATIONAL != null;
-    }
-
-    public static void setExternalReadahead(int value, Context context) {
-        run(Control.write(String.valueOf(value), EXTERNAL_READ_AHEAD), EXTERNAL_READ_AHEAD, context);
-    }
-
-    public static int getExternalReadahead() {
-        return getReadahead(EXTERNAL_READ_AHEAD);
-    }
-
-    public static String getExternalIOSched() {
-        return EXTERNAL_IOSCHED;
-    }
-
-    public static void setExternalScheduler(String value, Context context) {
-        run(Control.write(value, EXTERNAL_SCHEDULER), EXTERNAL_SCHEDULER, context);
-    }
-
-    public static String getExternalScheduler() {
-        return getScheduler(EXTERNAL_SCHEDULER);
-    }
-
-    public static List<String> getExternalSchedulers() {
-        return getSchedulers(EXTERNAL_SCHEDULER);
-    }
+    private static String INTERNAL;
+    private static String EXTERNAL;
 
     public static boolean hasExternal() {
-        return EXTERNAL_SCHEDULER != null && EXTERNAL_IOSCHED != null && EXTERNAL_READ_AHEAD != null;
+        return EXTERNAL != null;
     }
 
-    public static void enableInternalRotational(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", INTERNAL_ROTATIONAL), INTERNAL_ROTATIONAL, context);
+    public static void enableRotational(Storage storage, boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", getPath(storage, ROTATIONAL)),
+                getPath(storage, ROTATIONAL), context);
     }
 
-    public static boolean isInternalRotationalEnabled() {
-        return Utils.readFile(INTERNAL_ROTATIONAL).equals("1");
+    public static boolean isRotationalEnabled(Storage storage) {
+        return Utils.readFile(getPath(storage, ROTATIONAL)).equals("1");
     }
 
-    public static boolean hasInternalRotational() {
-        return INTERNAL_ROTATIONAL != null;
+    public static boolean hasRotational(Storage storage) {
+        return Utils.existFile(getPath(storage, ROTATIONAL));
     }
 
-    public static void setInternalReadahead(int value, Context context) {
-        run(Control.write(String.valueOf(value), INTERNAL_READ_AHEAD), INTERNAL_READ_AHEAD, context);
+    public static void setReadahead(Storage storage, int value, Context context) {
+        run(Control.write(String.valueOf(value), getPath(storage, READ_AHEAD)),
+                getPath(storage, READ_AHEAD), context);
     }
 
-    public static int getInternalReadahead() {
-        return getReadahead(INTERNAL_READ_AHEAD);
+    public static int getReadahead(Storage storage) {
+        return getReadahead(getPath(storage, READ_AHEAD));
     }
 
-    public static String getInternalIOSched() {
-        return INTERNAL_IOSCHED;
+    public static boolean hasReadahead(Storage storage) {
+        return Utils.existFile(getPath(storage, READ_AHEAD));
     }
 
-    public static void setInternalScheduler(String value, Context context) {
-        run(Control.write(value, INTERNAL_SCHEDULER), INTERNAL_SCHEDULER, context);
+    public static String geIOSched(Storage storage) {
+        return getPath(storage, IOSCHED);
     }
 
-    public static String getInternalScheduler() {
-        return getScheduler(INTERNAL_SCHEDULER);
+    public static void setScheduler(Storage storage, String value, Context context) {
+        run(Control.write(value, getPath(storage, SCHEDULER)), getPath(storage, SCHEDULER), context);
     }
 
-    public static List<String> getInternalSchedulers() {
-        return getSchedulers(INTERNAL_SCHEDULER);
+    public static String getScheduler(Storage storage) {
+        return getScheduler(getPath(storage, SCHEDULER));
+    }
+
+    public static List<String> getSchedulers(Storage storage) {
+        return getSchedulers(getPath(storage, SCHEDULER));
+    }
+
+    public static boolean hasScheduler(Storage storage) {
+        return Utils.existFile(getPath(storage, SCHEDULER));
     }
 
     public static boolean supported() {
-        if (INTERNAL_SCHEDULER == null) {
-            INTERNAL_SCHEDULER = exists(sInternalScheduler);
+        if (INTERNAL == null) {
+            INTERNAL = exists(sInternal);
         }
-        if (INTERNAL_IOSCHED == null) {
-            INTERNAL_IOSCHED = exists(sInternalIOSched);
+        if (EXTERNAL == null) {
+            EXTERNAL = exists(sExternal);
         }
-        if (INTERNAL_READ_AHEAD == null) {
-            INTERNAL_READ_AHEAD = exists(sInternalReadAhead);
-        }
-        if (INTERNAL_ROTATIONAL == null) {
-            INTERNAL_ROTATIONAL = exists(sInternalRotational);
-        }
-        if (EXTERNAL_SCHEDULER == null) {
-            EXTERNAL_SCHEDULER = exists(sExternalScheduler);
-        }
-        if (EXTERNAL_IOSCHED == null) {
-            EXTERNAL_IOSCHED = exists(sExternalIOSched);
-        }
-        if (EXTERNAL_READ_AHEAD == null) {
-            EXTERNAL_READ_AHEAD = exists(sExternalReadAhead);
-        }
-        if (EXTERNAL_ROTATIONAL == null) {
-            EXTERNAL_ROTATIONAL = exists(sExternalRotational);
-        }
-        return INTERNAL_SCHEDULER != null && INTERNAL_IOSCHED != null && INTERNAL_READ_AHEAD != null;
+        return INTERNAL != null;
+    }
+
+    private static String getPath(Storage storage, String file) {
+        return storage == Storage.Internal ? INTERNAL + "/" + file : EXTERNAL + "/" + file;
     }
 
     private static int getReadahead(String path) {

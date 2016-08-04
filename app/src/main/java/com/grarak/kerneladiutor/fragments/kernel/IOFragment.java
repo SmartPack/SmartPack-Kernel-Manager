@@ -55,148 +55,86 @@ public class IOFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        internalStorageInit(items);
+        storageInit(IO.Storage.Internal, items);
         if (IO.hasExternal()) {
-            externalStorageInit(items);
+            storageInit(IO.Storage.External, items);
         }
     }
 
-    private void internalStorageInit(List<RecyclerViewItem> items) {
-        CardView internalCard = new CardView(getActivity());
-        internalCard.setTitle(getString(R.string.internal_storage));
+    private void storageInit(final IO.Storage storage, List<RecyclerViewItem> items) {
+        CardView card = new CardView(getActivity());
+        card.setTitle(getString(storage == IO.Storage.Internal ? R.string.internal_storage
+                : R.string.external_storage));
 
-        SelectView scheduler = new SelectView();
-        scheduler.setTitle(getString(R.string.scheduler));
-        scheduler.setSummary(getString(R.string.scheduler_summary));
-        scheduler.setItems(IO.getInternalSchedulers());
-        scheduler.setItem(IO.getInternalScheduler());
-        scheduler.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                IO.setInternalScheduler(item, getActivity());
-            }
-        });
-
-        internalCard.addItem(scheduler);
-
-        DescriptionView tunable = new DescriptionView();
-        tunable.setTitle(getString(R.string.scheduler_tunable));
-        tunable.setSummary(getString(R.string.scheduler_tunable_summary));
-        tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                showTunables(IO.getInternalScheduler(), IO.getInternalIOSched());
-            }
-        });
-
-        internalCard.addItem(tunable);
-
-        SeekBarView readahead = new SeekBarView();
-        readahead.setTitle(getString(R.string.read_ahead));
-        readahead.setSummary(getString(R.string.read_ahead_summary));
-        readahead.setUnit(getString(R.string.kb));
-        readahead.setMax(8192);
-        readahead.setMin(128);
-        readahead.setOffset(128);
-        readahead.setProgress(IO.getInternalReadahead() / 128 - 1);
-        readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                IO.setInternalReadahead((position + 1) * 128, getActivity());
-            }
-
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
-
-        internalCard.addItem(readahead);
-
-        if (IO.hasInternalRotational()) {
-            SwitchView rotational = new SwitchView();
-            rotational.setTitle(getString(R.string.rotational));
-            rotational.setSummary(getString(R.string.rotational_summary));
-            rotational.setChecked(IO.isInternalRotationalEnabled());
-            rotational.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+        if (IO.hasScheduler(storage)) {
+            SelectView scheduler = new SelectView();
+            scheduler.setTitle(getString(R.string.scheduler));
+            scheduler.setSummary(getString(R.string.scheduler_summary));
+            scheduler.setItems(IO.getSchedulers(storage));
+            scheduler.setItem(IO.getScheduler(storage));
+            scheduler.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IO.enableInternalRotational(isChecked, getActivity());
+                public void onItemSelected(SelectView selectView, int position, String item) {
+                    IO.setScheduler(storage, item, getActivity());
                 }
             });
 
-            internalCard.addItem(rotational);
-        }
+            card.addItem(scheduler);
 
-        items.add(internalCard);
-    }
-
-    private void externalStorageInit(List<RecyclerViewItem> items) {
-        CardView externalCard = new CardView(getActivity());
-        externalCard.setTitle(getString(R.string.external_storage));
-
-        SelectView scheduler = new SelectView();
-        scheduler.setTitle(getString(R.string.scheduler));
-        scheduler.setSummary(getString(R.string.scheduler_summary));
-        scheduler.setItems(IO.getExternalSchedulers());
-        scheduler.setItem(IO.getExternalScheduler());
-        scheduler.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                IO.setExternalScheduler(item, getActivity());
-            }
-        });
-
-        externalCard.addItem(scheduler);
-
-        DescriptionView tunable = new DescriptionView();
-        tunable.setTitle(getString(R.string.scheduler_tunable));
-        tunable.setSummary(getString(R.string.scheduler_tunable_summary));
-        tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                showTunables(IO.getExternalScheduler(), IO.getExternalIOSched());
-            }
-        });
-
-        externalCard.addItem(tunable);
-
-        SeekBarView readahead = new SeekBarView();
-        readahead.setTitle(getString(R.string.read_ahead));
-        readahead.setSummary(getString(R.string.read_ahead_summary));
-        readahead.setUnit(getString(R.string.kb));
-        readahead.setMax(8192);
-        readahead.setMin(128);
-        readahead.setOffset(128);
-        readahead.setProgress(IO.getExternalReadahead() / 128 - 1);
-        readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                IO.setExternalReadahead((position + 1) * 128, getActivity());
-            }
-
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
-
-        externalCard.addItem(readahead);
-
-        if (IO.hasExternalRotational()) {
-            SwitchView rotational = new SwitchView();
-            rotational.setTitle(getString(R.string.rotational));
-            rotational.setSummary(getString(R.string.rotational_summary));
-            rotational.setChecked(IO.isExternalRotationalEnabled());
-            rotational.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            DescriptionView tunable = new DescriptionView();
+            tunable.setTitle(getString(R.string.scheduler_tunable));
+            tunable.setSummary(getString(R.string.scheduler_tunable_summary));
+            tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IO.enableExternalRotational(isChecked, getActivity());
+                public void onClick(RecyclerViewItem item) {
+                    showTunables(IO.getScheduler(storage), IO.geIOSched(storage));
                 }
             });
 
-            externalCard.addItem(rotational);
+            card.addItem(tunable);
         }
 
-        items.add(externalCard);
+        if (IO.hasReadahead(storage)) {
+            SeekBarView readahead = new SeekBarView();
+            readahead.setTitle(getString(R.string.read_ahead));
+            readahead.setSummary(getString(R.string.read_ahead_summary));
+            readahead.setUnit(getString(R.string.kb));
+            readahead.setMax(8192);
+            readahead.setMin(128);
+            readahead.setOffset(128);
+            readahead.setProgress(IO.getReadahead(storage) / 128 - 1);
+            readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    IO.setReadahead(storage, (position + 1) * 128, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            card.addItem(readahead);
+        }
+
+        if (IO.hasRotational(storage)) {
+            SwitchView rotational = new SwitchView();
+            rotational.setTitle(getString(R.string.rotational));
+            rotational.setSummary(getString(R.string.rotational_summary));
+            rotational.setChecked(IO.isRotationalEnabled(storage));
+            rotational.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    IO.enableRotational(storage, isChecked, getActivity());
+                }
+            });
+
+            card.addItem(rotational);
+        }
+
+        if (card.size() > 0) {
+            items.add(card);
+        }
     }
 
     private void showTunables(String scheduler, String path) {
