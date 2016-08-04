@@ -145,6 +145,7 @@ public class KSMFragment extends RecyclerViewFragment {
             if (KSM.hasInfo(i)) {
                 DescriptionView info = new DescriptionView();
                 info.setTitle(KSM.getInfoText(i, getActivity()));
+                info.setTextIsSelectable(false);
 
                 items.add(info);
                 mInfos.add(info);
