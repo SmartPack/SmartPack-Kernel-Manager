@@ -92,6 +92,7 @@
     <string name="profile">Profile</string>
     <string name="recovery">Recovery</string>
     <string name="initd">Init.d</string>
+    <string name="on_boot">On Boot</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
     <string name="faq">FAQ</string>
@@ -654,7 +655,6 @@
     <string name="test">Test</string>
     <string name="output">Output</string>
     <string name="edit">Edit</string>
-    <string name="on_boot">On Boot</string>
     <string name="export">Export</string>
     <string name="delete">Delete</string>
     <string name="sure_question">Are you sure?</string>
@@ -721,6 +721,12 @@
     <string name="exceute_question">Execute %s?</string>
     <string name="executing">Executing</string>
     <string name="result">Result</string>
+
+    <!-- On Boot -->
+    <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot.</string>
+    <string name="delete_question">Delete %s?</string>
+    <string name="arguments">Arguments: %s</string>
+    <string name="disable_question">Disable %s?</string>
 
     <!-- About -->
     <string name="about_me">Hi, I\'m Willi Ye aka Grarak, a 19 year old student living in Vienna. I\'ve been developing on Android for quite a long time. Beside Kernel Adiutor I\'m also maintaining CyanogenMod for few devices and working on ParanoidAndroid. So please understand if I don\'t find the time to update this application.</string>

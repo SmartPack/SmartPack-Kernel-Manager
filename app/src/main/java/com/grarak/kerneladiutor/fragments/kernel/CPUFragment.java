@@ -680,12 +680,12 @@ public class CPUFragment extends RecyclerViewFragment {
         try {
             if (mCoresBig.size() > 0) {
                 for (int core : mCoresBig.keySet()) {
-                    mCoresBig.get(core).setChecked(CPUFreq.getCurFreq(core) != 0);
+                    mCoresBig.get(core).setChecked(!CPUFreq.isOffline(core));
                 }
             }
             if (mCoresLITTLE.size() > 0) {
                 for (int core : mCoresLITTLE.keySet()) {
-                    mCoresLITTLE.get(core).setChecked(CPUFreq.getCurFreq(core) != 0);
+                    mCoresLITTLE.get(core).setChecked(!CPUFreq.isOffline(core));
                 }
             }
         } catch (ConcurrentModificationException ignored) {
