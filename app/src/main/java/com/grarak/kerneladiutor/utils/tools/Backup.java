@@ -1,36 +1,38 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils.tools;
 
 import android.os.Environment;
 import android.util.Log;
 
-import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.kerneladiutor.library.Tools;
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.File;
 
 /**
- * Created by willi on 17.05.15.
+ * Created by willi on 09.07.16.
  */
 public class Backup {
+
+    private static final String TAG = Backup.class.getSimpleName();
 
     private static String boot;
     private static String recovery;
@@ -87,21 +89,19 @@ public class Backup {
             "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
     };
 
-    public static void restore(RootFile file, PARTITION partition_type) {
-        String parentFile = file.getParent();
-        String sdcard = Environment.getExternalStorageDirectory().getPath();
-        if (parentFile.startsWith(sdcard))
-            parentFile = parentFile.replace(sdcard, Tools.getInternalStorage());
-        String command = "dd if='" + parentFile + "/" + file.getName() + "' of=" + getPartition(partition_type);
-        Log.i(Constants.TAG, "Executing: " + command);
+    public static void restore(File file, PARTITION partition_type) {
+        String sdcard = Environment.getExternalStorageDirectory().toString();
+        if (file.toString().startsWith(sdcard)) {
+            file = new File(file.toString().replace(sdcard, Utils.getInternalStorage()));
+        }
+        String command = "dd if='" + file.toString() + "' of=" + getPartition(partition_type);
+        Log.i(TAG, "Executing: " + command);
         RootUtils.runCommand(command);
     }
 
     public static void backup(String name, PARTITION partition_type) {
-        if (!name.endsWith(".img")) name += ".img";
-
         String command = "dd if=" + getPartition(partition_type) + " of='" + getPath(partition_type) + "/" + name + "'";
-        Log.i(Constants.TAG, "Executing: " + command);
+        Log.i(TAG, "Executing: " + command);
         RootUtils.runCommand(command);
     }
 
@@ -118,7 +118,7 @@ public class Backup {
         }
     }
 
-    private static String getPath(PARTITION PARTITION_type) {
+    public static String getPath(PARTITION PARTITION_type) {
         String folder = null;
         switch (PARTITION_type) {
             case BOOT:
@@ -131,41 +131,49 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        RootFile genericFolder = new RootFile(Tools.getInternalStorage() + "/KernelAdiutor/" + folder);
-        genericFolder.mkdir();
-        if (genericFolder.exists()) return genericFolder.toString();
-        RootFile genericFolder2 = new RootFile("/sdcard/KernelAdiutor/" + folder);
-        genericFolder2.mkdir();
-        return genericFolder2.toString();
+        File file = new File(Utils.getInternalDataStorage() + "/backup/" + folder);
+        if (file.exists() && file.isFile()) {
+            file.delete();
+        }
+        file.mkdirs();
+        if (Utils.existFile(file.toString())) return file.toString();
+        return Utils.getInternalDataStorage().replace(
+                Environment.getExternalStorageDirectory().toString(), "/sdcard") + "/backup/" + folder;
     }
 
     public static String getBootPartition() {
-        if (boot == null)
-            for (String partition : Boot)
+        if (boot == null) {
+            for (String partition : Boot) {
                 if (Utils.existFile(partition)) {
                     boot = partition;
                     return partition;
                 }
+            }
+        }
         return boot;
     }
 
     public static String getRecoveryPartition() {
-        if (recovery == null)
-            for (String partition : Recovery)
+        if (recovery == null) {
+            for (String partition : Recovery) {
                 if (Utils.existFile(partition)) {
                     recovery = partition;
                     return partition;
                 }
+            }
+        }
         return recovery;
     }
 
     public static String getFotaPartition() {
-        if (fota == null)
-            for (String partition : Fota)
+        if (fota == null) {
+            for (String partition : Fota) {
                 if (Utils.existFile(partition)) {
                     fota = partition;
                     return partition;
                 }
+            }
+        }
         return fota;
     }
 

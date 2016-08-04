@@ -1,19 +1,22 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils;
 
 import android.app.Activity;
@@ -29,25 +32,25 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by willi on 02.07.15.
+ * Created by willi on 08.07.16.
  */
 public class DownloadTask extends AsyncTask<String, Integer, String> {
 
-    private final Activity activity;
+    private final Activity mActivity;
     private final OnDownloadListener onDownloadListener;
     private final PowerManager.WakeLock mWakeLock;
-    private final String path;
-    private boolean downloading = true;
-    private boolean cancelled;
+    private final String mPath;
+    private boolean mDownloading = true;
+    private boolean mCancelled;
 
-    public DownloadTask(Context context, OnDownloadListener onDownloadListener, String path) {
-        activity = (Activity) context;
+    public DownloadTask(Activity activity, OnDownloadListener onDownloadListener, String path) {
+        mActivity = activity;
         this.onDownloadListener = onDownloadListener;
-        this.path = path;
+        mPath = path;
 
         new File(path).getParentFile().mkdirs();
 
-        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        PowerManager pm = (PowerManager) activity.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         mWakeLock.acquire();
     }
@@ -70,16 +73,17 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
 
             int totalSize = connection.getContentLength();
             input = connection.getInputStream();
-            output = new FileOutputStream(path);
+            output = new FileOutputStream(mPath);
 
             byte data[] = new byte[4096];
             int currentSize = 0;
             int count;
             while (true) {
-                if (cancelled) {
-                    activity.runOnUiThread(new Runnable() {
+                if (mCancelled) {
+                    mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            new File(mPath).delete();
                             onDownloadListener.onCancel();
                         }
                     });
@@ -89,31 +93,41 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                     return null;
                 }
 
-                if (downloading) if ((count = input.read(data)) != -1) {
-                    currentSize += count;
-                    if (totalSize > 0) {
-                        final int cs = currentSize;
-                        final int ts = totalSize;
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                onDownloadListener.onUpdate(cs, ts);
-                            }
-                        });
+                if (mDownloading) {
+                    if ((count = input.read(data)) != -1) {
+                        currentSize += count;
+                        if (totalSize > 0) {
+                            final int cs = currentSize;
+                            final int ts = totalSize;
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onDownloadListener.onUpdate(cs, ts);
+                                }
+                            });
+                        }
+                        output.write(data, 0, count);
+                    } else {
+                        break;
                     }
-                    output.write(data, 0, count);
-                } else break;
+                }
             }
         } catch (Exception e) {
             return e.getMessage();
         } finally {
             try {
-                if (output != null) output.close();
-                if (input != null) input.close();
+                if (output != null) {
+                    output.close();
+                }
+                if (input != null) {
+                    input.close();
+                }
             } catch (IOException ignored) {
             }
 
-            if (connection != null) connection.disconnect();
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
         return null;
     }
@@ -123,20 +137,23 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         super.onPostExecute(s);
 
         mWakeLock.release();
-        if (s == null) onDownloadListener.onSuccess(path);
-        else onDownloadListener.onFailure(s);
+        if (s == null) {
+            onDownloadListener.onSuccess(mPath);
+        } else {
+            onDownloadListener.onFailure(s);
+        }
     }
 
     public void pause() {
-        downloading = false;
+        mDownloading = false;
     }
 
     public void resume() {
-        downloading = true;
+        mDownloading = true;
     }
 
     public void cancel() {
-        cancelled = true;
+        mCancelled = true;
     }
 
     public interface OnDownloadListener {

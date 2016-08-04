@@ -1,31 +1,34 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils.tools;
 
 import android.os.Environment;
 
-import com.kerneladiutor.library.Tools;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 13.04.15.
+ * Created by willi on 08.07.16.
  */
 public class Recovery {
 
@@ -37,16 +40,16 @@ public class Recovery {
         WIPE_DATA, WIPE_CACHE, FLASH_ZIP
     }
 
-    private final RECOVERY_COMMAND recovery_command;
-    private final File file;
+    private final RECOVERY_COMMAND mRecovery_command;
+    private final File mFile;
 
     public Recovery(RECOVERY_COMMAND recovery_command) {
         this(recovery_command, null);
     }
 
     public Recovery(RECOVERY_COMMAND recovery_command, File file) {
-        this.recovery_command = recovery_command;
-        this.file = file;
+        mRecovery_command = recovery_command;
+        mFile = file;
     }
 
     public String getFile(RECOVERY recovery) {
@@ -55,13 +58,13 @@ public class Recovery {
 
     public List<String> getCommands(RECOVERY recovery) {
         RecoveryType recoveryType = recovery == RECOVERY.TWRP ? new TWRP() : new CWM();
-        switch (recovery_command) {
+        switch (mRecovery_command) {
             case WIPE_DATA:
                 return recoveryType.getWipeData();
             case WIPE_CACHE:
                 return recoveryType.getWipeCache();
             case FLASH_ZIP:
-                return recoveryType.getFlashZip(file);
+                return recoveryType.getFlashZip(mFile);
         }
         return null;
     }
@@ -80,12 +83,14 @@ public class Recovery {
             String zip = file.getAbsolutePath();
 
             String internalStorage = Environment.getExternalStorageDirectory().toString();
-            if (zip.startsWith(internalStorage + "/"))
-                return zip.replace(internalStorage + "/", Tools.getInternalStorage() + "/");
+            if (zip.startsWith(internalStorage + "/")) {
+                return zip.replace(internalStorage + "/", Utils.getInternalStorage() + "/");
+            }
 
-            String externalStorage = Tools.getExternalStorage();
-            if (externalStorage != null && zip.startsWith(externalStorage + "/"))
+            String externalStorage = Utils.getExternalStorage();
+            if (externalStorage != null && zip.startsWith(externalStorage + "/")) {
                 return zip.replace(externalStorage + "/", getExternalPath() + "/");
+            }
 
             return zip;
         }
@@ -99,7 +104,7 @@ public class Recovery {
             List<String> commands = new ArrayList<>();
 
             commands.add("format(\"/data\");");
-            commands.add("format(\"" + Tools.getInternalStorage() + "/.android_secure\");");
+            commands.add("format(\"" + Utils.getInternalStorage() + "/.android_secure\");");
 
             return commands;
         }

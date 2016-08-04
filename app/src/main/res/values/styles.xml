@@ -1,62 +1,42 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_primary</item>
-        <item name="android:textColorPrimary">@color/textcolor_light</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
+        <item name="swirl_errorColor">@color/colorAccent</item>
     </style>
 
-    <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_primary</item>
-        <item name="android:textColorPrimary">@color/textcolor_dark</item>
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
+        <item name="swirl_errorColor">@color/colorAccent</item>
     </style>
 
-    <style name="AppThemeLight" parent="AppBaseThemeLight" />
-
-    <style name="AppThemeDark" parent="AppBaseThemeDark" />
-
-    <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_primary</item>
-        <item name="android:textColorPrimary">@color/textcolor_light</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppThemeActionBarDark" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_primary</item>
-        <item name="android:textColorPrimary">@color/textcolor_dark</item>
-        <item name="android:windowContentOverlay">@null</item>
+    <style name="AppThemeDark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="WhiteAccent">
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorAccent">@color/white</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="ActionBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorAccent">@color/white</item>
-    </style>
-
-    <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">20sp</item>
-    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/divider_background_light</item>
-    </style>
-
-    <style name="menu_labels_style">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:background">@color/divider</item>
     </style>
 
 </resources>

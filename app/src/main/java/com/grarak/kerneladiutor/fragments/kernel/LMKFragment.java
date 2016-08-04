@@ -1,156 +1,199 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.os.Bundle;
-
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.kernel.LMK;
+import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.lmk.LMK;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * Created by willi on 27.12.14.
+ * Created by willi on 29.06.16.
  */
-public class LMKFragment extends RecyclerViewFragment implements Constants, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
+public class LMKFragment extends RecyclerViewFragment {
 
-    private SeekBarCardView.DSeekBarCard[] mMinFreeCard;
-    private CardViewItem.DCardView[] mProfileCard;
-    private SwitchCardView.DSwitchCard mAdaptiveCard;
+    private static final LinkedHashMap<Integer, String> sProfiles = new LinkedHashMap<>();
 
-    private final List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
+    static {
+        sProfiles.put(R.string.very_light, "512,1024,1280,2048,3072,4096");
+        sProfiles.put(R.string.light, "1024,2048,2560,4096,6144,8192");
+        sProfiles.put(R.string.medium, "1024,2048,4096,8192,12288,16384");
+        sProfiles.put(R.string.aggressive, "2048,4096,8192,16384,24576,32768");
+        sProfiles.put(R.string.very_aggressive, "4096,8192,16384,32768,49152,65536");
+    }
 
-    private final String[] mProfileValues = new String[]{
-            "512,1024,1280,2048,3072,4096", "1024,2048,2560,4096,6144,8192", "1024,2048,4096,8192,12288,16384",
-            "2048,4096,8192,16384,24576,32768", "4096,8192,16384,32768,49152,65536"};
+    private List<SeekBarView> mMinFrees = new ArrayList<>();
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
+    protected void init() {
+        super.init();
 
-        values.clear();
-        modifiedvalues.clear();
-        for (int x = 0; x < 513; x++) {
-            modifiedvalues.add(x + getString(R.string.mb));
-            values.add(String.valueOf(x * 256));
-        }
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.LMK));
+    }
 
+    @Override
+    protected void addItems(List<RecyclerViewItem> items) {
         if (LMK.hasAdaptive()) {
-            mAdaptiveCard = new SwitchCardView.DSwitchCard();
-            mAdaptiveCard.setTitle(getString(R.string.adaptive));
-            mAdaptiveCard.setDescription(getString(R.string.adaptive_summary));
-            mAdaptiveCard.setChecked(LMK.getAdaptive());
-            mAdaptiveCard.setOnDSwitchCardListener(this);
-
-            addView(mAdaptiveCard);
+            adaptiveInit(items);
         }
+        minfreeInit(items);
+        profileInit(items);
+        swapWait(items);
+    }
 
-        List<String> minfrees = LMK.getMinFrees();
-        mMinFreeCard = new SeekBarCardView.DSeekBarCard[minfrees.size()];
-        try {
-            for (int i = 0; i < minfrees.size(); i++) {
-                mMinFreeCard[i] = new SeekBarCardView.DSeekBarCard(modifiedvalues);
-                mMinFreeCard[i].setTitle(getResources().getStringArray(R.array.lmk_names)[i]);
-                mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
-                mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener() {
-                    @Override
-                    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-                    }
-
-                    @Override
-                    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-                        List<String> minFrees = LMK.getMinFrees();
-                        String minFree = "";
-
-                        for (int i = 0; i < mMinFreeCard.length; i++)
-                            if (dSeekBarCard == mMinFreeCard[i])
-                                minFree += minFree.isEmpty() ? values.get(position) : "," + values.get(position);
-                            else
-                                minFree += minFree.isEmpty() ? minFrees.get(i) : "," + minFrees.get(i);
-
-                        LMK.setMinFree(minFree, getActivity());
-                        refresh();
-                    }
-                });
-
-                addView(mMinFreeCard[i]);
+    private void adaptiveInit(List<RecyclerViewItem> items) {
+        SwitchView adaptive = new SwitchView();
+        adaptive.setTitle(getString(R.string.lmk_adaptive));
+        adaptive.setSummary(getString(R.string.lmk_adaptive_summary));
+        adaptive.setChecked(LMK.isAdaptiveEnabled());
+        adaptive.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                LMK.enableAdaptive(isChecked, getActivity());
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
+        });
 
-        mProfileCard = new CardViewItem.DCardView[mProfileValues.length];
-        for (int i = 0; i < mProfileValues.length; i++) {
-            mProfileCard[i] = new CardViewItem.DCardView();
-            mProfileCard[i].setTitle(getResources().getStringArray(R.array.lmk_profiles)[i]);
-            mProfileCard[i].setDescription(mProfileValues[i]);
-            mProfileCard[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+        items.add(adaptive);
+    }
+
+    private void minfreeInit(List<RecyclerViewItem> items) {
+        mMinFrees.clear();
+        final List<String> minfrees = LMK.getMinFrees();
+        String[] descriptions = getResources().getStringArray(R.array.lmk_names);
+
+        for (int i = 0; i < minfrees.size(); i++) {
+            SeekBarView minfree = new SeekBarView();
+            minfree.setTitle(descriptions[i]);
+            minfree.setUnit(getString(R.string.mb));
+            minfree.setMax(1024);
+            minfree.setProgress(Math.round(Utils.strToInt(minfrees.get(i)) / 256));
+
+            final int minfreeposition = i;
+            minfree.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    for (CardViewItem.DCardView profile : mProfileCard)
-                        if (dCardView == profile) {
-                            LMK.setMinFree(dCardView.getDescription().toString(), getActivity());
-                            refresh();
-                        }
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    StringBuilder values = new StringBuilder();
+                    for (int i = 0; i < minfrees.size(); i++) {
+                        values.append(minfreeposition == i ? position * 256 : minfrees.get(i)).append(",");
+                    }
+                    values.setLength(values.length() - 1);
+                    LMK.setMinFree(values.toString(), getActivity());
+                    refreshMinFree();
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
                 }
             });
 
-            addView(mProfileCard[i]);
+            items.add(minfree);
+            mMinFrees.add(minfree);
         }
     }
 
-    private void refresh() {
-        new Thread() {
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                    getActivity().runOnUiThread(new Runnable() {
+    private void profileInit(List<RecyclerViewItem> items) {
+        TitleView profilesTitle = new TitleView();
+        profilesTitle.setText(getString(R.string.profile));
+        items.add(profilesTitle);
 
-                        @Override
-                        public void run() {
-                            List<String> minfrees = LMK.getMinFrees();
-                            if (minfrees == null) return;
-                            for (int i = 0; i < minfrees.size(); i++)
-                                try {
-                                    mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
-                                            + getString(R.string.mb)));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        for (int id : sProfiles.keySet()) {
+            DescriptionView profile = new DescriptionView();
+            profile.setTitle(getString(id));
+            profile.setSummary(sProfiles.get(id));
+            profile.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    LMK.setMinFree(((DescriptionView) item).getSummary().toString(), getActivity());
+                    refreshMinFree();
                 }
+            });
 
-            }
-        }.start();
+            items.add(profile);
+        }
     }
 
-    @Override
-    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mAdaptiveCard)
-            LMK.setAdaptive(checked, getActivity());
+    private void swapWait(List<RecyclerViewItem> items) {
+        if (LMK.hasSwapWait()) {
+            SwitchView swapWait = new SwitchView();
+            swapWait.setTitle(getString(R.string.kill_lmk));
+            swapWait.setSummary(getString(R.string.kill_lmk_summary));
+            swapWait.setChecked(LMK.isSwapWaitEnabled());
+            swapWait.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    LMK.enableSwapWait(isChecked, getActivity());
+                }
+            });
+
+            items.add(swapWait);
+        }
+
+        if (LMK.hasSwapWaitPercent()) {
+            Integer[] percentages = {0, 50, 66, 75, 80, 90};
+            final Integer[] values = {1, 2, 3, 4, 5, 10};
+            List<String> list = new ArrayList<>();
+            for (int i : percentages) {
+                list.add(i + "%");
+            }
+
+            SeekBarView swapWaitPercent = new SeekBarView();
+            swapWaitPercent.setTitle(getString(R.string.kill_lmk_threshold));
+            swapWaitPercent.setSummary(getString(R.string.kill_lmk_threshold_summary));
+            swapWaitPercent.setItems(list);
+            swapWaitPercent.setProgress(Arrays.asList(values).indexOf(LMK.getSwapWaitPercent()));
+            swapWaitPercent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    LMK.setSwapWaitPercent(values[position], getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(swapWaitPercent);
+        }
+    }
+
+    private void refreshMinFree() {
+        getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final List<String> minfrees = LMK.getMinFrees();
+                for (int i = 0; i < minfrees.size(); i++) {
+                    mMinFrees.get(i).setProgress(Math.round(Utils.strToInt(minfrees.get(i)) / 256));
+                }
+            }
+        }, 250);
     }
 
 }

@@ -1,217 +1,297 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatSpinner;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.PopupMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-import com.grarak.kerneladiutor.FileBrowserActivity;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.activities.FilePickerActivity;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 11.04.15.
+ * Created by willi on 12.07.16.
  */
 public class RecoveryFragment extends RecyclerViewFragment {
 
-    private AppCompatSpinner mRecoverySpinner;
+    private OptionsFragment mOptionsFragment;
+    private AlertDialog.Builder mAddDialog;
+    private AlertDialog.Builder mFlashDialog;
 
-    private final List<Recovery> mCommands = new ArrayList<>();
+    private List<Recovery> mCommands = new ArrayList<>();
 
     @Override
-    public boolean showApplyOnBoot() {
-        return false;
+    public int getSpanCount() {
+        return 1;
     }
 
     @Override
-    public RecyclerView getRecyclerView() {
-        View view = getParentView(R.layout.recovery_recyclerview);
+    protected Drawable getTopFabDrawable() {
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
+        return drawable;
+    }
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.simple_spinner_item,
-                getResources().getStringArray(R.array.recovery_variants));
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    @Override
+    protected boolean showTopFab() {
+        return true;
+    }
 
-        mRecoverySpinner = (AppCompatSpinner) view.findViewById(R.id.recovery_spinner);
-        mRecoverySpinner.setAdapter(dataAdapter);
-        mRecoverySpinner.setSelection(Utils.getBoolean("twrp", false, getActivity()) ? 1 : 0);
-        mRecoverySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    @Override
+    protected void init() {
+        super.init();
+
+        addViewPagerFragment(mOptionsFragment = OptionsFragment.newInstance(this));
+
+        if (mAddDialog != null) {
+            mAddDialog.show();
+        }
+        if (mFlashDialog != null) {
+            mFlashDialog.show();
+        }
+    }
+
+    @Override
+    protected void addItems(List<RecyclerViewItem> items) {
+    }
+
+    @Override
+    protected void onTopFabClick() {
+        super.onTopFabClick();
+
+        add();
+    }
+
+    private void add() {
+        mAddDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+                R.array.recovery_commands), new DialogInterface.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Utils.saveBoolean("twrp", position == 1, getActivity());
+            public void onClick(DialogInterface dialogInterface, int i) {
+                switch (i) {
+                    case 0:
+                        addAction(Recovery.RECOVERY_COMMAND.WIPE_DATA, null);
+                        break;
+                    case 1:
+                        addAction(Recovery.RECOVERY_COMMAND.WIPE_CACHE, null);
+                        break;
+                    case 2:
+                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
+                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
+                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".zip");
+                        startActivityForResult(intent, 0);
+                        break;
+                }
             }
-
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onDismiss(DialogInterface dialogInterface) {
+                mAddDialog = null;
+            }
+        });
+        mAddDialog.show();
+    }
+
+    private void addAction(Recovery.RECOVERY_COMMAND recovery_command, String path) {
+        String summary = null;
+        switch (recovery_command) {
+            case WIPE_DATA:
+                summary = getString(R.string.wipe_data);
+                break;
+            case WIPE_CACHE:
+                summary = getString(R.string.wipe_cache);
+                break;
+            case FLASH_ZIP:
+                summary = new File(path).getName();
+                break;
+        }
+
+        final Recovery recovery = new Recovery(recovery_command, path == null ? null : new File(path));
+        mCommands.add(recovery);
+
+        CardView cardView = new CardView(getActivity());
+        cardView.setOnMenuListener(new CardView.OnMenuListener() {
+            @Override
+            public void onMenuReady(final CardView cardView, PopupMenu popupMenu) {
+                popupMenu.getMenu().add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == 0) {
+                            mCommands.remove(recovery);
+                            removeItem(cardView);
+                        }
+                        return false;
+                    }
+                });
             }
         });
 
-        view.findViewById(R.id.wipe_data_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addAction(Recovery.RECOVERY_COMMAND.WIPE_DATA, null);
-            }
-        });
+        DescriptionView descriptionView = new DescriptionView();
+        if (path != null) {
+            descriptionView.setTitle(getString(R.string.flash_zip));
+        }
+        descriptionView.setSummary(summary);
 
-        view.findViewById(R.id.wipe_cache_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addAction(Recovery.RECOVERY_COMMAND.WIPE_CACHE, null);
-            }
-        });
-
-        view.findViewById(R.id.flash_zip_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putString(FileBrowserActivity.FILE_TYPE_ARG, "zip");
-                Intent intent = new Intent(getActivity(), FileBrowserActivity.class);
-                intent.putExtras(args);
-                startActivityForResult(intent, 0);
-            }
-        });
-
-        return (RecyclerView) view.findViewById(R.id.recycler_view);
+        cardView.addItem(descriptionView);
+        addItem(cardView);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null)
-            addAction(Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(data.getExtras().getString("path")));
-    }
-
-    private void addAction(Recovery.RECOVERY_COMMAND recovery_command, File file) {
-        String description = null;
-        switch (recovery_command) {
-            case WIPE_DATA:
-                description = getString(R.string.wipe_data);
-                break;
-            case WIPE_CACHE:
-                description = getString(R.string.wipe_cache);
-                break;
-            case FLASH_ZIP:
-                description = file.getAbsolutePath();
-                if (!description.endsWith(".zip")) {
-                    Utils.toast(getString(R.string.went_wrong), getActivity());
-                    return;
-                }
-                break;
+        if (requestCode == 0 && data != null) {
+            addAction(Recovery.RECOVERY_COMMAND.FLASH_ZIP,
+                    data.getStringExtra(FilePickerActivity.RESULT_INTENT));
         }
-
-        final Recovery recovery = new Recovery(recovery_command, new File(description));
-        mCommands.add(recovery);
-
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null, false);
-
-        final CardViewItem.DCardView mActionCard = new CardViewItem.DCardView();
-
-        ((TextView) view.findViewById(R.id.action_text)).setText(description);
-        view.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(mActionCard);
-                mCommands.remove(recovery);
-            }
-        });
-
-        mActionCard.setView(view);
-        addView(mActionCard);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.recovery_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        String command = null;
-        switch (item.getItemId()) {
-            case R.id.menu_flash_now:
-                if (mCommands.size() < 1) {
-                    Utils.toast(getString(R.string.add_action_first), getActivity());
-                    break;
-                }
-
-                Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
+    private void flashNow(final int recoveryOption) {
+        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.flash_now_confirm),
+                new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mRecoverySpinner
-                                .getSelectedItemPosition() == 1 ? Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(recoveryOption == 1 ?
+                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
                         RootFile recoveryFile = new RootFile(file);
                         recoveryFile.delete();
                         for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(mRecoverySpinner.getSelectedItemPosition() == 1 ?
+                            for (String command : commands.getCommands(recoveryOption == 1 ?
                                     Recovery.RECOVERY.TWRP :
                                     Recovery.RECOVERY.CWM))
                                 recoveryFile.write(command, true);
                         }
                         RootUtils.runCommand("reboot recovery");
                     }
+                }, new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        mFlashDialog = null;
+                    }
                 }, getActivity());
-                break;
-            case R.id.menu_reboot:
-                command = "reboot";
-                break;
-            case R.id.menu_reboot_recovery:
-                command = "reboot recovery";
-                break;
-            case R.id.menu_reboot_bootloader:
-                command = "reboot bootloader";
-                break;
-            case R.id.menu_reboot_soft:
-                command = "pkill zygote";
-                break;
-            case R.id.menu_reboot_download:
-                command = "reboot download";
-                break;
-        }
-
-        if (command != null) {
-            final String c = command;
-            Utils.confirmDialog(null, getString(R.string.confirm), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    RootUtils.runCommand(c);
-                }
-            }, getActivity());
-        }
-        return true;
+        mFlashDialog.show();
     }
 
+    public static class OptionsFragment extends BaseFragment {
+        public static OptionsFragment newInstance(RecoveryFragment recoveryFragment) {
+            OptionsFragment fragment = new OptionsFragment();
+            fragment.mRecoveryFragment = recoveryFragment;
+            return fragment;
+        }
+
+        private RecoveryFragment mRecoveryFragment;
+        private int mRecoveryOption;
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            mRecoveryOption = Prefs.getInt("recovery_option", 0, getActivity());
+            LinearLayout layout = new LinearLayout(getActivity());
+            layout.setGravity(Gravity.CENTER);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            String[] options = getResources().getStringArray(R.array.recovery_options);
+
+            final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
+            for (int i = 0; i < options.length; i++) {
+                AppCompatCheckBox checkBox = new AppCompatCheckBox(getActivity());
+                checkBox.setText(options[i]);
+                checkBox.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                checkBox.setChecked(i == mRecoveryOption);
+                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                final int position = i;
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        for (int i = 0; i < checkBoxes.size(); i++) {
+                            checkBoxes.get(i).setChecked(position == i);
+                        }
+                        Prefs.saveInt("recovery_option", position, getActivity());
+                        mRecoveryOption = position;
+                    }
+                });
+
+                checkBoxes.add(checkBox);
+                layout.addView(checkBox);
+            }
+
+            FloatingActionButton button = new FloatingActionButton(getActivity());
+            button.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_done));
+            button.setSize(FloatingActionButton.SIZE_MINI);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mRecoveryFragment != null && mRecoveryFragment.itemsSize() > 0) {
+                        mRecoveryFragment.flashNow(mRecoveryOption);
+                    } else {
+                        Utils.toast(R.string.add_action_first, getActivity());
+                    }
+                }
+            });
+
+            layout.addView(button);
+
+            return layout;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mCommands.clear();
+    }
 }

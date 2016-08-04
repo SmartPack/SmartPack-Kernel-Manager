@@ -1,215 +1,177 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.Context;
-import android.os.Bundle;
-
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.DDivider;
-import com.grarak.kerneladiutor.elements.cards.PopupCardView;
-import com.grarak.kerneladiutor.fragments.PathReaderFragment;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
-import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.IO;
+import com.grarak.kerneladiutor.utils.kernel.io.IO;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 11.04.15.
+ * Created by willi on 27.06.16.
  */
-public class IOFragment extends ViewPagerFragment implements Constants {
+public class IOFragment extends RecyclerViewFragment {
 
-    private static IOFragment ioFragment;
-    private IOPart ioPart;
-    private SchedulerPart schedulerPart;
-    private IO.StorageType storageType;
+    private PathReaderFragment mIOTunableFragment;
 
     @Override
-    public void preInit(Bundle savedInstanceState) {
-        super.preInit(savedInstanceState);
-        showTabs(false);
+    protected BaseFragment getForegroundFragment() {
+        return mIOTunableFragment = new PathReaderFragment();
     }
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-        ioFragment = this;
+    protected void init() {
+        super.init();
 
-        allowSwipe(false);
-        addFragment(new ViewPagerItem(ioPart == null ? ioPart = new IOPart() : ioPart, null));
-        addFragment(new ViewPagerItem(schedulerPart == null ? schedulerPart = new SchedulerPart() : schedulerPart, null));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.IO));
     }
 
     @Override
-    public void onSwipe(int page) {
-        super.onSwipe(page);
-        allowSwipe(page == 1);
+    protected void addItems(List<RecyclerViewItem> items) {
+        internalStorageInit(items);
+        if (IO.hasExternal()) {
+            externalStorageInit(items);
+        }
     }
 
-    @Override
-    public boolean onBackPressed() {
-        if (getCurrentPage() == 1) {
-            setCurrentItem(0);
-            return true;
-        }
-        return false;
+    private void internalStorageInit(List<RecyclerViewItem> items) {
+        CardView internalCard = new CardView(getActivity());
+        internalCard.setTitle(getString(R.string.internal_storage));
+
+        SelectView scheduler = new SelectView();
+        scheduler.setTitle(getString(R.string.scheduler));
+        scheduler.setSummary(getString(R.string.scheduler_summary));
+        scheduler.setItems(IO.getInternalSchedulers());
+        scheduler.setItem(IO.getInternalScheduler());
+        scheduler.setOnItemSelected(new SelectView.OnItemSelected() {
+            @Override
+            public void onItemSelected(SelectView selectView, int position, String item) {
+                IO.setInternalScheduler(item, getActivity());
+            }
+        });
+
+        internalCard.addItem(scheduler);
+
+        DescriptionView tunable = new DescriptionView();
+        tunable.setTitle(getString(R.string.scheduler_tunable));
+        tunable.setSummary(getString(R.string.scheduler_tunable_summary));
+        tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                showTunables(IO.getInternalScheduler(), IO.getInternalIOSched());
+            }
+        });
+
+        internalCard.addItem(tunable);
+
+        SeekBarView readahead = new SeekBarView();
+        readahead.setTitle(getString(R.string.read_ahead));
+        readahead.setSummary(getString(R.string.read_ahead_summary));
+        readahead.setUnit(getString(R.string.kb));
+        readahead.setMax(8192);
+        readahead.setMin(128);
+        readahead.setOffset(128);
+        readahead.setProgress(IO.getInternalReadahead() / 128 - 1);
+        readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                IO.setInternalReadahead((position + 1) * 128, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        internalCard.addItem(readahead);
+
+        items.add(internalCard);
     }
 
-    public static class IOPart extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
-            CardViewItem.DCardView.OnDCardListener {
+    private void externalStorageInit(List<RecyclerViewItem> items) {
+        CardView externalCard = new CardView(getActivity());
+        externalCard.setTitle(getString(R.string.external_storage));
 
-        private final List<String> readheads = new ArrayList<>();
+        SelectView scheduler = new SelectView();
+        scheduler.setTitle(getString(R.string.scheduler));
+        scheduler.setSummary(getString(R.string.scheduler_summary));
+        scheduler.setItems(IO.getExternalSchedulers());
+        scheduler.setItem(IO.getExternalScheduler());
+        scheduler.setOnItemSelected(new SelectView.OnItemSelected() {
+            @Override
+            public void onItemSelected(SelectView selectView, int position, String item) {
+                IO.setExternalScheduler(item, getActivity());
+            }
+        });
 
-        private PopupCardView.DPopupCard mInternalSchedulerCard, mExternalSchedulerCard;
+        externalCard.addItem(scheduler);
 
-        private CardViewItem.DCardView mInternalTunableCard, mExternalTunableCard;
+        DescriptionView tunable = new DescriptionView();
+        tunable.setTitle(getString(R.string.scheduler_tunable));
+        tunable.setSummary(getString(R.string.scheduler_tunable_summary));
+        tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                showTunables(IO.getExternalScheduler(), IO.getExternalIOSched());
+            }
+        });
 
-        private PopupCardView.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
+        externalCard.addItem(tunable);
 
-        @Override
-        public String getClassName() {
-            return IOFragment.class.getSimpleName();
-        }
+        SeekBarView readahead = new SeekBarView();
+        readahead.setTitle(getString(R.string.read_ahead));
+        readahead.setSummary(getString(R.string.read_ahead_summary));
+        readahead.setUnit(getString(R.string.kb));
+        readahead.setMax(8192);
+        readahead.setMin(128);
+        readahead.setOffset(128);
+        readahead.setProgress(IO.getExternalReadahead() / 128 - 1);
+        readahead.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                IO.setExternalReadahead((position + 1) * 128, getActivity());
+            }
 
-        @Override
-        public void init(Bundle savedInstanceState) {
-            super.init(savedInstanceState);
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
 
-            readheads.clear();
-            internalStorageInit();
-            if (IO.hasExternalStorage())
-                externalStorageInit();
-        }
+        externalCard.addItem(readahead);
 
-        private void internalStorageInit() {
-            DDivider mInternalStorageDivider = new DDivider();
-            mInternalStorageDivider.setText(getString(R.string.internal_storage));
-
-            addView(mInternalStorageDivider);
-
-            mInternalSchedulerCard = new PopupCardView.DPopupCard(IO.getSchedulers(IO.StorageType.INTERNAL));
-            mInternalSchedulerCard.setTitle(getString(R.string.scheduler));
-            mInternalSchedulerCard.setDescription(getString(R.string.scheduler_summary));
-            mInternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.INTERNAL));
-            mInternalSchedulerCard.setOnDPopupCardListener(this);
-
-            addView(mInternalSchedulerCard);
-
-            mInternalTunableCard = new CardViewItem.DCardView();
-            mInternalTunableCard.setTitle(getString(R.string.scheduler_tunable));
-            mInternalTunableCard.setDescription(getString(R.string.scheduler_tunable_summary));
-            mInternalTunableCard.setOnDCardListener(this);
-
-            addView(mInternalTunableCard);
-
-            for (int i = 0; i < 32; i++)
-                readheads.add((i * 128 + 128) + getString(R.string.kb));
-
-            mInternalReadAheadCard = new PopupCardView.DPopupCard(readheads);
-            mInternalReadAheadCard.setTitle(getString(R.string.read_ahead));
-            mInternalReadAheadCard.setDescription(getString(R.string.read_ahead_summary));
-            mInternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.INTERNAL) + getString(R.string.kb));
-            mInternalReadAheadCard.setOnDPopupCardListener(this);
-
-            addView(mInternalReadAheadCard);
-        }
-
-        private void externalStorageInit() {
-            DDivider mExternalStorageDivider = new DDivider();
-            mExternalStorageDivider.setText(getString(R.string.external_storage));
-
-            addView(mExternalStorageDivider);
-
-            mExternalSchedulerCard = new PopupCardView.DPopupCard(IO.getSchedulers(IO.StorageType.EXTERNAL));
-            mExternalSchedulerCard.setDescription(getString(R.string.scheduler));
-            mExternalSchedulerCard.setItem(IO.getScheduler(IO.StorageType.EXTERNAL));
-            mExternalSchedulerCard.setOnDPopupCardListener(this);
-
-            addView(mExternalSchedulerCard);
-
-            mExternalTunableCard = new CardViewItem.DCardView();
-            mExternalTunableCard.setDescription(getString(R.string.scheduler_tunable));
-            mExternalTunableCard.setOnDCardListener(this);
-
-            addView(mExternalTunableCard);
-
-            mExternalReadAheadCard = new PopupCardView.DPopupCard(readheads);
-            mExternalReadAheadCard.setDescription(getString(R.string.read_ahead));
-            mExternalReadAheadCard.setItem(IO.getReadahead(IO.StorageType.EXTERNAL) + getString(R.string.kb));
-            mExternalReadAheadCard.setOnDPopupCardListener(this);
-
-            addView(mExternalReadAheadCard);
-        }
-
-        @Override
-        public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-            if (dPopupCard == mInternalSchedulerCard)
-                IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
-                        .get(position), getActivity());
-            else if (dPopupCard == mExternalSchedulerCard)
-                IO.setScheduler(IO.StorageType.EXTERNAL, IO.getSchedulers(IO.StorageType.EXTERNAL)
-                        .get(position), getActivity());
-            else if (dPopupCard == mInternalReadAheadCard)
-                IO.setReadahead(IO.StorageType.INTERNAL, Utils.stringToInt(readheads.get(position)
-                        .replace(getString(R.string.kb), "")), getActivity());
-            else if (dPopupCard == mExternalReadAheadCard)
-                IO.setReadahead(IO.StorageType.EXTERNAL, Utils.stringToInt(readheads.get(position)
-                        .replace(getString(R.string.kb), "")), getActivity());
-        }
-
-        @Override
-        public void onClick(CardViewItem.DCardView dCardView) {
-            ioFragment.storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
-            ioFragment.schedulerPart.reload();
-            ioFragment.setCurrentItem(1);
-        }
-
+        items.add(externalCard);
     }
 
-    public static class SchedulerPart extends PathReaderFragment {
-
-        @Override
-        public String getName() {
-            return IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL :
-                    IO.StorageType.EXTERNAL);
-        }
-
-        @Override
-        public String getPath() {
-            return ioFragment.storageType == IO.StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER_TUNABLE :
-                    IO_EXTERNAL_SCHEDULER_TUNABLE;
-        }
-
-        @Override
-        public PATH_TYPE getType() {
-            return PATH_TYPE.IO;
-        }
-
-        @Override
-        public String getError(Context context) {
-            return context.getString(R.string.not_tunable, IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ?
-                    IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL));
-        }
-
+    private void showTunables(String scheduler, String path) {
+        setForegroundText(scheduler);
+        mIOTunableFragment.setError(getString(R.string.tunables_error, scheduler));
+        mIOTunableFragment.setPath(path, ApplyOnBootFragment.IO);
+        showForeground();
     }
 
 }

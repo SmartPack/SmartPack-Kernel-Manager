@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <!-- Main Header -->
     <string-array name="main_header_picture_items">
         <item>@string/select_picture</item>
         <item>@string/no_picture</item>
@@ -15,19 +14,17 @@
     </string-array>
 
     <!-- CPU Hotplug -->
-    <string-array name="thunderplug_endurance_level_items">
+    <string-array name="endurance_level_items">
         <item>@string/disabled</item>
         <item>@string/quad_core_mode</item>
         <item>@string/dual_core_mode</item>
     </string-array>
 
-    <!-- Kernel Samepage Merging -->
-    <string-array name="ksm_infos">
-        <item>@string/ksm_full_scans</item>
-        <item>@string/ksm_pages_shared</item>
-        <item>@string/ksm_pages_sharing</item>
-        <item>@string/ksm_pages_unshared</item>
-        <item>@string/ksm_pages_volatile</item>
+    <!-- Screen -->
+    <string-array name="colors">
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/blue</item>
     </string-array>
 
     <!-- Low Memory Killer -->
@@ -39,32 +36,6 @@
         <item>@string/content_providers</item>
         <item>@string/empty_app</item>
     </string-array>
-    <string-array name="lmk_profiles">
-        <item>@string/very_light</item>
-        <item>@string/light</item>
-        <item>@string/medium</item>
-        <item>@string/aggressive</item>
-        <item>@string/very_aggressive</item>
-    </string-array>
-
-    <!-- Backup -->
-    <string-array name="backup_menu">
-        <item>@string/restore</item>
-        <item>@string/delete</item>
-    </string-array>
-
-    <!-- Build prop -->
-    <string-array name="build_prop_menu">
-        <item>@string/edit</item>
-        <item>@string/delete</item>
-    </string-array>
-
-    <!-- Profile -->
-    <string-array name="profile_menu">
-        <item>@string/apply</item>
-        <item>@string/delete</item>
-        <item>@string/information</item>
-    </string-array>
 
     <!-- Misc -->
     <string-array name="powersuspend_items">
@@ -74,18 +45,66 @@
         <item>@string/hybrid</item>
     </string-array>
 
+    <!-- Custom Controls -->
+    <string-array name="custom_controls_options">
+        <item>@string/create</item>
+        <item>@string/import_item</item>
+    </string-array>
+    <string-array name="custom_controls_items">
+        <item>@string/control_switch</item>
+        <item>@string/control_seekbar</item>
+        <item>@string/control_generic</item>
+    </string-array>
+
+    <!-- Downloads -->
+    <string-array name="downloads_recovery">
+        <item>@string/cwm_recovery</item>
+        <item>@string/twrp</item>
+        <item>@string/manual_flashing</item>
+    </string-array>
+
+    <!-- Backup -->
+    <string-array name="backup_options">
+        <item>@string/backup</item>
+        <item>@string/flash</item>
+    </string-array>
+    <string-array name="backup_item_options">
+        <item>@string/restore</item>
+        <item>@string/delete</item>
+    </string-array>
+
+    <!-- Build prop Editor -->
+    <string-array name="build_prop_item_options">
+        <item>@string/edit</item>
+        <item>@string/delete</item>
+    </string-array>
+
+    <string-array name="profile_options">
+        <item>@string/create</item>
+        <item>@string/import_item</item>
+    </string-array>
+
     <!-- Recovery -->
-    <string-array name="recovery_variants">
+    <string-array name="recovery_options">
         <item>@string/cwm_recovery</item>
         <item>@string/twrp</item>
     </string-array>
+    <string-array name="recovery_commands">
+        <item>@string/wipe_data</item>
+        <item>@string/wipe_cache</item>
+        <item>@string/flash_zip</item>
+    </string-array>
 
-    <!-- Initd -->
-    <string-array name="initd_menu">
-        <item>@string/information</item>
-        <item>@string/execute</item>
-        <item>@string/edit</item>
-        <item>@string/delete</item>
+    <!-- Settings -->
+    <string-array name="apply_on_boot_delay_entries">
+        <item>@string/ten_sec</item>
+        <item>@string/twenty_sec</item>
+        <item>@string/fifty_sec</item>
+    </string-array>
+    <string-array name="apply_on_boot_delay_values">
+        <item>10</item>
+        <item>20</item>
+        <item>50</item>
     </string-array>
 
 </resources>

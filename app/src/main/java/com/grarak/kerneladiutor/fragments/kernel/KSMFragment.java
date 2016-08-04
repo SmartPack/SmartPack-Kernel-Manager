@@ -1,133 +1,145 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.os.Bundle;
-
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.kernel.KSM;
+import com.grarak.kerneladiutor.utils.kernel.ksm.KSM;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 27.12.14.
+ * Created by willi on 28.06.16.
  */
-public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class KSMFragment extends RecyclerViewFragment {
 
-    private CardViewItem.DCardView[] mInfos;
-
-    private SwitchCardView.DSwitchCard mEnableKsmCard, mDeferredTimerCard;
-
-    private SeekBarCardView.DSeekBarCard mPagesToScanCard, mSleepMillisecondsCard;
+    private List<DescriptionView> mInfos = new ArrayList<>();
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
+    protected void init() {
+        super.init();
 
-        ksmInfoInit();
-        ksmInit();
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.KSM));
     }
 
-    private void ksmInfoInit() {
-        mInfos = new CardViewItem.DCardView[KSM.getInfoLength()];
-        String[] titles = getResources().getStringArray(R.array.ksm_infos);
-        for (int i = 0; i < mInfos.length; i++)
-            if (KSM.hasInfo(i)) {
-                mInfos[i] = new CardViewItem.DCardView();
-                mInfos[i].setTitle(titles[i]);
+    @Override
+    protected void addItems(List<RecyclerViewItem> items) {
+        infoInit(items);
 
-                addView(mInfos[i]);
-            }
-    }
+        if (KSM.hasEnable()) {
+            SwitchView enable = new SwitchView();
+            enable.setTitle(getString(R.string.ksm));
+            enable.setSummary(getString(R.string.ksm_summary));
+            enable.setChecked(KSM.isEnabled());
+            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    KSM.enableKsm(isChecked, getActivity());
+                }
+            });
 
-    private void ksmInit() {
-        mEnableKsmCard = new SwitchCardView.DSwitchCard();
-        mEnableKsmCard.setTitle(getString(R.string.ksm_enable));
-        mEnableKsmCard.setDescription(getString(R.string.ksm_enable_summary));
-        mEnableKsmCard.setChecked(KSM.isKsmActive());
-        mEnableKsmCard.setOnDSwitchCardListener(this);
-
-        addView(mEnableKsmCard);
+            items.add(enable);
+        }
 
         if (KSM.hasDeferredTimer()) {
-            mDeferredTimerCard = new SwitchCardView.DSwitchCard();
-            mDeferredTimerCard.setTitle(getString(R.string.ksm_deferred_timer));
-            mDeferredTimerCard.setDescription(getString(R.string.ksm_deferred_timer_summary));
-            mDeferredTimerCard.setChecked(KSM.isDeferredTimerActive());
-            mDeferredTimerCard.setOnDSwitchCardListener(this);
+            SwitchView deferredTimer = new SwitchView();
+            deferredTimer.setTitle(getString(R.string.deferred_timer));
+            deferredTimer.setSummary(getString(R.string.deferred_timer_summary));
+            deferredTimer.setChecked(KSM.isDeferredTimerEnabled());
+            deferredTimer.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    KSM.enableDeferredTimer(isChecked, getActivity());
+                }
+            });
 
-            addView(mDeferredTimerCard);
+            items.add(deferredTimer);
         }
 
         if (KSM.hasPagesToScan()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 1025; i++) list.add(String.valueOf(i));
+            SeekBarView pagesToScan = new SeekBarView();
+            pagesToScan.setTitle(getString(R.string.pages_to_scan));
+            pagesToScan.setMax(1024);
+            pagesToScan.setProgress(KSM.getPagesToScan());
+            pagesToScan.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KSM.setPagesToScan(position, getActivity());
+                }
 
-            mPagesToScanCard = new SeekBarCardView.DSeekBarCard(list);
-            mPagesToScanCard.setTitle(getString(R.string.ksm_pages_to_scan));
-            mPagesToScanCard.setProgress(KSM.getPagesToScan());
-            mPagesToScanCard.setOnDSeekBarCardListener(this);
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
 
-            addView(mPagesToScanCard);
+            items.add(pagesToScan);
         }
 
         if (KSM.hasSleepMilliseconds()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 5001; i++) list.add(i + getString(R.string.ms));
+            SeekBarView sleepMilliseconds = new SeekBarView();
+            sleepMilliseconds.setTitle(getString(R.string.sleep_milliseconds));
+            sleepMilliseconds.setUnit(getString(R.string.ms));
+            sleepMilliseconds.setMax(5000);
+            sleepMilliseconds.setProgress(KSM.getSleepMilliseconds());
+            sleepMilliseconds.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KSM.setSleepMilliseconds(position, getActivity());
+                }
 
-            mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCard(list);
-            mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
-            mSleepMillisecondsCard.setProgress(KSM.getSleepMilliseconds());
-            mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
 
-            addView(mSleepMillisecondsCard);
+            items.add(sleepMilliseconds);
         }
+    }
 
+    private void infoInit(List<RecyclerViewItem> items) {
+        mInfos.clear();
+        for (int i = 0; i < KSM.getInfosSize(); i++) {
+            if (KSM.hasInfo(i)) {
+                DescriptionView info = new DescriptionView();
+                info.setTitle(KSM.getInfoText(i, getActivity()));
+
+                items.add(info);
+                mInfos.add(info);
+            }
+        }
     }
 
     @Override
-    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mEnableKsmCard) KSM.activateKsm(checked, getActivity());
-        else if (dSwitchCard == mDeferredTimerCard)
-            KSM.activateDeferredTimer(checked, getActivity());
-    }
+    protected void refresh() {
+        super.refresh();
 
-    @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        if (mInfos.size() > 0) {
+            for (int i = 0; i < mInfos.size(); i++) {
+                mInfos.get(i).setSummary(KSM.getInfo(i));
+            }
+        }
     }
-
-    @Override
-    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mPagesToScanCard) KSM.setPagesToScan(position, getActivity());
-        else if (dSeekBarCard == mSleepMillisecondsCard)
-            KSM.setSleepMilliseconds(position, getActivity());
-    }
-
-    @Override
-    public boolean onRefresh() {
-        if (mInfos != null) for (int i = 0; i < mInfos.length; i++)
-            if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
-        return true;
-    }
-
 }

@@ -1,0 +1,61 @@
+[
+  {
+    "board": "msm8226",
+    "cpu": "/sys/class/thermal/thermal_zone0/temp",
+    "gpu": "/sys/class/thermal/thermal_zone2/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8228",
+    "cpu": "/sys/class/thermal/thermal_zone0/temp",
+    "gpu": "/sys/class/thermal/thermal_zone2/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8610",
+    "cpu": "/sys/class/thermal/thermal_zone5/temp",
+    "cpu-offset": 1
+  },
+  {
+    "board": "msm8916",
+    "cpu": "/sys/class/thermal/thermal_zone0/temp",
+    "gpu": "/sys/class/thermal/thermal_zone2/temp",
+    "cpu-offset": 1000,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8960",
+    "cpu": "/sys/class/thermal/thermal_zone7/temp",
+    "cpu-offset": 1
+  },
+  {
+    "board": "msm8974",
+    "cpu": "/sys/class/thermal/thermal_zone5/temp",
+    "gpu": "/sys/class/thermal/thermal_zone9/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8992",
+    "cpu": "/sys/class/thermal/thermal_zone7/temp",
+    "gpu": "/sys/class/thermal/thermal_zone11/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8994",
+    "cpu": "/sys/class/thermal/thermal_zone9/temp",
+    "gpu": "/sys/class/thermal/thermal_zone13/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
+    "board": "msm8996",
+    "cpu": "/sys/class/thermal/thermal_zone7/temp",
+    "gpu": "/sys/class/thermal/thermal_zone15/temp",
+    "cpu-offset": 10,
+    "gpu-offset": 10
+  }
+]

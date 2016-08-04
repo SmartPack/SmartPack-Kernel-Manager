@@ -1,455 +1,622 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.LightingColorFilter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
+import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.SwitchCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-import android.widget.CompoundButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.activities.BaseActivity;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.nineoldandroids.view.ViewHelper;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewAdapter;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 22.12.14.
+ * Created by willi on 16.04.16.
  */
-public class RecyclerViewFragment extends BaseFragment {
+public abstract class RecyclerViewFragment extends BaseFragment {
 
-    protected View view;
-    protected LayoutInflater inflater;
-    protected ViewGroup container;
+    private Handler mHandler;
 
-    private ProgressBar progressBar;
-    protected RecyclerView recyclerView;
-    private CustomScrollListener onScrollListener;
-    protected View applyOnBootLayout;
-    protected TextView applyOnBootText;
-    protected SwitchCompat applyOnBootView;
-    private DAdapter.Adapter adapter;
-    protected StaggeredGridLayoutManager layoutManager;
-    protected View backgroundView;
-    protected View fabView;
-    private Handler hand;
-    private boolean firstOpening = true;
+    private View mRootView;
 
+    private List<RecyclerViewItem> mItems = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerViewAdapter mRecyclerViewAdapter;
+    private Scroller mScroller;
+
+    private View mProgress;
+
+    private List<Fragment> mViewPagerFragments;
+    private ViewPagerAdapter mViewPagerAdapter;
+    private View mViewPagerParent;
+    private ViewPager mViewPager;
+    private CirclePageIndicator mCirclePageIndicator;
+
+    private FloatingActionButton mTopFab;
+    private FloatingActionButton mBottomFab;
+
+    private AppBarLayout mAppBarLayout;
+    private Toolbar mToolBar;
+
+    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+
+    private ValueAnimator mForegroundAnimator;
+    private boolean mForegroundVisible;
+    private View mForegroundParent;
+    private TextView mForegroundText;
+    private float mForegroundHeight;
+    private CharSequence mForegroundStrText;
+
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        this.inflater = inflater;
-        this.container = container;
-
-        Log.i(Constants.TAG, "Opening " + getClassName());
-
-        try {
-            if (view != null) ((ViewGroup) view.getParent()).removeView(view);
-        } catch (NullPointerException ignored) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        mRootView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
+        if (mHandler == null) {
+            mHandler = new Handler();
         }
 
-        recyclerView = getRecyclerView();
-        recyclerView.setHasFixedSize(true);
-        setRecyclerView(recyclerView);
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                return null;
-            }
+        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
 
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            }
+        mViewPagerFragments = new ArrayList<>();
+        mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
+        mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
+        mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
 
+        mProgress = mRootView.findViewById(R.id.progress);
+
+        mAppBarLayout = ((BaseActivity) getActivity()).getAppBarLayout();
+        mToolBar = ((BaseActivity) getActivity()).getToolBar();
+
+        mTopFab = (FloatingActionButton) mRootView.findViewById(R.id.top_fab);
+        mBottomFab = (FloatingActionButton) mRootView.findViewById(R.id.bottom_fab);
+
+        mScroller = new Scroller();
+        mRecyclerView.clearOnScrollListeners();
+        mRecyclerView.setAdapter(mRecyclerViewAdapter == null ? mRecyclerViewAdapter
+                = new RecyclerViewAdapter(mItems, new RecyclerViewAdapter.OnViewChangedListener() {
             @Override
-            public int getItemCount() {
-                return 0;
+            public void viewChanged() {
+                adjustScrollPosition();
+            }
+        }) : mRecyclerViewAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
+
+        mTopFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTopFabClick();
             }
         });
-
-        if (showApplyOnBoot()) {
-            applyOnBootView = (SwitchCompat) view.findViewById(R.id.apply_on_boot_view);
-            if (applyOnBootView != null) {
-                applyOnBootView.setChecked(Utils.getBoolean(getClassName() + "onboot", false, getActivity()));
-                applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        applyOnBootChecked(isChecked);
-                    }
-                });
-            }
-
-            applyOnBootText = (TextView) view.findViewById(R.id.apply_on_boot_text);
-            applyOnBootLayout = view.findViewById(R.id.apply_on_boot_layout);
-            if (applyOnBootLayout != null) {
-                applyOnBootLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        applyOnBootView.setChecked(!applyOnBootView.isChecked());
-                    }
-                });
-                if (Utils.isTV(getActivity())) {
-                    applyOnBootLayout.setFocusable(true);
-                    applyOnBootLayout.setFocusableInTouchMode(true);
-                    applyOnBootView.setFocusable(false);
-                    applyOnBootView.setFocusableInTouchMode(false);
-                }
+        {
+            Drawable drawable;
+            if ((drawable = getTopFabDrawable()) != null) {
+                mTopFab.setImageDrawable(drawable);
             }
         }
 
-        backgroundView = view.findViewById(R.id.background_view);
-        fabView = view.findViewById(R.id.fab_view);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
-            if (fabView != null) {
-                fabView.setTranslationZ(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
-                fabView.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        if (fabView != null && Utils.isTV(getActivity())) {
-            fabView.setFocusable(true);
-            fabView.setFocusableInTouchMode(true);
-        }
-
-        progressBar = new ProgressBar(getActivity());
-        setProgressBar(progressBar);
-
-        if (!showApplyOnBoot()) showApplyOnBoot(false);
-
-        new AsyncTask<Void, Void, Void>() {
+        mBottomFab.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-                if (hand == null)
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            hand = new Handler();
-                        }
-                    });
-                adapter = new DAdapter.Adapter(new ArrayList<DAdapter.DView>());
-                try {
-                    if (isAdded()) preInit(savedInstanceState);
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
-                }
+            public void onClick(View v) {
+                onBottomFabClick();
             }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    if (isAdded()) init(savedInstanceState);
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
-                }
-                return null;
+        });
+        {
+            Drawable drawable;
+            if ((drawable = getBottomFabDrawable()) != null) {
+                mBottomFab.setImageDrawable(drawable);
             }
+        }
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-
-                recyclerView.setAdapter(adapter);
-                animateRecyclerView();
-
-                try {
-                    ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-                } catch (NullPointerException ignored) {
+        BaseFragment foregroundFragment = getForegroundFragment();
+        mForegroundVisible = false;
+        if (foregroundFragment != null) {
+            mForegroundParent = mRootView.findViewById(R.id.foreground_parent);
+            mForegroundText = (TextView) mRootView.findViewById(R.id.foreground_text);
+            mForegroundText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismissForeground();
                 }
-                try {
-                    if (isAdded()) {
-                        postInit(savedInstanceState);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            if (backgroundView != null) Utils.circleAnimate(backgroundView, 0, 0);
-                            if (fabView != null)
-                                Utils.circleAnimate(fabView, fabView.getWidth() / 2, fabView.getHeight() / 2);
-                        }
+            });
+            getChildFragmentManager().beginTransaction().replace(R.id.foreground_content,
+                    foregroundFragment).commit();
+            mForegroundHeight = getResources().getDisplayMetrics().heightPixels;
+        }
+
+        if (itemsSize() == 0) {
+            mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
+
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                    showProgress();
+                    init();
+                }
+
+                @Override
+                protected List<RecyclerViewItem> doInBackground(Void... params) {
+                    List<RecyclerViewItem> items = new ArrayList<>();
+                    addItems(items);
+                    return items;
+                }
+
+                @Override
+                protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
+                    super.onPostExecute(recyclerViewItems);
+                    if (isCancelled()) return;
+                    for (RecyclerViewItem item : recyclerViewItems) {
+                        addItem(item);
                     }
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
+                    hideProgress();
+                    postInit();
+                    mLoader = null;
                 }
-                firstOpening = false;
-            }
-        }.execute();
-
-        return view;
-    }
-
-    protected View getParentView(int layout) {
-        return view != null ? view : (view = inflater.inflate(layout, container, false));
-    }
-
-    public RecyclerView getRecyclerView() {
-        return (RecyclerView) getParentView(R.layout.recyclerview_vertical).findViewById(R.id.recycler_view);
-    }
-
-    public String getClassName() {
-        return getClass().getSimpleName();
-    }
-
-    public void setRecyclerView(RecyclerView recyclerView) {
-        layoutManager = new StaggeredGridLayoutManager(getSpan(), StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-    }
-
-    public void applyOnBootChecked(boolean isChecked) {
-        Utils.saveBoolean(getClassName() + "onboot", isChecked, getActivity());
-        Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
-                getActionBar().getTitle()), getActivity());
-    }
-
-    public void setProgressBar(ProgressBar progressBar) {
-        progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
-                getResources().getColor(android.R.color.white)));
-        ActionBar actionBar;
-        if ((actionBar = getActionBar()) != null) {
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
-            actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                    ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+            };
+            mLoader.execute();
+        } else {
+            showProgress();
+            init();
+            hideProgress();
+            postInit();
         }
-    }
 
-    public void preInit(Bundle savedInstanceState) {
-    }
-
-    public void init(Bundle savedInstanceState) {
-    }
-
-    public void postInit(Bundle savedInstanceState) {
-    }
-
-    public void addView(DAdapter.DView view) {
-        if (adapter.DViews.indexOf(view) < 0) {
-            adapter.DViews.add(view);
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    public void removeView(DAdapter.DView view) {
-        int position = adapter.DViews.indexOf(view);
-        if (position > -1) {
-            adapter.DViews.remove(position);
-            adapter.notifyItemRemoved(position);
-        }
-    }
-
-    public void removeAllViews() {
-        adapter.DViews.clear();
-        adapter.notifyDataSetChanged();
-    }
-
-    public void addAllViews(List<DAdapter.DView> views) {
-        adapter.DViews.addAll(views);
-        adapter.notifyDataSetChanged();
-    }
-
-    public DAdapter.DView getView(int position) {
-        return adapter.DViews.get(position);
-    }
-
-    public void resetRecyclerview() {
-        recyclerView.setAdapter(adapter);
-    }
-
-    public int getCount() {
-        return adapter.DViews.size();
-    }
-
-    public void animateRecyclerView() {
-        try {
-            recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
-        } catch (NullPointerException ignored) {
-        }
+        return mRootView;
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (layoutManager != null) layoutManager.setSpanCount(getSpan());
-        resetTranslations();
+    public void onViewFinished() {
+        super.onViewFinished();
+        if (showViewPager()) {
+            mRecyclerView.addOnScrollListener(mScroller);
+            setAppBarLayoutAlpha(0);
+            if (showTopFab()) {
+                mTopFab.show();
+            }
+        } else {
+            mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), isForeground() ? 0 : mToolBar.getHeight(),
+                    mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
+            mRecyclerView.setClipToPadding(true);
+            ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
+            layoutParams.height = 0;
+            mViewPagerParent.requestLayout();
+            setAppBarLayoutAlpha(255);
+        }
+        if (showBottomFab()) {
+            mBottomFab.show();
+        }
+        mScroller.onScrolled(mRecyclerView, 0, 0);
     }
 
-    @Override
-    public void onViewCreated() {
-        super.onViewCreated();
-        setOnScrollListener(recyclerView);
+    protected void init() {
     }
 
-    public void setOnScrollListener(RecyclerView recyclerView) {
-        if (recyclerView != null) {
-            int paddingBottom = recyclerView.getPaddingBottom()
-                    + getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-            if (applyOnBootLayout != null) {
-                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, firstOpening ? paddingBottom
-                        : recyclerView.getPaddingBottom());
-                resetTranslations();
-
-                if (!Utils.isTV(getActivity()))
-                    recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
-            } else recyclerView.setPadding(0, 0, 0, firstOpening ? paddingBottom
-                    : recyclerView.getPaddingBottom());
-            recyclerView.setClipToPadding(false);
+    protected void postInit() {
+        if (showViewPager()) {
+            mScroller.onScrolled(mRecyclerView, 0, 0);
+            mViewPagerParent.setTranslationY(0);
+        }
+        if (mViewPager != null) {
+            mViewPager.setAdapter(mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),
+                    mViewPagerFragments));
+            mCirclePageIndicator.setViewPager(mViewPager);
         }
     }
 
-    private class CustomScrollListener extends RecyclerView.OnScrollListener {
+    protected void adjustScrollPosition() {
+        mScroller.onScrolled(mRecyclerView, 0, 0);
+    }
 
-        private int offset;
-        private boolean scroll = true;
+    protected abstract void addItems(List<RecyclerViewItem> items);
+
+    private void setAppBarLayoutAlpha(int alpha) {
+        if (isForeground()) return;
+        Activity activity;
+        if ((activity = getActivity()) != null && mAppBarLayout != null && mToolBar != null) {
+            int colorPrimary = Utils.getColorPrimaryColor(activity);
+            mAppBarLayout.setBackgroundDrawable(new ColorDrawable(Color.argb(alpha, Color.red(colorPrimary),
+                    Color.green(colorPrimary), Color.blue(colorPrimary))));
+            mToolBar.setTitleTextColor(Color.argb(alpha, 255, 255, 255));
+        }
+    }
+
+    protected void addItem(RecyclerViewItem recyclerViewItem) {
+        mItems.add(recyclerViewItem);
+        if (mRecyclerViewAdapter != null) {
+            mRecyclerViewAdapter.notifyItemInserted(mItems.size() - 1);
+        }
+        if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+            ((StaggeredGridLayoutManager) mLayoutManager).setSpanCount(getSpanCount());
+        }
+    }
+
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        return new StaggeredGridLayoutManager(getSpanCount(), StaggeredGridLayoutManager.VERTICAL);
+    }
+
+    protected void removeItem(RecyclerViewItem recyclerViewItem) {
+        int position = mItems.indexOf(recyclerViewItem);
+        if (position >= 0) {
+            mItems.remove(recyclerViewItem);
+            if (mRecyclerViewAdapter != null) {
+                mRecyclerViewAdapter.notifyItemRemoved(position);
+            }
+        }
+    }
+
+    protected void clearItems() {
+        mItems.clear();
+        if (mRecyclerViewAdapter != null) {
+            mRecyclerViewAdapter.notifyDataSetChanged();
+            mScroller.onScrolled(mRecyclerView, 0, 0);
+        }
+    }
+
+    public int getSpanCount() {
+        Activity activity;
+        if ((activity = getActivity()) != null) {
+            int span = Utils.isTablet(activity) ? Utils.getOrientation(activity) ==
+                    Configuration.ORIENTATION_LANDSCAPE ? 3 : 2 : Utils.getOrientation(activity) ==
+                    Configuration.ORIENTATION_LANDSCAPE ? 2 : 1;
+            if (mItems.size() != 0 && span > mItems.size()) {
+                span = mItems.size();
+            }
+            return span;
+        }
+        return 1;
+    }
+
+    public int itemsSize() {
+        return mItems.size();
+    }
+
+    protected void addViewPagerFragment(BaseFragment fragment) {
+        mViewPagerFragments.add(fragment);
+        if (mViewPagerAdapter != null) {
+            mViewPagerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> mFragments;
+
+        public ViewPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
+            super(fragmentManager);
+            mFragments = fragments;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+    }
+
+    private class Scroller extends RecyclerView.OnScrollListener {
+
+        protected int mScrollDistance;
+        private int mAppBarLayoutDistance;
+        private boolean mFade = true;
+        private ValueAnimator mAlphaAnimator;
 
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            View firstItem = mRecyclerViewAdapter.getFirstItem();
+            if (firstItem == null) return;
 
-            if (scroll && Utils.getBoolean("hideapplyonboot", true, getActivity())) {
-                int height = applyOnBootLayout.getHeight();
-                offset += dy;
-                if (offset > height) offset = height;
-                else if (offset < 0) offset = 0;
-                move(offset);
+            mScrollDistance = -firstItem.getTop() + mRecyclerView.getPaddingTop();
+
+            int appBarHeight = 0;
+            if (mAppBarLayout != null) {
+                appBarHeight = mAppBarLayout.getHeight();
             }
-            scroll = true;
+            if (mScrollDistance > mViewPagerParent.getHeight() - appBarHeight && dy != 0) {
+                mAppBarLayoutDistance += dy;
+                fadeAppBarLayout(false);
+                if (showTopFab()) {
+                    mTopFab.hide();
+                }
+            } else {
+                fadeAppBarLayout(true);
+                if (showTopFab()) {
+                    mTopFab.show();
+                }
+            }
+
+            if (mAppBarLayout != null) {
+                if (mAppBarLayoutDistance > mAppBarLayout.getHeight()) {
+                    mAppBarLayoutDistance = mAppBarLayout.getHeight();
+                } else if (mAppBarLayoutDistance < 0) {
+                    mAppBarLayoutDistance = 0;
+                }
+                mAppBarLayout.setTranslationY(-mAppBarLayoutDistance);
+            }
+
+            mViewPagerParent.setTranslationY(-mScrollDistance);
+            mTopFab.setTranslationY(-mScrollDistance);
         }
 
-        private void move(int offset) {
-            ViewHelper.setTranslationY(applyOnBootLayout, -offset);
-        }
+        private void fadeAppBarLayout(boolean fade) {
+            if (mFade != fade) {
+                mFade = fade;
 
-        public void reset() {
-            offset = 0;
-            scroll = false;
+                if (mAlphaAnimator != null) {
+                    mAlphaAnimator.cancel();
+                }
+
+                mAlphaAnimator = ValueAnimator.ofFloat(fade ? 1f : 0f, fade ? 0f : 1f);
+                mAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        setAppBarLayoutAlpha(Math.round(255 * (float) animation.getAnimatedValue()));
+                    }
+                });
+                mAlphaAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        mAlphaAnimator = null;
+                    }
+                });
+                mAlphaAnimator.start();
+            }
         }
 
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-
-            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                int height = applyOnBootLayout.getHeight();
-                if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0)
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                float density = getResources().getDisplayMetrics().density * 2;
-                                for (; offset >= 0; offset -= density) {
-                                    getActivity().runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            move(offset);
-                                        }
-                                    });
-                                    Thread.sleep(16);
-                                }
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (offset != 0) move(offset = 0);
-                                    }
-                                });
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
+            if (mAppBarLayout == null || newState != 0 || mAppBarLayoutDistance == 0
+                    || mAppBarLayoutDistance == mAppBarLayout.getHeight()) {
+                return;
             }
+
+            boolean show = mAppBarLayoutDistance < mAppBarLayout.getHeight() * 0.5f
+                    || mScrollDistance <= mViewPagerParent.getHeight();
+            ValueAnimator animator = ValueAnimator.ofInt(mAppBarLayoutDistance, show ? 0 : mAppBarLayout.getHeight());
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mAppBarLayoutDistance = (int) animation.getAnimatedValue();
+                    mAppBarLayout.setTranslationY(-mAppBarLayoutDistance);
+                }
+            });
+            animator.start();
         }
     }
 
-    public void resetTranslations() {
-        if (applyOnBootLayout != null) ViewHelper.setTranslationY(applyOnBootLayout, 0);
-        if (onScrollListener != null) onScrollListener.reset();
+    protected void showProgress() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isAdded()) {
+                    mProgress.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.INVISIBLE);
+                    if (showTopFab()) {
+                        mTopFab.hide();
+                    }
+                    if (showBottomFab()) {
+                        mBottomFab.hide();
+                    }
+                }
+            }
+        });
     }
 
-    public boolean showApplyOnBoot() {
-        return true;
-    }
-
-    public void showApplyOnBoot(boolean visible) {
-        try {
-            getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
-                    visible ? View.VISIBLE : View.GONE);
-            int paddingTop = visible ? recyclerView.getPaddingTop() + applyOnBootLayout.getHeight() :
-                    recyclerView.getPaddingTop() - applyOnBootLayout.getHeight();
-            recyclerView.setPadding(recyclerView.getPaddingLeft(), paddingTop, recyclerView.getPaddingRight(), 0);
-        } catch (NullPointerException ignored) {
+    protected void hideProgress() {
+        mProgress.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        if (showTopFab()) {
+            mTopFab.show();
+        }
+        if (showBottomFab()) {
+            mBottomFab.show();
         }
     }
 
-    public int getSpan() {
-        int orientation = Utils.getScreenOrientation(getActivity());
-        if (Utils.isTV(getActivity())) return 2;
-        if (Utils.isTablet(getActivity()))
-            return orientation == Configuration.ORIENTATION_PORTRAIT ? 2 : 3;
-        return orientation == Configuration.ORIENTATION_PORTRAIT ? 1 : 2;
-    }
-
-    public Handler getHandler() {
-        return hand;
-    }
-
-    public boolean onRefresh() {
+    protected boolean isForeground() {
         return false;
     }
 
-    private final Runnable run = new Runnable() {
-        @Override
-        public void run() {
-            if (hand != null)
-                if (isAdded() && onRefresh()) {
-                    hand.postDelayed(run, 1000);
-                } else if (hand != null) hand.removeCallbacks(run);
+    protected BaseFragment getForegroundFragment() {
+        return null;
+    }
+
+    public void setForegroundText(CharSequence text) {
+        mForegroundStrText = text;
+    }
+
+    public void showForeground() {
+        if (mForegroundStrText != null) {
+            mForegroundText.setText(mForegroundStrText);
         }
-    };
+        if (mForegroundAnimator != null) mForegroundAnimator.cancel();
+        mForegroundAnimator = ValueAnimator.ofFloat(mForegroundHeight, 0f);
+        mForegroundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mForegroundParent.setTranslationY((float) animation.getAnimatedValue());
+            }
+        });
+        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                mForegroundParent.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mForegroundVisible = true;
+                mForegroundAnimator = null;
+            }
+        });
+        mForegroundAnimator.start();
+    }
+
+    public void dismissForeground() {
+        float translation = mForegroundParent.getTranslationY();
+        mForegroundAnimator = ValueAnimator.ofFloat(translation, mForegroundHeight);
+        mForegroundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mForegroundParent.setTranslationY((float) animation.getAnimatedValue());
+            }
+        });
+        mForegroundAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mForegroundParent.setVisibility(View.GONE);
+                mForegroundVisible = false;
+                mForegroundAnimator = null;
+            }
+        });
+        mForegroundAnimator.start();
+    }
+
+    protected boolean showViewPager() {
+        return true;
+    }
+
+    protected boolean showTopFab() {
+        return false;
+    }
+
+    protected Drawable getTopFabDrawable() {
+        return null;
+    }
+
+    protected void onTopFabClick() {
+    }
+
+    protected boolean showBottomFab() {
+        return false;
+    }
+
+    protected Drawable getBottomFabDrawable() {
+        return null;
+    }
+
+    protected void onBottomFabClick() {
+    }
+
+    protected FloatingActionButton getBottomFab() {
+        return mBottomFab;
+    }
+
+    protected View getRootView() {
+        return mRootView;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (mForegroundVisible) {
+            dismissForeground();
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (hand != null) hand.post(run);
+        mHandler.post(mRefresh);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (hand != null) hand.removeCallbacks(run);
+        mHandler.removeCallbacks(mRefresh);
     }
 
     @Override
-    public boolean onBackPressed() {
-        return false;
+    public void onDestroy() {
+        super.onDestroy();
+        mItems.clear();
+        setAppBarLayoutAlpha(255);
+        if (mAppBarLayout != null) {
+            if (!isForeground()) {
+                mAppBarLayout.setTranslationY(0);
+            }
+        }
+        if (mLoader != null) {
+            mLoader.cancel(true);
+            mLoader = null;
+        }
+        if (mHandler != null) {
+            mHandler.removeCallbacks(mRefresh);
+        }
     }
+
+    protected Handler getHandler() {
+        return mHandler;
+    }
+
+    protected void refresh() {
+    }
+
+    private Runnable mRefresh = new Runnable() {
+        @Override
+        public void run() {
+            refresh();
+            mHandler.postDelayed(this, 1000);
+        }
+    };
 
 }

@@ -1,64 +1,103 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments;
 
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import com.grarak.kerneladiutor.MainActivity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by willi on 14.04.15.
+ * Created by willi on 28.12.15.
  */
-public abstract class BaseFragment extends Fragment implements MainActivity.OnBackButtonListener {
+public abstract class BaseFragment extends Fragment {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        setRetainInstance(retainInstance());
     }
 
-    public ActionBar getActionBar() {
-        return ((AppCompatActivity) getActivity()).getSupportActionBar();
-    }
-
-    public void onViewCreated(View view, Bundle saved) {
-        super.onViewCreated(view, saved);
-        final ViewTreeObserver observer = view.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver
+                .OnGlobalLayoutListener() {
             public void onGlobalLayout() {
-                try {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                        observer.removeOnGlobalLayoutListener(this);
-                    else observer.removeGlobalOnLayoutListener(this);
-
-                    onViewCreated();
-                } catch (Exception ignored) {
-                }
+                view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                onViewFinished();
             }
         });
     }
 
-    public void onViewCreated() {
+    public void onViewFinished() {
+    }
+
+    public boolean onBackPressed() {
+        return false;
+    }
+
+    protected boolean retainInstance() {
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            onPermissionGranted(requestCode);
+        } else {
+            onPermissionDenied(requestCode);
+        }
+    }
+
+    public void requestPermission(int request, String... permissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> needrequest = new ArrayList<>();
+            for (String permission : permissions) {
+                if (ContextCompat.checkSelfPermission(getActivity(), permission)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    needrequest.add(permission);
+                }
+            }
+            if (needrequest.size() > 0) {
+                requestPermissions(needrequest.toArray(new String[needrequest.size()]), request);
+                return;
+            }
+        }
+        onPermissionGranted(request);
+    }
+
+    public void onPermissionGranted(int request) {
+    }
+
+    public void onPermissionDenied(int request) {
     }
 
 }

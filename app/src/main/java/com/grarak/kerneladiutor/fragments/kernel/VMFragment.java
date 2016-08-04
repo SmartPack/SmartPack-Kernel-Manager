@@ -1,118 +1,120 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.os.Bundle;
 import android.text.InputType;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.DDivider;
-import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
-import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.kernel.VM;
+import com.grarak.kerneladiutor.utils.kernel.vm.VM;
+import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by willi on 27.12.14.
+ * Created by willi on 29.06.16.
  */
-public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class VMFragment extends RecyclerViewFragment {
 
-    private EditTextCardView.DEditTextCard[] mVMCard;
-
-    private SeekBarCardView.DSeekBarCard mZRAMDisksizeCard;
+    private HashMap<Integer, GenericSelectView> mVMs = new HashMap<>();
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
+    protected void init() {
+        super.init();
 
-        mVMCard = new EditTextCardView.DEditTextCard[VM.getVMfiles().size()];
-        for (int i = 0; i < mVMCard.length; i++) {
-            String value = VM.getVMValue(VM.getVMfiles().get(i));
-            mVMCard[i] = new EditTextCardView.DEditTextCard();
-            mVMCard[i].setTitle(VM.getVMfiles().get(i).replace("_", " "));
-            mVMCard[i].setDescription(value);
-            mVMCard[i].setValue(value);
-            mVMCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
-            mVMCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
-                @Override
-                public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                    for (int i = 0; i < mVMCard.length; i++)
-                        if (dEditTextCard == mVMCard[i]) {
-                            dEditTextCard.setDescription(value);
-                            VM.setVM(value, VM.getVMfiles().get(i), getActivity());
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.VM));
+    }
 
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Thread.sleep(500);
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                for (int i = 0; i < mVMCard.length; i++) {
-                                                    String value = VM.getVMValue(VM.getVMfiles().get(i));
-                                                    mVMCard[i].setDescription(value);
-                                                    mVMCard[i].setValue(value);
-                                                }
-                                            }
-                                        });
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
-                        }
-                }
-            });
+    @Override
+    protected void addItems(List<RecyclerViewItem> items) {
+        mVMs.clear();
+        for (int i = 0; i < VM.size(); i++) {
+            if (VM.exists(i)) {
+                GenericSelectView vm = new GenericSelectView();
+                vm.setSummary(VM.getName(i));
+                vm.setValue(VM.getValue(i));
+                vm.setValueRaw(vm.getValue());
+                vm.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-            addView(mVMCard[i]);
+                final int position = i;
+                vm.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        VM.setValue(value, position, getActivity());
+                        genericSelectView.setValue(value);
+                        refreshVMs();
+                    }
+                });
+
+                items.add(vm);
+                mVMs.put(i, vm);
+            }
         }
 
-        if (VM.hasZRAM()) zramInit();
+        if (ZRAM.supported()) {
+            zramInit(items);
+        }
     }
 
-    private void zramInit() {
-        DDivider mZRAMDividerCard = new DDivider();
-        mZRAMDividerCard.setText(getString(R.string.zram));
-        addView(mZRAMDividerCard);
+    private void zramInit(List<RecyclerViewItem> items) {
+        TitleView zramTitle = new TitleView();
+        zramTitle.setText(getString(R.string.zram));
+        items.add(zramTitle);
 
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 101; i++)
-            list.add((i * 10) + getString(R.string.mb));
+        SeekBarView zram = new SeekBarView();
+        zram.setTitle(getString(R.string.disksize));
+        zram.setSummary(getString(R.string.disksize_summary));
+        zram.setUnit(getString(R.string.mb));
+        zram.setMax(1000);
+        zram.setOffset(10);
+        zram.setProgress(ZRAM.getDisksize() / 10);
+        zram.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                ZRAM.setDisksize(position * 10, getActivity());
+            }
 
-        mZRAMDisksizeCard = new SeekBarCardView.DSeekBarCard(list);
-        mZRAMDisksizeCard.setTitle(getString(R.string.disksize));
-        mZRAMDisksizeCard.setDescription(getString(R.string.disksize_summary));
-        mZRAMDisksizeCard.setProgress(VM.getZRAMDisksize() / 10);
-        mZRAMDisksizeCard.setOnDSeekBarCardListener(this);
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
 
-        addView(mZRAMDisksizeCard);
+        items.add(zram);
     }
 
-    @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
-
-    @Override
-    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAMDisksize(position * 10, getActivity());
+    private void refreshVMs() {
+        getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int position : mVMs.keySet()) {
+                    mVMs.get(position).setValue(VM.getValue(position));
+                    mVMs.get(position).setValueRaw(mVMs.get(position).getValue());
+                }
+            }
+        }, 250);
     }
 
 }

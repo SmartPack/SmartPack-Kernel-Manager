@@ -1,298 +1,362 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.SwitchCompat;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 
-import com.grarak.kerneladiutor.EditTextActivity;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.InformationCardView;
+import com.grarak.kerneladiutor.activities.EditorActivity;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Initd;
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
-import com.nineoldandroids.view.ViewHelper;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
-import net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by willi on 25.04.15.
+ * Created by willi on 16.07.16.
  */
 public class InitdFragment extends RecyclerViewFragment {
 
-    private View addButtonBg;
-    private AddFloatingActionButton addButton;
-    private FabHideScrollListener fabHideScrollListener;
+    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
+    private boolean mLoaded;
+
+    private AlertDialog.Builder mExecuteDialog;
+    private AlertDialog.Builder mResultDialog;
+    private AlertDialog.Builder mDeleteDialog;
+    private boolean mShowCreateNameDialog;
+
+    private String mCreateName;
+
+    private String mEditInitd;
 
     @Override
-    public RecyclerView getRecyclerView() {
-        View view = getParentView(R.layout.fab_recyclerview);
-        addButtonBg = view.findViewById(R.id.fab2_background);
-        addButtonBg.setVisibility(View.VISIBLE);
-        addButton = (AddFloatingActionButton) view.findViewById(R.id.fab_view2);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LinearLayout linearLayout = new LinearLayout(getActivity());
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                linearLayout.setGravity(Gravity.CENTER);
-                linearLayout.setPadding(30, 20, 30, 20);
-
-                final AppCompatEditText nameEdit = new AppCompatEditText(getActivity());
-                nameEdit.setHint(getString(R.string.file_name));
-                linearLayout.addView(nameEdit);
-
-                new AlertDialog.Builder(getActivity()).setView(linearLayout)
-                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(getActivity(), EditTextActivity.class);
-                                Bundle args = new Bundle();
-                                args.putString(EditTextActivity.NAME_ARG, nameEdit.getText().toString());
-                                intent.putExtras(args);
-                                startActivityForResult(intent, 0);
-                            }
-                        }).show();
-            }
-        });
-        return (RecyclerView) view.findViewById(R.id.recycler_view);
+    protected Drawable getTopFabDrawable() {
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
+        return drawable;
     }
 
     @Override
-    public void preInit(Bundle savedInstanceState) {
-        super.preInit(savedInstanceState);
-        fabView.setVisibility(View.GONE);
-        fabView = addButton;
-
-        backgroundView.setVisibility(View.GONE);
-        backgroundView = null;
-
-        applyOnBootText.setText(getString(R.string.emulate_initd));
-        applyOnBootView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Utils.saveBoolean("emulateinit.d", isChecked, getActivity());
-            }
-        });
-        applyOnBootView.setChecked(Utils.getBoolean("emulateinit.d", false, getActivity()));
+    protected boolean showTopFab() {
+        return true;
     }
 
     @Override
-    public void setOnScrollListener(RecyclerView recyclerView) {
-        super.setOnScrollListener(recyclerView);
-        if (!Utils.isTV(getActivity()))
-            recyclerView.addOnScrollListener(fabHideScrollListener = new FabHideScrollListener());
-    }
+    protected void init() {
+        super.init();
 
-    private class FabHideScrollListener extends RecyclerView.OnScrollListener {
+        addViewPagerFragment(new EmulateInitdFragment());
 
-        private boolean hide;
-        private boolean scrolled;
-        private boolean reset;
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            if (!reset) {
-                hide = dy > -1;
-                scrolled = true;
-            }
-            reset = false;
+        if (mExecuteDialog != null) {
+            mExecuteDialog.show();
         }
-
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-
-            if (scrolled && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                final int height = addButtonBg.getHeight();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        float offset = getResources().getDisplayMetrics().density * 10;
-                        if (!hide && ViewHelper.getTranslationY(addButtonBg) == height) {
-                            for (int i = height; i > 0; i -= offset)
-                                try {
-                                    move(i);
-                                    Thread.sleep(16);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            move(0);
-                        } else if (hide && ViewHelper.getTranslationY(addButtonBg) == 0) {
-                            for (int i = 0; i < height; i += offset)
-                                try {
-                                    move(i);
-                                    Thread.sleep(16);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            move(height);
-                        }
-                    }
-                }).start();
-            }
-            scrolled = false;
+        if (mResultDialog != null) {
+            mResultDialog.show();
         }
+        if (mDeleteDialog != null) {
+            mDeleteDialog.show();
+        }
+        if (mShowCreateNameDialog) {
+            showCreateDialog();
+        }
+    }
 
-        private void move(final int translation) {
-            getActivity().runOnUiThread(new Runnable() {
+    @Override
+    protected void addItems(List<RecyclerViewItem> items) {
+        if (!mLoaded) {
+            load(items);
+            mLoaded = true;
+        }
+    }
+
+    private void reload() {
+        if (mLoader == null) {
+            getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ViewHelper.setTranslationY(addButtonBg, translation);
-                }
-            });
-        }
-    }
+                    clearItems();
+                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
 
-    @Override
-    public void resetTranslations() {
-        super.resetTranslations();
-        ViewHelper.setTranslationY(addButtonBg, 0);
-        if (fabHideScrollListener != null) {
-            fabHideScrollListener.hide = false;
-            fabHideScrollListener.reset = true;
-        }
-    }
-
-    @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-
-        refresh();
-    }
-
-    private void refresh() {
-        removeAllViews();
-
-        final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
-        mInformationCard.setText(getString(R.string.emulate_initd_summary));
-
-        addView(mInformationCard);
-
-        for (final String file : Initd.getInitds()) {
-            if (file == null || file.isEmpty()) return;
-            final CardViewItem.DCardView mInitdCard = new CardViewItem.DCardView();
-            mInitdCard.setDescription(file);
-            mInitdCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setItems(R.array.initd_menu, new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
+                        protected void onPreExecute() {
+                            super.onPreExecute();
+                            showProgress();
+                        }
+
+                        @Override
+                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
+                            List<RecyclerViewItem> items = new ArrayList<>();
+                            load(items);
+                            return items;
+                        }
+
+                        @Override
+                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
+                            super.onPostExecute(recyclerViewItems);
+                            for (RecyclerViewItem item : recyclerViewItems) {
+                                addItem(item);
+                            }
+                            hideProgress();
+                            mLoader = null;
+                        }
+                    };
+                    mLoader.execute();
+                }
+            }, 250);
+        }
+    }
+
+    private void load(List<RecyclerViewItem> items) {
+        for (final String initd : Initd.list()) {
+            CardView cardView = new CardView(getActivity());
+            cardView.setOnMenuListener(new CardView.OnMenuListener() {
+                @Override
+                public void onMenuReady(CardView cardView, PopupMenu popupMenu) {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.edit));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.delete));
+
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
                                 case 0:
-                                    new AlertDialog.Builder(getActivity()).setMessage(Initd.getInitd(file)).show();
+                                    mEditInitd = initd;
+                                    Intent intent = new Intent(getActivity(), EditorActivity.class);
+                                    intent.putExtra(EditorActivity.TITLE_INTENT, initd);
+                                    intent.putExtra(EditorActivity.TEXT_INTENT, Initd.read(initd));
+                                    startActivityForResult(intent, 0);
                                     break;
                                 case 1:
-                                    new AsyncTask<Void, Void, String>() {
-                                        private ProgressDialog progressDialog;
-
-                                        @Override
-                                        protected void onPreExecute() {
-                                            super.onPreExecute();
-                                            progressDialog = new ProgressDialog(getActivity());
-                                            progressDialog.setMessage(getString(R.string.executing));
-                                            progressDialog.setCancelable(false);
-                                            progressDialog.show();
-                                        }
-
-                                        @Override
-                                        protected String doInBackground(Void... params) {
-                                            return Initd.execute(file);
-                                        }
-
-                                        @Override
-                                        protected void onPostExecute(String s) {
-                                            super.onPostExecute(s);
-                                            progressDialog.dismiss();
-                                            if (!s.isEmpty())
-                                                try {
-                                                    new AlertDialog.Builder(getActivity()).setMessage(s).show();
-                                                } catch (NullPointerException ignored) {
+                                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
                                                 }
-                                        }
-                                    }.execute();
-                                    break;
-                                case 2:
-                                    Intent i = new Intent(getActivity(), EditTextActivity.class);
-                                    Bundle args = new Bundle();
-                                    args.putString(EditTextActivity.NAME_ARG, file);
-                                    args.putString(EditTextActivity.TEXT_ARG, Initd.getInitd(file));
-                                    i.putExtras(args);
-                                    startActivityForResult(i, 1);
-                                    break;
-                                case 3:
-                                    Initd.delete(file);
-                                    removeView(mInitdCard);
-                                    resetTranslations();
+                                            }, new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    Initd.delete(initd);
+                                                    reload();
+                                                }
+                                            }, new DialogInterface.OnDismissListener() {
+                                                @Override
+                                                public void onDismiss(DialogInterface dialogInterface) {
+                                                    mDeleteDialog = null;
+                                                }
+                                            }, getActivity());
+                                    mDeleteDialog.show();
                                     break;
                             }
+                            return false;
                         }
-                    }).show();
+                    });
                 }
             });
 
-            addView(mInitdCard);
+            DescriptionView descriptionView = new DescriptionView();
+            descriptionView.setSummary(initd);
+            descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    mExecuteDialog = ViewUtils.dialogBuilder(getString(R.string.exceute_question, initd),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                }
+                            }, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    execute(initd);
+                                }
+                            }, new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+                                    mExecuteDialog = null;
+                                }
+                            }, getActivity());
+                    mExecuteDialog.show();
+                }
+            });
+
+            cardView.addItem(descriptionView);
+            items.add(cardView);
         }
     }
 
-    @Override
-    public void postInit(Bundle savedInstanceState) {
-        super.postInit(savedInstanceState);
-        if (getCount() < 1) Utils.toast(getString(R.string.no_scripts_found), getActivity());
+    private void execute(final String initd) {
+        new AsyncTask<Void, Void, String>() {
+
+            private ProgressDialog mProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.executing));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                return Initd.execute(initd);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                if (s != null && !s.isEmpty()) {
+                    mResultDialog = ViewUtils.dialogBuilder(s, null, null,
+                            new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialogInterface) {
+                                    mResultDialog = null;
+                                }
+                            }, getActivity()).setTitle(getString(R.string.result));
+                    mResultDialog.show();
+                }
+            }
+        }.execute();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
-            String name = data.getExtras().getString("name");
-            String text = data.getExtras().getString("text");
-            if (text != null) {
-                RootFile file = Initd.delete(name);
-                RootUtils.mount(true, "/system");
-                for (String line : text.split("\\r?\\n")) file.write(line, true);
+
+        if (data == null) return;
+        if (requestCode == 0) {
+            Initd.write(mEditInitd, data.getCharSequenceExtra(EditorActivity.TEXT_INTENT).toString());
+            reload();
+        } else if (requestCode == 1) {
+            Initd.write(mCreateName, data.getCharSequenceExtra(EditorActivity.TEXT_INTENT).toString());
+            mCreateName = null;
+            reload();
+        }
+    }
+
+    @Override
+    protected void onTopFabClick() {
+        super.onTopFabClick();
+
+        showCreateDialog();
+    }
+
+    private void showCreateDialog() {
+        mShowCreateNameDialog = true;
+        ViewUtils.dialogEditText(null, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
             }
-            if (requestCode == 0) getHandler().post(new Runnable() {
+        }, new ViewUtils.OnDialogEditTextListener() {
+            @Override
+            public void onClick(String text) {
+                if (text.isEmpty()) {
+                    Utils.toast(R.string.name_empty, getActivity());
+                    return;
+                }
+
+                if (Initd.list().indexOf(text) > -1) {
+                    Utils.toast(getString(R.string.already_exists, text), getActivity());
+                    return;
+                }
+
+                mCreateName = text;
+                Intent intent = new Intent(getActivity(), EditorActivity.class);
+                intent.putExtra(EditorActivity.TITLE_INTENT, mCreateName);
+                intent.putExtra(EditorActivity.TEXT_INTENT, "#!/system/bin/sh\n\n");
+                startActivityForResult(intent, 1);
+            }
+        }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
+                new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        mShowCreateNameDialog = false;
+                    }
+                }).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        RootUtils.mount(false, "/system");
+        if (mLoader != null) {
+            mLoader.cancel(true);
+            mLoader = null;
+        }
+        mLoaded = false;
+    }
+
+    public static class EmulateInitdFragment extends BaseFragment {
+
+        @Override
+        protected boolean retainInstance() {
+            return false;
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_emulate_initd, container, false);
+
+            SwitchCompat switchCompat = (SwitchCompat) rootView.findViewById(R.id.switcher);
+            switchCompat.setChecked(Prefs.getBoolean("initd_onboot", false, getActivity()));
+            switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void run() {
-                    refresh();
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    Prefs.saveBoolean("initd_onboot", b, getActivity());
                 }
             });
+
+            return rootView;
         }
     }
 

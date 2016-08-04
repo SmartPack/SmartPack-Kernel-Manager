@@ -1,1074 +1,1138 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.ColorPalette;
-import com.grarak.kerneladiutor.elements.DAdapter;
-import com.grarak.kerneladiutor.elements.DDivider;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
-import com.grarak.kerneladiutor.elements.cards.PopupCardView;
-import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.WebpageReader;
-import com.grarak.kerneladiutor.utils.json.GammaProfiles;
-import com.grarak.kerneladiutor.utils.kernel.Screen;
-import com.kerneladiutor.library.Tools;
+import com.grarak.kerneladiutor.utils.kernel.screen.Calibration;
+import com.grarak.kerneladiutor.utils.kernel.screen.Gamma;
+import com.grarak.kerneladiutor.utils.kernel.screen.GammaProfiles;
+import com.grarak.kerneladiutor.utils.kernel.screen.Misc;
+import com.grarak.kerneladiutor.views.ColorTable;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DropDownView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 26.12.14.
+ * Created by willi on 31.05.16.
  */
-public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
-        PopupCardView.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
+public class ScreenFragment extends RecyclerViewFragment {
 
-    private ColorPalette mColorPalette;
+    private SeekBarView mColors[];
+    private SeekBarView mMinColor;
 
-    private List<String> mColorCalibrationLimits;
-    private SeekBarCardView.DSeekBarCard[] mColorCalibrationCard;
-    private SeekBarCardView.DSeekBarCard mColorCalibrationMinCard;
-    private SwitchCardView.DSwitchCard mInvertScreenCard;
-    private SeekBarCardView.DSeekBarCard mSaturationIntensityCard;
-    private SwitchCardView.DSwitchCard mGrayscaleModeCard;
-    private SeekBarCardView.DSeekBarCard mScreenHueCard;
-    private SeekBarCardView.DSeekBarCard mScreenValueCard;
-    private SeekBarCardView.DSeekBarCard mScreenContrastCard;
-    private SwitchCardView.DSwitchCard mScreenHBMCard;
+    private GenericSelectView mKGammaBlue;
+    private GenericSelectView mKGammaGreen;
+    private GenericSelectView mKGammaRed;
 
-    private EditTextCardView.DEditTextCard mKGammaBlueCard;
-    private EditTextCardView.DEditTextCard mKGammaGreenCard;
-    private EditTextCardView.DEditTextCard mKGammaRedCard;
-    private PopupCardView.DPopupCard mKGammaProfilesCard;
+    private GenericSelectView mGammaControlRedGreys;
+    private GenericSelectView mGammaControlRedMids;
+    private GenericSelectView mGammaControlRedBlacks;
+    private GenericSelectView mGammaControlRedWhites;
+    private GenericSelectView mGammaControlGreenGreys;
+    private GenericSelectView mGammaControlGreenMids;
+    private GenericSelectView mGammaControlGreenBlacks;
+    private GenericSelectView mGammaControlGreenWhites;
+    private GenericSelectView mGammaControlBlueGreys;
+    private GenericSelectView mGammaControlBlueMids;
+    private GenericSelectView mGammaControlBlueBlacks;
+    private GenericSelectView mGammaControlBlueWhites;
+    private GenericSelectView mGammaControlContrast;
+    private GenericSelectView mGammaControlBrightness;
+    private GenericSelectView mGammaControlSaturation;
 
-    private EditTextCardView.DEditTextCard mGammaControlRedGreysCard;
-    private EditTextCardView.DEditTextCard mGammaControlRedMidsCard;
-    private EditTextCardView.DEditTextCard mGammaControlRedBlacksCard;
-    private EditTextCardView.DEditTextCard mGammaControlRedWhitesCard;
-    private EditTextCardView.DEditTextCard mGammaControlGreenGreysCard;
-    private EditTextCardView.DEditTextCard mGammaControlGreenMidsCard;
-    private EditTextCardView.DEditTextCard mGammaControlGreenBlacksCard;
-    private EditTextCardView.DEditTextCard mGammaControlGreenWhitesCard;
-    private EditTextCardView.DEditTextCard mGammaControlBlueGreysCard;
-    private EditTextCardView.DEditTextCard mGammaControlBlueMidsCard;
-    private EditTextCardView.DEditTextCard mGammaControlBlueBlacksCard;
-    private EditTextCardView.DEditTextCard mGammaControlBlueWhitesCard;
-    private EditTextCardView.DEditTextCard mGammaControlContrastCard;
-    private EditTextCardView.DEditTextCard mGammaControlBrightnessCard;
-    private EditTextCardView.DEditTextCard mGammaControlSaturationCard;
-    private PopupCardView.DPopupCard mGammaControlProfilesCard;
-
-    private EditTextCardView.DEditTextCard mDsiPanelBlueNegativeCard;
-    private EditTextCardView.DEditTextCard mDsiPanelBluePositiveCard;
-    private EditTextCardView.DEditTextCard mDsiPanelGreenNegativeCard;
-    private EditTextCardView.DEditTextCard mDsiPanelGreenPositiveCard;
-    private EditTextCardView.DEditTextCard mDsiPanelRedNegativeCard;
-    private EditTextCardView.DEditTextCard mDsiPanelRedPositiveCard;
-    private EditTextCardView.DEditTextCard mDsiPanelWhitePointCard;
-    private PopupCardView.DPopupCard mDsiPanelProfilesCard;
-
-    private CardViewItem.DCardView mAdditionalProfilesCard;
-
-    private SwitchCardView.DSwitchCard mBrightnessModeCard;
-    private SeekBarCardView.DSeekBarCard mLcdMinBrightnessCard;
-    private SeekBarCardView.DSeekBarCard mLcdMaxBrightnessCard;
-
-    private SwitchCardView.DSwitchCard mBackLightDimmerEnableCard;
-    private SeekBarCardView.DSeekBarCard mBackLightDimmerMinBrightnessCard;
-    private SeekBarCardView.DSeekBarCard mBackLightDimmerThresholdCard;
-    private SeekBarCardView.DSeekBarCard mBackLightDimmerOffsetCard;
-
-    private SwitchCardView.DSwitchCard mNegativeToggleCard;
-
-    private SwitchCardView.DSwitchCard mRegisterHookCard;
-    private SwitchCardView.DSwitchCard mMasterSequenceCard;
-
-    private SwitchCardView.DSwitchCard mGloveModeCard;
+    private GenericSelectView mDsiPanelBlueNegative;
+    private GenericSelectView mDsiPanelBluePositive;
+    private GenericSelectView mDsiPanelGreenNegative;
+    private GenericSelectView mDsiPanelGreenPositive;
+    private GenericSelectView mDsiPanelRedNegative;
+    private GenericSelectView mDsiPanelRedPositive;
+    private GenericSelectView mDsiPanelWhitePoint;
 
     @Override
-    public RecyclerView getRecyclerView() {
-        mColorPalette = (ColorPalette) getParentView(R.layout.screen_fragment).findViewById(R.id.colorpalette);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mColorPalette.setVisibility(View.INVISIBLE);
-        return (RecyclerView) getParentView(R.layout.screen_fragment).findViewById(R.id.recycler_view);
+    protected void init() {
+        super.init();
+
+        addViewPagerFragment(new ColorTableFragment());
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.SCREEN));
     }
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-
-        screenColorInit();
-        if (Screen.hasKGamma()) kgammaInit();
-        if (Screen.hasGammaControl()) gammacontrolInit();
-        if (Screen.hasDsiPanel()) dsipanelInit();
-        if (mKGammaProfilesCard != null || mGammaControlProfilesCard != null || mDsiPanelProfilesCard != null)
-            additionalProfilesInit();
-        lcdBackLightInit();
-        backlightDimmerInit();
-        if (Screen.hasNegativeToggle()) negativeToggleInit();
-        mdnieGlobalInit();
-        if (Screen.hasGloveMode()) gloveModeInit();
+    protected void addItems(List<RecyclerViewItem> items) {
+        screenColorInit(items);
+        List<RecyclerViewItem> gammas = new ArrayList<>();
+        if (Gamma.hasKGamma()) {
+            kgammaInit(gammas);
+        } else if (Gamma.hasGammaControl()) {
+            gammacontrolInit(gammas);
+        } else if (Gamma.hasDsiPanel()) {
+            dsipanelInit(gammas);
+        }
+        if (gammas.size() > 0) {
+            CardView gamma = new CardView(getActivity());
+            gamma.setTitle(getString(R.string.gamma));
+            for (RecyclerViewItem item : gammas) {
+                gamma.addItem(item);
+            }
+            items.add(gamma);
+        }
+        lcdBackLightInit(items);
+        backlightDimmerInit(items);
+        if (Misc.hasNegativeToggle()) {
+            negativeToggleInit(items);
+        }
+        mdnieGlobalInit(items);
+        if (Misc.hasGloveMode()) {
+            gloveModeInit(items);
+        }
     }
 
-    @Override
-    public void postInit(Bundle savedInstanceState) {
-        super.postInit(savedInstanceState);
-        Utils.circleAnimate(mColorPalette, 0, mColorPalette.getHeight());
-    }
+    private void screenColorInit(List<RecyclerViewItem> items) {
+        if (Calibration.hasColors()) {
 
-    private void screenColorInit() {
-        if (Screen.hasColorCalibration()) {
-            List<String> colors = Screen.getColorCalibration();
-            mColorCalibrationLimits = Screen.getColorCalibrationLimits();
-            mColorCalibrationCard = new SeekBarCardView.DSeekBarCard[colors.size()];
-            for (int i = 0; i < mColorCalibrationCard.length; i++) {
-                mColorCalibrationCard[i] = new SeekBarCardView.DSeekBarCard(Screen.getColorCalibrationLimits());
-                mColorCalibrationCard[i].setTitle(getColor(i));
-                mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits().indexOf(colors.get(i)));
-                mColorCalibrationCard[i].setOnDSeekBarCardListener(this);
+            CardView screenColor = new CardView(getActivity());
+            screenColor.setTitle(getString(R.string.screen_color));
 
-                addView(mColorCalibrationCard[i]);
+            List<String> colors = Calibration.getColors();
+            final List<String> limits = Calibration.getLimits();
+            mColors = new SeekBarView[colors.size()];
+            for (int i = 0; i < colors.size(); i++) {
+                mColors[i] = new SeekBarView();
+                mColors[i].setTitle(getResources().getStringArray(R.array.colors)[i]);
+                mColors[i].setItems(limits);
+                mColors[i].setProgress(limits.indexOf(colors.get(i)));
+                mColors[i].setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                    @Override
+                    public void onMove(SeekBarView seekBarView, int position, String value) {
+                        if (mMinColor != null && position < mMinColor.getProgress()) {
+                            mMinColor.setProgress(position);
+                        }
+                    }
+
+                    @Override
+                    public void onStop(SeekBarView seekBarView, int position, String value) {
+                        if (mMinColor != null) {
+                            int current = Utils.strToInt(Calibration.getLimits().get(position));
+                            if (Calibration.getMinColor() > current) {
+                                Calibration.setMinColor(current, getActivity());
+                            }
+                        }
+
+                        int r = mColors[0].getProgress();
+                        int g = mColors[1].getProgress();
+                        int b = mColors[2].getProgress();
+                        Calibration.setColors(limits.get(r) + " " + limits.get(g) + " " + limits.get(b),
+                                getActivity());
+                    }
+                });
+
+                screenColor.addItem(mColors[i]);
+            }
+
+            items.add(screenColor);
+
+            if (Calibration.hasMinColor()) {
+                mMinColor = new SeekBarView();
+                mMinColor.setTitle(getString(R.string.min_rgb));
+                mMinColor.setItems(Calibration.getLimits());
+                mMinColor.setProgress(Calibration.getLimits().indexOf(String.valueOf(Calibration.getMinColor())));
+                mMinColor.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                    @Override
+                    public void onStop(SeekBarView seekBarView, int position, String value) {
+                        Calibration.setMinColor(Utils.strToInt(value), getActivity());
+
+                        StringBuilder colors = new StringBuilder();
+                        for (String color : Calibration.getColors()) {
+                            if (Utils.strToInt(value) > Utils.strToInt(color)) {
+                                colors.append(value).append(" ");
+                            } else {
+                                colors.append(color).append(" ");
+                            }
+                        }
+                        colors.setLength(colors.length() - 1);
+                        Calibration.setColors(colors.toString(), getActivity());
+                    }
+
+                    @Override
+                    public void onMove(SeekBarView seekBarView, int position, String value) {
+                        for (SeekBarView color : mColors) {
+                            if (position > color.getProgress()) {
+                                color.setProgress(position);
+                            }
+                        }
+                    }
+                });
+
+                items.add(mMinColor);
             }
         }
 
-        if (Screen.hasColorCalibrationMin() && mColorCalibrationLimits != null) {
-            mColorCalibrationMinCard = new SeekBarCardView.DSeekBarCard(Screen.getColorCalibrationLimits());
-            mColorCalibrationMinCard.setTitle(getString(R.string.min_rgb));
-            mColorCalibrationMinCard.setProgress(Screen.getColorCalibrationMin());
-            mColorCalibrationMinCard.setOnDSeekBarCardListener(this);
-
-            addView(mColorCalibrationMinCard);
-        }
-
-        if (Screen.hasInvertScreen()) {
-            mInvertScreenCard = new SwitchCardView.DSwitchCard();
-            mInvertScreenCard.setDescription(getString(R.string.invert_screen));
-            mInvertScreenCard.setChecked(Screen.isInvertScreenActive());
-            mInvertScreenCard.setOnDSwitchCardListener(this);
-
-            addView(mInvertScreenCard);
-        }
-
-        if (Screen.hasSaturationIntensity()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 159; i++)
-                list.add(String.valueOf(i));
-
-            int saturation = Screen.getSaturationIntensity();
-            mSaturationIntensityCard = new SeekBarCardView.DSeekBarCard(list);
-            mSaturationIntensityCard.setTitle(getString(R.string.saturation_intensity));
-            mSaturationIntensityCard.setProgress(saturation == 128 ? 30 : saturation - 225);
-            mSaturationIntensityCard.setEnabled(saturation != 128);
-            mSaturationIntensityCard.setOnDSeekBarCardListener(this);
-
-            addView(mSaturationIntensityCard);
-
-            mGrayscaleModeCard = new SwitchCardView.DSwitchCard();
-            mGrayscaleModeCard.setDescription(getString(R.string.grayscale_mode));
-            mGrayscaleModeCard.setChecked(saturation == 128);
-            mGrayscaleModeCard.setOnDSwitchCardListener(this);
-
-            addView(mGrayscaleModeCard);
-        }
-
-        if (Screen.hasScreenHue()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 1537; i++)
-                list.add(String.valueOf(i));
-
-            mScreenHueCard = new SeekBarCardView.DSeekBarCard(list);
-            mScreenHueCard.setTitle(getString(R.string.screen_hue));
-            mScreenHueCard.setDescription(getString(R.string.screen_hue_summary));
-            mScreenHueCard.setProgress(Screen.getScreenHue());
-            mScreenHueCard.setOnDSeekBarCardListener(this);
-
-            addView(mScreenHueCard);
-        }
-
-        if (Screen.hasScreenValue()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 256; i++)
-                list.add(String.valueOf(i));
-
-            mScreenValueCard = new SeekBarCardView.DSeekBarCard(list);
-            mScreenValueCard.setTitle(getString(R.string.screen_value));
-            mScreenValueCard.setProgress(Screen.getScreenValue() - 128);
-            mScreenValueCard.setOnDSeekBarCardListener(this);
-
-            addView(mScreenValueCard);
-        }
-
-        if (Screen.hasScreenContrast()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 256; i++)
-                list.add(String.valueOf(i));
-
-            mScreenContrastCard = new SeekBarCardView.DSeekBarCard(list);
-            mScreenContrastCard.setTitle(getString(R.string.screen_contrast));
-            mScreenContrastCard.setProgress(Screen.getScreenContrast() - 128);
-            mScreenContrastCard.setOnDSeekBarCardListener(this);
-
-            addView(mScreenContrastCard);
-        }
-
-        if (Screen.hasScreenHBM()) {
-            mScreenHBMCard = new SwitchCardView.DSwitchCard();
-            mScreenHBMCard.setDescription(getString(R.string.high_brightness_mode));
-            mScreenHBMCard.setChecked(Screen.isScreenHBMActive());
-            mScreenHBMCard.setOnDSwitchCardListener(this);
-
-            addView(mScreenHBMCard);
-        }
-    }
-
-    private void kgammaInit() {
-        DDivider mKGammaDividerCard = new DDivider();
-        mKGammaDividerCard.setText(getString(R.string.gamma));
-        addView(mKGammaDividerCard);
-
-        String blue = Screen.getKGammaBlue();
-        mKGammaBlueCard = new EditTextCardView.DEditTextCard();
-        mKGammaBlueCard.setTitle(getString(R.string.blue));
-        mKGammaBlueCard.setDescription(blue);
-        mKGammaBlueCard.setValue(blue);
-        mKGammaBlueCard.setOnDEditTextCardListener(this);
-
-        addView(mKGammaBlueCard);
-
-        String green = Screen.getKGammaGreen();
-        mKGammaGreenCard = new EditTextCardView.DEditTextCard();
-        mKGammaGreenCard.setTitle(getString(R.string.green));
-        mKGammaGreenCard.setDescription(green);
-        mKGammaGreenCard.setValue(green);
-        mKGammaGreenCard.setOnDEditTextCardListener(this);
-
-        addView(mKGammaGreenCard);
-
-        String red = Screen.getKGammaRed();
-        mKGammaRedCard = new EditTextCardView.DEditTextCard();
-        mKGammaRedCard.setTitle(getString(R.string.red));
-        mKGammaRedCard.setDescription(red);
-        mKGammaRedCard.setValue(red);
-        mKGammaRedCard.setOnDEditTextCardListener(this);
-
-        addView(mKGammaRedCard);
-
-        GammaProfiles.KGammaProfiles kGammaProfiles = Screen.getKGammaProfiles(getActivity());
-        if (kGammaProfiles != null) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < kGammaProfiles.length(); i++)
-                list.add(kGammaProfiles.getName(i));
-
-            mKGammaProfilesCard = new PopupCardView.DPopupCard(list);
-            mKGammaProfilesCard.setTitle(getString(R.string.gamma_profile));
-            mKGammaProfilesCard.setDescription(getString(R.string.gamma_profile_summary));
-            mKGammaProfilesCard.setItem("");
-            mKGammaProfilesCard.setOnDPopupCardListener(this);
-
-            addView(mKGammaProfilesCard);
-        }
-    }
-
-    private void gammacontrolInit() {
-        DDivider mKGammaDividerCard = new DDivider();
-        mKGammaDividerCard.setText(getString(R.string.gamma));
-        addView(mKGammaDividerCard);
-
-        String redGreys = Screen.getRedGreys();
-        mGammaControlRedGreysCard = new EditTextCardView.DEditTextCard();
-        mGammaControlRedGreysCard.setTitle(getString(R.string.red_greys));
-        mGammaControlRedGreysCard.setDescription(redGreys);
-        mGammaControlRedGreysCard.setValue(redGreys);
-        mGammaControlRedGreysCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlRedGreysCard);
-
-        String redMids = Screen.getRedMids();
-        mGammaControlRedMidsCard = new EditTextCardView.DEditTextCard();
-        mGammaControlRedMidsCard.setTitle(getString(R.string.red_mids));
-        mGammaControlRedMidsCard.setDescription(redMids);
-        mGammaControlRedMidsCard.setValue(redMids);
-        mGammaControlRedMidsCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlRedMidsCard);
-
-        String redBlacks = Screen.getRedBlacks();
-        mGammaControlRedBlacksCard = new EditTextCardView.DEditTextCard();
-        mGammaControlRedBlacksCard.setTitle(getString(R.string.red_blacks));
-        mGammaControlRedBlacksCard.setDescription(redBlacks);
-        mGammaControlRedBlacksCard.setValue(redBlacks);
-        mGammaControlRedBlacksCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlRedBlacksCard);
-
-        String redWhites = Screen.getRedWhites();
-        mGammaControlRedWhitesCard = new EditTextCardView.DEditTextCard();
-        mGammaControlRedWhitesCard.setTitle(getString(R.string.red_whites));
-        mGammaControlRedWhitesCard.setDescription(redWhites);
-        mGammaControlRedWhitesCard.setValue(redWhites);
-        mGammaControlRedWhitesCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlRedWhitesCard);
-
-        String greenGreys = Screen.getGreenGreys();
-        mGammaControlGreenGreysCard = new EditTextCardView.DEditTextCard();
-        mGammaControlGreenGreysCard.setTitle(getString(R.string.green_greys));
-        mGammaControlGreenGreysCard.setDescription(greenGreys);
-        mGammaControlGreenGreysCard.setValue(greenGreys);
-        mGammaControlGreenGreysCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlGreenGreysCard);
-
-        String greenMids = Screen.getGreenMids();
-        mGammaControlGreenMidsCard = new EditTextCardView.DEditTextCard();
-        mGammaControlGreenMidsCard.setTitle(getString(R.string.green_mids));
-        mGammaControlGreenMidsCard.setDescription(greenMids);
-        mGammaControlGreenMidsCard.setValue(greenMids);
-        mGammaControlGreenMidsCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlGreenMidsCard);
-
-        String greenBlacks = Screen.getGreenBlacks();
-        mGammaControlGreenBlacksCard = new EditTextCardView.DEditTextCard();
-        mGammaControlGreenBlacksCard.setTitle(getString(R.string.green_blacks));
-        mGammaControlGreenBlacksCard.setDescription(greenBlacks);
-        mGammaControlGreenBlacksCard.setValue(greenBlacks);
-        mGammaControlGreenBlacksCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlGreenBlacksCard);
-
-        String greenWhites = Screen.getGreenWhites();
-        mGammaControlGreenWhitesCard = new EditTextCardView.DEditTextCard();
-        mGammaControlGreenWhitesCard.setTitle(getString(R.string.green_whites));
-        mGammaControlGreenWhitesCard.setDescription(greenWhites);
-        mGammaControlGreenWhitesCard.setValue(greenWhites);
-        mGammaControlGreenWhitesCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlGreenWhitesCard);
-
-        String blueGreys = Screen.getBlueGreys();
-        mGammaControlBlueGreysCard = new EditTextCardView.DEditTextCard();
-        mGammaControlBlueGreysCard.setTitle(getString(R.string.blue_greys));
-        mGammaControlBlueGreysCard.setDescription(blueGreys);
-        mGammaControlBlueGreysCard.setValue(blueGreys);
-        mGammaControlBlueGreysCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlBlueGreysCard);
-
-        String blueMids = Screen.getBlueMids();
-        mGammaControlBlueMidsCard = new EditTextCardView.DEditTextCard();
-        mGammaControlBlueMidsCard.setTitle(getString(R.string.blue_mids));
-        mGammaControlBlueMidsCard.setDescription(blueMids);
-        mGammaControlBlueMidsCard.setValue(blueMids);
-        mGammaControlBlueMidsCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlBlueMidsCard);
-
-        String blueBlacks = Screen.getBlueBlacks();
-        mGammaControlBlueBlacksCard = new EditTextCardView.DEditTextCard();
-        mGammaControlBlueBlacksCard.setTitle(getString(R.string.blue_blacks));
-        mGammaControlBlueBlacksCard.setDescription(blueBlacks);
-        mGammaControlBlueBlacksCard.setValue(blueBlacks);
-        mGammaControlBlueBlacksCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlBlueBlacksCard);
-
-        String blueWhites = Screen.getBlueWhites();
-        mGammaControlBlueWhitesCard = new EditTextCardView.DEditTextCard();
-        mGammaControlBlueWhitesCard.setTitle(getString(R.string.blue_whites));
-        mGammaControlBlueWhitesCard.setDescription(blueWhites);
-        mGammaControlBlueWhitesCard.setValue(blueWhites);
-        mGammaControlBlueWhitesCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlBlueWhitesCard);
-
-        String contrast = Screen.getGammaContrast();
-        mGammaControlContrastCard = new EditTextCardView.DEditTextCard();
-        mGammaControlContrastCard.setTitle(getString(R.string.contrast));
-        mGammaControlContrastCard.setDescription(contrast);
-        mGammaControlContrastCard.setValue(contrast);
-        mGammaControlContrastCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlContrastCard);
-
-        String brightness = Screen.getGammaBrightness();
-        mGammaControlBrightnessCard = new EditTextCardView.DEditTextCard();
-        mGammaControlBrightnessCard.setTitle(getString(R.string.brightness));
-        mGammaControlBrightnessCard.setDescription(brightness);
-        mGammaControlBrightnessCard.setValue(brightness);
-        mGammaControlBrightnessCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlBrightnessCard);
-
-        String saturation = Screen.getGammaSaturation();
-        mGammaControlSaturationCard = new EditTextCardView.DEditTextCard();
-        mGammaControlSaturationCard.setTitle(getString(R.string.saturation_intensity));
-        mGammaControlSaturationCard.setDescription(saturation);
-        mGammaControlSaturationCard.setValue(saturation);
-        mGammaControlSaturationCard.setOnDEditTextCardListener(this);
-
-        addView(mGammaControlSaturationCard);
-
-        GammaProfiles.GammaControlProfiles gammaControlProfiles = Screen.getGammaControlProfiles(getActivity());
-        if (gammaControlProfiles != null) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < gammaControlProfiles.length(); i++)
-                list.add(gammaControlProfiles.getName(i));
-
-            mGammaControlProfilesCard = new PopupCardView.DPopupCard(list);
-            mGammaControlProfilesCard.setTitle(getString(R.string.gamma_profile));
-            mGammaControlProfilesCard.setDescription(getString(R.string.gamma_profile_summary));
-            mGammaControlProfilesCard.setItem("");
-            mGammaControlProfilesCard.setOnDPopupCardListener(this);
-
-            addView(mGammaControlProfilesCard);
-        }
-    }
-
-    private void dsipanelInit() {
-        DDivider mKGammaDividerCard = new DDivider();
-        mKGammaDividerCard.setText(getString(R.string.gamma));
-        addView(mKGammaDividerCard);
-
-        String blueNegative = Screen.getBlueNegative();
-        mDsiPanelBlueNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelBlueNegativeCard.setTitle(getString(R.string.blue_negative));
-        mDsiPanelBlueNegativeCard.setDescription(blueNegative);
-        mDsiPanelBlueNegativeCard.setValue(blueNegative);
-        mDsiPanelBlueNegativeCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelBlueNegativeCard);
-
-        String bluePositive = Screen.getBluePositive();
-        mDsiPanelBluePositiveCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelBluePositiveCard.setTitle(getString(R.string.blue_positive));
-        mDsiPanelBluePositiveCard.setDescription(bluePositive);
-        mDsiPanelBluePositiveCard.setValue(bluePositive);
-        mDsiPanelBluePositiveCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelBluePositiveCard);
-
-        String greenNegative = Screen.getGreenNegative();
-        mDsiPanelGreenNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelGreenNegativeCard.setTitle(getString(R.string.green_negative));
-        mDsiPanelGreenNegativeCard.setDescription(greenNegative);
-        mDsiPanelGreenNegativeCard.setValue(greenNegative);
-        mDsiPanelGreenNegativeCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelGreenNegativeCard);
-
-        String greenPositive = Screen.getGreenPositive();
-        mDsiPanelGreenPositiveCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelGreenPositiveCard.setTitle(getString(R.string.green_positive));
-        mDsiPanelGreenPositiveCard.setDescription(greenPositive);
-        mDsiPanelGreenPositiveCard.setValue(greenPositive);
-        mDsiPanelGreenPositiveCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelGreenPositiveCard);
-
-        String redNegative = Screen.getRedNegative();
-        mDsiPanelRedNegativeCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelRedNegativeCard.setTitle(getString(R.string.red_negative));
-        mDsiPanelRedNegativeCard.setDescription(redNegative);
-        mDsiPanelRedNegativeCard.setValue(redNegative);
-        mDsiPanelRedNegativeCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelRedNegativeCard);
-
-        String redPositive = Screen.getRedPositive();
-        mDsiPanelRedPositiveCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelRedPositiveCard.setTitle(getString(R.string.red_positive));
-        mDsiPanelRedPositiveCard.setDescription(redPositive);
-        mDsiPanelRedPositiveCard.setValue(redPositive);
-        mDsiPanelRedPositiveCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelRedPositiveCard);
-
-        String whitePoint = Screen.getWhitePoint();
-        mDsiPanelWhitePointCard = new EditTextCardView.DEditTextCard();
-        mDsiPanelWhitePointCard.setTitle(getString(R.string.white_point));
-        mDsiPanelWhitePointCard.setDescription(whitePoint);
-        mDsiPanelWhitePointCard.setValue(whitePoint);
-        mDsiPanelWhitePointCard.setOnDEditTextCardListener(this);
-
-        addView(mDsiPanelWhitePointCard);
-
-        GammaProfiles.DsiPanelProfiles dsiPanelProfiles = Screen.getDsiPanelProfiles(getActivity());
-        if (dsiPanelProfiles != null) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < dsiPanelProfiles.length(); i++)
-                list.add(dsiPanelProfiles.getName(i));
-
-            mDsiPanelProfilesCard = new PopupCardView.DPopupCard(list);
-            mDsiPanelProfilesCard.setTitle(getString(R.string.gamma_profile));
-            mDsiPanelProfilesCard.setDescription(getString(R.string.gamma_profile_summary));
-            mDsiPanelProfilesCard.setItem("");
-            mDsiPanelProfilesCard.setOnDPopupCardListener(this);
-
-            addView(mDsiPanelProfilesCard);
-        }
-    }
-
-    private void additionalProfilesInit() {
-        mAdditionalProfilesCard = new CardViewItem.DCardView();
-        mAdditionalProfilesCard.setTitle(getString(R.string.additional_profiles));
-        mAdditionalProfilesCard.setDescription(getString(R.string.additional_profiles_summary));
-        mAdditionalProfilesCard.setOnDCardListener(this);
-
-        addView(mAdditionalProfilesCard);
-    }
-
-    private void lcdBackLightInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-
-        if (Screen.hasBrightnessMode()) {
-            mBrightnessModeCard = new SwitchCardView.DSwitchCard();
-            mBrightnessModeCard.setDescription(getString(R.string.brightness_mode));
-            mBrightnessModeCard.setChecked(Screen.isBrightnessModeActive());
-            mBrightnessModeCard.setOnDSwitchCardListener(this);
-
-            views.add(mBrightnessModeCard);
-        }
-
-        if (Screen.hasLcdMinBrightness()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 2; i < 115; i++)
-                list.add(String.valueOf(i));
-
-            mLcdMinBrightnessCard = new SeekBarCardView.DSeekBarCard(list);
-            mLcdMinBrightnessCard.setTitle(getString(R.string.min_brightness));
-            mLcdMinBrightnessCard.setDescription(getString(R.string.min_brightness_summary));
-            mLcdMinBrightnessCard.setProgress(Screen.getLcdMinBrightness() - 2);
-            mLcdMinBrightnessCard.setOnDSeekBarCardListener(this);
-
-            views.add(mLcdMinBrightnessCard);
-        }
-
-        if (Screen.hasLcdMaxBrightness()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 2; i < 115; i++)
-                list.add(String.valueOf(i));
-
-            mLcdMaxBrightnessCard = new SeekBarCardView.DSeekBarCard(list);
-            mLcdMaxBrightnessCard.setTitle(getString(R.string.max_brightness));
-            mLcdMaxBrightnessCard.setDescription(getString(R.string.max_brightness_summary));
-            mLcdMaxBrightnessCard.setProgress(Screen.getLcdMaxBrightness() - 2);
-            mLcdMaxBrightnessCard.setOnDSeekBarCardListener(this);
-
-            views.add(mLcdMaxBrightnessCard);
-        }
-
-        if (views.size() > 0) {
-            DDivider mLcdBackLightDividerCard = new DDivider();
-            mLcdBackLightDividerCard.setText(getString(R.string.lcd_backlight));
-            addView(mLcdBackLightDividerCard);
-
-            addAllViews(views);
-        }
-    }
-
-    private void backlightDimmerInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-
-        if (Screen.hasBackLightDimmerEnable()) {
-            mBackLightDimmerEnableCard = new SwitchCardView.DSwitchCard();
-            mBackLightDimmerEnableCard.setDescription(getString(R.string.backlight_dimmer));
-            mBackLightDimmerEnableCard.setChecked(Screen.isBackLightDimmerActive());
-            mBackLightDimmerEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mBackLightDimmerEnableCard);
-        }
-
-        if (Screen.hasMinBrightness()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i <= Screen.getMaxMinBrightness(); i++)
-                list.add(String.valueOf(i));
-
-            mBackLightDimmerMinBrightnessCard = new SeekBarCardView.DSeekBarCard(list);
-            mBackLightDimmerMinBrightnessCard.setTitle(getString(R.string.min_brightness));
-            mBackLightDimmerMinBrightnessCard.setDescription(getString(R.string.min_brightness_summary));
-            mBackLightDimmerMinBrightnessCard.setProgress(Screen.getCurMinBrightness());
-            mBackLightDimmerMinBrightnessCard.setOnDSeekBarCardListener(this);
-
-            views.add(mBackLightDimmerMinBrightnessCard);
-        }
-
-        if (Screen.hasBackLightDimmerThreshold()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 51; i++)
-                list.add(String.valueOf(i));
-
-            mBackLightDimmerThresholdCard = new SeekBarCardView.DSeekBarCard(list);
-            mBackLightDimmerThresholdCard.setTitle(getString(R.string.threshold));
-            mBackLightDimmerThresholdCard.setProgress(Screen.getBackLightDimmerThreshold());
-            mBackLightDimmerThresholdCard.setOnDSeekBarCardListener(this);
-
-            views.add(mBackLightDimmerThresholdCard);
-        }
-
-        if (Screen.hasBackLightDimmerOffset()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 51; i++)
-                list.add(String.valueOf(i));
-
-            mBackLightDimmerOffsetCard = new SeekBarCardView.DSeekBarCard(list);
-            mBackLightDimmerOffsetCard.setTitle(getString(R.string.offset));
-            mBackLightDimmerOffsetCard.setProgress(Screen.getBackLightDimmerOffset());
-            mBackLightDimmerOffsetCard.setOnDSeekBarCardListener(this);
-
-            views.add(mBackLightDimmerOffsetCard);
-        }
-
-        if (views.size() > 0) {
-            DDivider mBackLightDimmerDividerCard = new DDivider();
-            mBackLightDimmerDividerCard.setText(getString(R.string.backlight_dimmer));
-            addView(mBackLightDimmerDividerCard);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void negativeToggleInit() {
-        mNegativeToggleCard = new SwitchCardView.DSwitchCard();
-        mNegativeToggleCard.setTitle(getString(R.string.negative_toggle));
-        mNegativeToggleCard.setDescription(getString(R.string.negative_toggle_summary));
-        mNegativeToggleCard.setChecked(Screen.isNegativeToggleActive());
-        mNegativeToggleCard.setOnDSwitchCardListener(this);
-
-        addView(mNegativeToggleCard);
-    }
-
-    private void mdnieGlobalInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-
-        if (Screen.hasRegisterHook()) {
-            mRegisterHookCard = new SwitchCardView.DSwitchCard();
-            mRegisterHookCard.setTitle(getString(R.string.register_hook));
-            mRegisterHookCard.setDescription(getString(R.string.register_hook_summary));
-            mRegisterHookCard.setChecked(Screen.isRegisterHookActive());
-            mRegisterHookCard.setOnDSwitchCardListener(this);
-
-            views.add(mRegisterHookCard);
-        }
-
-        if (Screen.hasMasterSequence()) {
-            mMasterSequenceCard = new SwitchCardView.DSwitchCard();
-            mMasterSequenceCard.setTitle(getString(R.string.master_sequence));
-            mMasterSequenceCard.setDescription(getString(R.string.master_sequence_summary));
-            mMasterSequenceCard.setChecked(Screen.isMasterSequenceActive());
-            mMasterSequenceCard.setOnDSwitchCardListener(this);
-
-            views.add(mMasterSequenceCard);
-        }
-
-        if (views.size() > 0) {
-            DDivider mMdnieGlobalDivider = new DDivider();
-            mMdnieGlobalDivider.setText(getString(R.string.mdnie_global_controls));
-            addView(mMdnieGlobalDivider);
-
-            addAllViews(views);
-        }
-    }
-
-    private void gloveModeInit() {
-        mGloveModeCard = new SwitchCardView.DSwitchCard();
-        mGloveModeCard.setTitle(getString(R.string.glove_mode));
-        mGloveModeCard.setDescription(getString(R.string.glove_mode_summary));
-        mGloveModeCard.setChecked(Screen.isGloveModeActive());
-        mGloveModeCard.setOnDSwitchCardListener(this);
-
-        addView(mGloveModeCard);
-    }
-
-    @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mColorCalibrationMinCard) {
-            for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
-                if (position > seekBarCardView.getProgress())
-                    seekBarCardView.setProgress(position);
-        } else {
-            if (mColorCalibrationCard != null)
-                for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
-                    if (dSeekBarCard == seekBarCardView) {
-                        if (mColorCalibrationMinCard != null)
-                            if (position < mColorCalibrationMinCard.getProgress())
-                                mColorCalibrationMinCard.setProgress(position);
-                        return;
-                    }
-        }
-    }
-
-    @Override
-    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mColorCalibrationMinCard)
-            Screen.setColorCalibrationMin(Utils.stringToInt(mColorCalibrationLimits.get(position)), getActivity());
-        else if (dSeekBarCard == mSaturationIntensityCard)
-            Screen.setSaturationIntensity(position + 225, getActivity());
-        else if (dSeekBarCard == mScreenHueCard)
-            Screen.setScreenHue(position, getActivity());
-        else if (dSeekBarCard == mScreenValueCard)
-            Screen.setScreenValue(position + 128, getActivity());
-        else if (dSeekBarCard == mScreenContrastCard)
-            Screen.setScreenContrast(position + 128, getActivity());
-        else if (dSeekBarCard == mLcdMinBrightnessCard)
-            Screen.setLcdMinBrightness(position + 2, getActivity());
-        else if (dSeekBarCard == mLcdMaxBrightnessCard)
-            Screen.setLcdMaxBrightness(position + 2, getActivity());
-        else if (dSeekBarCard == mBackLightDimmerMinBrightnessCard)
-            Screen.setMinBrightness(position, getActivity());
-        else if (dSeekBarCard == mBackLightDimmerThresholdCard)
-            Screen.setBackLightDimmerThreshold(position, getActivity());
-        else if (dSeekBarCard == mBackLightDimmerOffsetCard)
-            Screen.setBackLightDimmerOffset(position, getActivity());
-        else {
-            for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
-                if (dSeekBarCard == seekBarCardView) {
-                    if (mColorCalibrationMinCard != null) {
-                        int current = Utils.stringToInt(mColorCalibrationLimits.get(position));
-                        if (Screen.getColorCalibrationMin() > current)
-                            Screen.setColorCalibrationMin(current, getActivity());
-                    }
-
-                    try {
-                        int r = mColorCalibrationCard[0].getProgress();
-                        int g = mColorCalibrationCard[1].getProgress();
-                        int b = mColorCalibrationCard[2].getProgress();
-                        Screen.setColorCalibration(mColorCalibrationLimits.get(r) + " " +
-                                mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        Utils.errorDialog(getActivity(), e);
-                        e.printStackTrace();
-                    }
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mInvertScreenCard)
-            Screen.activateInvertScreen(checked, getActivity());
-        else if (dSwitchCard == mGrayscaleModeCard) {
-            mSaturationIntensityCard.setEnabled(!checked);
-            Screen.activateGrayscaleMode(checked, getActivity());
-            if (!checked) mSaturationIntensityCard.setProgress(30);
-        } else if (dSwitchCard == mScreenHBMCard)
-            Screen.activateScreenHBM(checked, getActivity());
-        else if (dSwitchCard == mBackLightDimmerEnableCard)
-            Screen.activateBackLightDimmer(checked, getActivity());
-        else if (dSwitchCard == mBrightnessModeCard)
-            Screen.activateBrightnessMode(checked, getActivity());
-        else if (dSwitchCard == mNegativeToggleCard)
-            Screen.activateNegativeToggle(checked, getActivity());
-        else if (dSwitchCard == mRegisterHookCard)
-            Screen.activateRegisterHook(checked, getActivity());
-        else if (dSwitchCard == mMasterSequenceCard)
-            Screen.activateMasterSequence(checked, getActivity());
-        else if (dSwitchCard == mGloveModeCard)
-            Screen.activateGloveMode(checked, getActivity());
-    }
-
-    @Override
-    public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-        dEditTextCard.setDescription(value);
-        if (dEditTextCard == mKGammaRedCard)
-            Screen.setKGammaRed(value, getActivity());
-        else if (dEditTextCard == mKGammaGreenCard)
-            Screen.setKGammaGreen(value, getActivity());
-        else if (dEditTextCard == mKGammaBlueCard)
-            Screen.setKGammaBlue(value, getActivity());
-        else if (dEditTextCard == mGammaControlRedGreysCard)
-            Screen.setRedGreys(value, getActivity());
-        else if (dEditTextCard == mGammaControlRedMidsCard)
-            Screen.setRedMids(value, getActivity());
-        else if (dEditTextCard == mGammaControlRedBlacksCard)
-            Screen.setRedBlacks(value, getActivity());
-        else if (dEditTextCard == mGammaControlRedWhitesCard)
-            Screen.setRedWhites(value, getActivity());
-        else if (dEditTextCard == mGammaControlGreenGreysCard)
-            Screen.setGreenGreys(value, getActivity());
-        else if (dEditTextCard == mGammaControlGreenMidsCard)
-            Screen.setGreenMids(value, getActivity());
-        else if (dEditTextCard == mGammaControlGreenBlacksCard)
-            Screen.setGreenBlacks(value, getActivity());
-        else if (dEditTextCard == mGammaControlGreenWhitesCard)
-            Screen.setGreenWhites(value, getActivity());
-        else if (dEditTextCard == mGammaControlBlueGreysCard)
-            Screen.setBlueGreys(value, getActivity());
-        else if (dEditTextCard == mGammaControlBlueMidsCard)
-            Screen.setBlueMids(value, getActivity());
-        else if (dEditTextCard == mGammaControlBlueBlacksCard)
-            Screen.setBlueBlacks(value, getActivity());
-        else if (dEditTextCard == mGammaControlBlueWhitesCard)
-            Screen.setBlueWhites(value, getActivity());
-        else if (dEditTextCard == mGammaControlContrastCard)
-            Screen.setGammaContrast(value, getActivity());
-        else if (dEditTextCard == mGammaControlBrightnessCard)
-            Screen.setGammaBrightness(value, getActivity());
-        else if (dEditTextCard == mGammaControlSaturationCard)
-            Screen.setGammaSaturation(value, getActivity());
-        else if (dEditTextCard == mDsiPanelRedPositiveCard)
-            Screen.setRedPositive(value, getActivity());
-        else if (dEditTextCard == mDsiPanelRedNegativeCard)
-            Screen.setRedNegative(value, getActivity());
-        else if (dEditTextCard == mDsiPanelGreenPositiveCard)
-            Screen.setGreenPositive(value, getActivity());
-        else if (dEditTextCard == mDsiPanelGreenNegativeCard)
-            Screen.setGreenNegative(value, getActivity());
-        else if (dEditTextCard == mDsiPanelBluePositiveCard)
-            Screen.setBluePositive(value, getActivity());
-        else if (dEditTextCard == mDsiPanelBlueNegativeCard)
-            Screen.setBlueNegative(value, getActivity());
-        else if (dEditTextCard == mDsiPanelWhitePointCard)
-            Screen.setWhitePoint(value, getActivity());
-    }
-
-    @Override
-    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mKGammaProfilesCard) {
-            Screen.setKGammaProfile(position, Screen.getKGammaProfiles(getActivity()), getActivity());
-            refreshKGamma();
-        } else if (dPopupCard == mGammaControlProfilesCard) {
-            Screen.setGammaControlProfile(position, Screen.getGammaControlProfiles(getActivity()), getActivity());
-            refreshGammaControl();
-        } else if (dPopupCard == mDsiPanelProfilesCard) {
-            Screen.setDsiPanelProfile(position, Screen.getDsiPanelProfiles(getActivity()), getActivity());
-            refreshDsiPanel();
-        }
-    }
-
-    @Override
-    public void onClick(CardViewItem.DCardView dCardView) {
-        if (dCardView == mAdditionalProfilesCard) {
-            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(getString(R.string.loading));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            new WebpageReader(new WebpageReader.WebpageCallback() {
+        if (Calibration.hasInvertScreen()) {
+            SwitchView invertScreen = new SwitchView();
+            invertScreen.setSummary(getString(R.string.invert_screen));
+            invertScreen.setChecked(Calibration.isInvertScreenEnabled());
+            invertScreen.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
-                public void onCallback(String raw, String html) {
-                    progressDialog.dismiss();
-                    if (getActivity() == null) return;
-                    GammaProfiles gammaProfiles = new GammaProfiles(raw);
-                    String path = getActivity().getApplicationContext().getCacheDir() + "/gamma_profiles.json";
-                    if (gammaProfiles.readable()) {
-                        Tools.writeFile(path, raw, false, false);
-                        showMoreGammaProfiles(gammaProfiles);
-                    } else {
-                        if (Utils.existFile(path)) {
-                            gammaProfiles.refresh(Utils.readFile(path));
-                            if (gammaProfiles.readable()) {
-                                showMoreGammaProfiles(gammaProfiles);
-                                return;
-                            }
-                        }
-                        Utils.toast(getString(R.string.no_internet), getActivity());
-                    }
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Calibration.enableInvertScreen(isChecked, getActivity());
                 }
-            }).execute(Constants.GAMMA_URL);
-        }
-    }
+            });
 
-    private String getColor(int position) {
-        switch (position) {
-            case 0:
-                return getString(R.string.red);
-            case 1:
-                return getString(R.string.green);
-            case 2:
-                return getString(R.string.blue);
-            default:
-                return null;
-        }
-    }
-
-    private void showMoreGammaProfiles(GammaProfiles gammaProfiles) {
-        GammaProfiles.GammaProfile profile = null;
-        int screen = -1;
-        if (mKGammaProfilesCard != null) {
-            profile = gammaProfiles.getKGamma();
-            screen = 0;
-        } else if (mGammaControlProfilesCard != null) {
-            profile = gammaProfiles.getGammaControl();
-            screen = 1;
-        } else if (mDsiPanelProfilesCard != null) {
-            profile = gammaProfiles.getDsiPanelProfiles();
-            screen = 2;
+            items.add(invertScreen);
         }
 
-        if (profile == null) Utils.toast(getString(R.string.no_additional_profiles), getActivity());
-        else {
-            String[] names = new String[profile.length()];
-            for (int i = 0; i < names.length; i++)
-                names[i] = profile.getName(i);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            final int profileType = screen;
-            final GammaProfiles.GammaProfile gammaProfile = profile;
-            builder.setItems(names, new DialogInterface.OnClickListener() {
+        if (Calibration.hasSaturationIntensity()) {
+            int saturation = Calibration.getSaturationIntensity();
+            final SeekBarView saturationIntensity = new SeekBarView();
+            saturationIntensity.setTitle(getString(R.string.saturation_intensity));
+            saturationIntensity.setMax(158);
+            saturationIntensity.setProgress(saturation == 128 ? 30 : saturation - 225);
+            saturationIntensity.setEnabled(saturation != 128);
+            saturationIntensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (profileType) {
-                        case 0:
-                            Screen.setKGammaProfile(which, (GammaProfiles.KGammaProfiles) gammaProfile, getActivity());
-                            refreshKGamma();
-                            break;
-                        case 1:
-                            Screen.setGammaControlProfile(which, (GammaProfiles.GammaControlProfiles) gammaProfile, getActivity());
-                            refreshGammaControl();
-                            break;
-                        case 2:
-                            Screen.setDsiPanelProfile(which, (GammaProfiles.DsiPanelProfiles) gammaProfile, getActivity());
-                            refreshDsiPanel();
-                            break;
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Calibration.setSaturationIntensity(position + 225, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(saturationIntensity);
+
+            SwitchView grayscaleMode = new SwitchView();
+            grayscaleMode.setSummary(getString(R.string.grayscale_mode));
+            grayscaleMode.setChecked(saturation == 128);
+            grayscaleMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    saturationIntensity.setEnabled(!isChecked);
+                    Calibration.enableGrayscaleMode(isChecked, getActivity());
+                    if (!isChecked) {
+                        saturationIntensity.setProgress(30);
                     }
                 }
-            }).show();
+            });
+
+            items.add(grayscaleMode);
+        }
+
+        if (Calibration.hasScreenHue()) {
+            SeekBarView screenHue = new SeekBarView();
+            screenHue.setTitle(getString(R.string.screen_hue));
+            screenHue.setSummary(getString(R.string.screen_hue_summary));
+            screenHue.setMax(1536);
+            screenHue.setProgress(Calibration.getScreenHue());
+            screenHue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Calibration.setScreenHue(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenHue);
+        }
+
+        if (Calibration.hasScreenValue()) {
+            SeekBarView screenValue = new SeekBarView();
+            screenValue.setTitle(getString(R.string.screen_value));
+            screenValue.setMax(255);
+            screenValue.setProgress(Calibration.getScreenValue() - 128);
+            screenValue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Calibration.setScreenValue(position + 128, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenValue);
+        }
+
+        if (Calibration.hasScreenContrast()) {
+            SeekBarView screenContrast = new SeekBarView();
+            screenContrast.setTitle(getString(R.string.screen_contrast));
+            screenContrast.setMax(255);
+            screenContrast.setProgress(Calibration.getScreenContrast() - 128);
+            screenContrast.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Calibration.setScreenContrast(position + 128, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(screenContrast);
+        }
+
+        if (Calibration.hasScreenHBM()) {
+            SwitchView screenHBM = new SwitchView();
+            screenHBM.setSummary(getString(R.string.high_brightness_mode));
+            screenHBM.setChecked(Calibration.isScreenHBMEnabled());
+            screenHBM.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Calibration.enableScreenHBM(isChecked, getActivity());
+                }
+            });
+
+            items.add(screenHBM);
+        }
+
+        if (Calibration.hasSRGB()) {
+            SwitchView sRGB = new SwitchView();
+            sRGB.setSummary(getString(R.string.srgb));
+            sRGB.setChecked(Calibration.isSRGBEnabled());
+            sRGB.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Calibration.enableSRGB(isChecked, getActivity());
+                }
+            });
+
+            items.add(sRGB);
         }
     }
 
-    private void refreshKGamma() {
-        for (int i = 0; i < mColorCalibrationCard.length; i++)
-            mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                    .indexOf(Screen.getColorCalibration().get(i)));
+    private void kgammaInit(List<RecyclerViewItem> items) {
+        if (mKGammaBlue == null) {
+            mKGammaBlue = new GenericSelectView();
+            mKGammaBlue.setSummary(getString(R.string.blue));
+            mKGammaBlue.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setKGammaBlue(value, getActivity());
+                    kgammaInit(null);
+                }
+            });
+        }
+        String blue = Gamma.getKGammaBlue();
+        mKGammaBlue.setValue(blue);
+        mKGammaBlue.setValueRaw(blue);
 
-        String red = Screen.getKGammaRed();
-        mKGammaRedCard.setDescription(red);
-        mKGammaRedCard.setValue(red);
+        if (items != null) {
+            items.add(mKGammaBlue);
+        }
 
-        String green = Screen.getKGammaGreen();
-        mKGammaGreenCard.setDescription(green);
-        mKGammaGreenCard.setValue(green);
+        if (mKGammaGreen == null) {
+            mKGammaGreen = new GenericSelectView();
+            mKGammaGreen.setSummary(getString(R.string.green));
+            mKGammaGreen.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setKGammaGreen(value, getActivity());
+                    kgammaInit(null);
+                }
+            });
+        }
+        String green = Gamma.getKGammaGreen();
+        mKGammaGreen.setValue(green);
+        mKGammaGreen.setValueRaw(green);
 
-        String blue = Screen.getKGammaBlue();
-        mKGammaBlueCard.setDescription(blue);
-        mKGammaBlueCard.setValue(blue);
+        if (items != null) {
+            items.add(mKGammaGreen);
+        }
+
+        if (mKGammaRed == null) {
+            mKGammaRed = new GenericSelectView();
+            mKGammaRed.setSummary(getString(R.string.red));
+            mKGammaRed.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setKGammaRed(value, getActivity());
+                    kgammaInit(null);
+                }
+            });
+        }
+        String red = Gamma.getKGammaRed();
+        mKGammaRed.setValue(red);
+        mKGammaRed.setValueRaw(red);
+
+        if (items != null) {
+            items.add(mKGammaRed);
+        }
+
+        if (items != null) {
+            List<String> profileList = new ArrayList<>();
+            final GammaProfiles.KGammaProfiles gammaProfiles = Gamma.getKGammaProfiles(getActivity());
+            for (int i = 0; i < gammaProfiles.length(); i++) {
+                profileList.add(gammaProfiles.getName(i));
+            }
+
+            DropDownView profiles = new DropDownView();
+            profiles.setTitle(getString(R.string.profile));
+            profiles.setSummary(getString(R.string.gamma_profiles_summary));
+            profiles.setItems(profileList);
+            profiles.setSelection(Prefs.getInt("kgamma_profile", -1, getActivity()));
+            profiles.setOnDropDownListener(new DropDownView.OnDropDownListener() {
+                @Override
+                public void onSelect(DropDownView dropDownView, int position, String value) {
+                    Gamma.setKGammaProfile(position, gammaProfiles, getActivity());
+                    kgammaInit(null);
+                    Prefs.saveInt("kgamma_profile", position, getActivity());
+                }
+            });
+
+            items.add(profiles);
+        }
     }
 
-    private void refreshGammaControl() {
-        if (mColorCalibrationCard != null)
-            for (int i = 0; i < mColorCalibrationCard.length; i++)
-                if (mColorCalibrationCard[i] != null)
-                    mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                            .indexOf(Screen.getColorCalibration().get(i)));
+    private void gammacontrolInit(List<RecyclerViewItem> items) {
+        if (mGammaControlRedGreys == null) {
+            mGammaControlRedGreys = new GenericSelectView();
+            mGammaControlRedGreys.setSummary(getString(R.string.red_greys));
+            mGammaControlRedGreys.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedGreys(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
 
-        String redGreys = Screen.getRedGreys();
-        mGammaControlRedGreysCard.setDescription(redGreys);
-        mGammaControlRedGreysCard.setValue(redGreys);
+        String redGreys = Gamma.getRedGreys();
+        mGammaControlRedGreys.setValue(redGreys);
+        mGammaControlRedGreys.setValueRaw(redGreys);
 
-        String redMids = Screen.getRedMids();
-        mGammaControlRedMidsCard.setDescription(redMids);
-        mGammaControlRedMidsCard.setValue(redMids);
+        if (items != null) {
+            items.add(mGammaControlRedGreys);
+        }
 
-        String redBlacks = Screen.getRedBlacks();
-        mGammaControlRedBlacksCard.setDescription(redBlacks);
-        mGammaControlRedBlacksCard.setValue(redBlacks);
+        if (mGammaControlRedMids == null) {
+            mGammaControlRedMids = new GenericSelectView();
+            mGammaControlRedMids.setSummary(getString(R.string.red_mids));
+            mGammaControlRedMids.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedMids(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
 
-        String redWhites = Screen.getRedWhites();
-        mGammaControlRedWhitesCard.setDescription(redWhites);
-        mGammaControlRedWhitesCard.setValue(redWhites);
+        String redMids = Gamma.getRedMids();
+        mGammaControlRedMids.setValue(redMids);
+        mGammaControlRedMids.setValueRaw(redMids);
 
-        String greenGreys = Screen.getGreenGreys();
-        mGammaControlGreenGreysCard.setDescription(greenGreys);
-        mGammaControlGreenGreysCard.setValue(greenGreys);
+        if (items != null) {
+            items.add(mGammaControlRedMids);
+        }
 
-        String greenMids = Screen.getGreenMids();
-        mGammaControlGreenMidsCard.setDescription(greenMids);
-        mGammaControlGreenMidsCard.setValue(greenMids);
+        if (mGammaControlRedBlacks == null) {
+            mGammaControlRedBlacks = new GenericSelectView();
+            mGammaControlRedBlacks.setSummary(getString(R.string.red_blacks));
+            mGammaControlRedBlacks.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedBlacks(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
 
-        String greenBlacks = Screen.getGreenBlacks();
-        mGammaControlGreenBlacksCard.setDescription(greenBlacks);
-        mGammaControlGreenBlacksCard.setValue(greenBlacks);
+        String redBlacks = Gamma.getRedBlacks();
+        mGammaControlRedBlacks.setValue(redBlacks);
+        mGammaControlRedBlacks.setValueRaw(redBlacks);
 
-        String greenWhites = Screen.getGreenWhites();
-        mGammaControlGreenWhitesCard.setDescription(greenWhites);
-        mGammaControlGreenWhitesCard.setValue(greenWhites);
+        if (items != null) {
+            items.add(mGammaControlRedBlacks);
+        }
 
-        String blueGreys = Screen.getBlueGreys();
-        mGammaControlBlueGreysCard.setDescription(blueGreys);
-        mGammaControlBlueGreysCard.setValue(blueGreys);
+        if (mGammaControlRedWhites == null) {
+            mGammaControlRedWhites = new GenericSelectView();
+            mGammaControlRedWhites.setSummary(getString(R.string.red_whites));
+            mGammaControlRedWhites.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedWhites(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
 
-        String blueMids = Screen.getBlueMids();
-        mGammaControlBlueMidsCard.setDescription(blueMids);
-        mGammaControlBlueMidsCard.setValue(blueMids);
+        String redWhites = Gamma.getRedWhites();
+        mGammaControlRedWhites.setValue(redWhites);
+        mGammaControlRedWhites.setValueRaw(redWhites);
 
-        String blueBlacks = Screen.getBlueBlacks();
-        mGammaControlBlueBlacksCard.setDescription(blueBlacks);
-        mGammaControlBlueBlacksCard.setValue(blueBlacks);
+        if (items != null) {
+            items.add(mGammaControlRedWhites);
+        }
 
-        String blueWhites = Screen.getBlueWhites();
-        mGammaControlBlueWhitesCard.setDescription(blueWhites);
-        mGammaControlBlueWhitesCard.setValue(blueWhites);
+        if (mGammaControlGreenGreys == null) {
+            mGammaControlGreenGreys = new GenericSelectView();
+            mGammaControlGreenGreys.setSummary(getString(R.string.green_greys));
+            mGammaControlGreenGreys.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenGreys(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
 
-        String contrast = Screen.getGammaContrast();
-        mGammaControlContrastCard.setDescription(contrast);
-        mGammaControlContrastCard.setValue(contrast);
+        String greenGreys = Gamma.getGreenGreys();
+        mGammaControlGreenGreys.setValue(greenGreys);
+        mGammaControlGreenGreys.setValueRaw(greenGreys);
 
-        String brightness = Screen.getGammaBrightness();
-        mGammaControlBrightnessCard.setDescription(brightness);
-        mGammaControlBrightnessCard.setValue(brightness);
+        if (items != null) {
+            items.add(mGammaControlGreenGreys);
+        }
 
-        String saturation = Screen.getGammaSaturation();
-        mGammaControlSaturationCard.setDescription(saturation);
-        mGammaControlSaturationCard.setValue(saturation);
+        if (mGammaControlGreenMids == null) {
+            mGammaControlGreenMids = new GenericSelectView();
+            mGammaControlGreenMids.setSummary(getString(R.string.green_mids));
+            mGammaControlGreenMids.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenMids(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String greenMids = Gamma.getGreenMids();
+        mGammaControlGreenMids.setValue(greenMids);
+        mGammaControlGreenMids.setValueRaw(greenMids);
+
+        if (items != null) {
+            items.add(mGammaControlGreenMids);
+        }
+
+        if (mGammaControlGreenBlacks == null) {
+            mGammaControlGreenBlacks = new GenericSelectView();
+            mGammaControlGreenBlacks.setSummary(getString(R.string.green_blacks));
+            mGammaControlGreenBlacks.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenBlacks(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String greenBlacks = Gamma.getGreenBlacks();
+        mGammaControlGreenBlacks.setValue(greenBlacks);
+        mGammaControlGreenBlacks.setValueRaw(greenBlacks);
+
+        if (items != null) {
+            items.add(mGammaControlGreenBlacks);
+        }
+
+        if (mGammaControlGreenWhites == null) {
+            mGammaControlGreenWhites = new GenericSelectView();
+            mGammaControlGreenWhites.setSummary(getString(R.string.green_whites));
+            mGammaControlGreenWhites.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenWhites(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String greenWhites = Gamma.getGreenWhites();
+        mGammaControlGreenWhites.setValue(greenWhites);
+        mGammaControlGreenWhites.setValueRaw(greenWhites);
+
+        if (items != null) {
+            items.add(mGammaControlGreenWhites);
+        }
+
+        if (mGammaControlBlueGreys == null) {
+            mGammaControlBlueGreys = new GenericSelectView();
+            mGammaControlBlueGreys.setSummary(getString(R.string.blue_greys));
+            mGammaControlBlueGreys.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBlueGreys(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String blueGreys = Gamma.getBlueGreys();
+        mGammaControlBlueGreys.setValue(blueGreys);
+        mGammaControlBlueGreys.setValueRaw(blueGreys);
+
+        if (items != null) {
+            items.add(mGammaControlBlueGreys);
+        }
+
+        if (mGammaControlBlueMids == null) {
+            mGammaControlBlueMids = new GenericSelectView();
+            mGammaControlBlueMids.setSummary(getString(R.string.blue_mids));
+            mGammaControlBlueMids.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBlueMids(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String blueMids = Gamma.getBlueMids();
+        mGammaControlBlueMids.setValue(blueMids);
+        mGammaControlBlueMids.setValueRaw(blueMids);
+
+        if (items != null) {
+            items.add(mGammaControlBlueMids);
+        }
+
+        if (mGammaControlBlueBlacks == null) {
+            mGammaControlBlueBlacks = new GenericSelectView();
+            mGammaControlBlueBlacks.setSummary(getString(R.string.blue_blacks));
+            mGammaControlBlueBlacks.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBlueBlacks(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String blueBlacks = Gamma.getBlueBlacks();
+        mGammaControlBlueBlacks.setValue(blueBlacks);
+        mGammaControlBlueBlacks.setValueRaw(blueBlacks);
+
+        if (items != null) {
+            items.add(mGammaControlBlueBlacks);
+        }
+
+        if (mGammaControlBlueWhites == null) {
+            mGammaControlBlueWhites = new GenericSelectView();
+            mGammaControlBlueWhites.setSummary(getString(R.string.blue_whites));
+            mGammaControlBlueWhites.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBlueWhites(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String blueWhites = Gamma.getBlueWhites();
+        mGammaControlBlueWhites.setValue(blueWhites);
+        mGammaControlBlueWhites.setValueRaw(blueWhites);
+
+        if (items != null) {
+            items.add(mGammaControlBlueWhites);
+        }
+
+        if (mGammaControlContrast == null) {
+            mGammaControlContrast = new GenericSelectView();
+            mGammaControlContrast.setSummary(getString(R.string.contrast));
+            mGammaControlContrast.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGammaContrast(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String contrast = Gamma.getGammaContrast();
+        mGammaControlContrast.setValue(contrast);
+        mGammaControlContrast.setValueRaw(contrast);
+
+        if (items != null) {
+            items.add(mGammaControlContrast);
+        }
+
+        if (mGammaControlBrightness == null) {
+            mGammaControlBrightness = new GenericSelectView();
+            mGammaControlBrightness.setSummary(getString(R.string.brightness));
+            mGammaControlBrightness.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGammaBrightness(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String brightness = Gamma.getGammaBrightness();
+        mGammaControlBrightness.setValue(brightness);
+        mGammaControlBrightness.setValueRaw(brightness);
+
+        if (items != null) {
+            items.add(mGammaControlBrightness);
+        }
+
+        if (mGammaControlSaturation == null) {
+            mGammaControlSaturation = new GenericSelectView();
+            mGammaControlSaturation.setSummary(getString(R.string.saturation_intensity));
+            mGammaControlSaturation.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGammaSaturation(value, getActivity());
+                    gammacontrolInit(null);
+                }
+            });
+        }
+
+        String saturation = Gamma.getGammaSaturation();
+        mGammaControlSaturation.setValue(saturation);
+        mGammaControlSaturation.setValueRaw(saturation);
+
+        if (items != null) {
+            items.add(mGammaControlSaturation);
+        }
+
+        if (items != null) {
+            List<String> profileList = new ArrayList<>();
+            final GammaProfiles.GammaControlProfiles gammaProfiles = Gamma.getGammaControlProfiles(getActivity());
+            for (int i = 0; i < gammaProfiles.length(); i++) {
+                profileList.add(gammaProfiles.getName(i));
+            }
+
+            DropDownView profiles = new DropDownView();
+            profiles.setTitle(getString(R.string.profile));
+            profiles.setSummary(getString(R.string.gamma_profiles_summary));
+            profiles.setItems(profileList);
+            profiles.setSelection(Prefs.getInt("gamma_control_profile", -1, getActivity()));
+            profiles.setOnDropDownListener(new DropDownView.OnDropDownListener() {
+                @Override
+                public void onSelect(DropDownView dropDownView, int position, String value) {
+                    Gamma.setGammaControlProfile(position, gammaProfiles, getActivity());
+                    gammacontrolInit(null);
+                    Prefs.saveInt("gamma_control_profile", position, getActivity());
+                }
+            });
+
+            items.add(profiles);
+        }
     }
 
-    private void refreshDsiPanel() {
-        String blueNegative = Screen.getBlueNegative();
-        mDsiPanelBlueNegativeCard.setDescription(blueNegative);
-        mDsiPanelBlueNegativeCard.setValue(blueNegative);
+    private void dsipanelInit(List<RecyclerViewItem> items) {
+        if (mDsiPanelBlueNegative == null) {
+            mDsiPanelBlueNegative = new GenericSelectView();
+            mDsiPanelBlueNegative.setSummary(getString(R.string.blue_negative));
+            mDsiPanelBlueNegative.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBlueNegative(value, getActivity());
+                }
+            });
+        }
 
-        String bluePositive = Screen.getBluePositive();
-        mDsiPanelBluePositiveCard.setDescription(bluePositive);
-        mDsiPanelBluePositiveCard.setValue(bluePositive);
+        String blueNegative = Gamma.getBlueNegative();
+        mDsiPanelBlueNegative.setValue(blueNegative);
+        mDsiPanelBlueNegative.setValueRaw(blueNegative);
 
-        String greenNegative = Screen.getGreenNegative();
-        mDsiPanelGreenNegativeCard.setDescription(greenNegative);
-        mDsiPanelGreenNegativeCard.setValue(greenNegative);
+        if (items != null) {
+            items.add(mDsiPanelBlueNegative);
+        }
 
-        String greenPositive = Screen.getGreenPositive();
-        mDsiPanelGreenPositiveCard.setDescription(greenPositive);
-        mDsiPanelGreenPositiveCard.setValue(greenPositive);
+        if (mDsiPanelBluePositive == null) {
+            mDsiPanelBluePositive = new GenericSelectView();
+            mDsiPanelBluePositive.setSummary(getString(R.string.blue_positive));
+            mDsiPanelBluePositive.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setBluePositive(value, getActivity());
+                }
+            });
+        }
 
-        String redNegative = Screen.getRedNegative();
-        mDsiPanelRedNegativeCard.setDescription(redNegative);
-        mDsiPanelRedNegativeCard.setValue(redNegative);
+        String bluePositive = Gamma.getBluePositive();
+        mDsiPanelBluePositive.setValue(bluePositive);
+        mDsiPanelBluePositive.setValueRaw(bluePositive);
 
-        String redPositive = Screen.getRedPositive();
-        mDsiPanelRedPositiveCard.setDescription(redPositive);
-        mDsiPanelRedPositiveCard.setValue(redPositive);
+        if (items != null) {
+            items.add(mDsiPanelBluePositive);
+        }
 
-        String whitePoint = Screen.getWhitePoint();
-        mDsiPanelWhitePointCard.setDescription(whitePoint);
-        mDsiPanelWhitePointCard.setValue(whitePoint);
+        if (mDsiPanelGreenNegative == null) {
+            mDsiPanelGreenNegative = new GenericSelectView();
+            mDsiPanelGreenNegative.setSummary(getString(R.string.green_negative));
+            mDsiPanelGreenNegative.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenNegative(value, getActivity());
+                }
+            });
+        }
+
+        String greenNegative = Gamma.getGreenNegative();
+        mDsiPanelGreenNegative.setValue(greenNegative);
+        mDsiPanelGreenNegative.setValueRaw(greenNegative);
+
+        if (items != null) {
+            items.add(mDsiPanelGreenNegative);
+        }
+
+        if (mDsiPanelGreenPositive == null) {
+            mDsiPanelGreenPositive = new GenericSelectView();
+            mDsiPanelGreenPositive.setSummary(getString(R.string.green_positive));
+            mDsiPanelGreenPositive.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setGreenPositive(value, getActivity());
+                }
+            });
+        }
+
+        String greenPositive = Gamma.getGreenPositive();
+        mDsiPanelGreenPositive.setValue(greenPositive);
+        mDsiPanelGreenPositive.setValueRaw(greenPositive);
+
+        if (items != null) {
+            items.add(mDsiPanelGreenPositive);
+        }
+
+        if (mDsiPanelRedNegative == null) {
+            mDsiPanelRedNegative = new GenericSelectView();
+            mDsiPanelRedNegative.setSummary(getString(R.string.red_negative));
+            mDsiPanelRedNegative.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedNegative(value, getActivity());
+                }
+            });
+        }
+
+        String redNegative = Gamma.getRedNegative();
+        mDsiPanelRedNegative.setValue(redNegative);
+        mDsiPanelRedNegative.setValueRaw(redNegative);
+
+        if (items != null) {
+            items.add(mDsiPanelRedNegative);
+        }
+
+        if (mDsiPanelRedPositive == null) {
+            mDsiPanelRedPositive = new GenericSelectView();
+            mDsiPanelRedPositive.setSummary(getString(R.string.red_positive));
+            mDsiPanelRedPositive.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setRedPositive(value, getActivity());
+                }
+            });
+        }
+
+        String redPositive = Gamma.getRedPositive();
+        mDsiPanelRedPositive.setValue(redPositive);
+        mDsiPanelRedPositive.setValueRaw(redPositive);
+
+        if (items != null) {
+            items.add(mDsiPanelRedPositive);
+        }
+
+        if (mDsiPanelWhitePoint == null) {
+            mDsiPanelWhitePoint = new GenericSelectView();
+            mDsiPanelWhitePoint.setSummary(getString(R.string.white_point));
+            mDsiPanelWhitePoint.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    Gamma.setWhitePoint(value, getActivity());
+                }
+            });
+        }
+
+        String whitePoint = Gamma.getWhitePoint();
+        mDsiPanelWhitePoint.setValue(whitePoint);
+        mDsiPanelWhitePoint.setValueRaw(whitePoint);
+
+        if (items != null) {
+            items.add(mDsiPanelWhitePoint);
+        }
+
+        if (items != null) {
+            List<String> profileList = new ArrayList<>();
+            final GammaProfiles.DsiPanelProfiles gammaProfiles = Gamma.getDsiPanelProfiles(getActivity());
+            for (int i = 0; i < gammaProfiles.length(); i++) {
+                profileList.add(gammaProfiles.getName(i));
+            }
+
+            DropDownView profiles = new DropDownView();
+            profiles.setTitle(getString(R.string.profile));
+            profiles.setSummary(getString(R.string.gamma_profiles_summary));
+            profiles.setItems(profileList);
+            profiles.setSelection(Prefs.getInt("dsi_panel_profile", -1, getActivity()));
+            profiles.setOnDropDownListener(new DropDownView.OnDropDownListener() {
+                @Override
+                public void onSelect(DropDownView dropDownView, int position, String value) {
+                    Gamma.setDsiPanelProfile(position, gammaProfiles, getActivity());
+                    dsipanelInit(null);
+                    Prefs.saveInt("dsi_panel_profile", position, getActivity());
+                }
+            });
+
+            items.add(profiles);
+        }
+    }
+
+    private void lcdBackLightInit(List<RecyclerViewItem> items) {
+        CardView lcdBackLightCard = new CardView(getActivity());
+        lcdBackLightCard.setTitle(getString(R.string.lcd_backlight));
+
+        if (Misc.hasBrightnessMode()) {
+            SwitchView brightnessMode = new SwitchView();
+            brightnessMode.setSummary(getString(R.string.brightness_mode));
+            brightnessMode.setChecked(Misc.isBrightnessModeEnabled());
+            brightnessMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableBrightnessMode(isChecked, getActivity());
+                }
+            });
+
+            lcdBackLightCard.addItem(brightnessMode);
+        }
+
+        if (Misc.hasLcdMinBrightness()) {
+            SeekBarView lcdMinBrightness = new SeekBarView();
+            lcdMinBrightness.setTitle(getString(R.string.min_brightness));
+            lcdMinBrightness.setSummary(getString(R.string.min_brightness_summary));
+            lcdMinBrightness.setMax(114);
+            lcdMinBrightness.setMin(2);
+            lcdMinBrightness.setProgress(Misc.getLcdMinBrightness() - 2);
+            lcdMinBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setLcdMinBrightness(position + 2, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            lcdBackLightCard.addItem(lcdMinBrightness);
+        }
+
+        if (Misc.hasLcdMaxBrightness()) {
+            SeekBarView lcdMaxBrightness = new SeekBarView();
+            lcdMaxBrightness.setTitle(getString(R.string.max_brightness));
+            lcdMaxBrightness.setSummary(getString(R.string.max_brightness_summary));
+            lcdMaxBrightness.setMax(114);
+            lcdMaxBrightness.setMin(2);
+            lcdMaxBrightness.setProgress(Misc.getLcdMaxBrightness() - 2);
+            lcdMaxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setLcdMaxBrightness(position + 2, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            lcdBackLightCard.addItem(lcdMaxBrightness);
+        }
+
+        if (lcdBackLightCard.size() > 0) {
+            items.add(lcdBackLightCard);
+        }
+    }
+
+    private void backlightDimmerInit(List<RecyclerViewItem> items) {
+        CardView backLightDimmerCard = new CardView(getActivity());
+        backLightDimmerCard.setTitle(getString(R.string.backlight_dimmer));
+
+        if (Misc.hasBackLightDimmerEnable()) {
+            SwitchView backLightDimmer = new SwitchView();
+            backLightDimmer.setSummary(getString(R.string.backlight_dimmer));
+            backLightDimmer.setChecked(Misc.isBackLightDimmerEnabled());
+            backLightDimmer.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableBackLightDimmer(isChecked, getActivity());
+                }
+            });
+
+            backLightDimmerCard.addItem(backLightDimmer);
+        }
+
+        if (Misc.hasMinBrightness()) {
+            SeekBarView minBrightness = new SeekBarView();
+            minBrightness.setTitle(getString(R.string.min_brightness));
+            minBrightness.setSummary(getString(R.string.min_brightness_summary));
+            minBrightness.setMax(Misc.getMaxMinBrightness());
+            minBrightness.setProgress(Misc.getCurMinBrightness());
+            minBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setMinBrightness(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            backLightDimmerCard.addItem(minBrightness);
+        }
+
+        if (Misc.hasBackLightDimmerThreshold()) {
+            SeekBarView threshold = new SeekBarView();
+            threshold.setTitle(getString(R.string.threshold));
+            threshold.setMax(50);
+            threshold.setProgress(Misc.getBackLightDimmerThreshold());
+            threshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setBackLightDimmerThreshold(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            backLightDimmerCard.addItem(threshold);
+        }
+
+        if (Misc.hasBackLightDimmerOffset()) {
+            SeekBarView dimmerOffset = new SeekBarView();
+            dimmerOffset.setTitle(getString(R.string.offset));
+            dimmerOffset.setMax(50);
+            dimmerOffset.setProgress(Misc.getBackLightDimmerOffset());
+            dimmerOffset.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setBackLightDimmerOffset(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            backLightDimmerCard.addItem(dimmerOffset);
+        }
+
+        if (backLightDimmerCard.size() > 0) {
+            items.add(backLightDimmerCard);
+        }
+    }
+
+    private void negativeToggleInit(List<RecyclerViewItem> items) {
+        SwitchView negative = new SwitchView();
+        negative.setTitle(getString(R.string.negative_toggle));
+        negative.setSummary(getString(R.string.negative_toggle_summary));
+        negative.setChecked(Misc.isNegativeToggleEnabled());
+        negative.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enableNegativeToggle(isChecked, getActivity());
+            }
+        });
+
+        items.add(negative);
+    }
+
+    private void mdnieGlobalInit(List<RecyclerViewItem> items) {
+        CardView mdnieCard = new CardView(getActivity());
+        mdnieCard.setTitle(getString(R.string.mdnie_global_controls));
+
+        if (Misc.hasRegisterHook()) {
+            SwitchView registerHook = new SwitchView();
+            registerHook.setTitle(getString(R.string.register_hook));
+            registerHook.setSummary(getString(R.string.register_hook_summary));
+            registerHook.setChecked(Misc.isRegisterHookEnabled());
+            registerHook.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableRegisterHook(isChecked, getActivity());
+                }
+            });
+
+            mdnieCard.addItem(registerHook);
+        }
+
+        if (Misc.hasMasterSequence()) {
+            SwitchView masterSequence = new SwitchView();
+            masterSequence.setTitle(getString(R.string.master_sequence));
+            masterSequence.setSummary(getString(R.string.master_sequence_summary));
+            masterSequence.setChecked(Misc.isMasterSequenceEnable());
+            masterSequence.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableMasterSequence(isChecked, getActivity());
+                }
+            });
+
+            mdnieCard.addItem(masterSequence);
+        }
+
+        if (mdnieCard.size() > 0) {
+            items.add(mdnieCard);
+        }
+    }
+
+    private void gloveModeInit(List<RecyclerViewItem> items) {
+        SwitchView glove = new SwitchView();
+        glove.setTitle(getString(R.string.glove_mode));
+        glove.setSummary(getString(R.string.glove_mode_summary));
+        glove.setChecked(Misc.isGloveModeEnabled());
+        glove.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enableGloveMode(isChecked, getActivity());
+            }
+        });
+
+        items.add(glove);
+    }
+
+    public static class ColorTableFragment extends BaseFragment {
+        @Override
+        protected boolean retainInstance() {
+            return false;
+        }
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            return new ColorTable(getActivity());
+        }
     }
 
 }

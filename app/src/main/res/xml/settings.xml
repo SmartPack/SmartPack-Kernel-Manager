@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:key="useretardedmeasurement"
+        android:summary="@string/fahrenheit_summary"
+        android:title="@string/fahrenheit_title" />
+
+    <SwitchPreference
+        android:key="darktheme"
+        android:summary="@string/dark_theme" />
+
+    <SwitchPreference
+        android:key="forceenglish"
+        android:summary="@string/force_english" />
+
+    <PreferenceCategory android:title="@string/apply_on_boot">
+        <ListPreference
+            android:defaultValue="10"
+            android:entries="@array/apply_on_boot_delay_entries"
+            android:entryValues="@array/apply_on_boot_delay_values"
+            android:key="applyonbootdelay"
+            android:summary="%s"
+            android:title="@string/delay" />
+        <Preference
+            android:key="applyonboottest"
+            android:summary="@string/apply_on_boot_test_summary"
+            android:title="@string/test" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="debugging_category"
+        android:title="@string/debugging">
+        <Preference
+            android:key="logcat"
+            android:summary="@string/logcat_summary"
+            android:title="@string/logcat" />
+        <Preference
+            android:key="lastkmsg"
+            android:summary="@string/last_kmsg_summary"
+            android:title="@string/last_kmsg" />
+        <Preference
+            android:key="dmesg"
+            android:summary="@string/driver_message_summary"
+            android:title="@string/driver_message" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="security_category"
+        android:title="@string/security">
+        <Preference
+            android:key="set_password"
+            android:summary="@string/set_password_summary"
+            android:title="@string/set_password" />
+        <Preference
+            android:key="delete_password"
+            android:summary="@string/delete_password" />
+        <SwitchPreference
+            android:key="fingerprint"
+            android:summary="@string/fingerprint_summary"
+            android:title="@string/fingerprint" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="sections"
+        android:title="@string/sections">
+        <Preference android:summary="@string/sections_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

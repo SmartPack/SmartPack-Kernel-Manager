@@ -1,23 +1,25 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils;
 
 import android.os.AsyncTask;
-import android.text.Html;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -29,17 +31,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by willi on 03.04.15.
+ * Created by willi on 06.07.16.
  */
 public class WebpageReader extends AsyncTask<String, Void, String> {
 
-    private final WebpageCallback webpageCallback;
-    private HttpURLConnection connection;
-    private boolean connected;
-    private boolean cancelled;
+    private static final String TAG = WebpageReader.class.getSimpleName();
+
+    public interface WebpageCallback {
+        void onCallback(String raw, CharSequence html);
+    }
+
+    private final WebpageCallback mWebpageCallback;
+    private HttpURLConnection mConnection;
+    private boolean mConnected;
+    private boolean mCancelled;
 
     public WebpageReader(WebpageCallback webpageCallback) {
-        this.webpageCallback = webpageCallback;
+        this.mWebpageCallback = webpageCallback;
     }
 
     @Override
@@ -51,37 +59,38 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
         try {
             String line;
             URL url = new URL(params[0]);
-            connection = (HttpURLConnection) url.openConnection();
+            mConnection = (HttpURLConnection) url.openConnection();
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        connection.connect();
-                        connected = true;
+                        mConnection.connect();
+                        mConnected = true;
                     } catch (IOException e) {
-                        cancelled = true;
+                        mCancelled = true;
                     }
                 }
             }).start();
             while (true)
-                if (connected) {
-                    if (connection.getResponseCode() != HttpURLConnection.HTTP_OK)
+                if (mConnected) {
+                    if (mConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
                         return "";
-                    is = connection.getInputStream();
+                    }
+                    is = mConnection.getInputStream();
                     br = new BufferedReader(new InputStreamReader(is));
 
                     while ((line = br.readLine()) != null) {
                         sb.append(line).append("\n");
                     }
                     break;
-                } else if (cancelled) {
-                    connection.disconnect();
+                } else if (mCancelled) {
+                    mConnection.disconnect();
                     return "";
                 }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e(Constants.TAG, "Failed to read url: " + params[0]);
+            Log.e(TAG, "Failed to read url: " + params[0]);
         } finally {
             try {
                 if (is != null) is.close();
@@ -90,7 +99,9 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
 
-            if (connection != null) connection.disconnect();
+            if (mConnection != null) {
+                mConnection.disconnect();
+            }
         }
         return sb.toString().trim();
     }
@@ -99,15 +110,11 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        webpageCallback.onCallback(s, Html.fromHtml(s).toString());
+        mWebpageCallback.onCallback(s, Utils.htmlFrom(s));
     }
 
     public void cancel() {
-        cancelled = true;
-    }
-
-    public interface WebpageCallback {
-        void onCallback(String raw, String html);
+        mCancelled = true;
     }
 
 }

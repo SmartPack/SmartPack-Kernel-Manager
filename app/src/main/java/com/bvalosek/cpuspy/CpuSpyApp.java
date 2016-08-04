@@ -1,15 +1,16 @@
 //-----------------------------------------------------------------------------
 //
 // (C) Brandon Valosek, 2011 <bvalosek@gmail.com>
+// (C) Willi Ye, 2015 <williye97@gmail.com>
 //
 //-----------------------------------------------------------------------------
 // Modified by Willi Ye to work with big.LITTLE
 
 package com.bvalosek.cpuspy;
 
-import android.app.Application;
 import android.content.Context;
 
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.Map;
 /**
  * main application class
  */
-public class CpuSpyApp extends Application {
+public class CpuSpyApp {
 
     private final String PREF_OFFSETS;
 
@@ -27,19 +28,10 @@ public class CpuSpyApp extends Application {
      */
     private final CpuStateMonitor _monitor;
 
-    public CpuSpyApp(int core) {
+    public CpuSpyApp(int core, Context context) {
         PREF_OFFSETS = "offsets" + core;
         _monitor = new CpuStateMonitor(core);
-    }
-
-    /**
-     * On application start, load the saved offsets and stash the current kernel
-     * version string
-     */
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        loadOffsets(getApplicationContext());
+        loadOffsets(context);
     }
 
     /**
@@ -54,7 +46,7 @@ public class CpuSpyApp extends Application {
      * state monitor
      */
     public void loadOffsets(Context context) {
-        String prefs = Utils.getString(PREF_OFFSETS, "", context);
+        String prefs = Prefs.getString(PREF_OFFSETS, "", context);
 
         if (prefs.length() < 1) return;
 
@@ -63,7 +55,7 @@ public class CpuSpyApp extends Application {
         String[] sOffsets = prefs.split(",");
         for (String offset : sOffsets) {
             String[] parts = offset.split(" ");
-            offsets.put(Utils.stringToInt(parts[0]), Utils.stringToLong(parts[1]));
+            offsets.put(Utils.strToInt(parts[0]), Utils.strToLong(parts[1]));
         }
 
         _monitor.setOffsets(offsets);
@@ -79,6 +71,6 @@ public class CpuSpyApp extends Application {
         for (Map.Entry<Integer, Long> entry : _monitor.getOffsets().entrySet())
             str += entry.getKey() + " " + entry.getValue() + ",";
 
-        Utils.saveString(PREF_OFFSETS, str, context);
+        Prefs.saveString(PREF_OFFSETS, str, context);
     }
 }

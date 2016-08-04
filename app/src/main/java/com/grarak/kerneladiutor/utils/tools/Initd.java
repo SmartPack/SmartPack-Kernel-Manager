@@ -1,56 +1,69 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils.tools;
 
-import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.List;
 
 /**
- * Created by willi on 25.04.15.
+ * Created by willi on 16.07.16.
  */
-public class Initd implements Constants {
+public class Initd {
 
-    public static RootFile delete(String file) {
+    private static final String INITD = "/system/etc/init.d";
+
+    public static void write(String file, String text) {
+        RootUtils.mount(true, "/system");
+        RootFile f = new RootFile(INITD + "/" + file);
+        f.write(text, false);
+        RootUtils.chmod(INITD + "/" + file, "755");
+        RootUtils.mount(false, "/system");
+    }
+
+    public static void delete(String file) {
         RootUtils.mount(true, "/system");
         RootFile f = new RootFile(INITD + "/" + file);
         f.delete();
-        return f;
+        RootUtils.mount(false, "/system");
     }
 
     public static String execute(String file) {
-        RootUtils.runCommand("chmod 755 " + INITD + "/" + file);
+        RootUtils.chmod(INITD + "/" + file, "755");
         return RootUtils.runCommand(INITD + "/" + file);
     }
 
-    public static String getInitd(String file) {
+    public static String read(String file) {
         return Utils.readFile(INITD + "/" + file);
     }
 
-    public static List<String> getInitds() {
-        RootFile initd = new RootFile(INITD);
-        if (!initd.exists()) {
+    public static List<String> list() {
+        RootFile file = new RootFile(INITD);
+        if (!file.exists()) {
             RootUtils.mount(true, "/system");
-            initd.mkdir();
+            file.mkdir();
+            RootUtils.mount(false, "/system");
         }
-        return initd.list();
+        return file.list();
     }
 
 }

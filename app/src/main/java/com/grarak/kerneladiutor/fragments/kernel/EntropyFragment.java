@@ -1,103 +1,119 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.os.Bundle;
-
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.PopupCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.Entropy;
+import com.grarak.kerneladiutor.utils.kernel.entropy.Entropy;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 10.07.15.
+ * Created by willi on 29.06.16.
  */
-public class EntropyFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener {
+public class EntropyFragment extends RecyclerViewFragment {
 
-    private CardViewItem.DCardView mAvailableCard;
-    private CardViewItem.DCardView mPoolsizeCard;
-    private PopupCardView.DPopupCard mReadCard;
-    private PopupCardView.DPopupCard mWriteCard;
-
-    private final List<String> items = new ArrayList<>();
+    private DescriptionView mAvailable;
+    private DescriptionView mPoolSize;
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
+    protected void init() {
+        super.init();
 
-        int poolsize = Entropy.getPoolsize();
-
-        mAvailableCard = new CardViewItem.DCardView();
-        mAvailableCard.setTitle(getString(R.string.available));
-        mAvailableCard.setDescription(getAvailableDescription(Entropy.getAvailable(), poolsize));
-
-        addView(mAvailableCard);
-
-        mPoolsizeCard = new CardViewItem.DCardView();
-        mPoolsizeCard.setTitle(getString(R.string.poolsize));
-        mPoolsizeCard.setDescription(String.valueOf(poolsize));
-
-        addView(mPoolsizeCard);
-
-        items.clear();
-        for (int i = 64; i < poolsize; i *= 2) if (i < poolsize) items.add(String.valueOf(i));
-        items.add(String.valueOf(poolsize));
-
-        mReadCard = new PopupCardView.DPopupCard(items);
-        mReadCard.setDescription(getString(R.string.read));
-        mReadCard.setItem(String.valueOf(Entropy.getRead()));
-        mReadCard.setOnDPopupCardListener(this);
-
-        addView(mReadCard);
-
-        mWriteCard = new PopupCardView.DPopupCard(items);
-        mWriteCard.setDescription(getString(R.string.write));
-        mWriteCard.setItem(String.valueOf(Entropy.getWrite()));
-        mWriteCard.setOnDPopupCardListener(this);
-
-        addView(mWriteCard);
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.ENTROPY));
     }
 
     @Override
-    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mReadCard)
-            Entropy.setRead(Utils.stringToInt(items.get(position)), getActivity());
-        else if (dPopupCard == mWriteCard)
-            Entropy.setWrite(Utils.stringToInt(items.get(position)), getActivity());
+    protected void addItems(List<RecyclerViewItem> items) {
+        int ps = Entropy.getPoolsize();
+
+        mAvailable = new DescriptionView();
+        mAvailable.setTitle(getString(R.string.available));
+        mAvailable.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
+
+        items.add(mAvailable);
+
+        mPoolSize = new DescriptionView();
+        mPoolSize.setTitle(getString(R.string.poolsize));
+        mPoolSize.setSummary(String.valueOf(ps));
+
+        items.add(mPoolSize);
+
+        SeekBarView read = new SeekBarView();
+        read.setTitle(getString(R.string.read));
+        read.setMax(2048);
+        read.setMin(64);
+        read.setOffset(64);
+        read.setProgress(Entropy.getRead() / 64 - 1);
+        read.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Entropy.setRead((position + 1) * 64, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(read);
+
+        SeekBarView write = new SeekBarView();
+        write.setTitle(getString(R.string.write));
+        write.setMax(2048);
+        write.setMin(64);
+        write.setOffset(64);
+        write.setProgress(Entropy.getWrite() / 64 - 1);
+        write.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Entropy.setWrite((position + 1) * 64, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(write);
     }
 
     private String getAvailableDescription(int available, int poolsize) {
-        return Utils.round((double) available * 100 / (double) poolsize, 2) + "% (" + available + ")";
+        return Utils.roundTo2Decimals((double) available * 100 / (double) poolsize) + "% (" + available + ")";
     }
 
     @Override
-    public boolean onRefresh() {
-        int poolsize = Entropy.getPoolsize();
-        if (mAvailableCard != null)
-            mAvailableCard.setDescription(getAvailableDescription(Entropy.getAvailable(), poolsize));
-        if (mPoolsizeCard != null) mPoolsizeCard.setDescription(String.valueOf(poolsize));
-        if (mReadCard != null) mReadCard.setItem(String.valueOf(Entropy.getRead()));
-        if (mWriteCard != null) mWriteCard.setItem(String.valueOf(Entropy.getWrite()));
-        return true;
-    }
+    protected void refresh() {
+        super.refresh();
 
+        int ps = Entropy.getPoolsize();
+        if (mAvailable != null) {
+            mAvailable.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
+        }
+        if (mPoolSize != null) {
+            mPoolSize.setSummary(String.valueOf(ps));
+        }
+    }
 }

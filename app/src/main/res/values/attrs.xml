@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="ScrimInsetsView">
-        <attr name="insetFg" format="reference|color" />
+    <declare-styleable name="XYGraph">
+        <attr name="linecolor" format="color" />
+        <attr name="edgecolor" format="color" />
+        <attr name="edgestrokewidth" format="dimension" />
+        <attr name="graphcolor" format="color" />
+        <attr name="graphstrokewidth" format="color" />
+        <attr name="edgevisibile" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularTextView">
+        <attr name="circlecolor" format="color" />
+        <attr name="textcolor" format="color" />
+        <attr name="textsize" format="dimension" />
+        <attr name="text" format="string" />
     </declare-styleable>
 
 </resources>

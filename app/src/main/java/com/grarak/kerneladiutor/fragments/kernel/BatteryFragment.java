@@ -1,19 +1,22 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.BroadcastReceiver;
@@ -21,172 +24,191 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
-import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.elements.cards.CardViewItem;
-import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
-import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
-import com.grarak.kerneladiutor.elements.cards.UsageCardView;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.Battery;
+import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by willi on 03.01.15.
+ * Created by willi on 26.06.16.
  */
-public class BatteryFragment extends RecyclerViewFragment implements
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class BatteryFragment extends RecyclerViewFragment {
 
-    private UsageCardView.DUsageCard mBatteryLevelCard;
-    private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
+    private DescriptionView mLevel;
+    private DescriptionView mVoltage;
 
-    private SwitchCardView.DSwitchCard mForceFastChargeCard;
-
-    private SeekBarCardView.DSeekBarCard mBlxCard;
-
-    private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard;
-    private SeekBarCardView.DSeekBarCard mChargingRateCard;
+    private static int sBatteryLevel;
+    private static int sBatteryVoltage;
 
     @Override
-    public void init(Bundle savedInstanceState) {
-        super.init(savedInstanceState);
-
-        batteryLevelInit();
-        batteryVoltageInit();
-        batteryTemperatureInit();
-        if (Battery.hasForceFastCharge()) forceFastChargeInit();
-        if (Battery.hasBlx()) blxInit();
-        if (Battery.hasChargeRate()) chargerateInit();
-
-        try {
-            getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        } catch (NullPointerException ignored) {
+    protected void addItems(List<RecyclerViewItem> items) {
+        levelInit(items);
+        voltageInit(items);
+        if (Battery.hasForceFastCharge()) {
+            forceFastChargeInit(items);
         }
+        if (Battery.hasBlx()) {
+            blxInit(items);
+        }
+        chargeRateInit(items);
     }
 
     @Override
-    public void postInit(Bundle savedInstanceState) {
-        super.postInit(savedInstanceState);
-        if (getCount() < 4) showApplyOnBoot(false);
-    }
+    protected void postInit() {
+        super.postInit();
 
-    private void batteryLevelInit() {
-        mBatteryLevelCard = new UsageCardView.DUsageCard();
-        mBatteryLevelCard.setText(getString(R.string.battery_level));
-
-        addView(mBatteryLevelCard);
-    }
-
-    private void batteryVoltageInit() {
-        mBatteryVoltageCard = new CardViewItem.DCardView();
-        mBatteryVoltageCard.setTitle(getString(R.string.battery_voltage));
-
-        addView(mBatteryVoltageCard);
-    }
-
-    private void batteryTemperatureInit() {
-        mBatteryTemperature = new CardViewItem.DCardView();
-        mBatteryTemperature.setTitle(getString(R.string.battery_temperature));
-
-        addView(mBatteryTemperature);
-    }
-
-    private void forceFastChargeInit() {
-        mForceFastChargeCard = new SwitchCardView.DSwitchCard();
-        mForceFastChargeCard.setTitle(getString(R.string.usb_fast_charge));
-        mForceFastChargeCard.setDescription(getString(R.string.usb_fast_charge_summary));
-        mForceFastChargeCard.setChecked(Battery.isForceFastChargeActive());
-        mForceFastChargeCard.setOnDSwitchCardListener(this);
-
-        addView(mForceFastChargeCard);
-    }
-
-    private void blxInit() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 101; i++) list.add(String.valueOf(i));
-
-        mBlxCard = new SeekBarCardView.DSeekBarCard(list);
-        mBlxCard.setTitle(getString(R.string.blx));
-        mBlxCard.setDescription(getString(R.string.blx_summary));
-        mBlxCard.setProgress(Battery.getCurBlx());
-        mBlxCard.setOnDSeekBarCardListener(this);
-
-        addView(mBlxCard);
-    }
-
-    private void chargerateInit() {
-
-        if (Battery.hasCustomChargeRateEnable()) {
-            mCustomChargeRateEnableCard = new SwitchCardView.DSwitchCard();
-            mCustomChargeRateEnableCard.setDescription(getString(R.string.custom_charge_rate));
-            mCustomChargeRateEnableCard.setChecked(Battery.isCustomChargeRateActive());
-            mCustomChargeRateEnableCard.setOnDSwitchCardListener(this);
-
-            addView(mCustomChargeRateEnableCard);
+        if (Battery.hasCapacity(getActivity())) {
+            addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
+                    Battery.getCapacity(getActivity()) + getString(R.string.mah)));
         }
-
-        if (Battery.hasChargingRate()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 10; i < 151; i++) list.add((i * 10) + getString(R.string.ma));
-
-            mChargingRateCard = new SeekBarCardView.DSeekBarCard(list);
-            mChargingRateCard.setTitle(getString(R.string.charge_rate));
-            mChargingRateCard.setDescription(getString(R.string.charge_rate_summary));
-            mChargingRateCard.setProgress((Battery.getChargingRate() / 10) - 10);
-            mChargingRateCard.setOnDSeekBarCardListener(this);
-
-            addView(mChargingRateCard);
+        if (itemsSize() > 2) {
+            addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.BATTERY));
         }
     }
 
-    private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context arg0, Intent intent) {
-            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
-            int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+    private void levelInit(List<RecyclerViewItem> items) {
+        mLevel = new DescriptionView();
+        mLevel.setTitle(getString(R.string.level));
 
-            if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(level);
-            if (mBatteryVoltageCard != null)
-                mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
-            if (mBatteryTemperature != null) {
-                double celsius = (double) temperature / 10;
-                mBatteryTemperature.setDescription(Utils.formatCelsius(celsius) + " " + Utils.celsiusToFahrenheit(celsius));
+        items.add(mLevel);
+    }
+
+    private void voltageInit(List<RecyclerViewItem> items) {
+        mVoltage = new DescriptionView();
+        mVoltage.setTitle(getString(R.string.voltage));
+
+        items.add(mVoltage);
+    }
+
+    private void forceFastChargeInit(List<RecyclerViewItem> items) {
+        SwitchView forceFastCharge = new SwitchView();
+        forceFastCharge.setTitle(getString(R.string.usb_fast_charge));
+        forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
+        forceFastCharge.setChecked(Battery.isForceFastChargeEnabled());
+        forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Battery.enableForceFastCharge(isChecked, getActivity());
             }
+        });
+
+        items.add(forceFastCharge);
+    }
+
+    private void blxInit(List<RecyclerViewItem> items) {
+        List<String> list = new ArrayList<>();
+        list.add(getString(R.string.disabled));
+        for (int i = 0; i <= 100; i++) {
+            list.add(String.valueOf(i));
+        }
+
+        SeekBarView blx = new SeekBarView();
+        blx.setTitle(getString(R.string.blx));
+        blx.setSummary(getString(R.string.blx_summary));
+        blx.setItems(list);
+        blx.setProgress(Battery.getBlx());
+        blx.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Battery.setBlx(position, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(blx);
+    }
+
+    private void chargeRateInit(List<RecyclerViewItem> items) {
+        CardView chargeRateCard = new CardView(getActivity());
+        chargeRateCard.setTitle(getString(R.string.charge_rate));
+
+        if (Battery.hasChargeRateEnable()) {
+            SwitchView chargeRate = new SwitchView();
+            chargeRate.setSummary(getString(R.string.charge_rate));
+            chargeRate.setChecked(Battery.isChargeRateEnabled());
+            chargeRate.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Battery.enableChargeRate(isChecked, getActivity());
+                }
+            });
+
+            chargeRateCard.addItem(chargeRate);
+        }
+
+        if (Battery.hasChargingCurrent()) {
+            SeekBarView chargingCurrent = new SeekBarView();
+            chargingCurrent.setTitle(getString(R.string.charging_current));
+            chargingCurrent.setSummary(getString(R.string.charging_current_summary));
+            chargingCurrent.setUnit(getString(R.string.ma));
+            chargingCurrent.setMax(1500);
+            chargingCurrent.setMin(100);
+            chargingCurrent.setOffset(10);
+            chargingCurrent.setProgress(Battery.getChargingCurrent() / 10 - 10);
+            chargingCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Battery.setChargingCurrent((position + 10) * 100, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            chargeRateCard.addItem(chargingCurrent);
+        }
+
+        if (chargeRateCard.size() > 0) {
+            items.add(chargeRateCard);
+        }
+    }
+
+    private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            sBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+            sBatteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
         }
     };
 
     @Override
-    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mForceFastChargeCard)
-            Battery.activateForceFastCharge(checked, getActivity());
-        else if (dSwitchCard == mCustomChargeRateEnableCard)
-            Battery.activateCustomChargeRate(checked, getActivity());
+    protected void refresh() {
+        super.refresh();
+        if (mLevel != null) {
+            mLevel.setSummary(sBatteryLevel + "%");
+        }
+        if (mVoltage != null) {
+            mVoltage.setSummary(sBatteryVoltage + getString(R.string.mv));
+        }
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+    public void onResume() {
+        super.onResume();
+        getActivity().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     @Override
-    public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mBlxCard)
-            Battery.setBlx(position, getActivity());
-        else if (dSeekBarCard == mChargingRateCard)
-            Battery.setChargingRate((position * 10) + 100, getActivity());
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
+        super.onPause();
         try {
-            getActivity().unregisterReceiver(mBatInfoReceiver);
+            getActivity().unregisterReceiver(mBatteryReceiver);
         } catch (IllegalArgumentException ignored) {
         }
     }
+
 }

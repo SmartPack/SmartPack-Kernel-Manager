@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "control": {
+    "apply": "#!/system/bin/sh\n\nsetenforce $1",
+    "enable": "#!/system/bin/sh\n\nif [ `getenforce` == \"Enforcing\" ]; then\n    echo 1\nelse\n    echo 0\nfi",
+    "title": "Selinux",
+    "description": "Security-Enhanced Linux is a Linux kernel security module that provides a mechanism for supporting access control security policies.",
+    "id": "switch"
+  }
+}

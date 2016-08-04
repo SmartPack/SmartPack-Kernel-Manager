@@ -1,111 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-
     <string name="app_name">Kernel Adiutor</string>
-    <string name="root_waiting">Waiting for root access</string>
-    <string name="no_root">No root available</string>
-    <string name="no_busybox">No busybox available</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="current_value_not_supported">Current value is not supported</string>
-    <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
+
+    <string name="checking_info">Checking info…</string>
+    <string name="checking_root">Checking root access</string>
+    <string name="searching_busybox">Searching for busybox</string>
+    <string name="collecting_info">Collecting info</string>
+    <string name="no_root">No root</string>
+    <string name="no_busybox">No busybox</string>
+
+    <!-- Security -->
+    <string name="password">Password</string>
+    <string name="password_wrong">Password is wrong</string>
+
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>
-    <string name="password">Password</string>
-    <string name="password_wrong">Password is wrong</string>
-    <string name="press_back_again">Press back again to leave</string>
-    <string name="more">More</string>
-    <string name="thank_you">Thank you!</string>
-    <string name="heavy_user_message">It seems like your are really enjoying this application! Thank you for using it!</string>
-    <string name="rate_app">Rate the app</string>
-    <string name="donate">Donate to me</string>
+    <string name="press_back_again_exit">Press back again to exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="unknown">Unknown</string>
 
-    <!-- FileBrowser -->
-    <string name="no_permission">No permission</string>
-    <string name="select_file">Select %s?</string>
-    <string name="no_files">No files in this path.</string>
+    <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
+    <string name="donate">Donate</string>
+    <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though. Because this app is open source you can easily build it yourself and remove this check. But I hope you support developers anyway. Thanks for using Kernel Adiutor! Once you bought the donation app you have to restart Kernel Adiutor in order to enable all features.</string>
+    <string name="donate_nope">I won\'t fall for this scam!</string>
+    <string name="donate_yes">I love this app. Must donate!</string>
 
-    <!-- EditText -->
+    <string name="apply_on_boot">Apply on boot</string>
+    <string name="apply_on_boot_text">Applying settings in %d seconds.</string>
+    <string name="apply_on_boot_complete">Applying settings completed.</string>
+    <string name="apply_on_boot_canceled">Applying settings canceled.</string>
+
+    <string name="not_in_range">Not in range</string>
+
+    <!-- Permissions Denied -->
+    <string name="permission_denied_write_storage">Permission denied for writing to storage!</string>
+
+    <!-- Editor -->
     <string name="save">Save</string>
 
-    <!-- Apply on boot -->
-    <string name="apply_on_boot">Apply on boot</string>
-    <string name="apply_on_boot_finished">Your changes have been applied</string>
-    <string name="apply_on_boot_time">Applying your settings in %d second/s</string>
-    <string name="apply_on_boot_enabled">Enabled apply on boot for %s section</string>
-    <string name="apply_on_boot_disabled">Disabled apply on boot for %s section</string>
-    <string name="apply_on_boot_failed">Failed to apply settings on boot</string>
+    <!-- File Picker -->
+    <string name="select_question">Select %s?</string>
+    <string name="wrong_extension">Please select a file with %s extension.</string>
 
     <!-- Units -->
     <string name="mhz">MHz</string>
-    <string name="mv">mV</string>
-    <string name="kb">kB</string>
-    <string name="ms">ms</string>
+    <string name="celsius">ºC</string>
+    <string name="fahrenheit">ºF</string>
     <string name="mb">MB</string>
+    <string name="ms">ms</string>
+    <string name="mv">mV</string>
     <string name="min">min</string>
-    <string name="sec">sec</string>
+    <string name="mah">mAh</string>
     <string name="ma">mA</string>
+    <string name="kb">kB</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
     <string name="plus" translatable="false">+</string>
 
     <!-- Headers -->
-    <string name="information">Information</string>
+    <string name="statistics">Statistics</string>
     <string name="kernel">Kernel</string>
     <string name="tools">Tools</string>
     <string name="other">Other</string>
 
-    <!-- Tabs -->
-    <string name="downloads">Downloads</string>
-    <string name="kernel_information">Kernel Information</string>
-    <string name="frequency_table">Frequency Table</string>
+    <!-- Menus -->
+    <string name="overall">Overall</string>
+    <string name="device">Device</string>
+    <string name="inputs">Inputs</string>
     <string name="cpu">CPU</string>
     <string name="cpu_voltage">CPU Voltage</string>
     <string name="cpu_hotplug">CPU Hotplug</string>
     <string name="thermal">Thermal</string>
     <string name="gpu">GPU</string>
     <string name="screen">Screen</string>
-    <string name="wake_controls">Wake Controls</string>
+    <string name="wake">Wake</string>
     <string name="sound">Sound</string>
     <string name="battery">Battery</string>
+    <string name="led">LED</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
-    <string name="low_memory_killer">Low Memory Killer</string>
+    <string name="lmk">Low Memory Killer</string>
     <string name="virtual_memory">Virtual Memory</string>
     <string name="entropy">Entropy</string>
-    <string name="misc_controls">Misc Controls</string>
-    <string name="plugins">Plugins</string>
+    <string name="misc">Misc</string>
+    <string name="custom_controls">Custom Controls</string>
+    <string name="downloads">Downloads</string>
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
-    <string name="recovery" translatable="false">Recovery</string>
+    <string name="recovery">Recovery</string>
     <string name="initd">Init.d</string>
-    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="contributors">Contributors</string>
     <string name="faq">FAQ</string>
-    <string name="about_us">About Us</string>
+    <string name="settings">Settings</string>
 
-    <!-- Frequency Table -->
-    <string name="big" translatable="false">Big</string>
-    <string name="little" translatable="false">Little</string>
-    <string name="unused_cpu_states">Unused CPU states</string>
+    <!-- Overall -->
+    <string name="offline">Offline</string>
+    <string name="core">Core %d</string>
+    <string name="temperature">Temperature</string>
+    <string name="frequencies">Frequencies</string>
+    <string name="refresh">Refresh</string>
+    <string name="reset">Reset</string>
+    <string name="restore">Restore</string>
+    <string name="cluster_big" translatable="false">big</string>
+    <string name="cluster_little" translatable="false">LITTLE</string>
+    <string name="deep_sleep">Deep sleep</string>
     <string name="uptime">Uptime</string>
-    <string name="deep_sleep">Deep Sleep</string>
-    <string name="reset_timer">Reset Timers</string>
-    <string name="restore_timer">Restore Timers</string>
+    <string name="error_frequencies">Failed to load frequencies</string>
+    <string name="unused_frequencies">Unused Frequencies</string>
 
-    <!-- Kernel Information -->
-    <string name="kernel_version">Kernel Version</string>
-    <string name="cpu_information">CPU Information</string>
-    <string name="memory_information">Memory Information</string>
+    <!-- Device -->
+    <string name="processor">Processor</string>
+    <string name="vendor">Vendor</string>
+    <string name="features">Features</string>
+    <string name="ram">RAM</string>
+    <string name="android_version">Android Version</string>
+    <string name="android_api_level">Android SDK</string>
+    <string name="android_codename">Android Codename</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="build_display_id">Build Display ID</string>
+    <string name="baseband">Baseband</string>
+    <string name="rom">ROM</string>
+    <string name="bootloader">Bootloader</string>
+    <string name="trustzone" translatable="false">TrustZone</string>
+    <string name="hardware">Hardware</string>
+    <string name="architecture">Architecture</string>
+
+    <!-- Inputs -->
+    <string name="bus">Bus</string>
+    <string name="product">Product</string>
+    <string name="version">Version</string>
+    <string name="sysfs" translatable="false">Sysfs</string>
+    <string name="handlers">Handlers</string>
 
     <!-- CPU -->
-    <string name="cpu_usage">CPU Usage</string>
-    <string name="cpu_temp">CPU Temperature</string>
-    <string name="current_freq">Current Frequency</string>
-    <string name="core">Core %d</string>
-    <string name="offline">Offline</string>
+    <string name="cores">%d cores</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
     <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
     <string name="cpu_min_freq">CPU Minimum Frequency</string>
@@ -116,21 +148,22 @@
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
     <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
-    <string name="not_tunable">%s is not tunable</string>
+    <string name="cpu_governor_tunables_read_error">Failed to read current governor of CPU.\n\nIf you are using a QCOM big.LITTLE device this is a known problem. The system forces the CPU to turn off cores making it extremely hard to read out CPU specific stats. Try to select this option again. The CPU sometimes refuses to turn on a core.</string>
+    <string name="tunables_error">%s is not tuneable</string>
     <string name="mc_power_saving">Multicore Power Saving</string>
     <string name="mc_power_saving_summary">Try to group tasks into the least cores possible.</string>
-    <string name="power_saving_wq">Schedule workqueues on awake CPUs to save power.</string>
-    <string name="cfs_scheduler_policy">CFS Scheduler Policy</string>
-    <string name="cfs_scheduler_policy_summary">Policy decides the CFS scheduler how to balance tasks onto different CPU unit.</string>
     <string name="disabled">Disabled</string>
     <string name="enabled">Enabled</string>
     <string name="aggressive">Aggressive</string>
+    <string name="power_saving_wq">Schedule workqueues on awake CPUs to save power.</string>
+    <string name="cfs_scheduler_policy">CFS Scheduler Policy</string>
+    <string name="cfs_scheduler_policy_summary">Policy decides the CFS scheduler how to balance tasks onto different CPU unit.</string>
     <string name="cpu_quiet">CPUQuiet</string>
     <string name="cpu_quiet_summary">CPUQuiet implements pluggable policies for forcing cpu cores into quiescent state. Appropriate policies will save power without hurting performance.</string>
     <string name="cpu_quiet_governor">CPUQuiet Governor</string>
     <string name="cpu_boost">CPU Boost</string>
     <string name="debug_mask">Debug Mask</string>
-    <string name="debug_mask_summary">Allows you to activate debug mask for CPU Boost operations.</string>
+    <string name="debug_mask_summary">Allows you to activate debug mask for operations.</string>
     <string name="interval">Interval</string>
     <string name="interval_summary">Minimum interval a CPU is boosted.</string>
     <string name="sync_threshold">Sync Threshold</string>
@@ -144,6 +177,8 @@
     <string name="wakeup_boost_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
     <string name="hotplug_boost">Hotplug Boost</string>
     <string name="hotplug_boost_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
+    <string name="touch_boost">Touch Boost</string>
+    <string name="touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
@@ -151,11 +186,12 @@
     <string name="override_vmin_summary">Disable to remove manufacturer limits on undervolting</string>
 
     <!-- CPU Hotplug -->
+    <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>
     <string name="mpdecision">MPDecision</string>
     <string name="mpdecision_summary">Qualcomm\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by faux123.</string>
-    <string name="profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
+    <string name="cpu_hotplug_profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
     <string name="insanity">InSaNiTy</string>
     <string name="balanced">Balanced</string>
     <string name="performance">Performance</string>
@@ -168,13 +204,10 @@
     <string name="strict">Strict</string>
     <string name="eco_mode">Eco Mode</string>
     <string name="eco_mode_summary">Battery saving mode for IntelliPlug.</string>
-    <string name="touch_boost">Touch Boost</string>
-    <string name="touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
     <string name="hysteresis">Hysteresis Value</string>
     <string name="hysteresis_summary">The lower it is, the faster response.</string>
-    <string name="threshold">Threshold Value</string>
-    <string name="debug">Debug</string>
-    <string name="debug_summary">Allows you to activate debug mask for operations.</string>
+    <string name="cpu_threshold">CPU Threshold</string>
+    <string name="cpu_threshold_summary">The higher, the less CPUs are used.</string>
     <string name="suspend">Suspend</string>
     <string name="suspend_summary">Prevent to suspend.</string>
     <string name="cpus_boosted">CPUs Boosted</string>
@@ -183,8 +216,8 @@
     <string name="min_cpu_online_summary">Minimum number of CPUs that will be always online.</string>
     <string name="max_cpu_online">Maximum CPU Online</string>
     <string name="max_cpu_online_summary">Maximum number of CPUs that will be always online.</string>
-    <string name="max_cores_screen_off">Max Cores Screen Off</string>
-    <string name="max_cores_screen_off_summary">Maximum number of cores online when screen is off.</string>
+    <string name="max_cpu_online_screen_off">Maximum CPU Screen Off</string>
+    <string name="max_cpu_online_screen_off_summary">Maximum number of CPUs that will be online when the screen is off.</string>
     <string name="suspend_defer_time">Suspend Defer Time</string>
     <string name="defer_sampling">Defer Sampling</string>
     <string name="boost_lock_duration">Boost Lock Duration</string>
@@ -195,7 +228,7 @@
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
     <string name="powersaver_mode">Powersaver Mode</string>
-    <string name="powersaver_mode_summary">Sets 1 CPU maximum online with frequency @1728 MHz.</string>
+    <string name="powersaver_mode_summary">Sets 1 CPU maximum online with frequency @1728MHz.</string>
     <string name="up_threshold">Up Threshold</string>
     <string name="up_threshold_summary">Over this threshold the driver will put one more core online.</string>
     <string name="up_timer_cnt">Up Timer Control</string>
@@ -216,11 +249,10 @@
     <string name="offline_load_summary">Don\'t offline a CPU if it drops under the lower levels up threshold load.</string>
     <string name="io_is_busy">IO is Busy</string>
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
-    <string name="defer_time">Suspend Defer Time</string>
     <string name="mako_hotplug">Mako Hotplug</string>
     <string name="mako_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by franciscofranco.</string>
-    <string name="cores_on_touch">Cores on touch</string>
-    <string name="cores_on_touch_summary">Number of CPUs online when touching screen or pressing button.</string>
+    <string name="cpus_on_touch">CPUs on touch</string>
+    <string name="cpus_on_touch_summary">Number of CPUs online when touching screen or pressing button.</string>
     <string name="cpu_freq_unplug_limit">CPU Frequency Unplug Limit</string>
     <string name="first_level">First Level</string>
     <string name="first_level_summary">The threshold to online all CPUs.</string>
@@ -233,12 +265,13 @@
     <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
-    <string name="screen_off_single_core">Screen off Single Core</string>
-    <string name="screen_off_single_core_summary">Use only one core when screen is off.</string>
+    <string name="screen_off_single_cpu">Screen off Single CPU</string>
+    <string name="screen_off_single_cpu_summary">Use only one CPU when screen is off.</string>
     <string name="idle_frequency">Idle Frequency</string>
     <string name="idle_frequency_summary">If the first core is below this frequency, then don\'t plug the other cores.</string>
     <string name="touch_boost_time">Touch Boost Time</string>
-    <string name="boost_frequecy_core">Boost Frequency Core %d</string>
+    <string name="touch_boost_time_summary">How long the CPU should be boosted after touching the screen.</string>
+    <string name="boost_frequency_core">Boost Frequency Core %d</string>
     <string name="start_delay">Start delay</string>
     <string name="start_delay_summary">Time until Hotplug starts to work.</string>
     <string name="delay">Delay</string>
@@ -250,10 +283,10 @@
     <string name="sampling_rate">Sampling Rate</string>
     <string name="cpu_down_rate">CPU Down Rate</string>
     <string name="cpu_up_rate">CPU Up Rate</string>
-    <string name="thunderplug">Thunderplug</string>
-    <string name="thunderplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by varunchitre15.</string>
-    <string name="min_cores_screen_off">Min Cores Screen Off</string>
-    <string name="min_cores_screen_off_summary">Minimum number of cores online when screen is off.</string>
+    <string name="thunderplug">ThunderPlug</string>
+    <string name="thunderplug_summary">An in-kernel replacement for Qualcomm\'s hotplugging. Developed by varunchitre15.</string>
+    <string name="min_cpu_online_screen_off">Minimum CPU Screen Off</string>
+    <string name="min_cpu_online_screen_off_summary">Minimum number of CPUs that will be online when the screen is off.</string>
     <string name="endurance_level">Endurance Level</string>
     <string name="endurance_level_summary">A power saving profile.</string>
     <string name="quad_core_mode">Quad-Core mode</string>
@@ -261,7 +294,7 @@
     <string name="zen_decision">Zen Decision</string>
     <string name="zen_decision_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by bbedward.</string>
     <string name="wake_wait_time">Wake Wait Time</string>
-    <string name="wake_wait_time_summary">How long to wait before turning on any cores.</string>
+    <string name="wake_wait_time_summary">How long to wait before turning on any CPUs.</string>
     <string name="bat_threshold_ignore">Battery Threshold Ignore</string>
     <string name="bat_threshold_ignore_summary">Don\'t turn on any cores when charge is below the selected capacity.</string>
     <string name="autosmp">AutoSMP</string>
@@ -272,23 +305,33 @@
     <string name="cycle_down_summary">Cycles to wait after the last hotplug event to unplug another core.</string>
     <string name="cycle_up">Cycle Up</string>
     <string name="cycle_up_summary">Cycles to wait after the last hotplug event to plug another core.</string>
+    <string name="core_control">Core Control</string>
+    <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
+    <string name="hcube">H-Cube</string>
+    <string name="hcube_summary">OnePlus\' modified Core Control.</string>
+    <string name="busy_down_threshold">Busy Down Threshold</string>
+    <string name="busy_down_threshold_summary">Threshold when big CPUs should be turned off.</string>
+    <string name="busy_up_threshold">Busy Up Threshold</string>
+    <string name="busy_up_threshold_summary">Threshold when big CPUs should be turned on.</string>
+    <string name="offline_delay">Offline Delay</string>
+    <string name="offline_delay_summary">Time before turning off a CPU.</string>
 
-    <!-- Thermal -->
+    <!--Thermal-->
+    <string name="warning">Warning</string>
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
     <string name="thermald">Thermald</string>
-    <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
+    <string name="thermald_summary">Stock thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
     <string name="intellithermal">Intellithermal</string>
     <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.</string>
     <string name="intellithermal_optimized">Intellithermal Optimized</string>
     <string name="intellithermal_optimized_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123 and alucard_24.</string>
-    <string name="debug_mask_thermal">Allows you to activate debug mask for thermal operations.</string>
-    <string name="core_control">Core Control</string>
+    <string name="thermal_debug_mask_summary">Allows you to activate debug mask for thermal operations.</string>
     <string name="vdd_restriction">VDD Restriction</string>
     <string name="freq_throttle_temp">Frequency Throttle Temperature</string>
     <string name="freq_throttle_temp_summary">Temperature to start throttling frequencies.</string>
-    <string name="core_throttle_temp">Core Throttle Temperature</string>
-    <string name="core_throttle_temp_summary">Temperature to start shutting down cores.</string>
-    <string name="core_temp_hysteresis">Core Temperature Hysteresis</string>
+    <string name="cpu_throttle_temp">CPU Throttle Temperature</string>
+    <string name="cpu_throttle_temp_summary">Temperature to start shutting down CPUs.</string>
+    <string name="cpu_temp_hysteresis">CPU Temperature Hysteresis</string>
     <string name="freq_step">Frequency Step</string>
     <string name="immediately_limit_stop">Immediately Limit Stop</string>
     <string name="poll">Poll</string>
@@ -296,8 +339,14 @@
     <string name="thermal_limit_low">Thermal Limit Low</string>
     <string name="thermal_limit_high">Thermal Limit High</string>
     <string name="temp_safety">Temperature Safety</string>
-    <string name="msm_thermal">MSM Thermal</string>
-    <string name="msm_thermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by show-p1984.</string>
+    <string name="temp_throttle">Temperature Throttle</string>
+    <string name="temp_throttle_summary">SoC temperature limit toggle.</string>
+    <string name="temp_limit">Temperature Limit</string>
+    <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
+    <string name="freq_limit_debug">Frequency Limit Debug</string>
+    <string name="freq_limit_debug_summary">This allows to debug the CPUs throttle when the temperature reaches maximum.</string>
+    <string name="temp_limit_min_freq">Temperature Limit Minimum Frequency</string>
+    <string name="temp_limit_min_freq_summary">The thermal will use this frequency to throttle the maximum temperature.</string>
     <string name="allowed_low_low">Phase 1: Allowed Low Low</string>
     <string name="allowed_low_high">Phase 1: Allowed Low High</string>
     <string name="allowed_low_freq">Phase 1: Allowed Low Frequency</string>
@@ -309,18 +358,10 @@
     <string name="allowed_max_freq">Phase 3: Allowed Max Frequency</string>
     <string name="check_interval">Check Interval</string>
     <string name="shutdown_temp">Shutdown Temperature</string>
-    <string name="temp_throttle">Temperature Throttle</string>
-    <string name="temp_throttle_summary">SoC temperature limit toggle.</string>
-    <string name="freq_limit_debug">Frequency Limit Debug</string>
-    <string name="freq_limit_debug_summary">This allows to debug the CPUs throttle when the temperature reaches maximum.</string>
-    <string name="temp_limit_min_freq">Temperature Limit Minimum Frequency</string>
-    <string name="temp_limit_min_freq_summary">The thermal will use this frequency to throttle the maximum temperature.</string>
-    <string name="temp_limit">Temperature Limit</string>
-    <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
 
     <!-- GPU -->
-    <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
-    <string name="gpu_cur_freq">GPU Current Frequency</string>
+    <string name="gpu_2d_freq">GPU 2D Frequency</string>
+    <string name="gpu_freq">GPU Frequency</string>
     <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
     <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
     <string name="gpu_max_freq">GPU Maximum Frequency</string>
@@ -338,7 +379,7 @@
     <string name="ramp_thresold">Ramp Thresold</string>
     <string name="ramp_thresold_summary">This increases the number of times the GPU governor ramp down requests. The higher it is, the more performance you get.</string>
     <string name="adreno_idler">Adreno Idler</string>
-    <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads.</string>
+    <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads. Developed by arter97.</string>
     <string name="down_differential">Down Differential</string>
     <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
     <string name="idle_wait">Idle Wait</string>
@@ -347,6 +388,7 @@
     <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
 
     <!-- Screen -->
+    <string name="screen_color">Screen Color</string>
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
@@ -359,8 +401,8 @@
     <string name="screen_value">Screen Value</string>
     <string name="screen_contrast">Screen Contrast</string>
     <string name="high_brightness_mode">High Brightness Mode</string>
+    <string name="srgb">sRGB</string>
     <string name="gamma">Gamma</string>
-    <string name="gamma_profile">Gamma Profile</string>
     <string name="red_greys">Red Greys</string>
     <string name="red_mids">Red Mids</string>
     <string name="red_blacks">Red Blacks</string>
@@ -382,19 +424,15 @@
     <string name="blue_positive">Blue Positive</string>
     <string name="blue_negative">Blue Negative</string>
     <string name="white_point">White Point</string>
-    <string name="gamma_profile_summary">After selecting a profile, please turn your screen off and on.</string>
-    <string name="additional_profiles">Additional Profiles</string>
-    <string name="additional_profiles_summary">Get more profiles from the internet.</string>
-    <string name="loading">Loading</string>
-    <string name="no_internet">No internet connection</string>
-    <string name="no_additional_profiles">No additional profiles found</string>
     <string name="lcd_backlight">LCD Backlight</string>
+    <string name="gamma_profiles_summary">After selecting a profile, please turn your screen off and on.</string>
     <string name="brightness_mode">Use exponential backlight mode instead of linear mode.</string>
     <string name="min_brightness">Minimum Brightness</string>
     <string name="min_brightness_summary">Allows you to decrease the LCD screen brightness lower than it\'s possible on stock.</string>
     <string name="max_brightness">Maximum Brightness</string>
     <string name="max_brightness_summary">Allows you to increase the LCD screen brightness higher than it\'s possible on stock.</string>
     <string name="backlight_dimmer">Backlight Dimmer</string>
+    <string name="threshold">Threshold Value</string>
     <string name="offset">Offset</string>
     <string name="negative_toggle">Negative Toggle</string>
     <string name="negative_toggle_summary">Enable inverting the screen colors by quickly pressing MENU button 4 times.</string>
@@ -406,37 +444,37 @@
     <string name="glove_mode">Glove Mode</string>
     <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
-    <!-- Wake Controls -->
+    <!-- Wake -->
     <string name="dt2w">DoubleTap2Wake</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
     <string name="center">Center</string>
     <string name="full">Full</string>
     <string name="bottom_half">Bottom half</string>
     <string name="top_half">Top half</string>
-    <string name="halfscreen">Halfscreen</string>
-    <string name="fullscreen">Fullscreen</string>
+    <string name="half">Half</string>
     <string name="s2w">Sweep2Wake</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen.</string>
-    <string name="lenient">Sweep2Wake Leniency</string>
-    <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
+    <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
     <string name="s2s">Sweep2Sleep</string>
     <string name="s2w_right">Sweep2Wake Right</string>
     <string name="s2w_left">Sweep2Wake Left</string>
     <string name="s2w_up">Sweep2Wake Up</string>
     <string name="s2w_down">Sweep2Wake Down</string>
     <string name="s2w_any">Sweep2Wake Any</string>
+    <string name="lenient">Sweep2Wake Leniency</string>
+    <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
+    <string name="t2w">Tap2Wake</string>
+    <string name="t2w_summary">Wake up your device by tapping the screen.</string>
+    <string name="dt2s">DoubleTap2Sleep</string>
+    <string name="dt2s_summary">Lock your device by double tapping on the top of the screen.</string>
+    <string name="s2w_charging">Sweep2Wake while charging</string>
+    <string name="dt2w_charging">DoubleTap2Wake while charging</string>
+    <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
+    <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
+    <string name="s2s_summary">Lock you device by swiping on the screen.</string>
     <string name="s2s_right">Sweep Right</string>
     <string name="s2s_left">Sweep Left</string>
     <string name="s2s_any">Sweep Left or Right</string>
-    <string name="t2w">Tap2Wake</string>
-    <string name="t2w_summary">Wake up your device by tapping the screen.</string>
-    <string name="wake">Wake</string>
-    <string name="dt2w_charging">DoubleTap2Wake while charging</string>
-    <string name="s2w_charging">Sweep2Wake while charging</string>
-    <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
-    <string name="sleep">Sleep</string>
-    <string name="dt2s">DoubleTap2Sleep</string>
-    <string name="dt2s_summary">Lock your device by double tapping on the top of the screen.</string>
     <string name="slide_up">Slide up</string>
     <string name="slide_down">Slide down</string>
     <string name="slide_left">Slide left</string>
@@ -450,8 +488,8 @@
     <string name="camera_gesture_summary">Launch default camera by drawing a circle on the screen.</string>
     <string name="pocket_mode">Pocket Mode</string>
     <string name="pocket_mode_summary">Enabling this will turn off wake controls when the device is in a pocket.</string>
-    <string name="wake_timeout">Wake Timeout</string>
-    <string name="wake_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
+    <string name="timeout">Timeout</string>
+    <string name="timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
     <string name="power_key_suspend">Power Key Suspend</string>
     <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
 
@@ -467,16 +505,24 @@
     <string name="volume_gain">Volume Gain</string>
 
     <!-- Battery -->
-    <string name="battery_voltage">Battery Voltage</string>
-    <string name="battery_level">Battery Level</string>
-    <string name="battery_temperature">Battery Temperature</string>
+    <string name="level">Level</string>
+    <string name="voltage">Voltage</string>
+    <string name="capacity">Capacity</string>
     <string name="usb_fast_charge">USB Fast Charge</string>
     <string name="usb_fast_charge_summary">Device will charge faster when connected with USB. Replug your charger when changing this option.</string>
     <string name="blx">Battery Life eXtender</string>
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
-    <string name="custom_charge_rate">Charge Rate</string>
-    <string name="charge_rate">Battery Charging Rate</string>
-    <string name="charge_rate_summary">Set Custom Battery Charge Rate. Caution: Exceeding 1250mA may damage your charging driver.</string>
+    <string name="charge_rate">Charge Rate</string>
+    <string name="charging_current">Charging Current</string>
+    <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
+
+    <!-- LED -->
+    <string name="fade">Fade</string>
+    <string name="fade_summary">Enable for fading, disable for blinking.</string>
+    <string name="intensity">Intensity</string>
+    <string name="speed">Speed</string>
+    <string name="stock">Stock</string>
+    <string name="continuous_light">Continuous light</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>
@@ -489,20 +535,21 @@
     <string name="read_ahead_summary">The Read-ahead value on the phone memory.</string>
 
     <!-- Kernel Samepage Merging -->
-    <string name="ksm_full_scans">Full scans</string>
-    <string name="ksm_pages_shared">Pages shared</string>
-    <string name="ksm_pages_sharing">Pages sharing</string>
-    <string name="ksm_pages_unshared">Pages unshared</string>
-    <string name="ksm_pages_volatile">Pages volatile</string>
-    <string name="ksm_enable">Enable KSM</string>
-    <string name="ksm_enable_summary">Reduces memory usage but has an impact on the CPU usage.</string>
-    <string name="ksm_pages_to_scan">Pages to scan</string>
-    <string name="ksm_sleep_milliseconds">Sleep between scans</string>
-    <string name="ksm_deferred_timer">Deferred timer</string>
-    <string name="ksm_deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
+    <string name="full_scans">Full scans</string>
+    <string name="pages_shared">Pages shared</string>
+    <string name="pages_sharing">Pages sharing</string>
+    <string name="pages_unshared">Pages unshared</string>
+    <string name="pages_volatile">Pages volatile</string>
+    <string name="ksm_summary">Reduces memory usage but has an impact on the CPU usage.</string>
+    <string name="pages_to_scan">Pages to scan</string>
+    <string name="sleep_milliseconds">Sleep between scans</string>
+    <string name="deferred_timer">Deferred timer</string>
+    <string name="deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
 
     <!-- Low Memory Killer -->
     <string name="foreground_app">Foreground Applications</string>
+    <string name="lmk_adaptive">Adaptive Low Memory Killer</string>
+    <string name="lmk_adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
     <string name="visible_app">Visible Applications</string>
     <string name="secondary_server">Secondary Server</string>
     <string name="hidden_app">Hidden Applications</string>
@@ -512,8 +559,10 @@
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
-    <string name="adaptive">Adaptive Low Memory Killer</string>
-    <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
+    <string name="kill_lmk">Kill LMK</string>
+    <string name="kill_lmk_summary">Kill LMK when swap is in use.</string>
+    <string name="kill_lmk_threshold">Kill LMK Threshold</string>
+    <string name="kill_lmk_threshold_summary">How full swap needs to be to kill LMK.</string>
 
     <!-- Virtual Memory -->
     <string name="zram">Z-RAM</string>
@@ -526,7 +575,7 @@
     <string name="read">Read</string>
     <string name="write">Write</string>
 
-    <!-- Misc Controls -->
+    <!-- Misc -->
     <string name="vibration_strength">Vibration Strength</string>
     <string name="android_logger">Android logging</string>
     <string name="crc">Software CRC control</string>
@@ -565,112 +614,133 @@
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
 
-    <!-- Plugins -->
-    <string name="plugin_warning">I, the creator of this application, am not responsible for any damages that third party apps produce! I also can\'t guarantee for the functionality of them. Please be careful which applications you download!</string>
-    <string name="download_plugins">Download Plugins</string>
-    <string name="looking_plugins">Looking for plugins</string>
-    <string name="no_plugins">No plugins found</string>
-    <string name="installed">Installed</string>
-    <string name="update_available">Update available</string>
-    <string name="not_installed">Not installed</string>
+    <!-- Custom Controls -->
+    <string name="welcome">Welcome</string>
+    <string name="custom_controls_summary">In this section you can create or import custom controls, which don\'t exist in the app (yet).</string>
+    <string name="example">Examples</string>
+    <string name="custom_controls_example_summary">Need example? Click &lt;a href="https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls">here&lt;a>.</string>
+    <string name="create">Create</string>
+    <string name="import_item">Import</string>
+    <string name="control_switch">Switch</string>
+    <string name="control_seekbar">Seekbar</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="applying">Applying</string>
+    <string name="switch_enabled_summary">Whether the switch is enabled. Return 1 for enabled and 0 for disabled.</string>
+    <string name="switch_apply_summary">The switch will return either 1 (enabled) or 0 (disabled) as argument to your shell script.</string>
+    <string name="seekbar_min">Min</string>
+    <string name="seekbar_max">Max</string>
+    <string name="seekbar_progress">Progress</string>
+    <string name="seekbar_progress_summary">Current state of the seekbar. By defining min and max an integer array gets created. For example: Min is 50 and Max is 100 and progress is 0, that would mean 50 is the current state of the seekbar.</string>
+    <string name="seekbar_apply_summary">Seekbar will return its current progress. For example your Min is 50 and Max 100 and the seekbar is at 70, it will return 20 as progress.</string>
+    <string name="control_generic">Generic</string>
+    <string name="generic_value">Value</string>
+    <string name="generic_value_summary">Current value of the editor. Can be basically anything.</string>
+    <string name="generic_apply_summary">Editor will return whatever was entered.</string>
+    <string name="required">required</string>
+    <string name="test">Test</string>
+    <string name="output">Output</string>
+    <string name="edit">Edit</string>
+    <string name="on_boot">On Boot</string>
+    <string name="export">Export</string>
+    <string name="delete">Delete</string>
+    <string name="sure_question">Are you sure?</string>
+    <string name="name">Name</string>
+    <string name="already_exists">%s already exists!</string>
+    <string name="exported_item">%1$s has been exported to %2$s</string>
+    <string name="name_empty">Name is empty!</string>
+    <string name="import_malformed">Import file is malformed!</string>
+    <string name="import_wrong_version">Version of import file is too old!</string>
 
     <!-- Downloads -->
-    <string name="no_kernels">No kernels found</string>
-    <string name="logo">Logo</string>
-    <string name="features">Features</string>
-    <string name="loading_counting">Loading %1$d/%2$d</string>
-    <string name="downloading_db">Downloading Database</string>
-    <string name="xda">XDA</string>
-    <string name="github">GitHub</string>
-    <string name="google_plus">Google Plus</string>
-    <string name="paypal">PayPal</string>
-    <string name="download">Download</string>
+    <string name="downloads_error">Couldn\'t find any supported kernels! Please check your internet access.</string>
+    <string name="download_error">Failed to download %s.</string>
     <string name="downloading_counting">%1$s/%2$s</string>
-    <string name="resume">Resume</string>
-    <string name="checking_md5">Checking MD5sum</string>
-    <string name="md5_mismatch">MD5 Mismatch</string>
-    <string name="md5_mismatch_summary">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
-    <string name="download_success">Successfully downloaded %s. Do you want to install it now?</string>
-    <string name="manual_flashing">I will use my hands</string>
-    <string name="file_location">Downloaded file is in %s</string>
-
-    <!-- Backup -->
-    <string name="no_backups">No backups</string>
-    <string name="flash_img">Flash IMG</string>
-    <string name="flashing">Flashing</string>
-    <string name="boot" translatable="false">Boot</string>
-    <string name="fota" translatable="false">Fota</string>
-    <string name="backing_up">Backing up</string>
-    <string name="empty_name">Name is empty!</string>
-    <string name="backup_already_exists">A backup with the same name already exists. Delete it first!</string>
-    <string name="restore">Restore</string>
-    <string name="delete">Delete</string>
-    <string name="overwrite_question">Overwrite %s?</string>
-    <string name="restoring">Restoring</string>
-    <string name="delete_question">Delete %s?</string>
-
-    <!-- Build prop Editor -->
-    <string name="items_found">%d item/s found</string>
-    <string name="add">Add</string>
-    <string name="edit">Edit</string>
-    <string name="key">Key</string>
-    <string name="value">Value</string>
-    <string name="backup_created">Backup has been created in %s.</string>
-    <string name="search">Search</string>
-
-    <!-- Profile -->
-    <string name="no_profiles">No profiles</string>
-    <string name="profile_description">Adding a profile will save your current settings. You can apply them later.</string>
-    <string name="name">Name</string>
-    <string name="select_all">Select all</string>
-    <string name="apply">Apply</string>
-    <string name="removed_all_sections">You removed all sections! No profiles for you.</string>
-    <string name="no_settings">No settings found!</string>
-    <string name="press_again_to_apply">Press again to apply.</string>
-    <string name="applied">Applied</string>
-    <string name="applying_profile">Applying %s</string>
-    <string name="replace_profile">Do you want to replace %s?</string>
-
-    <!-- Recovery -->
-    <string name="reboot">Reboot</string>
-    <string name="reboot_soft">Soft Reboot</string>
-    <string name="reboot_recovery">Reboot Recovery</string>
-    <string name="reboot_bootloader">Reboot Bootloader</string>
-    <string name="reboot_download">Reboot Download</string>
-    <string name="confirm">Are you sure?</string>
+    <string name="check_md5">Checking md5</string>
+    <string name="md5_mismatch">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
+    <string name="install">Install</string>
     <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
+    <string name="manual_flashing">I will use my hands</string>
+    <string name="file_location">Downloaded file is in %s</string>
+    <string name="backing_up">Backing up</string>
+    <string name="flashing">Flashing</string>
+    <string name="restoring">Restoring</string>
+
+    <!-- Backup -->
+    <string name="boot_partition">Boot partition</string>
+    <string name="recovery_partition">Recovery partition</string>
+    <string name="fota_partition">Fota partition</string>
+    <string name="flash">Flash</string>
+
+    <!-- Build prop Editor -->
+    <string name="search">Search</string>
+    <string name="key">Key</string>
+    <string name="value">Value</string>
+    <string name="key_empty">Key can\'t be empty!</string>
+
+    <!-- Profile -->
+    <string name="apply_on_boot_not_available">In profiles mode your changes won\'t have an impact on apply on boot.</string>
+    <string name="profile_warning">Everything you change here is gonna be saved to your profile. But attention! Your settings will also get applied, but won\'t get saved to apply on boot.</string>
+    <string name="no_changes">No changes made!</string>
+    <string name="apply_question">Apply %s?</string>
+    <string name="details">Details</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
-    <string name="flash_now">Flash Now</string>
+    <string name="add_action_first">You have to add actions first!</string>
     <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
-    <string name="add_action_first">You have to add an action first.</string>
+    <string name="press_again_to_apply">Press %s again to apply.</string>
+    <string name="applied">Applied</string>
+    <string name="profile_tasker">Profile Tasker</string>
+    <string name="profile_tasker_summary">If you want to apply a profile at a specific event, such as launching an application, you have to use Tasker.</string>
+    <string name="profile_tasker_toast">Show toast when tasker applies a profile</string>
+    <string name="profile_tile">Profile Tile</string>
+    <string name="profile_tile_summary">Show a tile which allows you to select a profile.</string>
+    <string name="profile_select">Select Profile</string>
+    <string name="applying_profile">Applying %s!</string>
+    <string name="no_profiles">No profile found! You have to create them first.</string>
+    <string name="sections_disabled">All sections disabled! No profiles for you.</string>
 
     <!-- Init.d -->
     <string name="emulate_initd">Emulate Init.d</string>
-    <string name="emulate_initd_summary">If your device does not support Init.d you can enable Emulate Init.d. By enabling the Init.d Emulation the application will run the scripts after your device boots up, but before apply on boot.</string>
+    <string name="emulate_initd_summary">If your device doesn\'t support Init.d by default, you can enable this to emulate its behaviour.</string>
+    <string name="exceute_question">Execute %s?</string>
     <string name="executing">Executing</string>
-    <string name="execute">Execute</string>
-    <string name="no_scripts_found">No scripts found!</string>
-    <string name="starting_initd">Starting Init.d emulation</string>
-    <string name="finishing_initd">Finishing Init.d emulation</string>
-    <string name="file_name">Name of file</string>
+    <string name="result">Result</string>
+
+    <!-- About -->
+    <string name="about_me">Hi, I\'m Willi Ye aka Grarak, a 19 year old student living in Vienna. I\'ve been developing on Android for quite a long time. Beside Kernel Adiutor I\'m also maintaining CyanogenMod for few devices and working on ParanoidAndroid. So please understand if I don\'t find the time to update this application.</string>
+    <string name="libraries_used">Libraries used</string>
+
+    <!-- Contributors -->
+    <string name="commits">%d commits</string>
+    <string name="no_internet">Please check your internet connection!</string>
+
+    <!-- FAQ -->
+    <string name="misspelled">Why did you misspell \"Adiutor\"?</string>
+    <string name="misspelled_summary">Adiutor is Latin and means helper.</string>
+    <string name="have_to_donate">Do I have to donate in order to use those premium features?</string>
+    <string name="have_to_donate_summary">No, this application is open source. You can easily build it yourself. Donation features are enabled by default once you build a debugging apk, so no need to change any line of code.</string>
+    <string name="cpu_freq_not_sticking">Why doesn\'t my determined CPU freq stick?</string>
+    <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don\'t touch the CPU frequencies and let the kernel do its job. This also counts for other functions! If they don\'t stick, it\'s because the kernel/system doesn\'t want to let you change it.</string>
+    <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
+    <string name="feature_not_appearing_summary">Only features which are supported by your device are shown!</string>
+    <string name="feature_function">What does feature x do?</string>
+    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do a proper research before playing with your expensive hardware.</string>
+    <string name="add_new_features">Could you add feature x and y?</string>
+    <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices.</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
-    <string name="force_english_language">Force English Language</string>
-    <string name="beta_info">Beta Information</string>
-    <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
-    <string name="show_profile_tile">Show Profile Tile</string>
-    <string name="notification">Notification</string>
-    <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>
-    <string name="show_toast">Show toast</string>
-    <string name="test">Test</string>
-    <string name="test_summary">Test apply on boot (with delay). If nothing happens then there are no saved settings.</string>
-    <string name="hide_apply_on_boot">Hide Apply On Boot</string>
-    <string name="hide_apply_on_boot_summary">Hide its view when scrolling down.</string>
-    <string name="enable_apply_on_boot_first">You have to enable apply on boot at least for one section first.</string>
+    <string name="fahrenheit_title">Fahrenheit</string>
+    <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>
+    <string name="force_english">Force displaying english language</string>
+    <string name="ten_sec">10 seconds</string>
+    <string name="twenty_sec">20 seconds</string>
+    <string name="fifty_sec">50 seconds</string>
+    <string name="apply_on_boot_test_summary">Test apply on boot. This includes all kind of things which are getting applied during booting, such as custom controls, profiles, init.d, etc.</string>
+    <string name="nothing_apply">Nothing found to apply!</string>
     <string name="debugging">Debugging</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">Copy logcat to /sdcard/logcat.txt</string>
@@ -682,51 +752,15 @@
     <string name="set_password">Set Password</string>
     <string name="set_password_summary">You can protect Kernel Adiutor by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your device. Don\'t worry I won\'t share your password.</string>
     <string name="delete_password">Delete Password</string>
+    <string name="old_password">Old password</string>
     <string name="new_password">New password</string>
     <string name="confirm_new_password">Confirm new password</string>
-    <string name="old_password">Old password</string>
     <string name="old_password_wrong">Old password is wrong</string>
     <string name="password_empty">Password is empty</string>
-    <string name="password_not_match">Password doesn\'t match confirmation</string>
-    <string name="password_too_long">Password is too long</string>
+    <string name="password_not_match">New password doesn\'t match confirmation</string>
+    <string name="password_too_long">Password is too long (max. 32 characters)</string>
     <string name="set_password_first">Set a password first</string>
-    <string name="show_sections">Show sections</string>
-
-    <!-- FAQ -->
-    <string name="misspelled">Why did you misspell \"Auditor\"?</string>
-    <string name="misspelled_summary">Adiutor is Latin and means helper.</string>
-    <string name="cpu_freq_not_sticking">Why doesn\'t my determined CPU freq stick?</string>
-    <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don\'t touch the CPU frequencies and let the kernel do its job.</string>
-    <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
-    <string name="feature_not_appearing_summary">Features depend on the kernel.</string>
-    <string name="feature_function">What does feature x do?</string>
-    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do a proper research before playing with your expensive hardware.</string>
-    <string name="add_new_features">Could you add feature x and y?</string>
-    <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices. I only have a Samsung Galaxy S4 (I9500), an HTC Desire 816 and recently got a OnePlus 2, so don\'t blame me if features don\'t get merged immediately.</string>
-
-    <!-- About us -->
-    <string name="license">License</string>
-    <string name="app_license">Kernel Adiutor is licensed under the Apache License, Version 2.0, and uses following libraries</string>
-    <string name="appcompat_v7" translatable="false">v7 Appcompat Library</string>
-    <string name="cardview_v7" translatable="false">v7 Cardview Library</string>
-    <string name="recyclerview_v7" translatable="false">v7 Recyclerview Library</string>
-    <string name="google" translatable="false">Google</string>
-    <string name="fab" translatable="false">FloatingActionButton</string>
-    <string name="jerzy" translatable="false">Jerzy Chałupski</string>
-    <string name="dashclock" translatable="false">Dashclock</string>
-    <string name="nurik" translatable="false">Roman Nurik</string>
-    <string name="nineoldandroids" translatable="false">NineOldAndroids</string>
-    <string name="wharton" translatable="false">Jake Wharton</string>
-    <string name="picasso" translatable="false">Picasso</string>
-    <string name="square" translatable="false">Square Inc.</string>
-    <string name="materialtabs" translatable="false">MaterialTabs</string>
-    <string name="frenn" translatable="false">Karim Frenn</string>
-    <string name="open_source">Open source</string>
-    <string name="open_source_summary">This application is open source. Check it out on my GitHub!</string>
-    <string name="feature_request">Feature request</string>
-    <string name="feature_request_summary">Do you want more features? Open a new issue on GitHub and submit your idea.</string>
-    <string name="google_plus_summary">Join our community.</string>
-    <string name="translation">Translation</string>
-    <string name="translation_summary">Help me translate this app!</string>
-
+    <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
+    <string name="sections">Sections</string>
+    <string name="sections_summary">Restart the app when you changed the visibility of sections below.</string>
 </resources>

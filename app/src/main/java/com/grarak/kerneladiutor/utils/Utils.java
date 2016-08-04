@@ -1,63 +1,50 @@
 /*
- * Copyright (C) 2015 Willi Ye
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This file is part of Kernel Adiutor.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
  */
-
 package com.grarak.kerneladiutor.utils;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
-import android.text.TextUtils;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.view.ViewCompat;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
-import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
-import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
-import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
-import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
-import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
-import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
-import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
-import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
-import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
-import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
-import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
-import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
-import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
-import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
-import com.grarak.kerneladiutor.utils.kernel.CPU;
-import com.kerneladiutor.library.Tools;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -65,55 +52,209 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 /**
- * Created by willi on 30.11.14.
+ * Created by willi on 14.04.16.
  */
-public class Utils implements Constants {
+public class Utils {
 
-    public static boolean DARKTHEME = false;
+    private static final String TAG = Utils.class.getSimpleName();
+    public static boolean DONATED = BuildConfig.DEBUG;
+    public static boolean DARK_THEME;
+
+    private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();
+
+    public static String decodeString(String text) {
+        try {
+            return new String(Base64.decode(text, Base64.DEFAULT), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String encodeString(String text) {
+        try {
+            return Base64.encodeToString(text.getBytes("UTF-8"), Base64.DEFAULT);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void setLocale(String lang, Context context) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getApplicationContext().getResources().updateConfiguration(config, null);
+    }
 
     public static boolean hasCMSDK() {
         return cyanogenmod.os.Build.CM_VERSION.SDK_INT >= cyanogenmod.os.Build.CM_VERSION_CODES.APRICOT;
     }
 
-    public static boolean isAppInstalled(String packagename, Context context) {
-        try {
-            context.getPackageManager().getApplicationInfo(packagename, 0);
-            return true;
-        } catch (PackageManager.NameNotFoundException e) {
-            return false;
+    public static CharSequence htmlFrom(String text) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(text);
         }
     }
 
-    public static void openAppInStore(String packagename, Context context) {
-        try {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packagename)));
-        } catch (ActivityNotFoundException ignored) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + packagename)));
+    public static void loadImagefromUrl(String url, ImageView imageView, int maxWidth, int maxHeight) {
+        CustomTarget target = new CustomTarget(imageView, maxWidth, maxHeight);
+        mProtectedFromGarbageCollectorTargets.add(target);
+        Picasso.with(imageView.getContext()).load(url).into(target);
+    }
+
+    private static class CustomTarget implements Target {
+        private ImageView mImageView;
+        private int mMaxWidth;
+        private int mMaxHeight;
+
+        public CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
+            mImageView = imageView;
+            mMaxWidth = maxWidth;
+            mMaxHeight = maxHeight;
         }
+
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            mImageView.setImageBitmap(scaleDownBitmap(bitmap, mMaxWidth, mMaxHeight));
+            mProtectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+            mProtectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
+    }
+
+    public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        int newWidth = width;
+        int newHeight = height;
+
+        if (maxWidth != 0 && newWidth > maxWidth) {
+            newHeight = Math.round((float) maxWidth / newWidth * newHeight);
+            newWidth = maxWidth;
+        }
+
+        if (maxHeight != 0 && newHeight > maxHeight) {
+            newWidth = Math.round((float) maxHeight / newHeight * newWidth);
+            newHeight = maxHeight;
+        }
+
+        return width != newWidth || height != newHeight ? resizeBitmap(bitmap, newWidth, newHeight) : bitmap;
+    }
+
+    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
+    }
+
+    public static String getPath(Uri uri, Context context) {
+        String path = null;
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                path = cursor.getString(columnIndex);
+            }
+            cursor.close();
+        }
+        return path;
+    }
+
+    public static String getExternalStorage() {
+        String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
+        return path.contains("/") ? path : null;
+    }
+
+    public static String getInternalStorage() {
+        String dataPath = existFile("/data/media/0", true) ? "/data/media/0" : "/data/media";
+        if (!new RootFile(dataPath).isEmpty()) {
+            return dataPath;
+        }
+        if (existFile("/sdcard", true)) {
+            return "/sdcard";
+        }
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+
+    public static String getInternalDataStorage() {
+        return Environment.getExternalStorageDirectory().toString() + "/Android/data/" +
+                BuildConfig.APPLICATION_ID;
+    }
+
+    // Sorry pirates!
+    public static boolean isPatched(ApplicationInfo applicationInfo) {
+        boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
+        if (withBase) {
+            RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
+            RootFile odex = findExtension(parent, ".odex");
+            if (odex != null) {
+                String text = RootUtils.runCommand("strings " + odex.toString());
+                if (text.contains("--dex-file") || text.contains("--oat-file")) {
+                    return true;
+                }
+            }
+
+            String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
+            if (Utils.existFile(dex)) {
+                String path = RootUtils.runCommand("realpath " + dex);
+                if (path != null) {
+                    String text = RootUtils.runCommand("strings " + path);
+                    if (text.contains("--dex-file") || text.contains("--oat-file")) {
+                        return true;
+                    }
+                }
+            }
+        } else if (Utils.existFile(applicationInfo.publicSourceDir.replace(".apk", ".odex"))) {
+            new RootFile(applicationInfo.publicSourceDir.replace(".apk", ".odex")).delete();
+            RootUtils.runCommand("pkill " + applicationInfo.packageName);
+            return false;
+        }
+        return false;
+    }
+
+    private static RootFile findExtension(RootFile path, String extension) {
+        for (RootFile file : path.listFiles()) {
+            if (file.isDirectory()) {
+                RootFile rootFile = findExtension(file, extension);
+                if (rootFile != null) return rootFile;
+            } else if (file.getName() != null && file.getName().endsWith(extension)) {
+                return file;
+            }
+        }
+        return null;
     }
 
     // MD5 code from
     // https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-12.1/src/com/cyanogenmod/updater/utils/MD5.java
     public static boolean checkMD5(String md5, File updateFile) {
-        if (TextUtils.isEmpty(md5) || updateFile == null) {
+        if (md5.isEmpty() || updateFile == null) {
             Log.e(TAG, "MD5 string empty or updateFile null");
             return false;
         }
@@ -123,9 +264,6 @@ public class Utils implements Constants {
             Log.e(TAG, "calculatedDigest null");
             return false;
         }
-
-        Log.v(TAG, "Calculated digest: " + calculatedDigest);
-        Log.v(TAG, "Provided digest: " + md5);
 
         return calculatedDigest.equalsIgnoreCase(md5);
     }
@@ -170,135 +308,9 @@ public class Utils implements Constants {
         }
     }
 
-    public static boolean isRTL(Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
-                && context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-    }
-
-    public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-
-        int newWidth = width;
-        int newHeight = height;
-
-        if (maxWidth != 0 && newWidth > maxWidth) {
-            newHeight = Math.round((float) maxWidth / newWidth * newHeight);
-            newWidth = maxWidth;
-        }
-
-        if (maxHeight != 0 && newHeight > maxHeight) {
-            newWidth = Math.round((float) maxHeight / newHeight * newWidth);
-            newHeight = maxHeight;
-        }
-
-        return width != newWidth || height != newHeight ? resizeBitmap(bitmap, newWidth, newHeight) : bitmap;
-    }
-
-    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
-        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
-    }
-
-    private static final Set<CustomTarget> protectedFromGarbageCollectorTargets = new HashSet<>();
-
-    public static void loadImagefromUrl(String url, ImageView imageView) {
-        CustomTarget target = new CustomTarget().setImageView(imageView);
-        protectedFromGarbageCollectorTargets.add(target);
-        Picasso.with(imageView.getContext()).load(url).into(target);
-    }
-
-    private static class CustomTarget implements Target {
-        private ImageView imageView;
-
-        public CustomTarget setImageView(ImageView imageView) {
-            this.imageView = imageView;
-            return this;
-        }
-
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            imageView.setImageBitmap(scaleDownBitmap(bitmap, 1920, 1920));
-            protectedFromGarbageCollectorTargets.remove(this);
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-            protectedFromGarbageCollectorTargets.remove(this);
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
-    }
-
-    public static String getDeviceName() {
-        return Build.DEVICE;
-    }
-
-    public static String getVendorName() {
-        return Build.MANUFACTURER;
-    }
-
-    public static String decodeString(String text) {
-        try {
-            return new String(Base64.decode(text, Base64.DEFAULT), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static String encodeString(String text) {
-        try {
-            return Base64.encodeToString(text.getBytes("UTF-8"), Base64.DEFAULT);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static void errorDialog(Context context, Exception e) {
-        new AlertDialog.Builder(context).setMessage(e.getMessage()).setNeutralButton(context.getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).show();
-    }
-
-    public static void circleAnimate(final View view, int cx, int cy) {
-        if (view == null) return;
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.setVisibility(View.INVISIBLE);
-
-                int finalRadius = Math.max(view.getWidth(), view.getHeight());
-                Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-                anim.setDuration(500);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                        view.setVisibility(View.VISIBLE);
-                    }
-                });
-                anim.start();
-            }
-        } catch (IllegalStateException e) {
-            view.setVisibility(View.VISIBLE);
-        }
-    }
-
-    public static void confirmDialog(String title, String message, DialogInterface.OnClickListener onClickListener,
-                                     Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        if (title != null) builder.setTitle(title);
-        if (message != null) builder.setMessage(message);
-        builder.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }).setPositiveButton(context.getString(R.string.ok), onClickListener).show();
+    public static boolean isTablet(Context context) {
+        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static String readAssetFile(Context context, String file) {
@@ -310,7 +322,9 @@ public class Utils implements Constants {
             buf = new BufferedReader(new InputStreamReader(input));
 
             String str;
-            while ((str = buf.readLine()) != null) s.append(str).append("\n");
+            while ((str = buf.readLine()) != null) {
+                s.append(str).append("\n");
+            }
             return s.toString().trim();
         } catch (IOException e) {
             Log.e(TAG, "Unable to read " + file);
@@ -325,162 +339,96 @@ public class Utils implements Constants {
         return null;
     }
 
-    public static void setLocale(String lang, Context context) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
+    public static boolean useFahrenheit(Context context) {
+        return Prefs.getBoolean("useretardedmeasurement", false, context);
     }
 
-    public static void vibrate(int duration) {
-        RootUtils.runCommand("echo " + duration + " > /sys/class/timed_output/vibrator/enable");
+    public static double celsiusToFahrenheit(double celsius) {
+        return (9d / 5d) * celsius + 32;
     }
 
-    public static List<String> getApplys(Class mClass) {
-        List<String> applys = new ArrayList<>();
-
-        if (mClass == BatteryFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
-        else if (mClass == CPUFragment.class) {
-            for (String cpu : CPU_ARRAY)
-                if (cpu.startsWith("/sys/devices/system/cpu/cpu%d"))
-                    for (int i = 0; i < CPU.getCoreCount(); i++)
-                        applys.add(String.format(cpu, i));
-                else applys.add(cpu);
-        } else if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(array)));
-        else if (mClass == CPUVoltageFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
-        else if (mClass == EntropyFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(ENTROPY_ARRAY)));
-        else if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == IOFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
-        else if (mClass == KSMFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(KSM_ARRAY)));
-        else if (mClass == LMKFragment.class) applys.add(LMK_MINFREE);
-        else if (mClass == MiscFragment.class) {
-            for (Object[] arrays : MISC_ARRAY)
-                for (Object path : arrays)
-                    if (path instanceof String)
-                        applys.add((String) path);
-        } else if (mClass == ScreenFragment.class) for (String[] arrays : SCREEN_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == SoundFragment.class) for (String[] arrays : SOUND_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == ThermalFragment.class) for (String[] arrays : THERMAL_ARRAYS)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == VMFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(VM_ARRAY)));
-        else if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-
-        return applys;
+    public static double roundTo2Decimals(double val) {
+        BigDecimal bd = new BigDecimal(val);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
-    public static String formatCelsius(double celsius) {
-        return round(celsius, 2) + "°C";
+    public static String strFormat(String text, Object... format) {
+        return String.format(text, format);
     }
 
-    public static String celsiusToFahrenheit(double celsius) {
-        return round(celsius * 9 / 5 + 32, 2) + "°F";
-    }
-
-    public static String round(double value, int places) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < places; i++) stringBuilder.append("#");
-        DecimalFormat df = new DecimalFormat("#." + stringBuilder.toString());
-        df.setRoundingMode(RoundingMode.CEILING);
-        return df.format(value);
-    }
-
-    public static long stringToLong(String string) {
+    public static Long strToLong(String text) {
         try {
-            return Long.parseLong(string);
-        } catch (NumberFormatException e) {
+            return Long.parseLong(text);
+        } catch (NumberFormatException ignored) {
+            return 0L;
+        }
+    }
+
+    public static int strToInt(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException ignored) {
             return 0;
         }
     }
 
-    public static int stringToInt(String string) {
-        try {
-            return Math.round(Float.parseFloat(string));
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+    public static boolean isRTL(View view) {
+        return ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL;
     }
 
-    public static void launchUrl(Context context, String link) {
-        try {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
-        } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static float getActionBarSize(Context context) {
+        TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
+        float size = typedArray.getDimension(0, 0);
+        typedArray.recycle();
+        return size;
     }
 
-    public static int getActionBarHeight(Context context) {
-        TypedArray ta = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-        int actionBarSize = ta.getDimensionPixelSize(0, 112);
-        ta.recycle();
-        return actionBarSize;
+    public static int getColorPrimaryColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true);
+        return value.data;
     }
 
-    public static boolean isTV(Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2 && ((UiModeManager) context
-                .getSystemService(Context.UI_MODE_SERVICE))
-                .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+    public static int getColorPrimaryDarkColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true);
+        return value.data;
     }
 
-    public static boolean isTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
-    public static int getScreenOrientation(Context context) {
-        return context.getResources().getDisplayMetrics().widthPixels <
-                context.getResources().getDisplayMetrics().heightPixels ?
-                Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
+    public static int getThemeAccentColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
+        return value.data;
     }
 
     public static void toast(String message, Context context) {
         toast(message, context, Toast.LENGTH_SHORT);
     }
 
+    public static void toast(int id, Context context) {
+        toast(context.getString(id), context);
+    }
+
     public static void toast(String message, Context context, int duration) {
         Toast.makeText(context, message, duration).show();
     }
 
-    public static int getInt(String name, int defaults, Context context) {
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getInt(name, defaults);
+    public static void launchUrl(String url, Context context) {
+        try {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            context.startActivity(i);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void saveInt(String name, int value, Context context) {
-        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putInt(name, value).apply();
+    public static int getOrientation(Context context) {
+        return context.getResources().getConfiguration().orientation;
     }
 
-    public static boolean getBoolean(String name, boolean defaults, Context context) {
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
-    }
-
-    public static void saveBoolean(String name, boolean value, Context context) {
-        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putBoolean(name, value).apply();
-    }
-
-    public static String getString(String name, String defaults, Context context) {
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getString(name, defaults);
-    }
-
-    public static void saveString(String name, String value, Context context) {
-        context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit().putString(name, value).apply();
-    }
-
-    public static String getProp(String key) {
-        return RootUtils.runCommand("getprop " + key);
-    }
-
-    public static boolean isPropActive(String key) {
+    public static boolean isPropRunning(String key) {
         try {
             return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
         } catch (Exception ignored) {
@@ -496,16 +444,70 @@ public class Utils implements Constants {
         }
     }
 
-    public static boolean existFile(String file) {
-        return Tools.existFile(file, true);
+    public static void writeFile(String path, String text, boolean append) {
+        writeFile(path, text, append, true);
     }
 
-    public static void writeFile(String path, String text, boolean append) {
-        Tools.writeFile(path, text, append, true);
+    public static void writeFile(String path, String text, boolean append, boolean asRoot) {
+        if (asRoot) {
+            new RootFile(path).write(text, append);
+            return;
+        }
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(path, append);
+            writer.write(text);
+            writer.flush();
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to write " + path);
+        } finally {
+            try {
+                if (writer != null) writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static String readFile(String file) {
-        return Tools.readFile(file, true);
+        return readFile(file, true);
+    }
+
+    public static String readFile(String file, boolean asRoot) {
+        if (asRoot) return new RootFile(file).readFile();
+
+        StringBuilder s = null;
+        FileReader fileReader = null;
+        BufferedReader buf = null;
+        try {
+            fileReader = new FileReader(file);
+            buf = new BufferedReader(fileReader);
+
+            String line;
+            s = new StringBuilder();
+            while ((line = buf.readLine()) != null) s.append(line).append("\n");
+        } catch (FileNotFoundException ignored) {
+            Log.e(TAG, "File does not exist " + file);
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to read " + file);
+        } finally {
+            try {
+                if (fileReader != null) fileReader.close();
+                if (buf != null) buf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return s == null ? null : s.toString().trim();
+    }
+
+    public static boolean existFile(String file, boolean root) {
+        return root ? new RootFile(file).exists() : new File(file).exists();
+    }
+
+    public static boolean existFile(String file) {
+        return existFile(file, true);
     }
 
 }
