@@ -91,11 +91,10 @@ public class CardView extends RecyclerViewItem {
             }
         });
 
-        if (Utils.DARK_THEME) {
-            Drawable drawable = mMenuButton.getDrawable();
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(view.getContext(), R.color.white));
-            mMenuButton.setImageDrawable(drawable);
-        }
+        Drawable drawable = mMenuButton.getDrawable();
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(view.getContext(),
+                Utils.DARK_THEME ? R.color.white : R.color.black));
+        mMenuButton.setImageDrawable(drawable);
 
         super.onCreateView(view);
         setupLayout();
