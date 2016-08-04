@@ -38,11 +38,11 @@ import java.util.HashMap;
  */
 public class Temperature {
 
-    private static final HashMap<String, Integer> CPU_NODES = new HashMap<>();
+    private static final HashMap<String, Integer> sCPUTemps = new HashMap<>();
 
     static {
-        CPU_NODES.put("/sys/class/thermal/thermal_zone0/temp", 1000);
-        CPU_NODES.put("/sys/devices/platform/omap/omap_temp_sensor.0/temperature", 1000);
+        sCPUTemps.put("/sys/class/thermal/thermal_zone0/temp", 1000);
+        sCPUTemps.put("/sys/devices/platform/omap/omap_temp_sensor.0/temperature", 1000);
     }
 
     private static TempJson TEMP_JSON;
@@ -103,15 +103,12 @@ public class Temperature {
             return true;
         }
         if (CPU_NODE != null) return true;
-        for (String node : CPU_NODES.keySet()) {
+        for (String node : sCPUTemps.keySet()) {
             if (Utils.existFile(node)) {
                 CPU_NODE = node;
-                CPU_OFFSET = CPU_NODES.get(CPU_NODE);
-                if (Utils.readFile(CPU_NODE).length() <= String.valueOf(CPU_OFFSET).length() + 1) {
+                CPU_OFFSET = sCPUTemps.get(CPU_NODE);
+                if (Utils.readFile(CPU_NODE).length() == 2) {
                     CPU_OFFSET = 1;
-                    for (int i = 0; i < Utils.readFile(CPU_NODE).length() - 2; i++) {
-                        CPU_OFFSET *= 10;
-                    }
                 }
                 return true;
             }
