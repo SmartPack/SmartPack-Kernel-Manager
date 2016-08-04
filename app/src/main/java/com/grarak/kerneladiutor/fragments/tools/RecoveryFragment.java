@@ -61,7 +61,6 @@ import java.util.List;
  */
 public class RecoveryFragment extends RecyclerViewFragment {
 
-    private OptionsFragment mOptionsFragment;
     private AlertDialog.Builder mAddDialog;
     private AlertDialog.Builder mFlashDialog;
 
@@ -88,7 +87,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(mOptionsFragment = OptionsFragment.newInstance(this));
+        addViewPagerFragment(OptionsFragment.newInstance(this));
 
         if (mAddDialog != null) {
             mAddDialog.show();
@@ -236,10 +235,10 @@ public class RecoveryFragment extends RecyclerViewFragment {
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_recovery_options, container, false);
             mRecoveryOption = Prefs.getInt("recovery_option", 0, getActivity());
-            LinearLayout layout = new LinearLayout(getActivity());
-            layout.setGravity(Gravity.CENTER);
-            layout.setOrientation(LinearLayout.VERTICAL);
+
+            LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.layout);
             String[] options = getResources().getStringArray(R.array.recovery_options);
 
             final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
@@ -267,12 +266,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 layout.addView(checkBox);
             }
 
-            FloatingActionButton button = new FloatingActionButton(getActivity());
-            button.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            button.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_done));
-            button.setSize(FloatingActionButton.SIZE_MINI);
-            button.setOnClickListener(new View.OnClickListener() {
+            rootView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (mRecoveryFragment != null && mRecoveryFragment.itemsSize() > 0) {
@@ -283,9 +277,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 }
             });
 
-            layout.addView(button);
-
-            return layout;
+            return rootView;
         }
     }
 
