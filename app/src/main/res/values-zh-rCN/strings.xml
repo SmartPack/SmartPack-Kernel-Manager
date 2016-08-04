@@ -9,6 +9,8 @@
   <string name="no_root">无 root 权限</string>
   <string name="no_busybox">没有安装 busybox</string>
   <!-- Security -->
+  <string name="password">密码</string>
+  <string name="password_wrong">密码错误</string>
   <string name="select_picture">选择图片</string>
   <string name="no_picture">没有图片</string>
   <string name="went_wrong">出现错误</string>
@@ -18,10 +20,16 @@
   <string name="unknown">未知</string>
   <string name="donate">捐助</string>
   <string name="apply_on_boot">系统启动时应用</string>
+  <string name="apply_on_boot_text">在 %d 秒后应用您的设置</string>
+  <string name="apply_on_boot_complete">应用设置完成。</string>
+  <string name="apply_on_boot_canceled">应用设置取消。</string>
+  <string name="not_in_range">不在范围内</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">保存</string>
   <!-- File Picker -->
+  <string name="select_question">选择 %s？</string>
+  <string name="wrong_extension">请选择带有 %s 扩展名的文件。</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">º C</string>
@@ -52,6 +60,7 @@
   <string name="wake">唤醒</string>
   <string name="sound">声音</string>
   <string name="battery">电池</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">I/O 调度器</string>
   <string name="ksm">内核同页合并(KSM)</string>
   <string name="lmk">低内存清理器</string>
@@ -93,8 +102,15 @@
   <string name="build_display_id">编译版本号</string>
   <string name="baseband">基带</string>
   <string name="rom">ROM</string>
+  <string name="bootloader">引导程序</string>
+  <string name="hardware">硬件</string>
+  <string name="architecture">架构</string>
   <!-- Inputs -->
+  <string name="product">产品</string>
+  <string name="version">版本</string>
+  <string name="handlers">处理程序</string>
   <!-- CPU -->
+  <string name="cores">%d 个核心</string>
   <string name="cpu_max_freq">CPU 最高频率</string>
   <string name="cpu_max_freq_summary">设置 CPU 能调节到的最高频率。</string>
   <string name="cpu_min_freq">CPU 最低频率</string>
@@ -105,6 +121,7 @@
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
   <string name="cpu_governor_tunables_summary">这些配置项与您使用的调速器有关</string>
+  <string name="tunables_error">%s 不可调节</string>
   <string name="mc_power_saving">多核省电</string>
   <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务。</string>
   <string name="disabled">禁用</string>
@@ -155,6 +172,7 @@
   <string name="eco_mode_summary">IntelliPlug 方案的省电模式。</string>
   <string name="hysteresis">滞后值</string>
   <string name="hysteresis_summary">该值越低，响应得越快。</string>
+  <string name="cpu_threshold">CPU 阈值</string>
   <string name="suspend">延迟</string>
   <string name="suspend_summary">阻止延迟。</string>
   <string name="cpus_boosted">升频 CPU</string>
@@ -387,6 +405,8 @@
   <string name="camera_gesture">相机手势</string>
   <string name="camera_gesture_summary">通过在屏幕上画一个圈来启动默认的相机应用。</string>
   <string name="pocket_mode">口袋模式</string>
+  <string name="pocket_mode_summary">启用后当设备放在口袋里时会关闭唤醒控制功能。</string>
+  <string name="timeout">超时</string>
   <string name="power_key_suspend">电源键延迟</string>
   <string name="power_key_suspend_summary">启用此项后当屏幕由电源键关闭时唤醒控制将会被禁用。</string>
   <!-- Sound -->
@@ -400,6 +420,7 @@
   <string name="microphone_gain">麦克风增益</string>
   <string name="volume_gain">音量增益</string>
   <!-- Battery -->
+  <string name="level">级别</string>
   <string name="voltage">电压</string>
   <string name="capacity">容量</string>
   <string name="usb_fast_charge">USB 快充</string>
@@ -407,7 +428,11 @@
   <string name="blx">电池寿命延长器</string>
   <string name="blx_summary">设置电池充电时满电容量的上限（在 0–100 之间）。</string>
   <string name="charge_rate">充电速率</string>
+  <string name="charging_current">充电电流</string>
+  <string name="charging_current_summary">设置充电电流。注意︰ 超过 1250mA 可能会损坏您充电的驱动程序。</string>
   <!-- LED -->
+  <string name="fade">淡入淡出</string>
+  <string name="speed">速度</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">内部存储</string>
   <string name="external_storage">外部存储</string>
@@ -419,6 +444,8 @@
   <string name="read_ahead_summary">手机内存预读值。</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">完整扫描</string>
+  <string name="sleep_milliseconds">扫描间隔</string>
+  <string name="deferred_timer">延迟定时器</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前台程序</string>
   <string name="visible_app">可见程序</string>
@@ -431,6 +458,8 @@
   <string name="medium">中等</string>
   <string name="very_aggressive">非常积极</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">存储大小</string>
   <!-- Entropy -->
   <string name="available">可用熵</string>
   <string name="poolsize">池大小</string>
@@ -473,12 +502,36 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <!-- Custom Controls -->
+  <string name="welcome">欢迎</string>
+  <string name="example">示例</string>
+  <string name="create">创建</string>
+  <string name="import_item">导入</string>
+  <string name="control_switch">切换</string>
+  <string name="title">标题</string>
+  <string name="description">描述</string>
+  <string name="applying">应用</string>
+  <string name="seekbar_min">最小</string>
+  <string name="seekbar_max">最大</string>
+  <string name="seekbar_progress">进度</string>
+  <string name="control_generic">通用</string>
+  <string name="generic_value">值</string>
+  <string name="required">必需</string>
   <string name="test">测试</string>
+  <string name="output">输出</string>
   <string name="edit">编辑</string>
+  <string name="export">导出</string>
   <string name="delete">删除</string>
+  <string name="sure_question">你确定吗？</string>
   <string name="name">名称</string>
+  <string name="already_exists">%s 已存在！</string>
+  <string name="name_empty">名称为空！</string>
+  <string name="import_malformed">导入文件的格式不正确！</string>
+  <string name="import_wrong_version">导入文件的版本太老了！</string>
   <!-- Downloads -->
+  <string name="download_error">下载 %s 失败。</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">检查 md5</string>
+  <string name="install">安装</string>
   <string name="cwm_recovery">CWM 恢复模式</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">我自己来</string>
@@ -487,24 +540,38 @@
   <string name="flashing">正在刷入</string>
   <string name="restoring">正在还原</string>
   <!-- Backup -->
+  <string name="boot_partition">启动分区</string>
   <!-- Build prop Editor -->
   <string name="search">搜索</string>
   <string name="key">键</string>
   <string name="value">值</string>
   <!-- Profile -->
+  <string name="no_changes">未做任何更改！</string>
+  <string name="details">详细信息</string>
   <string name="wipe_data">擦除数据</string>
   <string name="wipe_cache">擦除缓存</string>
   <string name="flash_zip">刷入 Zip</string>
   <string name="flash_now_confirm">你要执行你的操作吗? 你的设备将重启进入 recovery 并按照您添加时的顺序执行操作</string>
   <string name="applied">已应用</string>
+  <string name="profile_select">选择配置文件</string>
   <!-- Init.d -->
   <string name="emulate_initd">模拟 Init.d</string>
+  <string name="exceute_question">执行 %s 吗？</string>
   <string name="executing">正在执行</string>
+  <string name="result">结果</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->
+  <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
   <!-- Settings -->
   <string name="dark_theme">暗色主题</string>
+  <string name="fahrenheit_title">华氏度</string>
+  <string name="fahrenheit_summary">使用华氏温度测量。</string>
+  <string name="force_english">强制显示英语</string>
+  <string name="ten_sec">10 秒</string>
+  <string name="twenty_sec">20 秒</string>
+  <string name="fifty_sec">50 秒</string>
   <string name="debugging">调试</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
@@ -512,4 +579,15 @@
   <string name="last_kmsg_summary">复制 /proc/last_kmsg 到 /sdcard/last_kmsg.txt</string>
   <string name="driver_message">驱动程序消息</string>
   <string name="driver_message_summary">将驱动程序消息 (dmesg) 复制到 /sdcard/dmesg.txt</string>
+  <string name="security">安全</string>
+  <string name="set_password">设置密码</string>
+  <string name="delete_password">删除密码</string>
+  <string name="old_password">原密码</string>
+  <string name="new_password">新密码</string>
+  <string name="confirm_new_password">确认新密码</string>
+  <string name="old_password_wrong">原密码错误</string>
+  <string name="password_empty">密码为空</string>
+  <string name="password_not_match">两次输入的密码不匹配</string>
+  <string name="password_too_long">密码太长(最多 32 个字符)</string>
+  <string name="set_password_first">先设置密码</string>
 </resources>

@@ -463,6 +463,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Emulasikan Init.d</string>
   <string name="executing">Menjalankan</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

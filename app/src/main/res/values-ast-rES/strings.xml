@@ -419,6 +419,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Emular Init.d</string>
   <string name="executing">Executando</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

@@ -369,6 +369,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Емуляція Init.d</string>
   <string name="executing">Виконання</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

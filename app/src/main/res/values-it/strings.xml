@@ -78,6 +78,7 @@
   <string name="profile">Profilo</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">All\'avvio</string>
   <string name="about">Info</string>
   <string name="contributors">Collaboratori</string>
   <string name="faq">FAQ</string>
@@ -589,7 +590,6 @@
   <string name="test">Prova</string>
   <string name="output">Output</string>
   <string name="edit">Modifica</string>
-  <string name="on_boot">All\'avvio</string>
   <string name="export">Esporta</string>
   <string name="delete">Elimina</string>
   <string name="sure_question">Sei sicuro?</string>
@@ -650,6 +650,7 @@
   <string name="exceute_question">Eseguire %s?</string>
   <string name="executing">Esecuzione</string>
   <string name="result">Risultato</string>
+  <!-- On Boot -->
   <!-- About -->
   <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la CyanogenMod per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
   <string name="libraries_used">Librerie usate</string>

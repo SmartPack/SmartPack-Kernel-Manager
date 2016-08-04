@@ -308,6 +308,15 @@
   <string name="check_interval">Controleer interval</string>
   <string name="shutdown_temp">Temperatuur bij afsluiten</string>
   <!-- GPU -->
+  <string name="gpu_freq">GPU Frequentie</string>
+  <string name="gpu_2d_max_freq">Maximale GPU 2D Frequentie</string>
+  <string name="gpu_2d_max_freq_summary">Stel de maximale 2D frequentie van de GPU in.</string>
+  <string name="gpu_max_freq">Maximale GPU Frequentie</string>
+  <string name="gpu_max_freq_summary">Stel de maximale frequentie in waar de GPU naar toe stijgt.</string>
+  <string name="gpu_min_freq">Minimale GPU Frequentie</string>
+  <string name="gpu_min_freq_summary">Stel de minimale frequentie van de in waar de GPU naar daalt.</string>
+  <string name="gpu_2d_governor">GPU 2D Gouverneur</string>
+  <string name="laziness">Luiheid</string>
   <!-- Screen -->
   <string name="green">Groen</string>
   <string name="blue">Blauw</string>
@@ -320,7 +329,27 @@
   <string name="screen_contrast">Schermcontrast</string>
   <string name="threshold">Drempelwaarde</string>
   <!-- Wake -->
+  <string name="slide_up">Veeg omhoog</string>
+  <string name="slide_down">Veeg omlaag</string>
+  <string name="slide_left">Veeg naar lnks</string>
+  <string name="slide_right">Veeg naar rechts</string>
+  <string name="draw_e">Teken een E</string>
+  <string name="draw_o">Teken een O</string>
+  <string name="draw_w">Teken een W</string>
+  <string name="draw_c">Teken een C</string>
+  <string name="draw_m">Teken een M</string>
+  <string name="camera_gesture">Camera gebaar/teken</string>
+  <string name="camera_gesture_summary">Start de default camera door een cirkel op het scherm te tekenen.</string>
+  <string name="pocket_mode">Broekzak Modus</string>
+  <string name="pocket_mode_summary">Dit zal de wake controls uitschakelen wanneer het apparaat in een broekzak zit.</string>
+  <string name="timeout">Pauze</string>
+  <string name="timeout_summary">Stel de tijd in waneer de wake controls stoppen nadat het scherm uit is gegaan.</string>
+  <string name="power_key_suspend">Aan/Uit knop Deactivatie</string>
+  <string name="power_key_suspend_summary">Dit zal wake controls uitschakelen wanneer het scherm is uitgezet door de aan/uit knop.</string>
   <!-- Sound -->
+  <string name="sound_control">Volumeregeling</string>
+  <string name="headset_highperf_mode">Hoofdtelefoon Hoge Prestatie modus</string>
+  <string name="headphone_gain">Hoofdtelefoon extra volume</string>
   <!-- Battery -->
   <!-- LED -->
   <!-- I/O Scheduler -->
@@ -335,6 +364,7 @@
   <!-- Build prop Editor -->
   <!-- Profile -->
   <!-- Init.d -->
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

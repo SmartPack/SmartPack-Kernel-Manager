@@ -458,6 +458,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulieren</string>
   <string name="executing">Ausführung</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

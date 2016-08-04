@@ -500,6 +500,7 @@
   <string name="exceute_question">Executar %s?</string>
   <string name="executing">Em execução</string>
   <string name="result">Resultado</string>
+  <!-- On Boot -->
   <!-- About -->
   <string name="libraries_used">Bibliotecas usadas</string>
   <!-- Contributors -->

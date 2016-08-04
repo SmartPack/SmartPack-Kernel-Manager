@@ -79,6 +79,7 @@
   <string name="profile">Profilok</string>
   <string name="recovery">Helyreállítás</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Induláskor</string>
   <string name="about">A programról</string>
   <string name="contributors">Közreműködők</string>
   <string name="faq">GYIK</string>
@@ -601,7 +602,6 @@
   <string name="test">Teszt</string>
   <string name="output">Kimenet</string>
   <string name="edit">Szerkesztés</string>
-  <string name="on_boot">Induláskor</string>
   <string name="export">Exportálás</string>
   <string name="delete">Törlés</string>
   <string name="sure_question">Biztos vagy benne?</string>
@@ -662,6 +662,7 @@
   <string name="exceute_question">%s végrehajtása?</string>
   <string name="executing">Végrehajtás</string>
   <string name="result">Eredmény</string>
+  <!-- On Boot -->
   <!-- About -->
   <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében CyanogenMod közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
   <string name="libraries_used">Használt könyvtárak</string>

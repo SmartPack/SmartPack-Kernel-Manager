@@ -411,6 +411,7 @@ Zabezpečeni</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulace Init.d</string>
   <string name="executing">Provádění</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

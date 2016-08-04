@@ -76,6 +76,7 @@
   <string name="profile">Профиль</string>
   <string name="recovery">Меню восстановления</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">При загрузке</string>
   <string name="about">О нас</string>
   <string name="contributors">Авторы</string>
   <string name="faq">Руководство</string>
@@ -555,7 +556,6 @@
   <string name="test">Проверка настроек</string>
   <string name="output">Вывод</string>
   <string name="edit">Редактировать</string>
-  <string name="on_boot">При загрузке</string>
   <string name="export">Экспорт</string>
   <string name="delete">Удалить</string>
   <string name="sure_question">Вы уверены?</string>
@@ -596,6 +596,7 @@
   <string name="emulate_initd">Эмулировать Init.d</string>
   <string name="executing">Выполнение</string>
   <string name="result">Результат</string>
+  <!-- On Boot -->
   <!-- About -->
   <string name="libraries_used">Использованы библиотеки</string>
   <!-- Contributors -->

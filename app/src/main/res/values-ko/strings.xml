@@ -424,6 +424,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Init.d 에뮬레이션</string>
   <string name="executing">실행 중</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

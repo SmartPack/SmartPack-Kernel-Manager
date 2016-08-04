@@ -466,6 +466,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Init.dのエミュレート</string>
   <string name="executing">実行中</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

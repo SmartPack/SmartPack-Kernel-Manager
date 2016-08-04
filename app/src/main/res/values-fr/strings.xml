@@ -431,6 +431,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Émulation init.d</string>
   <string name="executing">En cours d\'exécution</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->

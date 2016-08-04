@@ -465,6 +465,7 @@
   <!-- Init.d -->
   <string name="emulate_initd">Posnemaj Init.d</string>
   <string name="executing">Izvajanje</string>
+  <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->
