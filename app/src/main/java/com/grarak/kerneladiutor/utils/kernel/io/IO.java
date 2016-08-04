@@ -56,7 +56,9 @@ public abstract class IO {
         sInternalReadAhead.add("/sys/block/dm-0/queue/read_ahead_kb");
         sInternalReadAhead.add("/sys/block/sda/queue/read_ahead_kb");
 
-        sInternalRotational.add("/sys/block/mmcblk0/queue/add_random");
+        sInternalRotational.add("/sys/block/mmcblk0/queue/rotational");
+        sInternalRotational.add("/sys/block/dm-0/queue/rotational");
+        sInternalRotational.add("/sys/block/sda/queue/rotational");
 
         sExternalScheduler.add("/sys/block/mmcblk1/queue/scheduler");
 
@@ -64,7 +66,7 @@ public abstract class IO {
 
         sExternalReadAhead.add("/sys/block/mmcblk1/queue/read_ahead_kb");
 
-        sExternalReadAhead.add("/sys/block/mmcblk1/queue/add_random");
+        sExternalReadAhead.add("/sys/block/mmcblk1/queue/rotational");
     }
 
     private static String INTERNAL_SCHEDULER;
