@@ -109,7 +109,9 @@ public class Control {
                             mThreads.get(0).join();
                         } catch (Exception ignored) {
                         }
-                        mThreads.remove(0);
+                        if (mThreads.size() > 0) {
+                            mThreads.remove(0);
+                        }
                     }
                     mSyncThread = null;
                 }
