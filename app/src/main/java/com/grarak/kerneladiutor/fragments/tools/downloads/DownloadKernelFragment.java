@@ -76,4 +76,11 @@ public class DownloadKernelFragment extends RecyclerViewFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        for (DownloadKernelView downloadKernelView : mViews) {
+            downloadKernelView.cancel();
+        }
+    }
 }

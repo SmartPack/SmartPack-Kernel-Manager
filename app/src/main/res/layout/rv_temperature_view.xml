@@ -6,7 +6,7 @@
     android:baselineAligned="false"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/cpu_parent"

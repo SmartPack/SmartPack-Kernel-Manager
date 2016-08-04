@@ -6,10 +6,10 @@
     android:layout_gravity="start"
     android:fontFamily="sans-serif-thin"
     android:minHeight="45dp"
-    android:paddingEnd="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingStart="16dp"
-    android:paddingTop="16dp"
+    android:paddingEnd="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingStart="10dp"
+    android:paddingTop="10dp"
     android:textIsSelectable="true"
-    android:textSize="23sp" />
+    android:textSize="22sp" />

@@ -178,6 +178,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                         public void onCancel() {
                             mFabButton.setImageDrawable(mDownloadDrawable);
                             mProgressParent.setVisibility(View.INVISIBLE);
+                            mMismatchMD5.setVisibility(View.GONE);
                             mDownloadTask = null;
                         }
 
@@ -303,6 +304,12 @@ public class DownloadKernelView extends RecyclerViewItem {
     public void resume() {
         if (mDownloadTask != null) {
             mDownloadTask.resume();
+        }
+    }
+
+    public void cancel() {
+        if (mDownloadTask != null) {
+            mDownloadTask.cancel();
         }
     }
 

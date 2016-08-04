@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?attr/selectableItemBackground"
-    android:padding="16dp">
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,8 +27,8 @@
                 android:id="@+id/required_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:text="@string/required"
                 android:textSize="12sp"
                 android:textStyle="bold|italic"
@@ -45,7 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <HorizontalScrollView
@@ -81,7 +81,7 @@
             android:id="@+id/output_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:visibility="gone">
 

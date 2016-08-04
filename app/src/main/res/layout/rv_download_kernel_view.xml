@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="16dp">
+    app:contentPadding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,13 +23,13 @@
 
         <View
             style="@style/Divider"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:textIsSelectable="true" />
 
@@ -37,10 +37,10 @@
             android:id="@+id/changelog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-medium"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textIsSelectable="true"
             android:textSize="13sp" />
 
@@ -48,7 +48,7 @@
             android:id="@+id/downloadSection"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -58,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:visibility="invisible">
 
                 <TextView
@@ -92,7 +92,7 @@
             android:id="@+id/checkmd5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
@@ -106,8 +106,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:text="@string/check_md5" />
 
         </LinearLayout>
@@ -116,7 +116,7 @@
             android:id="@+id/md5_mismatch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="@string/md5_mismatch"
             android:visibility="gone" />
 
