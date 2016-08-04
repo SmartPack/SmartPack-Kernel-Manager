@@ -678,20 +678,24 @@ public class CPUFragment extends RecyclerViewFragment {
         try {
             if (mCoresBig.size() > 0) {
                 for (int core : mCoresBig.keySet()) {
-                    int freq = CPUFreq.getCurFreq(core);
-                    String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
-                            + getString(R.string.mhz);
-                    mCoresBig.get(core).setChecked(freq != 0);
-                    mCoresBig.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                    if (mCoresBig.get(core) != null) {
+                        int freq = CPUFreq.getCurFreq(core);
+                        String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
+                                + getString(R.string.mhz);
+                        mCoresBig.get(core).setChecked(freq != 0);
+                        mCoresBig.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                    }
                 }
             }
             if (mCoresLITTLE.size() > 0) {
                 for (int core : mCoresLITTLE.keySet()) {
-                    int freq = CPUFreq.getCurFreq(core);
-                    String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
-                            + getString(R.string.mhz);
-                    mCoresLITTLE.get(core).setChecked(freq != 0);
-                    mCoresLITTLE.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                    if (mCoresLITTLE.get(core) != null) {
+                        int freq = CPUFreq.getCurFreq(core);
+                        String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
+                                + getString(R.string.mhz);
+                        mCoresLITTLE.get(core).setChecked(freq != 0);
+                        mCoresLITTLE.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                    }
                 }
             }
         } catch (ConcurrentModificationException ignored) {
