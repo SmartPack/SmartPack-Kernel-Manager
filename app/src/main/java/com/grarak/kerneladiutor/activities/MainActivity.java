@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            mHasRoot = RootUtils.rooted() && RootUtils.rootAccess();
+            mHasRoot = RootUtils.rootAccess();
             publishProgress(0);
             if (mHasRoot) {
                 mHasBusybox = RootUtils.busyboxInstalled();
