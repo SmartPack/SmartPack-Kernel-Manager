@@ -73,8 +73,11 @@ public class Temperature {
     public static boolean hasGPU() {
         if (TEMP_JSON != null && TEMP_JSON.getGPU() != null) {
             GPU_NODE = TEMP_JSON.getGPU();
-            GPU_OFFSET = TEMP_JSON.getGPUOffset();
-            return true;
+            if (Utils.existFile(GPU_NODE)) {
+                GPU_OFFSET = TEMP_JSON.getGPUOffset();
+                return true;
+            }
+            GPU_NODE = null;
         }
         return false;
     }
@@ -99,8 +102,11 @@ public class Temperature {
     public static boolean hasCPU() {
         if (TEMP_JSON != null && TEMP_JSON.getCPU() != null) {
             CPU_NODE = TEMP_JSON.getCPU();
-            CPU_OFFSET = TEMP_JSON.getCPUOffset();
-            return true;
+            if (Utils.existFile(CPU_NODE)) {
+                CPU_OFFSET = TEMP_JSON.getCPUOffset();
+                return true;
+            }
+            CPU_NODE = null;
         }
         if (CPU_NODE != null) return true;
         for (String node : sCPUTemps.keySet()) {
