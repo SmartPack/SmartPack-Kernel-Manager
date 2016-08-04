@@ -536,7 +536,7 @@
     <string name="read_ahead">Read-ahead</string>
     <string name="read_ahead_summary">The Read-ahead value on the phone memory.</string>
     <string name="rotational">Rotational Storage</string>
-    <string name="rotational_summary">Draw entropy from spinning (rotational) storage.</string>
+    <string name="rotational_summary">Treat device as rotational storage.</string>
     <string name="iostats">I/O Stats</string>
     <string name="iostats_summary">Maintain I/O statistics for this storage device. Disabling will break I/O monitoring apps.</string>
     <string name="add_random">Add Random</string>
