@@ -37,6 +37,7 @@ public abstract class IO {
     private static final String IOSCHED = "iosched";
     private static final String READ_AHEAD = "read_ahead_kb";
     private static final String ROTATIONAL = "rotational";
+    private static final String IOSTATS = "iostats";
 
     private static final List<String> sInternal = new ArrayList<>();
     private static final List<String> sExternal = new ArrayList<>();
@@ -59,6 +60,19 @@ public abstract class IO {
 
     public static boolean hasExternal() {
         return EXTERNAL != null;
+    }
+
+    public static void enableIOstats(Storage storage, boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", getPath(storage, IOSTATS)), getPath(storage, IOSTATS),
+                context);
+    }
+
+    public static boolean isIOStatsEnabled(Storage storage) {
+        return Utils.readFile(getPath(storage, IOSTATS)).equals("1");
+    }
+
+    public static boolean hasIOStats(Storage storage) {
+        return Utils.existFile(getPath(storage, IOSTATS));
     }
 
     public static void enableRotational(Storage storage, boolean enable, Context context) {
@@ -87,7 +101,7 @@ public abstract class IO {
         return Utils.existFile(getPath(storage, READ_AHEAD));
     }
 
-    public static String geIOSched(Storage storage) {
+    public static String getIOSched(Storage storage) {
         return getPath(storage, IOSCHED);
     }
 

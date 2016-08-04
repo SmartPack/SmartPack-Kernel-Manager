@@ -24,7 +24,6 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.io.IO;
-import com.grarak.kerneladiutor.utils.kernel.wake.S2w;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -87,7 +86,7 @@ public class IOFragment extends RecyclerViewFragment {
             tunable.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    showTunables(IO.getScheduler(storage), IO.geIOSched(storage));
+                    showTunables(IO.getScheduler(storage), IO.getIOSched(storage));
                 }
             });
 
@@ -130,6 +129,21 @@ public class IOFragment extends RecyclerViewFragment {
             });
 
             card.addItem(rotational);
+        }
+
+        if (IO.hasIOStats(storage)) {
+            SwitchView iostats = new SwitchView();
+            iostats.setTitle(getString(R.string.iostats));
+            iostats.setSummary(getString(R.string.iostats_summary));
+            iostats.setChecked(IO.isIOStatsEnabled(storage));
+            iostats.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    IO.enableIOstats(storage, isChecked, getActivity());
+                }
+            });
+
+            card.addItem(iostats);
         }
 
         if (card.size() > 0) {
