@@ -42,7 +42,6 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.statistics.OverallFragment;
 import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;

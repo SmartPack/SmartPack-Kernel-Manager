@@ -84,7 +84,8 @@ public class CPUVoltage extends RecyclerViewFragment {
         List<String> voltages = Voltage.getVoltages();
         if (freqs != null && voltages != null && freqs.size() == voltages.size()) {
             for (int i = 0; i < freqs.size(); i++) {
-                GenericSelectView view = initView(new GenericSelectView(), freqs.get(i), voltages.get(i));
+                GenericSelectView view = new GenericSelectView();
+                initView(view, freqs.get(i), voltages.get(i));
                 mVoltages.add(view);
             }
         }
@@ -101,7 +102,7 @@ public class CPUVoltage extends RecyclerViewFragment {
         }
     }
 
-    private GenericSelectView initView(GenericSelectView view, final String freq, String voltage) {
+    private void initView(GenericSelectView view, final String freq, String voltage) {
         String freqText = Voltage.isVddVoltage() ? String.valueOf(Utils.strToInt(freq) / 1000) : freq;
         view.setSummary(freqText + getString(R.string.mhz));
         view.setValue(voltage + getString(R.string.mv));
@@ -119,7 +120,6 @@ public class CPUVoltage extends RecyclerViewFragment {
                 }, 200);
             }
         });
-        return view;
     }
 
     public static class GlobalOffsetFragment extends BaseFragment {

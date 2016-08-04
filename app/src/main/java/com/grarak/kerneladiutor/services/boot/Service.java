@@ -37,7 +37,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.activities.StartActivity;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;

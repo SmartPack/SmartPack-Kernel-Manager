@@ -28,7 +28,6 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,15 +42,14 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
-import com.grarak.kerneladiutor.utils.kernel.cpu.Temperature;
 import com.grarak.kerneladiutor.views.XYGraph;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
-import com.grarak.kerneladiutor.views.recyclerview.CircularText;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyButtonView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
+import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +63,7 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private CPUUsageFragment mCPUUsageFragment;
 
-    private CircularText mCPUTemp;
-    private CircularText mGPUTemp;
-    private CircularText mBatteryTemp;
+    private TemperatureView mTemperatureView;
 
     private CardView mFreqBig;
     private CardView mFreqLITTLE;
@@ -103,25 +99,8 @@ public class OverallFragment extends RecyclerViewFragment {
         tempCard.setFullSpan(true);
         tempCard.setTitle(getString(R.string.temperature));
 
-        if (Temperature.hasCPU()) {
-            mCPUTemp = new CircularText();
-            mCPUTemp.setTitle(getString(R.string.cpu));
-            mCPUTemp.setMessage(Temperature.getCPU(getActivity()));
-            mCPUTemp.setColor(Temperature.getCPUColor(getActivity()));
-            tempCard.addItem(mCPUTemp);
-        }
-
-        if (Temperature.hasGPU()) {
-            mGPUTemp = new CircularText();
-            mGPUTemp.setTitle(getString(R.string.gpu));
-            mGPUTemp.setMessage(Temperature.getGPU(getActivity()));
-            mGPUTemp.setColor(Temperature.getGPUColor(getActivity()));
-            tempCard.addItem(mGPUTemp);
-        }
-
-        mBatteryTemp = new CircularText();
-        mBatteryTemp.setTitle(getString(R.string.battery));
-        tempCard.addItem(mBatteryTemp);
+        mTemperatureView = new TemperatureView();
+        tempCard.addItem(mTemperatureView);
 
         items.add(tempCard);
     }
@@ -357,23 +336,8 @@ public class OverallFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
 
-        if (mCPUTemp != null) {
-            mCPUTemp.setMessage(Temperature.getCPU(getActivity()));
-            mCPUTemp.setColor(Temperature.getCPUColor(getActivity()));
-        }
-        if (mGPUTemp != null) {
-            mGPUTemp.setMessage(Temperature.getGPU(getActivity()));
-            mGPUTemp.setColor(Temperature.getGPUColor(getActivity()));
-        }
-        if (mBatteryTemp != null) {
-            double temp = mBatteryRaw;
-            mBatteryTemp.setColor(ContextCompat.getColor(getActivity(), temp <= 36 ?
-                    R.color.green : temp <= 50 ?
-                    R.color.orange : R.color.red));
-            boolean useFahrenheit = Utils.useFahrenheit(getActivity());
-            if (useFahrenheit) temp = Utils.celsiusToFahrenheit(temp);
-            mBatteryTemp.setMessage(Utils.roundTo2Decimals(temp) + getActivity().getString(useFahrenheit ?
-                    R.string.fahrenheit : R.string.celsius));
+        if (mTemperatureView != null) {
+            mTemperatureView.setBattery(mBatteryRaw);
         }
 
         if (mCPUUsageFragment != null) {
