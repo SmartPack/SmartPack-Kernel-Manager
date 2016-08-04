@@ -88,11 +88,11 @@ public class OnBootFragment extends RecyclerViewFragment {
             getHandler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    clearItems();
                     mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
                         @Override
                         protected void onPreExecute() {
                             super.onPreExecute();
+                            clearItems();
                             showProgress();
                         }
 
