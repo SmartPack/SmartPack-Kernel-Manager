@@ -24,11 +24,13 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.io.IO;
+import com.grarak.kerneladiutor.utils.kernel.wake.S2w;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.List;
 
@@ -110,6 +112,21 @@ public class IOFragment extends RecyclerViewFragment {
 
         internalCard.addItem(readahead);
 
+        if (IO.hasInternalRotational()) {
+            SwitchView rotational = new SwitchView();
+            rotational.setTitle(getString(R.string.rotational));
+            rotational.setSummary(getString(R.string.rotational_summary));
+            rotational.setChecked(IO.isInternalRotationalEnabled());
+            rotational.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    IO.enableInternalRotational(isChecked, getActivity());
+                }
+            });
+
+            internalCard.addItem(rotational);
+        }
+
         items.add(internalCard);
     }
 
@@ -163,6 +180,21 @@ public class IOFragment extends RecyclerViewFragment {
         });
 
         externalCard.addItem(readahead);
+
+        if (IO.hasExternalRotational()) {
+            SwitchView rotational = new SwitchView();
+            rotational.setTitle(getString(R.string.rotational));
+            rotational.setSummary(getString(R.string.rotational_summary));
+            rotational.setChecked(IO.isExternalRotationalEnabled());
+            rotational.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    IO.enableExternalRotational(isChecked, getActivity());
+                }
+            });
+
+            externalCard.addItem(rotational);
+        }
 
         items.add(externalCard);
     }
