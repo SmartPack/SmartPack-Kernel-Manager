@@ -435,6 +435,21 @@ public class MiscFragment extends RecyclerViewFragment {
             wakelocks.add(msmHsicDivider);
         }
 
+        if (Wakelocks.hasBlueSleep()) {
+            SwitchView blueSleep = new SwitchView();
+            blueSleep.setTitle(getString(R.string.bluesleep_wakelock));
+            blueSleep.setSummary(getString(R.string.bluesleep_wakelock_summary));
+            blueSleep.setChecked(Wakelocks.isBlueSleepEnabled());
+            blueSleep.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Wakelocks.enableBlueSleep(isChecked, getActivity());
+                }
+            });
+
+            items.add(blueSleep);
+        }
+
         if (wakelocks.size() > 0) {
             TitleView wakelockTitle = new TitleView();
             wakelockTitle.setText(getString(R.string.wakelock));
