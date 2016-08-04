@@ -63,7 +63,7 @@ public class LED {
     }
 
     public static boolean isFadeEnabled() {
-        return Utils.readFile(LED_RED_FADE).equals("1");
+        return Utils.readFile(LED_RED_FADE).equals("1 - on");
     }
 
     public static boolean hasFade() {
