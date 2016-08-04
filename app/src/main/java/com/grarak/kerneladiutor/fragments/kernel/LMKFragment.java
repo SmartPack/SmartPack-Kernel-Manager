@@ -90,6 +90,7 @@ public class LMKFragment extends RecyclerViewFragment {
         String[] descriptions = getResources().getStringArray(R.array.lmk_names);
 
         for (int i = 0; i < minfrees.size(); i++) {
+            if (i == descriptions.length) break;
             SeekBarView minfree = new SeekBarView();
             minfree.setTitle(descriptions[i]);
             minfree.setUnit(getString(R.string.mb));
