@@ -46,6 +46,7 @@ public class KSM {
     private static final String DEFERRED_TIMER = "/deferred_timer";
     private static final String PAGES_TO_SCAN = "/pages_to_scan";
     private static final String SLEEP_MILLISECONDS = "/sleep_millisecs";
+    private static final String MAX_CPU_PERCENTAGE = "/max_cpu_percentage";
 
     private static final List<String> sParent = new ArrayList<>();
     private static final LinkedHashMap<String, Integer> sInfos = new LinkedHashMap<>();
@@ -62,6 +63,18 @@ public class KSM {
     }
 
     private static String PARENT;
+
+    public static void setMaxCpuPercentage(int value, Context context) {
+        run(Control.write(String.valueOf(value), MAX_CPU_PERCENTAGE), MAX_CPU_PERCENTAGE, context);
+    }
+
+    public static int getMaxCpuPercentage() {
+        return Utils.strToInt(Utils.readFile(MAX_CPU_PERCENTAGE));
+    }
+
+    public static boolean hasMaxCpuPercentage() {
+        return Utils.existFile(MAX_CPU_PERCENTAGE);
+    }
 
     public static void setSleepMilliseconds(int ms, Context context) {
         run(Control.write(String.valueOf(ms), PARENT + SLEEP_MILLISECONDS), PARENT + SLEEP_MILLISECONDS, context);

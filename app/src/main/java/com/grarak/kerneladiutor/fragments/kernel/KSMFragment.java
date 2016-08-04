@@ -117,6 +117,26 @@ public class KSMFragment extends RecyclerViewFragment {
 
             items.add(sleepMilliseconds);
         }
+
+        if (KSM.hasMaxCpuPercentage()) {
+            SeekBarView maxCpuPercentage = new SeekBarView();
+            maxCpuPercentage.setTitle(getString(R.string.max_cpu_usage));
+            maxCpuPercentage.setSummary(getString(R.string.max_cpu_usage_summary));
+            maxCpuPercentage.setUnit("%");
+            maxCpuPercentage.setProgress(KSM.getMaxCpuPercentage());
+            maxCpuPercentage.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KSM.setMaxCpuPercentage(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(maxCpuPercentage);
+        }
     }
 
     private void infoInit(List<RecyclerViewItem> items) {
