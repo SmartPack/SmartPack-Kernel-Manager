@@ -68,6 +68,9 @@ public class MiscFragment extends RecyclerViewFragment {
         if (Misc.hasGentleFairSleepers()) {
             gentlefairsleepersInit(items);
         }
+        if (Misc.hasArchPower()) {
+            archPowerInit(items);
+        }
         if (PowerSuspend.supported()) {
             powersuspendInit(items);
         }
@@ -182,6 +185,21 @@ public class MiscFragment extends RecyclerViewFragment {
         });
 
         items.add(gentleFairSleepers);
+    }
+
+    private void archPowerInit(List<RecyclerViewItem> items) {
+        SwitchView archPower = new SwitchView();
+        archPower.setTitle(getString(R.string.arch_power));
+        archPower.setSummary(getString(R.string.arch_power_summary));
+        archPower.setChecked(Misc.isArchPowerEnabled());
+        archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enableArchPower(isChecked, getActivity());
+            }
+        });
+
+        items.add(archPower);
     }
 
     private void powersuspendInit(List<RecyclerViewItem> items) {

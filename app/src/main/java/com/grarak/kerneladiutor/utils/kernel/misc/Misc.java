@@ -37,6 +37,7 @@ public class Misc {
 
     private static final String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
     private static final String GENTLE_FAIR_SLEEPERS = "/sys/kernel/sched/gentle_fair_sleepers";
+    private static final String ARCH_POWER = "/sys/kernel/sched/arch_power";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
     private static final String HOSTNAME_KEY = "net.hostname";
 
@@ -61,7 +62,6 @@ public class Misc {
     private static String FSYNC_FILE;
     private static Boolean FSYNC_USE_INTEGER;
 
-
     public static void setHostname(String value, Context context) {
         run(Control.setProp(HOSTNAME_KEY, value), HOSTNAME_KEY, context);
     }
@@ -80,6 +80,18 @@ public class Misc {
 
     public static List<String> getTcpAvailableCongestions() {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
+    }
+
+    public static void enableArchPower(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", ARCH_POWER), ARCH_POWER, context);
+    }
+
+    public static boolean isArchPowerEnabled() {
+        return Utils.readFile(ARCH_POWER).equals("1");
+    }
+
+    public static boolean hasArchPower() {
+        return Utils.existFile(ARCH_POWER);
     }
 
     public static void enableGentleFairSleepers(boolean enable, Context context) {
