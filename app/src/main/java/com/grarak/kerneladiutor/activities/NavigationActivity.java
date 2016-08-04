@@ -270,20 +270,21 @@ public class NavigationActivity extends BaseActivity
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
-            if (sActualFragments.get(mSelection) instanceof BaseFragment
-                    && !((BaseFragment) sActualFragments.get(mSelection)).onBackPressed()) {
-                if (mExit) {
-                    mExit = false;
-                    super.onBackPressed();
-                } else {
-                    Utils.toast(R.string.press_back_again_exit, this);
-                    mExit = true;
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mExit = false;
-                        }
-                    }, 2000);
+            if (sActualFragments.get(mSelection) instanceof BaseFragment) {
+                if (!((BaseFragment) sActualFragments.get(mSelection)).onBackPressed()) {
+                    if (mExit) {
+                        mExit = false;
+                        super.onBackPressed();
+                    } else {
+                        Utils.toast(R.string.press_back_again_exit, this);
+                        mExit = true;
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mExit = false;
+                            }
+                        }, 2000);
+                    }
                 }
             } else {
                 super.onBackPressed();
