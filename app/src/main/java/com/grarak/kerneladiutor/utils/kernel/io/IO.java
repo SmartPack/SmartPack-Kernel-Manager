@@ -38,6 +38,7 @@ public abstract class IO {
     private static final String READ_AHEAD = "read_ahead_kb";
     private static final String ROTATIONAL = "rotational";
     private static final String IOSTATS = "iostats";
+    private static final String ADD_RANDOM = "add_random";
 
     private static final List<String> sInternal = new ArrayList<>();
     private static final List<String> sExternal = new ArrayList<>();
@@ -60,6 +61,19 @@ public abstract class IO {
 
     public static boolean hasExternal() {
         return EXTERNAL != null;
+    }
+
+    public static void enableAddRandom(Storage storage, boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", getPath(storage, ADD_RANDOM)), getPath(storage, ADD_RANDOM),
+                context);
+    }
+
+    public static boolean isAddRandomEnabled(Storage storage) {
+        return Utils.readFile(getPath(storage, ADD_RANDOM)).equals("1");
+    }
+
+    public static boolean hasAddRandom(Storage storage) {
+        return Utils.existFile(getPath(storage, ADD_RANDOM));
     }
 
     public static void enableIOstats(Storage storage, boolean enable, Context context) {

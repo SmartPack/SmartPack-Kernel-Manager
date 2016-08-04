@@ -149,6 +149,21 @@ public class IOFragment extends RecyclerViewFragment {
             views.add(iostats);
         }
 
+        if (IO.hasAddRandom(storage)) {
+            SwitchView addRandom = new SwitchView();
+            addRandom.setTitle(getString(R.string.add_random));
+            addRandom.setSummary(getString(R.string.add_random_summary));
+            addRandom.setChecked(IO.isAddRandomEnabled(storage));
+            addRandom.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    IO.enableAddRandom(storage, isChecked, getActivity());
+                }
+            });
+
+            views.add(addRandom);
+        }
+
         if (views.size() > 0) {
             items.add(title);
             items.addAll(views);

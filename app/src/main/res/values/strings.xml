@@ -539,6 +539,8 @@
     <string name="rotational_summary">Draw entropy from spinning (rotational) storage.</string>
     <string name="iostats">I/O Stats</string>
     <string name="iostats_summary">Maintain I/O statistics for this storage device. Disabling will break I/O monitoring apps.</string>
+    <string name="add_random">Add Random</string>
+    <string name="add_random_summary">Draw entropy from spinning (rotational) storage.</string>
 
     <!-- Kernel Samepage Merging -->
     <string name="full_scans">Full scans</string>
