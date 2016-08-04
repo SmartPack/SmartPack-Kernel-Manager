@@ -61,7 +61,6 @@ public class BatteryFragment extends RecyclerViewFragment {
             blxInit(items);
         }
         chargeRateInit(items);
-        bclInit(items);
     }
 
     @Override
@@ -176,21 +175,6 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (chargeRateCard.size() > 0) {
             items.add(chargeRateCard);
         }
-    }
-
-    private void bclInit(List<RecyclerViewItem> items) {
-        SwitchView bcl = new SwitchView();
-        bcl.setTitle(getString(R.string.bcl));
-        bcl.setSummary(getString(R.string.bcl_summary));
-        bcl.setChecked(Battery.hasBcl());
-        bcl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                Battery.enableBcl(isChecked, getActivity());
-            }
-        });
-
-        items.add(bcl);
     }
 
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {

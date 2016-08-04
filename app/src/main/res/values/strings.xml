@@ -515,8 +515,6 @@
     <string name="charge_rate">Charge Rate</string>
     <string name="charging_current">Charging Current</string>
     <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
-    <string name="bcl">BCL</string>
-    <string name="bcl_summary">Enable or Disable BCL completely</string>
 
     <!-- LED -->
     <string name="fade">Fade</string>

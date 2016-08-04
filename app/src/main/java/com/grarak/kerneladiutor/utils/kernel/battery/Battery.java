@@ -40,21 +40,7 @@ public class Battery {
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
 
-    private static final String BCL = "/sys/module/battery_current_limit/parameters/bcl_user_enable";
-
     private static Integer sCapacity;
-
-    public static void enableBcl(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", BCL), BCL, context);
-    }
-
-    public static boolean isBclEnabled() {
-        return Utils.readFile(BCL).equals("1");
-    }
-
-    public static boolean hasBcl() {
-        return Utils.existFile(BCL);
-    }
 
     public static void setChargingCurrent(int value, Context context) {
         run(Control.write(String.valueOf(value), CUSTOM_CURRENT), CUSTOM_CURRENT, context);
