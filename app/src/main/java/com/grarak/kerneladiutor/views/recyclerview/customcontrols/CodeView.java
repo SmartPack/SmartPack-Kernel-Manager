@@ -69,6 +69,7 @@ public class CodeView extends RecyclerViewItem {
         mCodeView = (TextView) view.findViewById(R.id.code);
         mTestButtonView = (AppCompatButton) view.findViewById(R.id.test_button);
         mOutputParent = view.findViewById(R.id.output_parent);
+        TextView outputTitle = (TextView) view.findViewById(R.id.output_title);
 
         final View progress = view.findViewById(R.id.progress);
         final TextView outputTextView = (TextView) view.findViewById(R.id.output);
@@ -113,6 +114,7 @@ public class CodeView extends RecyclerViewItem {
 
         if (Utils.DARK_THEME) {
             mTitleView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
+            outputTitle.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
         }
 
         super.onCreateView(view);
