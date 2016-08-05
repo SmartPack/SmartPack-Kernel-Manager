@@ -59,6 +59,7 @@ import com.grarak.kerneladiutor.fragments.other.ContributorsFragment;
 import com.grarak.kerneladiutor.fragments.other.FAQFragment;
 import com.grarak.kerneladiutor.fragments.statistics.DeviceFragment;
 import com.grarak.kerneladiutor.fragments.statistics.InputsFragment;
+import com.grarak.kerneladiutor.fragments.statistics.MemoryFragment;
 import com.grarak.kerneladiutor.fragments.statistics.OverallFragment;
 import com.grarak.kerneladiutor.fragments.tools.BackupFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
@@ -68,6 +69,7 @@ import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.fragments.tools.customcontrols.CustomControlsFragment;
 import com.grarak.kerneladiutor.fragments.tools.downloads.DownloadsFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -101,6 +103,9 @@ public class NavigationActivity extends BaseActivity
         sFragments.put(R.string.statistics, null);
         sFragments.put(R.string.overall, new OverallFragment());
         sFragments.put(R.string.device, new DeviceFragment());
+        if (Device.MemInfo.getItems().size() > 0) {
+            sFragments.put(R.string.memory, new MemoryFragment());
+        }
         sFragments.put(R.string.inputs, new InputsFragment());
         sFragments.put(R.string.kernel, null);
         sFragments.put(R.string.cpu, new CPUFragment());

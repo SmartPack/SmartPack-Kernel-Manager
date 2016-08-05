@@ -169,19 +169,34 @@ public class Device {
         private static String MEMINFO;
 
         public static long getTotalMem() {
-            return getSize("MemTotal") / 1024L;
+            try {
+                return Long.parseLong(getItem("MemTotal").replaceAll("[^\\d]", "")) / 1024L;
+            } catch (NumberFormatException ignored) {
+                return 0;
+            }
         }
 
-        private static long getSize(String prefix) {
+        public static List<String> getItems() {
+            List<String> list = new ArrayList<>();
+            try {
+                for (String line : MEMINFO.split("\\r?\\n")) {
+                    list.add(line.split(":")[0]);
+                }
+            } catch (Exception ignored) {
+            }
+            return list;
+        }
+
+        public static String getItem(String prefix) {
             try {
                 for (String line : MEMINFO.split("\\r?\\n")) {
                     if (line.startsWith(prefix)) {
-                        return Long.parseLong(line.split("\\s+")[1]);
+                        return line.split(":")[1].trim();
                     }
                 }
             } catch (Exception ignored) {
             }
-            return -1;
+            return "";
         }
 
         public static void load() {

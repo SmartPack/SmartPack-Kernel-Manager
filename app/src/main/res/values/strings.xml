@@ -68,6 +68,7 @@
     <!-- Menus -->
     <string name="overall">Overall</string>
     <string name="device">Device</string>
+    <string name="memory">Memory</string>
     <string name="inputs">Inputs</string>
     <string name="cpu">CPU</string>
     <string name="cpu_voltage">CPU Voltage</string>
