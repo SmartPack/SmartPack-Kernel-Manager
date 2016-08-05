@@ -64,6 +64,9 @@ public class SoundFragment extends RecyclerViewFragment {
         if (Sound.hasHeadphonePowerAmpGain()) {
             headphonePowerAmpGainInit(items);
         }
+        if (Sound.hasHeadphoneTpaGain()) {
+            headphoneTpaGainInit(items);
+        }        
         if (Sound.hasMicrophoneGain()) {
             microphoneGainInit(items);
         }
@@ -195,6 +198,26 @@ public class SoundFragment extends RecyclerViewFragment {
         });
 
         items.add(headphonePowerAmpGain);
+    }
+
+    private void headphoneTpaGainInit(List<RecyclerViewItem> items) {
+        SeekBarView headphoneTpaGain = new SeekBarView();
+        headphoneTpaGain.setTitle(getString(R.string.headphone_tpa6165_gain));
+        headphoneTpaGain.setItems(Sound.getHeadphoneTpaGainLimits());
+        headphoneTpaGain.setProgress(Sound.getHeadphoneTpaGainLimits()
+                .indexOf(Sound.getHeadphoneTpaGain()));
+        headphoneTpaGain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Sound.setHeadphoneTpaGain(value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(headphoneTpaGain);
     }
 
     private void microphoneGainInit(List<RecyclerViewItem> items) {
