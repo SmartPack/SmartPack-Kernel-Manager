@@ -106,6 +106,9 @@ public class CardView extends RecyclerViewItem {
     }
 
     public void addItem(final RecyclerViewItem item) {
+        if (item == this) {
+            throw new IllegalStateException("Cardinception!");
+        }
         mItems.add(item);
         mActivity.runOnUiThread(new Runnable() {
             @Override
