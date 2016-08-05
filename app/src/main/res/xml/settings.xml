@@ -26,6 +26,18 @@
             android:key="applyonboottest"
             android:summary="@string/apply_on_boot_test_summary"
             android:title="@string/test" />
+        <SwitchPreference
+            android:key="applyonboothide"
+            android:summary="@string/apply_on_boot_hide_summary"
+            android:title="@string/hide" />
+        <SwitchPreference
+            android:key="applyonboottoast"
+            android:summary="@string/apply_on_boot_toast_summary"
+            android:title="@string/toast" />
+        <SwitchPreference
+            android:key="applyonbootscript"
+            android:summary="@string/apply_on_boot_script_summary"
+            android:title="@string/script" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -38,10 +38,6 @@ public class RootUtils {
 
     private static SU su;
 
-    public static boolean rooted() {
-        return existBinary("su");
-    }
-
     public static boolean rootAccess() {
         SU su = getSU();
         su.runCommand("echo /testRoot/");

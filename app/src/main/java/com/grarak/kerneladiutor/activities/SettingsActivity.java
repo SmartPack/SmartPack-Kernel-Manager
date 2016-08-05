@@ -190,17 +190,21 @@ public class SettingsActivity extends BaseActivity {
             String key = preference.getKey();
             switch (key) {
                 case KEY_APPLY_ON_BOOT_TEST:
-                    Intent intent = new Intent(getActivity(), Service.class);
-                    intent.putExtra("messenger", new Messenger(new Handler() {
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-                            if (msg.arg1 == 1) {
-                                Utils.toast(R.string.nothing_apply, getActivity());
+                    if (Utils.isServiceRunning(Service.class, getActivity())) {
+                        Utils.toast(R.string.apply_on_boot_running, getActivity());
+                    } else {
+                        Intent intent = new Intent(getActivity(), Service.class);
+                        intent.putExtra("messenger", new Messenger(new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                super.handleMessage(msg);
+                                if (msg.arg1 == 1) {
+                                    Utils.toast(R.string.nothing_apply, getActivity());
+                                }
                             }
-                        }
-                    }));
-                    getActivity().startService(intent);
+                        }));
+                        getActivity().startService(intent);
+                    }
                     return true;
                 case KEY_LOGCAT:
                     new Execute().execute("logcat -d > /sdcard/logcat.txt");

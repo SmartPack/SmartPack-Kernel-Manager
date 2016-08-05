@@ -761,7 +761,14 @@
     <string name="twenty_sec">20 seconds</string>
     <string name="fifty_sec">50 seconds</string>
     <string name="apply_on_boot_test_summary">Test apply on boot. This includes all kind of things which are getting applied during booting, such as custom controls, profiles, init.d, etc.</string>
+    <string name="apply_on_boot_running">Apply on boot service is already running. Please wait until it finishes.</string>
     <string name="nothing_apply">Nothing found to apply!</string>
+    <string name="hide">Hide</string>
+    <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
+    <string name="toast">Toast</string>
+    <string name="apply_on_boot_toast_summary">Show toast when settings got applied.</string>
+    <string name="script">Script</string>
+    <string name="apply_on_boot_script_summary">Use a shell script to apply settings. Please only enable this if you have troubles with apply on boot. If the problem still persists after enabling this option, please make sure no other app is conflicting with Kernel Adiutor.</string>
     <string name="debugging">Debugging</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">Copy logcat to /sdcard/logcat.txt</string>

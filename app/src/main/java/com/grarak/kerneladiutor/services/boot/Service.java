@@ -73,19 +73,21 @@ public class Service extends android.app.Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
 
-        RootUtils.SU su = new RootUtils.SU(false, null);
-        String prop = su.runCommand("getprop ro.kerneladiutor.hide");
-        getPackageManager().setComponentEnabledSetting(new ComponentName(this, StartActivity.class),
-                prop != null && prop.equals("true") ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED
-                        : PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-        su.close();
-
         Messenger messenger = null;
         if (intent != null) {
             Bundle extras = intent.getExtras();
             if (extras != null) {
                 messenger = (Messenger) extras.get("messenger");
             }
+        }
+
+        if (messenger == null) {
+            RootUtils.SU su = new RootUtils.SU(false, null);
+            String prop = su.runCommand("getprop ro.kerneladiutor.hide");
+            getPackageManager().setComponentEnabledSetting(new ComponentName(this, StartActivity.class),
+                    prop != null && prop.equals("true") ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                            : PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            su.close();
         }
 
         boolean enabled = false;
@@ -137,48 +139,59 @@ public class Service extends android.app.Service {
         }
 
         final int seconds = Utils.strToInt(Prefs.getString("applyonbootdelay", "10", this));
+        final boolean hideNotification = Prefs.getBoolean("applyonboothide", false, this);
+        final boolean toast = Prefs.getBoolean("applyonboottoast", false, this);
+        final boolean script = Prefs.getBoolean("applyonbootscript", false, this);
         PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 0, new Intent(this, CancelReceiver.class), 0);
 
         final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setContentTitle(getString(R.string.app_name))
-                .setContentText(getString(R.string.apply_on_boot_text, seconds))
-                .setSmallIcon(R.drawable.ic_restore)
-                .addAction(0, getString(R.string.cancel), cancelIntent)
-                .setAutoCancel(true)
-                .setWhen(0);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(Notification.PRIORITY_MAX);
+        if (!hideNotification) {
+            builder.setContentTitle(getString(R.string.app_name))
+                    .setContentText(getString(R.string.apply_on_boot_text, seconds))
+                    .setSmallIcon(R.drawable.ic_restore)
+                    .addAction(0, getString(R.string.cancel), cancelIntent)
+                    .setAutoCancel(true)
+                    .setWhen(0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                builder.setPriority(Notification.PRIORITY_MAX);
+            }
         }
 
         final NotificationCompat.Builder builderComplete = new NotificationCompat.Builder(this);
-        builderComplete.setContentTitle(getString(R.string.app_name))
-                .setSmallIcon(R.drawable.ic_restore);
+        if (!hideNotification) {
+            builderComplete.setContentTitle(getString(R.string.app_name))
+                    .setSmallIcon(R.drawable.ic_restore);
+        }
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < seconds; i++) {
-                    if (sCancel) {
-                        break;
+                    if (!hideNotification) {
+                        if (sCancel) {
+                            break;
+                        }
+                        builder.setContentText(getString(R.string.apply_on_boot_text, seconds - i));
+                        builder.setProgress(seconds, i, false);
+                        notificationManager.notify(0, builder.build());
                     }
-                    builder.setContentText(getString(R.string.apply_on_boot_text, seconds - i));
-                    builder.setProgress(seconds, i, false);
-                    notificationManager.notify(0, builder.build());
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                builderComplete.setContentText(getString(sCancel ? R.string.apply_on_boot_canceled :
-                        R.string.apply_on_boot_complete));
-                notificationManager.notify(0, builderComplete.build());
+                if (!hideNotification) {
+                    builderComplete.setContentText(getString(sCancel ? R.string.apply_on_boot_canceled :
+                            R.string.apply_on_boot_complete));
+                    notificationManager.notify(0, builderComplete.build());
 
-                if (sCancel) {
-                    sCancel = false;
-                    stopSelf();
-                    return;
+                    if (sCancel) {
+                        sCancel = false;
+                        stopSelf();
+                        return;
+                    }
                 }
                 RootUtils.SU su = new RootUtils.SU(true, TAG);
 
@@ -189,10 +202,23 @@ public class Service extends android.app.Service {
                     RootUtils.mount(false, "/system", su);
                 }
 
-                for (Settings.SettingsItem item : settings.getAllSettings()) {
-                    if (mCategoryEnabled.get(item.getCategory())) {
-                        synchronized (this) {
-                            su.runCommand(item.getSetting());
+                if (script) {
+                    StringBuilder s = new StringBuilder("#!/system/bin/sh\n\n");
+                    for (Settings.SettingsItem item : settings.getAllSettings()) {
+                        if (mCategoryEnabled.get(item.getCategory())) {
+                            s.append(item.getSetting()).append("\n");
+                        }
+                    }
+                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
+                    file.mkdir();
+                    file.write(s.toString(), false);
+                    file.execute();
+                } else {
+                    for (Settings.SettingsItem item : settings.getAllSettings()) {
+                        if (mCategoryEnabled.get(item.getCategory())) {
+                            synchronized (this) {
+                                su.runCommand(item.getSetting());
+                            }
                         }
                     }
                 }
@@ -204,13 +230,29 @@ public class Service extends android.app.Service {
                     file.execute(mCustomControls.get(script));
                 }
 
-                for (String command : mProfiles) {
-                    synchronized (this) {
-                        su.runCommand(command);
+                if (script) {
+                    StringBuilder s = new StringBuilder("#!/system/bin/sh\n\n");
+                    for (String command : mProfiles) {
+                        s.append(command).append("\n");
+                    }
+                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
+                    file.mkdir();
+                    file.write(s.toString(), false);
+                    file.execute();
+                } else {
+                    for (String command : mProfiles) {
+                        synchronized (this) {
+                            su.runCommand(command);
+                        }
                     }
                 }
 
                 su.close();
+
+                if (toast) {
+                    Utils.toast(R.string.apply_on_boot_complete, Service.this);
+                }
+
                 stopSelf();
             }
         }).start();

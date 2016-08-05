@@ -97,7 +97,9 @@ public class Control {
                 apply(command, category, id, context);
                 if (mThreads.size() > 0) {
                     mThreads.remove(0);
-                    mThreads.get(0).start();
+                    if (mThreads.size() > 0) {
+                        mThreads.get(0).start();
+                    }
                 }
             }
         });
