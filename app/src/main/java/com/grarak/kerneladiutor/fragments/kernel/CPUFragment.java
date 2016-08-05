@@ -387,7 +387,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(cpuQuietCard);
+            views.add(cpuQuietEnable);
         }
 
         if (Misc.hasCpuQuietGovernors()) {
