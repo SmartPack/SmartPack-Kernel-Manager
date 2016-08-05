@@ -95,8 +95,8 @@ public class Control {
             @Override
             public void run() {
                 apply(command, category, id, context);
-                mThreads.remove(0);
                 if (mThreads.size() > 0) {
+                    mThreads.remove(0);
                     mThreads.get(0).start();
                 }
             }

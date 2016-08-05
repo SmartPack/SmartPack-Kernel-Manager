@@ -27,6 +27,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
@@ -676,7 +677,11 @@ public class CPUFragment extends RecyclerViewFragment {
                         mCoresBig.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
                             @Override
                             public void onChanged(SwitchView switchView, boolean isChecked) {
-                                CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                if (core == 0) {
+                                    Utils.toast(R.string.no_offline_core, getActivity());
+                                } else {
+                                    CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                }
                             }
                         });
                     }
@@ -694,7 +699,11 @@ public class CPUFragment extends RecyclerViewFragment {
                         mCoresLITTLE.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
                             @Override
                             public void onChanged(SwitchView switchView, boolean isChecked) {
-                                CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                if (core == 0) {
+                                    Utils.toast(R.string.no_offline_core, getActivity());
+                                } else {
+                                    CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                }
                             }
                         });
                     }
