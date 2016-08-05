@@ -14,10 +14,10 @@
   <string name="password_wrong">A palavra-passe está errada</string>
   <string name="select_picture">Selecionar Imagem</string>
   <string name="no_picture">Sem imagem</string>
-  <string name="went_wrong">Algo correu mal!</string>
-  <string name="press_back_again_exit">Pressione voltar novamente para sair</string>
+  <string name="went_wrong">Ocorreu algo de errado!</string>
+  <string name="press_back_again_exit">Pressione em voltar novamente para sair</string>
   <string name="cancel">Cancelar </string>
-  <string name="ok">OK</string>
+  <string name="ok">CONFIRMAR</string>
   <string name="unknown">Desconhecido</string>
   <string name="donate">Doar</string>
   <string name="donate_nope">Eu não vou cair neste esquema!</string>
@@ -94,8 +94,13 @@
   <string name="android_api_level">SDK de Android</string>
   <string name="android_codename">Nome de Código de Android</string>
   <string name="fingerprint">Assinatura Digital</string>
+  <string name="architecture">Arquitetura</string>
   <!-- Inputs -->
+  <string name="bus">Bus</string>
+  <string name="product">Produto</string>
+  <string name="version">Versão</string>
   <!-- CPU -->
+  <string name="cores">%d núcleos</string>
   <string name="cpu_max_freq">Frequência máxima CPU</string>
   <string name="cpu_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
   <string name="cpu_min_freq">Frequência mínima CPU</string>
@@ -105,6 +110,7 @@
   <string name="cpu_governor">Governador CPU</string>
   <string name="cpu_governor_tunables">Parâmetros governador CPU</string>
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
+  <string name="tunables_error">%s não é ajustável</string>
   <string name="mc_power_saving">Modo de Poupança Multinuclear</string>
   <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possíveis.</string>
   <string name="disabled">Desativado</string>
@@ -151,6 +157,7 @@
   <string name="eco_mode_summary">Modo de economia de bateria para IntelliPlug.</string>
   <string name="hysteresis">Valor de histerese</string>
   <string name="hysteresis_summary">Quanto menor é a resposta mais rápida.</string>
+  <string name="cpu_threshold">Limite de CPU</string>
   <string name="suspend">Suspender</string>
   <string name="suspend_summary">Prevenir de suspender.</string>
   <string name="cpus_boosted">CPUs impulsionados</string>
@@ -257,6 +264,8 @@
   <string name="check_interval">Intervalo de verificação</string>
   <string name="shutdown_temp">Temperatura de encerramento</string>
   <!-- GPU -->
+  <string name="gpu_2d_freq">Frequência da GPU 2D</string>
+  <string name="gpu_freq">Frequência da GPU</string>
   <string name="gpu_2d_max_freq">GPU 2D frequência máxima</string>
   <string name="gpu_2d_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
   <string name="gpu_max_freq">Frequência máxima CPU</string>
@@ -396,6 +405,8 @@
   <string name="scheduler_tunable_summary">Os vários itens de configuração que são dependentes do Agendador.</string>
   <string name="read_ahead">Read-ahead</string>
   <string name="read_ahead_summary">O valor de Read-ahead na memória do telefone.</string>
+  <string name="iostats">Estatísticas de I/O</string>
+  <string name="add_random">Adicionar Aleatório</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Análises completas</string>
   <string name="pages_shared">Páginas partilhadas</string>
@@ -403,6 +414,8 @@
   <string name="pages_unshared">Páginas não partilhadas</string>
   <string name="pages_volatile">Páginas voláteis</string>
   <string name="pages_to_scan">Páginas a analisar</string>
+  <string name="sleep_milliseconds">Suspender entre pesquisas</string>
+  <string name="max_cpu_usage">Utilização Máx. de CPU</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplicações de primeiro plano</string>
   <string name="visible_app">Aplicações visíveis</string>
@@ -416,8 +429,11 @@
   <string name="very_aggressive">Muito agressivo</string>
   <string name="kill_lmk">Terminar LMK</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Disksize</string>
   <!-- Entropy -->
   <string name="available">Disponível</string>
+  <string name="poolsize">Poolsize</string>
   <string name="read">Ler</string>
   <string name="write">Escrever</string>
   <!-- Misc -->
@@ -459,8 +475,19 @@
   <string name="create">Criar</string>
   <string name="import_item">Importar</string>
   <string name="control_switch">Mudar</string>
+  <string name="title">Título</string>
+  <string name="description">Descrição</string>
+  <string name="applying">A aplicar</string>
+  <string name="seekbar_min">Mín.</string>
+  <string name="seekbar_max">Máx.</string>
+  <string name="seekbar_progress">Progresso</string>
+  <string name="control_generic">Genérico</string>
+  <string name="generic_value">Valor</string>
+  <string name="required">obrigatório</string>
   <string name="test">Teste</string>
+  <string name="output">Saída</string>
   <string name="edit">Editar</string>
+  <string name="export">Exportar</string>
   <string name="delete">Excluir</string>
   <string name="name">Nome</string>
   <!-- Downloads -->
@@ -501,6 +528,9 @@
   <string name="executing">Em execução</string>
   <string name="result">Resultado</string>
   <!-- On Boot -->
+  <string name="delete_question">Eliminar %s?</string>
+  <string name="arguments">Argumentos: %s</string>
+  <string name="disable_question">Desativar %s?</string>
   <!-- About -->
   <string name="libraries_used">Bibliotecas usadas</string>
   <!-- Contributors -->
@@ -519,4 +549,14 @@
   <string name="last_kmsg_summary">Copiar /Proc/last_kmsg para /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensagem do Driver</string>
   <string name="driver_message_summary">Copiar a mensagem do driver (dmesg) para /sdcard/dmesg.txt</string>
+  <string name="security">Segurança</string>
+  <string name="set_password">Definir Palavra-passe</string>
+  <string name="delete_password">Eliminar Palavra-passe</string>
+  <string name="old_password">Palavra-passe antiga</string>
+  <string name="new_password">Nova palavra-passe</string>
+  <string name="confirm_new_password">Confirmar nova palavra-passe</string>
+  <string name="old_password_wrong">A palavra-passe antiga está errada</string>
+  <string name="password_empty">A palavra-passe está em branco</string>
+  <string name="set_password_first">Defina primeiro uma palavra-passe</string>
+  <string name="sections">Secções</string>
 </resources>

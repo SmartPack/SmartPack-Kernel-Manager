@@ -79,6 +79,7 @@
   <string name="profile">Profiel</string>
   <string name="recovery">Herstel</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Bij het opstarten</string>
   <string name="about">Over</string>
   <string name="contributors">Medewerkers</string>
   <string name="faq">Veelgestelde Vragen</string>
@@ -279,9 +280,13 @@
   <string name="downrate_limits">Downrate grenzen</string>
   <string name="uprate_limits">Uprate grenzen</string>
   <string name="core_control">Kern controle</string>
+  <string name="core_control_summary">Qualcomm\'s hotplugging oplossing. Sorry, u kan het niet uitschakelen. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus\' bewerkte Core Control.</string>
+  <string name="offline_delay_summary">Tijd voor het uitschakelen van een CPU.</string>
   <!--Thermal-->
+  <string name="warning">Waarschuwing</string>
+  <string name="intellithermal">Intellithermal</string>
   <string name="vdd_restriction">VDD beperking</string>
   <string name="freq_throttle_temp">Temperatuur frequentieversnelling</string>
   <string name="freq_throttle_temp_summary">Temperatuur voor versnellen frequenties.</string>

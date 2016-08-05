@@ -4,7 +4,7 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="checking_info">檢查資訊中...</string>
   <string name="checking_root">檢查 Root 權限中...</string>
-  <string name="searching_busybox">正在搜尋本機的 Busybox</string>
+  <string name="searching_busybox">正在搜尋本機的 Busybox...</string>
   <string name="collecting_info">蒐集資訊中</string>
   <string name="no_root">沒有 Root 權限</string>
   <string name="no_busybox">沒有 Busybox 指令</string>
@@ -79,6 +79,7 @@
   <string name="profile">設定檔</string>
   <string name="recovery">修復模式</string>
   <string name="initd">啟動腳本</string>
+  <string name="on_boot">開機啟用</string>
   <string name="about">關於</string>
   <string name="contributors">貢獻者</string>
   <string name="faq">常見問題列表</string>
@@ -128,6 +129,7 @@
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
   <string name="cpu_governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
   <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
+  <string name="tunables_error">%s 不可調整</string>
   <string name="mc_power_saving">多核心省電</string>
   <string name="mc_power_saving_summary">盡可能用最少的核心來分配處理任務</string>
   <string name="disabled">已停用</string>
@@ -141,6 +143,7 @@
   <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
   <string name="cpu_boost">CPU 加速</string>
   <string name="debug_mask">偵錯遮罩</string>
+  <string name="debug_mask_summary">允許您啟動除錯遮罩的操作。</string>
   <string name="interval">時間間隔</string>
   <string name="interval_summary">CPU 被加速的最小時間間隔。</string>
   <string name="sync_threshold">同步閾值</string>
@@ -161,14 +164,17 @@
   <string name="override_vmin">重置最低電壓</string>
   <string name="override_vmin_summary">停用製造商對降壓的限制</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">已啟用多個熱插拔系統！\n您只能使用一個。</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">高通的熱插拔方案。當啟用此功能，您可能會在變更頻率時遇到問題。</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">將高通的 MPDecision 更換為由 faux123 開發的內核</string>
+  <string name="cpu_hotplug_profile_summary">括弧中的數字表示核心在任何時候運作變量</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">平衡</string>
   <string name="performance">高性能</string>
   <string name="conservative">保守</string>
+  <string name="eco_insanity">節能 瘋狂模式(InSaNiTy)</string>
   <string name="eco_performance">Eco 高性能</string>
   <string name="eco_conservative">Eco 保守</string>
   <string name="tri">Tri</string>
@@ -178,6 +184,8 @@
   <string name="eco_mode_summary">電池節電模式</string>
   <string name="hysteresis">滯後值</string>
   <string name="hysteresis_summary">值越低回應越快</string>
+  <string name="cpu_threshold">CPU 閥值</string>
+  <string name="cpu_threshold_summary">數值越高，CPU 使用率則越低</string>
   <string name="suspend">暫停</string>
   <string name="suspend_summary">預防暫停</string>
   <string name="cpus_boosted">CPU 已加速</string>
@@ -186,6 +194,8 @@
   <string name="min_cpu_online_summary">總是開啟的 CPU 最小數量</string>
   <string name="max_cpu_online">CPU 最大開啟量</string>
   <string name="max_cpu_online_summary">總是開啟的 CPU 最大數量</string>
+  <string name="max_cpu_online_screen_off">螢幕關閉時的最大 CPU 使用率</string>
+  <string name="max_cpu_online_screen_off_summary">當螢幕關閉時，在工作的 CPU 所能夠使用的最大頻率</string>
   <string name="suspend_defer_time">暫停延遲時間</string>
   <string name="defer_sampling">推遲取樣</string>
   <string name="boost_lock_duration">加速鎖定的持續時間</string>
@@ -196,6 +206,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">將高通的 MPDecision 更換為由 Code_Blue 團隊開發的內核</string>
   <string name="powersaver_mode">省電模式</string>
+  <string name="powersaver_mode_summary">設定 1 個 CPU 在開啟時的最大頻率為 @1728MHz</string>
   <string name="up_threshold">門檻(增加)</string>
   <string name="up_threshold_summary">超過此門檻驅動將會再開啟一個核心</string>
   <string name="up_timer_cnt">控制計時器(增加)</string>
@@ -218,6 +229,8 @@
   <string name="io_is_busy_summary">用來使熱插拔計算I / O時間與CPU負載的時間。</string>
   <string name="mako_hotplug">Mako 熱插拔</string>
   <string name="mako_hotplug_summary">將高通的 MPDecision 更換為由 franciscofranco 開發的內核</string>
+  <string name="cpus_on_touch">觸控時的 CPU 頻率</string>
+  <string name="cpus_on_touch_summary">當觸碰螢幕或按下實體鍵時CPU所能夠運作的個數</string>
   <string name="cpu_freq_unplug_limit">CPU 的拔除頻率界限</string>
   <string name="first_level">第一級</string>
   <string name="first_level_summary">開啟所有 CPU 的門檻</string>
@@ -230,6 +243,8 @@
   <string name="msm_mpdecision_hotplug">高通 MPDecision 熱插拔</string>
   <string name="bricked_hotplug">Bricked 熱插拔</string>
   <string name="mb_hotplug_summary">將高通的 MPDecision 更換為由 show-p1984 開發的內核</string>
+  <string name="screen_off_single_cpu">螢幕關閉時單核心運作</string>
+  <string name="screen_off_single_cpu_summary">當螢幕關閉時僅用一個 CPU 的核心運作</string>
   <string name="idle_frequency">閒置頻率</string>
   <string name="idle_frequency_summary">如果第1個核心低於此頻率，不要開啟其他核心。</string>
   <string name="touch_boost_time">加速時間(觸碰)</string>
@@ -321,6 +336,7 @@
   <string name="screen_value">螢幕值</string>
   <string name="screen_contrast">對比度</string>
   <string name="high_brightness_mode">高亮度模式</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">紅灰</string>
   <string name="contrast">對比</string>
@@ -377,6 +393,9 @@
   <string name="microphone_gain">麥克風增益</string>
   <string name="volume_gain">音量增益</string>
   <!-- Battery -->
+  <string name="level">電量</string>
+  <string name="voltage">電壓</string>
+  <string name="capacity">空間</string>
   <string name="usb_fast_charge">USB 快速充電</string>
   <string name="usb_fast_charge_summary">當裝置連接 USB 時充電速度會較快。變更選項時請重新插入充電器。</string>
   <string name="blx">電池壽命擴展</string>
@@ -389,6 +408,7 @@
   <string name="scheduler_tunable_summary">這些配置項目與您使用的排程有關。</string>
   <string name="read_ahead">預讀</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">完整掃描</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前臺應用程式</string>
   <string name="visible_app">可見的應用程式</string>
@@ -399,12 +419,15 @@
   <string name="light">小</string>
   <string name="very_aggressive">非常積極的</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">磁碟空間</string>
   <!-- Entropy -->
   <string name="available">可用</string>
   <string name="read">讀取</string>
   <string name="write">寫入</string>
   <!-- Misc -->
   <string name="vibration_strength">震動強度</string>
+  <string name="fsync">Fsync</string>
   <string name="autosleep">自動睡眠</string>
   <string name="userspace">使用者空間</string>
   <string name="lcd_panel">液晶面板</string>
@@ -414,6 +437,12 @@
   <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連接單次發送的分組數量的算法。它通過增減單次發送量逐步調整，使之逼近當前網絡的承載量。</string>
   <string name="hostname">主機名稱</string>
   <!-- Custom Controls -->
+  <string name="welcome">歡迎</string>
+  <string name="create">新增</string>
+  <string name="control_switch">開關</string>
+  <string name="control_seekbar">搜尋欄</string>
+  <string name="title">標題</string>
+  <string name="applying">套用中</string>
   <string name="test">測試</string>
   <string name="edit">編輯</string>
   <string name="delete">刪除</string>
@@ -444,6 +473,10 @@
   <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">深色主題</string>
+  <string name="fahrenheit_title">使用華氏溫度</string>
+  <string name="fahrenheit_summary">使用華氏溫度測量。</string>
+  <string name="force_english">強制使用英文</string>
+  <string name="ten_sec">10秒</string>
   <string name="debugging">除錯</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">將 logcat 複製到 /sdcard/logcat.txt</string>
@@ -451,4 +484,6 @@
   <string name="last_kmsg_summary">將 /proc/last_kmsg 複製到 /sdcard/last_kmsg.txt</string>
   <string name="driver_message">驅動程式訊息</string>
   <string name="driver_message_summary">將驅動程式訊息 (dmesg） 複製到 /sdcard/dmesg.txt</string>
+  <string name="security">安全</string>
+  <string name="set_password">設定密碼</string>
 </resources>

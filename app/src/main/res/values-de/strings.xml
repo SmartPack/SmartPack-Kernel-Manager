@@ -24,20 +24,27 @@
   <!-- Editor -->
   <string name="save">Speichern</string>
   <!-- File Picker -->
+  <string name="select_question">%s auswählen?</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
+  <string name="celsius">º C</string>
+  <string name="fahrenheit">º F</string>
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">min</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
   <!-- Special signs -->
   <!-- Headers -->
+  <string name="statistics">Statistiken</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Werkzeuge</string>
   <string name="other">Anderes</string>
   <!-- Menus -->
+  <string name="device">Gerät</string>
+  <string name="inputs">Eingaben</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU-Spannung</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -47,6 +54,7 @@
   <string name="wake">Aufwecken</string>
   <string name="sound">Ton</string>
   <string name="battery">Akku</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">I/O Scheduler</string>
   <string name="ksm">Kernel Samepage Merging</string>
   <string name="virtual_memory">Virtueller Speicher</string>
@@ -58,24 +66,42 @@
   <string name="profile">Profil</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Beim Start</string>
   <string name="about">Über uns</string>
+  <string name="contributors">Unterstützer</string>
   <string name="faq">FAQ</string>
   <string name="settings">Einstellungen</string>
   <!-- Overall -->
   <string name="offline">Ausgeschaltet</string>
   <string name="core">Kern %d</string>
   <string name="temperature">Temperatur</string>
+  <string name="frequencies">Frequenzen</string>
   <string name="refresh">Aktualisieren</string>
   <string name="reset">Zurücksetzen</string>
   <string name="restore">Wiederherstellen</string>
   <string name="deep_sleep">Tiefschlaf</string>
   <string name="uptime">Laufzeit</string>
+  <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
+  <string name="unused_frequencies">Ungenutzte Frequenzen</string>
   <!-- Device -->
+  <string name="processor">Prozessor</string>
+  <string name="vendor">Hersteller</string>
   <string name="features">Features</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Android Version</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Android Codename</string>
+  <string name="fingerprint">Fingerabdruck</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
+  <string name="hardware">Hardware</string>
+  <string name="architecture">Architektur</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produkt</string>
+  <string name="version">Version</string>
   <!-- CPU -->
+  <string name="cores">%d Kerne</string>
   <string name="cpu_max_freq">Maximale CPU-Frequenz</string>
   <string name="cpu_max_freq_summary">Ändere die maximale Taktfrequenz der CPU.</string>
   <string name="cpu_min_freq">Minimale CPU-Frequenz</string>

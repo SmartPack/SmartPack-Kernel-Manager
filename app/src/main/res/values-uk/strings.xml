@@ -85,6 +85,7 @@
   <string name="android_codename">Кодове ім\'я Android</string>
   <string name="fingerprint">Відбитки пальців</string>
   <!-- Inputs -->
+  <string name="version">Версія</string>
   <!-- CPU -->
   <string name="cpu_max_freq">Макс. частота CPU</string>
   <string name="cpu_max_freq_summary">Встановлення максимальної частоти CPU.</string>
@@ -210,6 +211,7 @@
   <string name="uprate_limits">Обмеження підвищення</string>
   <string name="core_control">Керування ядром</string>
   <!--Thermal-->
+  <string name="warning">Попередження</string>
   <string name="thermal_info">Використовуйте тільки один термічний драйвер з наступних опцій, використання більше одного одночасно може спровокувати непередбаченні результати.</string>
   <string name="thermald">Thermald</string>
   <string name="intellithermal">Intellithermal</string>
@@ -324,7 +326,9 @@
   <string name="slide_right">Зрушення вправо</string>
   <!-- Sound -->
   <!-- Battery -->
+  <string name="level">Рівень</string>
   <!-- LED -->
+  <string name="speed">Швидкість</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутрішня пам’ять</string>
   <string name="external_storage">Зовнішній накопичувач</string>
@@ -345,12 +349,18 @@
   <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
   <!-- Custom Controls -->
+  <string name="control_switch">Перемикач</string>
+  <string name="description">Опис</string>
+  <string name="generic_value">Значення</string>
   <string name="test">Перевірка</string>
   <string name="edit">Редагувати</string>
   <string name="delete">Вилучити</string>
+  <string name="sure_question">Ви впевнені?</string>
   <string name="name">Назва</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Перевірка md5</string>
+  <string name="install">Встановити</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Я буду використовувати мої руки</string>
@@ -361,14 +371,18 @@
   <string name="key">Ключ</string>
   <string name="value">Значення</string>
   <!-- Profile -->
+  <string name="apply_question">Застосувати %s?</string>
   <string name="wipe_data">Очистити Data</string>
   <string name="wipe_cache">Очистити Cache</string>
   <string name="flash_zip">Прошити zip</string>
   <string name="flash_now_confirm">Ви бажаєте запустити всі ваші дії? Ваш пристрій завантажеться у режим рековері і запустить всі дії попорядку, так як ви вказали.</string>
+  <string name="press_again_to_apply">Натисніть %s знову, щоб застосувати.</string>
   <string name="applied">Застосовано</string>
+  <string name="profile_select">Виберіть профіль</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емуляція Init.d</string>
   <string name="executing">Виконання</string>
+  <string name="result">Результат</string>
   <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->
@@ -381,5 +395,14 @@
   <string name="nothing_apply">Нічого не знайдено для застосування!</string>
   <string name="debugging">Налагодження</string>
   <string name="logcat">Logcat</string>
+  <string name="logcat_summary">Скопіювати logcat в /sdcard/logcat.txt</string>
   <string name="security">Безпека</string>
+  <string name="set_password">Встановити пароль</string>
+  <string name="delete_password">Видалити пароль</string>
+  <string name="old_password">Старий пароль</string>
+  <string name="new_password">Новий пароль</string>
+  <string name="confirm_new_password">Підтвердіть новий пароль</string>
+  <string name="old_password_wrong">Старий пароль невірний</string>
+  <string name="set_password_first">Спочатку встановіть пароль</string>
+  <string name="sections">Розділи</string>
 </resources>
