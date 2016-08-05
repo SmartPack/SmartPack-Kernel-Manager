@@ -137,12 +137,6 @@ public class CPUFragment extends RecyclerViewFragment {
         for (final int core : bigCores) {
             SwitchView coreSwitch = new SwitchView();
             coreSwitch.setSummary(getString(R.string.core, core + 1));
-            coreSwitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    CPUFreq.onlineCpu(core, isChecked, getActivity());
-                }
-            });
 
             mCoresBig.put(core, coreSwitch);
             bigCard.addItem(coreSwitch);
@@ -225,12 +219,6 @@ public class CPUFragment extends RecyclerViewFragment {
             for (final int core : LITTLECores) {
                 SwitchView coreSwitch = new SwitchView();
                 coreSwitch.setSummary(getString(R.string.core, core + 1));
-                coreSwitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                    @Override
-                    public void onChanged(SwitchView switchView, boolean isChecked) {
-                        CPUFreq.onlineCpu(core, isChecked, getActivity());
-                    }
-                });
 
                 mCoresLITTLE.put(core, coreSwitch);
                 LITTLECard.addItem(coreSwitch);
@@ -677,24 +665,38 @@ public class CPUFragment extends RecyclerViewFragment {
 
         try {
             if (mCoresBig.size() > 0) {
-                for (int core : mCoresBig.keySet()) {
+                for (final int core : mCoresBig.keySet()) {
                     if (mCoresBig.get(core) != null) {
                         int freq = CPUFreq.getCurFreq(core);
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
+                        mCoresBig.get(core).clearOnSwitchListener();
                         mCoresBig.get(core).setChecked(freq != 0);
                         mCoresBig.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                        mCoresBig.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                            @Override
+                            public void onChanged(SwitchView switchView, boolean isChecked) {
+                                CPUFreq.onlineCpu(core, isChecked, getActivity());
+                            }
+                        });
                     }
                 }
             }
             if (mCoresLITTLE.size() > 0) {
-                for (int core : mCoresLITTLE.keySet()) {
+                for (final int core : mCoresLITTLE.keySet()) {
                     if (mCoresLITTLE.get(core) != null) {
                         int freq = CPUFreq.getCurFreq(core);
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
+                        mCoresLITTLE.get(core).clearOnSwitchListener();
                         mCoresLITTLE.get(core).setChecked(freq != 0);
                         mCoresLITTLE.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                        mCoresLITTLE.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                            @Override
+                            public void onChanged(SwitchView switchView, boolean isChecked) {
+                                CPUFreq.onlineCpu(core, isChecked, getActivity());
+                            }
+                        });
                     }
                 }
             }

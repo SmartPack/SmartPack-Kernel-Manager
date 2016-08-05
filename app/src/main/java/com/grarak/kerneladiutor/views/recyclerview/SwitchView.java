@@ -115,6 +115,10 @@ public class SwitchView extends RecyclerViewItem {
         mOnSwitchListeners.add(onSwitchListener);
     }
 
+    public void clearOnSwitchListener() {
+        mOnSwitchListeners.clear();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
