@@ -379,7 +379,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                 mOptionsDialog = null;
             }
         });
-        mOptionsDialog.show();
+        try {
+            mOptionsDialog.show();
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Override

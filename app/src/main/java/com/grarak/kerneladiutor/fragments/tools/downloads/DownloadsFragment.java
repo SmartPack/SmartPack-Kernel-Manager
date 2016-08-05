@@ -142,7 +142,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
     @Override
     public void onPermissionGranted(int request) {
         super.onPermissionGranted(request);
-        if (request == 0) {
+        if (request == 0 && mKernelContent != null) {
             Intent intent = new Intent(getActivity(), DownloadsActivity.class);
             intent.putExtra(DownloadsActivity.JSON_INTENT, mKernelContent.getJSON());
             startActivity(intent);

@@ -191,6 +191,7 @@ public class LMKFragment extends RecyclerViewFragment {
             public void run() {
                 final List<String> minfrees = LMK.getMinFrees();
                 for (int i = 0; i < minfrees.size(); i++) {
+                    if (i == mMinFrees.size()) break;
                     mMinFrees.get(i).setProgress(Math.round(Utils.strToInt(minfrees.get(i)) / 256));
                 }
             }

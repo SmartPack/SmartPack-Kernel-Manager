@@ -667,14 +667,15 @@ public class CPUFragment extends RecyclerViewFragment {
         try {
             if (mCoresBig.size() > 0) {
                 for (final int core : mCoresBig.keySet()) {
-                    if (mCoresBig.get(core) != null) {
+                    SwitchView switchView = mCoresBig.get(core);
+                    if (switchView != null) {
                         int freq = CPUFreq.getCurFreq(core);
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
-                        mCoresBig.get(core).clearOnSwitchListener();
-                        mCoresBig.get(core).setChecked(freq != 0);
-                        mCoresBig.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
-                        mCoresBig.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                        switchView.clearOnSwitchListener();
+                        switchView.setChecked(freq != 0);
+                        switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                        switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                             @Override
                             public void onChanged(SwitchView switchView, boolean isChecked) {
                                 if (core == 0) {
@@ -689,14 +690,15 @@ public class CPUFragment extends RecyclerViewFragment {
             }
             if (mCoresLITTLE.size() > 0) {
                 for (final int core : mCoresLITTLE.keySet()) {
-                    if (mCoresLITTLE.get(core) != null) {
+                    SwitchView switchView = mCoresLITTLE.get(core);
+                    if (switchView != null) {
                         int freq = CPUFreq.getCurFreq(core);
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
-                        mCoresLITTLE.get(core).clearOnSwitchListener();
-                        mCoresLITTLE.get(core).setChecked(freq != 0);
-                        mCoresLITTLE.get(core).setSummary(getString(R.string.core, core + 1) + " - " + freqText);
-                        mCoresLITTLE.get(core).addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                        switchView.clearOnSwitchListener();
+                        switchView.setChecked(freq != 0);
+                        switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                        switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                             @Override
                             public void onChanged(SwitchView switchView, boolean isChecked) {
                                 if (core == 0) {

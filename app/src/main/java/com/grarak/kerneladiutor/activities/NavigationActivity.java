@@ -168,7 +168,6 @@ public class NavigationActivity extends BaseActivity
         sActivities.put(R.string.settings, SettingsActivity.class);
     }
 
-    private static NavigationActivity mActivity;
     private Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
@@ -185,7 +184,6 @@ public class NavigationActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity = this;
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
         setSupportActionBar(toolbar);
@@ -349,12 +347,6 @@ public class NavigationActivity extends BaseActivity
             return sActualFragments.get(res);
         }
         return fragment;
-    }
-
-    public static void restart() {
-        if (mActivity != null) {
-            mActivity.recreate();
-        }
     }
 
 }

@@ -163,19 +163,16 @@ public class SettingsActivity extends BaseActivity {
         public boolean onPreferenceChange(Preference preference, Object o) {
             String key = preference.getKey();
             switch (key) {
-                case KEY_DARK_THEME:
-                    getActivity().finish();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    return true;
                 case KEY_FORCE_ENGLISH:
                     boolean checked = (boolean) o;
                     if (!checked) {
                         Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
                     }
-                    NavigationActivity.restart();
-                    getActivity().recreate();
+                case KEY_DARK_THEME:
+                    getActivity().finish();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     return true;
                 default:
                     if (key.endsWith("_enabled")) {
