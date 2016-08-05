@@ -80,8 +80,8 @@ public class TemperatureView extends RecyclerViewItem {
         if (mGPUParent != null) {
             if (Temperature.hasGPU()) {
                 mGPUParent.setVisibility(View.VISIBLE);
-                mGPU.setText(Temperature.getCPU(mGPU.getContext()));
-                mGPU.setColor(Temperature.getCPUColor(mGPU.getContext()));
+                mGPU.setText(Temperature.getGPU(mGPU.getContext()));
+                mGPU.setColor(Temperature.getGPUColor(mGPU.getContext()));
             } else {
                 mGPUParent.setVisibility(View.GONE);
             }

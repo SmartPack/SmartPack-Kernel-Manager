@@ -75,6 +75,9 @@ public class Temperature {
             GPU_NODE = TEMP_JSON.getGPU();
             if (Utils.existFile(GPU_NODE)) {
                 GPU_OFFSET = TEMP_JSON.getGPUOffset();
+                if (GPU_OFFSET != 1 && Utils.readFile(GPU_NODE).length() == 2) {
+                    GPU_OFFSET = 1;
+                }
                 return true;
             }
             GPU_NODE = null;
@@ -104,6 +107,9 @@ public class Temperature {
             CPU_NODE = TEMP_JSON.getCPU();
             if (Utils.existFile(CPU_NODE)) {
                 CPU_OFFSET = TEMP_JSON.getCPUOffset();
+                if (CPU_OFFSET != 1 && Utils.readFile(CPU_NODE).length() == 2) {
+                    CPU_OFFSET = 1;
+                }
                 return true;
             }
             CPU_NODE = null;
