@@ -213,7 +213,7 @@ public class NavigationActivity extends BaseActivity
         if (mSelection == 0 || !sActualFragments.containsKey(mSelection)) {
             mSelection = firstTab();
         }
-        onItemSelected(mSelection);
+        onItemSelected(mSelection, false);
 
         int result = Prefs.getInt("license", -1, this);
         int intentResult = getIntent().getIntExtra("result", -1);
@@ -321,20 +321,25 @@ public class NavigationActivity extends BaseActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        onItemSelected(item.getItemId());
+        onItemSelected(item.getItemId(), true);
         return true;
     }
 
-    private void onItemSelected(int res) {
+    private void onItemSelected(final int res, boolean delay) {
         if (sActivities.containsKey(res)) {
             startActivity(new Intent(this, sActivities.get(res)));
         } else {
             mDrawer.closeDrawer(GravityCompat.START);
             getSupportActionBar().setTitle(getString(res));
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(res),
-                    res + "_key").commit();
             mNavigationView.setCheckedItem(res);
             mSelection = res;
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(res),
+                            res + "_key").commit();
+                }
+            }, delay ? 250 : 0);
         }
     }
 
