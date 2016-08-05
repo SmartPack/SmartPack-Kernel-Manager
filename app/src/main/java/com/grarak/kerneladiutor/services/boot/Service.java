@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -164,6 +165,8 @@ public class Service extends android.app.Service {
                     .setSmallIcon(R.drawable.ic_restore);
         }
 
+        final Handler handler = new Handler();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -250,7 +253,12 @@ public class Service extends android.app.Service {
                 su.close();
 
                 if (toast) {
-                    Utils.toast(R.string.apply_on_boot_complete, Service.this);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Utils.toast(R.string.apply_on_boot_complete, Service.this);
+                        }
+                    });
                 }
 
                 stopSelf();
