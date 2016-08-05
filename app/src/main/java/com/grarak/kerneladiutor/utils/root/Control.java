@@ -95,28 +95,15 @@ public class Control {
             @Override
             public void run() {
                 apply(command, category, id, context);
+                mThreads.remove(0);
+                if (mThreads.size() > 0) {
+                    mThreads.get(0).start();
+                }
             }
         });
         mThreads.add(thread);
-
-        if (mSyncThread == null) {
-            mSyncThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (mThreads.size() != 0) {
-                        try {
-                            mThreads.get(0).start();
-                            mThreads.get(0).join();
-                        } catch (Exception ignored) {
-                        }
-                        if (mThreads.size() > 0) {
-                            mThreads.remove(0);
-                        }
-                    }
-                    mSyncThread = null;
-                }
-            });
-            mSyncThread.start();
+        if (mThreads.size() == 1) {
+            mThreads.get(0).start();
         }
     }
 
