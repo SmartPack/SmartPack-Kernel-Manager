@@ -51,8 +51,8 @@
   <string name="cpu_voltage">Напрежение на процесора</string>
   <string name="thermal">Термични</string>
   <string name="gpu">Видео карта</string>
-  <!-- Overall -->
   <!-- Device -->
+  <!-- Overall -->
   <!-- Inputs -->
   <!-- CPU -->
   <!-- CPU Voltage -->

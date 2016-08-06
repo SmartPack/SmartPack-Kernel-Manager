@@ -69,17 +69,6 @@
   <string name="contributors">Contribuidores</string>
   <string name="faq">Perguntas Frequentes</string>
   <string name="settings">Configurações</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Núcleo %d</string>
-  <string name="temperature">Temperatura</string>
-  <string name="frequencies">Frequências</string>
-  <string name="refresh">Atualizar</string>
-  <string name="reset">Reiniciar</string>
-  <string name="restore">Restaurar</string>
-  <string name="deep_sleep">Sono profundo</string>
-  <string name="uptime">Tempo de atividade</string>
-  <string name="unused_frequencies">Frequências não utilizadas</string>
   <!-- Device -->
   <string name="processor">Processador</string>
   <string name="vendor">Fornecedor</string>
@@ -89,6 +78,15 @@
   <string name="android_api_level">SDK do Android</string>
   <string name="android_codename">Codinome do Android</string>
   <string name="fingerprint">Impressão digital</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Núcleo %d</string>
+  <string name="refresh">Atualizar</string>
+  <string name="reset">Reiniciar</string>
+  <string name="restore">Restaurar</string>
+  <string name="deep_sleep">Sono profundo</string>
+  <string name="uptime">Tempo de atividade</string>
+  <string name="unused_frequencies">Frequências não utilizadas</string>
   <!-- Inputs -->
   <string name="product">Produto</string>
   <string name="version">Versão</string>
@@ -277,6 +275,7 @@
   <string name="check_interval">Intervalo de verificação</string>
   <string name="shutdown_temp">Temperatura de desligamento</string>
   <!-- GPU -->
+  <string name="frequencies">Frequências</string>
   <string name="gpu_2d_max_freq">Frequência maxima da GPU 2D</string>
   <string name="gpu_2d_max_freq_summary">Defina a frequência máxima 2D que a GPU pode alcançar.</string>
   <string name="gpu_max_freq">Frequência máxima da GPU</string>

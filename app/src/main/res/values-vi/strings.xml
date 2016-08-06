@@ -46,11 +46,11 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="settings">Cài đặt</string>
+  <!-- Device -->
   <!-- Overall -->
   <string name="offline">Ngoại tuyến</string>
   <string name="core">Lõi %d</string>
   <string name="uptime">Thời gian hoạt động</string>
-  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Xung nhịp xử lý tối đa</string>

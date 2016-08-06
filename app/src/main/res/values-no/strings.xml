@@ -44,11 +44,11 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Innstillinger</string>
+  <!-- Device -->
   <!-- Overall -->
   <string name="offline">Frakoblet</string>
   <string name="core">Kjernen %d</string>
   <string name="uptime">Driftstid</string>
-  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU maksfrekvens</string>

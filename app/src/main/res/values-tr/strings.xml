@@ -53,8 +53,9 @@
   <string name="tools">Araçlar</string>
   <string name="other">Diğer</string>
   <!-- Menus -->
-  <string name="overall">Genel</string>
   <string name="device">Cihaz</string>
+  <string name="overall">Genel</string>
+  <string name="memory">Bellek (RAM)</string>
   <string name="inputs">Girdiler</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">İşlemci Voltajı</string>
@@ -84,18 +85,6 @@
   <string name="contributors">Katkıda bulunanlar</string>
   <string name="faq">S.S.S</string>
   <string name="settings">Ayarlar</string>
-  <!-- Overall -->
-  <string name="offline">Çevrimdışı</string>
-  <string name="core">Çekirdek %d</string>
-  <string name="temperature">Sıcaklık</string>
-  <string name="frequencies">Frekanslar</string>
-  <string name="refresh">Yenile</string>
-  <string name="reset">Sıfırla</string>
-  <string name="restore">Geri yükleme</string>
-  <string name="deep_sleep">Derin uyku</string>
-  <string name="uptime">Çalışma süresi</string>
-  <string name="error_frequencies">Frekanslar yüklenemedi</string>
-  <string name="unused_frequencies">Kullanılmayan Frekanslar</string>
   <!-- Device -->
   <string name="processor">İşlemci</string>
   <string name="vendor">Satıcı</string>
@@ -111,6 +100,16 @@
   <string name="bootloader">Ön Yükleyici</string>
   <string name="hardware">Donanım</string>
   <string name="architecture">Mimari</string>
+  <!-- Overall -->
+  <string name="offline">Çevrimdışı</string>
+  <string name="core">Çekirdek %d</string>
+  <string name="refresh">Yenile</string>
+  <string name="reset">Sıfırla</string>
+  <string name="restore">Geri yükleme</string>
+  <string name="deep_sleep">Derin uyku</string>
+  <string name="uptime">Çalışma süresi</string>
+  <string name="error_frequencies">Frekanslar yüklenemedi</string>
+  <string name="unused_frequencies">Kullanılmayan Frekanslar</string>
   <!-- Inputs -->
   <string name="bus">Otobüs</string>
   <string name="product">Ürün</string>
@@ -118,6 +117,7 @@
   <string name="handlers">İşleyiciler</string>
   <!-- CPU -->
   <string name="cores">%d Çekirdek</string>
+  <string name="no_offline_core">Seçtiğiniz çekirdek kapatılamıyor!</string>
   <string name="cpu_max_freq">İşlemci Maksimum Frekansı</string>
   <string name="cpu_max_freq_summary">İşlemci ölçeklerini yükseltmek için minimum frekansı belirler.</string>
   <string name="cpu_min_freq">İşlemci Minimum Frekansı</string>
@@ -285,6 +285,7 @@
   <string name="core_control_summary">Qualcomm\'s hotplugging çözüm. Üzgünüm bunu kapatamazsın. #blameqcom</string>
   <string name="hcube">H-küp</string>
   <string name="hcube_summary">OnePlus\'un modifeli çekirdek kontrolü.</string>
+  <string name="busy_down_threshold">Eşik meşgul</string>
   <string name="busy_down_threshold_summary">Büyük işlemcilerin kapatılması için eşik.</string>
   <string name="busy_up_threshold">Eşik meşgül olmak için</string>
   <string name="busy_up_threshold_summary">Büyük işlemcilerin kapatılması için eşik.</string>
@@ -333,6 +334,7 @@
   <string name="check_interval">Denetleme aralığı</string>
   <string name="shutdown_temp">Sıcaklığı Kapat</string>
   <!-- GPU -->
+  <string name="frequencies">Frekanslar</string>
   <string name="gpu_2d_freq">GPU 2D frekansı</string>
   <string name="gpu_freq">GPU frekansı</string>
   <string name="gpu_2d_max_freq">GPU 2D en yüksek frekans</string>
@@ -357,6 +359,7 @@
   <string name="idle_wait">Boşta bekleme</string>
   <string name="workload">İş yükü</string>
   <!-- Screen -->
+  <string name="screen_color">Ekran rengi</string>
   <string name="red">Kırmızı</string>
   <string name="green">Yeşil</string>
   <string name="blue">Mavi</string>
@@ -369,10 +372,30 @@
   <string name="screen_value">Ekran Değeri</string>
   <string name="screen_contrast">Ekran Kontrastı</string>
   <string name="high_brightness_mode">Yüksek Parlaklık modu</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gama</string>
+  <string name="red_greys">Kırmızı griler</string>
+  <string name="red_mids">Kırmızı Mids</string>
+  <string name="red_blacks">Kırmızı siyahlar</string>
+  <string name="red_whites">Kırmızı beyazlar</string>
+  <string name="green_greys">Yeşil griler</string>
+  <string name="green_mids">Yeşil Mids</string>
+  <string name="green_blacks">Yeşil siyahlar</string>
+  <string name="green_whites">Yeşil Beyazlar</string>
+  <string name="blue_greys">Mavi griler</string>
+  <string name="blue_mids">Mavi Mids</string>
+  <string name="blue_blacks">Mavi Siyahlar</string>
+  <string name="blue_whites">Mavi beyazlar</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Parlaklık</string>
+  <string name="red_positive">Kırmızı pozitif</string>
+  <string name="red_negative">Kırmızı negatif</string>
+  <string name="green_positive">Yeşil pozitif</string>
+  <string name="green_negative">Yeşil negatif</string>
+  <string name="blue_positive">Mavi pozitif</string>
+  <string name="blue_negative">Mavi negatif</string>
   <string name="white_point">Beyaz Nokta</string>
+  <string name="lcd_backlight">LCD arkaışık</string>
   <string name="min_brightness">Minimum Parlaklık</string>
   <string name="backlight_dimmer">Kısık Arka Işık</string>
   <string name="threshold">Eşik Değeri</string>
@@ -432,13 +455,19 @@
   <string name="microphone_gain">Mikrofon kazancı</string>
   <string name="volume_gain">Ses kazanç</string>
   <!-- Battery -->
+  <string name="level">Düzey</string>
+  <string name="voltage">Voltaj</string>
+  <string name="capacity">Kapasite</string>
   <string name="usb_fast_charge">Hızlı USB Şarj</string>
   <string name="usb_fast_charge_summary">Cihaz, USB ile bağlıyken daha hızlı şarj edecektir. Bu seçeneği değiştirdikten sonra şarj aletinizi yeniden bağlayın.</string>
   <string name="blx">Pil Ömrü Uzatıcı</string>
   <string name="blx_summary">Kapasite için pil 0 ile 100 arasında bir değer ileterek tahsil edilecektir için bir sınır belirleyin.</string>
+  <string name="charge_rate">Şarj Oranı</string>
   <string name="charging_current">Geçerli şarj</string>
+  <string name="charging_current_summary">Şuanki şarjı ayarlayın. Dikkat: 1250mA yı aşan mAh ler şarj sürücünüce zarar verebilir.</string>
   <!-- LED -->
   <string name="fade">Karart</string>
+  <string name="fade_summary">Karartmak için açın, yanıp sönme için kapatın.</string>
   <string name="intensity">Yoğunluk</string>
   <string name="speed">Hız</string>
   <string name="stock">Stok</string>
@@ -452,7 +481,9 @@
   <string name="read_ahead">Hızlı okuma</string>
   <string name="read_ahead_summary">Telefon hafızasına önceden okuma değeri.</string>
   <string name="rotational">Dönel depolama</string>
+  <string name="rotational_summary">Cihazı dönel hafıza olarak onar.</string>
   <string name="iostats">G/ç istatistikleri</string>
+  <string name="iostats_summary">Bu depolama aygıtı için G / Ç istatistiklerini koruyun. Bu G/Ç izleme uygulamalarını devre dışı bırakabilir.</string>
   <string name="add_random">Rasgele ekle</string>
   <string name="add_random_summary">Dönel depolama için entropi çizin.</string>
   <!-- Kernel Samepage Merging -->
@@ -471,6 +502,7 @@
   <!-- Low Memory Killer -->
   <string name="foreground_app">Önplan Uygulamaları</string>
   <string name="lmk_adaptive">Adaptif bellek katili</string>
+  <string name="lmk_adaptive_summary">Daha fazla işleme girildiği tespit edildiğinde düşük bellek öldulürücüyü daha agresif yap.</string>
   <string name="visible_app">Görünen Uygulamalar</string>
   <string name="secondary_server">İkincil Sunucu</string>
   <string name="hidden_app">Gizli Uygulamalar</string>
@@ -483,6 +515,7 @@
   <string name="kill_lmk">LMKyı öldür</string>
   <string name="kill_lmk_summary">Takas kullanılırken LMK öldür.</string>
   <string name="kill_lmk_threshold">LMK yı öldürmek için eşik</string>
+  <string name="kill_lmk_threshold_summary">Düşük bellek öldürücüyü öldürmek için ne kadar takas oranı gerekir.</string>
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
@@ -496,6 +529,7 @@
   <string name="android_logger">Android günlüğü</string>
   <string name="crc">Yazılım CRC denetimi</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Daha iyi bir sistem performansı için ve sistem çökmesinde veri kaybı riskini azaltmak için devre dışı bırakın.</string>
   <string name="dynamic_fsync">Dinamik Fsync</string>
   <string name="power_suspend_mode">Güç Askıya Alma Modu</string>
   <string name="autosleep">Oto uyku</string>
@@ -512,6 +546,18 @@
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
   <!-- Custom Controls -->
+  <string name="create">Oluştur</string>
+  <string name="import_item">İçeri aktar</string>
+  <string name="control_switch">Değiştir</string>
+  <string name="control_seekbar">Atlama barı</string>
+  <string name="title">Başlık</string>
+  <string name="description">Açıklama</string>
+  <string name="applying">Uygulanıyor</string>
+  <string name="seekbar_min">Dakika</string>
+  <string name="seekbar_max">Maksimum</string>
+  <string name="seekbar_progress">İlerleme</string>
+  <string name="control_generic">Genel</string>
+  <string name="generic_value">Değer</string>
   <string name="required">gerekli</string>
   <string name="test">Test</string>
   <string name="output">Çıktı</string>
@@ -594,6 +640,14 @@
   <string name="fahrenheit_summary">Sicaklıllar fahrenayt cinsinden gösterilsin.</string>
   <string name="force_english">İngilizce dilini kullanmaya zorla</string>
   <string name="ten_sec">10 saniye</string>
+  <string name="twenty_sec">20 saniye</string>
+  <string name="fifty_sec">50 saniye</string>
+  <string name="apply_on_boot_running">Geçerli önyükleme hizmeti zaten çalışıyor. Bitene kadar bekleyin.</string>
+  <string name="nothing_apply">Uygulamak için hiçbir şey bulunamadı!</string>
+  <string name="hide">Gizle</string>
+  <string name="toast">Bildirim</string>
+  <string name="apply_on_boot_toast_summary">Ayarlar uygulandığında bildirim göster.</string>
+  <string name="script">Komut dosyası</string>
   <string name="debugging">Hata ayıklanıyor</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Logcat  /sdcard/logcat.txt adresine kopyalandı</string>
@@ -601,4 +655,10 @@
   <string name="last_kmsg_summary">/proc/last_kmsg to /sdcard/last_kmsg.txt adresine kopyalandı</string>
   <string name="driver_message">Sürücü İletisi</string>
   <string name="driver_message_summary">Sürücü iletisi (dmesg)  /sdcard/dmesg.txt adresine kopyalandı</string>
+  <string name="security">Güvenlik</string>
+  <string name="set_password">Şifre Belirle</string>
+  <string name="delete_password">Parolayı sil</string>
+  <string name="old_password">Eski parola</string>
+  <string name="new_password">Yeni parola</string>
+  <string name="confirm_new_password">Yeni parolayı onayla</string>
 </resources>

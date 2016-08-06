@@ -53,8 +53,8 @@
   <string name="tools">Instrumente</string>
   <string name="other">Altele</string>
   <!-- Menus -->
-  <string name="overall">Per asamblu</string>
   <string name="device">Dispozitiv</string>
+  <string name="overall">Per asamblu</string>
   <string name="inputs">Intrări</string>
   <string name="cpu">CPU ( Procesor )</string>
   <string name="cpu_voltage">Tensiunea CPU-lui</string>
@@ -83,11 +83,12 @@
   <string name="contributors">Contribuitori</string>
   <string name="faq">Intrebari si raspunsuri</string>
   <string name="settings">Opțiuni</string>
+  <!-- Device -->
+  <string name="processor">Procesor</string>
+  <string name="vendor">Distribuitor</string>
   <!-- Overall -->
   <string name="offline">Deconectat</string>
   <string name="core">Core %d</string>
-  <string name="temperature">Temperatură</string>
-  <string name="frequencies">Frecvenţele</string>
   <string name="refresh">Reîmprospătează</string>
   <string name="reset">Resetează</string>
   <string name="restore">Restabilire</string>
@@ -95,9 +96,6 @@
   <string name="uptime">Timp de funcționare</string>
   <string name="error_frequencies">Nu am reuşit s-a încarc frecvenţa</string>
   <string name="unused_frequencies">Frecvenţele neutilizate</string>
-  <!-- Device -->
-  <string name="processor">Procesor</string>
-  <string name="vendor">Distribuitor</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Frecvenţă maximă CPU</string>
@@ -164,6 +162,7 @@
   <string name="temp_limit">Limita de Temperatură</string>
   <string name="temp_limit_summary">Dacă temperatura urca, termale-le vor accelera frecvenţa CPU pentru a reduce temperatura.</string>
   <!-- GPU -->
+  <string name="frequencies">Frecvenţele</string>
   <string name="gpu_2d_max_freq">Frecvența maximă 2D al GPU</string>
   <string name="gpu_2d_max_freq_summary">Setaţi frecvenţa maximă 2D GPU până la sfârșitul scalei.</string>
   <string name="gpu_max_freq">Frecvența maximă GPU-ului</string>

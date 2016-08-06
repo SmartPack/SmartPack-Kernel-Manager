@@ -53,8 +53,9 @@
   <string name="tools">Outils</string>
   <string name="other">Autre</string>
   <!-- Menus -->
-  <string name="overall">Général</string>
   <string name="device">Appareil</string>
+  <string name="overall">Général</string>
+  <string name="memory">Mémoire</string>
   <string name="inputs">Entrées</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltage du CPU</string>
@@ -84,11 +85,24 @@
   <string name="contributors">Contributeurs</string>
   <string name="faq">FAQ</string>
   <string name="settings">Réglages</string>
+  <!-- Device -->
+  <string name="processor">Processeur</string>
+  <string name="vendor">Constructeur</string>
+  <string name="features">Caractèristiques</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Version d\'Android</string>
+  <string name="android_api_level">SDK Android</string>
+  <string name="android_codename">Nom de code Android</string>
+  <string name="fingerprint">Empreinte</string>
+  <string name="build_display_id">Attribut de compilation</string>
+  <string name="baseband">Bande de base</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
+  <string name="hardware">Matériel</string>
+  <string name="architecture">Architecture</string>
   <!-- Overall -->
   <string name="offline">Hors-Ligne</string>
   <string name="core">Coeur %d</string>
-  <string name="temperature">Température</string>
-  <string name="frequencies">Fréquences</string>
   <string name="refresh">Actualiser</string>
   <string name="reset">Réinitialiser</string>
   <string name="restore">Restaurer</string>
@@ -96,10 +110,14 @@
   <string name="uptime">Temps de fonctionnement</string>
   <string name="error_frequencies">Échec du chargement des fréquences</string>
   <string name="unused_frequencies">Fréquences inutilisées</string>
-  <!-- Device -->
-  <string name="features">Caractèristiques</string>
   <!-- Inputs -->
+  <string name="bus">Bus</string>
+  <string name="product">Produit</string>
+  <string name="version">Version</string>
+  <string name="handlers">Gestionnaires</string>
   <!-- CPU -->
+  <string name="cores">%d cœurs</string>
+  <string name="no_offline_core">Vous ne pouvez pas mettre hors-ligne ce cœur !</string>
   <string name="cpu_max_freq">Fréquence Maximale du CPU</string>
   <string name="cpu_max_freq_summary">Définir la fréquence maximale du CPU.</string>
   <string name="cpu_min_freq">Fréquence Minimale du CPU</string>
@@ -107,9 +125,11 @@
   <string name="cpu_max_screen_off_freq">Fréquence Maximale du CPU l\'Ecran Eteint</string>
   <string name="cpu_max_screen_off_freq_summary">Définissez la fréquence maximale du CPU quand l\'écran est éteint.</string>
   <string name="cpu_governor">Gouverneur de CPU</string>
-  <string name="cpu_governor_summary">Le gouverneur CPU détermine la façon dont le processeur adapte sa fréquence en fonction de la charge.</string>
+  <string name="cpu_governor_summary">L\'administrateur du processeur détermine le comportement du processeur en fonction des changements de charge de travail. Modifier l\'administrateur aura des conséquences sur la façon dont le processeur s\'adapte aux intervalles de fréquences disponibles pour votre processeur.</string>
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
   <string name="cpu_governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
+  <string name="cpu_governor_tunables_read_error">Impossible de lire l\'ordonnanceur actuel du processeur.\n\nSi vous utilisez un appareil avec un processeur QCOM big.LITTLE, il s’agit d’un problème connu. Le système force le processeur à éteindre les cœurs, rendant extrêmement difficile l\'accès à la lecture des statistiques spécifiques du processeur. Réessayez de sélectionner cette option. Le processeur refuse parfois de tourner sur un cœur.</string>
+  <string name="tunables_error">%s n\'est pas réglable</string>
   <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>
   <string name="mc_power_saving_summary">Essayez de regrouper les tâches en moins de cœurs possible.</string>
   <string name="disabled">Désactivé</string>
@@ -120,9 +140,10 @@
   <string name="cfs_scheduler_policy_summary">La stratégie règle comment l\'ordonnanceur CFS équilibre les tâches sur les différents cœurs CPU.</string>
   <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_quiet_summary">CPUQuiet implémente une fonction pour forcer la mise en repos des cœurs de processeur. Cette fonctionnalité économisera de l\'énergie sans affecter les performances.</string>
-  <string name="cpu_quiet_governor">Gouverneur CPUQuiet</string>
+  <string name="cpu_quiet_governor">Ordonnanceur CPUQuiet</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Masque de débogage</string>
+  <string name="debug_mask_summary">Permet d\'activer un masque de débogage pour des opérations</string>
   <string name="interval">Intervalle</string>
   <string name="interval_summary">Intervalle minimum pour que le CPU soit boosté.</string>
   <string name="sync_threshold">Seuil de Synchronisation</string>
@@ -262,6 +283,7 @@
   <string name="check_interval">Intervalle de vérification</string>
   <string name="shutdown_temp">Température d’arrêt</string>
   <!-- GPU -->
+  <string name="frequencies">Fréquences</string>
   <string name="gpu_2d_max_freq">Fréquence Maximale GPU 2D</string>
   <string name="gpu_2d_max_freq_summary">Définir la fréquence 2D maximale qu\'atteindra le GPU.</string>
   <string name="gpu_max_freq">Fréquence Maximale du GPU</string>

@@ -46,13 +46,13 @@
   <string name="recovery">Återställning</string>
   <string name="initd">Init.d</string>
   <string name="settings">Inställningar</string>
+  <!-- Device -->
+  <string name="features">Funktioner</string>
   <!-- Overall -->
   <string name="offline">Ej uppkopplad</string>
   <string name="core">Kärna %d</string>
   <string name="restore">Återställ</string>
   <string name="uptime">Drifttid</string>
-  <!-- Device -->
-  <string name="features">Funktioner</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU Max-frekvens</string>

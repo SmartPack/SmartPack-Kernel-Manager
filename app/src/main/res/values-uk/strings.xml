@@ -66,16 +66,6 @@
   <string name="about">Про додаток</string>
   <string name="faq">Питання та відповіді (FAQ)</string>
   <string name="settings">Налаштування</string>
-  <!-- Overall -->
-  <string name="offline">Офлайн</string>
-  <string name="core">Ядро %d</string>
-  <string name="temperature">Температура</string>
-  <string name="frequencies">Частоти</string>
-  <string name="refresh">Оновити</string>
-  <string name="reset">Скинути</string>
-  <string name="restore">Відновити</string>
-  <string name="uptime">Час роботи</string>
-  <string name="unused_frequencies">Невикористовувані частоти</string>
   <!-- Device -->
   <string name="processor">Процесор</string>
   <string name="vendor">Виробник</string>
@@ -84,6 +74,14 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Кодове ім\'я Android</string>
   <string name="fingerprint">Відбитки пальців</string>
+  <!-- Overall -->
+  <string name="offline">Офлайн</string>
+  <string name="core">Ядро %d</string>
+  <string name="refresh">Оновити</string>
+  <string name="reset">Скинути</string>
+  <string name="restore">Відновити</string>
+  <string name="uptime">Час роботи</string>
+  <string name="unused_frequencies">Невикористовувані частоти</string>
   <!-- Inputs -->
   <string name="version">Версія</string>
   <!-- CPU -->
@@ -248,6 +246,7 @@
   <string name="check_interval">Інтервал перевірки</string>
   <string name="shutdown_temp">Температура вимкнення</string>
   <!-- GPU -->
+  <string name="frequencies">Частоти</string>
   <string name="gpu_2d_max_freq">Максимальна частота GPU при 2D</string>
   <string name="gpu_2d_max_freq_summary">Встановлення максимальної частоти CPU при 2D.</string>
   <string name="gpu_max_freq">Максимальна частота GPU</string>

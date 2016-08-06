@@ -53,8 +53,9 @@
   <string name="tools">Gereedschappen</string>
   <string name="other">Overige</string>
   <!-- Menus -->
-  <string name="overall">Algemeen</string>
   <string name="device">Apparaat</string>
+  <string name="overall">Algemeen</string>
+  <string name="memory">Geheugen</string>
   <string name="inputs">Invoer</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Voltage</string>
@@ -84,18 +85,6 @@
   <string name="contributors">Medewerkers</string>
   <string name="faq">Veelgestelde Vragen</string>
   <string name="settings">Instellingen</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Kern %d</string>
-  <string name="temperature">Temperatuur</string>
-  <string name="frequencies">Frequenties</string>
-  <string name="refresh">Verversen</string>
-  <string name="reset">Reset</string>
-  <string name="restore">Herstellen</string>
-  <string name="deep_sleep">Diepe Slaap</string>
-  <string name="uptime">Bedrijfstijd</string>
-  <string name="error_frequencies">Fout bij het laden van frequenties</string>
-  <string name="unused_frequencies">Ongebruikte Frequenties</string>
   <!-- Device -->
   <string name="processor">Processor</string>
   <string name="vendor">Aanbieder</string>
@@ -111,6 +100,16 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architectuur</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Kern %d</string>
+  <string name="refresh">Verversen</string>
+  <string name="reset">Reset</string>
+  <string name="restore">Herstellen</string>
+  <string name="deep_sleep">Diepe Slaap</string>
+  <string name="uptime">Bedrijfstijd</string>
+  <string name="error_frequencies">Fout bij het laden van frequenties</string>
+  <string name="unused_frequencies">Ongebruikte Frequenties</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Product</string>
@@ -118,6 +117,7 @@
   <string name="handlers">Handlers</string>
   <!-- CPU -->
   <string name="cores">%d cores</string>
+  <string name="no_offline_core">U kunt deze core niet offline zetten!</string>
   <string name="cpu_max_freq">Maximale CPU Frequentie</string>
   <string name="cpu_max_freq_summary">Stel de maximale frequentie van de CPU in</string>
   <string name="cpu_min_freq">Minimale CPU Frequentie</string>
@@ -313,6 +313,7 @@
   <string name="check_interval">Controleer interval</string>
   <string name="shutdown_temp">Temperatuur bij afsluiten</string>
   <!-- GPU -->
+  <string name="frequencies">Frequenties</string>
   <string name="gpu_freq">GPU Frequentie</string>
   <string name="gpu_2d_max_freq">Maximale GPU 2D Frequentie</string>
   <string name="gpu_2d_max_freq_summary">Stel de maximale 2D frequentie van de GPU in.</string>

@@ -53,8 +53,8 @@
   <string name="tools">Εργαλεία</string>
   <string name="other">Άλλα</string>
   <!-- Menus -->
-  <string name="overall">Συνολικά</string>
   <string name="device">Συσκευή</string>
+  <string name="overall">Συνολικά</string>
   <string name="inputs">Εισαγωγή</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Τάση CPU</string>
@@ -84,11 +84,14 @@
   <string name="contributors">Χορηγοί</string>
   <string name="faq">Συνήθεις Ερωτήσεις</string>
   <string name="settings">Ρυθμίσεις</string>
+  <!-- Device -->
+  <string name="processor">Επεξεργαστής</string>
+  <string name="vendor">Προμηθευτής</string>
+  <string name="features">Δυνατότητες</string>
+  <string name="ram">Μνήμη RAM</string>
   <!-- Overall -->
   <string name="offline">Αποσυνδεδεμένος</string>
   <string name="core">Πυρήνας %d</string>
-  <string name="temperature">Θερμοκρασία</string>
-  <string name="frequencies">Συχνότητες</string>
   <string name="refresh">Ανανέωση</string>
   <string name="reset">Επανεκκίνηση</string>
   <string name="restore">Επαναφορά</string>
@@ -96,11 +99,6 @@
   <string name="uptime">Χρόνος Uptime</string>
   <string name="error_frequencies">Απέτυχε η φόρτωση συχνοτήτων</string>
   <string name="unused_frequencies">Αχρησιμοποίητες συχνότητες</string>
-  <!-- Device -->
-  <string name="processor">Επεξεργαστής</string>
-  <string name="vendor">Προμηθευτής</string>
-  <string name="features">Δυνατότητες</string>
-  <string name="ram">Μνήμη RAM</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Μέγιστη Συχνότητα Επεξεργαστή</string>
@@ -263,6 +261,7 @@
   <string name="temp_limit">Όριο θερμοκρασίας</string>
   <string name="temp_limit_summary">Αν η θερμοκρασία πάει πάνω από, το thermal θα βάλει \"κόφτη\" στην συχνότητα του επεξεργαστή για να μειωθεί η θερμοκρασία.</string>
   <!-- GPU -->
+  <string name="frequencies">Συχνότητες</string>
   <string name="gpu_max_freq">Ανώτατη Συχνότητα Κάρτας Γραφικών GPU</string>
   <string name="gpu_max_freq_summary">Ρύθμιση ανώτατης συχνότητας για κάρτα γραφικών GPU.</string>
   <!-- Screen -->

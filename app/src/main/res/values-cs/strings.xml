@@ -52,8 +52,9 @@ Zabezpečeni</string>
   <string name="tools">Nástroje</string>
   <string name="other">Ostatní</string>
   <!-- Menus -->
-  <string name="overall">Celkem</string>
   <string name="device">Zařízení</string>
+  <string name="overall">Celkem</string>
+  <string name="memory">Paměť</string>
   <string name="inputs">Vstupy</string>
   <string name="cpu">Procesor</string>
   <string name="cpu_voltage">Napětí procesoru</string>
@@ -77,21 +78,10 @@ Zabezpečeni</string>
   <string name="profile">Profily</string>
   <string name="recovery">Recovery menu</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Při spuštění</string>
   <string name="about">O programu</string>
   <string name="faq">FAQ - Nejčastější dotazy</string>
   <string name="settings">Nastavení</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Jádro %d</string>
-  <string name="temperature">Teplota</string>
-  <string name="frequencies">Frekvence</string>
-  <string name="refresh">Obnovit</string>
-  <string name="reset">Resetovat</string>
-  <string name="restore">Obnovit</string>
-  <string name="deep_sleep">Hluboký spánek</string>
-  <string name="uptime">Doba provozu</string>
-  <string name="error_frequencies">Nepodařilo se načíst frekvence</string>
-  <string name="unused_frequencies">Nepoužívané frekvence</string>
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Dodavatel</string>
@@ -107,6 +97,16 @@ Zabezpečeni</string>
   <string name="bootloader">Zavaděč</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektura</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Jádro %d</string>
+  <string name="refresh">Obnovit</string>
+  <string name="reset">Resetovat</string>
+  <string name="restore">Obnovit</string>
+  <string name="deep_sleep">Hluboký spánek</string>
+  <string name="uptime">Doba provozu</string>
+  <string name="error_frequencies">Nepodařilo se načíst frekvence</string>
+  <string name="unused_frequencies">Nepoužívané frekvence</string>
   <!-- Inputs -->
   <string name="product">Produkt</string>
   <string name="version">Verze</string>
@@ -246,6 +246,7 @@ Zabezpečeni</string>
   <string name="check_interval">Interval kontroly</string>
   <string name="shutdown_temp">Teplota vypnutí</string>
   <!-- GPU -->
+  <string name="frequencies">Frekvence</string>
   <string name="gpu_2d_freq">2D frekvence GPU</string>
   <string name="gpu_freq">Frekvence GPU</string>
   <string name="gpu_2d_max_freq">Maximální frekvence 2D grafiky</string>
@@ -340,6 +341,7 @@ Zabezpečeni</string>
   <string name="usb_fast_charge_summary">Rychlejší nabíjení zařízení při připojení přes USB. Při změně této volby odpojte a znovu zapojte nabíječku.</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <!-- LED -->
+  <string name="speed">Rychlost</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Vnitřní uložiště</string>
   <string name="external_storage">Externí úložiště</string>

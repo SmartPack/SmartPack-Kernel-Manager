@@ -47,13 +47,13 @@
   <string name="recovery">Опоравак</string>
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
+  <!-- Device -->
+  <string name="features">Карактеристике</string>
   <!-- Overall -->
   <string name="offline">Не ради</string>
   <string name="core">Језгро %d</string>
   <string name="restore">Врати</string>
   <string name="uptime">Време рада</string>
-  <!-- Device -->
-  <string name="features">Карактеристике</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">ЦПУ макс. фреквенција</string>

@@ -44,11 +44,11 @@
   <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Configuració</string>
+  <!-- Device -->
   <!-- Overall -->
   <string name="offline">Desconnectat</string>
   <string name="core">Nucli %d</string>
   <string name="uptime">Temps en funcionament</string>
-  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Freqüència Màxima CPU</string>

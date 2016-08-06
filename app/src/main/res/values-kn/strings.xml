@@ -44,11 +44,11 @@
   <string name="profile">ಪ್ರೊಫೈಲ್</string>
   <string name="initd">Init.d</string>
   <string name="settings">ಸೆಟ್ಟಿಂಗ್ಸ್</string>
+  <!-- Device -->
   <!-- Overall -->
   <string name="offline">ಆಫ್ಲೈನ್</string>
   <string name="core">ಕೋರ್ %d</string>
   <string name="uptime">ಕಾರ್ಯನಿರತ ಅವಧಿ</string>
-  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">ಸಿಪಿಯು ಗರಿಷ್ಠ ಆವರ್ತನ</string>

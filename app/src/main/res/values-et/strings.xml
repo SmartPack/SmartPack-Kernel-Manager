@@ -35,12 +35,12 @@
   <string name="profile">Profiil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Seaded</string>
+  <!-- Device -->
+  <string name="features">Funktsionaalsus</string>
   <!-- Overall -->
   <string name="offline">Ühenduseta</string>
   <string name="core">Tuum  %d</string>
   <string name="restore">Taasta</string>
-  <!-- Device -->
-  <string name="features">Funktsionaalsus</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU maksimaalne sagedus</string>

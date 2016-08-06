@@ -11,23 +11,25 @@
   <!-- Security -->
   <string name="password">Пароль</string>
   <string name="password_wrong">Неверный пароль</string>
-  <string name="select_picture">Выберите изображение</string>
+  <string name="select_picture">Выберите картинку</string>
   <string name="no_picture">Нет картинки</string>
   <string name="went_wrong">Что-то пошло не так!</string>
-  <string name="press_back_again_exit">Нажмите ещё раз для выхода</string>
+  <string name="press_back_again_exit">Нажмите \"Назад\" еще раз, чтобы выйти</string>
   <string name="cancel">Отмена</string>
   <string name="ok">Хорошо</string>
   <string name="unknown">Неизвестно</string>
-  <string name="pirated">Похоже, пожертвование app не был куплен через магазин Play! Если вы пиратские его, то как вам не стыдно!</string>
+  <string name="pirated">Похоже, приложение-пожертвование не было куплено через Play Маркет! Если вы спиратили его, то вам должно быть стыдно!</string>
   <string name="donate">Пожертвовать</string>
-  <string name="donate_summary">Эта функция доступна, только когда установлено приложение пожертвования! Не волнуйтесь, потому что это приложение является открытым исходным кодом и можно легко собрать его самостоятельно без этой проверки. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование Kernel Adiutor! После того как вы купили приложение пожертвования, вам нужно перезапустить Kernel Auditor для того, чтобы включить все функции.</string>
+  <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование Kernel Adiutor! После покупки приложения-пожертвования, вам нужно перезапустить Kernel Auditor для того, чтобы включить все функции.</string>
+  <string name="donate_nope">Я не попадусь на эту аферу!</string>
+  <string name="donate_yes">Я люблю это приложение. Должен пожертвовать!</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_text">Применение настроек через %d секунд.</string>
-  <string name="apply_on_boot_complete">Применение параметров завершено.</string>
+  <string name="apply_on_boot_complete">Применение настроек завершено.</string>
   <string name="apply_on_boot_canceled">Применение настроек отменено.</string>
   <string name="not_in_range">Не в диапазоне</string>
   <!-- Permissions Denied -->
-  <string name="permission_denied_write_storage">Нет доступ к записи на диск!</string>
+  <string name="permission_denied_write_storage">Отказано в разрешении на запись в память устройства!</string>
   <!-- Editor -->
   <string name="save">Сохранить</string>
   <!-- File Picker -->
@@ -41,9 +43,9 @@
   <string name="ms">мс</string>
   <string name="mv">мВ</string>
   <string name="min">мин</string>
-  <string name="mah">mAh</string>
+  <string name="mah">мА/ч</string>
   <string name="ma">мА</string>
-  <string name="kb">кВ</string>
+  <string name="kb">кБ</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Статистика</string>
@@ -51,41 +53,56 @@
   <string name="tools">Инструменты</string>
   <string name="other">Другое</string>
   <!-- Menus -->
-  <string name="overall">Общее</string>
   <string name="device">Устройство</string>
-  <string name="cpu">Процессор</string>
+  <string name="overall">Общее</string>
+  <string name="memory">Память</string>
+  <string name="inputs">Устройства ввода</string>
+  <string name="cpu">ЦП</string>
   <string name="cpu_voltage">Напряжение ЦП</string>
-  <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="cpu_hotplug">Менеджер ядер ЦП</string>
   <string name="thermal">Температура</string>
   <string name="gpu">Графический процессор</string>
   <string name="screen">Экран</string>
   <string name="wake">Пробуждение</string>
   <string name="sound">Звук</string>
   <string name="battery">Батарея</string>
-  <string name="led">LED-индикация</string>
+  <string name="led">Светодиод</string>
   <string name="io_scheduler">Планировщик I/O</string>
-  <string name="ksm">Объединять страницы памяти ядра</string>
-  <string name="lmk">Очистка памяти</string>
+  <string name="ksm">Kernel Samepage Merging</string>
+  <string name="lmk">Low Memory Killer</string>
   <string name="virtual_memory">Виртуальная память</string>
   <string name="entropy">Энтропия</string>
   <string name="misc">Разное</string>
-  <string name="custom_controls">Пользовательские элементы управления</string>
+  <string name="custom_controls">Сторонние элементы управления</string>
   <string name="downloads">Загрузки</string>
-  <string name="backup">Резервная копия</string>
+  <string name="backup">Резервное копирование</string>
   <string name="build_prop_editor">Редактор build.prop</string>
   <string name="profile">Профиль</string>
   <string name="recovery">Меню восстановления</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">При загрузке</string>
-  <string name="about">О нас</string>
-  <string name="contributors">Авторы</string>
-  <string name="faq">Руководство</string>
+  <string name="about">О приложении</string>
+  <string name="contributors">Имена разработчиков</string>
+  <string name="faq">Вопросы-Ответы</string>
   <string name="settings">Настройки</string>
+  <!-- Device -->
+  <string name="processor">Процессор</string>
+  <string name="vendor">Производитель</string>
+  <string name="features">Характеристики</string>
+  <string name="ram">ОЗУ</string>
+  <string name="android_version">Версия Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Кодовое название Android</string>
+  <string name="fingerprint">Отпечаток</string>
+  <string name="build_display_id">Номер сборки</string>
+  <string name="baseband">Модем</string>
+  <string name="rom">Прошивка</string>
+  <string name="bootloader">Загрузчик</string>
+  <string name="hardware">Оборудование</string>
+  <string name="architecture">Архитектура</string>
   <!-- Overall -->
   <string name="offline">Оффлайн</string>
   <string name="core">Ядро %d</string>
-  <string name="temperature">Температура</string>
-  <string name="frequencies">Частоты</string>
   <string name="refresh">Обновить</string>
   <string name="reset">Сброс</string>
   <string name="restore">Восстановить</string>
@@ -93,56 +110,46 @@
   <string name="uptime">Время работы</string>
   <string name="error_frequencies">Не удалось загрузить частоты</string>
   <string name="unused_frequencies">Неиспользуемые частоты</string>
-  <!-- Device -->
-  <string name="processor">Процессор</string>
-  <string name="vendor">Производитель</string>
-  <string name="features">Особенности</string>
-  <string name="ram">ОЗУ</string>
-  <string name="android_version">Версия Android</string>
-  <string name="android_api_level">Android SDK</string>
-  <string name="android_codename">Кодовое имя Андроид</string>
-  <string name="fingerprint">Отпечаток</string>
-  <string name="build_display_id">Идентификатор сборки дисплея</string>
-  <string name="baseband">Модем</string>
-  <string name="rom">Прошивка</string>
-  <string name="bootloader">Загрузчик</string>
-  <string name="architecture">Архитектура</string>
   <!-- Inputs -->
   <string name="bus">Шина</string>
   <string name="product">Продукт</string>
   <string name="version">Версия</string>
   <string name="handlers">Обработчики</string>
   <!-- CPU -->
-  <string name="cores">%d ядер</string>
-  <string name="cpu_max_freq">Максимальная частота процессора</string>
-  <string name="cpu_max_freq_summary">Установите максимальную частоту процессора.</string>
-  <string name="cpu_min_freq">Минимальная частота процессора</string>
+  <string name="cores">Ядра: %d</string>
+  <string name="no_offline_core">Вы не можете отключить это ядро!</string>
+  <string name="cpu_max_freq">Максимальная частота ЦП</string>
+  <string name="cpu_max_freq_summary">Установите максимальную частоту работы ЦП.</string>
+  <string name="cpu_min_freq">Минимальная частота ЦП</string>
   <string name="cpu_min_freq_summary">Установите минимальную частоту процессора.</string>
   <string name="cpu_max_screen_off_freq">Максимальная частота ЦП при выключенном экране</string>
   <string name="cpu_max_screen_off_freq_summary">Установите максимальную частоту процессора при выключенном экране.</string>
-  <string name="cpu_governor">Говернор процессора</string>
-  <string name="cpu_governor_summary">Говернор процессора определяет, как процессор реагирует на изменения рабочей нагрузки. Смена говернора повлияет на обработку рабочих частот, доступных для Вашего процессора.</string>
-  <string name="cpu_governor_tunables">Переменные говернора</string>
-  <string name="cpu_governor_tunables_summary">Различные элементы конфигурации, которые зависят от говернора.</string>
+  <string name="cpu_governor">Регулятор ЦП</string>
+  <string name="cpu_governor_summary">Регулятор ЦП решает, как ЦП реагирует на изменения рабочей нагрузки. Смена регулятора повлияет на обработку рабочих частот, доступных для вашего ЦП.</string>
+  <string name="cpu_governor_tunables">Переменные регулятора ЦП</string>
+  <string name="cpu_governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
+  <string name="cpu_governor_tunables_read_error">Не удалось определить текущий регулятор.\n\nЕсли вы используете устройство QCOM с big.LITTLE, то это известная проблема. Система заставляет ЦП отключать ядра, делая крайне тяжелым считывание определённой статистики ЦП. Попробуйте выбрать эту опцию еще раз. Иногда ЦП отказывается включить ядро.</string>
+  <string name="tunables_error">%s не настраивается</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
   <string name="disabled">Отключено</string>
-  <string name="enabled">Вкл</string>
-  <string name="aggressive">Агрессивный</string>
-  <string name="power_saving_wq">Расписание workqueues на awake процессорах для экономии энергии.</string>
+  <string name="enabled">Включено</string>
+  <string name="aggressive">Агрессивное</string>
+  <string name="power_saving_wq">Планировать работу на рабочих ЦП для экономии энергии.</string>
   <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
-  <string name="cfs_scheduler_policy_summary">Система которая решает как использовать распределитель CFS  чтобы распределить различные задачи между CPU блоками.</string>
+  <string name="cfs_scheduler_policy_summary">Политика планировщика CFS решает, как сбалансировать задачи на разные блоки ЦП.</string>
   <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_quiet_summary">CPUQuiet реализует политику по отключению ядер процессора. Данная политика сохраняет заряд батареи без вреда производительности.</string>
-  <string name="cpu_quiet_governor">Говернор CPUQuiet</string>
-  <string name="cpu_boost">Ускорение процессора</string>
+  <string name="cpu_quiet_governor">Регулятор CPUQuiet</string>
+  <string name="cpu_boost">Ускорение ЦП</string>
   <string name="debug_mask">Маска отладки</string>
+  <string name="debug_mask_summary">Позволяет вам активировать маску отладки для операций.</string>
   <string name="interval">Интервал</string>
-  <string name="interval_summary">Минимальный интервал ускорения процессора.</string>
+  <string name="interval_summary">Минимальный интервал ускорения ЦП.</string>
   <string name="sync_threshold">Порог синхронизации</string>
-  <string name="sync_threshold_summary">Когда загрузка процессора превышает установленный порог, частота повышается до этой величины.</string>
+  <string name="sync_threshold_summary">Когда загрузка ЦП пресекает установленный порог, частота повышается до этой величины.</string>
   <string name="input_interval">Укажите интервал</string>
-  <string name="input_interval_summary">Минимальный интервал ускорения процессора при регистрации ввода.</string>
+  <string name="input_interval_summary">Минимальный интервал ускорения ЦП при обнаружении ввода.</string>
   <string name="input_boost_freq">Частота ускорения на входе</string>
   <string name="input_boost_freq_core">Ускорение ввода частоты ядра %s</string>
   <string name="input_boost_freq_summary">Значение, до которого будет повышена частота процессора при регистрации ввода.</string>
@@ -162,6 +169,7 @@
   <string name="mpdecision_summary">Контроль переключения ядер от Qualcomm. Может вызвать проблемы со со сменой частот, если включен.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Замена Qualcomm MDPecision. Разработано faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Число в скобках указывает количество ядер онлайн в любое время.</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Сбалансированный</string>
   <string name="performance">Производительность</string>
@@ -237,6 +245,7 @@
   <string name="mb_hotplug_summary">Замена Qualcomms MPDecision.
 Разработано </string>
   <string name="screen_off_single_cpu">Одно ядро при выключенном экране</string>
+  <string name="screen_off_single_cpu_summary">Использовать только одно ядро, когда экран выключен.</string>
   <string name="idle_frequency">Частота холостого хода</string>
   <string name="idle_frequency_summary">Если это первое ядро ниже этой частоты, то не включать остальные ядра.</string>
   <string name="touch_boost_time">Время ускорения процессора при касании</string>
@@ -256,6 +265,7 @@
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Замена ядра для Qualcomm hotplugging. Разработанный varunchitre15.</string>
   <string name="min_cpu_online_screen_off">Минимальное количество ядер при ВЫКЛ экране</string>
+  <string name="min_cpu_online_screen_off_summary">Максимальное кол-во включенных ядер CPU при выключенном экране.</string>
   <string name="endurance_level">Уровень стойкости</string>
   <string name="endurance_level_summary">Энергосберегающий профиль.</string>
   <string name="quad_core_mode">Четырёх-ядерный режим</string>
@@ -276,20 +286,27 @@
   <string name="cycle_up_summary">Циклы ожидания после последнего события hotplug подключить другое ядро.</string>
   <string name="core_control">Управление ядром</string>
   <string name="core_control_summary">Hotplug от Qualcomm. Извините, нельзя отключить его. #blameqcom</string>
+  <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">Модифицированный контроль ядер от OnePlus.</string>
+  <string name="busy_down_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
+  <string name="busy_up_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
   <string name="offline_delay_summary">Время до отключения процессора.</string>
   <!--Thermal-->
   <string name="warning">Внимание</string>
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Стандартный термодрайвер, который защищает устройство от перегрева. Его следует отключить, если ядро имеет альтернативу ему.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Замена стандартного контроля температур от Qualcomm. Разработано faux123.</string>
   <string name="intellithermal_optimized">Intellithermal оптимизация</string>
   <string name="intellithermal_optimized_summary">Улучшенная замена стандартного контроля температур от Qualcomm. Разработано faux123 и alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Позволяет активировать маску отладки для терморегулировки.</string>
   <string name="vdd_restriction">VDD ограничение</string>
   <string name="freq_throttle_temp">Троттлинг частоты при температуре</string>
   <string name="freq_throttle_temp_summary">Температура начала троттлинга частоты.</string>
   <string name="cpu_throttle_temp">Температура троттлинга ядра</string>
   <string name="cpu_throttle_temp_summary">Температура отключения процессора.</string>
+  <string name="cpu_temp_hysteresis">Гистерезис температур ядра</string>
   <string name="freq_step">Шаг частоты</string>
   <string name="immediately_limit_stop">Сразу же ограничить</string>
   <string name="poll">Опрос</string>
@@ -317,6 +334,7 @@
   <string name="check_interval">Интервал проверки</string>
   <string name="shutdown_temp">Температура выключения</string>
   <!-- GPU -->
+  <string name="frequencies">Частоты</string>
   <string name="gpu_2d_freq">Частота GPU 2D</string>
   <string name="gpu_freq">Частота GPU</string>
   <string name="gpu_2d_max_freq">Максимальная частота GPU при 2D операциях</string>
@@ -325,18 +343,18 @@
   <string name="gpu_max_freq_summary">Установите максимальную частоту GPU.</string>
   <string name="gpu_min_freq">Минимальная частота GPU</string>
   <string name="gpu_min_freq_summary">Установите минимальную частоту, до которой опускается графический процессор.</string>
-  <string name="gpu_2d_governor">Говернор GPU 2D</string>
-  <string name="gpu_2d_governor_summary">Установите говернор GPU для режима 2D.</string>
-  <string name="gpu_governor">Говернор GPU</string>
-  <string name="gpu_governor_summary">Установите говернор GPU.</string>
+  <string name="gpu_2d_governor">2D регулятор графического процессора</string>
+  <string name="gpu_2d_governor_summary">Установите 2D регулятор графического процессора.</string>
+  <string name="gpu_governor">Регулятор графического процессора</string>
+  <string name="gpu_governor_summary">Установить регулятор графического процессора.</string>
   <string name="simple_gpu_algorithm">Простой алгоритм GPU</string>
-  <string name="simple_gpu_algorithm_summary">Дополнение к говернору MSM Andreno TZ.
-Разработано faux123.</string>
+  <string name="simple_gpu_algorithm_summary">Дополнение к регулятору графического процессора MSM Andreno TZ. Разработано faux123.</string>
   <string name="laziness">Ленивость</string>
   <string name="laziness_summary">Увеличивает порог увеличения или уменьшения частоты GPU. Чем меньше значение тем больше производительность.</string>
   <string name="ramp_thresold">Ramp Thresold</string>
   <string name="ramp_thresold_summary">Увеличивает частоту запроса частот у GPU. Чем выше значение, тем выше производительность.</string>
   <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Эффективное решение для перегрузок msm-adreno-tz. Разработано arter97.</string>
   <string name="down_differential">Дифференциал снижения</string>
   <string name="down_differential_summary">Пороговое значение нагрузки простоя.</string>
   <string name="idle_wait">Режим ожидания</string>
@@ -443,6 +461,7 @@
   <string name="camera_gesture_summary">Запуск камеры по умолчанию рисунком круга на экране.</string>
   <string name="pocket_mode">Режим В кармане</string>
   <string name="pocket_mode_summary">Активация этой функции отключит управление пробуждением при нахождении устройства в кармане.</string>
+  <string name="timeout_summary">Установите задержку, после которой пробуждение по дв. тапу будет отключено, когда экран погаснет.</string>
   <string name="power_key_suspend">Отключение сенсора при нажатии кнопки питания</string>
   <string name="power_key_suspend_summary">Включите, чтобы жесты пробуждения отключались при блокировке экрана кнопкой питания.</string>
   <!-- Sound -->
@@ -465,7 +484,9 @@
   <string name="blx_summary">Установите максимальный уровень заряда батареи, установив значение от 0 до 100.</string>
   <string name="charge_rate">Скорость заряда</string>
   <string name="charging_current">Зарядный ток</string>
+  <string name="charging_current_summary">Пользовательские настройки зарядки. ВНИМАНИЕ: Превышение тока в 1250мА может повредить зарядку или ваше мобильное устройство.</string>
   <!-- LED -->
+  <string name="stock">Стандартный</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутренняя память</string>
   <string name="external_storage">Внешняя память</string>
@@ -475,6 +496,9 @@
   <string name="scheduler_tunable_summary">Компоненты конфигурации, зависящие от планировщика.</string>
   <string name="read_ahead">Упреждающее чтение</string>
   <string name="read_ahead_summary">Значение пост-чтения памяти телефона.</string>
+  <string name="iostats">Статистика ввода-вывода</string>
+  <string name="iostats_summary">Вести статистику ввода-вывода для этого устройства памяти. Отключение может сломать функционал приложений для мониторинга ввода-вывода.</string>
+  <string name="add_random">Добавить случайное значение</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Полное сканирование</string>
   <string name="pages_shared">Общие страницы</string>
@@ -486,6 +510,8 @@
   <string name="deferred_timer_summary">Уменьшает нагрузку на CPU, но экономит меньше памяти.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Активные приложения</string>
+  <string name="lmk_adaptive">Адаптивный Low Memory Killer</string>
+  <string name="lmk_adaptive_summary">Low Memory Killer будет становиться более агрессивным при обнаружении переполнения памяти.</string>
   <string name="visible_app">Видимые приложения</string>
   <string name="secondary_server">Вторичные приложения</string>
   <string name="hidden_app">Скрытые приложения</string>
@@ -495,7 +521,13 @@
   <string name="light">Легкий</string>
   <string name="medium">Средний</string>
   <string name="very_aggressive">Очень агрессивный</string>
+  <string name="kill_lmk">Убрать LMK</string>
+  <string name="kill_lmk_summary">Убратт LMK, когда используется своп.</string>
+  <string name="kill_lmk_threshold_summary">Насколько должна быть заполнена подкачка, чтобы убить LMK.</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Размер диска</string>
+  <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
   <!-- Entropy -->
   <string name="available">Доступно</string>
   <string name="poolsize">Размер пула</string>
@@ -537,21 +569,29 @@
   <string name="wlan_ctrl_wakelock_summary">Предотвратить wlan_ctrl wakelock.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Предотвратить wlan wakelock.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Предотвратить BlueSleep Wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD wakelock divider</string>
   <!-- Custom Controls -->
   <string name="welcome">Добро пожаловать</string>
+  <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
   <string name="example">Примеры</string>
   <string name="create">Создать</string>
   <string name="import_item">Импорт</string>
   <string name="control_switch">Переключатель</string>
+  <string name="title">Заголовок</string>
   <string name="description">Описание</string>
   <string name="applying">Применение</string>
+  <string name="switch_enabled_summary">Указывает, включен ли переключатель. 1 - включен и 0 - выключен.</string>
+  <string name="switch_apply_summary">Переключатель будет возвращать 1 (включено) или 0 (отключено), в качестве аргумента вашему скрипту.</string>
   <string name="seekbar_min">Минимально</string>
   <string name="seekbar_max">Максимально</string>
   <string name="seekbar_progress">Прогресс</string>
   <string name="control_generic">Универсальный</string>
   <string name="generic_value">Значение</string>
+  <string name="generic_apply_summary">Редактор будет возвращать все, что было написано.</string>
   <string name="required">Обязательно</string>
   <string name="test">Проверка настроек</string>
   <string name="output">Вывод</string>
@@ -560,10 +600,16 @@
   <string name="delete">Удалить</string>
   <string name="sure_question">Вы уверены?</string>
   <string name="name">Название</string>
+  <string name="already_exists">%s уже существует!</string>
   <string name="name_empty">Пустое имя!</string>
+  <string name="import_malformed">Импортируемый файл поврежден!</string>
+  <string name="import_wrong_version">Версия импортируемого файла слишком старая!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Не удалось найти поддерживаемые ядра. Проверьте подключение к интернету.</string>
+  <string name="download_error">Сбой загрузки%s.</string>
   <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="check_md5">Проверка md5</string>
+  <string name="md5_mismatch">MD5 хэш загруженного файла другой. Скорее всего, это вызвано тем, что:\n\n\u2022 загруженный файл повреждён\n\u2022 разработчик выложил неверный хэш\n\nПопробуйте загрузить файл заново. Если вы продолжите получать эту ошибку, свяжитесь с разработчиком данного ядра.</string>
   <string name="install">Установить</string>
   <string name="cwm_recovery">CWM рекавери</string>
   <string name="twrp">TWRP</string>
@@ -574,11 +620,13 @@
   <string name="restoring">Восстановление в процессе</string>
   <!-- Backup -->
   <string name="boot_partition">Загрузочный раздел</string>
+  <string name="recovery_partition">Раздел recovery</string>
   <string name="flash">Прошить</string>
   <!-- Build prop Editor -->
   <string name="search">Поиск</string>
   <string name="key">Ключ</string>
   <string name="value">Значение</string>
+  <string name="key_empty">Поле не может быть пустым!</string>
   <!-- Profile -->
   <string name="no_changes">Без изменений!</string>
   <string name="apply_question">Применить %s?</string>
@@ -586,29 +634,46 @@
   <string name="wipe_data">Очистить раздел Data</string>
   <string name="wipe_cache">Стереть кэш</string>
   <string name="flash_zip">Сохранить Zip</string>
+  <string name="add_action_first">Сначала добавьте действие.</string>
   <string name="flash_now_confirm">Вы уверены? Ваше устройство перезагрузится в Recovery и действия будут выполнены в порядке добавления.</string>
   <string name="press_again_to_apply">Нажмите %s снова, чтобы применить.</string>
   <string name="applied">Применено</string>
+  <string name="profile_tasker_summary">Если вы хотите применить профиль на определенное событие, например запуск приложения, вы должны использовать Tasker.</string>
+  <string name="profile_tasker_toast">Показывать всплывающие уведомление когда Таскер применяет профиль</string>
+  <string name="profile_tile">Плитка профиля</string>
+  <string name="profile_tile_summary">Показать плитку, позволяющую вам выбрать профиль.</string>
   <string name="profile_select">Выберите профиль</string>
   <string name="applying_profile">Применение %s!</string>
   <string name="no_profiles">Профиль не найден! Вы должны сначала создать их.</string>
+  <string name="sections_disabled">Все секции отключены! Профилей не осталось.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Эмулировать Init.d</string>
+  <string name="emulate_initd_summary">Если ваше устройство не поддерживает init.d, можно включить здесь его эмуляцию.</string>
+  <string name="exceute_question">Выполнить %s?</string>
   <string name="executing">Выполнение</string>
   <string name="result">Результат</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Этот раздел показывает вам, какие вещи будут происходить, когда ваше устройство загружается. Если он пустой, то ничего не произойдет после загрузки.</string>
+  <string name="delete_question">Удалить %s?</string>
+  <string name="arguments">Параметры: %s</string>
+  <string name="disable_question">Отключить %s?</string>
   <!-- About -->
+  <string name="about_me">Привет, я Willi Ye aka Graham, 19-летний студент из Виенны. Занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor занимаюсь поддержкой CyanogenMod для некоторых устройств, а также работаю над прошивкой ParanoidAndroid. Поэтому прошу прошу понять, если приложение долгое время не обновляется.</string>
   <string name="libraries_used">Использованы библиотеки</string>
   <!-- Contributors -->
+  <string name="commits">%d коммиты</string>
   <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
   <!-- FAQ -->
   <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
   <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
   <string name="have_to_donate">Должен ли я пожертвовать для того, чтобы использовать эти функции премиум-класса?</string>
+  <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы можете сами его собрать. При этом функции платной версии включаются при debug сборке apk-файла, так что для их получения нет нужны править код.</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
   <string name="cpu_freq_not_sticking_summary">Это может быть вызвано многими причинами. Многие ядра в настоящее время имеют свои собственные системы hotplugging, которая контролирует частоту процессора и CyanogenMod имеет свои собственные реализации Boost процессор, который регулирует частоту. Я хотел бы предложить вам не прикасайтесь частоты процессора и пусть ядро делать свою работу. Это также относится и других функций! Если они не придерживаются, это потому, что ядро/система не хочет, чтобы препятствовать вам изменить его.</string>
+  <string name="feature_not_appearing">Почему нет функции x и y?</string>
   <string name="feature_not_appearing_summary">Отображаются только те функции, которые поддерживаются устройством!</string>
   <string name="feature_function">Что делает функция x?</string>
+  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Лучше тщательно изучить его, прежде чем играть с железом вашего аппарата.</string>
   <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
   <string name="add_new_features_summary">Это трудно сказать. Я пытаюсь добавить все функции, но это трудно сделать это приложение универсального для всех устройств.</string>
   <!-- Settings -->
@@ -620,7 +685,14 @@
   <string name="twenty_sec">20 секунд</string>
   <string name="fifty_sec">50 секунд</string>
   <string name="apply_on_boot_test_summary">Тест применяется на загрузке. Это включает в себя все виды вещей, которые применяются как во время загрузки, такие как пользовательские элементы управления, профили, init.d, и т.д.</string>
+  <string name="apply_on_boot_running">Применение настроек при загрузке уже активировано. Пожалуйста, дождитесь, пока оно не завершится.</string>
   <string name="nothing_apply">Ничего не найдено для применения!</string>
+  <string name="hide">Скрыть</string>
+  <string name="apply_on_boot_hide_summary">Скрыть уведомления при применении настроек при загрузке. При этом задержка останется.</string>
+  <string name="toast">Всплывающее оповещение</string>
+  <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
+  <string name="script">Скрипт</string>
+  <string name="apply_on_boot_script_summary">Использовать консольные скрипты для применения настроек. Используйте это только в том случае, если у вас возникают проблемы с применением при загрузке. Если же проблема останется даже после включения этой опции, проверьте, нет ли конфликтующих приложений для настройки ядра.</string>
   <string name="debugging">Отладка</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопировать logcat в /sdcard/logcat.txt</string>
@@ -638,6 +710,9 @@
   <string name="old_password_wrong">Старый пароль неверный</string>
   <string name="password_empty">Пароль пуст</string>
   <string name="password_not_match">Новый пароль не совпадает с подтверждением</string>
+  <string name="password_too_long">Пароль слишком длинный (макс. 32 символов)</string>
   <string name="set_password_first">Сначала установите пароль</string>
   <string name="fingerprint_summary">Использование отпечатка пальца пройти проверки безопасности. Это будет работать, как долго вы зарегистрированы отпечатки пальцев.</string>
+  <string name="sections">Разделы</string>
+  <string name="sections_summary">Перезапустите приложение, когда вы измените видимость разделов, указанных ниже.</string>
 </resources>

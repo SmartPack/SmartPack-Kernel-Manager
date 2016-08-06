@@ -42,11 +42,11 @@
   <string name="profile">פרופיל</string>
   <string name="initd">Init.d</string>
   <string name="settings">הגדרות</string>
+  <!-- Device -->
   <!-- Overall -->
   <string name="offline">במצב לא מקוון</string>
   <string name="core">ליבה %d</string>
   <string name="uptime">זמן ריצה</string>
-  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">תדר מעבד מרבי</string>

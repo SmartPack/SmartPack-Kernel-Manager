@@ -71,18 +71,6 @@
   <string name="contributors">Unterstützer</string>
   <string name="faq">FAQ</string>
   <string name="settings">Einstellungen</string>
-  <!-- Overall -->
-  <string name="offline">Ausgeschaltet</string>
-  <string name="core">Kern %d</string>
-  <string name="temperature">Temperatur</string>
-  <string name="frequencies">Frequenzen</string>
-  <string name="refresh">Aktualisieren</string>
-  <string name="reset">Zurücksetzen</string>
-  <string name="restore">Wiederherstellen</string>
-  <string name="deep_sleep">Tiefschlaf</string>
-  <string name="uptime">Laufzeit</string>
-  <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
-  <string name="unused_frequencies">Ungenutzte Frequenzen</string>
   <!-- Device -->
   <string name="processor">Prozessor</string>
   <string name="vendor">Hersteller</string>
@@ -96,6 +84,16 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektur</string>
+  <!-- Overall -->
+  <string name="offline">Ausgeschaltet</string>
+  <string name="core">Kern %d</string>
+  <string name="refresh">Aktualisieren</string>
+  <string name="reset">Zurücksetzen</string>
+  <string name="restore">Wiederherstellen</string>
+  <string name="deep_sleep">Tiefschlaf</string>
+  <string name="uptime">Laufzeit</string>
+  <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
+  <string name="unused_frequencies">Ungenutzte Frequenzen</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produkt</string>
@@ -282,6 +280,7 @@
   <string name="check_interval">Prüfintervall</string>
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
   <!-- GPU -->
+  <string name="frequencies">Frequenzen</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_2d_max_freq_summary">Maximale Taktfrequenz der 2D-GPU einstellen.</string>
   <string name="gpu_max_freq">Maximale GPU-Frequenz</string>

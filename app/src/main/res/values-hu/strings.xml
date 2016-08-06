@@ -53,8 +53,9 @@
   <string name="tools">Eszközök</string>
   <string name="other">Egyéb</string>
   <!-- Menus -->
-  <string name="overall">Teljes</string>
   <string name="device">Eszköz</string>
+  <string name="overall">Teljes</string>
+  <string name="memory">Memória</string>
   <string name="inputs">Bevitelek</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU feszültség</string>
@@ -84,18 +85,6 @@
   <string name="contributors">Közreműködők</string>
   <string name="faq">GYIK</string>
   <string name="settings">Beállítások</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Mag %d</string>
-  <string name="temperature">Hőmérséklet</string>
-  <string name="frequencies">Frekvenciák</string>
-  <string name="refresh">Frissítés</string>
-  <string name="reset">Alaphelyzet</string>
-  <string name="restore">Visszaállítás</string>
-  <string name="deep_sleep">Mélyalvás</string>
-  <string name="uptime">Üzemidő</string>
-  <string name="error_frequencies">Nem sikerült betölteni a frekvenciákat</string>
-  <string name="unused_frequencies">Nem használt frekvenciák</string>
   <!-- Device -->
   <string name="processor">Processzor</string>
   <string name="vendor">Beszállító</string>
@@ -111,6 +100,16 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardver</string>
   <string name="architecture">Architektúra</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Mag %d</string>
+  <string name="refresh">Frissítés</string>
+  <string name="reset">Alaphelyzet</string>
+  <string name="restore">Visszaállítás</string>
+  <string name="deep_sleep">Mélyalvás</string>
+  <string name="uptime">Üzemidő</string>
+  <string name="error_frequencies">Nem sikerült betölteni a frekvenciákat</string>
+  <string name="unused_frequencies">Nem használt frekvenciák</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Termék</string>
@@ -118,6 +117,7 @@
   <string name="handlers">Kezelők</string>
   <!-- CPU -->
   <string name="cores">%d mag</string>
+  <string name="no_offline_core">Nem kapcsolhatod ki ezt a magot!</string>
   <string name="cpu_max_freq">Maximális CPU frekvencia</string>
   <string name="cpu_max_freq_summary">A maximális frekvencia, amit a CPU használhat.</string>
   <string name="cpu_min_freq">Minimális CPU frekvencia</string>
@@ -336,6 +336,7 @@
   <string name="check_interval">Ellenőrzések időköze</string>
   <string name="shutdown_temp">Kikapcsolási hőmérséklet</string>
   <!-- GPU -->
+  <string name="frequencies">Frekvenciák</string>
   <string name="gpu_2d_freq">GPU 2D frekvencia</string>
   <string name="gpu_freq">GPU frekvencia</string>
   <string name="gpu_2d_max_freq">GPU 2D maximális frekvencia</string>
@@ -503,6 +504,10 @@
   <string name="scheduler_tunable_summary">Különböző konfigurációs elemek, amelyek Ütemező-függőek.</string>
   <string name="read_ahead">Előreolvasás</string>
   <string name="read_ahead_summary">Az előreolvasás értéke a telefon memóriáján.</string>
+  <string name="rotational">Merevlemez</string>
+  <string name="rotational_summary">Memória kezelése merevlemezként.</string>
+  <string name="iostats">I/O statisztika</string>
+  <string name="add_random">Véletlenszerű hozzáadása</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Teljes vizsgálat</string>
   <string name="pages_shared">Megosztott lapok</string>
@@ -514,6 +519,8 @@
   <string name="sleep_milliseconds">Alvás keresések között</string>
   <string name="deferred_timer">Késleltetett időzítő</string>
   <string name="deferred_timer_summary">Csökkent néhány CPU használatot a kevesebb memória-megtakarítás fejében.</string>
+  <string name="max_cpu_usage">Maximális CPU használat</string>
+  <string name="max_cpu_usage_summary">Max. CPU terhelés használata az oldalak egyesítésénél.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Előtér alkalmazások</string>
   <string name="lmk_adaptive">Adaptive Low Memory Killer</string>
@@ -532,6 +539,9 @@
   <string name="kill_lmk_threshold">LMK tiltási küszöb</string>
   <string name="kill_lmk_threshold_summary">Mennyire kell a swap-nek tele lennie az LMK tiltásához.</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Lemezméret</string>
+  <string name="disksize_summary">Megpróbálja növelni a teljesítményt, elkerülve a lapozást a fizikai tárolón, helyette egy tömörített virtuális eszközt használ a RAM-ban. A lapozás a RAM-ban zajlik, amíg nincs szükség a fizikai tároló swap területének használatára.</string>
   <!-- Entropy -->
   <string name="available">Elérhető</string>
   <string name="poolsize">Medenceméret</string>
@@ -548,6 +558,8 @@
   <string name="dynamic_fsync_summary">Amikor engedélyezett és a képernyő be van kapcsolva, az fsync művelet aszinkron működik. Amikor a képernyő ki van kapcsolva, ez a művelet szinkron működik.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="gentlefairsleepers_summary">Az alvóknak csak a szolgáltatásuk hiányának 50%-át adja. Letiltásával egy kis akkumulátor energiát spórolhat.</string>
+  <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">Architektúra-függő energia funkciók/megtakarítások engedélyezése.</string>
   <string name="power_suspend_mode">Energia felfüggesztési üzemmód</string>
   <string name="power_suspend_mode_summary">Kernel üzemmód, az LCD Hook-ok és a Legmagasabb Szintű Hook-ok automatikusan a kernel által kezeltek. Az Energia felfüggesztési állapot manuális engedélyezéséhez vagy tiltásához, válaszd a Felhasználói módot.</string>
   <string name="autosleep">Autosleep</string>
@@ -573,8 +585,11 @@
   <string name="wlan_ctrl_wakelock_summary">Megakadályozza a wlan_ctrl wakelock-ot.</string>
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="wlan_wakelock_summary">Megakadályozza a wlan wakelock-ot.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">BlueSleep wakelock megakadályozása.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx wakelock elválasztó</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>
@@ -656,6 +671,7 @@
   <string name="profile_select">Profil kiválasztása</string>
   <string name="applying_profile">%s alkalmazása!</string>
   <string name="no_profiles">Nem található profil! Először létre kell hozni őket.</string>
+  <string name="sections_disabled">Minden szekció le van tiltva! Nincs profil számodra.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulálása</string>
   <string name="emulate_initd_summary">Ha a készüléked nem támogatja az Init.d-t alapértelmezetten, akkor ennek bekapcsolásával emulálható a viselkedése.</string>
@@ -663,6 +679,10 @@
   <string name="executing">Végrehajtás</string>
   <string name="result">Eredmény</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Ez a szekció ismerteti, hogy mi fog történni az eszköz indulásakor. Ha üres, akkor semmi nem fog történni induláskor.</string>
+  <string name="delete_question">%s törlése?</string>
+  <string name="arguments">Paraméterek: %s</string>
+  <string name="disable_question">%s tiltása?</string>
   <!-- About -->
   <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében CyanogenMod közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
   <string name="libraries_used">Használt könyvtárak</string>
@@ -691,7 +711,14 @@
   <string name="twenty_sec">20 másodperc</string>
   <string name="fifty_sec">50 másodperc</string>
   <string name="apply_on_boot_test_summary">Alkalmazás induláskor tesztelése. Ez magában foglalja az összes dolgot, amelyek induláskor alkalmazásra kerülnek, például egyéni vezérlők, profilok, init.d, stb.</string>
+  <string name="apply_on_boot_running">Alkalmazás induláskor szolgáltatás már fut. Kérlek várj, míg végigfut.</string>
   <string name="nothing_apply">Nincs semmi, amit alkalmazni lehetne!</string>
+  <string name="hide">Elrejtés</string>
+  <string name="apply_on_boot_hide_summary">Alkalmazás induláskor értesítésének elrejtése. A késleltetés továbbra is megmarad!</string>
+  <string name="toast">Buborékszöveg</string>
+  <string name="apply_on_boot_toast_summary">Buborékszöveg megjelenítése, ha a beállítás alkalmazásra került.</string>
+  <string name="script">Szkript</string>
+  <string name="apply_on_boot_script_summary">Beállítások alkalmazása egy parancsfájl segítségével. Kérlek, csak akkor használd, ha gondod van az Alkalmazás induláskor beállítással. Ha a probléma továbbra is fennáll a beállítás engedélyezése után, kérlek, győződj meg arról, hogy nem ütközik más alkalmazás a Kernel Adiutorral.</string>
   <string name="debugging">Hibakeresés</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Logcat másolása ide: /sdcard/logcat.txt</string>
@@ -712,4 +739,6 @@
   <string name="password_too_long">Jelszó túl hosszú (max. 32 karakter)</string>
   <string name="set_password_first">Először állítsa be a jelszót</string>
   <string name="fingerprint_summary">Ujjlenyomat használata a biztonsági ellenőrzéshez. Ez addig fog működni, amíg az ujjlenyomata regisztrálva van.</string>
+  <string name="sections">Szekciók</string>
+  <string name="sections_summary">Indítsd újra az alkalmazást, ha az alábbi szekciók láthatóságát változtattad.</string>
 </resources>
