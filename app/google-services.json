@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "239075702525-kj8f88cp7nu77oi5ovpdujurj5mfsjsf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grarak.kerneladiutor",
+            "certificate_hash": "C34BD6492E928F208A141B06401019AAE9BB0340"
+          }
+        },
+        {
           "client_id": "239075702525-imr8nq1dicr9ii17uauucl8qvqhq68a2.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -32,6 +32,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.MobileAds;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.services.profile.Tile;
@@ -221,6 +222,7 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
+            MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
             new AsyncTask<Void, Void, Boolean>() {
 
                 private ApplicationInfo mApplicationInfo;

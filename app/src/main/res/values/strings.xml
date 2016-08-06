@@ -25,6 +25,8 @@
     <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though. Because this app is open source you can easily build it yourself and remove this check. But I hope you support developers anyway. Thanks for using Kernel Adiutor! Once you bought the donation app you have to restart Kernel Adiutor in order to enable all features.</string>
     <string name="donate_nope">I won\'t fall for this scam!</string>
     <string name="donate_yes">I love this app. Must donate!</string>
+    <string name="ad_here">Your advertisement could be here</string>
+    <string name="remove_ad">Remove ad</string>
 
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_text">Applying settings in %d seconds.</string>

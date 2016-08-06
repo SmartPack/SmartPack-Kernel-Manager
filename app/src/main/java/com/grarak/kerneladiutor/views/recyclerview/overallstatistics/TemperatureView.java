@@ -19,9 +19,7 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
@@ -57,11 +55,7 @@ public class TemperatureView extends RecyclerViewItem {
         mGPU = (TextView) view.findViewById(R.id.gpu);
         mBattery = (TextView) view.findViewById(R.id.battery);
 
-        StaggeredGridLayoutManager.LayoutParams layoutParams =
-                new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setFullSpan(true);
-        view.setLayoutParams(layoutParams);
+        setFullSpan(true);
         super.onCreateView(view);
     }
 

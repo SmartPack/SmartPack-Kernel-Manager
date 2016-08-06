@@ -29,6 +29,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -75,6 +78,32 @@ public class BaseActivity extends AppCompatActivity {
             });
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void initAd() {
+        if (Utils.DONATED) return;
+
+        findViewById(R.id.ad_parent).setVisibility(View.VISIBLE);
+        final View text = findViewById(R.id.ad_text);
+        final AdView adView = (AdView) findViewById(R.id.ad);
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                adView.setVisibility(View.GONE);
+                text.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                adView.setVisibility(View.VISIBLE);
+                text.setVisibility(View.GONE);
+            }
+        });
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        adView.loadAd(adRequest);
     }
 
     protected boolean setStatusBarColor() {
