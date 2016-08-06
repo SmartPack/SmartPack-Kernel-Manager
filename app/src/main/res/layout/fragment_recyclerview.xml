@@ -9,18 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="200dp"
+        android:paddingTop="150dp"
         android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/viewpagerparent"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="197dp"
+            android:layout_height="147dp"
             android:background="@color/colorPrimary">
 
             <android.support.v4.view.ViewPager
