@@ -209,9 +209,8 @@ public class CPUFreq {
             for (int i = min; i <= max; i++) {
                 MSMPerformance.setCpuMinFreq(freq, i, context);
             }
-        } else {
-            applyCpu(CPU_MIN_FREQ, String.valueOf(freq), min, max, context);
         }
+        applyCpu(CPU_MIN_FREQ, String.valueOf(freq), min, max, context);
     }
 
     public static int getMinFreq(boolean forceRead) {
@@ -230,12 +229,11 @@ public class CPUFreq {
             for (int i = min; i <= max; i++) {
                 MSMPerformance.setCpuMaxFreq(freq, i, context);
             }
+        }
+        if (Utils.existFile(Utils.strFormat(CPU_MAX_FREQ_KT, 0))) {
+            applyCpu(CPU_MAX_FREQ_KT, String.valueOf(freq), min, max, context);
         } else {
-            if (Utils.existFile(Utils.strFormat(CPU_MAX_FREQ_KT, 0))) {
-                applyCpu(CPU_MAX_FREQ_KT, String.valueOf(freq), min, max, context);
-            } else {
-                applyCpu(CPU_MAX_FREQ, String.valueOf(freq), min, max, context);
-            }
+            applyCpu(CPU_MAX_FREQ, String.valueOf(freq), min, max, context);
         }
     }
 
