@@ -40,7 +40,6 @@ public class Control {
     private boolean mProfileMode;
     private LinkedHashMap<String, String> mProfileCommands = new LinkedHashMap<>();
 
-    private Thread mSyncThread;
     private List<Thread> mThreads = new ArrayList<>();
 
     public static String setProp(String prop, String value) {
@@ -97,7 +96,7 @@ public class Control {
                 apply(command, category, id, context);
                 if (mThreads.size() > 0) {
                     mThreads.remove(0);
-                    if (mThreads.size() > 0) {
+                    if (mThreads.size() > 0 && !mThreads.get(0).isAlive()) {
                         mThreads.get(0).start();
                     }
                 }
