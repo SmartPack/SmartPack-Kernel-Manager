@@ -19,13 +19,10 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AlucardHotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AutoSmp;
@@ -55,21 +52,18 @@ import java.util.List;
 public class CPUHotplug extends RecyclerViewFragment {
 
     private List<SwitchView> mEnableViews = new ArrayList<>();
-    private AlertDialog.Builder mWarningDialog;
 
     @Override
     protected void init() {
         super.init();
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU_HOTPLUG));
-
-        if (mWarningDialog != null) {
-            mWarningDialog.show();
-        }
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        mEnableViews.clear();
+
         if (MPDecision.supported()) {
             mpdecisionInit(items);
         }
@@ -111,21 +105,7 @@ public class CPUHotplug extends RecyclerViewFragment {
                     for (SwitchView view : mEnableViews) {
                         if (!view.getTitle().equals(switchView.getTitle()) && view.isChecked()
                                 && switchView.isChecked()) {
-                            mWarningDialog = ViewUtils.dialogBuilder(getString(R.string.hotplug_warning),
-                                    null, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    }, new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            mWarningDialog = null;
-                                        }
-                                    }, getActivity());
-                            try {
-                                mWarningDialog.show();
-                            } catch (NullPointerException ignored) {
-                            }
+                            Utils.toast(R.string.hotplug_warning, getActivity());
                         }
                     }
                 }
