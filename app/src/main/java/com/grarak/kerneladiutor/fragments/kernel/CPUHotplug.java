@@ -122,7 +122,10 @@ public class CPUHotplug extends RecyclerViewFragment {
                                             mWarningDialog = null;
                                         }
                                     }, getActivity());
-                            mWarningDialog.show();
+                            try {
+                                mWarningDialog.show();
+                            } catch (NullPointerException ignored) {
+                            }
                         }
                     }
                 }

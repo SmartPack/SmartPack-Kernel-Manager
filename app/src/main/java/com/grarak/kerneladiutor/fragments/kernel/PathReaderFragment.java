@@ -100,22 +100,25 @@ public class PathReaderFragment extends RecyclerViewFragment {
                             }
                             showArrayDialog(values, mPath + "/" + file, file);
                         } else {
-                            ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }, new ViewUtils.OnDialogEditTextListener() {
-                                @Override
-                                public void onClick(String text) {
-                                    run(Control.write(text, mPath + "/" + file), mPath + "/" + file);
-                                    getHandler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            reload();
-                                        }
-                                    }, 200);
-                                }
-                            }, getActivity()).show();
+                            try {
+                                ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                }, new ViewUtils.OnDialogEditTextListener() {
+                                    @Override
+                                    public void onClick(String text) {
+                                        run(Control.write(text, mPath + "/" + file), mPath + "/" + file);
+                                        getHandler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                reload();
+                                            }
+                                        }, 200);
+                                    }
+                                }, getActivity()).show();
+                            } catch (NullPointerException ignored) {
+                            }
                         }
                     }
                 });

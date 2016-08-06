@@ -217,7 +217,10 @@ public class InitdFragment extends RecyclerViewFragment {
                                     mExecuteDialog = null;
                                 }
                             }, getActivity());
-                    mExecuteDialog.show();
+                    try {
+                        mExecuteDialog.show();
+                    } catch (NullPointerException ignored) {
+                    }
                 }
             });
 
