@@ -66,8 +66,8 @@
     <string name="other">Other</string>
 
     <!-- Menus -->
-    <string name="overall">Overall</string>
     <string name="device">Device</string>
+    <string name="overall">Overall</string>
     <string name="memory">Memory</string>
     <string name="inputs">Inputs</string>
     <string name="cpu">CPU</string>
@@ -99,21 +99,6 @@
     <string name="faq">FAQ</string>
     <string name="settings">Settings</string>
 
-    <!-- Overall -->
-    <string name="offline">Offline</string>
-    <string name="core">Core %d</string>
-    <string name="temperature">Temperature</string>
-    <string name="frequencies">Frequencies</string>
-    <string name="refresh">Refresh</string>
-    <string name="reset">Reset</string>
-    <string name="restore">Restore</string>
-    <string name="cluster_big" translatable="false">big</string>
-    <string name="cluster_little" translatable="false">LITTLE</string>
-    <string name="deep_sleep">Deep sleep</string>
-    <string name="uptime">Uptime</string>
-    <string name="error_frequencies">Failed to load frequencies</string>
-    <string name="unused_frequencies">Unused Frequencies</string>
-
     <!-- Device -->
     <string name="processor">Processor</string>
     <string name="vendor">Vendor</string>
@@ -130,6 +115,21 @@
     <string name="trustzone" translatable="false">TrustZone</string>
     <string name="hardware">Hardware</string>
     <string name="architecture">Architecture</string>
+
+    <!-- Overall -->
+    <string name="offline">Offline</string>
+    <string name="core">Core %d</string>
+    <string name="temperature">Temperature</string>
+    <string name="frequencies">Frequencies</string>
+    <string name="refresh">Refresh</string>
+    <string name="reset">Reset</string>
+    <string name="restore">Restore</string>
+    <string name="cluster_big" translatable="false">big</string>
+    <string name="cluster_little" translatable="false">LITTLE</string>
+    <string name="deep_sleep">Deep sleep</string>
+    <string name="uptime">Uptime</string>
+    <string name="error_frequencies">Failed to load frequencies</string>
+    <string name="unused_frequencies">Unused Frequencies</string>
 
     <!-- Inputs -->
     <string name="bus">Bus</string>

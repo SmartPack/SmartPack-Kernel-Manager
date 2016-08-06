@@ -102,8 +102,8 @@ public class NavigationActivity extends BaseActivity
 
     static {
         sFragments.put(R.string.statistics, null);
-        sFragments.put(R.string.overall, new OverallFragment());
         sFragments.put(R.string.device, new DeviceFragment());
+        sFragments.put(R.string.overall, new OverallFragment());
         if (Device.MemInfo.getItems().size() > 0) {
             sFragments.put(R.string.memory, new MemoryFragment());
         }
