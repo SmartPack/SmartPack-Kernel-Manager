@@ -101,8 +101,12 @@ public class RootUtils {
     }
 
     public static SU getSU() {
-        if (su == null) su = new SU();
-        else if (su.closed || su.denied) su = new SU();
+        if (su == null || su.closed || su.denied) {
+            if (su != null) {
+                su.close();
+            }
+            su = new SU();
+        }
         return su;
     }
 
