@@ -127,7 +127,7 @@
   <string name="cpu_governor">Zarządca CPU</string>
   <string name="cpu_governor_summary">Zarządca CPU określa w jaki sposób CPU się zachowuje w odpowiedzi na obciążenie. Zmiana zarządcy ma wpływ na to, w jaki sposób CPU zmienia różne dostępne częstotliwości.</string>
   <string name="cpu_governor_tunables">Konfiguracja zarządcy procesora</string>
-  <string name="cpu_governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
+  <string name="governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
   <string name="mc_power_saving">Wielordzeniowe oszczędzanie energii</string>

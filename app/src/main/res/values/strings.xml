@@ -150,7 +150,7 @@
     <string name="cpu_governor">CPU Governor</string>
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
-    <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
+    <string name="governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
     <string name="cpu_governor_tunables_read_error">Failed to read current governor of CPU.\n\nIf you are using a QCOM big.LITTLE device this is a known problem. The system forces the CPU to turn off cores making it extremely hard to read out CPU specific stats. Try to select this option again. The CPU sometimes refuses to turn on a core.</string>
     <string name="tunables_error">%s is not tuneable</string>
     <string name="mc_power_saving">Multicore Power Saving</string>
@@ -376,6 +376,7 @@
     <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
     <string name="gpu_governor">GPU Governor</string>
     <string name="gpu_governor_summary">Set the governor of the GPU.</string>
+    <string name="gpu_governor_tunables">GPU Governor Tunables</string>
     <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
     <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
     <string name="laziness">Laziness</string>

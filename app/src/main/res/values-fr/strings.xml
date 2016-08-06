@@ -127,7 +127,7 @@
   <string name="cpu_governor">Gouverneur de CPU</string>
   <string name="cpu_governor_summary">L\'administrateur du processeur détermine le comportement du processeur en fonction des changements de charge de travail. Modifier l\'administrateur aura des conséquences sur la façon dont le processeur s\'adapte aux intervalles de fréquences disponibles pour votre processeur.</string>
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
-  <string name="cpu_governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
+  <string name="governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
   <string name="cpu_governor_tunables_read_error">Impossible de lire l\'ordonnanceur actuel du processeur.\n\nSi vous utilisez un appareil avec un processeur QCOM big.LITTLE, il s’agit d’un problème connu. Le système force le processeur à éteindre les cœurs, rendant extrêmement difficile l\'accès à la lecture des statistiques spécifiques du processeur. Réessayez de sélectionner cette option. Le processeur refuse parfois de tourner sur un cœur.</string>
   <string name="tunables_error">%s n\'est pas réglable</string>
   <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>

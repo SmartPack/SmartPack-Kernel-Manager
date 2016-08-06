@@ -127,7 +127,7 @@
   <string name="cpu_governor">CPU Governor</string>
   <string name="cpu_governor_summary">DE CPU govenor bepaalt hoe de CPU zich gedraagt op veranderingen in de werklast. Als je de CPU govenor verandert, heeft dat impact op hoe de CPU schaalt tussen de frequentiestappen die beschikbaar zijn voor jouw CPU.</string>
   <string name="cpu_governor_tunables">CPU Governor Tunables</string>
-  <string name="cpu_governor_tunables_summary">De verschillende configuratie-items die afhankelijk van de governor zijn.</string>
+  <string name="governor_tunables_summary">De verschillende configuratie-items die afhankelijk van de governor zijn.</string>
   <string name="cpu_governor_tunables_read_error">Mislukt om de huidige governor van CPU te lezen.\n\nals u een QCOM big.LITTLE apparaat aan het gebruiken bent dan is dit een bekend probleem. Het systeem forceert de CPU om cores uit te schakelen waardoor het zeer moeilijk wordt om CPU specifieke stats uit te lezen. Probeer deze optie opnieuw te selecteren. De CPU weigert soms om een core in te schakelen.</string>
   <string name="tunables_error">%s is niet afstembaar</string>
   <string name="mc_power_saving">Multicore Energiebesparing</string>

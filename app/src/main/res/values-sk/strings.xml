@@ -127,7 +127,7 @@
   <string name="cpu_governor">CPU správca</string>
   <string name="cpu_governor_summary">Governor CPU určuje spravanie sa procesora a reagovanie na zmeny záťaže. Zmenenie governora bude mať za následok ako si bude CPU vyberať z dostupných frekvencií.</string>
   <string name="cpu_governor_tunables">Ladenie CPU governora</string>
-  <string name="cpu_governor_tunables_summary">Rôzne konfiguračné prvky ktoré závisia na governore.</string>
+  <string name="governor_tunables_summary">Rôzne konfiguračné prvky ktoré závisia na governore.</string>
   <string name="cpu_governor_tunables_read_error">Nepodarilo sa načítať governor CPU.\n\n ak používate zariadenie od QCOM-u s big.LITTLE architektúrou je toto bežný problém. Systém vynucuje vypínanie jadier a to robí extrémny problem pri čítaní podrobných štatistík. Skúste znovu zvoliť túto možnosť. CPU niekedy odmietne zapnúť jadro.</string>
   <string name="tunables_error">%s nie je laditeľný</string>
   <string name="mc_power_saving">Viacjadrové šetrenie energie</string>

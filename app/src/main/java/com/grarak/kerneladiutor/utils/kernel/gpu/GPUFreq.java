@@ -60,6 +60,7 @@ public class GPUFreq {
     private static final String AVAILABLE_OMAP_FREQS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/frequency_list";
     private static final String SCALING_OMAP_GOVERNOR = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor";
     private static final String AVAILABLE_OMAP_GOVERNORS = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/governor_list";
+    private static final String TUNABLES_OMAP = "/sys/devices/platform/omap/pvrsrvkm.0/sgxfreq/%s";
 
     private static final String CUR_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_rate";
     private static final String MAX_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_cap_rate";
@@ -72,6 +73,7 @@ public class GPUFreq {
     private static final List<String> sAvailableFreqs = new ArrayList<>();
     private static final List<String> sScalingGovernors = new ArrayList<>();
     private static final List<String> sAvailableGovernors = new ArrayList<>();
+    private static final List<String> sTunables = new ArrayList<>();
 
     static {
         sCurrentFreqs.add(CUR_KGSL3D0_FREQ);
@@ -98,6 +100,8 @@ public class GPUFreq {
 
         sAvailableGovernors.add(AVAILABLE_KGSL3D0_DEVFREQ_GOVERNORS);
         sAvailableGovernors.add(AVAILABLE_OMAP_GOVERNORS);
+
+        sTunables.add(TUNABLES_OMAP);
     }
 
     private static String CUR_FREQ;
@@ -106,8 +110,24 @@ public class GPUFreq {
     private static String MIN_FREQ;
     private static String GOVERNOR;
     private static String[] AVAILABLE_GOVERNORS;
+    private static String TUNABLES;
 
     private static Integer[] AVAILABLE_2D_FREQS;
+
+    public static String getTunables(String governor) {
+        return Utils.strFormat(TUNABLES, governor);
+    }
+
+    public static boolean hasTunables(String governor) {
+        if (TUNABLES != null) return true;
+        for (String tunables : sTunables) {
+            if (Utils.existFile(Utils.strFormat(tunables, governor))) {
+                TUNABLES = tunables;
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static void set2dGovernor(String value, Context context) {
         run(Control.write(value, SCALING_KGSL2D0_QCOM_GOVERNOR), SCALING_KGSL2D0_QCOM_GOVERNOR, context);

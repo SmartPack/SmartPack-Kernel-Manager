@@ -60,7 +60,7 @@
   <string name="cpu_max_screen_off_freq_summary">تعيين الجداول الخاصة بل ترددات القصوى عند اطفاء الشاشة للمعالج.</string>
   <string name="cpu_governor">مدير وحدة المعالج</string>
   <string name="cpu_governor_tunables">متحكم الموجة للمعالج</string>
-  <string name="cpu_governor_tunables_summary">الاعدادت المتنوعة للعناصر التي يعامد عليها المتحكم.</string>
+  <string name="governor_tunables_summary">الاعدادت المتنوعة للعناصر التي يعامد عليها المتحكم.</string>
   <string name="mc_power_saving">نظام توفير الطاقة المتعدد النواة</string>
   <string name="mc_power_saving_summary">حاول جمع المهمات في اقل انوية ممكنة.</string>
   <string name="disabled">غير مفعل</string>

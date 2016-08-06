@@ -21,11 +21,13 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.gpu.AdrenoIdler;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.SimpleGPU;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -43,6 +45,13 @@ public class GPUFragment extends RecyclerViewFragment {
 
     private XYGraphView m2dCurFreq;
     private XYGraphView mCurFreq;
+
+    private PathReaderFragment mGPUGovernorTunableFragment;
+
+    @Override
+    protected BaseFragment getForegroundFragment() {
+        return mGPUGovernorTunableFragment = new PathReaderFragment();
+    }
 
     @Override
     protected void init() {
@@ -163,6 +172,25 @@ public class GPUFragment extends RecyclerViewFragment {
             });
 
             items.add(governor);
+
+            if (GPUFreq.hasTunables(governor.getValue())) {
+                DescriptionView tunables = new DescriptionView();
+                tunables.setTitle(getString(R.string.gpu_governor_tunables));
+                tunables.setSummary(getString(R.string.governor_tunables_summary));
+                tunables.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                    @Override
+                    public void onClick(RecyclerViewItem item) {
+                        String governor = GPUFreq.getGovernor();
+                        setForegroundText(governor);
+                        mGPUGovernorTunableFragment.setError(getString(R.string.tunables_error, governor));
+                        mGPUGovernorTunableFragment.setPath(GPUFreq.getTunables(GPUFreq.getGovernor()),
+                                ApplyOnBootFragment.GPU);
+                        showForeground();
+                    }
+                });
+
+                items.add(tunables);
+            }
         }
     }
 

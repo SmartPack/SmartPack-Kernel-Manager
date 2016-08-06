@@ -63,7 +63,7 @@
   <string name="cpu_governor">Pengontrol CPU</string>
   <string name="cpu_governor_summary">Pengontrol CPU menentukan perubahan perilaku CPU ketika kelebihan beban. Merubah Pengontrol akan mempengaruhi nilai skala fekuensi CPU yang tersedia.</string>
   <string name="cpu_governor_tunables">Pengontrol CPU Yang Bisa Dirubah</string>
-  <string name="cpu_governor_tunables_summary">Ragam item konfigurasi berdasarkan Pengontrol yang dipilih.</string>
+  <string name="governor_tunables_summary">Ragam item konfigurasi berdasarkan Pengontrol yang dipilih.</string>
   <string name="mc_power_saving">Penghemat Daya Inti Majemuk</string>
   <string name="mc_power_saving_summary">Cobalah untuk mengelompokkan tugas-tugas Inti yang memungkinkan.</string>
   <string name="disabled">Non-aktif</string>

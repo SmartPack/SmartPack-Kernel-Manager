@@ -62,7 +62,7 @@
   <string name="cpu_governor">Trình điều tiết CPU</string>
   <string name="cpu_governor_summary">Trình điều tiết CPU sẽ xác định cách CPU hoạt động để đáp ứng với những thay đổi trong khối lượng xử lý. Thay đổi trình điều tiết sẽ ảnh hưởng tới việc điều chỉnh các bước tần số có sẵn cho CPU của bạn.</string>
   <string name="cpu_governor_tunables">Hiệu chỉnh có thể của trình điều tiết CPU</string>
-  <string name="cpu_governor_tunables_summary">Các cấu hình khác phụ thuộc vào trình điều tiết.</string>
+  <string name="governor_tunables_summary">Các cấu hình khác phụ thuộc vào trình điều tiết.</string>
   <string name="mc_power_saving">Tiết kiệm năng lượng đa lõi</string>
   <string name="mc_power_saving_summary">Cố gắng gộp nhiều tác vụ vào ít lõi nhất.</string>
   <string name="disabled">Đã tắt</string>

@@ -65,7 +65,7 @@
   <string name="cpu_governor">Gobernador de CPU</string>
   <string name="cpu_governor_summary">El gobernador de CPU determina como la CPU se comporta en rempuesta a camudancies na carga de trabayu. El cambéu de gobernador tendrá impautu de como la CPU escala pente los pasos de frecuencia disponibles na to CPU.</string>
   <string name="cpu_governor_tunables">Axustes finos del gobernador de CPU</string>
-  <string name="cpu_governor_tunables_summary">Los elementos de delles configuraciones que tán venceyaes al gobernador.</string>
+  <string name="governor_tunables_summary">Los elementos de delles configuraciones que tán venceyaes al gobernador.</string>
   <string name="mc_power_saving">Aforru d\'enerxía multi-nucleu</string>
   <string name="mc_power_saving_summary">Intenta axuntar les xeres nos menos nucleos posibles.</string>
   <string name="disabled">Deshabilitáu</string>

@@ -127,7 +127,7 @@
   <string name="cpu_governor">Регулятор ЦП</string>
   <string name="cpu_governor_summary">Регулятор ЦП решает, как ЦП реагирует на изменения рабочей нагрузки. Смена регулятора повлияет на обработку рабочих частот, доступных для вашего ЦП.</string>
   <string name="cpu_governor_tunables">Переменные регулятора ЦП</string>
-  <string name="cpu_governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
+  <string name="governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
   <string name="cpu_governor_tunables_read_error">Не удалось определить текущий регулятор.\n\nЕсли вы используете устройство QCOM с big.LITTLE, то это известная проблема. Система заставляет ЦП отключать ядра, делая крайне тяжелым считывание определённой статистики ЦП. Попробуйте выбрать эту опцию еще раз. Иногда ЦП отказывается включить ядро.</string>
   <string name="tunables_error">%s не настраивается</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>

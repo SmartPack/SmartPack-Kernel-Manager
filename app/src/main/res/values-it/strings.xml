@@ -124,7 +124,7 @@
   <string name="cpu_governor">Governor CPU</string>
   <string name="cpu_governor_summary">Lo scheduler della CPU determina come la CPU viene usata in base al carico di lavoro. Cambiare lo scheduler impatterà il modo in cui la CPU scalerà tra le frequenze disponibili per la tua CPU.</string>
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
-  <string name="cpu_governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
+  <string name="governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
   <string name="cpu_governor_tunables_read_error">Impossibile leggere l\'attuale governatore della CPU.\n\nSe si utilizza un dispositivo Qualcomm big.LITTLE si tratta di un problema noto. Il sistema impone alla CPU di disattivare i core e ciò rende estremamente difficile leggere le statistiche. Prova a selezionare nuovamente questa opzione. La CPU a volte si rifiuta di girare su un core.</string>
   <string name="tunables_error">%s non si può modificare</string>
   <string name="mc_power_saving">Risparmio Energetico Multicore</string>

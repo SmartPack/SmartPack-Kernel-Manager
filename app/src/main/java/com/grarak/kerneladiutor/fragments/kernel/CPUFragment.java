@@ -199,7 +199,7 @@ public class CPUFragment extends RecyclerViewFragment {
 
         DescriptionView governorTunablesBig = new DescriptionView();
         governorTunablesBig.setTitle(getString(R.string.cpu_governor_tunables));
-        governorTunablesBig.setSummary(getString(R.string.cpu_governor_tunables_summary));
+        governorTunablesBig.setSummary(getString(R.string.governor_tunables_summary));
         governorTunablesBig.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
@@ -281,7 +281,7 @@ public class CPUFragment extends RecyclerViewFragment {
 
             DescriptionView governorTunablesLITTLE = new DescriptionView();
             governorTunablesLITTLE.setTitle(getString(R.string.cpu_governor_tunables));
-            governorTunablesLITTLE.setSummary(getString(R.string.cpu_governor_tunables_summary));
+            governorTunablesLITTLE.setSummary(getString(R.string.governor_tunables_summary));
             governorTunablesLITTLE.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {

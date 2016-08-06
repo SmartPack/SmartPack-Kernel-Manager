@@ -125,7 +125,7 @@
   <string name="cpu_governor">CPU 管理模式</string>
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
-  <string name="cpu_governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
+  <string name="governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
   <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
   <string name="tunables_error">%s 不可調整</string>
   <string name="mc_power_saving">多核心省電</string>

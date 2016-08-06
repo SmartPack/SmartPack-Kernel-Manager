@@ -71,7 +71,7 @@ public class CPUFreq {
     private static final String TAG = CPUFreq.class.getSimpleName();
 
     public static String getGovernorTunablesPath(int cpu, String governor) {
-        if (isBigLITTLE()) {
+        if (Utils.existFile(Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor))) {
             return Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor);
         } else {
             return Utils.strFormat(CPU_GOVERNOR_TUNABLES, governor);

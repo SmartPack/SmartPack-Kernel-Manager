@@ -106,7 +106,7 @@
   <string name="cpu_governor">CPU governor</string>
   <string name="cpu_governor_summary">CPU tila määrittää kuinka CPU toimii rasituksessa. Tilan vaihtaminen vaikuttaa kuinka CPU:n kellotaajuudet vaihtuvat olosuhteiden mukaan.</string>
   <string name="cpu_governor_tunables">CPU-tilan säätö</string>
-  <string name="cpu_governor_tunables_summary">Monenlaisia kokoonpano nimikkeitä jotka ovat riippuvaisia CPU tilasta.</string>
+  <string name="governor_tunables_summary">Monenlaisia kokoonpano nimikkeitä jotka ovat riippuvaisia CPU tilasta.</string>
   <string name="mc_power_saving">Moniydin tehon säästäminen</string>
   <string name="mc_power_saving_summary">Yritä järjestää tehtävät mahdollisimman vähille ytimille.</string>
   <string name="disabled">Pois käytöstä</string>

@@ -109,7 +109,7 @@
   <string name="cpu_governor">CPU-Governor</string>
   <string name="cpu_governor_summary">Der CPU-Governor bestimmt, wie sich die CPU bei Änderungen in der Auslastung verhält. Das Wechseln des Governors hat Auswirkung darauf, wie die CPU die ihr zur Verfügung stehenden Frequenzschritte nutzt.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
-  <string name="cpu_governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
+  <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
   <string name="disabled">Deaktiviert</string>

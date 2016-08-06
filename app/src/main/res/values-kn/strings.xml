@@ -60,7 +60,7 @@
   <string name="cpu_governor">ಸಿಪಿಯು ಗವರ್ನರ್</string>
   <string name="cpu_governor_summary">Hi</string>
   <string name="cpu_governor_tunables">ಸಿಪಿಯು ಗವರ್ನರ್ ಸಂಯೋಜನೆಗಳು</string>
-  <string name="cpu_governor_tunables_summary">ಗವರ್ನರ್ ಅವಲಂಭಿತವಾದ ವಿವಿಧ ಸಂರಚನಾಂಶಗಳು.</string>
+  <string name="governor_tunables_summary">ಗವರ್ನರ್ ಅವಲಂಭಿತವಾದ ವಿವಿಧ ಸಂರಚನಾಂಶಗಳು.</string>
   <string name="mc_power_saving">ಮಲ್ಟಿಕೋರ್ ವಿದ್ಯುತ್ ಉಳಿತಾಯ</string>
   <string name="mc_power_saving_summary">ಕಾರ್ಯಗಳನ್ನು ಸಾಧ್ಯವಾದಷ್ಟು ಕನಿಷ್ಠ ಕೋರ್‍ಗಳಿಗೆ ವರ್ಗೀಕರಿರಸಲು ಪ್ರಯತ್ನಿಸು.</string>
   <string name="disabled">ನಿಷ್ಕ್ರಿಯ</string>
