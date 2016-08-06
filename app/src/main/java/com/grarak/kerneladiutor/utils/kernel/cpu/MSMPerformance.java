@@ -39,6 +39,10 @@ public class MSMPerformance {
     private static Boolean CPU_MAX_FREQ_SUPPORTED;
     private static Boolean CPU_MIN_FREQ_SUPPORTED;
 
+    // attributes for the case of renamed cpu_max_freq
+    private static final String MAX_CPU_FREQ = PARENT + "/parameters/max_cpu_freq";
+    private static Boolean USE_MAX_CPU_FREQ = null;
+
     public static void setCpuMinFreq(int freq, int cpu, Context context) {
         run(Control.write(cpu + ":" + freq, CPU_MIN_FREQ), CPU_MIN_FREQ + cpu, context);
     }
@@ -49,12 +53,19 @@ public class MSMPerformance {
     }
 
     public static void setCpuMaxFreq(int freq, int cpu, Context context) {
-        run(Control.write(cpu + ":" + freq, CPU_MAX_FREQ), CPU_MAX_FREQ + cpu, context);
+        if(USE_MAX_CPU_FREQ != null && USE_MAX_CPU_FREQ) {
+            run(Control.write(cpu + ":" + freq, MAX_CPU_FREQ), MAX_CPU_FREQ + cpu, context);
+        } else {
+            run(Control.write(cpu + ":" + freq, CPU_MAX_FREQ), CPU_MAX_FREQ + cpu, context);
+        }
     }
 
     public static boolean hasCpuMaxFreq() {
         if (CPU_MAX_FREQ_SUPPORTED != null) return CPU_MAX_FREQ_SUPPORTED;
-        return CPU_MAX_FREQ_SUPPORTED = Utils.existFile(CPU_MAX_FREQ);
+        if (USE_MAX_CPU_FREQ == null) {
+            USE_MAX_CPU_FREQ = Utils.existFile(MAX_CPU_FREQ);
+        }
+        return CPU_MAX_FREQ_SUPPORTED = Utils.existFile(CPU_MAX_FREQ) || USE_MAX_CPU_FREQ;
     }
 
     public static void setMaxCpus(int big, int little, Context context) {
