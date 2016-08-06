@@ -1,15 +1,4 @@
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.21.7'
-    }
-}
-
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 24
@@ -36,7 +25,6 @@ android {
 
 repositories {
     maven { url "https://jitpack.io" }
-    maven { url "https://maven.fabric.io/public" }
 }
 
 dependencies {
@@ -55,7 +43,4 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.adw.library:discrete-seekbar:1.0.1'
     compile 'org.cyanogenmod:platform.sdk:5.0.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
-        transitive = true;
-    }
 }
