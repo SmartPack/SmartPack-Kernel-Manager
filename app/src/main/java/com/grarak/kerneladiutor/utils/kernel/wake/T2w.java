@@ -47,11 +47,19 @@ public class T2w {
     private static String FILE;
 
     public static void set(int value, Context context) {
-        run(Control.write(String.valueOf(value), FILE), FILE, context);
+        if (FILE.equals(TSP_T2W)) {
+            run(Control.write(value == 0 ? "OFF" : "AUTO", FILE), FILE, context);
+        } else {
+            run(Control.write(String.valueOf(value), FILE), FILE, context);
+        }
     }
 
     public static int get() {
-        return Utils.strToInt(Utils.readFile(FILE));
+        if (FILE.equals(TSP_T2W)) {
+            return Utils.readFile(FILE).equals("OFF") ? 0 : 1;
+        } else {
+            return Utils.strToInt(Utils.readFile(FILE));
+        }
     }
 
     public static List<String> getMenu(Context context) {
