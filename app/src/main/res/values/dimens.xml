@@ -15,10 +15,6 @@
     <dimen name="xygraph_edge_stroke_width">2dp</dimen>
     <dimen name="xygraph_graph_stroke_width">1dp</dimen>
 
-    <dimen name="circular_textview_height">50dp</dimen>
-    <dimen name="circular_textview_width">50dp</dimen>
-    <dimen name="circular_textview_textsize">15sp</dimen>
-
     <dimen name="dialog_edittext_padding">30dp</dimen>
 
     <dimen name="colortable_width">100dp</dimen>

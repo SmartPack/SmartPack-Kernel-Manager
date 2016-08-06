@@ -8,7 +8,6 @@
     <color name="white">@android:color/white</color>
     <color name="green">#5fb962</color>
     <color name="red">#f66055</color>
-    <color name="orange">#ffa500</color>
 
     <color name="divider">#dddddd</color>
 </resources>
