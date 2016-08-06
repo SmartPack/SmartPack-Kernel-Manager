@@ -20,16 +20,24 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.EditTextFragment;
+import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -51,6 +59,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     private LinkedHashMap<String, String> mProps;
     private String mSearchText;
 
+    private SearchFragment mSearchFragment;
     private AlertDialog.Builder mItemOptionsDialog;
     private AlertDialog.Builder mDeleteDialog;
 
@@ -73,7 +82,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(EditTextFragment.newInstance(getString(R.string.search), new TextWatcher() {
+        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -106,6 +115,14 @@ public class BuildpropFragment extends RecyclerViewFragment {
         load(items);
     }
 
+    @Override
+    protected void postInit() {
+        super.postInit();
+        if (mSearchFragment != null) {
+            mSearchFragment.setCount(itemsSize());
+        }
+    }
+
     private void reload(final boolean read) {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
@@ -136,6 +153,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
                                 addItem(item);
                             }
                             hideProgress();
+                            if (mSearchFragment != null) {
+                                mSearchFragment.setCount(itemsSize());
+                            }
                             mLoader = null;
                         }
                     };
@@ -268,6 +288,44 @@ public class BuildpropFragment extends RecyclerViewFragment {
         if (mLoader != null) {
             mLoader.cancel(true);
         }
+    }
+
+    public static class SearchFragment extends BaseFragment {
+
+        public static SearchFragment newInstance(TextWatcher textWatcher) {
+            SearchFragment fragment = new SearchFragment();
+            fragment.mTextWatcher = textWatcher;
+            return fragment;
+        }
+
+        private TextView mItemsText;
+        private int mItemsCount;
+        private TextWatcher mTextWatcher;
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_buildprop_search, container, false);
+
+            AppCompatEditText editText = (AppCompatEditText) rootView.findViewById(R.id.edittext);
+            editText.addTextChangedListener(mTextWatcher);
+            editText.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
+                    R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+
+            mItemsText = (TextView) rootView.findViewById(R.id.found_text);
+            setCount(mItemsCount);
+
+            return rootView;
+        }
+
+        public void setCount(int count) {
+            mItemsCount = count;
+            if (mItemsText != null) {
+                mItemsText.setText(getString(count == 1 ? R.string.item_count : R.string.items_count, count));
+            }
+        }
+
     }
 
 }
