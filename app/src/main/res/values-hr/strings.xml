@@ -54,6 +54,7 @@
   <!-- Menus -->
   <string name="device">Uređaj</string>
   <string name="overall">Opće informacije</string>
+  <string name="memory">Memorija</string>
   <string name="inputs">Ulazi</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Napon CPU-a</string>
@@ -64,6 +65,7 @@
   <string name="wake">Buđenje</string>
   <string name="sound">Zvuk</string>
   <string name="battery">Baterija</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">I/O Scheduler</string>
   <string name="ksm">KSM Kernel Samepage Merging</string>
   <string name="lmk">Poništavač niske memorije</string>
@@ -77,6 +79,7 @@
   <string name="profile">Profil</string>
   <string name="recovery">Oporavak</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Pri pokretanju</string>
   <string name="about">O aplikaciji</string>
   <string name="contributors">Suradnici</string>
   <string name="faq">Česta pitanja i odgovori</string>
@@ -112,6 +115,7 @@
   <string name="handlers">Rukovatelji</string>
   <!-- CPU -->
   <string name="cores">Jezgre: %d</string>
+  <string name="no_offline_core">Ne možete postaviti ovu jezgru kao neaktivnu!</string>
   <string name="cpu_max_freq">Najviša frekvencija CPU-a</string>
   <string name="cpu_max_freq_summary">Postavite najvišu frekvenciju koju CPU može ostvariti.</string>
   <string name="cpu_min_freq">Najniža frekvencija CPU-a</string>
@@ -121,7 +125,6 @@
   <string name="cpu_governor">Governor CPU-a</string>
   <string name="cpu_governor_summary">Governor CPU-a određuje kako će se procesor ponašati pod promjenama opterećenja. Promjena governora utjecat će na način na koji se procesor mijenja kroz korake frekvencije koji su dostupni za vaš CPU.</string>
   <string name="cpu_governor_tunables">Postavke governora CPU-a</string>
-  <string name="governor_tunables_summary">Razne konfiguracijske vrijednosti koje ovise o Governoru.</string>
   <string name="tunables_error">%s ne može se mijenjati.</string>
   <string name="mc_power_saving">Višejezgrena štednja energije</string>
   <string name="mc_power_saving_summary">Pokušava grupirati zadatke u što je manje jezgri moguće.</string>
@@ -240,6 +243,7 @@
   <string name="sampling_rate">Brzina uzorkovanja</string>
   <string name="cpu_down_rate">Učestalost isključivanja CPU-a</string>
   <string name="cpu_up_rate">Učestalost aktiviranja CPU-a</string>
+  <string name="thunderplug">ThunderPlug</string>
   <string name="endurance_level">Razina izdržljivosti</string>
   <string name="endurance_level_summary">Profil za uštedu energije.</string>
   <string name="quad_core_mode">4-jezgreni način</string>

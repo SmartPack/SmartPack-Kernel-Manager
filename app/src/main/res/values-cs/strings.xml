@@ -120,7 +120,6 @@ Zabezpečeni</string>
   <string name="cpu_governor">Správce procesoru</string>
   <string name="cpu_governor_summary">Správce procesoru (governor) určuje, jak procesor reaguje na změny v zatížení. Změna správce zdrojů ovlivní způsob přepínání mezi frekvencemi procesoru.</string>
   <string name="cpu_governor_tunables">Ladění správce procesoru</string>
-  <string name="governor_tunables_summary">Různé možnosti konfigurace, které závisí na použitém správci procesoru.</string>
   <string name="mc_power_saving">Úspora energie více jader</string>
   <string name="mc_power_saving_summary">Snaha o seskupení úkolů na co nejméně jader.</string>
   <string name="disabled">Vypnuto</string>

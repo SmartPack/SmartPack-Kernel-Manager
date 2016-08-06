@@ -107,7 +107,6 @@
   <string name="cpu_max_screen_off_freq_summary">Defina a frequência máxima da CPU quando o ecrã estiver desligado.</string>
   <string name="cpu_governor">Governador CPU</string>
   <string name="cpu_governor_tunables">Parâmetros governador CPU</string>
-  <string name="governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="tunables_error">%s não é ajustável</string>
   <string name="mc_power_saving">Modo de Poupança Multinuclear</string>
   <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possíveis.</string>

@@ -18,13 +18,23 @@
   <string name="cancel">Abbrechen</string>
   <string name="ok">OK</string>
   <string name="unknown">Unbekannt</string>
+  <string name="pirated">Es scheint, dass du die Spenden-App nicht über den Play Store gekauft hast. Wenn du sie Raubkopiert hast, dann schäme dich!</string>
   <string name="donate">Spende</string>
+  <string name="donate_summary">Diese Funktion ist nur verfügbar, wenn du die Spenden-App installiert hast. Aber keine Sorge. Da die App Open Source ist, kannst du die App einfach selbst builden und diesen Check entfernen. Aber ich hoffe du unterstützt uns trotzdem. Danke dass du Kernel Adiutor verwendest! Sobald du die Spenden-App gekauft hast, musst du Kernel Adiutor neustarten um alle Funktionen freizuschalten.</string>
+  <string name="donate_nope">Ich werde nicht auf diesen Betrug hereinfallen!</string>
+  <string name="donate_yes">Ich liebe diese App. Ich muss spenden!</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
+  <string name="apply_on_boot_text">Wende Einstellungen in %d Sekunden an.</string>
+  <string name="apply_on_boot_complete">Einstellungen angewandt.</string>
+  <string name="apply_on_boot_canceled">Anwenden der Einstellungen abgebrochen.</string>
+  <string name="not_in_range">Nicht in Reichweite</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Keine Berechtigung, um auf den Speicher zu schreiben!</string>
   <!-- Editor -->
   <string name="save">Speichern</string>
   <!-- File Picker -->
   <string name="select_question">%s auswählen?</string>
+  <string name="wrong_extension">Bitte wählen Sie eine Datei mit der Endung %s.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">º C</string>
@@ -44,6 +54,8 @@
   <string name="other">Anderes</string>
   <!-- Menus -->
   <string name="device">Gerät</string>
+  <string name="overall">Summe</string>
+  <string name="memory">Arbeitsspeicher</string>
   <string name="inputs">Eingaben</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU-Spannung</string>
@@ -57,9 +69,11 @@
   <string name="led">LED</string>
   <string name="io_scheduler">I/O Scheduler</string>
   <string name="ksm">Kernel Samepage Merging</string>
+  <string name="lmk">Low Memory Killer</string>
   <string name="virtual_memory">Virtueller Speicher</string>
   <string name="entropy">Entropie</string>
   <string name="misc">Verschiedenes</string>
+  <string name="custom_controls">Benutzerdefinierte Steuerelemente</string>
   <string name="downloads">Downloads</string>
   <string name="backup">Sicherung</string>
   <string name="build_prop_editor">Build prop-Bearbeiter</string>
@@ -80,6 +94,7 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android Codename</string>
   <string name="fingerprint">Fingerabdruck</string>
+  <string name="baseband">Baseband</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
@@ -98,8 +113,10 @@
   <string name="bus">Bus</string>
   <string name="product">Produkt</string>
   <string name="version">Version</string>
+  <string name="handlers">Handlers</string>
   <!-- CPU -->
   <string name="cores">%d Kerne</string>
+  <string name="no_offline_core">Sie können diesen Kern nicht ausschalten!</string>
   <string name="cpu_max_freq">Maximale CPU-Frequenz</string>
   <string name="cpu_max_freq_summary">Ändere die maximale Taktfrequenz der CPU.</string>
   <string name="cpu_min_freq">Minimale CPU-Frequenz</string>
@@ -109,7 +126,8 @@
   <string name="cpu_governor">CPU-Governor</string>
   <string name="cpu_governor_summary">Der CPU-Governor bestimmt, wie sich die CPU bei Änderungen in der Auslastung verhält. Das Wechseln des Governors hat Auswirkung darauf, wie die CPU die ihr zur Verfügung stehenden Frequenzschritte nutzt.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
-  <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
+  <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Gouverneurs der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
+  <string name="tunables_error">%s ist nicht einstellbar</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
   <string name="disabled">Deaktiviert</string>
@@ -123,6 +141,7 @@
   <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">CPU-Boost</string>
   <string name="debug_mask">Debug-Mask</string>
+  <string name="debug_mask_summary">Erlaubt es Ihnen, die Debug-Maske für Operationen zu aktivieren.</string>
   <string name="interval">Intervall</string>
   <string name="interval_summary">Minimale Zeit die eine CPU beschleunigt wird.</string>
   <string name="sync_threshold">Sync-Schwellwert</string>
@@ -143,10 +162,12 @@
   <string name="override_vmin">Mindestspannung überschreiben</string>
   <string name="override_vmin_summary">Hersteller Undervolting Begrenzung deaktivieren</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Mehr als ein Hotplugging System ist aktiviert! \nBitte nur eines verwenden.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QCOMs Hotplugging Lösung. Sie werden wahrscheinlich Schwierigkeiten mit der Änderung der Frequenzen feststellen, wenn diese Funktion aktiv ist.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Ein interner Kernel-Ersatz für Qualcomms MPDecision, entwickelt von faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Die eingeklammerte Zahl zeigt jene Kerne, die immer online sind.</string>
   <string name="insanity">Wahnsinn</string>
   <string name="balanced">Ausgeglichen</string>
   <string name="performance">Leistung</string>
@@ -161,6 +182,8 @@
   <string name="eco_mode_summary">Akkuschonender IntelliPlug-Modus.</string>
   <string name="hysteresis">Hysteresewert</string>
   <string name="hysteresis_summary">Je niedriger der Wert ist, desto schneller die Reaktion.</string>
+  <string name="cpu_threshold">CPU-Schwellenwert</string>
+  <string name="cpu_threshold_summary">Je höher, desto weniger CPUs werden verwendet.</string>
   <string name="suspend">Ruhezustand</string>
   <string name="suspend_summary">Ruhezustand verhindern.</string>
   <string name="cpus_boosted">CPUs erhöht</string>
@@ -169,6 +192,8 @@
   <string name="min_cpu_online_summary">Minimale Anzahl der immer laufenden CPUs.</string>
   <string name="max_cpu_online">Maximal CPU Online</string>
   <string name="max_cpu_online_summary">Maximale Anzahl der immer laufenden CPUs.</string>
+  <string name="max_cpu_online_screen_off">Maximale CPU-Bildschirm aus</string>
+  <string name="max_cpu_online_screen_off_summary">Maximale Anzahl von CPUs, die online sein wird, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="suspend_defer_time">Suspend Zeitverzögerung</string>
   <string name="defer_sampling">Verzögerungssampling</string>
   <string name="boost_lock_duration">Sperrdauer des Boosts</string>
@@ -179,6 +204,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Ein kernel-interner Ersatz für Qualcomms MPDecision. Von Code_Blue Team entwickelt.</string>
   <string name="powersaver_mode">Energiesparmodus</string>
+  <string name="powersaver_mode_summary">Setze eine CPU mit einer maximum online Frequenz von @1728 MHz arbeitet.</string>
   <string name="up_threshold">Oberer Schwellwert</string>
   <string name="up_threshold_summary">über dieser Schwelle wird ein weiterer Kern aktiviert.</string>
   <string name="up_timer_cnt">Timer-Steuerelement</string>
@@ -195,10 +221,13 @@
   <string name="fast_lane_min_freq">Fast Lane min. Frequenz</string>
   <string name="fast_lane_min_freq_summary">Legt die minimale Frequenz fest, auf die die CPU zurückfällt, falls die Fast Lane ausgelastet ist.</string>
   <string name="offline_load">Offline laden</string>
+  <string name="offline_load_summary">Schalte keine CPU aus, wenn es unter den unteren Schwellenwert fällt.</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="io_is_busy_summary">Wird benutzt, damit Hotplug I/O-Zeit als CPU-Belastungs-Zeit betrachtet.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von franciscofranco.</string>
+  <string name="cpus_on_touch">CPUs bei Berührung</string>
+  <string name="cpus_on_touch_summary">Anzahl der CPUs die online bleiben, wenn der Bildschirm oder eine Taste berührt wird.</string>
   <string name="cpu_freq_unplug_limit">CPU-Frequenz Unplug Limit</string>
   <string name="first_level">Erste Ebene</string>
   <string name="first_level_summary">Die Schwelle, ab der alle CPUs aktiviert werden.</string>
@@ -211,9 +240,12 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Entwickelt von showp1984.</string>
+  <string name="screen_off_single_cpu_summary">Nur eine CPU verwenden, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="idle_frequency">Leerlauf-Frequenz</string>
   <string name="idle_frequency_summary">Wenn der erste Kern unter der eingestellten Frequenz läuft, nicht die anderen Kerne aktivieren.</string>
   <string name="touch_boost_time">Berührungsboost-Zeit</string>
+  <string name="touch_boost_time_summary">Wie lange sollte die CPU nach dem Berühren des Bildschirms gesteigert werden.</string>
+  <string name="boost_frequency_core">Turbo Frequenz von Kern %d</string>
   <string name="start_delay">Startverzögerung</string>
   <string name="start_delay_summary">Zeit bis Hotplug zu arbeiten beginnt.</string>
   <string name="delay">Verzögerung</string>
@@ -226,6 +258,8 @@
   <string name="cpu_down_rate">CPU-Down Rate</string>
   <string name="cpu_up_rate">CPU-Up Rate</string>
   <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Ein im Kernel eingebauter Ersatz für Qualcomms Hotplugging. Von varunchitre15 entwickelt.</string>
+  <string name="min_cpu_online_screen_off_summary">Minimale Anzahl der CPUs, die online sein werden, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="endurance_level">Ausdauer Level</string>
   <string name="endurance_level_summary">Ein Stromeinsparungsprofil.</string>
   <string name="quad_core_mode">Quad-Core-Modus</string>
@@ -233,6 +267,7 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von bbedward.</string>
   <string name="wake_wait_time">Wake Wartezeit</string>
+  <string name="wake_wait_time_summary">Wie lange gewartet werden soll bis irgendein Kern eingeschalten wird.</string>
   <string name="bat_threshold_ignore">Batterie Schwellwert ignorieren</string>
   <string name="bat_threshold_ignore_summary">Keine Kerne einschalten, wenn die Batteriekapazität niedriger ist als der vorgegebene Wert.</string>
   <string name="autosmp">AutoSMP</string>
@@ -240,8 +275,16 @@
   <string name="downrate_limits">Downrate Grenze</string>
   <string name="uprate_limits">Uprate Grenze</string>
   <string name="cycle_down">Zyklus nach unten</string>
+  <string name="cycle_down_summary">Zyklen zu warten, nach dem letzten Hotplug-Ereignis, bevor ein weiterer Kern getrennt wird.</string>
   <string name="cycle_up">Zyklus nach oben</string>
+  <string name="cycle_up_summary">Zyklen zu warten, nach dem letzten Hotplug-Ereignis, bevor ein weiterer Kern getrennt wird.</string>
   <string name="core_control">Kern Steuerung</string>
+  <string name="core_control_summary">Qualcomms Hotplugging Lösung. Leider können Sie es nicht deaktivieren. #blameqcom</string>
+  <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">OnePlus geänderte-Core-Control.</string>
+  <string name="busy_down_threshold_summary">Schwelle, wenn große CPUs deaktiviert werden sollen.</string>
+  <string name="busy_up_threshold_summary">Schwelle, wenn große CPUs aktiviert werden sollen.</string>
+  <string name="offline_delay">Offline Verzögerung</string>
   <!--Thermal-->
   <string name="warning">Warnung</string>
   <string name="thermal_info">Verwenden sie nur einen thermischen Sensor für folgende Optionen. Die Verwendung von mehreren kann zu unerwartetem Verhalten führen.</string>
@@ -395,11 +438,17 @@
   <string name="microphone_gain">Mikrofon Verstärkung</string>
   <string name="volume_gain">Lautstärke Verstärkung</string>
   <!-- Battery -->
+  <string name="voltage">Spannung</string>
+  <string name="capacity">Kapazität</string>
   <string name="usb_fast_charge">USB Fast Charge</string>
   <string name="usb_fast_charge_summary">Das Gerät lädt schneller, falls verbunden via USB.</string>
   <string name="blx">Akkulaufzeit verlängern</string>
   <string name="blx_summary">Maximale Kapazität die aufgeladen werden soll.</string>
+  <string name="charge_rate">Ladegeschwindigkeit</string>
+  <string name="charging_current">Ladestrom</string>
   <!-- LED -->
+  <string name="speed">Geschwindigkeit</string>
+  <string name="continuous_light">Dauerlicht</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
@@ -409,6 +458,8 @@
   <string name="scheduler_tunable_summary">Verschiedene Optionen die vom Scheduler abhängig sind.</string>
   <string name="read_ahead">Read-Ahead</string>
   <string name="read_ahead_summary">Der Read-Ahead Wert für den Telefonspeicher.</string>
+  <string name="rotational">Rotations-Speicher</string>
+  <string name="iostats">I/O-Statistiken</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <string name="foreground_app">Vordergrund-Anwendungen</string>

@@ -63,7 +63,6 @@
   <string name="cpu_max_screen_off_freq_summary">Ange den högsta frekvensen CPUn skalar upp till då skärmen är släckt.</string>
   <string name="cpu_governor">CPU Governor</string>
   <string name="cpu_governor_tunables">CPU Governor Finputsningar</string>
-  <string name="governor_tunables_summary">Diverse konfigurationstyper som är beroende av en specifik governor.</string>
   <string name="mc_power_saving">Flerkärnigt Energisparande</string>
   <string name="mc_power_saving_summary">Försök att gruppera aktiviteter till minsta möjliga kärnor.</string>
   <string name="disabled">Inaktiverad</string>

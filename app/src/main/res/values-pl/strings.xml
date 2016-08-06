@@ -127,7 +127,6 @@
   <string name="cpu_governor">Zarządca CPU</string>
   <string name="cpu_governor_summary">Zarządca CPU określa w jaki sposób CPU się zachowuje w odpowiedzi na obciążenie. Zmiana zarządcy ma wpływ na to, w jaki sposób CPU zmienia różne dostępne częstotliwości.</string>
   <string name="cpu_governor_tunables">Konfiguracja zarządcy procesora</string>
-  <string name="governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
   <string name="mc_power_saving">Wielordzeniowe oszczędzanie energii</string>
@@ -334,6 +333,8 @@
   <string name="adreno_idler">Adreno Idler</string>
   <string name="adreno_idler_summary">Efektywne obejście dla opóźnień msm-adreno-tz. Rozwijany przez arter97.</string>
   <string name="down_differential_summary">Próg, który pozwoli określić, czy dane obciążenie jest bezczynne.</string>
+  <string name="idle_wait">Bezczynne czekanie</string>
+  <string name="idle_wait_summary">Ilość wydarzeń po których częstotliwość zostanie obniżona. Liczba wydarzeń bezczynnego czekania, która jest potrzebna by Adreno idler uznał wydarzenie jako bezczynne i tym samym zmniejszył częstotliwość. Dzięki temu nie występuje efekt mikro-lagów podczas skrolowania czy też grania. Im mniejsza wartość, tym Adreno idler częściej będzie obniżał częstotliwość.</string>
   <string name="workload">Obciążenie</string>
   <string name="workload_summary">Gdy ustawiona zostanie większa wartość Adreno Idler, będzie starał się częściej obniżać częstotliwość.</string>
   <!-- Screen -->
@@ -366,6 +367,13 @@
   <string name="blue_whites">Niebiesko-Biały</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jasność</string>
+  <string name="red_positive">Nasycony czerwony</string>
+  <string name="red_negative">Nienasycony czerwony</string>
+  <string name="green_positive">Nasycony zielony</string>
+  <string name="green_negative">Nienasycony zielony</string>
+  <string name="blue_positive">Nasycony niebieski</string>
+  <string name="blue_negative">Nienasycony niebieski</string>
+  <string name="white_point">Punkt bieli</string>
   <string name="lcd_backlight">Podświetlenie LCD</string>
   <string name="gamma_profiles_summary">Po wybraniu profilu, proszę wyłączyć i włączyć ekran.</string>
   <string name="brightness_mode">Użyj wykładniczego trybu podświetlenia zamiast trybu liniowego.</string>

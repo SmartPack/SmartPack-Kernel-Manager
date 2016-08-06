@@ -127,7 +127,6 @@
   <string name="cpu_governor">İşlemci Düzenleyici</string>
   <string name="cpu_governor_summary">İşlemci Düzenleyici iş yüküne göre değişiklik yaparak çalışma şeklini belirler.</string>
   <string name="cpu_governor_tunables">İşlemci Düzenleyicisi Ayarları</string>
-  <string name="governor_tunables_summary">İşlemci Düzenleyicisine bağlı çeşitli yapılandırmalar.</string>
   <string name="cpu_governor_tunables_read_error">Büyük bir QCOM kullandığınız geçerli CPU.\n\nIf yöneticisini okuma başarısız oldu.Bu bilinen bir sorundur. Sistem CPU çekirdeklerini fazla islemden dolayı kapatmaya zorlar. Bu seçeneği yeniden seçmeyi deneyin.CPU bazen kapatmayı deneyebilir.</string>
   <string name="tunables_error">%s ayarlanabilir değil</string>
   <string name="mc_power_saving">Çoklu Çekirdek Güç Tasarrufu</string>

@@ -100,7 +100,6 @@
   <string name="cpu_governor">Governador da CPU</string>
   <string name="cpu_governor_summary">O governador de CPU determina como a CPU se comporta em resposta a mudanças na carga de trabalho. Mudar o governador terá um impacto como a CPU pode ser dimensionada através das etapas de frequência disponíveis para a CPU.</string>
   <string name="cpu_governor_tunables">Ajustes do Governador da CPU</string>
-  <string name="governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="mc_power_saving">Economia de energia de múltiplos núcleos</string>
   <string name="mc_power_saving_summary">Tentar agrupar as tarefas em menos núcleos possíveis.</string>
   <string name="disabled">Desativado</string>

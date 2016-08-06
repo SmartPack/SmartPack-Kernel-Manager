@@ -106,7 +106,6 @@
   <string name="cpu_max_screen_off_freq_summary">Setaţi frecvenţa maximă CPU atunci, când ecranul este dezactivat.</string>
   <string name="cpu_governor">CPU Governor</string>
   <string name="cpu_governor_tunables">CPU Governor Turnables</string>
-  <string name="governor_tunables_summary">Diferite elemente de configurare care sunt dependente de guvernator.</string>
   <string name="mc_power_saving">Multicore Power Saving</string>
   <string name="mc_power_saving_summary">Încercaţi să folosiți prin Group Tasks cei mai puțin corii posibili.</string>
   <string name="disabled">Dezactivat</string>

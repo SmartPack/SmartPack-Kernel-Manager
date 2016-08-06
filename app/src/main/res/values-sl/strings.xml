@@ -65,7 +65,6 @@
   <string name="cpu_governor">Governor CPU</string>
   <string name="cpu_governor_summary">Governor CPU določa, kako se CPU obnaša ob spremembah obremenitve. Spreminjanje governorja bo vplivalo na to, na kateri frekvenci bo CPU delal pri določeni obremenitvi.</string>
   <string name="cpu_governor_tunables">Napredne nastavitve governorja CPU</string>
-  <string name="governor_tunables_summary">Različne vrednosti CPU governoja, ki jih lahko spreminjamo (odvisno od tega, kateri CPU governor uporabljamo).</string>
   <string name="mc_power_saving">Varčevanje z baterijo glede na število jeder</string>
   <string name="mc_power_saving_summary">Poskusi razvrstiti naloge v skupine, tako da bo za izpolnitev le-teh uporabljenih čim manj jeder CPU.</string>
   <string name="disabled">Onemogočen</string>

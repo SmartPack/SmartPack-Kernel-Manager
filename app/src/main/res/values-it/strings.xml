@@ -55,6 +55,7 @@
   <!-- Menus -->
   <string name="device">Dispositivo</string>
   <string name="overall">Generale</string>
+  <string name="memory">Memoria</string>
   <string name="inputs">Input</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltaggio CPU</string>
@@ -65,6 +66,7 @@
   <string name="wake">Attiva</string>
   <string name="sound">Suono</string>
   <string name="battery">Batteria</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">Scheduler I/O</string>
   <string name="ksm">Fusione pagine del kernel</string>
   <string name="lmk">Low Memory Killer</string>
@@ -115,6 +117,7 @@
   <string name="handlers">Gestori</string>
   <!-- CPU -->
   <string name="cores">%d core</string>
+  <string name="no_offline_core">Non puoi spegnere questo core!</string>
   <string name="cpu_max_freq">Massima frequenza CPU</string>
   <string name="cpu_max_freq_summary">Impostare la massima frequenza della CPU.</string>
   <string name="cpu_min_freq">Frequenza Minima CPU</string>
@@ -124,7 +127,6 @@
   <string name="cpu_governor">Governor CPU</string>
   <string name="cpu_governor_summary">Lo scheduler della CPU determina come la CPU viene usata in base al carico di lavoro. Cambiare lo scheduler impatterà il modo in cui la CPU scalerà tra le frequenze disponibili per la tua CPU.</string>
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
-  <string name="governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
   <string name="cpu_governor_tunables_read_error">Impossibile leggere l\'attuale governatore della CPU.\n\nSe si utilizza un dispositivo Qualcomm big.LITTLE si tratta di un problema noto. Il sistema impone alla CPU di disattivare i core e ciò rende estremamente difficile leggere le statistiche. Prova a selezionare nuovamente questa opzione. La CPU a volte si rifiuta di girare su un core.</string>
   <string name="tunables_error">%s non si può modificare</string>
   <string name="mc_power_saving">Risparmio Energetico Multicore</string>
@@ -294,6 +296,7 @@
   <string name="warning">Avviso</string>
   <string name="thermal_info">Utilizzare solo un driver termico tra le seguenti opzioni, utilizzando più di uno nello stesso momento si può causare un comportamento imprevisto.</string>
   <string name="thermald">Surriscaldamento</string>
+  <string name="thermald_summary">Il driver termico stock che impedisce il surriscaldamento del dispositivo. Deve essere disattivato se il kernel attuale è un\'alternativa.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Sostituzione in-kernel per Thermald di Qualcomm. Sviluppato da faux123.</string>
   <string name="intellithermal_optimized">Intellithermal ottimizzato</string>
@@ -485,6 +488,12 @@
   <string name="charging_current">Carica attuale</string>
   <string name="charging_current_summary">Imposta carica attuale. Attenzione: superare i 1250mA può danneggiare il driver di ricarica.</string>
   <!-- LED -->
+  <string name="fade">Dissolvenza</string>
+  <string name="fade_summary">Abilita per dissolvenza, disabilita per lampeggiante.</string>
+  <string name="intensity">Intensità</string>
+  <string name="speed">Velocità</string>
+  <string name="stock">Stock</string>
+  <string name="continuous_light">Luce continua</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Memoria interna</string>
   <string name="external_storage">Memoria esterna</string>
@@ -494,6 +503,12 @@
   <string name="scheduler_tunable_summary">I vari elementi di configurazione che dipendono dallo scheduler.</string>
   <string name="read_ahead">Read-ahead</string>
   <string name="read_ahead_summary">Valore di Read-ahead sulla memoria del telefono.</string>
+  <string name="rotational">Archivio rotante</string>
+  <string name="rotational_summary">Tratta il dispositivo come archivio rotante.</string>
+  <string name="iostats">Statistiche I/O</string>
+  <string name="iostats_summary">Mantiene le statistiche I/O per questa periferica di archiviazione. Disattivandolo si danneggerà il monitoraggio I/O delle applicazioni.</string>
+  <string name="add_random">Aggiungi casuale</string>
+  <string name="add_random_summary">Disegna entropia dall\'archivio rotante.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Scansioni complete</string>
   <string name="pages_shared">Pagine condivise</string>
@@ -505,6 +520,8 @@
   <string name="sleep_milliseconds">Riposo tra le scansioni</string>
   <string name="deferred_timer">Timer ritardato</string>
   <string name="deferred_timer_summary">Riduce l\'utilizzo della CPU in cambio di un minore risparmio di memoria.</string>
+  <string name="max_cpu_usage">Uso CPU max</string>
+  <string name="max_cpu_usage_summary">Percentuale di CPU massima da utilizzare quando si uniscono le pagine.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Applicazioni in primo piano</string>
   <string name="lmk_adaptive">Low Memory Killer adattivo</string>
@@ -518,7 +535,14 @@
   <string name="light">Leggero</string>
   <string name="medium">Medio</string>
   <string name="very_aggressive">Molto aggressivo</string>
+  <string name="kill_lmk">Arresta LMK</string>
+  <string name="kill_lmk_summary">Arresta LMK quando swap è utilizzato.</string>
+  <string name="kill_lmk_threshold">Soglia di arresto LMK</string>
+  <string name="kill_lmk_threshold_summary">Come deve essere swap per arrestare LMK.</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Dimensione del disco</string>
+  <string name="disksize_summary">Tenta di migliorare le prestazioni evitando paging sull\'archiviazione fisica, invece di utilizzare una periferica virtuale compressa nella RAM. Il paging avviene nella RAM, fino a quando è necessario utilizzare lo spazio di swap su archiviazione fisica.</string>
   <!-- Entropy -->
   <string name="available">Disponibile</string>
   <string name="poolsize">Poolsize</string>
@@ -535,6 +559,8 @@
   <string name="dynamic_fsync_summary">Quando attivata e lo schermo è acceso, l\'operazione fsync è asincrona. Quando lo schermo è spento, questa operazione viene eseguita in modo sincrono.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="gentlefairsleepers_summary">Concede alle app in sleep il 50% delle risorse che richiedono. Disabilitarlo può ridurre leggermente il consumo di batteria.</string>
+  <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">Attiva specifiche funzioni/risparmi di energia.</string>
   <string name="power_suspend_mode">Modalità Sospensione Energia</string>
   <string name="power_suspend_mode_summary">La modalità kernel, hooks LED e hooks di alto livello sono gestiti automaticamente dal kernel. Per settare manualmente il Power Suspend State selezionare User Mode.</string>
   <string name="autosleep">Autosleep</string>
@@ -560,8 +586,11 @@
   <string name="wlan_ctrl_wakelock_summary">Prevenire wakelock wlan_ctrl.</string>
   <string name="wlan_wakelock">Wakelock wlan</string>
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Previeni BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
+  <string name="bcmdhd_wakelock_divider">Divisore BCMDHD Wakelock</string>
   <!-- Custom Controls -->
   <string name="welcome">Benvenuto</string>
   <string name="custom_controls_summary">In questa sezione puoi creare o importare controlli personalizzati che non esistono nell\'app (per ora).</string>
@@ -623,7 +652,7 @@
   <string name="value">Valore</string>
   <string name="key_empty">Il campo non può essere vuoto!</string>
   <!-- Profile -->
-  <string name="apply_on_boot_not_available">Nella modalità profili le tue modifiche non avranno un impatto su applica all\'avvio.</string>
+  <string name="apply_on_boot_not_available">Nella modalità profili le tue modifiche non avranno un impatto su \"applica all\'avvio\".</string>
   <string name="profile_warning">Tutto ciò che modifichi qui sta per essere salvato sul tuo profilo. Ma attenzione! Le impostazioni verranno anche applicate, ma non vengono salvate per applicarle all\'avvio.</string>
   <string name="no_changes">Nessuna modifica effettuata!</string>
   <string name="apply_question">Applicare %s?</string>
@@ -643,6 +672,7 @@
   <string name="profile_select">Seleziona profilo</string>
   <string name="applying_profile">Applicando %s!</string>
   <string name="no_profiles">Nessun profilo trovato! È necessario prima crearli.</string>
+  <string name="sections_disabled">Tutte le sezioni disabilitate! Nessun profilo per te.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emula Init.d</string>
   <string name="emulate_initd_summary">Se il dispositivo non supporta Init.d per impostazione predefinita, è possibile abilitare questo per emulare il suo comportamento.</string>
@@ -650,6 +680,10 @@
   <string name="executing">Esecuzione</string>
   <string name="result">Risultato</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">In questa sezione viene illustrato cosa accade quando il dispositivo si avvia. Se è vuoto, niente accadrà dopo l\'avvio.</string>
+  <string name="delete_question">Eliminare %s?</string>
+  <string name="arguments">Argomenti: %s</string>
+  <string name="disable_question">Disabilitare %s?</string>
   <!-- About -->
   <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la CyanogenMod per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
   <string name="libraries_used">Librerie usate</string>
@@ -677,8 +711,15 @@
   <string name="ten_sec">10 secondi</string>
   <string name="twenty_sec">20 secondi</string>
   <string name="fifty_sec">50 secondi</string>
-  <string name="apply_on_boot_test_summary">Test applicato all\'avvio. Questo include tutte le cose che vengono applicate durante l\'avvio, ad esempio i controlli personalizzati, profili, init.d, ecc.</string>
+  <string name="apply_on_boot_test_summary">Test \"applica all\'avvio\". Questo include tutte le cose che vengono applicate durante l\'avvio, ad esempio i controlli personalizzati, profili, init.d, ecc.</string>
+  <string name="apply_on_boot_running">Il servizio \"applica all\'avvio\" è già in esecuzione. Attendi fino al termine.</string>
   <string name="nothing_apply">Nulla da applicare!</string>
+  <string name="hide">Nascondi</string>
+  <string name="apply_on_boot_hide_summary">Nascondi la notifica \"applica all\'avvio\". Il ritardo rimarrà comunque!</string>
+  <string name="toast">Toast</string>
+  <string name="apply_on_boot_toast_summary">Mostra una notifica toast quando le impostazioni sono applicate.</string>
+  <string name="script">Script</string>
+  <string name="apply_on_boot_script_summary">Utilizza uno shell script per applicare le impostazioni. Abilitalo solo se hai problemi con \"applica all\'avvio\". Se il problema persiste, assicurati che nessun altra app sia in conflitto con Kernel Adiutor.</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copia logcat in /sdcard/logcat.txt</string>
@@ -699,4 +740,6 @@
   <string name="password_too_long">La password è troppo lunga (max. 32 characters)</string>
   <string name="set_password_first">Imposta prima una password</string>
   <string name="fingerprint_summary">Utilizza le impronte digitali per il controllo sicurezza. Questo funzionerà fino a quando avrai impronte digitali registrate.</string>
+  <string name="sections">Sezioni</string>
+  <string name="sections_summary">Riavvia l\'app quando cambi la visibilità delle sezioni di seguito.</string>
 </resources>

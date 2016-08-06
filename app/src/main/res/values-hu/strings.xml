@@ -127,7 +127,6 @@
   <string name="cpu_governor">CPU ütemező</string>
   <string name="cpu_governor_summary">A CPU iránytó határozza meg, hogyan viselkedik a CPU a változó terhelés alatt. Az irányító módosítása hatással lesz arra, hogy hogyan fog lépkedni a CPU az elérhető frekvenciákon.</string>
   <string name="cpu_governor_tunables">CPU ütemező beállítások</string>
-  <string name="governor_tunables_summary">Az aktuális CPU ütemező finomhangolási lehetőségei.</string>
   <string name="cpu_governor_tunables_read_error">Nem sikerült beolvasni a jelenlegi CPU ütemezőt.\n\nHa egy QCOM big.LITTLE eszközt használsz, akkor ez egy ismert probléma. A rendszer arra kényszeríti a CPU-t, hogy kikapcsolja a magokat, így rendkívül nehezen olvasható ki a CPU-specifikus statisztika. Próbáld ezt a lehetőséget újra kiválasztani. A CPU néha nem hajlandó a magot bekapcsolni.</string>
   <string name="tunables_error">%s nem hangolható</string>
   <string name="mc_power_saving">Többmagos Energiatakarékosság</string>

@@ -110,7 +110,6 @@
   <string name="cpu_governor">Governor Επεξεργαστή</string>
   <string name="cpu_governor_summary">Ο κυβερνήτης της CPU καθορίζει πως συμπεριφέρεται η CPU ανάλογα με τις αλλαγές που συμβαίνουν στο φόρτο εργασίας. Αλλάζοντας τον κυβερνήτη επηρεάζει πως θα αλλάζει τις συχνότητες λειτουργίας που είναι διαθέσιμες η CPU.</string>
   <string name="cpu_governor_tunables">Πίνακες αλλαγών Governor επεξεργαστή</string>
-  <string name="governor_tunables_summary">Τα διάφορα στοιχεία ρύθμισης παραμέτρων που εξαρτώνται από τον governor.</string>
   <string name="mc_power_saving">Εξοικονόμηση ενέργειας πολλαπλών πυρήνων</string>
   <string name="mc_power_saving_summary">Προσπάθησε να εκτελέσεις εργασίες με όσο το δυνατόν λιγότερους πυρήνες.</string>
   <string name="disabled">Απενεργοποιημένο</string>

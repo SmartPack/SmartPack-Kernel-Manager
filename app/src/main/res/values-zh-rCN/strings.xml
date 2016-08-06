@@ -118,7 +118,6 @@
   <string name="cpu_governor">CPU 调速器</string>
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
-  <string name="governor_tunables_summary">这些配置项与您使用的调速器有关</string>
   <string name="tunables_error">%s 不可调节</string>
   <string name="mc_power_saving">多核省电</string>
   <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务。</string>

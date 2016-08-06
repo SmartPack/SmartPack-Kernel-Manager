@@ -28,6 +28,7 @@
   <string name="apply_on_boot_canceled">Asetuksien käyttöönotto peruutettiin.</string>
   <string name="not_in_range">Ei kantamalla</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Muistiin kirjoittaminen estetty!</string>
   <!-- Editor -->
   <string name="save">Tallenna</string>
   <!-- File Picker -->
@@ -85,6 +86,15 @@
   <!-- Device -->
   <string name="processor">Prosessori</string>
   <string name="features">Ominaisuudet</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Android versio</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Android version koodinimi</string>
+  <string name="fingerprint">Sormenjälki</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
+  <string name="hardware">Laitteisto</string>
+  <string name="architecture">Arkkitehtuuri</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Ydin</string>
@@ -96,7 +106,11 @@
   <string name="error_frequencies">Virhe ladattaessa taajuuksia</string>
   <string name="unused_frequencies">Käyttämättömät taajuudet</string>
   <!-- Inputs -->
+  <string name="product">Tuote</string>
+  <string name="version">Versio</string>
   <!-- CPU -->
+  <string name="cores">%d ydintä</string>
+  <string name="no_offline_core">Et pysty asettaa tätä ydintä Offline-tilaan!</string>
   <string name="cpu_max_freq">Suorittimen suurin taajuus</string>
   <string name="cpu_max_freq_summary">Aseta maksimi kellotaajuus jonka CPU saavuttaa</string>
   <string name="cpu_min_freq">Suorittimen pienin taajuus</string>
@@ -106,7 +120,6 @@
   <string name="cpu_governor">CPU governor</string>
   <string name="cpu_governor_summary">CPU tila määrittää kuinka CPU toimii rasituksessa. Tilan vaihtaminen vaikuttaa kuinka CPU:n kellotaajuudet vaihtuvat olosuhteiden mukaan.</string>
   <string name="cpu_governor_tunables">CPU-tilan säätö</string>
-  <string name="governor_tunables_summary">Monenlaisia kokoonpano nimikkeitä jotka ovat riippuvaisia CPU tilasta.</string>
   <string name="mc_power_saving">Moniydin tehon säästäminen</string>
   <string name="mc_power_saving_summary">Yritä järjestää tehtävät mahdollisimman vähille ytimille.</string>
   <string name="disabled">Pois käytöstä</string>
@@ -152,10 +165,19 @@
   <string name="eco_mode_summary">Virransäästötila IntelliPlugille.</string>
   <string name="hysteresis">Hysteresis-arvo</string>
   <string name="hysteresis_summary">Mitä pienenpi se on, sitä nopeampi vastaus syötteelle.</string>
+  <string name="cpu_threshold_summary">Mitä suurempi arvo, sitä vähemmän ytimiä käytetään.</string>
   <string name="suspend">Keskeyttää</string>
   <string name="cpus_boosted">Prosessoreiden jännitteet kasvatettu</string>
+  <string name="min_cpu_online_summary">Vähimmäismäärä ytimiä, jotka ovat aina päällä.</string>
   <string name="max_cpu_online">Maksimimäärä ytimiä päällä</string>
+  <string name="max_cpu_online_summary">Enimmäismäärä ytimiä, jotka ovat aina päällä.</string>
+  <string name="max_cpu_online_screen_off">Max. ytimet näyttö sammuneena</string>
+  <string name="max_cpu_online_screen_off_summary">Enimmäismäärä ytimiä, jotka ovat päällä kun näyttö on sammutettu.</string>
+  <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
+  <string name="blu_plug_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt Code_Blue team.</string>
+  <string name="powersaver_mode">Virransäästötila</string>
+  <string name="powersaver_mode_summary">Asettaa max. yhden ytimen online-tilaan @1728MHz taajuudella.</string>
   <string name="up_timer_cnt_summary">Ohjaa käynnissä olevien CPU:den ajastimia.</string>
   <string name="down_timer_cnt_summary">Ohjaa sammuneiden CPU:den ajastimia.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
@@ -167,34 +189,82 @@
   <string name="cpus_on_touch_summary">Aktiivisten ytimien määrä koskettaessa näyttöä tai painettaessa näppäintä.</string>
   <string name="first_level">Ensimmäinen taso</string>
   <string name="timer">Ajastin</string>
+  <string name="mb_hotplug_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt show-p1984.</string>
   <string name="screen_off_single_cpu_summary">Käytä vain yhtä ydintä kun näyttö on pois päältä.</string>
+  <string name="idle_frequency">Taajuus kun puh. käyttämättömänä</string>
+  <string name="idle_frequency_summary">Jos ensimmäinen ydin on alle tämän arvon, muita ytimiä ei käynnistetä.</string>
+  <string name="touch_boost_time">Boostin aika kosket. jälkeen</string>
+  <string name="touch_boost_time_summary">Aika, kuinka kauan suoritin pysyy boost-tilassa näytön kosketuksen jälkeen.</string>
+  <string name="boost_frequency_core">Boostin taajuus ydin %d</string>
   <string name="start_delay">Käyttöönoton viive</string>
+  <string name="start_delay_summary">Aika kunnes Hotplug alkaa toimia.</string>
   <string name="delay">Viive</string>
   <string name="delay_summary">Tarkistuksien välinen aika.</string>
   <string name="pause">Pause</string>
+  <string name="alucard_hotplug_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt Alucard.</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Kernelinsisäinen korvaaja Qualcommin hotpluginnille. Kehittänyt varunchitre15.</string>
+  <string name="min_cpu_online_screen_off">Min. ytimet näyttö sammuneena</string>
+  <string name="min_cpu_online_screen_off_summary">Minimimäärä ytimiä, jotka ovat päällä kun näyttö on sammutettu.</string>
+  <string name="endurance_level_summary">Virransäästöprofiili.</string>
+  <string name="quad_core_mode">Neliydin tila</string>
+  <string name="dual_core_mode">Kaksiydin tila</string>
+  <string name="zen_decision_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt bbedward.</string>
   <string name="bat_threshold_ignore_summary">Älä käynnistä yhtäkään ydintä kun varaustaso on alle valitun kapasiteetin.</string>
   <string name="autosmp">AutoSMP</string>
+  <string name="autosmp_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt mrg666.</string>
   <string name="hcube_summary">OnePlussan muokattu ytimien hallinta.</string>
+  <string name="offline_delay">Offline-viive</string>
+  <string name="offline_delay_summary">Aika suorittimen virrankatkaisuun, kun puh. Offline-tilaan.</string>
   <!--Thermal-->
   <string name="warning">Varoitus</string>
   <string name="thermal_info">Käytä vain yhtä lämpötila-ajuria alla olevista vaihtoehdoista. Käyttämällä useaa samaan aikaan, voi aiheutua jotain odottamatonta.</string>
   <string name="thermald_summary">Alkuperäinen lämpötila-ajuri, joka estää laitetta ylikuumenemasta. Tämän pitäisi olla pois käytöstä, jos kernel sisältää vaihtoehtoisen ajurin.</string>
+  <string name="intellithermal_summary">Kernelinsisäinen korvaaja Qualcommin Thermaldille. Kehittänyt faux123.</string>
+  <string name="intellithermal_optimized_summary">Kernelinsisäinen korvaaja Qualcommin Thermaldille. Kehittänyt faux123 ja alucard_24.</string>
+  <string name="freq_throttle_temp_summary">Lämpötila, jossa suoritin alkaa laskea taajuuksia viilentyäkseen (thermal throttling).</string>
+  <string name="cpu_throttle_temp_summary">Lämpötila, jossa suoritin alkaa sulkea ytimiä.</string>
+  <string name="shutdown_temp">Sammutuslämpötila</string>
   <!-- GPU -->
   <string name="frequencies">Taajuudet</string>
+  <string name="gpu_freq">GPU:n taajuus</string>
+  <string name="gpu_2d_max_freq">GPU 2D:n enimmäistaajuus</string>
+  <string name="gpu_2d_max_freq_summary">Aseta korkein kellotaajuus jonka GPU saavuttaa 2D tilassa.</string>
   <string name="gpu_max_freq">GPU:n maksimi taajuus</string>
+  <string name="gpu_max_freq_summary">Aseta korkein kellotaajuus jonka GPU saavuttaa.</string>
+  <string name="gpu_min_freq">GPU:n minimitaajuus</string>
+  <string name="gpu_min_freq_summary">Aseta matalin kellotaajuus jonka GPU saavuttaa.</string>
   <string name="gpu_governor">GPU governor</string>
   <string name="simple_gpu_algorithm">Yksinkertainen GPU algoritmi</string>
   <string name="simple_gpu_algorithm_summary">Lisäosa MSM Adreno TZ GPU kuvernööriin. Kehittänyt faux123.</string>
   <string name="laziness">Laiskuus</string>
   <!-- Screen -->
+  <string name="screen_color">Näytön väri</string>
   <string name="red">Punainen</string>
   <string name="green">Vihreä</string>
   <string name="blue">Sininen</string>
   <string name="min_rgb">Minimi RGB arvo</string>
+  <string name="saturation_intensity">Saturaation voimakkuus</string>
+  <string name="grayscale_mode">Mustavalkoinen tila</string>
   <string name="screen_value">Näytön arvo</string>
   <string name="screen_contrast">Näytön kontrasti</string>
   <string name="high_brightness_mode">Korkea kirkkaus tila</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
+  <string name="red_greys">Punaharmaat</string>
+  <string name="red_mids">Punaisen keskivärit</string>
+  <string name="red_blacks">Punamustat</string>
+  <string name="red_whites">Punavalkoiset</string>
+  <string name="green_greys">Viherharmaat</string>
+  <string name="green_mids">Viher keskivärit</string>
+  <string name="green_blacks">Vihermustat</string>
+  <string name="green_whites">Vihervalkoiset</string>
+  <string name="blue_greys">Siniharmaat</string>
+  <string name="blue_mids">Sini keskivärit</string>
+  <string name="blue_blacks">Sinimustat</string>
+  <string name="blue_whites">Sinivalkoiset</string>
+  <string name="contrast">Kontrasti</string>
+  <string name="brightness">Kirkkaus</string>
   <string name="lcd_backlight">LCD-taustavalo</string>
   <string name="min_brightness">Minimi kirkkaus</string>
   <string name="max_brightness">Maksimi kirkkaus</string>
@@ -203,21 +273,140 @@
   <string name="glove_mode">Käsine tila</string>
   <!-- Wake -->
   <string name="full">Täysi</string>
+  <string name="half">Puolikas</string>
+  <string name="s2w">Sweep2Wake</string>
+  <string name="s2w_summary">Herätä laitteesi pyyhkäisemällä näyttöä.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
+  <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Sweep2Wake oikealle</string>
+  <string name="s2w_left">Sweep2Wake vasemmalle</string>
+  <string name="s2w_up">Sweep2Wake ylöspäin</string>
+  <string name="s2w_down">Sweep2Wake alaspäin</string>
+  <string name="s2w_any">Sweep2Wake mihin tahansa suuntaan</string>
+  <string name="lenient_summary">Vaadi ainoastaan 1. ja 4. näppäin aktivoidaksesi Sweep2Wake:n.</string>
+  <string name="t2w">Tap2Wake</string>
+  <string name="t2w_summary">Herätä laitteesi napauttamalla näyttöä.</string>
+  <string name="dt2s">DoubleTap2Sleep</string>
+  <string name="dt2s_summary">Lukitse laitteesi tuplanapauttamalla näytön yläosaa.</string>
+  <string name="s2w_charging">Sweep2Wake kun laite latauksessa</string>
+  <string name="dt2w_charging">DoubleTap2Wake kun laite latauksessa</string>
+  <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
+  <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake kun laite latauksessa</string>
+  <string name="s2s_summary">Lukitse laitteesi pyyhkäisemällä näyttöä.</string>
+  <string name="s2s_right">Pyyhkäise oikealle</string>
+  <string name="s2s_left">Pyyhkäise vasemmalle</string>
+  <string name="s2s_any">Pyyhkäise vasemmalle tai oikealle</string>
+  <string name="slide_up">Liu\'uta ylöspäin</string>
+  <string name="slide_down">Liu\'uta alaspäin</string>
+  <string name="slide_left">Liu\'uta vasemmalle</string>
+  <string name="slide_right">Liu\'uta oikealle</string>
+  <string name="draw_e">Piirrä E</string>
+  <string name="draw_o">Piirrä O</string>
+  <string name="draw_w">Piirrä W</string>
+  <string name="draw_c">Piirrä C</string>
+  <string name="draw_m">Piirrä M</string>
+  <string name="camera_gesture">Eleet kameralle</string>
+  <string name="camera_gesture_summary">Käynnistä kamera piirtämällä ympyrä näytölle.</string>
+  <string name="pocket_mode">Taskutila</string>
+  <string name="pocket_mode_summary">Tämän aktivoiminen sulkee heräämiskontrollit kun laite on taskussa.</string>
+  <string name="timeout">Aikakatkaisu</string>
+  <string name="timeout_summary">Aseta aika, jonka jälkeen heräämiskontrollit kytketään pois päältä näytön sammuttamisen jälkeen (säästää akkua).</string>
+  <string name="power_key_suspend">Virtanäppäin keskeyttämään</string>
+  <string name="power_key_suspend_summary">Tämän aktivoiminen sulkee heräämiskontrollit kun laite sammutetaan painamalla virtanäppäintä (säästää akkua).</string>
   <!-- Sound -->
+  <string name="sound_control">Äänikontrollit</string>
+  <string name="headset_highperf_mode">Kuulokkeiden High Performance -tila</string>
   <!-- Battery -->
   <!-- LED -->
   <!-- I/O Scheduler -->
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
+  <string name="visible_app">Näkyvät sovellukset</string>
+  <string name="secondary_server">Vaihtoehtoinen serveri</string>
+  <string name="hidden_app">Piilotetut sovellukset</string>
+  <string name="content_providers">Sisällöntarjoajat</string>
+  <string name="very_light">Hyvin kevyt</string>
+  <string name="light">Kevyt</string>
+  <string name="medium">Keskiverto</string>
+  <string name="very_aggressive">Hyvin aggressiivinen</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Levykoko</string>
   <!-- Entropy -->
+  <string name="available">Saatavissa</string>
+  <string name="read">Luku</string>
+  <string name="write">Kirjoitus</string>
   <!-- Misc -->
+  <string name="vibration_strength">Tärinän voimakkuus</string>
+  <string name="fsync">Fsync</string>
+  <string name="dynamic_fsync">Dynaaminen Fsync</string>
+  <string name="lcd_panel">LCD Paneeli</string>
+  <string name="hybrid">Hybridi</string>
+  <string name="network">Verkko</string>
   <!-- Custom Controls -->
+  <string name="create">Luo</string>
+  <string name="import_item">Tuo</string>
+  <string name="control_switch">Vaihda</string>
+  <string name="title">Otsikko</string>
+  <string name="description">Kuvaus</string>
+  <string name="applying">Otetaan käyttöön</string>
+  <string name="seekbar_min">Minimi</string>
+  <string name="seekbar_max">Maksimi</string>
+  <string name="seekbar_progress">Edistyminen</string>
+  <string name="control_generic">Yleinen</string>
+  <string name="generic_value">Arvo</string>
+  <string name="generic_value_summary">Editorin nykyinen arvo. Voi olla käytännössä mitä tahansa.</string>
+  <string name="generic_apply_summary">Editori palauttaa sen, mitä tahansa oli syötetty.</string>
+  <string name="required">vaadittu</string>
+  <string name="test">Testaa</string>
+  <string name="output">Ulostulo</string>
+  <string name="edit">Muokkaa</string>
+  <string name="export">Vie</string>
+  <string name="delete">Poista</string>
+  <string name="sure_question">Oletko varma?</string>
+  <string name="name">Nimi</string>
+  <string name="already_exists">%s on jo olemassa!</string>
+  <string name="exported_item">%1$s on viety %2$s</string>
+  <string name="name_empty">Nimi puuttuu!</string>
+  <string name="import_wrong_version">Tuotavan tiedoston versio on liian vanha!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Yhtäkään tuettua kerneliä ei löytynyt! Tarkista internet yhteytesi.</string>
+  <string name="download_error">Tiedoston %s lataaminen epäonnistui.</string>
+  <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Tarkistetaan md5</string>
+  <string name="install">Asenna</string>
+  <string name="cwm_recovery">CWM Recovery</string>
+  <string name="twrp">TWRP</string>
+  <string name="file_location">Ladattu tiedosto on %s</string>
+  <string name="backing_up">Varmuuskopioidaan</string>
+  <string name="flashing">Asennetaan</string>
+  <string name="restoring">Palautetaan</string>
   <!-- Backup -->
+  <string name="boot_partition">Boot osio</string>
+  <string name="recovery_partition">Palautusosio</string>
+  <string name="fota_partition">Fota osio</string>
   <!-- Build prop Editor -->
+  <string name="search">Etsi</string>
+  <string name="key">Avain</string>
+  <string name="value">Arvo</string>
   <!-- Profile -->
+  <string name="profile_warning">Kaikki mitä muutat täällä, tullaan tallentamaan profiiliisi. Mutta huomaa! Asetuksesi tullaan myös hyväksymään, mutta niitä ei tallenneta tapahtumaan käynnistyksessä.</string>
+  <string name="no_changes">Muutoksia ei tehty!</string>
+  <string name="apply_question">Hyväksy %s?</string>
+  <string name="details">Lisätiedot</string>
+  <string name="wipe_data">Poista tiedot</string>
+  <string name="wipe_cache">Tyhjennä välimuisti</string>
+  <string name="flash_zip">Asenna Zip</string>
+  <string name="add_action_first">Sinun täytyy ensin lisätä toimintoja!</string>
+  <string name="flash_now_confirm">Haluatko ajaa toimintosi? Laitteesi tulee käynnistymään uudelleen recovery-tilassa ja kaikki toimintosi tullaan ajamaan lisäämisjärjestyksessä.</string>
+  <string name="press_again_to_apply">Paina %s uudelleen hyväksyäksesi.</string>
+  <string name="applied">Hyväksytty</string>
+  <string name="profile_select">Valitse profiili</string>
+  <string name="applying_profile">Otetaan käyttöön %s!</string>
+  <string name="no_profiles">Profiileja ei löytynyt! Sinun täytyy luoda ne ensin.</string>
+  <string name="sections_disabled">Kaikki osiot poistettu käytöstä! Ei profiileja sinulle.</string>
   <!-- Init.d -->
+  <string name="emulate_initd">Emuloi Init.d</string>
   <!-- On Boot -->
   <!-- About -->
   <!-- Contributors -->

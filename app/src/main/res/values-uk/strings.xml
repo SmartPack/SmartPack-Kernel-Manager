@@ -94,7 +94,6 @@
   <string name="cpu_governor">Планувальник CPU</string>
   <string name="cpu_governor_summary">Планувальник CPU визначає, як буде поводити себе процесор у відповідь на зміни робочого навантаження. Зміна планувальника буде впливати на те, як CPU змінює робочі частоти.</string>
   <string name="cpu_governor_tunables">Параметри планувальника CPU</string>
-  <string name="governor_tunables_summary">Різні параметри конфігурації які залежать від планувальника.</string>
   <string name="mc_power_saving">Багатоядерне енергозбереження</string>
   <string name="mc_power_saving_summary">Намагатися згрупувати задачі для використання найменшої кількості ядер CPU.</string>
   <string name="disabled">Вимкнено</string>

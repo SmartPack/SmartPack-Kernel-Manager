@@ -65,7 +65,6 @@
   <string name="cpu_governor">ЦПУ управљач</string>
   <string name="cpu_governor_summary">CPU управљач одређује како процесор реагује на промене у радном оптерећењу. Променом управљача утицаћете на скалирање, смену корака фреквенције доступних процесору.</string>
   <string name="cpu_governor_tunables">Фине поставке ЦПУ управљача</string>
-  <string name="governor_tunables_summary">Разне конфигурације ставки које зависе од Governor-а</string>
   <string name="mc_power_saving">Multicore уштеда енергије</string>
   <string name="mc_power_saving_summary">Групација задатака у што мање језгри</string>
   <string name="disabled">Искључено</string>

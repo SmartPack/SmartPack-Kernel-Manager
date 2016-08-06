@@ -65,7 +65,6 @@
   <string name="cpu_governor">CPU नियंत्रक</string>
   <string name="cpu_governor_summary">CPU राज्यपाल कैसे CPU बर्ताव करता है काम का बोझ में परिवर्तनों की प्रतिक्रिया में निर्धारित करता है। राज्यपाल को बदलने कैसे CPU आवृत्ति उपलब्ध करने के लिए कदम आपको CPU के माध्यम से तराजू प्रभाव होगा।</string>
   <string name="cpu_governor_tunables">सीपीयू राज्यपाल संपादन </string>
-  <string name="governor_tunables_summary">विभिन्न कॉन्फ़िगरेशन आइटम जो राज्यपाल पर निर्भर कर रहे हैं।</string>
   <string name="mc_power_saving">Multicore बिजली की बचत</string>
   <string name="mc_power_saving_summary">समूह में कार्य करने के लिए कम से कम संभव कोर में प्रयास करें।</string>
   <string name="disabled">असक्षम</string>

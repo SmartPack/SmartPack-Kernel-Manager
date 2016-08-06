@@ -125,9 +125,8 @@
   <string name="cpu_max_screen_off_freq">Fréquence Maximale du CPU l\'Ecran Eteint</string>
   <string name="cpu_max_screen_off_freq_summary">Définissez la fréquence maximale du CPU quand l\'écran est éteint.</string>
   <string name="cpu_governor">Gouverneur de CPU</string>
-  <string name="cpu_governor_summary">L\'administrateur du processeur détermine le comportement du processeur en fonction des changements de charge de travail. Modifier l\'administrateur aura des conséquences sur la façon dont le processeur s\'adapte aux intervalles de fréquences disponibles pour votre processeur.</string>
+  <string name="cpu_governor_summary">L\'ordonnanceur du processeur détermine le comportement du processeur en fonction des changements de charge de travail. Modifier l\'administrateur aura des conséquences sur la façon dont le processeur s\'adapte aux intervalles de fréquences disponibles pour votre processeur.</string>
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
-  <string name="governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
   <string name="cpu_governor_tunables_read_error">Impossible de lire l\'ordonnanceur actuel du processeur.\n\nSi vous utilisez un appareil avec un processeur QCOM big.LITTLE, il s’agit d’un problème connu. Le système force le processeur à éteindre les cœurs, rendant extrêmement difficile l\'accès à la lecture des statistiques spécifiques du processeur. Réessayez de sélectionner cette option. Le processeur refuse parfois de tourner sur un cœur.</string>
   <string name="tunables_error">%s n\'est pas réglable</string>
   <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>
@@ -151,11 +150,12 @@
   <string name="input_interval">Intervalle d\'Entrée</string>
   <string name="input_interval_summary">Intervalle minimale pour que le CPU soit boosté lorsque qu\'une entrée est détectée.</string>
   <string name="input_boost_freq">Fréquence d\'Entrée Boost</string>
+  <string name="input_boost_freq_core">Cœur %s</string>
   <string name="input_boost_freq_summary">La fréquence du CPU va être stimulé à cette fréquence en cas de détection d\'entrée.</string>
-  <string name="wakeup_boost">Boost au réveil</string>
-  <string name="wakeup_boost_summary">Le boost à l\'allumage (wakeup boost) se comporte comme le boost au toucher, mais uniquement à l\'allumage de l\'écran.</string>
-  <string name="hotplug_boost">Boost cœur CPU</string>
-  <string name="hotplug_boost_summary">Le boost cœur CPU (hotplug boost) se comporte comme le boost au toucher. Mais il est utilisé lorsqu\'un des cœurs désactivés du processeur est à nouveau mis sous tension.</string>
+  <string name="wakeup_boost">Amplification au réveil</string>
+  <string name="wakeup_boost_summary">L\'amplification au réveil est analogue à \"Entrée d\'amplification de la fréquence\", mais il se produit lors de la mise sous tension de l\'écran</string>
+  <string name="hotplug_boost">Amplification de la connexion à chaud</string>
+  <string name="hotplug_boost_summary">L\'amplification de la connexion à chaud est analogue à \"Amplification au réveil\" mais il se produit lors de la mise en ligne des processeurs</string>
   <string name="touch_boost">Touch Boost</string>
   <string name="touch_boost_summary">Cela va booster la vitesse minimale du CPU si vous touchez l\'écran ou appuyez sur un bouton.</string>
   <!-- CPU Voltage -->

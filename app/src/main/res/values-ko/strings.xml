@@ -65,7 +65,6 @@
   <string name="cpu_governor">CPU 가버너</string>
   <string name="cpu_governor_summary">CPU 가버너는 작업량의 변화에 따라 CPU가 어떻게 작동할 지 결정합니다. 가버너를 바꾸는 것은 주어진 클럭 테이블 내에서 CPU가 어떻게 클럭을 분배하는지에 영향을 줍니다.</string>
   <string name="cpu_governor_tunables">CPU 가버너 고급 설정</string>
-  <string name="governor_tunables_summary">각 가버너에 따라 달라지는 설정 항목들입니다.</string>
   <string name="mc_power_saving">멀티코어 절약 모드</string>
   <string name="mc_power_saving_summary">최소한의 코어로 작업을 처리합니다.</string>
   <string name="disabled">사용 안 함</string>

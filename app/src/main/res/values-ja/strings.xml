@@ -65,7 +65,6 @@
   <string name="cpu_governor">CPUガバナ</string>
   <string name="cpu_governor_summary">CPUガバナはCPU負荷の変動に対してどのように動作するかを決定するものです。ガバナの変更により、そのCPUで利用可能な周波数ステップの上昇/下降動作が影響を受けます。</string>
   <string name="cpu_governor_tunables">CPUガバナ設定</string>
-  <string name="governor_tunables_summary">ガバナ毎の設定可能な項目を設定します。</string>
   <string name="mc_power_saving">マルチコア省電力モード</string>
   <string name="mc_power_saving_summary">出来るだけ少ないコアで動作するようになります。</string>
   <string name="disabled">無効</string>
