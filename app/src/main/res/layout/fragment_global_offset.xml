@@ -9,21 +9,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/global_offset"
         android:textColor="@color/white"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:gravity="center_vertical">
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_minus"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/offset"
             android:layout_toStartOf="@+id/offset"
@@ -38,15 +38,15 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textColor="@color/white" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_plus"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/offset"
             android:layout_toRightOf="@+id/offset"
