@@ -95,21 +95,12 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void temperatureInit(List<RecyclerViewItem> items) {
-        CardView tempCard = new CardView(getActivity());
-        tempCard.setFullSpan(true);
-        tempCard.setTitle(getString(R.string.temperature));
-
         mTemperatureView = new TemperatureView();
-        tempCard.addItem(mTemperatureView);
 
-        items.add(tempCard);
+        items.add(mTemperatureView);
     }
 
     private void frequenciesInit(List<RecyclerViewItem> items) {
-        TitleView frequencyTitle = new TitleView();
-        frequencyTitle.setText(getString(R.string.frequencies));
-        items.add(frequencyTitle);
-
         FrequencyButtonView frequencyButtonView = new FrequencyButtonView();
         frequencyButtonView.setRefreshListener(new View.OnClickListener() {
             @Override

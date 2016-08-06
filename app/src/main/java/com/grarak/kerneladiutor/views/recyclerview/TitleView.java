@@ -43,7 +43,6 @@ public class TitleView extends RecyclerViewItem {
         mTitle = (TextView) view.findViewById(R.id.title);
 
         setFullSpan(true);
-
         super.onCreateView(view);
     }
 

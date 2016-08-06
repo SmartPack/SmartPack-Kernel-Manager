@@ -19,13 +19,14 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 
-import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.Temperature;
-import com.grarak.kerneladiutor.views.CircularTextView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 /**
@@ -36,9 +37,9 @@ public class TemperatureView extends RecyclerViewItem {
     private View mCPUParent;
     private View mGPUParent;
 
-    private CircularTextView mCPU;
-    private CircularTextView mGPU;
-    private CircularTextView mBattery;
+    private TextView mCPU;
+    private TextView mGPU;
+    private TextView mBattery;
 
     private double mBatteryTemp;
 
@@ -52,10 +53,15 @@ public class TemperatureView extends RecyclerViewItem {
         mCPUParent = view.findViewById(R.id.cpu_parent);
         mGPUParent = view.findViewById(R.id.gpu_parent);
 
-        mCPU = (CircularTextView) view.findViewById(R.id.cpu);
-        mGPU = (CircularTextView) view.findViewById(R.id.gpu);
-        mBattery = (CircularTextView) view.findViewById(R.id.battery);
+        mCPU = (TextView) view.findViewById(R.id.cpu);
+        mGPU = (TextView) view.findViewById(R.id.gpu);
+        mBattery = (TextView) view.findViewById(R.id.battery);
 
+        StaggeredGridLayoutManager.LayoutParams layoutParams =
+                new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setFullSpan(true);
+        view.setLayoutParams(layoutParams);
         super.onCreateView(view);
     }
 
@@ -66,13 +72,10 @@ public class TemperatureView extends RecyclerViewItem {
 
     @Override
     protected void refresh() {
-        super.refresh();
-
         if (mCPUParent != null) {
             if (Temperature.hasCPU()) {
                 mCPUParent.setVisibility(View.VISIBLE);
                 mCPU.setText(Temperature.getCPU(mCPU.getContext()));
-                mCPU.setColor(Temperature.getCPUColor(mCPU.getContext()));
             } else {
                 mCPUParent.setVisibility(View.GONE);
             }
@@ -81,16 +84,12 @@ public class TemperatureView extends RecyclerViewItem {
             if (Temperature.hasGPU()) {
                 mGPUParent.setVisibility(View.VISIBLE);
                 mGPU.setText(Temperature.getGPU(mGPU.getContext()));
-                mGPU.setColor(Temperature.getGPUColor(mGPU.getContext()));
             } else {
                 mGPUParent.setVisibility(View.GONE);
             }
         }
         if (mBattery != null) {
             double temp = mBatteryTemp;
-            mBattery.setColor(ContextCompat.getColor(mBattery.getContext(), temp <= 36 ?
-                    R.color.green : temp <= 50 ?
-                    R.color.orange : R.color.red));
             boolean useFahrenheit = Utils.useFahrenheit(mBattery.getContext());
             if (useFahrenheit) temp = Utils.celsiusToFahrenheit(temp);
             mBattery.setText(Utils.roundTo2Decimals(temp) + mBattery.getContext().getString(useFahrenheit ?

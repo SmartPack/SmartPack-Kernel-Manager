@@ -10,11 +10,4 @@
         <attr name="edgevisibile" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="CircularTextView">
-        <attr name="circlecolor" format="color" />
-        <attr name="textcolor" format="color" />
-        <attr name="textsize" format="dimension" />
-        <attr name="text" format="string" />
-    </declare-styleable>
-
 </resources>

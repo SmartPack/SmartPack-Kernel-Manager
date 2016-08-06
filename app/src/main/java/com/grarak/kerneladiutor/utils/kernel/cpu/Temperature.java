@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.utils.kernel.cpu;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
@@ -53,11 +52,6 @@ public class Temperature {
     private static String GPU_NODE;
     private static int GPU_OFFSET;
 
-    public static int getGPUColor(Context context) {
-        double temp = getGPUTemp();
-        return ContextCompat.getColor(context, temp <= 36 ? R.color.green : temp <= 50 ? R.color.orange : R.color.red);
-    }
-
     public static String getGPU(Context context) {
         double temp = getGPUTemp();
         boolean useFahrenheit = Utils.useFahrenheit(context);
@@ -83,11 +77,6 @@ public class Temperature {
             GPU_NODE = null;
         }
         return false;
-    }
-
-    public static int getCPUColor(Context context) {
-        double temp = getCPUTemp();
-        return ContextCompat.getColor(context, temp <= 40 ? R.color.green : temp <= 55 ? R.color.orange : R.color.red);
     }
 
     public static String getCPU(Context context) {
