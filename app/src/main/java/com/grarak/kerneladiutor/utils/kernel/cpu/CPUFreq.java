@@ -93,7 +93,9 @@ public class CPUFreq {
             if (offline) {
                 onlineCpu(i, true, null);
             }
+            run(Control.chmod("644", Utils.strFormat(path, i)), Utils.strFormat(path, i) + "chmod644", context);
             run(Control.write(value, Utils.strFormat(path, i)), Utils.strFormat(path, i), context);
+            run(Control.chmod("444", Utils.strFormat(path, i)), Utils.strFormat(path, i) + "chmod444", context);
             if (offline) {
                 onlineCpu(i, false, null);
             }
