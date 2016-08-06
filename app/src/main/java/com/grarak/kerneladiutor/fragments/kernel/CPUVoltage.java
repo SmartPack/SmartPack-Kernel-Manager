@@ -49,7 +49,7 @@ public class CPUVoltage extends RecyclerViewFragment {
 
     @Override
     public int getSpanCount() {
-        return super.getSpanCount() + 1;
+        return super.getSpanCount() + 2;
     }
 
     @Override
@@ -104,8 +104,9 @@ public class CPUVoltage extends RecyclerViewFragment {
 
     private void initView(GenericSelectView view, final String freq, String voltage) {
         String freqText = Voltage.isVddVoltage() ? String.valueOf(Utils.strToInt(freq) / 1000) : freq;
-        view.setSummary(freqText + getString(R.string.mhz));
-        view.setValue(voltage + getString(R.string.mv));
+        view.setTitle(freqText + getString(R.string.mhz));
+        view.setSummary(voltage + getString(R.string.mv));
+        view.setValue("");
         view.setValueRaw(voltage);
         view.setInputType(InputType.TYPE_CLASS_NUMBER);
         view.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {

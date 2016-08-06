@@ -33,6 +33,7 @@ public abstract class ValueView extends RecyclerViewItem {
 
     private TextView mTitleView;
     private TextView mSummaryView;
+    private View mValueParent;
     private TextView mValueView;
     private View mProgress;
 
@@ -49,6 +50,7 @@ public abstract class ValueView extends RecyclerViewItem {
     public void onCreateView(View view) {
         mTitleView = (TextView) view.findViewById(R.id.title);
         mSummaryView = (TextView) view.findViewById(R.id.summary);
+        mValueParent = view.findViewById(R.id.value_parent);
         mValueView = (TextView) view.findViewById(R.id.value);
         mProgress = view.findViewById(R.id.progress);
 
@@ -103,6 +105,7 @@ public abstract class ValueView extends RecyclerViewItem {
             mValueView.setText(mValue);
             mValueView.setVisibility(View.VISIBLE);
             mProgress.setVisibility(View.GONE);
+            mValueParent.setVisibility(mValue.isEmpty() ? View.GONE : View.VISIBLE);
         }
     }
 

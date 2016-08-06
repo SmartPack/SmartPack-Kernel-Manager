@@ -19,12 +19,9 @@
  */
 package com.grarak.kerneladiutor.fragments.statistics;
 
-import android.content.res.Configuration;
-
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
@@ -40,6 +37,11 @@ public class InputsFragment extends RecyclerViewFragment {
     @Override
     protected boolean showViewPager() {
         return false;
+    }
+
+    @Override
+    public int getSpanCount() {
+        return super.getSpanCount() + 1;
     }
 
     @Override
@@ -78,14 +80,4 @@ public class InputsFragment extends RecyclerViewFragment {
         }
     }
 
-    @Override
-    public int getSpanCount() {
-        int span = Utils.isTablet(getActivity()) ? Utils.getOrientation(getActivity()) ==
-                Configuration.ORIENTATION_LANDSCAPE ? 4 : 3 : Utils.getOrientation(getActivity()) ==
-                Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
-        if (itemsSize() != 0 && span > itemsSize()) {
-            span = itemsSize();
-        }
-        return span;
-    }
 }
