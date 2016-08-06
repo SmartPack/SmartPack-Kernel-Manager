@@ -39,4 +39,8 @@
         <item name="android:background">@color/divider</item>
     </style>
 
+    <style name="ItemTextAppearance">
+        <item name="android:ellipsize">middle</item>
+    </style>
+
 </resources>
