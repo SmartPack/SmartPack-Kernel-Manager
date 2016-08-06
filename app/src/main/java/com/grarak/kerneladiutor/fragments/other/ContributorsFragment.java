@@ -54,6 +54,11 @@ public class ContributorsFragment extends RecyclerViewFragment {
     }
 
     @Override
+    protected boolean needDelay() {
+        return false;
+    }
+
+    @Override
     protected void addItems(List<RecyclerViewItem> items) {
     }
 

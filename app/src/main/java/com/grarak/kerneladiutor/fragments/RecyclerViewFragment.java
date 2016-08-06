@@ -60,6 +60,7 @@ import java.util.List;
  */
 public abstract class RecyclerViewFragment extends BaseFragment {
 
+    public boolean mDelay;
     private Handler mHandler;
 
     private View mRootView;
@@ -182,6 +183,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
                 @Override
                 protected List<RecyclerViewItem> doInBackground(Void... params) {
+                    if (mDelay && needDelay()) {
+                        try {
+                            Thread.sleep(250);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        mDelay = false;
+                    }
                     List<RecyclerViewItem> items = new ArrayList<>();
                     addItems(items);
                     return items;
@@ -559,6 +568,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     protected View getRootView() {
         return mRootView;
+    }
+
+    protected boolean needDelay() {
+        return true;
     }
 
     @Override

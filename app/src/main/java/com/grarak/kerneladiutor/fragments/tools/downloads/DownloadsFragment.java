@@ -71,6 +71,11 @@ public class DownloadsFragment extends RecyclerViewFragment {
     }
 
     @Override
+    protected boolean needDelay() {
+        return false;
+    }
+
+    @Override
     protected void postInit() {
         super.postInit();
         if (mWebpageReader == null && mSupport != null) {
