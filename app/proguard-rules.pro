@@ -17,4 +17,5 @@
 #}
 -keep class !android.support.v7.internal.view.menu.MenuBuilder, !android.support.v7.internal.view.menu.SubMenuBuilder, android.support.v7.** { *; }
 -keep class android.support.v7.widget.LinearLayoutManager { *; }
+-keep class android.support.design.widget.NavigationView { *; }
 -keep interface android.support.v7.** { *; }
