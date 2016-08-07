@@ -27,6 +27,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.CoreCtl;
+import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.QcomBcl;
 import com.grarak.kerneladiutor.utils.root.Control;
 
@@ -84,6 +85,10 @@ public class CPUFreq {
     }
 
     private static void applyCpu(String path, String value, int min, int max, Context context) {
+        boolean mpdecision = MPDecision.supported() && MPDecision.isMpdecisionEnabled();
+        if (mpdecision) {
+            MPDecision.enableMpdecision(false, null);
+        }
         for (int i = min; i <= max; i++) {
             if (Utils.existFile(Utils.strFormat(CPU_ENABLE_OC, i))) {
                 run(Control.write("1", Utils.strFormat(CPU_ENABLE_OC, i)), Utils.strFormat(CPU_ENABLE_OC, i),
@@ -99,6 +104,9 @@ public class CPUFreq {
             if (offline) {
                 onlineCpu(i, false, context);
             }
+        }
+        if (mpdecision) {
+            MPDecision.enableMpdecision(true, null);
         }
     }
 
