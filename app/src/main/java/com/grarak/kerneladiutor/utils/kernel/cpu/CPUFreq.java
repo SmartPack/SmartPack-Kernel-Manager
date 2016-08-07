@@ -207,6 +207,10 @@ public class CPUFreq {
     }
 
     public static void setMinFreq(int freq, int min, int max, Context context) {
+        int maxFreq = getMaxFreq(min, false);
+        if (maxFreq != 0 && freq > maxFreq) {
+            setMaxFreq(freq, min, max, context);
+        }
         if (MSMPerformance.hasCpuMinFreq()) {
             for (int i = min; i <= max; i++) {
                 MSMPerformance.setCpuMinFreq(freq, i, context);
@@ -226,6 +230,10 @@ public class CPUFreq {
     public static void setMaxFreq(int freq, int min, int max, Context context) {
         if (Utils.existFile(CPU_MSM_CPUFREQ_LIMIT) && freq > Utils.strToInt(Utils.readFile(CPU_MSM_CPUFREQ_LIMIT))) {
             run(Control.write(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT), CPU_MSM_CPUFREQ_LIMIT, context);
+        }
+        int minFreq = getMinFreq(min, false);
+        if (minFreq != 0 && freq < minFreq) {
+            setMinFreq(freq, min, max, context);
         }
         if (MSMPerformance.hasCpuMaxFreq()) {
             for (int i = min; i <= max; i++) {
