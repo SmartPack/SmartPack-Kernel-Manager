@@ -49,7 +49,7 @@ import java.util.List;
 /**
  * Created by willi on 07.05.16.
  */
-public class CPUHotplug extends RecyclerViewFragment {
+public class CPUHotplugFragment extends RecyclerViewFragment {
 
     private List<SwitchView> mEnableViews = new ArrayList<>();
 
@@ -102,10 +102,15 @@ public class CPUHotplug extends RecyclerViewFragment {
             view.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
+                    boolean enabled = false;
                     for (SwitchView view : mEnableViews) {
-                        if (!view.getTitle().equals(switchView.getTitle()) && view.isChecked()
-                                && switchView.isChecked()) {
+                        if (!enabled && view.isChecked()) {
+                            enabled = true;
+                            continue;
+                        }
+                        if (enabled && view.isChecked()) {
                             Utils.toast(R.string.hotplug_warning, getActivity());
+                            break;
                         }
                     }
                 }
