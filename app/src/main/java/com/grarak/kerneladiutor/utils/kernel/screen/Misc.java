@@ -41,6 +41,7 @@ public class Misc {
     private static final String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
     private static final String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
     private static final String LM3630_BACKLIGHT_DIMMER_OFFSET = "/sys/module/lm3630_bl/parameters/backlight_offset";
+    private static final String PSB_BL_MIN_BRIGHTNESS = "/sys/class/backlight/psb-bl/min_brightness";
 
     private static final String NEGATIVE_TOGGLE = "/sys/module/cypress_touchkey/parameters/mdnie_shortcut_enabled";
 
@@ -54,6 +55,7 @@ public class Misc {
     static {
         sMinBrightnessFiles.put(LM3630_MIN_BRIGHTNESS, 50);
         sMinBrightnessFiles.put(MSM_BACKLIGHT_DIMMER, 100);
+        sMinBrightnessFiles.put(PSB_BL_MIN_BRIGHTNESS, 13);
     }
 
     private static String MIN_BRIGHTNESS;

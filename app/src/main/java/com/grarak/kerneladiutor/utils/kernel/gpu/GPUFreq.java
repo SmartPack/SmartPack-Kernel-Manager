@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -67,49 +68,66 @@ public class GPUFreq {
     private static final String MIN_TEGRA_FREQ = "/sys/kernel/tegra_gpu/gpu_floor_rate";
     private static final String AVAILABLE_TEGRA_FREQS = "/sys/kernel/tegra_gpu/gpu_available_rates";
 
-    private static final List<String> sCurrentFreqs = new ArrayList<>();
-    private static final List<String> sMaxFreqs = new ArrayList<>();
-    private static final List<String> sMinFreqs = new ArrayList<>();
-    private static final List<String> sAvailableFreqs = new ArrayList<>();
+    private static final String CUR_POWERVR_FREQ = "/sys/devices/platform/dfrgx/devfreq/dfrgx/cur_freq";
+    private static final String MAX_POWERVR_FREQ = "/sys/devices/platform/dfrgx/devfreq/dfrgx/max_freq";
+    private static final String MIN_POWERVR_FREQ = "/sys/devices/platform/dfrgx/devfreq/dfrgx/min_freq";
+    private static final String AVAILABLE_POWERVR_FREQS = "/sys/devices/platform/dfrgx/devfreq/dfrgx/available_frequencies";
+    private static final String SCALING_POWERVR_GOVERNOR = "/sys/devices/platform/dfrgx/devfreq/dfrgx/governor";
+    private static final String AVAILABLE_POWERVR_GOVERNORS = "/sys/devices/platform/dfrgx/devfreq/dfrgx/available_governors";
+
+    private static final HashMap<String, Integer> sCurrentFreqs = new HashMap<>();
+    private static final HashMap<String, Integer> sMaxFreqs = new HashMap<>();
+    private static final HashMap<String, Integer> sMinFreqs = new HashMap<>();
+    private static final HashMap<String, Integer> sAvailableFreqs = new HashMap<>();
     private static final List<String> sScalingGovernors = new ArrayList<>();
     private static final List<String> sAvailableGovernors = new ArrayList<>();
     private static final List<String> sTunables = new ArrayList<>();
 
     static {
-        sCurrentFreqs.add(CUR_KGSL3D0_FREQ);
-        sCurrentFreqs.add(CUR_KGSL3D0_DEVFREQ_FREQ);
-        sCurrentFreqs.add(CUR_OMAP_FREQ);
-        sCurrentFreqs.add(CUR_TEGRA_FREQ);
+        sCurrentFreqs.put(CUR_KGSL3D0_FREQ, 1000000);
+        sCurrentFreqs.put(CUR_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        sCurrentFreqs.put(CUR_OMAP_FREQ, 1000000);
+        sCurrentFreqs.put(CUR_TEGRA_FREQ, 1000000);
+        sCurrentFreqs.put(CUR_POWERVR_FREQ, 1000);
 
-        sMaxFreqs.add(MAX_KGSL3D0_FREQ);
-        sMaxFreqs.add(MAX_KGSL3D0_DEVFREQ_FREQ);
-        sMaxFreqs.add(MAX_OMAP_FREQ);
-        sMaxFreqs.add(MAX_TEGRA_FREQ);
+        sMaxFreqs.put(MAX_KGSL3D0_FREQ, 1000000);
+        sMaxFreqs.put(MAX_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        sMaxFreqs.put(MAX_OMAP_FREQ, 1000000);
+        sMaxFreqs.put(MAX_TEGRA_FREQ, 1000000);
+        sMaxFreqs.put(MAX_POWERVR_FREQ, 1000);
 
-        sMinFreqs.add(MIN_KGSL3D0_DEVFREQ_FREQ);
-        sMinFreqs.add(MIN_TEGRA_FREQ);
+        sMinFreqs.put(MIN_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        sMinFreqs.put(MIN_TEGRA_FREQ, 1000000);
+        sMinFreqs.put(MIN_POWERVR_FREQ, 1000);
 
-        sAvailableFreqs.add(AVAILABLE_KGSL3D0_FREQS);
-        sAvailableFreqs.add(AVAILABLE_KGSL3D0_DEVFREQ_FREQS);
-        sAvailableFreqs.add(AVAILABLE_OMAP_FREQS);
-        sAvailableFreqs.add(AVAILABLE_TEGRA_FREQS);
+        sAvailableFreqs.put(AVAILABLE_KGSL3D0_FREQS, 1000000);
+        sAvailableFreqs.put(AVAILABLE_KGSL3D0_DEVFREQ_FREQS, 1000000);
+        sAvailableFreqs.put(AVAILABLE_OMAP_FREQS, 1000000);
+        sAvailableFreqs.put(AVAILABLE_TEGRA_FREQS, 1000000);
+        sAvailableFreqs.put(AVAILABLE_POWERVR_FREQS, 1000);
 
         sScalingGovernors.add(SCALING_KGSL3D0_GOVERNOR);
         sScalingGovernors.add(SCALING_KGSL3D0_DEVFREQ_GOVERNOR);
         sScalingGovernors.add(SCALING_OMAP_GOVERNOR);
+        sScalingGovernors.add(SCALING_POWERVR_GOVERNOR);
 
         sAvailableGovernors.add(AVAILABLE_KGSL3D0_DEVFREQ_GOVERNORS);
         sAvailableGovernors.add(AVAILABLE_OMAP_GOVERNORS);
+        sAvailableGovernors.add(AVAILABLE_POWERVR_GOVERNORS);
 
         sTunables.add(TUNABLES_OMAP);
     }
 
     private static String CUR_FREQ;
+    private static Integer CUR_FREQ_OFFSET;
     private static Integer[] AVAILABLE_FREQS;
     private static String MAX_FREQ;
+    private static Integer MAX_FREQ_OFFSET;
     private static String MIN_FREQ;
+    private static Integer MIN_FREQ_OFFSET;
     private static String GOVERNOR;
     private static String[] AVAILABLE_GOVERNORS;
+    private static Integer AVAILABLE_GOVERNORS_OFFSET;
     private static String TUNABLES;
 
     private static Integer[] AVAILABLE_2D_FREQS;
@@ -228,15 +246,20 @@ public class GPUFreq {
         run(Control.write(String.valueOf(value), MIN_FREQ), MIN_FREQ, context);
     }
 
+    public static int getMinFreqOffset() {
+        return MIN_FREQ_OFFSET;
+    }
+
     public static int getMinFreq() {
         return Utils.strToInt(Utils.readFile(MIN_FREQ));
     }
 
     public static boolean hasMinFreq() {
         if (MIN_FREQ == null) {
-            for (String file : sMinFreqs) {
+            for (String file : sMinFreqs.keySet()) {
                 if (Utils.existFile(file)) {
                     MIN_FREQ = file;
+                    MIN_FREQ_OFFSET = sMinFreqs.get(file);
                     return true;
                 }
             }
@@ -248,15 +271,20 @@ public class GPUFreq {
         run(Control.write(String.valueOf(value), MAX_FREQ), MAX_FREQ, context);
     }
 
+    public static int getMaxFreqOffset() {
+        return MAX_FREQ_OFFSET;
+    }
+
     public static int getMaxFreq() {
         return Utils.strToInt(Utils.readFile(MAX_FREQ));
     }
 
     public static boolean hasMaxFreq() {
         if (MAX_FREQ == null) {
-            for (String file : sMaxFreqs) {
+            for (String file : sMaxFreqs.keySet()) {
                 if (Utils.existFile(file)) {
                     MAX_FREQ = file;
+                    MAX_FREQ_OFFSET = sMaxFreqs.get(file);
                     return true;
                 }
             }
@@ -267,20 +295,21 @@ public class GPUFreq {
     public static List<String> getAdjustedFreqs(Context context) {
         List<String> list = new ArrayList<>();
         for (int freq : getAvailableFreqs()) {
-            list.add((freq / 1000000) + context.getString(R.string.mhz));
+            list.add((freq / AVAILABLE_GOVERNORS_OFFSET) + context.getString(R.string.mhz));
         }
         return list;
     }
 
     public static List<Integer> getAvailableFreqs() {
         if (AVAILABLE_FREQS == null) {
-            for (String file : sAvailableFreqs) {
+            for (String file : sAvailableFreqs.keySet()) {
                 if (Utils.existFile(file)) {
                     String freqs[] = Utils.readFile(file).split(" ");
                     AVAILABLE_FREQS = new Integer[freqs.length];
                     for (int i = 0; i < freqs.length; i++) {
                         AVAILABLE_FREQS[i] = Utils.strToInt(freqs[i]);
                     }
+                    AVAILABLE_GOVERNORS_OFFSET = sAvailableFreqs.get(file);
                     break;
                 }
             }
@@ -291,15 +320,20 @@ public class GPUFreq {
         return list;
     }
 
+    public static int getCurFreqOffset() {
+        return CUR_FREQ_OFFSET;
+    }
+
     public static int getCurFreq() {
         return Utils.strToInt(Utils.readFile(CUR_FREQ));
     }
 
     public static boolean hasCurFreq() {
         if (CUR_FREQ == null) {
-            for (String file : sCurrentFreqs) {
+            for (String file : sCurrentFreqs.keySet()) {
                 if (Utils.existFile(file)) {
                     CUR_FREQ = file;
+                    CUR_FREQ_OFFSET = sCurrentFreqs.get(file);
                     return true;
                 }
             }
