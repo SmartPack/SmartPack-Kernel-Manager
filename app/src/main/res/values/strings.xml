@@ -506,6 +506,7 @@
     <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
     <string name="speaker_gain">Speaker Gain</string>
     <string name="headphone_poweramp_gain">Headphone PowerAmp Gain</string>
+    <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165 Extension)</string>	
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
 
