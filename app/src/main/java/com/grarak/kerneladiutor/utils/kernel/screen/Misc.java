@@ -25,7 +25,9 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by willi on 23.06.16.
@@ -37,6 +39,7 @@ public class Misc {
     private static final String LM3530_MAX_BRIGHTNESS = "/sys/devices/i2c-0/0-0038/lm3530_max_br";
 
     private static final String LM3630_BACKLIGHT_DIMMER = "/sys/module/lm3630_bl/parameters/backlight_dimmer";
+    private static final String MDSS_BACKLIGHT_DIMMER = "/sys/module/mdss_fb/parameters/backlight_dimmer";
     private static final String LM3630_MIN_BRIGHTNESS = "/sys/module/lm3630_bl/parameters/min_brightness";
     private static final String MSM_BACKLIGHT_DIMMER = "/sys/module/msm_fb/parameters/backlight_dimmer";
     private static final String LM3630_BACKLIGHT_DIMMER_THRESHOLD = "/sys/module/lm3630_bl/parameters/backlight_threshold";
@@ -50,14 +53,19 @@ public class Misc {
 
     private static final String GLOVE_MODE = "/sys/devices/virtual/touchscreen/touchscreen_dev/mode";
 
+    private static final List<String> sBackLightDimmer = new ArrayList<>();
     private static final HashMap<String, Integer> sMinBrightnessFiles = new HashMap<>();
 
     static {
+        sBackLightDimmer.add(LM3630_BACKLIGHT_DIMMER);
+        sBackLightDimmer.add(MDSS_BACKLIGHT_DIMMER);
+
         sMinBrightnessFiles.put(LM3630_MIN_BRIGHTNESS, 50);
         sMinBrightnessFiles.put(MSM_BACKLIGHT_DIMMER, 100);
         sMinBrightnessFiles.put(PSB_BL_MIN_BRIGHTNESS, 13);
     }
 
+    private static String BACKLIGHT_DIMMER;
     private static String MIN_BRIGHTNESS;
 
     public static void enableGloveMode(boolean enable, Context context) {
@@ -159,15 +167,22 @@ public class Misc {
     }
 
     public static void enableBackLightDimmer(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", LM3630_BACKLIGHT_DIMMER), LM3630_BACKLIGHT_DIMMER, context);
+        run(Control.write(enable ? "Y" : "N", BACKLIGHT_DIMMER), BACKLIGHT_DIMMER, context);
     }
 
     public static boolean isBackLightDimmerEnabled() {
-        return Utils.readFile(LM3630_BACKLIGHT_DIMMER).equals("Y");
+        return Utils.readFile(BACKLIGHT_DIMMER).equals("Y");
     }
 
     public static boolean hasBackLightDimmerEnable() {
-        return Utils.existFile(LM3630_BACKLIGHT_DIMMER);
+        if (BACKLIGHT_DIMMER != null) return true;
+        for (String file : sBackLightDimmer) {
+            if (Utils.existFile(file)) {
+                BACKLIGHT_DIMMER = file;
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void setLcdMaxBrightness(int value, Context context) {
