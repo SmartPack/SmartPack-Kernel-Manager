@@ -63,7 +63,7 @@ public class EntropyFragment extends RecyclerViewFragment {
 
         SeekBarView read = new SeekBarView();
         read.setTitle(getString(R.string.read));
-        read.setMax(2048);
+        read.setMax(4096);
         read.setMin(64);
         read.setOffset(64);
         read.setProgress(Entropy.getRead() / 64 - 1);
@@ -82,7 +82,7 @@ public class EntropyFragment extends RecyclerViewFragment {
 
         SeekBarView write = new SeekBarView();
         write.setTitle(getString(R.string.write));
-        write.setMax(2048);
+        write.setMax(4096);
         write.setMin(64);
         write.setOffset(64);
         write.setProgress(Entropy.getWrite() / 64 - 1);
