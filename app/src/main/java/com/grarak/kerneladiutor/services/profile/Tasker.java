@@ -27,8 +27,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 /**
@@ -68,8 +70,17 @@ public class Tasker extends BroadcastReceiver {
                             continue;
                         }
                         synchronized (this) {
-                            Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + cs[i]);
-                            su.runCommand(cs[i]);
+                            CPUFreq.ApplyCpu applyCpu;
+                            if (cs[i].startsWith("#") && (applyCpu =
+                                    new CPUFreq.ApplyCpu(cs[i].substring(1))).toString() != null) {
+                                for (String applyCpuCommand : Service.getApplyCpu(applyCpu, su)) {
+                                    Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + applyCpuCommand);
+                                    su.runCommand(applyCpuCommand);
+                                }
+                            } else {
+                                Log.i(TAG + ": " + getClass().getSimpleName(), "Run: " + cs[i]);
+                                su.runCommand(cs[i]);
+                            }
                         }
                     }
                     su.close();

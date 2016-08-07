@@ -53,12 +53,15 @@ import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.services.profile.Tile;
 import com.grarak.kerneladiutor.services.profile.Widget;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -313,7 +316,16 @@ public class ProfileFragment extends RecyclerViewFragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 for (String command : profileItems.get(position).getCommands()) {
-                                    Control.runSetting(command, null, null, null);
+                                    CPUFreq.ApplyCpu applyCpu;
+                                    if (command.startsWith("#") && ((applyCpu =
+                                            new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
+                                        for (String applyCpuCommand : Service.getApplyCpu(applyCpu,
+                                                RootUtils.getSU())) {
+                                            Control.runSetting(applyCpuCommand, null, null, null);
+                                        }
+                                    } else {
+                                        Control.runSetting(command, null, null, null);
+                                    }
                                 }
                             }
                         }, new DialogInterface.OnDismissListener() {
@@ -560,7 +572,15 @@ public class ProfileFragment extends RecyclerViewFragment {
         private void setText(List<String> commands) {
             StringBuilder commandsText = new StringBuilder();
             for (String command : commands) {
-                commandsText.append(command).append("\n");
+                CPUFreq.ApplyCpu applyCpu;
+                if (command.startsWith("#")
+                        & ((applyCpu = new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
+                    for (String applyCpuCommand : Service.getApplyCpu(applyCpu, RootUtils.getSU())) {
+                        commandsText.append(applyCpuCommand).append("\n");
+                    }
+                } else {
+                    commandsText.append(command).append("\n");
+                }
             }
             commandsText.setLength(commandsText.length() - 1);
 

@@ -257,9 +257,22 @@ public class Service extends android.app.Service {
                     file.execute(mCustomControls.get(script));
                 }
 
+                List<String> profileCommands = new ArrayList<>();
+                for (String command : mProfiles) {
+                    CPUFreq.ApplyCpu applyCpu;
+                    if (command.startsWith("#")
+                            && ((applyCpu =
+                            new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
+                        synchronized (this) {
+                            profileCommands.addAll(getApplyCpu(applyCpu, su));
+                        }
+                    }
+                    profileCommands.add(command);
+                }
+
                 if (script) {
                     StringBuilder s = new StringBuilder("#!/system/bin/sh\n\n");
-                    for (String command : mProfiles) {
+                    for (String command : profileCommands) {
                         s.append(command).append("\n");
                     }
                     RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
@@ -267,7 +280,7 @@ public class Service extends android.app.Service {
                     file.write(s.toString(), false);
                     file.execute();
                 } else {
-                    for (String command : mProfiles) {
+                    for (String command : profileCommands) {
                         synchronized (this) {
                             su.runCommand(command);
                         }
@@ -290,7 +303,7 @@ public class Service extends android.app.Service {
         }).start();
     }
 
-    private List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {
+    public static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {
         List<String> commands = new ArrayList<>();
         boolean mpdecision = Utils.hasProp(MPDecision.HOTPLUG_MPDEC, su)
                 && Utils.isPropRunning(MPDecision.HOTPLUG_MPDEC, su);
