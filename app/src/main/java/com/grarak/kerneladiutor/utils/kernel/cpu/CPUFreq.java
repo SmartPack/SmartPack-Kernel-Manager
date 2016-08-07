@@ -31,6 +31,9 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.QcomBcl;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -55,7 +58,7 @@ public class CPUFreq {
     private static final String CPU_MAX_FREQ_KT = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq_kt";
     private static final String CPU_MIN_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_min_freq";
     private static final String CPU_MAX_SCREEN_OFF_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/screen_off_max_freq";
-    private static final String CPU_ONLINE = "/sys/devices/system/cpu/cpu%d/online";
+    public static final String CPU_ONLINE = "/sys/devices/system/cpu/cpu%d/online";
     private static final String CPU_MSM_CPUFREQ_LIMIT = "/sys/kernel/msm_cpufreq_limit/cpufreq_limit";
     private static final String CPU_ENABLE_OC = "/sys/devices/system/cpu/cpu%d/cpufreq/enable_oc";
     private static final String CPU_SCALING_GOVERNOR = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor";
@@ -92,17 +95,72 @@ public class CPUFreq {
         for (int i = min; i <= max; i++) {
             boolean offline = isOffline(i);
             if (offline) {
-                onlineCpu(i, true, context);
+                onlineCpu(i, true, null);
             }
-            run(Control.chmod("644", Utils.strFormat(path, i)), Utils.strFormat(path, i) + "chmod644", context);
-            run(Control.write(value, Utils.strFormat(path, i)), Utils.strFormat(path, i), context);
-            run(Control.chmod("444", Utils.strFormat(path, i)), Utils.strFormat(path, i) + "chmod444", context);
+            run(Control.chmod("644", Utils.strFormat(path, i)), null, null);
+            run(Control.write(value, Utils.strFormat(path, i)), null, null);
+            run(Control.chmod("444", Utils.strFormat(path, i)), null, null);
             if (offline) {
-                onlineCpu(i, false, context);
+                onlineCpu(i, false, null);
             }
         }
         if (mpdecision) {
             MPDecision.enableMpdecision(true, null);
+        }
+        if (context != null) {
+            run("#" + new ApplyCpu(path, value, min, max).toString(), path, context);
+        }
+    }
+
+    public static class ApplyCpu {
+        private String mJson;
+        private String mPath;
+        private String mValue;
+        private int mMin;
+        private int mMax;
+
+        public ApplyCpu(String path, String value, int min, int max) {
+            try {
+                JSONObject main = new JSONObject();
+                main.put("path", mPath = path);
+                main.put("value", mValue = value);
+                main.put("min", mMin = min);
+                main.put("max", mMax = max);
+                mJson = main.toString();
+            } catch (JSONException ignored) {
+            }
+        }
+
+        public ApplyCpu(String json) {
+            try {
+                JSONObject main = new JSONObject(json);
+                mPath = main.getString("path");
+                mValue = main.getString("value");
+                mMin = main.getInt("min");
+                mMax = main.getInt("max");
+                mJson = json;
+            } catch (JSONException ignored) {
+            }
+        }
+
+        public int getMax() {
+            return mMax;
+        }
+
+        public int getMin() {
+            return mMin;
+        }
+
+        public String getValue() {
+            return mValue;
+        }
+
+        public String getPath() {
+            return mPath;
+        }
+
+        public String toString() {
+            return mJson;
         }
     }
 

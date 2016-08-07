@@ -42,9 +42,13 @@ import com.grarak.kerneladiutor.activities.StartActivity;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.services.profile.Tile;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
+import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
+import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -209,27 +213,43 @@ public class Service extends android.app.Service {
                     RootUtils.mount(false, "/system", su);
                 }
 
+                List<String> commands = new ArrayList<>();
+                for (Settings.SettingsItem item : settings.getAllSettings()) {
+                    String category = item.getCategory();
+                    String setting = item.getSetting();
+                    String id = item.getId();
+                    CPUFreq.ApplyCpu applyCpu;
+                    if (mCategoryEnabled.get(category)) {
+                        if (category.equals(ApplyOnBootFragment.CPU)
+                                && id.contains("%d")
+                                && setting.startsWith("#")
+                                && ((applyCpu =
+                                new CPUFreq.ApplyCpu(setting.substring(1))).toString() != null)) {
+                            synchronized (this) {
+                                commands.addAll(getApplyCpu(applyCpu, su));
+                            }
+                        } else {
+                            commands.add(setting);
+                        }
+                    }
+                }
+
                 if (script) {
                     StringBuilder s = new StringBuilder("#!/system/bin/sh\n\n");
-                    for (Settings.SettingsItem item : settings.getAllSettings()) {
-                        if (mCategoryEnabled.get(item.getCategory())) {
-                            s.append(item.getSetting()).append("\n");
-                        }
+                    for (String command : commands) {
+                        s.append(command).append("\n");
                     }
                     RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
                     file.mkdir();
                     file.write(s.toString(), false);
                     file.execute();
                 } else {
-                    for (Settings.SettingsItem item : settings.getAllSettings()) {
-                        if (mCategoryEnabled.get(item.getCategory())) {
-                            synchronized (this) {
-                                su.runCommand(item.getSetting());
-                            }
+                    for (String command : commands) {
+                        synchronized (this) {
+                            su.runCommand(command);
                         }
                     }
                 }
-
                 for (String script : mCustomControls.keySet()) {
                     RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
                     file.mkdir();
@@ -268,6 +288,31 @@ public class Service extends android.app.Service {
                 stopSelf();
             }
         }).start();
+    }
+
+    private List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {
+        List<String> commands = new ArrayList<>();
+        boolean mpdecision = Utils.hasProp(MPDecision.HOTPLUG_MPDEC, su)
+                && Utils.isPropRunning(MPDecision.HOTPLUG_MPDEC, su);
+        if (mpdecision) {
+            commands.add(Control.stopService(MPDecision.HOTPLUG_MPDEC));
+        }
+        for (int i = applyCpu.getMin(); i <= applyCpu.getMax(); i++) {
+            boolean offline = !Utils.existFile(Utils.strFormat(applyCpu.getPath(), i), su);
+            if (offline) {
+                commands.add(Control.write("1", Utils.strFormat(CPUFreq.CPU_ONLINE, i)));
+            }
+            commands.add(Control.chmod("644", Utils.strFormat(applyCpu.getPath(), i)));
+            commands.add(Control.write(applyCpu.getValue(), Utils.strFormat(applyCpu.getPath(), i)));
+            commands.add(Control.chmod("444", Utils.strFormat(applyCpu.getPath(), i)));
+            if (offline) {
+                commands.add(Control.write("0", Utils.strFormat(CPUFreq.CPU_ONLINE, i)));
+            }
+        }
+        if (mpdecision) {
+            commands.add(Control.startService(MPDecision.HOTPLUG_MPDEC));
+        }
+        return commands;
     }
 
     public static class CancelReceiver extends BroadcastReceiver {

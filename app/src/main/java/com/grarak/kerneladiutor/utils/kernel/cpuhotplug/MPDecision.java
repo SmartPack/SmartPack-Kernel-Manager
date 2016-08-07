@@ -31,7 +31,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class MPDecision {
 
-    private static final String HOTPLUG_MPDEC = "mpdecision";
+    public static final String HOTPLUG_MPDEC = "mpdecision";
 
     public static void enableMpdecision(boolean enable, Context context) {
         if (enable) {

@@ -440,23 +440,27 @@ public class Utils {
     }
 
     public static boolean isPropRunning(String key) {
+        return isPropRunning(key, RootUtils.getSU());
+    }
+
+    public static boolean isPropRunning(String key, RootUtils.SU su) {
         try {
-            return RootUtils.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
+            return su.runCommand("getprop | grep " + key).split("]:")[1].contains("running");
         } catch (Exception ignored) {
             return false;
         }
     }
 
     public static boolean hasProp(String key) {
+        return hasProp(key, RootUtils.getSU());
+    }
+
+    public static boolean hasProp(String key, RootUtils.SU su) {
         try {
-            return RootUtils.runCommand("getprop | grep " + key).split("]:").length > 1;
+            return su.runCommand("getprop | grep " + key).split("]:").length > 1;
         } catch (Exception ignored) {
             return false;
         }
-    }
-
-    public static void writeFile(String path, String text, boolean append) {
-        writeFile(path, text, append, true);
     }
 
     public static void writeFile(String path, String text, boolean append, boolean asRoot) {
@@ -485,8 +489,12 @@ public class Utils {
         return readFile(file, true);
     }
 
-    public static String readFile(String file, boolean asRoot) {
-        if (asRoot) return new RootFile(file).readFile();
+    public static String readFile(String file, boolean root) {
+        return readFile(file, root ? RootUtils.getSU() : null);
+    }
+
+    public static String readFile(String file, RootUtils.SU su) {
+        if (su != null) return new RootFile(file, su).readFile();
 
         StringBuilder s = null;
         FileReader fileReader = null;
@@ -513,12 +521,16 @@ public class Utils {
         return s == null ? null : s.toString().trim();
     }
 
-    public static boolean existFile(String file, boolean root) {
-        return root ? new RootFile(file).exists() : new File(file).exists();
-    }
-
     public static boolean existFile(String file) {
         return existFile(file, true);
+    }
+
+    public static boolean existFile(String file, boolean root) {
+        return existFile(file, root ? RootUtils.getSU() : null);
+    }
+
+    public static boolean existFile(String file, RootUtils.SU su) {
+        return su == null ? new File(file).exists() : new RootFile(file, su).exists();
     }
 
 }

@@ -84,6 +84,7 @@ public class Control {
             }
         }
 
+        if (command.startsWith("#")) return;
         RootUtils.runCommand(command);
         Log.i(TAG, command);
     }
@@ -127,8 +128,7 @@ public class Control {
         getInstance().mProfileCommands.clear();
     }
 
-    public static void runSetting(final String command, final String category, final String id,
-                                  final Context context) {
+    public static void runSetting(String command, String category, String id, Context context) {
         getInstance().run(command, category, id, context);
     }
 
