@@ -21,16 +21,17 @@ package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.view.View;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.mopub.mobileads.MoPubErrorCode;
+import com.mopub.mobileads.MoPubView;
 
 /**
  * Created by willi on 06.08.16.
  */
 public class AdView extends RecyclerViewItem {
 
+    private MoPubView mMoPubView;
     private boolean mLoaded;
 
     @Override
@@ -42,29 +43,37 @@ public class AdView extends RecyclerViewItem {
     public void onCreateView(View view) {
         final View text = view.findViewById(R.id.ad_text);
 
-        final com.google.android.gms.ads.AdView ad =
-                (com.google.android.gms.ads.AdView) view.findViewById(R.id.ad);
-        ad.setAdListener(new AdListener() {
+        mMoPubView = (MoPubView) view.findViewById(R.id.ad);
+        mMoPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
             @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                ad.setVisibility(View.GONE);
+            public void onBannerLoaded(MoPubView banner) {
+                banner.setVisibility(View.VISIBLE);
+                text.setVisibility(View.GONE);
+                mLoaded = true;
+            }
+
+            @Override
+            public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
+                banner.setVisibility(View.GONE);
                 text.setVisibility(View.VISIBLE);
                 mLoaded = false;
             }
 
             @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                ad.setVisibility(View.VISIBLE);
-                text.setVisibility(View.GONE);
-                mLoaded = true;
+            public void onBannerClicked(MoPubView banner) {
+            }
+
+            @Override
+            public void onBannerExpanded(MoPubView banner) {
+            }
+
+            @Override
+            public void onBannerCollapsed(MoPubView banner) {
             }
         });
+        mMoPubView.setAdUnitId("d82dbc3941bc446fa327fb840c4695f7");
         if (!mLoaded) {
-            AdRequest adRequest = new AdRequest.Builder()
-                    .build();
-            ad.loadAd(adRequest);
+            mMoPubView.loadAd();
         }
 
         view.findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
@@ -76,6 +85,13 @@ public class AdView extends RecyclerViewItem {
 
         setFullSpan(true);
         super.onCreateView(view);
+    }
+
+    public void destroy() {
+        if (mMoPubView != null) {
+            mMoPubView.destroy();
+            mLoaded = false;
+        }
     }
 
 }
