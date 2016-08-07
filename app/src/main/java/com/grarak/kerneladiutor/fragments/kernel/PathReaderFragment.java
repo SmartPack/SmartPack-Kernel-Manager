@@ -20,9 +20,11 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 
+import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -32,6 +34,7 @@ import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,9 +43,12 @@ import java.util.List;
 public class PathReaderFragment extends RecyclerViewFragment {
 
     private String mPath;
-    private int mCPU;
+    private int mMin;
+    private int mMax;
     private String mError;
     private String mCategory;
+
+    private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
     @Override
     protected boolean showViewPager() {
@@ -64,12 +70,13 @@ public class PathReaderFragment extends RecyclerViewFragment {
     }
 
     public void setPath(String path, String category) {
-        setPath(path, -1, category);
+        setPath(path, -1, -1, category);
     }
 
-    public void setPath(String path, int cpu, String category) {
+    public void setPath(String path, int min, int max, String category) {
         mPath = path;
-        mCPU = cpu;
+        mMin = min;
+        mMax = max;
         mCategory = category;
         reload();
     }
@@ -79,26 +86,70 @@ public class PathReaderFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        clearItems();
+        if (mLoader == null) {
+            getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    clearItems();
+                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
+
+                        @Override
+                        protected void onPreExecute() {
+                            super.onPreExecute();
+                            showProgress();
+                        }
+
+                        @Override
+                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
+                            List<RecyclerViewItem> items = new ArrayList<>();
+                            load(items);
+                            return items;
+                        }
+
+                        @Override
+                        protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
+                            super.onPostExecute(recyclerViewItems);
+                            for (RecyclerViewItem item : recyclerViewItems) {
+                                addItem(item);
+                            }
+                            hideProgress();
+                            if (itemsSize() < 1 && mError != null) {
+                                Snackbar.make(getRootView(), mError, Snackbar.LENGTH_SHORT).show();
+                            }
+                            mLoader = null;
+                        }
+                    };
+                    mLoader.execute();
+                }
+            }, 200);
+        }
+    }
+
+    private void load(List<RecyclerViewItem> items) {
         if (mPath == null) return;
-        RootFile files = new RootFile(mPath);
-        for (final String file : files.list()) {
-            final String value = Utils.readFile(mPath + "/" + file);
+        String path = mPath;
+        if (path.contains("%d")) {
+            path = Utils.strFormat(mPath, mMin);
+        }
+        RootFile files = new RootFile(path);
+        for (final RootFile file : files.listFiles()) {
+            final String name = file.getName();
+            final String value = file.readFile();
             if (value != null && !value.isEmpty() && !value.contains("\n")) {
                 DescriptionView descriptionView = new DescriptionView();
-                descriptionView.setTitle(file);
+                descriptionView.setTitle(name);
                 descriptionView.setSummary(value);
                 descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                     @Override
                     public void onClick(RecyclerViewItem item) {
-                        List<Integer> freqs = CPUFreq.getFreqs(mCPU);
+                        List<Integer> freqs = CPUFreq.getFreqs(mMin);
                         int freq = Utils.strToInt(value);
                         if (freqs != null && freq != 0 && freqs.indexOf(freq) != -1) {
                             String[] values = new String[freqs.size()];
                             for (int i = 0; i < values.length; i++) {
                                 values[i] = String.valueOf(freqs.get(i));
                             }
-                            showArrayDialog(values, mPath + "/" + file, file);
+                            showArrayDialog(values, mPath + "/" + name, name);
                         } else {
                             try {
                                 ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
@@ -108,13 +159,8 @@ public class PathReaderFragment extends RecyclerViewFragment {
                                 }, new ViewUtils.OnDialogEditTextListener() {
                                     @Override
                                     public void onClick(String text) {
-                                        run(Control.write(text, mPath + "/" + file), mPath + "/" + file);
-                                        getHandler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                reload();
-                                            }
-                                        }, 200);
+                                        run(mPath + "/" + name, text, mPath + "/" + name);
+                                        reload();
                                     }
                                 }, getActivity()).show();
                             } catch (NullPointerException ignored) {
@@ -122,12 +168,8 @@ public class PathReaderFragment extends RecyclerViewFragment {
                         }
                     }
                 });
-                addItem(descriptionView);
+                items.add(descriptionView);
             }
-        }
-
-        if (itemsSize() < 1 && mError != null) {
-            Snackbar.make(getRootView(), mError, Snackbar.LENGTH_SHORT).show();
         }
     }
 
@@ -136,25 +178,17 @@ public class PathReaderFragment extends RecyclerViewFragment {
         builder.setItems(values, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                run(Control.write(values[which], path), path);
-                getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        reload();
-                    }
-                }, 200);
+                run(path, values[which], path);
+                reload();
             }
         }).setTitle(name).show();
     }
 
-    private void run(String command, String id) {
-        boolean offline = CPUFreq.isOffline(mCPU);
-        if (offline) {
-            CPUFreq.onlineCpu(mCPU, true, null);
-        }
-        Control.runSetting(command, mCategory, id, getActivity());
-        if (offline) {
-            CPUFreq.onlineCpu(mCPU, false, null);
+    private void run(String path, String value, String id) {
+        if (ApplyOnBootFragment.CPU.equals(mCategory) && mPath.contains("%d")) {
+            CPUFreq.applyCpu(path, value, mMin, mMax, getActivity());
+        } else {
+            Control.runSetting(Control.write(value, path), mCategory, id, getActivity());
         }
     }
 

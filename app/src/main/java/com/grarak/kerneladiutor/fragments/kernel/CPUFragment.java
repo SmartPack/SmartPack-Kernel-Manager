@@ -203,7 +203,7 @@ public class CPUFragment extends RecyclerViewFragment {
         governorTunablesBig.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                showGovernorTunables(CPUFreq.getBigCpuGovernorTunable());
+                showGovernorTunables(bigCores.get(0), bigCores.get(bigCores.size() - 1));
             }
         });
         bigCard.addItem(governorTunablesBig);
@@ -285,7 +285,7 @@ public class CPUFragment extends RecyclerViewFragment {
             governorTunablesLITTLE.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    showGovernorTunables(CPUFreq.getLITTLECpuGovernorTunable());
+                    showGovernorTunables(LITTLECores.get(0), LITTLECores.get(LITTLECores.size() - 1));
                 }
             });
             LITTLECard.addItem(governorTunablesLITTLE);
@@ -294,12 +294,12 @@ public class CPUFragment extends RecyclerViewFragment {
         }
     }
 
-    private void showGovernorTunables(int cpu) {
-        boolean offline = CPUFreq.isOffline(cpu);
+    private void showGovernorTunables(int min, int max) {
+        boolean offline = CPUFreq.isOffline(min);
         if (offline) {
-            CPUFreq.onlineCpu(cpu, true, null);
+            CPUFreq.onlineCpu(min, true, null);
         }
-        String governor = CPUFreq.getGovernor(cpu, false);
+        String governor = CPUFreq.getGovernor(min, false);
         if (governor.isEmpty()) {
             mGovernorTunableErrorDialog = ViewUtils.dialogBuilder(getString(R.string.cpu_governor_tunables_read_error),
                     null, new DialogInterface.OnClickListener() {
@@ -316,12 +316,12 @@ public class CPUFragment extends RecyclerViewFragment {
         } else {
             setForegroundText(governor);
             mGovernorTunableFragment.setError(getString(R.string.tunables_error, governor));
-            mGovernorTunableFragment.setPath(CPUFreq.getGovernorTunablesPath(cpu, governor), cpu,
+            mGovernorTunableFragment.setPath(CPUFreq.getGovernorTunablesPath(min, governor), min, max,
                     ApplyOnBootFragment.CPU);
             showForeground();
         }
         if (offline) {
-            CPUFreq.onlineCpu(cpu, false, null);
+            CPUFreq.onlineCpu(min, false, null);
         }
     }
 

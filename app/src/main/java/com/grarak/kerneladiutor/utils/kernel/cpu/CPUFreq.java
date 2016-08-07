@@ -73,7 +73,7 @@ public class CPUFreq {
 
     public static String getGovernorTunablesPath(int cpu, String governor) {
         if (Utils.existFile(Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor))) {
-            return Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor);
+            return CPU_GOVERNOR_TUNABLES_CORE.replace("%s", governor);
         } else {
             return Utils.strFormat(CPU_GOVERNOR_TUNABLES, governor);
         }
@@ -84,16 +84,12 @@ public class CPUFreq {
                 && QcomBcl.supported());
     }
 
-    private static void applyCpu(String path, String value, int min, int max, Context context) {
+    public static void applyCpu(String path, String value, int min, int max, Context context) {
         boolean mpdecision = MPDecision.supported() && MPDecision.isMpdecisionEnabled();
         if (mpdecision) {
             MPDecision.enableMpdecision(false, null);
         }
         for (int i = min; i <= max; i++) {
-            if (Utils.existFile(Utils.strFormat(CPU_ENABLE_OC, i))) {
-                run(Control.write("1", Utils.strFormat(CPU_ENABLE_OC, i)), Utils.strFormat(CPU_ENABLE_OC, i),
-                        context);
-            }
             boolean offline = isOffline(i);
             if (offline) {
                 onlineCpu(i, true, context);
@@ -108,14 +104,6 @@ public class CPUFreq {
         if (mpdecision) {
             MPDecision.enableMpdecision(true, null);
         }
-    }
-
-    public static int getBigCpuGovernorTunable() {
-        return getBigCpu();
-    }
-
-    public static int getLITTLECpuGovernorTunable() {
-        return getLITTLECpu();
     }
 
     public static void setGovernor(String governor, int min, int max, Context context) {
@@ -242,6 +230,12 @@ public class CPUFreq {
         int minFreq = getMinFreq(min, false);
         if (minFreq != 0 && freq < minFreq) {
             setMinFreq(freq, min, max, context);
+        }
+        if (Utils.existFile(Utils.strFormat(CPU_ENABLE_OC, 0))) {
+            for (int i = min; i <= max; i++) {
+                run(Control.write("1", Utils.strFormat(CPU_ENABLE_OC, i)),
+                        Utils.strFormat(CPU_ENABLE_OC, i), context);
+            }
         }
         if (MSMPerformance.hasCpuMaxFreq()) {
             for (int i = min; i <= max; i++) {
