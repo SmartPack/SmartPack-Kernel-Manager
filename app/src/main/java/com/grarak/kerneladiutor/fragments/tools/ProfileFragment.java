@@ -236,9 +236,11 @@ public class ProfileFragment extends RecyclerViewFragment {
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
                                 case 0:
-                                    setForegroundText(profileItems.get(position).getName().toUpperCase());
-                                    mDetailsFragment.setText(profileItems.get(position).getCommands());
-                                    showForeground();
+                                    if (profileItems.get(position).getName() != null) {
+                                        setForegroundText(profileItems.get(position).getName().toUpperCase());
+                                        mDetailsFragment.setText(profileItems.get(position).getCommands());
+                                        showForeground();
+                                    }
                                     break;
                                 case 1:
                                     onBoot.setChecked(!onBoot.isChecked());
