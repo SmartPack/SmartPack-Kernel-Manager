@@ -134,7 +134,7 @@ public class ViewUtils {
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (text != null) {
-            editText.setText(text);
+            editText.append(text);
         }
         editText.setSingleLine(true);
         if (inputType >= 0) {
