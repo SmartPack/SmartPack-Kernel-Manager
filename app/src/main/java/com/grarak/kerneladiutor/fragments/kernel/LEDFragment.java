@@ -27,7 +27,6 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,16 +89,9 @@ public class LEDFragment extends RecyclerViewFragment {
     }
 
     private void speedInit(List<RecyclerViewItem> items) {
-        List<String> list = new ArrayList<>();
-        list.add(getString(R.string.stock));
-        list.add(getString(R.string.continuous_light));
-        for (int i = 2; i < 21; i++) {
-            list.add(String.valueOf(i));
-        }
-
         SeekBarView speed = new SeekBarView();
         speed.setTitle(getString(R.string.speed));
-        speed.setItems(list);
+        speed.setItems(LED.getSpeedMenu(getActivity()));
         speed.setProgress(LED.getSpeed());
         speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override

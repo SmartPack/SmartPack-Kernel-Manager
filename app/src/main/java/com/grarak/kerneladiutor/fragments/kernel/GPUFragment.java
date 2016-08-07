@@ -109,7 +109,7 @@ public class GPUFragment extends RecyclerViewFragment {
             maxFreq.setTitle(getString(R.string.gpu_max_freq));
             maxFreq.setSummary(getString(R.string.gpu_max_freq_summary));
             maxFreq.setItems(GPUFreq.getAdjustedFreqs(getActivity()));
-            maxFreq.setItem((GPUFreq.getMaxFreq() / 1000000) + getString(R.string.mhz));
+            maxFreq.setItem((GPUFreq.getMaxFreq() / GPUFreq.getMaxFreqOffset()) + getString(R.string.mhz));
             maxFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
@@ -125,7 +125,7 @@ public class GPUFragment extends RecyclerViewFragment {
             minFreq.setTitle(getString(R.string.gpu_min_freq));
             minFreq.setSummary(getString(R.string.gpu_min_freq_summary));
             minFreq.setItems(GPUFreq.getAdjustedFreqs(getActivity()));
-            minFreq.setItem((GPUFreq.getMinFreq() / 1000000) + getString(R.string.mhz));
+            minFreq.setItem((GPUFreq.getMinFreq() / GPUFreq.getMinFreqOffset()) + getString(R.string.mhz));
             minFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
@@ -361,7 +361,7 @@ public class GPUFragment extends RecyclerViewFragment {
         if (mCurFreq != null) {
             int freq = GPUFreq.getCurFreq();
             float maxFreq = GPUFreq.getAvailableFreqs().get(GPUFreq.getAvailableFreqs().size() - 1);
-            mCurFreq.setText((freq / 1000000) + getString(R.string.mhz));
+            mCurFreq.setText((freq / GPUFreq.getCurFreqOffset()) + getString(R.string.mhz));
             mCurFreq.addPercentage(Math.round((float) freq / maxFreq * 100f));
         }
     }
