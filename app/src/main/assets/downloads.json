@@ -214,5 +214,14 @@
       "HM2014821"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/wingtech.json"
+  },
+  {
+    "vendor": [
+      "huawei"
+    ],
+    "device": [
+      "Angler"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/angler.json"
   }
 ]
