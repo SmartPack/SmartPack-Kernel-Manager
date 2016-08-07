@@ -31,6 +31,11 @@
             android:summary="@string/apply_on_boot_hide_summary"
             android:title="@string/hide" />
         <SwitchPreference
+            android:defaultValue="true"
+            android:key="applyonbootconfirmationnotification"
+            android:summary="@string/apply_on_boot_confirmation_notification_summary"
+            android:title="@string/confirmation_notification" />
+        <SwitchPreference
             android:key="applyonboottoast"
             android:summary="@string/apply_on_boot_toast_summary"
             android:title="@string/toast" />

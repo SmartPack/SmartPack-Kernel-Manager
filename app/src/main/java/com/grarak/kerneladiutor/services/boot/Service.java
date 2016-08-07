@@ -141,11 +141,15 @@ public class Service extends android.app.Service {
 
         final int seconds = Utils.strToInt(Prefs.getString("applyonbootdelay", "10", this));
         final boolean hideNotification = Prefs.getBoolean("applyonboothide", false, this);
+        final boolean confirmationNotification = Prefs.getBoolean("applyonbootconfirmationnotification",
+                true, this);
         final boolean toast = Prefs.getBoolean("applyonboottoast", false, this);
         final boolean script = Prefs.getBoolean("applyonbootscript", false, this);
-        PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 0, new Intent(this, CancelReceiver.class), 0);
+        PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 0, new Intent(this,
+                CancelReceiver.class), 0);
 
-        final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        final NotificationManager notificationManager = (NotificationManager)
+                getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         if (!hideNotification) {
             builder.setContentTitle(getString(R.string.app_name))
@@ -185,7 +189,7 @@ public class Service extends android.app.Service {
                         e.printStackTrace();
                     }
                 }
-                if (!hideNotification) {
+                if (!hideNotification && confirmationNotification) {
                     builderComplete.setContentText(getString(sCancel ? R.string.apply_on_boot_canceled :
                             R.string.apply_on_boot_complete));
                     notificationManager.notify(0, builderComplete.build());

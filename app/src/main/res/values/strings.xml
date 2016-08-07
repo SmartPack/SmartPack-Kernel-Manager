@@ -772,6 +772,8 @@
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
     <string name="apply_on_boot_toast_summary">Show toast when settings got applied.</string>
+    <string name="confirmation_notification">Confirmation Notification</string>
+    <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>
     <string name="apply_on_boot_script_summary">Use a shell script to apply settings. Please only enable this if you have troubles with apply on boot. If the problem still persists after enabling this option, please make sure no other app is conflicting with Kernel Adiutor.</string>
     <string name="debugging">Debugging</string>
