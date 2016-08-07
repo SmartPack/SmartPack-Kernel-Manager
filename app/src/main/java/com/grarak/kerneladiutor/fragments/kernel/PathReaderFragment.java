@@ -151,20 +151,17 @@ public class PathReaderFragment extends RecyclerViewFragment {
                             }
                             showArrayDialog(values, mPath + "/" + name, name);
                         } else {
-                            try {
-                                ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                }, new ViewUtils.OnDialogEditTextListener() {
-                                    @Override
-                                    public void onClick(String text) {
-                                        run(mPath + "/" + name, text, mPath + "/" + name);
-                                        reload();
-                                    }
-                                }, getActivity()).show();
-                            } catch (NullPointerException ignored) {
-                            }
+                            ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            }, new ViewUtils.OnDialogEditTextListener() {
+                                @Override
+                                public void onClick(String text) {
+                                    run(mPath + "/" + name, text, mPath + "/" + name);
+                                    reload();
+                                }
+                            }, getActivity()).show();
                         }
                     }
                 });

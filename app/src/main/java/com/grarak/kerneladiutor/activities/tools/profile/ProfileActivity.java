@@ -88,14 +88,11 @@ public class ProfileActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         if (savedInstanceState == null) {
-            try {
-                ViewUtils.dialogBuilder(getString(R.string.profile_warning), null, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                }, null, this).show();
-            } catch (NullPointerException ignored) {
-            }
+            ViewUtils.dialogBuilder(getString(R.string.profile_warning), null, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            }, null, this).show();
         }
 
         viewPager.setOffscreenPageLimit(mItems.size());

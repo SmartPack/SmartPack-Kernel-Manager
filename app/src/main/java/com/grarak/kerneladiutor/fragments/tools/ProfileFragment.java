@@ -302,10 +302,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                 mSelectDialog = null;
                             }
                         }, getActivity());
-                        try {
-                            mSelectDialog.show();
-                        } catch (NullPointerException ignored) {
-                        }
+                        mSelectDialog.show();
                     } else {
                         mApplyDialog = ViewUtils.dialogBuilder(getString(R.string.apply_question,
                                 descriptionView.getSummary()), new DialogInterface.OnClickListener() {
@@ -387,10 +384,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 mOptionsDialog = null;
             }
         });
-        try {
-            mOptionsDialog.show();
-        } catch (NullPointerException ignored) {
-        }
+        mOptionsDialog.show();
     }
 
     @Override

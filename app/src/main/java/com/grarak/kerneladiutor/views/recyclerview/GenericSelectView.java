@@ -69,22 +69,19 @@ public class GenericSelectView extends ValueView {
         }
         if (mValueRaw == null) return;
 
-        try {
-            ViewUtils.dialogEditText(mValueRaw, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+        ViewUtils.dialogEditText(mValueRaw, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        }, new ViewUtils.OnDialogEditTextListener() {
+            @Override
+            public void onClick(String text) {
+                setValueRaw(text);
+                if (mOnGenericValueListener != null) {
+                    mOnGenericValueListener.onGenericValueSelected(GenericSelectView.this, text);
                 }
-            }, new ViewUtils.OnDialogEditTextListener() {
-                @Override
-                public void onClick(String text) {
-                    setValueRaw(text);
-                    if (mOnGenericValueListener != null) {
-                        mOnGenericValueListener.onGenericValueSelected(GenericSelectView.this, text);
-                    }
-                }
-            }, mInputType, context).setTitle(getTitle()).show();
-        } catch (NullPointerException ignored) {
-        }
+            }
+        }, mInputType, context).setTitle(getTitle()).show();
     }
 
 }
