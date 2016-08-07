@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_layout"
-        app:theme="@style/ItemTextAppearance" />
+        android:theme="@style/ItemTextAppearance"
+        app:headerLayout="@layout/nav_header_layout" />
 
 </android.support.v4.widget.DrawerLayout>

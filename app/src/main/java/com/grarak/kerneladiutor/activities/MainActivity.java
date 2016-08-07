@@ -29,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -66,10 +67,13 @@ import java.net.URL;
  */
 public class MainActivity extends BaseActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private TextView mRootAccess;
     private TextView mBusybox;
     private TextView mCollectInfo;
     private boolean mExecuting;
+    private boolean mGoogleServicesInstalled;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -222,7 +226,14 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
-            MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
+            try {
+                getPackageManager().getApplicationInfo("com.google.android.gms", 0);
+                MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
+                mGoogleServicesInstalled = true;
+            } catch (PackageManager.NameNotFoundException ignored) {
+                Log.i(TAG, "Google services not found!");
+                mGoogleServicesInstalled = false;
+            }
             new AsyncTask<Void, Void, Boolean>() {
 
                 private ApplicationInfo mApplicationInfo;
@@ -249,18 +260,20 @@ public class MainActivity extends BaseActivity {
                                 new File(mApplicationInfo.publicSourceDir))
                         /*|| Utils.isPatched(mApplicationInfo)*/;
 
-                        try {
-                            HttpURLConnection urlc = (HttpURLConnection)
-                                    (new URL("http://clients3.google.com/generate_204")
-                                            .openConnection());
-                            urlc.setRequestProperty("User-Agent", "Android");
-                            urlc.setRequestProperty("Connection", "close");
-                            urlc.setConnectTimeout(1500);
-                            urlc.connect();
-                            mInternetAvailable = (urlc.getResponseCode() == 204 &&
-                                    urlc.getContentLength() == 0);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        if (mGoogleServicesInstalled) {
+                            try {
+                                HttpURLConnection urlc = (HttpURLConnection)
+                                        (new URL("http://clients3.google.com/generate_204")
+                                                .openConnection());
+                                urlc.setRequestProperty("User-Agent", "Android");
+                                urlc.setRequestProperty("Connection", "close");
+                                urlc.setConnectTimeout(1500);
+                                urlc.connect();
+                                mInternetAvailable = (urlc.getResponseCode() == 204 &&
+                                        urlc.getContentLength() == 0);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                     return mApplicationInfo != null && mPackageInfo != null && mPackageInfo.versionCode == 130
