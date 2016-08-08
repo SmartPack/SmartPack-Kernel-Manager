@@ -95,7 +95,7 @@ public class CPUFragment extends RecyclerViewFragment {
             mPool = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() << 1, Integer.MAX_VALUE, 1,
                     TimeUnit.MINUTES, new SynchronousQueue<Runnable>());
         }
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(DescriptionFragment.newInstance(getString(CPUFreq.getCpuCount() > 1 ?
                 R.string.cores : R.string.cores_singular, CPUFreq.getCpuCount()), Device.getBoard()));
 

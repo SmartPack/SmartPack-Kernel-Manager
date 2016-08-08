@@ -30,7 +30,25 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileActivity;
+import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
+import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
+import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
+import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.LEDFragment;
+import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
+import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
+import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeFrament;
 import com.grarak.kerneladiutor.utils.Prefs;
+
+import java.util.HashMap;
 
 /**
  * Created by willi on 03.05.16.
@@ -54,9 +72,37 @@ public class ApplyOnBootFragment extends BaseFragment {
     public static final String ENTROPY = "entropy_onboot";
     public static final String MISC = "misc_onboot";
 
-    public static ApplyOnBootFragment newInstance(String category) {
+    private static final HashMap<Class, String> sAssignments = new HashMap<>();
+
+    static {
+        sAssignments.put(CPUFragment.class, CPU);
+        sAssignments.put(CPUVoltageFragment.class, CPU_VOLTAGE);
+        sAssignments.put(CPUHotplugFragment.class, CPU_HOTPLUG);
+        sAssignments.put(ThermalFragment.class, THERMAL);
+        sAssignments.put(GPUFragment.class, GPU);
+        sAssignments.put(ScreenFragment.class, SCREEN);
+        sAssignments.put(WakeFrament.class, WAKE);
+        sAssignments.put(SoundFragment.class, SOUND);
+        sAssignments.put(BatteryFragment.class, BATTERY);
+        sAssignments.put(LEDFragment.class, LED);
+        sAssignments.put(IOFragment.class, IO);
+        sAssignments.put(KSMFragment.class, KSM);
+        sAssignments.put(LMKFragment.class, LMK);
+        sAssignments.put(VMFragment.class, VM);
+        sAssignments.put(EntropyFragment.class, ENTROPY);
+        sAssignments.put(MiscFragment.class, MISC);
+    }
+
+    public static String getAssignment(Class fragment) {
+        if (!sAssignments.containsKey(fragment)) {
+            throw new RuntimeException("Assignment key does not exists: " + fragment.getSimpleName());
+        }
+        return sAssignments.get(fragment);
+    }
+
+    public static ApplyOnBootFragment newInstance(RecyclerViewFragment recyclerViewFragment) {
         Bundle args = new Bundle();
-        args.putString("category", category);
+        args.putString("category", getAssignment(recyclerViewFragment.getClass()));
         ApplyOnBootFragment fragment = new ApplyOnBootFragment();
         fragment.setArguments(args);
         return fragment;

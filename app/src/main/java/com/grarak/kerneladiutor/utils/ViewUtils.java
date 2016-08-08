@@ -23,6 +23,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.TypedValue;
@@ -36,6 +40,17 @@ import com.grarak.kerneladiutor.R;
  * Created by willi on 16.04.16.
  */
 public class ViewUtils {
+
+    public static void showDialog(FragmentManager manager, DialogFragment fragment) {
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment prev = manager.findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        fragment.show(ft, "dialog");
+    }
 
     public static float getActionBarSize(Context context) {
         TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});

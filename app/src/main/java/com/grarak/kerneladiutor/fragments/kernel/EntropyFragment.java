@@ -42,7 +42,7 @@ public class EntropyFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.ENTROPY));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

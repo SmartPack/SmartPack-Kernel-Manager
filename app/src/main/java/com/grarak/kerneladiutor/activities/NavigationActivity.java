@@ -42,7 +42,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
-import com.grarak.kerneladiutor.fragments.kernel.CPUVoltage;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
 import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
@@ -112,7 +112,7 @@ public class NavigationActivity extends BaseActivity
         sFragments.put(R.string.kernel, null);
         sFragments.put(R.string.cpu, new CPUFragment());
         if (Voltage.supported()) {
-            sFragments.put(R.string.cpu_voltage, new CPUVoltage());
+            sFragments.put(R.string.cpu_voltage, new CPUVoltageFragment());
         }
         if (Hotplug.supported()) {
             sFragments.put(R.string.cpu_hotplug, new CPUHotplugFragment());

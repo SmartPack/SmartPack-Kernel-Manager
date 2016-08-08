@@ -50,7 +50,7 @@ public class MiscFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.MISC));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

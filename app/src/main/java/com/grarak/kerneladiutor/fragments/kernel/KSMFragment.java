@@ -42,7 +42,7 @@ public class KSMFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.KSM));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

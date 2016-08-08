@@ -56,7 +56,7 @@ public class LMKFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.LMK));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

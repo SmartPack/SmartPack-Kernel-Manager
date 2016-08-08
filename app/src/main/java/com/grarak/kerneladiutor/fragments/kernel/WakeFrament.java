@@ -46,7 +46,7 @@ public class WakeFrament extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.WAKE));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

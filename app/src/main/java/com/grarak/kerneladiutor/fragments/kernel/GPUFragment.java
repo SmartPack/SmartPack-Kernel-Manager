@@ -57,7 +57,7 @@ public class GPUFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.GPU));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

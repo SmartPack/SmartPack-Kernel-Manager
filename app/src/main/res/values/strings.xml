@@ -722,6 +722,10 @@
     <string name="applying_profile">Applying %s!</string>
     <string name="no_profiles">No profile found! You have to create them first.</string>
     <string name="sections_disabled">All sections disabled! No profiles for you.</string>
+    <string name="new_mode">New</string>
+    <string name="current_settings">Current settings</string>
+    <string name="select_all">Select all</string>
+    <string name="nothing_selected">Nothing selected</string>
 
     <!-- Init.d -->
     <string name="emulate_initd">Emulate Init.d</string>

@@ -57,7 +57,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU_HOTPLUG));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

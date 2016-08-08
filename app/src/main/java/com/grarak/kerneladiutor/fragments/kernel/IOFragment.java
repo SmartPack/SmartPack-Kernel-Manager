@@ -50,7 +50,7 @@ public class IOFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.IO));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

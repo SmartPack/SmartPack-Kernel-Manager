@@ -45,7 +45,7 @@ public class VMFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.VM));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

@@ -38,7 +38,7 @@ public class LEDFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.LED));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override

@@ -79,9 +79,14 @@
         <item>@string/delete</item>
     </string-array>
 
+    <!-- Profile -->
     <string-array name="profile_options">
         <item>@string/create</item>
         <item>@string/import_item</item>
+    </string-array>
+    <string-array name="profile_modes">
+        <item>@string/new_mode</item>
+        <item>@string/current_settings</item>
     </string-array>
 
     <!-- Recovery -->

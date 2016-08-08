@@ -43,7 +43,7 @@ import java.util.List;
 /**
  * Created by willi on 07.05.16.
  */
-public class CPUVoltage extends RecyclerViewFragment {
+public class CPUVoltageFragment extends RecyclerViewFragment {
 
     private List<GenericSelectView> mVoltages = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class CPUVoltage extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU_VOLTAGE));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(GlobalOffsetFragment.newInstance(this));
     }
 
@@ -125,13 +125,13 @@ public class CPUVoltage extends RecyclerViewFragment {
 
     public static class GlobalOffsetFragment extends BaseFragment {
 
-        public static GlobalOffsetFragment newInstance(CPUVoltage cpuVoltage) {
+        public static GlobalOffsetFragment newInstance(CPUVoltageFragment cpuVoltageFragment) {
             GlobalOffsetFragment fragment = new GlobalOffsetFragment();
-            fragment.mCPUVoltage = cpuVoltage;
+            fragment.mCPUVoltageFragment = cpuVoltageFragment;
             return fragment;
         }
 
-        private CPUVoltage mCPUVoltage;
+        private CPUVoltageFragment mCPUVoltageFragment;
         private int mGlobaloffset;
 
         @Nullable
@@ -147,11 +147,11 @@ public class CPUVoltage extends RecyclerViewFragment {
                     mGlobaloffset -= 5;
                     offset.setText(Utils.strFormat("%d" + getString(R.string.mv), mGlobaloffset));
                     Voltage.setGlobalOffset(-5, getActivity());
-                    if (mCPUVoltage != null) {
-                        mCPUVoltage.getHandler().postDelayed(new Runnable() {
+                    if (mCPUVoltageFragment != null) {
+                        mCPUVoltageFragment.getHandler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                mCPUVoltage.reload();
+                                mCPUVoltageFragment.reload();
                             }
                         }, 200);
                     }
@@ -163,11 +163,11 @@ public class CPUVoltage extends RecyclerViewFragment {
                     mGlobaloffset += 5;
                     offset.setText(Utils.strFormat("%d" + getString(R.string.mv), mGlobaloffset));
                     Voltage.setGlobalOffset(5, getActivity());
-                    if (mCPUVoltage != null) {
-                        mCPUVoltage.getHandler().postDelayed(new Runnable() {
+                    if (mCPUVoltageFragment != null) {
+                        mCPUVoltageFragment.getHandler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                mCPUVoltage.reload();
+                                mCPUVoltageFragment.reload();
                             }
                         }, 200);
                     }

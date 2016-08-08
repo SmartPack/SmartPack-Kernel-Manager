@@ -38,7 +38,7 @@ public class SoundFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.SOUND));
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override
