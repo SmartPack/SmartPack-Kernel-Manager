@@ -342,8 +342,13 @@ public class GPUFreq {
     }
 
     public static boolean supported() {
-        return hasCurFreq() || hasMaxFreq() || hasMinFreq() || hasGovernor() | has2dCurFreq()
-                || has2dMaxFreq() || has2dGovernor();
+        return hasCurFreq()
+                || (hasMaxFreq() && getAvailableFreqs() != null)
+                || (hasMinFreq() && getAvailableFreqs() != null)
+                || hasGovernor()
+                || has2dCurFreq()
+                || (has2dMaxFreq() && get2dAvailableFreqs() != null)
+                || has2dGovernor();
     }
 
     private static void run(String command, String id, Context context) {
