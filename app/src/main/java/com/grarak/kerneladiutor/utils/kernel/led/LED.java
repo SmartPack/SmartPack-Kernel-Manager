@@ -69,7 +69,11 @@ public class LED {
     }
 
     public static int getSpeed() {
-        return Utils.strToInt(Utils.readFile(SPEED));
+        String value = Utils.readFile(SPEED);
+        if (value.matches("\\d.+.(-)*")) {
+            value = value.split("-")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public static List<String> getSpeedMenu(Context context) {
@@ -96,7 +100,11 @@ public class LED {
     }
 
     public static int getIntensity() {
-        return Utils.strToInt(Utils.readFile(RED_INTENSITY));
+        String value = Utils.readFile(RED_INTENSITY);
+        if (value.matches("\\d.+.(-)*")) {
+            value = value.split("-")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public static boolean hasIntensity() {
@@ -108,7 +116,7 @@ public class LED {
     }
 
     public static boolean isFadeEnabled() {
-        return Utils.readFile(RED_FADE).equals("1 - on");
+        return Utils.readFile(RED_FADE).startsWith("1");
     }
 
     public static boolean hasFade() {
