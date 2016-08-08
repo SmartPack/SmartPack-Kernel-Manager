@@ -646,6 +646,9 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mHandler.removeCallbacks(mRefresh);
         }
         mAdView = null;
+        for (RecyclerViewItem item : mItems) {
+            item.onDestroy();
+        }
     }
 
     protected Handler getHandler() {

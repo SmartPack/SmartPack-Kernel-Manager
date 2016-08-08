@@ -174,6 +174,14 @@ public class CardView extends RecyclerViewItem {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        for (RecyclerViewItem item : mItems) {
+            item.onDestroy();
+        }
+    }
+
+    @Override
     protected void refresh() {
         super.refresh();
         if (mTitle != null) {

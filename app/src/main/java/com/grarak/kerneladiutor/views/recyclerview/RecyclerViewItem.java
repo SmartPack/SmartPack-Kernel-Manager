@@ -48,14 +48,14 @@ public abstract class RecyclerViewItem {
     @LayoutRes
     public abstract int getLayoutRes();
 
-    public void onCreateHolder(ViewGroup parent) {
+    void onCreateHolder(ViewGroup parent) {
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 
-    public void setOnViewChangeListener(RecyclerViewAdapter.OnViewChangedListener onViewChangeListener) {
+    void setOnViewChangeListener(RecyclerViewAdapter.OnViewChangedListener onViewChangeListener) {
         mOnViewChangedListener = onViewChangeListener;
     }
 
@@ -63,11 +63,11 @@ public abstract class RecyclerViewItem {
         return mOnItemClickListener;
     }
 
-    protected RecyclerViewAdapter.OnViewChangedListener getOnViewChangedListener() {
+    RecyclerViewAdapter.OnViewChangedListener getOnViewChangedListener() {
         return mOnViewChangedListener;
     }
 
-    protected void viewChanged() {
+    void viewChanged() {
         if (mOnViewChangedListener != null) {
             mOnViewChangedListener.viewChanged();
         }
@@ -89,6 +89,9 @@ public abstract class RecyclerViewItem {
     }
 
     protected void refresh() {
+    }
+
+    public void onDestroy() {
     }
 
 }

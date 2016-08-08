@@ -56,7 +56,6 @@ public class AdBanner extends LinearLayout {
         sOfflineAds.add(new OfflineAd("om5z_kernel", R.drawable.banner_om5z_kernel, "http://forum.xda-developers.com/xperia-z5/orig-development/kernel-om5z-kernel-t3405660"));
     }
 
-    private Bitmap mOfflineAdBitmap;
     private boolean mLoaded;
 
     public AdBanner(Context context) {
@@ -77,41 +76,40 @@ public class AdBanner extends LinearLayout {
 
         final View progress = findViewById(R.id.progress);
         final ImageView adOffline = (ImageView) findViewById(R.id.offline_ad);
-        if (mOfflineAdBitmap == null) {
-            OfflineAd offlineAd = null;
-            int min = -1;
-            for (OfflineAd ad : sOfflineAds) {
-                int shown = Prefs.getInt(ad.mName + "_shown", 0, context);
-                if (min < 0 || shown < min) {
-                    min = shown;
-                    offlineAd = ad;
-                }
+        OfflineAd offlineAd = null;
+        int min = -1;
+        for (OfflineAd ad : sOfflineAds) {
+            int shown = Prefs.getInt(ad.mName + "_shown", 0, context);
+            if (min < 0 || shown < min) {
+                min = shown;
+                offlineAd = ad;
             }
-
-            if (offlineAd == null) {
-                offlineAd = sOfflineAds.get(0);
-            }
-
-            mOfflineAdBitmap = BitmapFactory.decodeResource(getResources(), offlineAd.mBanner);
-            int max = Math.round(getResources().getDimension(R.dimen.adbanner_width));
-            adOffline.setImageBitmap(Utils.scaleDownBitmap(mOfflineAdBitmap, max, max));
-            Prefs.saveInt(offlineAd.mName + "_shown", min + 1, context);
-
-            final String link = offlineAd.mLink;
-            adOffline.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    new AlertDialog.Builder(v.getContext()).setMessage(v.getContext()
-                            .getString(R.string.offline_ad)).setPositiveButton(v.getContext()
-                            .getString(R.string.open_ad_anyway), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Utils.launchUrl(link, v.getContext());
-                        }
-                    }).setTitle(v.getContext().getString(R.string.warning)).show();
-                }
-            });
         }
+
+        if (offlineAd == null) {
+            offlineAd = sOfflineAds.get(0);
+        }
+
+        Bitmap offlineAdBitmap = BitmapFactory.decodeResource(getResources(), offlineAd.mBanner);
+        int max = Math.round(getResources().getDimension(R.dimen.adbanner_width));
+        adOffline.setImageBitmap(Utils.scaleDownBitmap(offlineAdBitmap, max, max));
+        Prefs.saveInt(offlineAd.mName + "_shown", min + 1, context);
+
+        final String link = offlineAd.mLink;
+        adOffline.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                new AlertDialog.Builder(v.getContext()).setMessage(v.getContext()
+                        .getString(R.string.offline_ad)).setPositiveButton(v.getContext()
+                        .getString(R.string.open_ad_anyway), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Utils.launchUrl(link, v.getContext());
+                    }
+                }).setTitle(v.getContext().getString(R.string.warning)).show();
+            }
+        });
+        offlineAdBitmap.recycle();
 
         Banner banner = (Banner) findViewById(R.id.ad_banner);
         if (!onlyOfflineAds) {

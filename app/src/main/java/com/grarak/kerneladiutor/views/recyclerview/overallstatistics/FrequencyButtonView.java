@@ -124,4 +124,16 @@ public class FrequencyButtonView extends RecyclerViewItem {
         animator.start();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mRefreshImage != null) {
+            mRefreshImage.recycle();
+            mRefreshImage = null;
+        }
+        if (mResetImage != null) {
+            mResetImage.recycle();
+            mResetImage = null;
+        }
+    }
 }
