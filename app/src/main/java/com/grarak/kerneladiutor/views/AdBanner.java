@@ -21,8 +21,6 @@ package com.grarak.kerneladiutor.views;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
@@ -32,6 +30,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -90,15 +90,18 @@ public class AdBanner extends LinearLayout {
             offlineAd = sOfflineAds.get(0);
         }
 
-        Bitmap offlineAdBitmap = BitmapFactory.decodeResource(getResources(), offlineAd.mBanner);
-        int max = Math.round(getResources().getDimension(R.dimen.adbanner_width));
-        adOffline.setImageBitmap(Utils.scaleDownBitmap(offlineAdBitmap, max, max));
+        adOffline.setImageResource(offlineAd.mBanner);
         Prefs.saveInt(offlineAd.mName + "_shown", min + 1, context);
 
+        final String title = offlineAd.mName;
         final String link = offlineAd.mLink;
         adOffline.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
+                Answers.getInstance().logContentView(new ContentViewEvent()
+                        .putContentType("Offline ad")
+                        .putContentId(title));
+
                 new AlertDialog.Builder(v.getContext()).setMessage(v.getContext()
                         .getString(R.string.offline_ad)).setPositiveButton(v.getContext()
                         .getString(R.string.open_ad_anyway), new DialogInterface.OnClickListener() {
@@ -109,7 +112,6 @@ public class AdBanner extends LinearLayout {
                 }).setTitle(v.getContext().getString(R.string.warning)).show();
             }
         });
-        offlineAdBitmap.recycle();
 
         Banner banner = (Banner) findViewById(R.id.ad_banner);
         if (!onlyOfflineAds) {
