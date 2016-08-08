@@ -28,7 +28,7 @@ import android.preference.PreferenceManager;
 public class Prefs {
 
     public static void remove(String name, Context context) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(name).commit();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(name).apply();
     }
 
     public static int getInt(String name, int defaults, Context context) {

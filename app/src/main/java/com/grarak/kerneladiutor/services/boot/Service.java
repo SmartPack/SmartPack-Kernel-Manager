@@ -37,6 +37,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v7.app.NotificationCompat;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.StartActivity;
 import com.grarak.kerneladiutor.database.Settings;
@@ -152,6 +153,10 @@ public class Service extends android.app.Service {
         PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 0, new Intent(this,
                 CancelReceiver.class), 0);
 
+        PackageManager pm = getPackageManager();
+        Intent launchIntent = pm.getLaunchIntentForPackage(BuildConfig.APPLICATION_ID);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, launchIntent, 0);
+
         final NotificationManager notificationManager = (NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
@@ -161,6 +166,7 @@ public class Service extends android.app.Service {
                     .setSmallIcon(R.drawable.ic_restore)
                     .addAction(0, getString(R.string.cancel), cancelIntent)
                     .setAutoCancel(true)
+                    .setContentIntent(contentIntent)
                     .setWhen(0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 builder.setPriority(Notification.PRIORITY_MAX);
@@ -170,7 +176,8 @@ public class Service extends android.app.Service {
         final NotificationCompat.Builder builderComplete = new NotificationCompat.Builder(this);
         if (!hideNotification) {
             builderComplete.setContentTitle(getString(R.string.app_name))
-                    .setSmallIcon(R.drawable.ic_restore);
+                    .setSmallIcon(R.drawable.ic_restore)
+                    .setContentIntent(contentIntent);
         }
 
         final Handler handler = new Handler();
