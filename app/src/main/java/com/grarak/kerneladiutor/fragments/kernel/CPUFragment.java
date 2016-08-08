@@ -27,6 +27,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
@@ -96,7 +97,7 @@ public class CPUFragment extends RecyclerViewFragment {
         }
         addViewPagerFragment(ApplyOnBootFragment.newInstance(ApplyOnBootFragment.CPU));
         addViewPagerFragment(DescriptionFragment.newInstance(getString(CPUFreq.getCpuCount() > 1 ?
-                R.string.cores : R.string.core, CPUFreq.getCpuCount()), null));
+                R.string.cores : R.string.cores_singular, CPUFreq.getCpuCount()), Device.getBoard()));
 
         if (mGovernorTunableErrorDialog != null) {
             mGovernorTunableErrorDialog.show();

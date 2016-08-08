@@ -27,6 +27,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
@@ -241,7 +242,9 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
             final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
             for (int i = 0; i < options.length; i++) {
-                AppCompatCheckBox checkBox = new AppCompatCheckBox(getActivity());
+                AppCompatCheckBox checkBox = new AppCompatCheckBox(
+                        new ContextThemeWrapper(getActivity(),
+                                R.style.Base_Widget_AppCompat_CompoundButton_CheckBox_Custom), null, 0);
                 checkBox.setText(options[i]);
                 checkBox.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
                 checkBox.setChecked(i == mRecoveryOption);

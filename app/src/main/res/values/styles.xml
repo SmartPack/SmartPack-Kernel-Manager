@@ -37,4 +37,10 @@
         <item name="android:ellipsize">middle</item>
     </style>
 
+    <style name="Base.Widget.AppCompat.CompoundButton.CheckBox.Custom">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

@@ -11,8 +11,9 @@
         android:id="@+id/found_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/white" />
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
         android:text="@string/search"
         android:textColor="@color/white"
         android:textIsSelectable="true"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/edittext"
@@ -31,6 +32,6 @@
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -10,7 +10,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/title"
@@ -19,7 +19,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textIsSelectable="true"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/summary"
