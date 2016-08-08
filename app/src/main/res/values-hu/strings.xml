@@ -23,6 +23,8 @@
   <string name="donate_summary">Ez a szolgáltatás csak akkor vehető igénybe, ha a támogatói alkalmazás telepítve van! Mégse aggódj. Mivel ez az alkalmazás nyit forráskódú, így könnyen magad is építheted eltávolítva ezt az ellenőrzést. De remélem támogatod a fejlesztőket. Köszönjük, hogy a Kernel Adiutor-t használod! Ha megvásároltad a támogatói alkalmazást, akkor újra kell indítani a Kernel Adiutor-t ahhoz, hogy minden funkció engedélyezésre kerüljön.</string>
   <string name="donate_nope">Nem dőlök be ennek a csalásnak!</string>
   <string name="donate_yes">Szeretem ezt az alkalmazást. Támogatom!</string>
+  <string name="ad_here">Hirdetése itt lehet</string>
+  <string name="remove_ad">Reklámok eltávolítása</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_text">Beállítások alkalmazása %d másodperc múlva.</string>
   <string name="apply_on_boot_complete">Beállítások alkalmazása befejeződött.</string>
@@ -127,6 +129,7 @@
   <string name="cpu_governor">CPU ütemező</string>
   <string name="cpu_governor_summary">A CPU iránytó határozza meg, hogyan viselkedik a CPU a változó terhelés alatt. Az irányító módosítása hatással lesz arra, hogy hogyan fog lépkedni a CPU az elérhető frekvenciákon.</string>
   <string name="cpu_governor_tunables">CPU ütemező beállítások</string>
+  <string name="governor_tunables_summary">A különböző konfigurációs elemek, amelyek ütemező-függőek.</string>
   <string name="cpu_governor_tunables_read_error">Nem sikerült beolvasni a jelenlegi CPU ütemezőt.\n\nHa egy QCOM big.LITTLE eszközt használsz, akkor ez egy ismert probléma. A rendszer arra kényszeríti a CPU-t, hogy kikapcsolja a magokat, így rendkívül nehezen olvasható ki a CPU-specifikus statisztika. Próbáld ezt a lehetőséget újra kiválasztani. A CPU néha nem hajlandó a magot bekapcsolni.</string>
   <string name="tunables_error">%s nem hangolható</string>
   <string name="mc_power_saving">Többmagos Energiatakarékosság</string>
@@ -348,6 +351,7 @@
   <string name="gpu_2d_governor_summary">A GPU 2D ütemezőjének beállítása.</string>
   <string name="gpu_governor">GPU ütemező</string>
   <string name="gpu_governor_summary">A GPU irányítójának beállítása.</string>
+  <string name="gpu_governor_tunables">GPU ütemező beállítások</string>
   <string name="simple_gpu_algorithm">Egyszerű GPU algoritmus</string>
   <string name="simple_gpu_algorithm_summary">Egy kiegészítő az MSM Adreno TZ GPU irányítóhoz. Fejlesztő: faux123.</string>
   <string name="laziness">Lustaság</string>
@@ -506,7 +510,9 @@
   <string name="rotational">Merevlemez</string>
   <string name="rotational_summary">Memória kezelése merevlemezként.</string>
   <string name="iostats">I/O statisztika</string>
+  <string name="iostats_summary">Ezen tárolóeszköz I/O statisztikáinak kezelése. Tiltása az I/O figyelő alkalmazások összeomlását okozza.</string>
   <string name="add_random">Véletlenszerű hozzáadása</string>
+  <string name="add_random_summary">Entrópia rajzolása a forgó (rotációs) tárolóról.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Teljes vizsgálat</string>
   <string name="pages_shared">Megosztott lapok</string>
@@ -645,6 +651,8 @@
   <string name="fota_partition">Fota partíció</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="item_count">%s elem</string>
+  <string name="items_count">%s elem</string>
   <string name="search">Keresés</string>
   <string name="key">Kulcs</string>
   <string name="value">Érték</string>

@@ -23,6 +23,8 @@
   <string name="donate_summary">Diese Funktion ist nur verfügbar, wenn du die Spenden-App installiert hast. Aber keine Sorge. Da die App Open Source ist, kannst du die App einfach selbst builden und diesen Check entfernen. Aber ich hoffe du unterstützt uns trotzdem. Danke dass du Kernel Adiutor verwendest! Sobald du die Spenden-App gekauft hast, musst du Kernel Adiutor neustarten um alle Funktionen freizuschalten.</string>
   <string name="donate_nope">Ich werde nicht auf diesen Betrug hereinfallen!</string>
   <string name="donate_yes">Ich liebe diese App. Ich muss spenden!</string>
+  <string name="ad_here">Hier könnte Ihre Werbung stehen</string>
+  <string name="remove_ad">Werbung entfernen</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_text">Wende Einstellungen in %d Sekunden an.</string>
   <string name="apply_on_boot_complete">Einstellungen angewandt.</string>
@@ -54,7 +56,7 @@
   <string name="other">Anderes</string>
   <!-- Menus -->
   <string name="device">Gerät</string>
-  <string name="overall">Summe</string>
+  <string name="overall">Insgesamt</string>
   <string name="memory">Arbeitsspeicher</string>
   <string name="inputs">Eingaben</string>
   <string name="cpu">CPU</string>
@@ -100,7 +102,7 @@
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektur</string>
   <!-- Overall -->
-  <string name="offline">Ausgeschaltet</string>
+  <string name="offline">Abgeschaltet</string>
   <string name="core">Kern %d</string>
   <string name="refresh">Aktualisieren</string>
   <string name="reset">Zurücksetzen</string>
@@ -126,6 +128,7 @@
   <string name="cpu_governor">CPU-Governor</string>
   <string name="cpu_governor_summary">Der CPU-Governor bestimmt, wie sich die CPU bei Änderungen in der Auslastung verhält. Das Wechseln des Governors hat Auswirkung darauf, wie die CPU die ihr zur Verfügung stehenden Frequenzschritte nutzt.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
+  <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Gouverneurs der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
   <string name="tunables_error">%s ist nicht einstellbar</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
@@ -289,13 +292,18 @@
   <string name="warning">Warnung</string>
   <string name="thermal_info">Verwenden sie nur einen thermischen Sensor für folgende Optionen. Die Verwendung von mehreren kann zu unerwartetem Verhalten führen.</string>
   <string name="thermald">Thermal</string>
+  <string name="thermald_summary">Thermischer Qualcomm-Treiber, der das Gerät vor Überhitzung hindert. Dies sollte deaktiviert werden, wenn der aktuelle Kernel eine Alternative hat.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Ein interner Kernel-Ersatz für Qualcomms Thermald. Von faux123 entwickelt.</string>
   <string name="intellithermal_optimized">Intellithermal optimiert</string>
   <string name="intellithermal_optimized_summary">Ein interner Kernel-Ersatz für Qualcomms Thermald. Entwickelt von faux123 und alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Erlaubt ihnen die Debug-Maske für Temperaturabhängige Operationen anzuschalten.</string>
   <string name="vdd_restriction">VDD Beschränkung</string>
   <string name="freq_throttle_temp">Frequenz Trottel Temperatur</string>
   <string name="freq_throttle_temp_summary">Temperaturschwelle für Frequenz Drosselung.</string>
+  <string name="cpu_throttle_temp">CPU-Drosselung Temperatur</string>
+  <string name="cpu_throttle_temp_summary">Kerne ausschalten bei dieser Temperatur.</string>
+  <string name="cpu_temp_hysteresis">CPU-Temperatur-Hysterese</string>
   <string name="freq_step">Frequenz-Schritt</string>
   <string name="immediately_limit_stop">Sofortiges Beenden des Limits</string>
   <string name="poll">Umfrage</string>
@@ -359,6 +367,7 @@
   <string name="screen_value">Bildschirm-Dunkelstufe</string>
   <string name="screen_contrast">Bildschirmkontrast</string>
   <string name="high_brightness_mode">Hoher Helligkeitsmodus</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">Rot-Grau</string>
   <string name="red_blacks">Rot-Schwarz</string>

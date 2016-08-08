@@ -16,10 +16,13 @@
   <string name="cancel">Չեղարկել</string>
   <string name="ok">Լավ</string>
   <string name="unknown">Անհայտ</string>
+  <string name="donate">Զոհաբերել</string>
+  <string name="remove_ad">Հեռացնել գովազդները</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Պահպանել</string>
   <!-- File Picker -->
+  <string name="select_question">Ընտրե՞լ %s:</string>
   <!-- Units -->
   <string name="mhz">ՄՀց</string>
   <string name="celsius">ºC</string>
@@ -34,6 +37,7 @@
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Վիճակագրություն</string>
+  <string name="kernel">Միջուկ</string>
   <string name="tools">Գործիքներ</string>
   <string name="other">Այլ</string>
   <!-- Menus -->
@@ -41,12 +45,16 @@
   <string name="overall">Բոլոր</string>
   <string name="memory">Հիշողություն</string>
   <string name="cpu">CPU</string>
+  <string name="cpu_voltage">CPU Լարումը</string>
+  <string name="cpu_hotplug">CPU Hotplug</string>
+  <string name="thermal">Ջերմաստ:</string>
   <string name="gpu">GPU</string>
   <string name="screen">Էրան</string>
   <string name="battery">Մարտկոց</string>
   <string name="led">LED</string>
   <string name="entropy">Էնտրոպիա</string>
   <string name="misc">Այլ</string>
+  <string name="backup">Պահուստավորում</string>
   <!-- Device -->
   <!-- Overall -->
   <string name="core">Միջուկ %d</string>

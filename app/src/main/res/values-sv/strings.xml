@@ -3,26 +3,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="app_name">Kernel Adiutor</string>
   <!-- Security -->
+  <string name="password">Lösenord</string>
   <string name="select_picture">Välj bild</string>
   <string name="no_picture">Ingen bild</string>
   <string name="went_wrong">Någonting gick fel!</string>
   <string name="cancel">Avbryt</string>
   <string name="ok">OK</string>
+  <string name="unknown">Okänd</string>
   <string name="apply_on_boot">Tillämpa vid uppstart</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Spara</string>
   <!-- File Picker -->
+  <string name="select_question">Välj %s?</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
+  <string name="celsius">ºC</string>
+  <string name="fahrenheit">ºF</string>
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">min</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
   <!-- Special signs -->
   <!-- Headers -->
+  <string name="statistics">Statistik</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Verktyg</string>
   <string name="other">Övrigt</string>
@@ -35,6 +42,7 @@
   <string name="screen">Skärm</string>
   <string name="sound">Ljud</string>
   <string name="battery">Batteri</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">I/O-schemaläggare</string>
   <string name="ksm">Kernel Samepage Merging (KSM)</string>
   <string name="virtual_memory">Virtuellt Minne</string>

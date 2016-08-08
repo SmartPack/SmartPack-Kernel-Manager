@@ -545,7 +545,7 @@
   <string name="power_suspend_state_summary">Stan sterownika zarządzania energią, gdy ekran jest wyłączony. Włączenie sterownika zmniejsza użycie energii. PS: Możesz zmienić to ustawienie tylko jeżeli Tryb Oszczędzania Energii jest w trybie User Mode.</string>
   <string name="network">Sieć</string>
   <string name="tcp">Algorytm przeciążenia TCP</string>
-  <string name="tcp_summary">TCP jest jednym z podstawowych protokołów Internetowych (IP) m i jest na tyle powszechny, że cały pakiet często nazywany jest stosem protokołów TCP/IP.</string>
+  <string name="tcp_summary">TCP jest jednym z podstawowych protokołów Internetowych (IP), jest on na tyle powszechny, że cały pakiet często nazywany jest stosem protokołów TCP/IP.</string>
   <string name="hostname">Nazwa hosta</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">Wakelock smb135x</string>
