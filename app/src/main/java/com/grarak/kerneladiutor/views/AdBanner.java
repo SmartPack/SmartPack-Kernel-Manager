@@ -20,13 +20,15 @@
 package com.grarak.kerneladiutor.views;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.DrawableRes;
+import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -40,6 +42,7 @@ import com.startapp.android.publish.banner.BannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by willi on 08.08.16.
@@ -67,12 +70,12 @@ public class AdBanner extends LinearLayout {
     public AdBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AdBanner, defStyleAttr, 0);
-        boolean onlyOfflineAds = a.getBoolean(R.styleable.AdBanner_onlyOfflineAds, false);
-        a.recycle();
+        final boolean onlyOfflineAds = new Random().nextInt(4) == 1;
 
+        mLoaded = onlyOfflineAds;
         LayoutInflater.from(context).inflate(R.layout.adbanner_view, this);
 
+        final View progress = findViewById(R.id.progress);
         final ImageView adOffline = (ImageView) findViewById(R.id.offline_ad);
         if (mOfflineAdBitmap == null) {
             OfflineAd offlineAd = null;
@@ -97,17 +100,25 @@ public class AdBanner extends LinearLayout {
             final String link = offlineAd.mLink;
             adOffline.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    Utils.launchUrl(link, v.getContext());
+                public void onClick(final View v) {
+                    new AlertDialog.Builder(v.getContext()).setMessage(v.getContext()
+                            .getString(R.string.offline_ad)).setPositiveButton(v.getContext()
+                            .getString(R.string.open_ad_anyway), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.launchUrl(link, v.getContext());
+                        }
+                    }).setTitle(v.getContext().getString(R.string.warning)).show();
                 }
             });
         }
 
+        Banner banner = (Banner) findViewById(R.id.ad_banner);
         if (!onlyOfflineAds) {
-            Banner banner = (Banner) findViewById(R.id.ad_banner);
             banner.setBannerListener(new BannerListener() {
                 @Override
                 public void onReceiveAd(View view) {
+                    progress.setVisibility(GONE);
                     adOffline.setVisibility(View.GONE);
                     view.setVisibility(View.VISIBLE);
                     mLoaded = true;
@@ -115,6 +126,7 @@ public class AdBanner extends LinearLayout {
 
                 @Override
                 public void onFailedToReceiveAd(View view) {
+                    progress.setVisibility(GONE);
                     adOffline.setVisibility(View.VISIBLE);
                     view.setVisibility(View.GONE);
                     mLoaded = false;
@@ -125,7 +137,12 @@ public class AdBanner extends LinearLayout {
                 }
             });
         } else {
-            mLoaded = true;
+            progress.setVisibility(GONE);
+            ViewGroup.LayoutParams layoutParams = banner.getLayoutParams();
+            layoutParams.height = 0;
+            layoutParams.width = 0;
+            banner.requestLayout();
+            adOffline.setVisibility(VISIBLE);
         }
 
         findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {

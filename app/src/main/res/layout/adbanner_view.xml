@@ -4,25 +4,34 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
         android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center" />
+
         <ImageView
             android:id="@+id/offline_ad"
             android:layout_width="@dimen/adbanner_width"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
 
         <com.startapp.android.publish.banner.Banner
             android:id="@+id/ad_banner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:visibility="gone" />
 
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/remove"

@@ -10,8 +10,4 @@
         <attr name="edgevisibile" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="AdBanner">
-        <attr name="onlyOfflineAds" format="boolean" />
-    </declare-styleable>
-
 </resources>
