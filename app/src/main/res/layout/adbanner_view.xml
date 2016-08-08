@@ -10,17 +10,11 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/ad_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="middle"
-            android:fontFamily="sans-serif-thin"
-            android:gravity="center"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:text="@string/ad_here"
-            android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/offline_ad"
+            android:layout_width="@dimen/adbanner_width"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <com.startapp.android.publish.banner.Banner
             android:id="@+id/ad_banner"

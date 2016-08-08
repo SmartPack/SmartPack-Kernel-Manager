@@ -177,7 +177,7 @@ public class Utils {
         }
     }
 
-    private static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+    public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
