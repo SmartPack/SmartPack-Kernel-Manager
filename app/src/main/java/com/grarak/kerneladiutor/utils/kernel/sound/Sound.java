@@ -135,8 +135,12 @@ public class Sound {
     }
 
     public static String getHeadphoneTpaGain() {
-        return String.valueOf(Integer.decode(RootUtils.runCommand("cat " + TPA6165_REGISTERS_LIST
-                + " | awk \"/0x7/\" | cut -c9-13")) - 185);
+        try {
+            return String.valueOf(Integer.decode(RootUtils.runCommand("cat " + TPA6165_REGISTERS_LIST
+                    + " | awk \"/0x7/\" | cut -c9-13")) - 185);
+        } catch (NumberFormatException ignored) {
+            return "";
+        }
     }
 
     public static List<String> getHeadphoneTpaGainLimits() {
