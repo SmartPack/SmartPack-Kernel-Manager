@@ -86,9 +86,6 @@ public class ProfileActivity extends BaseActivity {
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.setupWithViewPager(viewPager);
-
         if (savedInstanceState == null) {
             ViewUtils.dialogBuilder(getString(R.string.profile_warning), null, new DialogInterface.OnClickListener() {
                 @Override
@@ -100,6 +97,10 @@ public class ProfileActivity extends BaseActivity {
         viewPager.setOffscreenPageLimit(mItems.size());
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), mItems);
         viewPager.setAdapter(pagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
