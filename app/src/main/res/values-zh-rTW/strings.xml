@@ -470,10 +470,10 @@
   <!-- Contributors -->
   <!-- FAQ -->
   <!-- Settings -->
-  <string name="dark_theme">深色主題</string>
   <string name="fahrenheit_title">使用華氏溫度</string>
   <string name="fahrenheit_summary">使用華氏溫度測量。</string>
   <string name="force_english">強制使用英文</string>
+  <string name="dark_theme">深色主題</string>
   <string name="ten_sec">10秒</string>
   <string name="debugging">除錯</string>
   <string name="logcat">Logcat</string>

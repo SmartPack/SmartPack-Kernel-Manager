@@ -19,6 +19,7 @@
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
   <string name="donate">捐助</string>
+  <string name="warning">警告</string>
   <string name="apply_on_boot">系统启动时应用</string>
   <string name="apply_on_boot_text">在 %d 秒后应用您的设置</string>
   <string name="apply_on_boot_complete">应用设置完成。</string>
@@ -255,7 +256,6 @@
   <string name="cycle_up_summary">循环等待后的最后一个热插拔事件插入另一个核心。</string>
   <string name="core_control">核心控制</string>
   <!--Thermal-->
-  <string name="warning">警告</string>
   <string name="thermal_info">只选取以下发热控制驱动中的一个使用，同时使用多个驱动可能会导致预料之外的行为。</string>
   <string name="thermald">Thermald</string>
   <string name="intellithermal">Intellithermal</string>
@@ -563,10 +563,10 @@
   <!-- FAQ -->
   <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
   <!-- Settings -->
-  <string name="dark_theme">暗色主题</string>
   <string name="fahrenheit_title">华氏度</string>
   <string name="fahrenheit_summary">使用华氏温度测量。</string>
   <string name="force_english">强制显示英语</string>
+  <string name="dark_theme">暗色主题</string>
   <string name="ten_sec">10 秒</string>
   <string name="twenty_sec">20 秒</string>
   <string name="fifty_sec">50 秒</string>

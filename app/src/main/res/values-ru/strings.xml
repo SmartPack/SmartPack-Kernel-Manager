@@ -25,6 +25,7 @@
   <string name="donate_yes">Я люблю это приложение. Должен пожертвовать!</string>
   <string name="ad_here">Здесь может быть ваша реклама</string>
   <string name="remove_ad">Убрать рекламу</string>
+  <string name="warning">Внимание</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_text">Применение настроек через %d секунд.</string>
   <string name="apply_on_boot_complete">Применение настроек завершено.</string>
@@ -293,7 +294,6 @@
   <string name="busy_up_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
   <string name="offline_delay_summary">Время до отключения процессора.</string>
   <!--Thermal-->
-  <string name="warning">Внимание</string>
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Стандартный термодрайвер, который защищает устройство от перегрева. Его следует отключить, если ядро имеет альтернативу ему.</string>
@@ -686,10 +686,10 @@
   <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
   <string name="add_new_features_summary">Это трудно сказать. Я пытаюсь добавить все функции, но это трудно сделать это приложение универсального для всех устройств.</string>
   <!-- Settings -->
-  <string name="dark_theme">Тёмная тема</string>
   <string name="fahrenheit_title">По Фаренгейту</string>
   <string name="fahrenheit_summary">Используйте для измерения температуры по Фаренгейту.</string>
   <string name="force_english">Принудительный английский</string>
+  <string name="dark_theme">Тёмная тема</string>
   <string name="ten_sec">10 секунд</string>
   <string name="twenty_sec">20 секунд</string>
   <string name="fifty_sec">50 секунд</string>

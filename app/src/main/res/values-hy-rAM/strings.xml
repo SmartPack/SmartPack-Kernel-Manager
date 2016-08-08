@@ -18,6 +18,7 @@
   <string name="unknown">Անհայտ</string>
   <string name="donate">Զոհաբերել</string>
   <string name="remove_ad">Հեռացնել գովազդները</string>
+  <string name="warning">Զգուշացում</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Պահպանել</string>
@@ -71,7 +72,6 @@
   <string name="balanced">Հավասարակշռված</string>
   <string name="conservative">Պահպանողական</string>
   <!--Thermal-->
-  <string name="warning">Զգուշացում</string>
   <!-- GPU -->
   <!-- Screen -->
   <string name="red">Կարմիր</string>

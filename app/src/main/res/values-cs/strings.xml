@@ -22,6 +22,7 @@ Zabezpečeni</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
   <string name="donate_yes">Mám rád tuto aplikaci. Musim přispět!</string>
+  <string name="warning">Varování</string>
   <string name="apply_on_boot">Použít při spuštění</string>
   <string name="apply_on_boot_text">Používám nastavení v %d sekundách.</string>
   <string name="apply_on_boot_complete">Aplikuji nastavení dokončeno.</string>
@@ -229,7 +230,6 @@ Zabezpečeni</string>
   <string name="wake_wait_time">Čekací doba pro probuzení</string>
   <string name="core_control">Řízení Jádra</string>
   <!--Thermal-->
-  <string name="warning">Varování</string>
   <string name="thermal_info">Používejte pouze jeden teplotní ovladač, použití více ovladačů ve stejnou dobu může vést k neočekávanému chování.</string>
   <string name="thermald">Thermald</string>
   <string name="intellithermal_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123.</string>

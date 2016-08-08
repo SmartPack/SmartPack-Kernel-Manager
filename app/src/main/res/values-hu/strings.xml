@@ -25,6 +25,7 @@
   <string name="donate_yes">Szeretem ezt az alkalmazást. Támogatom!</string>
   <string name="ad_here">Hirdetése itt lehet</string>
   <string name="remove_ad">Reklámok eltávolítása</string>
+  <string name="warning">Figyelmeztetés</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_text">Beállítások alkalmazása %d másodperc múlva.</string>
   <string name="apply_on_boot_complete">Beállítások alkalmazása befejeződött.</string>
@@ -296,7 +297,6 @@
   <string name="offline_delay">Offline késleltetés</string>
   <string name="offline_delay_summary">A CPU kikapcsolása előtti idő.</string>
   <!--Thermal-->
-  <string name="warning">Figyelmeztetés</string>
   <string name="thermal_info">Csak egy termikus vezérlőt használj a következő lehetőségek közül, több egy időben való használata szokatlan viselkedést okozhat.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Gyári termikus illesztőprogram, amely megakadályozza az eszköz túlmelegedését. Ezt ki kell kapcsolni, ha az aktuális kernel alternatívával rendelkezik.</string>
@@ -710,10 +710,10 @@
   <string name="add_new_features">Hozzáadnád x vagy y funkciót?</string>
   <string name="add_new_features_summary">Ezt nehéz megmondani. Megpróbálok funkciókat hozzáadni, de nehéz az alkalmazást minden eszköz számára univerzálissá tenni.</string>
   <!-- Settings -->
-  <string name="dark_theme">Sötét téma</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Fahrenheit használata a hőmérséklet méréséhez.</string>
   <string name="force_english">Angol nyelvű megjelenítés kényszerítése</string>
+  <string name="dark_theme">Sötét téma</string>
   <string name="ten_sec">10 másodperc</string>
   <string name="twenty_sec">20 másodperc</string>
   <string name="fifty_sec">50 másodperc</string>

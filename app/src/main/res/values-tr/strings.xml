@@ -23,6 +23,9 @@
   <string name="donate_summary">Bu özellik sadece bağıs uygulaması yüklüyken kullanabilir. Ama üzülme. Çünkü bu uygulama açık kaynak kodlu kendin kolayca uygulamayı oluşturabilirsin ve bu denetimi kaldırabilirsin. Ama yinede bize destek olmanı isteriz. Kernel Adiutor kullandığın için teşekkürler! Bağıs uygulamasını satın aldıysanız uygulamayı yeniden başlatmalısınız.</string>
   <string name="donate_nope">Bu aldatmacaya düşmem!</string>
   <string name="donate_yes">Uygulamayı çok sevdim! Bağış yapmalıyım!</string>
+  <string name="ad_here">Reklam burada olabilir</string>
+  <string name="remove_ad">Reklamları kaldır</string>
+  <string name="warning">Dikkat</string>
   <string name="apply_on_boot">Açılışta uygula</string>
   <string name="apply_on_boot_text">Ayarlarınız %d saniyede uygulanıyor.</string>
   <string name="apply_on_boot_complete">Ayarlarınız uygulandı.</string>
@@ -116,6 +119,7 @@
   <string name="version">Sürüm</string>
   <string name="handlers">İşleyiciler</string>
   <!-- CPU -->
+  <string name="cores_singular">%d Çekirdek</string>
   <string name="cores">%d Çekirdek</string>
   <string name="no_offline_core">Seçtiğiniz çekirdek kapatılamıyor!</string>
   <string name="cpu_max_freq">İşlemci Maksimum Frekansı</string>
@@ -127,6 +131,7 @@
   <string name="cpu_governor">İşlemci Düzenleyici</string>
   <string name="cpu_governor_summary">İşlemci Düzenleyici iş yüküne göre değişiklik yaparak çalışma şeklini belirler.</string>
   <string name="cpu_governor_tunables">İşlemci Düzenleyicisi Ayarları</string>
+  <string name="governor_tunables_summary">İşlemci Düzenleyicisine bağlı çeşitli yapılandırmalar.</string>
   <string name="cpu_governor_tunables_read_error">Büyük bir QCOM kullandığınız geçerli CPU.\n\nIf yöneticisini okuma başarısız oldu.Bu bilinen bir sorundur. Sistem CPU çekirdeklerini fazla islemden dolayı kapatmaya zorlar. Bu seçeneği yeniden seçmeyi deneyin.CPU bazen kapatmayı deneyebilir.</string>
   <string name="tunables_error">%s ayarlanabilir değil</string>
   <string name="mc_power_saving">Çoklu Çekirdek Güç Tasarrufu</string>
@@ -291,7 +296,6 @@
   <string name="offline_delay">Çevrimdışı gecikme</string>
   <string name="offline_delay_summary">Bir işlemci açılmadan önce gerekli zaman.</string>
   <!--Thermal-->
-  <string name="warning">Dikkat</string>
   <string name="thermal_info">Aşağıdaki seçenekler arasından tek bir termal sürücü kullanın, aynı anda daha fazla kullanmak beklenmedik davranışlara neden olabilir.</string>
   <string name="thermald">Isıl</string>
   <string name="thermald_summary">Stock ısıl sürücü aygıtın ısınmasını engeller. Şuan ki kernelde altarnatif varsa devre dışı bırakın.</string>
@@ -346,6 +350,7 @@
   <string name="gpu_2d_governor_summary">GPU 2D yöneticisini ayarlayın.</string>
   <string name="gpu_governor">GPU Düzenleyici</string>
   <string name="gpu_governor_summary">GPU Denetleyiciyi Ayarla.</string>
+  <string name="gpu_governor_tunables">GPU Düzenleyicisi Ayarları</string>
   <string name="simple_gpu_algorithm">Basit GPU algoritması</string>
   <string name="simple_gpu_algorithm_summary">MSM Adreno TZ GPU yöneticisi için bir eklenti.Faux123 tarafından geliştirildi.</string>
   <string name="laziness">Tembellik</string>
@@ -355,6 +360,7 @@
   <string name="adreno_idler">Adreno işsiz</string>
   <string name="adreno_idler_summary">Msm-adreno-tz\'ın işletme giderleri için etkili bir çözüm. Arter97 tarafından geliştirilmiştir.</string>
   <string name="down_differential">Düşük Diferansiyel</string>
+  <string name="down_differential_summary">Belirli iş yükünü kullanılmıyorsa eşiği belirler.</string>
   <string name="idle_wait">Boşta bekleme</string>
   <string name="workload">İş yükü</string>
   <!-- Screen -->
@@ -396,9 +402,15 @@
   <string name="white_point">Beyaz Nokta</string>
   <string name="lcd_backlight">LCD arkaışık</string>
   <string name="min_brightness">Minimum Parlaklık</string>
+  <string name="max_brightness">Maksimum parlaklık</string>
+  <string name="max_brightness_summary">LCD ekranın parlaklığını olabildiğinden daha yüksek olmaya zorla. Bu stock romlarda çalışabilir.</string>
   <string name="backlight_dimmer">Kısık Arka Işık</string>
   <string name="threshold">Eşik Değeri</string>
+  <string name="offset">Dengelemek</string>
+  <string name="negative_toggle">Negatif aç/kapat</string>
+  <string name="negative_toggle_summary">Ekran renklerini tersine çevirme hızlı bir şekilde 4 kez menü düğmesine basarak etkinleştirin.</string>
   <string name="mdnie_global_controls">mDNIe genel denetimleri</string>
+  <string name="register_hook">Kayıt kancası</string>
   <string name="master_sequence">Ana sıra</string>
   <string name="glove_mode">Eldiven modu</string>
   <string name="glove_mode_summary">Bunun etkinleştirilmesiyle eldiven giyerken telefonunuzu kullanmanıza izin verir.</string>
@@ -409,7 +421,9 @@
   <string name="full">Tam</string>
   <string name="bottom_half">Alt Yarım</string>
   <string name="top_half">Üst yarım</string>
+  <string name="half">Yarım</string>
   <string name="s2w">Sweep2Wake</string>
+  <string name="s2w_summary">Aygıtınızı ekranı kaydırarak uyandır.</string>
   <string name="s2w_s2s">Uyutamak ve uyandırmak için sürükle</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Uyandırmak için sağa sürükle</string>
@@ -418,6 +432,7 @@
   <string name="s2w_down">Uyandırmak için aşağı sürükle</string>
   <string name="s2w_any">Uyandırmak için herhangi bir yere sürükle</string>
   <string name="lenient">Uyandırmak için yumuşak sürükle</string>
+  <string name="lenient_summary">Yalnızca 1 ve 4 düğme tetikleyici sürükleyerek uyandırmak için gereklidir.</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Aygıtınızı ekrana dokunarak uyandır.</string>
   <string name="dt2s">DoubleTap2Sleep</string>
@@ -442,15 +457,19 @@
   <string name="camera_gesture">Kamera hareketi</string>
   <string name="camera_gesture_summary">Ekranda bir halka çizerek varsayılan kamera uygulamasını başltın.</string>
   <string name="pocket_mode">Cep veya çanta modu</string>
+  <string name="timeout">Zamanaşımı</string>
+  <string name="timeout_summary">Ekran kapandıktan sonra uyandırma kontrolleri devre dışı bırakılması için bir süre ayarlayın.</string>
   <string name="power_key_suspend">Güç Anahtarı Askıya Alma</string>
   <string name="power_key_suspend_summary">Ekran güç anahtarı ile devre dışı bırakıldığında bu etkinleştirilmesi uyku modundan çıkarma denetimlerini dönecek.</string>
   <!-- Sound -->
   <string name="sound_control">Ses Denetimi</string>
+  <string name="headset_highperf_mode">Kulaklık yüksek performans modu</string>
   <string name="headphone_gain">Kulaklık Yükseltmesi</string>
   <string name="handset_microphone_gain">Kulaklık Mikrofon Yükseltmesi</string>
   <string name="cam_microphone_gain">Video Kamera Mikrofon Yükseltmesi</string>
   <string name="speaker_gain">Hoparlör Yükseltmesi</string>
   <string name="headphone_poweramp_gain">Kulaklık PowerAmp Yükseltmesi</string>
+  <string name="headphone_tpa6165_gain">Kulaklık Amp kazanç (TPA6165 uzantılı)</string>
   <string name="microphone_gain">Mikrofon kazancı</string>
   <string name="volume_gain">Ses kazanç</string>
   <!-- Battery -->
@@ -477,6 +496,7 @@
   <string name="scheduler">Zamanlayıcı</string>
   <string name="scheduler_summary">Etkin G/Ç algoritmasını ayarla. G/Ç isteklerinin nasıl idare edileceğine Zamanlayıcı karar verir.</string>
   <string name="scheduler_tunable">Ayarlanabilir Zamanlayıcı</string>
+  <string name="scheduler_tunable_summary">Zamanlayıcıya bağlı olan çeşitli yapılandırma öğeleri.</string>
   <string name="read_ahead">Hızlı okuma</string>
   <string name="read_ahead_summary">Telefon hafızasına önceden okuma değeri.</string>
   <string name="rotational">Dönel depolama</string>
@@ -518,6 +538,7 @@
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
+  <string name="disksize_summary">Disk belleği fiziksel depolama, bunun yerine sıkıştırılmış bir sanal aygıt RAM\'de kullanarak kaçınarak performans arttırmaya çalışır. Takas alanı üzerinde fiziksel depolama alanı alanı kullanmak gereklidir kadar disk belleği RAM yer alır.</string>
   <!-- Entropy -->
   <string name="available">Kullanılabilir</string>
   <string name="poolsize">HavuzBoyutu</string>
@@ -527,9 +548,13 @@
   <string name="vibration_strength">Titreşim Gücü</string>
   <string name="android_logger">Android günlüğü</string>
   <string name="crc">Yazılım CRC denetimi</string>
+  <string name="crc_summary">CRC etkin olduğunda veri bozulmalarını önlemek amaçlayan bir mekanizmadır. Veri blokları performanslarını % 30\'kaybedebilir.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Daha iyi bir sistem performansı için ve sistem çökmesinde veri kaybı riskini azaltmak için devre dışı bırakın.</string>
   <string name="dynamic_fsync">Dinamik Fsync</string>
+  <string name="dynamic_fsync_summary">Etkin olduğunda ve ekran üzerinde fsync işlemi zaman uyumsuz. Ekran kapalı iken, bu işlem zaman uyumlu olarak yapılır.</string>
+  <string name="gentlefairsleepers">Nazik adil uyuyanlar</string>
+  <string name="arch_power">Arch gücü</string>
   <string name="power_suspend_mode">Güç Askıya Alma Modu</string>
   <string name="autosleep">Oto uyku</string>
   <string name="userspace">Kullanıcı Alanı</string>
@@ -543,8 +568,27 @@
   <string name="hostname">Ana bilgisayar adı</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
+  <string name="smb135x_wakelock_summary">Şarj kablosu çıkarıldığında uyanmayı önlemek için etkinleştirin.</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
+  <string name="sensor_ind_wakelock_summary">Ambient ekranı devre dışı bırakıldığında uyanmayı önlemek.</string>
+  <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
+  <string name="msm_hsic_host_wakelock_summary">msm_hsic_host wakelock  önlemek için aktifleştirin.</string>
+  <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
+  <string name="wlan_rx_wakelock_summary">wlan_rx wakelock önle</string>
+  <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
+  <string name="wlan_ctrl_wakelock_summary">wlan_ctrl wakelock önle</string>
+  <string name="wlan_wakelock">wlan Wakelock</string>
+  <string name="wlan_wakelock_summary">wlan wakelock önlemek için aktifleştirin.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">BlueSleep wakelock önle</string>
+  <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock bölücü</string>
+  <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock bölücü</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock bölücü</string>
   <!-- Custom Controls -->
+  <string name="welcome">Hoşgeldiniz</string>
+  <string name="custom_controls_summary">Bu bölümde diğer kontrolleri oluşturabilir veya dışardan aktarabilirsiniz fakat şu anlık uygulamada bulunmamaktadır.</string>
+  <string name="example">Örnek</string>
+  <string name="custom_controls_example_summary">Örnek mi ihtiyacınız var? Tıklayın &lt; bir href = \"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\" &gt; &lt; bir &gt; burada.</string>
   <string name="create">Oluştur</string>
   <string name="import_item">İçeri aktar</string>
   <string name="control_switch">Değiştir</string>
@@ -588,11 +632,15 @@
   <string name="fota_partition">Fota bölümü</string>
   <string name="flash">Flaş</string>
   <!-- Build prop Editor -->
+  <string name="item_count">%s öğe</string>
+  <string name="items_count">%s öğeler</string>
   <string name="search">Arama</string>
   <string name="key">Anahtar</string>
   <string name="value">Değer</string>
   <string name="key_empty">Anahtar boş olamaz!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Profil modunda yaptığınız değişiklikler cihaz başına ne kadar etkili olmayacaktır.</string>
+  <string name="profile_warning">Yaptığınız bütün değişiklikler profilinize kaydedildi.Ama dikkat! ayarlarınız cihaz başlatılırken etkili olmayacaktır.</string>
   <string name="no_changes">Hiçbir değişiklik yapılmadı!</string>
   <string name="apply_question">Uygula %s?</string>
   <string name="details">Ayrıntılar</string>
@@ -618,6 +666,7 @@
   <string name="executing">Yürütülüyor</string>
   <string name="result">Sonuç</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Bu bölüm size cihaz açılırken ne olduğunu gösterir. boşsa hiçbir şey olmamış demektir.</string>
   <string name="delete_question">%s silinsin mi?</string>
   <string name="arguments">Bağımsız değişkenler: %s</string>
   <string name="disable_question">Devre dışı bırakılsınmı %s?</string>
@@ -631,21 +680,32 @@
   <string name="misspelled">Neden \"Adiutor\" yanlış?</string>
   <string name="misspelled_summary">Adiutor Latin ve yardımcı anlamına gelir.</string>
   <string name="have_to_donate">Bu premium özelliklerini kullanmak için bağış var mı?</string>
+  <string name="have_to_donate_summary">Hayır bu uygulama Açık Kaynak kollu sen kolayca yapabilirsin bağış özellikleri sen hata ayıklama uygulamasını yaptıktan sonra açılır. Kodları değiştirmene gerek yok.</string>
+  <string name="cpu_freq_not_sticking">Neden benim kararlı CPU frekansım yok?</string>
+  <string name="feature_not_appearing">x ve y özellikleri neden gösterilmiyor?</string>
   <string name="feature_not_appearing_summary">Cihazınız tarafından desteklenen özellikleri gösterilir!</string>
+  <string name="feature_function">x in özelliği nedir?</string>
+  <string name="feature_function_summary">Ne bu kontrol ediyor bilmiyorsanız, o zaman sadece dokunmayın. pahalı donanım ile oynamadan önce lütfen ön araştırma yapın.</string>
+  <string name="add_new_features">X ve y özelliği ekleyebilir misin?</string>
   <string name="add_new_features_summary">Bunu söylemek zordur. Tüm özellikleri eklemek çalışıyorum ama bu uygulamayı her cihaz için kullanılır duruma getirmek zordur.</string>
   <!-- Settings -->
-  <string name="dark_theme">Koyu tema</string>
   <string name="fahrenheit_title">Fahrenayt</string>
   <string name="fahrenheit_summary">Sicaklıllar fahrenayt cinsinden gösterilsin.</string>
   <string name="force_english">İngilizce dilini kullanmaya zorla</string>
+  <string name="dark_theme">Koyu tema</string>
+  <string name="five_sec">5 saniye</string>
   <string name="ten_sec">10 saniye</string>
   <string name="twenty_sec">20 saniye</string>
   <string name="fifty_sec">50 saniye</string>
+  <string name="apply_on_boot_test_summary">Cihaz açılırken test et. Bu  özel denetimler ,profiller ,init.d gibi önyükleme sırasında uygulanan şeyler içerir.</string>
   <string name="apply_on_boot_running">Geçerli önyükleme hizmeti zaten çalışıyor. Bitene kadar bekleyin.</string>
   <string name="nothing_apply">Uygulamak için hiçbir şey bulunamadı!</string>
   <string name="hide">Gizle</string>
+  <string name="apply_on_boot_hide_summary">Cihaz açıldıktan sonra bildirimi gizle. Gecikme hala kalır!</string>
   <string name="toast">Bildirim</string>
   <string name="apply_on_boot_toast_summary">Ayarlar uygulandığında bildirim göster.</string>
+  <string name="confirmation_notification">Onay bildirimi</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Görünür bir bildirimle cihaz açıldıktan sonra ayarların uygulandığını gösteren bir bildirim göster.</string>
   <string name="script">Komut dosyası</string>
   <string name="debugging">Hata ayıklanıyor</string>
   <string name="logcat">Logcat</string>
@@ -660,4 +720,12 @@
   <string name="old_password">Eski parola</string>
   <string name="new_password">Yeni parola</string>
   <string name="confirm_new_password">Yeni parolayı onayla</string>
+  <string name="old_password_wrong">Eski parola yanlış</string>
+  <string name="password_empty">Parola kısmı boş</string>
+  <string name="password_not_match">Yeni parola onayı eşleşmiyor</string>
+  <string name="password_too_long">Parola çok uzun (en fazla 32 karakter olabiir)</string>
+  <string name="set_password_first">İlk olarak parola ayarlayın</string>
+  <string name="fingerprint_summary">Parmak izi güvenlik kontrol geçmek için kullanın. Uzun kayıtlı parmak izleri var gibi bu işe yarar.</string>
+  <string name="sections">Bölümler</string>
+  <string name="sections_summary">Bölümlerin görünürlük özelliklerini değiştirdiniz zaman uygulamayı yeniden başlatın</string>
 </resources>

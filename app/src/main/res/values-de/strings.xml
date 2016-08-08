@@ -25,6 +25,7 @@
   <string name="donate_yes">Ich liebe diese App. Ich muss spenden!</string>
   <string name="ad_here">Hier könnte Ihre Werbung stehen</string>
   <string name="remove_ad">Werbung entfernen</string>
+  <string name="warning">Warnung</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_text">Wende Einstellungen in %d Sekunden an.</string>
   <string name="apply_on_boot_complete">Einstellungen angewandt.</string>
@@ -289,7 +290,6 @@
   <string name="busy_up_threshold_summary">Schwelle, wenn große CPUs aktiviert werden sollen.</string>
   <string name="offline_delay">Offline Verzögerung</string>
   <!--Thermal-->
-  <string name="warning">Warnung</string>
   <string name="thermal_info">Verwenden sie nur einen thermischen Sensor für folgende Optionen. Die Verwendung von mehreren kann zu unerwartetem Verhalten führen.</string>
   <string name="thermald">Thermal</string>
   <string name="thermald_summary">Thermischer Qualcomm-Treiber, der das Gerät vor Überhitzung hindert. Dies sollte deaktiviert werden, wenn der aktuelle Kernel eine Alternative hat.</string>

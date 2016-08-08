@@ -23,6 +23,7 @@
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za kupno Kernel Adiutora! Po zakupieniu appki-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
   <string name="donate_nope">Nie nabiorę się na to!</string>
   <string name="donate_yes">Uwielbiam tą appkę. Muszę ją wesprzeć!</string>
+  <string name="warning">Uwaga</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>
   <string name="apply_on_boot_text">Ustawienia zostaną zastosowane za %d sekund.</string>
   <string name="apply_on_boot_complete">Ustawienia zostały zastosowane.</string>
@@ -279,7 +280,6 @@
   <string name="offline_delay">Opóźnienie wyłączenia</string>
   <string name="offline_delay_summary">Czas oczekiwania przed wyłączeniem CPU.</string>
   <!--Thermal-->
-  <string name="warning">Uwaga</string>
   <string name="thermal_info">Używaj tylko jednego zarządcy termalnego, używanie więcej niż jednego na raz może spowodować niespodziewane błędy.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Stockowy sterownik termiczny, który ochrania urządzanie przed przegrzaniem. Powinno zostać wyłączone jeżeli alternatywny sterownik został włączony.</string>
@@ -676,10 +676,10 @@
   <string name="add_new_features">Mógłbyś dodać funkcje x i y?</string>
   <string name="add_new_features_summary">Ciężko powiedzieć. Staram się dodawać wszystkie funkcje, lecz ciężko jest utworzyć uniwersalną aplikację dla wszystkich urządzeń.</string>
   <!-- Settings -->
-  <string name="dark_theme">Ciemny motyw</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Użyj stopni fahrenheita do mierzenia temperatury.</string>
   <string name="force_english">Wymuś wyświetlanie języka angielskiego</string>
+  <string name="dark_theme">Ciemny motyw</string>
   <string name="ten_sec">10 sekund</string>
   <string name="twenty_sec">20 sekund</string>
   <string name="fifty_sec">50 sekund</string>

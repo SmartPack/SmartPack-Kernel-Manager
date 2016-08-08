@@ -23,6 +23,9 @@
   <string name="donate_summary">Deze functie is alleen beschikbaar wanneer de donatie-app geïnstalleerd is! Maar maak je geen zorgen hoor. Omdat deze app opensource is kunt u hem gemakkelijk zelf bouwen en deze controle verwijderen. Maar ik hoop dat u ontwikkelaars toch ondersteund. Bedankt voor het gebruik van Kernel Adiutor! Zodra u de donatie app hebt gekocht moet u Kernel Adiutor opnieuw opstarten zodat alle functies beschikbaar worden.</string>
   <string name="donate_nope">Ik zal niet vallen voor deze scam!</string>
   <string name="donate_yes">Ik hou van deze app. Ik wil doneren!</string>
+  <string name="ad_here">Uw advertentie kan hier staan</string>
+  <string name="remove_ad">Verwijder advertentie</string>
+  <string name="warning">Waarschuwing</string>
   <string name="apply_on_boot">Toepassen bij opstarten</string>
   <string name="apply_on_boot_text">Instellingen toepassen in %d seconden.</string>
   <string name="apply_on_boot_complete">Toepassen instellingen voltooid.</string>
@@ -116,6 +119,7 @@
   <string name="version">Versie</string>
   <string name="handlers">Handlers</string>
   <!-- CPU -->
+  <string name="cores_singular">%d core</string>
   <string name="cores">%d cores</string>
   <string name="no_offline_core">U kunt deze core niet offline zetten!</string>
   <string name="cpu_max_freq">Maximale CPU Frequentie</string>
@@ -127,6 +131,7 @@
   <string name="cpu_governor">CPU Governor</string>
   <string name="cpu_governor_summary">DE CPU govenor bepaalt hoe de CPU zich gedraagt op veranderingen in de werklast. Als je de CPU govenor verandert, heeft dat impact op hoe de CPU schaalt tussen de frequentiestappen die beschikbaar zijn voor jouw CPU.</string>
   <string name="cpu_governor_tunables">CPU Governor Tunables</string>
+  <string name="governor_tunables_summary">De verschillende configuratie items die afhankelijk zijn van de governor.</string>
   <string name="cpu_governor_tunables_read_error">Mislukt om de huidige governor van CPU te lezen.\n\nals u een QCOM big.LITTLE apparaat aan het gebruiken bent dan is dit een bekend probleem. Het systeem forceert de CPU om cores uit te schakelen waardoor het zeer moeilijk wordt om CPU specifieke stats uit te lezen. Probeer deze optie opnieuw te selecteren. De CPU weigert soms om een core in te schakelen.</string>
   <string name="tunables_error">%s is niet afstembaar</string>
   <string name="mc_power_saving">Multicore Energiebesparing</string>
@@ -278,13 +283,16 @@
   <string name="autosmp_summary">Een in-kernel vervanger voor Qualcomm\'s MPDecision. Ontwikkeld door mrg666.</string>
   <string name="downrate_limits">Downrate grenzen</string>
   <string name="uprate_limits">Uprate grenzen</string>
+  <string name="cycle_down">Naar beneden cyclen</string>
+  <string name="cycle_down_summary">Het aantal cycles om te wachten om een andere core te unpluggen na de laatste hotplug activiteit.</string>
+  <string name="cycle_up">Naar boven cyclen</string>
+  <string name="cycle_up_summary">Het aantal cycles om te wachten om een andere core te unpluggen na de laatste hotplug activiteit.</string>
   <string name="core_control">Kern controle</string>
   <string name="core_control_summary">Qualcomm\'s hotplugging oplossing. Sorry, u kan het niet uitschakelen. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus\' bewerkte Core Control.</string>
   <string name="offline_delay_summary">Tijd voor het uitschakelen van een CPU.</string>
   <!--Thermal-->
-  <string name="warning">Waarschuwing</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="vdd_restriction">VDD beperking</string>
   <string name="freq_throttle_temp">Temperatuur frequentieversnelling</string>

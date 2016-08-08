@@ -22,6 +22,7 @@
   <string name="donate">Doar</string>
   <string name="donate_nope">Eu não vou cair neste esquema!</string>
   <string name="donate_yes">Eu gosto desta app. Devo doar!</string>
+  <string name="warning">Aviso</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
   <!-- Permissions Denied -->
   <!-- Editor -->
@@ -233,7 +234,6 @@
   <string name="core_control">Controlo do núcleo</string>
   <string name="hcube">H-Cube</string>
   <!--Thermal-->
-  <string name="warning">Aviso</string>
   <string name="thermal_info">Use apenas um condutor térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.</string>
   <string name="thermald">Thermald</string>
   <string name="intellithermal">Intellithermal</string>
@@ -535,8 +535,8 @@
   <string name="no_internet">Por favor, verifique a sua ligação à Internet!</string>
   <!-- FAQ -->
   <!-- Settings -->
-  <string name="dark_theme">Tema escuro</string>
   <string name="fahrenheit_title">Fahrenheit</string>
+  <string name="dark_theme">Tema escuro</string>
   <string name="ten_sec">10 segundos</string>
   <string name="twenty_sec">20 segundos</string>
   <string name="fifty_sec">50 segundos</string>

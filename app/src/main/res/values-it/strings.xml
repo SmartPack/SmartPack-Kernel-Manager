@@ -23,6 +23,7 @@
   <string name="donate_summary">Questa funzionalità è disponibile solo quando è installato l\'app donazione! Non preoccuparti. Siccome quest\'app è open source puoi facilmente costruirla da solo e rimuovere questo controllo. Ma spero che comunque sosterrai gli sviluppatori. Grazie per l\'utilizzo del Kernel Adiutor! Una volta acquistata l\'app donazione è necessario riavviare Kernel Adiutor al fine di attivare tutte le funzioni.</string>
   <string name="donate_nope">Non cadrò in questa truffa!</string>
   <string name="donate_yes">Amo questo app. Devo donare!</string>
+  <string name="warning">Avviso</string>
   <string name="apply_on_boot">Applica all\'avvio</string>
   <string name="apply_on_boot_text">Le impostazioni saranno applicate tra %d secondi.</string>
   <string name="apply_on_boot_complete">Applicazione delle impostazioni completata.</string>
@@ -293,7 +294,6 @@
   <string name="offline_delay">Ritardo spegnimento</string>
   <string name="offline_delay_summary">Tempo prima di spegnere una CPU.</string>
   <!--Thermal-->
-  <string name="warning">Avviso</string>
   <string name="thermal_info">Utilizzare solo un driver termico tra le seguenti opzioni, utilizzando più di uno nello stesso momento si può causare un comportamento imprevisto.</string>
   <string name="thermald">Surriscaldamento</string>
   <string name="thermald_summary">Il driver termico stock che impedisce il surriscaldamento del dispositivo. Deve essere disattivato se il kernel attuale è un\'alternativa.</string>
@@ -704,10 +704,10 @@
   <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
   <string name="add_new_features_summary">È difficile da dire. Provo ad aggiungere tutte le funzionalità, ma è difficile rendere questa app universale per tutti i dispositivi.</string>
   <!-- Settings -->
-  <string name="dark_theme">Tema scuro</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Utilizza i fahrenheit per misurare la temperatura.</string>
   <string name="force_english">Forza la lingua inglese</string>
+  <string name="dark_theme">Tema scuro</string>
   <string name="ten_sec">10 secondi</string>
   <string name="twenty_sec">20 secondi</string>
   <string name="fifty_sec">50 secondi</string>

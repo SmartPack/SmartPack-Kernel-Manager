@@ -19,6 +19,7 @@
   <string name="ok">Ок</string>
   <string name="unknown">Невідомо</string>
   <string name="donate">Підтримати</string>
+  <string name="warning">Попередження</string>
   <string name="apply_on_boot">Застосувати під час завантаження</string>
   <string name="not_in_range">Не в діапазоні</string>
   <!-- Permissions Denied -->
@@ -208,7 +209,6 @@
   <string name="uprate_limits">Обмеження підвищення</string>
   <string name="core_control">Керування ядром</string>
   <!--Thermal-->
-  <string name="warning">Попередження</string>
   <string name="thermal_info">Використовуйте тільки один термічний драйвер з наступних опцій, використання більше одного одночасно може спровокувати непередбаченні результати.</string>
   <string name="thermald">Thermald</string>
   <string name="intellithermal">Intellithermal</string>
