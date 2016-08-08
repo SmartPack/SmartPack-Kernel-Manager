@@ -57,9 +57,6 @@ public class DownloadsActivity extends BaseActivity {
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.setupWithViewPager(viewPager);
-
         LinkedHashMap<String, Fragment> items = new LinkedHashMap<>();
 
         List<SupportedDownloads.KernelContent.Feature> features = content.getFeatures();
@@ -80,6 +77,10 @@ public class DownloadsActivity extends BaseActivity {
         viewPager.setOffscreenPageLimit(items.size());
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), items);
         viewPager.setAdapter(pagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
