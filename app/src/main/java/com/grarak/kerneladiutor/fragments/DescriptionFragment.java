@@ -67,11 +67,6 @@ public class DescriptionFragment extends BaseFragment {
         return rootView;
     }
 
-    @Override
-    protected boolean retainInstance() {
-        return false;
-    }
-
     public void setTitle(CharSequence title) {
         mTitle = title;
         refresh();

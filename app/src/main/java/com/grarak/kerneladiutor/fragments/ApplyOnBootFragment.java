@@ -62,11 +62,6 @@ public class ApplyOnBootFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
-    protected boolean retainInstance() {
-        return false;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

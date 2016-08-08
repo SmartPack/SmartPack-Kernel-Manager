@@ -56,11 +56,6 @@ public class PathReaderFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected boolean retainInstance() {
-        return false;
-    }
-
-    @Override
     protected boolean isForeground() {
         return true;
     }

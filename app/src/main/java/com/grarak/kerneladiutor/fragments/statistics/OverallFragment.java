@@ -437,10 +437,6 @@ public class OverallFragment extends RecyclerViewFragment {
             }
         }
 
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
     }
 
 }

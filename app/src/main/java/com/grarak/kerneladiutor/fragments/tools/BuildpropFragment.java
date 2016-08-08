@@ -82,7 +82,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(new TextWatcher() {
+        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(mSearchText, new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -292,14 +292,16 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     public static class SearchFragment extends BaseFragment {
 
-        public static SearchFragment newInstance(TextWatcher textWatcher) {
+        public static SearchFragment newInstance(String text, TextWatcher textWatcher) {
             SearchFragment fragment = new SearchFragment();
+            fragment.mText = text;
             fragment.mTextWatcher = textWatcher;
             return fragment;
         }
 
         private TextView mItemsText;
         private int mItemsCount;
+        private String mText;
         private TextWatcher mTextWatcher;
 
         @Nullable
@@ -312,6 +314,10 @@ public class BuildpropFragment extends RecyclerViewFragment {
             editText.addTextChangedListener(mTextWatcher);
             editText.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
                     R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+
+            if (mText != null) {
+                editText.append(mText);
+            }
 
             mItemsText = (TextView) rootView.findViewById(R.id.found_text);
             setCount(mItemsCount);

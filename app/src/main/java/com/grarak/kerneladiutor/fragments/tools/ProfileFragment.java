@@ -552,10 +552,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     public static class DetailsFragment extends BaseFragment {
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
 
         private TextView mCodeText;
 
@@ -600,11 +596,6 @@ public class ProfileFragment extends RecyclerViewFragment {
 
         private ProfileFragment mProfileFragment;
 
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -626,12 +617,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     public static class TaskerToastFragment extends BaseFragment {
-
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

@@ -335,12 +335,6 @@ public class InitdFragment extends RecyclerViewFragment {
     }
 
     public static class EmulateInitdFragment extends BaseFragment {
-
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

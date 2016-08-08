@@ -91,12 +91,6 @@ public class AboutFragment extends RecyclerViewFragment {
     }
 
     public static class InfoFragment extends BaseFragment {
-
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

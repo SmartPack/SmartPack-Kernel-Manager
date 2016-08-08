@@ -134,11 +134,6 @@ public class CPUVoltage extends RecyclerViewFragment {
         private CPUVoltage mCPUVoltage;
         private int mGlobaloffset;
 
-        @Override
-        protected boolean retainInstance() {
-            return false;
-        }
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

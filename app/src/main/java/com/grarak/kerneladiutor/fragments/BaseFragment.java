@@ -40,7 +40,10 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(retainInstance());
+        try {
+            setRetainInstance(true);
+        } catch (IllegalStateException ignored) {
+        }
     }
 
     @Override
@@ -60,10 +63,6 @@ public abstract class BaseFragment extends Fragment {
 
     public boolean onBackPressed() {
         return false;
-    }
-
-    protected boolean retainInstance() {
-        return true;
     }
 
     @Override
