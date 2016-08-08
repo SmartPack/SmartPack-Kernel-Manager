@@ -49,6 +49,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BaseActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.AdView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewAdapter;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -288,7 +289,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (isForeground()) return;
         Activity activity;
         if ((activity = getActivity()) != null && mAppBarLayout != null && mToolBar != null) {
-            int colorPrimary = Utils.getColorPrimaryColor(activity);
+            int colorPrimary = ViewUtils.getColorPrimaryColor(activity);
             mAppBarLayout.setBackgroundDrawable(new ColorDrawable(Color.argb(alpha, Color.red(colorPrimary),
                     Color.green(colorPrimary), Color.blue(colorPrimary))));
             mToolBar.setTitleTextColor(Color.argb(alpha, 255, 255, 255));

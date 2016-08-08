@@ -45,6 +45,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 /**
@@ -61,7 +62,7 @@ public class SettingsActivity extends BaseActivity {
         initToolBar();
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(), "fragment").commit();
-        findViewById(R.id.content_frame).setPadding(0, Math.round(Utils.getActionBarSize(this)), 0, 0);
+        findViewById(R.id.content_frame).setPadding(0, Math.round(ViewUtils.getActionBarSize(this)), 0, 0);
     }
 
     private Fragment getFragment() {

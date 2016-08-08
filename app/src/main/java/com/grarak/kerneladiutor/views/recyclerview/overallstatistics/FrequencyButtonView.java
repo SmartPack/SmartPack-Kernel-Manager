@@ -24,11 +24,15 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.support.design.widget.FloatingActionButton;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.widget.ImageButton;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 /**
@@ -40,6 +44,10 @@ public class FrequencyButtonView extends RecyclerViewItem {
     private View.OnClickListener mResetListener;
     private View.OnClickListener mRestoreListener;
 
+    private Bitmap mRefreshImage;
+    private Drawable mResetImage;
+    private Drawable mRestoreDrawable;
+
     @Override
     public int getLayoutRes() {
         return R.layout.rv_frequencytable_buttons_view;
@@ -47,21 +55,37 @@ public class FrequencyButtonView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        FloatingActionButton refresh = (FloatingActionButton) view.findViewById(R.id.frequency_refresh);
-        FloatingActionButton reset = (FloatingActionButton) view.findViewById(R.id.frequency_reset);
-        FloatingActionButton restore = (FloatingActionButton) view.findViewById(R.id.frequency_restore);
+        ImageButton refresh = (ImageButton) view.findViewById(R.id.frequency_refresh);
+        ImageButton reset = (ImageButton) view.findViewById(R.id.frequency_reset);
+        ImageButton restore = (ImageButton) view.findViewById(R.id.frequency_restore);
+        int tintColor = ViewUtils.getThemeAccentColor(view.getContext());
 
-        Bitmap refreshImage = BitmapFactory.decodeResource(view.getResources(), R.drawable.ic_refresh);
-        refresh.setImageBitmap(refreshImage);
+        if (mRefreshImage == null) {
+            mRefreshImage = BitmapFactory.decodeResource(view.getResources(), R.drawable.ic_refresh);
+        }
 
-        Matrix matrix = new Matrix();
-        matrix.postRotate(180);
-        matrix.preScale(-1.0f, 1.0f);
-        Bitmap resetImage = Bitmap.createBitmap(refreshImage, 0, 0, refreshImage.getWidth(),
-                refreshImage.getHeight(), matrix, true);
-        reset.setImageBitmap(resetImage);
+        Drawable refreshDrawable = new BitmapDrawable(view.getResources(), mRefreshImage);
+        DrawableCompat.setTint(refreshDrawable, tintColor);
+        refresh.setImageDrawable(refreshDrawable);
 
-        restore.setImageBitmap(BitmapFactory.decodeResource(view.getResources(), R.drawable.ic_restore));
+        if (mResetImage == null) {
+            Matrix matrix = new Matrix();
+            matrix.postRotate(180);
+            matrix.preScale(-1.0f, 1.0f);
+            mResetImage = new BitmapDrawable(view.getResources(),
+                    Bitmap.createBitmap(mRefreshImage, 0, 0, mRefreshImage.getWidth(),
+                            mRefreshImage.getHeight(), matrix, true));
+            DrawableCompat.setTint(mResetImage, tintColor);
+        }
+        reset.setImageDrawable(mResetImage);
+
+        if (mRestoreDrawable == null) {
+            mRestoreDrawable = new BitmapDrawable(view.getResources(),
+                    BitmapFactory.decodeResource(view.getResources(), R.drawable.ic_restore));
+            DrawableCompat.setTint(mRestoreDrawable, tintColor);
+        }
+
+        restore.setImageDrawable(mRestoreDrawable);
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override

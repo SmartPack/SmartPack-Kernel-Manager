@@ -32,6 +32,7 @@ import android.view.WindowManager;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.AdBanner;
 import com.startapp.android.publish.StartAppAd;
 
@@ -55,7 +56,7 @@ public class BaseActivity extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Utils.getColorPrimaryDarkColor(this));
+            window.setStatusBarColor(ViewUtils.getColorPrimaryDarkColor(this));
         }
     }
 

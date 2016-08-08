@@ -21,9 +21,11 @@ package com.grarak.kerneladiutor.utils;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -34,6 +36,31 @@ import com.grarak.kerneladiutor.R;
  * Created by willi on 16.04.16.
  */
 public class ViewUtils {
+
+    public static float getActionBarSize(Context context) {
+        TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
+        float size = typedArray.getDimension(0, 0);
+        typedArray.recycle();
+        return size;
+    }
+
+    public static int getColorPrimaryColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true);
+        return value.data;
+    }
+
+    public static int getColorPrimaryDarkColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true);
+        return value.data;
+    }
+
+    public static int getThemeAccentColor(Context context) {
+        TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
+        return value.data;
+    }
 
     public interface OnDialogEditTextListener {
         void onClick(String text);

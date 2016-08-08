@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -36,13 +35,11 @@ import android.support.v4.view.ViewCompat;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.BuildConfig;
-import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.squareup.picasso.Picasso;
@@ -137,7 +134,7 @@ public class Utils {
         private int mMaxWidth;
         private int mMaxHeight;
 
-        public CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
+        private CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
             mImageView = imageView;
             mMaxWidth = maxWidth;
             mMaxHeight = maxHeight;
@@ -159,7 +156,7 @@ public class Utils {
         }
     }
 
-    public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+    private static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
 
@@ -179,7 +176,7 @@ public class Utils {
         return width != newWidth || height != newHeight ? resizeBitmap(bitmap, newWidth, newHeight) : bitmap;
     }
 
-    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+    private static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
     }
 
@@ -278,7 +275,7 @@ public class Utils {
         return calculatedDigest.equalsIgnoreCase(md5);
     }
 
-    public static String calculateMD5(File updateFile) {
+    private static String calculateMD5(File updateFile) {
         MessageDigest digest;
         try {
             digest = MessageDigest.getInstance("MD5");
@@ -385,31 +382,6 @@ public class Utils {
 
     public static boolean isRTL(View view) {
         return ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL;
-    }
-
-    public static float getActionBarSize(Context context) {
-        TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
-        float size = typedArray.getDimension(0, 0);
-        typedArray.recycle();
-        return size;
-    }
-
-    public static int getColorPrimaryColor(Context context) {
-        TypedValue value = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true);
-        return value.data;
-    }
-
-    public static int getColorPrimaryDarkColor(Context context) {
-        TypedValue value = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.colorPrimaryDark, value, true);
-        return value.data;
-    }
-
-    public static int getThemeAccentColor(Context context) {
-        TypedValue value = new TypedValue();
-        context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
-        return value.data;
     }
 
     public static void toast(String message, Context context) {
