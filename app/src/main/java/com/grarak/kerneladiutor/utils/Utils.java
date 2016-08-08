@@ -30,7 +30,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewCompat;
@@ -120,11 +119,11 @@ public class Utils {
     }
 
     public static CharSequence htmlFrom(String text) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            return Html.fromHtml(text);
-        }
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        //    return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
+        //} else {
+        return Html.fromHtml(text);
+        //}
     }
 
     public static void loadImagefromUrl(String url, ImageView imageView, int maxWidth, int maxHeight) {
