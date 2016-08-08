@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StartAppSDK.init(MainActivity.this, "207568341", false);
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
@@ -240,7 +241,6 @@ public class MainActivity extends BaseActivity {
                 Log.i(TAG, "Google services not found!");
                 mGoogleServicesInstalled = false;
             }
-            StartAppSDK.init(MainActivity.this, "207568341", false);
             new AsyncTask<Void, Void, Boolean>() {
 
                 private ApplicationInfo mApplicationInfo;
