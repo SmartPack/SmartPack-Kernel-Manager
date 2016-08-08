@@ -88,12 +88,16 @@ public class Service extends android.app.Service {
         }
 
         if (messenger == null) {
-            RootUtils.SU su = new RootUtils.SU(false, null);
-            String prop = su.runCommand("getprop ro.kerneladiutor.hide");
-            getPackageManager().setComponentEnabledSetting(new ComponentName(this, StartActivity.class),
-                    prop != null && prop.equals("true") ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED
-                            : PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-            su.close();
+            PackageManager pm = getPackageManager();
+            if (Utils.hideStartActivity()) {
+                pm.setComponentEnabledSetting(new ComponentName(this, StartActivity.class),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
+                                BuildConfig.APPLICATION_ID + ".activities.StartActivity"),
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            } else {
+                Utils.setStartActivity(Prefs.getBoolean("materialicon", false, this), this);
+            }
         }
 
         boolean enabled = false;

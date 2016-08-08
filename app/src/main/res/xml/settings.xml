@@ -7,12 +7,19 @@
         android:title="@string/fahrenheit_title" />
 
     <SwitchPreference
-        android:key="darktheme"
-        android:summary="@string/dark_theme" />
-
-    <SwitchPreference
         android:key="forceenglish"
         android:summary="@string/force_english" />
+
+    <PreferenceCategory
+        android:key="user_interface"
+        android:title="@string/user_interface">
+        <SwitchPreference
+            android:key="darktheme"
+            android:summary="@string/dark_theme" />
+        <SwitchPreference
+            android:key="materialicon"
+            android:summary="@string/material_icon" />
+    </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apply_on_boot">
         <ListPreference

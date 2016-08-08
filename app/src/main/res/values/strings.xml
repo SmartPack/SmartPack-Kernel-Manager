@@ -763,10 +763,12 @@
     <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices.</string>
 
     <!-- Settings -->
-    <string name="dark_theme">Dark theme</string>
     <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>
     <string name="force_english">Force displaying english language</string>
+    <string name="user_interface">User interface</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="material_icon">Material icon</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>
     <string name="twenty_sec">20 seconds</string>

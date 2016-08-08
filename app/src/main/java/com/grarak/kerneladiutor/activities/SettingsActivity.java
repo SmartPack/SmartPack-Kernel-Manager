@@ -83,7 +83,9 @@ public class SettingsActivity extends BaseActivity {
             implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
         private static final String KEY_FORCE_ENGLISH = "forceenglish";
+        private static final String KEY_USER_INTERFACE = "user_interface";
         private static final String KEY_DARK_THEME = "darktheme";
+        private static final String KEY_MATERIAL_ICON = "materialicon";
         private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
         private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
         private static final String KEY_LOGCAT = "logcat";
@@ -112,8 +114,6 @@ public class SettingsActivity extends BaseActivity {
                 deletePasswordDialog(mDeletePassword);
             }
 
-            findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
-
             SwitchPreference forceEnglish = (SwitchPreference) findPreference(KEY_FORCE_ENGLISH);
             if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
                 getPreferenceScreen().removePreference(forceEnglish);
@@ -121,6 +121,14 @@ public class SettingsActivity extends BaseActivity {
                 forceEnglish.setOnPreferenceChangeListener(this);
             }
 
+            if (Utils.hideStartActivity()) {
+                ((PreferenceCategory) findPreference(KEY_USER_INTERFACE))
+                        .removePreference(findPreference(KEY_MATERIAL_ICON));
+            } else {
+                findPreference(KEY_MATERIAL_ICON).setOnPreferenceChangeListener(this);
+            }
+
+            findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
             findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
             findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -175,6 +183,9 @@ public class SettingsActivity extends BaseActivity {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
+                    return true;
+                case KEY_MATERIAL_ICON:
+                    Utils.setStartActivity((boolean) o, getActivity());
                     return true;
                 default:
                     if (key.endsWith("_enabled")) {

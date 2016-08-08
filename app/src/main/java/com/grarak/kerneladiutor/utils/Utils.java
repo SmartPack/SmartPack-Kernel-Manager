@@ -21,9 +21,11 @@ package com.grarak.kerneladiutor.utils;
 
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -40,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.BuildConfig;
+import com.grarak.kerneladiutor.activities.StartActivity;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.squareup.picasso.Picasso;
@@ -74,6 +77,24 @@ public class Utils {
     public static boolean DARK_THEME;
 
     private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();
+
+    public static void setStartActivity(boolean material, Context context) {
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(new ComponentName(context, StartActivity.class),
+                material ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED :
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+        pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
+                        BuildConfig.APPLICATION_ID + ".activities.StartActivity-Material"),
+                material ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED :
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+    }
+
+    public static boolean hideStartActivity() {
+        RootUtils.SU su = new RootUtils.SU(false, null);
+        String prop = su.runCommand("getprop ro.kerneladiutor.hide");
+        su.close();
+        return prop != null && prop.equals("true");
+    }
 
     public static boolean isServiceRunning(Class<?> serviceClass, Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

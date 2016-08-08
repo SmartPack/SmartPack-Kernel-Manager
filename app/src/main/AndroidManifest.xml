@@ -27,10 +27,19 @@
         <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity-alias
+            android:name=".activities.StartActivity-Material"
+            android:enabled="false"
+            android:icon="@mipmap/ic_launcher_material"
+            android:targetActivity=".activities.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
 
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.NavigationActivity" />
