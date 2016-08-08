@@ -22,17 +22,19 @@ package com.grarak.kerneladiutor.views.recyclerview;
 import android.view.View;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.mopub.mobileads.MoPubErrorCode;
-import com.mopub.mobileads.MoPubView;
+import com.grarak.kerneladiutor.views.AdBanner;
+import com.startapp.android.publish.StartAppAd;
 
 /**
  * Created by willi on 06.08.16.
  */
 public class AdView extends RecyclerViewItem {
 
-    private MoPubView mMoPubView;
-    private boolean mLoaded;
+    private final StartAppAd mStartAppAd;
+
+    public AdView(StartAppAd startAppAd) {
+        mStartAppAd = startAppAd;
+    }
 
     @Override
     public int getLayoutRes() {
@@ -41,57 +43,9 @@ public class AdView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        final View text = view.findViewById(R.id.ad_text);
-
-        mMoPubView = (MoPubView) view.findViewById(R.id.ad);
-        mMoPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
-            @Override
-            public void onBannerLoaded(MoPubView banner) {
-                banner.setVisibility(View.VISIBLE);
-                text.setVisibility(View.GONE);
-                mLoaded = true;
-            }
-
-            @Override
-            public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
-                banner.setVisibility(View.GONE);
-                text.setVisibility(View.VISIBLE);
-                mLoaded = false;
-            }
-
-            @Override
-            public void onBannerClicked(MoPubView banner) {
-            }
-
-            @Override
-            public void onBannerExpanded(MoPubView banner) {
-            }
-
-            @Override
-            public void onBannerCollapsed(MoPubView banner) {
-            }
-        });
-        mMoPubView.setAdUnitId("d82dbc3941bc446fa327fb840c4695f7");
-        if (!mLoaded) {
-            mMoPubView.loadAd();
-        }
-
-        view.findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ViewUtils.dialogDonate(view.getContext()).show();
-            }
-        });
-
+        ((AdBanner) view).load(mStartAppAd);
         setFullSpan(true);
         super.onCreateView(view);
-    }
-
-    public void destroy() {
-        if (mMoPubView != null) {
-            mMoPubView.destroy();
-            mLoaded = false;
-        }
     }
 
 }

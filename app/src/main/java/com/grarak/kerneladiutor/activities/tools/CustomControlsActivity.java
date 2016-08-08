@@ -45,6 +45,7 @@ public class CustomControlsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
+        adInit();
         initToolBar();
 
         mSettings = getIntent().getParcelableArrayListExtra(SETTINGS_INTENT);

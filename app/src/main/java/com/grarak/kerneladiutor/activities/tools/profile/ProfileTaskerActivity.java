@@ -42,6 +42,7 @@ public class ProfileTaskerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
+        adInit();
         initToolBar();
 
         getSupportActionBar().setTitle(getString(R.string.profile_select));

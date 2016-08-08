@@ -14,33 +14,11 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <FrameLayout
-            android:id="@+id/ad_parent"
+        <com.grarak.kerneladiutor.views.AdBanner
+            android:id="@+id/ad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/ad_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="middle"
-                android:fontFamily="sans-serif-thin"
-                android:gravity="center"
-                android:maxLines="1"
-                android:padding="10dp"
-                android:text="@string/ad_here"
-                android:textSize="22sp" />
-
-            <com.mopub.mobileads.MoPubView
-                android:id="@+id/ad"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:visibility="gone" />
-
-        </FrameLayout>
+            android:visibility="gone" />
 
     </LinearLayout>
 

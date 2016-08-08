@@ -89,6 +89,7 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
+import com.startapp.android.publish.StartAppAd;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -176,6 +177,7 @@ public class NavigationActivity extends BaseActivity
 
     private int mSelection;
     private boolean mShowPirateDialog = true;
+    private StartAppAd mStartAppAd;
 
     @Override
     protected boolean setStatusBarColor() {
@@ -349,4 +351,24 @@ public class NavigationActivity extends BaseActivity
         return fragment;
     }
 
+    @Override
+    public StartAppAd getStartAppAd() {
+        return mStartAppAd == null ? mStartAppAd = new StartAppAd(this) : mStartAppAd;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mStartAppAd != null) {
+            mStartAppAd.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mStartAppAd != null) {
+            mStartAppAd.onPause();
+        }
+    }
 }

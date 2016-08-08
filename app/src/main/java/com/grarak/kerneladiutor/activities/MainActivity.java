@@ -34,6 +34,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.services.profile.Tile;
@@ -56,6 +57,7 @@ import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.startapp.android.publish.StartAppSDK;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +82,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+        }
         setContentView(R.layout.activity_main);
 
         View splashBackground = findViewById(R.id.splash_background);
@@ -236,6 +240,7 @@ public class MainActivity extends BaseActivity {
                 Log.i(TAG, "Google services not found!");
                 mGoogleServicesInstalled = false;
             }
+            StartAppSDK.init(MainActivity.this, "207568341", false);
             new AsyncTask<Void, Void, Boolean>() {
 
                 private ApplicationInfo mApplicationInfo;

@@ -32,15 +32,15 @@ import android.view.WindowManager;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.mopub.mobileads.MoPubErrorCode;
-import com.mopub.mobileads.MoPubView;
+import com.grarak.kerneladiutor.views.AdBanner;
+import com.startapp.android.publish.StartAppAd;
 
 /**
  * Created by willi on 14.04.16.
  */
 public class BaseActivity extends AppCompatActivity {
 
-    private MoPubView mMoPubView;
+    private StartAppAd mStartAppAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,51 +81,37 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void initAd(String unit) {
-        if (Utils.DONATED) return;
-
-        findViewById(R.id.ad_parent).setVisibility(View.VISIBLE);
-        final View text = findViewById(R.id.ad_text);
-        mMoPubView = (MoPubView) findViewById(R.id.ad);
-        mMoPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
-            @Override
-            public void onBannerLoaded(MoPubView banner) {
-                banner.setVisibility(View.VISIBLE);
-                text.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
-                banner.setVisibility(View.GONE);
-                text.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onBannerClicked(MoPubView banner) {
-            }
-
-            @Override
-            public void onBannerExpanded(MoPubView banner) {
-            }
-
-            @Override
-            public void onBannerCollapsed(MoPubView banner) {
-            }
-        });
-        mMoPubView.setAdUnitId(unit);
-        mMoPubView.loadAd();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mMoPubView != null) {
-            mMoPubView.destroy();
+    public void adInit() {
+        if (!Utils.DONATED) {
+            mStartAppAd = new StartAppAd(this);
+            AdBanner adBanner = (AdBanner) findViewById(R.id.ad);
+            adBanner.setVisibility(View.VISIBLE);
+            adBanner.load(mStartAppAd);
         }
     }
 
     protected boolean setStatusBarColor() {
         return true;
+    }
+
+    public StartAppAd getStartAppAd() {
+        return null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mStartAppAd != null) {
+            mStartAppAd.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mStartAppAd != null) {
+            mStartAppAd.onPause();
+        }
     }
 
 }

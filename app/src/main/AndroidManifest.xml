@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -109,19 +110,18 @@
             </intent-filter>
         </receiver>
 
-        <!-- MoPub -->
+        <!-- StartApp -->
         <activity
-            android:name="com.mopub.mobileads.MoPubActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:name="com.startapp.android.publish.list3d.List3DActivity"
+            android:theme="@android:style/Theme" />
         <activity
-            android:name="com.mopub.mobileads.MraidActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:name="com.startapp.android.publish.OverlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name="com.mopub.mobileads.MraidVideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.mopub.common.MoPubBrowser"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:name="com.startapp.android.publish.FullScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme" />
     </application>
 
 </manifest>

@@ -168,8 +168,9 @@ public class SecurityActivity extends BaseActivity {
         mFingerprintUiHelper.startListening(mCryptoObject);
     }
 
+
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         if (mFingerprintUiHelper != null) {
             mFingerprintUiHelper.startListening(mCryptoObject);
@@ -177,11 +178,10 @@ public class SecurityActivity extends BaseActivity {
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (mFingerprintUiHelper != null) {
             mFingerprintUiHelper.stopListening();
         }
     }
-
 }

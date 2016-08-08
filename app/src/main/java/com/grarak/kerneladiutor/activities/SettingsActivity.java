@@ -57,12 +57,11 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
+        adInit();
         initToolBar();
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, getFragment(), "fragment").commit();
         findViewById(R.id.content_frame).setPadding(0, Math.round(Utils.getActionBarSize(this)), 0, 0);
-
-        initAd("6cbc3e7de3ce450e84cfe95daba50b13");
     }
 
     private Fragment getFragment() {
