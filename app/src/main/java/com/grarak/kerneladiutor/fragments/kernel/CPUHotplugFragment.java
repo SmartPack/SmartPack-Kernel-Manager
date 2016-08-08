@@ -1245,7 +1245,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SwitchView enable = new SwitchView();
             enable.setTitle(MBHotplug.getMBName(getActivity()));
             enable.setSummary(getString(R.string.mb_hotplug_summary));
-            enable.setChecked(MBHotplug.hasMBGHotplugEnable());
+            enable.setChecked(MBHotplug.isMBHotplugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
