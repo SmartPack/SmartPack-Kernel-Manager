@@ -52,7 +52,13 @@ import io.codetail.animation.ViewAnimationUtils;
  */
 public class NavHeaderView extends LinearLayout {
 
-    private static NavHeaderView sNavHeaderView;
+    private interface Callback {
+        void setImage(Uri uri) throws IOException;
+
+        void animate();
+    }
+
+    private static Callback sCallback;
     private ImageView mImage;
 
     public NavHeaderView(Context context) {
@@ -65,7 +71,17 @@ public class NavHeaderView extends LinearLayout {
 
     public NavHeaderView(final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        sNavHeaderView = this;
+        sCallback = new Callback() {
+            @Override
+            public void setImage(Uri uri) throws IOException {
+                NavHeaderView.this.setImage(uri);
+            }
+
+            @Override
+            public void animate() {
+                animateBg();
+            }
+        };
 
         LayoutInflater.from(context).inflate(R.layout.nav_header_view, this);
         mImage = (ImageView) findViewById(R.id.nav_header_pic);
@@ -136,9 +152,9 @@ public class NavHeaderView extends LinearLayout {
             if (resultCode == RESULT_OK && requestCode == 0)
                 try {
                     Uri selectedImageUri = data.getData();
-                    sNavHeaderView.setImage(selectedImageUri);
+                    sCallback.setImage(selectedImageUri);
                     Prefs.saveString("previewpicture", selectedImageUri.toString(), this);
-                    sNavHeaderView.animateBg();
+                    sCallback.animate();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.toast(R.string.went_wrong, MainHeaderActivity.this);
