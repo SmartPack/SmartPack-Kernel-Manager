@@ -341,6 +341,9 @@ public class Device {
             return "msm" + board;
         } else if (hardware.matches("mt\\d*.")) {
             return "mt" + hardware.split("mt")[1].trim();
+        } else if (hardware.matches(".*apq.+.\\d+.*")) {
+            String board = hardware.split("apq ")[1].trim().replaceAll("[^0-9]+", "");
+            return "apq" + board;
         }
         return Build.BOARD.toLowerCase();
     }
