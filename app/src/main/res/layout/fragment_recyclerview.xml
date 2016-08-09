@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="150dp"
+        android:paddingTop="@dimen/banner_default_height"
         android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/viewpagerparent"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/banner_default_height"
         android:orientation="vertical">
 
         <FrameLayout

@@ -86,6 +86,7 @@ public class SettingsActivity extends BaseActivity {
         private static final String KEY_USER_INTERFACE = "user_interface";
         private static final String KEY_DARK_THEME = "darktheme";
         private static final String KEY_MATERIAL_ICON = "materialicon";
+        private static final String KEY_BANNER_RESIZER = "banner_resizer";
         private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
         private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
         private static final String KEY_LOGCAT = "logcat";
@@ -99,19 +100,20 @@ public class SettingsActivity extends BaseActivity {
 
         private Preference mFingerprint;
 
-        private static String mOldPassword;
-        private static String mDeletePassword;
+        private static String sOldPassword;
+        private static String sDeletePassword;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            setRetainInstance(true);
             addPreferencesFromResource(R.xml.settings);
 
-            if (mOldPassword != null) {
-                editPasswordDialog(mOldPassword);
+            if (sOldPassword != null) {
+                editPasswordDialog(sOldPassword);
             }
-            if (mDeletePassword != null) {
-                deletePasswordDialog(mDeletePassword);
+            if (sDeletePassword != null) {
+                deletePasswordDialog(sDeletePassword);
             }
 
             SwitchPreference forceEnglish = (SwitchPreference) findPreference(KEY_FORCE_ENGLISH);
@@ -129,6 +131,7 @@ public class SettingsActivity extends BaseActivity {
             }
 
             findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
+            findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
             findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
             findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -199,6 +202,15 @@ public class SettingsActivity extends BaseActivity {
         public boolean onPreferenceClick(Preference preference) {
             String key = preference.getKey();
             switch (key) {
+                case KEY_BANNER_RESIZER:
+                    if (Utils.DONATED) {
+                        Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    } else {
+                        ViewUtils.dialogDonate(getActivity()).show();
+                    }
+                    return true;
                 case KEY_APPLY_ON_BOOT_TEST:
                     if (Utils.isServiceRunning(Service.class, getActivity())) {
                         Utils.toast(R.string.apply_on_boot_running, getActivity());
@@ -265,7 +277,7 @@ public class SettingsActivity extends BaseActivity {
         }
 
         private void editPasswordDialog(final String oldPass) {
-            mOldPassword = oldPass;
+            sOldPassword = oldPass;
 
             LinearLayout linearLayout = new LinearLayout(getActivity());
             linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -332,7 +344,7 @@ public class SettingsActivity extends BaseActivity {
                     }).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
-                    mOldPassword = null;
+                    sOldPassword = null;
                 }
             }).show();
         }
@@ -343,7 +355,7 @@ public class SettingsActivity extends BaseActivity {
                 return;
             }
 
-            mDeletePassword = password;
+            sDeletePassword = password;
 
             LinearLayout linearLayout = new LinearLayout(getActivity());
             linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -373,7 +385,7 @@ public class SettingsActivity extends BaseActivity {
                     }).setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialogInterface) {
-                    mDeletePassword = null;
+                    sDeletePassword = null;
                 }
             }).show();
         }

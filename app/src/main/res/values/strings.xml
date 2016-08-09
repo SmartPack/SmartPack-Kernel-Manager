@@ -59,6 +59,7 @@
     <string name="mah">mAh</string>
     <string name="ma">mA</string>
     <string name="kb">kB</string>
+    <string name="px">px</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
@@ -771,6 +772,7 @@
     <string name="user_interface">User interface</string>
     <string name="dark_theme">Dark theme</string>
     <string name="material_icon">Material icon</string>
+    <string name="banner_resizer">Banner resizer</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>
     <string name="twenty_sec">20 seconds</string>

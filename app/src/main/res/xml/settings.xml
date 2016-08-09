@@ -19,6 +19,9 @@
         <SwitchPreference
             android:key="materialicon"
             android:summary="@string/material_icon" />
+        <Preference
+            android:key="banner_resizer"
+            android:summary="@string/banner_resizer" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apply_on_boot">

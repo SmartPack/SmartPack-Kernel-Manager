@@ -48,6 +48,7 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BaseActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.AdView;
@@ -115,6 +116,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
         mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
+        resizeBanner();
 
         mProgress = mRootView.findViewById(R.id.progress);
 
@@ -320,6 +322,15 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     protected RecyclerView.LayoutManager getLayoutManager() {
         return new StaggeredGridLayoutManager(getSpanCount(), StaggeredGridLayoutManager.VERTICAL);
+    }
+
+    public void resizeBanner() {
+        ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
+        layoutParams.height = Prefs.getInt("banner_size", Math.round(getResources().getDimension(
+                R.dimen.banner_default_height)), getActivity());
+        mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
+                mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
+        mViewPagerParent.requestLayout();
     }
 
     protected void removeItem(RecyclerViewItem recyclerViewItem) {
