@@ -204,10 +204,14 @@ public class Service extends android.app.Service {
                         e.printStackTrace();
                     }
                 }
-                if (!hideNotification && confirmationNotification) {
-                    builderComplete.setContentText(getString(sCancel ? R.string.apply_on_boot_canceled :
-                            R.string.apply_on_boot_complete));
-                    notificationManager.notify(0, builderComplete.build());
+                if (!hideNotification) {
+                    if (confirmationNotification) {
+                        builderComplete.setContentText(getString(sCancel ? R.string.apply_on_boot_canceled :
+                                R.string.apply_on_boot_complete));
+                        notificationManager.notify(0, builderComplete.build());
+                    } else {
+                        notificationManager.cancel(0);
+                    }
 
                     if (sCancel) {
                         sCancel = false;
