@@ -21,6 +21,8 @@ Zabezpečeni</string>
   <string name="unknown">Neznámé</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
+  <string name="donate_summary">donate_summary</string>
+  <string name="donate_nope">donate_nope</string>
   <string name="donate_yes">Mám rád tuto aplikaci. Musim přispět!</string>
   <string name="warning">Varování</string>
   <string name="apply_on_boot">Použít při spuštění</string>
@@ -53,8 +55,8 @@ Zabezpečeni</string>
   <string name="tools">Nástroje</string>
   <string name="other">Ostatní</string>
   <!-- Menus -->
-  <string name="device">Zařízení</string>
   <string name="overall">Celkem</string>
+  <string name="device">Zařízení</string>
   <string name="memory">Paměť</string>
   <string name="inputs">Vstupy</string>
   <string name="cpu">Procesor</string>
@@ -83,6 +85,16 @@ Zabezpečeni</string>
   <string name="about">O programu</string>
   <string name="faq">FAQ - Nejčastější dotazy</string>
   <string name="settings">Nastavení</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Jádro %d</string>
+  <string name="refresh">Obnovit</string>
+  <string name="reset">Resetovat</string>
+  <string name="restore">Obnovit</string>
+  <string name="deep_sleep">Hluboký spánek</string>
+  <string name="uptime">Doba provozu</string>
+  <string name="error_frequencies">Nepodařilo se načíst frekvence</string>
+  <string name="unused_frequencies">Nepoužívané frekvence</string>
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Dodavatel</string>
@@ -98,16 +110,6 @@ Zabezpečeni</string>
   <string name="bootloader">Zavaděč</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektura</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Jádro %d</string>
-  <string name="refresh">Obnovit</string>
-  <string name="reset">Resetovat</string>
-  <string name="restore">Obnovit</string>
-  <string name="deep_sleep">Hluboký spánek</string>
-  <string name="uptime">Doba provozu</string>
-  <string name="error_frequencies">Nepodařilo se načíst frekvence</string>
-  <string name="unused_frequencies">Nepoužívané frekvence</string>
   <!-- Inputs -->
   <string name="product">Produkt</string>
   <string name="version">Verze</string>

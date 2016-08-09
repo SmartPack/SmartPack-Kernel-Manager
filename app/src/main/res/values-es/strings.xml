@@ -63,13 +63,13 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="settings">Ajustes</string>
-  <!-- Device -->
-  <string name="features">Características</string>
   <!-- Overall -->
   <string name="offline">Desactivado</string>
   <string name="core">Núcleo %d</string>
   <string name="restore">Restaurar</string>
   <string name="uptime">Tiempo de actividad</string>
+  <!-- Device -->
+  <string name="features">Características</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Frecuencia máxima del CPU</string>

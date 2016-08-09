@@ -56,8 +56,8 @@
   <string name="tools">Werkzeuge</string>
   <string name="other">Anderes</string>
   <!-- Menus -->
-  <string name="device">Gerät</string>
   <string name="overall">Insgesamt</string>
+  <string name="device">Gerät</string>
   <string name="memory">Arbeitsspeicher</string>
   <string name="inputs">Eingaben</string>
   <string name="cpu">CPU</string>
@@ -88,6 +88,16 @@
   <string name="contributors">Unterstützer</string>
   <string name="faq">FAQ</string>
   <string name="settings">Einstellungen</string>
+  <!-- Overall -->
+  <string name="offline">Abgeschaltet</string>
+  <string name="core">Kern %d</string>
+  <string name="refresh">Aktualisieren</string>
+  <string name="reset">Zurücksetzen</string>
+  <string name="restore">Wiederherstellen</string>
+  <string name="deep_sleep">Tiefschlaf</string>
+  <string name="uptime">Laufzeit</string>
+  <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
+  <string name="unused_frequencies">Ungenutzte Frequenzen</string>
   <!-- Device -->
   <string name="processor">Prozessor</string>
   <string name="vendor">Hersteller</string>
@@ -102,16 +112,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektur</string>
-  <!-- Overall -->
-  <string name="offline">Abgeschaltet</string>
-  <string name="core">Kern %d</string>
-  <string name="refresh">Aktualisieren</string>
-  <string name="reset">Zurücksetzen</string>
-  <string name="restore">Wiederherstellen</string>
-  <string name="deep_sleep">Tiefschlaf</string>
-  <string name="uptime">Laufzeit</string>
-  <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
-  <string name="unused_frequencies">Ungenutzte Frequenzen</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produkt</string>

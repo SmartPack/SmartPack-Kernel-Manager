@@ -55,8 +55,8 @@
   <string name="tools">Nástroje</string>
   <string name="other">Ostatné</string>
   <!-- Menus -->
-  <string name="device">Zariadenie</string>
   <string name="overall">Celkovo</string>
+  <string name="device">Zariadenie</string>
   <string name="memory">Pamäť</string>
   <string name="inputs">Vstupy</string>
   <string name="cpu">CPU</string>
@@ -87,6 +87,16 @@
   <string name="contributors">Spolupracovníci</string>
   <string name="faq">Často kladené otázky</string>
   <string name="settings">Nastavenia</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Jadro %d</string>
+  <string name="refresh">Obnoviť</string>
+  <string name="reset">Resetovať</string>
+  <string name="restore">Obnoviť</string>
+  <string name="deep_sleep">Hlboký spánok</string>
+  <string name="uptime">V prevádzke</string>
+  <string name="error_frequencies">Nepodarilo sa načítať frekvencie</string>
+  <string name="unused_frequencies">Nepoužité frekvencie</string>
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Dodávateľ</string>
@@ -102,16 +112,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardvér</string>
   <string name="architecture">Architektúra</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Jadro %d</string>
-  <string name="refresh">Obnoviť</string>
-  <string name="reset">Resetovať</string>
-  <string name="restore">Obnoviť</string>
-  <string name="deep_sleep">Hlboký spánok</string>
-  <string name="uptime">V prevádzke</string>
-  <string name="error_frequencies">Nepodarilo sa načítať frekvencie</string>
-  <string name="unused_frequencies">Nepoužité frekvencie</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produkt</string>

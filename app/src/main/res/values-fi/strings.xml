@@ -55,8 +55,8 @@
   <string name="tools">Työkalut</string>
   <string name="other">Muut</string>
   <!-- Menus -->
-  <string name="device">Laite</string>
   <string name="overall">Yleiset</string>
+  <string name="device">Laite</string>
   <string name="memory">Muisti</string>
   <string name="inputs">Syötteet</string>
   <string name="cpu">CPU</string>
@@ -86,6 +86,16 @@
   <string name="contributors">Avustajat</string>
   <string name="faq">Usein kysyttyä</string>
   <string name="settings">Asetukset</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Ydin %d</string>
+  <string name="refresh">Päivitä</string>
+  <string name="reset">Nollaa</string>
+  <string name="restore">Palauta</string>
+  <string name="deep_sleep">Syvä uni</string>
+  <string name="uptime">Käynnissäoloaika</string>
+  <string name="error_frequencies">Virhe ladattaessa taajuuksia</string>
+  <string name="unused_frequencies">Käyttämättömät taajuudet</string>
   <!-- Device -->
   <string name="processor">Prosessori</string>
   <string name="vendor">Toimittaja</string>
@@ -101,16 +111,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Laitteisto</string>
   <string name="architecture">Arkkitehtuuri</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Ydin %d</string>
-  <string name="refresh">Päivitä</string>
-  <string name="reset">Nollaa</string>
-  <string name="restore">Palauta</string>
-  <string name="deep_sleep">Syvä uni</string>
-  <string name="uptime">Käynnissäoloaika</string>
-  <string name="error_frequencies">Virhe ladattaessa taajuuksia</string>
-  <string name="unused_frequencies">Käyttämättömät taajuudet</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Tuote</string>

@@ -47,13 +47,13 @@
   <string name="recovery">리커버리</string>
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
-  <!-- Device -->
-  <string name="features">기능</string>
   <!-- Overall -->
   <string name="offline">꺼져있음</string>
   <string name="core">%d 번째 코어</string>
   <string name="restore">복원</string>
   <string name="uptime">가동 시간</string>
+  <!-- Device -->
+  <string name="features">기능</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">최대 CPU 클럭</string>

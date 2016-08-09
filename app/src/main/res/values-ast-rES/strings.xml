@@ -47,13 +47,13 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="settings">Axustes</string>
-  <!-- Device -->
-  <string name="features">Carauterístiques</string>
   <!-- Overall -->
   <string name="offline">Fuera de llinia</string>
   <string name="core">Nucleu %d</string>
   <string name="restore">Restaurar</string>
   <string name="uptime">Tiempu prendíu</string>
+  <!-- Device -->
+  <string name="features">Carauterístiques</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Frecuencia máxima de CPU</string>

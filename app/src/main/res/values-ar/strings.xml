@@ -45,11 +45,11 @@
   <string name="profile">الملفّ الشّخصي</string>
   <string name="initd">Init.d</string>
   <string name="settings">الاعدادات</string>
-  <!-- Device -->
   <!-- Overall -->
   <string name="offline">غير متصل</string>
   <string name="core">نواة %d</string>
   <string name="uptime">مدة التشغيل</string>
+  <!-- Device -->
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">التردد الاقصى للمعالج</string>

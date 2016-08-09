@@ -52,8 +52,8 @@
   <string name="tools">Alati</string>
   <string name="other">Ostalo</string>
   <!-- Menus -->
-  <string name="device">Uređaj</string>
   <string name="overall">Opće informacije</string>
+  <string name="device">Uređaj</string>
   <string name="memory">Memorija</string>
   <string name="inputs">Ulazi</string>
   <string name="cpu">CPU</string>
@@ -84,6 +84,16 @@
   <string name="contributors">Suradnici</string>
   <string name="faq">Česta pitanja i odgovori</string>
   <string name="settings">Postavke</string>
+  <!-- Overall -->
+  <string name="offline">Neaktivna</string>
+  <string name="core">Jezgra %d</string>
+  <string name="refresh">Osvježi</string>
+  <string name="reset">Ponovno postavi</string>
+  <string name="restore">Vraćanje</string>
+  <string name="deep_sleep">Stanje mirovanja</string>
+  <string name="uptime">Vrijeme u pogonu</string>
+  <string name="error_frequencies">Učitavanje frekvencija nije uspjelo.</string>
+  <string name="unused_frequencies">Nekorištene frekvencije</string>
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Dobavljač</string>
@@ -98,16 +108,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardver</string>
   <string name="architecture">Arhitektura</string>
-  <!-- Overall -->
-  <string name="offline">Neaktivna</string>
-  <string name="core">Jezgra %d</string>
-  <string name="refresh">Osvježi</string>
-  <string name="reset">Ponovno postavi</string>
-  <string name="restore">Vraćanje</string>
-  <string name="deep_sleep">Stanje mirovanja</string>
-  <string name="uptime">Vrijeme u pogonu</string>
-  <string name="error_frequencies">Učitavanje frekvencija nije uspjelo.</string>
-  <string name="unused_frequencies">Nekorištene frekvencije</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Proizvod</string>

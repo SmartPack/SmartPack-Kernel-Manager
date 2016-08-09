@@ -48,8 +48,8 @@
   <string name="tools">Ferramentas</string>
   <string name="other">Outros</string>
   <!-- Menus -->
-  <string name="device">Dispositivo</string>
   <string name="overall">Geral</string>
+  <string name="device">Dispositivo</string>
   <string name="inputs">Entradas</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltagem do CPU</string>
@@ -77,6 +77,13 @@
   <string name="contributors">Colaboradores</string>
   <string name="faq">Perguntas Frequentes</string>
   <string name="settings">Definições</string>
+  <!-- Overall -->
+  <string name="offline">Off-line</string>
+  <string name="core">Núcleo %d</string>
+  <string name="refresh">Atualizar</string>
+  <string name="reset">Reiniciar</string>
+  <string name="restore">Restaurar</string>
+  <string name="uptime">Uptime</string>
   <!-- Device -->
   <string name="processor">Processador</string>
   <string name="vendor">Fabricante</string>
@@ -87,13 +94,6 @@
   <string name="android_codename">Nome de Código de Android</string>
   <string name="fingerprint">Assinatura Digital</string>
   <string name="architecture">Arquitetura</string>
-  <!-- Overall -->
-  <string name="offline">Off-line</string>
-  <string name="core">Núcleo %d</string>
-  <string name="refresh">Atualizar</string>
-  <string name="reset">Reiniciar</string>
-  <string name="restore">Restaurar</string>
-  <string name="uptime">Uptime</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produto</string>

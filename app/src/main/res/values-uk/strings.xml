@@ -67,14 +67,6 @@
   <string name="about">Про додаток</string>
   <string name="faq">Питання та відповіді (FAQ)</string>
   <string name="settings">Налаштування</string>
-  <!-- Device -->
-  <string name="processor">Процесор</string>
-  <string name="vendor">Виробник</string>
-  <string name="features">Особливості</string>
-  <string name="android_version">Версія Android</string>
-  <string name="android_api_level">Android SDK</string>
-  <string name="android_codename">Кодове ім\'я Android</string>
-  <string name="fingerprint">Відбитки пальців</string>
   <!-- Overall -->
   <string name="offline">Офлайн</string>
   <string name="core">Ядро %d</string>
@@ -83,6 +75,14 @@
   <string name="restore">Відновити</string>
   <string name="uptime">Час роботи</string>
   <string name="unused_frequencies">Невикористовувані частоти</string>
+  <!-- Device -->
+  <string name="processor">Процесор</string>
+  <string name="vendor">Виробник</string>
+  <string name="features">Особливості</string>
+  <string name="android_version">Версія Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Кодове ім\'я Android</string>
+  <string name="fingerprint">Відбитки пальців</string>
   <!-- Inputs -->
   <string name="version">Версія</string>
   <!-- CPU -->

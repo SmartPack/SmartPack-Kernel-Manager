@@ -53,8 +53,8 @@
   <string name="tools">工具</string>
   <string name="other">其他</string>
   <!-- Menus -->
-  <string name="device">裝置</string>
   <string name="overall">概觀</string>
+  <string name="device">裝置</string>
   <string name="inputs">輸入</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 電壓</string>
@@ -84,6 +84,16 @@
   <string name="contributors">貢獻者</string>
   <string name="faq">常見問題列表</string>
   <string name="settings">設定</string>
+  <!-- Overall -->
+  <string name="offline">離線</string>
+  <string name="core">核心 %d</string>
+  <string name="refresh">重新整理</string>
+  <string name="reset">重新設置</string>
+  <string name="restore">還原</string>
+  <string name="deep_sleep">深度睡眠</string>
+  <string name="uptime">核心啟用時間</string>
+  <string name="error_frequencies">載入頻率失敗</string>
+  <string name="unused_frequencies">未使用的頻率</string>
   <!-- Device -->
   <string name="processor">CPU 處理器</string>
   <string name="vendor">製造商</string>
@@ -99,16 +109,6 @@
   <string name="bootloader">開機啟動器(Bootloader)</string>
   <string name="hardware">硬體</string>
   <string name="architecture">CPU 架構</string>
-  <!-- Overall -->
-  <string name="offline">離線</string>
-  <string name="core">核心 %d</string>
-  <string name="refresh">重新整理</string>
-  <string name="reset">重新設置</string>
-  <string name="restore">還原</string>
-  <string name="deep_sleep">深度睡眠</string>
-  <string name="uptime">核心啟用時間</string>
-  <string name="error_frequencies">載入頻率失敗</string>
-  <string name="unused_frequencies">未使用的頻率</string>
   <!-- Inputs -->
   <string name="bus">匯流排(Bus)</string>
   <string name="product">產品</string>

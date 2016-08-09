@@ -56,8 +56,8 @@
   <string name="tools">Eszközök</string>
   <string name="other">Egyéb</string>
   <!-- Menus -->
-  <string name="device">Eszköz</string>
   <string name="overall">Teljes</string>
+  <string name="device">Eszköz</string>
   <string name="memory">Memória</string>
   <string name="inputs">Bevitelek</string>
   <string name="cpu">CPU</string>
@@ -88,6 +88,16 @@
   <string name="contributors">Közreműködők</string>
   <string name="faq">GYIK</string>
   <string name="settings">Beállítások</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Mag %d</string>
+  <string name="refresh">Frissítés</string>
+  <string name="reset">Alaphelyzet</string>
+  <string name="restore">Visszaállítás</string>
+  <string name="deep_sleep">Mélyalvás</string>
+  <string name="uptime">Üzemidő</string>
+  <string name="error_frequencies">Nem sikerült betölteni a frekvenciákat</string>
+  <string name="unused_frequencies">Nem használt frekvenciák</string>
   <!-- Device -->
   <string name="processor">Processzor</string>
   <string name="vendor">Beszállító</string>
@@ -103,16 +113,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardver</string>
   <string name="architecture">Architektúra</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Mag %d</string>
-  <string name="refresh">Frissítés</string>
-  <string name="reset">Alaphelyzet</string>
-  <string name="restore">Visszaállítás</string>
-  <string name="deep_sleep">Mélyalvás</string>
-  <string name="uptime">Üzemidő</string>
-  <string name="error_frequencies">Nem sikerült betölteni a frekvenciákat</string>
-  <string name="unused_frequencies">Nem használt frekvenciák</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Termék</string>

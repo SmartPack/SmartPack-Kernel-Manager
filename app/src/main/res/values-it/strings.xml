@@ -54,8 +54,8 @@
   <string name="tools">Strumenti</string>
   <string name="other">Altro</string>
   <!-- Menus -->
-  <string name="device">Dispositivo</string>
   <string name="overall">Generale</string>
+  <string name="device">Dispositivo</string>
   <string name="memory">Memoria</string>
   <string name="inputs">Input</string>
   <string name="cpu">CPU</string>
@@ -86,6 +86,16 @@
   <string name="contributors">Collaboratori</string>
   <string name="faq">FAQ</string>
   <string name="settings">Impostazioni</string>
+  <!-- Overall -->
+  <string name="offline">Spento</string>
+  <string name="core">Core %d</string>
+  <string name="refresh">Aggiorna</string>
+  <string name="reset">Reset</string>
+  <string name="restore">Ripristino</string>
+  <string name="deep_sleep">Deep sleep</string>
+  <string name="uptime">Tempo di attività</string>
+  <string name="error_frequencies">Impossibile caricare le frequenze</string>
+  <string name="unused_frequencies">Frequenze inutilizzate</string>
   <!-- Device -->
   <string name="processor">Processore</string>
   <string name="vendor">Produttore</string>
@@ -101,16 +111,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architettura</string>
-  <!-- Overall -->
-  <string name="offline">Spento</string>
-  <string name="core">Core %d</string>
-  <string name="refresh">Aggiorna</string>
-  <string name="reset">Reset</string>
-  <string name="restore">Ripristino</string>
-  <string name="deep_sleep">Deep sleep</string>
-  <string name="uptime">Tempo di attività</string>
-  <string name="error_frequencies">Impossibile caricare le frequenze</string>
-  <string name="unused_frequencies">Frequenze inutilizzate</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Prodotto</string>

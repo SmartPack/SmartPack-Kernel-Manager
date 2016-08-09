@@ -56,8 +56,8 @@
   <string name="tools">Araçlar</string>
   <string name="other">Diğer</string>
   <!-- Menus -->
-  <string name="device">Cihaz</string>
   <string name="overall">Genel</string>
+  <string name="device">Cihaz</string>
   <string name="memory">Bellek (RAM)</string>
   <string name="inputs">Girdiler</string>
   <string name="cpu">CPU</string>
@@ -88,6 +88,16 @@
   <string name="contributors">Katkıda bulunanlar</string>
   <string name="faq">S.S.S</string>
   <string name="settings">Ayarlar</string>
+  <!-- Overall -->
+  <string name="offline">Çevrimdışı</string>
+  <string name="core">Çekirdek %d</string>
+  <string name="refresh">Yenile</string>
+  <string name="reset">Sıfırla</string>
+  <string name="restore">Geri yükleme</string>
+  <string name="deep_sleep">Derin uyku</string>
+  <string name="uptime">Çalışma süresi</string>
+  <string name="error_frequencies">Frekanslar yüklenemedi</string>
+  <string name="unused_frequencies">Kullanılmayan Frekanslar</string>
   <!-- Device -->
   <string name="processor">İşlemci</string>
   <string name="vendor">Satıcı</string>
@@ -103,16 +113,6 @@
   <string name="bootloader">Ön Yükleyici</string>
   <string name="hardware">Donanım</string>
   <string name="architecture">Mimari</string>
-  <!-- Overall -->
-  <string name="offline">Çevrimdışı</string>
-  <string name="core">Çekirdek %d</string>
-  <string name="refresh">Yenile</string>
-  <string name="reset">Sıfırla</string>
-  <string name="restore">Geri yükleme</string>
-  <string name="deep_sleep">Derin uyku</string>
-  <string name="uptime">Çalışma süresi</string>
-  <string name="error_frequencies">Frekanslar yüklenemedi</string>
-  <string name="unused_frequencies">Kullanılmayan Frekanslar</string>
   <!-- Inputs -->
   <string name="bus">Otobüs</string>
   <string name="product">Ürün</string>

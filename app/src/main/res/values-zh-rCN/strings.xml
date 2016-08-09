@@ -19,6 +19,7 @@
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
   <string name="donate">捐助</string>
+  <string name="remove_ad">去除广告</string>
   <string name="warning">警告</string>
   <string name="apply_on_boot">系统启动时应用</string>
   <string name="apply_on_boot_text">在 %d 秒后应用您的设置</string>
@@ -49,8 +50,9 @@
   <string name="tools">工具</string>
   <string name="other">其他</string>
   <!-- Menus -->
-  <string name="device">设备</string>
   <string name="overall">总计</string>
+  <string name="device">设备</string>
+  <string name="memory">内存</string>
   <string name="inputs">输入</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 电压</string>
@@ -79,6 +81,16 @@
   <string name="contributors">贡献者</string>
   <string name="faq">疑问与解答</string>
   <string name="settings">设置</string>
+  <!-- Overall -->
+  <string name="offline">离线</string>
+  <string name="core">核心 %d</string>
+  <string name="refresh">刷新</string>
+  <string name="reset">复位</string>
+  <string name="restore">还原</string>
+  <string name="deep_sleep">深度睡眠</string>
+  <string name="uptime">启动时间</string>
+  <string name="error_frequencies">未能加载频率</string>
+  <string name="unused_frequencies">未使用的频率</string>
   <!-- Device -->
   <string name="processor">处理器</string>
   <string name="vendor">制造商</string>
@@ -94,16 +106,6 @@
   <string name="bootloader">引导程序</string>
   <string name="hardware">硬件</string>
   <string name="architecture">架构</string>
-  <!-- Overall -->
-  <string name="offline">离线</string>
-  <string name="core">核心 %d</string>
-  <string name="refresh">刷新</string>
-  <string name="reset">复位</string>
-  <string name="restore">还原</string>
-  <string name="deep_sleep">深度睡眠</string>
-  <string name="uptime">启动时间</string>
-  <string name="error_frequencies">未能加载频率</string>
-  <string name="unused_frequencies">未使用的频率</string>
   <!-- Inputs -->
   <string name="product">产品</string>
   <string name="version">版本</string>

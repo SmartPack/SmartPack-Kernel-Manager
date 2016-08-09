@@ -53,8 +53,8 @@
   <string name="tools">Outils</string>
   <string name="other">Autre</string>
   <!-- Menus -->
-  <string name="device">Appareil</string>
   <string name="overall">Général</string>
+  <string name="device">Appareil</string>
   <string name="memory">Mémoire</string>
   <string name="inputs">Entrées</string>
   <string name="cpu">CPU</string>
@@ -85,6 +85,16 @@
   <string name="contributors">Contributeurs</string>
   <string name="faq">FAQ</string>
   <string name="settings">Réglages</string>
+  <!-- Overall -->
+  <string name="offline">Hors-Ligne</string>
+  <string name="core">Coeur %d</string>
+  <string name="refresh">Actualiser</string>
+  <string name="reset">Réinitialiser</string>
+  <string name="restore">Restaurer</string>
+  <string name="deep_sleep">Veille profonde</string>
+  <string name="uptime">Temps de fonctionnement</string>
+  <string name="error_frequencies">Échec du chargement des fréquences</string>
+  <string name="unused_frequencies">Fréquences inutilisées</string>
   <!-- Device -->
   <string name="processor">Processeur</string>
   <string name="vendor">Constructeur</string>
@@ -100,16 +110,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Matériel</string>
   <string name="architecture">Architecture</string>
-  <!-- Overall -->
-  <string name="offline">Hors-Ligne</string>
-  <string name="core">Coeur %d</string>
-  <string name="refresh">Actualiser</string>
-  <string name="reset">Réinitialiser</string>
-  <string name="restore">Restaurer</string>
-  <string name="deep_sleep">Veille profonde</string>
-  <string name="uptime">Temps de fonctionnement</string>
-  <string name="error_frequencies">Échec du chargement des fréquences</string>
-  <string name="unused_frequencies">Fréquences inutilisées</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produit</string>

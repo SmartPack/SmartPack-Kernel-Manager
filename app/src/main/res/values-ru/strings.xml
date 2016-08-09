@@ -56,8 +56,8 @@
   <string name="tools">Инструменты</string>
   <string name="other">Другое</string>
   <!-- Menus -->
-  <string name="device">Устройство</string>
   <string name="overall">Общее</string>
+  <string name="device">Устройство</string>
   <string name="memory">Память</string>
   <string name="inputs">Устройства ввода</string>
   <string name="cpu">ЦП</string>
@@ -88,6 +88,16 @@
   <string name="contributors">Имена разработчиков</string>
   <string name="faq">Вопросы-Ответы</string>
   <string name="settings">Настройки</string>
+  <!-- Overall -->
+  <string name="offline">Оффлайн</string>
+  <string name="core">Ядро %d</string>
+  <string name="refresh">Обновить</string>
+  <string name="reset">Сброс</string>
+  <string name="restore">Восстановить</string>
+  <string name="deep_sleep">Глубокий сон</string>
+  <string name="uptime">Время работы</string>
+  <string name="error_frequencies">Не удалось загрузить частоты</string>
+  <string name="unused_frequencies">Неиспользуемые частоты</string>
   <!-- Device -->
   <string name="processor">Процессор</string>
   <string name="vendor">Производитель</string>
@@ -103,22 +113,13 @@
   <string name="bootloader">Загрузчик</string>
   <string name="hardware">Оборудование</string>
   <string name="architecture">Архитектура</string>
-  <!-- Overall -->
-  <string name="offline">Оффлайн</string>
-  <string name="core">Ядро %d</string>
-  <string name="refresh">Обновить</string>
-  <string name="reset">Сброс</string>
-  <string name="restore">Восстановить</string>
-  <string name="deep_sleep">Глубокий сон</string>
-  <string name="uptime">Время работы</string>
-  <string name="error_frequencies">Не удалось загрузить частоты</string>
-  <string name="unused_frequencies">Неиспользуемые частоты</string>
   <!-- Inputs -->
   <string name="bus">Шина</string>
   <string name="product">Продукт</string>
   <string name="version">Версия</string>
   <string name="handlers">Обработчики</string>
   <!-- CPU -->
+  <string name="cores_singular">Ядро %d</string>
   <string name="cores">Ядра: %d</string>
   <string name="no_offline_core">Вы не можете отключить это ядро!</string>
   <string name="cpu_max_freq">Максимальная частота ЦП</string>

@@ -47,13 +47,13 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="settings">Nastavitve</string>
-  <!-- Device -->
-  <string name="features">Funkcije</string>
   <!-- Overall -->
   <string name="offline">Izključeno</string>
   <string name="core">Jedro %d</string>
   <string name="restore">Obnovi</string>
   <string name="uptime">Čas delovanja od zadnjega vklopa</string>
+  <!-- Device -->
+  <string name="features">Funkcije</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Najvišja dovoljena frekvenca CPU</string>

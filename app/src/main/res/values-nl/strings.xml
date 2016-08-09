@@ -56,8 +56,8 @@
   <string name="tools">Gereedschappen</string>
   <string name="other">Overige</string>
   <!-- Menus -->
-  <string name="device">Apparaat</string>
   <string name="overall">Algemeen</string>
+  <string name="device">Apparaat</string>
   <string name="memory">Geheugen</string>
   <string name="inputs">Invoer</string>
   <string name="cpu">CPU</string>
@@ -88,6 +88,16 @@
   <string name="contributors">Medewerkers</string>
   <string name="faq">Veelgestelde Vragen</string>
   <string name="settings">Instellingen</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Kern %d</string>
+  <string name="refresh">Verversen</string>
+  <string name="reset">Reset</string>
+  <string name="restore">Herstellen</string>
+  <string name="deep_sleep">Diepe Slaap</string>
+  <string name="uptime">Bedrijfstijd</string>
+  <string name="error_frequencies">Fout bij het laden van frequenties</string>
+  <string name="unused_frequencies">Ongebruikte Frequenties</string>
   <!-- Device -->
   <string name="processor">Processor</string>
   <string name="vendor">Aanbieder</string>
@@ -103,16 +113,6 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Architectuur</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Kern %d</string>
-  <string name="refresh">Verversen</string>
-  <string name="reset">Reset</string>
-  <string name="restore">Herstellen</string>
-  <string name="deep_sleep">Diepe Slaap</string>
-  <string name="uptime">Bedrijfstijd</string>
-  <string name="error_frequencies">Fout bij het laden van frequenties</string>
-  <string name="unused_frequencies">Ongebruikte Frequenties</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Product</string>

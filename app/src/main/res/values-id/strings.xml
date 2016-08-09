@@ -45,13 +45,13 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Pengaturan</string>
-  <!-- Device -->
-  <string name="features">Fitur</string>
   <!-- Overall -->
   <string name="offline">Tidak berjalan</string>
   <string name="core">Inti %d</string>
   <string name="restore">Pulihkan</string>
   <string name="uptime">Waktu nyala</string>
+  <!-- Device -->
+  <string name="features">Fitur</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Frekuensi CPU Tertinggi</string>

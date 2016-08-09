@@ -69,15 +69,6 @@
   <string name="contributors">Contribuidores</string>
   <string name="faq">Perguntas Frequentes</string>
   <string name="settings">Configurações</string>
-  <!-- Device -->
-  <string name="processor">Processador</string>
-  <string name="vendor">Fornecedor</string>
-  <string name="features">Características</string>
-  <string name="ram">RAM</string>
-  <string name="android_version">Versão do Android</string>
-  <string name="android_api_level">SDK do Android</string>
-  <string name="android_codename">Codinome do Android</string>
-  <string name="fingerprint">Impressão digital</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Núcleo %d</string>
@@ -87,6 +78,15 @@
   <string name="deep_sleep">Sono profundo</string>
   <string name="uptime">Tempo de atividade</string>
   <string name="unused_frequencies">Frequências não utilizadas</string>
+  <!-- Device -->
+  <string name="processor">Processador</string>
+  <string name="vendor">Fornecedor</string>
+  <string name="features">Características</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Versão do Android</string>
+  <string name="android_api_level">SDK do Android</string>
+  <string name="android_codename">Codinome do Android</string>
+  <string name="fingerprint">Impressão digital</string>
   <!-- Inputs -->
   <string name="product">Produto</string>
   <string name="version">Versão</string>

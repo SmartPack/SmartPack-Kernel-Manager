@@ -42,8 +42,8 @@
   <string name="tools">Գործիքներ</string>
   <string name="other">Այլ</string>
   <!-- Menus -->
-  <string name="device">Սարք</string>
   <string name="overall">Բոլոր</string>
+  <string name="device">Սարք</string>
   <string name="memory">Հիշողություն</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Լարումը</string>
@@ -56,13 +56,13 @@
   <string name="entropy">Էնտրոպիա</string>
   <string name="misc">Այլ</string>
   <string name="backup">Պահուստավորում</string>
-  <!-- Device -->
   <!-- Overall -->
   <string name="core">Միջուկ %d</string>
   <string name="refresh">Թարմացնել</string>
   <string name="restore">Վերականգնել</string>
   <string name="deep_sleep">Խորը քուն</string>
   <string name="uptime">Աշխատաժամանակ</string>
+  <!-- Device -->
   <!-- Inputs -->
   <string name="version">Տարբերակ</string>
   <!-- CPU -->

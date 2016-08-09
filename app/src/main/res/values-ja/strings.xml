@@ -47,13 +47,13 @@
   <string name="recovery">リカバリ</string>
   <string name="initd">Init.d</string>
   <string name="settings">設定</string>
-  <!-- Device -->
-  <string name="features">機能</string>
   <!-- Overall -->
   <string name="offline">オフライン</string>
   <string name="core">コア %d</string>
   <string name="restore">復元</string>
   <string name="uptime">使用時間</string>
+  <!-- Device -->
+  <string name="features">機能</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU 最大周波数</string>

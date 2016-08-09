@@ -53,8 +53,8 @@
   <string name="tools">Instrumente</string>
   <string name="other">Altele</string>
   <!-- Menus -->
-  <string name="device">Dispozitiv</string>
   <string name="overall">Per asamblu</string>
+  <string name="device">Dispozitiv</string>
   <string name="inputs">Intrări</string>
   <string name="cpu">CPU ( Procesor )</string>
   <string name="cpu_voltage">Tensiunea CPU-lui</string>
@@ -83,9 +83,6 @@
   <string name="contributors">Contribuitori</string>
   <string name="faq">Intrebari si raspunsuri</string>
   <string name="settings">Opțiuni</string>
-  <!-- Device -->
-  <string name="processor">Procesor</string>
-  <string name="vendor">Distribuitor</string>
   <!-- Overall -->
   <string name="offline">Deconectat</string>
   <string name="core">Core %d</string>
@@ -96,6 +93,9 @@
   <string name="uptime">Timp de funcționare</string>
   <string name="error_frequencies">Nu am reuşit s-a încarc frecvenţa</string>
   <string name="unused_frequencies">Frecvenţele neutilizate</string>
+  <!-- Device -->
+  <string name="processor">Procesor</string>
+  <string name="vendor">Distribuitor</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">Frecvenţă maximă CPU</string>

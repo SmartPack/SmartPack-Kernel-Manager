@@ -23,7 +23,10 @@
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za kupno Kernel Adiutora! Po zakupieniu appki-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
   <string name="donate_nope">Nie nabiorę się na to!</string>
   <string name="donate_yes">Uwielbiam tą appkę. Muszę ją wesprzeć!</string>
+  <string name="ad_here">Twoja reklama mogłaby się tu znaleść</string>
+  <string name="remove_ad">Usuń reklamy</string>
   <string name="warning">Uwaga</string>
+  <string name="open_ad_anyway">Mimo to otwórz reklamę</string>
   <string name="apply_on_boot">Zastosuj przy starcie</string>
   <string name="apply_on_boot_text">Ustawienia zostaną zastosowane za %d sekund.</string>
   <string name="apply_on_boot_complete">Ustawienia zostały zastosowane.</string>
@@ -54,8 +57,8 @@
   <string name="tools">Narzędzia</string>
   <string name="other">Inne</string>
   <!-- Menus -->
-  <string name="device">Urządzenie</string>
   <string name="overall">Ogólne</string>
+  <string name="device">Urządzenie</string>
   <string name="memory">Pamięć</string>
   <string name="inputs">Wejścia</string>
   <string name="cpu">CPU</string>
@@ -86,6 +89,16 @@
   <string name="contributors">Współautorzy</string>
   <string name="faq">Najczęściej zadawane pytania (FAQ)</string>
   <string name="settings">Ustawienia</string>
+  <!-- Overall -->
+  <string name="offline">Offline</string>
+  <string name="core">Rdzeń %d</string>
+  <string name="refresh">Odśwież</string>
+  <string name="reset">Reset</string>
+  <string name="restore">Przywróć</string>
+  <string name="deep_sleep">Głęboki sen</string>
+  <string name="uptime">Czas działania</string>
+  <string name="error_frequencies">Nie można załadować częstotliwości</string>
+  <string name="unused_frequencies">Nieużywane częstotliwości</string>
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Producent</string>
@@ -101,22 +114,13 @@
   <string name="bootloader">Bootloader</string>
   <string name="hardware">Sprzęt</string>
   <string name="architecture">Architektura</string>
-  <!-- Overall -->
-  <string name="offline">Offline</string>
-  <string name="core">Rdzeń %d</string>
-  <string name="refresh">Odśwież</string>
-  <string name="reset">Reset</string>
-  <string name="restore">Przywróć</string>
-  <string name="deep_sleep">Głęboki sen</string>
-  <string name="uptime">Czas działania</string>
-  <string name="error_frequencies">Nie można załadować częstotliwości</string>
-  <string name="unused_frequencies">Nieużywane częstotliwości</string>
   <!-- Inputs -->
   <string name="bus">Magistrala</string>
   <string name="product">Produkt</string>
   <string name="version">Wersja</string>
   <string name="handlers">Wywołanie zwrotne</string>
   <!-- CPU -->
+  <string name="cores_singular">%d rdzeń</string>
   <string name="cores">%d rdzeni/e</string>
   <string name="no_offline_core">Nie możesz wyłączyć tego rdzenia!</string>
   <string name="cpu_max_freq">Maks. częstotliwość CPU</string>
@@ -128,6 +132,7 @@
   <string name="cpu_governor">Zarządca CPU</string>
   <string name="cpu_governor_summary">Zarządca CPU określa w jaki sposób CPU się zachowuje w odpowiedzi na obciążenie. Zmiana zarządcy ma wpływ na to, w jaki sposób CPU zmienia różne dostępne częstotliwości.</string>
   <string name="cpu_governor_tunables">Konfiguracja zarządcy procesora</string>
+  <string name="governor_tunables_summary">Różne elementy konfiguracji obecnego zarządcy.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
   <string name="mc_power_saving">Wielordzeniowe oszczędzanie energii</string>
@@ -325,6 +330,7 @@
   <string name="gpu_2d_governor_summary">Ustawia zarządce dla GPU 2D.</string>
   <string name="gpu_governor">Zarządca GPU</string>
   <string name="gpu_governor_summary">Ustawia zarządce dla GPU.</string>
+  <string name="gpu_governor_tunables">Konfiguracja zarządcy GPU</string>
   <string name="simple_gpu_algorithm">Prosty Algorytm GPU</string>
   <string name="simple_gpu_algorithm_summary">Dodatek dla MSM Adreno TZ GPU Governor. Rozwijany przez faux123.</string>
   <string name="laziness">Lenistwo</string>
@@ -621,6 +627,8 @@
   <string name="fota_partition">Partycja fota</string>
   <string name="flash">Sflashuj</string>
   <!-- Build prop Editor -->
+  <string name="item_count">%s element</string>
+  <string name="items_count">%s elementów</string>
   <string name="search">szukaj</string>
   <string name="key">Klucz</string>
   <string name="value">Wartość</string>
@@ -645,6 +653,8 @@
   <string name="applying_profile">Aplikowanie %s!</string>
   <string name="no_profiles">Nie znaleziono profilu! Musisz go najpierw utworzyć.</string>
   <string name="sections_disabled">Wszystkie sekcje wyłączone! Nie potrzebujesz profili.</string>
+  <string name="current_settings">Bieżące ustawienia</string>
+  <string name="select_all">Zaznacz wszystkie</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emuluj Init.d</string>
   <string name="emulate_initd_summary">Jeśli urządzenie domyślnie nie obsługuje Init.d, można emulować jego funkcjonalność.</string>
@@ -679,7 +689,9 @@
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Użyj stopni fahrenheita do mierzenia temperatury.</string>
   <string name="force_english">Wymuś wyświetlanie języka angielskiego</string>
+  <string name="user_interface">Interfejs użytkownika</string>
   <string name="dark_theme">Ciemny motyw</string>
+  <string name="five_sec">5 sekund</string>
   <string name="ten_sec">10 sekund</string>
   <string name="twenty_sec">20 sekund</string>
   <string name="fifty_sec">50 sekund</string>
@@ -690,6 +702,7 @@
   <string name="apply_on_boot_hide_summary">Ukryj powiadomienie które informuje o aplikowaniu ustawień. Opóźnienie jest nadal aktywne!</string>
   <string name="toast">Dymek</string>
   <string name="apply_on_boot_toast_summary">Pokaż dymek u dołu ekranu, gdy ustawienia są aplikowane.</string>
+  <string name="confirmation_notification">Potwierdź powiadomienie</string>
   <string name="script">Skrypt</string>
   <string name="apply_on_boot_script_summary">Użyj skryptów powłoki, by aplikować ustawienia. Proszę użyj tej opcji, tylko jeżeli masz kłopoty z aplikacją ustawień podczas startu urządzenia. Jeżeli problem nie ustępuje po włączeniu tej opcji, sprawdź czy jakaś aplikacja nie konfliktuje z Kernel Adiutor.</string>
   <string name="debugging">Debugowanie</string>

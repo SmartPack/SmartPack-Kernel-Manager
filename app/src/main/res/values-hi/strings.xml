@@ -47,13 +47,13 @@
   <string name="profile">प्रोफ़ाइल</string>
   <string name="initd">Init.d</string>
   <string name="settings">सेटिंग</string>
-  <!-- Device -->
-  <string name="features">विशेषताएँ</string>
   <!-- Overall -->
   <string name="offline">ऑफ़लाइन</string>
   <string name="core">कोर %d</string>
   <string name="restore">पुनर्स्थापित करें</string>
   <string name="uptime">अपटाइम</string>
+  <!-- Device -->
+  <string name="features">विशेषताएँ</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU अधिकतम आवृत्ति</string>
