@@ -30,6 +30,9 @@ import com.startapp.android.publish.StartAppAd;
  */
 public class AdView extends RecyclerViewItem {
 
+    private AdBanner mAd;
+    private boolean mGHLoad;
+
     private final StartAppAd mStartAppAd;
 
     public AdView(StartAppAd startAppAd) {
@@ -43,9 +46,19 @@ public class AdView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        ((AdBanner) view).load(mStartAppAd);
+        (mAd = (AdBanner) view).load(mStartAppAd);
+        if (mGHLoad) {
+            mAd.loadGHAd();
+        }
         setFullSpan(true);
         super.onCreateView(view);
+    }
+
+    public void ghReady() {
+        mGHLoad = true;
+        if (mAd != null) {
+            mAd.loadGHAd();
+        }
     }
 
 }

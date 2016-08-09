@@ -28,7 +28,7 @@
     <string name="ad_here">Your advertisement could be here</string>
     <string name="remove_ad">Remove ad</string>
     <string name="warning">Warning</string>
-    <string name="offline_ad">This is an offline ad. Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users) or when actual ads are getting too boring.</string>
+    <string name="gh_ad">This is a non commercial ad! Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users).</string>
     <string name="open_ad_anyway">Open ad anyway</string>
 
     <string name="apply_on_boot">Apply on boot</string>

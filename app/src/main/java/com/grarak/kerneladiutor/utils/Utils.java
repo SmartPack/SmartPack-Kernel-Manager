@@ -73,7 +73,7 @@ import java.util.Set;
 public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
-    public static boolean DONATED;
+    public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
 
     private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();

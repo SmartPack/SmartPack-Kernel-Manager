@@ -616,6 +616,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return false;
     }
 
+    public void ghAdReady() {
+        if (mAdView != null) {
+            mAdView.ghReady();
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();

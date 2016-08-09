@@ -74,6 +74,7 @@ import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.WebpageReader;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.Hotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuvoltage.Voltage;
 import com.grarak.kerneladiutor.utils.kernel.entropy.Entropy;
@@ -89,6 +90,7 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
+import com.grarak.kerneladiutor.views.AdBanner;
 import com.startapp.android.publish.StartAppAd;
 
 import java.util.HashMap;
@@ -179,6 +181,9 @@ public class NavigationActivity extends BaseActivity
     private boolean mShowPirateDialog = true;
     private StartAppAd mStartAppAd;
 
+    private WebpageReader mAdsFetcher;
+    private boolean mFetchingAds;
+
     @Override
     protected boolean setStatusBarColor() {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M;
@@ -209,6 +214,8 @@ public class NavigationActivity extends BaseActivity
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
+            mShowPirateDialog = savedInstanceState.getBoolean("pirate");
+            mFetchingAds = savedInstanceState.getBoolean("fetching_ads");
         }
 
         if (mSelection == 0 || !sActualFragments.containsKey(mSelection)) {
@@ -219,9 +226,7 @@ public class NavigationActivity extends BaseActivity
         int result = Prefs.getInt("license", -1, this);
         int intentResult = getIntent().getIntExtra("result", -1);
         Prefs.saveInt("license", -1, this);
-        if (savedInstanceState != null) {
-            mShowPirateDialog = savedInstanceState.getBoolean("pirate");
-        }
+
         if ((result != intentResult || result == 3) && mShowPirateDialog) {
             ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
                 @Override
@@ -238,6 +243,27 @@ public class NavigationActivity extends BaseActivity
             if (result == 0) {
                 Utils.DONATED = true;
             }
+        }
+
+        if (!mFetchingAds && !Utils.DONATED) {
+            mFetchingAds = true;
+            mAdsFetcher = new WebpageReader(new WebpageReader.WebpageCallback() {
+                @Override
+                public void onCallback(String raw, CharSequence html) {
+                    if (raw == null || raw.isEmpty()) return;
+                    AdBanner.GHAds ghAds = new AdBanner.GHAds(raw);
+                    if (ghAds.readable()) {
+                        ghAds.cache(NavigationActivity.this);
+                        for (int id : sActualFragments.keySet()) {
+                            Fragment fragment = sActualFragments.get(id);
+                            if (fragment instanceof RecyclerViewFragment) {
+                                ((RecyclerViewFragment) fragment).ghAdReady();
+                            }
+                        }
+                    }
+                }
+            });
+            mAdsFetcher.execute(AdBanner.ADS_FETCH);
         }
     }
 
@@ -311,6 +337,9 @@ public class NavigationActivity extends BaseActivity
         }
         fragmentTransaction.commit();
         RootUtils.closeSU();
+        if (mAdsFetcher != null) {
+            mAdsFetcher.cancel();
+        }
     }
 
     @Override
@@ -318,6 +347,7 @@ public class NavigationActivity extends BaseActivity
         super.onSaveInstanceState(outState);
         outState.putInt("selection", mSelection);
         outState.putBoolean("pirate", mShowPirateDialog);
+        outState.putBoolean("fetching_ads", mFetchingAds);
     }
 
     @Override
