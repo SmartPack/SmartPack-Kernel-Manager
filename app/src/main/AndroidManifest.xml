@@ -120,18 +120,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- StartApp -->
-        <activity
-            android:name="com.startapp.android.publish.list3d.List3DActivity"
-            android:theme="@android:style/Theme" />
-        <activity
-            android:name="com.startapp.android.publish.OverlayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name="com.startapp.android.publish.FullScreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme" />
     </application>
 
 </manifest>

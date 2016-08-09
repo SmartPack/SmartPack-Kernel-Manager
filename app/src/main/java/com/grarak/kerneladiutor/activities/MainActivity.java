@@ -34,6 +34,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.MobileAds;
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
@@ -57,7 +58,6 @@ import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
-import com.startapp.android.publish.StartAppSDK;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,7 +82,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StartAppSDK.init(MainActivity.this, "207568341", false);
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
@@ -236,6 +235,7 @@ public class MainActivity extends BaseActivity {
 
             try {
                 getPackageManager().getApplicationInfo("com.google.android.gms", 0);
+                MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
                 mGoogleServicesInstalled = true;
             } catch (PackageManager.NameNotFoundException ignored) {
                 Log.i(TAG, "Google services not found!");

@@ -54,7 +54,6 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.AdView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewAdapter;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
-import com.startapp.android.publish.StartAppAd;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -137,17 +136,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }) : mRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
 
-        StartAppAd startAppAd = null;
-        if (getActivity() instanceof BaseActivity) {
-            startAppAd = ((BaseActivity) getActivity()).getStartAppAd();
-        }
-        if (startAppAd != null
-                && !Utils.DONATED
+        if (!Utils.DONATED
                 && !showTopFab()
                 && !isForeground()
                 && getActivity() instanceof NavigationActivity
                 && mAdView == null) {
-            mAdView = new AdView(startAppAd);
+            mAdView = new AdView();
         } else {
             mAdView = null;
         }

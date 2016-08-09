@@ -23,7 +23,6 @@ import android.view.View;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.views.AdBanner;
-import com.startapp.android.publish.StartAppAd;
 
 /**
  * Created by willi on 06.08.16.
@@ -31,13 +30,6 @@ import com.startapp.android.publish.StartAppAd;
 public class AdView extends RecyclerViewItem {
 
     private AdBanner mAd;
-    private boolean mGHLoad;
-
-    private final StartAppAd mStartAppAd;
-
-    public AdView(StartAppAd startAppAd) {
-        mStartAppAd = startAppAd;
-    }
 
     @Override
     public int getLayoutRes() {
@@ -46,16 +38,12 @@ public class AdView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        (mAd = (AdBanner) view).load(mStartAppAd);
-        if (mGHLoad) {
-            mAd.loadGHAd();
-        }
+        mAd = (AdBanner) view;
         setFullSpan(true);
         super.onCreateView(view);
     }
 
     public void ghReady() {
-        mGHLoad = true;
         if (mAd != null) {
             mAd.loadGHAd();
         }

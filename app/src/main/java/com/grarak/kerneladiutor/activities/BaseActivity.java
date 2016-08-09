@@ -33,15 +33,11 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.views.AdBanner;
-import com.startapp.android.publish.StartAppAd;
 
 /**
  * Created by willi on 14.04.16.
  */
 public class BaseActivity extends AppCompatActivity {
-
-    private StartAppAd mStartAppAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,35 +80,12 @@ public class BaseActivity extends AppCompatActivity {
 
     public void adInit() {
         if (!Utils.DONATED) {
-            mStartAppAd = new StartAppAd(this);
-            AdBanner adBanner = (AdBanner) findViewById(R.id.ad);
-            adBanner.setVisibility(View.VISIBLE);
-            adBanner.load(mStartAppAd);
+            findViewById(R.id.ad).setVisibility(View.VISIBLE);
         }
     }
 
     protected boolean setStatusBarColor() {
         return true;
-    }
-
-    public StartAppAd getStartAppAd() {
-        return null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mStartAppAd != null) {
-            mStartAppAd.onResume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mStartAppAd != null) {
-            mStartAppAd.onPause();
-        }
     }
 
 }

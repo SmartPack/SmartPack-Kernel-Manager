@@ -91,7 +91,6 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.AdBanner;
-import com.startapp.android.publish.StartAppAd;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -172,7 +171,11 @@ public class NavigationActivity extends BaseActivity
         sActivities.put(R.string.settings, SettingsActivity.class);
     }
 
-    private static NavigationActivity mNavigationActivity;
+    private static Callback sCallback;
+
+    private interface Callback {
+        void onBannerResize();
+    }
 
     private Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
@@ -181,7 +184,6 @@ public class NavigationActivity extends BaseActivity
 
     private int mSelection;
     private boolean mShowPirateDialog = true;
-    private StartAppAd mStartAppAd;
 
     private WebpageReader mAdsFetcher;
     private boolean mFetchingAds;
@@ -194,7 +196,12 @@ public class NavigationActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mNavigationActivity = this;
+        sCallback = new Callback() {
+            @Override
+            public void onBannerResize() {
+                recreate();
+            }
+        };
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
         setSupportActionBar(toolbar);
@@ -384,30 +391,9 @@ public class NavigationActivity extends BaseActivity
         return fragment;
     }
 
-    @Override
-    public StartAppAd getStartAppAd() {
-        return mStartAppAd == null ? mStartAppAd = new StartAppAd(this) : mStartAppAd;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mStartAppAd != null) {
-            mStartAppAd.onResume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mStartAppAd != null) {
-            mStartAppAd.onPause();
-        }
-    }
-
     public static void restart() {
-        if (mNavigationActivity != null) {
-            mNavigationActivity.recreate();
+        if (sCallback != null) {
+            sCallback.onBannerResize();
         }
     }
 

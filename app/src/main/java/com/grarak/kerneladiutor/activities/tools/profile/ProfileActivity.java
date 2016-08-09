@@ -118,8 +118,6 @@ public class ProfileActivity extends BaseActivity {
         mMode = 1;
         setContentView(R.layout.activity_profile);
 
-        adInit();
-
         Control.clearProfileCommands();
         Control.setProfileMode(true);
 

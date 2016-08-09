@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.views;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
@@ -30,15 +31,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-import com.startapp.android.publish.StartAppAd;
-import com.startapp.android.publish.banner.Banner;
-import com.startapp.android.publish.banner.BannerListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,6 +61,7 @@ public class AdBanner extends LinearLayout {
     private View mProgress;
     private View mAdText;
     private ImageView mGHAdImage;
+    private LinearLayout mAdParent;
 
     public AdBanner(Context context) {
         this(context, null);
@@ -70,37 +73,52 @@ public class AdBanner extends LinearLayout {
 
     public AdBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        if (Utils.DONATED) return;
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AdBanner, defStyleAttr, 0);
+        String unitId = a.getString(R.styleable.AdBanner_unitId);
+        a.recycle();
+        if (unitId == null || unitId.isEmpty()) {
+            throw new IllegalStateException("unitId must be defined");
+        }
 
         LayoutInflater.from(context).inflate(R.layout.adbanner_view, this);
 
         mProgress = findViewById(R.id.progress);
         mAdText = findViewById(R.id.ad_text);
         mGHAdImage = (ImageView) findViewById(R.id.gh_ad);
+        mAdParent = (LinearLayout) findViewById(R.id.ad_parent);
 
-        Banner banner = (Banner) findViewById(R.id.ad_banner);
-        banner.setBannerListener(new BannerListener() {
+        AdView adView = new AdView(context);
+        adView.setAdUnitId(unitId);
+        adView.setAdSize(AdSize.BANNER);
+        mAdParent.addView(adView);
+        adView.setAdListener(new AdListener() {
             @Override
-            public void onReceiveAd(View view) {
-                mProgress.setVisibility(GONE);
-                mAdText.setVisibility(View.GONE);
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
                 mGHAdImage.setVisibility(GONE);
-                view.setVisibility(View.VISIBLE);
-                mLoaded = true;
-            }
-
-            @Override
-            public void onFailedToReceiveAd(View view) {
                 mProgress.setVisibility(GONE);
-                mAdText.setVisibility(View.VISIBLE);
-                view.setVisibility(View.GONE);
+                mAdText.setVisibility(VISIBLE);
+                mAdParent.setVisibility(GONE);
                 mLoaded = false;
                 loadGHAd();
             }
 
             @Override
-            public void onClick(View view) {
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mGHAdImage.setVisibility(GONE);
+                mProgress.setVisibility(GONE);
+                mAdText.setVisibility(GONE);
+                mAdParent.setVisibility(VISIBLE);
+                mLoaded = true;
             }
         });
+
+        if (!mLoaded) {
+            adView.loadAd(new AdRequest.Builder().build());
+        }
 
         findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +160,7 @@ public class AdBanner extends LinearLayout {
                     mGHAdImage.setVisibility(VISIBLE);
                     mProgress.setVisibility(GONE);
                     mAdText.setVisibility(GONE);
+                    mAdParent.setVisibility(GONE);
                     mGHAdImage.setImageBitmap(bitmap);
                     Prefs.saveInt(name + "_shown", totalShown, getContext());
                 }
@@ -151,11 +170,13 @@ public class AdBanner extends LinearLayout {
                     mGHAdImage.setVisibility(GONE);
                     mProgress.setVisibility(GONE);
                     mAdText.setVisibility(VISIBLE);
+                    mAdParent.setVisibility(GONE);
                 }
 
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) {
                     mGHAdImage.setVisibility(GONE);
+                    mAdParent.setVisibility(GONE);
                     mProgress.setVisibility(VISIBLE);
                     mAdText.setVisibility(VISIBLE);
                 }
@@ -178,22 +199,19 @@ public class AdBanner extends LinearLayout {
             mGHAdImage.setVisibility(VISIBLE);
             mProgress.setVisibility(GONE);
             mAdText.setVisibility(GONE);
+            mAdParent.setVisibility(GONE);
             mGHLoaded = true;
         } else {
             mGHAdImage.setVisibility(GONE);
             mProgress.setVisibility(GONE);
+            mAdParent.setVisibility(GONE);
             mAdText.setVisibility(VISIBLE);
         }
     }
 
+
     private String getString(int res) {
         return getContext().getString(res);
-    }
-
-    public void load(StartAppAd startAppAd) {
-        if (!mLoaded) {
-            startAppAd.loadAd();
-        }
     }
 
     public static class GHAds {
