@@ -490,6 +490,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 if (isAdded()) {
                     mProgress.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.INVISIBLE);
+                    mViewPagerParent.setVisibility(View.INVISIBLE);
                     if (showTopFab()) {
                         mTopFab.hide();
                     }
@@ -504,6 +505,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     protected void hideProgress() {
         mProgress.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
+        mViewPagerParent.setVisibility(View.VISIBLE);
         if (showTopFab()) {
             mTopFab.show();
         }
