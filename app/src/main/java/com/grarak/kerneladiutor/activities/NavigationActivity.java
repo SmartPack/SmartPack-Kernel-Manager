@@ -111,7 +111,9 @@ public class NavigationActivity extends BaseActivity
         }
         sFragments.put(R.string.inputs, new InputsFragment());
         sFragments.put(R.string.kernel, null);
-        sFragments.put(R.string.cpu, new CPUFragment());
+        if (!Utils.isEmulator()) {
+            sFragments.put(R.string.cpu, new CPUFragment());
+        }
         if (Voltage.supported()) {
             sFragments.put(R.string.cpu_voltage, new CPUVoltageFragment());
         }

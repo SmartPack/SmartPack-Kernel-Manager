@@ -716,4 +716,14 @@ public class CPUFragment extends RecyclerViewFragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPool != null) {
+            mPool.shutdownNow();
+        }
+        if (mRefreshThread != null) {
+            mRefreshThread.interrupt();
+        }
+    }
 }
