@@ -26,6 +26,8 @@
   <string name="ad_here">Hirdetése itt lehet</string>
   <string name="remove_ad">Reklámok eltávolítása</string>
   <string name="warning">Figyelmeztetés</string>
+  <string name="gh_ad">Ez egy nem kereskedelmi hirdetés! Ne vegye komolyan! Csak egy vicces módja annak, hogy kitöltse a helyet, amikor egy valóságos hirdetés nem töltődik be (adblock felhasználókra gondolok).</string>
+  <string name="open_ad_anyway">Hirdetés megnyitása mindenképp</string>
   <string name="apply_on_boot">Alkalmazás induláskor</string>
   <string name="apply_on_boot_text">Beállítások alkalmazása %d másodperc múlva.</string>
   <string name="apply_on_boot_complete">Beállítások alkalmazása befejeződött.</string>
@@ -49,6 +51,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">kp</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statisztikák</string>
@@ -119,6 +122,7 @@
   <string name="version">Verizó</string>
   <string name="handlers">Kezelők</string>
   <!-- CPU -->
+  <string name="cores_singular">%d mag</string>
   <string name="cores">%d mag</string>
   <string name="no_offline_core">Nem kapcsolhatod ki ezt a magot!</string>
   <string name="cpu_max_freq">Maximális CPU frekvencia</string>
@@ -478,6 +482,7 @@
   <string name="cam_microphone_gain">Kamera mikrofon erősítés</string>
   <string name="speaker_gain">Hangszóró erősítés</string>
   <string name="headphone_poweramp_gain">Fejhallgató PowerAmp erősítés</string>
+  <string name="headphone_tpa6165_gain">Fejhallgató amp erősítő (TPA6165 kiterjesztés)</string>
   <string name="microphone_gain">Mikrofon erősítés</string>
   <string name="volume_gain">Hangerő erősítés</string>
   <!-- Battery -->
@@ -679,6 +684,10 @@
   <string name="applying_profile">%s alkalmazása!</string>
   <string name="no_profiles">Nem található profil! Először létre kell hozni őket.</string>
   <string name="sections_disabled">Minden szekció le van tiltva! Nincs profil számodra.</string>
+  <string name="new_mode">Új</string>
+  <string name="current_settings">Aktuális beállítások</string>
+  <string name="select_all">Összes kijelölése</string>
+  <string name="nothing_selected">Nincs kiválasztott elem</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulálása</string>
   <string name="emulate_initd_summary">Ha a készüléked nem támogatja az Init.d-t alapértelmezetten, akkor ennek bekapcsolásával emulálható a viselkedése.</string>
@@ -713,7 +722,11 @@
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Fahrenheit használata a hőmérséklet méréséhez.</string>
   <string name="force_english">Angol nyelvű megjelenítés kényszerítése</string>
+  <string name="user_interface">Felhasználói felület</string>
   <string name="dark_theme">Sötét téma</string>
+  <string name="material_icon">Material ikon</string>
+  <string name="banner_resizer">Banner átméretezés</string>
+  <string name="five_sec">5 másodperc</string>
   <string name="ten_sec">10 másodperc</string>
   <string name="twenty_sec">20 másodperc</string>
   <string name="fifty_sec">50 másodperc</string>
@@ -724,6 +737,8 @@
   <string name="apply_on_boot_hide_summary">Alkalmazás induláskor értesítésének elrejtése. A késleltetés továbbra is megmarad!</string>
   <string name="toast">Buborékszöveg</string>
   <string name="apply_on_boot_toast_summary">Buborékszöveg megjelenítése, ha a beállítás alkalmazásra került.</string>
+  <string name="confirmation_notification">Megerősítő értesítés</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Alkalmazás induláskor után, jelenítsen meg egy értesítést, hogy az alkalmazás induláskor sikeres volt.</string>
   <string name="script">Szkript</string>
   <string name="apply_on_boot_script_summary">Beállítások alkalmazása egy parancsfájl segítségével. Kérlek, csak akkor használd, ha gondod van az Alkalmazás induláskor beállítással. Ha a probléma továbbra is fennáll a beállítás engedélyezése után, kérlek, győződj meg arról, hogy nem ütközik más alkalmazás a Kernel Adiutorral.</string>
   <string name="debugging">Hibakeresés</string>

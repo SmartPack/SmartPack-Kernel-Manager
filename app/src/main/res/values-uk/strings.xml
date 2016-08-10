@@ -19,6 +19,7 @@
   <string name="ok">Ок</string>
   <string name="unknown">Невідомо</string>
   <string name="donate">Підтримати</string>
+  <string name="remove_ad">Видалити рекламу</string>
   <string name="warning">Попередження</string>
   <string name="apply_on_boot">Застосувати під час завантаження</string>
   <string name="not_in_range">Не в діапазоні</string>
@@ -26,6 +27,7 @@
   <!-- Editor -->
   <string name="save">Зберегти</string>
   <!-- File Picker -->
+  <string name="select_question">Вибрати %s?</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">ºC</string>
@@ -44,6 +46,7 @@
   <string name="other">Інше</string>
   <!-- Menus -->
   <string name="device">Пристрій</string>
+  <string name="memory">Пам’ять</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Voltage</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -73,6 +76,7 @@
   <string name="refresh">Оновити</string>
   <string name="reset">Скинути</string>
   <string name="restore">Відновити</string>
+  <string name="deep_sleep">Глибокий сон</string>
   <string name="uptime">Час роботи</string>
   <string name="unused_frequencies">Невикористовувані частоти</string>
   <!-- Device -->
@@ -322,24 +326,39 @@
   <string name="slide_down">Зрушення вниз</string>
   <string name="slide_left">Зрушення вліво</string>
   <string name="slide_right">Зрушення вправо</string>
+  <string name="timeout">Час очікування</string>
   <!-- Sound -->
+  <string name="sound_control">Управління звуком</string>
   <!-- Battery -->
   <string name="level">Рівень</string>
+  <string name="voltage">Напруга</string>
   <!-- LED -->
+  <string name="fade">Затухання</string>
+  <string name="intensity">Інтенсивність</string>
   <string name="speed">Швидкість</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутрішня пам’ять</string>
   <string name="external_storage">Зовнішній накопичувач</string>
   <string name="scheduler">Планувальник</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">Повне сканування</string>
+  <string name="pages_shared">Сторінки якими поділились</string>
+  <string name="pages_sharing">Сторінки якими діляться</string>
+  <string name="pages_unshared">Сторінки якими не поділились</string>
+  <string name="pages_volatile">Непоєднувані сторінки</string>
   <!-- Low Memory Killer -->
+  <string name="visible_app">Видимі додатки</string>
+  <string name="secondary_server">Вторинний сервер</string>
+  <string name="hidden_app">Приховані додатки</string>
   <string name="light">Легкий</string>
   <string name="medium">Середній</string>
   <string name="very_aggressive">Дуже агресивний</string>
   <!-- Virtual Memory -->
   <!-- Entropy -->
   <!-- Misc -->
+  <string name="userspace">Простір користувача</string>
   <string name="network">Мережа</string>
+  <string name="hostname">Ім\'я хоста</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
@@ -347,14 +366,23 @@
   <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
   <!-- Custom Controls -->
+  <string name="welcome">Ласкаво просимо</string>
+  <string name="example">Приклади</string>
+  <string name="create">Створити</string>
+  <string name="import_item">Імпорт</string>
   <string name="control_switch">Перемикач</string>
+  <string name="title">Заголовок</string>
   <string name="description">Опис</string>
+  <string name="applying">Застосування</string>
   <string name="generic_value">Значення</string>
   <string name="test">Перевірка</string>
   <string name="edit">Редагувати</string>
+  <string name="export">Експорт</string>
   <string name="delete">Вилучити</string>
   <string name="sure_question">Ви впевнені?</string>
   <string name="name">Назва</string>
+  <string name="already_exists">%s вже існує!</string>
+  <string name="name_empty">Ім\'я порожнє!</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="check_md5">Перевірка md5</string>
@@ -365,11 +393,14 @@
   <string name="restoring">Відновлення в процесі</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="item_count">%s елемент</string>
+  <string name="items_count">%s елементів</string>
   <string name="search">Пошук</string>
   <string name="key">Ключ</string>
   <string name="value">Значення</string>
   <!-- Profile -->
   <string name="apply_question">Застосувати %s?</string>
+  <string name="details">Подробиці</string>
   <string name="wipe_data">Очистити Data</string>
   <string name="wipe_cache">Очистити Cache</string>
   <string name="flash_zip">Прошити zip</string>
@@ -377,11 +408,20 @@
   <string name="press_again_to_apply">Натисніть %s знову, щоб застосувати.</string>
   <string name="applied">Застосовано</string>
   <string name="profile_select">Виберіть профіль</string>
+  <string name="applying_profile">Застосування %s!</string>
+  <string name="new_mode">Новий</string>
+  <string name="current_settings">Поточні налаштування</string>
+  <string name="select_all">Обрати все</string>
+  <string name="nothing_selected">Нічого не обрано</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емуляція Init.d</string>
+  <string name="exceute_question">Виконати %s?</string>
   <string name="executing">Виконання</string>
   <string name="result">Результат</string>
   <!-- On Boot -->
+  <string name="delete_question">Видалити %s?</string>
+  <string name="arguments">Аргументи: %s</string>
+  <string name="disable_question">Вимкнути %s?</string>
   <!-- About -->
   <!-- Contributors -->
   <!-- FAQ -->
@@ -391,6 +431,7 @@
   <string name="twenty_sec">20 секунд</string>
   <string name="fifty_sec">50 секунд</string>
   <string name="nothing_apply">Нічого не знайдено для застосування!</string>
+  <string name="hide">Приховати</string>
   <string name="debugging">Налагодження</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопіювати logcat в /sdcard/logcat.txt</string>
@@ -401,6 +442,7 @@
   <string name="new_password">Новий пароль</string>
   <string name="confirm_new_password">Підтвердіть новий пароль</string>
   <string name="old_password_wrong">Старий пароль невірний</string>
+  <string name="password_empty">Пароль порожній</string>
   <string name="set_password_first">Спочатку встановіть пароль</string>
   <string name="sections">Розділи</string>
 </resources>
