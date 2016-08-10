@@ -85,7 +85,12 @@ public class Vibration {
     }
 
     public static int get() {
-        return Utils.strToInt(Utils.readFile(FILE).replace("%", ""));
+        if (FILE != null) {
+            return Utils.strToInt(Utils.readFile(FILE).replace("%", ""));
+        }
+        supported();
+        if (FILE == null) return 0;
+        return get();
     }
 
     public static boolean supported() {
@@ -111,12 +116,12 @@ public class Vibration {
         private String mMinFile;
         private String mMaxFile;
 
-        public MinMax(int min, int max) {
+        private MinMax(int min, int max) {
             mMin = min;
             mMax = max;
         }
 
-        public MinMax(String minfile, String maxfile, int min, int max) {
+        private MinMax(String minfile, String maxfile, int min, int max) {
             mMinFile = minfile;
             mMaxFile = maxfile;
             mMin = min;

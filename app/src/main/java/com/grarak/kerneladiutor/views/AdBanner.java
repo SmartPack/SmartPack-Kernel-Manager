@@ -117,7 +117,11 @@ public class AdBanner extends LinearLayout {
         });
 
         if (!mLoaded) {
-            adView.loadAd(new AdRequest.Builder().build());
+            try {
+                adView.loadAd(new AdRequest.Builder().build());
+            } catch (Exception ignored) {
+                loadGHAd();
+            }
         }
 
         findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
