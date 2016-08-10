@@ -88,7 +88,7 @@ public class LMK {
 
     public static boolean supported() {
         try {
-            return getMinFrees().size() > 0;
+            return getMinFrees().size() > 1;
         } catch (NullPointerException ignored) {
             return false;
         }
