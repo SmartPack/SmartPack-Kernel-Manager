@@ -30,8 +30,8 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class AdrenoIdler {
 
-    private static final String ADRENO_IDLER_PARAMETERS = "/sys/module/adreno_idler/parameters/";
-    private static final String ADRENO_IDLER_ACTIVATE = ADRENO_IDLER_PARAMETERS + "adreno_idler_active";
+    private static final String ADRENO_IDLER_PARAMETERS = "/sys/module/adreno_idler/parameters";
+    private static final String ADRENO_IDLER_ACTIVATE = ADRENO_IDLER_PARAMETERS + "/adreno_idler_active";
     private static final String ADRENO_IDLER_DOWNDIFFERENTIAL = ADRENO_IDLER_PARAMETERS + "/adreno_idler_downdifferential";
     private static final String ADRENO_IDLER_IDLEWAIT = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idlewait";
     private static final String ADRENO_IDLER_IDLEWORKLOAD = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idleworkload";
