@@ -202,7 +202,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 protected List<RecyclerViewItem> doInBackground(Void... params) {
                     if (mDelay && needDelay()) {
                         try {
-                            Thread.sleep(250);
+                            Thread.sleep(200);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -242,9 +242,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (showViewPager()) {
             mRecyclerView.addOnScrollListener(mScroller);
             setAppBarLayoutAlpha(0);
-            if (showTopFab()) {
-                mTopFab.show();
-            }
         } else {
             mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), isForeground() ? 0 : mToolBar.getHeight(),
                     mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
@@ -254,10 +251,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mViewPagerParent.requestLayout();
             setAppBarLayoutAlpha(255);
         }
-        if (showBottomFab()) {
-            mBottomFab.show();
-        }
-        mScroller.onScrolled(mRecyclerView, 0, 0);
     }
 
     protected void init() {
@@ -325,6 +318,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
                 mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
         mViewPagerParent.requestLayout();
+        mViewPagerParent.setVisibility(View.INVISIBLE);
     }
 
     protected void removeItem(RecyclerViewItem recyclerViewItem) {
@@ -490,7 +484,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 if (isAdded()) {
                     mProgress.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.INVISIBLE);
-                    mViewPagerParent.setVisibility(View.INVISIBLE);
                     if (showTopFab()) {
                         mTopFab.hide();
                     }
@@ -512,6 +505,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (showBottomFab()) {
             mBottomFab.show();
         }
+        mScroller.onScrolled(mRecyclerView, 0, 0);
     }
 
     protected boolean isForeground() {
