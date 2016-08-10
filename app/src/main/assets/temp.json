@@ -5,6 +5,11 @@
     "cpu-offset": 1
   },
   {
+    "board": "baytrail",
+    "cpu": "/sys/class/thermal/thermal_zone1/temp",
+    "cpu-offset": 1000
+  },
+  {
     "board": "msm8226",
     "cpu": "/sys/class/thermal/thermal_zone0/temp",
     "gpu": "/sys/class/thermal/thermal_zone2/temp",
@@ -58,7 +63,7 @@
   },
   {
     "board": "msm8996",
-    "cpu": "/sys/class/thermal/thermal_zone7/temp",
+    "cpu": "/sys/class/thermal/thermal_zone4/temp",
     "gpu": "/sys/class/thermal/thermal_zone15/temp",
     "cpu-offset": 10,
     "gpu-offset": 10
