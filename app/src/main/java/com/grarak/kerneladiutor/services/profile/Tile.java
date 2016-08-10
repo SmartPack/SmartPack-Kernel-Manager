@@ -52,11 +52,13 @@ public class Tile extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ACTION_TOGGLE_STATE.equals(intent.getAction())) {
             String[] commands = intent.getStringArrayExtra(COMMANDS);
-            RootUtils.SU su = new RootUtils.SU(true, TAG);
-            for (String command : commands) {
-                su.runCommand(command);
+            if (commands != null) {
+                RootUtils.SU su = new RootUtils.SU(true, TAG);
+                for (String command : commands) {
+                    su.runCommand(command);
+                }
+                su.close();
             }
-            su.close();
         }
     }
 
