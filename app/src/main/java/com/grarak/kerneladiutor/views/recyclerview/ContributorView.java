@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.other.Contributors;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -55,7 +56,7 @@ public class ContributorView extends RecyclerViewItem {
         if (Utils.DARK_THEME) {
             name.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
         }
-        Utils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
+        ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
         name.setText(mContributor.getLogin());
         contributions.setText(view.getResources().getString(R.string.commits, mContributor.getContributions()));
     }

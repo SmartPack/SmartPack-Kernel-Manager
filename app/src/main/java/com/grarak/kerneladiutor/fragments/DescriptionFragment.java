@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 01.05.16.
@@ -57,6 +58,14 @@ public class DescriptionFragment extends BaseFragment {
 
         mTitleView = (TextView) rootView.findViewById(R.id.title);
         mSummaryView = (TextView) rootView.findViewById(R.id.summary);
+
+        if (Utils.isTv(getActivity())) {
+            mSummaryView.setFocusable(true);
+        } else {
+            mTitleView.setTextIsSelectable(true);
+            mSummaryView.setTextIsSelectable(true);
+        }
+
         mSummaryView.setSelected(true);
         mSummaryView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -80,6 +89,7 @@ public class DescriptionFragment extends BaseFragment {
     private void refresh() {
         if (mTitleView != null) {
             if (mTitle != null) {
+                mTitleView.setFocusable(false);
                 mTitleView.setText(mTitle);
                 mTitleView.setVisibility(View.VISIBLE);
             } else {

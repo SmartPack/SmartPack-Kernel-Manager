@@ -21,7 +21,6 @@ package com.grarak.kerneladiutor.views.recyclerview.customcontrols;
 
 import android.app.Activity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,7 +38,8 @@ public class CodeView extends RecyclerViewItem {
     private TextView mSummaryView;
     private TextView mRequiredText;
     private TextView mCodeView;
-    private AppCompatButton mTestButtonView;
+    private View mTestTextView;
+    private View mTestButtonView;
 
     private CharSequence mTitle;
     private CharSequence mSummary;
@@ -67,7 +67,8 @@ public class CodeView extends RecyclerViewItem {
         mSummaryView = (TextView) view.findViewById(R.id.summary);
         mRequiredText = (TextView) view.findViewById(R.id.required_text);
         mCodeView = (TextView) view.findViewById(R.id.code);
-        mTestButtonView = (AppCompatButton) view.findViewById(R.id.test_button);
+        mTestTextView = view.findViewById(R.id.test_text);
+        mTestButtonView = view.findViewById(R.id.test_button);
         mOutputParent = view.findViewById(R.id.output_parent);
         TextView outputTitle = (TextView) view.findViewById(R.id.output_title);
 
@@ -100,6 +101,8 @@ public class CodeView extends RecyclerViewItem {
                                 progress.setVisibility(View.GONE);
                                 outputTextView.setVisibility(View.VISIBLE);
                                 outputTextView.setText(mOutput);
+                                mTestTextView.setVisibility(View.GONE);
+                                mTestButtonView.setVisibility(View.GONE);
                                 mScriptThread = null;
                                 if (mOnTestListener != null) {
                                     mOnTestListener.onTestResult(CodeView.this, mOutput);
@@ -182,8 +185,9 @@ public class CodeView extends RecyclerViewItem {
             mCodeView.setText(mCode);
         }
 
-        if (mTestButtonView != null) {
-            mTestButtonView.setVisibility(mTesting ? View.VISIBLE : View.INVISIBLE);
+        if (mTestButtonView != null && mTestTextView != null) {
+            mTestTextView.setVisibility(mTesting && mOutput == null ? View.VISIBLE : View.GONE);
+            mTestButtonView.setVisibility(mTesting && mOutput == null ? View.VISIBLE : View.GONE);
         }
 
         if (mOutput == null && mOutputParent != null) {

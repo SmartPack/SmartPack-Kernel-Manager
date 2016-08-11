@@ -16,9 +16,9 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textIsSelectable="true"
             android:textSize="20sp" />
 
         <TextView
@@ -29,7 +29,6 @@
             android:gravity="center"
             android:linksClickable="true"
             android:textColor="@color/white"
-            android:textIsSelectable="true"
             android:textSize="16sp" />
 
     </LinearLayout>

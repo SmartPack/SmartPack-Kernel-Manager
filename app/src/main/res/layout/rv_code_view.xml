@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
     android:padding="10dp">
 
@@ -40,48 +41,51 @@
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="2dp" />
 
-        <LinearLayout
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:scrollbarSize="3dp"
+            android:scrollbars="horizontal">
+
+            <TextView
+                android:id="@+id/code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:textSize="12sp" />
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/test_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:gravity="center_horizontal"
+            android:text="@string/hit_test"
+            android:textSize="12sp" />
 
-            <HorizontalScrollView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_weight="1"
-                android:scrollbarSize="3dp"
-                android:scrollbars="horizontal">
-
-                <TextView
-                    android:id="@+id/code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-thin"
-                    android:textSize="12sp" />
-
-            </HorizontalScrollView>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/test_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="bottom"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/test"
-                android:textSize="13sp" />
-
-        </LinearLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/test_button"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:focusable="true"
+            android:text="@string/test"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:id="@+id/output_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -89,7 +93,7 @@
                 android:id="@+id/output_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/output"
                 android:textColor="@color/black" />
@@ -97,7 +101,7 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbarSize="3dp"
+                android:scrollbarSize="2dp"
                 android:scrollbars="horizontal">
 
                 <TextView
@@ -111,8 +115,8 @@
 
             <ProgressBar
                 android:id="@+id/progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
         </LinearLayout>
 

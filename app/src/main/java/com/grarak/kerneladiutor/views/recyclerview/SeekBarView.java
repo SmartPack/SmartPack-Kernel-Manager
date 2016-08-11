@@ -66,7 +66,7 @@ public class SeekBarView extends RecyclerViewItem {
     }
 
     @Override
-    public void onCreateView(View view) {
+    public void onCreateView(final View view) {
         mTitle = (TextView) view.findViewById(R.id.title);
         mSummary = (TextView) view.findViewById(R.id.summary);
         mValue = (TextView) view.findViewById(R.id.value);
@@ -119,6 +119,7 @@ public class SeekBarView extends RecyclerViewItem {
                 }
             }
         });
+        mSeekBar.setFocusable(false);
 
         if (Utils.DARK_THEME) {
             mTitle.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));

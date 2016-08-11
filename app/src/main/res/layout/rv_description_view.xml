@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
     android:padding="10dp">
 
@@ -30,13 +31,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
+                android:focusable="false"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/summary"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:focusable="false" />
 
         </LinearLayout>
 

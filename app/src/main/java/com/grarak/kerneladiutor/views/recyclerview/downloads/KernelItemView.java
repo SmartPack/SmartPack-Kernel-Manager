@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -53,7 +54,7 @@ public class KernelItemView extends RecyclerViewItem {
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView summary = (TextView) view.findViewById(R.id.summary);
 
-        Utils.loadImagefromUrl(mKernelContent.getLogo(), icon, 300, 300);
+        ViewUtils.loadImagefromUrl(mKernelContent.getLogo(), icon, 300, 300);
 
         title.setText(Utils.htmlFrom(mKernelContent.getName()).toString());
         summary.setText(Utils.htmlFrom(mKernelContent.getShortDescription()));

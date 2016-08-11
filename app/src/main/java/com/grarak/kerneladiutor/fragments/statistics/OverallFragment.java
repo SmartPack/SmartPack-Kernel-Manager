@@ -381,6 +381,7 @@ public class OverallFragment extends RecyclerViewFragment {
                         ViewGroup.LayoutParams.MATCH_PARENT);
                 params.weight = 1;
                 subViews[i].setLayoutParams(params);
+                subViews[i].setFocusable(false);
             }
 
             for (int i = 0; i < cpus; i++) {

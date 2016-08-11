@@ -62,6 +62,23 @@ public class DescriptionView extends RecyclerViewItem {
             mTitleView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
         }
 
+        mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mRootView.requestFocus();
+                }
+            }
+        });
+        mSummaryView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mRootView.requestFocus();
+                }
+            }
+        });
+
         super.onCreateView(view);
     }
 
@@ -108,14 +125,14 @@ public class DescriptionView extends RecyclerViewItem {
             } else {
                 mTitleView.setVisibility(View.GONE);
             }
-            mTitleView.setTextIsSelectable(mTextIsSelectable);
+            mTitleView.setTextIsSelectable(mTextIsSelectable && !Utils.isTv(mTitleView.getContext()));
         }
         if (mSummaryView != null && mSummary != null) {
             mSummaryView.setText(mSummary);
             if (mLinkMovementMethod != null) {
                 mSummaryView.setMovementMethod(mLinkMovementMethod);
             }
-            mSummaryView.setTextIsSelectable(mTextIsSelectable);
+            mSummaryView.setTextIsSelectable(mTextIsSelectable && !Utils.isTv(mSummaryView.getContext()));
         }
         if (mRootView != null && getOnItemClickListener() != null && mTitleView != null
                 && mSummaryView != null) {

@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
     android:foreground="?attr/selectableItemBackground">
 
     <LinearLayout
@@ -36,7 +37,8 @@
                 android:id="@+id/switcher"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|end" />
+                android:layout_gravity="center_vertical|end"
+                android:focusable="false" />
 
         </LinearLayout>
 

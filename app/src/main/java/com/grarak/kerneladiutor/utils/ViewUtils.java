@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,9 +33,15 @@ import android.support.v7.widget.AppCompatEditText;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by willi on 16.04.16.
@@ -114,7 +121,7 @@ public class ViewUtils {
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (text != null) {
-            editText.setText(text);
+            editText.append(text);
         }
         if (hint != null) {
             editText.setHint(hint);
@@ -223,6 +230,41 @@ public class ViewUtils {
             builder.setOnDismissListener(dismissListener);
         }
         return builder;
+    }
+
+    private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();
+
+    public static void loadImagefromUrl(String url, ImageView imageView, int maxWidth, int maxHeight) {
+        CustomTarget target = new CustomTarget(imageView, maxWidth, maxHeight);
+        mProtectedFromGarbageCollectorTargets.add(target);
+        Picasso.with(imageView.getContext()).load(url).into(target);
+    }
+
+    private static class CustomTarget implements Target {
+        private ImageView mImageView;
+        private int mMaxWidth;
+        private int mMaxHeight;
+
+        private CustomTarget(ImageView imageView, int maxWidth, int maxHeight) {
+            mImageView = imageView;
+            mMaxWidth = maxWidth;
+            mMaxHeight = maxHeight;
+        }
+
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            mImageView.setImageBitmap(scaleDownBitmap(bitmap, mMaxWidth, mMaxHeight));
+            mProtectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+            mProtectedFromGarbageCollectorTargets.remove(this);
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+        }
     }
 
     public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {

@@ -661,6 +661,7 @@
     <string name="generic_value_summary">Current value of the editor. Can be basically anything.</string>
     <string name="generic_apply_summary">Editor will return whatever was entered.</string>
     <string name="required">required</string>
+    <string name="hit_test">You have to hit test first!</string>
     <string name="test">Test</string>
     <string name="output">Output</string>
     <string name="edit">Edit</string>
