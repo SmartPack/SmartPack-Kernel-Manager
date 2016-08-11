@@ -48,7 +48,7 @@ public abstract class RecyclerViewItem {
     @LayoutRes
     public abstract int getLayoutRes();
 
-    void onCreateHolder(ViewGroup parent) {
+    void onCreateHolder(ViewGroup parent, View view) {
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

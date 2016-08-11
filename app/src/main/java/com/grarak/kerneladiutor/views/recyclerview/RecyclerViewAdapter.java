@@ -70,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (viewGroup != null) {
             viewGroup.removeView(view);
         }
-        mItems.get(position).onCreateHolder(parent);
+        mItems.get(position).onCreateHolder(parent, view);
         if (position == 0) {
             mFirstItem = view;
         }

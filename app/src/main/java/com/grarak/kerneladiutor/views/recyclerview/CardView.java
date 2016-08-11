@@ -75,12 +75,17 @@ public class CardView extends RecyclerViewItem {
     }
 
     @Override
-    public void onCreateView(View view) {
+    void onCreateHolder(ViewGroup parent, View view) {
+        super.onCreateHolder(parent, view);
         mRootView = (android.support.v7.widget.CardView) view;
         mTitle = (TextView) view.findViewById(R.id.card_title);
         mLayout = (LinearLayout) view.findViewById(R.id.card_layout);
         mMenuButton = (ImageButton) view.findViewById(R.id.menu_button);
+        setupLayout();
+    }
 
+    @Override
+    public void onCreateView(View view) {
         mMenuButton.setRotation(90);
         mMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +102,6 @@ public class CardView extends RecyclerViewItem {
         mMenuButton.setImageDrawable(drawable);
 
         super.onCreateView(view);
-        setupLayout();
     }
 
     public void setTitle(CharSequence title) {
@@ -113,11 +117,7 @@ public class CardView extends RecyclerViewItem {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (!mViews.containsKey(item)) {
-                    mViews.put(item, LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
-                            null, false));
-                }
-                setupLayout();
+                addView(item);
             }
         });
     }
@@ -149,21 +149,27 @@ public class CardView extends RecyclerViewItem {
         if (mLayout != null) {
             mLayout.removeAllViews();
             for (final RecyclerViewItem item : mItems) {
-                View view;
-                if (mViews.containsKey(item)) {
-                    view = mViews.get(item);
-                } else {
-                    mViews.put(item, view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
-                            null, false));
-                }
-                ViewGroup viewGroup = (ViewGroup) view.getParent();
-                if (viewGroup != null) {
-                    viewGroup.removeView(view);
-                }
-                item.setOnViewChangeListener(getOnViewChangedListener());
-                item.onCreateView(view);
-                mLayout.addView(view);
+                addView(item);
             }
+        }
+    }
+
+    private void addView(RecyclerViewItem item) {
+        View view;
+        if (mViews.containsKey(item)) {
+            view = mViews.get(item);
+        } else {
+            mViews.put(item, view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
+                    null, false));
+        }
+        ViewGroup viewGroup = (ViewGroup) view.getParent();
+        if (viewGroup != null) {
+            viewGroup.removeView(view);
+        }
+        item.setOnViewChangeListener(getOnViewChangedListener());
+        item.onCreateView(view);
+        if (mLayout != null) {
+            mLayout.addView(view);
         }
     }
 
