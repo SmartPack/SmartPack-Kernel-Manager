@@ -395,7 +395,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s елемент</string>
   <string name="items_count">%s елементів</string>
-  <string name="search">Пошук</string>
   <string name="key">Ключ</string>
   <string name="value">Значення</string>
   <!-- Profile -->

@@ -505,7 +505,6 @@
   <string name="fota_partition">Partição de FOTA</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
-  <string name="search">Pesquisa</string>
   <string name="key">Chave</string>
   <string name="value">Valor</string>
   <string name="key_empty">Chave não pode estar vazia!</string>

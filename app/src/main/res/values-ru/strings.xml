@@ -633,7 +633,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s элемент</string>
   <string name="items_count">Элементы: %s</string>
-  <string name="search">Поиск</string>
   <string name="key">Ключ</string>
   <string name="value">Значение</string>
   <string name="key_empty">Поле не может быть пустым!</string>

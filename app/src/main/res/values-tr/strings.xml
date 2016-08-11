@@ -634,7 +634,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s öğe</string>
   <string name="items_count">%s öğeler</string>
-  <string name="search">Arama</string>
   <string name="key">Anahtar</string>
   <string name="value">Değer</string>
   <string name="key_empty">Anahtar boş olamaz!</string>

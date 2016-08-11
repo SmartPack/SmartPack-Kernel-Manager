@@ -25,6 +25,7 @@
   <string name="ad_here">Sinun mainoksesi voisi olla tässä</string>
   <string name="remove_ad">Poista mainokset</string>
   <string name="warning">Varoitus</string>
+  <string name="open_ad_anyway">Avaa mainos jokatapauksessa</string>
   <string name="apply_on_boot">Toteuta käynnistyessä</string>
   <string name="apply_on_boot_text">Otetaan asetukset käyttöön %d sekunnissa.</string>
   <string name="apply_on_boot_complete">Asetukset otettiin käyttöön.</string>
@@ -48,6 +49,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Tilastot</string>
@@ -651,7 +653,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s kohdetta</string>
   <string name="items_count">%s kohdetta</string>
-  <string name="search">Etsi</string>
   <string name="key">Avainarvo</string>
   <string name="value">Arvo</string>
   <string name="key_empty">Avainarvo ei voi olla tyhjä!</string>
@@ -677,6 +678,10 @@
   <string name="applying_profile">Otetaan käyttöön %s!</string>
   <string name="no_profiles">Profiileja ei löytynyt! Sinun täytyy luoda ne ensin.</string>
   <string name="sections_disabled">Kaikki osiot poistettu käytöstä! Ei profiileja sinulle.</string>
+  <string name="new_mode">Uusi</string>
+  <string name="current_settings">Nykyiset asetukset</string>
+  <string name="select_all">Valitse kaikki</string>
+  <string name="nothing_selected">Mitään ei ole valittu</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emuloi Init.d</string>
   <string name="emulate_initd_summary">Jos laitteesi ei tue Init.d:tä vakiona, voit emuloida sen toimintaa aktivoimalla tämän.</string>
@@ -712,6 +717,7 @@
   <string name="fahrenheit_summary">Käytä fahrenheit-asteita lämpötilojen mittaamiseen.</string>
   <string name="force_english">Pakota englanti näyttökieleksi</string>
   <string name="dark_theme">Tumma teema</string>
+  <string name="five_sec">5 sekuntia</string>
   <string name="ten_sec">10 sekuntia</string>
   <string name="twenty_sec">20 sekuntia</string>
   <string name="fifty_sec">50 sekuntia</string>
@@ -722,6 +728,7 @@
   <string name="apply_on_boot_hide_summary">Piilota ilmoitus käynnistyksenjälkeisten toimien käyttöönotosta. Viive pysyy silti samana!</string>
   <string name="toast">Ponnahdusviestit</string>
   <string name="apply_on_boot_toast_summary">Näytä ponnahdusilmoitus kun asetus otetaan käyttöön.</string>
+  <string name="confirmation_notification">Vahvistusilmoitus</string>
   <string name="script">Komentosarja</string>
   <string name="apply_on_boot_script_summary">Käytä komentoskriptiä asetuksien käyttöönottoon. Aktivoi tämä ainoastaan jos sinulla on ongelmia \"toteuta käynnistyessä\" kanssa. Jos ongelma ei vielä tälläkään korjaannu, tarkista ettei mikään toinen ohjelma ole ristiriidassa Kernel Adiutorin kanssa.</string>
   <string name="debugging">Vianetsintä</string>

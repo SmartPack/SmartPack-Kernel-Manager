@@ -23,6 +23,11 @@
   <string name="donate_summary">本功能僅供有安裝捐贈版的應用程式使用。不過別擔心，因為本應用程式是一個開放原始碼的軟體，您可以輕易的組建它並移除這個檢查。但是，無論如何我希望您支援開發人員。感謝您使用 Kernel Adiutor！一旦您購買了捐贈版的應用程式，您必須重新啟動 Kernel Adiutor 以開啟所有功能。</string>
   <string name="donate_nope">我不會愛上這種騙局！</string>
   <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
+  <string name="ad_here">Your advertisement could be here</string>
+  <string name="remove_ad">Remove ad</string>
+  <string name="warning">Warning</string>
+  <string name="gh_ad">This is a non commercial ad! Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users).</string>
+  <string name="open_ad_anyway">Open ad anyway</string>
   <string name="apply_on_boot">開機後自動套用</string>
   <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
   <string name="apply_on_boot_complete">設定值套用 成功！</string>
@@ -46,6 +51,7 @@
   <string name="mah">毫安培(mAh)</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">統計資訊</string>
@@ -55,6 +61,7 @@
   <!-- Menus -->
   <string name="overall">概觀</string>
   <string name="device">裝置</string>
+  <string name="memory">Memory</string>
   <string name="inputs">輸入</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 電壓</string>
@@ -115,7 +122,9 @@
   <string name="version">版本</string>
   <string name="handlers">管理者</string>
   <!-- CPU -->
+  <string name="cores_singular">%d core</string>
   <string name="cores">%d 個核心</string>
+  <string name="no_offline_core">You can\'t offline this core!</string>
   <string name="cpu_max_freq">CPU 最大頻率</string>
   <string name="cpu_max_freq_summary">設定 CPU 可提升的最大頻率</string>
   <string name="cpu_min_freq">CPU 最小頻率</string>
@@ -125,6 +134,7 @@
   <string name="cpu_governor">CPU 管理模式</string>
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
+  <string name="governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
   <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
   <string name="tunables_error">%s 不可調整</string>
   <string name="mc_power_saving">多核心省電</string>
@@ -456,7 +466,6 @@
   <string name="restoring">還原中</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
-  <string name="search">搜尋</string>
   <string name="value">值</string>
   <!-- Profile -->
   <string name="wipe_data">Wipe Data</string>

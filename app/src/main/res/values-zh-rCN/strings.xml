@@ -542,7 +542,6 @@
   <!-- Backup -->
   <string name="boot_partition">启动分区</string>
   <!-- Build prop Editor -->
-  <string name="search">搜索</string>
   <string name="key">键</string>
   <string name="value">值</string>
   <!-- Profile -->

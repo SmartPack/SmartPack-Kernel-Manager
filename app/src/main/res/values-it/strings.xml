@@ -647,7 +647,6 @@
   <string name="fota_partition">Partizione Fota</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
-  <string name="search">Cerca</string>
   <string name="key">Chiave</string>
   <string name="value">Valore</string>
   <string name="key_empty">Il campo non può essere vuoto!</string>

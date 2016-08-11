@@ -232,11 +232,14 @@
   <string name="mako_hotplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez franciscofranco.</string>
   <string name="cpus_on_touch">Ilość cpu przy wciśnięciu</string>
   <string name="cpus_on_touch_summary">Liczba włączonych CPU podczas dotykania ekranu lub wciśnięcia przycisków.</string>
+  <string name="cpu_freq_unplug_limit">CPU Frequency Unplug Limit</string>
   <string name="first_level">Pierwszy poziom</string>
   <string name="first_level_summary">Próg po którego przekroczeniu wszystkie CPU zostaną włączone.</string>
-  <string name="high_load_counter">Wysokie obciążenie licznika</string>
+  <string name="high_load_counter">High Load Counter</string>
   <string name="load_threshold">Próg obciążenia</string>
   <string name="load_threshold_summary">Próg do włączenia wszystkich procesorów.</string>
+  <string name="max_load_counter">Max Load Counter</string>
+  <string name="min_time_cpu_online">Minimalna czas, gdy rdzeń jest aktywny</string>
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Hotplug \"Bricked\"</string>
@@ -257,6 +260,8 @@
   <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez Alucard.</string>
   <string name="sampling_rate">Częstotliwość próbkowania</string>
+  <string name="cpu_down_rate">CPU Down Rate</string>
+  <string name="cpu_up_rate">CPU Up Rate</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Alternatywa dla hotpluga Qualcomm\'a. Rozwijany przez varunchitre15.</string>
   <string name="min_cpu_online_screen_off">Minimalna ilość CPU przy wyłączonym ekranie</string>
@@ -269,6 +274,7 @@
   <string name="zen_decision_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez bbedward.</string>
   <string name="wake_wait_time">Czas oczekiwania na wybudzenie</string>
   <string name="wake_wait_time_summary">Z jakim opóźnieniem włączyć pozostałe CPU.</string>
+  <string name="bat_threshold_ignore">Próg baterii do ignorowania obciążenia</string>
   <string name="bat_threshold_ignore_summary">Nie włączaj rdzeni jeśli % baterii jest poniżej wybranej wartości.</string>
   <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez mrg666.</string>
@@ -636,7 +642,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s element</string>
   <string name="items_count">%s elementów</string>
-  <string name="search">szukaj</string>
   <string name="key">Klucz</string>
   <string name="value">Wartość</string>
   <string name="key_empty">Klucz nie może być pusty!</string>
@@ -656,6 +661,8 @@
   <string name="profile_tasker">Profil Taskera</string>
   <string name="profile_tasker_summary">Jeśli chcesz zaplikować profil, w określonym momencie, np. uruchomieniu aplikacji, musisz skorzystać z aplikacji Tasker.</string>
   <string name="profile_tasker_toast">Pokaż dymek, gdy tasker aplikuje profil</string>
+  <string name="profile_tile">Kafelek profilu</string>
+  <string name="profile_tile_summary">Pokazuje kafelek w panelu szybkich ustawień, który pozwala na szybką zmianę profilu.</string>
   <string name="profile_select">Wybierz profil</string>
   <string name="applying_profile">Aplikowanie %s!</string>
   <string name="no_profiles">Nie znaleziono profilu! Musisz go najpierw utworzyć.</string>

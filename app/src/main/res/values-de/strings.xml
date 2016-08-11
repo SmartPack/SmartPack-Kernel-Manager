@@ -289,6 +289,7 @@
   <string name="busy_down_threshold_summary">Schwelle, wenn große CPUs deaktiviert werden sollen.</string>
   <string name="busy_up_threshold_summary">Schwelle, wenn große CPUs aktiviert werden sollen.</string>
   <string name="offline_delay">Offline Verzögerung</string>
+  <string name="offline_delay_summary">Zeit vor dem Ausschalten einer CPU.</string>
   <!--Thermal-->
   <string name="thermal_info">Verwenden sie nur einen thermischen Sensor für folgende Optionen. Die Verwendung von mehreren kann zu unerwartetem Verhalten führen.</string>
   <string name="thermald">Thermal</string>
@@ -332,6 +333,7 @@
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
   <!-- GPU -->
   <string name="frequencies">Frequenzen</string>
+  <string name="gpu_freq">GPU-Frequenz</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_2d_max_freq_summary">Maximale Taktfrequenz der 2D-GPU einstellen.</string>
   <string name="gpu_max_freq">Maximale GPU-Frequenz</string>
@@ -355,6 +357,7 @@
   <string name="workload">Auslastung</string>
   <string name="workload_summary">Adreno-Regler wird aktiver versuchen die Frequenz herunterzuregeln falls dieser Wert erhöht wird.</string>
   <!-- Screen -->
+  <string name="screen_color">Bildschirmfarbe</string>
   <string name="red">Rot</string>
   <string name="green">Grün</string>
   <string name="blue">Blau</string>
@@ -434,6 +437,8 @@
   <string name="camera_gesture">Kamera Geste</string>
   <string name="camera_gesture_summary">Standardkamera starten durch Zeichnen eines Kreises auf dem Bildschirm.</string>
   <string name="pocket_mode">Hosentaschen-Modus</string>
+  <string name="pocket_mode_summary">Wenn aktiviert, wird die Wake-Steuerung abgeschaltet, während sich das Gerät in einer Tasche befindet.</string>
+  <string name="timeout">Zeitüberschreitung</string>
   <string name="power_key_suspend">Power-Taste unterbrechen</string>
   <string name="power_key_suspend_summary">Diese Einstellung wird Wake-Steuerelemente deaktivieren, wenn der Bildschirm durch die Power-Taste ausgeschaltet wird.</string>
   <!-- Sound -->
@@ -444,6 +449,7 @@
   <string name="cam_microphone_gain">Camcorder-Mikrofon-Verstärkung</string>
   <string name="speaker_gain">Lautsprecher Steigerung</string>
   <string name="headphone_poweramp_gain">Kopfhörer PowerAmp Steigerung</string>
+  <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165-Erweiterung)</string>
   <string name="microphone_gain">Mikrofon Verstärkung</string>
   <string name="volume_gain">Lautstärke Verstärkung</string>
   <!-- Battery -->
@@ -455,7 +461,10 @@
   <string name="blx_summary">Maximale Kapazität die aufgeladen werden soll.</string>
   <string name="charge_rate">Ladegeschwindigkeit</string>
   <string name="charging_current">Ladestrom</string>
+  <string name="charging_current_summary">Ladestrom setzen. Achtung: Werden 1250mA überschritten, kann der Ladetreiber Schaden nehmen.</string>
   <!-- LED -->
+  <string name="fade_summary">Aktivieren für Ein-/Ausblenden, deaktivieren für Blinken.</string>
+  <string name="intensity">Intensität</string>
   <string name="speed">Geschwindigkeit</string>
   <string name="continuous_light">Dauerlicht</string>
   <!-- I/O Scheduler -->
@@ -468,7 +477,9 @@
   <string name="read_ahead">Read-Ahead</string>
   <string name="read_ahead_summary">Der Read-Ahead Wert für den Telefonspeicher.</string>
   <string name="rotational">Rotations-Speicher</string>
+  <string name="rotational_summary">Gerät als rotierenden Speicher behandeln.</string>
   <string name="iostats">I/O-Statistiken</string>
+  <string name="iostats_summary">Erhalte I/O-Statistiken für dieses Speichergerät. Deaktivieren lässt I/O-Monitoring-Apps nicht mehr korrekt funktionieren.</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <string name="foreground_app">Vordergrund-Anwendungen</string>
@@ -516,6 +527,10 @@
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
   <!-- Custom Controls -->
+  <string name="welcome">Willkommen</string>
+  <string name="example">Beispiele</string>
+  <string name="create">Erstellen</string>
+  <string name="import_item">Importien</string>
   <string name="test">Test</string>
   <string name="edit">Bearbeiten</string>
   <string name="delete">Löschen</string>
@@ -531,7 +546,6 @@
   <string name="restoring">Wird wiederhergestellt</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
-  <string name="search">Suchen</string>
   <string name="key">Taste</string>
   <string name="value">Wert</string>
   <!-- Profile -->

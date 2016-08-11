@@ -411,7 +411,6 @@
   <string name="restoring">복원 중입니다</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
-  <string name="search">검색</string>
   <string name="key">Key</string>
   <string name="value">값</string>
   <!-- Profile -->

@@ -658,7 +658,6 @@
   <!-- Build prop Editor -->
   <string name="item_count">%s elem</string>
   <string name="items_count">%s elem</string>
-  <string name="search">Keresés</string>
   <string name="key">Kulcs</string>
   <string name="value">Érték</string>
   <string name="key_empty">Kulcs nem lehet üres!</string>
