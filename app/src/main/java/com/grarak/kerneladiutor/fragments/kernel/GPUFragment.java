@@ -355,14 +355,16 @@ public class GPUFragment extends RecyclerViewFragment {
             int freq = GPUFreq.get2dCurFreq();
             float maxFreq = GPUFreq.get2dAvailableFreqs().get(GPUFreq.get2dAvailableFreqs().size() - 1);
             m2dCurFreq.setText((freq / 1000000) + getString(R.string.mhz));
-            m2dCurFreq.addPercentage(Math.round((float) freq / maxFreq * 100f));
+            float per = (float) freq / maxFreq * 100f;
+            m2dCurFreq.addPercentage(Math.round(per > 100 ? 100 : per < 0 ? 0 : per));
         }
 
         if (mCurFreq != null) {
             int freq = GPUFreq.getCurFreq();
             float maxFreq = GPUFreq.getAvailableFreqs().get(GPUFreq.getAvailableFreqs().size() - 1);
             mCurFreq.setText((freq / GPUFreq.getCurFreqOffset()) + getString(R.string.mhz));
-            mCurFreq.addPercentage(Math.round((float) freq / maxFreq * 100f));
+            float per = (float) freq / maxFreq * 100f;
+            mCurFreq.addPercentage(Math.round(per > 100 ? 100 : per < 0 ? 0 : per));
         }
     }
 }
