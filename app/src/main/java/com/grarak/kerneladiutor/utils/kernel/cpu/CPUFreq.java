@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.utils.kernel.cpu;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -39,7 +40,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -52,7 +52,7 @@ public class CPUFreq {
     private static final String AVAILABLE_FREQS = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_available_frequencies";
     public static final String TIME_STATE = "/sys/devices/system/cpu/cpufreq/stats/cpu%d/time_in_state";
     public static final String TIME_STATE_2 = "/sys/devices/system/cpu/cpu%d/cpufreq/stats/time_in_state";
-    public static final String OPP_TABLE = "/sys/devices/system/cpu/cpu%d/opp_table";
+    private static final String OPP_TABLE = "/sys/devices/system/cpu/cpu%d/opp_table";
 
     private static final String CPU_MAX_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq";
     private static final String CPU_MAX_FREQ_KT = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq_kt";
@@ -69,7 +69,7 @@ public class CPUFreq {
     private static int sCpuCount;
     private static int sBigCpu = -1;
     private static int sLITTLECpu = -1;
-    private static HashMap<Integer, List<Integer>> sFreqs = new HashMap<>();
+    private static SparseArray<List<Integer>> sFreqs = new SparseArray<>();
     private static String[] sGovernors;
 
     private static final String TAG = CPUFreq.class.getSimpleName();
@@ -119,7 +119,7 @@ public class CPUFreq {
         private int mMin;
         private int mMax;
 
-        public ApplyCpu(String path, String value, int min, int max) {
+        private ApplyCpu(String path, String value, int min, int max) {
             try {
                 JSONObject main = new JSONObject();
                 main.put("path", mPath = path);
@@ -338,7 +338,7 @@ public class CPUFreq {
     }
 
     public static List<Integer> getFreqs(int cpu) {
-        if (!sFreqs.containsKey(cpu)) {
+        if (sFreqs.indexOfKey(cpu) < 0) {
             if (Utils.existFile(Utils.strFormat(OPP_TABLE, cpu))
                     || Utils.existFile(Utils.strFormat(TIME_STATE, cpu))
                     || Utils.existFile(Utils.strFormat(TIME_STATE_2, cpu))) {
@@ -383,7 +383,7 @@ public class CPUFreq {
                 }
             }
         }
-        if (!sFreqs.containsKey(cpu)) {
+        if (sFreqs.indexOfKey(cpu) < 0) {
             return null;
         }
         return sFreqs.get(cpu);
@@ -563,7 +563,7 @@ public class CPUFreq {
 
         private long[] stats;
 
-        public Usage(String stats) {
+        private Usage(String stats) {
             if (stats == null) return;
 
             String[] values = stats.replace("  ", " ").split(" ");
@@ -582,7 +582,7 @@ public class CPUFreq {
             return l;
         }
 
-        public long getIdle() {
+        private long getIdle() {
             try {
                 return stats == null ? -1L : stats[3];
             } catch (ArrayIndexOutOfBoundsException e) {
