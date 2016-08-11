@@ -184,7 +184,7 @@ public class SettingsActivity extends BaseActivity {
                 case KEY_DARK_THEME:
                     getActivity().finish();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     return true;
                 case KEY_MATERIAL_ICON:

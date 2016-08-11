@@ -44,7 +44,7 @@ public class DashClock extends DashClockExtension {
 
         if (extensionData == null) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             extensionData = new ExtensionData()
                     .visible(true)
                     .icon(R.drawable.ic_launcher_preview)
