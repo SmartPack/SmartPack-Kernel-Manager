@@ -465,11 +465,11 @@ public class CPUFreq {
     }
 
     public static boolean isBigLITTLE() {
-        boolean bigLITTLE = getCpuCount() > 4;
-        if (!bigLITTLE && !is8996() || (Device.getBoard().startsWith("mt6") && !Device.getBoard()
-                .startsWith("mt6595"))) return false;
-
         if (sBigCpu == -1 || sLITTLECpu == -1) {
+            boolean bigLITTLE = getCpuCount() > 4;
+            if (!bigLITTLE && !is8996() || (Device.getBoard().startsWith("mt6") && !Device.getBoard()
+                    .startsWith("mt6595"))) return false;
+
             if (is8996()) {
                 sBigCpu = 2;
                 sLITTLECpu = 0;
@@ -477,7 +477,10 @@ public class CPUFreq {
                 List<Integer> cpu1Freqs = getFreqs(0);
                 List<Integer> cpu2Freqs = getFreqs(4);
                 if (cpu1Freqs != null && cpu2Freqs != null) {
-                    if (cpu1Freqs.size() > cpu2Freqs.size()) {
+                    int cpu1Max = cpu1Freqs.get(cpu1Freqs.size() - 1);
+                    int cpu2Max = cpu2Freqs.get(cpu2Freqs.size() - 1);
+                    if (cpu1Max > cpu2Max
+                            || (cpu1Max == cpu2Max && cpu1Freqs.size() > cpu2Freqs.size())) {
                         sBigCpu = 0;
                         sLITTLECpu = 4;
                     } else {
@@ -486,9 +489,12 @@ public class CPUFreq {
                     }
                 }
             }
+
+            sBigCpu = -2;
+            sLITTLECpu = -2;
         }
 
-        return sBigCpu != -1 && sLITTLECpu != -1;
+        return sBigCpu >= 0 && sLITTLECpu >= 0;
     }
 
     private static boolean is8996() {
