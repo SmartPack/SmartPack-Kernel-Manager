@@ -3,35 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@color/colorPrimary"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/found_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:textColor="@color/white"
-        android:textSize="13sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/search"
-        android:textColor="@color/white"
-        android:textIsSelectable="true"
-        android:textSize="16sp" />
-
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:inputType="text"
+        android:gravity="end"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="italic" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/key_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/key"
         android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="15sp"
+        android:theme="@style/Base.Widget.AppCompat.EditText.Custom" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/value_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/value"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:theme="@style/Base.Widget.AppCompat.EditText.Custom" />
 
 </LinearLayout>

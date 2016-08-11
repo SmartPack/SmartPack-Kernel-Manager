@@ -699,7 +699,6 @@
     <!-- Build prop Editor -->
     <string name="item_count">%s item</string>
     <string name="items_count">%s items</string>
-    <string name="search">Search</string>
     <string name="key">Key</string>
     <string name="value">Value</string>
     <string name="key_empty">Key can\'t be empty!</string>

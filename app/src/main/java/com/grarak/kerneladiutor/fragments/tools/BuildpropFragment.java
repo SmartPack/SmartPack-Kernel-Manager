@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -57,7 +56,8 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private LinkedHashMap<String, String> mProps;
-    private String mSearchText;
+    private String mKeyText;
+    private String mValueText;
 
     private SearchFragment mSearchFragment;
     private AlertDialog.Builder mItemOptionsDialog;
@@ -82,21 +82,36 @@ public class BuildpropFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(mSearchText, new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(mKeyText, mValueText,
+                new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                mSearchText = editable.toString();
-                reload(false);
-            }
-        }));
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        mKeyText = s.toString();
+                        reload(false);
+                    }
+                }, new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        mValueText = s.toString();
+                        reload(false);
+                    }
+                }));
 
         if (mItemOptionsDialog != null) {
             mItemOptionsDialog.show();
@@ -171,17 +186,23 @@ public class BuildpropFragment extends RecyclerViewFragment {
         for (int i = 0; i < mProps.size(); i++) {
             final String title = titles[i];
             final String value = mProps.values().toArray(new String[mProps.size()])[i];
-            if (mSearchText != null && !title.contains(mSearchText)) {
+            if ((mKeyText != null && !title.contains(mKeyText)
+                    || (mValueText != null && !value.contains(mValueText)))) {
                 continue;
             }
             DescriptionView descriptionView = new DescriptionView();
-            if (mSearchText != null && !mSearchText.isEmpty()) {
-                descriptionView.setTitle(Utils.htmlFrom(title.replace(mSearchText,
-                        "<b><font color=\"#ff4081\">" + mSearchText + "</font></b>")));
+            if (mKeyText != null && !mKeyText.isEmpty()) {
+                descriptionView.setTitle(Utils.htmlFrom(title.replace(mKeyText,
+                        "<b><font color=\"#ff4081\">" + mKeyText + "</font></b>")));
             } else {
                 descriptionView.setTitle(title);
             }
-            descriptionView.setSummary(value);
+            if (mValueText != null && !mValueText.isEmpty()) {
+                descriptionView.setSummary(Utils.htmlFrom(value.replace(mValueText,
+                        "<b><font color=\"#ff4081\">" + mValueText + "</font></b>")));
+            } else {
+                descriptionView.setSummary(value);
+            }
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
@@ -282,7 +303,6 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mSearchText = null;
         RootUtils.mount(false, "/system");
         if (mLoader != null) {
             mLoader.cancel(true);
@@ -291,17 +311,22 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     public static class SearchFragment extends BaseFragment {
 
-        public static SearchFragment newInstance(String text, TextWatcher textWatcher) {
+        public static SearchFragment newInstance(String keyText, String valueText, TextWatcher keyWatcher,
+                                                 TextWatcher valueWatcher) {
             SearchFragment fragment = new SearchFragment();
-            fragment.mText = text;
-            fragment.mTextWatcher = textWatcher;
+            fragment.mKeyText = keyText;
+            fragment.mValueText = valueText;
+            fragment.mKeyWatcher = keyWatcher;
+            fragment.mValueWatcher = valueWatcher;
             return fragment;
         }
 
         private TextView mItemsText;
         private int mItemsCount;
-        private String mText;
-        private TextWatcher mTextWatcher;
+        private String mKeyText;
+        private String mValueText;
+        private TextWatcher mKeyWatcher;
+        private TextWatcher mValueWatcher;
 
         @Nullable
         @Override
@@ -309,13 +334,17 @@ public class BuildpropFragment extends RecyclerViewFragment {
                                  @Nullable Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_buildprop_search, container, false);
 
-            AppCompatEditText editText = (AppCompatEditText) rootView.findViewById(R.id.edittext);
-            editText.addTextChangedListener(mTextWatcher);
-            editText.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
-                    R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+            AppCompatEditText keyEdit = (AppCompatEditText) rootView.findViewById(R.id.key_edittext);
+            AppCompatEditText valueEdit = (AppCompatEditText) rootView.findViewById(R.id.value_edittext);
 
-            if (mText != null) {
-                editText.append(mText);
+            keyEdit.addTextChangedListener(mKeyWatcher);
+            valueEdit.addTextChangedListener(mValueWatcher);
+
+            if (mKeyText != null) {
+                keyEdit.append(mKeyText);
+            }
+            if (mValueText != null) {
+                valueEdit.append(mValueText);
             }
 
             mItemsText = (TextView) rootView.findViewById(R.id.found_text);
