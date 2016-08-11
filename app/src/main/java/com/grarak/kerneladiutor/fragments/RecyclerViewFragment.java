@@ -468,8 +468,9 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
+
             if (mAppBarLayout == null || newState != 0 || mAppBarLayoutDistance == 0
-                    || mAppBarLayoutDistance == mAppBarLayout.getHeight()) {
+                    || (mAppBarLayoutDistance == mAppBarLayout.getHeight() && mScrollDistance != 0)) {
                 return;
             }
 
