@@ -409,7 +409,7 @@ public class CPUFreq {
         if (QcomBcl.supported()) {
             QcomBcl.online(online, category, context);
         }
-        if (CoreCtl.hasMinCpus() && getBigCpuRange().indexOf(cpu) != -1) {
+        if (CoreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
             CoreCtl.setMinCpus(online ? getBigCpuRange().size() : 0, cpu, category, context);
         }
         if (MSMPerformance.hasMaxCpus()) {
