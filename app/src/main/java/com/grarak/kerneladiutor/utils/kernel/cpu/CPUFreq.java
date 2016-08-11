@@ -413,8 +413,8 @@ public class CPUFreq {
             CoreCtl.setMinCpus(online ? getBigCpuRange().size() : 0, cpu, category, context);
         }
         if (MSMPerformance.hasMaxCpus()) {
-            MSMPerformance.setMaxCpus(online ? getLITTLECpuRange().size() : -1, online ?
-                    getBigCpuRange().size() : -1, category, context);
+            MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
+                    getLITTLECpuRange().size() : -1, category, context);
         }
         Control.runSetting(Control.write(online ? "1" : "0", Utils.strFormat(CPU_ONLINE, cpu)),
                 category, Utils.strFormat(CPU_ONLINE, cpu), context);
