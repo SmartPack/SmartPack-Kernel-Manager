@@ -242,6 +242,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (showViewPager()) {
             mRecyclerView.addOnScrollListener(mScroller);
             setAppBarLayoutAlpha(0);
+            adjustScrollPosition();
         } else {
             mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), isForeground() ? 0 : mToolBar.getHeight(),
                     mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
@@ -269,7 +270,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     protected void adjustScrollPosition() {
-        mScroller.onScrolled(mRecyclerView, 0, 0);
+        mScroller.onScrolled(mRecyclerView, 0, Integer.MAX_VALUE);
     }
 
     protected abstract void addItems(List<RecyclerViewItem> items);
@@ -368,7 +369,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         private final List<Fragment> mFragments;
 
-        public ViewPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
+        private ViewPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
             super(fragmentManager);
             mFragments = fragments;
         }
@@ -386,7 +387,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     private class Scroller extends RecyclerView.OnScrollListener {
 
-        protected int mScrollDistance;
+        private int mScrollDistance;
         private int mAppBarLayoutDistance;
         private boolean mFade = true;
         private ValueAnimator mAlphaAnimator;
@@ -403,8 +404,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             if (mAppBarLayout != null) {
                 appBarHeight = mAppBarLayout.getHeight();
             }
+
             if (mScrollDistance > mViewPagerParent.getHeight() - appBarHeight && dy != 0) {
-                mAppBarLayoutDistance += dy;
+                if (dy != Integer.MAX_VALUE) {
+                    mAppBarLayoutDistance += dy;
+                }
                 fadeAppBarLayout(false);
                 if (showTopFab()) {
                     mTopFab.hide();
@@ -458,6 +462,13 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
+            if (showBottomFab()) {
+                if (newState == 0) {
+                    mBottomFab.show();
+                } else {
+                    mBottomFab.hide();
+                }
+            }
             if (mAppBarLayout == null || newState != 0 || mAppBarLayoutDistance == 0
                     || mAppBarLayoutDistance == mAppBarLayout.getHeight()) {
                 return;

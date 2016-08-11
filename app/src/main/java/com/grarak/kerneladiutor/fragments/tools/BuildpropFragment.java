@@ -67,14 +67,14 @@ public class BuildpropFragment extends RecyclerViewFragment {
     private String mValue;
 
     @Override
-    protected Drawable getTopFabDrawable() {
+    protected Drawable getBottomFabDrawable() {
         Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
         DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
         return drawable;
     }
 
     @Override
-    protected boolean showTopFab() {
+    protected boolean showBottomFab() {
         return true;
     }
 
@@ -274,9 +274,8 @@ public class BuildpropFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected void onTopFabClick() {
-        super.onTopFabClick();
-
+    protected void onBottomFabClick() {
+        super.onBottomFabClick();
         modify(null, null);
     }
 
