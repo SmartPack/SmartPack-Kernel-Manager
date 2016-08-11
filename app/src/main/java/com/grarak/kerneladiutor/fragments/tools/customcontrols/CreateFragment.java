@@ -204,6 +204,11 @@ public class CreateFragment extends RecyclerViewFragment {
     }
 
     @Override
+    protected boolean autoHideBottomFab() {
+        return false;
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 0 && data != null) {

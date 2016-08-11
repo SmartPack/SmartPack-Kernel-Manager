@@ -431,6 +431,16 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
             mViewPagerParent.setTranslationY(-mScrollDistance);
             mTopFab.setTranslationY(-mScrollDistance);
+
+            if (showBottomFab() && autoHideBottomFab() && dy != Integer.MAX_VALUE) {
+                if (dy <= 0) {
+                    if (mBottomFab.getVisibility() != View.VISIBLE) {
+                        mBottomFab.show();
+                    }
+                } else if (mBottomFab.getVisibility() == View.VISIBLE) {
+                    mBottomFab.hide();
+                }
+            }
         }
 
         private void fadeAppBarLayout(boolean fade) {
@@ -462,13 +472,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            if (showBottomFab()) {
-                if (newState == 0) {
-                    mBottomFab.show();
-                } else {
-                    mBottomFab.hide();
-                }
-            }
             if (mAppBarLayout == null || newState != 0 || mAppBarLayoutDistance == 0
                     || mAppBarLayoutDistance == mAppBarLayout.getHeight()) {
                 return;
@@ -605,6 +608,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     protected void onBottomFabClick() {
+    }
+
+    protected boolean autoHideBottomFab() {
+        return true;
     }
 
     protected FloatingActionButton getBottomFab() {
