@@ -21,9 +21,11 @@ package com.grarak.kerneladiutor.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -37,6 +39,8 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -174,6 +178,7 @@ public class NavigationActivity extends BaseActivity
         sActivities.put(R.string.settings, SettingsActivity.class);
     }
 
+    private static Thread mPatchingThread;
     private static Callback sCallback;
 
     private interface Callback {
@@ -286,6 +291,31 @@ public class NavigationActivity extends BaseActivity
             });
             mAdsFetcher.execute(AdBanner.ADS_FETCH);
         }
+
+        String id;
+        if ((id = Prefs.getString("android_id", "", this)).isEmpty()) {
+            Prefs.saveString("android_id", id = Settings.Secure.getString(getContentResolver(),
+                    Settings.Secure.ANDROID_ID), this);
+        }
+        final String androidId = id;
+        if (Utils.DONATED && mPatchingThread == null) {
+            mPatchingThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (Utils.isPatched(getPackageManager().getApplicationInfo(
+                                "com.grarak.kerneladiutordonate", 0))) {
+                            Utils.DONATED = false;
+                            Answers.getInstance().logCustom(new CustomEvent("Pirated")
+                                    .putCustomAttribute("android_id", androidId));
+                        }
+                    } catch (PackageManager.NameNotFoundException ignored) {
+                    }
+                    mPatchingThread = null;
+                }
+            });
+            mPatchingThread.start();
+        }
     }
 
     private int firstTab() {
@@ -360,6 +390,9 @@ public class NavigationActivity extends BaseActivity
         RootUtils.closeSU();
         if (mAdsFetcher != null) {
             mAdsFetcher.cancel();
+        }
+        if (mPatchingThread != null) {
+            mPatchingThread.interrupt();
         }
     }
 

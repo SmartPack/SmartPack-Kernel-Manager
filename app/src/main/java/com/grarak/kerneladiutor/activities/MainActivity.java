@@ -264,8 +264,7 @@ public class MainActivity extends BaseActivity {
                 protected Boolean doInBackground(Void... params) {
                     if (mApplicationInfo != null && mPackageInfo != null && mPackageInfo.versionCode == 130) {
                         mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
-                                new File(mApplicationInfo.publicSourceDir))
-                        /*|| Utils.isPatched(mApplicationInfo)*/;
+                                new File(mApplicationInfo.publicSourceDir));
 
                         if (mGoogleServicesInstalled) {
                             try {
