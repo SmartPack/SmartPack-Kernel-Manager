@@ -50,8 +50,13 @@ public class RootFile {
         mSU.runCommand("mkdir -p '" + mFile + "'");
     }
 
-    public void mv(String newPath) {
+    public RootFile mv(String newPath) {
         mSU.runCommand("mv -f '" + mFile + "' '" + newPath + "'");
+        return new RootFile(newPath);
+    }
+
+    public void cp(String path) {
+        mSU.runCommand("cp -r '" + mFile + "' '" + path + "'");
     }
 
     public void write(String text, boolean append) {

@@ -74,6 +74,10 @@
     </string-array>
 
     <!-- Build prop Editor -->
+    <string-array name="build_prop_add_options">
+        <item>@string/add</item>
+        <item>@string/backup</item>
+    </string-array>
     <string-array name="build_prop_item_options">
         <item>@string/edit</item>
         <item>@string/delete</item>

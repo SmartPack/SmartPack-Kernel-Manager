@@ -60,6 +60,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     private String mValueText;
 
     private SearchFragment mSearchFragment;
+    private AlertDialog.Builder mAddDialog;
     private AlertDialog.Builder mItemOptionsDialog;
     private AlertDialog.Builder mDeleteDialog;
 
@@ -113,6 +114,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
                     }
                 }));
 
+        if (mAddDialog != null) {
+            mAddDialog.show();
+        }
         if (mItemOptionsDialog != null) {
             mItemOptionsDialog.show();
         }
@@ -297,7 +301,28 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     protected void onBottomFabClick() {
         super.onBottomFabClick();
-        modify(null, null);
+        mAddDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+                R.array.build_prop_add_options), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        modify(null, null);
+                        break;
+                    case 1:
+                        Buildprop.backup();
+                        Utils.toast(getString(R.string.backup_item, Buildprop.BUILD_PROP,
+                                Utils.getInternalDataStorage()), getActivity());
+                        break;
+                }
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mAddDialog = null;
+            }
+        });
+        mAddDialog.show();
     }
 
     @Override

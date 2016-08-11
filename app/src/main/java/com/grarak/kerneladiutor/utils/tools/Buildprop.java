@@ -19,9 +19,13 @@
  */
 package com.grarak.kerneladiutor.utils.tools;
 
+import android.os.Environment;
+
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 
 /**
@@ -29,7 +33,16 @@ import java.util.LinkedHashMap;
  */
 public class Buildprop {
 
-    private static final String BUILD_PROP = "/system/build.prop";
+    public static final String BUILD_PROP = "/system/build.prop";
+
+    public static void backup() {
+        File data = new File(Utils.getInternalDataStorage());
+        if (!data.exists()) {
+            data.mkdirs();
+        }
+        new RootFile(BUILD_PROP).cp(data.toString().replace(
+                Environment.getExternalStorageDirectory().toString(), "/sdcard") + "/build.prop");
+    }
 
     public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
         RootUtils.mount(true, "/system");

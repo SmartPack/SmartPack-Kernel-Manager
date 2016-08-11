@@ -697,6 +697,8 @@
     <string name="flash">Flash</string>
 
     <!-- Build prop Editor -->
+    <string name="add">Add</string>
+    <string name="backup_item">%1$s has been backed up to %2$s</string>
     <string name="item_count">%s item</string>
     <string name="items_count">%s items</string>
     <string name="key">Key</string>
