@@ -240,6 +240,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     public void onViewFinished() {
         super.onViewFinished();
         if (showViewPager()) {
+            mViewPager.setAdapter(mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),
+                    mViewPagerFragments));
+            mCirclePageIndicator.setViewPager(mViewPager);
+
             mRecyclerView.addOnScrollListener(mScroller);
             setAppBarLayoutAlpha(0);
             adjustScrollPosition();
@@ -259,18 +263,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     protected void postInit() {
         if (showViewPager()) {
-            mScroller.onScrolled(mRecyclerView, 0, 0);
-            mViewPagerParent.setTranslationY(0);
-        }
-        if (mViewPager != null) {
-            mViewPager.setAdapter(mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(),
-                    mViewPagerFragments));
-            mCirclePageIndicator.setViewPager(mViewPager);
+            adjustScrollPosition();
         }
     }
 
     protected void adjustScrollPosition() {
-        mScroller.onScrolled(mRecyclerView, 0, Integer.MAX_VALUE);
+        mScroller.onScrolled(mRecyclerView, 0, 0);
     }
 
     protected abstract void addItems(List<RecyclerViewItem> items);
@@ -336,7 +334,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mItems.clear();
         if (mRecyclerViewAdapter != null) {
             mRecyclerViewAdapter.notifyDataSetChanged();
-            mScroller.onScrolled(mRecyclerView, 0, 0);
+            adjustScrollPosition();
         }
     }
 
@@ -405,10 +403,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 appBarHeight = mAppBarLayout.getHeight();
             }
 
-            if (mScrollDistance > mViewPagerParent.getHeight() - appBarHeight && dy != 0) {
-                if (dy != Integer.MAX_VALUE) {
-                    mAppBarLayoutDistance += dy;
-                }
+            if (mScrollDistance > mViewPagerParent.getHeight() - appBarHeight) {
+                mAppBarLayoutDistance += dy;
                 fadeAppBarLayout(false);
                 if (showTopFab()) {
                     mTopFab.hide();
@@ -432,7 +428,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mViewPagerParent.setTranslationY(-mScrollDistance);
             mTopFab.setTranslationY(-mScrollDistance);
 
-            if (showBottomFab() && autoHideBottomFab() && dy != Integer.MAX_VALUE) {
+            if (showBottomFab() && autoHideBottomFab()) {
                 if (dy <= 0) {
                     if (mBottomFab.getVisibility() != View.VISIBLE) {
                         mBottomFab.show();
