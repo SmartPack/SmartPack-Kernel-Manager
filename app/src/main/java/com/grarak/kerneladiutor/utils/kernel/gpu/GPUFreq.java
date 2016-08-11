@@ -120,7 +120,7 @@ public class GPUFreq {
 
     private static String CUR_FREQ;
     private static Integer CUR_FREQ_OFFSET;
-    private static Integer[] AVAILABLE_FREQS;
+    private static List<Integer> AVAILABLE_FREQS;
     private static String MAX_FREQ;
     private static Integer MAX_FREQ_OFFSET;
     private static String MIN_FREQ;
@@ -305,9 +305,11 @@ public class GPUFreq {
             for (String file : sAvailableFreqs.keySet()) {
                 if (Utils.existFile(file)) {
                     String freqs[] = Utils.readFile(file).split(" ");
-                    AVAILABLE_FREQS = new Integer[freqs.length];
-                    for (int i = 0; i < freqs.length; i++) {
-                        AVAILABLE_FREQS[i] = Utils.strToInt(freqs[i]);
+                    AVAILABLE_FREQS = new ArrayList<>();
+                    for (String freq : freqs) {
+                        if (!AVAILABLE_FREQS.contains(Utils.strToInt(freq))) {
+                            AVAILABLE_FREQS.add(Utils.strToInt(freq));
+                        }
                     }
                     AVAILABLE_GOVERNORS_OFFSET = sAvailableFreqs.get(file);
                     break;
@@ -315,9 +317,8 @@ public class GPUFreq {
             }
         }
         if (AVAILABLE_FREQS == null) return null;
-        List<Integer> list = Arrays.asList(AVAILABLE_FREQS);
-        Collections.sort(list);
-        return list;
+        Collections.sort(AVAILABLE_FREQS);
+        return AVAILABLE_FREQS;
     }
 
     public static int getCurFreqOffset() {
