@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -386,6 +387,7 @@ public class CPUFreq {
         if (sFreqs.indexOfKey(cpu) < 0) {
             return null;
         }
+        Collections.sort(sFreqs.get(cpu));
         return sFreqs.get(cpu);
     }
 
@@ -456,16 +458,16 @@ public class CPUFreq {
 
     public static int getLITTLECpu() {
         isBigLITTLE();
-        return sLITTLECpu == -1 ? 0 : sLITTLECpu;
+        return sLITTLECpu < 0 ? 0 : sLITTLECpu;
     }
 
     public static int getBigCpu() {
         isBigLITTLE();
-        return sBigCpu == -1 ? 0 : sBigCpu;
+        return sBigCpu < 0 ? 0 : sBigCpu;
     }
 
     public static boolean isBigLITTLE() {
-        if (sBigCpu == -1 || sLITTLECpu == -1) {
+        if (sBigCpu < 0 || sLITTLECpu < 0) {
             boolean bigLITTLE = getCpuCount() > 4;
             if (!bigLITTLE && !is8996() || (Device.getBoard().startsWith("mt6") && !Device.getBoard()
                     .startsWith("mt6595"))) return false;
@@ -490,8 +492,10 @@ public class CPUFreq {
                 }
             }
 
-            sBigCpu = -2;
-            sLITTLECpu = -2;
+            if (sBigCpu == -1 || sLITTLECpu == -1) {
+                sBigCpu = -2;
+                sLITTLECpu = -2;
+            }
         }
 
         return sBigCpu >= 0 && sLITTLECpu >= 0;
