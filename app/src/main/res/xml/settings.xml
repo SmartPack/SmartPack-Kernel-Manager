@@ -8,7 +8,6 @@
 
     <SwitchPreference
         android:key="forceenglish"
-        android:persistent="false"
         android:summary="@string/force_english" />
 
     <PreferenceCategory
@@ -16,11 +15,9 @@
         android:title="@string/user_interface">
         <SwitchPreference
             android:key="darktheme"
-            android:persistent="false"
             android:summary="@string/dark_theme" />
         <SwitchPreference
             android:key="materialicon"
-            android:persistent="false"
             android:summary="@string/material_icon" />
         <Preference
             android:key="banner_resizer"

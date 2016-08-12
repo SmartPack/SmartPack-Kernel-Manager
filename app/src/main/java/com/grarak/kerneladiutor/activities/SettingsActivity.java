@@ -79,8 +79,8 @@ public class SettingsActivity extends BaseActivity {
         super.finish();
     }
 
-    public static class SettingsFragment extends PreferenceFragment implements
-            Preference.OnPreferenceClickListener {
+    public static class SettingsFragment extends PreferenceFragment
+            implements Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
         private static final String KEY_FORCE_ENGLISH = "forceenglish";
         private static final String KEY_USER_INTERFACE = "user_interface";
@@ -120,22 +120,17 @@ public class SettingsActivity extends BaseActivity {
             if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
                 getPreferenceScreen().removePreference(forceEnglish);
             } else {
-                forceEnglish.setChecked(Prefs.getBoolean(KEY_FORCE_ENGLISH, false, getActivity()));
-                forceEnglish.setOnPreferenceClickListener(this);
+                forceEnglish.setOnPreferenceChangeListener(this);
             }
 
-            SwitchPreference materialIcon = (SwitchPreference) findPreference(KEY_MATERIAL_ICON);
             if (Utils.hideStartActivity()) {
-                ((PreferenceCategory) findPreference(KEY_USER_INTERFACE)).removePreference(materialIcon);
+                ((PreferenceCategory) findPreference(KEY_USER_INTERFACE))
+                        .removePreference(findPreference(KEY_MATERIAL_ICON));
             } else {
-                materialIcon.setChecked(Prefs.getBoolean(KEY_MATERIAL_ICON, false, getActivity()));
-                materialIcon.setOnPreferenceClickListener(this);
+                findPreference(KEY_MATERIAL_ICON).setOnPreferenceChangeListener(this);
             }
 
-            SwitchPreference darkTheme = (SwitchPreference) findPreference(KEY_DARK_THEME);
-            darkTheme.setChecked(Prefs.getBoolean(KEY_DARK_THEME, false, getActivity()));
-            darkTheme.setOnPreferenceClickListener(this);
-
+            findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
             findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
             findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
             findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
@@ -171,32 +166,42 @@ public class SettingsActivity extends BaseActivity {
                             NavigationActivity.sActivities.get(id).getSimpleName() + "_enabled" :
                             NavigationActivity.sFragments.get(id).getClass().getSimpleName() + "_enabled");
                     switchPreference.setDefaultValue(true);
+                    switchPreference.setOnPreferenceChangeListener(this);
                     sectionsCategory.addPreference(switchPreference);
                 }
             }
         }
 
         @Override
-        public boolean onPreferenceClick(Preference preference) {
+        public boolean onPreferenceChange(Preference preference, Object o) {
             String key = preference.getKey();
             switch (key) {
-                case KEY_FORCE_ENGLISH: {
-                    if (!((SwitchPreference) preference).isChecked()) {
+                case KEY_FORCE_ENGLISH:
+                    boolean checked = (boolean) o;
+                    if (!checked) {
                         Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
                     }
-                }
-                case KEY_DARK_THEME: {
+                case KEY_DARK_THEME:
                     getActivity().finish();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    Prefs.saveBoolean(key, ((SwitchPreference) preference).isChecked(), getActivity());
                     return true;
-                }
                 case KEY_MATERIAL_ICON:
-                    Prefs.saveBoolean(key, ((SwitchPreference) preference).isChecked(), getActivity());
-                    Utils.setStartActivity(((SwitchPreference) preference).isChecked(), getActivity());
+                    Utils.setStartActivity((boolean) o, getActivity());
                     return true;
+                default:
+                    if (key.endsWith("_enabled")) {
+                        return true;
+                    }
+            }
+            return false;
+        }
+
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            String key = preference.getKey();
+            switch (key) {
                 case KEY_BANNER_RESIZER:
                     if (Utils.DONATED) {
                         Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
