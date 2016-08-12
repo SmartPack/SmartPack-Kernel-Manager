@@ -166,7 +166,6 @@ public class SettingsActivity extends BaseActivity {
                             NavigationActivity.sActivities.get(id).getSimpleName() + "_enabled" :
                             NavigationActivity.sFragments.get(id).getClass().getSimpleName() + "_enabled");
                     switchPreference.setDefaultValue(true);
-                    switchPreference.setOnPreferenceChangeListener(this);
                     sectionsCategory.addPreference(switchPreference);
                 }
             }
@@ -174,10 +173,13 @@ public class SettingsActivity extends BaseActivity {
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object o) {
+            boolean checked = (boolean) o;
             String key = preference.getKey();
+            if (checked == Prefs.getBoolean(key, false, getActivity())) {
+                return false;
+            }
             switch (key) {
                 case KEY_FORCE_ENGLISH:
-                    boolean checked = (boolean) o;
                     if (!checked) {
                         Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
                     }
@@ -188,12 +190,8 @@ public class SettingsActivity extends BaseActivity {
                     startActivity(intent);
                     return true;
                 case KEY_MATERIAL_ICON:
-                    Utils.setStartActivity((boolean) o, getActivity());
+                    Utils.setStartActivity(checked, getActivity());
                     return true;
-                default:
-                    if (key.endsWith("_enabled")) {
-                        return true;
-                    }
             }
             return false;
         }
