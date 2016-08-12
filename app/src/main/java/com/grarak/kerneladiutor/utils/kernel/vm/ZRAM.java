@@ -34,8 +34,13 @@ public class ZRAM {
     private static final String BLOCK = "/dev/block/zram0";
     private static final String DISKSIZE = "/sys/block/zram0/disksize";
     private static final String RESET = "/sys/block/zram0/reset";
+    private static final String MAX_COMP_STREAMS = "/sys/block/zram0/max_comp_streams";
 
     public static void setDisksize(final int value, final Context context) {
+        String maxCompStrems = null;
+        if (Utils.existFile(MAX_COMP_STREAMS)) {
+            maxCompStrems = Utils.readFile(MAX_COMP_STREAMS);
+        }
         int size = value * 1024 * 1024;
         run("swapoff " + BLOCK + " > /dev/null 2>&1", BLOCK + "swapoff", context);
         run(Control.write("1", RESET), RESET, context);
@@ -43,6 +48,9 @@ public class ZRAM {
             run(Control.write(String.valueOf(size), DISKSIZE), DISKSIZE, context);
             run("mkswap " + BLOCK + " > /dev/null 2>&1", BLOCK + "mkswap", context);
             run("swapon " + BLOCK + " > /dev/null 2>&1", BLOCK + "swapon", context);
+        }
+        if (maxCompStrems != null) {
+            run(Control.write(maxCompStrems, MAX_COMP_STREAMS), MAX_COMP_STREAMS, context);
         }
     }
 
