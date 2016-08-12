@@ -387,8 +387,9 @@ public class CPUFreq {
         if (sFreqs.indexOfKey(cpu) < 0) {
             return null;
         }
-        Collections.sort(sFreqs.get(cpu));
-        return sFreqs.get(cpu);
+        List<Integer> freqs = sFreqs.get(cpu);
+        Collections.sort(freqs);
+        return freqs;
     }
 
     public static int getCurFreq(int cpu) {
@@ -467,22 +468,21 @@ public class CPUFreq {
     }
 
     public static boolean isBigLITTLE() {
-        if (sBigCpu < 0 || sLITTLECpu < 0) {
-            boolean bigLITTLE = getCpuCount() > 4;
-            if (!bigLITTLE && !is8996() || (Device.getBoard().startsWith("mt6") && !Device.getBoard()
+        if (sBigCpu == -1 || sLITTLECpu == -1) {
+            if (getCpuCount() <= 4 && !is8996() || (Device.getBoard().startsWith("mt6") && !Device.getBoard()
                     .startsWith("mt6595"))) return false;
 
             if (is8996()) {
                 sBigCpu = 2;
                 sLITTLECpu = 0;
             } else {
-                List<Integer> cpu1Freqs = getFreqs(0);
-                List<Integer> cpu2Freqs = getFreqs(4);
-                if (cpu1Freqs != null && cpu2Freqs != null) {
-                    int cpu1Max = cpu1Freqs.get(cpu1Freqs.size() - 1);
-                    int cpu2Max = cpu2Freqs.get(cpu2Freqs.size() - 1);
-                    if (cpu1Max > cpu2Max
-                            || (cpu1Max == cpu2Max && cpu1Freqs.size() > cpu2Freqs.size())) {
+                List<Integer> cpu0Freqs = getFreqs(0);
+                List<Integer> cpu4Freqs = getFreqs(4);
+                if (cpu0Freqs != null && cpu4Freqs != null) {
+                    int cpu0Max = cpu0Freqs.get(cpu0Freqs.size() - 1);
+                    int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
+                    if (cpu0Max > cpu4Max
+                            || (cpu0Max == cpu4Max && cpu0Freqs.size() > cpu4Freqs.size())) {
                         sBigCpu = 0;
                         sLITTLECpu = 4;
                     } else {
