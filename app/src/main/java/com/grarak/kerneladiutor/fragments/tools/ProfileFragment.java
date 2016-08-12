@@ -213,10 +213,8 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        if (mProfiles == null) {
-            mProfiles = new Profiles(getActivity());
-        }
-        final List<Profiles.ProfileItem> profileItems = mProfiles.getAllProfiles();
+        mProfiles = new Profiles(getActivity());
+        List<Profiles.ProfileItem> profileItems = mProfiles.getAllProfiles();
         if (mTaskerMode && profileItems.size() == 0) {
             Snackbar.make(getRootView(), R.string.no_profiles, Snackbar.LENGTH_LONG).show();
             return;
@@ -228,33 +226,45 @@ public class ProfileFragment extends RecyclerViewFragment {
                 @Override
                 public void onMenuReady(CardView cardView, PopupMenu popupMenu) {
                     Menu menu = popupMenu.getMenu();
-                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.details));
-                    final MenuItem onBoot = menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
-                    onBoot.setChecked(profileItems.get(position).isOnBootEnabled());
-                    menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.export));
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.append));
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.details));
+                    final MenuItem onBoot = menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
+                    onBoot.setChecked(mProfiles.getAllProfiles().get(position).isOnBootEnabled());
+                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.export));
+                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.delete));
 
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+                            List<Profiles.ProfileItem> items = mProfiles.getAllProfiles();
                             switch (item.getItemId()) {
                                 case 0:
-                                    if (profileItems.get(position).getName() != null) {
-                                        setForegroundText(profileItems.get(position).getName().toUpperCase());
-                                        mDetailsFragment.setText(profileItems.get(position).getCommands());
-                                        showForeground();
+                                    if (Utils.DONATED) {
+                                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                                        intent.putExtra(ProfileActivity.POSITION_INTENT, position);
+                                        startActivityForResult(intent, 2);
+                                    } else {
+                                        mDonateDialog = ViewUtils.dialogDonate(getActivity());
+                                        mDonateDialog.show();
                                     }
                                     break;
                                 case 1:
-                                    onBoot.setChecked(!onBoot.isChecked());
-                                    profileItems.get(position).enableOnBoot(onBoot.isChecked());
-                                    mProfiles.commit();
+                                    if (items.get(position).getName() != null) {
+                                        setForegroundText(items.get(position).getName().toUpperCase());
+                                        mDetailsFragment.setText(items.get(position).getCommands());
+                                        showForeground();
+                                    }
                                     break;
                                 case 2:
-                                    mExportProfile = profileItems.get(position);
-                                    requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                    onBoot.setChecked(!onBoot.isChecked());
+                                    items.get(position).enableOnBoot(onBoot.isChecked());
+                                    mProfiles.commit();
                                     break;
                                 case 3:
+                                    mExportProfile = items.get(position);
+                                    requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                    break;
+                                case 4:
                                     mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                             new DialogInterface.OnClickListener() {
                                                 @Override
@@ -298,7 +308,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 ((ProfileTaskerActivity) getActivity()).finish(
                                         descriptionView.getSummary().toString(),
-                                        profileItems.get(position).getCommands());
+                                        mProfiles.getAllProfiles().get(position).getCommands());
                             }
                         }, new DialogInterface.OnDismissListener() {
                             @Override
@@ -316,16 +326,18 @@ public class ProfileFragment extends RecyclerViewFragment {
                         }, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                for (String command : profileItems.get(position).getCommands()) {
+                                for (Profiles.ProfileItem.CommandItem command : mProfiles.getAllProfiles()
+                                        .get(position).getCommands()) {
                                     CPUFreq.ApplyCpu applyCpu;
-                                    if (command.startsWith("#") && ((applyCpu =
-                                            new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
+                                    if (command.getCommand().startsWith("#") && ((applyCpu =
+                                            new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
+                                            .toString() != null)) {
                                         for (String applyCpuCommand : Service.getApplyCpu(applyCpu,
                                                 RootUtils.getSU())) {
                                             Control.runSetting(applyCpuCommand, null, null, null);
                                         }
                                     } else {
-                                        Control.runSetting(command, null, null, null);
+                                        Control.runSetting(command.getCommand(), null, null, null);
                                     }
                                 }
                             }
@@ -404,14 +416,32 @@ public class ProfileFragment extends RecyclerViewFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data == null) return;
-        if (requestCode == 0) {
+        if (requestCode == 0 || requestCode == 2) {
             LinkedHashMap<String, String> commandsList = new LinkedHashMap<>();
             ArrayList<String> ids = data.getStringArrayListExtra(ProfileActivity.RESULT_ID_INTENT);
             ArrayList<String> commands = data.getStringArrayListExtra(ProfileActivity.RESULT_COMMAND_INTENT);
             for (int i = 0; i < ids.size(); i++) {
                 commandsList.put(ids.get(i), commands.get(i));
             }
-            create(commandsList);
+
+            if (requestCode == 0) {
+                create(commandsList);
+            } else {
+                Profiles.ProfileItem profileItem = mProfiles.getAllProfiles().get(data.getIntExtra(
+                        ProfileActivity.POSITION_INTENT, 0));
+                List<Profiles.ProfileItem.CommandItem> commandItems = profileItem.getCommands();
+
+                for (Profiles.ProfileItem.CommandItem commandItem : profileItem.getCommands()) {
+                    if (ids.contains(commandItem.getPath())) {
+                        profileItem.delete(commandItem);
+                    }
+                }
+
+                for (String path : commandsList.keySet()) {
+                    profileItem.putCommand(path, commandsList.get(path));
+                }
+                mProfiles.commit();
+            }
         } else if (requestCode == 1) {
             ImportProfile importProfile = new ImportProfile(data.getStringExtra(
                     FilePickerActivity.RESULT_INTENT));
@@ -567,17 +597,18 @@ public class ProfileFragment extends RecyclerViewFragment {
             return rootView;
         }
 
-        private void setText(List<String> commands) {
+        private void setText(List<Profiles.ProfileItem.CommandItem> commands) {
             StringBuilder commandsText = new StringBuilder();
-            for (String command : commands) {
+            for (Profiles.ProfileItem.CommandItem command : commands) {
                 CPUFreq.ApplyCpu applyCpu;
-                if (command.startsWith("#")
-                        & ((applyCpu = new CPUFreq.ApplyCpu(command.substring(1))).toString() != null)) {
+                if (command.getCommand().startsWith("#")
+                        & ((applyCpu =
+                        new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
                     for (String applyCpuCommand : Service.getApplyCpu(applyCpu, RootUtils.getSU())) {
                         commandsText.append(applyCpuCommand).append("\n");
                     }
                 } else {
-                    commandsText.append(command).append("\n");
+                    commandsText.append(command.getCommand()).append("\n");
                 }
             }
             commandsText.setLength(commandsText.length() - 1);

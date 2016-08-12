@@ -98,8 +98,8 @@ public class Widget extends AppWidgetProvider {
                 Prefs.saveBoolean("profileclicked" + position, false, context);
                 RootUtils.SU su = new RootUtils.SU(true, TAG);
 
-                for (String command : profileItem.getCommands()) {
-                    su.runCommand(command);
+                for (Profiles.ProfileItem.CommandItem command : profileItem.getCommands()) {
+                    su.runCommand(command.getCommand());
                 }
                 su.close();
                 Utils.toast(context.getString(R.string.applied), context);
@@ -111,9 +111,9 @@ public class Widget extends AppWidgetProvider {
     private static class ListViewFactory implements RemoteViewsService.RemoteViewsFactory {
 
         private final Context mContext;
-        public static List<Profiles.ProfileItem> mItems;
+        private List<Profiles.ProfileItem> mItems;
 
-        public ListViewFactory(Context context) {
+        private ListViewFactory(Context context) {
             mContext = context;
         }
 

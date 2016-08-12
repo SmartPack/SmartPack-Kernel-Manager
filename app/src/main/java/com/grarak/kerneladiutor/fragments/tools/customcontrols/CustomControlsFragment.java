@@ -216,10 +216,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        if (mControlsProvider == null) {
-            mControlsProvider = new Controls(getActivity());
-        }
-
+        mControlsProvider = new Controls(getActivity());
         for (final Controls.ControlItem item : mControlsProvider.getAllControls()) {
             CardView cardView = getCard(item);
             cardView.clearItems();

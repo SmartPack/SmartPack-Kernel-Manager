@@ -27,6 +27,7 @@ import android.support.v4.app.Fragment;
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BaseActivity;
+import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.services.profile.Tasker;
 
@@ -58,14 +59,14 @@ public class ProfileTaskerActivity extends BaseActivity {
         return fragment;
     }
 
-    public void finish(String name, List<String> commands) {
+    public void finish(String name, List<Profiles.ProfileItem.CommandItem> commands) {
         StringBuilder command = new StringBuilder();
         command.append(name).append(Tasker.DIVIDER);
-        for (String c : commands) {
+        for (Profiles.ProfileItem.CommandItem commandItem : commands) {
             if (command.length() != 0) {
                 command.append(Tasker.DIVIDER);
             }
-            command.append(c);
+            command.append(commandItem.getCommand());
         }
 
         Intent resultIntent = new Intent();

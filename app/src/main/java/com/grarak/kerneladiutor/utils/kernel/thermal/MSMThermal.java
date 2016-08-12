@@ -450,12 +450,7 @@ public class MSMThermal {
     }
 
     public static void enableCoreControl(boolean enable, Context context) {
-        enableCoreControl(enable, ApplyOnBootFragment.THERMAL, context);
-    }
-
-    public static void enableCoreControl(boolean enable, String category, Context context) {
-        Control.runSetting(Control.write(enable ? "1" : "0", CORE_CONTROL), category,
-                CORE_CONTROL + enable, context);
+        run(Control.write(enable ? "1" : "0", CORE_CONTROL), CORE_CONTROL, context);
     }
 
     public static boolean isCoreControlEnabled() {

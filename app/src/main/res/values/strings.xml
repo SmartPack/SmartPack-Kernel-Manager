@@ -710,6 +710,7 @@
     <string name="profile_warning">Everything you change here is gonna be saved to your profile. But attention! Your settings will also get applied, but won\'t get saved to apply on boot.</string>
     <string name="no_changes">No changes made!</string>
     <string name="apply_question">Apply %s?</string>
+    <string name="append">Append</string>
     <string name="details">Details</string>
     <string name="press_again_to_apply">Press %s again to apply.</string>
     <string name="applied">Applied</string>

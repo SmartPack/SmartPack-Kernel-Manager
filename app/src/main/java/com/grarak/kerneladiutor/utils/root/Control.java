@@ -65,10 +65,7 @@ public class Control {
     private synchronized void apply(String command, String category, String id, Context context) {
         if (context != null) {
             if (mProfileMode) {
-                if (mProfileCommands.containsKey(id)) {
-                    mProfileCommands.remove(id);
-                }
-
+                Log.i(TAG, "Added to profile: " + id);
                 mProfileCommands.put(id, command);
             } else {
                 Settings settings = new Settings(context);

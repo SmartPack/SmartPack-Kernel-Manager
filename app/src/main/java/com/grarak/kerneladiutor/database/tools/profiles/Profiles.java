@@ -77,20 +77,33 @@ public class Profiles extends Provider {
 
     public static class ProfileItem extends DBJsonItem {
 
-        public ProfileItem(JSONObject object) {
+        private JSONArray mCommands;
+
+        private ProfileItem(JSONObject object) {
             item = object;
+            try {
+                mCommands = object.getJSONArray("commands");
+            } catch (JSONException ignored) {
+            }
         }
 
         public String getName() {
             return getString("name");
         }
 
-        public List<String> getPath() {
-            return getList("path");
-        }
-
-        public List<String> getCommands() {
-            return getList("command");
+        public List<CommandItem> getCommands() {
+            List<CommandItem> list = new ArrayList<>();
+            try {
+                for (int i = 0; i < mCommands.length(); i++) {
+                    CommandItem commandItem = new CommandItem(mCommands.getJSONObject(i));
+                    if (commandItem.readable()) {
+                        list.add(commandItem);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return list;
         }
 
         public boolean isOnBootEnabled() {
@@ -108,17 +121,50 @@ public class Profiles extends Provider {
             }
         }
 
-        private List<String> getList(String name) {
-            List<String> list = new ArrayList<>();
+        public void putCommand(String path, String command) {
             try {
-                JSONArray items = getItem().getJSONArray("commands");
-                for (int i = 0; i < items.length(); i++) {
-                    list.add(items.getJSONObject(i).getString(name));
-                }
+                JSONObject item = new JSONObject();
+                item.put("path", path);
+                item.put("command", command);
+                mCommands.put(item);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return list;
+        }
+
+        public void delete(CommandItem commandItem) {
+            List<CommandItem> items = getCommands();
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getPath().equals(commandItem.getPath())
+                        && items.get(i).getCommand().equals(commandItem.getCommand())) {
+                    mCommands.remove(i);
+                }
+            }
+        }
+
+        public static class CommandItem {
+            private String mPath;
+            private String mCommand;
+
+            private CommandItem(JSONObject item) {
+                try {
+                    mPath = item.getString("path");
+                    mCommand = item.getString("command");
+                } catch (JSONException ignored) {
+                }
+            }
+
+            public String getPath() {
+                return mPath;
+            }
+
+            public String getCommand() {
+                return mCommand;
+            }
+
+            private boolean readable() {
+                return mPath != null && mCommand != null;
+            }
         }
 
     }

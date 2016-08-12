@@ -57,11 +57,13 @@ import java.util.List;
  */
 public class ProfileActivity extends BaseActivity {
 
+    public static final String POSITION_INTENT = "position";
     public static final String RESULT_ID_INTENT = "result_id";
     public static final String RESULT_COMMAND_INTENT = "result_command";
 
     private LinkedHashMap<String, Fragment> mItems = new LinkedHashMap<>();
 
+    private int mProfilePosition;
     private int mMode;
     private boolean mHideWarningDialog;
     private int mCurPosition;
@@ -90,6 +92,7 @@ public class ProfileActivity extends BaseActivity {
             return;
         }
 
+        mProfilePosition = getIntent().getIntExtra(POSITION_INTENT, -1);
         if (savedInstanceState != null && (mMode = savedInstanceState.getInt("mode")) != 0) {
             if (mMode == 1) {
                 initNewMode(savedInstanceState);
@@ -183,6 +186,7 @@ public class ProfileActivity extends BaseActivity {
         Collections.addAll(commands, commandsList.values().toArray(new String[commands.size()]));
         if (commands.size() > 0) {
             Intent intent = new Intent();
+            intent.putExtra(POSITION_INTENT, mProfilePosition);
             intent.putExtra(RESULT_ID_INTENT, ids);
             intent.putExtra(RESULT_COMMAND_INTENT, commands);
             setResult(0, intent);

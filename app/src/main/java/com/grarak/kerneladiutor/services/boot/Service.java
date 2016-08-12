@@ -127,8 +127,8 @@ public class Service extends android.app.Service {
         }
         for (Profiles.ProfileItem profileItem : profiles) {
             if (profileItem.isOnBootEnabled()) {
-                for (String commad : profileItem.getCommands()) {
-                    mProfiles.add(commad);
+                for (Profiles.ProfileItem.CommandItem commandItem : profileItem.getCommands()) {
+                    mProfiles.add(commandItem.getCommand());
                 }
             }
         }

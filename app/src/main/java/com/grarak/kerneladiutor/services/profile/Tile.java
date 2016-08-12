@@ -81,8 +81,12 @@ public class Tile extends BroadcastReceiver {
             expandedListItem.setExpandedListItemTitle(item.getName());
             expandedListItem.setExpandedListItemDrawable(R.drawable.ic_launcher_preview);
 
+            List<String> commands = new ArrayList<>();
+            for (Profiles.ProfileItem.CommandItem commandItem : item.getCommands()) {
+                commands.add(commandItem.getCommand());
+            }
             intent.putExtra(NAME, item.getName());
-            intent.putExtra(COMMANDS, item.getCommands().toArray(new String[item.getCommands().size()]));
+            intent.putExtra(COMMANDS, commands.toArray(new String[commands.size()]));
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
 
