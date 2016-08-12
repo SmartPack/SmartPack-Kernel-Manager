@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.app.Activity;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -80,12 +79,12 @@ public class CardView extends RecyclerViewItem {
         mRootView = (android.support.v7.widget.CardView) view;
         mTitle = (TextView) view.findViewById(R.id.card_title);
         mLayout = (LinearLayout) view.findViewById(R.id.card_layout);
-        mMenuButton = (ImageButton) view.findViewById(R.id.menu_button);
         setupLayout();
     }
 
     @Override
     public void onCreateView(View view) {
+        mMenuButton = (ImageButton) view.findViewById(R.id.menu_button);
         mMenuButton.setRotation(90);
         mMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,9 +203,6 @@ public class CardView extends RecyclerViewItem {
             mOnMenuListener.onMenuReady(this, mPopupMenu);
         }
         if (mRootView != null && getOnItemClickListener() != null) {
-            TypedArray typedArray = mRootView.getContext().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
-            mRootView.setForeground(typedArray.getDrawable(0));
-            typedArray.recycle();
             mRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
