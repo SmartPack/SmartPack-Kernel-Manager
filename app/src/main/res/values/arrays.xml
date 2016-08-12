@@ -7,6 +7,10 @@
     </string-array>
 
     <!-- CPU -->
+    <string-array name="path_reader_options">
+        <item>@string/frequencies</item>
+        <item>@string/manual</item>
+    </string-array>
     <string-array name="mc_power_saving_items">
         <item>@string/disabled</item>
         <item>@string/enabled</item>

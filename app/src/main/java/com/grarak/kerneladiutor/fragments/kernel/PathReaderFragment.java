@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -139,24 +140,14 @@ public class PathReaderFragment extends RecyclerViewFragment {
                     public void onClick(RecyclerViewItem item) {
                         List<Integer> freqs = CPUFreq.getFreqs(mMin);
                         int freq = Utils.strToInt(value);
-                        if (freqs != null && freq != 0 && freqs.indexOf(freq) != -1) {
+                        if (freqs != null && freq != 0 && freqs.contains(freq)) {
                             String[] values = new String[freqs.size()];
                             for (int i = 0; i < values.length; i++) {
                                 values[i] = String.valueOf(freqs.get(i));
                             }
-                            showArrayDialog(values, mPath + "/" + name, name);
+                            showArrayDialog(value, values, mPath + "/" + name, name);
                         } else {
-                            ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }, new ViewUtils.OnDialogEditTextListener() {
-                                @Override
-                                public void onClick(String text) {
-                                    run(mPath + "/" + name, text, mPath + "/" + name);
-                                    reload();
-                                }
-                            }, getActivity()).show();
+                            showEditTextDialog(value, name);
                         }
                     }
                 });
@@ -165,15 +156,43 @@ public class PathReaderFragment extends RecyclerViewFragment {
         }
     }
 
-    private void showArrayDialog(final String[] values, final String path, String name) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setItems(values, new DialogInterface.OnClickListener() {
+    private void showArrayDialog(final String value, final String[] values, final String path,
+                                 final String name) {
+        new AlertDialog.Builder(getActivity()).setItems(
+                getResources().getStringArray(R.array.path_reader_options),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                new AlertDialog.Builder(getActivity()).setItems(values, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        run(path, values[which], path);
+                                        reload();
+                                    }
+                                }).setTitle(name).show();
+                                break;
+                            case 1:
+                                showEditTextDialog(value, name);
+                                break;
+                        }
+                    }
+                }).show();
+    }
+
+    private void showEditTextDialog(String value, final String name) {
+        ViewUtils.dialogEditText(value, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                run(path, values[which], path);
+            }
+        }, new ViewUtils.OnDialogEditTextListener() {
+            @Override
+            public void onClick(String text) {
+                run(mPath + "/" + name, text, mPath + "/" + name);
                 reload();
             }
-        }).setTitle(name).show();
+        }, getActivity()).show();
     }
 
     private void run(String path, String value, String id) {
