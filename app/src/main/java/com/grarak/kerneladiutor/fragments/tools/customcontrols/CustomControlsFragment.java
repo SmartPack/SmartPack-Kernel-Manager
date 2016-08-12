@@ -299,7 +299,6 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
             items.add(cardView);
         }
-        mControlsProvider.commit();
     }
 
     private CardView getCard(final Controls.ControlItem controlItem) {
@@ -366,6 +365,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 mControlsProvider.delete(i);
             }
         }
+        mControlsProvider.commit();
         reload();
     }
 
@@ -497,6 +497,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             result.put("uniqueId", Values.getUniqueId(items));
         }
         mControlsProvider.putItem(result);
+        mControlsProvider.commit();
         reload();
     }
 
