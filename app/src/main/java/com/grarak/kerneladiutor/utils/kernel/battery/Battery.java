@@ -36,7 +36,7 @@ public class Battery {
     private static final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
-    private static final String CHARGE_RATE = "sys/kernel/thundercharge_control";
+    private static final String CHARGE_RATE = "/sys/kernel/thundercharge_control";
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
 
