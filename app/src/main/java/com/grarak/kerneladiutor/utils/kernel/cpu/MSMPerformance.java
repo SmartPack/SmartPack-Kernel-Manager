@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.utils.kernel.cpu;
 import android.content.Context;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
@@ -77,7 +78,8 @@ public class MSMPerformance {
     }
 
     public static boolean supported() {
-        return hasMaxCpus() || hasCpuMaxFreq() || hasCpuMinFreq();
+        return (!Device.getDeviceName().equals("libra") && !Device.getVendor().equalsIgnoreCase("xiaomi"))
+                && (hasMaxCpus() || hasCpuMaxFreq() || hasCpuMinFreq());
     }
 
     private static void run(String command, String id, Context context) {
