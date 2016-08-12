@@ -98,6 +98,20 @@
         <item>@string/cwm_recovery</item>
         <item>@string/twrp</item>
     </string-array>
+    <string-array name="recovery_reboot_options">
+        <item>@string/reboot</item>
+        <item>@string/reboot_recovery</item>
+        <item>@string/reboot_bootloader</item>
+        <item>@string/reboot_download</item>
+        <item>@string/reboot_soft</item>
+    </string-array>
+    <string-array name="recovery_reboot_values">
+        <item>reboot</item>
+        <item>reboot recovery</item>
+        <item>reboot bootloader</item>
+        <item>reboot download</item>
+        <item>pkill zygote</item>
+    </string-array>
     <string-array name="recovery_commands">
         <item>@string/wipe_data</item>
         <item>@string/wipe_cache</item>

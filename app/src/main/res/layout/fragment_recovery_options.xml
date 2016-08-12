@@ -29,4 +29,14 @@
         android:src="@drawable/ic_done"
         android:tint="@color/colorAccent" />
 
+    <ImageButton
+        android:id="@+id/reboot_button"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_refresh"
+        android:tint="@color/colorAccent" />
+
 </LinearLayout>

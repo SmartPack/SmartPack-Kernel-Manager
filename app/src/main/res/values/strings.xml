@@ -711,11 +711,6 @@
     <string name="no_changes">No changes made!</string>
     <string name="apply_question">Apply %s?</string>
     <string name="details">Details</string>
-    <string name="wipe_data">Wipe Data</string>
-    <string name="wipe_cache">Wipe Cache</string>
-    <string name="flash_zip">Flash Zip</string>
-    <string name="add_action_first">You have to add actions first!</string>
-    <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
     <string name="press_again_to_apply">Press %s again to apply.</string>
     <string name="applied">Applied</string>
     <string name="profile_tasker">Profile Tasker</string>
@@ -731,6 +726,18 @@
     <string name="current_settings">Current settings</string>
     <string name="select_all">Select all</string>
     <string name="nothing_selected">Nothing selected</string>
+
+    <!-- Recovery -->
+    <string name="reboot">Reboot</string>
+    <string name="reboot_soft">Soft Reboot</string>
+    <string name="reboot_recovery">Reboot Recovery</string>
+    <string name="reboot_bootloader">Reboot Bootloader</string>
+    <string name="reboot_download">Reboot Download</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_cache">Wipe Cache</string>
+    <string name="flash_zip">Flash Zip</string>
+    <string name="add_action_first">You have to add actions first!</string>
+    <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
 
     <!-- Init.d -->
     <string name="emulate_initd">Emulate Init.d</string>

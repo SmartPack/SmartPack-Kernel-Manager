@@ -60,6 +60,8 @@ import java.util.List;
  */
 public class RecoveryFragment extends RecyclerViewFragment {
 
+    private AlertDialog.Builder mRebootDialog;
+    private AlertDialog.Builder mRebootConfirmDialog;
     private AlertDialog.Builder mAddDialog;
     private AlertDialog.Builder mFlashDialog;
 
@@ -88,6 +90,12 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
         addViewPagerFragment(OptionsFragment.newInstance(this));
 
+        if (mRebootDialog != null) {
+            mRebootDialog.show();
+        }
+        if (mRebootConfirmDialog != null) {
+            mRebootConfirmDialog.show();
+        }
         if (mAddDialog != null) {
             mAddDialog.show();
         }
@@ -220,6 +228,39 @@ public class RecoveryFragment extends RecyclerViewFragment {
         mFlashDialog.show();
     }
 
+    private void reboot() {
+        mRebootDialog = new AlertDialog.Builder(getActivity()).setItems(getResources()
+                .getStringArray(R.array.recovery_reboot_options), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, final int selection) {
+                mRebootConfirmDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        }, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                RootUtils.runCommand(getActivity().getResources().getStringArray(
+                                        R.array.recovery_reboot_values)[selection]);
+                            }
+                        }, new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                mRebootConfirmDialog = null;
+                            }
+                        }, getActivity());
+                mRebootConfirmDialog.show();
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mRebootDialog = null;
+            }
+        });
+        mRebootDialog.show();
+    }
+
     public static class OptionsFragment extends BaseFragment {
         public static OptionsFragment newInstance(RecoveryFragment recoveryFragment) {
             OptionsFragment fragment = new OptionsFragment();
@@ -274,6 +315,15 @@ public class RecoveryFragment extends RecyclerViewFragment {
                         mRecoveryFragment.flashNow(mRecoveryOption);
                     } else {
                         Utils.toast(R.string.add_action_first, getActivity());
+                    }
+                }
+            });
+
+            rootView.findViewById(R.id.reboot_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mRecoveryFragment != null) {
+                        mRecoveryFragment.reboot();
                     }
                 }
             });
