@@ -41,6 +41,7 @@ import android.view.View;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.CustomEvent;
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -298,7 +299,7 @@ public class NavigationActivity extends BaseActivity
                     Settings.Secure.ANDROID_ID), this);
         }
         final String androidId = id;
-        if (Utils.DONATED && mPatchingThread == null) {
+        if (!BuildConfig.DEBUG && Utils.DONATED && mPatchingThread == null) {
             mPatchingThread = new Thread(new Runnable() {
                 @Override
                 public void run() {

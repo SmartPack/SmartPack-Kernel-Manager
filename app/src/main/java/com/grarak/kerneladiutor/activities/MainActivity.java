@@ -34,6 +34,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.google.android.gms.ads.MobileAds;
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
@@ -196,6 +198,11 @@ public class MainActivity extends BaseActivity {
             Vibration.supported();
             Voltage.supported();
             Wake.supported();
+
+            if (!BuildConfig.DEBUG) {
+                Answers.getInstance().logCustom(new CustomEvent("SoC")
+                        .putCustomAttribute("type", Device.getBoard()));
+            }
         }
 
         @Override
@@ -230,6 +237,11 @@ public class MainActivity extends BaseActivity {
                                         + Device.getVendor() + "+" + Device.getModel());
                 startActivity(intent);
                 finish();
+
+                if (!BuildConfig.DEBUG) {
+                    Answers.getInstance().logCustom(new CustomEvent("Can't access")
+                            .putCustomAttribute("no_found", mHasRoot ? "no busybox" : "no root"));
+                }
                 return;
             }
 
