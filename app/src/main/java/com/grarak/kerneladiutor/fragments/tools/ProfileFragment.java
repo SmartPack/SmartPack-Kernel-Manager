@@ -264,6 +264,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
                                                     mProfiles.delete(position);
+                                                    mProfiles.commit();
                                                     reload();
                                                 }
                                             }, new DialogInterface.OnDismissListener() {
@@ -351,7 +352,6 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
 
         if (!mTaskerMode) {
-            mProfiles.commit();
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
             int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), Widget.class));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
@@ -452,6 +452,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 }
 
                 mProfiles.putProfile(text, importProfile.getResults());
+                mProfiles.commit();
                 reload();
             }
         }, getActivity()).setTitle(getString(R.string.name)).setOnDismissListener(
@@ -485,6 +486,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 }
 
                 mProfiles.putProfile(text, commands);
+                mProfiles.commit();
                 reload();
             }
         }, getActivity()).setOnDismissListener(new DialogInterface.OnDismissListener() {
