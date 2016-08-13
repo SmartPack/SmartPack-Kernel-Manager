@@ -318,6 +318,8 @@
     <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
     <string name="hcube">H-Cube</string>
     <string name="hcube_summary">OnePlus\' modified Core Control.</string>
+    <string name="min_cpus_big">Minimum CPUs big</string>
+    <string name="min_cpus_big_summary">Minimum amount of big CPUs that should be online.</string>
     <string name="busy_down_threshold">Busy Down Threshold</string>
     <string name="busy_down_threshold_summary">Threshold when big CPUs should be turned off.</string>
     <string name="busy_up_threshold">Busy Up Threshold</string>

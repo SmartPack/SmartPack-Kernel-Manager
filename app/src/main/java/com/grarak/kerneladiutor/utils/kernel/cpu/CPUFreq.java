@@ -73,6 +73,7 @@ public class CPUFreq {
     private static int sCpuCount;
     private static int sBigCpu = -1;
     private static int sLITTLECpu = -1;
+    public static int sCoreCtlMinCpu;
     private static SparseArray<List<Integer>> sFreqs = new SparseArray<>();
     private static String[] sGovernors;
 
@@ -427,7 +428,7 @@ public class CPUFreq {
             QcomBcl.online(online, category, context);
         }
         if (CoreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
-            CoreCtl.setMinCpus(online ? getBigCpuRange().size() : 0, cpu, category, context);
+            CoreCtl.setMinCpus(online ? getBigCpuRange().size() : sCoreCtlMinCpu, cpu, category, context);
         }
         if (MSMPerformance.hasMaxCpus()) {
             MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?

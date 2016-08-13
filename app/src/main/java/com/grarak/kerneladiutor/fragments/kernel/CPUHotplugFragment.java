@@ -2058,6 +2058,26 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(CoreCtl.hasEnable() ? R.string.hcube : R.string.core_control));
 
+        if (CoreCtl.hasMinCpus(CPUFreq.getBigCpu())) {
+            SeekBarView minCpus = new SeekBarView();
+            minCpus.setTitle(getString(R.string.min_cpus_big));
+            minCpus.setSummary(getString(R.string.min_cpus_big_summary));
+            minCpus.setMax(CPUFreq.getBigCpuRange().size());
+            minCpus.setProgress(CoreCtl.getMinCpus(CPUFreq.getBigCpu()));
+            minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    CoreCtl.setMinCpus(position, CPUFreq.getBigCpu(), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            coreCtl.add(minCpus);
+        }
+
         if (CoreCtl.hasBusyDownThreshold()) {
             SeekBarView busyDownThreshold = new SeekBarView();
             busyDownThreshold.setTitle(getString(R.string.busy_down_threshold));

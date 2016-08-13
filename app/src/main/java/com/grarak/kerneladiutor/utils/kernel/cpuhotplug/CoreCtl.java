@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.utils.kernel.cpuhotplug;
 import android.content.Context;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -102,12 +103,24 @@ public class CoreCtl {
     }
 
     public static void setMinCpus(int min, int cpu, String category, Context context) {
-        Control.runSetting(Control.write(String.valueOf(min), Utils.strFormat(PARENT + MIN_CPUS, cpu)), category,
-                Utils.strFormat(PARENT + MIN_CPUS, cpu), context);
+        if (context != null) {
+            CPUFreq.sCoreCtlMinCpu = min;
+            Prefs.saveInt("core_ctl_min_cpus_big", min, context);
+        }
+        Control.runSetting(Control.write(String.valueOf(min), Utils.strFormat(PARENT + MIN_CPUS,
+                cpu)), category, Utils.strFormat(PARENT + MIN_CPUS, cpu), context);
+    }
+
+    public static int getMinCpus(int core) {
+        return Utils.strToInt(Utils.readFile(Utils.strFormat(PARENT + MIN_CPUS, core)));
     }
 
     public static boolean hasMinCpus() {
-        return Utils.existFile(Utils.strFormat(PARENT + MIN_CPUS, 0));
+        return hasMinCpus(0);
+    }
+
+    public static boolean hasMinCpus(int core) {
+        return Utils.existFile(Utils.strFormat(PARENT + MIN_CPUS, core));
     }
 
     public static void enable(boolean enable, Context context) {
