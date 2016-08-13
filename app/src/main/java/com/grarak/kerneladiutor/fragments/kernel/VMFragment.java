@@ -26,9 +26,12 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.vm.VM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
+import com.grarak.kerneladiutor.utils.kernel.vm.ZSwap;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.HashMap;
@@ -77,6 +80,7 @@ public class VMFragment extends RecyclerViewFragment {
         if (ZRAM.supported()) {
             zramInit(items);
         }
+        zswapInit(items);
     }
 
     private void zramInit(List<RecyclerViewItem> items) {
@@ -103,6 +107,71 @@ public class VMFragment extends RecyclerViewFragment {
         });
 
         items.add(zram);
+    }
+
+    private void zswapInit(List<RecyclerViewItem> items) {
+        CardView zswapCard = new CardView(getActivity());
+        zswapCard.setTitle(getString(R.string.zswap));
+
+        if (ZSwap.hasEnable()) {
+            SwitchView zswap = new SwitchView();
+            zswap.setTitle(getString(R.string.zswap));
+            zswap.setSummary(getString(R.string.zswap_summary));
+            zswap.setChecked(ZSwap.isEnabled());
+            zswap.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    ZSwap.enable(isChecked, getActivity());
+                }
+            });
+
+            zswapCard.addItem(zswap);
+        }
+
+        if (ZSwap.hasMaxPoolPercent()) {
+            SeekBarView maxPoolPercent = new SeekBarView();
+            maxPoolPercent.setTitle(getString(R.string.memory_pool));
+            maxPoolPercent.setSummary(getString(R.string.memory_pool_summary));
+            maxPoolPercent.setUnit("%");
+            maxPoolPercent.setMax(50);
+            maxPoolPercent.setProgress(ZSwap.getMaxPoolPercent());
+            maxPoolPercent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    ZSwap.setMaxPoolPercent(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            zswapCard.addItem(maxPoolPercent);
+        }
+
+        if (ZSwap.hasMaxCompressionRatio()) {
+            SeekBarView maxCompressionRatio = new SeekBarView();
+            maxCompressionRatio.setTitle(getString(R.string.maximum_compression_ratio));
+            maxCompressionRatio.setSummary(getString(R.string.maximum_compression_ratio_summary));
+            maxCompressionRatio.setUnit("%");
+            maxCompressionRatio.setProgress(ZSwap.getMaxCompressionRatio());
+            maxCompressionRatio.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    ZSwap.setMaxCompressionRatio(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            zswapCard.addItem(maxCompressionRatio);
+        }
+
+        if (zswapCard.size() > 0) {
+            items.add(zswapCard);
+        }
     }
 
     private void refreshVMs() {

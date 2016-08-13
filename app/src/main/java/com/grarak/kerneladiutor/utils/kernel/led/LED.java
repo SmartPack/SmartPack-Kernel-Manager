@@ -47,7 +47,6 @@ public class LED {
     private static final HashMap<String, LinkedHashMap<Integer, Boolean>> sSpeeds = new HashMap<>();
 
     static {
-
         sRedSpeed.put(R.string.stock, true);
         sRedSpeed.put(R.string.continuous_light, true);
         for (int i = 2; i < 21; i++) {
@@ -124,7 +123,7 @@ public class LED {
     }
 
     public static boolean supported() {
-        return hasFade() || hasIntensity() || hasSpeed();
+        return hasFade() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private static void run(String command, String id, Context context) {

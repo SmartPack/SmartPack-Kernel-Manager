@@ -320,6 +320,10 @@ public class Service extends android.app.Service {
 
     public static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {
         List<String> commands = new ArrayList<>();
+        boolean cpulock = Utils.existFile(CPUFreq.CPU_LOCK_FREQ, su);
+        if (cpulock) {
+            commands.add(Control.write("0", CPUFreq.CPU_LOCK_FREQ));
+        }
         boolean mpdecision = Utils.hasProp(MPDecision.HOTPLUG_MPDEC, su)
                 && Utils.isPropRunning(MPDecision.HOTPLUG_MPDEC, su);
         if (mpdecision) {
@@ -339,6 +343,9 @@ public class Service extends android.app.Service {
         }
         if (mpdecision) {
             commands.add(Control.startService(MPDecision.HOTPLUG_MPDEC));
+        }
+        if (cpulock) {
+            commands.add(Control.write("1", CPUFreq.CPU_LOCK_FREQ));
         }
         return commands;
     }

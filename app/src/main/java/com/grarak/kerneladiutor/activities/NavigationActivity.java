@@ -208,7 +208,10 @@ public class NavigationActivity extends BaseActivity
         sCallback = new Callback() {
             @Override
             public void onBannerResize() {
-                recreate();
+                Fragment fragment = sActualFragments.get(mSelection);
+                if (fragment instanceof RecyclerViewFragment) {
+                    ((RecyclerViewFragment) fragment).resizeBanner();
+                }
             }
         };
         setContentView(R.layout.activity_navigation);
@@ -436,7 +439,7 @@ public class NavigationActivity extends BaseActivity
         return fragment;
     }
 
-    public static void restart() {
+    public static void bannerResize() {
         if (sCallback != null) {
             sCallback.onBannerResize();
         }

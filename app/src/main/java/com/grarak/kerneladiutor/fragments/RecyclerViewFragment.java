@@ -116,6 +116,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
         mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
         resizeBanner();
+        mViewPagerParent.setVisibility(View.INVISIBLE);
 
         mProgress = mRootView.findViewById(R.id.progress);
 
@@ -311,13 +312,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     public void resizeBanner() {
-        ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
-        layoutParams.height = Prefs.getInt("banner_size", Math.round(getResources().getDimension(
-                R.dimen.banner_default_height)), getActivity());
-        mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
-                mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
-        mViewPagerParent.requestLayout();
-        mViewPagerParent.setVisibility(View.INVISIBLE);
+        if (showViewPager()) {
+            ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
+            layoutParams.height = Prefs.getInt("banner_size", Math.round(getResources().getDimension(
+                    R.dimen.banner_default_height)), getActivity());
+            mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
+                    mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
+            mViewPagerParent.requestLayout();
+        }
     }
 
     protected void removeItem(RecyclerViewItem recyclerViewItem) {

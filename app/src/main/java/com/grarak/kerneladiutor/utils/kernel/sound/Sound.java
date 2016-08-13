@@ -46,6 +46,9 @@ public class Sound {
     private static final String TPA6165_SET_REG = "/sys/kernel/debug/tpa6165/set_reg";
 
     private static final String SPEAKER_GAIN = "/sys/kernel/sound_control_3/gpl_speaker_gain";
+    private static final String LOCK_OUTPUT_GAIN = "/sys/kernel/sound_control_3/gpl_sound_control_locked";
+    private static final String LOCK_MIC_GAIN = "/sys/kernel/sound_control_3/gpl_sound_control_rec_locked";
+
     private static final String MIC_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
     private static final String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/volume_boost";
 
@@ -101,6 +104,30 @@ public class Sound {
 
     public static boolean hasMicrophoneGain() {
         return Utils.existFile(MIC_BOOST);
+    }
+
+    public static void enableLockMicGain(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", LOCK_MIC_GAIN), LOCK_MIC_GAIN, context);
+    }
+
+    public static boolean isLockMicGainEnabled() {
+        return Utils.readFile(LOCK_MIC_GAIN).equals("1");
+    }
+
+    public static boolean hasLockMicGain() {
+        return Utils.existFile(LOCK_MIC_GAIN);
+    }
+
+    public static void enableLockOutputGain(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", LOCK_OUTPUT_GAIN), LOCK_OUTPUT_GAIN, context);
+    }
+
+    public static boolean isLockOutputGainEnabled() {
+        return Utils.readFile(LOCK_OUTPUT_GAIN).equals("1");
+    }
+
+    public static boolean hasLockOutputGain() {
+        return Utils.existFile(LOCK_OUTPUT_GAIN);
     }
 
     public static void setHeadphonePowerAmpGain(String value, Context context) {
@@ -323,7 +350,8 @@ public class Sound {
     public static boolean supported() {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || hasHeadphoneGain()
                 || hasHandsetMicrophoneGain() || hasCamMicrophoneGain() || hasSpeakerGain()
-                || hasHeadphonePowerAmpGain() || hasMicrophoneGain() || hasVolumeGain();
+                || hasHeadphonePowerAmpGain() || hasLockOutputGain() || hasLockMicGain()
+                || hasMicrophoneGain() || hasVolumeGain();
     }
 
     private static int getChecksum(int arg0, int arg1) {

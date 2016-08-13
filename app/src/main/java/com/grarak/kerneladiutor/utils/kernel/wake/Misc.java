@@ -48,6 +48,8 @@ public class Misc {
 
     private static final String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
+    private static final String VIB_VIBRATION = "/sys/android_touch2/vib_strength";
+
     private static final HashMap<String, List<Integer>> sWakeFiles = new HashMap<>();
     private static final List<Integer> sScreenWakeOptionsMenu = new ArrayList<>();
 
@@ -89,6 +91,18 @@ public class Misc {
     private static String CAMERA;
     private static String POCKET;
     private static String TIMEOUT;
+
+    public static void setVibVibration(int value, Context context) {
+        run(Control.write(String.valueOf(value), VIB_VIBRATION), VIB_VIBRATION, context);
+    }
+
+    public static int getVibVibration() {
+        return Utils.strToInt(Utils.readFile(VIB_VIBRATION));
+    }
+
+    public static boolean hasVibVibration() {
+        return Utils.existFile(VIB_VIBRATION);
+    }
 
     public static void enablePowerKeySuspend(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", POWER_KEY_SUSPEND), POWER_KEY_SUSPEND, context);
@@ -195,7 +209,8 @@ public class Misc {
     }
 
     public static boolean supported() {
-        return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasPowerKeySuspend();
+        return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasPowerKeySuspend()
+                || hasVibVibration();
     }
 
     private static void run(String command, String id, Context context) {
