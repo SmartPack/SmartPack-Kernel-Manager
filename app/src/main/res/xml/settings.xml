@@ -90,8 +90,6 @@
 
     <PreferenceCategory
         android:key="sections"
-        android:title="@string/sections">
-        <Preference android:summary="@string/sections_summary" />
-    </PreferenceCategory>
+        android:title="@string/sections" />
 
 </PreferenceScreen>

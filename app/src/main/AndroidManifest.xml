@@ -56,7 +56,6 @@
         <activity
             android:name=".views.NavHeaderView$MainHeaderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.tools.CustomControlsActivity" />
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.FilePickerActivity" />

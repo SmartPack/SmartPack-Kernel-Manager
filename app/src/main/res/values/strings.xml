@@ -849,5 +849,4 @@
     <string name="set_password_first">Set a password first</string>
     <string name="fingerprint_summary">Use fingerprint to pass security check. This will work as long you have fingerprints registered.</string>
     <string name="sections">Sections</string>
-    <string name="sections_summary">Restart the app when you changed the visibility of sections below.</string>
 </resources>

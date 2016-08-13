@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
         <item name="swirl_errorColor">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
@@ -17,6 +18,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
         <item name="swirl_errorColor">@color/colorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="ThemeDark" parent="AppThemeDark" />

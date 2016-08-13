@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.activities;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -64,6 +63,7 @@ import com.grarak.kerneladiutor.fragments.kernel.WakeFrament;
 import com.grarak.kerneladiutor.fragments.other.AboutFragment;
 import com.grarak.kerneladiutor.fragments.other.ContributorsFragment;
 import com.grarak.kerneladiutor.fragments.other.FAQFragment;
+import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.statistics.DeviceFragment;
 import com.grarak.kerneladiutor.fragments.statistics.InputsFragment;
 import com.grarak.kerneladiutor.fragments.statistics.MemoryFragment;
@@ -98,7 +98,6 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.AdBanner;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class NavigationActivity extends BaseActivity
@@ -106,7 +105,6 @@ public class NavigationActivity extends BaseActivity
 
     public final static LinkedHashMap<Integer, Fragment> sFragments = new LinkedHashMap<>();
     public final static LinkedHashMap<Integer, Fragment> sActualFragments = new LinkedHashMap<>();
-    public final static HashMap<Integer, Class> sActivities = new HashMap<>();
 
     static {
         sFragments.put(R.string.statistics, null);
@@ -174,9 +172,7 @@ public class NavigationActivity extends BaseActivity
         sFragments.put(R.string.about, new AboutFragment());
         sFragments.put(R.string.contributors, new ContributorsFragment());
         sFragments.put(R.string.faq, new FAQFragment());
-        sFragments.put(R.string.settings, null);
-
-        sActivities.put(R.string.settings, SettingsActivity.class);
+        sFragments.put(R.string.settings, new SettingsFragment());
     }
 
     private static Thread mPatchingThread;
@@ -324,30 +320,29 @@ public class NavigationActivity extends BaseActivity
 
     private int firstTab() {
         for (int id : sActualFragments.keySet()) {
-            if (sActualFragments.get(id) != null || sActivities.containsKey(id)) {
+            if (sActualFragments.get(id) != null) {
                 return id;
             }
         }
         return 0;
     }
 
-    private void appendFragments() {
+    public void appendFragments() {
         sActualFragments.clear();
         Menu menu = mNavigationView.getMenu();
         menu.clear();
 
         SubMenu lastSubMenu = null;
         for (int id : sFragments.keySet()) {
-            if (sFragments.get(id) == null && !sActivities.containsKey(id)) {
+            if (sFragments.get(id) == null) {
                 lastSubMenu = menu.addSubMenu(id);
                 sActualFragments.put(id, null);
-            } else if (Prefs.getBoolean(sActivities.containsKey(id) ?
-                    sActivities.get(id).getSimpleName() + "_enabled" :
-                    sFragments.get(id).getClass().getSimpleName() + "_enabled", true, this)) {
+            } else if (Prefs.getBoolean(sFragments.get(id).getClass().getSimpleName() + "_enabled",
+                    true, this)) {
                 MenuItem menuItem = lastSubMenu == null ? menu.add(0, id, 0, id) :
                         lastSubMenu.add(0, id, 0, id);
                 menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_blank));
-                menuItem.setCheckable(!sActivities.containsKey(id));
+                menuItem.setCheckable(true);
                 sActualFragments.put(id, sFragments.get(id));
             }
         }
@@ -415,20 +410,16 @@ public class NavigationActivity extends BaseActivity
     }
 
     private void onItemSelected(final int res, boolean delay) {
-        if (sActivities.containsKey(res)) {
-            startActivity(new Intent(this, sActivities.get(res)));
-        } else {
-            mDrawer.closeDrawer(GravityCompat.START);
-            getSupportActionBar().setTitle(getString(res));
-            mNavigationView.setCheckedItem(res);
-            mSelection = res;
-            Fragment fragment = getFragment(res);
-            if (fragment instanceof RecyclerViewFragment) {
-                ((RecyclerViewFragment) fragment).mDelay = delay;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
-                    res + "_key").commit();
+        mDrawer.closeDrawer(GravityCompat.START);
+        getSupportActionBar().setTitle(getString(res));
+        mNavigationView.setCheckedItem(res);
+        mSelection = res;
+        Fragment fragment = getFragment(res);
+        if (fragment instanceof RecyclerViewFragment) {
+            ((RecyclerViewFragment) fragment).mDelay = delay;
         }
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
+                res + "_key").commit();
     }
 
     private Fragment getFragment(int res) {
