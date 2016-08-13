@@ -220,13 +220,16 @@ public class Utils {
     }
 
     private static RootFile findExtension(RootFile path, String extension) {
-        for (RootFile file : path.listFiles()) {
-            if (file.isDirectory()) {
-                RootFile rootFile = findExtension(file, extension);
-                if (rootFile != null) return rootFile;
-            } else if (file.getName() != null && file.getName().endsWith(extension)) {
-                return file;
+        try {
+            for (RootFile file : path.listFiles()) {
+                if (file.isDirectory()) {
+                    RootFile rootFile = findExtension(file, extension);
+                    if (rootFile != null) return rootFile;
+                } else if (file.getName() != null && file.getName().endsWith(extension)) {
+                    return file;
+                }
             }
+        } catch (Exception ignored) {
         }
         return null;
     }
