@@ -343,6 +343,9 @@ public class NavigationActivity extends BaseActivity
                         lastSubMenu.add(0, id, 0, id);
                 menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_blank));
                 menuItem.setCheckable(true);
+                if (mSelection != 0) {
+                    mNavigationView.setCheckedItem(mSelection);
+                }
                 sActualFragments.put(id, sFragments.get(id));
             }
         }
