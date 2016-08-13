@@ -90,6 +90,7 @@
   <!-- Sound -->
   <!-- Battery -->
   <!-- LED -->
+  <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
@@ -100,7 +101,6 @@
   <string name="network">Võrk</string>
   <string name="hostname">Hosti nimi</string>
   <!-- Custom Controls -->
-  <string name="test">Test</string>
   <string name="edit">Muuda</string>
   <string name="delete">Kustuta</string>
   <string name="name">Nimi</string>
@@ -113,8 +113,9 @@
   <string name="key">Võti</string>
   <string name="value">Väärtus</string>
   <!-- Profile -->
-  <string name="wipe_cache">Pühkige vahemälu</string>
   <string name="applied">Rakendatud</string>
+  <!-- Recovery -->
+  <string name="wipe_cache">Pühkige vahemälu</string>
   <!-- Init.d -->
   <!-- On Boot -->
   <!-- About -->

@@ -330,6 +330,7 @@
   <string name="camera_gesture_summary">Pokrenite zadanu aplikaciju fotoaparata crtanjem kruga na zaslonu.</string>
   <string name="power_key_suspend">Obustavljanje tipke za uključivanje</string>
   <string name="power_key_suspend_summary">Izbor ove opcije će onemogućiti buđenje dodirom zaslona ukoliko je zaslon isključen pritiskom na tipku za paljenje uređaja.</string>
+  <string name="vibration_strength">Snaga vibracije</string>
   <!-- Sound -->
   <string name="sound_control">Kontrola zvuka</string>
   <string name="headphone_gain">Glasnoća slušalica</string>
@@ -346,6 +347,7 @@
   <string name="blx">Produživač života baterije</string>
   <string name="blx_summary">Odredite granicu do koje će se baterija napuniti postavkom veličine između 0 i 100.</string>
   <!-- LED -->
+  <string name="test">Testiranje</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Unutarnja pohrana</string>
   <string name="external_storage">Vanjska pohrana</string>
@@ -373,7 +375,6 @@
   <string name="read">Čitanje</string>
   <string name="write">Pisanje</string>
   <!-- Misc -->
-  <string name="vibration_strength">Snaga vibracije</string>
   <string name="android_logger">Android: zapisi</string>
   <string name="dynamic_fsync">Dinamički Fsync</string>
   <string name="network">Mreža</string>
@@ -393,7 +394,6 @@
   <string name="custom_controls_example_summary">Trebate primjer? Dodirnite &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;ovdje&lt;a&gt;.</string>
   <string name="create">Stvori</string>
   <string name="import_item">Uvezi</string>
-  <string name="test">Testiranje</string>
   <string name="edit">Promjeni</string>
   <string name="delete">Izbriši</string>
   <string name="name">Ime</string>
@@ -409,6 +409,7 @@
   <string name="value">Vrijednost</string>
   <!-- Profile -->
   <string name="applied">Primjenjeno</string>
+  <!-- Recovery -->
   <!-- Init.d -->
   <!-- On Boot -->
   <!-- About -->

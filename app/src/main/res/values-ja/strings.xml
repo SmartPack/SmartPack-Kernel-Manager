@@ -356,6 +356,7 @@
   <string name="pocket_mode_summary">有効にすると、機器をポケットの中に入れているときに起動操作が無効になります。</string>
   <string name="power_key_suspend">電源キーサスペンド</string>
   <string name="power_key_suspend_summary">有効にすると、電源キーで画面を消灯したときに起動操作を無効にします。</string>
+  <string name="vibration_strength">バイブの強さ</string>
   <!-- Sound -->
   <string name="sound_control">サウンド操作</string>
   <string name="headset_highperf_mode">ヘッドセット高パフォーマンスモード</string>
@@ -372,6 +373,7 @@
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">どの残量になるまで充電するか、0 から 100 までの値で指定します。</string>
   <!-- LED -->
+  <string name="test">テスト</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">内部ストレージ</string>
   <string name="external_storage">外部ストレージ</string>
@@ -400,7 +402,6 @@
   <string name="read">読み込み</string>
   <string name="write">書き込み</string>
   <!-- Misc -->
-  <string name="vibration_strength">バイブの強さ</string>
   <string name="android_logger">Androidログ出力</string>
   <string name="crc">ソフトウェア CRC 制御</string>
   <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30% 低下することがあります。</string>
@@ -438,7 +439,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <!-- Custom Controls -->
-  <string name="test">テスト</string>
   <string name="edit">編集</string>
   <string name="delete">削除</string>
   <string name="name">名前</string>
@@ -456,11 +456,12 @@
   <string name="key">キー</string>
   <string name="value">値</string>
   <!-- Profile -->
+  <string name="applied">適用しました。</string>
+  <!-- Recovery -->
   <string name="wipe_data">データの消去</string>
   <string name="wipe_cache">キャッシュの消去</string>
   <string name="flash_zip">ZIPのインストール</string>
   <string name="flash_now_confirm">本当に実行しますか? リカバリへ再起動し、アクションを実行します。</string>
-  <string name="applied">適用しました。</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.dのエミュレート</string>
   <string name="executing">実行中</string>

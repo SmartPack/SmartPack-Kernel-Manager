@@ -409,6 +409,7 @@
   <string name="timeout">超时</string>
   <string name="power_key_suspend">电源键延迟</string>
   <string name="power_key_suspend_summary">启用此项后当屏幕由电源键关闭时唤醒控制将会被禁用。</string>
+  <string name="vibration_strength">震动长度</string>
   <!-- Sound -->
   <string name="sound_control">声音控制</string>
   <string name="headset_highperf_mode">耳机高性能模式</string>
@@ -433,6 +434,7 @@
   <!-- LED -->
   <string name="fade">淡入淡出</string>
   <string name="speed">速度</string>
+  <string name="test">测试</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">内部存储</string>
   <string name="external_storage">外部存储</string>
@@ -466,7 +468,6 @@
   <string name="read">读取</string>
   <string name="write">写入</string>
   <!-- Misc -->
-  <string name="vibration_strength">震动长度</string>
   <string name="android_logger">Android 日志记录</string>
   <string name="crc">软件 CRC 控制</string>
   <string name="fsync_summary">禁用以获得更高的文件系统性能，但会增加在系统崩溃时发生数据丢失的风险。</string>
@@ -516,7 +517,6 @@
   <string name="control_generic">通用</string>
   <string name="generic_value">值</string>
   <string name="required">必需</string>
-  <string name="test">测试</string>
   <string name="output">输出</string>
   <string name="edit">编辑</string>
   <string name="export">导出</string>
@@ -547,12 +547,13 @@
   <!-- Profile -->
   <string name="no_changes">未做任何更改！</string>
   <string name="details">详细信息</string>
+  <string name="applied">已应用</string>
+  <string name="profile_select">选择配置文件</string>
+  <!-- Recovery -->
   <string name="wipe_data">擦除数据</string>
   <string name="wipe_cache">擦除缓存</string>
   <string name="flash_zip">刷入 Zip</string>
   <string name="flash_now_confirm">你要执行你的操作吗? 你的设备将重启进入 recovery 并按照您添加时的顺序执行操作</string>
-  <string name="applied">已应用</string>
-  <string name="profile_select">选择配置文件</string>
   <!-- Init.d -->
   <string name="emulate_initd">模拟 Init.d</string>
   <string name="exceute_question">执行 %s 吗？</string>

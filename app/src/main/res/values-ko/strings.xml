@@ -323,6 +323,7 @@
   <string name="draw_m">M  그리기</string>
   <string name="power_key_suspend">전원 키 일시중지</string>
   <string name="power_key_suspend_summary">이 기능을 사용하면 전원 키로 화면을 끌 때 화면을 켜는 여러 가지 방법들을 사용할 수 없게 됩니다.</string>
+  <string name="vibration_strength">진동 세기</string>
   <!-- Sound -->
   <string name="sound_control">사운드 컨트롤</string>
   <string name="headphone_gain">헤드폰 소리 증폭</string>
@@ -338,6 +339,7 @@
   <string name="blx">배터리 사용시간 확장</string>
   <string name="blx_summary">0~100 사이에서 배터리가 충전될 때의 한계값을 설정합니다.</string>
   <!-- LED -->
+  <string name="test">\"부팅 시 적용\" 테스트</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">내부 저장소</string>
   <string name="external_storage">외부 저장소</string>
@@ -365,7 +367,6 @@
   <string name="read">읽기</string>
   <string name="write">쓰기</string>
   <!-- Misc -->
-  <string name="vibration_strength">진동 세기</string>
   <string name="android_logger">안드로이드 로깅</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
@@ -396,7 +397,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
   <!-- Custom Controls -->
-  <string name="test">\"부팅 시 적용\" 테스트</string>
   <string name="edit">수정</string>
   <string name="delete">삭제</string>
   <string name="name">이름</string>
@@ -414,11 +414,12 @@
   <string name="key">Key</string>
   <string name="value">값</string>
   <!-- Profile -->
+  <string name="applied">적용됨</string>
+  <!-- Recovery -->
   <string name="wipe_data">데이터 초기화</string>
   <string name="wipe_cache">캐시 초기화</string>
   <string name="flash_zip">Zip 파일 플래싱</string>
   <string name="flash_now_confirm">동작을 실행하시겠습니까? 기기가 리커버리로 다시 시작된 후 추가한 동작들이 순서대로 실행됩니다.</string>
-  <string name="applied">적용됨</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d 에뮬레이션</string>
   <string name="executing">실행 중</string>

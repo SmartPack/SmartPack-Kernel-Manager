@@ -393,6 +393,7 @@
   <string name="pocket_mode">口袋模式</string>
   <string name="power_key_suspend">電源鍵暫停</string>
   <string name="power_key_suspend_summary">開啟這項目當您按電源鍵關閉螢幕，將會關閉喚醒控制。</string>
+  <string name="vibration_strength">震動強度</string>
   <!-- Sound -->
   <string name="sound_control">聲音控制</string>
   <string name="headphone_gain">耳機增益</string>
@@ -408,6 +409,7 @@
   <string name="usb_fast_charge_summary">當裝置連接 USB 時充電速度會較快。變更選項時請重新插入充電器。</string>
   <string name="blx">電池壽命擴展</string>
   <!-- LED -->
+  <string name="test">測試</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">內部儲存空間</string>
   <string name="external_storage">外部儲存空間</string>
@@ -434,7 +436,6 @@
   <string name="read">讀取</string>
   <string name="write">寫入</string>
   <!-- Misc -->
-  <string name="vibration_strength">震動強度</string>
   <string name="fsync">Fsync</string>
   <string name="autosleep">自動睡眠</string>
   <string name="userspace">使用者空間</string>
@@ -451,7 +452,6 @@
   <string name="control_seekbar">搜尋欄</string>
   <string name="title">標題</string>
   <string name="applying">套用中</string>
-  <string name="test">測試</string>
   <string name="edit">編輯</string>
   <string name="delete">刪除</string>
   <string name="name">名稱</string>
@@ -468,9 +468,10 @@
   <!-- Build prop Editor -->
   <string name="value">值</string>
   <!-- Profile -->
+  <string name="applied">套用成功</string>
+  <!-- Recovery -->
   <string name="wipe_data">Wipe Data</string>
   <string name="wipe_cache">Wipe Cache</string>
-  <string name="applied">套用成功</string>
   <!-- Init.d -->
   <string name="emulate_initd">模擬 Init.d</string>
   <string name="executing">執行中</string>

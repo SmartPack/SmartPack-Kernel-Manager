@@ -353,6 +353,7 @@
   <string name="pocket_mode_summary">Aktifkan ini akan mematikan wake controls ketika perangkat berada didalam kantong.</string>
   <string name="power_key_suspend">Pengangguhan Tombol Daya</string>
   <string name="power_key_suspend_summary">Mengaktifkan ini akan mematikan fungsi menyalakan layar dengan tombol daya ketika layar mati.</string>
+  <string name="vibration_strength">Kekuatan Getaran</string>
   <!-- Sound -->
   <string name="sound_control">Kontrol Suara</string>
   <string name="headset_highperf_mode">Mode tinggi performa headset</string>
@@ -369,6 +370,7 @@
   <string name="blx">Baterai eXtender</string>
   <string name="blx_summary">Menetapkan batas kapasitas baterai dimana akan diisi setelah melewati nilai tertentu antara 0 dan 100.</string>
   <!-- LED -->
+  <string name="test">Coba</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Penyimpanan Internal</string>
   <string name="external_storage">Penyimpanan Eksternal</string>
@@ -397,7 +399,6 @@
   <string name="read">Read</string>
   <string name="write">Tulis</string>
   <!-- Misc -->
-  <string name="vibration_strength">Kekuatan Getaran</string>
   <string name="android_logger">Pencatatan Android</string>
   <string name="crc">Kontrol CRC Perangkat Lunak</string>
   <string name="crc_summary">CRC adalah suatu mekanisme yang bertujuan untuk mencegah korupsi data ketika diaktifkan. Blok data dapat membebaskan hingga 30% dari kinerja mereka.</string>
@@ -435,7 +436,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock pembagi</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock pembagi</string>
   <!-- Custom Controls -->
-  <string name="test">Coba</string>
   <string name="edit">Sunting</string>
   <string name="delete">Hapus</string>
   <string name="name">Nama</string>
@@ -453,11 +453,12 @@
   <string name="key">Tombol</string>
   <string name="value">Nilai</string>
   <!-- Profile -->
+  <string name="applied">Diterapkan</string>
+  <!-- Recovery -->
   <string name="wipe_data">Hapus Data</string>
   <string name="wipe_cache">Hapus Cache</string>
   <string name="flash_zip">Flash Zip</string>
   <string name="flash_now_confirm">Apakah Anda ingin menjalankan tindakan Anda? Perangkat akan reboot ke recovery dan tindakan akan dijalankan sesuai dengan urutan yang anda tambahkan.</string>
-  <string name="applied">Diterapkan</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulasikan Init.d</string>
   <string name="executing">Menjalankan</string>

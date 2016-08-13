@@ -137,6 +137,7 @@
   <string name="governor_tunables_summary">A különböző konfigurációs elemek, amelyek ütemező-függőek.</string>
   <string name="cpu_governor_tunables_read_error">Nem sikerült beolvasni a jelenlegi CPU ütemezőt.\n\nHa egy QCOM big.LITTLE eszközt használsz, akkor ez egy ismert probléma. A rendszer arra kényszeríti a CPU-t, hogy kikapcsolja a magokat, így rendkívül nehezen olvasható ki a CPU-specifikus statisztika. Próbáld ezt a lehetőséget újra kiválasztani. A CPU néha nem hajlandó a magot bekapcsolni.</string>
   <string name="tunables_error">%s nem hangolható</string>
+  <string name="manual">Manuális</string>
   <string name="mc_power_saving">Többmagos Energiatakarékosság</string>
   <string name="mc_power_saving_summary">A feladatok csoportosítása a lehető legkevesebb magra.</string>
   <string name="disabled">Letiltva</string>
@@ -474,6 +475,7 @@
   <string name="timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
   <string name="power_key_suspend">Bekapcsológomb felfüggesztése</string>
   <string name="power_key_suspend_summary">Ezt engedélyezve az ébresztési vezérlők kikapcsolásra kerülnek, ha a képernyő a bekapcsoló gombbal lett kikapcsolva.</string>
+  <string name="vibration_strength">Rezgés erőssége</string>
   <!-- Sound -->
   <string name="sound_control">Hangvezérlő</string>
   <string name="headset_highperf_mode">Fülhallgató nagy teljesítményű mód</string>
@@ -503,6 +505,7 @@
   <string name="speed">Sebesség</string>
   <string name="stock">Gyári</string>
   <string name="continuous_light">Folyamatos fény</string>
+  <string name="test">Teszt</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Belső memória</string>
   <string name="external_storage">Külső tárhely</string>
@@ -558,7 +561,6 @@
   <string name="read">Olvasás</string>
   <string name="write">Írás</string>
   <!-- Misc -->
-  <string name="vibration_strength">Rezgés erőssége</string>
   <string name="android_logger">Android naplózás</string>
   <string name="crc">Szoftver CRC vezérlés</string>
   <string name="crc_summary">CRC egy olyan mechanizmus, amelynek célja, hogy védje az adatokat, ha engedélyezve van. Adatblokkok elveszíthetik akár 30%-ukat a teljesítményüknek.</string>
@@ -624,7 +626,7 @@
   <string name="generic_value_summary">A szerkesztő aktuális értéke. Lényegében bármi lehet.</string>
   <string name="generic_apply_summary">A szerkesztő azt adja vissza, ami meg lett adva.</string>
   <string name="required">szükséges</string>
-  <string name="test">Teszt</string>
+  <string name="hit_test">Először a teszt gombot kell megnyomni!</string>
   <string name="output">Kimenet</string>
   <string name="edit">Szerkesztés</string>
   <string name="export">Exportálás</string>
@@ -656,6 +658,8 @@
   <string name="fota_partition">Fota partíció</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="add">Hozzáadás</string>
+  <string name="backup_item">%1$s biztonségi mentése ide mentve: %2$s</string>
   <string name="item_count">%s elem</string>
   <string name="items_count">%s elem</string>
   <string name="key">Kulcs</string>
@@ -666,12 +670,8 @@
   <string name="profile_warning">Minden, amit itt megváltoztatsz, mentésre kerül a profilodba. De figyelem! A beállítások alkalmazásra is kerülnek, de nem mentődnek az Alkalmazás induláskor-ba.</string>
   <string name="no_changes">Nem történt változtatás!</string>
   <string name="apply_question">%s alkalmazása?</string>
+  <string name="append">Hozzáfűzés</string>
   <string name="details">Részletek</string>
-  <string name="wipe_data">Data törlése</string>
-  <string name="wipe_cache">Cache törlése</string>
-  <string name="flash_zip">Zip flashelése</string>
-  <string name="add_action_first">Először műveleteket kell hozzáadnod!</string>
-  <string name="flash_now_confirm">Szeretnéd most futtatni a műveleteidet? A készülék újraindul recovery módban és a műveletek abban a sorrendben futnak le, ahogyan hozzáadtad azokat.</string>
   <string name="press_again_to_apply">Az alkalmazáshoz érintsd meg újra: %s.</string>
   <string name="applied">Alkalmazva</string>
   <string name="profile_tasker">Profil-Tasker</string>
@@ -687,6 +687,17 @@
   <string name="current_settings">Aktuális beállítások</string>
   <string name="select_all">Összes kijelölése</string>
   <string name="nothing_selected">Nincs kiválasztott elem</string>
+  <!-- Recovery -->
+  <string name="reboot">Újraindítás</string>
+  <string name="reboot_soft">Lágy újraindítás</string>
+  <string name="reboot_recovery">Újraindítás: Recovery</string>
+  <string name="reboot_bootloader">Újraindítás: Bootloader</string>
+  <string name="reboot_download">Újraindítás: Letöltés</string>
+  <string name="wipe_data">Data törlése</string>
+  <string name="wipe_cache">Cache törlése</string>
+  <string name="flash_zip">Zip flashelése</string>
+  <string name="add_action_first">Először műveleteket kell hozzáadnod!</string>
+  <string name="flash_now_confirm">Szeretnéd most futtatni a műveleteidet? A készülék újraindul recovery módban és a műveletek abban a sorrendben futnak le, ahogyan hozzáadtad azokat.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulálása</string>
   <string name="emulate_initd_summary">Ha a készüléked nem támogatja az Init.d-t alapértelmezetten, akkor ennek bekapcsolásával emulálható a viselkedése.</string>

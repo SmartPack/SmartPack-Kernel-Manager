@@ -427,6 +427,7 @@
   <string name="pocket_mode_summary">जब डिवाइस एक जेब में है इस सक्षम करने वेक नियंत्रण को बंद करें जाएगा।</string>
   <string name="power_key_suspend">पॉवर कुंजी को निलंबित</string>
   <string name="power_key_suspend_summary">जब स्क्रीन पॉवर कुंजी द्वारा बंद कर दिया है इस सक्षम करने वेक नियंत्रण को बंद करें जाएगा।</string>
+  <string name="vibration_strength">कंपन शक्ति</string>
   <!-- Sound -->
   <string name="sound_control">ध्वनि नियंत्रण</string>
   <string name="headset_highperf_mode">हेडसेट उच्च प्रदर्शन मोड</string>
@@ -443,6 +444,7 @@
   <string name="blx">बैटरी जीवन भरनेवाला</string>
   <string name="blx_summary">जो करने के लिए बैटरी एक मान 0 और 100 के बीच गुजर चार्ज किया जाएगा क्षमता के लिए एक सीमा सेट।</string>
   <!-- LED -->
+  <string name="test">परीक्षा</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">आंतरिक संग्रहण</string>
   <string name="external_storage">बाह्य भंडारण</string>
@@ -471,7 +473,6 @@
   <string name="read">पठित</string>
   <string name="write">लिखना</string>
   <!-- Misc -->
-  <string name="vibration_strength">कंपन शक्ति</string>
   <string name="android_logger">एंड्रॉयड लॉगिंग</string>
   <string name="crc">सॉफ्टवेयर नियंत्रण के सीआरसी</string>
   <string name="crc_summary">सीआरसी जब सक्षम किया गया डेटा दूषित होने से रोकने के लिए लक्ष्य एक तंत्र है। डेटा ब्लॉक उनके प्रदर्शन का 30% तक खो सकते हैं।</string>
@@ -509,7 +510,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock विभक्त</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock विभक्त</string>
   <!-- Custom Controls -->
-  <string name="test">परीक्षा</string>
   <string name="edit">संपादित करें</string>
   <string name="delete">मिटाए</string>
   <string name="name">शीर्षक</string>
@@ -527,11 +527,12 @@
   <string name="key">कुँजी</string>
   <string name="value">वैल्यू</string>
   <!-- Profile -->
+  <string name="applied">लागू किया</string>
+  <!-- Recovery -->
   <string name="wipe_data">डाटा साफ करें</string>
   <string name="wipe_cache">कैश पोछो</string>
   <string name="flash_zip">फ़्लैश ज़िप</string>
   <string name="flash_now_confirm">क्या आप अपने कार्यों को चलाने के लिए चाहते हैं? वसूली में अपना डिवाइस रीबूट होगी और के रूप में आप उन्हें जोड़ा क्रियाओं को क्रम में चलेंगे।</string>
-  <string name="applied">लागू किया</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d का अनुकरण</string>
   <string name="executing">क्रियान्वित</string>

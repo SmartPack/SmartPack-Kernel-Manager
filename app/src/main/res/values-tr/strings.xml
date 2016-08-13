@@ -461,6 +461,7 @@
   <string name="timeout_summary">Ekran kapandıktan sonra uyandırma kontrolleri devre dışı bırakılması için bir süre ayarlayın.</string>
   <string name="power_key_suspend">Güç Anahtarı Askıya Alma</string>
   <string name="power_key_suspend_summary">Ekran güç anahtarı ile devre dışı bırakıldığında bu etkinleştirilmesi uyku modundan çıkarma denetimlerini dönecek.</string>
+  <string name="vibration_strength">Titreşim Gücü</string>
   <!-- Sound -->
   <string name="sound_control">Ses Denetimi</string>
   <string name="headset_highperf_mode">Kulaklık yüksek performans modu</string>
@@ -490,6 +491,7 @@
   <string name="speed">Hız</string>
   <string name="stock">Stok</string>
   <string name="continuous_light">Sürekli ışık</string>
+  <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Dahili Depolama</string>
   <string name="external_storage">Harici Depolama</string>
@@ -545,7 +547,6 @@
   <string name="read">Okuma</string>
   <string name="write">Yazma</string>
   <!-- Misc -->
-  <string name="vibration_strength">Titreşim Gücü</string>
   <string name="android_logger">Android günlüğü</string>
   <string name="crc">Yazılım CRC denetimi</string>
   <string name="crc_summary">CRC etkin olduğunda veri bozulmalarını önlemek amaçlayan bir mekanizmadır. Veri blokları performanslarını % 30\'kaybedebilir.</string>
@@ -602,7 +603,6 @@
   <string name="control_generic">Genel</string>
   <string name="generic_value">Değer</string>
   <string name="required">gerekli</string>
-  <string name="test">Test</string>
   <string name="output">Çıktı</string>
   <string name="edit">Düzenle</string>
   <string name="export">Dışarı aktar</string>
@@ -643,11 +643,6 @@
   <string name="no_changes">Hiçbir değişiklik yapılmadı!</string>
   <string name="apply_question">Uygula %s?</string>
   <string name="details">Ayrıntılar</string>
-  <string name="wipe_data">Verileri Sil</string>
-  <string name="wipe_cache">Önbelleği sil</string>
-  <string name="flash_zip">Zip flashla</string>
-  <string name="add_action_first">Önce bir eylem eklemeniz gerekir!</string>
-  <string name="flash_now_confirm">Eylemleri çalıştırmak istiyor musunuz? Sizin cihazınız yeniden başlatma gibi kurtarma ve onları eklediğiniz gibi eylemleri sırayla çalışır.</string>
   <string name="press_again_to_apply">Tekrar uygulamak için %s düğmesine basın.</string>
   <string name="applied">Uygulandı</string>
   <string name="profile_tasker">Profil çalışanı</string>
@@ -658,6 +653,12 @@
   <string name="applying_profile">%s Uygulanıyor!</string>
   <string name="no_profiles">Profili bulunamadı! Bundan önce oluşturmanız gerekir.</string>
   <string name="sections_disabled">Tüm bölümleri devre dışı bırakıldı! Senin için profili yok.</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Verileri Sil</string>
+  <string name="wipe_cache">Önbelleği sil</string>
+  <string name="flash_zip">Zip flashla</string>
+  <string name="add_action_first">Önce bir eylem eklemeniz gerekir!</string>
+  <string name="flash_now_confirm">Eylemleri çalıştırmak istiyor musunuz? Sizin cihazınız yeniden başlatma gibi kurtarma ve onları eklediğiniz gibi eylemleri sırayla çalışır.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d taklit et</string>
   <string name="emulate_initd_summary">Aygıtınızın varsayılan olarak Init.d desteklemiyorsa, açmak için etkinleştirebilirsiniz.</string>

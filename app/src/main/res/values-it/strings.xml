@@ -466,6 +466,7 @@
   <string name="timeout_summary">Imposta il tempo dopo il quale le opzioni di risveglio saranno disabilitate quando lo schermo è spento.</string>
   <string name="power_key_suspend">Sospendere con il tasto Power</string>
   <string name="power_key_suspend_summary">Abilitando questa funzione tutti i controlli di risveglio verranno disabilitati premendo il tasto Power.</string>
+  <string name="vibration_strength">Intensità di vibrazione</string>
   <!-- Sound -->
   <string name="sound_control">Controllo del suono</string>
   <string name="headset_highperf_mode">Modalità cuffia ad alte prestazioni</string>
@@ -494,6 +495,7 @@
   <string name="speed">Velocità</string>
   <string name="stock">Stock</string>
   <string name="continuous_light">Luce continua</string>
+  <string name="test">Prova</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Memoria interna</string>
   <string name="external_storage">Memoria esterna</string>
@@ -549,7 +551,6 @@
   <string name="read">Lettura</string>
   <string name="write">Scrittura</string>
   <!-- Misc -->
-  <string name="vibration_strength">Intensità di vibrazione</string>
   <string name="android_logger">Registrazione Android</string>
   <string name="crc">Controllo CRC del software</string>
   <string name="crc_summary">CRC è un meccanisco che permette di prevenire la corruzione dei dati. I blocchi di dati possono perdere fino al 30% delle loro performance.</string>
@@ -615,7 +616,6 @@
   <string name="generic_value_summary">Valore corrente dell\'editor. Può essere praticamente qualsiasi cosa.</string>
   <string name="generic_apply_summary">Editor restituirà tutto ciò che è stato immesso.</string>
   <string name="required">obbligatorio</string>
-  <string name="test">Prova</string>
   <string name="output">Output</string>
   <string name="edit">Modifica</string>
   <string name="export">Esporta</string>
@@ -656,11 +656,6 @@
   <string name="no_changes">Nessuna modifica effettuata!</string>
   <string name="apply_question">Applicare %s?</string>
   <string name="details">Dettagli</string>
-  <string name="wipe_data">Cancella dati</string>
-  <string name="wipe_cache">Cancella la cache</string>
-  <string name="flash_zip">Flasha Zip</string>
-  <string name="add_action_first">Devi aggiungere prima un\'azione!</string>
-  <string name="flash_now_confirm">Si desidera eseguire le azioni? Il dispositivo si riavvierà in recovery e le azioni verranno eseguite nell\'ordine come aggiunti.</string>
   <string name="press_again_to_apply">Premi ancora %s per applicare.</string>
   <string name="applied">Applicato</string>
   <string name="profile_tasker">Profilo Tasker</string>
@@ -672,6 +667,12 @@
   <string name="applying_profile">Applicando %s!</string>
   <string name="no_profiles">Nessun profilo trovato! È necessario prima crearli.</string>
   <string name="sections_disabled">Tutte le sezioni disabilitate! Nessun profilo per te.</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Cancella dati</string>
+  <string name="wipe_cache">Cancella la cache</string>
+  <string name="flash_zip">Flasha Zip</string>
+  <string name="add_action_first">Devi aggiungere prima un\'azione!</string>
+  <string name="flash_now_confirm">Si desidera eseguire le azioni? Il dispositivo si riavvierà in recovery e le azioni verranno eseguite nell\'ordine come aggiunti.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emula Init.d</string>
   <string name="emulate_initd_summary">Se il dispositivo non supporta Init.d per impostazione predefinita, è possibile abilitare questo per emulare il suo comportamento.</string>

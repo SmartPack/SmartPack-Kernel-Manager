@@ -470,6 +470,7 @@
   <string name="timeout_summary">Aseta aika, jonka jälkeen heräämiskontrollit kytketään pois päältä näytön sammuttamisen jälkeen (säästää akkua).</string>
   <string name="power_key_suspend">Virtanäppäin keskeyttämään</string>
   <string name="power_key_suspend_summary">Tämän aktivoiminen sulkee heräämiskontrollit, kun laite sammutetaan painamalla virtanäppäintä (säästää akkua).</string>
+  <string name="vibration_strength">Tärinän voimakkuus</string>
   <!-- Sound -->
   <string name="sound_control">Äänikontrollit</string>
   <string name="headset_highperf_mode">Kuulokkeiden High Performance -tila</string>
@@ -498,6 +499,7 @@
   <string name="speed">Nopeus</string>
   <string name="stock">Alkuperäinen</string>
   <string name="continuous_light">Jatkuva valo</string>
+  <string name="test">Testaa</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Sisäinen muisti</string>
   <string name="external_storage">Ulkoinen muisti</string>
@@ -553,7 +555,6 @@
   <string name="read">Luku</string>
   <string name="write">Kirjoitus</string>
   <!-- Misc -->
-  <string name="vibration_strength">Tärinän voimakkuus</string>
   <string name="android_logger">Android logging</string>
   <string name="crc">Sovellus CRC kontrolliin</string>
   <string name="crc_summary">CRC on mekaniikka, joka pyrkii torjumaan tiedon korruptoitumista. Data blokit voivat menettää jopa 30% suorituskyvystään.</string>
@@ -619,7 +620,6 @@
   <string name="generic_value_summary">Editorin nykyinen arvo. Voi olla käytännössä mitä tahansa.</string>
   <string name="generic_apply_summary">Editori palauttaa sen, mitä tahansa oli syötetty.</string>
   <string name="required">vaadittu</string>
-  <string name="test">Testaa</string>
   <string name="output">Ulostulo</string>
   <string name="edit">Muokkaa</string>
   <string name="export">Vie</string>
@@ -662,11 +662,6 @@
   <string name="no_changes">Muutoksia ei tehty!</string>
   <string name="apply_question">Hyväksy %s?</string>
   <string name="details">Lisätiedot</string>
-  <string name="wipe_data">Poista tiedot</string>
-  <string name="wipe_cache">Tyhjennä välimuisti</string>
-  <string name="flash_zip">Asenna Zip</string>
-  <string name="add_action_first">Sinun täytyy ensin lisätä toimintoja!</string>
-  <string name="flash_now_confirm">Haluatko ajaa toimintosi? Laitteesi tulee käynnistymään uudelleen recovery-tilassa ja kaikki toimintosi tullaan ajamaan lisäämisjärjestyksessä.</string>
   <string name="press_again_to_apply">Paina %s uudelleen hyväksyäksesi.</string>
   <string name="applied">Hyväksytty</string>
   <string name="profile_tasker">Profiilinhallinta</string>
@@ -682,6 +677,12 @@
   <string name="current_settings">Nykyiset asetukset</string>
   <string name="select_all">Valitse kaikki</string>
   <string name="nothing_selected">Mitään ei ole valittu</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Poista tiedot</string>
+  <string name="wipe_cache">Tyhjennä välimuisti</string>
+  <string name="flash_zip">Asenna Zip</string>
+  <string name="add_action_first">Sinun täytyy ensin lisätä toimintoja!</string>
+  <string name="flash_now_confirm">Haluatko ajaa toimintosi? Laitteesi tulee käynnistymään uudelleen recovery-tilassa ja kaikki toimintosi tullaan ajamaan lisäämisjärjestyksessä.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emuloi Init.d</string>
   <string name="emulate_initd_summary">Jos laitteesi ei tue Init.d:tä vakiona, voit emuloida sen toimintaa aktivoimalla tämän.</string>

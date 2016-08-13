@@ -328,6 +328,7 @@ Zabezpečeni</string>
   <string name="draw_m">Nakreslení M</string>
   <string name="power_key_suspend">Odstavení klávesou napájení</string>
   <string name="power_key_suspend_summary">Povolení této volby vypne prvky probouzející zařízení, když je displej vypnut tlačítkem napájení.</string>
+  <string name="vibration_strength">Intenzita vibrace</string>
   <!-- Sound -->
   <string name="sound_control">Ovládání zvuku</string>
   <string name="headphone_gain">Zesílení sluchátek</string>
@@ -343,6 +344,7 @@ Zabezpečeni</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <!-- LED -->
   <string name="speed">Rychlost</string>
+  <string name="test">Zkouška</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Vnitřní uložiště</string>
   <string name="external_storage">Externí úložiště</string>
@@ -371,7 +373,6 @@ Zabezpečeni</string>
   <string name="read">Čtení</string>
   <string name="write">Zápis</string>
   <!-- Misc -->
-  <string name="vibration_strength">Intenzita vibrace</string>
   <string name="crc_summary">CRC je mechanismus, jehož cílem v případě povolení je zabránit poškození dat. Datové bloky mohou ztratit až 30 % jejich výkonu.</string>
   <string name="fsync">Fsync</string>
   <string name="power_suspend_mode">Režim odstavení výkonu</string>
@@ -387,7 +388,6 @@ Zabezpečeni</string>
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
   <!-- Custom Controls -->
-  <string name="test">Zkouška</string>
   <string name="edit">Upravit</string>
   <string name="delete">Smazat</string>
   <string name="name">Název</string>
@@ -405,11 +405,12 @@ Zabezpečeni</string>
   <string name="key">Klíč</string>
   <string name="value">Hodnota</string>
   <!-- Profile -->
+  <string name="applied">Použito</string>
+  <!-- Recovery -->
   <string name="wipe_data">Vymazat data</string>
   <string name="wipe_cache">Vymazat cache</string>
   <string name="flash_zip">Flashnout ZIP</string>
   <string name="flash_now_confirm">Chcete provést naplánované akce? Zařízení bude restartováno do recovery menu a akce budou spuštěny v pořadí podle přidání.</string>
-  <string name="applied">Použito</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulace Init.d</string>
   <string name="executing">Provádění</string>

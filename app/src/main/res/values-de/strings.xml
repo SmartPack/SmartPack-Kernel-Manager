@@ -130,7 +130,7 @@
   <string name="cpu_governor_summary">Der CPU-Governor bestimmt, wie sich die CPU bei Änderungen in der Auslastung verhält. Das Wechseln des Governors hat Auswirkung darauf, wie die CPU die ihr zur Verfügung stehenden Frequenzschritte nutzt.</string>
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
   <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
-  <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Gouverneurs der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
+  <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Governor der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
   <string name="tunables_error">%s ist nicht einstellbar</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
@@ -348,7 +348,7 @@
   <string name="simple_gpu_algorithm_summary">Ein Add-on für MSM Adreno TZ GPU Gouvernor. Von faux123 entwickelt.</string>
   <string name="laziness">Trägheit</string>
   <string name="laziness_summary">Dies erhöht die Schwelle für die GPU-Frequenzen. Die Leistung wird gesteigert, je niedriger die Schwelle ist.</string>
-  <string name="ramp_thresold_summary">Dies erhöht die Anzahl der Zeiten die der GPU Gouverneur Rampe hinunter Anfragen. Je höher es ist, umso mehr Leistung erhälst du.</string>
+  <string name="ramp_thresold_summary">Dies erhöht die Anzahl der Zeiten die der GPU-Governor Rampe hinunter Anfragen. Je höher es ist, umso mehr Leistung erhältst du.</string>
   <string name="adreno_idler">Adreno Rad</string>
   <string name="down_differential">Nach unten Differential</string>
   <string name="down_differential_summary">Auslastungswert zur Bestimmung der Schwelle zum Leerlauf.</string>
@@ -441,6 +441,7 @@
   <string name="timeout">Zeitüberschreitung</string>
   <string name="power_key_suspend">Power-Taste unterbrechen</string>
   <string name="power_key_suspend_summary">Diese Einstellung wird Wake-Steuerelemente deaktivieren, wenn der Bildschirm durch die Power-Taste ausgeschaltet wird.</string>
+  <string name="vibration_strength">Vibrationsstärke</string>
   <!-- Sound -->
   <string name="sound_control">Lautstärken-Kontrolle</string>
   <string name="headset_highperf_mode">Kopfhörer High Performance-Modus</string>
@@ -467,6 +468,7 @@
   <string name="intensity">Intensität</string>
   <string name="speed">Geschwindigkeit</string>
   <string name="continuous_light">Dauerlicht</string>
+  <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
@@ -498,7 +500,6 @@
   <string name="read">Lesen</string>
   <string name="write">Schreiben</string>
   <!-- Misc -->
-  <string name="vibration_strength">Vibrationsstärke</string>
   <string name="android_logger">Android-Protokollierung</string>
   <string name="crc">Software CRC Steuerung</string>
   <string name="crc_summary">CRC ist ein Mechanismus, der bei Aktivierung darauf abzielt Daten-Beschädigung zu verhindern. Daten Blöcke können bis zu 30% ihrer Leistung verlieren.</string>
@@ -531,7 +532,6 @@
   <string name="example">Beispiele</string>
   <string name="create">Erstellen</string>
   <string name="import_item">Importien</string>
-  <string name="test">Test</string>
   <string name="edit">Bearbeiten</string>
   <string name="delete">Löschen</string>
   <string name="name">Name</string>
@@ -549,11 +549,12 @@
   <string name="key">Taste</string>
   <string name="value">Wert</string>
   <!-- Profile -->
+  <string name="applied">Übernommen</string>
+  <!-- Recovery -->
   <string name="wipe_data">Daten löschen</string>
   <string name="wipe_cache">Cache löschen</string>
   <string name="flash_zip">Zip flashen</string>
   <string name="flash_now_confirm">Möchten Sie Ihre Aktionen ausführen? Das Gerät wird ins Recovery-System starten und die Aktionen werden in der Reihenfolge ausgeführt, wie sie hinzugefügt wurden.</string>
-  <string name="applied">Übernommen</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulieren</string>
   <string name="executing">Ausführung</string>

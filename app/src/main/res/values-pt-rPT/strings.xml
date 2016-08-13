@@ -370,6 +370,7 @@
   <string name="timeout">Tempo expirou</string>
   <string name="power_key_suspend">Suspender na tecla de power</string>
   <string name="power_key_suspend_summary">Ligar está opção vai desligar os wake controls quando o ecrã for desligado através do botão de power.</string>
+  <string name="vibration_strength">Força de vibração</string>
   <!-- Sound -->
   <string name="sound_control">Controle de som</string>
   <string name="headphone_gain">Ganho nos Phones de ouvido</string>
@@ -394,6 +395,7 @@
   <string name="speed">Velocidade</string>
   <string name="stock">Stock</string>
   <string name="continuous_light">Luz contínua</string>
+  <string name="test">Teste</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Armazenamento interno</string>
   <string name="external_storage">Armazenamento externo</string>
@@ -435,7 +437,6 @@
   <string name="read">Ler</string>
   <string name="write">Escrever</string>
   <!-- Misc -->
-  <string name="vibration_strength">Força de vibração</string>
   <string name="android_logger">Android log</string>
   <string name="crc">Software de controle de CRC</string>
   <string name="fsync">Fsync</string>
@@ -482,7 +483,6 @@
   <string name="control_generic">Genérico</string>
   <string name="generic_value">Valor</string>
   <string name="required">obrigatório</string>
-  <string name="test">Teste</string>
   <string name="output">Saída</string>
   <string name="edit">Editar</string>
   <string name="export">Exportar</string>
@@ -512,13 +512,14 @@
   <string name="no_changes">Não foram efetuadas alterações!</string>
   <string name="apply_question">Aplicar %s?</string>
   <string name="details">Detalhes</string>
+  <string name="applied">Aplicado</string>
+  <string name="profile_select">Selecionar Perfil</string>
+  <string name="applying_profile">A aplicar %s!</string>
+  <!-- Recovery -->
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar Cache</string>
   <string name="flash_zip">Flash Zip</string>
   <string name="flash_now_confirm">Você quer executar suas ações? Seu dispositivo irá reiniciar para a recuperação e as ações serão executadas na ordem em que elas foram adicionadas.</string>
-  <string name="applied">Aplicado</string>
-  <string name="profile_select">Selecionar Perfil</string>
-  <string name="applying_profile">A aplicar %s!</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emular init. d</string>
   <string name="exceute_question">Executar %s?</string>

@@ -101,6 +101,7 @@
   <string name="intensity">Ինտենսիվությունը</string>
   <string name="speed">Արագությունը</string>
   <string name="stock">Ստանդարտ</string>
+  <string name="test">Թեստ</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Ներքին Հիշողություն</string>
   <string name="external_storage">Արտաքին Հիշողություն</string>
@@ -152,7 +153,6 @@
   <string name="seekbar_progress">Ընթացքը</string>
   <string name="control_generic">Ունիվերսալ</string>
   <string name="generic_value">Արժեքը</string>
-  <string name="test">Թեստ</string>
   <string name="edit">Խմբագրել</string>
   <string name="export">Արտահանել</string>
   <string name="delete">Ջնջել</string>
@@ -177,10 +177,11 @@
   <!-- Profile -->
   <string name="apply_question">Կիրառե՞լ %s-ը:</string>
   <string name="details">Մանրամասներ</string>
+  <string name="applying_profile">%s-ի կիրառում</string>
+  <!-- Recovery -->
   <string name="wipe_data">Մաքրել Տվյալները</string>
   <string name="wipe_cache">Մաքրել Քեշը</string>
   <string name="flash_zip">Տեղակայել Zip-ը</string>
-  <string name="applying_profile">%s-ի կիրառում</string>
   <!-- Init.d -->
   <string name="emulate_initd">Էմուլացնել Init.d</string>
   <string name="executing">Կատարում</string>

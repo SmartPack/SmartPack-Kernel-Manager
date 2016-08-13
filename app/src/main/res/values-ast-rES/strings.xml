@@ -315,6 +315,7 @@
   <string name="pocket_mode">Mou cartera</string>
   <string name="power_key_suspend">Suspensión de tecla prendíu</string>
   <string name="power_key_suspend_summary">Habilitando esto apagaránse los controles d\'esconsueñu cuando s\'apague la pantalla cola tecla prendíu.</string>
+  <string name="vibration_strength">Fuercia de vibración</string>
   <!-- Sound -->
   <string name="sound_control">Control de soníu</string>
   <string name="headphone_gain">Ganancia d\'auriculares</string>
@@ -330,6 +331,7 @@
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">Afita una llende pa la capacidá a la que la batería cargará pasando\'l valor ente 0 y 100.</string>
   <!-- LED -->
+  <string name="test">Prueba</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Almacenamientu internu</string>
   <string name="external_storage">Almacenamientu esternu</string>
@@ -358,7 +360,6 @@
   <string name="read">Llectura</string>
   <string name="write">Escritura</string>
   <!-- Misc -->
-  <string name="vibration_strength">Fuercia de vibración</string>
   <string name="android_logger">Rexistru d\'Android</string>
   <string name="crc_summary">CRC ye un mecanismu que tien como oxetivu evitar el toyimientu de datos al habilitase. Los bloques de datos puen perder fasta un 30% del so rindimientu.</string>
   <string name="fsync">Fsync</string>
@@ -391,7 +392,6 @@
   <string name="wlan_rx_wakelock_divider">Divisor d\'esconsueñu calteníu de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor d\'esconsueñu calteníu de msm_hsic</string>
   <!-- Custom Controls -->
-  <string name="test">Prueba</string>
   <string name="edit">Editar</string>
   <string name="delete">Desaniciar</string>
   <string name="name">Nome</string>
@@ -409,11 +409,12 @@
   <string name="key">Clave</string>
   <string name="value">Valor</string>
   <!-- Profile -->
+  <string name="applied">Aplicóse</string>
+  <!-- Recovery -->
   <string name="wipe_data">Llimpiar Data</string>
   <string name="wipe_cache">Llimpiar Caché</string>
   <string name="flash_zip">Flaxar ZIP</string>
   <string name="flash_now_confirm">¿Quies executar les tos aiciones? El to preséu reaniciaráse nel mou recovery y executaránse les aciones nel orde nes que les amestesti.</string>
-  <string name="applied">Aplicóse</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emular Init.d</string>
   <string name="executing">Executando</string>

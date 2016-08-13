@@ -468,6 +468,7 @@
   <string name="timeout_summary">Установите задержку, после которой пробуждение по дв. тапу будет отключено, когда экран погаснет.</string>
   <string name="power_key_suspend">Отключение сенсора при нажатии кнопки питания</string>
   <string name="power_key_suspend_summary">Включите, чтобы жесты пробуждения отключались при блокировке экрана кнопкой питания.</string>
+  <string name="vibration_strength">Интенсивность вибрации</string>
   <!-- Sound -->
   <string name="sound_control">Упраление звуком</string>
   <string name="headset_highperf_mode">Режим высокой производительности гарнитуры</string>
@@ -492,6 +493,7 @@
   <!-- LED -->
   <string name="fade">Затухание</string>
   <string name="stock">Стандартный</string>
+  <string name="test">Проверка настроек</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутренняя память</string>
   <string name="external_storage">Внешняя память</string>
@@ -539,7 +541,6 @@
   <string name="read">Читать</string>
   <string name="write">Писать</string>
   <!-- Misc -->
-  <string name="vibration_strength">Интенсивность вибрации</string>
   <string name="android_logger">Логгинг Android</string>
   <string name="crc">Управление CRC программ</string>
   <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30% своей производительности.</string>
@@ -600,7 +601,6 @@
   <string name="generic_value">Значение</string>
   <string name="generic_apply_summary">Редактор будет возвращать все, что было написано.</string>
   <string name="required">Обязательно</string>
-  <string name="test">Проверка настроек</string>
   <string name="output">Вывод</string>
   <string name="edit">Редактировать</string>
   <string name="export">Экспорт</string>
@@ -640,11 +640,6 @@
   <string name="no_changes">Без изменений!</string>
   <string name="apply_question">Применить %s?</string>
   <string name="details">Детали</string>
-  <string name="wipe_data">Очистить раздел Data</string>
-  <string name="wipe_cache">Стереть кэш</string>
-  <string name="flash_zip">Сохранить Zip</string>
-  <string name="add_action_first">Сначала добавьте действие.</string>
-  <string name="flash_now_confirm">Вы уверены? Ваше устройство перезагрузится в Recovery и действия будут выполнены в порядке добавления.</string>
   <string name="press_again_to_apply">Нажмите %s снова, чтобы применить.</string>
   <string name="applied">Применено</string>
   <string name="profile_tasker_summary">Если вы хотите применить профиль на определенное событие, например запуск приложения, вы должны использовать Tasker.</string>
@@ -655,6 +650,12 @@
   <string name="applying_profile">Применение %s!</string>
   <string name="no_profiles">Профиль не найден! Вы должны сначала создать их.</string>
   <string name="sections_disabled">Все секции отключены! Профилей не осталось.</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Очистить раздел Data</string>
+  <string name="wipe_cache">Стереть кэш</string>
+  <string name="flash_zip">Сохранить Zip</string>
+  <string name="add_action_first">Сначала добавьте действие.</string>
+  <string name="flash_now_confirm">Вы уверены? Ваше устройство перезагрузится в Recovery и действия будут выполнены в порядке добавления.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Эмулировать Init.d</string>
   <string name="emulate_initd_summary">Если ваше устройство не поддерживает init.d, можно включить здесь его эмуляцию.</string>

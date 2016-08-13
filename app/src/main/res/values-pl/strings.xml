@@ -458,6 +458,7 @@
   <string name="timeout_summary">Ustaw czas, po którym kontrola wybudzeń ekranu zostanie wyłączona po wygaszeniu ekranu.</string>
   <string name="power_key_suspend">Usypianie przyciskiem zasilania</string>
   <string name="power_key_suspend_summary">Wyłącz kontrolę wybudzeń ekranu, gdy ekran jest wyłączany przez przycisk zasilania.</string>
+  <string name="vibration_strength">Siła wibracji</string>
   <!-- Sound -->
   <string name="sound_control">Kontrola dźwięku</string>
   <string name="headset_highperf_mode">Wysoka wydajność zestawu słuchawkowego</string>
@@ -487,6 +488,7 @@
   <string name="speed">Prędkość</string>
   <string name="stock">Standardowe</string>
   <string name="continuous_light">Światło ciągłe</string>
+  <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Pamięć wewnętrzna</string>
   <string name="external_storage">Pamięć zewnętrzna</string>
@@ -542,7 +544,6 @@
   <string name="read">Odczyt</string>
   <string name="write">Zapis</string>
   <!-- Misc -->
-  <string name="vibration_strength">Siła wibracji</string>
   <string name="android_logger">Logowanie Androida</string>
   <string name="crc">Programowa kontrola CRC</string>
   <string name="crc_summary">CRC jest to mechanizm, który ma na celu zapobiegnięcie korupcji danych. Po włączeniu dysk może stracić do 30% wydajności.</string>
@@ -608,7 +609,7 @@
   <string name="generic_value_summary">Bieżąca wartość edytora. Może być w zasadzie wszystkim.</string>
   <string name="generic_apply_summary">Edytor będzie zwracać cokolwiek zostało wprowadzone.</string>
   <string name="required">wymagane</string>
-  <string name="test">Test</string>
+  <string name="hit_test">Musisz najpierw wcisnąć test!</string>
   <string name="output">Dane wyjściowe</string>
   <string name="edit">Edytuj</string>
   <string name="export">Eksportuj</string>
@@ -640,6 +641,8 @@
   <string name="fota_partition">Partycja fota</string>
   <string name="flash">Sflashuj</string>
   <!-- Build prop Editor -->
+  <string name="add">Dodaj</string>
+  <string name="backup_item">kopia zapasowa %1$s jest przechowywana w %2$s</string>
   <string name="item_count">%s element</string>
   <string name="items_count">%s elementów</string>
   <string name="key">Klucz</string>
@@ -651,11 +654,6 @@
   <string name="no_changes">Nie wykonano żadnych zmian!</string>
   <string name="apply_question">Zastosować %s?</string>
   <string name="details">Szczegóły</string>
-  <string name="wipe_data">Wyczyść dane</string>
-  <string name="wipe_cache">Wyczyść pamięć podręczną</string>
-  <string name="flash_zip">Instaluj z ZIP</string>
-  <string name="add_action_first">Musisz najpierw dodać akcje!</string>
-  <string name="flash_now_confirm">Czy jesteś pewien, że chcesz wykonać te akcje? Przejdziesz teraz do recovery i wszystko zostanie wykonane w takiej kolejności, w jakiej jest ustawione tutaj.</string>
   <string name="press_again_to_apply">Naciśnij %s jeszcze raz, by zastosować.</string>
   <string name="applied">Zastosowano</string>
   <string name="profile_tasker">Profil Taskera</string>
@@ -671,6 +669,12 @@
   <string name="current_settings">Bieżące ustawienia</string>
   <string name="select_all">Zaznacz wszystkie</string>
   <string name="nothing_selected">Niczego nie wybrano</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Wyczyść dane</string>
+  <string name="wipe_cache">Wyczyść pamięć podręczną</string>
+  <string name="flash_zip">Instaluj z ZIP</string>
+  <string name="add_action_first">Musisz najpierw dodać akcje!</string>
+  <string name="flash_now_confirm">Czy jesteś pewien, że chcesz wykonać te akcje? Przejdziesz teraz do recovery i wszystko zostanie wykonane w takiej kolejności, w jakiej jest ustawione tutaj.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emuluj Init.d</string>
   <string name="emulate_initd_summary">Jeśli urządzenie domyślnie nie obsługuje Init.d, można emulować jego funkcjonalność.</string>

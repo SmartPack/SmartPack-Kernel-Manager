@@ -23,6 +23,9 @@
   <string name="donate_summary">Cette fonctionnalité est disponible uniquement lorsque l’application de don est installée ! Ne vous inquiétez pas pour autant, car cette application est \"open source\". Vous pouvez facilement la compiler, et supprimer cette vérification. Mais j’espère que, de toute manière, vous soutenez les développeurs. Merci d’utiliser Kernel Adiutor ! Après avoir acheté l’application de don, vous devez redémarrer Kernel Adiutor pour activer toutes les fonctionnalités.</string>
   <string name="donate_nope">Je ne tomberai pas dans ce type d’escroquerie !</string>
   <string name="donate_yes">J’adore cette application. Je suis obligé de faire un don !</string>
+  <string name="ad_here">Votre publicité ne pourrait être ici</string>
+  <string name="remove_ad">Supprimer la publicité</string>
+  <string name="warning">Aventissement</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="apply_on_boot_text">Mise en œuvre des paramètres dans %d secondes</string>
   <string name="apply_on_boot_complete">Mise en œuvre des paramètres terminée</string>
@@ -161,8 +164,9 @@
   <!-- CPU Voltage -->
   <string name="global_offset">Offset Global</string>
   <string name="override_vmin">Outrepasser la tension minimum</string>
-  <string name="override_vmin_summary">Désactiver pour supprimer les limites de sous-voltage du constructeur</string>
+  <string name="override_vmin_summary">Désactiver pour supprimer les limites de sous-voltage établies par le constructeur</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Plusieurs systèmes de connexion à chaud sont activés ! \nVeuillez en utiliser un seul</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solution Hotplug de Qualcomm. Vous pourriez avoir des problèmes au changement des fréquences lorsque cette option est activée.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -389,6 +393,7 @@
   <string name="pocket_mode">Mode Poche</string>
   <string name="power_key_suspend">Suspension de la touche Power</string>
   <string name="power_key_suspend_summary">Lorsqu\'il est activé, ce paramètre va inhiber les fonctions de réveil lorsque l\'écran est éteint par la touche power.</string>
+  <string name="vibration_strength">Intensité de la Vibration</string>
   <!-- Sound -->
   <string name="sound_control">Contrôle Audio</string>
   <string name="headset_highperf_mode">Mode casque haute performance</string>
@@ -405,6 +410,7 @@
   <string name="blx">Prolongateur d\'autonomie</string>
   <string name="blx_summary">Défini une limite de capacité de charge de la batterie en entrant une valeur entre 0 et 100.</string>
   <!-- LED -->
+  <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Stockage interne</string>
   <string name="external_storage">Stockage externe</string>
@@ -433,7 +439,6 @@
   <string name="read">Lecture</string>
   <string name="write">Écriture</string>
   <!-- Misc -->
-  <string name="vibration_strength">Intensité de la Vibration</string>
   <string name="android_logger">Journalisation Android</string>
   <string name="crc">Contrôle CRC logiciel</string>
   <string name="crc_summary">Le CRC , contrôle de redondance cyclique, est un mécanisme permettant de détecter des erreurs dans les données et de les corriger. Jusqu\'à 30% de pertes de performances si activé.</string>
@@ -470,7 +475,6 @@
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
   <!-- Custom Controls -->
-  <string name="test">Test</string>
   <string name="edit">Editer</string>
   <string name="delete">Suppression</string>
   <string name="name">Nom</string>
@@ -488,11 +492,12 @@
   <string name="key">Clé </string>
   <string name="value">Valeur </string>
   <!-- Profile -->
+  <string name="applied">Appliqué</string>
+  <!-- Recovery -->
   <string name="wipe_data">Effacer les données</string>
   <string name="wipe_cache">Effacer le Cache</string>
   <string name="flash_zip">Flasher un zip</string>
   <string name="flash_now_confirm">Voulez-vous lancer vos actions ? Votre appareil va redémarrer en mode recovery et les actions vont être lancées dans l\'ordre où vous les avez ajoutées.</string>
-  <string name="applied">Appliqué</string>
   <!-- Init.d -->
   <string name="emulate_initd">Émulation init.d</string>
   <string name="executing">En cours d\'exécution</string>

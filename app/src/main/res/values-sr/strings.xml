@@ -201,11 +201,13 @@
   <string name="draw_w">Нацртај W</string>
   <string name="draw_c">Нацртај C</string>
   <string name="draw_m">Нацртај М</string>
+  <string name="vibration_strength">Јачина вибрације</string>
   <!-- Sound -->
   <string name="sound_control">Контрола звука</string>
   <!-- Battery -->
   <string name="usb_fast_charge">УСБ брзо пуњење</string>
   <!-- LED -->
+  <string name="test">Пробај</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Унутрашње складиште</string>
   <string name="external_storage">Спољашње складиште</string>
@@ -233,7 +235,6 @@
   <string name="read">Читање</string>
   <string name="write">Упис</string>
   <!-- Misc -->
-  <string name="vibration_strength">Јачина вибрације</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Динамички Fsync</string>
   <string name="autosleep">Аутоспавање</string>
@@ -242,7 +243,6 @@
   <string name="tcp">ТЦП алгоритам загушења</string>
   <string name="hostname">Име домаћина</string>
   <!-- Custom Controls -->
-  <string name="test">Пробај</string>
   <string name="edit">Уреди</string>
   <string name="delete">Обриши</string>
   <string name="name">Назив</string>
@@ -260,11 +260,12 @@
   <string name="key">кључ</string>
   <string name="value">Вредност</string>
   <!-- Profile -->
+  <string name="applied">Примењено</string>
+  <!-- Recovery -->
   <string name="wipe_data">Обриши податке</string>
   <string name="wipe_cache">Обриши кеш</string>
   <string name="flash_zip">Флешуј зип фајл</string>
   <string name="flash_now_confirm">Желите ли да покренете ваше радње? Ваш уређај ће бити поново покренут у опоравак а радње ће бити извршене редоследом којим сте их додали.</string>
-  <string name="applied">Примењено</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емулирај init.d</string>
   <string name="executing">Извршавам</string>

@@ -336,6 +336,7 @@
   <string name="fade">Затухання</string>
   <string name="intensity">Інтенсивність</string>
   <string name="speed">Швидкість</string>
+  <string name="test">Перевірка</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутрішня пам’ять</string>
   <string name="external_storage">Зовнішній накопичувач</string>
@@ -375,7 +376,6 @@
   <string name="description">Опис</string>
   <string name="applying">Застосування</string>
   <string name="generic_value">Значення</string>
-  <string name="test">Перевірка</string>
   <string name="edit">Редагувати</string>
   <string name="export">Експорт</string>
   <string name="delete">Вилучити</string>
@@ -400,10 +400,6 @@
   <!-- Profile -->
   <string name="apply_question">Застосувати %s?</string>
   <string name="details">Подробиці</string>
-  <string name="wipe_data">Очистити Data</string>
-  <string name="wipe_cache">Очистити Cache</string>
-  <string name="flash_zip">Прошити zip</string>
-  <string name="flash_now_confirm">Ви бажаєте запустити всі ваші дії? Ваш пристрій завантажеться у режим рековері і запустить всі дії попорядку, так як ви вказали.</string>
   <string name="press_again_to_apply">Натисніть %s знову, щоб застосувати.</string>
   <string name="applied">Застосовано</string>
   <string name="profile_select">Виберіть профіль</string>
@@ -412,6 +408,11 @@
   <string name="current_settings">Поточні налаштування</string>
   <string name="select_all">Обрати все</string>
   <string name="nothing_selected">Нічого не обрано</string>
+  <!-- Recovery -->
+  <string name="wipe_data">Очистити Data</string>
+  <string name="wipe_cache">Очистити Cache</string>
+  <string name="flash_zip">Прошити zip</string>
+  <string name="flash_now_confirm">Ви бажаєте запустити всі ваші дії? Ваш пристрій завантажеться у режим рековері і запустить всі дії попорядку, так як ви вказали.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емуляція Init.d</string>
   <string name="exceute_question">Виконати %s?</string>

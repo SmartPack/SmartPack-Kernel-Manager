@@ -393,6 +393,7 @@
   <string name="pocket_mode_summary">Ao ativar serão desligados os controles por gestos quando o dispositivo estiver no bolso.</string>
   <string name="power_key_suspend">Suspender a tecla de energia</string>
   <string name="power_key_suspend_summary">Ativar isto irá desligar os controles por toque quando a tela for desligada pela tecla de energia.</string>
+  <string name="vibration_strength">Intensidade da vibração</string>
   <!-- Sound -->
   <string name="sound_control">Controle de som</string>
   <string name="headset_highperf_mode">Modo de alto desempenho do fone de ouvido</string>
@@ -409,6 +410,7 @@
   <string name="blx">Extensor de autonomia da bateria</string>
   <string name="blx_summary">Defina um limite para a capacidade que a bateria será carregada, passando um valor entre 0 e 100.</string>
   <!-- LED -->
+  <string name="test">Teste</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Armazenamento Interno</string>
   <string name="external_storage">Armazenamento Externo</string>
@@ -437,7 +439,6 @@
   <string name="read">Leitura</string>
   <string name="write">Gravação</string>
   <!-- Misc -->
-  <string name="vibration_strength">Intensidade da vibração</string>
   <string name="android_logger">Android log</string>
   <string name="crc">Software de controle de CRC</string>
   <string name="crc_summary">CRC é um mecanismo com o objetivo de evitar a corrupção de dados quando habilitado. Blocos de dados podem perder até 30% do seu desempenho.</string>
@@ -475,7 +476,6 @@
   <string name="wlan_rx_wakelock_divider">Divisor wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
   <!-- Custom Controls -->
-  <string name="test">Teste</string>
   <string name="edit">Editar</string>
   <string name="delete">Excluir</string>
   <string name="name">Nome</string>
@@ -493,11 +493,12 @@
   <string name="key">Chave</string>
   <string name="value">Valor</string>
   <!-- Profile -->
+  <string name="applied">Aplicado</string>
+  <!-- Recovery -->
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar cache</string>
   <string name="flash_zip">Flash Zip</string>
   <string name="flash_now_confirm">Você quer executar suas ações? Seu dispositivo irá reiniciar em Modo Recovery e as ações serão executadas na ordem em que elas foram adicionadas.</string>
-  <string name="applied">Aplicado</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emular init. d</string>
   <string name="executing">Em execução</string>

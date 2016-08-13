@@ -179,11 +179,13 @@
   <string name="slide_down">Svep ner</string>
   <string name="slide_left">Svep vänster</string>
   <string name="slide_right">Svep höger</string>
+  <string name="vibration_strength">Vibrationsstyrka</string>
   <!-- Sound -->
   <!-- Battery -->
   <string name="usb_fast_charge">USB snabbladdning</string>
   <string name="usb_fast_charge_summary">Enheten laddas snabbare när den är ansluten med USB. Dra ur och sätt tillbaka din laddare när du ändrar det här alternativet.</string>
   <!-- LED -->
+  <string name="test">Testa</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Intern lagring</string>
   <string name="external_storage">Extern lagring</string>
@@ -208,7 +210,6 @@
   <string name="read">Läsning</string>
   <string name="write">Skrivning</string>
   <!-- Misc -->
-  <string name="vibration_strength">Vibrationsstyrka</string>
   <string name="android_logger">Android-loggning</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Dynamisk Fsync</string>
@@ -218,7 +219,6 @@
   <string name="smb135x_wakelock_summary">Förhindra \"wakelock\" när ström är frånkopplad.</string>
   <string name="sensor_ind_wakelock_summary">Förhindra \"wakelock\" när \"Ambient Display\" inaktiveras.</string>
   <!-- Custom Controls -->
-  <string name="test">Testa</string>
   <string name="edit">Ändra</string>
   <string name="delete">Radera</string>
   <!-- Downloads -->
@@ -227,6 +227,7 @@
   <!-- Build prop Editor -->
   <string name="value">Värde</string>
   <!-- Profile -->
+  <!-- Recovery -->
   <!-- Init.d -->
   <string name="emulate_initd">Emulera Init.d</string>
   <!-- On Boot -->

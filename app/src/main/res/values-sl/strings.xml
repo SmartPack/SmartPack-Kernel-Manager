@@ -355,6 +355,7 @@
   <string name="pocket_mode_summary">Omogočanje tega bo izklopilo nadzor bujenja, ko je naprava v žepu.</string>
   <string name="power_key_suspend">Power Key Suspend</string>
   <string name="power_key_suspend_summary">Ko je to omogočeno bo onemogočen nadzor zbujanja pri izklopu zaslona s power gumbom.</string>
+  <string name="vibration_strength">Moč vibriranja</string>
   <!-- Sound -->
   <string name="sound_control">Nadzor zvoka</string>
   <string name="headset_highperf_mode">Visokoodzivni način za slušalke</string>
@@ -371,6 +372,7 @@
   <string name="blx">Podaljševalec avtonomije baterije</string>
   <string name="blx_summary">Določite mejo do katere naj se napolni baterija z izbiro vrednosti med 0 in 100.</string>
   <!-- LED -->
+  <string name="test">Preizkus</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Notranji pomnilnik</string>
   <string name="external_storage">Zunanji pomnilnik</string>
@@ -399,7 +401,6 @@
   <string name="read">Beri</string>
   <string name="write">Piši</string>
   <!-- Misc -->
-  <string name="vibration_strength">Moč vibriranja</string>
   <string name="android_logger">Android beleženje</string>
   <string name="crc">Nadzor CRC stikala</string>
   <string name="crc_summary">CRC je mehanizem, namenjen preprečevanju podatkovnih napak. Bloki podatkov lahko izgubijo na hitrosti do 30%, ko je ta vklopljen.</string>
@@ -437,7 +438,6 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock delilnik</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock delilnik</string>
   <!-- Custom Controls -->
-  <string name="test">Preizkus</string>
   <string name="edit">Uredi</string>
   <string name="delete">Izbriši</string>
   <string name="name">Ime</string>
@@ -455,11 +455,12 @@
   <string name="key">Ključ</string>
   <string name="value">Vrednost</string>
   <!-- Profile -->
+  <string name="applied">Uporabljeno</string>
+  <!-- Recovery -->
   <string name="wipe_data">Počisti podatke</string>
   <string name="wipe_cache">Počisti predpomnilnik</string>
   <string name="flash_zip">Namesti zip</string>
   <string name="flash_now_confirm">Ali želite zagnati izbrana dejanja? Naprava se bo zagnala v Recovery in dejanja se bodo izvedla v vrstnem redu, kot ste jih dodali.</string>
-  <string name="applied">Uporabljeno</string>
   <!-- Init.d -->
   <string name="emulate_initd">Posnemaj Init.d</string>
   <string name="executing">Izvajanje</string>
