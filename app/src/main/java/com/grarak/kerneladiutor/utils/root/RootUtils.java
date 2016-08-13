@@ -34,8 +34,6 @@ import java.io.OutputStreamWriter;
  */
 public class RootUtils {
 
-    private static final String TAG = RootUtils.class.getSimpleName();
-
     private static SU su;
 
     public static boolean rootAccess() {
@@ -103,7 +101,7 @@ public class RootUtils {
 
     public static SU getSU() {
         if (su == null || su.closed || su.denied) {
-            if (su != null) {
+            if (su != null && !su.closed) {
                 su.close();
             }
             su = new SU();
@@ -134,13 +132,17 @@ public class RootUtils {
             this.root = root;
             mTag = tag;
             try {
-                Log.i(TAG, root ? "SU initialized" : "SH initialized");
+                if (mTag != null) {
+                    Log.i(mTag, root ? "SU initialized" : "SH initialized");
+                }
                 firstTry = true;
                 process = Runtime.getRuntime().exec(root ? "su" : "sh");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
-                Log.e(TAG, root ? "Failed to run shell as su" : "Failed to run shell as sh");
+                if (mTag != null) {
+                    Log.e(mTag, root ? "Failed to run shell as su" : "Failed to run shell as sh");
+                }
                 denied = true;
                 closed = true;
             }
@@ -169,10 +171,13 @@ public class RootUtils {
                     }
                     return sb.toString().trim();
                 } catch (IOException e) {
-                    e.printStackTrace();
                     closed = true;
+                    e.printStackTrace();
                     if (firstTry) denied = true;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    denied = true;
                 } catch (Exception e) {
+                    e.printStackTrace();
                     denied = true;
                 }
                 return null;
@@ -185,7 +190,10 @@ public class RootUtils {
                 bufferedWriter.flush();
 
                 process.waitFor();
-                Log.i(TAG, root ? "SU closed: " + process.exitValue() : "SH closed: " + process.exitValue());
+                if (mTag != null) {
+                    Log.i(mTag, root ? "SU closed: " + process.exitValue() : "SH closed: "
+                            + process.exitValue());
+                }
                 closed = true;
             } catch (Exception e) {
                 e.printStackTrace();

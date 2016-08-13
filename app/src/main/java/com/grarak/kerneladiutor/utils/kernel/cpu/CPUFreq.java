@@ -57,11 +57,14 @@ public class CPUFreq {
 
     private static final String CPU_MAX_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq";
     private static final String CPU_MAX_FREQ_KT = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq_kt";
+    private static final String HARD_CPU_MAX_FREQ = "/sys/kernel/cpufreq_hardlimit/scaling_max_freq";
     private static final String CPU_MIN_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_min_freq";
+    private static final String HARD_CPU_MIN_FREQ = "/sys/kernel/cpufreq_hardlimit/scaling_min_freq";
     private static final String CPU_MAX_SCREEN_OFF_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/screen_off_max_freq";
     public static final String CPU_ONLINE = "/sys/devices/system/cpu/cpu%d/online";
     private static final String CPU_MSM_CPUFREQ_LIMIT = "/sys/kernel/msm_cpufreq_limit/cpufreq_limit";
     private static final String CPU_ENABLE_OC = "/sys/devices/system/cpu/cpu%d/cpufreq/enable_oc";
+    public static final String CPU_LOCK_FREQ = "/sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock";
     private static final String CPU_SCALING_GOVERNOR = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_governor";
     private static final String CPU_AVAILABLE_GOVERNORS = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_available_governors";
     private static final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq/%s";
@@ -89,6 +92,10 @@ public class CPUFreq {
     }
 
     public static void applyCpu(String path, String value, int min, int max, Context context) {
+        boolean cpulock = Utils.existFile(CPU_LOCK_FREQ);
+        if (cpulock) {
+            run(Control.write("0", CPU_LOCK_FREQ), null, null);
+        }
         boolean mpdecision = MPDecision.supported() && MPDecision.isMpdecisionEnabled();
         if (mpdecision) {
             MPDecision.enableMpdecision(false, null);
@@ -107,6 +114,9 @@ public class CPUFreq {
         }
         if (mpdecision) {
             MPDecision.enableMpdecision(true, null);
+        }
+        if (cpulock) {
+            run(Control.write("1", CPU_LOCK_FREQ), null, null);
         }
         if (context != null) {
             run("#" + new ApplyCpu(path, value, min, max).toString(), path, context);
@@ -272,6 +282,9 @@ public class CPUFreq {
             }
         }
         applyCpu(CPU_MIN_FREQ, String.valueOf(freq), min, max, context);
+        if (Utils.existFile(HARD_CPU_MIN_FREQ)) {
+            run(Control.write(String.valueOf(freq), HARD_CPU_MIN_FREQ), HARD_CPU_MIN_FREQ, context);
+        }
     }
 
     public static int getMinFreq(boolean forceRead) {
@@ -305,6 +318,9 @@ public class CPUFreq {
             applyCpu(CPU_MAX_FREQ_KT, String.valueOf(freq), min, max, context);
         } else {
             applyCpu(CPU_MAX_FREQ, String.valueOf(freq), min, max, context);
+        }
+        if (Utils.existFile(HARD_CPU_MAX_FREQ)) {
+            run(Control.write(String.valueOf(freq), HARD_CPU_MAX_FREQ), HARD_CPU_MAX_FREQ, context);
         }
     }
 

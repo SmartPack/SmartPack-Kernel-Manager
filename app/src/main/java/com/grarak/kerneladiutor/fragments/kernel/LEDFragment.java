@@ -23,6 +23,8 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.led.LED;
+import com.grarak.kerneladiutor.utils.kernel.led.Sec;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
@@ -43,30 +45,18 @@ public class LEDFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (LED.hasFade()) {
-            fadeInit(items);
-        }
         if (LED.hasIntensity()) {
             intensityInit(items);
         }
         if (LED.hasSpeed()) {
             speedInit(items);
         }
-    }
-
-    private void fadeInit(List<RecyclerViewItem> items) {
-        SwitchView fade = new SwitchView();
-        fade.setTitle(getString(R.string.fade));
-        fade.setSummary(getString(R.string.fade_summary));
-        fade.setChecked(LED.isFadeEnabled());
-        fade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                LED.enableFade(isChecked, getActivity());
-            }
-        });
-
-        items.add(fade);
+        brightnessInit(items);
+        delayInit(items);
+        fadeInit(items);
+        if (Sec.hasPattern()) {
+            testInit(items);
+        }
     }
 
     private void intensityInit(List<RecyclerViewItem> items) {
@@ -105,6 +95,208 @@ public class LEDFragment extends RecyclerViewFragment {
         });
 
         items.add(speed);
+    }
+
+    private void brightnessInit(List<RecyclerViewItem> items) {
+        CardView brightnessCard = new CardView(getActivity());
+        brightnessCard.setTitle(getString(R.string.brightness));
+
+        if (Sec.hasHighpowerCurrent()) {
+            SeekBarView highpowerCurrent = new SeekBarView();
+            highpowerCurrent.setTitle(getString(R.string.bright_light_environment));
+            highpowerCurrent.setSummary(getString(R.string.bright_light_environment_summary));
+            highpowerCurrent.setUnit(getString(R.string.ma));
+            highpowerCurrent.setMax(250);
+            highpowerCurrent.setOffset(5);
+            highpowerCurrent.setProgress(Sec.getHighpowerCurrent() / 5);
+            highpowerCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setHighpowerCurrent(position * 5, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            brightnessCard.addItem(highpowerCurrent);
+        }
+
+        if (Sec.hasLowpowerCurrent()) {
+            SeekBarView lowpowerCurrent = new SeekBarView();
+            lowpowerCurrent.setTitle(getString(R.string.low_light_environment));
+            lowpowerCurrent.setSummary(getString(R.string.low_light_environment_summary));
+            lowpowerCurrent.setUnit(getString(R.string.ma));
+            lowpowerCurrent.setMax(250);
+            lowpowerCurrent.setOffset(5);
+            lowpowerCurrent.setProgress(Sec.getLowpowerCurrent() / 5);
+            lowpowerCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setLowpowerCurrent(position * 5, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            brightnessCard.addItem(lowpowerCurrent);
+        }
+
+        if (brightnessCard.size() > 0) {
+            items.add(brightnessCard);
+        }
+    }
+
+    private void delayInit(List<RecyclerViewItem> items) {
+        CardView delayCard = new CardView(getActivity());
+        delayCard.setTitle(getString(R.string.delay));
+
+        if (Sec.hasNotificationDelayOn()) {
+            SeekBarView notificationDelayOn = new SeekBarView();
+            notificationDelayOn.setTitle(getString(R.string.on));
+            notificationDelayOn.setUnit(getString(R.string.ms));
+            notificationDelayOn.setMax(5000);
+            notificationDelayOn.setOffset(100);
+            notificationDelayOn.setProgress(Sec.getNotificationDelayOn() / 100);
+            notificationDelayOn.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setNotificationDelayOn(position * 10, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            delayCard.addItem(notificationDelayOn);
+        }
+
+        if (Sec.hasNotificationDelayOff()) {
+            SeekBarView notificationDelayOff = new SeekBarView();
+            notificationDelayOff.setTitle(getString(R.string.off));
+            notificationDelayOff.setUnit(getString(R.string.ms));
+            notificationDelayOff.setMax(5000);
+            notificationDelayOff.setOffset(100);
+            notificationDelayOff.setProgress(Sec.getNotificationDelayOff() / 100);
+            notificationDelayOff.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setNotificationDelayOff(position * 10, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            delayCard.addItem(notificationDelayOff);
+        }
+
+        if (delayCard.size() > 0) {
+            items.add(delayCard);
+        }
+    }
+
+    private void fadeInit(List<RecyclerViewItem> items) {
+        if (LED.hasFade()) {
+            SwitchView fade = new SwitchView();
+            fade.setTitle(getString(R.string.fade));
+            fade.setSummary(getString(R.string.fade_summary));
+            fade.setChecked(LED.isFadeEnabled());
+            fade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    LED.enableFade(isChecked, getActivity());
+                }
+            });
+
+            items.add(fade);
+        }
+
+        CardView fadeCard = new CardView(getActivity());
+        fadeCard.setTitle(getString(R.string.fade));
+
+        if (Sec.hasNotificationRampControl()) {
+            SwitchView notificationRampControl = new SwitchView();
+            notificationRampControl.setTitle(getString(R.string.fade_ramp_control));
+            notificationRampControl.setSummary(getString(R.string.fade_ramp_control_summary));
+            notificationRampControl.setChecked(Sec.isNotificationRampControlEnabled());
+            notificationRampControl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Sec.enableNotificationRampControl(isChecked, getActivity());
+                }
+            });
+
+            fadeCard.addItem(notificationRampControl);
+        }
+
+        if (Sec.hasNotificationRampUp()) {
+            SeekBarView notificationRampUp = new SeekBarView();
+            notificationRampUp.setTitle(getString(R.string.fade_in));
+            notificationRampUp.setSummary(getString(R.string.fade_in_summary));
+            notificationRampUp.setUnit(getString(R.string.ms));
+            notificationRampUp.setMax(2000);
+            notificationRampUp.setOffset(100);
+            notificationRampUp.setProgress(Sec.getNotificationRampUp() / 100);
+            notificationRampUp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setNotificationRampUp(position * 100, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            fadeCard.addItem(notificationRampUp);
+        }
+
+        if (Sec.hasNotificationRampDown()) {
+            SeekBarView notificationRampDown = new SeekBarView();
+            notificationRampDown.setTitle(getString(R.string.fade_out));
+            notificationRampDown.setSummary(getString(R.string.fade_out_summary));
+            notificationRampDown.setUnit(getString(R.string.ms));
+            notificationRampDown.setMax(2000);
+            notificationRampDown.setOffset(100);
+            notificationRampDown.setProgress(Sec.getNotificationRampDown() / 100);
+            notificationRampDown.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Sec.setNotificationRampDown(position * 100, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            fadeCard.addItem(notificationRampDown);
+        }
+
+        if (fadeCard.size() > 0) {
+            items.add(fadeCard);
+        }
+    }
+
+    private void testInit(List<RecyclerViewItem> items) {
+        SwitchView test = new SwitchView();
+        test.setTitle(getString(R.string.test));
+        test.setSummary(getString(R.string.led_test_summary));
+        test.setChecked(Sec.isTestingPattern());
+        test.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Sec.testPattern(isChecked);
+            }
+        });
+
+        items.add(test);
     }
 
 }

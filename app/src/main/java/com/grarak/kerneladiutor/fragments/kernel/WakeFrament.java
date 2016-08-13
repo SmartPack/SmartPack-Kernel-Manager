@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Misc;
 import com.grarak.kerneladiutor.utils.kernel.wake.S2s;
 import com.grarak.kerneladiutor.utils.kernel.wake.S2w;
 import com.grarak.kerneladiutor.utils.kernel.wake.T2w;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -81,6 +82,10 @@ public class WakeFrament extends RecyclerViewFragment {
         }
         if (Misc.hasPowerKeySuspend()) {
             powerKeySuspendInit(items);
+        }
+        areaInit(items);
+        if (Misc.hasVibVibration()) {
+            vibrationInit(items);
         }
     }
 
@@ -283,6 +288,79 @@ public class WakeFrament extends RecyclerViewFragment {
         });
 
         items.add(powerKeySuspend);
+    }
+
+    private void areaInit(List<RecyclerViewItem> items) {
+        CardView areaCard = new CardView(getActivity());
+        areaCard.setTitle(getString(R.string.area));
+
+        if (Dt2s.hasWidth()) {
+            final int w = getResources().getDisplayMetrics().widthPixels;
+            SeekBarView width = new SeekBarView();
+            width.setTitle(getString(R.string.width));
+            width.setUnit(getString(R.string.px));
+            width.setMax(w);
+            width.setMin(Math.round(w / 28.8f));
+            width.setProgress(Dt2s.getWidth() - Math.round(w / 28.8f));
+            width.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Dt2s.setWidth(position + Math.round(w / 28.8f), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            areaCard.addItem(width);
+        }
+
+        if (Dt2s.hasHeight()) {
+            final int h = getResources().getDisplayMetrics().heightPixels;
+            SeekBarView height = new SeekBarView();
+            height.setTitle(getString(R.string.height));
+            height.setUnit(getString(R.string.px));
+            height.setMax(h);
+            height.setMin(Math.round(h / 51.2f));
+            height.setProgress(Dt2s.getHeight() - Math.round(h / 51.2f));
+            height.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Dt2s.setHeight(position + Math.round(h / 51.2f), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            areaCard.addItem(height);
+        }
+
+        if (areaCard.size() > 0) {
+            items.add(areaCard);
+        }
+    }
+
+    private void vibrationInit(List<RecyclerViewItem> items) {
+        SeekBarView vibration = new SeekBarView();
+        vibration.setTitle(getString(R.string.vibration_strength));
+        vibration.setUnit("%");
+        vibration.setMax(90);
+        vibration.setProgress(Misc.getVibVibration());
+        vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Misc.setVibVibration(position, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(vibration);
     }
 
 }

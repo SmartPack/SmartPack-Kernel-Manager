@@ -37,6 +37,8 @@ public class Dt2s {
 
     private static final String DT2S = "/sys/android_touch2/doubletap2sleep";
     private static final String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
+    private static final String WIDTH = "/sys/android_touch2/doubletap2sleep_x";
+    private static final String HEIGHT = "/sys/android_touch2/doubletap2sleep_y";
 
     private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
     private static final List<Integer> sGenericMenu = new ArrayList<>();
@@ -50,6 +52,30 @@ public class Dt2s {
     }
 
     private static String FILE;
+
+    public static void setHeight(int value, Context context) {
+        run(Control.write(String.valueOf(value), HEIGHT), HEIGHT, context);
+    }
+
+    public static int getHeight() {
+        return Utils.strToInt(Utils.readFile(HEIGHT));
+    }
+
+    public static boolean hasHeight() {
+        return Utils.existFile(HEIGHT);
+    }
+
+    public static void setWidth(int value, Context context) {
+        run(Control.write(String.valueOf(value), WIDTH), WIDTH, context);
+    }
+
+    public static int getWidth() {
+        return Utils.strToInt(Utils.readFile(WIDTH));
+    }
+
+    public static boolean hasWidth() {
+        return Utils.existFile(WIDTH);
+    }
 
     public static void set(int value, Context context) {
         run(Control.write(String.valueOf(value), FILE), FILE, context);

@@ -67,6 +67,12 @@ public class SoundFragment extends RecyclerViewFragment {
         if (Sound.hasHeadphoneTpaGain()) {
             headphoneTpaGainInit(items);
         }
+        if (Sound.hasLockOutputGain()) {
+            lockOutputGainInit(items);
+        }
+        if (Sound.hasLockMicGain()) {
+            lockMicGainInit(items);
+        }
         if (Sound.hasMicrophoneGain()) {
             microphoneGainInit(items);
         }
@@ -218,6 +224,36 @@ public class SoundFragment extends RecyclerViewFragment {
         });
 
         items.add(headphoneTpaGain);
+    }
+
+    private void lockOutputGainInit(List<RecyclerViewItem> items) {
+        SwitchView lockOutputGain = new SwitchView();
+        lockOutputGain.setTitle(getString(R.string.lock_output_gain));
+        lockOutputGain.setSummary(getString(R.string.lock_output_gain_summary));
+        lockOutputGain.setChecked(Sound.isLockOutputGainEnabled());
+        lockOutputGain.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Sound.enableLockOutputGain(isChecked, getActivity());
+            }
+        });
+
+        items.add(lockOutputGain);
+    }
+
+    private void lockMicGainInit(List<RecyclerViewItem> items) {
+        SwitchView lockMicGain = new SwitchView();
+        lockMicGain.setTitle(getString(R.string.lock_mic_gain));
+        lockMicGain.setSummary(getString(R.string.lock_mic_gain_summary));
+        lockMicGain.setChecked(Sound.isLockMicGainEnabled());
+        lockMicGain.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Sound.enableLockMicGain(isChecked, getActivity());
+            }
+        });
+
+        items.add(lockMicGain);
     }
 
     private void microphoneGainInit(List<RecyclerViewItem> items) {
