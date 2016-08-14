@@ -73,4 +73,8 @@ public class KernelItemView extends RecyclerViewItem {
         }
     }
 
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
 }

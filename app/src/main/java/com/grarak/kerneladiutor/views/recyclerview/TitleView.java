@@ -58,4 +58,9 @@ public class TitleView extends RecyclerViewItem {
             mTitle.setText(mTitleText);
         }
     }
+
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
 }

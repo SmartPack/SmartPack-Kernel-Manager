@@ -27,6 +27,10 @@
         <Preference
             android:key="banner_resizer"
             android:summary="@string/banner_resizer" />
+        <SwitchPreference
+            android:key="forcecards"
+            android:summary="@string/force_cards_summary"
+            android:title="@string/force_cards" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apply_on_boot">

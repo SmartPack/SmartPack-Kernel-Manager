@@ -19,10 +19,15 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.Prefs;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +76,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewGroup.removeView(view);
         }
         mItems.get(position).onCreateHolder(parent, view);
+        if (mItems.get(position).cardCompatible()
+                && Utils.DONATED
+                && Prefs.getBoolean("forcecards", false, view.getContext())) {
+            CardView cardView = new CardView(view.getContext());
+            cardView.setRadius(view.getResources().getDimension(R.dimen.cardview_radius));
+            cardView.setCardElevation(view.getResources().getDimension(R.dimen.cardview_elevation));
+            cardView.setUseCompatPadding(true);
+            cardView.setFocusable(false);
+            cardView.addView(view);
+            view = cardView;
+        }
         if (position == 0) {
             mFirstItem = view;
         }

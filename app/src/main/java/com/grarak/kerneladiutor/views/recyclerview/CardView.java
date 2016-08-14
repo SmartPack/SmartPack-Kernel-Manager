@@ -234,4 +234,10 @@ public class CardView extends RecyclerViewItem {
             });
         }
     }
+
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
+
 }

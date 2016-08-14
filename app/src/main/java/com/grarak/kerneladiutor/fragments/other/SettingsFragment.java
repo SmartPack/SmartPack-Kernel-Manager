@@ -48,6 +48,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_DARK_THEME = "darktheme";
     private static final String KEY_MATERIAL_ICON = "materialicon";
     private static final String KEY_BANNER_RESIZER = "banner_resizer";
+    private static final String KEY_FORCE_CARDS = "forcecards";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
     private static final String KEY_LOGCAT = "logcat";
@@ -69,6 +70,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!Utils.DONATED) {
+            Prefs.saveBoolean(KEY_FORCE_CARDS, false, getActivity());
+        }
         setRetainInstance(true);
     }
 
@@ -126,6 +130,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
         findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
+        findPreference(KEY_FORCE_CARDS).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -184,6 +189,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
             case KEY_MATERIAL_ICON:
                 Utils.setStartActivity(checked, getActivity());
+                return true;
+            case KEY_FORCE_CARDS:
+                if (!Utils.DONATED) {
+                    ViewUtils.dialogDonate(getActivity()).show();
+                    return false;
+                }
                 return true;
             default:
                 if (key.endsWith("_enabled")) {

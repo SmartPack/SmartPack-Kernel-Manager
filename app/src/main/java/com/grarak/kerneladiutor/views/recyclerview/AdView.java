@@ -49,4 +49,8 @@ public class AdView extends RecyclerViewItem {
         }
     }
 
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
 }

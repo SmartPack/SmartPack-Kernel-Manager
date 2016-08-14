@@ -106,4 +106,8 @@ public class DownloadAboutView extends RecyclerViewItem {
         longDescription.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
 }

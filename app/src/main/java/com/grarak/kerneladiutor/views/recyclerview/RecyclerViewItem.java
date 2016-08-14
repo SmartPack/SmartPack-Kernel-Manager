@@ -94,4 +94,8 @@ public abstract class RecyclerViewItem {
     public void onDestroy() {
     }
 
+    protected boolean cardCompatible() {
+        return true;
+    }
+
 }

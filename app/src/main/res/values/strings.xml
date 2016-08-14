@@ -793,6 +793,8 @@
     <string name="dark_theme">Dark theme</string>
     <string name="material_icon">Material icon</string>
     <string name="banner_resizer">Banner resizer</string>
+    <string name="force_cards">Force cards</string>
+    <string name="force_cards_summary">Use cards for items if possible.</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>
     <string name="twenty_sec">20 seconds</string>

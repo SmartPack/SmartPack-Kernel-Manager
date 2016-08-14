@@ -313,4 +313,8 @@ public class DownloadKernelView extends RecyclerViewItem {
         }
     }
 
+    @Override
+    protected boolean cardCompatible() {
+        return false;
+    }
 }
