@@ -30,17 +30,17 @@ import java.util.List;
 /**
  * Created by willi on 25.07.16.
  */
-public class FAQFragment extends RecyclerViewFragment {
+public class HelpFragment extends RecyclerViewFragment {
 
-    private static final LinkedHashMap<Integer, Integer> sFAQs = new LinkedHashMap<>();
+    private static final LinkedHashMap<Integer, Integer> sHelps = new LinkedHashMap<>();
 
     static {
-        sFAQs.put(R.string.misspelled, R.string.misspelled_summary);
-        sFAQs.put(R.string.have_to_donate, R.string.have_to_donate_summary);
-        sFAQs.put(R.string.cpu_freq_not_sticking, R.string.cpu_freq_not_sticking_summary);
-        sFAQs.put(R.string.feature_not_appearing, R.string.feature_not_appearing_summary);
-        sFAQs.put(R.string.feature_function, R.string.feature_function_summary);
-        sFAQs.put(R.string.add_new_features, R.string.add_new_features_summary);
+        sHelps.put(R.string.misspelled, R.string.misspelled_summary);
+        sHelps.put(R.string.have_to_donate, R.string.have_to_donate_summary);
+        sHelps.put(R.string.cpu_freq_not_sticking, R.string.cpu_freq_not_sticking_summary);
+        sHelps.put(R.string.feature_not_appearing, R.string.feature_not_appearing_summary);
+        sHelps.put(R.string.feature_function, R.string.feature_function_summary);
+        sHelps.put(R.string.add_new_features, R.string.add_new_features_summary);
     }
 
     @Override
@@ -50,10 +50,10 @@ public class FAQFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        for (int id : sFAQs.keySet()) {
+        for (int id : sHelps.keySet()) {
             DescriptionView descriptionView = new DescriptionView();
             descriptionView.setTitle(getString(id));
-            descriptionView.setSummary(getString(sFAQs.get(id)));
+            descriptionView.setSummary(getString(sHelps.get(id)));
 
             items.add(descriptionView);
         }

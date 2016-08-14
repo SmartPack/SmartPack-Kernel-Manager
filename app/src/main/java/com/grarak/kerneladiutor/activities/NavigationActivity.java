@@ -62,7 +62,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFrament;
 import com.grarak.kerneladiutor.fragments.other.AboutFragment;
 import com.grarak.kerneladiutor.fragments.other.ContributorsFragment;
-import com.grarak.kerneladiutor.fragments.other.FAQFragment;
+import com.grarak.kerneladiutor.fragments.other.HelpFragment;
 import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.statistics.DeviceFragment;
 import com.grarak.kerneladiutor.fragments.statistics.InputsFragment;
@@ -169,10 +169,10 @@ public class NavigationActivity extends BaseActivity
         sFragments.put(R.string.initd, new InitdFragment());
         sFragments.put(R.string.on_boot, new OnBootFragment());
         sFragments.put(R.string.other, null);
+        sFragments.put(R.string.settings, new SettingsFragment());
         sFragments.put(R.string.about, new AboutFragment());
         sFragments.put(R.string.contributors, new ContributorsFragment());
-        sFragments.put(R.string.faq, new FAQFragment());
-        sFragments.put(R.string.settings, new SettingsFragment());
+        sFragments.put(R.string.help, new HelpFragment());
     }
 
     private static Thread mPatchingThread;

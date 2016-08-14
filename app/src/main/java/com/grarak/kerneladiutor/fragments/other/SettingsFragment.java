@@ -171,9 +171,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public boolean onPreferenceChange(Preference preference, Object o) {
         boolean checked = (boolean) o;
         String key = preference.getKey();
-        if (checked == Prefs.getBoolean(key, false, getActivity())) {
-            return false;
-        }
         switch (key) {
             case KEY_FORCE_ENGLISH:
                 if (!checked) {
