@@ -61,6 +61,9 @@ public class CardView extends RecyclerViewItem {
     private List<RecyclerViewItem> mItems = new ArrayList<>();
     private HashMap<RecyclerViewItem, View> mViews = new HashMap<>();
 
+    private List<RecyclerViewItem> mLoading = new ArrayList<>();
+    private List<Runnable> mRunnables = new ArrayList<>();
+
     public CardView(Activity activity) {
         if (activity == null) {
             throw new IllegalStateException("Activity can't be null");
@@ -113,12 +116,7 @@ public class CardView extends RecyclerViewItem {
             throw new IllegalStateException("Cardinception!");
         }
         mItems.add(item);
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                addView(item);
-            }
-        });
+        addView(item);
     }
 
     public void setOnMenuListener(OnMenuListener onMenuListener) {
@@ -138,6 +136,7 @@ public class CardView extends RecyclerViewItem {
     }
 
     public void clearItems() {
+        mRunnables.clear();
         mItems.clear();
         if (mLayout != null) {
             mLayout.removeAllViews();
@@ -153,22 +152,46 @@ public class CardView extends RecyclerViewItem {
         }
     }
 
-    private void addView(RecyclerViewItem item) {
-        View view;
-        if (mViews.containsKey(item)) {
-            view = mViews.get(item);
-        } else {
-            mViews.put(item, view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
-                    null, false));
-        }
-        ViewGroup viewGroup = (ViewGroup) view.getParent();
-        if (viewGroup != null) {
-            viewGroup.removeView(view);
-        }
-        item.setOnViewChangeListener(getOnViewChangedListener());
-        item.onCreateView(view);
-        if (mLayout != null) {
-            mLayout.addView(view);
+    private void addView(final RecyclerViewItem item) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mLoading.contains(item)) {
+                    return;
+                }
+                mLoading.add(item);
+                View view;
+                if (mViews.containsKey(item)) {
+                    view = mViews.get(item);
+                } else {
+                    mViews.put(item, view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
+                            null, false));
+                }
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                if (viewGroup != null) {
+                    quit();
+                    return;
+                }
+                item.setOnViewChangeListener(getOnViewChangedListener());
+                item.onCreateView(view);
+                if (mLayout != null) {
+                    mLayout.addView(view);
+                }
+
+                quit();
+            }
+
+            private void quit() {
+                mLoading.remove(item);
+                mRunnables.remove(this);
+                if (mRunnables.size() > 0 && mRunnables.get(0) != null) {
+                    mActivity.runOnUiThread(mRunnables.get(0));
+                }
+            }
+        };
+        mRunnables.add(runnable);
+        if (mRunnables.size() == 1) {
+            mActivity.runOnUiThread(mRunnables.get(0));
         }
     }
 
