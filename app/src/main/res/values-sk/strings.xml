@@ -83,10 +83,9 @@
   <string name="recovery">Obnova</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Na štarte</string>
+  <string name="settings">Nastavenia</string>
   <string name="about">O aplikácií</string>
   <string name="contributors">Spolupracovníci</string>
-  <string name="faq">Často kladené otázky</string>
-  <string name="settings">Nastavenia</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Jadro %d</string>
@@ -282,9 +281,6 @@
   <!-- Init.d -->
   <string name="emulate_initd">Emulovať Init.d</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tmavá téma</string>
   <string name="debugging">Ladenie</string>
@@ -295,5 +291,7 @@
   <string name="set_password_first">Najskôr nastavte heslo</string>
   <string name="fingerprint_summary">Pre pokračovanie použite odtlačok prsta. Funkcia bude aktivovaná len keď nastavíte odtlačok prsta.</string>
   <string name="sections">Sekcie</string>
-  <string name="sections_summary">Reštartujte aplikáciu ak zmeníte viditeľnosť nasledovnych sekcii.</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

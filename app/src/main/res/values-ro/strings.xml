@@ -79,10 +79,9 @@
   <string name="profile">Profilul</string>
   <string name="recovery">Mod Recuperare</string>
   <string name="initd">Init.d</string>
+  <string name="settings">Opțiuni</string>
   <string name="about">Despre</string>
   <string name="contributors">Contribuitori</string>
-  <string name="faq">Intrebari si raspunsuri</string>
-  <string name="settings">Opțiuni</string>
   <!-- Overall -->
   <string name="offline">Deconectat</string>
   <string name="core">Core %d</string>
@@ -209,8 +208,8 @@
   <!-- Recovery -->
   <!-- Init.d -->
   <!-- On Boot -->
+  <!-- Settings -->
   <!-- About -->
   <!-- Contributors -->
-  <!-- FAQ -->
-  <!-- Settings -->
+  <!-- Help -->
 </resources>

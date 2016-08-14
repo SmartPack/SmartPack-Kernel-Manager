@@ -87,10 +87,9 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">En el arranque</string>
+  <string name="settings">Ajustes</string>
   <string name="about">Información</string>
   <string name="contributors">Contribuidores</string>
-  <string name="faq">Preguntas frecuentes</string>
-  <string name="settings">Ajustes</string>
   <!-- Overall -->
   <string name="offline">Desactivado</string>
   <string name="core">Núcleo %d</string>
@@ -137,6 +136,7 @@
   <string name="governor_tunables_summary">Los distintos elementos de configuración son dependientes del gobernador.</string>
   <string name="cpu_governor_tunables_read_error">Error al leer el actual gobernador de CPU.\n\nSi está utilizando una gran/pequeño dispositivo QCOM esto es un problema conocido. El sistema obliga a la CPU para apagar núcleos de lo que es extremadamente difícil de leer las estadísticas específicas de la CPU. Trate de seleccionar esta opción otra vez. La CPU a veces se niega a encender un núcleo.</string>
   <string name="tunables_error">%s no se puede ajustar</string>
+  <string name="manual">Manual</string>
   <string name="mc_power_saving">Ahorro de Energía Multinúcleo</string>
   <string name="mc_power_saving_summary">Intenta agrupar tareas en el menor número de núcleos posible.</string>
   <string name="disabled">Desabilitado</string>
@@ -474,6 +474,9 @@
   <string name="timeout_summary">Selecciona cuando los controles de desbloqueo se desactivaran tras el apagado de la pantalla.</string>
   <string name="power_key_suspend">Suspender tecla de encendido</string>
   <string name="power_key_suspend_summary">Activar esto apaga los controladores de encendido cuando la pantalla se apaga con la tecla de encendido.</string>
+  <string name="area">Área</string>
+  <string name="width">Ancho</string>
+  <string name="height">Alto</string>
   <string name="vibration_strength">Intensidad de vibración</string>
   <!-- Sound -->
   <string name="sound_control">Control de sonido</string>
@@ -484,6 +487,10 @@
   <string name="speaker_gain">Ganancia del Altavoz</string>
   <string name="headphone_poweramp_gain">Ganancia de auriculares PowerAmp</string>
   <string name="headphone_tpa6165_gain">Ganancia de amplificador de auriculares (extensión TPA6165)</string>
+  <string name="lock_output_gain">Bloquear ganancia de salida</string>
+  <string name="lock_output_gain_summary">Evitar modificaciones en ganancias para altavoces/auriculares</string>
+  <string name="lock_mic_gain">Bloquear ganancia del micrófono</string>
+  <string name="lock_mic_gain_summary">Evitar modificaciones en ganancias de micrófono</string>
   <string name="microphone_gain">Ganancia del Micrófono</string>
   <string name="volume_gain">Ganancia de Volumen</string>
   <!-- Battery -->
@@ -504,6 +511,12 @@
   <string name="speed">Velocidad</string>
   <string name="stock">Por defecto</string>
   <string name="continuous_light">Luz continua</string>
+  <string name="bright_light_environment">Luz brillante del ambiente</string>
+  <string name="bright_light_environment_summary">Ajuste la intensidad relativa del LED cuando se esta en ambientes brillantes.</string>
+  <string name="low_light_environment_summary">Ajuste la intensidad relativa del LED cuando se esta en ambientes poco brillantes.</string>
+  <string name="notification">Notificación</string>
+  <string name="on">Encendido</string>
+  <string name="off">Apagado</string>
   <string name="test">Probar</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Almacenamiento interno</string>
@@ -554,6 +567,8 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Tamaño de memoria</string>
   <string name="disksize_summary">Intenta aumentar el rendimiento evitando la paginación de almacenamiento físico, en su lugar usa un dispositivo de compresión virtual en la RAM. La paginación toma un lugar en la RAM hasta que sea necesario de usar el intercambio de espacio en el almacenamiento físico.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="maximum_compression_ratio">Relación de compresión máxima</string>
   <!-- Entropy -->
   <string name="available">Disponible</string>
   <string name="poolsize">Tamaño del Pool</string>
@@ -686,6 +701,11 @@
   <string name="select_all">Selecionar todos</string>
   <string name="nothing_selected">No hay nada seleccionado</string>
   <!-- Recovery -->
+  <string name="reboot">Reiniciar</string>
+  <string name="reboot_soft">Reinicio rápido</string>
+  <string name="reboot_recovery">Reiniciar en recovery</string>
+  <string name="reboot_bootloader">Reiniciar en Bootloader</string>
+  <string name="reboot_download">Reiniciar en Download</string>
   <string name="wipe_data">Wipe Data</string>
   <string name="wipe_cache">Wipe caché</string>
   <string name="flash_zip">Flashear Zip</string>
@@ -702,25 +722,6 @@
   <string name="delete_question">¿Eliminar %s?</string>
   <string name="arguments">Argumentos: %s</string>
   <string name="disable_question">¿Deshabilitar %s?</string>
-  <!-- About -->
-  <string name="about_me">Hola, soy Willi Ye aka Grarak, un estudiante de 19 años viviendo en Viena. He estado desarrollando en Android durante mucho tiempo. Ademas de Kernel Adiutor también mantengo CyanogenMod para algunos dispositivos y trabajo en ParanoidAndroid. Así que por favor comprenda si no encuentro el tiempo para actualizar esta aplicación.</string>
-  <string name="libraries_used">Librerías utilizadas</string>
-  <!-- Contributors -->
-  <string name="commits">%d cambios</string>
-  <string name="no_internet">Por favor, compruebe su conexión a internet!</string>
-  <!-- FAQ -->
-  <string name="misspelled">¿Por qué se escribe incorrectamente \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
-  <string name="have_to_donate">¿Tengo que donar para poder utilizar los servicios premium?</string>
-  <string name="have_to_donate_summary">No, esta aplicación es de código abierto. Puede fácilmente construirla usted mismo. Las características de la donación están habilitadas por defecto una vez que construyes una apk en depuración, así que no hay necesidad de cambiar ninguna línea de código.</string>
-  <string name="cpu_freq_not_sticking">¿Por que mi frecuencia predeterminada no se guarda?</string>
-  <string name="cpu_freq_not_sticking_summary">Esto podría ser debido a muchas razones. Muchos núcleos hoy en día tienen su propio sistema de hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia aplicación de CPU Boost que regulan la frecuencia. Le sugiero no toque las frecuencias de CPU y que el núcleo haga su trabajo. Esto cuenta también para otras funciones. Si no se peguen, es porque no quiere que el sistema de núcleo para que pueda cambiar.</string>
-  <string name="feature_not_appearing">¿Por qué las características x e y no se muestran?</string>
-  <string name="feature_not_appearing_summary">Se muestran sólo las funciones que son compatibles con su dispositivo!</string>
-  <string name="feature_function">¿Que hace la característica x?</string>
-  <string name="feature_function_summary">Si no sabe lo que hace este control, entonces simplemente no lo toques. Por favor, investiga antes de modificar una característica de su caro equipo.</string>
-  <string name="add_new_features">¿Podría añadir la característica x e y?</string>
-  <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las funciones, pero es difícil hacer esta aplicación universal para todos los dispositivos.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Usar fahrenheit para medir la temperatura.</string>
@@ -765,5 +766,23 @@
   <string name="set_password_first">Establecer una contraseña primero</string>
   <string name="fingerprint_summary">Utilizar huellas dactilares para pasar control de seguridad. Esto funcionará si tienes huellas dactilares registradas.</string>
   <string name="sections">Secciones</string>
-  <string name="sections_summary">Reinicie la aplicación cuando usted cambie la visibilidad de las secciones a continuación.</string>
+  <!-- About -->
+  <string name="about_me">Hola, soy Willi Ye aka Grarak, un estudiante de 19 años viviendo en Viena. He estado desarrollando en Android durante mucho tiempo. Ademas de Kernel Adiutor también mantengo CyanogenMod para algunos dispositivos y trabajo en ParanoidAndroid. Así que por favor comprenda si no encuentro el tiempo para actualizar esta aplicación.</string>
+  <string name="libraries_used">Librerías utilizadas</string>
+  <!-- Contributors -->
+  <string name="commits">%d cambios</string>
+  <string name="no_internet">Por favor, compruebe su conexión a internet!</string>
+  <!-- Help -->
+  <string name="misspelled">¿Por qué se escribe incorrectamente \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
+  <string name="have_to_donate">¿Tengo que donar para poder utilizar los servicios premium?</string>
+  <string name="have_to_donate_summary">No, esta aplicación es de código abierto. Puede fácilmente construirla usted mismo. Las características de la donación están habilitadas por defecto una vez que construyes una apk en depuración, así que no hay necesidad de cambiar ninguna línea de código.</string>
+  <string name="cpu_freq_not_sticking">¿Por que mi frecuencia predeterminada no se guarda?</string>
+  <string name="cpu_freq_not_sticking_summary">Esto podría ser debido a muchas razones. Muchos núcleos hoy en día tienen su propio sistema de hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia aplicación de CPU Boost que regulan la frecuencia. Le sugiero no toque las frecuencias de CPU y que el núcleo haga su trabajo. Esto cuenta también para otras funciones. Si no se peguen, es porque no quiere que el sistema de núcleo para que pueda cambiar.</string>
+  <string name="feature_not_appearing">¿Por qué las características x e y no se muestran?</string>
+  <string name="feature_not_appearing_summary">Se muestran sólo las funciones que son compatibles con su dispositivo!</string>
+  <string name="feature_function">¿Que hace la característica x?</string>
+  <string name="feature_function_summary">Si no sabe lo que hace este control, entonces simplemente no lo toques. Por favor, investiga antes de modificar una característica de su caro equipo.</string>
+  <string name="add_new_features">¿Podría añadir la característica x e y?</string>
+  <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las funciones, pero es difícil hacer esta aplicación universal para todos los dispositivos.</string>
 </resources>

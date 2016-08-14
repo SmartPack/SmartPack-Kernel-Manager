@@ -84,10 +84,9 @@
   <string name="recovery">Kurtarma Modu</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Açılışta</string>
+  <string name="settings">Ayarlar</string>
   <string name="about">Hakkında</string>
   <string name="contributors">Katkıda bulunanlar</string>
-  <string name="faq">S.S.S</string>
-  <string name="settings">Ayarlar</string>
   <!-- Overall -->
   <string name="offline">Çevrimdışı</string>
   <string name="core">Çekirdek %d</string>
@@ -670,24 +669,6 @@
   <string name="delete_question">%s silinsin mi?</string>
   <string name="arguments">Bağımsız değişkenler: %s</string>
   <string name="disable_question">Devre dışı bırakılsınmı %s?</string>
-  <!-- About -->
-  <string name="about_me">Merhaba, ben Willi Ye yani Grarak, Viyana\'da yaşayan 19 yaşında bir öğrenciyim. Oldukça uzun bir süre için Android geliştirmesiyle ugraştım. Kernel Adiutor ve CyanogenMod için birkaç cihaz üzerinde uğraştım ve ParanoidAndroid üzerinde kusursuz çalışıyor. Bu yüzden lütfen uygulamayı güncelemezsem beni anlayın.</string>
-  <string name="libraries_used">Kütüphane kullanımda</string>
-  <!-- Contributors -->
-  <string name="commits">%d işlendi</string>
-  <string name="no_internet">Lütfen internet bağlantınızı kontrol edin!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Neden \"Adiutor\" yanlış?</string>
-  <string name="misspelled_summary">Adiutor Latin ve yardımcı anlamına gelir.</string>
-  <string name="have_to_donate">Bu premium özelliklerini kullanmak için bağış var mı?</string>
-  <string name="have_to_donate_summary">Hayır bu uygulama Açık Kaynak kollu sen kolayca yapabilirsin bağış özellikleri sen hata ayıklama uygulamasını yaptıktan sonra açılır. Kodları değiştirmene gerek yok.</string>
-  <string name="cpu_freq_not_sticking">Neden benim kararlı CPU frekansım yok?</string>
-  <string name="feature_not_appearing">x ve y özellikleri neden gösterilmiyor?</string>
-  <string name="feature_not_appearing_summary">Cihazınız tarafından desteklenen özellikleri gösterilir!</string>
-  <string name="feature_function">x in özelliği nedir?</string>
-  <string name="feature_function_summary">Ne bu kontrol ediyor bilmiyorsanız, o zaman sadece dokunmayın. pahalı donanım ile oynamadan önce lütfen ön araştırma yapın.</string>
-  <string name="add_new_features">X ve y özelliği ekleyebilir misin?</string>
-  <string name="add_new_features_summary">Bunu söylemek zordur. Tüm özellikleri eklemek çalışıyorum ama bu uygulamayı her cihaz için kullanılır duruma getirmek zordur.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenayt</string>
   <string name="fahrenheit_summary">Sicaklıllar fahrenayt cinsinden gösterilsin.</string>
@@ -727,5 +708,22 @@
   <string name="set_password_first">İlk olarak parola ayarlayın</string>
   <string name="fingerprint_summary">Parmak izi güvenlik kontrol geçmek için kullanın. Uzun kayıtlı parmak izleri var gibi bu işe yarar.</string>
   <string name="sections">Bölümler</string>
-  <string name="sections_summary">Bölümlerin görünürlük özelliklerini değiştirdiniz zaman uygulamayı yeniden başlatın</string>
+  <!-- About -->
+  <string name="about_me">Merhaba, ben Willi Ye yani Grarak, Viyana\'da yaşayan 19 yaşında bir öğrenciyim. Oldukça uzun bir süre için Android geliştirmesiyle ugraştım. Kernel Adiutor ve CyanogenMod için birkaç cihaz üzerinde uğraştım ve ParanoidAndroid üzerinde kusursuz çalışıyor. Bu yüzden lütfen uygulamayı güncelemezsem beni anlayın.</string>
+  <string name="libraries_used">Kütüphane kullanımda</string>
+  <!-- Contributors -->
+  <string name="commits">%d işlendi</string>
+  <string name="no_internet">Lütfen internet bağlantınızı kontrol edin!</string>
+  <!-- Help -->
+  <string name="misspelled">Neden \"Adiutor\" yanlış?</string>
+  <string name="misspelled_summary">Adiutor Latin ve yardımcı anlamına gelir.</string>
+  <string name="have_to_donate">Bu premium özelliklerini kullanmak için bağış var mı?</string>
+  <string name="have_to_donate_summary">Hayır bu uygulama Açık Kaynak kollu sen kolayca yapabilirsin bağış özellikleri sen hata ayıklama uygulamasını yaptıktan sonra açılır. Kodları değiştirmene gerek yok.</string>
+  <string name="cpu_freq_not_sticking">Neden benim kararlı CPU frekansım yok?</string>
+  <string name="feature_not_appearing">x ve y özellikleri neden gösterilmiyor?</string>
+  <string name="feature_not_appearing_summary">Cihazınız tarafından desteklenen özellikleri gösterilir!</string>
+  <string name="feature_function">x in özelliği nedir?</string>
+  <string name="feature_function_summary">Ne bu kontrol ediyor bilmiyorsanız, o zaman sadece dokunmayın. pahalı donanım ile oynamadan önce lütfen ön araştırma yapın.</string>
+  <string name="add_new_features">X ve y özelliği ekleyebilir misin?</string>
+  <string name="add_new_features_summary">Bunu söylemek zordur. Tüm özellikleri eklemek çalışıyorum ama bu uygulamayı her cihaz için kullanılır duruma getirmek zordur.</string>
 </resources>

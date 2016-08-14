@@ -87,10 +87,9 @@
   <string name="recovery">修復模式</string>
   <string name="initd">啟動腳本</string>
   <string name="on_boot">開機啟用</string>
+  <string name="settings">設定</string>
   <string name="about">關於</string>
   <string name="contributors">貢獻者</string>
-  <string name="faq">常見問題列表</string>
-  <string name="settings">設定</string>
   <!-- Overall -->
   <string name="offline">離線</string>
   <string name="core">核心 %d</string>
@@ -476,9 +475,6 @@
   <string name="emulate_initd">模擬 Init.d</string>
   <string name="executing">執行中</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="fahrenheit_title">使用華氏溫度</string>
   <string name="fahrenheit_summary">使用華氏溫度測量。</string>
@@ -494,4 +490,7 @@
   <string name="driver_message_summary">將驅動程式訊息 (dmesg） 複製到 /sdcard/dmesg.txt</string>
   <string name="security">安全</string>
   <string name="set_password">設定密碼</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

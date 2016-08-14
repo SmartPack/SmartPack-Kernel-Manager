@@ -82,10 +82,9 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">All\'avvio</string>
+  <string name="settings">Impostazioni</string>
   <string name="about">Info</string>
   <string name="contributors">Collaboratori</string>
-  <string name="faq">FAQ</string>
-  <string name="settings">Impostazioni</string>
   <!-- Overall -->
   <string name="offline">Spento</string>
   <string name="core">Core %d</string>
@@ -684,25 +683,6 @@
   <string name="delete_question">Eliminare %s?</string>
   <string name="arguments">Argomenti: %s</string>
   <string name="disable_question">Disabilitare %s?</string>
-  <!-- About -->
-  <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la CyanogenMod per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
-  <string name="libraries_used">Librerie usate</string>
-  <!-- Contributors -->
-  <string name="commits">%d commit</string>
-  <string name="no_internet">Verifica la connessione internet!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Perchè hai sbagliato a scrivere \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor in Latino significa \"assistente\".</string>
-  <string name="have_to_donate">Devo donare per poter utilizzare queste funzioni premium?</string>
-  <string name="have_to_donate_summary">No, questa applicazione è open source. Si può facilmente costruire da soli. Le funzionalità donazione sono abilitate per impostazione predefinita una volta che si genera un apk di debug, quindi nessun bisogno di modificare alcuna riga di codice.</string>
-  <string name="cpu_freq_not_sticking">Perchè la frequenza scelta non viene salvata?</string>
-  <string name="cpu_freq_not_sticking_summary">Questo potrebbe essere dovuto a molte ragioni. Molti kernel al giorno d\'oggi hanno il proprio sistema di hotplugging che controlla la frequenza della CPU e CyanogenMod ha la propria implementazione di CPU Boost che regola la frequenza. Io suggerirei di non toccare le frequenze di CPU e lasciare il kernel fare il suo lavoro. Questo vale anche per altre funzioni! Se esse non vengono salvate, è perché il kernel/sistema non vuole cambiamenti.</string>
-  <string name="feature_not_appearing">Perché le caratteristiche X e Y non sono disponibili?</string>
-  <string name="feature_not_appearing_summary">Vengono mostrate solo le funzionalità che sono supportate dal tuo dispositivo!</string>
-  <string name="feature_function">Cosa fa la caratteristica X?</string>
-  <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso hardware.</string>
-  <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
-  <string name="add_new_features_summary">È difficile da dire. Provo ad aggiungere tutte le funzionalità, ma è difficile rendere questa app universale per tutti i dispositivi.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Utilizza i fahrenheit per misurare la temperatura.</string>
@@ -741,5 +721,23 @@
   <string name="set_password_first">Imposta prima una password</string>
   <string name="fingerprint_summary">Utilizza le impronte digitali per il controllo sicurezza. Questo funzionerà fino a quando avrai impronte digitali registrate.</string>
   <string name="sections">Sezioni</string>
-  <string name="sections_summary">Riavvia l\'app quando cambi la visibilità delle sezioni di seguito.</string>
+  <!-- About -->
+  <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la CyanogenMod per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
+  <string name="libraries_used">Librerie usate</string>
+  <!-- Contributors -->
+  <string name="commits">%d commit</string>
+  <string name="no_internet">Verifica la connessione internet!</string>
+  <!-- Help -->
+  <string name="misspelled">Perchè hai sbagliato a scrivere \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor in Latino significa \"assistente\".</string>
+  <string name="have_to_donate">Devo donare per poter utilizzare queste funzioni premium?</string>
+  <string name="have_to_donate_summary">No, questa applicazione è open source. Si può facilmente costruire da soli. Le funzionalità donazione sono abilitate per impostazione predefinita una volta che si genera un apk di debug, quindi nessun bisogno di modificare alcuna riga di codice.</string>
+  <string name="cpu_freq_not_sticking">Perchè la frequenza scelta non viene salvata?</string>
+  <string name="cpu_freq_not_sticking_summary">Questo potrebbe essere dovuto a molte ragioni. Molti kernel al giorno d\'oggi hanno il proprio sistema di hotplugging che controlla la frequenza della CPU e CyanogenMod ha la propria implementazione di CPU Boost che regola la frequenza. Io suggerirei di non toccare le frequenze di CPU e lasciare il kernel fare il suo lavoro. Questo vale anche per altre funzioni! Se esse non vengono salvate, è perché il kernel/sistema non vuole cambiamenti.</string>
+  <string name="feature_not_appearing">Perché le caratteristiche X e Y non sono disponibili?</string>
+  <string name="feature_not_appearing_summary">Vengono mostrate solo le funzionalità che sono supportate dal tuo dispositivo!</string>
+  <string name="feature_function">Cosa fa la caratteristica X?</string>
+  <string name="feature_function_summary">Se non conosci l\'effetto di un parametro allora, semplicemente, non toccarlo. Ti prego di informarti bene sugli effetti dei parametri prima di giocare con il tuo costoso hardware.</string>
+  <string name="add_new_features">Potresti aggiungere le caratteristiche X e Y?</string>
+  <string name="add_new_features_summary">È difficile da dire. Provo ad aggiungere tutte le funzionalità, ma è difficile rendere questa app universale per tutti i dispositivi.</string>
 </resources>

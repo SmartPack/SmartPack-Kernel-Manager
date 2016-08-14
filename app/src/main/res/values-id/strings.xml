@@ -463,9 +463,6 @@
   <string name="emulate_initd">Emulasikan Init.d</string>
   <string name="executing">Menjalankan</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tema gelap</string>
   <string name="debugging">Debugging</string>
@@ -475,4 +472,7 @@
   <string name="last_kmsg_summary">Salin /proc/last_kmsg ke /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Driver massage</string>
   <string name="driver_message_summary">Menyalin pesan driver (dmesg) ke /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

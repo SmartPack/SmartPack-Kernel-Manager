@@ -231,13 +231,13 @@
   <!-- Init.d -->
   <string name="emulate_initd">Emulera Init.d</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Mörkt tema</string>
   <string name="debugging">Felsökning</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopiera logcat till /sdcard/logcat.txt</string>
   <string name="last_kmsg_summary">Kopiera /proc/last_kmsg till /sdcard/last_kmsg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

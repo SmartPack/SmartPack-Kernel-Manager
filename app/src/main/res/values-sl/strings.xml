@@ -465,9 +465,6 @@
   <string name="emulate_initd">Posnemaj Init.d</string>
   <string name="executing">Izvajanje</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Temna preobleka</string>
   <string name="debugging">Razhroščevanje</string>
@@ -477,4 +474,7 @@
   <string name="last_kmsg_summary">Kopiraj /proc/last_kmsg v /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Sporočilo gonilnika</string>
   <string name="driver_message_summary">Kopiraj sporočilo gonilnika (dmesg) v /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

@@ -118,11 +118,11 @@
   <string name="wipe_cache">Pühkige vahemälu</string>
   <!-- Init.d -->
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tume teema</string>
   <string name="logcat">Logcat</string>
   <string name="last_kmsg">Viimane Tuuma sõnum</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

@@ -424,9 +424,6 @@
   <string name="emulate_initd">Init.d 에뮬레이션</string>
   <string name="executing">실행 중</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">어두운 테마</string>
   <string name="debugging">디버깅</string>
@@ -436,4 +433,7 @@
   <string name="last_kmsg_summary">/proc/last_kmsg를 /sdcard/last_kmsg.txt에 복사합니다.</string>
   <string name="driver_message">드라이버 메시지</string>
   <string name="driver_message_summary">드라이버 메시지(dmesg)를 /sdcard/dmesg.txt에 복사합니다.</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

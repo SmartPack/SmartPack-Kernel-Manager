@@ -87,10 +87,9 @@
   <string name="recovery">Helyreállítás</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Induláskor</string>
+  <string name="settings">Beállítások</string>
   <string name="about">A programról</string>
   <string name="contributors">Közreműködők</string>
-  <string name="faq">GYIK</string>
-  <string name="settings">Beállítások</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Mag %d</string>
@@ -709,25 +708,6 @@
   <string name="delete_question">%s törlése?</string>
   <string name="arguments">Paraméterek: %s</string>
   <string name="disable_question">%s tiltása?</string>
-  <!-- About -->
-  <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében CyanogenMod közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
-  <string name="libraries_used">Használt könyvtárak</string>
-  <!-- Contributors -->
-  <string name="commits">%d változtatás</string>
-  <string name="no_internet">Kérlek, ellenőrizd az internetkapcsolatod!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Miért elírt az \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor egy latin szó, jelentése: segítő.</string>
-  <string name="have_to_donate">Szükséges-e adakoznom, hogy használjam a prémium funkciókat?</string>
-  <string name="have_to_donate_summary">Nem, ez az alkalmazás nyílt forráskódú. Magadnak is könnyedén megépítheted. A támogatói funkciók alapértelmezetten be vannak kapcsolva ha egy hibakereső apk-t építesz, így egyetlen sor kódot sem kell megváltoztatnod.</string>
-  <string name="cpu_freq_not_sticking">Miért nem jegyzi meg az általam beállított CPU frekvenciát?</string>
-  <string name="cpu_freq_not_sticking_summary">Ennek számos oka lehet. Sok kernel manapság saját hotplug megoldást használ, amely a CPU frekvenciáit szabályozza és CyanogenMod is saját CPU gyorsítási változatot használ, amely szabályozza a frekvenciát. Azt javasoljuk, hogy ne változtasd meg a CPU frekvenciáit és hagyd, hogy a kernel végezze a dolgát. Ez más funkciókra is érvényes! Ha nem jegyzi meg, az azért van, mert a kernel/rendszer nem akarja, hogy változtass rajta.</string>
-  <string name="feature_not_appearing">Miért nem jelenik meg az x és y funkció?</string>
-  <string name="feature_not_appearing_summary">Csak azok a funkciók jelennek meg, amiket az eszközöd támogat!</string>
-  <string name="feature_function">Mit csinál az x funkció?</string>
-  <string name="feature_function_summary">Ha nem tudod, mit csinál ez a vezérlő, akkor egyszerűen ne érintsd meg. Kérjük, végezz megfelelő kutatást, mielőtt a drága hardvereddel játszanál.</string>
-  <string name="add_new_features">Hozzáadnád x vagy y funkciót?</string>
-  <string name="add_new_features_summary">Ezt nehéz megmondani. Megpróbálok funkciókat hozzáadni, de nehéz az alkalmazást minden eszköz számára univerzálissá tenni.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Fahrenheit használata a hőmérséklet méréséhez.</string>
@@ -772,5 +752,23 @@
   <string name="set_password_first">Először állítsa be a jelszót</string>
   <string name="fingerprint_summary">Ujjlenyomat használata a biztonsági ellenőrzéshez. Ez addig fog működni, amíg az ujjlenyomata regisztrálva van.</string>
   <string name="sections">Szekciók</string>
-  <string name="sections_summary">Indítsd újra az alkalmazást, ha az alábbi szekciók láthatóságát változtattad.</string>
+  <!-- About -->
+  <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében CyanogenMod közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
+  <string name="libraries_used">Használt könyvtárak</string>
+  <!-- Contributors -->
+  <string name="commits">%d változtatás</string>
+  <string name="no_internet">Kérlek, ellenőrizd az internetkapcsolatod!</string>
+  <!-- Help -->
+  <string name="misspelled">Miért elírt az \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor egy latin szó, jelentése: segítő.</string>
+  <string name="have_to_donate">Szükséges-e adakoznom, hogy használjam a prémium funkciókat?</string>
+  <string name="have_to_donate_summary">Nem, ez az alkalmazás nyílt forráskódú. Magadnak is könnyedén megépítheted. A támogatói funkciók alapértelmezetten be vannak kapcsolva ha egy hibakereső apk-t építesz, így egyetlen sor kódot sem kell megváltoztatnod.</string>
+  <string name="cpu_freq_not_sticking">Miért nem jegyzi meg az általam beállított CPU frekvenciát?</string>
+  <string name="cpu_freq_not_sticking_summary">Ennek számos oka lehet. Sok kernel manapság saját hotplug megoldást használ, amely a CPU frekvenciáit szabályozza és CyanogenMod is saját CPU gyorsítási változatot használ, amely szabályozza a frekvenciát. Azt javasoljuk, hogy ne változtasd meg a CPU frekvenciáit és hagyd, hogy a kernel végezze a dolgát. Ez más funkciókra is érvényes! Ha nem jegyzi meg, az azért van, mert a kernel/rendszer nem akarja, hogy változtass rajta.</string>
+  <string name="feature_not_appearing">Miért nem jelenik meg az x és y funkció?</string>
+  <string name="feature_not_appearing_summary">Csak azok a funkciók jelennek meg, amiket az eszközöd támogat!</string>
+  <string name="feature_function">Mit csinál az x funkció?</string>
+  <string name="feature_function_summary">Ha nem tudod, mit csinál ez a vezérlő, akkor egyszerűen ne érintsd meg. Kérjük, végezz megfelelő kutatást, mielőtt a drága hardvereddel játszanál.</string>
+  <string name="add_new_features">Hozzáadnád x vagy y funkciót?</string>
+  <string name="add_new_features_summary">Ezt nehéz megmondani. Megpróbálok funkciókat hozzáadni, de nehéz az alkalmazást minden eszköz számára univerzálissá tenni.</string>
 </resources>

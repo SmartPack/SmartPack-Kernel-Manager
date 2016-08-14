@@ -84,10 +84,9 @@
   <string name="recovery">Restauration</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Au démarrage</string>
+  <string name="settings">Réglages</string>
   <string name="about">À propos</string>
   <string name="contributors">Contributeurs</string>
-  <string name="faq">FAQ</string>
-  <string name="settings">Réglages</string>
   <!-- Overall -->
   <string name="offline">Hors-Ligne</string>
   <string name="core">Coeur %d</string>
@@ -502,9 +501,6 @@
   <string name="emulate_initd">Émulation init.d</string>
   <string name="executing">En cours d\'exécution</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Thème sombre</string>
   <string name="debugging">Débogage</string>
@@ -514,4 +510,7 @@
   <string name="last_kmsg_summary">Copiez /proc/last_kmsg vers /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Message du Pilote</string>
   <string name="driver_message_summary">Copier le message du driver (dmesg) vers /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

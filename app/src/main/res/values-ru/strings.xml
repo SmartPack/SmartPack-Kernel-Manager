@@ -84,10 +84,9 @@
   <string name="recovery">Меню восстановления</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">При загрузке</string>
+  <string name="settings">Настройки</string>
   <string name="about">О приложении</string>
   <string name="contributors">Имена разработчиков</string>
-  <string name="faq">Вопросы-Ответы</string>
-  <string name="settings">Настройки</string>
   <!-- Overall -->
   <string name="offline">Оффлайн</string>
   <string name="core">Ядро %d</string>
@@ -667,25 +666,6 @@
   <string name="delete_question">Удалить %s?</string>
   <string name="arguments">Параметры: %s</string>
   <string name="disable_question">Отключить %s?</string>
-  <!-- About -->
-  <string name="about_me">Привет, я Willi Ye aka Graham, 19-летний студент из Виенны. Занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor занимаюсь поддержкой CyanogenMod для некоторых устройств, а также работаю над прошивкой ParanoidAndroid. Поэтому прошу прошу понять, если приложение долгое время не обновляется.</string>
-  <string name="libraries_used">Использованы библиотеки</string>
-  <!-- Contributors -->
-  <string name="commits">%d коммиты</string>
-  <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
-  <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
-  <string name="have_to_donate">Должен ли я пожертвовать для того, чтобы использовать эти функции премиум-класса?</string>
-  <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы можете сами его собрать. При этом функции платной версии включаются при debug сборке apk-файла, так что для их получения нет нужны править код.</string>
-  <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
-  <string name="cpu_freq_not_sticking_summary">Это может быть вызвано многими причинами. Многие ядра в наше время имеют свои собственные системы hotplug-а, которые контролируют частоту ЦП, и CyanogenMod имеет свою собственную реализацию ускорения ЦП, которая регулирует частоту. Я хотел бы предложить вам не трогать частоты ЦП и дать ядру делать свою работу. Это также касается и других функций! Если они меняются, то это потому что ядро/система не хочет позволить вам изменить его.</string>
-  <string name="feature_not_appearing">Почему нет функции x и y?</string>
-  <string name="feature_not_appearing_summary">Отображаются только те функции, которые поддерживаются устройством!</string>
-  <string name="feature_function">Что делает функция x?</string>
-  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Лучше тщательно изучить его, прежде чем играть с железом вашего аппарата.</string>
-  <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
-  <string name="add_new_features_summary">Это трудно сказать. Я пытаюсь добавить все функции, но это трудно сделать это приложение универсального для всех устройств.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">По Фаренгейту</string>
   <string name="fahrenheit_summary">Используйте для измерения температуры по Фаренгейту.</string>
@@ -724,5 +704,23 @@
   <string name="set_password_first">Сначала установите пароль</string>
   <string name="fingerprint_summary">Использование отпечатка пальца пройти проверки безопасности. Это будет работать, как долго вы зарегистрированы отпечатки пальцев.</string>
   <string name="sections">Разделы</string>
-  <string name="sections_summary">Перезапустите приложение, когда вы измените видимость разделов, указанных ниже.</string>
+  <!-- About -->
+  <string name="about_me">Привет, я Willi Ye aka Graham, 19-летний студент из Виенны. Занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor занимаюсь поддержкой CyanogenMod для некоторых устройств, а также работаю над прошивкой ParanoidAndroid. Поэтому прошу прошу понять, если приложение долгое время не обновляется.</string>
+  <string name="libraries_used">Использованы библиотеки</string>
+  <!-- Contributors -->
+  <string name="commits">%d коммиты</string>
+  <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
+  <!-- Help -->
+  <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
+  <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
+  <string name="have_to_donate">Должен ли я пожертвовать для того, чтобы использовать эти функции премиум-класса?</string>
+  <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы можете сами его собрать. При этом функции платной версии включаются при debug сборке apk-файла, так что для их получения нет нужны править код.</string>
+  <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
+  <string name="cpu_freq_not_sticking_summary">Это может быть вызвано многими причинами. Многие ядра в наше время имеют свои собственные системы hotplug-а, которые контролируют частоту ЦП, и CyanogenMod имеет свою собственную реализацию ускорения ЦП, которая регулирует частоту. Я хотел бы предложить вам не трогать частоты ЦП и дать ядру делать свою работу. Это также касается и других функций! Если они меняются, то это потому что ядро/система не хочет позволить вам изменить его.</string>
+  <string name="feature_not_appearing">Почему нет функции x и y?</string>
+  <string name="feature_not_appearing_summary">Отображаются только те функции, которые поддерживаются устройством!</string>
+  <string name="feature_function">Что делает функция x?</string>
+  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Лучше тщательно изучить его, прежде чем играть с железом вашего аппарата.</string>
+  <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
+  <string name="add_new_features_summary">Это трудно сказать. Я пытаюсь добавить все функции, но это трудно сделать это приложение универсального для всех устройств.</string>
 </resources>

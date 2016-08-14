@@ -189,9 +189,6 @@
   <!-- On Boot -->
   <string name="delete_question">Ջնջե՞լ %s:</string>
   <string name="disable_question">Անջատե՞լ %s:</string>
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="hide">Թաքցնել</string>
   <string name="script">Սկրիպտ</string>
@@ -209,4 +206,7 @@
   <string name="password_not_match">Նոր գաղտնաբառը չհաստատավեց</string>
   <string name="password_too_long">Գաղտանաբռը երկար է (առավ. 32 նիշ)</string>
   <string name="set_password_first">Սկզբում դրեք գաղտնաբառ</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

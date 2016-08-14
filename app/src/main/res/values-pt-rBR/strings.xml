@@ -65,10 +65,9 @@
   <string name="profile">Perfil	</string>
   <string name="recovery">Recuperação</string>
   <string name="initd">Init.d</string>
+  <string name="settings">Configurações</string>
   <string name="about">Sobre</string>
   <string name="contributors">Contribuidores</string>
-  <string name="faq">Perguntas Frequentes</string>
-  <string name="settings">Configurações</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Núcleo %d</string>
@@ -503,9 +502,6 @@
   <string name="emulate_initd">Emular init. d</string>
   <string name="executing">Em execução</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tema escuro</string>
   <string name="debugging">Depuração</string>
@@ -515,4 +511,7 @@
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg para /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensagem do controlador</string>
   <string name="driver_message_summary">Copiar a mensagem do controlador (dmesg) para /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

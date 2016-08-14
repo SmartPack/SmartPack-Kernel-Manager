@@ -87,10 +87,9 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Przy starcie</string>
+  <string name="settings">Ustawienia</string>
   <string name="about">O aplikacji</string>
   <string name="contributors">Współautorzy</string>
-  <string name="faq">Najczęściej zadawane pytania (FAQ)</string>
-  <string name="settings">Ustawienia</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Rdzeń %d</string>
@@ -686,25 +685,6 @@
   <string name="delete_question">Usunąć %s?</string>
   <string name="arguments">Argumenty: %s</string>
   <string name="disable_question">Wyłączyć %s?</string>
-  <!-- About -->
-  <string name="about_me">Witaj, jestem Willi Ye aka Grarak, jestem 19-letnim studentem z Wiednia. Zajmuję się programowaniem Androida od dłuższego czasu. Poza Kernel Adiutorem utrzymuję również CyanogenMod dla kilku urządzeń oraz pracuję nad ParanoidAndroid. Więc zrozum, proszę, że nie mogę znaleźć zbyt wiele czasu na aktualizacje tej aplikacji.</string>
-  <string name="libraries_used">Użyte biblioteki</string>
-  <!-- Contributors -->
-  <string name="commits">%d commit\'a/ów</string>
-  <string name="no_internet">Sprawdź swoje połączenie internetowe!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Czemu popełniłeś błąd w \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor w łacinie oznacza pomocnik.</string>
-  <string name="have_to_donate">Czy muszę kupić wersje donate by móc korzystać z funkcji premium?</string>
-  <string name="have_to_donate_summary">Nie, kod źródłowy tej aplikacji jest otwarty. Możesz bez problemu ją skompilować. Funkcje premium są domyślnie włączone gdy kompilujesz wersje debug, więc nie ma potrzeby modyfikowania kodu źródłowego.</string>
-  <string name="cpu_freq_not_sticking">Czemu ustalona przez ze mnie max/min częstotliwość procesora zmienia się?</string>
-  <string name="cpu_freq_not_sticking_summary">Przyczyn tego może być wiele. Wiele kernel\'i ma własne hotplug\'i, który kontrolują częstotliwość procesora, CyanogenMod ma własną implementacje CPU Boost, która reguluje częstotliwość. Sugeruję, byś nie zmieniał częstotliwość CPU i pozwolił kernel\'owi robić swoje. Tyczy się to również innych funkcji! Jeżeli twoje ustawienia samoczynnie się zmieniają, oznacza to, że kernel/system nie pozwoli Ci na ich zmianę.</string>
-  <string name="feature_not_appearing">Czemu funkcje x i y się nie pokazują?</string>
-  <string name="feature_not_appearing_summary">Tylko funkcje, które twoje urządzenie wspiera są pokazywane!</string>
-  <string name="feature_function">Co robi funkcja x?</string>
-  <string name="feature_function_summary">Jeśli nie wiesz co dana opcja robi, po prostu z niej nie korzystaj. Proszę o dokładne wyszukanie na czym polega ta opcja, nim będziesz z niej korzystać na twoim urządzeniu.</string>
-  <string name="add_new_features">Mógłbyś dodać funkcje x i y?</string>
-  <string name="add_new_features_summary">Ciężko powiedzieć. Staram się dodawać wszystkie funkcje, lecz ciężko jest utworzyć uniwersalną aplikację dla wszystkich urządzeń.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Użyj stopni fahrenheita do mierzenia temperatury.</string>
@@ -749,5 +729,23 @@
   <string name="set_password_first">Hasło nie zostało ustalone</string>
   <string name="fingerprint_summary">Skorzystaj z twojego odciska palców by móc korzystać z aplikacji. Opcja ta działa, dopóki twój odcisk palca został zarejestrowany na twoim urządzeniu.</string>
   <string name="sections">Działy</string>
-  <string name="sections_summary">Zrestartuj aplikacje, gdy zmienisz widoczność poniższych działów.</string>
+  <!-- About -->
+  <string name="about_me">Witaj, jestem Willi Ye aka Grarak, jestem 19-letnim studentem z Wiednia. Zajmuję się programowaniem Androida od dłuższego czasu. Poza Kernel Adiutorem utrzymuję również CyanogenMod dla kilku urządzeń oraz pracuję nad ParanoidAndroid. Więc zrozum, proszę, że nie mogę znaleźć zbyt wiele czasu na aktualizacje tej aplikacji.</string>
+  <string name="libraries_used">Użyte biblioteki</string>
+  <!-- Contributors -->
+  <string name="commits">%d commit\'a/ów</string>
+  <string name="no_internet">Sprawdź swoje połączenie internetowe!</string>
+  <!-- Help -->
+  <string name="misspelled">Czemu popełniłeś błąd w \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor w łacinie oznacza pomocnik.</string>
+  <string name="have_to_donate">Czy muszę kupić wersje donate by móc korzystać z funkcji premium?</string>
+  <string name="have_to_donate_summary">Nie, kod źródłowy tej aplikacji jest otwarty. Możesz bez problemu ją skompilować. Funkcje premium są domyślnie włączone gdy kompilujesz wersje debug, więc nie ma potrzeby modyfikowania kodu źródłowego.</string>
+  <string name="cpu_freq_not_sticking">Czemu ustalona przez ze mnie max/min częstotliwość procesora zmienia się?</string>
+  <string name="cpu_freq_not_sticking_summary">Przyczyn tego może być wiele. Wiele kernel\'i ma własne hotplug\'i, który kontrolują częstotliwość procesora, CyanogenMod ma własną implementacje CPU Boost, która reguluje częstotliwość. Sugeruję, byś nie zmieniał częstotliwość CPU i pozwolił kernel\'owi robić swoje. Tyczy się to również innych funkcji! Jeżeli twoje ustawienia samoczynnie się zmieniają, oznacza to, że kernel/system nie pozwoli Ci na ich zmianę.</string>
+  <string name="feature_not_appearing">Czemu funkcje x i y się nie pokazują?</string>
+  <string name="feature_not_appearing_summary">Tylko funkcje, które twoje urządzenie wspiera są pokazywane!</string>
+  <string name="feature_function">Co robi funkcja x?</string>
+  <string name="feature_function_summary">Jeśli nie wiesz co dana opcja robi, po prostu z niej nie korzystaj. Proszę o dokładne wyszukanie na czym polega ta opcja, nim będziesz z niej korzystać na twoim urządzeniu.</string>
+  <string name="add_new_features">Mógłbyś dodać funkcje x i y?</string>
+  <string name="add_new_features_summary">Ciężko powiedzieć. Staram się dodawać wszystkie funkcje, lecz ciężko jest utworzyć uniwersalną aplikację dla wszystkich urządzeń.</string>
 </resources>

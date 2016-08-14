@@ -67,9 +67,8 @@
   <string name="profile">Профіль</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
-  <string name="about">Про додаток</string>
-  <string name="faq">Питання та відповіді (FAQ)</string>
   <string name="settings">Налаштування</string>
+  <string name="about">Про додаток</string>
   <!-- Overall -->
   <string name="offline">Офлайн</string>
   <string name="core">Ядро %d</string>
@@ -422,9 +421,6 @@
   <string name="delete_question">Видалити %s?</string>
   <string name="arguments">Аргументи: %s</string>
   <string name="disable_question">Вимкнути %s?</string>
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Темна тема</string>
   <string name="ten_sec">10 секунд</string>
@@ -445,4 +441,7 @@
   <string name="password_empty">Пароль порожній</string>
   <string name="set_password_first">Спочатку встановіть пароль</string>
   <string name="sections">Розділи</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

@@ -87,10 +87,9 @@
   <string name="profile">प्रोफ़ाइल</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">ओन बूट</string>
+  <string name="settings">सेटिंग</string>
   <string name="about">बारे में</string>
   <string name="contributors">सहयोगी</string>
-  <string name="faq">आम सवाल</string>
-  <string name="settings">सेटिंग</string>
   <!-- Overall -->
   <string name="offline">ऑफ़लाइन</string>
   <string name="core">कोर %d</string>
@@ -537,9 +536,6 @@
   <string name="emulate_initd">Init.d का अनुकरण</string>
   <string name="executing">क्रियान्वित</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">डार्क थीम</string>
   <string name="debugging">डिबगिंग</string>
@@ -549,4 +545,7 @@
   <string name="last_kmsg_summary">/Proc/last_kmsg के लिए /sdcard/last_kmsg.txt की प्रतिलिपि बनाएँ</string>
   <string name="driver_message">ड्राइवर संदेश</string>
   <string name="driver_message_summary">ड्राइवर संदेश (dmesg) करने के लिए /sdcard/dmesg.txt की प्रतिलिपि बनाएँ</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

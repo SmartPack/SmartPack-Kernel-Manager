@@ -84,10 +84,9 @@
   <string name="recovery">Herstel</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Bij het opstarten</string>
+  <string name="settings">Instellingen</string>
   <string name="about">Over</string>
   <string name="contributors">Medewerkers</string>
-  <string name="faq">Veelgestelde Vragen</string>
-  <string name="settings">Instellingen</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Kern %d</string>
@@ -379,8 +378,8 @@
   <!-- Recovery -->
   <!-- Init.d -->
   <!-- On Boot -->
+  <!-- Settings -->
   <!-- About -->
   <!-- Contributors -->
-  <!-- FAQ -->
-  <!-- Settings -->
+  <!-- Help -->
 </resources>

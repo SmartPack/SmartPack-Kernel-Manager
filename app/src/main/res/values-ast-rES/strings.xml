@@ -419,9 +419,6 @@
   <string name="emulate_initd">Emular Init.d</string>
   <string name="executing">Executando</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tema escuru</string>
   <string name="debugging">Depuración</string>
@@ -431,4 +428,7 @@
   <string name="last_kmsg_summary">Copia /proc/last_kmsg a /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensaxe\'l controlador</string>
   <string name="driver_message_summary">Copia\'l mensaxe del controlador (dmesg) a /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

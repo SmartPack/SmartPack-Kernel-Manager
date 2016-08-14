@@ -84,10 +84,9 @@
   <string name="profile">Profiili</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Käynnistys</string>
+  <string name="settings">Asetukset</string>
   <string name="about">Tietoa</string>
   <string name="contributors">Avustajat</string>
-  <string name="faq">Usein kysyttyä</string>
-  <string name="settings">Asetukset</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Ydin %d</string>
@@ -694,25 +693,6 @@
   <string name="delete_question">Poista %s?</string>
   <string name="arguments">Argumentit: %s</string>
   <string name="disable_question">Poista käytöstä %s?</string>
-  <!-- About -->
-  <string name="about_me">Hei! Minä olen Willi Ye alias Grarak, 19-vuotias opiskelija, joka asuu Wienissä. Olen ollut Android-kehittäjänä jo melko pitkään. Kernel Adiutorin ohella olen myös ylläpitänyt CyanogenModia muutamille puhelinmalleille ja olen työskennellyt ParanoidAndroidin parissa. Siksi toivonkin, että ymmärrät, jos en aina löydä aikaa tämän sovelluksen päivittämiseen.</string>
-  <string name="libraries_used">Käytet kirjastot</string>
-  <!-- Contributors -->
-  <string name="commits">%d on samaa mieltä</string>
-  <string name="no_internet">Tarkista verkkoyhteytesi!</string>
-  <!-- FAQ -->
-  <string name="misspelled">Miksi teit kirjoitusvirheen sanassa \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor on latinaa ja takoittaa auttajaa.</string>
-  <string name="have_to_donate">Tarvitseeko minun lahjoittaa, jotta saan kaikki Premium ominaisuudet?</string>
-  <string name="have_to_donate_summary">Ei, tämä sovellus perustuu avoimeen lähdekoodiin. Voit helposti rakentaa toimintoja itse. Lahjoitustoiminnot ovat oletuksena aktivoituja, kun luot vianetsintä apk:n, joten siinä ei tarvitse muuttaa yhtäkään riviä koodia.</string>
-  <string name="cpu_freq_not_sticking">Miksi valitsemani suorittimen kellotaajuudet eivät pysy?</string>
-  <string name="cpu_freq_not_sticking_summary">Tämä voi johtua monista eri syistä. Monissa kerneleissä on nykypäivänä omat hotplugging-järjestelmät, jotka ohjaavat suorittimen kellotaajuuksia. Myös CyanogenModissa on oma suorittimen boost-toiminto sisäänrakennettuna, joka säätelee kellotaajuuksia. Ehdotankin, että et koske ollenkaan suorittimen kellotaajuuksiin vaan annat kernelin hoitaa sen homman. Tämä pätee myös muihin toimintoihin! Jos ne eivät pysy päällä, se johtuu siitä, että kernel/järjestelmä ei anna sinun muokata niitä.</string>
-  <string name="feature_not_appearing">Miksi en näe toimintoja x ja y?</string>
-  <string name="feature_not_appearing_summary">Vain ne ominaisuudet näkyvät, joita puhelimesi tukee!</string>
-  <string name="feature_function">Mitä toiminto x tekee?</string>
-  <string name="feature_function_summary">Jos et tiedä mitä tämä asetus tekee, älä yksinkertaisesti koske siihen. Tutki asiaa kunnolla, ennen kuin alat leikkimään kalliilla laitteellasi.</string>
-  <string name="add_new_features">Voisitko lisätä ominaisuuden x ja y?</string>
-  <string name="add_new_features_summary">Vaikea sanoa. Yritän lisäämään kaikki ominaisuudet, mutta on vaikee tehdä tästä sovelluksesta kaikille laitteille sopivaa.</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Käytä fahrenheit-asteita lämpötilojen mittaamiseen.</string>
@@ -753,5 +733,23 @@
   <string name="set_password_first">Määritä ensin salasanasi</string>
   <string name="fingerprint_summary">Käytä sormenjälkeä suojauksen avaamiseen. Tämä toimii, jos sinulla on sormenjälki rekisteröitynä.</string>
   <string name="sections">Alueet</string>
-  <string name="sections_summary">Käynnistä sovellus uudelleen, kun säädät alueiden näkyvyyttä alta.</string>
+  <!-- About -->
+  <string name="about_me">Hei! Minä olen Willi Ye alias Grarak, 19-vuotias opiskelija, joka asuu Wienissä. Olen ollut Android-kehittäjänä jo melko pitkään. Kernel Adiutorin ohella olen myös ylläpitänyt CyanogenModia muutamille puhelinmalleille ja olen työskennellyt ParanoidAndroidin parissa. Siksi toivonkin, että ymmärrät, jos en aina löydä aikaa tämän sovelluksen päivittämiseen.</string>
+  <string name="libraries_used">Käytet kirjastot</string>
+  <!-- Contributors -->
+  <string name="commits">%d on samaa mieltä</string>
+  <string name="no_internet">Tarkista verkkoyhteytesi!</string>
+  <!-- Help -->
+  <string name="misspelled">Miksi teit kirjoitusvirheen sanassa \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor on latinaa ja takoittaa auttajaa.</string>
+  <string name="have_to_donate">Tarvitseeko minun lahjoittaa, jotta saan kaikki Premium ominaisuudet?</string>
+  <string name="have_to_donate_summary">Ei, tämä sovellus perustuu avoimeen lähdekoodiin. Voit helposti rakentaa toimintoja itse. Lahjoitustoiminnot ovat oletuksena aktivoituja, kun luot vianetsintä apk:n, joten siinä ei tarvitse muuttaa yhtäkään riviä koodia.</string>
+  <string name="cpu_freq_not_sticking">Miksi valitsemani suorittimen kellotaajuudet eivät pysy?</string>
+  <string name="cpu_freq_not_sticking_summary">Tämä voi johtua monista eri syistä. Monissa kerneleissä on nykypäivänä omat hotplugging-järjestelmät, jotka ohjaavat suorittimen kellotaajuuksia. Myös CyanogenModissa on oma suorittimen boost-toiminto sisäänrakennettuna, joka säätelee kellotaajuuksia. Ehdotankin, että et koske ollenkaan suorittimen kellotaajuuksiin vaan annat kernelin hoitaa sen homman. Tämä pätee myös muihin toimintoihin! Jos ne eivät pysy päällä, se johtuu siitä, että kernel/järjestelmä ei anna sinun muokata niitä.</string>
+  <string name="feature_not_appearing">Miksi en näe toimintoja x ja y?</string>
+  <string name="feature_not_appearing_summary">Vain ne ominaisuudet näkyvät, joita puhelimesi tukee!</string>
+  <string name="feature_function">Mitä toiminto x tekee?</string>
+  <string name="feature_function_summary">Jos et tiedä mitä tämä asetus tekee, älä yksinkertaisesti koske siihen. Tutki asiaa kunnolla, ennen kuin alat leikkimään kalliilla laitteellasi.</string>
+  <string name="add_new_features">Voisitko lisätä ominaisuuden x ja y?</string>
+  <string name="add_new_features_summary">Vaikea sanoa. Yritän lisäämään kaikki ominaisuudet, mutta on vaikee tehdä tästä sovelluksesta kaikille laitteille sopivaa.</string>
 </resources>

@@ -18,15 +18,21 @@
   <string name="cancel">取消 </string>
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
+  <string name="pirated">看起来捐赠版应用不是从Play商店购买的！如果你盗用了它，你真该感到惭愧！</string>
   <string name="donate">捐助</string>
+  <string name="donate_summary">此功能仅在捐赠版应用安装后可用 ！不过别担心。因为这个应用程序是开放源代码的你可以轻松构建它来删除此检查。但无论如何我希望你支持开发人员。感谢您使用Kernel Adiutor ！一旦你买了捐赠版应用就必须重新启动Kernel Adiutor 以启用所有功能。</string>
+  <string name="donate_nope">我不会爱上这种骗局的 ！</string>
+  <string name="donate_yes">我喜欢这个应用程序，必须捐 ！</string>
   <string name="remove_ad">去除广告</string>
   <string name="warning">警告</string>
+  <string name="gh_ad">这是一个非商业性的广告 ！不要太认真了 ！当实际的广告不加载用一个有趣的方式来填充的空间（看向 adblock 用户）。</string>
   <string name="apply_on_boot">系统启动时应用</string>
   <string name="apply_on_boot_text">在 %d 秒后应用您的设置</string>
   <string name="apply_on_boot_complete">应用设置完成。</string>
   <string name="apply_on_boot_canceled">应用设置取消。</string>
   <string name="not_in_range">不在范围内</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">写入存储权限被拒绝 ！</string>
   <!-- Editor -->
   <string name="save">保存</string>
   <!-- File Picker -->
@@ -77,10 +83,10 @@
   <string name="profile">配置文件</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">启动时</string>
+  <string name="settings">设置</string>
   <string name="about">关于</string>
   <string name="contributors">贡献者</string>
-  <string name="faq">疑问与解答</string>
-  <string name="settings">设置</string>
   <!-- Overall -->
   <string name="offline">离线</string>
   <string name="core">核心 %d</string>
@@ -111,7 +117,9 @@
   <string name="version">版本</string>
   <string name="handlers">处理程序</string>
   <!-- CPU -->
+  <string name="cores_singular">%d 个核心</string>
   <string name="cores">%d 个核心</string>
+  <string name="no_offline_core">你不能让这个核心离线 ！</string>
   <string name="cpu_max_freq">CPU 最高频率</string>
   <string name="cpu_max_freq_summary">设置 CPU 能调节到的最高频率。</string>
   <string name="cpu_min_freq">CPU 最低频率</string>
@@ -122,6 +130,7 @@
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
   <string name="tunables_error">%s 不可调节</string>
+  <string name="manual">手动</string>
   <string name="mc_power_saving">多核省电</string>
   <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务。</string>
   <string name="disabled">禁用</string>
@@ -225,6 +234,7 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision 热插拔</string>
   <string name="bricked_hotplug">砖砌的热插拔</string>
   <string name="mb_hotplug_summary">由 show-p1984 开发的高通 MPDecision 替代方案。</string>
+  <string name="screen_off_single_cpu_summary">当屏幕关闭时只使用一个核心</string>
   <string name="idle_frequency">空闲频率</string>
   <string name="idle_frequency_summary">如果第一个核心低于此频率运行，则不开启其他核心</string>
   <string name="touch_boost_time">触摸升压时间</string>
@@ -560,10 +570,6 @@
   <string name="executing">正在执行</string>
   <string name="result">结果</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
-  <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
   <!-- Settings -->
   <string name="fahrenheit_title">华氏度</string>
   <string name="fahrenheit_summary">使用华氏温度测量。</string>
@@ -590,4 +596,8 @@
   <string name="password_not_match">两次输入的密码不匹配</string>
   <string name="password_too_long">密码太长(最多 32 个字符)</string>
   <string name="set_password_first">先设置密码</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
+  <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
 </resources>

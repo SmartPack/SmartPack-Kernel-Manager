@@ -270,9 +270,6 @@
   <string name="emulate_initd">Емулирај init.d</string>
   <string name="executing">Извршавам</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Тамна тема</string>
   <string name="debugging">Исправљање грешака</string>
@@ -282,4 +279,7 @@
   <string name="last_kmsg_summary">Копира /proc/last_kmsg у /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Дневник драјвера</string>
   <string name="driver_message_summary">Копира дневник драјвера (dmesg) у /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

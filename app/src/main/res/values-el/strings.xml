@@ -81,10 +81,9 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Κατά την εκκίνηση</string>
+  <string name="settings">Ρυθμίσεις</string>
   <string name="about">Σχετικά με την εφαρμογή</string>
   <string name="contributors">Χορηγοί</string>
-  <string name="faq">Συνήθεις Ερωτήσεις</string>
-  <string name="settings">Ρυθμίσεις</string>
   <!-- Overall -->
   <string name="offline">Αποσυνδεδεμένος</string>
   <string name="core">Πυρήνας %d</string>
@@ -284,8 +283,8 @@
   <!-- Recovery -->
   <!-- Init.d -->
   <!-- On Boot -->
+  <!-- Settings -->
   <!-- About -->
   <!-- Contributors -->
-  <!-- FAQ -->
-  <!-- Settings -->
+  <!-- Help -->
 </resources>

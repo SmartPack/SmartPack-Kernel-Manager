@@ -80,10 +80,9 @@
   <string name="recovery">Oporavak</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Pri pokretanju</string>
+  <string name="settings">Postavke</string>
   <string name="about">O aplikaciji</string>
   <string name="contributors">Suradnici</string>
-  <string name="faq">Česta pitanja i odgovori</string>
-  <string name="settings">Postavke</string>
   <!-- Overall -->
   <string name="offline">Neaktivna</string>
   <string name="core">Jezgra %d</string>
@@ -412,9 +411,6 @@
   <!-- Recovery -->
   <!-- Init.d -->
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tamni motiv</string>
   <string name="debugging">Ispravljanje pogrešaka</string>
@@ -424,4 +420,7 @@
   <string name="last_kmsg_summary">Kopirajte /proc/last_kmsg u /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Izvješće o Driveru</string>
   <string name="driver_message_summary">Kopirajte izvješće o driveru (dmesg) u /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

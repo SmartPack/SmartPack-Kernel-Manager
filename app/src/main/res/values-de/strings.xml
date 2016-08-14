@@ -49,6 +49,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistiken</string>
@@ -84,10 +85,9 @@
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Beim Start</string>
+  <string name="settings">Einstellungen</string>
   <string name="about">Über uns</string>
   <string name="contributors">Unterstützer</string>
-  <string name="faq">FAQ</string>
-  <string name="settings">Einstellungen</string>
   <!-- Overall -->
   <string name="offline">Abgeschaltet</string>
   <string name="core">Kern %d</string>
@@ -411,6 +411,7 @@
   <string name="full">Vollständig</string>
   <string name="bottom_half">Untere Hälfte</string>
   <string name="top_half">Obere Hälfte</string>
+  <string name="half">Hälfte</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Wecken Sie Ihr Gerät durch Wischen auf dem Bildschirm auf.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -559,9 +560,6 @@
   <string name="emulate_initd">Init.d emulieren</string>
   <string name="executing">Ausführung</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Dunkles Design</string>
   <string name="debugging">Debugging</string>
@@ -571,4 +569,7 @@
   <string name="last_kmsg_summary">Kopiere /proc/last_kmsg nach /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Treiber-Nachricht</string>
   <string name="driver_message_summary">Treiber-Nachricht (Dmesg) auf /sdcard/dmesg.txt speichern</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>

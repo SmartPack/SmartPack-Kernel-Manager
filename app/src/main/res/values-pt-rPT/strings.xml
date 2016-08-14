@@ -73,10 +73,9 @@
   <string name="profile">Perfil</string>
   <string name="recovery">Recuperação</string>
   <string name="initd">Init.d</string>
+  <string name="settings">Definições</string>
   <string name="about">Sobre</string>
   <string name="contributors">Colaboradores</string>
-  <string name="faq">Perguntas Frequentes</string>
-  <string name="settings">Definições</string>
   <!-- Overall -->
   <string name="offline">Off-line</string>
   <string name="core">Núcleo %d</string>
@@ -529,11 +528,6 @@
   <string name="delete_question">Eliminar %s?</string>
   <string name="arguments">Argumentos: %s</string>
   <string name="disable_question">Desativar %s?</string>
-  <!-- About -->
-  <string name="libraries_used">Bibliotecas usadas</string>
-  <!-- Contributors -->
-  <string name="no_internet">Por favor, verifique a sua ligação à Internet!</string>
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="dark_theme">Tema escuro</string>
@@ -557,4 +551,9 @@
   <string name="password_empty">A palavra-passe está em branco</string>
   <string name="set_password_first">Defina primeiro uma palavra-passe</string>
   <string name="sections">Secções</string>
+  <!-- About -->
+  <string name="libraries_used">Bibliotecas usadas</string>
+  <!-- Contributors -->
+  <string name="no_internet">Por favor, verifique a sua ligação à Internet!</string>
+  <!-- Help -->
 </resources>

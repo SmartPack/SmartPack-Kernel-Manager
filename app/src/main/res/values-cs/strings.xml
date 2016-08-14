@@ -82,9 +82,8 @@ Zabezpečeni</string>
   <string name="recovery">Recovery menu</string>
   <string name="initd">Init.d</string>
   <string name="on_boot">Při spuštění</string>
-  <string name="about">O programu</string>
-  <string name="faq">FAQ - Nejčastější dotazy</string>
   <string name="settings">Nastavení</string>
+  <string name="about">O programu</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Jádro %d</string>
@@ -415,9 +414,6 @@ Zabezpečeni</string>
   <string name="emulate_initd">Emulace Init.d</string>
   <string name="executing">Provádění</string>
   <!-- On Boot -->
-  <!-- About -->
-  <!-- Contributors -->
-  <!-- FAQ -->
   <!-- Settings -->
   <string name="dark_theme">Tmavý motiv</string>
   <string name="debugging">Ladění</string>
@@ -427,4 +423,7 @@ Zabezpečeni</string>
   <string name="last_kmsg_summary">Kopírovat /proc/last_kmsg do /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Zpráva ovladače</string>
   <string name="driver_message_summary">Kopírovat zprávu ovladače (dmesg) do /sdcard/dmesg.txt</string>
+  <!-- About -->
+  <!-- Contributors -->
+  <!-- Help -->
 </resources>
