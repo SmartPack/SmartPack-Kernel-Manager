@@ -313,9 +313,18 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     public void resizeBanner() {
         if (showViewPager() && Utils.DONATED) {
+            int min = Math.round(getResources().getDimension(R.dimen.banner_min_height));
+            int max = Math.round(getResources().getDimension(R.dimen.banner_max_height));
             ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
             layoutParams.height = Prefs.getInt("banner_size", Math.round(getResources().getDimension(
                     R.dimen.banner_default_height)), getActivity());
+            if (layoutParams.height > max) {
+                layoutParams.height = max;
+                Prefs.saveInt("banner_size", max, getActivity());
+            } else if (layoutParams.height < min) {
+                layoutParams.height = min;
+                Prefs.saveInt("banner_size", min, getActivity());
+            }
             mRecyclerView.setPadding(mRecyclerView.getPaddingLeft(), layoutParams.height,
                     mRecyclerView.getPaddingRight(), mRecyclerView.getPaddingBottom());
             mViewPagerParent.requestLayout();
