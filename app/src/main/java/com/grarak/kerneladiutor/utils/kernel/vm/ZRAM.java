@@ -44,13 +44,14 @@ public class ZRAM {
         int size = value * 1024 * 1024;
         run("swapoff " + BLOCK + " > /dev/null 2>&1", BLOCK + "swapoff", context);
         run(Control.write("1", RESET), RESET, context);
+        run(Control.write("0", DISKSIZE), DISKSIZE + "reset", context);
+        if (maxCompStrems != null) {
+            run(Control.write(maxCompStrems, MAX_COMP_STREAMS), MAX_COMP_STREAMS, context);
+        }
         if (size != 0) {
             run(Control.write(String.valueOf(size), DISKSIZE), DISKSIZE, context);
             run("mkswap " + BLOCK + " > /dev/null 2>&1", BLOCK + "mkswap", context);
             run("swapon " + BLOCK + " > /dev/null 2>&1", BLOCK + "swapon", context);
-        }
-        if (maxCompStrems != null) {
-            run(Control.write(maxCompStrems, MAX_COMP_STREAMS), MAX_COMP_STREAMS, context);
         }
     }
 
