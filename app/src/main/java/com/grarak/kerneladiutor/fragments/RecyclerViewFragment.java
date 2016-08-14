@@ -312,7 +312,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     public void resizeBanner() {
-        if (showViewPager()) {
+        if (showViewPager() && Utils.DONATED) {
             ViewGroup.LayoutParams layoutParams = mViewPagerParent.getLayoutParams();
             layoutParams.height = Prefs.getInt("banner_size", Math.round(getResources().getDimension(
                     R.dimen.banner_default_height)), getActivity());
