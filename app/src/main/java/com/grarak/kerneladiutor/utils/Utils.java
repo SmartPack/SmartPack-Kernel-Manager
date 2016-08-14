@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.StringRes;
 import android.support.v4.view.ViewCompat;
 import android.text.Html;
 import android.util.Base64;
@@ -364,8 +365,12 @@ public class Utils {
         toast(message, context, Toast.LENGTH_SHORT);
     }
 
-    public static void toast(int id, Context context) {
+    public static void toast(@StringRes int id, Context context) {
         toast(context.getString(id), context);
+    }
+
+    public static void toast(@StringRes int id, Context context, int duration) {
+        toast(context.getString(id), context, duration);
     }
 
     public static void toast(String message, Context context, int duration) {

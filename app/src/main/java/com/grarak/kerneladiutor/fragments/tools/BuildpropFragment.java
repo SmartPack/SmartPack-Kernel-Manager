@@ -34,6 +34,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
@@ -312,7 +313,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
                     case 1:
                         Buildprop.backup();
                         Utils.toast(getString(R.string.backup_item, Buildprop.BUILD_PROP,
-                                Utils.getInternalDataStorage()), getActivity());
+                                Utils.getInternalDataStorage()), getActivity(), Toast.LENGTH_LONG);
                         break;
                 }
             }
