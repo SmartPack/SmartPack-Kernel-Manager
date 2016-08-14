@@ -39,6 +39,7 @@ public abstract class IO {
     private static final String ROTATIONAL = "rotational";
     private static final String IOSTATS = "iostats";
     private static final String ADD_RANDOM = "add_random";
+    private static final String RQ_AFFINITY = "rq_affinity";
 
     private static final List<String> sInternal = new ArrayList<>();
     private static final List<String> sExternal = new ArrayList<>();
@@ -61,6 +62,19 @@ public abstract class IO {
 
     public static boolean hasExternal() {
         return EXTERNAL != null;
+    }
+
+    public static void setRqAffinity(Storage storage, int value, Context context) {
+        run(Control.write(String.valueOf(value), getPath(storage, RQ_AFFINITY)),
+                getPath(storage, RQ_AFFINITY), context);
+    }
+
+    public static int getRqAffinity(Storage storage) {
+        return Utils.strToInt(Utils.readFile(getPath(storage, RQ_AFFINITY)));
+    }
+
+    public static boolean hasRqAffinity(Storage storage) {
+        return Utils.existFile(getPath(storage, RQ_AFFINITY));
     }
 
     public static void enableAddRandom(Storage storage, boolean enable, Context context) {

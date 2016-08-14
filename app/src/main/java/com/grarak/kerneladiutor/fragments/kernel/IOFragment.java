@@ -163,6 +163,26 @@ public class IOFragment extends RecyclerViewFragment {
             views.add(addRandom);
         }
 
+        if (IO.hasRqAffinity(storage)) {
+            SeekBarView rqAffinity = new SeekBarView();
+            rqAffinity.setTitle(getString(R.string.rq_affitiny));
+            rqAffinity.setSummary(getString(R.string.rq_affinity_summary));
+            rqAffinity.setMax(2);
+            rqAffinity.setProgress(IO.getRqAffinity(storage));
+            rqAffinity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    IO.setRqAffinity(storage, position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            views.add(rqAffinity);
+        }
+
         if (views.size() > 0) {
             items.add(title);
             items.addAll(views);
