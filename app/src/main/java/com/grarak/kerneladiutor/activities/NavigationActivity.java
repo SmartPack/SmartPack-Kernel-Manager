@@ -420,6 +420,8 @@ public class NavigationActivity extends BaseActivity
         Fragment fragment = getFragment(res);
         if (fragment instanceof RecyclerViewFragment) {
             ((RecyclerViewFragment) fragment).mDelay = delay;
+        } else if (fragment instanceof SettingsFragment) {
+            ((SettingsFragment) fragment).mDelay = delay;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
                 res + "_key").commit();

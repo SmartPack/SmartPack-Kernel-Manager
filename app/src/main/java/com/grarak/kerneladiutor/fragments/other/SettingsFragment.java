@@ -42,6 +42,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
+    private static final String KEY_AD_VIEW = "adview";
     private static final String KEY_FORCE_ENGLISH = "forceenglish";
     private static final String KEY_USER_INTERFACE = "user_interface";
     private static final String KEY_DARK_THEME = "darktheme";
@@ -62,6 +63,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     private String mOldPassword;
     private String mDeletePassword;
+
+    public boolean mDelay;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,21 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                init();
+                mDelay = false;
+            }
+        }, mDelay ? 250 : 0);
+    }
+
+    private void init() {
         addPreferencesFromResource(R.xml.settings);
+
+        if (Utils.DONATED) {
+            getPreferenceScreen().removePreference(findPreference(KEY_AD_VIEW));
+        }
 
         SwitchPreference forceEnglish = (SwitchPreference) findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {

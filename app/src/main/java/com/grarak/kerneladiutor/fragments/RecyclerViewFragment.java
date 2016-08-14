@@ -203,7 +203,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 protected List<RecyclerViewItem> doInBackground(Void... params) {
                     if (mDelay && needDelay()) {
                         try {
-                            Thread.sleep(200);
+                            Thread.sleep(250);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
