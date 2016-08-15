@@ -52,15 +52,11 @@ public class Profiles extends Provider {
             JSONObject items = new JSONObject();
             items.put("name", name);
 
-            JSONArray commandArray = new JSONArray();
-            for (int i = 0; i < commands.size(); i++) {
-                JSONObject item = new JSONObject();
-                item.put("path", commands.keySet().toArray()[i]);
-                item.put("command", commands.values().toArray()[i]);
-                commandArray.put(item);
+            ProfileItem profileItem = new ProfileItem(items);
+            for (String id : commands.keySet()) {
+                profileItem.putCommand(new ProfileItem.CommandItem(id, commands.get(id)));
             }
 
-            items.put("commands", commandArray);
             putItem(items);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -84,6 +80,12 @@ public class Profiles extends Provider {
             try {
                 mCommands = object.getJSONArray("commands");
             } catch (JSONException ignored) {
+                try {
+                    mCommands = new JSONArray();
+                    object.put("commands", mCommands);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -121,11 +123,11 @@ public class Profiles extends Provider {
             }
         }
 
-        public void putCommand(String path, String command) {
+        public void putCommand(CommandItem commandItem) {
             try {
                 JSONObject item = new JSONObject();
-                item.put("path", path);
-                item.put("command", command);
+                item.put("path", commandItem.getPath());
+                item.put("command", commandItem.getCommand());
                 mCommands.put(item);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -146,7 +148,7 @@ public class Profiles extends Provider {
                 }
             }
             try {
-                getItem().put("commands", newCommands);
+                getItem().put("commands", mCommands = newCommands);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -162,6 +164,11 @@ public class Profiles extends Provider {
                     mCommand = item.getString("command");
                 } catch (JSONException ignored) {
                 }
+            }
+
+            public CommandItem(String path, String command) {
+                mPath = path;
+                mCommand = command;
             }
 
             public String getPath() {

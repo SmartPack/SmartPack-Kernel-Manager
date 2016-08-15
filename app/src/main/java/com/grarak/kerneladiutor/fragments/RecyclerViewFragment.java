@@ -345,6 +345,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mItems.clear();
         if (mRecyclerViewAdapter != null) {
             mRecyclerViewAdapter.notifyDataSetChanged();
+            mRecyclerView.setAdapter(mRecyclerViewAdapter);
             adjustScrollPosition();
         }
     }
@@ -665,6 +666,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         mItems.clear();
+        mRecyclerViewAdapter = null;
         setAppBarLayoutAlpha(255);
         if (mAppBarLayout != null) {
             if (!isForeground()) {

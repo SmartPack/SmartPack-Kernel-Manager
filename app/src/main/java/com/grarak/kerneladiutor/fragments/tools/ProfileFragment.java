@@ -213,7 +213,9 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        mProfiles = new Profiles(getActivity());
+        if (mProfiles == null) {
+            mProfiles = new Profiles(getActivity());
+        }
         List<Profiles.ProfileItem> profileItems = mProfiles.getAllProfiles();
         if (mTaskerMode && profileItems.size() == 0) {
             Snackbar.make(getRootView(), R.string.no_profiles, Snackbar.LENGTH_LONG).show();
@@ -221,10 +223,10 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
         for (int i = 0; i < profileItems.size(); i++) {
             final int position = i;
-            CardView cardView = new CardView(getActivity());
+            final CardView cardView = new CardView(getActivity());
             cardView.setOnMenuListener(new CardView.OnMenuListener() {
                 @Override
-                public void onMenuReady(CardView cardView, PopupMenu popupMenu) {
+                public void onMenuReady(final CardView cardView, PopupMenu popupMenu) {
                     Menu menu = popupMenu.getMenu();
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.append));
                     menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.details));
@@ -429,7 +431,6 @@ public class ProfileFragment extends RecyclerViewFragment {
             } else {
                 Profiles.ProfileItem profileItem = mProfiles.getAllProfiles().get(data.getIntExtra(
                         ProfileActivity.POSITION_INTENT, 0));
-                List<Profiles.ProfileItem.CommandItem> commandItems = profileItem.getCommands();
 
                 for (Profiles.ProfileItem.CommandItem commandItem : profileItem.getCommands()) {
                     if (ids.contains(commandItem.getPath())) {
@@ -438,7 +439,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                 }
 
                 for (String path : commandsList.keySet()) {
-                    profileItem.putCommand(path, commandsList.get(path));
+                    profileItem.putCommand(new Profiles.ProfileItem.CommandItem(
+                            path, commandsList.get(path)));
                 }
                 mProfiles.commit();
             }
