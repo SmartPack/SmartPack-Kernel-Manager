@@ -88,7 +88,7 @@ public class Control {
 
     private void run(final String command, final String category, final String id,
                      final Context context) {
-        final Thread thread = new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 apply(command, category, id, context);

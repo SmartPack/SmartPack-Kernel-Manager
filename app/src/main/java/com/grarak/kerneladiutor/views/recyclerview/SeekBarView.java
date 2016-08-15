@@ -20,8 +20,8 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -42,9 +42,9 @@ public class SeekBarView extends RecyclerViewItem {
         void onMove(SeekBarView seekBarView, int position, String value);
     }
 
-    private TextView mTitle;
-    private TextView mSummary;
-    private TextView mValue;
+    private AppCompatTextView mTitle;
+    private AppCompatTextView mSummary;
+    private AppCompatTextView mValue;
     private DiscreteSeekBar mSeekBar;
 
     private CharSequence mTitleText;
@@ -67,9 +67,9 @@ public class SeekBarView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(final View view) {
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mSummary = (TextView) view.findViewById(R.id.summary);
-        mValue = (TextView) view.findViewById(R.id.value);
+        mTitle = (AppCompatTextView) view.findViewById(R.id.title);
+        mSummary = (AppCompatTextView) view.findViewById(R.id.summary);
+        mValue = (AppCompatTextView) view.findViewById(R.id.value);
         mSeekBar = (DiscreteSeekBar) view.findViewById(R.id.seekbar);
 
         view.findViewById(R.id.button_minus).setOnClickListener(new View.OnClickListener() {

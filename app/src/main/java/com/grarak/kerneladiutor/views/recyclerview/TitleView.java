@@ -19,8 +19,8 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 
@@ -29,7 +29,7 @@ import com.grarak.kerneladiutor.R;
  */
 public class TitleView extends RecyclerViewItem {
 
-    private TextView mTitle;
+    private AppCompatTextView mTitle;
 
     private CharSequence mTitleText;
 
@@ -40,7 +40,7 @@ public class TitleView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mTitle = (TextView) view.findViewById(R.id.title);
+        mTitle = (AppCompatTextView) view.findViewById(R.id.title);
 
         setFullSpan(true);
         super.onCreateView(view);

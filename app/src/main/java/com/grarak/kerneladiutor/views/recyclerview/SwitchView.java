@@ -20,10 +20,10 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -40,8 +40,8 @@ public class SwitchView extends RecyclerViewItem {
         void onChanged(SwitchView switchView, boolean isChecked);
     }
 
-    private TextView mTitle;
-    private TextView mSummary;
+    private AppCompatTextView mTitle;
+    private AppCompatTextView mSummary;
     private SwitchCompat mSwitcher;
 
     private CharSequence mTitleText;
@@ -57,8 +57,8 @@ public class SwitchView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mSummary = (TextView) view.findViewById(R.id.summary);
+        mTitle = (AppCompatTextView) view.findViewById(R.id.title);
+        mSummary = (AppCompatTextView) view.findViewById(R.id.summary);
         mSwitcher = (SwitchCompat) view.findViewById(R.id.switcher);
 
         super.onCreateView(view);
