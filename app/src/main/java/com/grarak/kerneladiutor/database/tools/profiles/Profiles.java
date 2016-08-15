@@ -133,12 +133,22 @@ public class Profiles extends Provider {
         }
 
         public void delete(CommandItem commandItem) {
-            List<CommandItem> items = getCommands();
-            for (int i = 0; i < items.size(); i++) {
-                if (items.get(i).getPath().equals(commandItem.getPath())
-                        && items.get(i).getCommand().equals(commandItem.getCommand())) {
-                    mCommands.remove(i);
+            JSONArray newCommands = new JSONArray();
+            for (int i = 0; i < mCommands.length(); i++) {
+                try {
+                    JSONObject object = mCommands.getJSONObject(i);
+                    CommandItem item = new CommandItem(object);
+                    if (!item.getPath().equals(commandItem.getPath())
+                            && !item.getCommand().equals(commandItem.getCommand())) {
+                        newCommands.put(object);
+                    }
+                } catch (JSONException ignored) {
                 }
+            }
+            try {
+                getItem().put("commands", newCommands);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
 
