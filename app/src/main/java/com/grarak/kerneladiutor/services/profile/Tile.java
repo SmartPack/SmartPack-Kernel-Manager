@@ -23,12 +23,15 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
+import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
@@ -51,13 +54,26 @@ public class Tile extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ACTION_TOGGLE_STATE.equals(intent.getAction())) {
+            Log.i(TAG, intent.getStringExtra(NAME));
             String[] commands = intent.getStringArrayExtra(COMMANDS);
             if (commands != null) {
+                List<String> adjustedCommands = new ArrayList<>();
                 RootUtils.SU su = new RootUtils.SU(true, TAG);
                 for (String command : commands) {
+                    synchronized (this) {
+                        CPUFreq.ApplyCpu applyCpu;
+                        if (command.startsWith("#") && command.contains("%d")
+                                && (applyCpu = new CPUFreq.ApplyCpu(command.substring(1))).toString() != null) {
+                            adjustedCommands.addAll(Service.getApplyCpu(applyCpu, su));
+                        } else {
+                            adjustedCommands.add(command);
+                        }
+                    }
+                }
+
+                for (String command : adjustedCommands) {
                     su.runCommand(command);
                 }
-                su.close();
             }
         }
     }

@@ -76,7 +76,6 @@ public class Widget extends AppWidgetProvider {
         super.onReceive(context, intent);
 
         if (intent.getAction().equals(LIST_ITEM_CLICK)) {
-
             final int position = intent.getIntExtra(ITEM_ARG, 0);
             Profiles.ProfileItem profileItem = new Profiles(context).getAllProfiles().get(position);
             if (!Prefs.getBoolean("profileclicked" + position, false, context)) {

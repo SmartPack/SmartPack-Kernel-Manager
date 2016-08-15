@@ -88,8 +88,7 @@ public class CPUFreq {
     }
 
     public static boolean isOffline(int cpu) {
-        return getCurFreq(cpu) == 0 || (MSMPerformance.supported() && CoreCtl.supported()
-                && QcomBcl.supported());
+        return getCurFreq(cpu) == 0;
     }
 
     public static void applyCpu(String path, String value, int min, int max, Context context) {

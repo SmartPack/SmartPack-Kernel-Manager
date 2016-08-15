@@ -92,8 +92,7 @@
 
         <!-- CM SDK -->
         <receiver
-            android:name=".services.profile.Tile"
-            android:exported="false">
+            android:name=".services.profile.Tile">
             <intent-filter>
                 <action android:name="com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE" />
             </intent-filter>
