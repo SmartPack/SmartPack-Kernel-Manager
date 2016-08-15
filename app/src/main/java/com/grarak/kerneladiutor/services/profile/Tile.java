@@ -92,19 +92,18 @@ public class Tile extends BroadcastReceiver {
         intent.setAction(ACTION_TOGGLE_STATE);
 
         ArrayList<CustomTile.ExpandedListItem> expandedListItems = new ArrayList<>();
-        for (Profiles.ProfileItem item : profiles) {
+        for (int i = 0; i < profiles.size(); i++) {
             CustomTile.ExpandedListItem expandedListItem = new CustomTile.ExpandedListItem();
-            expandedListItem.setExpandedListItemTitle(item.getName());
+            expandedListItem.setExpandedListItemTitle(profiles.get(i).getName());
             expandedListItem.setExpandedListItemDrawable(R.drawable.ic_launcher_preview);
 
             List<String> commands = new ArrayList<>();
-            for (Profiles.ProfileItem.CommandItem commandItem : item.getCommands()) {
+            for (Profiles.ProfileItem.CommandItem commandItem : profiles.get(i).getCommands()) {
                 commands.add(commandItem.getCommand());
             }
-            intent.putExtra(NAME, item.getName());
+            intent.putExtra(NAME, profiles.get(i).getName());
             intent.putExtra(COMMANDS, commands.toArray(new String[commands.size()]));
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, i, intent, 0);
 
             expandedListItem.setExpandedListItemOnClickIntent(pendingIntent);
             expandedListItems.add(expandedListItem);
