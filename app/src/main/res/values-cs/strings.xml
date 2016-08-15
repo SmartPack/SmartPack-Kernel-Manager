@@ -3,14 +3,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="app_name">Kernel Adiutor</string>
   <string name="checking_info">Kontrola informací&#8230;</string>
-  <string name="checking_root">Kontroluji root</string>
+  <string name="checking_root">Kontrola root oprávnění</string>
   <string name="searching_busybox">Hledání busyboxu</string>
   <string name="collecting_info">Shromažďování informací</string>
   <string name="no_root">Nemáte root oprávnění</string>
   <string name="no_busybox">Nemáte busybox</string>
   <!-- Security -->
-  <string name="password">Heslo 
-Zabezpečeni</string>
+  <string name="password">Heslo</string>
   <string name="password_wrong">Špatné heslo</string>
   <string name="select_picture">Vybrat obrázek</string>
   <string name="no_picture">Žádný obrázek</string>
@@ -21,8 +20,6 @@ Zabezpečeni</string>
   <string name="unknown">Neznámé</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
-  <string name="donate_summary">donate_summary</string>
-  <string name="donate_nope">donate_nope</string>
   <string name="donate_yes">Mám rád tuto aplikaci. Musim přispět!</string>
   <string name="warning">Varování</string>
   <string name="apply_on_boot">Použít při spuštění</string>
@@ -191,36 +188,9 @@ Zabezpečeni</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinut týmem Code_Blue.</string>
   <string name="powersaver_mode">Úsporný režim</string>
-  <string name="up_threshold">Up Threshold</string>
   <string name="up_threshold_summary">Po překročení této hodnoty aktivuje ovladač další jádro.</string>
-  <string name="up_timer_cnt">Up Timer Control</string>
-  <string name="up_timer_cnt_summary">Control timer for up CPUs.</string>
-  <string name="down_timer_cnt">Down Timer Control</string>
-  <string name="down_timer_cnt_summary">Control timer for down CPUs.</string>
-  <string name="msm_hotplug">MSM Hotplug</string>
-  <string name="msm_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by myfluxi.</string>
-  <string name="history_size">History Size</string>
-  <string name="history_size_summary">Number of samples taken in consideration for average load across CPUs. Lower means quicker/more erratic.</string>
-  <string name="update_rate">Update Rate</string>
-  <string name="update_rate_summary">Interval between taking samples of load across CPUs. Lower means quicker/more erratic.</string>
-  <string name="fast_lane_load">Fast Lane Load</string>
-  <string name="fast_lane_load_summary">Improve latencies by instantly putting online all CPUs if current load on any CPU is above a certain threshold.</string>
-  <string name="fast_lane_min_freq">Fast Lane Min Frequency</string>
-  <string name="fast_lane_min_freq_summary">Sets the minimum frequency the CPU scales down to when fast lane reaches the above load.</string>
-  <string name="offline_load">Offline Load</string>
-  <string name="offline_load_summary">Don\'t offline a CPU if it drops under the lower levels up threshold load.</string>
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
-  <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
-  <string name="mako_hotplug">Mako Hotplug</string>
-  <string name="mako_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by franciscofranco.</string>
-  <string name="cpu_freq_unplug_limit">CPU Frequency Unplug Limit</string>
   <string name="first_level">První úroveň</string>
-  <string name="first_level_summary">The threshold to online all CPUs.</string>
-  <string name="high_load_counter">High Load Counter</string>
-  <string name="load_threshold">Load Threshold</string>
-  <string name="load_threshold_summary">The threshold to online all CPUs.</string>
-  <string name="max_load_counter">Max Load Counter</string>
-  <string name="min_time_cpu_online">Min Time CPU Online</string>
   <string name="timer">Časovač</string>
   <string name="start_delay">Prodleva spuštění</string>
   <string name="delay">Prodleva</string>

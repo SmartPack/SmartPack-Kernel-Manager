@@ -90,6 +90,7 @@
   <string name="settings">Ustawienia</string>
   <string name="about">O aplikacji</string>
   <string name="contributors">Współautorzy</string>
+  <string name="help">Pomoc</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Rdzeń %d</string>
@@ -136,6 +137,7 @@
   <string name="governor_tunables_summary">Różne elementy konfiguracji obecnego zarządcy.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
+  <string name="manual">Manualny</string>
   <string name="mc_power_saving">Wielordzeniowe oszczędzanie energii</string>
   <string name="mc_power_saving_summary">Próbuje grupować zadania do jak najmniejszej liczby rdzeni.</string>
   <string name="disabled">Wyłączone</string>

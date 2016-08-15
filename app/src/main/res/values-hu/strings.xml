@@ -90,6 +90,7 @@
   <string name="settings">Beállítások</string>
   <string name="about">A programról</string>
   <string name="contributors">Közreműködők</string>
+  <string name="help">Súgó</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Mag %d</string>
@@ -294,6 +295,8 @@
   <string name="core_control_summary">Qualcomm féle hotplug megoldás. Sajnálom, de nem tudod kikapcsolni. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus módosított Mag Vezérlője.</string>
+  <string name="min_cpus_big">Minimális nagy CPU</string>
+  <string name="min_cpus_big_summary">Minimális mennyiségű nagy CPU, melyek aktívak kell legyenek.</string>
   <string name="busy_down_threshold">Elfoglalt le küszöb</string>
   <string name="busy_down_threshold_summary">Küszöb, amikor a nagy CPU-kat ki kell kapcsolni.</string>
   <string name="busy_up_threshold">Elfoglalt fel küszöb</string>
@@ -474,6 +477,9 @@
   <string name="timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
   <string name="power_key_suspend">Bekapcsológomb felfüggesztése</string>
   <string name="power_key_suspend_summary">Ezt engedélyezve az ébresztési vezérlők kikapcsolásra kerülnek, ha a képernyő a bekapcsoló gombbal lett kikapcsolva.</string>
+  <string name="area">Terület</string>
+  <string name="width">Szélesség</string>
+  <string name="height">Magasság</string>
   <string name="vibration_strength">Rezgés erőssége</string>
   <!-- Sound -->
   <string name="sound_control">Hangvezérlő</string>
@@ -484,6 +490,10 @@
   <string name="speaker_gain">Hangszóró erősítés</string>
   <string name="headphone_poweramp_gain">Fejhallgató PowerAmp erősítés</string>
   <string name="headphone_tpa6165_gain">Fejhallgató amp erősítő (TPA6165 kiterjesztés)</string>
+  <string name="lock_output_gain">Kimeneti erősítés zárolása</string>
+  <string name="lock_output_gain_summary">Megakadályozza a fejhallgató/hangszóró erősítés módosításait</string>
+  <string name="lock_mic_gain">Mikrofon erősítés zárolása</string>
+  <string name="lock_mic_gain_summary">Megakadályozza a mikrofon erősítés módosításait</string>
   <string name="microphone_gain">Mikrofon erősítés</string>
   <string name="volume_gain">Hangerő erősítés</string>
   <!-- Battery -->
@@ -504,7 +514,21 @@
   <string name="speed">Sebesség</string>
   <string name="stock">Gyári</string>
   <string name="continuous_light">Folyamatos fény</string>
+  <string name="bright_light_environment">Erős fény környezet</string>
+  <string name="bright_light_environment_summary">LED relatív intenzitásának beállítása világos környezetben.</string>
+  <string name="low_light_environment">Alacsony fény környezet</string>
+  <string name="low_light_environment_summary">LED relatív intenzitásának beállítása sötét környezetben.</string>
+  <string name="notification">Értesítés</string>
+  <string name="on">Be</string>
+  <string name="off">Ki</string>
+  <string name="fade_ramp_control">Halványulási rámpa vezérlése</string>
+  <string name="fade_ramp_control_summary">Engedélyezheti vagy letilthatja a LED halványítás (rámpa) vezérlését.</string>
+  <string name="fade_in">Előtűnés</string>
+  <string name="fade_in_summary">Beállítja az emelkedő időtartamát.</string>
+  <string name="fade_out">Elhalványítás</string>
+  <string name="fade_out_summary">Beállítja az lejtő időtartamát.</string>
   <string name="test">Teszt</string>
+  <string name="led_test_summary">Led tesztelése a beállításaival.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Belső memória</string>
   <string name="external_storage">Külső tárhely</string>
@@ -520,6 +544,8 @@
   <string name="iostats_summary">Ezen tárolóeszköz I/O statisztikáinak kezelése. Tiltása az I/O figyelő alkalmazások összeomlását okozza.</string>
   <string name="add_random">Véletlenszerű hozzáadása</string>
   <string name="add_random_summary">Entrópia rajzolása a forgó (rotációs) tárolóról.</string>
+  <string name="rq_affitiny">RQ Affinitás</string>
+  <string name="rq_affinity_summary">Próbálja meg, hogy a processzor magnak készült ütemező kérések teljesüljenek. A nagyobb értékek sokkal agresszívabbak.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Teljes vizsgálat</string>
   <string name="pages_shared">Megosztott lapok</string>
@@ -554,6 +580,12 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Lemezméret</string>
   <string name="disksize_summary">Megpróbálja növelni a teljesítményt, elkerülve a lapozást a fizikai tárolón, helyette egy tömörített virtuális eszközt használ a RAM-ban. A lapozás a RAM-ban zajlik, amíg nincs szükség a fizikai tároló swap területének használatára.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap egy könnyen tömörített gyorsítótára swappelt oldalakra. A swappelésben lévő oldalakat tartalmazza és megpróbálja tömöríteni őket egy dinamikusan kiosztott RAM-alapú memória medencében. Zswap alapvetően a swappeléshez szükséges I/O műveletek számát csökkenti.</string>
+  <string name="memory_pool">Memória medence</string>
+  <string name="memory_pool_summary">A fő memória százaléka a memória medence részére, melyet, mint tömörített gyorsítótár használhat.</string>
+  <string name="maximum_compression_ratio">Maximális tömörítési arány</string>
+  <string name="maximum_compression_ratio_summary">Maximális tömörítési aránya, százalékban, egy elfogadható tömörített oldalhoz. Bármely oldal, ami nem tömörített legalább erre az arányra, elutasításra kerül.</string>
   <!-- Entropy -->
   <string name="available">Elérhető</string>
   <string name="poolsize">Medenceméret</string>
@@ -716,6 +748,8 @@
   <string name="dark_theme">Sötét téma</string>
   <string name="material_icon">Material ikon</string>
   <string name="banner_resizer">Banner átméretezés</string>
+  <string name="force_cards">Kártyák kényszerítése</string>
+  <string name="force_cards_summary">Használjon kártyákat az elemekhez, ha lehetséges.</string>
   <string name="five_sec">5 másodperc</string>
   <string name="ten_sec">10 másodperc</string>
   <string name="twenty_sec">20 másodperc</string>

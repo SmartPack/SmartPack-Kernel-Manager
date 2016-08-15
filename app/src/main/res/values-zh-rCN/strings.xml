@@ -87,6 +87,7 @@
   <string name="settings">设置</string>
   <string name="about">关于</string>
   <string name="contributors">贡献者</string>
+  <string name="help">帮助</string>
   <!-- Overall -->
   <string name="offline">离线</string>
   <string name="core">核心 %d</string>
@@ -458,6 +459,7 @@
   <string name="full_scans">完整扫描</string>
   <string name="sleep_milliseconds">扫描间隔</string>
   <string name="deferred_timer">延迟定时器</string>
+  <string name="max_cpu_usage">最大 CPU 使用率</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前台程序</string>
   <string name="visible_app">可见程序</string>
@@ -556,10 +558,20 @@
   <string name="value">值</string>
   <!-- Profile -->
   <string name="no_changes">未做任何更改！</string>
+  <string name="apply_question">应用 %s 吗？</string>
   <string name="details">详细信息</string>
   <string name="applied">已应用</string>
   <string name="profile_select">选择配置文件</string>
+  <string name="no_profiles">没有找到配置文件 ！您必须先创建它们。</string>
+  <string name="current_settings">当前设置</string>
+  <string name="select_all">全部选择</string>
+  <string name="nothing_selected">未选择任何内容</string>
   <!-- Recovery -->
+  <string name="reboot">重启</string>
+  <string name="reboot_soft">软重启</string>
+  <string name="reboot_recovery">重新启动至 Recovery</string>
+  <string name="reboot_bootloader">重新启动至 Bootloader</string>
+  <string name="reboot_download">重新启动至 Download 模式</string>
   <string name="wipe_data">擦除数据</string>
   <string name="wipe_cache">擦除缓存</string>
   <string name="flash_zip">刷入 Zip</string>
@@ -574,10 +586,13 @@
   <string name="fahrenheit_title">华氏度</string>
   <string name="fahrenheit_summary">使用华氏温度测量。</string>
   <string name="force_english">强制显示英语</string>
+  <string name="user_interface">用户界面</string>
   <string name="dark_theme">暗色主题</string>
+  <string name="five_sec">5 秒</string>
   <string name="ten_sec">10 秒</string>
   <string name="twenty_sec">20 秒</string>
   <string name="fifty_sec">50 秒</string>
+  <string name="hide">隐藏</string>
   <string name="debugging">调试</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
@@ -597,7 +612,13 @@
   <string name="password_too_long">密码太长(最多 32 个字符)</string>
   <string name="set_password_first">先设置密码</string>
   <!-- About -->
+  <string name="libraries_used">使用的库</string>
   <!-- Contributors -->
+  <string name="commits">%d 提交</string>
+  <string name="no_internet">请检查您的互联网连接 ！</string>
   <!-- Help -->
+  <string name="misspelled">为什么你把 \"Adiutor\" 拼错了？</string>
+  <string name="misspelled_summary">Adiutor 是拉丁文，意为\"助手\"。</string>
   <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
+  <string name="feature_function">功能 x 有什么作用？</string>
 </resources>

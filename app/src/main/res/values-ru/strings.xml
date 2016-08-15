@@ -26,6 +26,7 @@
   <string name="ad_here">Здесь может быть ваша реклама</string>
   <string name="remove_ad">Убрать рекламу</string>
   <string name="warning">Внимание</string>
+  <string name="gh_ad">Это не коммерческая реклама! Не принимайте её всерьёз! Просто весёлый способ заполнить пустоту, когда настоящая реклама не загрузится (смотря на вас, пользователи adblock).</string>
   <string name="apply_on_boot">Применять при загрузке</string>
   <string name="apply_on_boot_text">Применение настроек через %d секунд.</string>
   <string name="apply_on_boot_complete">Применение настроек завершено.</string>
@@ -49,6 +50,7 @@
   <string name="mah">мА/ч</string>
   <string name="ma">мА</string>
   <string name="kb">кБ</string>
+  <string name="px">пкс</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Статистика</string>
@@ -76,7 +78,7 @@
   <string name="virtual_memory">Виртуальная память</string>
   <string name="entropy">Энтропия</string>
   <string name="misc">Разное</string>
-  <string name="custom_controls">Сторонние элементы управления</string>
+  <string name="custom_controls">Пользовательские функции</string>
   <string name="downloads">Загрузки</string>
   <string name="backup">Резервное копирование</string>
   <string name="build_prop_editor">Редактор build.prop</string>
@@ -87,6 +89,7 @@
   <string name="settings">Настройки</string>
   <string name="about">О приложении</string>
   <string name="contributors">Имена разработчиков</string>
+  <string name="help">Помощь</string>
   <!-- Overall -->
   <string name="offline">Оффлайн</string>
   <string name="core">Ядро %d</string>
@@ -110,11 +113,11 @@
   <string name="baseband">Модем</string>
   <string name="rom">Прошивка</string>
   <string name="bootloader">Загрузчик</string>
-  <string name="hardware">Оборудование</string>
+  <string name="hardware">Аппаратура</string>
   <string name="architecture">Архитектура</string>
   <!-- Inputs -->
   <string name="bus">Шина</string>
-  <string name="product">Продукт</string>
+  <string name="product">Изделие</string>
   <string name="version">Версия</string>
   <string name="handlers">Обработчики</string>
   <!-- CPU -->
@@ -124,9 +127,9 @@
   <string name="cpu_max_freq">Максимальная частота ЦП</string>
   <string name="cpu_max_freq_summary">Установите максимальную частоту работы ЦП.</string>
   <string name="cpu_min_freq">Минимальная частота ЦП</string>
-  <string name="cpu_min_freq_summary">Установите минимальную частоту процессора.</string>
+  <string name="cpu_min_freq_summary">Установите минимальную частоту работы ЦП.</string>
   <string name="cpu_max_screen_off_freq">Максимальная частота ЦП при выключенном экране</string>
-  <string name="cpu_max_screen_off_freq_summary">Установите максимальную частоту процессора при выключенном экране.</string>
+  <string name="cpu_max_screen_off_freq_summary">Установите максимальную частоту работы ЦП при выключенном экране.</string>
   <string name="cpu_governor">Регулятор ЦП</string>
   <string name="cpu_governor_summary">Регулятор ЦП решает, как ЦП реагирует на изменения рабочей нагрузки. Смена регулятора повлияет на обработку рабочих частот, доступных для вашего ЦП.</string>
   <string name="cpu_governor_tunables">Переменные регулятора ЦП</string>
@@ -153,13 +156,13 @@
   <string name="sync_threshold_summary">Когда загрузка ЦП пресекает установленный порог, частота повышается до этой величины.</string>
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал ускорения ЦП при обнаружении ввода.</string>
-  <string name="input_boost_freq">Частота ускорения на входе</string>
-  <string name="input_boost_freq_core">Ускорение ввода частоты ядра %s</string>
+  <string name="input_boost_freq">Ускорение частоты при вводе</string>
+  <string name="input_boost_freq_core">Ускорение частоты ядра %s при вводе</string>
   <string name="input_boost_freq_summary">Значение, до которого будет повышена частота ЦП при регистрации ввода.</string>
   <string name="wakeup_boost">Усиление пробуждения</string>
   <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>
   <string name="hotplug_boost">Ускорение hotplug</string>
-  <string name="hotplug_boost_summary">Ускорение hotplug похоже на ускорение ввода, но срабатывает при выходе ЦП в онлайн.</string>
+  <string name="hotplug_boost_summary">Ускорение hotplug похоже на ускорение при вводе, но срабатывает при переходе ЦП в онлайн.</string>
   <string name="touch_boost">Ускорение прикосновений</string>
   <string name="touch_boost_summary">Увеличение минимальной частоты процессора при касании экрана или нажатии кнопки.</string>
   <!-- CPU Voltage -->
@@ -171,7 +174,7 @@
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Hotplug от Qualcomm. У вас могут быть проблемы со сменой частот, когда он включен.</string>
   <string name="intelliplug">IntelliPlug</string>
-  <string name="intelliplug_summary">Замена Qualcomm MDPecision. Разработано faux123.</string>
+  <string name="intelliplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано faux123.</string>
   <string name="cpu_hotplug_profile_summary">Число в скобках указывает количество ядер онлайн в любое время.</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Сбалансированный</string>
@@ -207,7 +210,7 @@
   <string name="down_lock_duration_summary">Минимальный интервал работы процессора.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
-  <string name="blu_plug_summary">Замена ядра для Qualcomm MPDecision. Разработанная командой Code_Blue.</string>
+  <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
   <string name="powersaver_mode_summary">Одноядерный режим с макс. частотой 1728 МГц.</string>
   <string name="up_threshold">Высший порог</string>
@@ -273,13 +276,13 @@
   <string name="quad_core_mode">Четырёх-ядерный режим</string>
   <string name="dual_core_mode">Двух-ядерный режим</string>
   <string name="zen_decision">Zen Decision</string>
-  <string name="zen_decision_summary">Замена ядра для Qualcomm MPDecision.</string>
+  <string name="zen_decision_summary">Ядерная замена MPDecision от Qualcomm. Разработано bbedward.</string>
   <string name="wake_wait_time">Время ожидания пробуждения</string>
   <string name="wake_wait_time_summary">Как долго ждать перед включением любого ядра.</string>
   <string name="bat_threshold_ignore">Игнорировать порог батарея</string>
   <string name="bat_threshold_ignore_summary">Не включайте любой ядер, когда заряд ниже выбранной мощности.</string>
   <string name="autosmp">АвтоSMP</string>
-  <string name="autosmp_summary">Замена ядра для Qualcomm MPDecision. Разработанный mrg666.</string>
+  <string name="autosmp_summary">Ядерная замена MPDecision от Qualcomm. Разработано mrg666.</string>
   <string name="downrate_limits">Ограничения понижения</string>
   <string name="uprate_limits">Ограничения повышения</string>
   <string name="cycle_down">Цикла вниз</string>
@@ -298,9 +301,9 @@
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Стандартный термодрайвер, который защищает устройство от перегрева. Его следует отключить, если ядро имеет альтернативу ему.</string>
   <string name="intellithermal">Intellithermal</string>
-  <string name="intellithermal_summary">Замена стандартного контроля температур от Qualcomm. Разработано faux123.</string>
+  <string name="intellithermal_summary">Ядерная замена Thermald от Qualcomm. Разработано faux123.</string>
   <string name="intellithermal_optimized">Intellithermal оптимизация</string>
-  <string name="intellithermal_optimized_summary">Улучшенная замена стандартного контроля температур от Qualcomm. Разработано faux123 и alucard_24.</string>
+  <string name="intellithermal_optimized_summary">Ядерная замена Thermald от Qualcomm. Разработано faux123 и alucard_24.</string>
   <string name="thermal_debug_mask_summary">Позволяет активировать маску отладки для терморегулировки.</string>
   <string name="vdd_restriction">VDD ограничение</string>
   <string name="freq_throttle_temp">Троттлинг частоты при температуре</string>
@@ -467,6 +470,8 @@
   <string name="timeout_summary">Установите задержку, после которой пробуждение по дв. тапу будет отключено, когда экран погаснет.</string>
   <string name="power_key_suspend">Отключение сенсора при нажатии кнопки питания</string>
   <string name="power_key_suspend_summary">Включите, чтобы жесты пробуждения отключались при блокировке экрана кнопкой питания.</string>
+  <string name="width">Ширина</string>
+  <string name="height">Высота</string>
   <string name="vibration_strength">Интенсивность вибрации</string>
   <!-- Sound -->
   <string name="sound_control">Упраление звуком</string>
@@ -705,7 +710,7 @@
   <string name="fingerprint_summary">Использование отпечатка пальца пройти проверки безопасности. Это будет работать, как долго вы зарегистрированы отпечатки пальцев.</string>
   <string name="sections">Разделы</string>
   <!-- About -->
-  <string name="about_me">Привет, я Willi Ye aka Graham, 19-летний студент из Виенны. Занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor занимаюсь поддержкой CyanogenMod для некоторых устройств, а также работаю над прошивкой ParanoidAndroid. Поэтому прошу прошу понять, если приложение долгое время не обновляется.</string>
+  <string name="about_me">Привет, я Вилли Йе aka Grarak, 19-летний студент из Вены. Я занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor, я также поддерживаю CyanogenMod для нескольких устройств и работаю над ParanoidAndroid. Поэтому прошу понять, если я не наду время обновить приложение.</string>
   <string name="libraries_used">Использованы библиотеки</string>
   <!-- Contributors -->
   <string name="commits">%d коммиты</string>

@@ -23,7 +23,11 @@
   <string name="donate_summary">Questa funzionalità è disponibile solo quando è installato l\'app donazione! Non preoccuparti. Siccome quest\'app è open source puoi facilmente costruirla da solo e rimuovere questo controllo. Ma spero che comunque sosterrai gli sviluppatori. Grazie per l\'utilizzo del Kernel Adiutor! Una volta acquistata l\'app donazione è necessario riavviare Kernel Adiutor al fine di attivare tutte le funzioni.</string>
   <string name="donate_nope">Non cadrò in questa truffa!</string>
   <string name="donate_yes">Amo questo app. Devo donare!</string>
+  <string name="ad_here">Il tuo annuncio potrebbe essere qui</string>
+  <string name="remove_ad">Rimuovi pubblicità</string>
   <string name="warning">Avviso</string>
+  <string name="gh_ad">Si tratta di un annuncio non commerciale! Non prenderlo sul serio! È solo un modo divertente per riempire lo spazio fino a quando un annuncio vero e proprio non viene caricato (dico a voi, utenti adblock).</string>
+  <string name="open_ad_anyway">Apri l\'annuncio comunque</string>
   <string name="apply_on_boot">Applica all\'avvio</string>
   <string name="apply_on_boot_text">Le impostazioni saranno applicate tra %d secondi.</string>
   <string name="apply_on_boot_complete">Applicazione delle impostazioni completata.</string>
@@ -47,6 +51,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistiche</string>
@@ -85,6 +90,7 @@
   <string name="settings">Impostazioni</string>
   <string name="about">Info</string>
   <string name="contributors">Collaboratori</string>
+  <string name="help">Aiuto</string>
   <!-- Overall -->
   <string name="offline">Spento</string>
   <string name="core">Core %d</string>
@@ -116,6 +122,7 @@
   <string name="version">Versione</string>
   <string name="handlers">Gestori</string>
   <!-- CPU -->
+  <string name="cores_singular">%d core</string>
   <string name="cores">%d core</string>
   <string name="no_offline_core">Non puoi spegnere questo core!</string>
   <string name="cpu_max_freq">Massima frequenza CPU</string>
@@ -127,8 +134,10 @@
   <string name="cpu_governor">Governor CPU</string>
   <string name="cpu_governor_summary">Lo scheduler della CPU determina come la CPU viene usata in base al carico di lavoro. Cambiare lo scheduler impatterà il modo in cui la CPU scalerà tra le frequenze disponibili per la tua CPU.</string>
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
+  <string name="governor_tunables_summary">I vari elementi di configurazione che dipendono dal governor della CPU.</string>
   <string name="cpu_governor_tunables_read_error">Impossibile leggere l\'attuale governatore della CPU.\n\nSe si utilizza un dispositivo Qualcomm big.LITTLE si tratta di un problema noto. Il sistema impone alla CPU di disattivare i core e ciò rende estremamente difficile leggere le statistiche. Prova a selezionare nuovamente questa opzione. La CPU a volte si rifiuta di girare su un core.</string>
   <string name="tunables_error">%s non si può modificare</string>
+  <string name="manual">Manuale</string>
   <string name="mc_power_saving">Risparmio Energetico Multicore</string>
   <string name="mc_power_saving_summary">Prova a raggruppare le attività nel minor numero di core disponibili.</string>
   <string name="disabled">Disabilitato</string>
@@ -286,6 +295,8 @@
   <string name="core_control_summary">Soluzione hotplugging di Qualcomm. Mi dispiace non puoi disattivarlo. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus Core Control modificato.</string>
+  <string name="min_cpus_big">Minimo CPU grandi</string>
+  <string name="min_cpus_big_summary">Numero minimo di CPU più grandi che dovrebbero essere attive.</string>
   <string name="busy_down_threshold">Soglia Busy Down</string>
   <string name="busy_down_threshold_summary">Soglia per lo spegnimento delle CPU più grandi.</string>
   <string name="busy_up_threshold">Soglia Busy Up</string>
@@ -347,6 +358,7 @@
   <string name="gpu_2d_governor_summary">Imposta il governor 2D della GPU.</string>
   <string name="gpu_governor">Governor GPU</string>
   <string name="gpu_governor_summary">Imposta il governor della GPU.</string>
+  <string name="gpu_governor_tunables">Parametri del governor della CPU</string>
   <string name="simple_gpu_algorithm">Algoritmo GPU Simple</string>
   <string name="simple_gpu_algorithm_summary">Un componente aggiuntivo per MSM Adreno TZ GPU governor. Sviluppato da faux123.</string>
   <string name="laziness">Pigro</string>
@@ -465,6 +477,9 @@
   <string name="timeout_summary">Imposta il tempo dopo il quale le opzioni di risveglio saranno disabilitate quando lo schermo è spento.</string>
   <string name="power_key_suspend">Sospendere con il tasto Power</string>
   <string name="power_key_suspend_summary">Abilitando questa funzione tutti i controlli di risveglio verranno disabilitati premendo il tasto Power.</string>
+  <string name="area">Area</string>
+  <string name="width">Larghezza</string>
+  <string name="height">Altezza</string>
   <string name="vibration_strength">Intensità di vibrazione</string>
   <!-- Sound -->
   <string name="sound_control">Controllo del suono</string>
@@ -474,6 +489,11 @@
   <string name="cam_microphone_gain">Guadagno microfono videocamera</string>
   <string name="speaker_gain">Guadagno altoparlanti</string>
   <string name="headphone_poweramp_gain">Guadagno cuffie con PowerAmp</string>
+  <string name="headphone_tpa6165_gain">Guadagno amplificatore cuffie (estensione TPA6165)</string>
+  <string name="lock_output_gain">Blocco guadagno uscita</string>
+  <string name="lock_output_gain_summary">Previene modifiche ai guadagni delle cuffie/altoparlanti</string>
+  <string name="lock_mic_gain">Blocco guadagno microfono</string>
+  <string name="lock_mic_gain_summary">Previene modifiche ai guadagni del microfono</string>
   <string name="microphone_gain">Guadagno microfono</string>
   <string name="volume_gain">Guadagno volume</string>
   <!-- Battery -->
@@ -494,7 +514,21 @@
   <string name="speed">Velocità</string>
   <string name="stock">Stock</string>
   <string name="continuous_light">Luce continua</string>
+  <string name="bright_light_environment">Alta illuminazione ambientale</string>
+  <string name="bright_light_environment_summary">Imposta l\'intensità del LED in ambienti luminosi.</string>
+  <string name="low_light_environment">Bassa illuminazione ambientale</string>
+  <string name="low_light_environment_summary">Imposta l\'intensità del LED in ambienti bui.</string>
+  <string name="notification">Notifica</string>
+  <string name="on">On</string>
+  <string name="off">Off</string>
+  <string name="fade_ramp_control">Controllo rampa dissolvenza</string>
+  <string name="fade_ramp_control_summary">Attiva o disattiva il controllo di dissolvenza (rampa) del LED.</string>
+  <string name="fade_in">Dissolvenza in entrata</string>
+  <string name="fade_in_summary">Imposta il tempo della comparsa.</string>
+  <string name="fade_out">Dissolvenza in uscita</string>
+  <string name="fade_out_summary">Imposta il tempo della scomparsa.</string>
   <string name="test">Prova</string>
+  <string name="led_test_summary">Testa il led con le impostazioni.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Memoria interna</string>
   <string name="external_storage">Memoria esterna</string>
@@ -510,6 +544,8 @@
   <string name="iostats_summary">Mantiene le statistiche I/O per questa periferica di archiviazione. Disattivandolo si danneggerà il monitoraggio I/O delle applicazioni.</string>
   <string name="add_random">Aggiungi casuale</string>
   <string name="add_random_summary">Disegna entropia dall\'archivio rotante.</string>
+  <string name="rq_affitiny">Affinità RQ</string>
+  <string name="rq_affinity_summary">Cerca di completare le richieste sul core della CPU in cui sono state pianificate. Più alti sono i valori, più sono aggressivi.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Scansioni complete</string>
   <string name="pages_shared">Pagine condivise</string>
@@ -544,6 +580,12 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Dimensione del disco</string>
   <string name="disksize_summary">Tenta di migliorare le prestazioni evitando paging sull\'archiviazione fisica, invece di utilizzare una periferica virtuale compressa nella RAM. Il paging avviene nella RAM, fino a quando è necessario utilizzare lo spazio di swap su archiviazione fisica.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap è una leggera cache compressa per pagine di swapping. Prende le pagine che sono in procinto di essere scambiato e tenta di comprimerle in un pool di memoria allocata in modo dinamico basata su RAM. ZSwap fondamentalmente scambia cicli di CPU per potenzialmente ridotti swap I/O.</string>
+  <string name="memory_pool">Memory pool</string>
+  <string name="memory_pool_summary">Percentuale di memory pool della memoria principale che può essere utilizzata come pagina compressa di cache.</string>
+  <string name="maximum_compression_ratio">Rapporto di compressione massimo</string>
+  <string name="maximum_compression_ratio_summary">Rapporto di compressione massimo, in percentuale, per una pagina compressa accettabile. Qualsiasi pagina che non comprime di almeno questo rapporto sarà respinta.</string>
   <!-- Entropy -->
   <string name="available">Disponibile</string>
   <string name="poolsize">Poolsize</string>
@@ -615,6 +657,7 @@
   <string name="generic_value_summary">Valore corrente dell\'editor. Può essere praticamente qualsiasi cosa.</string>
   <string name="generic_apply_summary">Editor restituirà tutto ciò che è stato immesso.</string>
   <string name="required">obbligatorio</string>
+  <string name="hit_test">Prima devi premere prova!</string>
   <string name="output">Output</string>
   <string name="edit">Modifica</string>
   <string name="export">Esporta</string>
@@ -646,6 +689,10 @@
   <string name="fota_partition">Partizione Fota</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="add">Aggiungi</string>
+  <string name="backup_item">È stato eseguito il backup di %1$s per %2$s</string>
+  <string name="item_count">%s elemento</string>
+  <string name="items_count">%s elementi</string>
   <string name="key">Chiave</string>
   <string name="value">Valore</string>
   <string name="key_empty">Il campo non può essere vuoto!</string>
@@ -654,6 +701,7 @@
   <string name="profile_warning">Tutto ciò che modifichi qui sta per essere salvato sul tuo profilo. Ma attenzione! Le impostazioni verranno anche applicate, ma non vengono salvate per applicarle all\'avvio.</string>
   <string name="no_changes">Nessuna modifica effettuata!</string>
   <string name="apply_question">Applicare %s?</string>
+  <string name="append">Aggiungere</string>
   <string name="details">Dettagli</string>
   <string name="press_again_to_apply">Premi ancora %s per applicare.</string>
   <string name="applied">Applicato</string>
@@ -666,7 +714,16 @@
   <string name="applying_profile">Applicando %s!</string>
   <string name="no_profiles">Nessun profilo trovato! È necessario prima crearli.</string>
   <string name="sections_disabled">Tutte le sezioni disabilitate! Nessun profilo per te.</string>
+  <string name="new_mode">Nuovo</string>
+  <string name="current_settings">Impostazioni correnti</string>
+  <string name="select_all">Seleziona tutto</string>
+  <string name="nothing_selected">Nessuna selezione</string>
   <!-- Recovery -->
+  <string name="reboot">Riavvia</string>
+  <string name="reboot_soft">Riavvio veloce</string>
+  <string name="reboot_recovery">Riavvia in recovery</string>
+  <string name="reboot_bootloader">Riavvia in Bootloader</string>
+  <string name="reboot_download">Riavvia in Download</string>
   <string name="wipe_data">Cancella dati</string>
   <string name="wipe_cache">Cancella la cache</string>
   <string name="flash_zip">Flasha Zip</string>
@@ -687,7 +744,13 @@
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Utilizza i fahrenheit per misurare la temperatura.</string>
   <string name="force_english">Forza la lingua inglese</string>
+  <string name="user_interface">Interfaccia Utente</string>
   <string name="dark_theme">Tema scuro</string>
+  <string name="material_icon">Icona material</string>
+  <string name="banner_resizer">Ridimensiona banner</string>
+  <string name="force_cards">Forza schede</string>
+  <string name="force_cards_summary">Se possibile, utilizza le schede per gli elementi.</string>
+  <string name="five_sec">5 secondi</string>
   <string name="ten_sec">10 secondi</string>
   <string name="twenty_sec">20 secondi</string>
   <string name="fifty_sec">50 secondi</string>
@@ -698,6 +761,8 @@
   <string name="apply_on_boot_hide_summary">Nascondi la notifica \"applica all\'avvio\". Il ritardo rimarrà comunque!</string>
   <string name="toast">Toast</string>
   <string name="apply_on_boot_toast_summary">Mostra una notifica toast quando le impostazioni sono applicate.</string>
+  <string name="confirmation_notification">Notifica di conferma</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Dopo \"applica all\'avvio\" con notifica visibile, in seguito visualizza una notifica con la conferma che \"applica all\'avvio\" è stata completata.</string>
   <string name="script">Script</string>
   <string name="apply_on_boot_script_summary">Utilizza uno shell script per applicare le impostazioni. Abilitalo solo se hai problemi con \"applica all\'avvio\". Se il problema persiste, assicurati che nessun altra app sia in conflitto con Kernel Adiutor.</string>
   <string name="debugging">Debugging</string>
