@@ -345,7 +345,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mItems.clear();
         if (mRecyclerViewAdapter != null) {
             mRecyclerViewAdapter.notifyDataSetChanged();
-            mRecyclerView.setAdapter(mRecyclerViewAdapter);
+            mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
             adjustScrollPosition();
         }
     }
