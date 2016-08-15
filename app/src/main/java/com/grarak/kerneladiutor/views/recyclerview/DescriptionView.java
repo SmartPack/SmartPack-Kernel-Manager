@@ -107,6 +107,10 @@ public class DescriptionView extends RecyclerViewItem {
         refresh();
     }
 
+    public CharSequence getTitle() {
+        return mTitle;
+    }
+
     public CharSequence getSummary() {
         return mSummary;
     }

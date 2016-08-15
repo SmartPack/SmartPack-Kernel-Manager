@@ -759,6 +759,7 @@
     <string name="current_settings">Current settings</string>
     <string name="select_all">Select all</string>
     <string name="nothing_selected">Nothing selected</string>
+    <string name="profile_empty">Profile is empty!</string>
 
     <!-- Recovery -->
     <string name="reboot">Reboot</string>

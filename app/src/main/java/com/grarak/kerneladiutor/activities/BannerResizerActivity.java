@@ -68,8 +68,6 @@ public class BannerResizerActivity extends BaseActivity {
 
     public static class BannerResizerFragment extends BaseFragment {
 
-        private int mHeight;
-
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,7 +100,6 @@ public class BannerResizerActivity extends BaseActivity {
 
                 @Override
                 public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
-                    mHeight = seekBar.getProgress() + minHeight;
                 }
             });
 

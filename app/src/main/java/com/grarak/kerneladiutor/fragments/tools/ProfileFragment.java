@@ -46,6 +46,7 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.FilePickerActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileActivity;
+import com.grarak.kerneladiutor.activities.tools.profile.ProfileEditActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileTaskerActivity;
 import com.grarak.kerneladiutor.database.tools.profiles.ExportProfile;
 import com.grarak.kerneladiutor.database.tools.profiles.ImportProfile;
@@ -213,9 +214,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        if (mProfiles == null) {
-            mProfiles = new Profiles(getActivity());
-        }
+        mProfiles = new Profiles(getActivity());
         List<Profiles.ProfileItem> profileItems = mProfiles.getAllProfiles();
         if (mTaskerMode && profileItems.size() == 0) {
             Snackbar.make(getRootView(), R.string.no_profiles, Snackbar.LENGTH_LONG).show();
@@ -229,11 +228,12 @@ public class ProfileFragment extends RecyclerViewFragment {
                 public void onMenuReady(final CardView cardView, PopupMenu popupMenu) {
                     Menu menu = popupMenu.getMenu();
                     menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.append));
-                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.details));
-                    final MenuItem onBoot = menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
+                    menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
+                    menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.details));
+                    final MenuItem onBoot = menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.on_boot)).setCheckable(true);
                     onBoot.setChecked(mProfiles.getAllProfiles().get(position).isOnBootEnabled());
-                    menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.export));
-                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.delete));
+                    menu.add(Menu.NONE, 4, Menu.NONE, getString(R.string.export));
+                    menu.add(Menu.NONE, 5, Menu.NONE, getString(R.string.delete));
 
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
@@ -251,22 +251,37 @@ public class ProfileFragment extends RecyclerViewFragment {
                                     }
                                     break;
                                 case 1:
-                                    if (items.get(position).getName() != null) {
-                                        setForegroundText(items.get(position).getName().toUpperCase());
-                                        mDetailsFragment.setText(items.get(position).getCommands());
-                                        showForeground();
+                                    if (Utils.DONATED) {
+                                        Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
+                                        intent.putExtra(ProfileEditActivity.POSITION_INTENT, position);
+                                        startActivityForResult(intent, 3);
+                                    } else {
+                                        mDonateDialog = ViewUtils.dialogDonate(getActivity());
+                                        mDonateDialog.show();
                                     }
                                     break;
                                 case 2:
+                                    if (items.get(position).getName() != null) {
+                                        List<Profiles.ProfileItem.CommandItem> commands = items.get(position).getCommands();
+                                        if (commands.size() > 0) {
+                                            setForegroundText(items.get(position).getName().toUpperCase());
+                                            mDetailsFragment.setText(commands);
+                                            showForeground();
+                                        } else {
+                                            Utils.toast(R.string.profile_empty, getActivity());
+                                        }
+                                    }
+                                    break;
+                                case 3:
                                     onBoot.setChecked(!onBoot.isChecked());
                                     items.get(position).enableOnBoot(onBoot.isChecked());
                                     mProfiles.commit();
                                     break;
-                                case 3:
+                                case 4:
                                     mExportProfile = items.get(position);
                                     requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                                     break;
-                                case 4:
+                                case 5:
                                     mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                             new DialogInterface.OnClickListener() {
                                                 @Override
@@ -459,6 +474,8 @@ public class ProfileFragment extends RecyclerViewFragment {
             }
 
             showImportDialog(importProfile);
+        } else if (requestCode == 3) {
+            reload();
         }
     }
 

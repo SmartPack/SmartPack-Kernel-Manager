@@ -65,6 +65,7 @@
             android:name=".activities.SecurityActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity android:name=".activities.BannerResizerActivity" />
+        <activity android:name=".activities.tools.profile.ProfileEditActivity" />
 
         <receiver android:name=".services.boot.Receiver">
             <intent-filter>
