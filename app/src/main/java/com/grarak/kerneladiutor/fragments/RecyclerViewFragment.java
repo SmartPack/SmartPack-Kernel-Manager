@@ -209,15 +209,18 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                         }
                         mDelay = false;
                     }
-                    List<RecyclerViewItem> items = new ArrayList<>();
-                    addItems(items);
-                    return items;
+                    if (isAdded()) {
+                        List<RecyclerViewItem> items = new ArrayList<>();
+                        addItems(items);
+                        return items;
+                    }
+                    return null;
                 }
 
                 @Override
                 protected void onPostExecute(List<RecyclerViewItem> recyclerViewItems) {
                     super.onPostExecute(recyclerViewItems);
-                    if (isCancelled()) return;
+                    if (isCancelled() || recyclerViewItems == null) return;
                     for (RecyclerViewItem item : recyclerViewItems) {
                         addItem(item);
                     }
