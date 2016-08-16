@@ -30,6 +30,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -242,7 +243,7 @@ public class ProfileActivity extends BaseActivity {
         }
     }
 
-    public static class CurrentSettingsFragment extends DialogFragment {
+    public static class CurrentSettingsFragment extends AppCompatDialogFragment {
 
         public static CurrentSettingsFragment newInstance(LinkedHashMap<String, Fragment> sections) {
             CurrentSettingsFragment fragment = new CurrentSettingsFragment();
@@ -257,6 +258,7 @@ public class ProfileActivity extends BaseActivity {
             super.onCreate(savedInstanceState);
             setRetainInstance(true);
             setCancelable(false);
+            setStyle(DialogFragment.STYLE_NO_TITLE, 0);
         }
 
         @Nullable

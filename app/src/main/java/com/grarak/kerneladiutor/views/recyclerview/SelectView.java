@@ -38,12 +38,17 @@ public class SelectView extends ValueView {
 
     private View mView;
     private OnItemSelected mOnItemSelected;
+    private AlertDialog.Builder mDialog;
     private List<String> mItems = new ArrayList<>();
 
     @Override
     public void onCreateView(View view) {
         mView = view;
         super.onCreateView(view);
+
+        if (mDialog != null) {
+            mDialog.show();
+        }
     }
 
     public void setItem(String item) {
@@ -68,8 +73,8 @@ public class SelectView extends ValueView {
     private void showDialog(Context context) {
         String[] items = mItems.toArray(new String[mItems.size()]);
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-        dialog.setItems(items, new DialogInterface.OnClickListener() {
+        mDialog = new AlertDialog.Builder(context);
+        mDialog.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 setItem(which);
@@ -77,11 +82,16 @@ public class SelectView extends ValueView {
                     mOnItemSelected.onItemSelected(SelectView.this, which, mItems.get(which));
                 }
             }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mDialog = null;
+            }
         });
         if (getTitle() != null) {
-            dialog.setTitle(getTitle());
+            mDialog.setTitle(getTitle());
         }
-        dialog.show();
+        mDialog.show();
     }
 
     @Override

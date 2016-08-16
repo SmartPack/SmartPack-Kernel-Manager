@@ -53,7 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        mItems.get(position).setOnViewChangeListener(mOnViewChangedListener);
         mItems.get(position).onCreateView(holder.itemView);
     }
 
@@ -75,7 +74,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (viewGroup != null) {
             viewGroup.removeView(view);
         }
-        mItems.get(position).onCreateHolder(parent, view);
         if (mItems.get(position).cardCompatible()
                 && Utils.DONATED
                 && Prefs.getBoolean("forcecards", false, view.getContext())) {
@@ -90,6 +88,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (position == 0) {
             mFirstItem = view;
         }
+        mItems.get(position).setOnViewChangeListener(mOnViewChangedListener);
+        mItems.get(position).onCreateHolder(parent, view);
         return new RecyclerView.ViewHolder(view) {
         };
     }

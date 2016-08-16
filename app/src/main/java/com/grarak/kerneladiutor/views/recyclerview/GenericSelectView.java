@@ -37,6 +37,7 @@ public class GenericSelectView extends ValueView {
     private String mValueRaw;
     private OnGenericValueListener mOnGenericValueListener;
     private int mInputType = -1;
+    private boolean mShowDialog;
 
     @Override
     public void onCreateView(View view) {
@@ -49,6 +50,10 @@ public class GenericSelectView extends ValueView {
         });
 
         super.onCreateView(view);
+
+        if (mShowDialog) {
+            showDialog(view.getContext());
+        }
     }
 
     public void setValueRaw(String value) {
@@ -69,6 +74,7 @@ public class GenericSelectView extends ValueView {
         }
         if (mValueRaw == null) return;
 
+        mShowDialog = true;
         ViewUtils.dialogEditText(mValueRaw, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -81,7 +87,13 @@ public class GenericSelectView extends ValueView {
                     mOnGenericValueListener.onGenericValueSelected(GenericSelectView.this, text);
                 }
             }
-        }, mInputType, context).setTitle(getTitle()).show();
+        }, mInputType, context).setTitle(getTitle()).setOnDismissListener(
+                new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        mShowDialog = false;
+                    }
+                }).show();
     }
 
 }
