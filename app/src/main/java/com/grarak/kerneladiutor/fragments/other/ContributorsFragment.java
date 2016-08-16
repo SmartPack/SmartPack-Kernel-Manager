@@ -23,10 +23,8 @@ import android.support.design.widget.Snackbar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.WebpageReader;
 import com.grarak.kerneladiutor.utils.other.Contributors;
-import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.ContributorView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -39,6 +37,11 @@ public class ContributorsFragment extends RecyclerViewFragment {
 
     private WebpageReader mWebpageReader;
     private Snackbar mErrorBar;
+
+    @Override
+    public int getSpanCount() {
+        return super.getSpanCount() + 1;
+    }
 
     @Override
     protected boolean showViewPager() {
@@ -79,15 +82,7 @@ public class ContributorsFragment extends RecyclerViewFragment {
                             if (contributor.getLogin().equals("Grarak")) {
                                 continue;
                             }
-                            CardView cardView = new CardView(getActivity());
-                            cardView.addItem(new ContributorView(contributor));
-                            cardView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                                @Override
-                                public void onClick(RecyclerViewItem item) {
-                                    Utils.launchUrl(contributor.getHtmlUrl(), getActivity());
-                                }
-                            });
-                            addItem(cardView);
+                            addItem(new ContributorView(contributor));
                         }
                     } else {
                         error();

@@ -59,6 +59,13 @@ public class ContributorView extends RecyclerViewItem {
         ViewUtils.loadImagefromUrl(mContributor.getAvatarUrl(), image, 200, 200);
         name.setText(mContributor.getLogin());
         contributions.setText(view.getResources().getString(R.string.commits, mContributor.getContributions()));
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.launchUrl(mContributor.getHtmlUrl(), v.getContext());
+            }
+        });
     }
 
 }
