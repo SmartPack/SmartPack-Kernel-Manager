@@ -10,12 +10,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
-import android.support.v14.preference.SwitchPreference;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.SwitchPreferenceCompat;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
@@ -114,7 +114,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             getPreferenceScreen().removePreference(findPreference(KEY_AD_VIEW));
         }
 
-        SwitchPreference forceEnglish = (SwitchPreference) findPreference(KEY_FORCE_ENGLISH);
+        SwitchPreferenceCompat forceEnglish = (SwitchPreferenceCompat) findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
             getPreferenceScreen().removePreference(forceEnglish);
         } else {
@@ -158,7 +158,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         for (int id : NavigationActivity.sFragments.keySet()) {
             if (NavigationActivity.sFragments.get(id) != null
                     && NavigationActivity.sFragments.get(id).getClass() != SettingsFragment.class) {
-                SwitchPreference switchPreference = new SwitchPreference(
+                SwitchPreferenceCompat switchPreference = new SwitchPreferenceCompat(
                         new ContextThemeWrapper(getActivity(), R.style.Preference_SwitchPreferenceCompat_Material));
                 switchPreference.setSummary(getString(id));
                 switchPreference.setKey(NavigationActivity.sFragments.get(id).getClass()

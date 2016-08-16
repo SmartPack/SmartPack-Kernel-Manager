@@ -6,28 +6,28 @@
         android:key="adview"
         app:layout="@layout/rv_ad_view" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="useretardedmeasurement"
         android:summary="@string/fahrenheit_summary"
         android:title="@string/fahrenheit_title" />
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="forceenglish"
         android:summary="@string/force_english" />
 
     <PreferenceCategory
         android:key="user_interface"
         android:title="@string/user_interface">
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="darktheme"
             android:summary="@string/dark_theme" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="materialicon"
             android:summary="@string/material_icon" />
         <Preference
             android:key="banner_resizer"
             android:summary="@string/banner_resizer" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="forcecards"
             android:summary="@string/force_cards_summary"
             android:title="@string/force_cards" />
@@ -45,20 +45,20 @@
             android:key="applyonboottest"
             android:summary="@string/apply_on_boot_test_summary"
             android:title="@string/test" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="applyonboothide"
             android:summary="@string/apply_on_boot_hide_summary"
             android:title="@string/hide" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="applyonbootconfirmationnotification"
             android:summary="@string/apply_on_boot_confirmation_notification_summary"
             android:title="@string/confirmation_notification" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="applyonboottoast"
             android:summary="@string/apply_on_boot_toast_summary"
             android:title="@string/toast" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="applyonbootscript"
             android:summary="@string/apply_on_boot_script_summary"
             android:title="@string/script" />
@@ -91,7 +91,7 @@
         <Preference
             android:key="delete_password"
             android:summary="@string/delete_password" />
-        <SwitchPreference
+        <SwitchPreferenceCompat
             android:key="fingerprint"
             android:summary="@string/fingerprint_summary"
             android:title="@string/fingerprint" />
