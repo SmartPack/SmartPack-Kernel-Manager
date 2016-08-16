@@ -191,46 +191,49 @@ public class Utils {
 
     // Sorry pirates!
     public static boolean isPatched(ApplicationInfo applicationInfo) {
-        boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
-        if (withBase) {
-            RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
-            RootFile odex = findExtension(parent, ".odex");
-            if (odex != null) {
-                String text = RootUtils.runCommand("strings " + odex.toString());
-                if (text.contains("--dex-file") || text.contains("--oat-file")) {
-                    return true;
-                }
-            }
-
-            String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
-            if (Utils.existFile(dex)) {
-                String path = RootUtils.runCommand("realpath " + dex);
-                if (path != null) {
-                    String text = RootUtils.runCommand("strings " + path);
+        try {
+            boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
+            if (withBase) {
+                RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
+                RootFile odex = findExtension(parent, ".odex");
+                if (odex != null) {
+                    String text = RootUtils.runCommand("strings " + odex.toString());
                     if (text.contains("--dex-file") || text.contains("--oat-file")) {
                         return true;
                     }
                 }
+
+                String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
+                if (Utils.existFile(dex)) {
+                    String path = RootUtils.runCommand("realpath " + dex);
+                    if (path != null) {
+                        String text = RootUtils.runCommand("strings " + path);
+                        if (text.contains("--dex-file") || text.contains("--oat-file")) {
+                            return true;
+                        }
+                    }
+                }
+            } else if (Utils.existFile(applicationInfo.publicSourceDir.replace(".apk", ".odex"))) {
+                new RootFile(applicationInfo.publicSourceDir.replace(".apk", ".odex")).delete();
+                RootUtils.runCommand("pkill " + applicationInfo.packageName);
+                return false;
             }
-        } else if (Utils.existFile(applicationInfo.publicSourceDir.replace(".apk", ".odex"))) {
-            new RootFile(applicationInfo.publicSourceDir.replace(".apk", ".odex")).delete();
-            RootUtils.runCommand("pkill " + applicationInfo.packageName);
-            return false;
+        } catch (Exception ignored) {
         }
         return false;
     }
 
     private static RootFile findExtension(RootFile path, String extension) {
-        try {
-            for (RootFile file : path.listFiles()) {
+        for (RootFile file : path.listFiles()) {
+            if (file != null) {
+                String name;
                 if (file.isDirectory()) {
                     RootFile rootFile = findExtension(file, extension);
                     if (rootFile != null) return rootFile;
-                } else if (file.getName() != null && file.getName().endsWith(extension)) {
+                } else if ((name = file.getName()) != null && name.endsWith(extension)) {
                     return file;
                 }
             }
-        } catch (Exception ignored) {
         }
         return null;
     }
