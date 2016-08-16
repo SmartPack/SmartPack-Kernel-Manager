@@ -515,6 +515,9 @@
   <string name="low_light_environment">Dunkle Umgebung</string>
   <string name="low_light_environment_summary">Setzen Sie die relative Intensität der LED in dunklen Umgebungen fest.</string>
   <string name="notification">Benachrichtigung</string>
+  <string name="on">An</string>
+  <string name="fade_in">Einblenden</string>
+  <string name="fade_out">Ausblenden</string>
   <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Interner Speicher</string>
@@ -542,6 +545,7 @@
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
   <!-- Virtual Memory -->
+  <string name="disksize">Speichergröße (Disk usually refers to a Hdd in Germany)</string>
   <!-- Entropy -->
   <string name="available">Verfügbar</string>
   <string name="read">Lesen</string>
@@ -633,9 +637,12 @@
   <string name="restoring">Wird wiederhergestellt</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="add">Hinzufügen</string>
   <string name="key">Taste</string>
   <string name="value">Wert</string>
+  <string name="key_empty">Schlüssel kann nicht leer sein!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Während der Profilbearbeitung haben Änderungen keinen Effekt auf \"Apply on Boot\"</string>
   <string name="applied">Übernommen</string>
   <!-- Recovery -->
   <string name="wipe_data">Daten löschen</string>

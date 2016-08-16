@@ -718,6 +718,7 @@
   <string name="current_settings">Aktuális beállítások</string>
   <string name="select_all">Összes kijelölése</string>
   <string name="nothing_selected">Nincs kiválasztott elem</string>
+  <string name="profile_empty">Profil üres!</string>
   <!-- Recovery -->
   <string name="reboot">Újraindítás</string>
   <string name="reboot_soft">Lágy újraindítás</string>

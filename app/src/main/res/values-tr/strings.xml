@@ -490,6 +490,8 @@
   <string name="speed">Hız</string>
   <string name="stock">Stok</string>
   <string name="continuous_light">Sürekli ışık</string>
+  <string name="fade_in">Aydınlat</string>
+  <string name="fade_out">Karart</string>
   <string name="test">Test</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Dahili Depolama</string>
@@ -631,6 +633,7 @@
   <string name="fota_partition">Fota bölümü</string>
   <string name="flash">Flaş</string>
   <!-- Build prop Editor -->
+  <string name="add">Ekle</string>
   <string name="item_count">%s öğe</string>
   <string name="items_count">%s öğeler</string>
   <string name="key">Anahtar</string>
@@ -641,6 +644,7 @@
   <string name="profile_warning">Yaptığınız bütün değişiklikler profilinize kaydedildi.Ama dikkat! ayarlarınız cihaz başlatılırken etkili olmayacaktır.</string>
   <string name="no_changes">Hiçbir değişiklik yapılmadı!</string>
   <string name="apply_question">Uygula %s?</string>
+  <string name="append">Ekle</string>
   <string name="details">Ayrıntılar</string>
   <string name="press_again_to_apply">Tekrar uygulamak için %s düğmesine basın.</string>
   <string name="applied">Uygulandı</string>
@@ -652,7 +656,14 @@
   <string name="applying_profile">%s Uygulanıyor!</string>
   <string name="no_profiles">Profili bulunamadı! Bundan önce oluşturmanız gerekir.</string>
   <string name="sections_disabled">Tüm bölümleri devre dışı bırakıldı! Senin için profili yok.</string>
+  <string name="new_mode">New</string>
+  <string name="current_settings">Geçerli Ayarlar</string>
+  <string name="select_all">Tümünü Seç</string>
+  <string name="nothing_selected">Hiçbir şey seçilmedi</string>
   <!-- Recovery -->
+  <string name="reboot">Yeniden başlat</string>
+  <string name="reboot_soft">Yazılımsal yeniden başlatma</string>
+  <string name="reboot_recovery">Kurtarma Modunda Yeniden Başlat</string>
   <string name="wipe_data">Verileri Sil</string>
   <string name="wipe_cache">Önbelleği sil</string>
   <string name="flash_zip">Zip flashla</string>
@@ -673,7 +684,9 @@
   <string name="fahrenheit_title">Fahrenayt</string>
   <string name="fahrenheit_summary">Sicaklıllar fahrenayt cinsinden gösterilsin.</string>
   <string name="force_english">İngilizce dilini kullanmaya zorla</string>
+  <string name="user_interface">Kullanıcı Arayüzü</string>
   <string name="dark_theme">Koyu tema</string>
+  <string name="material_icon">Material simge</string>
   <string name="five_sec">5 saniye</string>
   <string name="ten_sec">10 saniye</string>
   <string name="twenty_sec">20 saniye</string>
