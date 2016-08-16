@@ -410,7 +410,9 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             super.onScrolled(recyclerView, dx, dy);
             View firstItem = mRecyclerView.getChildAt(0);
             if (firstItem == null) {
-                firstItem = mRecyclerViewAdapter.getFirstItem();
+                if (mRecyclerViewAdapter != null) {
+                    firstItem = mRecyclerViewAdapter.getFirstItem();
+                }
                 if (firstItem == null) {
                     return;
                 }

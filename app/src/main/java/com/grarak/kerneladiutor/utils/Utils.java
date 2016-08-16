@@ -238,7 +238,7 @@ public class Utils {
     // MD5 code from
     // https://github.com/CyanogenMod/android_packages_apps_CMUpdater/blob/cm-12.1/src/com/cyanogenmod/updater/utils/MD5.java
     public static boolean checkMD5(String md5, File updateFile) {
-        if (md5.isEmpty() || updateFile == null) {
+        if (md5 == null || updateFile == null || md5.isEmpty()) {
             Log.e(TAG, "MD5 string empty or updateFile null");
             return false;
         }

@@ -386,7 +386,7 @@ public class NavigationActivity extends BaseActivity
                 fragmentTransaction.remove(fragment);
             }
         }
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
         RootUtils.closeSU();
         if (mAdsFetcher != null) {
             mAdsFetcher.cancel();
