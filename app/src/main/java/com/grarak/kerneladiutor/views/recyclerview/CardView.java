@@ -160,18 +160,8 @@ public class CardView extends RecyclerViewItem {
                     return;
                 }
                 mLoading.add(item);
-                View view;
-                if (mViews.containsKey(item)) {
-                    view = mViews.get(item);
-                } else {
-                    mViews.put(item, view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(),
-                            null, false));
-                }
-                ViewGroup viewGroup = (ViewGroup) view.getParent();
-                if (viewGroup != null) {
-                    quit();
-                    return;
-                }
+                View view = LayoutInflater.from(mActivity).inflate(item.getLayoutRes(), null, false);
+                mViews.put(item, view);
                 item.setOnViewChangeListener(getOnViewChangedListener());
                 item.onCreateView(view);
                 if (mLayout != null) {

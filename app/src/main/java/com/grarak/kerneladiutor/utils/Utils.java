@@ -194,14 +194,14 @@ public class Utils {
         try {
             boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
             if (withBase) {
-                RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
+                /*RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
                 RootFile odex = findExtension(parent, ".odex");
                 if (odex != null) {
                     String text = RootUtils.runCommand("strings " + odex.toString());
                     if (text.contains("--dex-file") || text.contains("--oat-file")) {
                         return true;
                     }
-                }
+                }*/
 
                 String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
                 if (Utils.existFile(dex)) {

@@ -44,8 +44,6 @@ public class DescriptionView extends RecyclerViewItem {
     private CharSequence mSummary;
     private MovementMethod mLinkMovementMethod;
 
-    private boolean mTextIsSelectable = true;
-
     @Override
     public int getLayoutRes() {
         return R.layout.rv_description_view;
@@ -102,11 +100,6 @@ public class DescriptionView extends RecyclerViewItem {
         refresh();
     }
 
-    public void setTextIsSelectable(boolean selectable) {
-        mTextIsSelectable = selectable;
-        refresh();
-    }
-
     public CharSequence getTitle() {
         return mTitle;
     }
@@ -129,18 +122,15 @@ public class DescriptionView extends RecyclerViewItem {
             } else {
                 mTitleView.setVisibility(View.GONE);
             }
-            mTitleView.setTextIsSelectable(mTextIsSelectable && !Utils.isTv(mTitleView.getContext()));
         }
         if (mSummaryView != null && mSummary != null) {
             mSummaryView.setText(mSummary);
             if (mLinkMovementMethod != null) {
                 mSummaryView.setMovementMethod(mLinkMovementMethod);
             }
-            mSummaryView.setTextIsSelectable(mTextIsSelectable && !Utils.isTv(mSummaryView.getContext()));
         }
         if (mRootView != null && getOnItemClickListener() != null && mTitleView != null
                 && mSummaryView != null) {
-            mTextIsSelectable = false;
             mTitleView.setTextIsSelectable(false);
             mSummaryView.setTextIsSelectable(false);
             mRootView.setOnClickListener(new View.OnClickListener() {
