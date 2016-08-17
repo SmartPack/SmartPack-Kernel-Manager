@@ -21,7 +21,6 @@ package com.grarak.kerneladiutor.utils;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.PowerManager;
 
 import java.io.File;
@@ -34,35 +33,41 @@ import java.net.URL;
 /**
  * Created by willi on 08.07.16.
  */
-public class DownloadTask extends AsyncTask<String, Integer, String> {
+public class DownloadTask extends ThreadTask<String, String> {
 
     private final Activity mActivity;
     private final OnDownloadListener onDownloadListener;
-    private final PowerManager.WakeLock mWakeLock;
+    private PowerManager.WakeLock mWakeLock;
     private final String mPath;
     private boolean mDownloading = true;
     private boolean mCancelled;
 
     public DownloadTask(Activity activity, OnDownloadListener onDownloadListener, String path) {
+        super(activity);
         mActivity = activity;
         this.onDownloadListener = onDownloadListener;
         mPath = path;
+    }
 
-        new File(path).getParentFile().mkdirs();
+    @Override
+    public void onPreExecute() {
+        super.onPreExecute();
 
-        PowerManager pm = (PowerManager) activity.getSystemService(Context.POWER_SERVICE);
+        new File(mPath).getParentFile().mkdirs();
+
+        PowerManager pm = (PowerManager) mActivity.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         mWakeLock.acquire();
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    public String doInBackground(String arg) {
         InputStream input = null;
         FileOutputStream output = null;
         HttpURLConnection connection = null;
 
         try {
-            URL url = new URL(strings[0]);
+            URL url = new URL(arg);
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
@@ -80,17 +85,10 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
             int count;
             while (true) {
                 if (mCancelled) {
-                    mActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            new File(mPath).delete();
-                            onDownloadListener.onCancel();
-                        }
-                    });
                     input.close();
                     output.close();
                     connection.disconnect();
-                    return null;
+                    return "cancelled";
                 }
 
                 if (mDownloading) {
@@ -133,14 +131,17 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+    public void onPostExecute(String ret) {
+        super.onPostExecute(ret);
 
         mWakeLock.release();
-        if (s == null) {
+        if (ret == null) {
             onDownloadListener.onSuccess(mPath);
+        } else if (ret.equals("cancelled")) {
+            new File(mPath).delete();
+            onDownloadListener.onCancel();
         } else {
-            onDownloadListener.onFailure(s);
+            onDownloadListener.onFailure(ret);
         }
     }
 

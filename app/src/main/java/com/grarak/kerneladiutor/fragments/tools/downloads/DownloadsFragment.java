@@ -80,7 +80,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
         super.postInit();
         if (mWebpageReader == null && mSupport != null) {
             showProgress();
-            mWebpageReader = new WebpageReader(new WebpageReader.WebpageCallback() {
+            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
 
                 private int mKernelCount;
 
@@ -94,7 +94,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
                     final List<SupportedDownloads.KernelContent> contents = new ArrayList<>();
                     if (kernels.readable()) {
                         for (int i = 0; i < kernels.length(); i++) {
-                            WebpageReader reader = new WebpageReader(new WebpageReader.WebpageCallback() {
+                            WebpageReader reader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
                                 @Override
                                 public void onCallback(String raw, CharSequence html) {
                                     if (!isAdded()) return;

@@ -98,4 +98,8 @@ public abstract class RecyclerViewItem {
         return true;
     }
 
+    protected boolean cacheable() {
+        return false;
+    }
+
 }

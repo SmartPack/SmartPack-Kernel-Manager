@@ -57,6 +57,7 @@ public class AdBanner extends LinearLayout {
     public static final String ADS_FETCH = "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/ads/ads.json";
 
     private boolean mLoaded;
+    private boolean mLoading;
     private boolean mGHLoaded;
     private View mProgress;
     private View mAdText;
@@ -101,6 +102,7 @@ public class AdBanner extends LinearLayout {
                 mProgress.setVisibility(GONE);
                 mAdText.setVisibility(VISIBLE);
                 mAdParent.setVisibility(GONE);
+                mLoading = false;
                 mLoaded = false;
                 loadGHAd();
             }
@@ -112,12 +114,14 @@ public class AdBanner extends LinearLayout {
                 mProgress.setVisibility(GONE);
                 mAdText.setVisibility(GONE);
                 mAdParent.setVisibility(VISIBLE);
+                mLoading = false;
                 mLoaded = true;
             }
         });
 
         if (!mLoaded) {
             try {
+                mLoading = true;
                 adView.loadAd(new AdRequest.Builder().build());
             } catch (Exception ignored) {
                 loadGHAd();
@@ -133,7 +137,7 @@ public class AdBanner extends LinearLayout {
     }
 
     public void loadGHAd() {
-        if (mLoaded || mGHLoaded) return;
+        if (mLoaded || mLoading || mGHLoaded) return;
 
         String json = Utils.readFile(getContext().getFilesDir() + "/ghads.json", false);
         GHAds ghAds;

@@ -71,7 +71,7 @@ public class ContributorsFragment extends RecyclerViewFragment {
 
         if (mWebpageReader == null) {
             showProgress();
-            mWebpageReader = new WebpageReader(new WebpageReader.WebpageCallback() {
+            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
                 @Override
                 public void onCallback(String raw, CharSequence html) {
                     if (!isAdded()) return;

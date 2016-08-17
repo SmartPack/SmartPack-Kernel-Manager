@@ -106,7 +106,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                              @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
         if (mHandler == null) {
-            mHandler = new Handler();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mHandler = new Handler();
+                }
+            });
         }
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);

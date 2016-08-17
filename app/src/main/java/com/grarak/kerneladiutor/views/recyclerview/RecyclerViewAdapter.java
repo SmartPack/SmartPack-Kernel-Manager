@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,6 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private final List<RecyclerViewItem> mItems;
+    private final HashMap<RecyclerViewItem, View> mViews = new HashMap<>();
     private OnViewChangedListener mOnViewChangedListener;
     private View mFirstItem;
 
@@ -61,8 +63,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(mItems.get(position).getLayoutRes(), parent, false);
+        View view;
+        if (mItems.get(position).cacheable()) {
+            if (mViews.containsKey(mItems.get(position))) {
+                view = mViews.get(mItems.get(position));
+            } else {
+                mViews.put(mItems.get(position), view = LayoutInflater.from(parent.getContext())
+                        .inflate(mItems.get(position).getLayoutRes(), parent, false));
+            }
+        } else {
+            view = LayoutInflater.from(parent.getContext())
+                    .inflate(mItems.get(position).getLayoutRes(), parent, false);
+        }
+        ViewGroup viewGroup = (ViewGroup) view.getParent();
+        if (viewGroup != null) {
+            viewGroup.removeView(view);
+        }
         if (mItems.get(position).cardCompatible()
                 && Utils.DONATED
                 && Prefs.getBoolean("forcecards", false, view.getContext())) {

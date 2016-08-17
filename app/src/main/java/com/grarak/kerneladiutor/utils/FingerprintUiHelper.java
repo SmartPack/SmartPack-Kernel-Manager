@@ -31,7 +31,7 @@ public class FingerprintUiHelper extends FingerprintManagerCompat.Authentication
     private final Callback mCallback;
     private CancellationSignal mCancellationSignal;
 
-    boolean mSelfCancelled;
+    private boolean mSelfCancelled;
 
     /**
      * Builder class for {@link FingerprintUiHelper} in which injected fields from Dagger

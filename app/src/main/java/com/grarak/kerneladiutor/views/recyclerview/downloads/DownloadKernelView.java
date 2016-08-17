@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.DownloadTask;
+import com.grarak.kerneladiutor.utils.ThreadTask;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -55,7 +56,7 @@ public class DownloadKernelView extends RecyclerViewItem {
     private Drawable mDownloadDrawable;
     private Drawable mCancelDrawable;
     private DownloadTask mDownloadTask;
-    private AsyncTask<Void, Void, Boolean> mCheckMD5Task;
+    private ThreadTask<Void, Boolean> mCheckMD5Task;
 
     private View mDownloadSection;
     private View mProgressParent;
@@ -203,25 +204,25 @@ public class DownloadKernelView extends RecyclerViewItem {
 
     private void checkMD5(final String md5, final String path, final String installMethod) {
         if (mCheckMD5Task == null) {
-            mCheckMD5Task = new AsyncTask<Void, Void, Boolean>() {
+            mCheckMD5Task = new ThreadTask<Void, Boolean>(mActvity) {
+
                 private int mSelection;
 
                 @Override
-                protected void onPreExecute() {
+                public void onPreExecute() {
                     super.onPreExecute();
                     mDownloadSection.setVisibility(View.GONE);
                 }
 
                 @Override
-                protected Boolean doInBackground(Void... voids) {
+                public Boolean doInBackground(Void arg) {
                     return Utils.checkMD5(md5, new File(path));
                 }
 
                 @Override
-                protected void onPostExecute(Boolean aBoolean) {
-                    super.onPostExecute(aBoolean);
-
-                    if (aBoolean) {
+                public void onPostExecute(Boolean ret) {
+                    super.onPostExecute(ret);
+                    if (ret) {
                         mInstallButton.setVisibility(View.VISIBLE);
                         mInstallButton.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -290,8 +291,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                     mDownloadSection.setVisibility(View.VISIBLE);
                     mCheckMD5Task = null;
                 }
-            };
-            mCheckMD5Task.execute();
+            }.execute(null);
         }
     }
 

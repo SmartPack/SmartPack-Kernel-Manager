@@ -19,7 +19,7 @@
  */
 package com.grarak.kerneladiutor.utils;
 
-import android.os.AsyncTask;
+import android.app.Activity;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -33,7 +33,7 @@ import java.net.URL;
 /**
  * Created by willi on 06.07.16.
  */
-public class WebpageReader extends AsyncTask<String, Void, String> {
+public class WebpageReader extends ThreadTask<String, String> {
 
     private static final String TAG = WebpageReader.class.getSimpleName();
 
@@ -46,19 +46,20 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     private boolean mConnected;
     private boolean mCancelled;
 
-    public WebpageReader(WebpageCallback webpageCallback) {
+    public WebpageReader(Activity activity, WebpageCallback webpageCallback) {
+        super(activity);
         this.mWebpageCallback = webpageCallback;
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    public String doInBackground(String arg) {
         InputStream is = null;
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
 
         try {
             String line;
-            URL url = new URL(params[0]);
+            URL url = new URL(arg);
             mConnection = (HttpURLConnection) url.openConnection();
             new Thread(new Runnable() {
                 @Override
@@ -90,7 +91,7 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e(TAG, "Failed to read url: " + params[0]);
+            Log.e(TAG, "Failed to read url: " + arg);
         } finally {
             try {
                 if (is != null) is.close();
@@ -107,10 +108,9 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-
-        mWebpageCallback.onCallback(s, Utils.htmlFrom(s));
+    public void onPostExecute(String ret) {
+        super.onPostExecute(ret);
+        mWebpageCallback.onCallback(ret, Utils.htmlFrom(ret));
     }
 
     public void cancel() {
