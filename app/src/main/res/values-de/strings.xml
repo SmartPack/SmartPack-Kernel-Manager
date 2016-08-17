@@ -545,7 +545,6 @@
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
   <!-- Virtual Memory -->
-  <string name="disksize">Speichergröße (Disk usually refers to a Hdd in Germany)</string>
   <!-- Entropy -->
   <string name="available">Verfügbar</string>
   <string name="read">Lesen</string>
@@ -642,7 +641,6 @@
   <string name="value">Wert</string>
   <string name="key_empty">Schlüssel kann nicht leer sein!</string>
   <!-- Profile -->
-  <string name="apply_on_boot_not_available">Während der Profilbearbeitung haben Änderungen keinen Effekt auf \"Apply on Boot\"</string>
   <string name="applied">Übernommen</string>
   <!-- Recovery -->
   <string name="wipe_data">Daten löschen</string>

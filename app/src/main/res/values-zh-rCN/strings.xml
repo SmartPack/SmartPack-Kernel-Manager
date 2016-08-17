@@ -26,6 +26,7 @@
   <string name="remove_ad">去除广告</string>
   <string name="warning">警告</string>
   <string name="gh_ad">这是一个非商业性的广告 ！不要太认真了 ！当实际的广告不加载用一个有趣的方式来填充的空间（看向 adblock 用户）。</string>
+  <string name="open_ad_anyway">必须点击广告</string>
   <string name="apply_on_boot">系统启动时应用</string>
   <string name="apply_on_boot_text">在 %d 秒后应用您的设置</string>
   <string name="apply_on_boot_complete">应用设置完成。</string>
@@ -49,6 +50,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">像素</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">统计数据</string>
@@ -114,6 +116,7 @@
   <string name="hardware">硬件</string>
   <string name="architecture">架构</string>
   <!-- Inputs -->
+  <string name="bus">总线</string>
   <string name="product">产品</string>
   <string name="version">版本</string>
   <string name="handlers">处理程序</string>
@@ -130,6 +133,8 @@
   <string name="cpu_governor">CPU 调速器</string>
   <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
+  <string name="governor_tunables_summary">调节器依赖的各种配置。</string>
+  <string name="cpu_governor_tunables_read_error">无法读取当前处理器的调节器。\n\n如果您使用的是Qualcomm big.little装置，这是一个已知的问题。该系统迫使中央处理器关闭核心，使它很难读取特定的统计数据。再次选择此选项。中央处理器有时拒绝打开一个核心。</string>
   <string name="tunables_error">%s 不可调节</string>
   <string name="manual">手动</string>
   <string name="mc_power_saving">多核省电</string>
@@ -145,6 +150,7 @@
   <string name="cpu_quiet_governor">CPUQuiet控制器</string>
   <string name="cpu_boost">处理器跳频</string>
   <string name="debug_mask">调试的面具</string>
+  <string name="debug_mask_summary">允许您激活操作调试掩码。</string>
   <string name="interval">时间间隔</string>
   <string name="interval_summary">单个 CPU 被升频的最小间隔。</string>
   <string name="sync_threshold">同步阈值</string>
@@ -165,14 +171,17 @@
   <string name="override_vmin">覆盖最低电压</string>
   <string name="override_vmin_summary">取消厂商对降压的限制</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">启用多个热插拔系统 ！ \n 只能使用一个。</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">高通的热插拔方案。当它启用时你可能无法正常地调整各核心的频率。</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">由 faux123 开发的高通 MPDecision 替代方案。</string>
+  <string name="cpu_hotplug_profile_summary">括号中的数字表示在任何时候在线的核心数量。</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">平衡</string>
   <string name="performance">高性能</string>
   <string name="conservative">节能</string>
+  <string name="eco_insanity">生态精神错乱</string>
   <string name="eco_performance">Eco 性能模式</string>
   <string name="eco_conservative">Eco 节能模式</string>
   <string name="tri">Tri</string>
@@ -183,6 +192,7 @@
   <string name="hysteresis">滞后值</string>
   <string name="hysteresis_summary">该值越低，响应得越快。</string>
   <string name="cpu_threshold">CPU 阈值</string>
+  <string name="cpu_threshold_summary">更高, 使用更少的cpu。</string>
   <string name="suspend">延迟</string>
   <string name="suspend_summary">阻止延迟。</string>
   <string name="cpus_boosted">升频 CPU</string>

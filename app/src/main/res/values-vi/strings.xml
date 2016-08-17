@@ -10,56 +10,120 @@
   <string name="no_busybox">Không có busybox</string>
   <!-- Security -->
   <string name="password">Mật khẩu</string>
+  <string name="password_wrong">Sai mật khẩu</string>
   <string name="select_picture">Chọn hình ảnh</string>
   <string name="no_picture">Không có hình ảnh</string>
   <string name="went_wrong">Có lỗi xảy ra!</string>
+  <string name="press_back_again_exit">Nhấn trở lại một lần nữa để thoát</string>
   <string name="cancel">Huỷ</string>
   <string name="ok">OK</string>
+  <string name="unknown">Không xác định</string>
+  <string name="pirated">Có vẻ như ứng dụng ủng hộ đã không được mua thông qua cửa hàng Play! Nếu bạn vi phạm bản quyền, bạn nên cảm thấy xấu hổ!</string>
+  <string name="donate">Ủng hộ</string>
+  <string name="donate_summary">Tính năng này chỉ có sẵn khi ứng dụng ủng hộ được cài đặt! Đừng lo lắng. Bởi vì ứng dụng này là mã nguồn mở, bạn có thể dễ dàng xây dựng nó cho mình và loại bỏ sự kiểm tra này. Nhưng tôi hy vọng bạn hỗ trợ các nhà phát triển. Cảm ơn bạn đã sử dụng Kernel Adiutor! Một khi bạn mua các ứng dụng ủng hộ bạn phải khởi động lại Kernel Adiutor để kích hoạt tất cả tính năng.</string>
+  <string name="donate_nope">Tôi sẽ ko bị dụ bởi vụ lừa đảo này đâu!</string>
+  <string name="donate_yes">Tôi yêu ứng dụng này. Phải ủng hộ!</string>
+  <string name="ad_here">Quảng cáo của bạn có thể ở đây</string>
+  <string name="remove_ad">Loại bỏ quảng cáo</string>
+  <string name="warning">Cảnh báo</string>
+  <string name="gh_ad">Đây là một quảng cáo phi thương mại! Đừng nghiêm trọng! Chỉ là một cách vui vẻ để điền vào các không gian trống khi quảng cáo không tải được ( có vẻ bạn sử dụng adblock).</string>
+  <string name="open_ad_anyway">Mở quảng cáo bằng mọi cách</string>
   <string name="apply_on_boot">Áp dụng khi khởi động</string>
+  <string name="apply_on_boot_text">Áp dụng thiết đặt trong %d giây.</string>
+  <string name="apply_on_boot_complete">Áp dụng thiết đặt hoàn tất.</string>
+  <string name="apply_on_boot_canceled">Áp dụng thiết đặt hủy bỏ.</string>
+  <string name="not_in_range">Không có trong phạm vi</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Quyền ghi vào bộ nhớ bị từ chối!</string>
   <!-- Editor -->
   <string name="save">Lưu</string>
   <!-- File Picker -->
+  <string name="select_question">Chọn %s?</string>
+  <string name="wrong_extension">Vui lòng chọn một tập tin với phần mở rộng %s.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
+  <string name="celsius">ºC</string>
+  <string name="fahrenheit">ºF</string>
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">phút</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
+  <string name="statistics">Thống kê</string>
   <string name="kernel">Nhân</string>
   <string name="tools">Công cụ</string>
   <string name="other">Khác</string>
   <!-- Menus -->
+  <string name="overall">Tổng thể</string>
+  <string name="device">Thiết bị</string>
+  <string name="memory">Bộ nhớ</string>
+  <string name="inputs">Đầu vào</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Điện áp CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
   <string name="thermal">Nhiệt</string>
   <string name="gpu">GPU</string>
   <string name="screen">Màn hình</string>
+  <string name="wake">Đánh thức</string>
   <string name="sound">Âm thanh</string>
   <string name="battery">Pin</string>
+  <string name="led">Đèn LED</string>
   <string name="io_scheduler">Lịch trình nhập xuất I/O</string>
   <string name="ksm">Hạt nhân Samepage hợp nhất</string>
+  <string name="lmk">Low Memory Killer</string>
   <string name="virtual_memory">Bộ nhớ ảo</string>
   <string name="entropy">Dữ liệu ngẫu nhiên</string>
+  <string name="misc">Linh tinh</string>
+  <string name="custom_controls">Các điều khiển tùy chỉnh</string>
   <string name="downloads">Tải về</string>
   <string name="backup">Sao lưu</string>
   <string name="build_prop_editor">Sửa build.prop</string>
   <string name="profile">Hồ sơ</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Khởi động</string>
   <string name="settings">Cài đặt</string>
+  <string name="about">Về ứng dụng</string>
+  <string name="contributors">Những người đóng góp</string>
+  <string name="help">Giúp đỡ</string>
   <!-- Overall -->
   <string name="offline">Ngoại tuyến</string>
   <string name="core">Lõi %d</string>
+  <string name="refresh">Làm mới</string>
+  <string name="reset">Thiết lập lại</string>
+  <string name="restore">Khôi phục</string>
+  <string name="deep_sleep">Ngủ sâu</string>
   <string name="uptime">Thời gian hoạt động</string>
+  <string name="error_frequencies">Đọc xung nhịp thất bại</string>
+  <string name="unused_frequencies">Các xung nhịp không sử dụng</string>
   <!-- Device -->
+  <string name="processor">Bộ xử lý</string>
+  <string name="vendor">Nhà cung cấp</string>
+  <string name="features">Các tính năng</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Phiên bản Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Tên mã Android</string>
+  <string name="fingerprint">Vân tay</string>
+  <string name="build_display_id">ID màn hình</string>
+  <string name="baseband">Baseband</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bộ nạp khởi động</string>
+  <string name="hardware">Phần cứng</string>
+  <string name="architecture">Kiến trúc</string>
   <!-- Inputs -->
+  <string name="product">Sản Phẩm</string>
+  <string name="version">Phiên bản</string>
+  <string name="handlers">Bộ xử lý</string>
   <!-- CPU -->
+  <string name="cores_singular">%d lõi</string>
+  <string name="cores">%d lõi</string>
+  <string name="no_offline_core">Bạn không thể tắt lõi này!</string>
   <string name="cpu_max_freq">Xung nhịp xử lý tối đa</string>
   <string name="cpu_max_freq_summary">Cài tần số tối đa CPU quy mô lên đến.</string>
   <string name="cpu_min_freq">Xung nhịp xử lý thiểu</string>
@@ -69,6 +133,10 @@
   <string name="cpu_governor">Trình điều tiết CPU</string>
   <string name="cpu_governor_summary">Trình điều tiết CPU sẽ xác định cách CPU hoạt động để đáp ứng với những thay đổi trong khối lượng xử lý. Thay đổi trình điều tiết sẽ ảnh hưởng tới việc điều chỉnh các bước tần số có sẵn cho CPU của bạn.</string>
   <string name="cpu_governor_tunables">Hiệu chỉnh có thể của trình điều tiết CPU</string>
+  <string name="governor_tunables_summary">Các mục cấu hình khác nhau phụ thuộc vào trình điều tiết.</string>
+  <string name="cpu_governor_tunables_read_error">Không thể đọc Gov hiện tại của CPU.\n\nNếu bạn đang sử dụng một thiết bị QCOM big.LITTLE thì đây là một vấn đề đã được biết. Hệ thống buột tắt CPU nên cực kỳ khó khăn để đọc ra số liệu thống kê CPU cụ thể. Cố gắng chọn tùy chọn này một lần nữa. CPU đôi khi từ chối để bật một lõi.</string>
+  <string name="tunables_error">%s không hiệu chỉnh được</string>
+  <string name="manual">Thủ công</string>
   <string name="mc_power_saving">Tiết kiệm năng lượng đa lõi</string>
   <string name="mc_power_saving_summary">Cố gắng gộp nhiều tác vụ vào ít lõi nhất.</string>
   <string name="disabled">Đã tắt</string>
@@ -82,6 +150,7 @@
   <string name="cpu_quiet_governor">Trình điều tiết CPUQuiet</string>
   <string name="cpu_boost">Tăng cường CPU</string>
   <string name="debug_mask">Mặt nạ gỡ lỗi</string>
+  <string name="debug_mask_summary">Cho phép bạn kích hoạt gỡ lỗi cho hoạt động.</string>
   <string name="interval">Khoảng thời gian</string>
   <string name="interval_summary">Khoảng thời gian tối thiểu một CPU được tăng cường.</string>
   <string name="sync_threshold">Ngưỡng đồng bộ hóa</string>
@@ -90,6 +159,8 @@
   <string name="input_interval_summary">Khoảng thời gian tối thiểu tăng cường một CPU khi phát hiện đầu vào.</string>
   <string name="input_boost_freq">Tần số đầu vào tăng cường</string>
   <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %s</string>
+  <string name="input_boost_freq_summary">CPU được tăng cường đến tần số này khi phát hiện đầu vào.</string>
+  <string name="wakeup_boost">Tăng tốc khả năng thức dậy</string>
   <string name="touch_boost">Tăng độ nhạy cảm ứng</string>
   <!-- CPU Voltage -->
   <string name="override_vmin">Ghi đè lên điện áp tối thiểu</string>
@@ -100,25 +171,95 @@
   <string name="hysteresis_summary">Càng thấp càng phản hồi nhanh.</string>
   <string name="suspend">Ngưng</string>
   <string name="cpus_boosted">Đã tăng tốc các CPU</string>
+  <string name="min_cpu_online_summary">Số CPU tối thiểu luôn bật.</string>
+  <string name="max_cpu_online">Số CPU bật tối đa</string>
+  <string name="max_cpu_online_summary">Số CPU tối đa luôn bật.</string>
+  <string name="max_cpu_online_screen_off">Số CPU tối đa khi màn hình tắt</string>
+  <string name="max_cpu_online_screen_off_summary">Số CPU bật tối đa khi màn hình đang tắt.</string>
+  <string name="suspend_defer_time">Đình chỉ thời gian trì hoãn</string>
+  <string name="defer_sampling">Trì hoãn việc lấy mẫu</string>
+  <string name="boost_lock_duration">Khóa thời gian tăng tốc</string>
+  <string name="boost_lock_duration_summary">Khoảng thời gian tối thiểu một CPU được tăng cường.</string>
+  <string name="down_lock_duration">Giảm thời gian khóa</string>
+  <string name="down_lock_duration_summary">Khoảng thời gian tối thiểu một CPU được mở.</string>
+  <string name="fshift">FShift</string>
+  <string name="blu_plug">Blu_Plug</string>
+  <string name="blu_plug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi Code_Blue team.</string>
   <string name="powersaver_mode">Chế độ tiết kiệm</string>
+  <string name="powersaver_mode_summary">Thiết đặt tối đa 1 CPU mở với tần số @1728 MHz.</string>
+  <string name="up_threshold">Lên ngưỡng</string>
+  <string name="up_threshold_summary">Trên ngưỡng này trình điều khiển sẽ đưa thêm một lõi CPU mở.</string>
+  <string name="up_timer_cnt">Kiểm soát bộ đếm thời gian tăng</string>
+  <string name="up_timer_cnt_summary">Điều khiển thời gian tăng cho các CPUs.</string>
+  <string name="down_timer_cnt">Kiểm soát bộ đếm thời gian giảm</string>
+  <string name="down_timer_cnt_summary">Điều khiển thời gian giảm cho các CPUs.</string>
+  <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="msm_hotplug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi myfluxi.</string>
+  <string name="history_size">Kích thước History</string>
   <string name="update_rate">Tỉ lệ cập nhật</string>
+  <string name="fast_lane_load_summary">Cải thiện độ trễ bằng cách ngay lập tức đưa tất cả các CPU mở nếu hiện tại mức độ tải trên bất kỳ CPU ở trên ngưỡng nhất định.</string>
   <string name="io_is_busy">IO đang bận</string>
   <string name="delay">Độ trễ</string>
   <string name="delay_summary">Thời gian giữa các lần kiểm tra.</string>
   <string name="pause">Tạm dừng</string>
+  <string name="offline_delay_summary">Thời gian trước khi tắt một CPU.</string>
   <!--Thermal-->
+  <string name="thermal_info">Chỉ sử dụng một trình điều khiển nhiệt từ các tuỳ chọn sau, sử dụng nhiềucùng một lúc có thể gây ra hành vi không mong muốn.</string>
+  <string name="thermald">Nhiệt</string>
+  <string name="thermald_summary">Trình điều khiển nhiệt gốc có thể ngăn ngừa thiết bị quá nóng. Điều này nên được vô hiệu nếu Kernel hiện tại có một sự thay thế.</string>
+  <string name="intellithermal">Intellithermal</string>
+  <string name="intellithermal_summary">Một sự thay thế cho Qualcomm Thermald. Phát triển bởi faux123.</string>
   <string name="poll">Thăm dò ý kiến</string>
   <string name="check_interval">Khoảng thời gian kiểm tra</string>
   <!-- GPU -->
+  <string name="adreno_idler">Adreno Idler</string>
   <!-- Screen -->
   <string name="red">Đỏ</string>
   <string name="green">Xanh lá</string>
+  <string name="min_brightness_summary">Cho phép bạn giảm độ sáng màn hình LCD thấp hơn.</string>
   <string name="threshold">Ngưỡng giá trị</string>
+  <string name="glove_mode">Chế độ găng tay</string>
+  <string name="glove_mode_summary">Điều này sẽ cho phép bạn sử dụng điện thoại của bạn ngay cả khi đeo găng tay.</string>
   <!-- Wake -->
+  <string name="dt2w">DoubleTap2Wake</string>
+  <string name="dt2w_summary">Đánh thức điện thoại bằng cách nhấp đúp vào màn hình.</string>
+  <string name="center">Trung tâm</string>
+  <string name="full">Toàn bộ</string>
+  <string name="s2w">Sweep2Wake</string>
+  <string name="t2w">Tap2Wake</string>
+  <string name="t2w_summary">Đánh thức điện thoại của bạn bằng cách gõ màn hình.</string>
+  <string name="dt2s">DoubleTap2Sleep</string>
+  <string name="dt2s_summary">Khóa thiết bị của bạn bằng cách nhấp đôi trên đỉnh màn hình.</string>
+  <string name="s2s_right">Vuốt phải</string>
+  <string name="s2s_left">Vuốt trái</string>
+  <string name="s2s_any">Vuốt trái hoặc phải</string>
+  <string name="slide_up">Kéo lên</string>
+  <string name="slide_down">Kéo xuống</string>
+  <string name="slide_left">Kéo trái</string>
+  <string name="slide_right">Kéo phải</string>
+  <string name="draw_e">Vẽ \"E\"</string>
+  <string name="draw_o">Vẽ \"O\"</string>
+  <string name="draw_w">Vẽ \"W\"</string>
+  <string name="draw_c">Vẽ \"C\"</string>
+  <string name="draw_m">Vẽ \"M\"</string>
   <!-- Sound -->
   <!-- Battery -->
+  <string name="level">Mức độ</string>
+  <string name="voltage">Điện áp</string>
+  <string name="capacity">Dung lượng</string>
+  <string name="usb_fast_charge">Sạc USB nhanh</string>
+  <string name="usb_fast_charge_summary">Thiết bị sẽ sạc nhanh hơn khi kết nối với USB. Cắm lại bộ sạc của bạn khi thay đổi các tùy chọn này.</string>
+  <string name="blx">Kéo dài tuổi thọ pin</string>
+  <string name="blx_summary">Thiết lập một giới hạn cho dung lượng pin mà pin sẽ được sạc một giá trị từ 0 đến 100.</string>
+  <string name="charge_rate">Tỷ lệ sạc</string>
+  <string name="charging_current">Sạc hiện tại</string>
   <!-- LED -->
+  <string name="on">Bật</string>
+  <string name="off">Tắt</string>
+  <string name="test">Thử nghiệm</string>
   <!-- I/O Scheduler -->
+  <string name="internal_storage">Bộ nhớ trong</string>
+  <string name="external_storage">Bộ nhớ ngoài</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <!-- Virtual Memory -->

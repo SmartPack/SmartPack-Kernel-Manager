@@ -90,6 +90,7 @@
   <string name="settings">Ajustes</string>
   <string name="about">Información</string>
   <string name="contributors">Contribuidores</string>
+  <string name="help">Ayuda</string>
   <!-- Overall -->
   <string name="offline">Desactivado</string>
   <string name="core">Núcleo %d</string>
@@ -294,6 +295,8 @@
   <string name="core_control_summary">Solución de hotplugging de Qualcomm. Lo siento, no puede ser apagado. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Control de núcleo OnePlus modificado.</string>
+  <string name="min_cpus_big">Mínimos CPUs big</string>
+  <string name="min_cpus_big_summary">Mínimo número de CPUs big que deberían estar funcionando.</string>
   <string name="busy_down_threshold">Umbral de disminución</string>
   <string name="busy_down_threshold_summary">Umbral en que las grandes CPUs deben ser apagadas.</string>
   <string name="busy_up_threshold">Umbral de aumento</string>
@@ -513,11 +516,19 @@
   <string name="continuous_light">Luz continua</string>
   <string name="bright_light_environment">Luz brillante del ambiente</string>
   <string name="bright_light_environment_summary">Ajuste la intensidad relativa del LED cuando se esta en ambientes brillantes.</string>
+  <string name="low_light_environment">Ambiente con poca luz</string>
   <string name="low_light_environment_summary">Ajuste la intensidad relativa del LED cuando se esta en ambientes poco brillantes.</string>
   <string name="notification">Notificación</string>
   <string name="on">Encendido</string>
   <string name="off">Apagado</string>
+  <string name="fade_ramp_control">Control de rampa de desvanecimiento</string>
+  <string name="fade_ramp_control_summary">Habilitar o deshabilitar control de desvanecimiento (rampa) LED.</string>
+  <string name="fade_in">Desvanecimiento de entrada</string>
+  <string name="fade_in_summary">Establece el intervalo de tiempo de la pendiente ascendente.</string>
+  <string name="fade_out">Desvanecimiento de salida</string>
+  <string name="fade_out_summary">Establece el intervalo de tiempo de la pendiente ascendente.</string>
   <string name="test">Probar</string>
+  <string name="led_test_summary">Prueba el led con tu configuración.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Almacenamiento interno</string>
   <string name="external_storage">Almacenamiento externo</string>
@@ -533,6 +544,8 @@
   <string name="iostats_summary">Mantener las estadísticas de E/S para el dispositivo de almacenamiento. Desactivarlo romperá E/S aplicaciones de monitoreo.</string>
   <string name="add_random">Añadir random</string>
   <string name="add_random_summary">Extraer entropía de giro (rotación) de almacenamiento.</string>
+  <string name="rq_affitiny">Afinidad RQ</string>
+  <string name="rq_affinity_summary">Intentar que las peticiones del scheduler se completen en el CPU desde el que se hicieron. Valores mas altos son más agresivos.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Análisis completo</string>
   <string name="pages_shared">Páginas compartidas</string>
@@ -684,6 +697,7 @@
   <string name="profile_warning">Todo lo que cambias aquí va a guardar en tu perfil. Pero atención! Tu configuración también sera aplicada, pero no se salva para aplicar en el arranque.</string>
   <string name="no_changes">No se ha realizado ningún cambio!</string>
   <string name="apply_question">¿Aplicar %s?</string>
+  <string name="append">Añadir</string>
   <string name="details">Detalles</string>
   <string name="press_again_to_apply">Pulsa %s otra vez para aplicar.</string>
   <string name="applied">Aplicado</string>
@@ -700,6 +714,7 @@
   <string name="current_settings">Ajustes actuales</string>
   <string name="select_all">Selecionar todos</string>
   <string name="nothing_selected">No hay nada seleccionado</string>
+  <string name="profile_empty">¡El perfil está vacío!</string>
   <!-- Recovery -->
   <string name="reboot">Reiniciar</string>
   <string name="reboot_soft">Reinicio rápido</string>

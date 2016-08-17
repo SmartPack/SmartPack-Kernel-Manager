@@ -718,6 +718,7 @@
   <string name="current_settings">Impostazioni correnti</string>
   <string name="select_all">Seleziona tutto</string>
   <string name="nothing_selected">Nessuna selezione</string>
+  <string name="profile_empty">Il profilo è vuoto!</string>
   <!-- Recovery -->
   <string name="reboot">Riavvia</string>
   <string name="reboot_soft">Riavvio veloce</string>

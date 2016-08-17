@@ -114,7 +114,7 @@
   <string name="baseband">Модем</string>
   <string name="rom">Прошивка</string>
   <string name="bootloader">Загрузчик</string>
-  <string name="hardware">Аппаратура</string>
+  <string name="hardware">Оборудование</string>
   <string name="architecture">Архитектура</string>
   <!-- Inputs -->
   <string name="bus">Шина</string>
@@ -143,7 +143,7 @@
   <string name="disabled">Отключено</string>
   <string name="enabled">Включено</string>
   <string name="aggressive">Агрессивное</string>
-  <string name="power_saving_wq">Планировать работу на рабочих ЦП для экономии энергии.</string>
+  <string name="power_saving_wq">Планировать задания на рабочих ЦП для экономии энергии.</string>
   <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
   <string name="cfs_scheduler_policy_summary">Политика планировщика CFS решает, как сбалансировать задачи на разные блоки ЦП.</string>
   <string name="cpu_quiet">CPUQuiet</string>
@@ -155,12 +155,12 @@
   <string name="interval">Интервал</string>
   <string name="interval_summary">Минимальный интервал ускорения ЦП.</string>
   <string name="sync_threshold">Порог синхронизации</string>
-  <string name="sync_threshold_summary">Когда загрузка ЦП пресекает установленный порог, частота повышается до этой величины.</string>
+  <string name="sync_threshold_summary">Когда загрузка ядра пресекает установленный порог, текущее ядро повышается до этой частоты.</string>
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал ускорения ЦП при обнаружении ввода.</string>
   <string name="input_boost_freq">Ускорение частоты при вводе</string>
   <string name="input_boost_freq_core">Ускорение частоты ядра %s при вводе</string>
-  <string name="input_boost_freq_summary">Значение, до которого будет повышена частота ЦП при регистрации ввода.</string>
+  <string name="input_boost_freq_summary">Частота ЦП будет поднята до этой частоты при обнаружении ввода.</string>
   <string name="wakeup_boost">Усиление пробуждения</string>
   <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>
   <string name="hotplug_boost">Ускорение hotplug</string>
@@ -172,7 +172,7 @@
   <string name="override_vmin">Переопределить минимальное напряжение</string>
   <string name="override_vmin_summary">Отключить ограничения производителя на понижение напряжения</string>
   <!-- CPU Hotplug -->
-  <string name="hotplug_warning">Включено более одного hotplug-a!\nПожалуйста, используйте только один.</string>
+  <string name="hotplug_warning">Включено более одной системы hotplug-a!\nПожалуйста, используйте только один.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Hotplug от Qualcomm. У вас могут быть проблемы со сменой частот, когда он включен.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -191,7 +191,7 @@
   <string name="eco_mode">Эконом режим</string>
   <string name="eco_mode_summary">Режим энегросбережения для IntelliPlug.</string>
   <string name="hysteresis">Значение гистерезиса</string>
-  <string name="hysteresis_summary">Чем это ниже, тем быстрее отклик.</string>
+  <string name="hysteresis_summary">Чем оно ниже, тем быстрее отклик.</string>
   <string name="cpu_threshold">Порог нагрузки</string>
   <string name="cpu_threshold_summary">Чем выше, тем меньше используемых ядер.</string>
   <string name="suspend">Приостановить</string>
@@ -201,7 +201,7 @@
   <string name="min_cpu_online">Минимальное количество работающих ядер</string>
   <string name="min_cpu_online_summary">Минимальное количество ядер процессора которые будут всегда включены </string>
   <string name="max_cpu_online">Максимальное количество работающих ядер</string>
-  <string name="max_cpu_online_summary">Максимум CPU блоков которые могут работать одновременно.</string>
+  <string name="max_cpu_online_summary">Максимальное количество ядер ЦП, которые всегда будут онлайн.</string>
   <string name="max_cpu_online_screen_off">Максимальное количество ядер при ВЫКЛ экране</string>
   <string name="max_cpu_online_screen_off_summary">Максимальное кол-во включенных ядер ЦП, при выключенном экране.</string>
   <string name="suspend_defer_time">Время отсрочки задержки</string>
@@ -214,7 +214,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
-  <string name="powersaver_mode_summary">Одноядерный режим с макс. частотой 1728 МГц.</string>
+  <string name="powersaver_mode_summary">Устанавливает максимум одно ядро онлайн с частотой @1728 МГц.</string>
   <string name="up_threshold">Высший порог</string>
   <string name="up_threshold_summary">При превышении данного порога загрузки драйвер включит ещё одно ядро CPU.</string>
   <string name="up_timer_cnt">До элемента управления Timer</string>
@@ -238,7 +238,7 @@
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано franciscofranco.</string>
   <string name="cpus_on_touch">Ядра при касании</string>
-  <string name="cpus_on_touch_summary">Количество задействованных ядер процессора при прикосновении к экрану или нажатии кнопок.</string>
+  <string name="cpus_on_touch_summary">Количество ядер онлайн при прикосновении к экрану или нажатии кнопок.</string>
   <string name="cpu_freq_unplug_limit">Частота процессора отключите ограничение</string>
   <string name="first_level">Первый уровень</string>
   <string name="first_level_summary">Порог загрузки для включения всех CPU.</string>
@@ -256,7 +256,7 @@
   <string name="idle_frequency">Частота холостого хода</string>
   <string name="idle_frequency_summary">Если это первое ядро ниже этой частоты, то не включать остальные ядра.</string>
   <string name="touch_boost_time">Время ускорения процессора при касании</string>
-  <string name="touch_boost_time_summary">Время повышенной частоты процессора после касания экрана.</string>
+  <string name="touch_boost_time_summary">Как долго ядро должно быть ускорено после касания экрана.</string>
   <string name="boost_frequency_core">Повысить частоту ядра %d</string>
   <string name="start_delay">Задержка перед запуском</string>
   <string name="start_delay_summary">Время до начала работы hotplug.</string>
@@ -271,7 +271,7 @@
   <string name="cpu_up_rate">Увеличить Скорость процессора.</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Ядерная замена hotplug от Qualcomm. Разработано varunchitre15.</string>
-  <string name="min_cpu_online_screen_off">Минимальное количество ядер при ВЫКЛ экране</string>
+  <string name="min_cpu_online_screen_off">Минимальное количество ядер при выключенном экране</string>
   <string name="min_cpu_online_screen_off_summary">Максимальное кол-во включенных ядер ЦП, при выключенном экране.</string>
   <string name="endurance_level">Уровень стойкости</string>
   <string name="endurance_level_summary">Энергосберегающий профиль.</string>
@@ -300,7 +300,7 @@
   <string name="busy_up_threshold">Верхний порог занятости</string>
   <string name="busy_up_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
   <string name="offline_delay">Задержка оффлайн</string>
-  <string name="offline_delay_summary">Время до отключения процессора.</string>
+  <string name="offline_delay_summary">Время до отключения ядра.</string>
   <!--Thermal-->
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>
@@ -314,7 +314,7 @@
   <string name="freq_throttle_temp">Троттлинг частоты при температуре</string>
   <string name="freq_throttle_temp_summary">Температура начала троттлинга частоты.</string>
   <string name="cpu_throttle_temp">Температура троттлинга ядра</string>
-  <string name="cpu_throttle_temp_summary">Температура отключения процессора.</string>
+  <string name="cpu_throttle_temp_summary">Температура начала отключения ядер.</string>
   <string name="cpu_temp_hysteresis">Гистерезис температур ядра</string>
   <string name="freq_step">Шаг частоты</string>
   <string name="immediately_limit_stop">Сразу же ограничить</string>
@@ -536,11 +536,11 @@
   <string name="pages_sharing">Страницы обмена</string>
   <string name="pages_unshared">Необъединённых страниц</string>
   <string name="pages_volatile">Необъединяемых страниц</string>
-  <string name="ksm_summary">Уменьшает потребление памяти, но увеличивает загрузку ЦП.</string>
+  <string name="ksm_summary">Снижает загрузку памяти, но влияет на загрузку ЦП.</string>
   <string name="pages_to_scan">Страницы для сканирования</string>
   <string name="sleep_milliseconds">Период между сканированием в миллисекундах</string>
   <string name="deferred_timer">Отложенный таймер</string>
-  <string name="deferred_timer_summary">Уменьшает нагрузку на CPU, но экономит меньше памяти.</string>
+  <string name="deferred_timer_summary">Уменьшает некоторую загрузку ЦП, взамен на меньшее сбережение памяти.</string>
   <string name="max_cpu_usage">Максимальная загрузка ЦП</string>
   <string name="max_cpu_usage_summary">Максимальное использование CPU, при объединении страниц.</string>
   <!-- Low Memory Killer -->
@@ -714,14 +714,14 @@
   <string name="executing">Выполнение</string>
   <string name="result">Результат</string>
   <!-- On Boot -->
-  <string name="on_boot_welcome_summary">Этот раздел показывает вам, какие вещи будут происходить, когда ваше устройство загружается. Если он пустой, то ничего не произойдет после загрузки.</string>
+  <string name="on_boot_welcome_summary">Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки.</string>
   <string name="delete_question">Удалить %s?</string>
   <string name="arguments">Параметры: %s</string>
   <string name="disable_question">Отключить %s?</string>
   <!-- Settings -->
   <string name="fahrenheit_title">По Фаренгейту</string>
-  <string name="fahrenheit_summary">Используйте для измерения температуры по Фаренгейту.</string>
-  <string name="force_english">Принудительный английский</string>
+  <string name="fahrenheit_summary">Использовать измерение температуры по Фаренгейту.</string>
+  <string name="force_english">Принудительно использовать английский язык</string>
   <string name="user_interface">Пользовательский интерфейс</string>
   <string name="dark_theme">Тёмная тема</string>
   <string name="material_icon">Иконка Material</string>
@@ -741,17 +741,17 @@
   <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
   <string name="confirmation_notification">Уведомление подтверждения</string>
   <string name="script">Скрипт</string>
-  <string name="apply_on_boot_script_summary">Использовать консольные скрипты для применения настроек. Используйте это только в том случае, если у вас возникают проблемы с применением при загрузке. Если же проблема останется даже после включения этой опции, проверьте, нет ли конфликтующих приложений для настройки ядра.</string>
+  <string name="apply_on_boot_script_summary">Использовать консольный скрипт для применения настроек. Пожалуйста, включайте это только если у вас есть проблемы с применением при загрузке. Если же проблема всё ещё останется после включения этой опции, пожалуйста, проверьте, нет ли других приложений, конфликтующих с Kernel Adiutor.</string>
   <string name="debugging">Отладка</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопировать logcat в /sdcard/logcat.txt</string>
-  <string name="last_kmsg">Последний лог ядра</string>
+  <string name="last_kmsg">Последнее сообщение ядра</string>
   <string name="last_kmsg_summary">Скопировать /proc/last_kmsg в /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Сообщение драйвера</string>
-  <string name="driver_message_summary">Скопировать dmesg в /sdcard/dmesg.txt</string>
+  <string name="driver_message_summary">Скопировать сообщение драйвера (dmesg) в /sdcard/dmesg.txt</string>
   <string name="security">Безопасность</string>
-  <string name="set_password">Установить Пароль</string>
-  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы открываете приложение, вам придется его вводить Если вы забудете его, просто cотрите данные этого приложения в настройках вашего телефона. Не волнуйтесь, я не делюсь им ни с кем.</string>
+  <string name="set_password">Установить пароль</string>
+  <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы откроете это приложение, вы должны ввести его. Если вы его забудете, просто сотрите данные этого приложения в настройках вашего устройства. Не волнуйтесь, я не поделюсь вашим паролем.</string>
   <string name="delete_password">Удалить пароль</string>
   <string name="old_password">Старый пароль</string>
   <string name="new_password">Новый пароль</string>
@@ -759,27 +759,27 @@
   <string name="old_password_wrong">Старый пароль неверный</string>
   <string name="password_empty">Пароль пуст</string>
   <string name="password_not_match">Новый пароль не совпадает с подтверждением</string>
-  <string name="password_too_long">Пароль слишком длинный (макс. 32 символов)</string>
+  <string name="password_too_long">Пароль слишком длинный (макс. 32 символа)</string>
   <string name="set_password_first">Сначала установите пароль</string>
-  <string name="fingerprint_summary">Использование отпечатка пальца пройти проверки безопасности. Это будет работать, как долго вы зарегистрированы отпечатки пальцев.</string>
+  <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
   <string name="sections">Разделы</string>
   <!-- About -->
-  <string name="about_me">Привет, я Вилли Йе aka Grarak, 19-летний студент из Вены. Я занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor, я также поддерживаю CyanogenMod для нескольких устройств и работаю над ParanoidAndroid. Поэтому прошу понять, если я не наду время обновить приложение.</string>
-  <string name="libraries_used">Использованы библиотеки</string>
+  <string name="about_me">Привет, я Вилли Йе aka Grarak, 19-летний студент из Вены. Я занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor, я также поддерживаю CyanogenMod для нескольких устройств и работаю над ParanoidAndroid. Поэтому прошу понять, если я не найду время обновить приложение.</string>
+  <string name="libraries_used">Использованые библиотеки</string>
   <!-- Contributors -->
-  <string name="commits">%d коммиты</string>
+  <string name="commits">Изменения: %d</string>
   <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
   <!-- Help -->
-  <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
-  <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
-  <string name="have_to_donate">Должен ли я пожертвовать для того, чтобы использовать эти функции премиум-класса?</string>
-  <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы можете сами его собрать. При этом функции платной версии включаются при debug сборке apk-файла, так что для их получения нет нужны править код.</string>
+  <string name="misspelled">Почему неправильно написано \"Adiutor\"?</string>
+  <string name="misspelled_summary">Слово Adiutor — латинское и означает \"помошник\".</string>
+  <string name="have_to_donate">Должен ли я пожертвовать, чтобы использовать эти премиум-функции?</string>
+  <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы с лёгкостью можете собрать его самостоятельно. Функции при пожертвовании включены по умолчанию, если вы соберёте отладочный apk, так что нет нужды править ни одну строчку кода.</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
-  <string name="cpu_freq_not_sticking_summary">Это может быть вызвано многими причинами. Многие ядра в наше время имеют свои собственные системы hotplug-а, которые контролируют частоту ЦП, и CyanogenMod имеет свою собственную реализацию ускорения ЦП, которая регулирует частоту. Я хотел бы предложить вам не трогать частоты ЦП и дать ядру делать свою работу. Это также касается и других функций! Если они меняются, то это потому что ядро/система не хочет позволить вам изменить его.</string>
-  <string name="feature_not_appearing">Почему нет функции x и y?</string>
-  <string name="feature_not_appearing_summary">Отображаются только те функции, которые поддерживаются устройством!</string>
+  <string name="cpu_freq_not_sticking_summary">Это может быть вызвано многими причинами. В наши дни, многие ядра имеют свои собственные системы hotplug-а, которые контролируют частоту ЦП, и CyanogenMod имеет свою собственную реализацию ускорения ЦП, которая регулирует частоту. Я бы предложил вам не трогать частоты ЦП и дать ядру делать свою работу. Это также касается и других функций! Если они не держатся, то это потому что ядро/система не хочет позволить вам изменить его.</string>
+  <string name="feature_not_appearing">Почему функции x и y не отображаются?</string>
+  <string name="feature_not_appearing_summary">Отображаются только функции, поддерживаемые устройством!</string>
   <string name="feature_function">Что делает функция x?</string>
-  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Лучше тщательно изучить его, прежде чем играть с железом вашего аппарата.</string>
-  <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
-  <string name="add_new_features_summary">Это трудно сказать. Я пытаюсь добавить все функции, но это трудно сделать это приложение универсального для всех устройств.</string>
+  <string name="feature_function_summary">Если вы не знаете, что делает эта функция, то просто не трогайте её. Пожалуйста, проведите тщательное исследование, прежде чем играть с вашим дорогим железом.</string>
+  <string name="add_new_features">Могли ли бы вы добавить функцию x и y?</string>
+  <string name="add_new_features_summary">Сложно сказать. Я пытаюсь добавлять все функции, но это сложно сделать это приложение универсальным для всех устройств.</string>
 </resources>
