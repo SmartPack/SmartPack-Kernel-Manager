@@ -31,10 +31,13 @@ import android.widget.RemoteViewsService;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
+import com.grarak.kerneladiutor.services.boot.Service;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -97,8 +100,22 @@ public class Widget extends AppWidgetProvider {
                 Prefs.saveBoolean("profileclicked" + position, false, context);
                 RootUtils.SU su = new RootUtils.SU(true, TAG);
 
+                List<String> adjustedCommands = new ArrayList<>();
                 for (Profiles.ProfileItem.CommandItem command : profileItem.getCommands()) {
-                    su.runCommand(command.getCommand());
+                    CPUFreq.ApplyCpu applyCpu;
+                    synchronized (this) {
+                        if (command.getCommand().startsWith("#")
+                                && (applyCpu = new CPUFreq.ApplyCpu(command.getCommand()
+                                .substring(1))).toString() != null) {
+                            adjustedCommands.addAll(Service.getApplyCpu(applyCpu, su));
+                        } else {
+                            adjustedCommands.add(command.getCommand());
+                        }
+                    }
+                }
+
+                for (String command : adjustedCommands) {
+                    su.runCommand(command);
                 }
                 su.close();
                 Utils.toast(context.getString(R.string.applied), context);
