@@ -35,12 +35,12 @@ import java.util.List;
  */
 public class CoreCtl {
 
-    private static final String CORE_CTL = "/sys/devices/system/cpu/cpu%d/core_ctl";
+    public static final String CORE_CTL = "/sys/devices/system/cpu/cpu%d/core_ctl";
     private static final String HCUBE = "/sys/devices/system/cpu/cpu%d/hcube";
     private static String PARENT;
     private static final String ENABLE = "/hc_on";
     private static final String IS_BIG_CLUSTER = "/is_big_cluster";
-    private static final String MIN_CPUS = "/min_cpus";
+    public static final String MIN_CPUS = "/min_cpus";
     private static final String BUSY_DOWN_THRESHOLD = "/busy_down_thres";
     private static final String BUSY_UP_THRESHOLD = "/busy_up_thres";
     private static final String OFFLINE_DELAY_MS = "/offline_delay_ms";

@@ -32,6 +32,7 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.QcomBcl;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -119,7 +120,15 @@ public class CPUFreq {
             run(Control.write("1", CPU_LOCK_FREQ), null, null);
         }
         if (context != null) {
-            run("#" + new ApplyCpu(path, value, min, max).toString(), path, context);
+            if (isBigLITTLE()) {
+                List<Integer> bigCpus = getBigCpuRange();
+                List<Integer> littleCpus = getLITTLECpuRange();
+                run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[bigCpus.size()]),
+                        littleCpus.toArray(new Integer[littleCpus.size()]),
+                        sCoreCtlMinCpu).toString(), path, context);
+            } else {
+                run("#" + new ApplyCpu(path, value, min, max).toString(), path, context);
+            }
         }
     }
 
@@ -130,28 +139,125 @@ public class CPUFreq {
         private int mMin;
         private int mMax;
 
+        // big.LITTLE
+        private List<Integer> mBigCpus;
+        private List<Integer> mLITTLECpus;
+        private int mCoreCtlMin;
+
         private ApplyCpu(String path, String value, int min, int max) {
             try {
                 JSONObject main = new JSONObject();
-                main.put("path", mPath = path);
-                main.put("value", mValue = value);
-                main.put("min", mMin = min);
-                main.put("max", mMax = max);
+                init(main, path, value, min, max);
                 mJson = main.toString();
             } catch (JSONException ignored) {
             }
         }
 
+        private ApplyCpu(String path, String value, int min, int max, Integer[] bigCpus,
+                         Integer[] littleCpus, int corectlmin) {
+            try {
+                JSONObject main = new JSONObject();
+                init(main, path, value, min, max);
+
+                // big.LITTLE
+                JSONArray bigCpusArray = new JSONArray();
+                for (int cpu : bigCpus) {
+                    bigCpusArray.put(cpu);
+                }
+                main.put("bigCpus", bigCpusArray);
+                mBigCpus = Arrays.asList(bigCpus);
+
+                JSONArray LITTLECpusArray = new JSONArray();
+                for (int cpu : littleCpus) {
+                    LITTLECpusArray.put(cpu);
+                }
+                main.put("LITTLECpus", LITTLECpusArray);
+                mLITTLECpus = Arrays.asList(littleCpus);
+
+                main.put("corectlmin", mCoreCtlMin = corectlmin);
+
+                mJson = main.toString();
+            } catch (JSONException ignored) {
+            }
+        }
+
+        private void init(JSONObject main, String path, String value, int min, int max)
+                throws JSONException {
+            main.put("path", mPath = path);
+            main.put("value", mValue = value);
+            main.put("min", mMin = min);
+            main.put("max", mMax = max);
+        }
+
         public ApplyCpu(String json) {
             try {
                 JSONObject main = new JSONObject(json);
-                mPath = main.getString("path");
-                mValue = main.getString("value");
-                mMin = main.getInt("min");
-                mMax = main.getInt("max");
+                mPath = getString(main, "path");
+                mValue = getString(main, "value");
+                mMin = getInt(main, "min");
+                mMax = getInt(main, "max");
+
+                // big.LITTLE
+                Integer[] bigCpus = getIntArray(main, "bigCpus");
+                if (bigCpus != null) {
+                    mBigCpus = Arrays.asList(bigCpus);
+                }
+
+                Integer[] LITTLECpus = getIntArray(main, "LITTLECpus");
+                if (LITTLECpus != null) {
+                    mLITTLECpus = Arrays.asList(LITTLECpus);
+                }
+
+                mCoreCtlMin = getInt(main, "corectlmin");
+
                 mJson = json;
             } catch (JSONException ignored) {
             }
+        }
+
+        private Integer[] getIntArray(JSONObject jsonObject, String key) {
+            try {
+                JSONArray array = jsonObject.getJSONArray(key);
+                Integer[] integers = new Integer[array.length()];
+                for (int i = 0; i < integers.length; i++) {
+                    integers[i] = array.getInt(i);
+                }
+                return integers;
+            } catch (JSONException ignored) {
+                return null;
+            }
+        }
+
+        private String getString(JSONObject jsonObject, String key) {
+            try {
+                return jsonObject.getString(key);
+            } catch (JSONException ignored) {
+                return null;
+            }
+        }
+
+        private int getInt(JSONObject jsonObject, String key) {
+            try {
+                return jsonObject.getInt(key);
+            } catch (JSONException ignored) {
+                return -1;
+            }
+        }
+
+        public int getCoreCtlMin() {
+            return mCoreCtlMin;
+        }
+
+        public List<Integer> getLITTLECpuRange() {
+            return mLITTLECpus;
+        }
+
+        public List<Integer> getBigCpuRange() {
+            return mBigCpus;
+        }
+
+        public boolean isBigLITTLE() {
+            return getBigCpuRange() != null && getLITTLECpuRange() != null;
         }
 
         public int getMax() {
