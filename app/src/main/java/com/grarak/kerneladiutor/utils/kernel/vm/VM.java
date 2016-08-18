@@ -32,7 +32,7 @@ public class VM {
 
     private static final String PATH = "/proc/sys/vm";
     private static final String[] SUPPORTED_VM = {"dirty_ratio", "dirty_background_ratio", "dirty_expire_centisecs",
-            "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio", "swappiness",
+            "dirty_writeback_centisecs", "min_free_kbytes", "oom_kill_allocating_task", "overcommit_ratio", "swappiness",
             "vfs_cache_pressure", "laptop_mode", "extra_free_kbytes"};
 
     public static void setValue(String value, int position, Context context) {
