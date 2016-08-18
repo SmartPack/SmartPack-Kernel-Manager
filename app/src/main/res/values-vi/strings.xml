@@ -21,7 +21,7 @@
   <string name="pirated">Có vẻ như ứng dụng ủng hộ đã không được mua thông qua cửa hàng Play! Nếu bạn vi phạm bản quyền, bạn nên cảm thấy xấu hổ!</string>
   <string name="donate">Ủng hộ</string>
   <string name="donate_summary">Tính năng này chỉ có sẵn khi ứng dụng ủng hộ được cài đặt! Đừng lo lắng. Bởi vì ứng dụng này là mã nguồn mở, bạn có thể dễ dàng xây dựng nó cho mình và loại bỏ sự kiểm tra này. Nhưng tôi hy vọng bạn hỗ trợ các nhà phát triển. Cảm ơn bạn đã sử dụng Kernel Adiutor! Một khi bạn mua các ứng dụng ủng hộ bạn phải khởi động lại Kernel Adiutor để kích hoạt tất cả tính năng.</string>
-  <string name="donate_nope">Tôi sẽ ko bị dụ bởi vụ lừa đảo này đâu!</string>
+  <string name="donate_nope">Tôi sẽ ko bị dụ đâu :P!</string>
   <string name="donate_yes">Tôi yêu ứng dụng này. Phải ủng hộ!</string>
   <string name="ad_here">Quảng cáo của bạn có thể ở đây</string>
   <string name="remove_ad">Loại bỏ quảng cáo</string>
@@ -198,7 +198,7 @@
   <string name="history_size">Kích thước History</string>
   <string name="update_rate">Tỉ lệ cập nhật</string>
   <string name="fast_lane_load_summary">Cải thiện độ trễ bằng cách ngay lập tức đưa tất cả các CPU mở nếu hiện tại mức độ tải trên bất kỳ CPU ở trên ngưỡng nhất định.</string>
-  <string name="io_is_busy">IO đang bận</string>
+  <string name="io_is_busy">IO is busy</string>
   <string name="delay">Độ trễ</string>
   <string name="delay_summary">Thời gian giữa các lần kiểm tra.</string>
   <string name="pause">Tạm dừng</string>
@@ -271,10 +271,48 @@
   <!-- Build prop Editor -->
   <!-- Profile -->
   <!-- Recovery -->
+  <string name="reboot_soft">Khởi động lại mềm</string>
+  <string name="reboot_recovery">Khởi động vào Recovery</string>
+  <string name="reboot_bootloader">Khởi động lại bộ nạp khởi động</string>
+  <string name="reboot_download">Khởi động lại tải về</string>
+  <string name="wipe_data">Xóa dữ liệu (data)</string>
+  <string name="wipe_cache">Xóa bộ nhớ cache</string>
+  <string name="flash_zip">Flash Zip</string>
+  <string name="add_action_first">Bạn phải thêm hành động đầu tiên!</string>
+  <string name="flash_now_confirm">Bạn có muốn chạy hành động của bạn? Điện thoại sẽ khởi động lại vào Recover và những hành động sẽ chạy theo thứ tự như bạn thêm chúng.</string>
   <!-- Init.d -->
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="set_password">Đặt mật khẩu</string>
+  <string name="set_password_summary">Bạn có thể bảo vệ Kernel Adiutor bằng cách thiết lập một mật khẩu. Mỗi khi bạn mở ứng dụng này, bạn phải nhập mật khẩu. Nếu bạn quên nó, đơn giản chỉ cần xoá sạch dữ liệu của ứng dụng này trong các cài đặt của thiết bị của bạn. Đừng lo lắng tôi sẽ không chia sẻ mật khẩu của bạn.</string>
+  <string name="delete_password">Xóa mật khẩu</string>
+  <string name="old_password">Mật khẩu cũ</string>
+  <string name="new_password">Mật khẩu mới</string>
+  <string name="confirm_new_password">Xác nhận lại mật khẩu</string>
+  <string name="old_password_wrong">Mật khẩu cũ sai</string>
+  <string name="password_empty">Không có mật khẩu</string>
+  <string name="password_not_match">Mật khẩu mới không khớp với xác nhận</string>
+  <string name="password_too_long">Mật khẩu quá dài (tối đa 32 ký tự)</string>
+  <string name="set_password_first">Thiết lập một mật khẩu trước</string>
+  <string name="fingerprint_summary">Sử dụng dấu vân tay để vượt qua kiểm tra an ninh. Tùy chọn này chạy nếu như bạn đã đăng kí dấu vân tay.</string>
+  <string name="sections">Phần</string>
   <!-- About -->
+  <string name="about_me">Xin chào, tôi là Willi Ye aka Grarak, một sinh viên năm nay 19 tuổi đang sống ở Vienna. Tôi đã phát triển trên Android khá một thời gian dài. Bên cạnh Kernel Adiutor tôi cũng duy trì CyanogenMod cho vài thiết bị và làm việc trên ParanoidAndroid. Vì vậy hãy hiểu nếu tôi không có đủ thời gian để cập nhật ứng dụng này.</string>
+  <string name="libraries_used">Các thư viện sử dụng</string>
   <!-- Contributors -->
+  <string name="commits">%d cam kết</string>
+  <string name="no_internet">Hãy kiểm tra kết nối mạng của bạn!</string>
   <!-- Help -->
+  <string name="misspelled">Tại sao bạn đánh vần sai \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor là tiếng Latin và có nghĩa là người hỗ trợ (helper).</string>
+  <string name="have_to_donate">Tôi có phải đóng góp để sử dụng các tính năng nâng cao?</string>
+  <string name="have_to_donate_summary">Không, đây là ứng dụng mã nguồn mở. Bạn có thể dễ dàng xây dựng nó cho mình. Tính năng đóng góp được kích hoạt theo mặc định khi bạn xây dựng một debugging apk, do đó không cần phải thay đổi bất kỳ dòng mã nào.</string>
+  <string name="cpu_freq_not_sticking">Tại sao xung nhịp CPU của tôi không cố định?</string>
+  <string name="cpu_freq_not_sticking_summary">Điều này có thể do nhiều lý do. Nhiều kernel hiện nay có hệ thống \"hotplugging\" riêng của họ điều khiển tần số CPU và CyanogenMod có êệ thống riêng thực hiện việc tăng tốc CPU- điều chỉnh tần số. Tôi sẽ đề nghị bạn không \"vọc\" xung nhịp CPU và để cho kernel làm công việc của mình. Điều này cũng được khuyên cho các chức năng khác! Nếu xung nhịp không cố định, đó là bởi vì kernel/hệ thống không muốn để cho phép bạn thay đổi nó.</string>
+  <string name="feature_not_appearing">Tại sao tính năng x và y không hiển thị?</string>
+  <string name="feature_not_appearing_summary">Chỉ các tính năng được hỗ trợ bởi thiết bị của bạn được hiển thị!</string>
+  <string name="feature_function">Tính năng x là gì?</string>
+  <string name="feature_function_summary">Nếu bạn không biết gì về điều này, đừng chạm vào nó. Xin vui lòng làm một nghiên cứu thích hợp trước khi vọc với phần cứng đắt tiền của bạn.</string>
+  <string name="add_new_features">Bạn có thể thêm tính năng x và y?</string>
+  <string name="add_new_features_summary">Rất khó nói. Tôi cố gắng để thêm tất cả các tính năng, nhưng khá là khó khăn để thực hiện điều này cho tất cả các thiết bị.</string>
 </resources>

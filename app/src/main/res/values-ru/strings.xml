@@ -199,24 +199,24 @@
   <string name="cpus_boosted">Количество ускоренных ядер ЦП</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно ускоренных ядер ЦП.</string>
   <string name="min_cpu_online">Минимальное количество работающих ядер</string>
-  <string name="min_cpu_online_summary">Минимальное количество ядер процессора которые будут всегда включены </string>
+  <string name="min_cpu_online_summary">Минимальное количество ядер ЦП, которые будут всегда онлайн.</string>
   <string name="max_cpu_online">Максимальное количество работающих ядер</string>
-  <string name="max_cpu_online_summary">Максимальное количество ядер ЦП, которые всегда будут онлайн.</string>
+  <string name="max_cpu_online_summary">Максимальное число ядер, которые будут всегда онлайн.</string>
   <string name="max_cpu_online_screen_off">Максимальное количество ядер при ВЫКЛ экране</string>
-  <string name="max_cpu_online_screen_off_summary">Максимальное кол-во включенных ядер ЦП, при выключенном экране.</string>
+  <string name="max_cpu_online_screen_off_summary">Максимальное число ядер, которые будут онлайн при выключенном экране.</string>
   <string name="suspend_defer_time">Время отсрочки задержки</string>
   <string name="defer_sampling">Отложенная выборка</string>
   <string name="boost_lock_duration">Повышение длительности блокировки</string>
   <string name="boost_lock_duration_summary">Минимальный интервал разгона процессора.</string>
   <string name="down_lock_duration">Вниз длительности блокировки</string>
-  <string name="down_lock_duration_summary">Минимальный интервал работы процессора.</string>
+  <string name="down_lock_duration_summary">Минимальный интервал работы ядра.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
   <string name="powersaver_mode_summary">Устанавливает максимум одно ядро онлайн с частотой @1728 МГц.</string>
   <string name="up_threshold">Высший порог</string>
-  <string name="up_threshold_summary">При превышении данного порога загрузки драйвер включит ещё одно ядро CPU.</string>
+  <string name="up_threshold_summary">При превышении этого порога загрузки, драйвер включит ещё одно ядро.</string>
   <string name="up_timer_cnt">До элемента управления Timer</string>
   <string name="up_timer_cnt_summary">Управление таймер до процессоров.</string>
   <string name="down_timer_cnt">Обратный отсчет</string>
@@ -263,7 +263,7 @@
   <string name="delay">Задержка</string>
   <string name="delay_summary">Время между регестрированием проверки.</string>
   <string name="pause">пауза</string>
-  <string name="pause_summary">Если что-то вмешивается в работу ЦП, то отключить контроль на данное время.</string>
+  <string name="pause_summary">Если что-то ещё подключает ядро, то \"заснуть\" на данное время.</string>
   <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано Alucard.</string>
   <string name="sampling_rate">Частота дискретизации</string>
@@ -272,7 +272,7 @@
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Ядерная замена hotplug от Qualcomm. Разработано varunchitre15.</string>
   <string name="min_cpu_online_screen_off">Минимальное количество ядер при выключенном экране</string>
-  <string name="min_cpu_online_screen_off_summary">Максимальное кол-во включенных ядер ЦП, при выключенном экране.</string>
+  <string name="min_cpu_online_screen_off_summary">Минимальное число ядер, которые будут онлайн при выключенном экране.</string>
   <string name="endurance_level">Уровень стойкости</string>
   <string name="endurance_level_summary">Энергосберегающий профиль.</string>
   <string name="quad_core_mode">Четырёх-ядерный режим</string>
@@ -328,7 +328,7 @@
   <string name="temp_limit">Ограничение температуры</string>
   <string name="temp_limit_summary">Если температура поднимается, термодатчик будет регулировать частоту процессора для снижения температуры.</string>
   <string name="freq_limit_debug">Отладка лимита частот</string>
-  <string name="freq_limit_debug_summary">Позволяет отследить работу ЦП при достижении лимита температур.</string>
+  <string name="freq_limit_debug_summary">Это позволяет отладить троттлинг ЦП при достижении температурного максимума.</string>
   <string name="temp_limit_min_freq">Минимальная частота лимита температур</string>
   <string name="temp_limit_min_freq_summary">Данная частота будет использоваться при достижении температурного лимита.</string>
   <string name="allowed_low_low">Этап 1: Допускается низкий низкий</string>
@@ -542,7 +542,7 @@
   <string name="deferred_timer">Отложенный таймер</string>
   <string name="deferred_timer_summary">Уменьшает некоторую загрузку ЦП, взамен на меньшее сбережение памяти.</string>
   <string name="max_cpu_usage">Максимальная загрузка ЦП</string>
-  <string name="max_cpu_usage_summary">Максимальное использование CPU, при объединении страниц.</string>
+  <string name="max_cpu_usage_summary">Максимальный процент загрузки ЦП при объединении страниц.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Активные приложения</string>
   <string name="lmk_adaptive">Адаптивный Low Memory Killer</string>

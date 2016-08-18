@@ -26,8 +26,6 @@
   <string name="ad_here">Hier könnte Ihre Werbung stehen</string>
   <string name="remove_ad">Werbung entfernen</string>
   <string name="warning">Warnung</string>
-  <string name="gh_ad">Dies ist keine kommerzielle Anzeige. Nehmen Sie dies nicht ernst. Dies ist nur ein lustiger weg den Platz zu füllen wenn echte Werbung nicht lädt (besonders bei Adblock Benutzern).</string>
-  <string name="open_ad_anyway">Anzeige trotzdem öffnen</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_text">Wende Einstellungen in %d Sekunden an.</string>
   <string name="apply_on_boot_complete">Einstellungen angewandt.</string>
@@ -90,7 +88,6 @@
   <string name="settings">Einstellungen</string>
   <string name="about">Über uns</string>
   <string name="contributors">Unterstützer</string>
-  <string name="help">Hilfe</string>
   <!-- Overall -->
   <string name="offline">Abgeschaltet</string>
   <string name="core">Kern %d</string>
@@ -110,7 +107,6 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android Codename</string>
   <string name="fingerprint">Fingerabdruck</string>
-  <string name="build_display_id">Display ID erstellen</string>
   <string name="baseband">Baseband</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Bootloader</string>
@@ -122,7 +118,6 @@
   <string name="version">Version</string>
   <string name="handlers">Handlers</string>
   <!-- CPU -->
-  <string name="cores_singular">%d Kern</string>
   <string name="cores">%d Kerne</string>
   <string name="no_offline_core">Sie können diesen Kern nicht ausschalten!</string>
   <string name="cpu_max_freq">Maximale CPU-Frequenz</string>
@@ -137,7 +132,6 @@
   <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Governor der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
   <string name="tunables_error">%s ist nicht einstellbar</string>
-  <string name="manual">Manuell</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
   <string name="disabled">Deaktiviert</string>
@@ -219,7 +213,6 @@
   <string name="up_threshold_summary">über dieser Schwelle wird ein weiterer Kern aktiviert.</string>
   <string name="up_timer_cnt">Timer-Steuerelement</string>
   <string name="up_timer_cnt_summary">Kontroll-Timer für aktive CPUs.</string>
-  <string name="down_timer_cnt">Countdown Steuerung</string>
   <string name="down_timer_cnt_summary">Kontrollieren für ruhende CPUs.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von faux123.</string>
@@ -251,7 +244,6 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Entwickelt von showp1984.</string>
-  <string name="screen_off_single_cpu">Bildschirm aus nur einem einzigen Kern</string>
   <string name="screen_off_single_cpu_summary">Nur eine CPU verwenden, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="idle_frequency">Leerlauf-Frequenz</string>
   <string name="idle_frequency_summary">Wenn der erste Kern unter der eingestellten Frequenz läuft, nicht die anderen Kerne aktivieren.</string>
@@ -271,7 +263,6 @@
   <string name="cpu_up_rate">CPU-Up Rate</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Ein im Kernel eingebauter Ersatz für Qualcomms Hotplugging. Von varunchitre15 entwickelt.</string>
-  <string name="min_cpu_online_screen_off">Minimale CPU Bildschirm aus</string>
   <string name="min_cpu_online_screen_off_summary">Minimale Anzahl der CPUs, die online sein werden, wenn der Bildschirm ausgeschaltet ist.</string>
   <string name="endurance_level">Ausdauer Level</string>
   <string name="endurance_level_summary">Ein Stromeinsparungsprofil.</string>
@@ -295,9 +286,8 @@
   <string name="core_control_summary">Qualcomms Hotplugging Lösung. Leider können Sie es nicht deaktivieren. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus geänderte-Core-Control.</string>
-  <string name="min_cpus_big">Minimale CPUs größe</string>
-  <string name="min_cpus_big_summary">Minimale Anzahl an CPUs die online sein sollten.</string>
-  <string name="busy_down_threshold">Threshold auf beschäftigt stellen</string>
+  <string name="min_cpus_big">Minimale CPUs big</string>
+  <string name="min_cpus_big_summary">Minimale Anzahl an big-CPUs die online sein sollten.</string>
   <string name="busy_down_threshold_summary">Schwelle, wenn große CPUs deaktiviert werden sollen.</string>
   <string name="busy_up_threshold_summary">Schwelle, wenn große CPUs aktiviert werden sollen.</string>
   <string name="offline_delay">Offline Verzögerung</string>
@@ -345,7 +335,6 @@
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
   <!-- GPU -->
   <string name="frequencies">Frequenzen</string>
-  <string name="gpu_2d_freq">GPU 2D Frequenz</string>
   <string name="gpu_freq">GPU-Frequenz</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_2d_max_freq_summary">Maximale Taktfrequenz der 2D-GPU einstellen.</string>
@@ -357,15 +346,12 @@
   <string name="gpu_2d_governor_summary">Ändert den 2D-Governor der GPU.</string>
   <string name="gpu_governor">GPU-Governor</string>
   <string name="gpu_governor_summary">Ändert den GPU-Governor.</string>
-  <string name="gpu_governor_tunables">GPU Gouverneur Einstellungen</string>
   <string name="simple_gpu_algorithm">Einfacher GPU-Algorithmus</string>
   <string name="simple_gpu_algorithm_summary">Ein Add-on für MSM Adreno TZ GPU Gouvernor. Von faux123 entwickelt.</string>
   <string name="laziness">Trägheit</string>
   <string name="laziness_summary">Dies erhöht die Schwelle für die GPU-Frequenzen. Die Leistung wird gesteigert, je niedriger die Schwelle ist.</string>
-  <string name="ramp_thresold">Rampe des Thresholds</string>
   <string name="ramp_thresold_summary">Dies erhöht die Anzahl der Zeiten die der GPU-Governor Rampe hinunter Anfragen. Je höher es ist, umso mehr Leistung erhältst du.</string>
   <string name="adreno_idler">Adreno Rad</string>
-  <string name="adreno_idler_summary">Ein effizientes workaround für msm-adreno-tz\'s overheads. Programmiert von arter97.</string>
   <string name="down_differential">Nach unten Differential</string>
   <string name="down_differential_summary">Auslastungswert zur Bestimmung der Schwelle zum Leerlauf.</string>
   <string name="idle_wait">Leerlaufschwelle</string>
@@ -389,15 +375,12 @@
   <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">Rot-Grau</string>
-  <string name="red_mids">Rote Mitten</string>
   <string name="red_blacks">Rot-Schwarz</string>
   <string name="red_whites">Rot-Weiß</string>
   <string name="green_greys">Grün-Grau</string>
-  <string name="green_mids">Grüne Mitten</string>
   <string name="green_blacks">Grün-Schwarz</string>
   <string name="green_whites">Grün-Weiß</string>
   <string name="blue_greys">Blau-Grau</string>
-  <string name="blue_mids">Blaue mitten</string>
   <string name="blue_blacks">Blau-Schwarz</string>
   <string name="blue_whites">Blau-Weiß</string>
   <string name="contrast">Kontrast</string>
@@ -410,7 +393,6 @@
   <string name="blue_negative">Blau Negativ</string>
   <string name="white_point">Weißpunkt</string>
   <string name="lcd_backlight">LCD-Hintergrundbeleuchtung</string>
-  <string name="gamma_profiles_summary">Nach Auswahl eines Profils Bildschirm bitte aus- und wieder anschalten.</string>
   <string name="brightness_mode">Exponentiellen statt linearen Hintergrundbeleuchtungsmodus benutzen.</string>
   <string name="min_brightness">Minimale Helligkeit</string>
   <string name="min_brightness_summary">Erlaubt Ihnen die Bildschirmhelligkeit niedriger einzustellen als es mit Standard-Android möglich ist.</string>
@@ -419,10 +401,7 @@
   <string name="backlight_dimmer">Hintergrundbeleuchtungs-Dimmer</string>
   <string name="threshold">Schwellwert</string>
   <string name="offset">Offset</string>
-  <string name="negative_toggle">Negativer Wechsel</string>
   <string name="negative_toggle_summary">Umkehren der Bildschirmfarben, indem die Menü-Taste 4 Mal schnell gedrückt wird, aktivieren.</string>
-  <string name="mdnie_global_controls">mDNIe globale Kontrollen</string>
-  <string name="register_hook">Hook registrieren</string>
   <string name="master_sequence">Haupt-Sequenz</string>
   <string name="master_sequence_summary">Aktivieren der Mastersequenz deaktiviert Samsungs Profile und Szenarien und die ROM-Steuerelemente werden deaktiviert.</string>
   <string name="glove_mode">Handschuh-Modus</string>
@@ -437,13 +416,7 @@
   <string name="half">Hälfte</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Wecken Sie Ihr Gerät durch Wischen auf dem Bildschirm auf.</string>
-  <string name="s2w_s2s">Sweep2Aufwachen + Sweep2Schlafen</string>
   <string name="s2s">Sweep2Sleep</string>
-  <string name="s2w_right">Sweep2Aufwachen rechts</string>
-  <string name="s2w_left">Sweep2Aufwachen links</string>
-  <string name="s2w_up">Sweep2Aufwachen oben</string>
-  <string name="s2w_down">Sweep2Aufwachen unten</string>
-  <string name="s2w_any">Sweep2Aufwachen alle</string>
   <string name="lenient_summary">Benötigt nur 1. und 4. für Sweep2Wake.</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Wecken Sie Ihr Gerät auf, indem Sie auf den Touchscreen tippen.</string>
@@ -451,9 +424,7 @@
   <string name="dt2s_summary">Sperren des Gerätes durch doppeltes Tippen auf die Oberseite des Bildschirms.</string>
   <string name="s2w_charging">Sweep2Wake während des Ladevorgangs</string>
   <string name="dt2w_charging">DoubleTap2Wake während des Ladevorgangs</string>
-  <string name="dt2w_s2w">DoppelKlick2Aufwachen + Sweep2Aufwachen</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake während des Ladevorgangs</string>
-  <string name="s2s_summary">Sperren sie ihr Gerät indem sie über den Screen streichen.</string>
   <string name="s2s_right">Nach rechts streichen</string>
   <string name="s2s_left">Nach links streichen</string>
   <string name="s2s_any">Nach links- oder rechts streichen</string>
@@ -473,9 +444,6 @@
   <string name="timeout">Zeitüberschreitung</string>
   <string name="power_key_suspend">Power-Taste unterbrechen</string>
   <string name="power_key_suspend_summary">Diese Einstellung wird Wake-Steuerelemente deaktivieren, wenn der Bildschirm durch die Power-Taste ausgeschaltet wird.</string>
-  <string name="area">Bereich</string>
-  <string name="width">Weite</string>
-  <string name="height">Höhe</string>
   <string name="vibration_strength">Vibrationsstärke</string>
   <!-- Sound -->
   <string name="sound_control">Lautstärken-Kontrolle</string>
@@ -486,14 +454,9 @@
   <string name="speaker_gain">Lautsprecher Steigerung</string>
   <string name="headphone_poweramp_gain">Kopfhörer PowerAmp Steigerung</string>
   <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165-Erweiterung)</string>
-  <string name="lock_output_gain">Sperre Ausgangsverstärkung</string>
-  <string name="lock_output_gain_summary">Verhindern von Änderung an Verstärkung der Kopfhörer</string>
-  <string name="lock_mic_gain">Sperre Mikrofonverstärkung</string>
-  <string name="lock_mic_gain_summary">Verhindern von Änderung an Mikrofon Verstärkung</string>
   <string name="microphone_gain">Mikrofon Verstärkung</string>
   <string name="volume_gain">Lautstärke Verstärkung</string>
   <!-- Battery -->
-  <string name="level">Stufe</string>
   <string name="voltage">Spannung</string>
   <string name="capacity">Kapazität</string>
   <string name="usb_fast_charge">USB Fast Charge</string>
@@ -504,18 +467,12 @@
   <string name="charging_current">Ladestrom</string>
   <string name="charging_current_summary">Ladestrom setzen. Achtung: Werden 1250mA überschritten, kann der Ladetreiber Schaden nehmen.</string>
   <!-- LED -->
-  <string name="fade">Verblassen</string>
   <string name="fade_summary">Aktivieren für Ein-/Ausblenden, deaktivieren für Blinken.</string>
   <string name="intensity">Intensität</string>
   <string name="speed">Geschwindigkeit</string>
-  <string name="stock">Lager</string>
   <string name="continuous_light">Dauerlicht</string>
-  <string name="bright_light_environment">Helles Licht environnement</string>
-  <string name="bright_light_environment_summary">Legen Sie die relative Intensität der LED in einer hellen Umgebung fest.</string>
-  <string name="low_light_environment">Dunkle Umgebung</string>
-  <string name="low_light_environment_summary">Setzen Sie die relative Intensität der LED in dunklen Umgebungen fest.</string>
-  <string name="notification">Benachrichtigung</string>
   <string name="on">An</string>
+  <string name="off">Aus</string>
   <string name="fade_in">Einblenden</string>
   <string name="fade_out">Ausblenden</string>
   <string name="test">Test</string>
@@ -575,58 +532,24 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
-  <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
-  <string name="wlan_rx_wakelock_summary">Wlan_rx Wakelock verhindern.</string>
-  <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
-  <string name="wlan_ctrl_wakelock_summary">Wlan_ctrl Wakelock verhindern.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
-  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
-  <string name="bluesleep_wakelock_summary">BlueSleep Wakelock verhindern.</string>
-  <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Teiler</string>
-  <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Teiler</string>
-  <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Teiler</string>
   <!-- Custom Controls -->
   <string name="welcome">Willkommen</string>
-  <string name="custom_controls_summary">In dieser Sektion kannst du benutzerdefinierte Steuerungen erstellen oder Importieren, welche in der App (noch) nicht existieren.</string>
   <string name="example">Beispiele</string>
-  <string name="custom_controls_example_summary">Brauchen Sie ein Beispiel? Öffnen Sie: &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;here&lt;a&gt;.</string>
   <string name="create">Erstellen</string>
   <string name="import_item">Importien</string>
-  <string name="control_switch">Umstellen</string>
-  <string name="control_seekbar">Suchleiste</string>
-  <string name="title">Titel</string>
-  <string name="description">Beschreibung</string>
-  <string name="applying">Wird angewendet</string>
-  <string name="switch_enabled_summary">Ob der Schalter aktiviert ist. 1 für aktiviert und 0 für deaktiviert.</string>
-  <string name="switch_apply_summary">Der Schalter wird 1 (aktiviert) oder 0 (deaktiviert) als Argument für Ihren Shell Script.</string>
-  <string name="seekbar_min">Min</string>
-  <string name="seekbar_max">Max</string>
-  <string name="seekbar_progress">Prozess</string>
-  <string name="seekbar_progress_summary">Derzeitiger Status der Sachleistungen. Beim definieren von min und max wird ein integer Array erstellt. Zum Beispiel: Min ist 50 und max ist 100 und Prozess ist 0, das würde bedeuten 50 ist der aktuelle Stand der suchleiste.</string>
-  <string name="seekbar_apply_summary">Suchleiste wird ihren aktuellen Prozess zurückgeben. Zum Beispiel dein min ist 50 und drin max 100 und die suchleiste ist bei 70, wird es 20 zurückgeben als Prozess.</string>
-  <string name="control_generic">Generisch</string>
-  <string name="generic_value">Wert</string>
-  <string name="generic_value_summary">Derzeitiger Wert des editors. Kann im Prinzip alles sein.</string>
-  <string name="generic_apply_summary">Editor wird zurückgeben was auch immer eingegeben wurde.</string>
-  <string name="required">benötigt</string>
-  <string name="hit_test">Du musst zuerst auf test drücken!</string>
-  <string name="output">Output</string>
+  <string name="generic_value_summary">Derzeitiger Wert des Editors. Kann im Prinzip alles sein.</string>
+  <string name="output">Ausgabe</string>
   <string name="edit">Bearbeiten</string>
-  <string name="export">Export</string>
+  <string name="export">Exportieren</string>
   <string name="delete">Löschen</string>
-  <string name="sure_question">Sind Sie sicher?</string>
+  <string name="sure_question">Bist du dir sicher?</string>
   <string name="name">Name</string>
-  <string name="already_exists">%s existiert bereits!</string>
-  <string name="exported_item">%1$s wurde zu %2$s exportiert</string>
-  <string name="name_empty">Name ist leer!</string>
-  <string name="import_malformed">Import-Datei ist fehlerhaft!</string>
-  <string name="import_wrong_version">Version der Import-Datei ist zu alt!</string>
+  <string name="exported_item">%1$s wurde nach %2$s exportiert</string>
   <!-- Downloads -->
-  <string name="downloads_error">Keine unterstützten Kernel könnten gefunden werden! Bitte Internetverbindung prüfen.</string>
-  <string name="download_error">Fehler beim herunterladen von %s.</string>
+  <string name="downloads_error">Keine unterstützten Kernel konnten gefunden werden! Bitte Internetverbindung prüfen.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
-  <string name="check_md5">Überprüft md5</string>
   <string name="cwm_recovery">CWM-Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Ich werde meine Hände benutzen</string>
