@@ -125,9 +125,9 @@ public class CPUFreq {
                 List<Integer> littleCpus = getLITTLECpuRange();
                 run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[bigCpus.size()]),
                         littleCpus.toArray(new Integer[littleCpus.size()]),
-                        sCoreCtlMinCpu).toString(), path, context);
+                        sCoreCtlMinCpu).toString(), path + min, context);
             } else {
-                run("#" + new ApplyCpu(path, value, min, max).toString(), path, context);
+                run("#" + new ApplyCpu(path, value, min, max).toString(), path + min, context);
             }
         }
     }
