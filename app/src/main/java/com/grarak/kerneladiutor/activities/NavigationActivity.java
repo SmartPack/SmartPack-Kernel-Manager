@@ -73,7 +73,7 @@ public class NavigationActivity extends BaseActivity
     private boolean mExit;
 
     private int mSelection;
-    private boolean mShowPirateDialog = true;
+    private boolean mLicenseDialog = true;
 
     private WebpageReader mAdsFetcher;
     private boolean mFetchingAds;
@@ -120,7 +120,7 @@ public class NavigationActivity extends BaseActivity
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
-            mShowPirateDialog = savedInstanceState.getBoolean("pirate");
+            mLicenseDialog = savedInstanceState.getBoolean("license");
             mFetchingAds = savedInstanceState.getBoolean("fetching_ads");
         }
 
@@ -131,9 +131,22 @@ public class NavigationActivity extends BaseActivity
 
         int result = Prefs.getInt("license", -1, this);
         int intentResult = getIntent().getIntExtra("result", -1);
-        Prefs.saveInt("license", -1, this);
 
-        if ((result != intentResult || result == 3) && mShowPirateDialog) {
+        if ((result == intentResult && result == 2) && mLicenseDialog) {
+            ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }, new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            mLicenseDialog = false;
+                            Prefs.saveInt("license", -1, NavigationActivity.this);
+                        }
+                    }, this).show();
+        } else if ((result != intentResult || result == 3) && mLicenseDialog) {
             ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -141,11 +154,12 @@ public class NavigationActivity extends BaseActivity
             }, new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
-                    mShowPirateDialog = false;
+                    mLicenseDialog = false;
+                    Prefs.saveInt("license", -1, NavigationActivity.this);
                 }
             }, this).show();
         } else {
-            mShowPirateDialog = false;
+            mLicenseDialog = false;
             if (result == 0) {
                 Utils.DONATED = true;
             }
@@ -157,7 +171,7 @@ public class NavigationActivity extends BaseActivity
                     Settings.Secure.ANDROID_ID), this);
         }
         final String androidId = id;
-        if (!BuildConfig.DEBUG && Utils.DONATED && mPatchingThread == null) {
+        if (Utils.DONATED && mPatchingThread == null) {
             mPatchingThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -165,8 +179,10 @@ public class NavigationActivity extends BaseActivity
                         if (Utils.isPatched(getPackageManager().getApplicationInfo(
                                 "com.grarak.kerneladiutordonate", 0))) {
                             Utils.DONATED = false;
-                            Answers.getInstance().logCustom(new CustomEvent("Pirated")
-                                    .putCustomAttribute("android_id", androidId));
+                            if (!BuildConfig.DEBUG) {
+                                Answers.getInstance().logCustom(new CustomEvent("Pirated")
+                                        .putCustomAttribute("android_id", androidId));
+                            }
                         }
                     } catch (PackageManager.NameNotFoundException ignored) {
                     }
@@ -280,7 +296,7 @@ public class NavigationActivity extends BaseActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("selection", mSelection);
-        outState.putBoolean("pirate", mShowPirateDialog);
+        outState.putBoolean("license", mLicenseDialog);
         outState.putBoolean("fetching_ads", mFetchingAds);
     }
 

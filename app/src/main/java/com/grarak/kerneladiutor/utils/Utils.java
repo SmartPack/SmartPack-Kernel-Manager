@@ -194,14 +194,14 @@ public class Utils {
         try {
             boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
             if (withBase) {
-                /*RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
-                RootFile odex = findExtension(parent, ".odex");
-                if (odex != null) {
+                RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
+                RootFile odex = new RootFile(parent.toString() + "/oat/*/base.odex");
+                if (odex.exists()) {
                     String text = RootUtils.runCommand("strings " + odex.toString());
                     if (text.contains("--dex-file") || text.contains("--oat-file")) {
                         return true;
                     }
-                }*/
+                }
 
                 String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
                 if (Utils.existFile(dex)) {
@@ -221,21 +221,6 @@ public class Utils {
         } catch (Exception ignored) {
         }
         return false;
-    }
-
-    private static RootFile findExtension(RootFile path, String extension) {
-        for (RootFile file : path.listFiles()) {
-            if (file != null) {
-                String name;
-                if (file.isDirectory()) {
-                    RootFile rootFile = findExtension(file, extension);
-                    if (rootFile != null) return rootFile;
-                } else if ((name = file.getName()) != null && name.endsWith(extension)) {
-                    return file;
-                }
-            }
-        }
-        return null;
     }
 
     // MD5 code from
