@@ -539,8 +539,12 @@ public class CPUFreq {
             MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
                     getLITTLECpuRange().size() : -1, category, context);
         }
+        Control.runSetting(Control.chmod("644", Utils.strFormat(CPU_ONLINE, cpu)),
+                category, Utils.strFormat(CPU_ONLINE, cpu) + "chmod644", context);
         Control.runSetting(Control.write(online ? "1" : "0", Utils.strFormat(CPU_ONLINE, cpu)),
                 category, Utils.strFormat(CPU_ONLINE, cpu), context);
+        Control.runSetting(Control.chmod("444", Utils.strFormat(CPU_ONLINE, cpu)),
+                category, Utils.strFormat(CPU_ONLINE, cpu) + "chmod444", context);
     }
 
     public static List<Integer> getLITTLECpuRange() {
