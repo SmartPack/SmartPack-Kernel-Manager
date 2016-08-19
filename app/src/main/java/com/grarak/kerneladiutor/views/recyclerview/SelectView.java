@@ -24,6 +24,8 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
+import com.grarak.kerneladiutor.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,8 @@ public class SelectView extends ValueView {
     public void setItem(int position) {
         if (position >= 0 && position < mItems.size()) {
             setValue(mItems.get(position));
+        } else {
+            setValue(R.string.not_in_range);
         }
     }
 

@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ public abstract class ValueView extends RecyclerViewItem {
     private CharSequence mTitle;
     private CharSequence mSummary;
     private String mValue;
+    private int mValuesRes;
 
     @Override
     public int getLayoutRes() {
@@ -76,6 +78,11 @@ public abstract class ValueView extends RecyclerViewItem {
         refresh();
     }
 
+    public void setValue(@StringRes int value) {
+        mValuesRes = value;
+        refresh();
+    }
+
     public CharSequence getTitle() {
         return mTitle;
     }
@@ -101,7 +108,10 @@ public abstract class ValueView extends RecyclerViewItem {
             mSummaryView.setText(mSummary);
         }
 
-        if (mValueView != null && mValue != null) {
+        if (mValueView != null && (mValue != null || mValuesRes != 0)) {
+            if (mValue == null) {
+                mValue = mValueView.getContext().getString(mValuesRes);
+            }
             mValueView.setText(mValue);
             mValueView.setVisibility(View.VISIBLE);
             mProgress.setVisibility(View.GONE);
