@@ -99,9 +99,6 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.LinkedHashMap;
 
 import io.fabric.sdk.android.Fabric;
@@ -138,7 +135,7 @@ public class MainActivity extends BaseActivity {
             if (!(password = Prefs.getString("password", "", this)).isEmpty()) {
                 Intent intent = new Intent(this, SecurityActivity.class);
                 intent.putExtra(SecurityActivity.PASSWORD_INTENT, password);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 1);
             } else {
                 execute();
             }
@@ -165,8 +162,6 @@ public class MainActivity extends BaseActivity {
         if (requestCode == 0) {
             launch(data == null ? -1 : data.getIntExtra("result", -1));
         } else if (requestCode == 1) {
-            launch(0);
-        } else if (requestCode == 2) {
             if (resultCode == 1) {
                 execute();
             } else {
@@ -380,16 +375,9 @@ public class MainActivity extends BaseActivity {
                                 new File(mApplicationInfo.publicSourceDir));
 
                         try {
-                            HttpURLConnection urlc = (HttpURLConnection)
-                                    (new URL("http://clients3.google.com/generate_204")
-                                            .openConnection());
-                            urlc.setRequestProperty("User-Agent", "Android");
-                            urlc.setRequestProperty("Connection", "close");
-                            urlc.setConnectTimeout(1500);
-                            urlc.connect();
-                            mInternetAvailable = (urlc.getResponseCode() == 204 &&
-                                    urlc.getContentLength() == 0);
-                        } catch (IOException e) {
+                            mInternetAvailable =
+                                    Runtime.getRuntime().exec("ping -W 5 -c 1 8.8.8.8").waitFor() == 0;
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -400,11 +388,14 @@ public class MainActivity extends BaseActivity {
                 @Override
                 protected void onPostExecute(Boolean aBoolean) {
                     super.onPostExecute(aBoolean);
-                    if (aBoolean) {
+                    if (aBoolean && mInternetAvailable) {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.setComponent(new ComponentName("com.grarak.kerneladiutordonate",
                                 "com.grarak.kerneladiutordonate.MainActivity"));
-                        startActivityForResult(intent, mInternetAvailable ? 0 : 1);
+                        startActivityForResult(intent, 0);
+                    } else if (mApplicationInfo != null && mPackageInfo != null
+                            && !mInternetAvailable && !mPatched) {
+                        launch(0);
                     } else {
                         launch(mPatched ? 3 : -1);
                     }
