@@ -62,6 +62,10 @@ public class Control {
         return "chmod " + permission + " " + file;
     }
 
+    public static String chown(String group, String file) {
+        return "chown " + group + " " + file;
+    }
+
     private synchronized void apply(String command, String category, String id, Context context) {
         if (context != null) {
             if (mProfileMode) {
