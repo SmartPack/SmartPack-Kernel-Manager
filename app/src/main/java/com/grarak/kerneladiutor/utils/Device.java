@@ -336,14 +336,15 @@ public class Device {
 
     public static String getBoard() {
         String hardware = CPUInfo.getVendor().toLowerCase();
-        if (hardware.matches(".*msm\\d.*")) {
-            String board = hardware.split("msm")[1].trim().replaceAll("[^0-9]+", "");
-            return "msm" + board;
+        if (hardware.matches(".*msm.+.\\d+.*")) {
+            String board = hardware.split("msm")[1].trim();
+            return "msm" + board.split(" ")[0];
         } else if (hardware.matches("mt\\d*.")) {
-            return "mt" + hardware.split("mt")[1].trim();
+            String board = hardware.split("mt")[1].trim();
+            return "mt" + board.split(" ")[0];
         } else if (hardware.matches(".*apq.+.\\d+.*")) {
-            String board = hardware.split("apq")[1].trim().replaceAll("[^0-9]+", "");
-            return "apq" + board;
+            String board = hardware.split("apq")[1].trim();
+            return "apq" + board.split(" ")[0];
         }
         return Build.BOARD.toLowerCase();
     }
