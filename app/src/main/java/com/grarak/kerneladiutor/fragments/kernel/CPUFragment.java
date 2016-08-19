@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -64,8 +65,8 @@ public class CPUFragment extends RecyclerViewFragment {
     private SelectView mCPUMaxScreenOffLITTLE;
     private SelectView mCPUGovernorLITTLE;
 
-    private HashMap<Integer, SwitchView> mCoresBig = new HashMap<>();
-    private HashMap<Integer, SwitchView> mCoresLITTLE = new HashMap<>();
+    private SparseArray<SwitchView> mCoresBig = new SparseArray<>();
+    private SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
 
     private int mCPUMaxFreqBig;
     private int mCPUMinFreqBig;
@@ -296,7 +297,7 @@ public class CPUFragment extends RecyclerViewFragment {
     private void showGovernorTunables(int min, int max) {
         boolean offline = CPUFreq.isOffline(min);
         if (offline) {
-            CPUFreq.onlineCpu(min, true, null);
+            CPUFreq.onlineCpu(min, true, false, null);
         }
         String governor = CPUFreq.getGovernor(min, false);
         if (governor.isEmpty()) {
@@ -320,7 +321,7 @@ public class CPUFragment extends RecyclerViewFragment {
             showForeground();
         }
         if (offline) {
-            CPUFreq.onlineCpu(min, false, null);
+            CPUFreq.onlineCpu(min, false, false, null);
         }
     }
 
@@ -537,8 +538,8 @@ public class CPUFragment extends RecyclerViewFragment {
                 inputCard.setOnItemSelected(new SelectView.OnItemSelected() {
                     @Override
                     public void onItemSelected(SelectView selectView, int position, String item) {
-                        CPUBoost.setCpuBoostInputFreq(position == 0 ? 0 : CPUFreq.getFreqs(core).get(position - 1),
-                                core, getActivity());
+                        CPUBoost.setCpuBoostInputFreq(position == 0 ? 0
+                                : CPUFreq.getFreqs(core).get(position - 1), core, getActivity());
                     }
                 });
 
@@ -665,10 +666,12 @@ public class CPUFragment extends RecyclerViewFragment {
 
         try {
             if (mCoresBig.size() > 0) {
-                for (final int core : mCoresBig.keySet()) {
-                    SwitchView switchView = mCoresBig.get(core);
+                for (int i = 0; i < mCoresBig.size(); i++) {
+                    SwitchView switchView = mCoresBig.valueAt(i);
                     if (switchView != null) {
+                        final int core = mCoresBig.keyAt(i);
                         int freq = CPUFreq.getCurFreq(core);
+
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
                         switchView.clearOnSwitchListener();
@@ -680,7 +683,7 @@ public class CPUFragment extends RecyclerViewFragment {
                                 if (core == 0) {
                                     Utils.toast(R.string.no_offline_core, getActivity());
                                 } else {
-                                    CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                    CPUFreq.onlineCpu(core, isChecked, true, getActivity());
                                 }
                             }
                         });
@@ -688,12 +691,14 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             }
             if (mCoresLITTLE.size() > 0) {
-                for (final int core : mCoresLITTLE.keySet()) {
-                    SwitchView switchView = mCoresLITTLE.get(core);
+                for (int i = 0; i < mCoresLITTLE.size(); i++) {
+                    SwitchView switchView = mCoresLITTLE.valueAt(i);
                     if (switchView != null) {
+                        final int core = mCoresLITTLE.keyAt(i);
                         int freq = CPUFreq.getCurFreq(core);
                         String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                                 + getString(R.string.mhz);
+
                         switchView.clearOnSwitchListener();
                         switchView.setChecked(freq != 0);
                         switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
@@ -703,7 +708,7 @@ public class CPUFragment extends RecyclerViewFragment {
                                 if (core == 0) {
                                     Utils.toast(R.string.no_offline_core, getActivity());
                                 } else {
-                                    CPUFreq.onlineCpu(core, isChecked, getActivity());
+                                    CPUFreq.onlineCpu(core, isChecked, true, getActivity());
                                 }
                             }
                         });

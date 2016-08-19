@@ -82,7 +82,7 @@ public abstract class Provider {
      *
      * @param items the dataset will put into the JSONArray
      */
-    public void putItem(JSONObject items) {
+    protected void putItem(JSONObject items) {
         mDatabaseItems.put(items);
     }
 
@@ -91,7 +91,7 @@ public abstract class Provider {
      *
      * @return all sets in a list
      */
-    public List<DBJsonItem> getAllItems() {
+    protected List<DBJsonItem> getAllItems() {
         List<DBJsonItem> items = new ArrayList<>();
         try {
             for (int i = 0; i < length(); i++) {
@@ -143,7 +143,7 @@ public abstract class Provider {
 
         protected JSONObject item;
 
-        public DBJsonItem() {
+        protected DBJsonItem() {
             item = new JSONObject();
         }
 

@@ -49,7 +49,7 @@ public class Controls extends Provider {
 
     public static class ControlItem extends DBJsonItem {
 
-        public ControlItem(JSONObject object) {
+        private ControlItem(JSONObject object) {
             item = object;
         }
 

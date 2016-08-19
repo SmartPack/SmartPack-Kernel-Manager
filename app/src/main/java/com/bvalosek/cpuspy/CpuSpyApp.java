@@ -9,12 +9,10 @@
 package com.bvalosek.cpuspy;
 
 import android.content.Context;
+import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * main application class
@@ -26,11 +24,11 @@ public class CpuSpyApp {
     /**
      * the long-living object used to monitor the system frequency states
      */
-    private final CpuStateMonitor _monitor;
+    private final CpuStateMonitor mMonitor;
 
     public CpuSpyApp(int core, Context context) {
         PREF_OFFSETS = "offsets" + core;
-        _monitor = new CpuStateMonitor(core);
+        mMonitor = new CpuStateMonitor(core);
         loadOffsets(context);
     }
 
@@ -38,27 +36,26 @@ public class CpuSpyApp {
      * @return the internal CpuStateMonitor object
      */
     public CpuStateMonitor getCpuStateMonitor() {
-        return _monitor;
+        return mMonitor;
     }
 
     /**
      * Load the saved string of offsets from preferences and put it into the
      * state monitor
      */
-    public void loadOffsets(Context context) {
+    private void loadOffsets(Context context) {
         String prefs = Prefs.getString(PREF_OFFSETS, "", context);
 
-        if (prefs.length() < 1) return;
-
+        if (prefs.isEmpty()) return;
         // split the string by peroids and then the info by commas and load
-        Map<Integer, Long> offsets = new HashMap<>();
+        SparseArray<Long> offsets = new SparseArray<>();
         String[] sOffsets = prefs.split(",");
         for (String offset : sOffsets) {
             String[] parts = offset.split(" ");
             offsets.put(Utils.strToInt(parts[0]), Utils.strToLong(parts[1]));
         }
 
-        _monitor.setOffsets(offsets);
+        mMonitor.setOffsets(offsets);
     }
 
     /**
@@ -67,10 +64,12 @@ public class CpuSpyApp {
      */
     public void saveOffsets(Context context) {
         // build the string by iterating over the freq->duration map
-        String str = "";
-        for (Map.Entry<Integer, Long> entry : _monitor.getOffsets().entrySet())
-            str += entry.getKey() + " " + entry.getValue() + ",";
+        StringBuilder str = new StringBuilder();
+        SparseArray<Long> offsets = mMonitor.getOffsets();
+        for (int i = 0; i < offsets.size(); i++) {
+            str.append(offsets.keyAt(i)).append(" ").append(offsets.valueAt(i)).append(",");
+        }
 
-        Prefs.saveString(PREF_OFFSETS, str, context);
+        Prefs.saveString(PREF_OFFSETS, str.toString(), context);
     }
 }

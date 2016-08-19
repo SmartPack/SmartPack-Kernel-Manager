@@ -104,13 +104,13 @@ public class CPUFreq {
         for (int i = min; i <= max; i++) {
             boolean offline = isOffline(i);
             if (offline) {
-                onlineCpu(i, true, null);
+                onlineCpu(i, true, false, null);
             }
             run(Control.chmod("644", Utils.strFormat(path, i)), null, null);
             run(Control.write(value, Utils.strFormat(path, i)), null, null);
             run(Control.chmod("444", Utils.strFormat(path, i)), null, null);
             if (offline) {
-                onlineCpu(i, false, null);
+                onlineCpu(i, false, false, null);
             }
         }
         if (mpdecision) {
@@ -292,7 +292,7 @@ public class CPUFreq {
     public static String getGovernor(int cpu, boolean forceRead) {
         boolean offline = forceRead && isOffline(cpu);
         if (offline) {
-            onlineCpu(cpu, true, null);
+            onlineCpu(cpu, true, false, null);
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -306,7 +306,7 @@ public class CPUFreq {
         }
 
         if (offline) {
-            onlineCpu(cpu, false, null);
+            onlineCpu(cpu, false, false, null);
         }
         return value;
     }
@@ -315,7 +315,7 @@ public class CPUFreq {
         if (sGovernors == null) {
             boolean offline = isOffline(0);
             if (offline) {
-                onlineCpu(0, true, null);
+                onlineCpu(0, true, false, null);
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
@@ -328,7 +328,7 @@ public class CPUFreq {
             }
 
             if (offline) {
-                onlineCpu(0, false, null);
+                onlineCpu(0, false, false, null);
             }
         }
         if (sGovernors == null) return getGovernors();
@@ -338,7 +338,7 @@ public class CPUFreq {
     private static int getFreq(int cpu, String path, boolean forceRead) {
         boolean offline = forceRead && isOffline(cpu);
         if (offline) {
-            onlineCpu(cpu, true, null);
+            onlineCpu(cpu, true, false, null);
 
             try {
                 Thread.sleep(200);
@@ -352,7 +352,7 @@ public class CPUFreq {
         if (value != null) freq = Utils.strToInt(value);
 
         if (offline) {
-            onlineCpu(cpu, false, null);
+            onlineCpu(cpu, false, false, null);
         }
         return freq;
     }
@@ -487,7 +487,7 @@ public class CPUFreq {
                 int readcpu = cpu;
                 boolean offline = isOffline(cpu);
                 if (offline) {
-                    onlineCpu(cpu, true, null);
+                    onlineCpu(cpu, true, false, null);
                 }
                 if (!Utils.existFile(Utils.strFormat(Utils.strFormat(AVAILABLE_FREQS, cpu)))) {
                     readcpu = 0;
@@ -502,7 +502,7 @@ public class CPUFreq {
                     sFreqs.put(cpu, freqs);
                 }
                 if (offline) {
-                    onlineCpu(cpu, false, null);
+                    onlineCpu(cpu, false, false, null);
                 }
             }
         }
@@ -524,20 +524,24 @@ public class CPUFreq {
         return 0;
     }
 
-    public static void onlineCpu(int cpu, boolean online, Context context) {
-        onlineCpu(cpu, online, ApplyOnBootFragment.CPU, context);
+    public static void onlineCpu(int cpu, boolean online, boolean onlineSys, Context context) {
+        onlineCpu(cpu, online, ApplyOnBootFragment.CPU, onlineSys, context);
     }
 
-    public static void onlineCpu(int cpu, boolean online, String category, Context context) {
-        if (QcomBcl.supported()) {
-            QcomBcl.online(online, category, context);
-        }
-        if (CoreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
-            CoreCtl.setMinCpus(online ? getBigCpuRange().size() : sCoreCtlMinCpu, cpu, category, context);
-        }
-        if (MSMPerformance.hasMaxCpus()) {
-            MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
-                    getLITTLECpuRange().size() : -1, category, context);
+    public static void onlineCpu(int cpu, boolean online, String category, boolean onlineSys,
+                                 Context context) {
+        if (!onlineSys) {
+            if (QcomBcl.supported()) {
+                QcomBcl.online(online, category, context);
+            }
+            if (CoreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
+                CoreCtl.setMinCpus(online ? getBigCpuRange().size() : sCoreCtlMinCpu, cpu, category,
+                        context);
+            }
+            if (MSMPerformance.hasMaxCpus()) {
+                MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
+                        getLITTLECpuRange().size() : -1, category, context);
+            }
         }
         Control.runSetting(Control.chmod("644", Utils.strFormat(CPU_ONLINE, cpu)),
                 category, Utils.strFormat(CPU_ONLINE, cpu) + "chmod644", context);

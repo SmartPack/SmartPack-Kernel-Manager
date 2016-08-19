@@ -88,7 +88,7 @@ public class DownloadsActivity extends BaseActivity {
 
         private final LinkedHashMap<String, Fragment> mFragments;
 
-        public PagerAdapter(FragmentManager fm, LinkedHashMap<String, Fragment> fragments) {
+        private PagerAdapter(FragmentManager fm, LinkedHashMap<String, Fragment> fragments) {
             super(fm);
             mFragments = fragments;
         }

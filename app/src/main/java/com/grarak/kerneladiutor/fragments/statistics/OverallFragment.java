@@ -239,13 +239,13 @@ public class OverallFragment extends RecyclerViewFragment {
          * extraStates (missing) */
         List<String> extraStates = new ArrayList<>();
         for (CpuStateMonitor.CpuState state : monitor.getStates()) {
-            if (state.duration > 0) {
+            if (state.getDuration() > 0) {
                 generateStateRow(monitor, state, card);
             } else {
-                if (state.freq == 0) {
+                if (state.getFreq() == 0) {
                     extraStates.add(getString(R.string.deep_sleep));
                 } else {
-                    extraStates.add(state.freq / 1000 + getString(R.string.mhz));
+                    extraStates.add(state.getFreq() / 1000 + getString(R.string.mhz));
                 }
             }
         }
@@ -302,17 +302,17 @@ public class OverallFragment extends RecyclerViewFragment {
     private void generateStateRow(CpuStateMonitor monitor, CpuStateMonitor.CpuState state,
                                   CardView frequencyCard) {
         // what percentage we've got
-        float per = (float) state.duration * 100 / monitor.getTotalStateTime();
+        float per = (float) state.getDuration() * 100 / monitor.getTotalStateTime();
 
         String sFreq;
-        if (state.freq == 0) {
+        if (state.getFreq() == 0) {
             sFreq = getString(R.string.deep_sleep);
         } else {
-            sFreq = state.freq / 1000 + getString(R.string.mhz);
+            sFreq = state.getFreq() / 1000 + getString(R.string.mhz);
         }
 
         // duration
-        long tSec = state.duration / 100;
+        long tSec = state.getDuration() / 100;
         String sDur = sToString(tSec);
 
         FrequencyTableView frequencyState = new FrequencyTableView();

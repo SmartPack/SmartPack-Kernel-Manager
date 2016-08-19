@@ -39,7 +39,7 @@ public class MPDecision {
         } else {
             run(Control.stopService(HOTPLUG_MPDEC), HOTPLUG_MPDEC, context);
             for (int i = 0; i < CPUFreq.getCpuCount(); i++) {
-                CPUFreq.onlineCpu(i, true, ApplyOnBootFragment.CPU_HOTPLUG, context);
+                CPUFreq.onlineCpu(i, true, ApplyOnBootFragment.CPU_HOTPLUG, false, context);
             }
         }
     }
