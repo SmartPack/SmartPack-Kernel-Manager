@@ -85,7 +85,6 @@
   <string name="input_interval">入力間隔</string>
   <string name="input_interval_summary">入力が検出されたとき、CPUをブーストするまでの最小間隔です。</string>
   <string name="input_boost_freq">入力ブースト周波数</string>
-  <string name="input_boost_freq_core">入力ブースト周波数 コア%s</string>
   <string name="input_boost_freq_summary">入力が検出されたときにこの周波数までCPU周波数をブーストします。</string>
   <string name="wakeup_boost">ウェイクアップブースト</string>
   <string name="wakeup_boost_summary">ウェイクアップブーストは入力ブーストに似ていますが、画面がオンになっているときに発生するという違いがあります。</string>

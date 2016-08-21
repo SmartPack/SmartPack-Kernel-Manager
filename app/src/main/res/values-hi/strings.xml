@@ -156,7 +156,6 @@
   <string name="input_interval">निवेश् अन्तराल</string>
   <string name="input_interval_summary">निवेश् ज्ञात होने पर न्युनतम् अन्तराल का पता चलता हे, व सिपियु बेहतर् कार्य करता हे।</string>
   <string name="input_boost_freq">इनपुट बूस्ट आवृत्ति</string>
-  <string name="input_boost_freq_core">इनपुट बूस्ट आवृत्ति कोर %s</string>
   <string name="input_boost_freq_summary">इनपुट पहचान पर इस आवृत्ति के लिए बढ़ाया जा करने के लिए CPU आवृत्ति।</string>
   <string name="wakeup_boost">वेकअप बूस्ट</string>
   <string name="wakeup_boost_summary">Wakeup बूस्ट बूस्ट इनपुट करने के लिए समान है, लेकिन यह तब होता है जब स्क्रीन पर बदल दिया है।</string>

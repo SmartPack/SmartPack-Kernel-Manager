@@ -67,10 +67,12 @@
   <string name="wake">Буђење</string>
   <string name="sound">Звук</string>
   <string name="battery">Батерија</string>
+  <string name="led">ЛЕД</string>
   <string name="io_scheduler">У/И планер</string>
   <string name="ksm">Спајање језгра</string>
   <string name="virtual_memory">Виртуелна меморија</string>
   <string name="entropy">Ентропија</string>
+  <string name="misc">Разно</string>
   <string name="downloads">Преузимања</string>
   <string name="backup">Резервна копија</string>
   <string name="build_prop_editor">Уређивач „build.prop“ фајла</string>
@@ -78,15 +80,38 @@
   <string name="recovery">Опоравак</string>
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
+  <string name="about">О програму</string>
+  <string name="contributors">Сарадници</string>
+  <string name="help">Помоћ</string>
   <!-- Overall -->
   <string name="offline">Не ради</string>
   <string name="core">Језгро %d</string>
+  <string name="refresh">Освежи</string>
+  <string name="reset">Ресетуј</string>
   <string name="restore">Врати</string>
+  <string name="deep_sleep">Дубоки сан</string>
   <string name="uptime">Време рада</string>
+  <string name="error_frequencies">Неуспех очитавања фреквенција</string>
+  <string name="unused_frequencies">Некоришћене фреквенције</string>
   <!-- Device -->
+  <string name="processor">Процесор</string>
+  <string name="vendor">Произвођач</string>
   <string name="features">Карактеристике</string>
+  <string name="ram">РАМ</string>
+  <string name="android_version">Издање Андроида</string>
+  <string name="android_api_level">Андроид СДК</string>
+  <string name="android_codename">Андроид кодно име</string>
+  <string name="rom">РОМ</string>
+  <string name="hardware">Хардвер</string>
+  <string name="architecture">Архитектура</string>
   <!-- Inputs -->
+  <string name="bus">Сабирница</string>
+  <string name="product">Производ</string>
+  <string name="version">Издање</string>
   <!-- CPU -->
+  <string name="cores_singular">%d језгра</string>
+  <string name="cores">%d језгара</string>
+  <string name="no_offline_core">Не можете искључити ову језгру!</string>
   <string name="cpu_max_freq">ЦПУ макс. фреквенција</string>
   <string name="cpu_max_freq_summary">Поставите највећу фреквенцију рада процесора.</string>
   <string name="cpu_min_freq">ЦПУ мин. фреквенција</string>
@@ -96,6 +121,8 @@
   <string name="cpu_governor">ЦПУ управљач</string>
   <string name="cpu_governor_summary">CPU управљач одређује како процесор реагује на промене у радном оптерећењу. Променом управљача утицаћете на скалирање, смену корака фреквенције доступних процесору.</string>
   <string name="cpu_governor_tunables">Фине поставке ЦПУ управљача</string>
+  <string name="tunables_error">%s није подесиво</string>
+  <string name="manual">Ручно</string>
   <string name="mc_power_saving">Multicore уштеда енергије</string>
   <string name="mc_power_saving_summary">Групација задатака у што мање језгри</string>
   <string name="disabled">Искључено</string>
@@ -116,7 +143,6 @@
   <string name="input_interval">Унос интервала</string>
   <string name="input_interval_summary">Minimalni interval za pojacanje procesora kada se detektuje unos.</string>
   <string name="input_boost_freq">Pojacanje frekvencije prilikom unosa/interakcije</string>
-  <string name="input_boost_freq_core">Pojacanje frekvencije prilikom unosa jezgro %s</string>
   <string name="input_boost_freq_summary">Frekvencija CPU-a na koju pojaca prilikom unosa.</string>
   <string name="wakeup_boost">Pojacanje prilikom budjenja</string>
   <string name="wakeup_boost_summary">Pojacanje prilikom budjenja je isto kao i pojacanje prilikom unosa samo sto je aktivno samo kada se pali ekran.</string>
@@ -205,8 +231,14 @@
   <!-- Sound -->
   <string name="sound_control">Контрола звука</string>
   <!-- Battery -->
+  <string name="voltage">Напон</string>
   <string name="usb_fast_charge">УСБ брзо пуњење</string>
   <!-- LED -->
+  <string name="intensity">Интензитет</string>
+  <string name="speed">Брзина</string>
+  <string name="notification">Обавештење</string>
+  <string name="on">Укљ</string>
+  <string name="off">Иск</string>
   <string name="test">Пробај</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Унутрашње складиште</string>
@@ -243,11 +275,14 @@
   <string name="tcp">ТЦП алгоритам загушења</string>
   <string name="hostname">Име домаћина</string>
   <!-- Custom Controls -->
+  <string name="title">Наслов</string>
+  <string name="description">Опис</string>
   <string name="edit">Уреди</string>
   <string name="delete">Обриши</string>
   <string name="name">Назив</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="install">Инсталирај</string>
   <string name="cwm_recovery">CWM опоравак</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Ручно ћу</string>
@@ -256,22 +291,50 @@
   <string name="flashing">Флешујем</string>
   <string name="restoring">Враћам</string>
   <!-- Backup -->
+  <string name="boot_partition">Бут партиција</string>
+  <string name="recovery_partition">Партиција опоравка</string>
+  <string name="fota_partition">Фота партиција</string>
+  <string name="flash">Флешуј</string>
   <!-- Build prop Editor -->
   <string name="key">кључ</string>
   <string name="value">Вредност</string>
   <!-- Profile -->
+  <string name="apply_question">Применити %s?</string>
+  <string name="append">Придодај</string>
+  <string name="details">Детаљи</string>
   <string name="applied">Примењено</string>
+  <string name="profile_tile">Плочица профила</string>
+  <string name="profile_select">Изаберите профил</string>
+  <string name="applying_profile">Примењујем %s!</string>
+  <string name="new_mode">Нови</string>
+  <string name="current_settings">Актуелне поставке</string>
+  <string name="select_all">Изабери све</string>
+  <string name="nothing_selected">Ништа није изабрано</string>
+  <string name="profile_empty">Профил је празан!</string>
   <!-- Recovery -->
+  <string name="reboot">Поново покрени</string>
+  <string name="reboot_soft">Меко покретање</string>
+  <string name="reboot_recovery">Поново покрени у опоравак</string>
+  <string name="reboot_bootloader">Поново покрени у учитавач</string>
+  <string name="reboot_download">Поново покрени у режим преузимања</string>
   <string name="wipe_data">Обриши податке</string>
   <string name="wipe_cache">Обриши кеш</string>
   <string name="flash_zip">Флешуј зип фајл</string>
+  <string name="add_action_first">Најпре морате да додате радње!</string>
   <string name="flash_now_confirm">Желите ли да покренете ваше радње? Ваш уређај ће бити поново покренут у опоравак а радње ће бити извршене редоследом којим сте их додали.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емулирај init.d</string>
   <string name="executing">Извршавам</string>
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="fahrenheit_title">Фаренхајт</string>
   <string name="dark_theme">Тамна тема</string>
+  <string name="five_sec">5 секунди</string>
+  <string name="ten_sec">10 секунди</string>
+  <string name="twenty_sec">20 секунди</string>
+  <string name="fifty_sec">50 секунди</string>
+  <string name="hide">Сакриј</string>
+  <string name="script">Скрипта</string>
   <string name="debugging">Исправљање грешака</string>
   <string name="logcat">Логкат</string>
   <string name="logcat_summary">Копира логкат у /sdcard/logcat.txt</string>
@@ -279,7 +342,31 @@
   <string name="last_kmsg_summary">Копира /proc/last_kmsg у /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Дневник драјвера</string>
   <string name="driver_message_summary">Копира дневник драјвера (dmesg) у /sdcard/dmesg.txt</string>
+  <string name="security">Безбедност</string>
+  <string name="set_password">Постави лозинку</string>
+  <string name="set_password_summary">Можете да заштитите Кернел Адиутор лозинком. Сваки пут кад отворите апликацију, мораћете да је унесете. Ако је заборавите, једноставно обришите податке апликације у поставкама вашег уређаја. Не брините, ваша лозинка је безбедна.</string>
+  <string name="delete_password">Обриши лозинку</string>
+  <string name="old_password">Стара лозинка</string>
+  <string name="new_password">Нова лозинка</string>
+  <string name="confirm_new_password">Потврдите нову лозинку</string>
+  <string name="old_password_wrong">Стара лозинка је погрешна</string>
+  <string name="password_empty">Лозинка је празна</string>
+  <string name="password_not_match">Лозинке се не поклапају</string>
+  <string name="password_too_long">Лозинка је предуга (највише 32 знака)</string>
+  <string name="set_password_first">Најпре поставите лозинку</string>
+  <string name="sections">Одељци</string>
   <!-- About -->
+  <string name="libraries_used">Коришћене библиотеке</string>
   <!-- Contributors -->
+  <string name="no_internet">Проверите везу са интернетом!</string>
   <!-- Help -->
+  <string name="misspelled">Зашто „Адиутор“?</string>
+  <string name="misspelled_summary">Адиутор је латинска реч и значи „помагач“.</string>
+  <string name="cpu_freq_not_sticking">Зашто се моје фреквенције ЦПУ-а не задржавају?</string>
+  <string name="feature_not_appearing">Зашто функције x и y нису доступне?</string>
+  <string name="feature_not_appearing_summary">Приказане су само функције које ваш уређај подржава!</string>
+  <string name="feature_function">Шта ради функција x?</string>
+  <string name="feature_function_summary">Ако не знате шта нека поставка ради, једноставно је не дирајте. Подробно се распитајте пре него што се почнете играти вашим скупим хардвером.</string>
+  <string name="add_new_features">Можеш ли да додаш функције x и y?</string>
+  <string name="add_new_features_summary">Тешко је рећи. Настојаћу да додам све функционалности, али тешко је направити ову апликацију универзалном за све уређаје.</string>
 </resources>

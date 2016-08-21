@@ -18,14 +18,17 @@
   <string name="cancel">Annuler</string>
   <string name="ok">OK</string>
   <string name="unknown">Inconnu</string>
+  <string name="license_invalid">Merci d\'avoir acheté l\'application de don ! Malheureusement le contrôle de licence a échoué. Veuillez réessayer plus tard. Si cela ne fonctionne toujours pas, veuillez me contacter.</string>
   <string name="pirated">Il semblerait que l\'application de don n\'a pas été achetée sur le Play Store ! Si vous l\'avez piraté : honte à vous !</string>
   <string name="donate">Faire un don</string>
   <string name="donate_summary">Cette fonctionnalité est disponible uniquement lorsque l’application de don est installée ! Ne vous inquiétez pas pour autant, car cette application est \"open source\". Vous pouvez facilement la compiler, et supprimer cette vérification. Mais j’espère que, de toute manière, vous soutenez les développeurs. Merci d’utiliser Kernel Adiutor ! Après avoir acheté l’application de don, vous devez redémarrer Kernel Adiutor pour activer toutes les fonctionnalités.</string>
   <string name="donate_nope">Je ne tomberai pas dans ce type d’escroquerie !</string>
   <string name="donate_yes">J’adore cette application. Je suis obligé de faire un don !</string>
-  <string name="ad_here">Votre publicité ne pourrait être ici</string>
+  <string name="ad_here">Votre publicité pourrait apparaître ici</string>
   <string name="remove_ad">Supprimer la publicité</string>
-  <string name="warning">Aventissement</string>
+  <string name="warning">Avertissement</string>
+  <string name="gh_ad">Ceci est une publicité non commerciale ! Ne pas prendre cela au sérieux ! Une simple et amusante façon de remplir l\'espace lorsqu\'une publicité réelle ne se charge pas (je pense aux utilisateurs de bloqueur de publicité).</string>
+  <string name="open_ad_anyway">Ouvrir la publicité quand même</string>
   <string name="apply_on_boot">Appliquer au démarrage</string>
   <string name="apply_on_boot_text">Mise en œuvre des paramètres dans %d secondes</string>
   <string name="apply_on_boot_complete">Mise en œuvre des paramètres terminée</string>
@@ -87,6 +90,7 @@
   <string name="settings">Réglages</string>
   <string name="about">À propos</string>
   <string name="contributors">Contributeurs</string>
+  <string name="help">Aide</string>
   <!-- Overall -->
   <string name="offline">Hors-Ligne</string>
   <string name="core">Coeur %d</string>
@@ -118,6 +122,7 @@
   <string name="version">Version</string>
   <string name="handlers">Gestionnaires</string>
   <!-- CPU -->
+  <string name="cores_singular">%d cœur</string>
   <string name="cores">%d cœurs</string>
   <string name="no_offline_core">Vous ne pouvez pas mettre hors-ligne ce cœur !</string>
   <string name="cpu_max_freq">Fréquence Maximale du CPU</string>
@@ -131,6 +136,7 @@
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
   <string name="cpu_governor_tunables_read_error">Impossible de lire l\'ordonnanceur actuel du processeur.\n\nSi vous utilisez un appareil avec un processeur QCOM big.LITTLE, il s’agit d’un problème connu. Le système force le processeur à éteindre les cœurs, rendant extrêmement difficile l\'accès à la lecture des statistiques spécifiques du processeur. Réessayez de sélectionner cette option. Le processeur refuse parfois de tourner sur un cœur.</string>
   <string name="tunables_error">%s n\'est pas réglable</string>
+  <string name="manual">Manuel</string>
   <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>
   <string name="mc_power_saving_summary">Essayez de regrouper les tâches en moins de cœurs possible.</string>
   <string name="disabled">Désactivé</string>
@@ -152,7 +158,6 @@
   <string name="input_interval">Intervalle d\'Entrée</string>
   <string name="input_interval_summary">Intervalle minimale pour que le CPU soit boosté lorsque qu\'une entrée est détectée.</string>
   <string name="input_boost_freq">Fréquence d\'Entrée Boost</string>
-  <string name="input_boost_freq_core">Cœur %s</string>
   <string name="input_boost_freq_summary">La fréquence du CPU va être stimulé à cette fréquence en cas de détection d\'entrée.</string>
   <string name="wakeup_boost">Amplification au réveil</string>
   <string name="wakeup_boost_summary">L\'amplification au réveil est analogue à \"Entrée d\'amplification de la fréquence\", mais il se produit lors de la mise sous tension de l\'écran</string>
@@ -170,9 +175,12 @@
   <string name="mpdecision_summary">Solution Hotplug de Qualcomm. Vous pourriez avoir des problèmes au changement des fréquences lorsque cette option est activée.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Une alternative dans le noyau du MPDecision de Qualcomm. Développé par faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Le nombre entre parenthèses indique la quantité de cœurs en ligne à tout moment.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Équilibré</string>
   <string name="performance">Performance</string>
   <string name="conservative">Conservateur</string>
+  <string name="eco_insanity">InSaNiTy Éco</string>
   <string name="eco_performance">Eco Performance</string>
   <string name="eco_conservative">Eco Conservateur</string>
   <string name="tri">Tri</string>
@@ -182,6 +190,8 @@
   <string name="eco_mode_summary">Mode économie de batterie pour IntelliPlug.</string>
   <string name="hysteresis">Valeur de l\'Hysteresis</string>
   <string name="hysteresis_summary">Plus bas c\'est, plus la réponse sera rapide.</string>
+  <string name="cpu_threshold">Seuil du processeur</string>
+  <string name="cpu_threshold_summary">Plus la valeur est élevée, moins les processeurs sont utilisés.</string>
   <string name="suspend">Suspendre</string>
   <string name="suspend_summary">Prévention pour suspendre.</string>
   <string name="cpus_boosted">CPUs Boostés</string>

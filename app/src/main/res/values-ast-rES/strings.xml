@@ -84,7 +84,6 @@
   <string name="input_interval">Intervalu d\'entrada</string>
   <string name="input_interval_summary">Interválu mínimu nel qu\'una CPU puxa al deteutase entrada.</string>
   <string name="input_boost_freq">Frecuencia de puxu d\'entrada</string>
-  <string name="input_boost_freq_core">Frecuencia de puxu d\'entrada\'l nucleu %s</string>
   <string name="input_boost_freq_summary">La frecuencia de CPU puxaráse a esta frecuencia fasta la deteición d\'entrada.</string>
   <string name="wakeup_boost">Puxu d\'esconseuñu</string>
   <string name="wakeup_boost_summary">El puxu d\'esconsueñu ye paecíu al puxu d\'entrada pero asocede cuando se prende la pantalla.</string>

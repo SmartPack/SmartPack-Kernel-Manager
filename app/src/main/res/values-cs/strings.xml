@@ -139,7 +139,6 @@
   <string name="input_interval">Vstupní Interval</string>
   <string name="input_interval_summary">Minimální interval zrychlení procesoru, při zjištění vstupu.</string>
   <string name="input_boost_freq">Vstupní hodnota frekvence zrychlení</string>
-  <string name="input_boost_freq_core">Zvýšení vstupní frekvence jádra %s</string>
   <string name="input_boost_freq_summary">Frekvence procesoru se zvýšila na tuto hodnotu po zjištění vstupu.</string>
   <string name="wakeup_boost">Rychlost probuzení</string>
   <string name="wakeup_boost_summary">Wakeup zrychlení je podobné zrychlení na vstupu, ale vyskytuje se, když je obrazovka zapnuta.</string>

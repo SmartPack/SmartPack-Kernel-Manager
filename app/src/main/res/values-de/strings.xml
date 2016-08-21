@@ -18,6 +18,7 @@
   <string name="cancel">Abbrechen</string>
   <string name="ok">OK</string>
   <string name="unknown">Unbekannt</string>
+  <string name="license_invalid">Vielen Dank für den Kauf der Spenden-App! Leider ist die Lizenzüberprüfung fehlgeschlagen, bitte versuche es später erneut. Wenn es weiterhin nicht funktioniert, kontaktiere mich bitte.</string>
   <string name="pirated">Es scheint, dass du die Spenden-App nicht über den Play Store gekauft hast. Wenn du sie Raubkopiert hast, dann schäme dich!</string>
   <string name="donate">Spende</string>
   <string name="donate_summary">Diese Funktion ist nur verfügbar, wenn du die Spenden-App installiert hast. Aber keine Sorge. Da die App Open Source ist, kannst du die App einfach selbst builden und diesen Check entfernen. Aber ich hoffe du unterstützt uns trotzdem. Danke dass du Kernel Adiutor verwendest! Sobald du die Spenden-App gekauft hast, musst du Kernel Adiutor neustarten um alle Funktionen freizuschalten.</string>
@@ -153,7 +154,6 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall des CPU-Boost, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
-  <string name="input_boost_freq_core">Berührungs-Frequenzschub Kern %s</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
   <string name="wakeup_boost">Wakeup-Boost</string>
   <string name="wakeup_boost_summary">»Wakeup Boost« ist ähnlich wie »input boost« aber es wird angewendet, wenn der Bildschirm eingeschaltet wird.</string>

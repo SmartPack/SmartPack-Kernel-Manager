@@ -79,7 +79,6 @@
   <string name="input_interval">قم بأدخال فترة زمنية</string>
   <string name="input_interval_summary">اقصر فترة زمنية لتعزيز المعالج عند تحديد الادخال.</string>
   <string name="input_boost_freq">أدخل مقدار تردد التعزيز</string>
-  <string name="input_boost_freq_core">ادخل مقدار التعزيز للنواة %s</string>
   <string name="input_boost_freq_summary">تردد المعالج لتعزيزه للتردد المدخل الذي تم تحديده.</string>
   <string name="touch_boost">تواصل التعزيز</string>
   <string name="touch_boost_summary">هذا سوف يقوم بتعزيز السرعة الدنيا للمعالج اذا قمت بلمس الشاشة او قمت بالضغط على الزر.</string>

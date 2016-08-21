@@ -18,6 +18,7 @@
   <string name="cancel">Huỷ</string>
   <string name="ok">OK</string>
   <string name="unknown">Không xác định</string>
+  <string name="license_invalid">Cảm ơn bạn đã ủng hộ ứng dụng! Thật không may, kiểm tra giấy phép thất bại. Xin vui lòng thử lại sau. Nếu vẫn không được, xin vui lòng liên hệ với tôi.</string>
   <string name="pirated">Có vẻ như ứng dụng ủng hộ đã không được mua thông qua cửa hàng Play! Nếu bạn vi phạm bản quyền, bạn nên cảm thấy xấu hổ!</string>
   <string name="donate">Ủng hộ</string>
   <string name="donate_summary">Tính năng này chỉ có sẵn khi ứng dụng ủng hộ được cài đặt! Đừng lo lắng. Bởi vì ứng dụng này là mã nguồn mở, bạn có thể dễ dàng xây dựng nó cho mình và loại bỏ sự kiểm tra này. Nhưng tôi hy vọng bạn hỗ trợ các nhà phát triển. Cảm ơn bạn đã sử dụng Kernel Adiutor! Một khi bạn mua các ứng dụng ủng hộ bạn phải khởi động lại Kernel Adiutor để kích hoạt tất cả tính năng.</string>
@@ -117,6 +118,7 @@
   <string name="hardware">Phần cứng</string>
   <string name="architecture">Kiến trúc</string>
   <!-- Inputs -->
+  <string name="bus">Bus</string>
   <string name="product">Sản Phẩm</string>
   <string name="version">Phiên bản</string>
   <string name="handlers">Bộ xử lý</string>
@@ -158,19 +160,44 @@
   <string name="input_interval">Khoảng thời gian đầu vào</string>
   <string name="input_interval_summary">Khoảng thời gian tối thiểu tăng cường một CPU khi phát hiện đầu vào.</string>
   <string name="input_boost_freq">Tần số đầu vào tăng cường</string>
-  <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %s</string>
   <string name="input_boost_freq_summary">CPU được tăng cường đến tần số này khi phát hiện đầu vào.</string>
   <string name="wakeup_boost">Tăng tốc khả năng thức dậy</string>
+  <string name="wakeup_boost_summary">Tăng tốc đánh thức tương tự như tăng tốc tín hiệu đầu vào, nhưng nó xảy ra khi màn hình đã được bật.</string>
+  <string name="hotplug_boost">Tăng tốc độ tắt/mở (CPU)</string>
+  <string name="hotplug_boost_summary">Tăng tốc độ tắt/mở (CPU) tương tự như tăng tốc tín hiệu đầu vào, nhưng nó xảy ra khi CPUs được bật.</string>
   <string name="touch_boost">Tăng độ nhạy cảm ứng</string>
+  <string name="touch_boost_summary">Điều này sẽ làm tăng tốc độ CPU tối thiểu của bạn nếu bạn chạm vào màn hình hoặc nhấn một nút.</string>
   <!-- CPU Voltage -->
   <string name="override_vmin">Ghi đè lên điện áp tối thiểu</string>
+  <string name="override_vmin_summary">Vô hiệu hoá để loại bỏ các các giới hạn của nhà sản xuất khi hạ điện áp</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Nhiều hơn một Hotplugging được kích hoạt! \nVui lòng chỉ sử dụng một.</string>
+  <string name="mpdecision">MPDecision</string>
+  <string name="mpdecision_summary">Giải pháp tắt/mở (CPU) nhanh của Qualcomm. Bạn có thể gặp vấn đề với việc thay đổi xung nhịp khi điều này được kích hoạt.</string>
+  <string name="intelliplug">IntelliPlug</string>
+  <string name="intelliplug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Số trong ngoặc đơn cho thấy số lượng lõi CPU mở mọi lúc.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Cân đối</string>
   <string name="performance">Hiệu suất cao</string>
+  <string name="conservative">Conservative</string>
+  <string name="eco_insanity">Eco InSaNiTy</string>
+  <string name="eco_performance">Eco Performance</string>
+  <string name="eco_conservative">Eco Conservative</string>
+  <string name="tri">Tri</string>
+  <string name="eco">Eco</string>
+  <string name="strict">Nghiêm ngặt</string>
   <string name="eco_mode">Chế độ tiết kiệm</string>
+  <string name="eco_mode_summary">Chế độ tiết kiệm Pin cho IntelliPlug.</string>
+  <string name="hysteresis">Giá trị hysteresis</string>
   <string name="hysteresis_summary">Càng thấp càng phản hồi nhanh.</string>
+  <string name="cpu_threshold">Ngưỡng CPU</string>
+  <string name="cpu_threshold_summary">Giá trị càng cao, CPU ít được sử dụng hơn.</string>
   <string name="suspend">Ngưng</string>
+  <string name="suspend_summary">Ngăn chặn đình chỉ.</string>
   <string name="cpus_boosted">Đã tăng tốc các CPU</string>
+  <string name="cpus_boosted_summary">Số lượng tối đa của CPU được tăng tốc cùng lúc.</string>
+  <string name="min_cpu_online">Số CPU trực tuyến tối thiểu</string>
   <string name="min_cpu_online_summary">Số CPU tối thiểu luôn bật.</string>
   <string name="max_cpu_online">Số CPU bật tối đa</string>
   <string name="max_cpu_online_summary">Số CPU tối đa luôn bật.</string>
@@ -202,6 +229,9 @@
   <string name="delay">Độ trễ</string>
   <string name="delay_summary">Thời gian giữa các lần kiểm tra.</string>
   <string name="pause">Tạm dừng</string>
+  <string name="wake_wait_time">Thời gian chờ đê đánh thức</string>
+  <string name="autosmp_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi mrg666.</string>
+  <string name="core_control">Điều khiển lõi</string>
   <string name="offline_delay_summary">Thời gian trước khi tắt một CPU.</string>
   <!--Thermal-->
   <string name="thermal_info">Chỉ sử dụng một trình điều khiển nhiệt từ các tuỳ chọn sau, sử dụng nhiềucùng một lúc có thể gây ra hành vi không mong muốn.</string>
@@ -209,14 +239,23 @@
   <string name="thermald_summary">Trình điều khiển nhiệt gốc có thể ngăn ngừa thiết bị quá nóng. Điều này nên được vô hiệu nếu Kernel hiện tại có một sự thay thế.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Một sự thay thế cho Qualcomm Thermald. Phát triển bởi faux123.</string>
+  <string name="intellithermal_optimized">Tối ưu hóa Intellithermal</string>
+  <string name="intellithermal_optimized_summary">Một thay thế cho Qualcomm Thermald. Phát triển bởi faux123 và alucard_24.</string>
   <string name="poll">Thăm dò ý kiến</string>
   <string name="check_interval">Khoảng thời gian kiểm tra</string>
   <!-- GPU -->
+  <string name="gpu_governor">Trình kiểm soát GPU</string>
+  <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
+  <string name="simple_gpu_algorithm_summary">Một tiện ích cho MSM Adreno TZ. Phát triển bởi faux123.</string>
   <string name="adreno_idler">Adreno Idler</string>
   <!-- Screen -->
   <string name="red">Đỏ</string>
   <string name="green">Xanh lá</string>
+  <string name="contrast">Độ tương phản</string>
+  <string name="brightness">Độ sáng</string>
+  <string name="min_brightness">Độ sáng tối thiểu</string>
   <string name="min_brightness_summary">Cho phép bạn giảm độ sáng màn hình LCD thấp hơn.</string>
+  <string name="max_brightness">Độ sáng tối đa</string>
   <string name="threshold">Ngưỡng giá trị</string>
   <string name="glove_mode">Chế độ găng tay</string>
   <string name="glove_mode_summary">Điều này sẽ cho phép bạn sử dụng điện thoại của bạn ngay cả khi đeo găng tay.</string>
@@ -242,7 +281,12 @@
   <string name="draw_w">Vẽ \"W\"</string>
   <string name="draw_c">Vẽ \"C\"</string>
   <string name="draw_m">Vẽ \"M\"</string>
+  <string name="area">Vùng</string>
+  <string name="width">Rộng</string>
+  <string name="height">Cao</string>
+  <string name="vibration_strength">Độ rung</string>
   <!-- Sound -->
+  <string name="sound_control">Điều khiển âm thanh</string>
   <!-- Battery -->
   <string name="level">Mức độ</string>
   <string name="voltage">Điện áp</string>
@@ -254,6 +298,9 @@
   <string name="charge_rate">Tỷ lệ sạc</string>
   <string name="charging_current">Sạc hiện tại</string>
   <!-- LED -->
+  <string name="speed">Tốc độ</string>
+  <string name="stock">Gốc</string>
+  <string name="notification">Thông báo</string>
   <string name="on">Bật</string>
   <string name="off">Tắt</string>
   <string name="test">Thử nghiệm</string>
@@ -262,15 +309,123 @@
   <string name="external_storage">Bộ nhớ ngoài</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
+  <string name="very_light">Rất nhẹ</string>
+  <string name="light">Light</string>
+  <string name="medium">Vừa</string>
+  <string name="very_aggressive">Rất tích cực</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Disksize</string>
   <!-- Entropy -->
+  <string name="available">Sẵn có</string>
+  <string name="poolsize">Kích thước Pool</string>
+  <string name="read">Đọc</string>
+  <string name="write">Ghi</string>
   <!-- Misc -->
+  <string name="android_logger">Android logging</string>
+  <string name="crc">Phần mềm kiểm soát CRC</string>
+  <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Vô hiệu hóa cho hiệu suất tốt hơn nhưng có nguy cơ mất dữ liệu trong trường hợp hệ thống gặp sự cố.</string>
+  <string name="network">Mạng</string>
+  <string name="hostname">Tên miền máy chủ</string>
+  <string name="wakelock">Wakelock</string>
+  <string name="smb135x_wakelock">smb135x Wakelock</string>
+  <string name="smb135x_wakelock_summary">Ngăn chặn wakelock khi ngắt kết nối nguồn.</string>
+  <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
+  <string name="sensor_ind_wakelock_summary">Ngăn chặn wakelock khi Ambient Display bị vô hiệu hóa.</string>
+  <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
+  <string name="msm_hsic_host_wakelock_summary">Ngăn chặn msm_hsic_host wakelock.</string>
+  <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
+  <string name="wlan_rx_wakelock_summary">Ngăn chặn wlan_rx wakelock.</string>
+  <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
+  <string name="wlan_ctrl_wakelock_summary">Ngăn chặn wlan_ctrl wakelock.</string>
+  <string name="wlan_wakelock">wlan Wakelock</string>
+  <string name="wlan_wakelock_summary">Ngăn chặn wakelock mạng wlan.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Ngăn chặn BlueSleep wakelock.</string>
   <!-- Custom Controls -->
+  <string name="welcome">Chào mừng</string>
+  <string name="custom_controls_summary">Trong phần này, bạn có thể tạo ra hoặc nhập khẩu điều khiển tùy chỉnh.</string>
+  <string name="example">Ví dụ</string>
+  <string name="custom_controls_example_summary">Cần ví dụ? Nhấp vào &lt;a href = \"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\" &gt; &lt; một &gt; ở đây;.</string>
+  <string name="create">Tạo mới</string>
+  <string name="import_item">Nhập vào</string>
+  <string name="control_switch">Chuyển đổi</string>
+  <string name="control_seekbar">Seekbar</string>
+  <string name="title">Tiêu đề</string>
+  <string name="description">Mô tả</string>
+  <string name="applying">Đang áp dụng</string>
+  <string name="switch_enabled_summary">Khi việc chuyển đổi được kích hoạt. Trở về 1 để kích hoạt và 0 để vô hiệu hóa.</string>
+  <string name="seekbar_min">Nhỏ nhất</string>
+  <string name="seekbar_max">Lớn nhất</string>
+  <string name="seekbar_progress">Tiến độ</string>
+  <string name="control_generic">Chung chung</string>
+  <string name="generic_value">Giá trị</string>
+  <string name="required">yêu cầu</string>
+  <string name="hit_test">Bạn phải nhấn vào kiểm tra trước!</string>
+  <string name="output">Đầu ra</string>
+  <string name="edit">Chỉnh sửa</string>
+  <string name="export">Xuất</string>
+  <string name="delete">Xóa</string>
+  <string name="sure_question">Bạn có chắc không?</string>
+  <string name="name">Tên</string>
+  <string name="already_exists">%s đã tồn tại!</string>
+  <string name="exported_item">%1$s đã được xuất tới %2$s</string>
+  <string name="name_empty">Tên còn trống!</string>
+  <string name="import_malformed">Tệp tin nhập vào đã bị thay đổi!</string>
+  <string name="import_wrong_version">Tệp nhập vào quá cũ!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Không thể tìm thấy bất kỳ kernel nào được hỗ trợ! Hãy kiểm tra mạng của bạn.</string>
+  <string name="download_error">Tải về thất bại %s.</string>
+  <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Kiểm tra md5</string>
+  <string name="md5_mismatch">Tập tin tải xuống có MD5 khác nhau. Lý do: \n\n\u2022 Tập tin đã tải về là bị gián đoạn\n\u2022 Các nhà phát triển đã đưa sai MD5\n\nCố gẳng tải về các tập tin một lần nữa. Nếu bạn vẫn nhận được lỗi này, xin vui lòng liên hệ với các nhà phát triển của Kernel này.</string>
+  <string name="install">Cài đặt</string>
+  <string name="cwm_recovery">CWM Recovery</string>
+  <string name="twrp">TWRP</string>
+  <string name="manual_flashing">Tôi sẽ sử dụng tay tôi</string>
+  <string name="file_location">Tải về tập tin được %s</string>
+  <string name="backing_up">Sao lưu</string>
+  <string name="flashing">Flashing</string>
+  <string name="restoring">Khôi phục</string>
   <!-- Backup -->
+  <string name="boot_partition">Phân vùng khởi động</string>
+  <string name="recovery_partition">Phân vùng phục hồi</string>
+  <string name="fota_partition">Phân vùng Fota</string>
+  <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="add">Thêm</string>
+  <string name="backup_item">%1$s đã được sao lưu tới %2$s</string>
+  <string name="item_count">%s mục</string>
+  <string name="items_count">%s mục</string>
+  <string name="key">Mã khóa</string>
+  <string name="value">Giá trị</string>
+  <string name="key_empty">Mã khóa không thể để trống!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Trong hồ sơ bạn thay đổi sẽ không có một tác động nào đến áp dụng khi khởi động.</string>
+  <string name="profile_warning">Tất cả những gì bạn thay đổi ở đây sẽ được lưu vào hồ sơ của bạn. Chú ý! Cài đặt của bạn cũng sẽ nhận được áp dụng, nhưng sẽ không được lưu để áp dụng khi khởi động.</string>
+  <string name="no_changes">Không có thay đổi được thực hiện!</string>
+  <string name="apply_question">Áp dụng %s?</string>
+  <string name="append">Thêm</string>
+  <string name="details">Chi tiêt</string>
+  <string name="press_again_to_apply">Bấm %s một lần nữa để áp dụng.</string>
+  <string name="applied">Đã áp dụng</string>
+  <string name="profile_tasker">Hồ sơ Tasker</string>
+  <string name="profile_tasker_summary">Nếu bạn muốn áp dụng một hồ sơ tại một sự kiện cụ thể, chẳng hạn như chạy một ứng dụng, bạn phải sử dụng Tasker.</string>
+  <string name="profile_tasker_toast">Hiển thị các thông báo nhanh khi tasker áp dụng một hồ sơ</string>
+  <string name="profile_tile">Tiêu đề hồ sơ</string>
+  <string name="profile_tile_summary">Hiển thị một tiêu đề phép bạn chọn một hồ sơ.</string>
+  <string name="profile_select">Chọn hồ sơ</string>
+  <string name="applying_profile">Áp dụng %s!</string>
+  <string name="no_profiles">Không có hồ sơ được tìm thấy! Bạn có để tạo ra chúng trước.</string>
+  <string name="sections_disabled">Tất cả các phần bị vô hiệu hóa! Không có hồ sơ nào.</string>
+  <string name="new_mode">Mới</string>
+  <string name="current_settings">Thiết đặt hiện thời</string>
+  <string name="select_all">Chọn tất cả</string>
+  <string name="nothing_selected">Không có gì được chọn</string>
+  <string name="profile_empty">Hồ sơ rỗng!</string>
   <!-- Recovery -->
+  <string name="reboot">Khởi động lại</string>
   <string name="reboot_soft">Khởi động lại mềm</string>
   <string name="reboot_recovery">Khởi động vào Recovery</string>
   <string name="reboot_bootloader">Khởi động lại bộ nạp khởi động</string>
@@ -281,8 +436,49 @@
   <string name="add_action_first">Bạn phải thêm hành động đầu tiên!</string>
   <string name="flash_now_confirm">Bạn có muốn chạy hành động của bạn? Điện thoại sẽ khởi động lại vào Recover và những hành động sẽ chạy theo thứ tự như bạn thêm chúng.</string>
   <!-- Init.d -->
+  <string name="emulate_initd">Giả lập Init.d</string>
+  <string name="emulate_initd_summary">Nếu thiết bị của bạn không hỗ trợ Init.d theo mặc định, bạn có thể bật tính năng này để mô phỏng điều đó.</string>
+  <string name="exceute_question">Thực hiện %s?</string>
+  <string name="executing">Đang thực hiện</string>
+  <string name="result">Kết quả</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Phần này cho bạn thấy điều gì sẽ xảy ra khi thiết bị khởi động. Nếu nó là trống thì không có gì sẽ xảy ra sau khi khởi động.</string>
+  <string name="delete_question">Xóa %s?</string>
+  <string name="arguments">Đối số: %s</string>
+  <string name="disable_question">Vô hiệu hóa %s?</string>
   <!-- Settings -->
+  <string name="fahrenheit_title">Độ F</string>
+  <string name="fahrenheit_summary">Sử dụng độ F để đo nhiệt độ.</string>
+  <string name="force_english">Bắt buộc hiển thị tiếng Anh</string>
+  <string name="user_interface">Giao diện người dùng</string>
+  <string name="dark_theme">Chủ đề tối</string>
+  <string name="material_icon">Biểu tượng phẳng</string>
+  <string name="banner_resizer">Thay đổi kích thước Banner</string>
+  <string name="force_cards">Bắt buộc dạng thẻ</string>
+  <string name="force_cards_summary">Sử dụng dạng thẻ cho các mục nếu có thể.</string>
+  <string name="five_sec">5 giây</string>
+  <string name="ten_sec">10 giây</string>
+  <string name="twenty_sec">20 giây</string>
+  <string name="fifty_sec">50 giây</string>
+  <string name="apply_on_boot_test_summary">Thử nghiệm áp dụng khi khởi động. Điều này bao gồm tất cả các thiếp lặp mà thiết bị bạn được áp dụng trong quá trình khởi động, như điều khiển tùy chỉnh, hồ sơ, init.d, vv...</string>
+  <string name="apply_on_boot_running">Dịch vụ áp dụng khởi động đang chạy. Xin vui lòng chờ đến khi nó kết thúc.</string>
+  <string name="nothing_apply">Không tìm thấy gì để áp dụng!</string>
+  <string name="hide">Ẩn</string>
+  <string name="apply_on_boot_hide_summary">Ẩn thông báo về việc áp dụng khi khởi động. Độ trễ sẽ vẫn còn!</string>
+  <string name="toast">Tin nhắn bật nhanh</string>
+  <string name="apply_on_boot_toast_summary">Hiển thị thông báo nhanh khi cài đặt đã được áp dụng.</string>
+  <string name="confirmation_notification">Thông báo xác nhận</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Sau khi áp dụng khởi động với thông báo được hiển thị, hiển thị một thông báo xác nhận áp dụng khởi động đã thành công.</string>
+  <string name="script">Kịch bản</string>
+  <string name="apply_on_boot_script_summary">Sử dụng một kịch bản để áp dụng cài đặt. Xin vui lòng chỉ kích hoạt điều này nếu bạn có rắc rối với áp dụng khi khởi động. Nếu vấn đề vẫn còn vẫn tồn tại sau khi kích hoạt tùy chọn này, xin vui lòng chắc chắn rằng không có ứng dụng khác là xung đột với Kernel Adiutor.</string>
+  <string name="debugging">Đang gỡ lỗi</string>
+  <string name="logcat">Bản ghi danh mục</string>
+  <string name="logcat_summary">Sao bản ghi đến /sdcard/logcat.txt</string>
+  <string name="last_kmsg">Thông báo kernel cuối cùng</string>
+  <string name="last_kmsg_summary">Sao /proc/last_kmsg đến /sdcard/last_kmsg.txt</string>
+  <string name="driver_message">Thông báo chương trình điều khiển</string>
+  <string name="driver_message_summary">Chép thông báo trình điều khiển (dmesg) đến /sdcard/dmesg.txt</string>
+  <string name="security">Bảo mật</string>
   <string name="set_password">Đặt mật khẩu</string>
   <string name="set_password_summary">Bạn có thể bảo vệ Kernel Adiutor bằng cách thiết lập một mật khẩu. Mỗi khi bạn mở ứng dụng này, bạn phải nhập mật khẩu. Nếu bạn quên nó, đơn giản chỉ cần xoá sạch dữ liệu của ứng dụng này trong các cài đặt của thiết bị của bạn. Đừng lo lắng tôi sẽ không chia sẻ mật khẩu của bạn.</string>
   <string name="delete_password">Xóa mật khẩu</string>

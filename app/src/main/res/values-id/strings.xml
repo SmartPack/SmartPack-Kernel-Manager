@@ -101,7 +101,6 @@
   <string name="input_interval">Tulis nilai Interval</string>
   <string name="input_interval_summary">Interval minimum CPU akan ditingkatkan jika nilai masukan terdeteksi.</string>
   <string name="input_boost_freq">Masukan Peningkatan Frekuensi</string>
-  <string name="input_boost_freq_core">Masukan Peningkatan Frekuensi Inti %s</string>
   <string name="input_boost_freq_summary">Frekuensi CPU akan ditingkatkan sesuai nilai masukan jika ditentukan.</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost mirip dengan Indput Boost tetapi hal ini terjadi ketika layar diaktifkan (dari kondisi mati).</string>

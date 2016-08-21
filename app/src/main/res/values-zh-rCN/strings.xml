@@ -158,7 +158,6 @@
   <string name="input_interval">输入时间间隔</string>
   <string name="input_interval_summary">CPU 的最小时间间隔被增强检测到输入时。</string>
   <string name="input_boost_freq">输入跳频频率数值</string>
-  <string name="input_boost_freq_core">输入刺激频率核心 %s</string>
   <string name="input_boost_freq_summary">CPU 频率提高到了这个后输入检测的频率。</string>
   <string name="wakeup_boost">唤醒提振</string>
   <string name="wakeup_boost_summary">唤醒推动类似输入刺激但当屏幕打开就会发生。</string>

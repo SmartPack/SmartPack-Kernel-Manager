@@ -152,7 +152,6 @@
   <string name="input_interval">Vstupný interval</string>
   <string name="input_interval_summary">Minimálny interval zoailnenia CPU keď je detekovaný vstup.</string>
   <string name="input_boost_freq">Vstupné zvýšiť frekvenciu</string>
-  <string name="input_boost_freq_core">Vstupne zvýšiť frekvenciu jadra %s</string>
   <string name="input_boost_freq_summary">Frekvencia Procesora sa zvýšila na túto frekvenciu vstupného detekcií.</string>
   <string name="wakeup_boost">Zosilmenie na prebudení</string>
   <string name="wakeup_boost_summary">Zosilnenie pri prebudení je vstupné zosilnenie pri vypnutej obrazovke.</string>

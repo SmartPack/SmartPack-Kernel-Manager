@@ -154,7 +154,6 @@
   <string name="input_interval">Invoer Interval</string>
   <string name="input_interval_summary">Minimuminterval dat een CPU gestimuleerd wordt wanneer invoer is gedetecteerd.</string>
   <string name="input_boost_freq">Invoerversterkingsfrequentie</string>
-  <string name="input_boost_freq_core">Invoerversterkingsfrequentie Kern %s</string>
   <string name="input_boost_freq_summary">CPU frequentie waarnaar gestreefd wordt bij invoerdetectie.</string>
   <string name="wakeup_boost">Opwek Versterking</string>
   <string name="wakeup_boost_summary">Opwek Versterking is vergelijkbaar met invoerversterking, maar treedt op wanneer het scherm aan is.</string>

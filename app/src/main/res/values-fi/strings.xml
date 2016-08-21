@@ -153,7 +153,6 @@
   <string name="input_interval">Syöttöväli</string>
   <string name="input_interval_summary">Suorittimen pienin tehonlisäys, kun syöttöä on havaittu.</string>
   <string name="input_boost_freq">Input Boost-taajuus</string>
-  <string name="input_boost_freq_core">Input Boost Core-taajuus %s</string>
   <string name="input_boost_freq_summary">Suorittimen taajuus nostetaan täksi taajuudeksi, kun syöttöä havaitaan.</string>
   <string name="wakeup_boost">Herätys-boosti</string>
   <string name="wakeup_boost_summary">Wakeup Boost on samanlainen kuin input boost, mutta se esiintyy kun näyttö kytketään päälle.</string>

@@ -18,6 +18,7 @@
   <string name="cancel">Annulla</string>
   <string name="ok">OK</string>
   <string name="unknown">Sconosciuto</string>
+  <string name="license_invalid">Grazie per aver acquistato l\'app donazione! Purtroppo il controllo della licenza non è riuscito. Riprova più tardi. Se non dovesse funzionare, ti prego di contattarmi.</string>
   <string name="pirated">Sembra che l\'app donazione non è stata acquistata tramite Play Store! Se è piratata, vergognati!</string>
   <string name="donate">Donazioni</string>
   <string name="donate_summary">Questa funzionalità è disponibile solo quando è installato l\'app donazione! Non preoccuparti. Siccome quest\'app è open source puoi facilmente costruirla da solo e rimuovere questo controllo. Ma spero che comunque sosterrai gli sviluppatori. Grazie per l\'utilizzo del Kernel Adiutor! Una volta acquistata l\'app donazione è necessario riavviare Kernel Adiutor al fine di attivare tutte le funzioni.</string>
@@ -159,7 +160,6 @@
   <string name="input_interval">Intervallo di input</string>
   <string name="input_interval_summary">Intervallo minimo nella quale una CPU è potenziata quando l\'input viene rilevato.</string>
   <string name="input_boost_freq">Boost frequenza al tocco</string>
-  <string name="input_boost_freq_core">Boost della frequenza al tocco %s</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
   <string name="wakeup_boost">Accellerazione al risveglio</string>
   <string name="wakeup_boost_summary">Il Boost di risveglio è simile al boot di input ma si verifica quando lo schermo viene acceso.</string>

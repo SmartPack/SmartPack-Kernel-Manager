@@ -118,7 +118,6 @@
   <string name="input_interval">Інтервал вводу</string>
   <string name="input_interval_summary">Мінімальний інтервал при якому підвищується частота CPU після виявленні введення.</string>
   <string name="input_boost_freq">Частота розгону при введенні</string>
-  <string name="input_boost_freq_core">Підвищує частоту ядра %s</string>
   <string name="input_boost_freq_summary">При дотику частота CPU буде підвищена до даної.</string>
   <string name="wakeup_boost">Задіяти прискорення</string>
   <string name="wakeup_boost_summary">Пробудження Boost схоже на введення boost, але це відбувається, коли екран увімкнено.</string>

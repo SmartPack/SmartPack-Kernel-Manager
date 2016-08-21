@@ -119,7 +119,6 @@
   <string name="input_interval">Intervalo de entrada</string>
   <string name="input_interval_summary">Intervalo mínimo que uma CPU é impulsionado quando a entrada é detectada.</string>
   <string name="input_boost_freq">Incrementar a frequência de entrada</string>
-  <string name="input_boost_freq_core">Frequência de Núcleo Input Boost %s</string>
   <string name="input_boost_freq_summary">Frequência da CPU para ser impulsionada até esta frequência após a detecção de entrada.</string>
   <string name="wakeup_boost">WakeUp Boost</string>
   <string name="wakeup_boost_summary">WakeUp Boost é semelhante ao impulso de entrada mas ocorre quando a tela está ativada.</string>

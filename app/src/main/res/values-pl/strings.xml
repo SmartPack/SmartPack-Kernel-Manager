@@ -159,7 +159,6 @@
   <string name="input_interval">Interwał wejścia</string>
   <string name="input_interval_summary">Minimalny interwał przyspieszenia procesora po wykryciu dotyku.</string>
   <string name="input_boost_freq">Zwiększenie częstotliwości podczas dotyku</string>
-  <string name="input_boost_freq_core">Input Boost częstotliwości rdzeni-a %s</string>
   <string name="input_boost_freq_summary">Częstotliwość procesora zostanie zwiększona do tej podczas dotyku.</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost jest podobny do input boost, ale występuje wtedy, gdy ekran jest wybudzany.</string>

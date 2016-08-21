@@ -159,7 +159,6 @@
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал ускорения ЦП при обнаружении ввода.</string>
   <string name="input_boost_freq">Ускорение частоты при вводе</string>
-  <string name="input_boost_freq_core">Ускорение частоты ядра %s при вводе</string>
   <string name="input_boost_freq_summary">Частота ЦП будет поднята до этой частоты при обнаружении ввода.</string>
   <string name="wakeup_boost">Усиление пробуждения</string>
   <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>

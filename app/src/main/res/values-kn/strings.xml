@@ -79,7 +79,6 @@
   <string name="input_interval">ಇನ್ಪುಟ್ ಮಧ್ಯಂತರ</string>
   <string name="input_interval_summary">ಇನ್ಪುಟ್ ಪತ್ತೆಯಾದಾಗ ಸಿಪಿಯು ಬೂಸ್ಟ್ ಆಗುವ ಸಮಯ.</string>
   <string name="input_boost_freq">ಇನ್ಪುಟ್ ಬೂಸ್ಟ್ ಆವರ್ತನ</string>
-  <string name="input_boost_freq_core">ಇನ್ಪುಟ್ ಬೂಸ್ಟ್ ಆವರ್ತನ ಕೋರ್ %s</string>
   <string name="input_boost_freq_summary">ಇನ್ಪುಟ್ ಪತ್ತೆಯಾದಗ CPU ಆವರ್ತನವನ್ನು ಈ ಆವರ್ತನಕ್ಕೆ ಬೂಸ್ಟ್ ಮಾಡಲಾಗುವುದು.</string>
   <string name="wakeup_boost">ವೇಕಪ್ ಬೂಸ್ಟ್</string>
   <string name="wakeup_boost_summary">ವೇಕಪ್ ಬೂಸ್ಟ್ ಇನ್ಪುಟ್ ಬೂಸ್ಟ್ ತರಹವೇ ಆಗಿದೆ ಆದರೆ ಇದು ಪರದೆ ಆನ್ ಆದಾಗ ಸಂಭವಿಸುತ್ತದೆ.</string>

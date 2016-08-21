@@ -157,7 +157,6 @@
   <string name="input_interval">時間間隔(輸入)</string>
   <string name="input_interval_summary">當偵測到輸入時，CPU 被加速的最小時間間隔。</string>
   <string name="input_boost_freq">加速頻率(輸入)</string>
-  <string name="input_boost_freq_core">加速頻率(輸入) 核心 %s</string>
   <string name="input_boost_freq_summary">當偵測到輸入時， CPU 被加速到此頻率。</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">喚醒推動類似輸入刺激但當螢幕打開就會發生。</string>

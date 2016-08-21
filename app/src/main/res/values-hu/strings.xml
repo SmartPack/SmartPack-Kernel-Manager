@@ -18,6 +18,7 @@
   <string name="cancel">Mégse</string>
   <string name="ok">OK</string>
   <string name="unknown">Ismeretlen</string>
+  <string name="license_invalid">Köszönjük, hogy megvásároltad a támogatói alkalmazást! Sajnos a licenc ellenőrzés sikertelen. Kérjük, próbálkozz később. Ha még mindig nem működik, lépj kapcsolatba velem.</string>
   <string name="pirated">Úgy látszik a támogatói alkalmazás nem a Play Áruházon keresztül lett megvásárolva! Ha lekalózkodtad, akkor szégyelld magad!</string>
   <string name="donate">Támogatás</string>
   <string name="donate_summary">Ez a szolgáltatás csak akkor vehető igénybe, ha a támogatói alkalmazás telepítve van! Mégse aggódj. Mivel ez az alkalmazás nyit forráskódú, így könnyen magad is építheted eltávolítva ezt az ellenőrzést. De remélem támogatod a fejlesztőket. Köszönjük, hogy a Kernel Adiutor-t használod! Ha megvásároltad a támogatói alkalmazást, akkor újra kell indítani a Kernel Adiutor-t ahhoz, hogy minden funkció engedélyezésre kerüljön.</string>
@@ -159,7 +160,6 @@
   <string name="input_interval">Bemeneti időköz</string>
   <string name="input_interval_summary">A minimális időköz, ameddig a CPU gyorsítva lesz bemenet észlelésekor.</string>
   <string name="input_boost_freq">Bevitel CPU gyorsítási frekvencia</string>
-  <string name="input_boost_freq_core">Bevitel CPU gyorsítási frekvencia %s mag</string>
   <string name="input_boost_freq_summary">A CPU frekvencia erre az értékre pörög fel bevitel észlelésekor.</string>
   <string name="wakeup_boost">Ébresztési Gyorsítás</string>
   <string name="wakeup_boost_summary">Ébresztési gyorsítás hasonló a beviteli gyorsításhoz, de ez akkor jelentkezik, ha a képernyő be van kapcsolva.</string>

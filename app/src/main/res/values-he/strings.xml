@@ -71,7 +71,6 @@
   <string name="sync_threshold_summary">כאשר טעינת המעבד חוצה סף מוגדר מראש, המעבד הנוכחי יעלה לתדר זה.</string>
   <string name="input_interval_summary">מרווח זמן מינימלי שבו המעבד יומהר כשהקלט זוהה.</string>
   <string name="input_boost_freq">קלט לתדר המהרה</string>
-  <string name="input_boost_freq_core">קלט לתדר הצהרה ליבה %s</string>
   <string name="input_boost_freq_summary">תדר מעבד יומהר לתדר זה כשהקלט יזוהה.</string>
   <string name="wakeup_boost">בוסט Wakeup</string>
   <string name="hotplug_boost">בוסט Hotplug</string>

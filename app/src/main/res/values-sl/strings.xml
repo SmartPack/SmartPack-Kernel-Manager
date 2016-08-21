@@ -85,7 +85,6 @@
   <string name="input_interval">Interval vnosa</string>
   <string name="input_interval_summary">Najmanjši interval CPU pospeška, ko je zaznan vnos.</string>
   <string name="input_boost_freq">Frekvenca pospeška ob vnosu</string>
-  <string name="input_boost_freq_core">Pospešek ob vnosu za jedro %s</string>
   <string name="input_boost_freq_summary">Frekvenca CPU bo pospešena na to vrednost ob zaznanem vnosu.</string>
   <string name="wakeup_boost">Pospešek ob vklopu</string>
   <string name="wakeup_boost_summary">Pospešek ob vklopu je podoben pospešku pri vnosu, le da se zgodi v trenutku ko prižgemo zaslon.</string>
