@@ -27,12 +27,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 
 import java.util.ArrayList;
 
@@ -71,7 +71,7 @@ public class XYGraph extends View {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.XYGraph, defStyleAttr, 0);
 
-        int accentColor = ContextCompat.getColor(context, R.color.colorAccent);
+        int accentColor = ViewUtils.getThemeAccentColor(getContext());
         mPaintLine.setColor(a.getColor(R.styleable.XYGraph_linecolor, accentColor));
         mPaintEdge.setColor(a.getColor(R.styleable.XYGraph_edgecolor, accentColor));
         mPaintEdge.setStrokeWidth(a.getDimension(R.styleable.XYGraph_edgestrokewidth,

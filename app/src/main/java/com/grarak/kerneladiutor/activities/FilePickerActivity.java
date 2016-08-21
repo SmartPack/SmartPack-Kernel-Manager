@@ -136,11 +136,11 @@ public class FilePickerActivity extends BaseActivity {
             }
             if (mDirImage == null) {
                 mDirImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_dir));
-                DrawableCompat.setTint(mDirImage, ContextCompat.getColor(getActivity(), R.color.colorAccent));
+                DrawableCompat.setTint(mDirImage, ViewUtils.getThemeAccentColor(getContext()));
             }
             if (mFileImage == null) {
                 mFileImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_file));
-                DrawableCompat.setTint(mFileImage, ContextCompat.getColor(getActivity(), R.color.colorAccent));
+                DrawableCompat.setTint(mFileImage, ViewUtils.getThemeAccentColor(getContext()));
             }
             if (mPickDialog != null) {
                 mPickDialog.show();

@@ -2,7 +2,6 @@
 <resources>
     <color name="colorPrimary">#2a7289</color>
     <color name="colorPrimaryDark">#1d5060</color>
-    <color name="colorAccent">#ff80aa</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
@@ -10,4 +9,15 @@
     <color name="red">#f66055</color>
 
     <color name="divider">#dddddd</color>
+
+    <color name="red_accent">#ef5350</color>
+    <color name="pink_accent">#ff80aa</color>
+    <color name="purple_accent">#ab47Bc</color>
+    <color name="blue_accent">#42a5f5</color>
+    <color name="green_accent">#66bb6a</color>
+    <color name="orange_accent">#ffa726</color>
+    <color name="brown_accent">#8d6e63</color>
+    <color name="grey_accent">#bdbdbd</color>
+    <color name="blue_grey_accent">#78909c</color>
+    <color name="teal_accent">#26a69a</color>
 </resources>

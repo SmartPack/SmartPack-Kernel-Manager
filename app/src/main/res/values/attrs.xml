@@ -14,4 +14,7 @@
         <attr name="unitId" format="string" />
     </declare-styleable>
 
+    <attr name="edittext_build_prop_style" format="reference" />
+    <attr name="banner_frame_drawable" format="reference" />
+
 </resources>

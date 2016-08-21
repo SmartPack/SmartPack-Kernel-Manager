@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -53,10 +52,6 @@ public class FrequencyTableView extends RecyclerViewItem {
         mPercentage = (TextView) view.findViewById(R.id.percentage);
         mDuration = (TextView) view.findViewById(R.id.duration);
         mProgress = (ProgressBar) view.findViewById(R.id.progress);
-
-        if (Utils.DARK_THEME) {
-            mFrequency.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
 
         super.onCreateView(view);
     }

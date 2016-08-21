@@ -18,7 +18,7 @@
     <dimen name="xygraph_edge_stroke_width">2dp</dimen>
     <dimen name="xygraph_graph_stroke_width">1dp</dimen>
 
-    <dimen name="dialog_edittext_padding">30dp</dimen>
+    <dimen name="dialog_padding">30dp</dimen>
 
     <dimen name="colortable_width">100dp</dimen>
     <dimen name="colortable_height">50dp</dimen>
@@ -30,4 +30,10 @@
     <dimen name="banner_min_height">140dp</dimen>
     <dimen name="banner_default_height">180dp</dimen>
     <dimen name="banner_max_height">280dp</dimen>
+
+    <dimen name="circleview_height">50dp</dimen>
+    <dimen name="circleview_width">50dp</dimen>
+    <dimen name="circleview_border">1dp</dimen>
+
+    <dimen name="color_dialog_margin">5dp</dimen>
 </resources>

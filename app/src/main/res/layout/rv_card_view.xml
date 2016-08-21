@@ -41,6 +41,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_dots"
+            android:tint="?android:attr/textColorSecondary"
             android:visibility="gone" />
 
     </LinearLayout>

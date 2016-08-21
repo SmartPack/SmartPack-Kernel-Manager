@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
                 android:id="@+id/required_text"
@@ -96,7 +96,7 @@
                 android:layout_marginBottom="2dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/output"
-                android:textColor="@color/black" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"

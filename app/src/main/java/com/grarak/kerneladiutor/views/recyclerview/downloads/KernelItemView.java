@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview.downloads;
 
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,10 +66,6 @@ public class KernelItemView extends RecyclerViewItem {
                 }
             }
         });
-
-        if (Utils.DARK_THEME) {
-            title.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
     }
 
     @Override

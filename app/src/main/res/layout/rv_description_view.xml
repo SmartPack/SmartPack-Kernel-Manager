@@ -33,7 +33,7 @@
                 android:layout_marginBottom="2dp"
                 android:focusable="false"
                 android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
                 android:id="@+id/summary"

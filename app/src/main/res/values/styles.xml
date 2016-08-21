@@ -1,31 +1,24 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
-        <item name="swirl_errorColor">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="discreteSeekBarStyle">@style/Widget.DiscreteSeekBar</item>
+        <item name="banner_frame_drawable">@drawable/drawable_frame_light</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
-        <item name="swirl_errorColor">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="discreteSeekBarStyle">@style/Widget.DiscreteSeekBar</item>
+        <item name="banner_frame_drawable">@drawable/drawable_frame_dark</item>
     </style>
 
-    <style name="ThemeDark" parent="AppThemeDark" />
+    <style name="AppThemeParent" parent="AppTheme" />
 
-    <style name="Theme" parent="AppTheme" />
+    <style name="AppThemeParentDark" parent="AppThemeDark" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -43,10 +36,13 @@
 
     <style name="Base.Widget.AppCompat.CompoundButton.CheckBox.Custom">
         <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlActivated">?attr/colorAccent</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.EditText.Custom" parent="ThemeDark" />
+    <style name="Swirl">
+        <item name="swirl_errorColor">?attr/colorAccent</item>
+        <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
+    </style>
 
 </resources>

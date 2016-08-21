@@ -14,7 +14,7 @@
             android:layout_width="240dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            android:background="@drawable/drawable_frame"
+            android:background="@drawable/drawable_frame_light"
             android:orientation="vertical"
             android:padding="1dp">
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:dsb_indicatorPopupEnabled="false"
-            app:dsb_progressColor="@color/colorAccent" />
+            app:dsb_progressColor="?attr/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_cancel"
-                android:tint="@color/colorAccent" />
+                android:tint="?attr/colorAccent" />
 
             <ImageButton
                 android:id="@+id/done"
@@ -83,8 +83,8 @@
                 android:layout_marginStart="30dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_done"
-                android:tint="@color/colorAccent" />
+                android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/ic_done" />
 
         </LinearLayout>
 

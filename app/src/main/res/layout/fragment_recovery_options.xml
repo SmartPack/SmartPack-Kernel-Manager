@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -9,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="0.3">
 
         <LinearLayout
             android:id="@+id/layout"
@@ -21,22 +22,22 @@
 
     <ImageButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_done"
-        android:tint="@color/colorAccent" />
+        android:tint="?attr/colorAccent"
+        app:srcCompat="@drawable/ic_done" />
 
     <ImageButton
         android:id="@+id/reboot_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_refresh"
-        android:tint="@color/colorAccent" />
+        android:tint="?attr/colorAccent" />
 
 </LinearLayout>

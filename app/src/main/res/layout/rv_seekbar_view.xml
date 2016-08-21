@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:textColor="@color/black" />
+        android:textColor="?android:attr/textColorPrimary" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:layout_toStartOf="@+id/button_plus"
             app:dsb_allowTrackClickToDrag="false"
             app:dsb_indicatorPopupEnabled="false"
-            app:dsb_progressColor="@color/colorAccent" />
+            app:dsb_progressColor="?attr/colorAccent" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/button_plus"

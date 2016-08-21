@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
@@ -34,6 +35,10 @@ import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.views.BorderCircleView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by willi on 13.08.16.
@@ -49,6 +54,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_MATERIAL_ICON = "materialicon";
     private static final String KEY_BANNER_RESIZER = "banner_resizer";
     private static final String KEY_FORCE_CARDS = "forcecards";
+    private static final String KEY_ACCENT_COLOR = "accent_color";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
     private static final String KEY_LOGCAT = "logcat";
@@ -64,6 +70,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     private String mOldPassword;
     private String mDeletePassword;
+    private int mColorSelection = -1;
 
     public boolean mDelay;
 
@@ -93,6 +100,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         }
         if (mDeletePassword != null) {
             deletePasswordDialog(mDeletePassword);
+        }
+        if (mColorSelection >= 0) {
+            colorDialog(mColorSelection);
         }
     }
 
@@ -131,6 +141,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
         findPreference(KEY_FORCE_CARDS).setOnPreferenceChangeListener(this);
+        findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -220,6 +231,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     ViewUtils.dialogDonate(getActivity()).show();
                 }
                 return true;
+            case KEY_ACCENT_COLOR:
+                if (Utils.DONATED) {
+                    List<Integer> sColors = new ArrayList<>();
+                    for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
+                        sColors.add(BorderCircleView.sAccentColors.keyAt(i));
+                    }
+                    for (int i = 0; i < sColors.size(); i++) {
+                        sColors.set(i, ContextCompat.getColor(getActivity(), sColors.get(i)));
+                    }
+                    colorDialog(sColors.indexOf(ViewUtils.getThemeAccentColor(getActivity())));
+                } else {
+                    ViewUtils.dialogDonate(getActivity()).show();
+                }
+                return true;
             case KEY_APPLY_ON_BOOT_TEST:
                 if (Utils.isServiceRunning(Service.class, getActivity())) {
                     Utils.toast(R.string.apply_on_boot_running, getActivity());
@@ -291,7 +316,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
-        int padding = Math.round(getResources().getDimension(R.dimen.dialog_edittext_padding));
+        int padding = Math.round(getResources().getDimension(R.dimen.dialog_padding));
         linearLayout.setPadding(padding, padding, padding, padding);
 
         final AppCompatEditText oldPassword = new AppCompatEditText(getActivity());
@@ -369,7 +394,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
-        int padding = Math.round(getResources().getDimension(R.dimen.dialog_edittext_padding));
+        int padding = Math.round(getResources().getDimension(R.dimen.dialog_padding));
         linearLayout.setPadding(padding, padding, padding, padding);
 
         final AppCompatEditText mPassword = new AppCompatEditText(getActivity());
@@ -395,6 +420,82 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
                 mDeletePassword = null;
+            }
+        }).show();
+    }
+
+    private void colorDialog(int selection) {
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        int padding = (int) getResources().getDimension(R.dimen.dialog_padding);
+        linearLayout.setPadding(padding, padding, padding, padding);
+
+        LinearLayout subView = new LinearLayout(getActivity());
+        subView.setGravity(Gravity.CENTER);
+        subView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        linearLayout.addView(subView);
+
+        final List<BorderCircleView> circles = new ArrayList<>();
+        for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
+            if (i % 5 == 0) {
+                subView = new LinearLayout(getActivity());
+                subView.setGravity(Gravity.CENTER);
+                subView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                linearLayout.addView(subView);
+            }
+
+            BorderCircleView circle = new BorderCircleView(getActivity());
+            circle.setChecked(i == selection);
+            circle.setBackgroundColor(ContextCompat.getColor(getActivity(),
+                    BorderCircleView.sAccentColors.keyAt(i)));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            int margin = (int) getResources().getDimension(R.dimen.color_dialog_margin);
+            params.weight = 1;
+            params.setMargins(margin, 0, margin, 0);
+            circle.setLayoutParams(params);
+            circle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    for (BorderCircleView borderCircleView : circles) {
+                        if (v == borderCircleView) {
+                            borderCircleView.setChecked(true);
+                            mColorSelection = circles.indexOf(borderCircleView);
+                        } else {
+                            borderCircleView.setChecked(false);
+                        }
+                    }
+                }
+            });
+
+            circles.add(circle);
+            subView.addView(circle);
+        }
+
+        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Prefs.saveString(KEY_ACCENT_COLOR,
+                                BorderCircleView.sAccentColors.valueAt(mColorSelection), getActivity());
+                        getActivity().finish();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mColorSelection = -1;
             }
         }).show();
     }

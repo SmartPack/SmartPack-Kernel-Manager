@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.animation.ValueAnimator;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,10 +86,6 @@ public class DropDownView extends RecyclerViewItem {
                 }
             }
         });
-
-        if (Utils.DARK_THEME) {
-            mTitle.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
 
         super.onCreateView(view);
     }

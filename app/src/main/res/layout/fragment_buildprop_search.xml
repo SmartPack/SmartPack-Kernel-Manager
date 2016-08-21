@@ -25,7 +25,7 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:theme="@style/Base.Widget.AppCompat.EditText.Custom" />
+        android:theme="?edittext_build_prop_style" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/value_edittext"
@@ -35,6 +35,6 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:theme="@style/Base.Widget.AppCompat.EditText.Custom" />
+        android:theme="?edittext_build_prop_style" />
 
 </LinearLayout>

@@ -48,6 +48,13 @@ import java.util.Set;
  */
 public class ViewUtils {
 
+    public static Drawable getSelectableBackground(Context context) {
+        TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
+        Drawable drawable = typedArray.getDrawable(0);
+        typedArray.recycle();
+        return drawable;
+    }
+
     public static void showDialog(FragmentManager manager, DialogFragment fragment) {
         FragmentTransaction ft = manager.beginTransaction();
         Fragment prev = manager.findFragmentByTag("dialog");
@@ -114,7 +121,7 @@ public class ViewUtils {
                                                       Context context) {
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
-        int padding = (int) context.getResources().getDimension(R.dimen.dialog_edittext_padding);
+        int padding = (int) context.getResources().getDimension(R.dimen.dialog_padding);
         layout.setPadding(padding, padding, padding, padding);
 
         final AppCompatEditText editText = new AppCompatEditText(context);
@@ -175,7 +182,7 @@ public class ViewUtils {
                                                      final OnDialogEditTextListener onDialogEditTextListener, int inputType,
                                                      Context context) {
         LinearLayout layout = new LinearLayout(context);
-        int padding = (int) context.getResources().getDimension(R.dimen.dialog_edittext_padding);
+        int padding = (int) context.getResources().getDimension(R.dimen.dialog_padding);
         layout.setPadding(padding, padding, padding, padding);
 
         final AppCompatEditText editText = new AppCompatEditText(context);

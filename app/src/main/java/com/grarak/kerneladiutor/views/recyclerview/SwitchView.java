@@ -19,14 +19,12 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,10 +80,6 @@ public class SwitchView extends RecyclerViewItem {
                 }
             }
         });
-
-        if (Utils.DARK_THEME) {
-            mTitle.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
     }
 
     public void setTitle(CharSequence title) {

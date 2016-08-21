@@ -51,6 +51,6 @@
         android:layout_height="30dp"
         android:background="?attr/selectableItemBackground"
         android:text="@string/remove_ad"
-        android:textColor="@color/colorAccent" />
+        android:textColor="?attr/colorAccent" />
 
 </LinearLayout>

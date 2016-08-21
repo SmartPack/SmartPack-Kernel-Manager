@@ -20,14 +20,12 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.text.method.MovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 17.04.16.
@@ -55,10 +53,6 @@ public class DescriptionView extends RecyclerViewItem {
         mImageView = (ImageView) view.findViewById(R.id.image);
         mTitleView = (TextView) view.findViewById(R.id.title);
         mSummaryView = (TextView) view.findViewById(R.id.summary);
-
-        if (Utils.DARK_THEME) {
-            mTitleView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
 
         mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

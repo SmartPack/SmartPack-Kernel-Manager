@@ -20,9 +20,6 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,12 +93,6 @@ public class CardView extends RecyclerViewItem {
                 }
             }
         });
-
-        Drawable drawable = mMenuButton.getDrawable();
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(view.getContext(),
-                Utils.DARK_THEME ? R.color.white : R.color.black));
-        mMenuButton.setImageDrawable(drawable);
-
         super.onCreateView(view);
     }
 

@@ -1,11 +1,11 @@
 <resources>
 
-    <style name="ThemeDark" parent="AppThemeDark">
+    <style name="AppThemeParent" parent="AppTheme">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme" parent="AppTheme">
+    <style name="AppThemeParentDark" parent="AppThemeDark">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>

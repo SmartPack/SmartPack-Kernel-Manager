@@ -26,6 +26,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.Nullable;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -139,7 +140,7 @@ public class SecurityActivity extends BaseActivity {
 
         mCryptoObject = new FingerprintManagerCompat.CryptoObject(mCipher);
         FrameLayout fingerprintParent = (FrameLayout) findViewById(R.id.fingerprint_parent);
-        final SwirlView swirlView = new SwirlView(this);
+        final SwirlView swirlView = new SwirlView(new ContextThemeWrapper(this, R.style.Swirl));
         swirlView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         fingerprintParent.addView(swirlView);
