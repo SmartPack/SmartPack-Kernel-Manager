@@ -18,6 +18,7 @@
   <string name="cancel">Anuluj</string>
   <string name="ok">Ok</string>
   <string name="unknown">Nieznany</string>
+  <string name="license_invalid">Dzięki za kupienie aplikacji-darowizny! Niestety weryfikacja licencji się nie powiodła. Spróbuj ponownie później. Jeśli problem nie ustępuje, proszę się ze mną skontaktować.</string>
   <string name="pirated">Wygląda na to, że aplikacja-darowizna nie została zakupiona poprzez Sklep Play! Jeżeli ją spiraciłeś, wstydź się!</string>
   <string name="donate">Wspomóż</string>
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za korzystanie z Kernel Adiutora! Po zakupieniu aplikacji-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
@@ -159,6 +160,7 @@
   <string name="input_interval">Interwał wejścia</string>
   <string name="input_interval_summary">Minimalny interwał przyspieszenia procesora po wykryciu dotyku.</string>
   <string name="input_boost_freq">Zwiększenie częstotliwości podczas dotyku</string>
+  <string name="input_boost_freq_core">Input Boost częstotliwości rdzeni-a %d</string>
   <string name="input_boost_freq_summary">Częstotliwość procesora zostanie zwiększona do tej podczas dotyku.</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost jest podobny do input boost, ale występuje wtedy, gdy ekran jest wybudzany.</string>
@@ -288,6 +290,8 @@
   <string name="core_control_summary">Rozwiązanie typu hotplug firmy Qualcomm. Niestety nie możesz go wyłączyć. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Zmodyfikowany przez OnePlus system hotplug.</string>
+  <string name="min_cpus_big">Minimum dużego CPU</string>
+  <string name="min_cpus_big_summary">Minimalna ilość dużych CPU, które powinny być uruchomione.</string>
   <string name="busy_down_threshold">Dolny próg użycia CPU</string>
   <string name="busy_down_threshold_summary">Próg przy którym duży CPU powinien być wyłączony.</string>
   <string name="busy_up_threshold">Górny próg użycia CPU</string>
@@ -458,6 +462,9 @@
   <string name="timeout_summary">Ustaw czas, po którym kontrola wybudzeń ekranu zostanie wyłączona po wygaszeniu ekranu.</string>
   <string name="power_key_suspend">Usypianie przyciskiem zasilania</string>
   <string name="power_key_suspend_summary">Wyłącz kontrolę wybudzeń ekranu, gdy ekran jest wyłączany przez przycisk zasilania.</string>
+  <string name="area">Obszar</string>
+  <string name="width">Szerokość</string>
+  <string name="height">Wysokość</string>
   <string name="vibration_strength">Siła wibracji</string>
   <!-- Sound -->
   <string name="sound_control">Kontrola dźwięku</string>
@@ -468,6 +475,10 @@
   <string name="speaker_gain">Wzmocnienie głośnika</string>
   <string name="headphone_poweramp_gain">Wzmocnienie Amplifiera Słuchawkowego</string>
   <string name="headphone_tpa6165_gain">Wzmocnienie Amplifiera Słuchawkowego(Rozszerzenie TPA6165)</string>
+  <string name="lock_output_gain">Blokada wzmacniacza wyjścia audio</string>
+  <string name="lock_output_gain_summary">Zapobiega modyfikacją wzmocnienia głośnika/słuchawek</string>
+  <string name="lock_mic_gain">Blokada wzmacniacza mikrofonu audio</string>
+  <string name="lock_mic_gain_summary">Zapobiega modyfikacją wzmocnienia mikrofonu</string>
   <string name="microphone_gain">Wzmocnienie mikrofonu</string>
   <string name="volume_gain">Wzmocnienie głośności</string>
   <!-- Battery -->
@@ -488,7 +499,21 @@
   <string name="speed">Prędkość</string>
   <string name="stock">Standardowe</string>
   <string name="continuous_light">Światło ciągłe</string>
+  <string name="bright_light_environment">W jasnym oświetleniu</string>
+  <string name="bright_light_environment_summary">Ustaw relatywną intensywność diody powiadomień przy jasnym oświetleniu.</string>
+  <string name="low_light_environment">W ciemnym oświetleniu</string>
+  <string name="low_light_environment_summary">Ustaw relatywną intensywność diody powiadomień przy ciemnym oświetleniu.</string>
+  <string name="notification">Powiadomienie</string>
+  <string name="on">Włącz</string>
+  <string name="off">Wyłącz</string>
+  <string name="fade_ramp_control">Sterowanie intensywnością światła</string>
+  <string name="fade_ramp_control_summary">Włącza lub wyłącza kontrole rozjaśniania/wygaszania Diody.</string>
+  <string name="fade_in">Rozjaśnianie</string>
+  <string name="fade_in_summary">Ustala okres czasu w którym dioda się rozjaśnia.</string>
+  <string name="fade_out">Ściemnianie</string>
+  <string name="fade_out_summary">Ustala okres czasu w którym dioda się zciemnia.</string>
   <string name="test">Test</string>
+  <string name="led_test_summary">Przetestuj twoje ustawiania dla diody.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Pamięć wewnętrzna</string>
   <string name="external_storage">Pamięć zewnętrzna</string>
@@ -504,6 +529,8 @@
   <string name="iostats_summary">Zapisuj statystyki I/O na tej pamięci. Wyłączenie tej opcji spowoduje, że aplikacji monitorujące I/O, stracą swoje funkcje.</string>
   <string name="add_random">Dodaj losowy</string>
   <string name="add_random_summary">Pobieraj entropie z dysków talerzowych.</string>
+  <string name="rq_affitiny">Koligacja RQ</string>
+  <string name="rq_affinity_summary">Stara się wykonać żądanie zarządcy na tym samym rdzeniu na którym zostały one rozpoczęte. Im wyższa wartość, tym bardziej agresywnie zadanie jest przydzielane do rdzenia.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Pełne skanowanie</string>
   <string name="pages_shared">Strony udostępnione</string>
@@ -538,6 +565,12 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Rozmiar dysku</string>
   <string name="disksize_summary">Próbuje zwiększyć wydajność poprzez ograniczenie stronicowania na dysk, zamiast tego używa skompresowanego urządzenia wirtualnego w ramie. Stronicowanie odbywa się w pamięci ram, dopóki konieczne jest użycie przestrzeni wymiana na dysku.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap jest to lekka skompresowana pamięć podręczna dla stron swap. Bierze strony które miały zostać usunięte z pamięci wirtualnej i stara skompresować się je i dynamicznie alokować do pamięci ram. Zswap zmniejsza wydajność CPU, by zwiększyć rozmiar pamięci wirtualnej (swap).</string>
+  <string name="memory_pool">Pula pamięci</string>
+  <string name="memory_pool_summary">Pula pamięci jest to procent pamięci ram który może zostać użyty do kompresowania stron cache.</string>
+  <string name="maximum_compression_ratio">Maksymalny współczynnik kompresji</string>
+  <string name="maximum_compression_ratio_summary">Maksymalny współczynnik kompresji, wartość procentowa, określająca akceptowalny współczynnik kompresji strony. Każda strona która nie kompresuje się do co najmniej tego poziomu zostanie odrzucona.</string>
   <!-- Entropy -->
   <string name="available">Dostępna entropia</string>
   <string name="poolsize">Max rozmiar entropii</string>
@@ -653,6 +686,7 @@
   <string name="profile_warning">Wszystko, co tu zmienisz, zostanie zapisane do twojego profilu. Ale uważaj! Twoje ustawienia również będą zastosowane, ale nie zostaną zapisane do listy ustawień stosowanych przy rozruchu urządzenia.</string>
   <string name="no_changes">Nie wykonano żadnych zmian!</string>
   <string name="apply_question">Zastosować %s?</string>
+  <string name="append">Dołącz</string>
   <string name="details">Szczegóły</string>
   <string name="press_again_to_apply">Naciśnij %s jeszcze raz, by zastosować.</string>
   <string name="applied">Zastosowano</string>
@@ -669,7 +703,13 @@
   <string name="current_settings">Bieżące ustawienia</string>
   <string name="select_all">Zaznacz wszystkie</string>
   <string name="nothing_selected">Niczego nie wybrano</string>
+  <string name="profile_empty">Profil jest pusty!</string>
   <!-- Recovery -->
+  <string name="reboot">Uruchom ponownie</string>
+  <string name="reboot_soft">Miękki restart</string>
+  <string name="reboot_recovery">Uruchom ponownie w trybie Recovery</string>
+  <string name="reboot_bootloader">Uruchom ponownie w trybie Bootloadera</string>
+  <string name="reboot_download">Uruchom ponownie w trybie Download</string>
   <string name="wipe_data">Wyczyść dane</string>
   <string name="wipe_cache">Wyczyść pamięć podręczną</string>
   <string name="flash_zip">Instaluj z ZIP</string>
@@ -694,6 +734,9 @@
   <string name="dark_theme">Ciemny motyw</string>
   <string name="material_icon">Ikona typu material design</string>
   <string name="banner_resizer">Rozmiar banera</string>
+  <string name="force_cards">Wymuś korzystanie z kart</string>
+  <string name="force_cards_summary">Używa karty dla elementów, jeśli jest to możliwe.</string>
+  <string name="instant">Natychmiastowo</string>
   <string name="five_sec">5 sekund</string>
   <string name="ten_sec">10 sekund</string>
   <string name="twenty_sec">20 sekund</string>

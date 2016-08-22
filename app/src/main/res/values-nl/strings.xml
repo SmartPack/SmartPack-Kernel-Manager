@@ -18,6 +18,7 @@
   <string name="cancel">Annuleer</string>
   <string name="ok">Oké</string>
   <string name="unknown">Onbekend</string>
+  <string name="license_invalid">Bedankt voor uw aankoop van de donatie-app! Helaas is de licentie controle mislukt. Probeer het later nog eens. Als het nog steeds niet werkt, neem dan contact met mij op.</string>
   <string name="pirated">Het lijkt erop dat de donatie app niet via de Play Store is aangeschaft! Als u het illegaal gedownload hebt, schaam u dan!</string>
   <string name="donate">Doneer</string>
   <string name="donate_summary">Deze functie is alleen beschikbaar wanneer de donatie-app geïnstalleerd is! Maar maak je geen zorgen hoor. Omdat deze app opensource is kunt u hem gemakkelijk zelf bouwen en deze controle verwijderen. Maar ik hoop dat u ontwikkelaars toch ondersteund. Bedankt voor het gebruik van Kernel Adiutor! Zodra u de donatie app hebt gekocht moet u Kernel Adiutor opnieuw opstarten zodat alle functies beschikbaar worden.</string>
@@ -26,6 +27,8 @@
   <string name="ad_here">Uw advertentie kan hier staan</string>
   <string name="remove_ad">Verwijder advertentie</string>
   <string name="warning">Waarschuwing</string>
+  <string name="gh_ad">Dit is een niet-commerciële advertentie! Neem dit niet serieus! Gewoon een grappige manier om de ruimte vullen als een daadwerkelijke advertentie niet wil laden (ik kijk naar jullie, adblock gebruikers).</string>
+  <string name="open_ad_anyway">Advertentie toch openen</string>
   <string name="apply_on_boot">Toepassen bij opstarten</string>
   <string name="apply_on_boot_text">Instellingen toepassen in %d seconden.</string>
   <string name="apply_on_boot_complete">Toepassen instellingen voltooid.</string>
@@ -49,6 +52,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistieken</string>
@@ -87,6 +91,7 @@
   <string name="settings">Instellingen</string>
   <string name="about">Over</string>
   <string name="contributors">Medewerkers</string>
+  <string name="help">Help</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Kern %d</string>
@@ -133,6 +138,7 @@
   <string name="governor_tunables_summary">De verschillende configuratie items die afhankelijk zijn van de governor.</string>
   <string name="cpu_governor_tunables_read_error">Mislukt om de huidige governor van CPU te lezen.\n\nals u een QCOM big.LITTLE apparaat aan het gebruiken bent dan is dit een bekend probleem. Het systeem forceert de CPU om cores uit te schakelen waardoor het zeer moeilijk wordt om CPU specifieke stats uit te lezen. Probeer deze optie opnieuw te selecteren. De CPU weigert soms om een core in te schakelen.</string>
   <string name="tunables_error">%s is niet afstembaar</string>
+  <string name="manual">Handleiding</string>
   <string name="mc_power_saving">Multicore Energiebesparing</string>
   <string name="mc_power_saving_summary">Probeer taken te groeperen in de minst kernen mogelijk.</string>
   <string name="disabled">Uitgeschakeld</string>
@@ -154,6 +160,7 @@
   <string name="input_interval">Invoer Interval</string>
   <string name="input_interval_summary">Minimuminterval dat een CPU gestimuleerd wordt wanneer invoer is gedetecteerd.</string>
   <string name="input_boost_freq">Invoerversterkingsfrequentie</string>
+  <string name="input_boost_freq_core">Input Boost Frequentie Core %d</string>
   <string name="input_boost_freq_summary">CPU frequentie waarnaar gestreefd wordt bij invoerdetectie.</string>
   <string name="wakeup_boost">Opwek Versterking</string>
   <string name="wakeup_boost_summary">Opwek Versterking is vergelijkbaar met invoerversterking, maar treedt op wanneer het scherm aan is.</string>
@@ -289,8 +296,17 @@
   <string name="core_control_summary">Qualcomm\'s hotplugging oplossing. Sorry, u kan het niet uitschakelen. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus\' bewerkte Core Control.</string>
+  <string name="min_cpus_big">Minimale grote CPU\'s</string>
+  <string name="min_cpus_big_summary">Minimale hoeveelheid grote CPU\'s die online moeten.</string>
+  <string name="busy_down_threshold">Busy Down Drempel</string>
+  <string name="busy_down_threshold_summary">Drempel wanneer grote CPU\'s uitgeschakeld moeten worden.</string>
+  <string name="busy_up_threshold">Busy Up Drempel</string>
+  <string name="busy_up_threshold_summary">Drempel wanneer grote CPU\'s ingeschakeld moeten worden.</string>
+  <string name="offline_delay">Offline Vertraging</string>
   <string name="offline_delay_summary">Tijd voor het uitschakelen van een CPU.</string>
   <!--Thermal-->
+  <string name="thermal_info">Gebruik slechts één thermal driver uit de volgende opties, meerdere tegelijkertijd gebruiken kan leiden tot onverwacht gedrag.</string>
+  <string name="thermald">Thermald</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="vdd_restriction">VDD beperking</string>
   <string name="freq_throttle_temp">Temperatuur frequentieversnelling</string>

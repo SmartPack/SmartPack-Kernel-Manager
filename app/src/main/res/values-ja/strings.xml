@@ -53,7 +53,10 @@
   <string name="restore">復元</string>
   <string name="uptime">使用時間</string>
   <!-- Device -->
+  <string name="processor">プロセッサ</string>
+  <string name="vendor">ベンダー</string>
   <string name="features">機能</string>
+  <string name="hardware">ハードウェア</string>
   <!-- Inputs -->
   <!-- CPU -->
   <string name="cpu_max_freq">CPU 最大周波数</string>
@@ -438,6 +441,10 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <!-- Custom Controls -->
+  <string name="welcome">ようこそ</string>
+  <string name="control_switch">スイッチ</string>
+  <string name="control_seekbar">シークバー</string>
+  <string name="title">タイトル</string>
   <string name="edit">編集</string>
   <string name="delete">削除</string>
   <string name="name">名前</string>
@@ -457,6 +464,8 @@
   <!-- Profile -->
   <string name="applied">適用しました。</string>
   <!-- Recovery -->
+  <string name="reboot">再起動</string>
+  <string name="reboot_soft">ソフトリブート</string>
   <string name="wipe_data">データの消去</string>
   <string name="wipe_cache">キャッシュの消去</string>
   <string name="flash_zip">ZIPのインストール</string>
@@ -466,7 +475,10 @@
   <string name="executing">実行中</string>
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="user_interface">ユーザーインターフェイス</string>
   <string name="dark_theme">ダークテーマ</string>
+  <string name="toast">トースト</string>
+  <string name="script">スクリプト</string>
   <string name="debugging">デバッグ</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">logcat を /sdcard/logcat.txt にコピー</string>
@@ -474,6 +486,9 @@
   <string name="last_kmsg_summary">/proc/last_kmsg を /sdcard/last_kmsg.txt にコピー</string>
   <string name="driver_message">ドライバメッセージ</string>
   <string name="driver_message_summary">ドライバメッセージ (dmesg) を /sdcard/dmesg.txtにコピーします。</string>
+  <string name="security">セキュリティ</string>
+  <string name="old_password">現在のパスワード</string>
+  <string name="new_password">新しいパスワード</string>
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
