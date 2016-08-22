@@ -329,6 +329,14 @@ public class Utils {
         return String.format(text, format);
     }
 
+    public static Float strToFloat(String text) {
+        try {
+            return Float.parseFloat(text);
+        } catch (NumberFormatException ignored) {
+            return 0f;
+        }
+    }
+
     public static Long strToLong(String text) {
         try {
             return Long.parseLong(text);

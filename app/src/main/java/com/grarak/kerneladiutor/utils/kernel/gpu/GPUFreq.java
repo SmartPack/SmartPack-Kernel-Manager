@@ -44,11 +44,13 @@ public class GPUFreq {
     private static final String AVAILABLE_KGSL2D0_QCOM_FREQS = "/sys/devices/platform/kgsl-2d0.0/kgsl/kgsl-2d0/gpu_available_frequencies";
     private static final String SCALING_KGSL2D0_QCOM_GOVERNOR = "/sys/devices/platform/kgsl-2d0.0/kgsl/kgsl-2d0/pwrscale/trustzone/governor";
 
+    private static final String KGSL3D0_GPUBUSY = "/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/gpubusy";
     private static final String CUR_KGSL3D0_FREQ = "/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/gpuclk";
     private static final String MAX_KGSL3D0_FREQ = "/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/max_gpuclk";
     private static final String AVAILABLE_KGSL3D0_FREQS = "/sys/devices/platform/kgsl-3d0.0/kgsl/kgsl-3d0/gpu_available_frequencies";
     private static final String SCALING_KGSL3D0_GOVERNOR = "/sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor";
 
+    private static final String KGSL3D0_DEVFREQ_GPUBUSY = "/sys/class/kgsl/kgsl-3d0/gpubusy";
     private static final String CUR_KGSL3D0_DEVFREQ_FREQ = "/sys/class/kgsl/kgsl-3d0/gpuclk";
     private static final String MAX_KGSL3D0_DEVFREQ_FREQ = "/sys/class/kgsl/kgsl-3d0/max_gpuclk";
     private static final String MIN_KGSL3D0_DEVFREQ_FREQ = "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq";
@@ -75,6 +77,7 @@ public class GPUFreq {
     private static final String SCALING_POWERVR_GOVERNOR = "/sys/devices/platform/dfrgx/devfreq/dfrgx/governor";
     private static final String AVAILABLE_POWERVR_GOVERNORS = "/sys/devices/platform/dfrgx/devfreq/dfrgx/available_governors";
 
+    private static final List<String> sGpuBusys = new ArrayList<>();
     private static final HashMap<String, Integer> sCurrentFreqs = new HashMap<>();
     private static final HashMap<String, Integer> sMaxFreqs = new HashMap<>();
     private static final HashMap<String, Integer> sMinFreqs = new HashMap<>();
@@ -84,6 +87,9 @@ public class GPUFreq {
     private static final List<String> sTunables = new ArrayList<>();
 
     static {
+        sGpuBusys.add(KGSL3D0_GPUBUSY);
+        sGpuBusys.add(KGSL3D0_DEVFREQ_GPUBUSY);
+
         sCurrentFreqs.put(CUR_KGSL3D0_FREQ, 1000000);
         sCurrentFreqs.put(CUR_KGSL3D0_DEVFREQ_FREQ, 1000000);
         sCurrentFreqs.put(CUR_OMAP_FREQ, 1000000);
@@ -118,6 +124,7 @@ public class GPUFreq {
         sTunables.add(TUNABLES_OMAP);
     }
 
+    private static String BUSY;
     private static String CUR_FREQ;
     private static Integer CUR_FREQ_OFFSET;
     private static List<Integer> AVAILABLE_FREQS;
@@ -340,6 +347,25 @@ public class GPUFreq {
             }
         }
         return CUR_FREQ != null;
+    }
+
+    public static int getBusy() {
+        String value = Utils.readFile(BUSY);
+        float arg1 = Utils.strToFloat(value.split(" ")[0]);
+        float arg2 = Utils.strToFloat(value.split(" ")[1]);
+        return arg2 == 0 ? 0 : Math.round(arg1 / arg2 * 100f);
+    }
+
+    public static boolean hasBusy() {
+        if (BUSY == null) {
+            for (String file : sGpuBusys) {
+                if (Utils.existFile(file)) {
+                    BUSY = file;
+                    return true;
+                }
+            }
+        }
+        return BUSY != null;
     }
 
     public static boolean supported() {

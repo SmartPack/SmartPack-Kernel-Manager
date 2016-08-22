@@ -24,7 +24,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:textAllCaps="true"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
     </FrameLayout>
 

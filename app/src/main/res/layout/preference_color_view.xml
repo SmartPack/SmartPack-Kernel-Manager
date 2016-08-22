@@ -3,7 +3,7 @@
     android:id="@+id/circle"
     android:layout_width="32dp"
     android:layout_height="32dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginRight="6dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginRight="10dp"
     android:clickable="false"
     android:focusable="false" />
