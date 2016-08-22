@@ -17,6 +17,7 @@
   <string name="cancel">Batal</string>
   <string name="ok">YA</string>
   <string name="unknown">Tidak diketahui</string>
+  <string name="license_invalid">Terima kasih telah membeli aplikasi donasi! Sayangnya pemeriksaan lisensi gagal. Mohon coba lagi nanti. Jika masih belum bisa, silakan hubungi saya.</string>
   <string name="pirated">Sepertinya aplikasi donasi tidak dibeli melalui Play Store! Jika Anda membajaknya, Anda memalukan!</string>
   <string name="donate">Donasi</string>
   <string name="donate_summary">Fitur ini hanya tersedia jika aplikasi donasi terpasang! Namun jangan khawatir. Karena aplikasi ini open source Anda dapat dengan mudah membuat sendiri dan menghapus pemeriksaan ini. Tapi saya harap Anda mendukung pengembang pula. Terima kasih karena menggunakan Kernel Adiutor! Setelah Anda membeli aplikasi donasi Anda harus me-restart Kernel Adiutor untuk mengaktifkan semua fitur.</string>
@@ -25,25 +26,43 @@
   <string name="ad_here">Iklan Anda nanti di sini</string>
   <string name="remove_ad">Hilangkan iklan</string>
   <string name="warning">Peringatan</string>
+  <string name="gh_ad">Ini adalah iklan nonkomersial! Jangan terlalu serius! Hanya cara yang lucu untuk mengisi ruang ketika iklan yang sebenarnya tidak memuat (sedang melihatmu, pengguna adblock).</string>
+  <string name="open_ad_anyway">Tetap buka iklan</string>
   <string name="apply_on_boot">Terapkan saat booting</string>
+  <string name="apply_on_boot_text">Menerapkan pengaturan dalam %d detik.</string>
+  <string name="apply_on_boot_complete">Pengaturan telah diterapkan.</string>
+  <string name="apply_on_boot_canceled">Penerapan pengaturan dibatalkan.</string>
+  <string name="not_in_range">Tidak dalam jangkauan</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Izin ditolak untuk menulis ke penyimpanan!</string>
   <!-- Editor -->
   <string name="save">Simpan</string>
   <!-- File Picker -->
+  <string name="select_question">Pilih berkas %s?</string>
+  <string name="wrong_extension">Silakan pilih berkas dengan ekstensi %s.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
+  <string name="celsius">ºC</string>
+  <string name="fahrenheit">ºF</string>
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">menit</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kb</string>
+  <string name="px">piksel</string>
   <!-- Special signs -->
   <!-- Headers -->
+  <string name="statistics">Statistik</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Peralatan</string>
   <string name="other">Lainnya</string>
   <!-- Menus -->
+  <string name="overall">Keseluruhan</string>
+  <string name="device">Perangkat</string>
+  <string name="memory">Memori</string>
+  <string name="inputs">Masukan</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Tegangan CPU</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -53,10 +72,13 @@
   <string name="wake">Bangun</string>
   <string name="sound">Suara</string>
   <string name="battery">Baterai</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">Penjadwal I/O</string>
   <string name="ksm">Penggabungan Lapisan Kernel Yang Sama</string>
+  <string name="lmk">Pembebas Memory Rendah</string>
   <string name="virtual_memory">Memori virtual</string>
   <string name="entropy">Entropi</string>
+  <string name="misc">Lain-lain</string>
   <string name="downloads">Unduhan</string>
   <string name="backup">Cadangan</string>
   <string name="build_prop_editor">Perubah build. prop</string>
