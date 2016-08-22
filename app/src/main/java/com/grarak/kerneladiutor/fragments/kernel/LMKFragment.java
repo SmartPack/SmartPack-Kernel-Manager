@@ -86,7 +86,7 @@ public class LMKFragment extends RecyclerViewFragment {
 
     private void minfreeInit(List<RecyclerViewItem> items) {
         mMinFrees.clear();
-        final List<String> minfrees = LMK.getMinFrees();
+        List<String> minfrees = LMK.getMinFrees();
         String[] descriptions = getResources().getStringArray(R.array.lmk_names);
 
         for (int i = 0; i < minfrees.size(); i++) {
@@ -101,6 +101,7 @@ public class LMKFragment extends RecyclerViewFragment {
             minfree.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
+                    List<String> minfrees = LMK.getMinFrees();
                     StringBuilder values = new StringBuilder();
                     for (int i = 0; i < minfrees.size(); i++) {
                         values.append(minfreeposition == i ? position * 256 : minfrees.get(i)).append(",");
