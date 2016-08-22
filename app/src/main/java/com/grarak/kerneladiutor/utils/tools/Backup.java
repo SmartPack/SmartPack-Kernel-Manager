@@ -55,6 +55,7 @@ public class Backup {
             "/dev/block/platform/sdhci.1/by-name/KERNEL",
             "/dev/block/platform/sdhci.1/by-name/boot",
             "/dev/block/nandc",
+            "/dev/bootimg",
             "/dev/boot"
     };
 
