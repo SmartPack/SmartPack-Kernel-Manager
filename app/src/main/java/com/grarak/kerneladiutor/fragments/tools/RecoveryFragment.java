@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -75,7 +76,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     @Override
     protected Drawable getTopFabDrawable() {
         Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
+        DrawableCompat.setTint(drawable, Color.WHITE);
         return drawable;
     }
 
@@ -287,7 +288,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
                         new ContextThemeWrapper(getActivity(),
                                 R.style.Base_Widget_AppCompat_CompoundButton_CheckBox_Custom), null, 0);
                 checkBox.setText(options[i]);
-                checkBox.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                checkBox.setTextColor(Color.WHITE);
                 checkBox.setChecked(i == mRecoveryOption);
                 checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));

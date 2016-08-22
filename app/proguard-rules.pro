@@ -18,5 +18,6 @@
 -keep class !android.support.v7.internal.view.menu.**,** {*;}
 -keep class android.support.v7.widget.LinearLayoutManager { *; }
 -keep class android.support.design.widget.NavigationView { *; }
--kepp class android.support.v7.** { *; }
+-keep class android.support.v7.** { *; }
 -keep interface android.support.v7.** { *; }
+-dontwarn com.squareup.picasso.**

@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.widget.FrameLayout;
@@ -57,6 +58,7 @@ public class BorderCircleView extends FrameLayout {
             setForeground(ViewUtils.getSelectableBackground(context));
         }
         mCheck = ContextCompat.getDrawable(context, R.drawable.ic_done);
+        DrawableCompat.setTint(mCheck, Color.WHITE);
         borderWidth = (int) getResources().getDimension(R.dimen.circleview_border);
 
         paint = new Paint();
@@ -91,7 +93,10 @@ public class BorderCircleView extends FrameLayout {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        int canvasSize = Math.min(getMeasuredWidth(), getMeasuredHeight());
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+
+        int canvasSize = Math.min(width, height);
         int circleCenter = (canvasSize - (borderWidth * 2)) / 2;
         canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth,
                 ((canvasSize - (borderWidth * 2)) / 2) + borderWidth - 4.0f, paintBorder);
@@ -100,7 +105,7 @@ public class BorderCircleView extends FrameLayout {
 
         if (mChecked) {
             paintCheck.setColorFilter(paint.getColor() == Color.WHITE ? blackFilter : whiteFilter);
-            mCheck.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            mCheck.setBounds(borderWidth, borderWidth, width - borderWidth, height - borderWidth);
             mCheck.draw(canvas);
         }
     }

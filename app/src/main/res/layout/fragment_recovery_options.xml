@@ -20,7 +20,7 @@
             android:orientation="vertical" />
     </FrameLayout>
 
-    <ImageButton
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -30,14 +30,14 @@
         android:tint="?attr/colorAccent"
         app:srcCompat="@drawable/ic_done" />
 
-    <ImageButton
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/reboot_button"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_refresh"
-        android:tint="?attr/colorAccent" />
+        android:tint="?attr/colorAccent"
+        app:srcCompat="@drawable/ic_refresh" />
 
 </LinearLayout>

@@ -21,10 +21,12 @@ package com.grarak.kerneladiutor.views.recyclerview.downloads;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -83,9 +85,11 @@ public class DownloadKernelView extends RecyclerViewItem {
 
         if (mDownloadDrawable == null) {
             mDownloadDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.ic_download);
+            DrawableCompat.setTint(mDownloadDrawable, Color.WHITE);
         }
         if (mCancelDrawable == null) {
             mCancelDrawable = ContextCompat.getDrawable(view.getContext(), R.drawable.ic_cancel);
+            DrawableCompat.setTint(mCancelDrawable, Color.WHITE);
         }
 
         final TextView title = (TextView) view.findViewById(R.id.title);

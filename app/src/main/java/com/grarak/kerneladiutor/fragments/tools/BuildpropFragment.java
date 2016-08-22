@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -71,7 +72,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     protected Drawable getBottomFabDrawable() {
         Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
+        DrawableCompat.setTint(drawable, Color.WHITE);
         return drawable;
     }
 

@@ -34,17 +34,17 @@
             android:orientation="horizontal"
             android:paddingBottom="16dp">
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/cancel"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_cancel"
-                android:tint="?attr/colorAccent" />
+                android:tint="?attr/colorAccent"
+                app:srcCompat="@drawable/ic_cancel" />
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/done"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

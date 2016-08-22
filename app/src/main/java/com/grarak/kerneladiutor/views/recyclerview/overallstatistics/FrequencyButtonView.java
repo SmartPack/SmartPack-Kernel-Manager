@@ -22,13 +22,14 @@ package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import android.widget.ImageButton;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 /**
@@ -50,12 +51,13 @@ public class FrequencyButtonView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        ImageButton refresh = (ImageButton) view.findViewById(R.id.frequency_refresh);
-        ImageButton reset = (ImageButton) view.findViewById(R.id.frequency_reset);
-        ImageButton restore = (ImageButton) view.findViewById(R.id.frequency_restore);
+        AppCompatImageButton refresh = (AppCompatImageButton) view.findViewById(R.id.frequency_refresh);
+        AppCompatImageButton reset = (AppCompatImageButton) view.findViewById(R.id.frequency_reset);
+        AppCompatImageButton restore = (AppCompatImageButton) view.findViewById(R.id.frequency_restore);
 
         if (mRefreshImage == null) {
-            mRefreshImage = BitmapFactory.decodeResource(view.getResources(), R.drawable.ic_refresh);
+            mRefreshImage = ViewUtils.drawableToBitmap(ContextCompat.getDrawable(view.getContext(),
+                    R.drawable.ic_refresh));
         }
         refresh.setImageBitmap(mRefreshImage);
 

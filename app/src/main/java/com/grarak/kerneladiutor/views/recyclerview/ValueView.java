@@ -20,12 +20,10 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 22.06.16.
@@ -55,10 +53,6 @@ public abstract class ValueView extends RecyclerViewItem {
         mValueParent = view.findViewById(R.id.value_parent);
         mValueView = (TextView) view.findViewById(R.id.value);
         mProgress = view.findViewById(R.id.progress);
-
-        if (Utils.DARK_THEME) {
-            mTitleView.setTextColor(ContextCompat.getColor(view.getContext(), R.color.white));
-        }
 
         super.onCreateView(view);
     }

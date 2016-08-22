@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -30,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
                     android:id="@+id/summary"
@@ -40,12 +41,13 @@
 
             </LinearLayout>
 
-            <ImageView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/arrow_image"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_arrow" />
+                android:tint="?android:attr/textColorSecondary"
+                app:srcCompat="@drawable/ic_arrow" />
 
         </LinearLayout>
 

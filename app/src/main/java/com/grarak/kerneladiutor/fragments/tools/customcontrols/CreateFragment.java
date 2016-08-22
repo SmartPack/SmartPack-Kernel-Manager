@@ -20,9 +20,11 @@
 package com.grarak.kerneladiutor.fragments.tools.customcontrols;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -200,7 +202,9 @@ public class CreateFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getBottomFabDrawable() {
-        return ContextCompat.getDrawable(getActivity(), R.drawable.ic_done);
+        Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.ic_done);
+        DrawableCompat.setTint(drawable, Color.WHITE);
+        return drawable;
     }
 
     @Override

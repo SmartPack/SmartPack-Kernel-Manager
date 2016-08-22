@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -74,7 +75,7 @@ public class InitdFragment extends RecyclerViewFragment {
     @Override
     protected Drawable getTopFabDrawable() {
         Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
-        DrawableCompat.setTint(drawable, ContextCompat.getColor(getActivity(), R.color.white));
+        DrawableCompat.setTint(drawable, Color.WHITE);
         return drawable;
     }
 

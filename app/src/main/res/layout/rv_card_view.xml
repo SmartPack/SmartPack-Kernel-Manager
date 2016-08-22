@@ -32,7 +32,7 @@
             android:focusable="false"
             android:orientation="vertical" />
 
-        <ImageButton
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/menu_button"
             android:layout_width="30dp"
             android:layout_height="20dp"
@@ -40,9 +40,9 @@
             android:layout_marginTop="5dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_dots"
             android:tint="?android:attr/textColorSecondary"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_dots" />
 
     </LinearLayout>
 

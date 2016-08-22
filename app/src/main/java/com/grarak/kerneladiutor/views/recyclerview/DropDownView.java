@@ -20,10 +20,10 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.animation.ValueAnimator;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,7 +39,7 @@ public class DropDownView extends RecyclerViewItem {
 
     private TextView mTitle;
     private TextView mSummary;
-    private ImageView mArrow;
+    private AppCompatImageView mArrow;
     private LinearLayout mParent;
 
     private CharSequence mTitleText;
@@ -68,7 +68,7 @@ public class DropDownView extends RecyclerViewItem {
     public void onCreateView(View view) {
         mTitle = (TextView) view.findViewById(R.id.title);
         mSummary = (TextView) view.findViewById(R.id.summary);
-        mArrow = (ImageView) view.findViewById(R.id.arrow_image);
+        mArrow = (AppCompatImageView) view.findViewById(R.id.arrow_image);
         mParent = (LinearLayout) view.findViewById(R.id.parent_layout);
 
         mItemHeight = view.getResources().getDimension(R.dimen.rv_drop_down_item_height);
