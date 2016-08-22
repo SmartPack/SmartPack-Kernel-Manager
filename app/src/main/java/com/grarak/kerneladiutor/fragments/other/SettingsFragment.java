@@ -433,7 +433,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         linearLayout.setPadding(padding, padding, padding, padding);
 
         LinearLayout subView = new LinearLayout(getActivity());
-        subView.setGravity(Gravity.CENTER);
         subView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         linearLayout.addView(subView);
@@ -442,9 +441,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
             if (i % 5 == 0) {
                 subView = new LinearLayout(getActivity());
-                subView.setGravity(Gravity.CENTER);
-                subView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                subView.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 linearLayout.addView(subView);
             }
 
@@ -452,11 +450,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             circle.setChecked(i == selection);
             circle.setBackgroundColor(ContextCompat.getColor(getActivity(),
                     BorderCircleView.sAccentColors.keyAt(i)));
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             int margin = (int) getResources().getDimension(R.dimen.color_dialog_margin);
             params.weight = 1;
-            params.setMargins(margin, 0, margin, 0);
+            params.setMargins(margin, margin, margin, margin);
             circle.setLayoutParams(params);
             circle.setOnClickListener(new View.OnClickListener() {
                 @Override

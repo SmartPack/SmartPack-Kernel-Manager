@@ -1,11 +1,28 @@
+/*
+ * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ *
+ * This file is part of Kernel Adiutor.
+ *
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package com.grarak.kerneladiutor.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -35,13 +52,8 @@ public class BorderCircleView extends FrameLayout {
 
     private final Drawable mCheck;
     private boolean mChecked;
-    private final Paint paint;
-    private final Paint paintBorder;
-    private final int borderWidth;
-
-    private Paint paintCheck;
-    private PorterDuffColorFilter blackFilter;
-    private PorterDuffColorFilter whiteFilter;
+    private final Paint mPaint;
+    private final Paint mPaintBorder;
 
     public BorderCircleView(Context context) {
         this(context, null);
@@ -59,28 +71,21 @@ public class BorderCircleView extends FrameLayout {
         }
         mCheck = ContextCompat.getDrawable(context, R.drawable.ic_done);
         DrawableCompat.setTint(mCheck, Color.WHITE);
-        borderWidth = (int) getResources().getDimension(R.dimen.circleview_border);
 
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(ViewUtils.getThemeAccentColor(context));
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setColor(ViewUtils.getThemeAccentColor(context));
 
-        paintBorder = new Paint();
-        paintBorder.setAntiAlias(true);
-        paintBorder.setColor(ViewUtils.getColorPrimaryColor(context));
-
-        paintCheck = new Paint();
-        paintCheck.setAntiAlias(true);
-
-        blackFilter = new PorterDuffColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        whiteFilter = new PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        mPaintBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintBorder.setColor(ViewUtils.getColorPrimaryColor(context));
+        mPaintBorder.setStrokeWidth((int) getResources().getDimension(R.dimen.circleview_border));
+        mPaintBorder.setStyle(Paint.Style.STROKE);
 
         setWillNotDraw(false);
     }
 
     @Override
     public void setBackgroundColor(int color) {
-        paint.setColor(color);
+        mPaint.setColor(color);
         invalidate();
     }
 
@@ -96,16 +101,13 @@ public class BorderCircleView extends FrameLayout {
         int width = getMeasuredWidth();
         int height = getMeasuredHeight();
 
-        int canvasSize = Math.min(width, height);
-        int circleCenter = (canvasSize - (borderWidth * 2)) / 2;
-        canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth,
-                ((canvasSize - (borderWidth * 2)) / 2) + borderWidth - 4.0f, paintBorder);
-        canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth,
-                ((canvasSize - (borderWidth * 2)) / 2) - 4.0f, paint);
+        float radius = Math.min(width, height) / 2f - 4f;
+
+        canvas.drawCircle(width / 2, height / 2, radius, mPaint);
+        canvas.drawCircle(width / 2, height / 2, radius, mPaintBorder);
 
         if (mChecked) {
-            paintCheck.setColorFilter(paint.getColor() == Color.WHITE ? blackFilter : whiteFilter);
-            mCheck.setBounds(borderWidth, borderWidth, width - borderWidth, height - borderWidth);
+            mCheck.setBounds(Math.round(width / 2 - radius), 0, Math.round(width / 2 + radius), height);
             mCheck.draw(canvas);
         }
     }
