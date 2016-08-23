@@ -51,6 +51,12 @@ public class ViewPagerDialog extends DialogFragment {
     private int mHeight;
     private List<Fragment> mFragments;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
