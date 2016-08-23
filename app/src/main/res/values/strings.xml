@@ -38,6 +38,8 @@
     <string name="apply_on_boot_canceled">Applying settings canceled.</string>
 
     <string name="not_in_range">Not in range</string>
+    <string name="options">Options</string>
+    <string name="more">More</string>
 
     <!-- Permissions Denied -->
     <string name="permission_denied_write_storage">Permission denied for writing to storage!</string>
@@ -795,6 +797,7 @@
     <string name="dark_theme">Dark theme</string>
     <string name="material_icon">Material icon</string>
     <string name="banner_resizer">Banner resizer</string>
+    <string name="hide_banner">Hide banner</string>
     <string name="force_cards">Force cards</string>
     <string name="force_cards_summary">Use cards for items if possible.</string>
     <string name="accent_color">Accent Color</string>

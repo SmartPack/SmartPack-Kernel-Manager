@@ -28,6 +28,9 @@
             android:key="banner_resizer"
             android:summary="@string/banner_resizer" />
         <SwitchPreferenceCompat
+            android:key="hide_banner"
+            android:summary="@string/hide_banner" />
+        <SwitchPreferenceCompat
             android:key="forcecards"
             android:summary="@string/force_cards_summary"
             android:title="@string/force_cards" />

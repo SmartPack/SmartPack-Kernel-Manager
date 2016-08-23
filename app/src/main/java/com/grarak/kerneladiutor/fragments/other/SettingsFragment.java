@@ -53,6 +53,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_DARK_THEME = "darktheme";
     private static final String KEY_MATERIAL_ICON = "materialicon";
     private static final String KEY_BANNER_RESIZER = "banner_resizer";
+    private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_FORCE_CARDS = "forcecards";
     private static final String KEY_ACCENT_COLOR = "accent_color";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
@@ -140,6 +141,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
         findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
+        findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_FORCE_CARDS).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
@@ -201,6 +203,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             case KEY_MATERIAL_ICON:
                 Utils.setStartActivity(checked, getActivity());
                 return true;
+            case KEY_HIDE_BANNER:
             case KEY_FORCE_CARDS:
                 if (!Utils.DONATED) {
                     ViewUtils.dialogDonate(getActivity()).show();
@@ -432,14 +435,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         int padding = (int) getResources().getDimension(R.dimen.dialog_padding);
         linearLayout.setPadding(padding, padding, padding, padding);
 
-        LinearLayout subView = new LinearLayout(getActivity());
-        subView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        linearLayout.addView(subView);
-
         final List<BorderCircleView> circles = new ArrayList<>();
+
+        LinearLayout subView = null;
         for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
-            if (i % 5 == 0) {
+            if (subView == null || i % 5 == 0) {
                 subView = new LinearLayout(getActivity());
                 subView.setLayoutParams(new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -451,9 +451,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             circle.setBackgroundColor(ContextCompat.getColor(getActivity(),
                     BorderCircleView.sAccentColors.keyAt(i)));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
             int margin = (int) getResources().getDimension(R.dimen.color_dialog_margin);
-            params.weight = 1;
             params.setMargins(margin, margin, margin, margin);
             circle.setLayoutParams(params);
             circle.setOnClickListener(new View.OnClickListener() {

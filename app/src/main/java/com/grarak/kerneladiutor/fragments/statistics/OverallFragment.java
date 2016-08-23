@@ -27,8 +27,8 @@ import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,14 +81,7 @@ public class OverallFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        if (mCPUUsageFragment != null) {
-            transaction.detach(mCPUUsageFragment);
-        }
-        mCPUUsageFragment = new CPUUsageFragment();
-        transaction.attach(mCPUUsageFragment);
-        transaction.commit();
-        addViewPagerFragment(mCPUUsageFragment);
+        addViewPagerFragment(mCPUUsageFragment = new CPUUsageFragment());
     }
 
     @Override
@@ -373,67 +366,68 @@ public class OverallFragment extends RecyclerViewFragment {
 
     public static class CPUUsageFragment extends BaseFragment {
 
-        private static List<View> sUsages = new ArrayList<>();
-        private static float[] sCPUUsages;
-        private static int[] sFreqs;
+        private List<View> mUsages = new ArrayList<>();
+        private Thread mThread;
+        private float[] mCPUUsages;
+        private int[] mFreqs;
 
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
+            mUsages.clear();
             LinearLayout rootView = new LinearLayout(getActivity());
+            rootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            rootView.setGravity(Gravity.CENTER);
             rootView.setOrientation(LinearLayout.VERTICAL);
 
-            sUsages.clear();
-            int cpus = CPUFreq.getCpuCount();
-            LinearLayout[] subViews = new LinearLayout[cpus > 1 ? CPUFreq.getCpuCount() / 2 : 1];
-            for (int i = 0; i < subViews.length; i++) {
-                rootView.addView(subViews[i] = new LinearLayout(getActivity()));
-                LinearLayout.LayoutParams params = new LinearLayout
-                        .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT);
-                params.weight = 1;
-                subViews[i].setLayoutParams(params);
-                subViews[i].setFocusable(false);
-            }
+            LinearLayout subView = null;
+            for (int i = 0; i < CPUFreq.getCpuCount(); i++) {
+                if (subView == null || i % 2 == 0) {
+                    subView = new LinearLayout(getActivity());
+                    subView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT, 1));
+                    rootView.addView(subView);
+                }
 
-            for (int i = 0; i < cpus; i++) {
-                if (i > 0 && CPUFreq.getCpuCount() == 1) break;
-                View view = inflater.inflate(R.layout.fragment_usage_view, subViews[i / 2], false);
-                subViews[i / 2].addView(view);
-                LinearLayout.LayoutParams params = new LinearLayout
+                View view = inflater.inflate(R.layout.fragment_usage_view, subView, false);
+                view.setLayoutParams(new LinearLayout
                         .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT);
-                params.weight = 1;
-                view.setLayoutParams(params);
+                        ViewGroup.LayoutParams.MATCH_PARENT, 1));
                 ((TextView) view.findViewById(R.id.usage_core_text)).setText(getString(R.string.core, i + 1));
-                sUsages.add(view);
+                mUsages.add(view);
+                subView.addView(view);
             }
 
             return rootView;
         }
 
         public void refresh() {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    sCPUUsages = CPUFreq.getCpuUsage();
-                    if (sFreqs == null) {
-                        sFreqs = new int[CPUFreq.getCpuCount()];
+            if (mThread == null) {
+                mThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCPUUsages = CPUFreq.getCpuUsage();
+                        if (mFreqs == null) {
+                            mFreqs = new int[CPUFreq.getCpuCount()];
+                        }
+                        for (int i = 0; i < mFreqs.length; i++) {
+                            mFreqs[i] = CPUFreq.getCurFreq(i);
+                        }
+                        mThread = null;
                     }
-                    for (int i = 0; i < sFreqs.length; i++) {
-                        sFreqs[i] = CPUFreq.getCurFreq(i);
-                    }
-                }
-            }).start();
+                });
+                mThread.start();
+            }
             try {
-                for (int i = 0; i < sUsages.size(); i++) {
-                    View usageView = sUsages.get(i);
+                for (int i = 0; i < mUsages.size(); i++) {
+                    View usageView = mUsages.get(i);
                     TextView usageOfflineText = (TextView) usageView.findViewById(R.id.usage_offline_text);
                     TextView usageLoadText = (TextView) usageView.findViewById(R.id.usage_load_text);
                     TextView usageFreqText = (TextView) usageView.findViewById(R.id.usage_freq_text);
                     XYGraph usageGraph = (XYGraph) usageView.findViewById(R.id.usage_graph);
-                    if (sFreqs[i] == 0) {
+                    if (mFreqs[i] == 0) {
                         usageOfflineText.setVisibility(View.VISIBLE);
                         usageLoadText.setVisibility(View.GONE);
                         usageFreqText.setVisibility(View.GONE);
@@ -442,9 +436,9 @@ public class OverallFragment extends RecyclerViewFragment {
                         usageOfflineText.setVisibility(View.GONE);
                         usageLoadText.setVisibility(View.VISIBLE);
                         usageFreqText.setVisibility(View.VISIBLE);
-                        usageFreqText.setText(Utils.strFormat("%d" + getString(R.string.mhz), sFreqs[i] / 1000));
-                        usageLoadText.setText(Utils.strFormat("%d%%", Math.round(sCPUUsages[i + 1])));
-                        usageGraph.addPercentage(Math.round(sCPUUsages[i + 1]));
+                        usageFreqText.setText(Utils.strFormat("%d" + getString(R.string.mhz), mFreqs[i] / 1000));
+                        usageLoadText.setText(Utils.strFormat("%d%%", Math.round(mCPUUsages[i + 1])));
+                        usageGraph.addPercentage(Math.round(mCPUUsages[i + 1]));
                     }
                 }
             } catch (Exception ignored) {

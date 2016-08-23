@@ -18,30 +18,7 @@
         android:layout_height="@dimen/banner_default_height"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:focusable="false">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground" />
-
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                app:extraSpacing="7dp" />
-
-        </FrameLayout>
+        <include layout="@layout/viewpager_view" />
 
         <View
             android:layout_width="match_parent"
