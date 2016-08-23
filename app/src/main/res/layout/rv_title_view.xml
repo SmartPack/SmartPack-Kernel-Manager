@@ -3,14 +3,13 @@
     android:id="@+id/title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="start"
     android:focusable="false"
     android:fontFamily="sans-serif-thin"
-    android:minHeight="45dp"
+    android:gravity="center_vertical"
     android:paddingEnd="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingStart="10dp"
     android:paddingTop="10dp"
     android:textIsSelectable="true"
-    android:textSize="22sp" />
+    android:textSize="20sp" />

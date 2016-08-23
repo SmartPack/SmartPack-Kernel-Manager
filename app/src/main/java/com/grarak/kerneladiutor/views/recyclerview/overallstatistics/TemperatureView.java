@@ -55,7 +55,6 @@ public class TemperatureView extends RecyclerViewItem {
         mGPU = (TextView) view.findViewById(R.id.gpu);
         mBattery = (TextView) view.findViewById(R.id.battery);
 
-        setFullSpan(true);
         super.onCreateView(view);
     }
 

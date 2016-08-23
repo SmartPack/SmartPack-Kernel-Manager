@@ -31,9 +31,9 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
-import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
@@ -44,8 +44,8 @@ import java.util.List;
  */
 public class BatteryFragment extends RecyclerViewFragment {
 
-    private DescriptionView mLevel;
-    private DescriptionView mVoltage;
+    private StatsView mLevel;
+    private StatsView mVoltage;
 
     private static int sBatteryLevel;
     private static int sBatteryVoltage;
@@ -77,14 +77,14 @@ public class BatteryFragment extends RecyclerViewFragment {
     }
 
     private void levelInit(List<RecyclerViewItem> items) {
-        mLevel = new DescriptionView();
+        mLevel = new StatsView();
         mLevel.setTitle(getString(R.string.level));
 
         items.add(mLevel);
     }
 
     private void voltageInit(List<RecyclerViewItem> items) {
-        mVoltage = new DescriptionView();
+        mVoltage = new StatsView();
         mVoltage.setTitle(getString(R.string.voltage));
 
         items.add(mVoltage);
@@ -189,10 +189,10 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
         if (mLevel != null) {
-            mLevel.setSummary(sBatteryLevel + "%");
+            mLevel.setStat(sBatteryLevel + "%");
         }
         if (mVoltage != null) {
-            mVoltage.setSummary(sBatteryVoltage + getString(R.string.mv));
+            mVoltage.setStat(sBatteryVoltage + getString(R.string.mv));
         }
     }
 

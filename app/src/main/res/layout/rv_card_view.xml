@@ -23,7 +23,7 @@
             android:focusable="false"
             android:fontFamily="sans-serif-thin"
             android:textIsSelectable="true"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/card_layout"

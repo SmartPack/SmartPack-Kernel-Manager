@@ -109,6 +109,7 @@
     <!-- Overall -->
     <string name="offline">Offline</string>
     <string name="core">Core %d</string>
+    <string name="gpu_freq">GPU Frequency</string>
     <string name="refresh">Refresh</string>
     <string name="reset">Reset</string>
     <string name="restore">Restore</string>
@@ -373,7 +374,6 @@
     <!-- GPU -->
     <string name="frequencies">Frequencies</string>
     <string name="gpu_2d_freq">GPU 2D Frequency</string>
-    <string name="gpu_freq">GPU Frequency</string>
     <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
     <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
     <string name="gpu_max_freq">GPU Maximum Frequency</string>

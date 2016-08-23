@@ -25,12 +25,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -51,12 +52,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -76,12 +78,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="12sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"

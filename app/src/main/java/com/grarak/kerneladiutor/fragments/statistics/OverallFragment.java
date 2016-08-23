@@ -42,10 +42,12 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
+import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
 import com.grarak.kerneladiutor.views.XYGraph;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyButtonView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
@@ -63,7 +65,8 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private CPUUsageFragment mCPUUsageFragment;
 
-    private TemperatureView mTemperatureView;
+    private StatsView mGPUFreq;
+    private TemperatureView mTemperature;
 
     private CardView mFreqBig;
     private CardView mFreqLITTLE;
@@ -90,14 +93,21 @@ public class OverallFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        temperatureInit(items);
+        statsInit(items);
         frequenciesInit(items);
     }
 
-    private void temperatureInit(List<RecyclerViewItem> items) {
-        mTemperatureView = new TemperatureView();
+    private void statsInit(List<RecyclerViewItem> items) {
+        if (GPUFreq.hasCurFreq()) {
+            mGPUFreq = new StatsView();
+            mGPUFreq.setTitle(getString(R.string.gpu_freq));
 
-        items.add(mTemperatureView);
+            items.add(mGPUFreq);
+        }
+        mTemperature = new TemperatureView();
+        mTemperature.setFullSpan(mGPUFreq == null);
+
+        items.add(mTemperature);
     }
 
     private void frequenciesInit(List<RecyclerViewItem> items) {
@@ -327,8 +337,11 @@ public class OverallFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
 
-        if (mTemperatureView != null) {
-            mTemperatureView.setBattery(mBatteryRaw);
+        if (mGPUFreq != null) {
+            mGPUFreq.setStat((GPUFreq.getCurFreq() / GPUFreq.getCurFreqOffset()) + getString(R.string.mhz));
+        }
+        if (mTemperature != null) {
+            mTemperature.setBattery(mBatteryRaw);
         }
 
         if (mCPUUsageFragment != null) {
