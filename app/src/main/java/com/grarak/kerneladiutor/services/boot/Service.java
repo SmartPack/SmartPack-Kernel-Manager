@@ -35,6 +35,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.app.NotificationCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
@@ -166,10 +167,12 @@ public class Service extends android.app.Service {
         final NotificationManager notificationManager = (NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+
         if (!hideNotification) {
             builder.setContentTitle(getString(R.string.app_name))
                     .setContentText(getString(R.string.apply_on_boot_text, seconds))
-                    .setSmallIcon(R.drawable.ic_restore)
+                    .setSmallIcon(Prefs.getBoolean("materialicon", false, this) ?
+                            R.mipmap.ic_launcher_material : R.mipmap.ic_launcher)
                     .addAction(0, getString(R.string.cancel), cancelIntent)
                     .setAutoCancel(true)
                     .setContentIntent(contentIntent)
@@ -182,7 +185,8 @@ public class Service extends android.app.Service {
         final NotificationCompat.Builder builderComplete = new NotificationCompat.Builder(this);
         if (!hideNotification) {
             builderComplete.setContentTitle(getString(R.string.app_name))
-                    .setSmallIcon(R.drawable.ic_restore)
+                    .setSmallIcon(Prefs.getBoolean("materialicon", false, this) ?
+                            R.mipmap.ic_launcher_material : R.mipmap.ic_launcher)
                     .setContentIntent(contentIntent);
         }
 
