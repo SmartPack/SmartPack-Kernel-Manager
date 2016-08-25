@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">离线</string>
   <string name="core">核心 %d</string>
+  <string name="gpu_freq">GPU 频率</string>
   <string name="refresh">刷新</string>
   <string name="reset">复位</string>
   <string name="restore">还原</string>
@@ -348,7 +349,6 @@
   <!-- GPU -->
   <string name="frequencies">频率</string>
   <string name="gpu_2d_freq">GPU 2D 频率</string>
-  <string name="gpu_freq">GPU 频率</string>
   <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>
   <string name="gpu_2d_max_freq_summary">设置 GPU 2D 绘图时所能达到的最高频率。</string>
   <string name="gpu_max_freq">GPU 最高频率</string>
@@ -713,6 +713,7 @@
   <string name="executing">正在执行</string>
   <string name="result">结果</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">这里会显示当你的设备开机时会发生的事件。如果这里是空的，那么任何事都不会发生。</string>
   <!-- Settings -->
   <string name="fahrenheit_title">华氏度</string>
   <string name="fahrenheit_summary">使用华氏温度测量。</string>
@@ -723,6 +724,7 @@
   <string name="ten_sec">10 秒</string>
   <string name="twenty_sec">20 秒</string>
   <string name="fifty_sec">50 秒</string>
+  <string name="apply_on_boot_test_summary">测试开机启动。这将包含所有开机将会应用的设置，比如自定义控制，配置文件，init.d等。</string>
   <string name="hide">隐藏</string>
   <string name="toast">通知</string>
   <string name="apply_on_boot_toast_summary">当设置应用时显示通知</string>

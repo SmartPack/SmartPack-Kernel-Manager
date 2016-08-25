@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">Ngoại tuyến</string>
   <string name="core">Lõi %d</string>
+  <string name="gpu_freq">Tần số GPU</string>
   <string name="refresh">Làm mới</string>
   <string name="reset">Thiết lập lại</string>
   <string name="restore">Khôi phục</string>
@@ -226,9 +227,29 @@
   <string name="update_rate">Tỉ lệ cập nhật</string>
   <string name="fast_lane_load_summary">Cải thiện độ trễ bằng cách ngay lập tức đưa tất cả các CPU mở nếu hiện tại mức độ tải trên bất kỳ CPU ở trên ngưỡng nhất định.</string>
   <string name="io_is_busy">IO is busy</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
+  <string name="mako_hotplug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi franciscofranco.</string>
+  <string name="cpus_on_touch">CPU khi chạm</string>
+  <string name="cpus_on_touch_summary">Số CPU bật khi chạm vào màn hình hay nhấn nút.</string>
+  <string name="first_level">Mức độ đầu tiên</string>
+  <string name="first_level_summary">Ngưỡng làm mở tất cả CPU.</string>
+  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="mb_hotplug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi show-p1984.</string>
+  <string name="screen_off_single_cpu_summary">Chỉ sử dụng một CPU khi màn hình tắt.</string>
+  <string name="idle_frequency">Xung nhịp nhàn rỗi</string>
+  <string name="idle_frequency_summary">Nếu lõi đầu tiên ở dưới tần số này thì không bật các lõi còn lại.</string>
+  <string name="start_delay_summary">Thời gian cho đến khi Hotplug bắt đầu làm việc.</string>
   <string name="delay">Độ trễ</string>
   <string name="delay_summary">Thời gian giữa các lần kiểm tra.</string>
   <string name="pause">Tạm dừng</string>
+  <string name="alucard_hotplug">Alucard Hotplug</string>
+  <string name="alucard_hotplug_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi Alucard.</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Một sự thay thế cho Qualcomm hotplugging. Phát triển bởi varunchitre15.</string>
+  <string name="quad_core_mode">Chế độ lõi tứ</string>
+  <string name="dual_core_mode">Chế độ lõi đôi</string>
+  <string name="zen_decision">Zen Decision</string>
   <string name="wake_wait_time">Thời gian chờ đê đánh thức</string>
   <string name="autosmp_summary">Một sự thay thế cho Qualcomm MPDecision. Phát triển bởi mrg666.</string>
   <string name="core_control">Điều khiển lõi</string>
@@ -244,6 +265,8 @@
   <string name="poll">Thăm dò ý kiến</string>
   <string name="check_interval">Khoảng thời gian kiểm tra</string>
   <!-- GPU -->
+  <string name="frequencies">Xung nhịp</string>
+  <string name="gpu_2d_freq">Tần số 2D GPU</string>
   <string name="gpu_governor">Trình kiểm soát GPU</string>
   <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
   <string name="simple_gpu_algorithm_summary">Một tiện ích cho MSM Adreno TZ. Phát triển bởi faux123.</string>
@@ -326,6 +349,7 @@
   <string name="crc">Phần mềm kiểm soát CRC</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Vô hiệu hóa cho hiệu suất tốt hơn nhưng có nguy cơ mất dữ liệu trong trường hợp hệ thống gặp sự cố.</string>
+  <string name="autosleep">Tự động ngủ</string>
   <string name="network">Mạng</string>
   <string name="hostname">Tên miền máy chủ</string>
   <string name="wakelock">Wakelock</string>
@@ -456,6 +480,7 @@
   <string name="banner_resizer">Thay đổi kích thước Banner</string>
   <string name="force_cards">Bắt buộc dạng thẻ</string>
   <string name="force_cards_summary">Sử dụng dạng thẻ cho các mục nếu có thể.</string>
+  <string name="instant">Ngay lập tức</string>
   <string name="five_sec">5 giây</string>
   <string name="ten_sec">10 giây</string>
   <string name="twenty_sec">20 giây</string>

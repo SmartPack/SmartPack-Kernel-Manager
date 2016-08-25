@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Kern %d</string>
+  <string name="gpu_freq">GPU Frequentie</string>
   <string name="refresh">Verversen</string>
   <string name="reset">Reset</string>
   <string name="restore">Herstellen</string>
@@ -335,7 +336,6 @@
   <string name="shutdown_temp">Temperatuur bij afsluiten</string>
   <!-- GPU -->
   <string name="frequencies">Frequenties</string>
-  <string name="gpu_freq">GPU Frequentie</string>
   <string name="gpu_2d_max_freq">Maximale GPU 2D Frequentie</string>
   <string name="gpu_2d_max_freq_summary">Stel de maximale 2D frequentie van de GPU in.</string>
   <string name="gpu_max_freq">Maximale GPU Frequentie</string>

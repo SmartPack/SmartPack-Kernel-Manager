@@ -20,8 +20,13 @@
   <string name="unknown">Nepoznato</string>
   <string name="pirated">Izgleda da donacijska aplikacija nije kupljena u Trgovini Play! Ako ste je preuzeli piratsku verziju s interneta, može vas biti sram!</string>
   <string name="donate">Donirajte</string>
+  <string name="donate_summary">Ova je značajka dostupna samo ako je instalirana donacijska aplikacija! Ali, ne trebate se brinuti. Ova je aplikacija aplikacija otvorenog koda i lako je možete sami izgraditi i ukloniti ovu provjeru. Ali nadam se da u svakom slučaju podržavate razvojne programere. Hvala vam što se koristite Kernel Adiutorom! Kada kupite donacijsku aplikaciju morate ponovno pokrenuti Kernel Adiutor kako biste omogućili sve značajke.</string>
   <string name="donate_nope">Neću pasti na ovu prevaru!</string>
   <string name="donate_yes">Volim ovu aplikaciju. Moram donirati!</string>
+  <string name="ad_here">Vaš oglas može biti ovdje.</string>
+  <string name="remove_ad">Ukloni oglase</string>
+  <string name="warning">Upozorenje</string>
+  <string name="open_ad_anyway">Svejedno otvori oglas</string>
   <string name="apply_on_boot">Primijeni pri pokretanju sustava</string>
   <string name="apply_on_boot_text">Primjenjivanje postavki za %d s.</string>
   <string name="apply_on_boot_complete">Primjenjivanje postavki je završeno.</string>
@@ -45,6 +50,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistika</string>
@@ -83,9 +89,11 @@
   <string name="settings">Postavke</string>
   <string name="about">O aplikaciji</string>
   <string name="contributors">Suradnici</string>
+  <string name="help">Pomoć</string>
   <!-- Overall -->
   <string name="offline">Neaktivna</string>
   <string name="core">Jezgra %d</string>
+  <string name="gpu_freq">Frekvencija GPU-a</string>
   <string name="refresh">Osvježi</string>
   <string name="reset">Ponovno postavi</string>
   <string name="restore">Vraćanje</string>
@@ -113,6 +121,7 @@
   <string name="version">Verzija</string>
   <string name="handlers">Rukovatelji</string>
   <!-- CPU -->
+  <string name="cores_singular">Jezgre: %d</string>
   <string name="cores">Jezgre: %d</string>
   <string name="no_offline_core">Ne možete postaviti ovu jezgru kao neaktivnu!</string>
   <string name="cpu_max_freq">Najviša frekvencija CPU-a</string>
@@ -268,7 +277,6 @@
   <string name="temp_limit_summary">Ako se temperatura još više podigne, usporiti će se frekvencija CPU-a da se temperatura snizi.</string>
   <!-- GPU -->
   <string name="frequencies">Frekvencije</string>
-  <string name="gpu_freq">Frekvencija GPU-a</string>
   <string name="gpu_2d_max_freq">Najviša frekvencija GPU-a 2D</string>
   <string name="gpu_2d_max_freq_summary">Postavi najvišu moguću 2D frekvenciju za GPU do koje se može uzdići.</string>
   <string name="gpu_max_freq">Najviša frekvencija GPU-a</string>

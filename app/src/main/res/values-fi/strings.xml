@@ -90,6 +90,7 @@
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Ydin %d</string>
+  <string name="gpu_freq">GPU:n taajuus</string>
   <string name="refresh">Päivitä</string>
   <string name="reset">Nollaa</string>
   <string name="restore">Palauta</string>
@@ -338,7 +339,6 @@
   <!-- GPU -->
   <string name="frequencies">Taajuudet</string>
   <string name="gpu_2d_freq">GPU 2D:n taajuus</string>
-  <string name="gpu_freq">GPU:n taajuus</string>
   <string name="gpu_2d_max_freq">GPU 2D:n enimmäistaajuus</string>
   <string name="gpu_2d_max_freq_summary">Aseta korkein kellotaajuus jonka GPU saavuttaa 2D tilassa.</string>
   <string name="gpu_max_freq">GPU:n maksimi taajuus</string>

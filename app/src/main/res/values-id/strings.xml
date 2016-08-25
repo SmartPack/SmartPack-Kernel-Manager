@@ -10,12 +10,12 @@
   <!-- Security -->
   <string name="password">Kata sandi</string>
   <string name="password_wrong">Kata sandi salah</string>
-  <string name="select_picture">Pilih gambar</string>
-  <string name="no_picture">Tidak ada gambar</string>
+  <string name="select_picture">Pilih Gambar</string>
+  <string name="no_picture">Tidak Ada Gambar</string>
   <string name="went_wrong">Ada yang salah!</string>
   <string name="press_back_again_exit">Tekan kembali sekali lagi untuk keluar</string>
   <string name="cancel">Batal</string>
-  <string name="ok">YA</string>
+  <string name="ok">Oke</string>
   <string name="unknown">Tidak diketahui</string>
   <string name="license_invalid">Terima kasih telah membeli aplikasi donasi! Sayangnya pemeriksaan lisensi gagal. Mohon coba lagi nanti. Jika masih belum bisa, silakan hubungi saya.</string>
   <string name="pirated">Sepertinya aplikasi donasi tidak dibeli melalui Play Store! Jika Anda membajaknya, Anda memalukan!</string>
@@ -50,7 +50,7 @@
   <string name="min">menit</string>
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
-  <string name="kb">kb</string>
+  <string name="kb">kB</string>
   <string name="px">piksel</string>
   <!-- Special signs -->
   <!-- Headers -->
@@ -76,24 +76,50 @@
   <string name="io_scheduler">Penjadwal I/O</string>
   <string name="ksm">Penggabungan Lapisan Kernel Yang Sama</string>
   <string name="lmk">Pembebas Memory Rendah</string>
-  <string name="virtual_memory">Memori virtual</string>
+  <string name="virtual_memory">Memori Virtual</string>
   <string name="entropy">Entropi</string>
   <string name="misc">Lain-lain</string>
   <string name="downloads">Unduhan</string>
   <string name="backup">Cadangan</string>
-  <string name="build_prop_editor">Perubah build. prop</string>
+  <string name="build_prop_editor">Penyunting build. prop</string>
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Pengaturan</string>
+  <string name="about">Tentang</string>
+  <string name="contributors">Kontributor</string>
+  <string name="help">Bantuan</string>
   <!-- Overall -->
-  <string name="offline">Tidak berjalan</string>
+  <string name="offline">Tidak Aktif</string>
   <string name="core">Inti %d</string>
+  <string name="refresh">Perbarui</string>
+  <string name="reset">Atur ulang</string>
   <string name="restore">Pulihkan</string>
+  <string name="deep_sleep">Tidur nyenyak</string>
   <string name="uptime">Waktu nyala</string>
+  <string name="error_frequencies">Gagal memuat frekuensi</string>
+  <string name="unused_frequencies">Frekuensi yang Tidak Digunakan</string>
   <!-- Device -->
+  <string name="processor">Prosesor</string>
+  <string name="vendor">Vendor</string>
   <string name="features">Fitur</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Versi Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Kode Nama Android</string>
+  <string name="fingerprint">Sidik jari</string>
+  <string name="build_display_id">Buat ID Layar</string>
+  <string name="baseband">Baseband</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
+  <string name="hardware">Perangkat Keras</string>
+  <string name="architecture">Arsitektur</string>
   <!-- Inputs -->
+  <string name="bus">Bus</string>
+  <string name="product">Produk</string>
+  <string name="version">Versi</string>
+  <string name="handlers">Handler</string>
   <!-- CPU -->
+  <string name="cores_singular">%d inti</string>
   <string name="cpu_max_freq">Frekuensi CPU Tertinggi</string>
   <string name="cpu_max_freq_summary">Atur skala frekuensi CPU tertinggi secara keseluruhan.</string>
   <string name="cpu_min_freq">Frekuensi CPU Terendah</string>
@@ -310,6 +336,7 @@
   <string name="screen_value">Nilai Layar</string>
   <string name="screen_contrast">Kontras Layar</string>
   <string name="high_brightness_mode">Modus Kecerahan Tinggi</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">Merah Keabu-abuan</string>
   <string name="red_mids">Merah Menengah</string>
@@ -333,6 +360,7 @@
   <string name="blue_negative">Biru Negatif</string>
   <string name="white_point">Titik Putih</string>
   <string name="lcd_backlight">Lampu latar LCD</string>
+  <string name="gamma_profiles_summary">Setelah memilih profil, silahkan matikan dan nyalakan layar.</string>
   <string name="brightness_mode">Gunakan lampu latar modus eksponensial daripada modus linier.</string>
   <string name="min_brightness">Kecerahan Terendah</string>
   <string name="min_brightness_summary">Mengijinkan Anda untuk mengurangi kecerahan layar LCD lebih rendah dari pada bawaan.</string>
@@ -357,8 +385,10 @@
   <string name="full">Penuh</string>
   <string name="bottom_half">Separuh bawah</string>
   <string name="top_half">Setangah Atas</string>
+  <string name="half">Setengah</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Bangunkan perangkat Anda dengan meng-usap layar.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Sweep2Wake Kanan</string>
   <string name="s2w_left">Sweep2Wake Kiri</string>
@@ -373,7 +403,9 @@
   <string name="dt2s_summary">Kunci perangkat dengan ketuk 2x di bagian atas layar.</string>
   <string name="s2w_charging">Sweep2Wake saat pengisian</string>
   <string name="dt2w_charging">DoubleTap2Wake saat pengisian</string>
+  <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake saat pengisian</string>
+  <string name="s2s_summary">Kunci perangkat Anda dengan mengusap layar.</string>
   <string name="s2s_right">Usap Kanan</string>
   <string name="s2s_left">Usap Kiri</string>
   <string name="s2s_any">Usap Kiri atau Kanan</string>
@@ -390,8 +422,13 @@
   <string name="camera_gesture_summary">Aktifkan kamera dengan menggambar lingkaran pada layar.</string>
   <string name="pocket_mode">Mode saku</string>
   <string name="pocket_mode_summary">Aktifkan ini akan mematikan wake controls ketika perangkat berada didalam kantong.</string>
+  <string name="timeout">Batas waktu</string>
+  <string name="timeout_summary">Atur durasi kapan wake control dinonaktifkan setelah layar mati.</string>
   <string name="power_key_suspend">Pengangguhan Tombol Daya</string>
   <string name="power_key_suspend_summary">Mengaktifkan ini akan mematikan fungsi menyalakan layar dengan tombol daya ketika layar mati.</string>
+  <string name="area">Daerah</string>
+  <string name="width">Lebar</string>
+  <string name="height">Tinggi</string>
   <string name="vibration_strength">Kekuatan Getaran</string>
   <!-- Sound -->
   <string name="sound_control">Kontrol Suara</string>
@@ -401,6 +438,8 @@
   <string name="cam_microphone_gain">Peningkatan Mikrofon Camcorder</string>
   <string name="speaker_gain">Peningkatan Speaker</string>
   <string name="headphone_poweramp_gain">Peningkatan Speaker PowerAmp</string>
+  <string name="headphone_tpa6165_gain">Headphone Amp Gain (Ekstensi TPA6165)</string>
+  <string name="lock_output_gain">Kunci Capaian Keluaran</string>
   <string name="microphone_gain">Peningkatan Mikrofon</string>
   <string name="volume_gain">Peningkatan Volume</string>
   <!-- Battery -->

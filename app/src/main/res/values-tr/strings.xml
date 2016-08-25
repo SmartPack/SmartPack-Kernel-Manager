@@ -90,6 +90,7 @@
   <!-- Overall -->
   <string name="offline">Çevrimdışı</string>
   <string name="core">Çekirdek %d</string>
+  <string name="gpu_freq">GPU frekansı</string>
   <string name="refresh">Yenile</string>
   <string name="reset">Sıfırla</string>
   <string name="restore">Geri yükleme</string>
@@ -337,7 +338,6 @@
   <!-- GPU -->
   <string name="frequencies">Frekanslar</string>
   <string name="gpu_2d_freq">GPU 2D frekansı</string>
-  <string name="gpu_freq">GPU frekansı</string>
   <string name="gpu_2d_max_freq">GPU 2D en yüksek frekans</string>
   <string name="gpu_2d_max_freq_summary">GPU nun ulaşabileceği maksimum 2D frekansını ayarlayin.</string>
   <string name="gpu_max_freq">GPU en yüksek frekans</string>

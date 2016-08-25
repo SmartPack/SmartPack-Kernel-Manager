@@ -92,6 +92,7 @@
   <!-- Overall -->
   <string name="offline">Abgeschaltet</string>
   <string name="core">Kern %d</string>
+  <string name="gpu_freq">GPU-Frequenz</string>
   <string name="refresh">Aktualisieren</string>
   <string name="reset">Zurücksetzen</string>
   <string name="restore">Wiederherstellen</string>
@@ -335,7 +336,6 @@
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
   <!-- GPU -->
   <string name="frequencies">Frequenzen</string>
-  <string name="gpu_freq">GPU-Frequenz</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_2d_max_freq_summary">Maximale Taktfrequenz der 2D-GPU einstellen.</string>
   <string name="gpu_max_freq">Maximale GPU-Frequenz</string>

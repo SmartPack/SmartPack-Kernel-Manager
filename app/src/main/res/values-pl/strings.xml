@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Rdzeń %d</string>
+  <string name="gpu_freq">Częstotliwość GPU</string>
   <string name="refresh">Odśwież</string>
   <string name="reset">Reset</string>
   <string name="restore">Przywróć</string>
@@ -333,7 +334,6 @@
   <!-- GPU -->
   <string name="frequencies">Częstotliwości</string>
   <string name="gpu_2d_freq">Częstotliwość GPU 2D</string>
-  <string name="gpu_freq">Częstotliwość GPU</string>
   <string name="gpu_2d_max_freq">Maksymalna częstotliwość GPU 2D</string>
   <string name="gpu_2d_max_freq_summary">Ustawia maksymalną częstotliwość GPU 2D.</string>
   <string name="gpu_max_freq">Maksymalna częstotliwość GPU</string>

@@ -94,6 +94,7 @@
   <!-- Overall -->
   <string name="offline">Оффлайн</string>
   <string name="core">Ядро %d</string>
+  <string name="gpu_freq">Частота графического процессора</string>
   <string name="refresh">Обновить</string>
   <string name="reset">Сброс</string>
   <string name="restore">Восстановить</string>
@@ -344,7 +345,6 @@
   <!-- GPU -->
   <string name="frequencies">Частоты</string>
   <string name="gpu_2d_freq">2D частота графического процессора</string>
-  <string name="gpu_freq">Частота графического процессора</string>
   <string name="gpu_2d_max_freq">Максимальная частота GPU при 2D операциях</string>
   <string name="gpu_2d_max_freq_summary">Установите максимальную 2D частоту графического процессора.</string>
   <string name="gpu_max_freq">Максимальная частота графического процессора</string>

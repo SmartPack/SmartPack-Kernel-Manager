@@ -84,6 +84,7 @@
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Jádro %d</string>
+  <string name="gpu_freq">Frekvence GPU</string>
   <string name="refresh">Obnovit</string>
   <string name="reset">Resetovat</string>
   <string name="restore">Obnovit</string>
@@ -217,7 +218,6 @@
   <!-- GPU -->
   <string name="frequencies">Frekvence</string>
   <string name="gpu_2d_freq">2D frekvence GPU</string>
-  <string name="gpu_freq">Frekvence GPU</string>
   <string name="gpu_2d_max_freq">Maximální frekvence 2D grafiky</string>
   <string name="gpu_2d_max_freq_summary">Nastavení maximální frekvence 2D grafiky.</string>
   <string name="gpu_max_freq">Maximální frekvence grafiky</string>

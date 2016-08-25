@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">Spento</string>
   <string name="core">Core %d</string>
+  <string name="gpu_freq">Frequenza GPU</string>
   <string name="refresh">Aggiorna</string>
   <string name="reset">Reset</string>
   <string name="restore">Ripristino</string>
@@ -347,7 +348,6 @@
   <!-- GPU -->
   <string name="frequencies">Frequenze</string>
   <string name="gpu_2d_freq">Frequenza GPU 2D</string>
-  <string name="gpu_freq">Frequenza GPU</string>
   <string name="gpu_2d_max_freq">GPU 2D Frequenza Massima</string>
   <string name="gpu_2d_max_freq_summary">Imposta la massima frequenza della GPU.</string>
   <string name="gpu_max_freq">Massima frequenza GPU</string>

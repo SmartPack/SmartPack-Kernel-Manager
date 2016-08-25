@@ -95,6 +95,7 @@
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Mag %d</string>
+  <string name="gpu_freq">GPU frekvencia</string>
   <string name="refresh">Frissítés</string>
   <string name="reset">Alaphelyzet</string>
   <string name="restore">Visszaállítás</string>
@@ -348,7 +349,6 @@
   <!-- GPU -->
   <string name="frequencies">Frekvenciák</string>
   <string name="gpu_2d_freq">GPU 2D frekvencia</string>
-  <string name="gpu_freq">GPU frekvencia</string>
   <string name="gpu_2d_max_freq">GPU 2D maximális frekvencia</string>
   <string name="gpu_2d_max_freq_summary">A maximális 2D frekvencia, amit a GPU használhat.</string>
   <string name="gpu_max_freq">Maximális GPU frekvencia</string>
