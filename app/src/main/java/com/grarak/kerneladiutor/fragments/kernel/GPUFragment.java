@@ -364,6 +364,7 @@ public class GPUFragment extends RecyclerViewFragment {
             String text = "";
             if (GPUFreq.hasBusy()) {
                 load = GPUFreq.getBusy();
+                load = load > 100 ? 100 : load < 0 ? 0 : load;
                 text += load + "% - ";
             }
 
