@@ -336,17 +336,21 @@ public class Device {
 
     public static String getBoard() {
         String hardware = CPUInfo.getVendor().toLowerCase();
+        String ret = null;
         if (hardware.matches(".*msm.+.\\d+.*")) {
             String board = hardware.split("msm")[1].trim();
-            return "msm" + board.split(" ")[0];
+            ret = "msm" + board.split(" ")[0];
         } else if (hardware.matches("mt\\d*.")) {
             String board = hardware.split("mt")[1].trim();
-            return "mt" + board.split(" ")[0];
+            ret = "mt" + board.split(" ")[0];
         } else if (hardware.matches(".*apq.+.\\d+.*")) {
             String board = hardware.split("apq")[1].trim();
-            return "apq" + board.split(" ")[0];
+            ret = "apq" + board.split(" ")[0];
         }
-        return Build.BOARD.toLowerCase();
+        if (ret != null && ret.equalsIgnoreCase("msm8994v2.1")) {
+            ret = "msm8994";
+        }
+        return ret != null ? ret : Build.BOARD.toLowerCase();
     }
 
     public static String getBuildDisplayId() {

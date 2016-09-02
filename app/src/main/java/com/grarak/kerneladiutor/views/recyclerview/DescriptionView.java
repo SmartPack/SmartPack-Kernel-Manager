@@ -20,10 +20,10 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.method.MovementMethod;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 
@@ -33,9 +33,9 @@ import com.grarak.kerneladiutor.R;
 public class DescriptionView extends RecyclerViewItem {
 
     private View mRootView;
-    private ImageView mImageView;
-    private TextView mTitleView;
-    private TextView mSummaryView;
+    private AppCompatImageView mImageView;
+    private AppCompatTextView mTitleView;
+    private AppCompatTextView mSummaryView;
 
     private Drawable mImage;
     private CharSequence mTitle;
@@ -50,9 +50,9 @@ public class DescriptionView extends RecyclerViewItem {
     @Override
     public void onCreateView(View view) {
         mRootView = view;
-        mImageView = (ImageView) view.findViewById(R.id.image);
-        mTitleView = (TextView) view.findViewById(R.id.title);
-        mSummaryView = (TextView) view.findViewById(R.id.summary);
+        mImageView = (AppCompatImageView) view.findViewById(R.id.image);
+        mTitleView = (AppCompatTextView) view.findViewById(R.id.title);
+        mSummaryView = (AppCompatTextView) view.findViewById(R.id.summary);
 
         mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

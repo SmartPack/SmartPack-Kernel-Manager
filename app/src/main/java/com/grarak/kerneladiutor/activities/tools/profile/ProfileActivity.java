@@ -28,10 +28,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatImageButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -287,14 +289,18 @@ public class ProfileActivity extends BaseActivity {
                 }
             });
 
-            rootView.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            AppCompatImageButton cancel = (AppCompatImageButton) rootView.findViewById(R.id.cancel);
+            DrawableCompat.setTint(cancel.getDrawable(), ViewUtils.getThemeAccentColor(getActivity()));
+            cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     getActivity().finish();
                 }
             });
 
-            rootView.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
+            AppCompatImageButton done = (AppCompatImageButton) rootView.findViewById(R.id.done);
+            DrawableCompat.setTint(done.getDrawable(), ViewUtils.getThemeAccentColor(getActivity()));
+            done.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     List<String> categories = new ArrayList<>();

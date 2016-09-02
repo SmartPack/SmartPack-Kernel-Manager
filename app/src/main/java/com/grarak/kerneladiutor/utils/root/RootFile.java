@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.utils.root;
 
 import com.grarak.kerneladiutor.utils.Utils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class RootFile {
     }
 
     public String getName() {
-        return mSU.runCommand("basename '" + mFile + "'");
+        return new File(mFile).getName();
     }
 
     public void mkdir() {
@@ -113,7 +114,7 @@ public class RootFile {
     }
 
     public RootFile getParentFile() {
-        return new RootFile(mSU.runCommand("dirname \"" + mFile + "\""), mSU);
+        return new RootFile(new File(mFile).getParent(), mSU);
     }
 
     public RootFile getRealPath() {
