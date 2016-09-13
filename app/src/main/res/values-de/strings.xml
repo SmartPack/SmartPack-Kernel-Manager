@@ -27,11 +27,15 @@
   <string name="ad_here">Hier könnte Ihre Werbung stehen</string>
   <string name="remove_ad">Werbung entfernen</string>
   <string name="warning">Warnung</string>
+  <string name="gh_ad">Dies ist eine nicht-kommerzielle Anzeige! Nehmen Sie das nicht ernst! Nur eine lustige Möglichkeit, den Raum zu füllen, wenn eine tatsächliche Anzeige nicht geladen wird (schaue euch Adblock-Nutzer an).</string>
+  <string name="open_ad_anyway">Anzeige trotzdem öffnen</string>
   <string name="apply_on_boot">Beim Systemstart anwenden</string>
   <string name="apply_on_boot_text">Wende Einstellungen in %d Sekunden an.</string>
   <string name="apply_on_boot_complete">Einstellungen angewandt.</string>
   <string name="apply_on_boot_canceled">Anwenden der Einstellungen abgebrochen.</string>
   <string name="not_in_range">Nicht in Reichweite</string>
+  <string name="options">Optionen</string>
+  <string name="more">Mehr</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Keine Berechtigung, um auf den Speicher zu schreiben!</string>
   <!-- Editor -->
@@ -89,6 +93,7 @@
   <string name="settings">Einstellungen</string>
   <string name="about">Über uns</string>
   <string name="contributors">Unterstützer</string>
+  <string name="help">Hilfe</string>
   <!-- Overall -->
   <string name="offline">Abgeschaltet</string>
   <string name="core">Kern %d</string>
@@ -109,6 +114,7 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android Codename</string>
   <string name="fingerprint">Fingerabdruck</string>
+  <string name="build_display_id">Anzeige-ID erstellen</string>
   <string name="baseband">Baseband</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Bootloader</string>
@@ -120,6 +126,7 @@
   <string name="version">Version</string>
   <string name="handlers">Handlers</string>
   <!-- CPU -->
+  <string name="cores_singular">%d Kern</string>
   <string name="cores">%d Kerne</string>
   <string name="no_offline_core">Sie können diesen Kern nicht ausschalten!</string>
   <string name="cpu_max_freq">Maximale CPU-Frequenz</string>
@@ -134,6 +141,7 @@
   <string name="governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="cpu_governor_tunables_read_error">Fehler beim Lesen des derzeitigen Governor der CPU.\n\nFalls Sie ein QCOM big.LITTLE Gerät benutzen, ist das ein bekanntes Problem. Das System zwingt die CPU Kerne abzuschalten was es extrem schwer macht spezifische CPU Statistiken auszulesen. Versuchen Sie, diese Option erneut zu wählen. Manchmal weigert sich die CPU einen Kern anzuschalten.</string>
   <string name="tunables_error">%s ist nicht einstellbar</string>
+  <string name="manual">Benutzerdefiniert</string>
   <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
   <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
   <string name="disabled">Deaktiviert</string>
@@ -155,6 +163,7 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall des CPU-Boost, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
+  <string name="input_boost_freq_core">Berührungs-Frequenzschub Kern %d</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
   <string name="wakeup_boost">Wakeup-Boost</string>
   <string name="wakeup_boost_summary">»Wakeup Boost« ist ähnlich wie »input boost« aber es wird angewendet, wenn der Bildschirm eingeschaltet wird.</string>
@@ -336,6 +345,7 @@
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
   <!-- GPU -->
   <string name="frequencies">Frequenzen</string>
+  <string name="gpu_2d_freq">GPU 2D Frequenz</string>
   <string name="gpu_2d_max_freq">GPU 2D Maximalfrequenz</string>
   <string name="gpu_2d_max_freq_summary">Maximale Taktfrequenz der 2D-GPU einstellen.</string>
   <string name="gpu_max_freq">Maximale GPU-Frequenz</string>
@@ -346,6 +356,7 @@
   <string name="gpu_2d_governor_summary">Ändert den 2D-Governor der GPU.</string>
   <string name="gpu_governor">GPU-Governor</string>
   <string name="gpu_governor_summary">Ändert den GPU-Governor.</string>
+  <string name="gpu_governor_tunables">GPU Governor Einstellungen</string>
   <string name="simple_gpu_algorithm">Einfacher GPU-Algorithmus</string>
   <string name="simple_gpu_algorithm_summary">Ein Add-on für MSM Adreno TZ GPU Gouvernor. Von faux123 entwickelt.</string>
   <string name="laziness">Trägheit</string>
@@ -393,6 +404,7 @@
   <string name="blue_negative">Blau Negativ</string>
   <string name="white_point">Weißpunkt</string>
   <string name="lcd_backlight">LCD-Hintergrundbeleuchtung</string>
+  <string name="gamma_profiles_summary">Nach Auswahl eines Profils bitte den Bildschirm aus- und wieder einschalten.</string>
   <string name="brightness_mode">Exponentiellen statt linearen Hintergrundbeleuchtungsmodus benutzen.</string>
   <string name="min_brightness">Minimale Helligkeit</string>
   <string name="min_brightness_summary">Erlaubt Ihnen die Bildschirmhelligkeit niedriger einzustellen als es mit Standard-Android möglich ist.</string>
@@ -401,7 +413,10 @@
   <string name="backlight_dimmer">Hintergrundbeleuchtungs-Dimmer</string>
   <string name="threshold">Schwellwert</string>
   <string name="offset">Offset</string>
+  <string name="negative_toggle">Negatives ein/aus</string>
   <string name="negative_toggle_summary">Umkehren der Bildschirmfarben, indem die Menü-Taste 4 Mal schnell gedrückt wird, aktivieren.</string>
+  <string name="mdnie_global_controls">mDNIe globale Kontrolle</string>
+  <string name="register_hook">Register-Haken</string>
   <string name="master_sequence">Haupt-Sequenz</string>
   <string name="master_sequence_summary">Aktivieren der Mastersequenz deaktiviert Samsungs Profile und Szenarien und die ROM-Steuerelemente werden deaktiviert.</string>
   <string name="glove_mode">Handschuh-Modus</string>
@@ -416,7 +431,14 @@
   <string name="half">Hälfte</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Wecken Sie Ihr Gerät durch Wischen auf dem Bildschirm auf.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
   <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Sweep2Wake rechts</string>
+  <string name="s2w_left">Sweep2Wake links</string>
+  <string name="s2w_up">Sweep2Wake oben</string>
+  <string name="s2w_down">Sweep2Wake unten</string>
+  <string name="s2w_any">Sweep2Wake any</string>
+  <string name="lenient">Sweep2Wake Nachsicht</string>
   <string name="lenient_summary">Benötigt nur 1. und 4. für Sweep2Wake.</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Wecken Sie Ihr Gerät auf, indem Sie auf den Touchscreen tippen.</string>
@@ -424,7 +446,9 @@
   <string name="dt2s_summary">Sperren des Gerätes durch doppeltes Tippen auf die Oberseite des Bildschirms.</string>
   <string name="s2w_charging">Sweep2Wake während des Ladevorgangs</string>
   <string name="dt2w_charging">DoubleTap2Wake während des Ladevorgangs</string>
+  <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake während des Ladevorgangs</string>
+  <string name="s2s_summary">Sperren Sie Ihr Gerät, indem Sie über das Display streichen.</string>
   <string name="s2s_right">Nach rechts streichen</string>
   <string name="s2s_left">Nach links streichen</string>
   <string name="s2s_any">Nach links- oder rechts streichen</string>
@@ -442,8 +466,12 @@
   <string name="pocket_mode">Hosentaschen-Modus</string>
   <string name="pocket_mode_summary">Wenn aktiviert, wird die Wake-Steuerung abgeschaltet, während sich das Gerät in einer Tasche befindet.</string>
   <string name="timeout">Zeitüberschreitung</string>
+  <string name="timeout_summary">Legen Sie eine Zeit fest, wann die Aufwach-Steuerung deaktiviert werden soll, nachdem der Bildschirm ausgeschalten wurde.</string>
   <string name="power_key_suspend">Power-Taste unterbrechen</string>
   <string name="power_key_suspend_summary">Diese Einstellung wird Wake-Steuerelemente deaktivieren, wenn der Bildschirm durch die Power-Taste ausgeschaltet wird.</string>
+  <string name="area">Gebiet</string>
+  <string name="width">Breite</string>
+  <string name="height">Höhe</string>
   <string name="vibration_strength">Vibrationsstärke</string>
   <!-- Sound -->
   <string name="sound_control">Lautstärken-Kontrolle</string>
@@ -454,9 +482,14 @@
   <string name="speaker_gain">Lautsprecher Steigerung</string>
   <string name="headphone_poweramp_gain">Kopfhörer PowerAmp Steigerung</string>
   <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165-Erweiterung)</string>
+  <string name="lock_output_gain">Sperren Ausgangsverstärkung</string>
+  <string name="lock_output_gain_summary">Verhindern von Änderungen an der Kopfhörer/Lautsprecher Verstärkung</string>
+  <string name="lock_mic_gain">Sperre Mikrofonverstärkung</string>
+  <string name="lock_mic_gain_summary">Verhindern von Änderungen an Mikrofon-Verstärkung</string>
   <string name="microphone_gain">Mikrofon Verstärkung</string>
   <string name="volume_gain">Lautstärke Verstärkung</string>
   <!-- Battery -->
+  <string name="level">Ladung</string>
   <string name="voltage">Spannung</string>
   <string name="capacity">Kapazität</string>
   <string name="usb_fast_charge">USB Fast Charge</string>
@@ -467,15 +500,25 @@
   <string name="charging_current">Ladestrom</string>
   <string name="charging_current_summary">Ladestrom setzen. Achtung: Werden 1250mA überschritten, kann der Ladetreiber Schaden nehmen.</string>
   <!-- LED -->
+  <string name="fade">Verblassen</string>
   <string name="fade_summary">Aktivieren für Ein-/Ausblenden, deaktivieren für Blinken.</string>
   <string name="intensity">Intensität</string>
   <string name="speed">Geschwindigkeit</string>
+  <string name="stock">Stock</string>
   <string name="continuous_light">Dauerlicht</string>
+  <string name="bright_light_environment">Helle Umgebung</string>
+  <string name="bright_light_environment_summary">Legen Sie die relative Intensität der LED fest, wenn in heller Umgebung.</string>
+  <string name="low_light_environment">Dunkle Umgebung</string>
+  <string name="low_light_environment_summary">Legen Sie die relative Intensität der LED fest, wenn in dunkler Umgebung.</string>
+  <string name="notification">Benachrichtigung</string>
   <string name="on">An</string>
   <string name="off">Aus</string>
   <string name="fade_in">Einblenden</string>
+  <string name="fade_in_summary">Legt die Zeitspanne der ansteigenden Kurve fest.</string>
   <string name="fade_out">Ausblenden</string>
+  <string name="fade_out_summary">Legt die Zeitspanne der absteigenden Kurve fest.</string>
   <string name="test">Test</string>
+  <string name="led_test_summary">Teste die LED mit Ihren Einstellungen.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Interner Speicher</string>
   <string name="external_storage">Externer Speicher</string>
@@ -489,6 +532,7 @@
   <string name="rotational_summary">Gerät als rotierenden Speicher behandeln.</string>
   <string name="iostats">I/O-Statistiken</string>
   <string name="iostats_summary">Erhalte I/O-Statistiken für dieses Speichergerät. Deaktivieren lässt I/O-Monitoring-Apps nicht mehr korrekt funktionieren.</string>
+  <string name="add_random">Zufällige hinzufügen</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <string name="foreground_app">Vordergrund-Anwendungen</string>
@@ -532,24 +576,53 @@
   <string name="sensor_ind_wakelock_summary">Verhindert Wakelocks wenn der Inaktivitätsbildschirm deaktiviert ist.</string>
   <string name="msm_hsic_host_wakelock">Msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
+  <string name="wlan_rx_wakelock_summary">Verhindere wlan_rx wakelock.</string>
+  <string name="wlan_ctrl_wakelock_summary">Verhindere Wlan_ctrl Wakelock.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
   <!-- Custom Controls -->
   <string name="welcome">Willkommen</string>
+  <string name="custom_controls_summary">In diesem Abschnitt können Sie benutzerdefinierte Steuerelemente erstellen oder importieren welche es in der App (noch) nicht gibt.</string>
   <string name="example">Beispiele</string>
+  <string name="custom_controls_example_summary">Beispiele Erwünscht? Klicke &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;here&lt;a&gt;.</string>
   <string name="create">Erstellen</string>
   <string name="import_item">Importien</string>
+  <string name="control_switch">Umschalten</string>
+  <string name="control_seekbar">Suchleiste</string>
+  <string name="title">Titel</string>
+  <string name="description">Beschreibung</string>
+  <string name="applying">Wird angewendet</string>
+  <string name="switch_enabled_summary">Zeigt ob der Schalter aktiviert ist. 1 steht für aktiviert und 0 für deaktiviert.</string>
+  <string name="switch_apply_summary">Der Schalter wird 1 (aktiviert) oder 0 (deaktiviert) als Argument für Ihr Shell-Skript zurückgeben.</string>
+  <string name="seekbar_min">Minimum</string>
+  <string name="seekbar_max">Maximum</string>
+  <string name="seekbar_progress">Fortschritt</string>
+  <string name="seekbar_progress_summary">Aktueller Status des Suchleisten-Komponente. Durch das Definieren von min und max wird ein Integer-Array erstellt. Zum Beispiel: Min ist 50 und Max ist 100 und Fortschritt ist 0, das würde bedeuten, 50 ist der aktuelle Stand der Suchleisten-Komponente.</string>
+  <string name="seekbar_apply_summary">Suchleiste wird den aktuellen Fortschritt zurückgeben. Zum Beispiel Ihre min ist 50 und Max ist 100, die SeekBar-Komponente bei 70, wird 20 als Fortschritt zurückgegeben.</string>
+  <string name="control_generic">Generisch</string>
+  <string name="generic_value">Wert</string>
   <string name="generic_value_summary">Derzeitiger Wert des Editors. Kann im Prinzip alles sein.</string>
+  <string name="generic_apply_summary">Editor gibt zurück was eingegeben wurde.</string>
+  <string name="required">benötigt</string>
+  <string name="hit_test">Du musst zuerst test drücken!</string>
   <string name="output">Ausgabe</string>
   <string name="edit">Bearbeiten</string>
   <string name="export">Exportieren</string>
   <string name="delete">Löschen</string>
   <string name="sure_question">Bist du dir sicher?</string>
   <string name="name">Name</string>
+  <string name="already_exists">%s ist bereits vorhanden!</string>
   <string name="exported_item">%1$s wurde nach %2$s exportiert</string>
+  <string name="name_empty">Leerer Name!</string>
+  <string name="import_malformed">Import-Datei ist fehlerhaft!</string>
+  <string name="import_wrong_version">Die Import-Datei-Version ist zu alt!</string>
   <!-- Downloads -->
   <string name="downloads_error">Keine unterstützten Kernel konnten gefunden werden! Bitte Internetverbindung prüfen.</string>
+  <string name="download_error">Fehler beim Herunterladen von %s.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Überprüfung der md5</string>
+  <string name="md5_mismatch">Die heruntergeladene Datei hat eine andere MD5-Prüfsumme. Dies hat folgende Gründe: \n\n\u2022 die heruntergeladene Datei ist beschädigt\n\u2022 Der Entwickler hat eine falsche Prüfsumme angegeben\n\nVersuchen Sie diese Datei erneut herunterzuladen. Wenn Sie immer noch diese Fehlermeldung erhalten, kontaktieren Sie den Entwickler dieses Kernels.</string>
+  <string name="install">Installieren</string>
   <string name="cwm_recovery">CWM-Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Ich werde meine Hände benutzen</string>
@@ -558,13 +631,28 @@
   <string name="flashing">Flashen</string>
   <string name="restoring">Wird wiederhergestellt</string>
   <!-- Backup -->
+  <string name="boot_partition">Boot-Partition</string>
+  <string name="recovery_partition">Recovery-Partition</string>
+  <string name="fota_partition">FOTA-Partition</string>
+  <string name="flash">flashen</string>
   <!-- Build prop Editor -->
   <string name="add">Hinzufügen</string>
+  <string name="backup_item">%1$s wurde zu %2$s gesichert</string>
+  <string name="item_count">%s Element</string>
+  <string name="items_count">%s Elemente</string>
   <string name="key">Taste</string>
   <string name="value">Wert</string>
   <string name="key_empty">Schlüssel kann nicht leer sein!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Im Profil-Modus werden deine Änderungen keine Auswirkungen auf die Übernahme beim Boot haben.</string>
+  <string name="profile_warning">Alles, was Sie hier ändern wird in Ihrem Profil gespeichert werden. Aber Achtung! Ihre Einstellungen werden ebenfalls angewendet werden, aber wird nicht gespeichert für das Anwenden beim Boot.</string>
+  <string name="no_changes">Keine Änderungen vorgenommen!</string>
+  <string name="apply_question">%s übernehmen?</string>
+  <string name="append">Anhänge</string>
+  <string name="details">Details</string>
+  <string name="press_again_to_apply">Drücke zum Anwenden %s erneut.</string>
   <string name="applied">Übernommen</string>
+  <string name="profile_tasker">Profil-Tasker</string>
   <!-- Recovery -->
   <string name="wipe_data">Daten löschen</string>
   <string name="wipe_cache">Cache löschen</string>
@@ -576,6 +664,12 @@
   <!-- On Boot -->
   <!-- Settings -->
   <string name="dark_theme">Dunkles Design</string>
+  <string name="hide">verstecken</string>
+  <string name="apply_on_boot_hide_summary">Verstecke die Benachrichtung von Anwenden beim Boot. Die Anwende-Verzögerung bleibt!</string>
+  <string name="toast">Kurzzeit-Benachrichtigung</string>
+  <string name="confirmation_notification">Bestätigende Benachrichtigung</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Zeige eine Benachrichtigung dass der Vorgang erfolgreich war, nach der sichtbaren Benachrichtigung des Anwenden beim Boot.</string>
+  <string name="script">Skript</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopiere Logcat nach /sdcard/logcat.txt</string>
@@ -586,4 +680,7 @@
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="misspelled_summary">Adiutor ist lateinisch und bedeutet Helfer.</string>
+  <string name="have_to_donate">Muss ich spenden, um die Premium Funktionen zu nutzen?</string>
+  <string name="add_new_features">Kannst du Funktion x und y hinzufügen?</string>
 </resources>

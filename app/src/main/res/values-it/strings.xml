@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Applicazione delle impostazioni completata.</string>
   <string name="apply_on_boot_canceled">Applicazione delle impostazioni annullata.</string>
   <string name="not_in_range">Fuori portata</string>
+  <string name="options">Opzioni</string>
+  <string name="more">Altro</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Permesso negato per la scrittura!</string>
   <!-- Editor -->
@@ -161,6 +163,7 @@
   <string name="input_interval">Intervallo di input</string>
   <string name="input_interval_summary">Intervallo minimo nella quale una CPU è potenziata quando l\'input viene rilevato.</string>
   <string name="input_boost_freq">Boost frequenza al tocco</string>
+  <string name="input_boost_freq_core">Boost della frequenza al tocco %d</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
   <string name="wakeup_boost">Accellerazione al risveglio</string>
   <string name="wakeup_boost_summary">Il Boost di risveglio è simile al boot di input ma si verifica quando lo schermo viene acceso.</string>
@@ -749,8 +752,11 @@
   <string name="dark_theme">Tema scuro</string>
   <string name="material_icon">Icona material</string>
   <string name="banner_resizer">Ridimensiona banner</string>
+  <string name="hide_banner">Nascondi il banner</string>
   <string name="force_cards">Forza schede</string>
   <string name="force_cards_summary">Se possibile, utilizza le schede per gli elementi.</string>
+  <string name="accent_color">Colore Secondario</string>
+  <string name="instant">Immediato</string>
   <string name="five_sec">5 secondi</string>
   <string name="ten_sec">10 secondi</string>
   <string name="twenty_sec">20 secondi</string>

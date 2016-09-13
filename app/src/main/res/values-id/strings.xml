@@ -33,6 +33,8 @@
   <string name="apply_on_boot_complete">Pengaturan telah diterapkan.</string>
   <string name="apply_on_boot_canceled">Penerapan pengaturan dibatalkan.</string>
   <string name="not_in_range">Tidak dalam jangkauan</string>
+  <string name="options">Pilihan</string>
+  <string name="more">Lebih lagi</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Izin ditolak untuk menulis ke penyimpanan!</string>
   <!-- Editor -->
@@ -84,6 +86,7 @@
   <string name="build_prop_editor">Penyunting build. prop</string>
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Saat Boot</string>
   <string name="settings">Pengaturan</string>
   <string name="about">Tentang</string>
   <string name="contributors">Kontributor</string>
@@ -91,6 +94,7 @@
   <!-- Overall -->
   <string name="offline">Tidak Aktif</string>
   <string name="core">Inti %d</string>
+  <string name="gpu_freq">Frekuensi GPU</string>
   <string name="refresh">Perbarui</string>
   <string name="reset">Atur ulang</string>
   <string name="restore">Pulihkan</string>
@@ -120,6 +124,8 @@
   <string name="handlers">Handler</string>
   <!-- CPU -->
   <string name="cores_singular">%d inti</string>
+  <string name="cores">%d inti core</string>
+  <string name="no_offline_core">Anda tidak dapat memadamkan inti core ini!</string>
   <string name="cpu_max_freq">Frekuensi CPU Tertinggi</string>
   <string name="cpu_max_freq_summary">Atur skala frekuensi CPU tertinggi secara keseluruhan.</string>
   <string name="cpu_min_freq">Frekuensi CPU Terendah</string>
@@ -129,6 +135,9 @@
   <string name="cpu_governor">Pengontrol CPU</string>
   <string name="cpu_governor_summary">Pengontrol CPU menentukan perubahan perilaku CPU ketika kelebihan beban. Merubah Pengontrol akan mempengaruhi nilai skala fekuensi CPU yang tersedia.</string>
   <string name="cpu_governor_tunables">Pengontrol CPU Yang Bisa Dirubah</string>
+  <string name="governor_tunables_summary">Beragam pilihan konfigurasi yang bergantung-Governor.</string>
+  <string name="tunables_error">%s is not tuneable</string>
+  <string name="manual">Manual</string>
   <string name="mc_power_saving">Penghemat Daya Inti Majemuk</string>
   <string name="mc_power_saving_summary">Cobalah untuk mengelompokkan tugas-tugas Inti yang memungkinkan.</string>
   <string name="disabled">Non-aktif</string>
@@ -142,6 +151,7 @@
   <string name="cpu_quiet_governor">Pengontrol CPUQuiet</string>
   <string name="cpu_boost">Peningkat CPU</string>
   <string name="debug_mask">Debug Mask</string>
+  <string name="debug_mask_summary">Meleluasakan Anda untuk mengaktifkan debug masker untuk operasi.</string>
   <string name="interval">Selang waktu</string>
   <string name="interval_summary">Selang waktu terendah Peningkatan CPU.</string>
   <string name="sync_threshold">Batas Selaras</string>

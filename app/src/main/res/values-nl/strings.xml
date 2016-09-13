@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Toepassen instellingen voltooid.</string>
   <string name="apply_on_boot_canceled">Toepassen instellingen geannuleerd.</string>
   <string name="not_in_range">Niet binnen bereik</string>
+  <string name="options">Opties</string>
+  <string name="more">Meer</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Toestemming geweigerd voor het schrijven naar opslagruimte!</string>
   <!-- Editor -->
@@ -308,7 +310,12 @@
   <!--Thermal-->
   <string name="thermal_info">Gebruik slechts één thermal driver uit de volgende opties, meerdere tegelijkertijd gebruiken kan leiden tot onverwacht gedrag.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Standaard thermisch stuurprogramma dat het overhitten van het apparaat voorkomt. Dit moet worden uitgeschakeld als huidige kernel een alternatief heeft.</string>
   <string name="intellithermal">Intellithermal</string>
+  <string name="intellithermal_summary">Een in-kernel vervanger voor Qualcomm\'s Thermald. Ontwikkeld door faux123.</string>
+  <string name="intellithermal_optimized">Geoptimaliseerd Intellithermal</string>
+  <string name="intellithermal_optimized_summary">Een in-kernel vervanger voor Qualcomm\'s Thermald. Ontwikkeld door faux123 en alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Hiermee kan je debug mask voor thermische handelingen activeren.</string>
   <string name="vdd_restriction">VDD beperking</string>
   <string name="freq_throttle_temp">Temperatuur frequentieversnelling</string>
   <string name="freq_throttle_temp_summary">Temperatuur voor versnellen frequenties.</string>

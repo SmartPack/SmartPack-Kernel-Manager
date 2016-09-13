@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="checking_info">Տվյալների ստուգում&#8230;</string>
   <string name="checking_root">Root մուտքի ստուգում</string>
+  <string name="searching_busybox">Busybox-ի որոնում</string>
   <string name="collecting_info">Տվյալների կուտակում</string>
   <string name="no_root">Root չկա</string>
   <string name="no_busybox">Busybox չկա</string>
@@ -19,11 +20,16 @@
   <string name="donate">Զոհաբերել</string>
   <string name="remove_ad">Հեռացնել գովազդները</string>
   <string name="warning">Զգուշացում</string>
+  <string name="open_ad_anyway">Բացել գովազդը ամեն դեպքում</string>
+  <string name="options">Կայանքներ</string>
+  <string name="more">Ավելին</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Կրիչի վրա գրման իրավասության մերժում:</string>
   <!-- Editor -->
   <string name="save">Պահպանել</string>
   <!-- File Picker -->
   <string name="select_question">Ընտրե՞լ %s:</string>
+  <string name="wrong_extension">Ընտրեք ֆայլը %s ձևաչափով:</string>
   <!-- Units -->
   <string name="mhz">ՄՀց</string>
   <string name="celsius">ºC</string>
@@ -35,6 +41,7 @@
   <string name="mah">մԱժ</string>
   <string name="ma">մԱ</string>
   <string name="kb">կԲ</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Վիճակագրություն</string>
@@ -51,28 +58,67 @@
   <string name="thermal">Ջերմաստ:</string>
   <string name="gpu">GPU</string>
   <string name="screen">Էրան</string>
+  <string name="sound">Ձայնը</string>
   <string name="battery">Մարտկոց</string>
   <string name="led">LED</string>
+  <string name="virtual_memory">Վիրտուալ Հիշողություն</string>
   <string name="entropy">Էնտրոպիա</string>
   <string name="misc">Այլ</string>
+  <string name="downloads">Ներբեռնումներ</string>
   <string name="backup">Պահուստավորում</string>
+  <string name="profile">Պրոֆիլ</string>
+  <string name="settings">Կարգավորումներ</string>
+  <string name="about">Մասին</string>
+  <string name="contributors">Մասնակիցները</string>
+  <string name="help">Օգնություն</string>
   <!-- Overall -->
+  <string name="offline">Անցանց</string>
   <string name="core">Միջուկ %d</string>
+  <string name="gpu_freq">GPU Հաճախականությունը</string>
   <string name="refresh">Թարմացնել</string>
+  <string name="reset">Վերակայել</string>
   <string name="restore">Վերականգնել</string>
   <string name="deep_sleep">Խորը քուն</string>
   <string name="uptime">Աշխատաժամանակ</string>
   <!-- Device -->
+  <string name="processor">Պրոցեսոր</string>
+  <string name="vendor">Հեղինակը</string>
+  <string name="features">Հատկանիշներ</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Անդրոիդի Տարբերակը</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Android Codename</string>
+  <string name="fingerprint">Մատնահետք</string>
+  <string name="rom">ROM</string>
   <!-- Inputs -->
   <string name="version">Տարբերակ</string>
   <!-- CPU -->
   <string name="cores">Միջուկներ. %d</string>
+  <string name="manual">Ձեռնարկ</string>
+  <string name="disabled">Անջատված է</string>
+  <string name="enabled">Միացված է</string>
+  <string name="aggressive">Ագրեսիվ</string>
+  <string name="cpu_quiet">CPUQuiet</string>
   <!-- CPU Voltage -->
   <!-- CPU Hotplug -->
   <string name="balanced">Հավասարակշռված</string>
+  <string name="performance">Արտադրողականությունը</string>
   <string name="conservative">Պահպանողական</string>
+  <string name="eco_performance">Էկո Արտադրողական</string>
+  <string name="eco_conservative">Էկո Պահպանողական</string>
+  <string name="tri">Tri</string>
+  <string name="eco">Էկո</string>
+  <string name="strict">Խիստ</string>
+  <string name="eco_mode">Էկո ռեժիմ</string>
+  <string name="cpu_threshold">Բեռնման սահմանը</string>
+  <string name="fshift">FShift</string>
+  <string name="blu_plug">Blu_Plug</string>
+  <string name="history_size">Պատմության չափը</string>
+  <string name="delay">Հետաձգել</string>
+  <string name="pause">Ընդմիջել</string>
   <!--Thermal-->
   <!-- GPU -->
+  <string name="frequencies">Հաճախականությունները</string>
   <!-- Screen -->
   <string name="red">Կարմիր</string>
   <string name="green">Կանաչ</string>
@@ -90,6 +136,8 @@
   <string name="draw_c">Գծեք C</string>
   <string name="draw_m">Գծեք M</string>
   <string name="camera_gesture">Խցիկի Ժեստ</string>
+  <string name="width">Լայնություն</string>
+  <string name="height">Բարձրություն</string>
   <!-- Sound -->
   <!-- Battery -->
   <string name="level">Մակարդակը</string>
@@ -101,6 +149,9 @@
   <string name="intensity">Ինտենսիվությունը</string>
   <string name="speed">Արագությունը</string>
   <string name="stock">Ստանդարտ</string>
+  <string name="notification">Ծանուցում</string>
+  <string name="on">Միաց.</string>
+  <string name="off">Անջ.</string>
   <string name="test">Թեստ</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Ներքին Հիշողություն</string>
@@ -109,6 +160,9 @@
   <string name="iostats">I/O Վիճակագրություն</string>
   <string name="add_random">Ավելացնել պատահական արժեք</string>
   <!-- Kernel Samepage Merging -->
+  <string name="pages_shared">Էջերը տարածված են</string>
+  <string name="pages_sharing">Էջերը տարածվածում են</string>
+  <string name="pages_unshared">Էջերը չեն տարածվել</string>
   <!-- Low Memory Killer -->
   <string name="visible_app">Տեսանելի Հավելվածներ</string>
   <string name="secondary_server">Երկրորդական Սերվեր</string>

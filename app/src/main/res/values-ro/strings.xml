@@ -23,6 +23,9 @@
   <string name="donate_summary">Această caracteristică este disponibilă numai atunci când aplicaţia de donatie este instalat! Nu vă faceţi griji deşi. Deoarece această app este open source cu uşurinţă pot construi singur şi scoateţi această verificare. Dar sper că veţi sprijini dezvoltatorii oricum. Vă mulţumim pentru utilizarea Kernel Adiutor! Odată ce aţi cumpărat app de donaţie trebuie să reporniţi Adiutor kernel-ului pentru a permite toate caracteristicile.</string>
   <string name="donate_nope">Eu nu voi cădea la aceasta înşelatorie!</string>
   <string name="donate_yes">Imi place aplicaţia. Vreau s-a donez!</string>
+  <string name="ad_here">Reclama ta poate fi aici</string>
+  <string name="remove_ad">Eliminati reclamele</string>
+  <string name="warning">Atenție</string>
   <string name="apply_on_boot">Aplică pe boot</string>
   <string name="apply_on_boot_text">Aplicarea setarilor in %d secunde.</string>
   <string name="apply_on_boot_complete">Aplicarea setarilor s-a sfirşit.</string>

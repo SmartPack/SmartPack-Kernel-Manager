@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Ustawienia zostały zastosowane.</string>
   <string name="apply_on_boot_canceled">Stosowanie ustawień zostało anulowane.</string>
   <string name="not_in_range">Poza zakresem</string>
+  <string name="options">Ustawienia</string>
+  <string name="more">Więcej</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Nie przyznano uprawnienia do zapisywania do pamięci!</string>
   <!-- Editor -->
@@ -734,6 +736,7 @@
   <string name="dark_theme">Ciemny motyw</string>
   <string name="material_icon">Ikona typu material design</string>
   <string name="banner_resizer">Rozmiar banera</string>
+  <string name="hide_banner">Ukryj banner</string>
   <string name="force_cards">Wymuś korzystanie z kart</string>
   <string name="force_cards_summary">Używa karty dla elementów, jeśli jest to możliwe.</string>
   <string name="instant">Natychmiastowo</string>

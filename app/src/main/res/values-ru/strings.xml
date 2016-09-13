@@ -18,6 +18,7 @@
   <string name="cancel">Отмена</string>
   <string name="ok">Хорошо</string>
   <string name="unknown">Неизвестно</string>
+  <string name="license_invalid">Спасибо за покупку приложения-пожертвования! К сожалению, проверка лицензии не удалась. Пожалуйста, попробуйте позже. Если она всё ещё не работает, пожалуйста, свяжитесь со мной.</string>
   <string name="pirated">Похоже, приложение-пожертвование не было куплено через Play Маркет! Если вы спиратили его, то вам должно быть стыдно!</string>
   <string name="donate">Пожертвовать</string>
   <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование Kernel Adiutor! После покупки приложения-пожертвования, вам нужно перезапустить Kernel Auditor для того, чтобы включить все функции.</string>
@@ -33,6 +34,8 @@
   <string name="apply_on_boot_complete">Применение настроек завершено.</string>
   <string name="apply_on_boot_canceled">Применение настроек отменено.</string>
   <string name="not_in_range">Не в диапазоне</string>
+  <string name="options">Опции</string>
+  <string name="more">Больше</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Отказано в разрешении на запись в память устройства!</string>
   <!-- Editor -->
@@ -74,7 +77,7 @@
   <string name="battery">Батарея</string>
   <string name="led">Светодиод</string>
   <string name="io_scheduler">Планировщик I/O</string>
-  <string name="ksm">Kernel Samepage Merging</string>
+  <string name="ksm">Объединять страницы памяти ядра</string>
   <string name="lmk">Low Memory Killer</string>
   <string name="virtual_memory">Виртуальная память</string>
   <string name="entropy">Энтропия</string>
@@ -138,7 +141,7 @@
   <string name="governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
   <string name="cpu_governor_tunables_read_error">Не удалось определить текущий регулятор.\n\nЕсли вы используете устройство QCOM с big.LITTLE, то это известная проблема. Система заставляет ЦП отключать ядра, делая крайне тяжелым считывание определённой статистики ЦП. Попробуйте выбрать эту опцию еще раз. Иногда ЦП отказывается включить ядро.</string>
   <string name="tunables_error">%s не настраивается</string>
-  <string name="manual">Ручная установка</string>
+  <string name="manual">Руководство</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
   <string name="disabled">Отключено</string>
@@ -156,12 +159,12 @@
   <string name="interval">Интервал</string>
   <string name="interval_summary">Минимальный интервал ускорения ЦП.</string>
   <string name="sync_threshold">Порог синхронизации</string>
-  <string name="sync_threshold_summary">Когда загрузка ядра пресекает установленный порог, текущее ядро повышается до этой частоты.</string>
+  <string name="sync_threshold_summary">Когда загрузка ядра превышает установленный порог, текущее ядро повышается до этой частоты.</string>
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал ускорения ЦП при обнаружении ввода.</string>
   <string name="input_boost_freq">Ускорение частоты при вводе</string>
   <string name="input_boost_freq_summary">Частота ЦП будет поднята до этой частоты при обнаружении ввода.</string>
-  <string name="wakeup_boost">Усиление пробуждения</string>
+  <string name="wakeup_boost">Ускорение пробуждения</string>
   <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>
   <string name="hotplug_boost">Ускорение hotplug</string>
   <string name="hotplug_boost_summary">Ускорение hotplug похоже на ускорение при вводе, но срабатывает при переходе ЦП в онлайн.</string>
@@ -212,7 +215,7 @@
   <string name="down_lock_duration_summary">Минимальный интервал работы ядра.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
-  <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
+  <string name="blu_plug_summary">Замена ядра для Qualcomm MPDecision. Разработанная командой Code_Blue.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
   <string name="powersaver_mode_summary">Устанавливает максимум одно ядро онлайн с частотой @1728 МГц.</string>
   <string name="up_threshold">Высший порог</string>
@@ -222,7 +225,7 @@
   <string name="down_timer_cnt">Обратный отсчет</string>
   <string name="down_timer_cnt_summary">Управление таймером понижения частоты процессора.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
-  <string name="msm_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано myfluxi.</string>
+  <string name="msm_hotplug_summary">Замена ядра для Qualcomm MPDecision. Разработанный myfluxi.</string>
   <string name="history_size">Размер истории</string>
   <string name="history_size_summary">Number of samples taken in consideration for average load across CPUs. Lower means quicker/more erratic.</string>
   <string name="update_rate">Частота обновления</string>
@@ -236,7 +239,7 @@
   <string name="io_is_busy">IO — занят</string>
   <string name="io_is_busy_summary">Используется, чтобы заставить hotplug рассматривать время ввода/вывода, как время загрузки процессора.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
-  <string name="mako_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано franciscofranco.</string>
+  <string name="mako_hotplug_summary">Замена ядра для Qualcomm MPDecision. Разработанный franciscofranco.</string>
   <string name="cpus_on_touch">Ядра при касании</string>
   <string name="cpus_on_touch_summary">Количество ядер онлайн при прикосновении к экрану или нажатии кнопок.</string>
   <string name="cpu_freq_unplug_limit">Частота процессора отключите ограничение</string>
@@ -250,7 +253,8 @@
   <string name="timer">Таймер</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
-  <string name="mb_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано show-p1984.</string>
+  <string name="mb_hotplug_summary">Замена Qualcomms MPDecision.
+Разработано show-p1984.</string>
   <string name="screen_off_single_cpu">Одно ядро при выключенном экране</string>
   <string name="screen_off_single_cpu_summary">Использовать только одно ядро, когда экран выключен.</string>
   <string name="idle_frequency">Частота холостого хода</string>
@@ -413,7 +417,7 @@
   <string name="min_brightness">Минимальная яркость</string>
   <string name="min_brightness_summary">Позволяет уменьшить яркость экрана ниже стокового значения.</string>
   <string name="max_brightness">Максимальная яркость</string>
-  <string name="max_brightness_summary">Позволяет уменьшить яркость экрана выше стокового значения.</string>
+  <string name="max_brightness_summary">Позволяет увеличить яркость экрана выше стокового значения.</string>
   <string name="backlight_dimmer">Уменьшение яркости экрана</string>
   <string name="threshold">Пороговое значение</string>
   <string name="offset">Смещение</string>
@@ -423,7 +427,7 @@
   <string name="register_hook">Зарегистрировать хук</string>
   <string name="register_hook_summary">Перехват регистра действует как средство, позволяющее перехватить настройки сценария и изменить их посредством дельта-управления. Если в базовой последовательности сценария нет настройки (регистра), то изменить его данным средством невозможно.</string>
   <string name="master_sequence">Мастер последовательности</string>
-  <string name="master_sequence_summary">Включение главной последовательности будет отключить и игнорировать Samsungs профили и сценариев, ПЗУ элементы управления будут отключены.</string>
+  <string name="master_sequence_summary">Включение главной последовательности будет отключить и игнорировать профили и сценарии Samsung, ПЗУ элементы управления будут отключены.</string>
   <string name="glove_mode">Режим перчаток</string>
   <string name="glove_mode_summary">Это позволит вам использовать ваш телефон даже при ношении перчатки.</string>
   <!-- Wake -->
@@ -486,6 +490,7 @@
   <string name="cam_microphone_gain">Усиление микрофона видеокамеры</string>
   <string name="speaker_gain">Усиление динамиков</string>
   <string name="headphone_poweramp_gain">Усиление наушников в PowerAmp</string>
+  <string name="headphone_tpa6165_gain">Услиление AMP для наушников</string>
   <string name="lock_output_gain">Блокировать усиление выхода</string>
   <string name="lock_output_gain_summary">Предотвратить изменение усиления наушников/динамиков</string>
   <string name="lock_mic_gain">Блокировать усиление микрофона</string>
@@ -508,6 +513,7 @@
   <string name="intensity">Интенсивность</string>
   <string name="speed">Скорость</string>
   <string name="stock">Стандартный</string>
+  <string name="continuous_light">Непрерывный свет</string>
   <string name="notification">Уведомление</string>
   <string name="on">Вкл</string>
   <string name="off">Выкл</string>
@@ -519,7 +525,7 @@
   <string name="internal_storage">Внутренняя память</string>
   <string name="external_storage">Внешняя память</string>
   <string name="scheduler">Планировщик</string>
-  <string name="scheduler_summary">Установите алгоритм подъёма ввода/вывода. Планировщик решаит, как обрабатывать запросы ввода/вывода.</string>
+  <string name="scheduler_summary">Установите алгоритм подъёма ввода/вывода. Планировщик решает, как обрабатывать запросы ввода/вывода.</string>
   <string name="scheduler_tunable">Настройки планировщика</string>
   <string name="scheduler_tunable_summary">Компоненты конфигурации, зависящие от планировщика.</string>
   <string name="read_ahead">Упреждающее чтение</string>
@@ -557,6 +563,7 @@
   <string name="very_aggressive">Очень агрессивный</string>
   <string name="kill_lmk">Убрать LMK</string>
   <string name="kill_lmk_summary">Убратт LMK, когда используется своп.</string>
+  <string name="kill_lmk_threshold">Убрать порог LMK</string>
   <string name="kill_lmk_threshold_summary">Насколько должна быть заполнена подкачка, чтобы убить LMK.</string>
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
@@ -571,8 +578,8 @@
   <!-- Entropy -->
   <string name="available">Доступно</string>
   <string name="poolsize">Размер пула</string>
-  <string name="read">Читать</string>
-  <string name="write">Писать</string>
+  <string name="read">Чтение</string>
+  <string name="write">Запись</string>
   <!-- Misc -->
   <string name="android_logger">Логгинг Android</string>
   <string name="crc">Управление CRC программ</string>
@@ -632,6 +639,7 @@
   <string name="seekbar_progress">Прогресс</string>
   <string name="control_generic">Универсальный</string>
   <string name="generic_value">Значение</string>
+  <string name="generic_value_summary">Текущее значение радактора. Может быть пустым.</string>
   <string name="generic_apply_summary">Редактор будет возвращать все, что было написано.</string>
   <string name="required">Обязательно</string>
   <string name="hit_test">Сначала нужно выполнить тестирование!</string>
@@ -725,8 +733,10 @@
   <string name="dark_theme">Тёмная тема</string>
   <string name="material_icon">Иконка Material</string>
   <string name="banner_resizer">Изменение размера баннера</string>
+  <string name="hide_banner">Скрыть баннер</string>
   <string name="force_cards">Карточки принудительно</string>
   <string name="force_cards_summary">Использовать карточки для объектов, если возможно.</string>
+  <string name="accent_color">Цветовой акцент</string>
   <string name="five_sec">5 секунд</string>
   <string name="ten_sec">10 секунд</string>
   <string name="twenty_sec">20 секунд</string>
@@ -739,6 +749,7 @@
   <string name="toast">Всплывающее оповещение</string>
   <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
   <string name="confirmation_notification">Уведомление подтверждения</string>
+  <string name="apply_on_boot_confirmation_notification_summary">После выбора Применять при загрузке, выводится уведомление об удачном применении.</string>
   <string name="script">Скрипт</string>
   <string name="apply_on_boot_script_summary">Использовать консольный скрипт для применения настроек. Пожалуйста, включайте это только если у вас есть проблемы с применением при загрузке. Если же проблема всё ещё останется после включения этой опции, пожалуйста, проверьте, нет ли других приложений, конфликтующих с Kernel Adiutor.</string>
   <string name="debugging">Отладка</string>

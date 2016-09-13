@@ -18,6 +18,7 @@
   <string name="cancel">Cancelar</string>
   <string name="ok">Ok</string>
   <string name="unknown">Desconocido</string>
+  <string name="license_invalid">Gracias por comprar la aplicación de donación! Desafortunadamente la verificación de licencia falló. Por favor intenta nuevamente más tarde. Si todavía no está funcionando, por favor ponte en contacto conmigo.</string>
   <string name="pirated">Parece que la aplicación de la donación no fue adquirida a través de Play Store! Si lo piratea, entonces la vergüenza en usted!</string>
   <string name="donate">Donar</string>
   <string name="donate_summary">Esta función sólo está disponible cuando se instala la app de donación! No te preocupes, esta aplicación es de código abierto fácilmente puede construirlo usted mismo y quitar esta comprobación. Pero espero que usted apoya a los desarrolladores de todos modos. Gracias por usar Kernel Adiutor! Una vez que compraste la aplicación donación que tienes que reiniciar Adiutor Kernel para habilitar todas las funciones.</string>
@@ -33,6 +34,8 @@
   <string name="apply_on_boot_complete">Aplicación de configuraciones completada.</string>
   <string name="apply_on_boot_canceled">Aplicación de configuraciones cancelada.</string>
   <string name="not_in_range">Fuera de alcance</string>
+  <string name="options">Opciones</string>
+  <string name="more">Más</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Permiso denegado para escribir en almacenamiento!</string>
   <!-- Editor -->
@@ -160,6 +163,7 @@
   <string name="input_interval">Intervalo de entrada</string>
   <string name="input_interval_summary">Intervalo mínimo de potenciado de la cpu cuando se detecte una señal.</string>
   <string name="input_boost_freq">Aumento de frecuencia instantanea</string>
+  <string name="input_boost_freq_core">Impulso Inicial de la Frecuencia del Núcleo %d</string>
   <string name="input_boost_freq_summary">Aumentar el CPU a esta frecuencia al detectar una entrada.</string>
   <string name="wakeup_boost">Wakeup boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost impulsa la CPU cuando la pantalla se enciende.</string>
@@ -580,7 +584,9 @@
   <string name="disksize">Tamaño de memoria</string>
   <string name="disksize_summary">Intenta aumentar el rendimiento evitando la paginación de almacenamiento físico, en su lugar usa un dispositivo de compresión virtual en la RAM. La paginación toma un lugar en la RAM hasta que sea necesario de usar el intercambio de espacio en el almacenamiento físico.</string>
   <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap es un ligeramente comprimido caché para páginas de intercambio. Toma páginas que están en proceso de ser intercambiados hacia fuera e intenta comprimirlos en una piscina de la memoria dinámicamente asignada basada en RAM. Zswap basicamente intercsmbia ciclos de CPU por un potencialmente reducido intercambio de I/O.</string>
   <string name="maximum_compression_ratio">Relación de compresión máxima</string>
+  <string name="maximum_compression_ratio_summary">Relación de compresión máxima, expresada en porcentaje, de una página comprimida aceptable. Se rechazará cualquier página que no comprimida por al menos esta relación.</string>
   <!-- Entropy -->
   <string name="available">Disponible</string>
   <string name="poolsize">Tamaño del Pool</string>

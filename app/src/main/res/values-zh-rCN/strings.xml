@@ -21,8 +21,8 @@
   <string name="license_invalid">感谢您捐赠本应用！可惜我们无法验证您的购买记录。请稍候再试。如果依然无法工作，请删除您的捐赠应用尝试重装，再与开发者联系。</string>
   <string name="pirated">看起来捐赠版应用不是从Play商店购买的！如果你盗用了它，你真该感到惭愧！</string>
   <string name="donate">捐助</string>
-  <string name="donate_summary">此功能仅在捐赠版应用安装后可用 ！不过别担心。因为这个应用程序是开放源代码的你可以轻松构建它来删除此检查。但无论如何我希望你支持开发人员。感谢您使用Kernel Adiutor ！一旦你买了捐赠版应用就必须重新启动Kernel Adiutor 以启用所有功能。</string>
-  <string name="donate_nope">我不会爱上这种骗局的 ！</string>
+  <string name="donate_summary">此功能仅在捐赠应用安装后可用 ！别担心，这个应用是开源的，所以您可以轻松地自己构建它并删除此检查。尽管如此，无论如何我希望您支持开发人员。感谢您使用 Kernel Adiutor ！购买捐赠应用后您必须重新启动 Kernel Adiutor 以启用所有功能。</string>
+  <string name="donate_nope">我不会被骗的！</string>
   <string name="donate_yes">我喜欢这个应用程序，必须捐 ！</string>
   <string name="ad_here">这里是广告</string>
   <string name="remove_ad">去除广告</string>
@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">应用设置完成。</string>
   <string name="apply_on_boot_canceled">应用设置取消。</string>
   <string name="not_in_range">不在范围内</string>
+  <string name="options">选项</string>
+  <string name="more">更多</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">写入存储权限被拒绝 ！</string>
   <!-- Editor -->
@@ -76,7 +78,7 @@
   <string name="led">LED</string>
   <string name="io_scheduler">I/O 调度器</string>
   <string name="ksm">内核同页合并(KSM)</string>
-  <string name="lmk">低内存清理器</string>
+  <string name="lmk">低内存管理(LMK)</string>
   <string name="virtual_memory">虚拟内存</string>
   <string name="entropy">熵</string>
   <string name="misc">杂项</string>
@@ -86,7 +88,7 @@
   <string name="build_prop_editor">Build prop 编辑器</string>
   <string name="profile">配置文件</string>
   <string name="recovery">Recovery</string>
-  <string name="initd">Init.d</string>
+  <string name="initd">Init.d 启动脚本</string>
   <string name="on_boot">启动时</string>
   <string name="settings">设置</string>
   <string name="about">关于</string>
@@ -111,7 +113,7 @@
   <string name="android_version">Android 版本</string>
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android 开发代号</string>
-  <string name="fingerprint">指纹</string>
+  <string name="fingerprint">Fingerprint</string>
   <string name="build_display_id">编译版本号</string>
   <string name="baseband">基带</string>
   <string name="rom">ROM</string>
@@ -134,7 +136,7 @@
   <string name="cpu_max_screen_off_freq">CPU 最高灭屏频率</string>
   <string name="cpu_max_screen_off_freq_summary">设定屏幕关闭状态下的CPU最大频率</string>
   <string name="cpu_governor">CPU 调速器</string>
-  <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
+  <string name="cpu_governor_summary">CPU调速器决定CPU响应工作负载变化的行为方式。更改调速器将会影响CPU如何在可用的频率间切换。</string>
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
   <string name="governor_tunables_summary">调节器依赖的各种配置。</string>
   <string name="cpu_governor_tunables_read_error">无法读取当前处理器的调节器。\n\n如果您使用的是Qualcomm big.little装置，这是一个已知的问题。该系统迫使中央处理器关闭核心，使它很难读取特定的统计数据。再次选择此选项。中央处理器有时拒绝打开一个核心。</string>
@@ -163,10 +165,10 @@
   <string name="input_boost_freq">输入跳频频率数值</string>
   <string name="input_boost_freq_core">输入刺激频率核心 %d</string>
   <string name="input_boost_freq_summary">CPU 频率提高到了这个后输入检测的频率。</string>
-  <string name="wakeup_boost">唤醒提振</string>
-  <string name="wakeup_boost_summary">唤醒推动类似输入刺激但当屏幕打开就会发生。</string>
-  <string name="hotplug_boost">热插拔提振</string>
-  <string name="hotplug_boost_summary">热插拔推动类似输入刺激但它发生 Cpu 在联机时。</string>
+  <string name="wakeup_boost">唤醒升频</string>
+  <string name="wakeup_boost_summary">唤醒升频类似输入升频但发生在屏幕点亮时。</string>
+  <string name="hotplug_boost">热插拔升频</string>
+  <string name="hotplug_boost_summary">热插拔升频类似输入升频但它发生在CPU联机时。</string>
   <string name="touch_boost">触摸升频</string>
   <string name="touch_boost_summary">如果你触摸屏幕或按下按键，将会提升 CPU 的最小频率。</string>
   <!-- CPU Voltage -->
@@ -352,9 +354,9 @@
   <string name="gpu_2d_max_freq">GPU 2D 最高频率</string>
   <string name="gpu_2d_max_freq_summary">设置 GPU 2D 绘图时所能达到的最高频率。</string>
   <string name="gpu_max_freq">GPU 最高频率</string>
-  <string name="gpu_max_freq_summary">&gt;设置 GPU 所能达到的最高频率。</string>
+  <string name="gpu_max_freq_summary">设置 GPU 能调节到的最高频率。</string>
   <string name="gpu_min_freq">GPU 最低频率</string>
-  <string name="gpu_min_freq_summary">设置 GPU 鳞片降到最小频率。</string>
+  <string name="gpu_min_freq_summary">设置 GPU 能调节到的最低频率。</string>
   <string name="gpu_2d_governor">GPU 2D 调速器</string>
   <string name="gpu_2d_governor_summary">设置 GPU 的 2D 调速器。</string>
   <string name="gpu_governor">GPU 调速器</string>
@@ -363,16 +365,17 @@
   <string name="simple_gpu_algorithm">Simple GPU 算法</string>
   <string name="simple_gpu_algorithm_summary">一个由 faux123 开发的 MSM Adreno TZ GPU 调度器扩展。</string>
   <string name="laziness">懒惰</string>
-  <string name="laziness_summary">这会增加向上或向下 GPU 频率阈值。阀值越低，手机性能就越好！</string>
+  <string name="laziness_summary">这会增加升降 GPU 频率的阈值。阀值越低，手机性能就越好。</string>
   <string name="ramp_thresold">斜坡阀值</string>
   <string name="ramp_thresold_summary">增加的次数的 GPU 总督斜向下的请求。值越高越高，手机性能就越高！</string>
   <string name="adreno_idler">Adreno Idler</string>
-  <string name="adreno_idler_summary">Msm-adreno 是间接费用有效解决方法。由 arter97 开发。</string>
+  <string name="adreno_idler_summary">一种有效降低msm-adreno-tz的开销的方法。由 arter97 开发。</string>
   <string name="down_differential">下微分方程</string>
   <string name="down_differential_summary">确定给定的工作负载是否空闲阈值。</string>
   <string name="idle_wait">空闲的等待…</string>
+  <string name="idle_wait_summary">降低频率前等待的事件数。当前事件之前该值数目的事件必须全部为空闲，Adreno idler才会降低频率。这一功能是为了防止滑动屏幕或游戏时的顿卡。当此项被设为一个更低的值时，Adreno idler会更加主动地下降频率。</string>
   <string name="workload">工作负载</string>
-  <string name="workload_summary">如果这被设置为较高的值，Adreno idler将更积极地尝试下调频率。</string>
+  <string name="workload_summary">如果此项被设置为较高的值，Adreno idler将更积极地尝试下调频率。</string>
   <!-- Screen -->
   <string name="screen_color">屏幕颜色</string>
   <string name="red">红</string>
@@ -424,6 +427,7 @@
   <string name="negative_toggle_summary">快速点按菜单键四次以启用屏幕反色。</string>
   <string name="mdnie_global_controls">mDNIe 全局控制</string>
   <string name="register_hook">注册台钩子</string>
+  <string name="register_hook_summary">记录拦截犹如一枚钩子，它能够捕捉场景内的设置并选择通过变量控制来修改它们。如果一个场景的基础序列内不包含有任何设置（记录）的话，它将无法被钩子所修改。</string>
   <string name="master_sequence">主序列</string>
   <string name="master_sequence_summary">使主序列将禁用并忽略三星的配置文件和方案、 ROM 的控件将被禁用。</string>
   <string name="glove_mode">手套模式</string>
@@ -537,12 +541,12 @@
   <string name="scheduler_tunable_summary">这些配置项与您使用的调度器有关</string>
   <string name="read_ahead">预读</string>
   <string name="read_ahead_summary">手机内存预读值。</string>
-  <string name="rotational">可移动磁盘</string>
-  <string name="rotational_summary">将手机当作可移动磁盘。</string>
+  <string name="rotational">硬盘存储</string>
+  <string name="rotational_summary">将设备视为硬盘存储</string>
   <string name="iostats">I/O 统计</string>
   <string name="iostats_summary">保存此存储设备的 I/O 统计。禁用此选项将破坏监控 I/O 的应用程序。</string>
   <string name="add_random">添加随机数</string>
-  <string name="add_random_summary">向可移动存储中写入熵。</string>
+  <string name="add_random_summary">从旋转存储（硬盘存储）中绘制熵</string>
   <string name="rq_affitiny">RQ 归属</string>
   <string name="rq_affinity_summary">尽量使他们达到 CPU 核心完整的调度请求。值越高，更高效。</string>
   <!-- Kernel Samepage Merging -->
@@ -560,8 +564,8 @@
   <string name="max_cpu_usage_summary">要使用合并页面时的最大 CPU 百分比。</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前台程序</string>
-  <string name="lmk_adaptive">自适应低内存</string>
-  <string name="lmk_adaptive_summary">检测到不稳定情况时让 LMK 更频繁高效。</string>
+  <string name="lmk_adaptive">自适应低内存管理</string>
+  <string name="lmk_adaptive_summary">检测到系统颠簸出现时动态地让 LMK 更加激进。</string>
   <string name="visible_app">可见程序</string>
   <string name="secondary_server">备用服务器</string>
   <string name="hidden_app">隐藏程序</string>
@@ -578,10 +582,13 @@
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
   <string name="disksize">存储大小</string>
-  <string name="disksize_summary">通过阻止对物理存储进行分页以尝试提高性能，而不是在 RAM 中使用被压缩的虚拟设备。分页将在 RAM 中进行直到需要使用物理存储中的交换空间。</string>
+  <string name="disksize_summary">尝试通过避免在物理存储上，而在RAM中压缩的虚拟存储设备上进行分页以提高性能。分页将在 RAM 中进行直到需要使用物理存储中的交换空间。</string>
   <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap是一个轻量级的交换分页压缩缓存。它取得正在被换出的分页，并尝试将它们压缩存储至RAM上动态分配的存储池。基本上ZSwap消耗CPU周期，以换取可能的交换I/O减少。</string>
   <string name="memory_pool">内存池</string>
+  <string name="memory_pool_summary">主内存可作为压缩分页缓存的存储池的百分比。</string>
   <string name="maximum_compression_ratio">最大的压缩比</string>
+  <string name="maximum_compression_ratio_summary">可接受的压缩分页的最大压缩率，单位为百分比。未能被压缩到这个压缩率的分页将会被拒绝。</string>
   <!-- Entropy -->
   <string name="available">可用熵</string>
   <string name="poolsize">池大小</string>
@@ -590,6 +597,7 @@
   <!-- Misc -->
   <string name="android_logger">Android 日志记录</string>
   <string name="crc">软件 CRC 控制</string>
+  <string name="crc_summary">CRC是一种在启用时防止数据损坏的机制。数据块可能会损失最多30%性能。</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">禁用以获得更高的文件系统性能，但会增加在系统崩溃时发生数据丢失的风险。</string>
   <string name="dynamic_fsync">动态 Fsync</string>
@@ -597,6 +605,7 @@
   <string name="gentlefairsleepers">温柔的公平露宿者</string>
   <string name="gentlefairsleepers_summary">给休眠程序服务 50%的资源。禁用此项可以略微节省电源。</string>
   <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">启用架构特有的电源/省电功能。</string>
   <string name="power_suspend_mode">电源延迟模式</string>
   <string name="power_suspend_mode_summary">内核模式，LCD 钩子和最高等级钩子将自动由内核管理，要手动启用或禁用电源延迟状态请选择用户模式</string>
   <string name="autosleep">自动休眠</string>
@@ -622,12 +631,16 @@
   <string name="wlan_ctrl_wakelock_summary">阻止 wlan_ctrl 取得唤醒锁</string>
   <string name="wlan_wakelock">wlan 唤醒锁</string>
   <string name="wlan_wakelock_summary">阻止 wlan 取得唤醒锁</string>
+  <string name="bluesleep_wakelock">BlueSleep 唤醒锁</string>
+  <string name="bluesleep_wakelock_summary">阻止 BlueSleep 唤醒锁。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
+  <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>
   <string name="example">示例</string>
-  <string name="custom_controls_example_summary">需要示例？点击 &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;here&lt;a&gt;</string>
+  <string name="custom_controls_example_summary">需要示例？点击 &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;这里&lt;a&gt;</string>
   <string name="create">创建</string>
   <string name="import_item">导入</string>
   <string name="control_switch">切换</string>
@@ -635,12 +648,19 @@
   <string name="title">标题</string>
   <string name="description">描述</string>
   <string name="applying">应用</string>
+  <string name="switch_enabled_summary">开关是否启用。启用时返回1，禁用时返回0。</string>
+  <string name="switch_apply_summary">开关将向您的shell脚本返回1(启用)或0(禁用)以作为参数。</string>
   <string name="seekbar_min">最小</string>
   <string name="seekbar_max">最大</string>
   <string name="seekbar_progress">进度</string>
+  <string name="seekbar_progress_summary">搜索栏的当前状态。在定义过 min 和 max 后一个整数数组将被创建。例如：Min 为50，Max 为100且进度值为0，这意味着50是搜索栏的当前状态</string>
+  <string name="seekbar_apply_summary">搜索栏将会返回其当前进度。例如您设定的 Min 为50，Max 为100，当搜索栏为70时，它将返回20作为进度值</string>
   <string name="control_generic">通用</string>
   <string name="generic_value">值</string>
+  <string name="generic_value_summary">编辑器的当前值。基本上可以是任何形式。</string>
+  <string name="generic_apply_summary">编辑器将会返回输入的值。</string>
   <string name="required">必需</string>
+  <string name="hit_test">您必须先点击测试！</string>
   <string name="output">输出</string>
   <string name="edit">编辑</string>
   <string name="export">导出</string>
@@ -648,6 +668,7 @@
   <string name="sure_question">你确定吗？</string>
   <string name="name">名称</string>
   <string name="already_exists">%s 已存在！</string>
+  <string name="exported_item">%1$s 已被导出至 %2$s</string>
   <string name="name_empty">名称为空！</string>
   <string name="import_malformed">导入文件的格式不正确！</string>
   <string name="import_wrong_version">导入文件的版本太老了！</string>
@@ -656,9 +677,10 @@
   <string name="download_error">下载 %s 失败。</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="check_md5">检查 md5</string>
+  <string name="md5_mismatch">已下载的文件的MD5不符合校验值。可能原因有:\n\n\u2022 下载的文件已损坏\n\u2022 开发者给出了错误的MD5\n\n请尝试再次下载该文件。如果您仍然收到此错误，请联系此内核的开发人员。</string>
   <string name="install">安装</string>
   <string name="cwm_recovery">CWM 恢复模式</string>
-  <string name="twrp">TWRP</string>
+  <string name="twrp">TWRP 恢复模式</string>
   <string name="manual_flashing">我自己来</string>
   <string name="file_location">下载文件位于 %s</string>
   <string name="backing_up">正在备份</string>
@@ -671,6 +693,7 @@
   <string name="flash">刷入</string>
   <!-- Build prop Editor -->
   <string name="add">添加</string>
+  <string name="backup_item">%1$s 已备份至 %2$s 。</string>
   <string name="item_count">%s 个</string>
   <string name="items_count">%s 个</string>
   <string name="key">键</string>
@@ -681,11 +704,15 @@
   <string name="profile_warning">一切您在此处更改将保存到您的配置文件。但注意 ！您的设置也将得到应用，但不会保存在开机启用中。</string>
   <string name="no_changes">未做任何更改！</string>
   <string name="apply_question">应用 %s 吗？</string>
+  <string name="append">附加</string>
   <string name="details">详细信息</string>
   <string name="press_again_to_apply">再按一次 %s 以应用。</string>
   <string name="applied">已应用</string>
   <string name="profile_tasker">Tasker 配置文件</string>
+  <string name="profile_tasker_summary">如果您想在特定事件发生(例如运行一个应用程序)时应用配置，您需要使用Tasker。</string>
   <string name="profile_tasker_toast">当Tasker应用配置文件时显示通知</string>
+  <string name="profile_tile">配置图块</string>
+  <string name="profile_tile_summary">显示一个允许您选择配置文件的图块</string>
   <string name="profile_select">选择配置文件</string>
   <string name="applying_profile">应用 %s ！</string>
   <string name="no_profiles">没有找到配置文件 ！您必须先创建它们。</string>
@@ -714,22 +741,37 @@
   <string name="result">结果</string>
   <!-- On Boot -->
   <string name="on_boot_welcome_summary">这里会显示当你的设备开机时会发生的事件。如果这里是空的，那么任何事都不会发生。</string>
+  <string name="delete_question">删除 %s ？</string>
+  <string name="arguments">参数︰ %s</string>
+  <string name="disable_question">禁用 %s ？</string>
   <!-- Settings -->
   <string name="fahrenheit_title">华氏度</string>
-  <string name="fahrenheit_summary">使用华氏温度测量。</string>
+  <string name="fahrenheit_summary">使用华氏度温度</string>
   <string name="force_english">强制显示英语</string>
   <string name="user_interface">用户界面</string>
   <string name="dark_theme">暗色主题</string>
+  <string name="material_icon">质感设计图标</string>
+  <string name="banner_resizer">设置顶部横幅高度</string>
+  <string name="hide_banner">隐藏顶部横幅</string>
+  <string name="force_cards">强制使用卡片</string>
+  <string name="force_cards_summary">将项目尽可能地显示在卡片中。</string>
+  <string name="accent_color">强调色</string>
+  <string name="instant">立即</string>
   <string name="five_sec">5 秒</string>
   <string name="ten_sec">10 秒</string>
   <string name="twenty_sec">20 秒</string>
   <string name="fifty_sec">50 秒</string>
   <string name="apply_on_boot_test_summary">测试开机启动。这将包含所有开机将会应用的设置，比如自定义控制，配置文件，init.d等。</string>
+  <string name="apply_on_boot_running">启动时应用服务已经正在运行，请等待其完成。</string>
+  <string name="nothing_apply">未找到需要应用的设置！</string>
   <string name="hide">隐藏</string>
+  <string name="apply_on_boot_hide_summary">隐藏启动时应用的通知。延迟仍然存在！</string>
   <string name="toast">通知</string>
   <string name="apply_on_boot_toast_summary">当设置应用时显示通知</string>
   <string name="confirmation_notification">确认通知</string>
+  <string name="apply_on_boot_confirmation_notification_summary">在有可见通知的启动时应用之后，再显示一个确认启动时应用成功的通知。</string>
   <string name="script">脚本</string>
+  <string name="apply_on_boot_script_summary">使用shell脚本应用设置。请只在您无法正常进行启动时设置应用时开始此选项。如果启用此选项后问题仍然存在，请确认没有其他与 Kernel Adiutor 冲突的应用。</string>
   <string name="debugging">调试</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
@@ -752,7 +794,7 @@
   <string name="fingerprint_summary">使用指纹来验证密码。如果你注册了指纹，这个功能就会正常工作。</string>
   <string name="sections">分区</string>
   <!-- About -->
-  <string name="about_me">你好，我是 Willie Ye @Grarak ，一个 19 岁的学生，住在维也纳。我开发 Android 已经有相当长的时间了，在 Kernel Adiutor 以外我还适配了 CyanogenMod 的一些设备，同时也在花时间移植 ParanoidAndroid 上，所以请理解有时此应用的更新不定时。</string>
+  <string name="about_me">你好，我是 Willie Ye 也就是 Grarak ，一个住在奥地利维也纳的19岁学生。我在 Android 平台开发已经有相当长的时间了，在 Kernel Adiutor 以外我还在维护一些设备的 CyanogenMod，同时也在花时间在 ParanoidAndroid 上，所以如果我没有时间升级这个应用请理解。</string>
   <string name="libraries_used">使用的库</string>
   <!-- Contributors -->
   <string name="commits">%d 提交</string>
@@ -765,7 +807,7 @@
   <string name="cpu_freq_not_sticking">为什么我设置好的 CPU 频率又变了？</string>
   <string name="cpu_freq_not_sticking_summary">这可能是由于很多原因。许多内核现在有他们自己的热插拔系统控制 CPU 频率，而 CyanogenMod 有自己的 CPU 调节频率行为。我建议你不要触碰 CPU 频率，让内核自己调教。这对其他功能也很重要 ！如果他们不改变，那是因为内核或系统不想让你改变它。</string>
   <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
-  <string name="feature_not_appearing_summary">显示仅由您的设备支持的功能 ！</string>
+  <string name="feature_not_appearing_summary">只有您的设备支持的功能才会被显示 ！</string>
   <string name="feature_function">功能 x 有什么作用？</string>
   <string name="feature_function_summary">如果你不知道这项控制会起什么样的作用，那就先不要碰它。谨记在调校你昂贵的硬件之前做好充分的研究。</string>
   <string name="add_new_features">您可以添加功能 x 和 y 吗？</string>

@@ -25,11 +25,14 @@
   <string name="ad_here">Твој оглас би могао бити овде</string>
   <string name="remove_ad">Уклони рекламе</string>
   <string name="warning">Упозорење</string>
+  <string name="open_ad_anyway">Свеједно отвори рекламу</string>
   <string name="apply_on_boot">Примени при подизању система</string>
   <string name="apply_on_boot_text">Примењујем поставке за %d секунди.</string>
   <string name="apply_on_boot_complete">Примена поставки је завршена.</string>
   <string name="apply_on_boot_canceled">Примена поставки је отказана.</string>
   <string name="not_in_range">Није у опсегу</string>
+  <string name="options">Опције</string>
+  <string name="more">Још</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Дозвола је одбијена за писање у складиште!</string>
   <!-- Editor -->
@@ -58,6 +61,7 @@
   <string name="overall">Укупна</string>
   <string name="device">Уређај</string>
   <string name="memory">Меморија</string>
+  <string name="inputs">Улази</string>
   <string name="cpu">Процесор</string>
   <string name="cpu_voltage">Напон</string>
   <string name="cpu_hotplug">Укључење</string>
@@ -73,12 +77,14 @@
   <string name="virtual_memory">Виртуелна меморија</string>
   <string name="entropy">Ентропија</string>
   <string name="misc">Разно</string>
+  <string name="custom_controls">Прилагођене контроле</string>
   <string name="downloads">Преузимања</string>
   <string name="backup">Резервна копија</string>
   <string name="build_prop_editor">Уређивач „build.prop“ фајла</string>
   <string name="profile">Профил</string>
   <string name="recovery">Опоравак</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">По покретању</string>
   <string name="settings">Поставке</string>
   <string name="about">О програму</string>
   <string name="contributors">Сарадници</string>
@@ -101,7 +107,9 @@
   <string name="android_version">Издање Андроида</string>
   <string name="android_api_level">Андроид СДК</string>
   <string name="android_codename">Андроид кодно име</string>
+  <string name="fingerprint">Отисак</string>
   <string name="rom">РОМ</string>
+  <string name="bootloader">Подизни учитавач</string>
   <string name="hardware">Хардвер</string>
   <string name="architecture">Архитектура</string>
   <!-- Inputs -->

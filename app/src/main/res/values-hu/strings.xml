@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Beállítások alkalmazása befejeződött.</string>
   <string name="apply_on_boot_canceled">Beállítások alkalmazása visszavonva.</string>
   <string name="not_in_range">Nincs a hatókörben</string>
+  <string name="options">Beállítások</string>
+  <string name="more">Több</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Engedély megtagadva a tároló írásához!</string>
   <!-- Editor -->
@@ -750,6 +752,7 @@
   <string name="dark_theme">Sötét téma</string>
   <string name="material_icon">Material ikon</string>
   <string name="banner_resizer">Banner átméretezés</string>
+  <string name="hide_banner">Banner elrejtése</string>
   <string name="force_cards">Kártyák kényszerítése</string>
   <string name="force_cards_summary">Használjon kártyákat az elemekhez, ha lehetséges.</string>
   <string name="accent_color">Másodlagos szín</string>

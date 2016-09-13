@@ -18,12 +18,31 @@
   <string name="cancel">Cancelar</string>
   <string name="ok">OK</string>
   <string name="unknown">Desconhecida</string>
+  <string name="license_invalid">Obrigado por comprar o app de doação! Infelizmente a verificação da licença falhou. Por favor, tente novamente mais tarde. Se ainda não estiver funcionando, por favor entre em contato comigo.</string>
+  <string name="pirated">Parece que o app de doação não foi adquirido através da Play Store! Se você pirateou, então tenha vergonha!</string>
   <string name="donate">Faça uma doação</string>
+  <string name="donate_summary">Esse recurso só está disponível quando o app de doação está instalado! Mas não se preocupe. Porque este app é de código aberto, você pode facilmente compilá-lo e remover esta verificação. Mas eu espero que de qualquer forma você suporte os desenvolvedores. Obrigado por usar o Kernel Adiutor! Uma vez que você comprou o app de doação, que você tem que reiniciar o Adiutor Kernel para habilitar todos os recursos.</string>
+  <string name="donate_nope">Eu não vou cair nesta fraude!</string>
+  <string name="donate_yes">Eu gosto deste app. Devo doar!</string>
+  <string name="ad_here">Seu anúncio poderia estar aqui</string>
+  <string name="remove_ad">Remover anúncios</string>
+  <string name="warning">Aviso</string>
+  <string name="gh_ad">Este é um anúncio não comercial! Não leve isto sério! Apenas uma maneira engraçada para preencher o espaço quando um anúncio real não carrega (olhando para você, usuários de bloqueadores de anúncios).</string>
+  <string name="open_ad_anyway">Abrir o anúncio de qualquer maneira</string>
   <string name="apply_on_boot">Aplicar na inicialização</string>
+  <string name="apply_on_boot_text">Aplicando configurações em %d segundos.</string>
+  <string name="apply_on_boot_complete">Aplicação de configurações concluída.</string>
+  <string name="apply_on_boot_canceled">Aplicação de configurações cancelada.</string>
+  <string name="not_in_range">Não está ao alcance</string>
+  <string name="options">Opções</string>
+  <string name="more">Mais</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Permissão negada ao escrever no armazenamento!</string>
   <!-- Editor -->
   <string name="save">Salvar</string>
   <!-- File Picker -->
+  <string name="select_question">Selecionar %s?</string>
+  <string name="wrong_extension">Por favor, selecione um arquivo com a extensão %s.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">ºC</string>
@@ -35,6 +54,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Estatísticas</string>
@@ -42,7 +62,9 @@
   <string name="tools">Ferramentas</string>
   <string name="other">Outros</string>
   <!-- Menus -->
+  <string name="overall">Geral</string>
   <string name="device">Dispositivo</string>
+  <string name="memory">Memória</string>
   <string name="inputs">Entradas</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltagem da CPU</string>
@@ -53,8 +75,10 @@
   <string name="wake">Balance</string>
   <string name="sound">Som</string>
   <string name="battery">Bateria</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">Escalonador de I/O</string>
   <string name="ksm">Memória Compartilhada do Kernel (KSM)</string>
+  <string name="lmk">Limpador de Pouca Memória</string>
   <string name="virtual_memory">Memória Virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Diversos</string>
@@ -65,6 +89,7 @@
   <string name="profile">Perfil	</string>
   <string name="recovery">Recuperação</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Na inicialização</string>
   <string name="settings">Configurações</string>
   <string name="about">Sobre</string>
   <string name="contributors">Contribuidores</string>
@@ -86,6 +111,7 @@
   <string name="android_api_level">SDK do Android</string>
   <string name="android_codename">Codinome do Android</string>
   <string name="fingerprint">Impressão digital</string>
+  <string name="bootloader">Bootloader</string>
   <!-- Inputs -->
   <string name="product">Produto</string>
   <string name="version">Versão</string>
@@ -332,6 +358,7 @@
   <string name="blue_negative">Azul Negativo</string>
   <string name="white_point">Ponto Branco</string>
   <string name="lcd_backlight">Luz de fundo do LCD</string>
+  <string name="gamma_profiles_summary">Depois de selecionar o perfil, desligue e ligue sua tela.</string>
   <string name="brightness_mode">Use o modo de luz de fundo exponencial em vez do modo linear.</string>
   <string name="min_brightness">Brilho mínimo</string>
   <string name="min_brightness_summary">Permite a você diminuir o brilho da tela, menor do que o possível por padrão.</string>
@@ -408,7 +435,11 @@
   <string name="blx">Extensor de autonomia da bateria</string>
   <string name="blx_summary">Defina um limite para a capacidade que a bateria será carregada, passando um valor entre 0 e 100.</string>
   <!-- LED -->
+  <string name="fade">Desvanecer</string>
+  <string name="bright_light_environment_summary">Definir a intensidade relativa do LED quando em ambientes de alta luminosidade.</string>
+  <string name="low_light_environment_summary">Definir a intensidade relativa do LED quando em ambientes de baixa luminosidade.</string>
   <string name="test">Teste</string>
+  <string name="led_test_summary">Teste o LED com suas configurações.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Armazenamento Interno</string>
   <string name="external_storage">Armazenamento Externo</string>
@@ -471,9 +502,12 @@
   <string name="wlan_ctrl_wakelock_summary">Prevenir wlan_ctrl wakelock.</string>
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="wlan_wakelock_summary">Prevenir wakelock wlan.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Prevenir BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
   <!-- Custom Controls -->
+  <string name="hit_test">Você tem que clicar em teste primeiro!</string>
   <string name="edit">Editar</string>
   <string name="delete">Excluir</string>
   <string name="name">Nome</string>
@@ -487,12 +521,27 @@
   <string name="flashing">Flashing</string>
   <string name="restoring">Restaurando</string>
   <!-- Backup -->
+  <string name="boot_partition">Partição de inicialização</string>
   <!-- Build prop Editor -->
   <string name="key">Chave</string>
   <string name="value">Valor</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">No modo de perfis, suas alterações não terão um impacto ao aplicar na inicialização.</string>
+  <string name="profile_warning">Tudo o que você alterar aqui será salvo em seu perfil. Mas atenção! Suas configurações também irão ser aplicadas, mas não será salvo para aplicar na inicialização.</string>
   <string name="applied">Aplicado</string>
+  <string name="profile_tasker">Perfil Tasker</string>
+  <string name="profile_tasker_summary">Se você deseja aplicar um perfil em um evento específico, como a inicialização de um aplicativo, você terá que usar o Tasker.</string>
+  <string name="profile_tasker_toast">Exibir uma notificação toast quando tasker aplicar um perfil</string>
+  <string name="profile_tile">Azulejo de Perfil</string>
+  <string name="profile_tile_summary">Exibir um azulejo que lhe permite selecionar um perfil.</string>
+  <string name="applying_profile">Aplicando %s!</string>
+  <string name="current_settings">Configurações atuais</string>
   <!-- Recovery -->
+  <string name="reboot">Reiniciar</string>
+  <string name="reboot_soft">Reinicialização Rápida</string>
+  <string name="reboot_recovery">Reiniciar no Modo de Recuperação</string>
+  <string name="reboot_bootloader">Reiniciar no Bootloader</string>
+  <string name="reboot_download">Reiniciar no Modo Download</string>
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar cache</string>
   <string name="flash_zip">Flash Zip</string>
@@ -501,8 +550,14 @@
   <string name="emulate_initd">Emular init. d</string>
   <string name="executing">Em execução</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Esta seção mostra a você o que acontecerá quando o dispositivo é inicializado. Se está em branco, então nada acontecerá após a inicialização.</string>
   <!-- Settings -->
+  <string name="fahrenheit_title">Fahrenheit</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="apply_on_boot_test_summary">Teste de aplicar na inicialização. Isto inclui todos o tipos de coisas que serão aplicadas durante a inicialização, tais como controles personalizados, perfis, init.d, etc.</string>
+  <string name="toast">Toast (Aviso na tela)</string>
+  <string name="apply_on_boot_toast_summary">Exibir uma notificação toast quando as configurações forem aplicadas.</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Depois de aplicar na inicialização com uma notificação visível, posteriormente exibirá uma notificação com a confirmação de que a aplicação na inicialização foi bem sucedida.</string>
   <string name="debugging">Depuração</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copiar o Logcat para /sdcard/logcat.txt</string>
@@ -510,7 +565,11 @@
   <string name="last_kmsg_summary">Copiar /proc/last_kmsg para /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensagem do controlador</string>
   <string name="driver_message_summary">Copiar a mensagem do controlador (dmesg) para /sdcard/dmesg.txt</string>
+  <string name="set_password">Definir senha</string>
+  <string name="set_password_first">Definir uma senha primeiro</string>
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="misspelled">Por que você errou a grafia da palavra \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor é latim e significa ajudante.</string>
 </resources>
