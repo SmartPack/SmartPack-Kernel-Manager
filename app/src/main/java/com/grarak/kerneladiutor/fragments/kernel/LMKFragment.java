@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.lmk.LMK;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -40,15 +41,7 @@ import java.util.List;
  */
 public class LMKFragment extends RecyclerViewFragment {
 
-    private static final LinkedHashMap<Integer, String> sProfiles = new LinkedHashMap<>();
-
-    static {
-        sProfiles.put(R.string.very_light, "512,1024,1280,2048,3072,4096");
-        sProfiles.put(R.string.light, "1024,2048,2560,4096,6144,8192");
-        sProfiles.put(R.string.medium, "1024,2048,4096,8192,12288,16384");
-        sProfiles.put(R.string.aggressive, "2048,4096,8192,16384,24576,32768");
-        sProfiles.put(R.string.very_aggressive, "4096,8192,16384,32768,49152,65536");
-    }
+    private final LinkedHashMap<Integer, String> sProfiles = new LinkedHashMap<>();
 
     private List<SeekBarView> mMinFrees = new ArrayList<>();
 
@@ -56,7 +49,24 @@ public class LMKFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        sProfiles.clear();
+        sProfiles.put(R.string.very_light, getAdjustedSize(1, 2, 3, 4, 5, 6));
+        sProfiles.put(R.string.light, getAdjustedSize(2, 3, 4, 5, 6, 7));
+        sProfiles.put(R.string.medium, getAdjustedSize(3, 4, 5, 6, 7, 9));
+        sProfiles.put(R.string.aggressive, getAdjustedSize(2, 3, 6, 10, 14, 15));
+        sProfiles.put(R.string.very_aggressive, getAdjustedSize(3, 4, 5, 11, 15, 16));
+
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
+    }
+
+    private String getAdjustedSize(int... offsets) {
+        long memTotal = Device.MemInfo.getTotalMem() * 1024L / 100L / 4L;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int offset : offsets) {
+            stringBuilder.append(String.valueOf((int) memTotal * offset)).append(",");
+        }
+        stringBuilder.setLength(stringBuilder.length() - 1);
+        return stringBuilder.toString();
     }
 
     @Override
