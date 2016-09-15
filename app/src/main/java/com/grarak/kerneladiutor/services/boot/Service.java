@@ -35,7 +35,6 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.app.NotificationCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
@@ -45,6 +44,7 @@ import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
 import com.grarak.kerneladiutor.services.profile.Tile;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -100,6 +100,10 @@ public class Service extends android.app.Service {
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             } else {
                 Utils.setStartActivity(Prefs.getBoolean("materialicon", false, this), this);
+            }
+
+            if (!Prefs.getBoolean(ApplyOnBootFragment.getAssignment(CPUHotplugFragment.class), false, this)) {
+                Prefs.remove("core_ctl_min_cpus_big", this);
             }
         }
 
