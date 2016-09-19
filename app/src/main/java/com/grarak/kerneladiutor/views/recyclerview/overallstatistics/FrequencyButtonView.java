@@ -21,15 +21,11 @@ package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 /**
@@ -41,9 +37,6 @@ public class FrequencyButtonView extends RecyclerViewItem {
     private View.OnClickListener mResetListener;
     private View.OnClickListener mRestoreListener;
 
-    private Bitmap mRefreshImage;
-    private Bitmap mResetImage;
-
     @Override
     public int getLayoutRes() {
         return R.layout.rv_frequencytable_buttons_view;
@@ -54,21 +47,6 @@ public class FrequencyButtonView extends RecyclerViewItem {
         AppCompatImageButton refresh = (AppCompatImageButton) view.findViewById(R.id.frequency_refresh);
         AppCompatImageButton reset = (AppCompatImageButton) view.findViewById(R.id.frequency_reset);
         AppCompatImageButton restore = (AppCompatImageButton) view.findViewById(R.id.frequency_restore);
-
-        if (mRefreshImage == null) {
-            mRefreshImage = ViewUtils.drawableToBitmap(ContextCompat.getDrawable(view.getContext(),
-                    R.drawable.ic_refresh));
-        }
-        refresh.setImageBitmap(mRefreshImage);
-
-        if (mResetImage == null) {
-            Matrix matrix = new Matrix();
-            matrix.postRotate(180);
-            matrix.preScale(-1.0f, 1.0f);
-            mResetImage = Bitmap.createBitmap(mRefreshImage, 0, 0, mRefreshImage.getWidth(),
-                    mRefreshImage.getHeight(), matrix, true);
-        }
-        reset.setImageBitmap(mResetImage);
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +93,7 @@ public class FrequencyButtonView extends RecyclerViewItem {
     }
 
     private void rotate(final View v, boolean reverse) {
-        ViewPropertyAnimator animator = v.animate().rotation(reverse ? -360 : 360);
+        ViewPropertyAnimator animator = v.animate().setDuration(500).rotation(reverse ? -360 : 360);
         animator.setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -124,18 +102,5 @@ public class FrequencyButtonView extends RecyclerViewItem {
             }
         });
         animator.start();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mRefreshImage != null) {
-            mRefreshImage.recycle();
-            mRefreshImage = null;
-        }
-        if (mResetImage != null) {
-            mResetImage.recycle();
-            mResetImage = null;
-        }
     }
 }
