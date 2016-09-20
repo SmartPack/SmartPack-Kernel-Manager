@@ -166,7 +166,7 @@ public class DropDownView extends RecyclerViewItem {
         }
     }
 
-    public void expand() {
+    private void expand() {
         mExpanded = true;
         if (mArrow != null) {
             mArrow.animate().rotationX(0).setDuration(500).start();
@@ -186,7 +186,7 @@ public class DropDownView extends RecyclerViewItem {
         }
     }
 
-    public void collapse() {
+    private void collapse() {
         mExpanded = false;
         if (mArrow != null) {
             mArrow.animate().rotationX(180).setDuration(500).start();

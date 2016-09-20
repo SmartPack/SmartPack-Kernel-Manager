@@ -150,7 +150,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 = new RecyclerViewAdapter(mItems, new RecyclerViewAdapter.OnViewChangedListener() {
             @Override
             public void viewChanged() {
-                adjustScrollPosition();
+                getHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isAdded() && getActivity() != null) {
+                            adjustScrollPosition();
+                        }
+                    }
+                }, 250);
             }
         }) : mRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());

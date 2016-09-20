@@ -19,8 +19,11 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.support.v7.widget.AppCompatImageButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,9 +49,12 @@ public class CardView extends RecyclerViewItem {
     private Activity mActivity;
 
     private android.support.v7.widget.CardView mRootView;
+    private View mTitleParent;
     private TextView mTitle;
+    private AppCompatImageView mArrow;
+    private View mLayoutParent;
     private LinearLayout mLayout;
-    private AppCompatImageButton mMenuButton;
+    private View mMenuButton;
 
     private CharSequence mTitleText;
     private PopupMenu mPopupMenu;
@@ -59,6 +65,10 @@ public class CardView extends RecyclerViewItem {
 
     private List<RecyclerViewItem> mLoading = new ArrayList<>();
     private List<Runnable> mRunnables = new ArrayList<>();
+
+    private int mLayoutHeight;
+    private ValueAnimator mLayoutAnimator;
+    private boolean mShowLayout = true;
 
     public CardView(Activity activity) {
         if (activity == null) {
@@ -76,15 +86,17 @@ public class CardView extends RecyclerViewItem {
     void onCreateHolder(ViewGroup parent, View view) {
         super.onCreateHolder(parent, view);
         mRootView = (android.support.v7.widget.CardView) view;
+        mTitleParent = view.findViewById(R.id.title_parent);
         mTitle = (TextView) view.findViewById(R.id.card_title);
+        mArrow = (AppCompatImageView) view.findViewById(R.id.arrow_image);
+        mLayoutParent = view.findViewById(R.id.layout_parent);
         mLayout = (LinearLayout) view.findViewById(R.id.card_layout);
         setupLayout();
     }
 
     @Override
     public void onCreateView(View view) {
-        mMenuButton = (AppCompatImageButton) view.findViewById(R.id.menu_button);
-        mMenuButton.setRotation(90);
+        mMenuButton = view.findViewById(R.id.menu_button);
         mMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +105,58 @@ public class CardView extends RecyclerViewItem {
                 }
             }
         });
+
+        mLayoutParent.setVisibility(mShowLayout ? View.VISIBLE : View.GONE);
+        mArrow.setRotationX(mShowLayout ? 0 : 180);
+
+        mTitleParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mLayoutParent.getVisibility() == View.VISIBLE) {
+                    mLayoutHeight = mLayoutParent.getHeight();
+                }
+                mShowLayout = !mShowLayout;
+                animateLayout(!mShowLayout);
+                viewChanged();
+            }
+        });
         super.onCreateView(view);
+    }
+
+    private void animateLayout(final boolean collapse) {
+        if (mLayoutAnimator != null) return;
+        mArrow.animate().rotationX(collapse ? 180 : 0).setDuration(500).start();
+        mLayoutAnimator = ValueAnimator.ofInt(collapse ? mLayoutHeight : 0, collapse ? 0 : mLayoutHeight);
+        mLayoutAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                setLayoutParentHeight((int) animation.getAnimatedValue());
+            }
+        });
+        mLayoutAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                mLayoutParent.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mLayoutParent.setVisibility(collapse ? View.GONE : View.VISIBLE);
+                setLayoutParentHeight(collapse ? 0 : ViewGroup.LayoutParams.MATCH_PARENT);
+                mLayoutAnimator = null;
+            }
+        });
+        mLayoutAnimator.setDuration(500);
+        mLayoutAnimator.start();
+    }
+
+    private void setLayoutParentHeight(int height) {
+        ViewGroup.LayoutParams layoutParams = mLayout.getLayoutParams();
+        layoutParams.height = height;
+        mLayout.requestLayout();
+        viewChanged();
     }
 
     public void setTitle(CharSequence title) {
@@ -195,9 +258,17 @@ public class CardView extends RecyclerViewItem {
         if (mTitle != null) {
             if (mTitleText != null) {
                 mTitle.setText(mTitleText);
-                mTitle.setVisibility(View.VISIBLE);
+                mTitleParent.setVisibility(View.VISIBLE);
+                if (mLayoutParent != null) {
+                    LinearLayout.LayoutParams layoutParams =
+                            (LinearLayout.LayoutParams) mLayout.getLayoutParams();
+                    layoutParams.topMargin = -mLayout.getPaddingLeft();
+                    mLayout.requestLayout();
+                    mLayout.setPadding(mLayout.getPaddingLeft(), 0,
+                            mLayout.getPaddingRight(), mLayout.getPaddingBottom());
+                }
             } else {
-                mTitle.setVisibility(View.GONE);
+                mTitleParent.setVisibility(View.GONE);
             }
         }
         if (mMenuButton != null && mOnMenuListener != null) {
