@@ -107,6 +107,7 @@ public class FilePickerActivity extends BaseActivity {
         private String mPath;
         private String mExtension;
         private Drawable mDirImage;
+        private Drawable mParentDirImage;
         private Drawable mFileImage;
         private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadAsyncTask;
         private AlertDialog.Builder mPickDialog;
@@ -133,6 +134,10 @@ public class FilePickerActivity extends BaseActivity {
             }
             if (mExtension == null) {
                 mExtension = getArguments().getString(EXTENSION_INTENT);
+            }
+            if (mParentDirImage == null) {
+                mParentDirImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_arrow_upwards));
+                DrawableCompat.setTint(mParentDirImage, ViewUtils.getThemeAccentColor(getContext()));
             }
             if (mDirImage == null) {
                 mDirImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_dir));
@@ -218,6 +223,23 @@ public class FilePickerActivity extends BaseActivity {
                 } else {
                     files.add(file);
                 }
+            }
+
+            //Adds '..' directory to DescriptionView for traversing back to the parent directory
+            final RootFile returnDir = new RootFile(mPath).getRealPath().getParentFile().getRealPath();
+            if(returnDir.isDirectory()) {
+                DescriptionView descriptionViewParent = new DescriptionView();
+                descriptionViewParent.setSummary("..");
+                descriptionViewParent.setDrawable(mParentDirImage);
+                descriptionViewParent.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                    @Override
+                    public void onClick(RecyclerViewItem item) {
+                        mPath = returnDir.toString();
+                        reload();
+                    }
+                });
+
+                items.add(descriptionViewParent);
             }
 
             for (final RootFile dir : dirs) {
