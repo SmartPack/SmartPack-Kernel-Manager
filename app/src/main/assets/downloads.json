@@ -1,6 +1,24 @@
 [
   {
     "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "heroltexx"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys7.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "hero2ltexx"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys7edge.json"
+  },
+  {
+    "vendor": [
       "HTC",
       "htc"
     ],
