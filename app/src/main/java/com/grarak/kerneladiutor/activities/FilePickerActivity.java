@@ -106,6 +106,7 @@ public class FilePickerActivity extends BaseActivity {
         private String mPath;
         private String mExtension;
         private Drawable mDirImage;
+        private Drawable mArrowImage;
         private Drawable mFileImage;
         private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadAsyncTask;
         private AlertDialog.Builder mPickDialog;
@@ -133,9 +134,14 @@ public class FilePickerActivity extends BaseActivity {
             if (mExtension == null) {
                 mExtension = getArguments().getString(EXTENSION_INTENT);
             }
+            int accentColor = ViewUtils.getThemeAccentColor(getContext());
+            if (mArrowImage == null) {
+                mArrowImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_arrow));
+                DrawableCompat.setTint(mArrowImage, accentColor);
+            }
             if (mDirImage == null) {
                 mDirImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_dir));
-                DrawableCompat.setTint(mDirImage, ViewUtils.getThemeAccentColor(getContext()));
+                DrawableCompat.setTint(mDirImage, accentColor);
             }
             if (mFileImage == null) {
                 mFileImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_file));
@@ -219,6 +225,22 @@ public class FilePickerActivity extends BaseActivity {
                 }
             }
 
+            final RootFile returnDir = new RootFile(mPath).getParentFile();
+            if (returnDir.isDirectory()) {
+                DescriptionView descriptionViewParent = new DescriptionView();
+                descriptionViewParent.setSummary("..");
+                descriptionViewParent.setDrawable(mArrowImage);
+                descriptionViewParent.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                    @Override
+                    public void onClick(RecyclerViewItem item) {
+                        mPath = returnDir.toString();
+                        reload();
+                    }
+                });
+
+                items.add(descriptionViewParent);
+            }
+
             for (final RootFile dir : dirs) {
                 DescriptionView descriptionView = new DescriptionView();
                 descriptionView.setSummary(dir.getName());
@@ -244,25 +266,26 @@ public class FilePickerActivity extends BaseActivity {
                                 && !file.getName().endsWith(mExtension)) {
                             Utils.toast(getString(R.string.wrong_extension, mExtension), getActivity());
                         } else {
-                            mPickDialog = ViewUtils.dialogBuilder(getString(R.string.select_question, file.getName()),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    }, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent();
-                                            intent.putExtra(RESULT_INTENT, file.toString());
-                                            getActivity().setResult(0, intent);
-                                            getActivity().finish();
-                                        }
-                                    }, new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            mPickDialog = null;
-                                        }
-                                    }, getActivity());
+                            mPickDialog =
+                                    ViewUtils.dialogBuilder(getString(R.string.select_question, file.getName()),
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                }
+                                            }, new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent();
+                                                    intent.putExtra(RESULT_INTENT, file.toString());
+                                                    getActivity().setResult(0, intent);
+                                                    getActivity().finish();
+                                                }
+                                            }, new DialogInterface.OnDismissListener() {
+                                                @Override
+                                                public void onDismiss(DialogInterface dialog) {
+                                                    mPickDialog = null;
+                                                }
+                                            }, getActivity());
                             mPickDialog.show();
                         }
                     }
@@ -271,7 +294,6 @@ public class FilePickerActivity extends BaseActivity {
                 items.add(descriptionView);
             }
         }
-
     }
 
 }
