@@ -68,7 +68,7 @@ import java.util.Locale;
 public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
-    public static boolean DONATED = false;
+    public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
 
     public static boolean isTv(Context context) {
