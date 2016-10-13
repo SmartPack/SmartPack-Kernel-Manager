@@ -223,5 +223,15 @@
       "Angler"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/angler.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "heroltexx",
+      "hero2ltexx"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys7.json"
   }
 ]
