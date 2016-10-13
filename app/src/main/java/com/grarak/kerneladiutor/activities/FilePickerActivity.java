@@ -106,7 +106,6 @@ public class FilePickerActivity extends BaseActivity {
         private String mPath;
         private String mExtension;
         private Drawable mDirImage;
-        private Drawable mArrowImage;
         private Drawable mFileImage;
         private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadAsyncTask;
         private AlertDialog.Builder mPickDialog;
@@ -135,10 +134,6 @@ public class FilePickerActivity extends BaseActivity {
                 mExtension = getArguments().getString(EXTENSION_INTENT);
             }
             int accentColor = ViewUtils.getThemeAccentColor(getContext());
-            if (mArrowImage == null) {
-                mArrowImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_arrow));
-                DrawableCompat.setTint(mArrowImage, accentColor);
-            }
             if (mDirImage == null) {
                 mDirImage = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_dir));
                 DrawableCompat.setTint(mDirImage, accentColor);
@@ -229,7 +224,7 @@ public class FilePickerActivity extends BaseActivity {
             if (returnDir.isDirectory()) {
                 DescriptionView descriptionViewParent = new DescriptionView();
                 descriptionViewParent.setSummary("..");
-                descriptionViewParent.setDrawable(mArrowImage);
+                descriptionViewParent.setDrawable(mDirImage);
                 descriptionViewParent.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                     @Override
                     public void onClick(RecyclerViewItem item) {
