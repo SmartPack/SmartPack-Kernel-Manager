@@ -102,7 +102,7 @@ public class RootFile {
             // Make sure the files exists
             for (String file : files.split("\\r?\\n")) {
                 if (file != null && !file.isEmpty() && Utils.existFile(mFile + "/" + file)) {
-                    list.add(new RootFile(mFile + "/" + file, mSU));
+                    list.add(new RootFile(mFile.equals("/") ? mFile + file : mFile + "/" + file, mSU));
                 }
             }
         }
@@ -134,8 +134,8 @@ public class RootFile {
         return mSU.runCommand("cat '" + mFile + "'");
     }
 
+    @Override
     public String toString() {
         return mFile;
     }
-
 }
