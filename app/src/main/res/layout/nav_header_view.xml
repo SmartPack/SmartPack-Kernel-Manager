@@ -15,7 +15,6 @@
             android:background="@color/colorPrimary"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop" />
-
     </io.codetail.widget.RevealFrameLayout>
 
     <TextView
@@ -47,5 +46,4 @@
         android:tint="@color/white"
         app:fabSize="mini"
         app:srcCompat="@drawable/ic_gallery" />
-
 </FrameLayout>

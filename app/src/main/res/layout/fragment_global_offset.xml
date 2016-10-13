@@ -54,7 +54,5 @@
             android:gravity="center"
             android:text="@string/plus"
             android:textColor="@color/white" />
-
     </RelativeLayout>
-
 </LinearLayout>

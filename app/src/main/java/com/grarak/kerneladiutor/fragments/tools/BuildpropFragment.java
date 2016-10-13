@@ -82,6 +82,11 @@ public class BuildpropFragment extends RecyclerViewFragment {
     }
 
     @Override
+    protected boolean showAd() {
+        return false;
+    }
+
+    @Override
     protected void init() {
         super.init();
 
@@ -136,14 +141,6 @@ public class BuildpropFragment extends RecyclerViewFragment {
         load(items);
     }
 
-    @Override
-    protected void postInit() {
-        super.postInit();
-        if (mSearchFragment != null) {
-            mSearchFragment.setCount(itemsSize());
-        }
-    }
-
     private void reload(final boolean read) {
         if (mLoader == null) {
             getHandler().postDelayed(new Runnable() {
@@ -174,9 +171,6 @@ public class BuildpropFragment extends RecyclerViewFragment {
                                 addItem(item);
                             }
                             hideProgress();
-                            if (mSearchFragment != null) {
-                                mSearchFragment.setCount(itemsSize());
-                            }
                             mLoader = null;
                         }
                     };
@@ -237,6 +231,10 @@ public class BuildpropFragment extends RecyclerViewFragment {
             });
 
             items.add(descriptionView);
+        }
+
+        if (mSearchFragment != null) {
+            mSearchFragment.setCount(items.size());
         }
     }
 

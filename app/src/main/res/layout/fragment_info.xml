@@ -29,7 +29,5 @@
             android:text="@string/about_me"
             android:textColor="@color/white"
             android:textSize="12sp" />
-
     </ScrollView>
-
 </LinearLayout>

@@ -366,10 +366,10 @@ public class OverallFragment extends RecyclerViewFragment {
 
     public static class CPUUsageFragment extends BaseFragment {
 
-        private List<View> mUsages = new ArrayList<>();
-        private Thread mThread;
-        private float[] mCPUUsages;
-        private int[] mFreqs;
+        private static List<View> mUsages = new ArrayList<>();
+        private static Thread mThread;
+        private static float[] mCPUUsages;
+        private static int[] mFreqs;
 
         @Nullable
         @Override

@@ -95,7 +95,7 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
-import com.grarak.kerneladiutor.views.AdBanner;
+import com.grarak.kerneladiutor.views.AdNativeExpress;
 
 import java.util.LinkedHashMap;
 
@@ -315,7 +315,7 @@ public class NavigationActivity extends BaseActivity
                 @Override
                 public void onCallback(String raw, CharSequence html) {
                     if (raw == null || raw.isEmpty()) return;
-                    AdBanner.GHAds ghAds = new AdBanner.GHAds(raw);
+                    AdNativeExpress.GHAds ghAds = new AdNativeExpress.GHAds(raw);
                     if (ghAds.readable()) {
                         ghAds.cache(NavigationActivity.this);
                         for (int id : sActualFragments.keySet()) {
@@ -327,7 +327,7 @@ public class NavigationActivity extends BaseActivity
                     }
                 }
             });
-            mAdsFetcher.execute(AdBanner.ADS_FETCH);
+            mAdsFetcher.execute(AdNativeExpress.ADS_FETCH);
         }
     }
 

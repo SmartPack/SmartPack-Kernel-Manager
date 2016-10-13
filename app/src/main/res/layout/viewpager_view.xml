@@ -21,5 +21,4 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         app:extraSpacing="7dp" />
-
 </FrameLayout>

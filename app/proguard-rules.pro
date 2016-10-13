@@ -15,9 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class !android.support.v7.internal.view.menu.**,** {*;}
--keep class android.support.v7.widget.LinearLayoutManager { *; }
--keep class android.support.design.widget.NavigationView { *; }
--keep class android.support.v7.** { *; }
--keep interface android.support.v7.** { *; }
--dontwarn com.squareup.picasso.**
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**

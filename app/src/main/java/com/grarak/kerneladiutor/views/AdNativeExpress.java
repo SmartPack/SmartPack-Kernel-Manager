@@ -21,20 +21,21 @@ package com.grarak.kerneladiutor.views;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.NativeExpressAdView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -52,99 +53,100 @@ import java.util.List;
 /**
  * Created by willi on 08.08.16.
  */
-public class AdBanner extends LinearLayout {
+public class AdNativeExpress extends LinearLayout {
 
     public static final String ADS_FETCH = "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/ads/ads.json";
 
-    private boolean mLoaded;
-    private boolean mLoading;
+    private boolean mNativeLoaded;
+    private boolean mNativeLoading;
+    private boolean mNativeFailedLoading;
+    private boolean mGHLoading;
     private boolean mGHLoaded;
     private View mProgress;
     private View mAdText;
-    private ImageView mGHAdImage;
-    private LinearLayout mAdParent;
+    private FrameLayout mNativeAdLayout;
+    private NativeExpressAdView mNativeExpressAdView;
+    private AppCompatImageView mGHImage;
 
-    public AdBanner(Context context) {
+    public AdNativeExpress(Context context) {
         this(context, null);
     }
 
-    public AdBanner(Context context, AttributeSet attrs) {
+    public AdNativeExpress(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AdBanner(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AdNativeExpress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        if (Utils.DONATED) return;
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AdBanner, defStyleAttr, 0);
-        String unitId = a.getString(R.styleable.AdBanner_unitId);
-        a.recycle();
-        if (unitId == null || unitId.isEmpty()) {
-            throw new IllegalStateException("unitId must be defined");
-        }
-
-        LayoutInflater.from(context).inflate(R.layout.adbanner_view, this);
-
+        LayoutInflater.from(context).inflate(R.layout.ad_native_express_view, this);
+        mNativeAdLayout = (FrameLayout) findViewById(R.id.ad_layout);
         mProgress = findViewById(R.id.progress);
         mAdText = findViewById(R.id.ad_text);
-        mGHAdImage = (ImageView) findViewById(R.id.gh_ad);
-        mAdParent = (LinearLayout) findViewById(R.id.ad_parent);
+        mGHImage = (AppCompatImageView) findViewById(R.id.gh_image);
 
-        AdView adView = new AdView(context);
-        adView.setAdUnitId(unitId);
-        adView.setAdSize(AdSize.BANNER);
-        mAdParent.addView(adView);
-        adView.setAdListener(new AdListener() {
+        findViewById(R.id.remove_ad).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewUtils.dialogDonate(v.getContext()).show();
+            }
+        });
+
+        mNativeExpressAdView = new NativeExpressAdView(context);
+        mNativeExpressAdView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        mNativeExpressAdView.setAdUnitId(getContext().getString(Utils.DARK_THEME ?
+                R.string.native_express_id_dark : R.string.native_express_id_light));
+        mNativeExpressAdView.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-                mGHAdImage.setVisibility(GONE);
-                mProgress.setVisibility(GONE);
-                mAdText.setVisibility(VISIBLE);
-                mAdParent.setVisibility(GONE);
-                mLoading = false;
-                mLoaded = false;
+                mNativeLoading = false;
+                mNativeLoaded = false;
+                mNativeFailedLoading = true;
                 loadGHAd();
             }
 
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                mGHAdImage.setVisibility(GONE);
+                mNativeLoaded = true;
+                mNativeLoading = false;
+                mNativeFailedLoading = false;
                 mProgress.setVisibility(GONE);
-                mAdText.setVisibility(GONE);
-                mAdParent.setVisibility(VISIBLE);
-                mLoading = false;
-                mLoaded = true;
-            }
-        });
-
-        if (!mLoaded) {
-            try {
-                mLoading = true;
-                adView.loadAd(new AdRequest.Builder().build());
-            } catch (Exception ignored) {
-                loadGHAd();
-            }
-        }
-
-        findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ViewUtils.dialogDonate(view.getContext()).show();
+                mNativeAdLayout.addView(mNativeExpressAdView);
             }
         });
     }
 
-    public void loadGHAd() {
-        if (mLoaded || mLoading || mGHLoaded) return;
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        int width;
+        if (mNativeLoading || (mNativeLoaded && !mNativeFailedLoading)
+                || (!mNativeLoaded && mNativeFailedLoading) ||
+                (width = mNativeAdLayout.getWidth()) == 0) {
+            return;
+        }
+        loadNativeAd(width);
+    }
 
-        String json = Utils.readFile(getContext().getFilesDir() + "/ghads.json", false);
-        GHAds ghAds;
+    private void loadNativeAd(int width) {
+        mNativeExpressAdView.setAdSize(
+                new AdSize(width / (int) getResources().getDisplayMetrics().density, 132));
+        mNativeLoading = true;
+        mNativeExpressAdView.loadAd(new AdRequest.Builder().build());
+    }
+
+    public void loadGHAd() {
+        if (!mNativeFailedLoading || mGHLoading || mGHLoaded) {
+            return;
+        }
+        mGHLoading = true;
+
+        GHAds ghAds = GHAds.fromCache(getContext());
         List<GHAds.GHAd> ghAdList;
-        if (json != null && !json.isEmpty()
-                && ((ghAds = new GHAds(json)).readable()
-                && (ghAdList = ghAds.getAllAds()) != null)) {
+        if (ghAds.readable() && (ghAdList = ghAds.getAllAds()) != null) {
             GHAds.GHAd ad = null;
             int min = -1;
             for (GHAds.GHAd ghAd : ghAdList) {
@@ -155,47 +157,43 @@ public class AdBanner extends LinearLayout {
                 }
             }
 
-            if (ad == null) {
-                ad = ghAdList.get(0);
-            }
-
             final String name = ad.getName();
             final String link = ad.getLink();
             final int totalShown = min + 1;
             Picasso.with(getContext()).load(ad.getBanner()).into(new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    mGHAdImage.setVisibility(VISIBLE);
+                    mGHImage.setVisibility(VISIBLE);
                     mProgress.setVisibility(GONE);
                     mAdText.setVisibility(GONE);
-                    mAdParent.setVisibility(GONE);
-                    mGHAdImage.setImageBitmap(bitmap);
+                    mGHImage.setImageBitmap(bitmap);
                     Prefs.saveInt(name + "_shown", totalShown, getContext());
+                    mGHLoaded = true;
+                    mGHLoading = false;
                 }
 
                 @Override
                 public void onBitmapFailed(Drawable errorDrawable) {
-                    mGHAdImage.setVisibility(GONE);
+                    mGHImage.setVisibility(GONE);
                     mProgress.setVisibility(GONE);
                     mAdText.setVisibility(VISIBLE);
-                    mAdParent.setVisibility(GONE);
+                    mGHLoaded = false;
+                    mGHLoading = false;
                 }
 
                 @Override
                 public void onPrepareLoad(Drawable placeHolderDrawable) {
-                    mGHAdImage.setVisibility(GONE);
-                    mAdParent.setVisibility(GONE);
+                    mGHImage.setVisibility(GONE);
                     mProgress.setVisibility(VISIBLE);
-                    mAdText.setVisibility(VISIBLE);
                 }
             });
 
-            mGHAdImage.setOnClickListener(new OnClickListener() {
+            mGHImage.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(getContext()).setTitle(getString(R.string.warning))
-                            .setMessage(getString(R.string.gh_ad))
-                            .setPositiveButton(getString(R.string.open_ad_anyway),
+                    new AlertDialog.Builder(getContext()).setTitle(R.string.warning)
+                            .setMessage(R.string.gh_ad)
+                            .setPositiveButton(R.string.open_ad_anyway,
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -204,22 +202,23 @@ public class AdBanner extends LinearLayout {
                                     }).show();
                 }
             });
-            mGHAdImage.setVisibility(VISIBLE);
-            mProgress.setVisibility(GONE);
-            mAdText.setVisibility(GONE);
-            mAdParent.setVisibility(GONE);
-            mGHLoaded = true;
         } else {
-            mGHAdImage.setVisibility(GONE);
+            mGHImage.setVisibility(GONE);
             mProgress.setVisibility(GONE);
-            mAdParent.setVisibility(GONE);
             mAdText.setVisibility(VISIBLE);
         }
     }
 
+    public void resume() {
+        mNativeExpressAdView.resume();
+    }
 
-    private String getString(int res) {
-        return getContext().getString(res);
+    public void pause() {
+        mNativeExpressAdView.pause();
+    }
+
+    public void destroy() {
+        mNativeExpressAdView.destroy();
     }
 
     public static class GHAds {
@@ -229,10 +228,15 @@ public class AdBanner extends LinearLayout {
 
         public GHAds(String json) {
             mJson = json;
+            if (json == null || json.isEmpty()) return;
             try {
                 mAds = new JSONArray(json);
             } catch (JSONException ignored) {
             }
+        }
+
+        private static GHAds fromCache(Context context) {
+            return new GHAds(Utils.readFile(context.getFilesDir() + "/ghads.json", false));
         }
 
         public void cache(Context context) {

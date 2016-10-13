@@ -19,7 +19,5 @@
             android:textColor="@color/green"
             android:textIsSelectable="true"
             android:textSize="13sp" />
-
     </ScrollView>
-
 </HorizontalScrollView>

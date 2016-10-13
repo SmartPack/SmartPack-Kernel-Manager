@@ -15,5 +15,4 @@
         app:contentInsetLeft="72dp"
         app:contentInsetStart="72dp"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
-
 </android.support.design.widget.AppBarLayout>

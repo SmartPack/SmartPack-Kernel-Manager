@@ -54,22 +54,26 @@ public class DescriptionView extends RecyclerViewItem {
         mTitleView = (AppCompatTextView) view.findViewById(R.id.title);
         mSummaryView = (AppCompatTextView) view.findViewById(R.id.summary);
 
-        mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    mRootView.requestFocus();
+        if (mTitleView != null) {
+            mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        mRootView.requestFocus();
+                    }
                 }
-            }
-        });
-        mSummaryView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    mRootView.requestFocus();
+            });
+        }
+        if (mSummaryView != null) {
+            mSummaryView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        mRootView.requestFocus();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         super.onCreateView(view);
     }

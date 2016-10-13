@@ -34,7 +34,6 @@
                 android:textSize="12sp"
                 android:textStyle="bold|italic"
                 android:visibility="gone" />
-
         </LinearLayout>
 
         <TextView
@@ -59,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
                 android:textSize="12sp" />
-
         </HorizontalScrollView>
 
         <TextView
@@ -117,8 +115,6 @@
                 android:id="@+id/progress"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
-
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

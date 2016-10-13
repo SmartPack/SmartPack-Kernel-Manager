@@ -120,7 +120,6 @@ public class RootUtils {
         private Process process;
         private BufferedWriter mOutputWriter;
         private BufferedReader mInputReader;
-        private BufferedReader mErrorStream;
         private final boolean root;
         private final String mTag;
         private boolean closed;
@@ -136,13 +135,12 @@ public class RootUtils {
             mTag = tag;
             try {
                 if (mTag != null) {
-                    Log.i(mTag, root ? "SU initialized" : "SH initialized");
+                    Log.i(mTag, String.format("%s initialized", root ? "SU" : "SH"));
                 }
                 firstTry = true;
                 process = Runtime.getRuntime().exec(root ? "su" : "sh");
                 mOutputWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 mInputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                mErrorStream = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException ignored) {
                 if (mTag != null) {
                     Log.e(mTag, root ? "Failed to run shell as su" : "Failed to run shell as sh");
@@ -166,9 +164,6 @@ public class RootUtils {
                             break;
                         }
                         sb.append(line).append("\n");
-                    }
-                    while (mErrorStream.ready()) {
-                        sb.append(mErrorStream.readLine()).append("\n");
                     }
                     firstTry = false;
                     if (mTag != null) {
@@ -198,7 +193,6 @@ public class RootUtils {
 
                 mOutputWriter.close();
                 mInputReader.close();
-                mErrorStream.close();
                 process.destroy();
                 if (mTag != null) {
                     Log.i(mTag, root ? "SU closed: " + process.exitValue() : "SH closed: "

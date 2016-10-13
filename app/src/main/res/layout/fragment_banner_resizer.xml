@@ -31,9 +31,7 @@
                 android:layout_margin="2dp"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="2dp" />
-
         </LinearLayout>
-
     </FrameLayout>
 
     <LinearLayout
@@ -85,9 +83,6 @@
                 android:scaleType="fitCenter"
                 android:tint="?attr/colorAccent"
                 app:srcCompat="@drawable/ic_done" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

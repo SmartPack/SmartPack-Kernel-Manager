@@ -118,12 +118,6 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void adInit() {
-        if (!Utils.DONATED) {
-            findViewById(R.id.ad).setVisibility(View.VISIBLE);
-        }
-    }
-
     protected boolean setStatusBarColor() {
         return true;
     }

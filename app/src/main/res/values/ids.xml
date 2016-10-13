@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="banner_adview" translatable="false">ca-app-pub-1851546461606210/7537613480</string>
-    <string name="banner_activity" translatable="false">ca-app-pub-1851546461606210/2549010684</string>
+    <string name="native_express_id_light" translatable="false">ca-app-pub-1851546461606210/9265877481</string>
+    <string name="native_express_id_dark" translatable="false">ca-app-pub-1851546461606210/4717926683</string>
 </resources>

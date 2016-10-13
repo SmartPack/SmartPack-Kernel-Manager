@@ -61,7 +61,6 @@ public class FilePickerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragments);
 
-        adInit();
         initToolBar();
 
         mPath = getIntent().getStringExtra(PATH_INTENT);

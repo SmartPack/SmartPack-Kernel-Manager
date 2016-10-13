@@ -91,6 +91,12 @@ public abstract class RecyclerViewItem {
     protected void refresh() {
     }
 
+    public void onResume() {
+    }
+
+    public void onPause() {
+    }
+
     public void onDestroy() {
     }
 

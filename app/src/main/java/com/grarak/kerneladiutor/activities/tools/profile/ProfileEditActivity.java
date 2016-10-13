@@ -64,7 +64,6 @@ public class ProfileEditActivity extends BaseActivity {
 
         setContentView(R.layout.activity_fragments);
         initToolBar();
-        adInit();
 
         getSupportActionBar().setTitle(getString(R.string.edit));
 

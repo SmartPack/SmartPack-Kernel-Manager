@@ -36,5 +36,4 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:theme="?edittext_build_prop_style" />
-
 </LinearLayout>

@@ -36,6 +36,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -126,6 +127,13 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
 
+        if (mViewPagerFragments != null) {
+            FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+            for (Fragment fragment : mViewPagerFragments) {
+                fragmentTransaction.remove(fragment);
+            }
+            fragmentTransaction.commit();
+        }
         mViewPagerFragments = new ArrayList<>();
         mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
@@ -166,6 +174,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                 && !showTopFab()
                 && !isForeground()
                 && getActivity() instanceof NavigationActivity
+                && showAd()
                 && mAdView == null) {
             mAdView = new AdView();
         } else {
@@ -735,22 +744,32 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return false;
     }
 
-    public void ghAdReady() {
-        if (mAdView != null) {
-            mAdView.ghReady();
-        }
-    }
-
     @Override
     public void onResume() {
         super.onResume();
         mHandler.post(mRefresh);
+        for (RecyclerViewItem item : mItems) {
+            item.onResume();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mHandler.removeCallbacks(mRefresh);
+        for (RecyclerViewItem item : mItems) {
+            item.onPause();
+        }
+    }
+
+    protected boolean showAd() {
+        return true;
+    }
+
+    public void ghAdReady() {
+        if (mAdView != null) {
+            mAdView.ghReady();
+        }
     }
 
     @Override

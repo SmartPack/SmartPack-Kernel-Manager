@@ -43,7 +43,6 @@
                     android:layout_height="20dp"
                     android:tint="?android:attr/textColorSecondary"
                     app:srcCompat="@drawable/ic_arrow" />
-
             </LinearLayout>
         </FrameLayout>
 
@@ -78,7 +77,6 @@
                 android:tint="?android:attr/textColorSecondary"
                 android:visibility="gone"
                 app:srcCompat="@drawable/ic_dots" />
-
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
