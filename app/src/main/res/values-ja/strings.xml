@@ -14,7 +14,7 @@
   <string name="select_picture">画像の選択</string>
   <string name="no_picture">画像なし</string>
   <string name="went_wrong">何か問題が起きました。</string>
-  <string name="press_back_again_exit">もう一度戻るボタンを押すと終了します</string>
+  <string name="press_back_again_exit">もう一度押すと終了します</string>
   <string name="cancel">キャンセル</string>
   <string name="ok">OK</string>
   <string name="unknown">不明</string>
@@ -32,6 +32,7 @@
   <string name="save">保存</string>
   <!-- File Picker -->
   <string name="select_question">%s を選択しますか？</string>
+  <string name="wrong_extension">拡張子が %s のファイルを選択してください。</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">ºC</string>
@@ -90,7 +91,7 @@
   <string name="refresh">更新</string>
   <string name="reset">リセット</string>
   <string name="restore">復元</string>
-  <string name="deep_sleep">ディープスリープ</string>
+  <string name="deep_sleep">Deep Sleep</string>
   <string name="uptime">使用時間</string>
   <string name="unused_frequencies">未使用の周波数</string>
   <!-- Device -->
@@ -127,6 +128,8 @@
   <string name="cpu_governor_summary">CPUガバナはCPU負荷の変動に対してどのように動作するかを決定するものです。ガバナの変更により、そのCPUで利用可能な周波数ステップの上昇/下降動作が影響を受けます。</string>
   <string name="cpu_governor_tunables">CPUガバナ設定</string>
   <string name="governor_tunables_summary">ガバナ毎の設定可能な項目を設定します。</string>
+  <string name="tunables_error">%s は調整することができません</string>
+  <string name="manual">マニュアル</string>
   <string name="mc_power_saving">マルチコア省電力モード</string>
   <string name="mc_power_saving_summary">出来るだけ少ないコアで動作するようになります。</string>
   <string name="disabled">無効</string>
@@ -147,6 +150,7 @@
   <string name="input_interval">入力間隔</string>
   <string name="input_interval_summary">入力が検出されたとき、CPUをブーストするまでの最小間隔です。</string>
   <string name="input_boost_freq">入力ブースト周波数</string>
+  <string name="input_boost_freq_core">入力ブースト周波数 コア %d</string>
   <string name="input_boost_freq_summary">入力が検出されたときにこの周波数までCPU周波数をブーストします。</string>
   <string name="wakeup_boost">ウェイクアップブースト</string>
   <string name="wakeup_boost_summary">ウェイクアップブーストは入力ブーストに似ていますが、画面がオンになっているときに発生するという違いがあります。</string>
@@ -177,6 +181,7 @@
   <string name="eco_mode_summary">IntelliPlugのバッテリー消費削減モードです。</string>
   <string name="hysteresis">ヒステリシス値</string>
   <string name="hysteresis_summary">値が低ければ低いほど、IntelliPlugが素早く動作するようになります。</string>
+  <string name="cpu_threshold">CPUしきい値</string>
   <string name="suspend">サスペンド</string>
   <string name="suspend_summary">サスペンドを阻止します。</string>
   <string name="cpus_boosted">ブーストCPU数</string>
@@ -185,6 +190,8 @@
   <string name="min_cpu_online_summary">オンラインにするCPU数の最小値です。</string>
   <string name="max_cpu_online">最大CPUオンライン</string>
   <string name="max_cpu_online_summary">オンラインにするCPU数の最大値です。</string>
+  <string name="max_cpu_online_screen_off">画面消灯時最大CPUオンライン</string>
+  <string name="max_cpu_online_screen_off_summary">画面消灯時にオンラインにするCPU数の最大値です。</string>
   <string name="suspend_defer_time">サスペンド遅延時間</string>
   <string name="defer_sampling">遅延サンプリング</string>
   <string name="boost_lock_duration">ブーストロック時間</string>
@@ -195,6 +202,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Code_Blue teamが開発した、Qualcomm MPDecisionの代替です。</string>
   <string name="powersaver_mode">省電力モード</string>
+  <string name="powersaver_mode_summary">1CPUだけを最大周波数1728 MHzでオンラインにします。</string>
   <string name="up_threshold">上昇しきい値</string>
   <string name="up_threshold_summary">このしきい値を超えると、もう一つのコアをオンラインにするようにします。</string>
   <string name="up_timer_cnt">上昇タイマー操作</string>
@@ -217,6 +225,8 @@
   <string name="io_is_busy_summary">I/O 時間を CPU 時間として認識するようにします。</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">franciscofranco氏が開発した、Qualcomm MPDecisionの代替です。</string>
+  <string name="cpus_on_touch">タッチ時のCPU</string>
+  <string name="cpus_on_touch_summary">画面をタッチしたりボタンを押したりしたときにオンラインにするCPUの数です。</string>
   <string name="cpu_freq_unplug_limit">CPU周波数 Unplug Limit</string>
   <string name="first_level">最初のレベル</string>
   <string name="first_level_summary">全てのCPUをオンラインにするしきい値です。</string>
@@ -229,9 +239,12 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">show-p1984氏が開発した、Qualcomm MPDecisionの代替です。</string>
+  <string name="screen_off_single_cpu">画面消灯時一CPU</string>
+  <string name="screen_off_single_cpu_summary">画面消灯時に動作させるCPUを一つだけにします。</string>
   <string name="idle_frequency">アイドル時の周波数</string>
   <string name="idle_frequency_summary">最初のコアがこの周波数より低い場合、他のコアをプラグしないようにします。</string>
   <string name="touch_boost_time">タッチブースト時間</string>
+  <string name="boost_frequency_core">ブースト周波数 コア %d</string>
   <string name="start_delay">開始の遅延</string>
   <string name="start_delay_summary">Hotplugが動作し始めるまでの時間です。</string>
   <string name="delay">遅延</string>
@@ -244,6 +257,8 @@
   <string name="cpu_down_rate">CPUダウンレート</string>
   <string name="cpu_up_rate">CPUアップレート</string>
   <string name="thunderplug">ThunderPlug</string>
+  <string name="min_cpu_online_screen_off">画面消灯時最小CPUオンライン</string>
+  <string name="min_cpu_online_screen_off_summary">画面消灯時にオンラインにするCPU数の最小値です。</string>
   <string name="endurance_level">Endurance Level</string>
   <string name="endurance_level_summary">節電プロファイルです。</string>
   <string name="quad_core_mode">クアッドコアモード</string>
@@ -273,6 +288,8 @@
   <string name="vdd_restriction">VDD制限</string>
   <string name="freq_throttle_temp">周波数スロットル温度</string>
   <string name="freq_throttle_temp_summary">この温度になると周波数のスロットルを開始します。</string>
+  <string name="cpu_throttle_temp">CPUスロットル温度</string>
+  <string name="cpu_throttle_temp_summary">この温度になるとCPUをシャットダウンします。</string>
   <string name="freq_step">周波数ステップ</string>
   <string name="immediately_limit_stop">Immediately Limit Stop</string>
   <string name="poll">Poll</string>
@@ -312,6 +329,7 @@
   <string name="gpu_2d_governor_summary">GPU 2D ガバナを設定します。</string>
   <string name="gpu_governor">GPU ガバナ</string>
   <string name="gpu_governor_summary">GPUのガバナを設定します。</string>
+  <string name="gpu_governor_tunables">GPUガバナ設定</string>
   <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
   <string name="simple_gpu_algorithm_summary">faux123 氏が開発した、MSM Adreno TZ GPU ガバナのアドオンです。</string>
   <string name="laziness">Laziness</string>
@@ -449,7 +467,10 @@
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">どの残量になるまで充電するか、0 から 100 までの値で指定します。</string>
   <!-- LED -->
+  <string name="fade">フェード</string>
   <string name="notification">通知</string>
+  <string name="fade_in">フェードイン</string>
+  <string name="fade_out">フェードアウト</string>
   <string name="test">テスト</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">内部ストレージ</string>
@@ -461,6 +482,13 @@
   <string name="read_ahead">先読みサイズ</string>
   <string name="read_ahead_summary">メモリの先読みサイズです。</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">フルスキャン</string>
+  <string name="pages_shared">共有されたページ</string>
+  <string name="pages_sharing">共有中のページ</string>
+  <string name="pages_unshared">未共有のページ</string>
+  <string name="ksm_summary">メモリ使用量を削減しますが、CPU使用率に影響を与えます。</string>
+  <string name="pages_to_scan">スキャンするページ</string>
+  <string name="max_cpu_usage">最大CPU使用率</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前面アプリ</string>
   <string name="visible_app">表示中アプリ</string>
@@ -474,6 +502,7 @@
   <string name="very_aggressive">積極的 (強)</string>
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
+  <string name="disksize">ディスクサイズ</string>
   <string name="zswap">ZSWAP</string>
   <string name="memory_pool">メモリプール</string>
   <!-- Entropy -->
@@ -491,6 +520,7 @@
   <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="gentlefairsleepers_summary">Sleepersの動作をデフォルトの50%にします。無効にすると少しバッテリー消費を抑えられます。</string>
+  <string name="arch_power">Arch Power</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
   <string name="power_suspend_mode_summary">Kernel Mode、LCD Hooks、Highest Level Hookはカーネルによって自動的に制御されます。Power Suspend State を手動で有効/無効化したい場合は User Mode を選択してください。</string>
   <string name="autosleep">Autosleep</string>
@@ -516,6 +546,7 @@
   <string name="wlan_ctrl_wakelock_summary">無効にすると wlan_ctrl wakelock を阻止します。</string>
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="wlan_wakelock_summary">無効にすると wlan wakelock を阻止します。</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <!-- Custom Controls -->
@@ -552,8 +583,10 @@
   <string name="items_count">%s アイテム</string>
   <string name="key">キー</string>
   <string name="value">値</string>
+  <string name="key_empty">キーが空です！</string>
   <!-- Profile -->
   <string name="apply_on_boot_not_available">プロファイルモードの変更内容は、起動時に適用には影響しません。</string>
+  <string name="no_changes">変更されていません！</string>
   <string name="apply_question">%s を適用しますか？</string>
   <string name="append">追加</string>
   <string name="details">詳細</string>
@@ -569,16 +602,23 @@
   <!-- Recovery -->
   <string name="reboot">再起動</string>
   <string name="reboot_soft">ソフトリブート</string>
+  <string name="reboot_recovery">リカバリへ再起動</string>
+  <string name="reboot_bootloader">ブートローダへ再起動</string>
+  <string name="reboot_download">ダウンロードへ再起動</string>
   <string name="wipe_data">データの消去</string>
   <string name="wipe_cache">キャッシュの消去</string>
   <string name="flash_zip">ZIPのインストール</string>
+  <string name="add_action_first">まずアクションを追加してください！</string>
   <string name="flash_now_confirm">本当に実行しますか? リカバリへ再起動し、アクションを実行します。</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.dのエミュレート</string>
   <string name="emulate_initd_summary">お使いの端末がデフォルトでinit.dをサポートしていない場合、この機能を有効化すると、その動作をエミュレートすることができます。</string>
+  <string name="exceute_question">%s を実行しますか？</string>
   <string name="executing">実行中</string>
   <!-- On Boot -->
   <string name="on_boot_welcome_summary">このセクションは、お使いの端末が起動するときに何が起こるかを示しています。空白の場合は何も起こりません。</string>
+  <string name="delete_question">%s を削除しますか？</string>
+  <string name="disable_question">%s を無効にしますか？</string>
   <!-- Settings -->
   <string name="fahrenheit_title">華氏（°F）</string>
   <string name="fahrenheit_summary">温度測定に華氏を使用します。</string>
@@ -588,6 +628,8 @@
   <string name="material_icon">マテリアルアイコン</string>
   <string name="banner_resizer">バナーのリサイズ</string>
   <string name="hide_banner">バナー非表示</string>
+  <string name="force_cards">カードを強制使用</string>
+  <string name="force_cards_summary">可能な限り、項目にカードを使用します。</string>
   <string name="accent_color">アクセントカラー</string>
   <string name="instant">即時</string>
   <string name="five_sec">5秒</string>

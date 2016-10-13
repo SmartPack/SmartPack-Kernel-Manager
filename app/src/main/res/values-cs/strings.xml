@@ -18,15 +18,24 @@
   <string name="cancel">Zrušit</string>
   <string name="ok">OK</string>
   <string name="unknown">Neznámé</string>
+  <string name="license_invalid">Děkujeme za přispění na vývoj! Naneštěstí, kontrola licence se nezdařila. Prosím, zkuste to znovu později. V případě přetrvávajících potíží nás, prosím, kontaktujte.</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
+  <string name="donate_summary">Tato funkce je dostupná pouze pokud je nainstalována aplikace darování. Nezoufejte! Tato aplikace je open source, takže si ji můžete sami sestavit a toto omezení odstranit. Přesto však doufáme, že vývojáře podpoříte. Děkujeme, že používáte Kernel Adiutor. Jakmile si aplikaci dárce zakoupíte, je třeba Kernel Adiutor restartovat pro zpřístupnění všech funkcí.</string>
+  <string name="donate_nope">Takovému podvodu nepodlehnu!</string>
   <string name="donate_yes">Mám rád tuto aplikaci. Musim přispět!</string>
+  <string name="ad_here">Vaše reklama může být zde</string>
+  <string name="remove_ad">Odstranit reklamu</string>
   <string name="warning">Varování</string>
+  <string name="gh_ad">Toto je nekomerční reklama. Neberte to vážně. Je to jen vtipný způsob, jak vyplnit místo, když nelze načíst skutečnou reklamu (teď koukáme na vás, uživatelé blokátorů reklam).</string>
+  <string name="open_ad_anyway">Přesto reklamu otevřít</string>
   <string name="apply_on_boot">Použít při spuštění</string>
   <string name="apply_on_boot_text">Používám nastavení v %d sekundách.</string>
   <string name="apply_on_boot_complete">Aplikuji nastavení dokončeno.</string>
   <string name="apply_on_boot_canceled">Aplikuji nastavení zrušeno.</string>
   <string name="not_in_range">Není v rozsahu</string>
+  <string name="options">Možnosti</string>
+  <string name="more">Více</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Oprávnění zamítnuto pro zápis do úložiště!</string>
   <!-- Editor -->
@@ -45,6 +54,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistika</string>
@@ -81,6 +91,8 @@
   <string name="on_boot">Při spuštění</string>
   <string name="settings">Nastavení</string>
   <string name="about">O programu</string>
+  <string name="contributors">Přispívající</string>
+  <string name="help">Nápověda</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Jádro %d</string>
@@ -111,6 +123,8 @@
   <string name="product">Produkt</string>
   <string name="version">Verze</string>
   <!-- CPU -->
+  <string name="cores_singular">%d jádro</string>
+  <string name="cores">%d jádra</string>
   <string name="cpu_max_freq">Maximální frekvence procesoru</string>
   <string name="cpu_max_freq_summary">Nastavení maximální frekvence procesoru.</string>
   <string name="cpu_min_freq">Minimální frekvence procesoru</string>
@@ -192,6 +206,8 @@
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
   <string name="first_level">První úroveň</string>
   <string name="timer">Časovač</string>
+  <string name="screen_off_single_cpu_summary">Používat pouze jedno jádro, když je displej vypnut.</string>
+  <string name="boost_frequency_core">Zvýšení frekvence jádra %d</string>
   <string name="start_delay">Prodleva spuštění</string>
   <string name="delay">Prodleva</string>
   <string name="delay_summary">Čas mezi kontrolami.</string>
@@ -199,6 +215,7 @@
   <string name="endurance_level_summary">Úsporný profil.</string>
   <string name="dual_core_mode">Režim Dual-Core</string>
   <string name="wake_wait_time">Čekací doba pro probuzení</string>
+  <string name="wake_wait_time_summary">Doba čekání před uvedením některého jádra do chodu.</string>
   <string name="core_control">Řízení Jádra</string>
   <!--Thermal-->
   <string name="thermal_info">Používejte pouze jeden teplotní ovladač, použití více ovladačů ve stejnou dobu může vést k neočekávanému chování.</string>
@@ -248,6 +265,7 @@
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jas</string>
   <string name="lcd_backlight">Podsvícení LCD</string>
+  <string name="gamma_profiles_summary">Po výběru profilu vypněte a znovu zapněte displej.</string>
   <string name="brightness_mode">Použít exponenciální režim podsvícení místo lineárního režimu.</string>
   <string name="min_brightness">Minimální jas</string>
   <string name="min_brightness_summary">Umožňuje snížit jas LCD obrazovky níže, než je to možné v základním nastavení.</string>
@@ -294,8 +312,13 @@
   <string name="draw_w">Nakreslení W</string>
   <string name="draw_c">Nakreslení C</string>
   <string name="draw_m">Nakreslení M</string>
+  <string name="timeout">Časový limit</string>
+  <string name="timeout_summary">Nastavení doby po vypnutí obrazovky, kdy budou ovladače probuzení vypnuty.</string>
   <string name="power_key_suspend">Odstavení klávesou napájení</string>
   <string name="power_key_suspend_summary">Povolení této volby vypne prvky probouzející zařízení, když je displej vypnut tlačítkem napájení.</string>
+  <string name="area">Oblast</string>
+  <string name="width">Šířka</string>
+  <string name="height">Výška</string>
   <string name="vibration_strength">Intenzita vibrace</string>
   <!-- Sound -->
   <string name="sound_control">Ovládání zvuku</string>
@@ -307,11 +330,17 @@
   <string name="microphone_gain">Zesílení mikrofonu</string>
   <string name="volume_gain">Zesílení hlasitosti</string>
   <!-- Battery -->
+  <string name="level">Úroveň</string>
+  <string name="voltage">Napětí</string>
+  <string name="capacity">Kapacita</string>
   <string name="usb_fast_charge">Rychlé USB nabíjení</string>
   <string name="usb_fast_charge_summary">Rychlejší nabíjení zařízení při připojení přes USB. Při změně této volby odpojte a znovu zapojte nabíječku.</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <!-- LED -->
   <string name="speed">Rychlost</string>
+  <string name="notification">Upozornění</string>
+  <string name="on">ZAP</string>
+  <string name="off">VYP</string>
   <string name="test">Zkouška</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Vnitřní uložiště</string>
@@ -356,8 +385,13 @@
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
   <!-- Custom Controls -->
+  <string name="title">Název</string>
+  <string name="description">Popis</string>
+  <string name="applying">Použití</string>
+  <string name="required">vyžadováno</string>
   <string name="edit">Upravit</string>
   <string name="delete">Smazat</string>
+  <string name="sure_question">Opravdu chcete pokračovat?</string>
   <string name="name">Název</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
@@ -370,10 +404,12 @@
   <string name="restoring">Obnovování</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="add">Přidat</string>
   <string name="key">Klíč</string>
   <string name="value">Hodnota</string>
   <!-- Profile -->
   <string name="applied">Použito</string>
+  <string name="select_all">Vybrat vše</string>
   <!-- Recovery -->
   <string name="wipe_data">Vymazat data</string>
   <string name="wipe_cache">Vymazat cache</string>
@@ -383,6 +419,7 @@
   <string name="emulate_initd">Emulace Init.d</string>
   <string name="executing">Provádění</string>
   <!-- On Boot -->
+  <string name="delete_question">Odstranit %s?</string>
   <!-- Settings -->
   <string name="dark_theme">Tmavý motiv</string>
   <string name="debugging">Ladění</string>
@@ -392,7 +429,31 @@
   <string name="last_kmsg_summary">Kopírovat /proc/last_kmsg do /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Zpráva ovladače</string>
   <string name="driver_message_summary">Kopírovat zprávu ovladače (dmesg) do /sdcard/dmesg.txt</string>
+  <string name="security">Zabezpečení</string>
+  <string name="set_password">Nastavit heslo</string>
+  <string name="set_password_summary">Přístup k funkcím aplikace Kernel Adiutor můžete chránit heslem. Při každém spuštění aplikace jej budete muset zadat. Pokud ho zapomenete, jednoduše vymažte data této aplikace v nastavení svého zařízení.</string>
+  <string name="delete_password">Odstranit heslo</string>
+  <string name="old_password">Původní heslo</string>
+  <string name="new_password">Nové heslo</string>
+  <string name="confirm_new_password">Potvrzení nového hesla</string>
+  <string name="old_password_wrong">Původní heslo je neplatné</string>
+  <string name="password_empty">Heslo nebylo vyplněno</string>
+  <string name="password_not_match">Zadaná hesla nesouhlasí</string>
+  <string name="password_too_long">Heslo je příliš dlouhé (max. 32 znaků)</string>
+  <string name="set_password_first">Nejprve nastavte heslo</string>
   <!-- About -->
   <!-- Contributors -->
+  <string name="no_internet">Zkontrolujte připojení k internetu</string>
   <!-- Help -->
+  <string name="misspelled">Není „Adiutor“ překlep?</string>
+  <string name="misspelled_summary">Výraz „adiutor“ pochází z latiny a znamená „pomocník“.</string>
+  <string name="have_to_donate">Chci-li používat prémiové funkce, musím přispět na vývoj?</string>
+  <string name="have_to_donate_summary">Ne, tato aplikace je open source. Pokud chcete, můžete si ji sami sestavit. Prémiové funkce jsou ve výchozím stavu povoleny jakmile provedete sestavení a ladění apk balíčku, takže není potřeba přepisovat jediný řádek kódu.</string>
+  <string name="cpu_freq_not_sticking">Proč je mnou nastavená frekvence procesoru ignorována?</string>
+  <string name="feature_not_appearing">Proč se nezobrazují funkce X a Y?</string>
+  <string name="feature_not_appearing_summary">Zobrazeny jsou pouze funkce podporované vaším zařízením.</string>
+  <string name="feature_function">Co dělá funkce X?</string>
+  <string name="feature_function_summary">Pokud nevíte, co daná funkce dělá, prostě na ni nesahejte. Předtím, než si začnete hrát se svým drahým hardwarem, najděte si raději více informací.</string>
+  <string name="add_new_features">Bylo by možné přidat funkci X či Y?</string>
+  <string name="add_new_features_summary">Těžko říci. Snažíme se přidat co nejvíce funkcí, ale je obtížné učinit aplikaci univerzální pro všechna zařízení.</string>
 </resources>

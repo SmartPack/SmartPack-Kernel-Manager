@@ -563,4 +563,11 @@
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="cpu_freq_not_sticking_summary">Hal ini dapat terjadi dengan berbagai alasan. Sekarang banyak kernel yang mempunyai sistem HotPlug yang dapat mengatur frekuensi CPU dan CyanogenMod mempunya implementasi CPU boost sendiri yang mengatur frekuensinya. Saya menyarankan Anda untuk tidak menyentuh frekuensi CPU dan biarkan kernel melakukan pekerjaannya. Ini juga termasuk pada fungsi-fungsi lainnya! Jika mereka tidak berubah, mungkin karena kernel/sistem tidak menginginkan Anda merubahnya.</string>
+  <string name="feature_not_appearing">Mengapa fitur x dan y tidak muncul?</string>
+  <string name="feature_not_appearing_summary">Hanya fitur yang didukung perangkatmu yang di tunjukkan!</string>
+  <string name="feature_function">Apa fungsi fitur x sebenarnya?</string>
+  <string name="feature_function_summary">Jika Anda tidak tahu apa fungsi kontrol ini, cukup jangan sentuh itu. Silakan melakukan pencarian yang tepat sebelum bermain dengan perangkatmu yang mahal.</string>
+  <string name="add_new_features">Dapatkah Anda menambahkan fitur x dan y?</string>
+  <string name="add_new_features_summary">Sulit untuk mengatakannya. Saya mencoba untuk menambahkan semua fitur, tetapi sulit untuk membuat app ini universal untuk semua perangkat.</string>
 </resources>

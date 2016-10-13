@@ -15,13 +15,18 @@
   <string name="went_wrong">Нещо се обърка!</string>
   <string name="press_back_again_exit">Натиснете обратно отново, за да излезете</string>
   <string name="cancel">Отказ</string>
-  <string name="ok">ОК</string>
-  <string name="unknown">Неизвестен</string>
+  <string name="ok">Окей</string>
+  <string name="unknown">Неизвестно</string>
   <string name="pirated">Явно Дарителската версия на приложението не е била инсталирана през Google Play. Ако сте я пиратствали, засрамете се!</string>
   <string name="donate">Дарете</string>
   <string name="donate_nope">Няма да се хвана на тая измама!</string>
   <string name="donate_yes">Обичам това приложение. Трябва да даря!</string>
+  <string name="remove_ad">Премахване на рекламата</string>
+  <string name="warning">Предупреждение</string>
+  <string name="gh_ad">Това не е търговска реклама! Не го приемайте сериозно! Просто е един забавен начин да се запълни пространството, когато самата реклама не се зарежда (гледаме към вас потребители на блокировачи за реклами).</string>
   <string name="apply_on_boot">Прилагане при стартиране</string>
+  <string name="options">Опции</string>
+  <string name="more">Още</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Запамети</string>
@@ -39,6 +44,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">пксл</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Статистики</string>
@@ -47,40 +53,160 @@
   <string name="other">Други</string>
   <!-- Menus -->
   <string name="device">Устройство</string>
+  <string name="memory">Памет</string>
   <string name="cpu">Процесор</string>
   <string name="cpu_voltage">Напрежение на процесора</string>
   <string name="thermal">Термични</string>
-  <string name="gpu">Видео карта</string>
+  <string name="gpu">Видеокарта</string>
+  <string name="screen">Екран</string>
+  <string name="sound">Звук</string>
+  <string name="battery">Батерия</string>
+  <string name="led">Светодиод</string>
+  <string name="virtual_memory">Виртуална памет</string>
+  <string name="entropy">Ентропия</string>
+  <string name="downloads">Изтегляния</string>
+  <string name="backup">Резервно копие</string>
+  <string name="profile">Профил</string>
+  <string name="settings">Настройки</string>
+  <string name="about">За приложението</string>
+  <string name="contributors">Сътрудници</string>
+  <string name="help">Помощ</string>
   <!-- Overall -->
+  <string name="offline">Извън линия</string>
+  <string name="core">Ядро %d</string>
+  <string name="gpu_freq">Честота на GPU</string>
+  <string name="refresh">Опресняване</string>
+  <string name="restore">Възстановяване</string>
+  <string name="deep_sleep">Дълбок сън</string>
+  <string name="error_frequencies">Пропадна зареждането на честотите</string>
   <!-- Device -->
+  <string name="processor">Процесор</string>
+  <string name="ram">РАМ</string>
+  <string name="android_version">Версия на Андроид</string>
+  <string name="hardware">Хардуер</string>
+  <string name="architecture">Архитектура</string>
   <!-- Inputs -->
+  <string name="bus">Шина</string>
+  <string name="product">Продукт</string>
+  <string name="version">Версия</string>
   <!-- CPU -->
+  <string name="cpu_max_freq">Максимална честота на ЦП</string>
+  <string name="cpu_min_freq">Минимална честота на ЦП</string>
+  <string name="manual">Наръчник</string>
+  <string name="aggressive">Агресивно</string>
+  <string name="interval">Интервал</string>
   <!-- CPU Voltage -->
   <!-- CPU Hotplug -->
+  <string name="balanced">Балансирано</string>
+  <string name="eco">Еко</string>
+  <string name="eco_mode">Еко режим</string>
+  <string name="first_level">Първо ниво</string>
+  <string name="timer">Таймер</string>
+  <string name="pause">Пауза</string>
+  <string name="core_control">Управление на ядрото</string>
   <!--Thermal-->
+  <string name="poll">Анкета</string>
+  <string name="temp_hysteresis">Температурен хистерезис</string>
+  <string name="temp_safety">Безопасна температура</string>
+  <string name="temp_limit">Температурна граница</string>
   <!-- GPU -->
+  <string name="frequencies">Честоти</string>
   <!-- Screen -->
+  <string name="screen_color">Цвят на екрана</string>
+  <string name="red">Червено</string>
+  <string name="green">Зелено</string>
+  <string name="blue">Синьо</string>
+  <string name="gamma">Гама</string>
+  <string name="contrast">Контраст</string>
+  <string name="brightness">Яркост</string>
+  <string name="min_brightness">Минимална яркост</string>
+  <string name="max_brightness">Максимална яркост</string>
   <!-- Wake -->
+  <string name="center">В средата</string>
+  <string name="area">Област</string>
+  <string name="width">Ширина</string>
+  <string name="height">Височина</string>
   <!-- Sound -->
+  <string name="sound_control">Звуков контрол</string>
   <!-- Battery -->
+  <string name="level">Ниво</string>
+  <string name="voltage">Напрежение</string>
+  <string name="capacity">Капацитет</string>
   <!-- LED -->
+  <string name="speed">Скорост</string>
+  <string name="on">Вкл.</string>
+  <string name="off">Изкл.</string>
   <!-- I/O Scheduler -->
   <!-- Kernel Samepage Merging -->
+  <string name="pages_to_scan">Страници за сканиране</string>
   <!-- Low Memory Killer -->
   <!-- Virtual Memory -->
+  <string name="disksize">Големина на диска</string>
   <!-- Entropy -->
   <!-- Misc -->
+  <string name="android_logger">Влизане в Андроид</string>
+  <string name="autosleep">Автоматично заспиване</string>
+  <string name="userspace">Потребителско пространство</string>
+  <string name="hybrid">Хибрид</string>
+  <string name="hostname">Име на хост</string>
   <!-- Custom Controls -->
+  <string name="welcome">Добре дошли</string>
+  <string name="example">Примери</string>
+  <string name="create">Създаване</string>
+  <string name="control_switch">Превключване</string>
+  <string name="description">Описание</string>
+  <string name="applying">Прилагане</string>
+  <string name="seekbar_min">Минимум</string>
+  <string name="seekbar_max">Макс</string>
+  <string name="seekbar_progress">Напредък</string>
+  <string name="generic_value">Стойност</string>
+  <string name="edit">Редактиране</string>
+  <string name="delete">Изтриване</string>
+  <string name="sure_question">Сигурни ли сте?</string>
+  <string name="name">Име</string>
+  <string name="already_exists">%s вече съществува!</string>
   <!-- Downloads -->
+  <string name="install">Инсталиране</string>
+  <string name="manual_flashing">Ще използвам ръцете ми</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="add">Добавяне</string>
+  <string name="key">Ключ</string>
+  <string name="value">Стойност</string>
+  <string name="key_empty">Ключът не може да бъде празен!</string>
   <!-- Profile -->
+  <string name="no_changes">Няма направени промени!</string>
+  <string name="details">Подробности</string>
+  <string name="press_again_to_apply">Натиснете пак %s, за да се приложи.</string>
+  <string name="current_settings">Текущи настройки</string>
+  <string name="select_all">Избор на всичко</string>
+  <string name="nothing_selected">Нищо не е избрано</string>
   <!-- Recovery -->
+  <string name="reboot">Рестартиране</string>
   <!-- Init.d -->
   <string name="result">Резултат</string>
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="fahrenheit_title">Фаренхайт</string>
+  <string name="user_interface">Потребителски интерфейс</string>
+  <string name="dark_theme">Тъмна тема</string>
+  <string name="banner_resizer">Оразмерител на банер</string>
+  <string name="hide_banner">Скриване на банер</string>
+  <string name="five_sec">5 секунди</string>
+  <string name="ten_sec">10 секунди</string>
+  <string name="twenty_sec">20 секунди</string>
+  <string name="fifty_sec">50 секунди</string>
+  <string name="hide">Скриване</string>
+  <string name="script">Срипт</string>
+  <string name="security">Сигурност</string>
+  <string name="set_password">Задаване на парола</string>
+  <string name="delete_password">Изтриване на паролата</string>
+  <string name="old_password">Стара парола</string>
+  <string name="new_password">Нова парола</string>
+  <string name="old_password_wrong">Старата парола е сгрешена</string>
+  <string name="password_empty">Полето за парола е празно</string>
   <!-- About -->
   <!-- Contributors -->
+  <string name="no_internet">Проверете връзката си с интернет!</string>
   <!-- Help -->
 </resources>

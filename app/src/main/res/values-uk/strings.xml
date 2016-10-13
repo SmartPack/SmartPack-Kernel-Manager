@@ -18,11 +18,18 @@
   <string name="cancel">Скасувати</string>
   <string name="ok">Ок</string>
   <string name="unknown">Невідомо</string>
+  <string name="license_invalid">Дякуємо за придбання програми! На жаль ліцензію не вдалося перевірити. Будь ласка, спробуйте ще раз пізніше. Якщо програма не працює, будь ласка, зв\'яжіться зі мною.</string>
   <string name="donate">Підтримати</string>
+  <string name="ad_here">Ваша реклама може бути тут</string>
   <string name="remove_ad">Видалити рекламу</string>
   <string name="warning">Попередження</string>
   <string name="apply_on_boot">Застосувати під час завантаження</string>
+  <string name="apply_on_boot_text">Застосування налаштувань за %d секунд.</string>
+  <string name="apply_on_boot_complete">Застосування налаштувань завершено.</string>
+  <string name="apply_on_boot_canceled">Застосування налаштувань скасовано.</string>
   <string name="not_in_range">Не в діапазоні</string>
+  <string name="options">Налаштування</string>
+  <string name="more">Більше</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Зберегти</string>
@@ -45,8 +52,10 @@
   <string name="tools">Інструменти</string>
   <string name="other">Інше</string>
   <!-- Menus -->
+  <string name="overall">Загальні</string>
   <string name="device">Пристрій</string>
   <string name="memory">Пам’ять</string>
+  <string name="inputs">Ввід</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU Voltage</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
@@ -56,11 +65,14 @@
   <string name="wake">Пробудження</string>
   <string name="sound">Звук</string>
   <string name="battery">Акумулятор</string>
+  <string name="led">LED-індикатор</string>
   <string name="io_scheduler">Планувальник вводу/виводу</string>
   <string name="ksm">ядро злиття схожих сторінок</string>
+  <string name="lmk">Очищення пам\'яті</string>
   <string name="virtual_memory">Віртуальна пам\'ять</string>
   <string name="entropy">Ентропія</string>
   <string name="misc">Різне</string>
+  <string name="custom_controls">Функції користувача</string>
   <string name="downloads">Завантаження</string>
   <string name="backup">Резервна копія</string>
   <string name="build_prop_editor">Редактор build.prop</string>
@@ -69,26 +81,42 @@
   <string name="initd">Init.d</string>
   <string name="settings">Налаштування</string>
   <string name="about">Про додаток</string>
+  <string name="contributors">Автори та перекладачі</string>
+  <string name="help">Допомога</string>
   <!-- Overall -->
   <string name="offline">Офлайн</string>
   <string name="core">Ядро %d</string>
+  <string name="gpu_freq">Частота GPU</string>
   <string name="refresh">Оновити</string>
   <string name="reset">Скинути</string>
   <string name="restore">Відновити</string>
   <string name="deep_sleep">Глибокий сон</string>
   <string name="uptime">Час роботи</string>
+  <string name="error_frequencies">Не вдалося завантажити частоти</string>
   <string name="unused_frequencies">Невикористовувані частоти</string>
   <!-- Device -->
   <string name="processor">Процесор</string>
   <string name="vendor">Виробник</string>
   <string name="features">Особливості</string>
+  <string name="ram">Оперативна Пам\'ять</string>
   <string name="android_version">Версія Android</string>
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Кодове ім\'я Android</string>
   <string name="fingerprint">Відбитки пальців</string>
+  <string name="build_display_id">Номер збірки</string>
+  <string name="rom">Прошивка</string>
+  <string name="bootloader">Завантажувач</string>
+  <string name="hardware">Устаткування</string>
+  <string name="architecture">Архітектура</string>
   <!-- Inputs -->
+  <string name="bus">Шина</string>
+  <string name="product">Продукт</string>
   <string name="version">Версія</string>
+  <string name="handlers">Обробники</string>
   <!-- CPU -->
+  <string name="cores_singular">%d ядро</string>
+  <string name="cores">%d ядра</string>
+  <string name="no_offline_core">Ви не можете вимкнути це ядро!</string>
   <string name="cpu_max_freq">Макс. частота CPU</string>
   <string name="cpu_max_freq_summary">Встановлення максимальної частоти CPU.</string>
   <string name="cpu_min_freq">Мін. частота CPU</string>
@@ -98,6 +126,9 @@
   <string name="cpu_governor">Планувальник CPU</string>
   <string name="cpu_governor_summary">Планувальник CPU визначає, як буде поводити себе процесор у відповідь на зміни робочого навантаження. Зміна планувальника буде впливати на те, як CPU змінює робочі частоти.</string>
   <string name="cpu_governor_tunables">Параметри планувальника CPU</string>
+  <string name="governor_tunables_summary">Різні параметри конфігурації які залежать від планувальника.</string>
+  <string name="tunables_error">%s не може бути налаштований</string>
+  <string name="manual">Довідник</string>
   <string name="mc_power_saving">Багатоядерне енергозбереження</string>
   <string name="mc_power_saving_summary">Намагатися згрупувати задачі для використання найменшої кількості ядер CPU.</string>
   <string name="disabled">Вимкнено</string>

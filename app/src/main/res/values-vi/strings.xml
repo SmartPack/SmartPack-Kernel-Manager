@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Áp dụng thiết đặt hoàn tất.</string>
   <string name="apply_on_boot_canceled">Áp dụng thiết đặt hủy bỏ.</string>
   <string name="not_in_range">Không có trong phạm vi</string>
+  <string name="options">Tuỳ chọn</string>
+  <string name="more">Nhiều hơn</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Quyền ghi vào bộ nhớ bị từ chối!</string>
   <!-- Editor -->
@@ -478,6 +480,7 @@
   <string name="dark_theme">Chủ đề tối</string>
   <string name="material_icon">Biểu tượng phẳng</string>
   <string name="banner_resizer">Thay đổi kích thước Banner</string>
+  <string name="hide_banner">Ẩn banner</string>
   <string name="force_cards">Bắt buộc dạng thẻ</string>
   <string name="force_cards_summary">Sử dụng dạng thẻ cho các mục nếu có thể.</string>
   <string name="instant">Ngay lập tức</string>

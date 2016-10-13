@@ -15,18 +15,26 @@
   <!-- File Picker -->
   <!-- Units -->
   <string name="mhz">MHz</string>
+  <string name="celsius">ºC</string>
+  <string name="fahrenheit">ºF</string>
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">min</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
+  <string name="statistics">Estadístiques</string>
   <string name="kernel">Kernel</string>
   <string name="tools">Ferramientes</string>
   <string name="other">Otru</string>
   <!-- Menus -->
+  <string name="device">Preséu</string>
+  <string name="memory">Memoria</string>
+  <string name="inputs">Entraes</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltaxe de CPU</string>
   <string name="cpu_hotplug">Hotplug de CPU</string>
@@ -36,26 +44,41 @@
   <string name="wake">Esconsueñu</string>
   <string name="sound">Soníu</string>
   <string name="battery">Batería</string>
+  <string name="led">LED</string>
   <string name="io_scheduler">Planificador d\'E/S</string>
   <string name="ksm">Amiestu samepage del kernel</string>
+  <string name="lmk">Asesín de memoria baxa</string>
   <string name="virtual_memory">Memoria virtual</string>
   <string name="entropy">Entropía</string>
+  <string name="misc">Varios</string>
   <string name="downloads">Descargues</string>
   <string name="backup">Copies de seguranza</string>
   <string name="build_prop_editor">Editor del build.prop</string>
   <string name="profile">Perfil</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">Nel arranque</string>
   <string name="settings">Axustes</string>
+  <string name="about">Tocante a</string>
+  <string name="contributors">Collaboradores</string>
+  <string name="help">Ayuda</string>
   <!-- Overall -->
   <string name="offline">Fuera de llinia</string>
   <string name="core">Nucleu %d</string>
+  <string name="gpu_freq">Frecuencia de GPU</string>
+  <string name="refresh">Refrescar</string>
+  <string name="reset">Reafitar</string>
   <string name="restore">Restaurar</string>
   <string name="uptime">Tiempu prendíu</string>
   <!-- Device -->
   <string name="features">Carauterístiques</string>
   <!-- Inputs -->
+  <string name="version">Versión</string>
+  <string name="handlers">Remanadores</string>
   <!-- CPU -->
+  <string name="cores_singular">%d nucleu</string>
+  <string name="cores">%d nucleos</string>
+  <string name="no_offline_core">¡Nun pue apagar esti nucleu!</string>
   <string name="cpu_max_freq">Frecuencia máxima de CPU</string>
   <string name="cpu_max_freq_summary">Afita la frecuencia máxima a la que la CPU escala.</string>
   <string name="cpu_min_freq">Frecuencia mínima de CPU</string>
@@ -65,6 +88,8 @@
   <string name="cpu_governor">Gobernador de CPU</string>
   <string name="cpu_governor_summary">El gobernador de CPU determina como la CPU se comporta en rempuesta a camudancies na carga de trabayu. El cambéu de gobernador tendrá impautu de como la CPU escala pente los pasos de frecuencia disponibles na to CPU.</string>
   <string name="cpu_governor_tunables">Axustes finos del gobernador de CPU</string>
+  <string name="tunables_error">%s nun pue afinase</string>
+  <string name="manual">Manual</string>
   <string name="mc_power_saving">Aforru d\'enerxía multi-nucleu</string>
   <string name="mc_power_saving_summary">Intenta axuntar les xeres nos menos nucleos posibles.</string>
   <string name="disabled">Deshabilitáu</string>
@@ -184,6 +209,7 @@
   <string name="cycle_down_summary">Ciclos a esperar dempués del caberu eventu hotplug pa desconeutar otru nucleu.</string>
   <string name="cycle_up_summary">Ciclos a esperar dempués del caberu eventu hotplug pa coneutar otru nucleu.</string>
   <string name="core_control">Control de nucleos</string>
+  <string name="hcube">H-Cube</string>
   <!--Thermal-->
   <string name="thermal_info">Usa namái un controlador térmicu dende les opciones de darréu. Usando más al mesmu tiempu quiciabes causen un comportamientu inesperáu.</string>
   <string name="thermald">Thermald</string>
@@ -221,6 +247,8 @@
   <string name="check_interval">Intervalu de comprobación</string>
   <string name="shutdown_temp">Temperatura d\'apagáu</string>
   <!-- GPU -->
+  <string name="frequencies">Frecuencies</string>
+  <string name="gpu_2d_freq">Frecuencia de 2D GPU</string>
   <string name="gpu_2d_max_freq">Frecuencia máxima de GPU 2D</string>
   <string name="gpu_2d_max_freq_summary">Afita la frecuencia máxima a la que la GPU 2D escala.</string>
   <string name="gpu_max_freq">Frecuencia máxima de GPU</string>
@@ -250,6 +278,7 @@
   <string name="screen_value">Valor de pantalla</string>
   <string name="screen_contrast">Contraste de pantalla</string>
   <string name="high_brightness_mode">Mou de rellumu altu</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">Colloraos buxos</string>
   <string name="red_mids">Colloraos medios</string>
@@ -314,6 +343,9 @@
   <string name="pocket_mode">Mou cartera</string>
   <string name="power_key_suspend">Suspensión de tecla prendíu</string>
   <string name="power_key_suspend_summary">Habilitando esto apagaránse los controles d\'esconsueñu cuando s\'apague la pantalla cola tecla prendíu.</string>
+  <string name="area">Área</string>
+  <string name="width">Anchor</string>
+  <string name="height">Altor</string>
   <string name="vibration_strength">Fuercia de vibración</string>
   <!-- Sound -->
   <string name="sound_control">Control de soníu</string>
@@ -330,6 +362,9 @@
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">Afita una llende pa la capacidá a la que la batería cargará pasando\'l valor ente 0 y 100.</string>
   <!-- LED -->
+  <string name="intensity">Intensidá</string>
+  <string name="speed">Velocidá</string>
+  <string name="notification">Avisu</string>
   <string name="test">Prueba</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Almacenamientu internu</string>
@@ -340,6 +375,7 @@
   <string name="scheduler_tunable_summary">Los elementos de delles configuraciones que tán venceyaes al planificador.</string>
   <string name="read_ahead">Llectura anticipada</string>
   <string name="read_ahead_summary">El valor de llectura anticipada na memoria\'l teléfonu.</string>
+  <string name="iostats">Estadístiques d\'E/S</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplicaciones nel primer planu</string>
@@ -353,6 +389,8 @@
   <string name="medium">Mediu</string>
   <string name="very_aggressive">Peragresivu</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="zswap">ZSWAP</string>
   <!-- Entropy -->
   <string name="available">Disponible</string>
   <string name="poolsize">Tamañu de reserva</string>
@@ -393,7 +431,11 @@
   <!-- Custom Controls -->
   <string name="edit">Editar</string>
   <string name="delete">Desaniciar</string>
+  <string name="sure_question">¿Tas seguru?</string>
   <string name="name">Nome</string>
+  <string name="already_exists">¡%s yá esiste!</string>
+  <string name="exported_item">%1$s esportóse a %2$s</string>
+  <string name="name_empty">¡El nome ta baleru!</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="cwm_recovery">CWM Recovery</string>
@@ -404,6 +446,9 @@
   <string name="flashing">Flaxando</string>
   <string name="restoring">Restaurando</string>
   <!-- Backup -->
+  <string name="boot_partition">Partición /boot</string>
+  <string name="recovery_partition">Particion del /recovery</string>
+  <string name="fota_partition">Partición /fota</string>
   <!-- Build prop Editor -->
   <string name="key">Clave</string>
   <string name="value">Valor</string>
@@ -419,7 +464,12 @@
   <string name="executing">Executando</string>
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="fahrenheit_title">Fahrenheit</string>
   <string name="dark_theme">Tema escuru</string>
+  <string name="five_sec">5 segundos</string>
+  <string name="ten_sec">10 segundos</string>
+  <string name="twenty_sec">20 segundos</string>
+  <string name="fifty_sec">50 segundos</string>
   <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copia\'l logcat a /sdcard/logcat.txt</string>
@@ -428,6 +478,9 @@
   <string name="driver_message">Mensaxe\'l controlador</string>
   <string name="driver_message_summary">Copia\'l mensaxe del controlador (dmesg) a /sdcard/dmesg.txt</string>
   <!-- About -->
+  <string name="libraries_used">Biblioteques usaes</string>
   <!-- Contributors -->
+  <string name="commits">%d unvios</string>
+  <string name="no_internet">¡Comprueba la conexón d\'internet, por favor!</string>
   <!-- Help -->
 </resources>

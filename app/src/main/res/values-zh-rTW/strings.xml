@@ -33,6 +33,8 @@
   <string name="apply_on_boot_complete">設定值套用 成功！</string>
   <string name="apply_on_boot_canceled">設定值套用 已取消。</string>
   <string name="not_in_range">不在有效的範圍內</string>
+  <string name="options">選項</string>
+  <string name="more">更多</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">系統權限拒絕對裝置進行寫入</string>
   <!-- Editor -->
@@ -90,6 +92,7 @@
   <string name="settings">設定</string>
   <string name="about">關於</string>
   <string name="contributors">貢獻者</string>
+  <string name="help">説明</string>
   <!-- Overall -->
   <string name="offline">離線</string>
   <string name="core">核心 %d</string>
@@ -455,6 +458,7 @@
   <string name="name">名稱</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="install">安装</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">我自己來</string>

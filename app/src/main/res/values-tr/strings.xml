@@ -10,16 +10,16 @@
   <string name="no_busybox">Busybox yüklü değil</string>
   <!-- Security -->
   <string name="password">Şifre</string>
-  <string name="password_wrong">Yanlış şifre</string>
-  <string name="select_picture">Resim seçin</string>
+  <string name="password_wrong">Şifre yanlış</string>
+  <string name="select_picture">Resim Seçin</string>
   <string name="no_picture">Resim Yok</string>
-  <string name="went_wrong">Birşeyler yanlış gitti !</string>
-  <string name="press_back_again_exit">Çıkmak için geri tuşuna basın</string>
+  <string name="went_wrong">Bir şeyler ters gitti!</string>
+  <string name="press_back_again_exit">Çıkmak için geri tuşuna tekrar dokunun</string>
   <string name="cancel">İptal</string>
   <string name="ok">Tamam</string>
   <string name="unknown">Bilinmeyen</string>
-  <string name="pirated">Bağıs uygulaması Google Playden değil gibi gözüküyor! Korsan ise ayıp sana!</string>
-  <string name="donate">Bağış</string>
+  <string name="pirated">Bağış uygulaması Google Play\'den satın alınmamış gibi gözüküyor! Eğer korsan ise, o zaman yazıklar olsun!</string>
+  <string name="donate">Bağış Yap</string>
   <string name="donate_summary">Bu özellik sadece bağıs uygulaması yüklüyken kullanabilir. Ama üzülme. Çünkü bu uygulama açık kaynak kodlu kendin kolayca uygulamayı oluşturabilirsin ve bu denetimi kaldırabilirsin. Ama yinede bize destek olmanı isteriz. Kernel Adiutor kullandığın için teşekkürler! Bağıs uygulamasını satın aldıysanız uygulamayı yeniden başlatmalısınız.</string>
   <string name="donate_nope">Bu aldatmacaya düşmem!</string>
   <string name="donate_yes">Uygulamayı çok sevdim! Bağış yapmalıyım!</string>
@@ -27,16 +27,18 @@
   <string name="remove_ad">Reklamları kaldır</string>
   <string name="warning">Dikkat</string>
   <string name="apply_on_boot">Açılışta uygula</string>
-  <string name="apply_on_boot_text">Ayarlarınız %d saniyede uygulanıyor.</string>
-  <string name="apply_on_boot_complete">Ayarlarınız uygulandı.</string>
-  <string name="apply_on_boot_canceled">Ayar uygulama iptal edildi.</string>
+  <string name="apply_on_boot_text">Ayarlar %d saniyede uygulanıyor.</string>
+  <string name="apply_on_boot_complete">Ayarları uygulama tamamlandı.</string>
+  <string name="apply_on_boot_canceled">Ayarları uygulama iptal edildi.</string>
   <string name="not_in_range">Aralıkta değil</string>
+  <string name="options">Seçenekler</string>
+  <string name="more">Daha Fazla</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Depolama birimine erişiminiz reddedildi!</string>
   <!-- Editor -->
   <string name="save">Kaydet</string>
   <!-- File Picker -->
-  <string name="select_question">Seç %s?</string>
+  <string name="select_question">%s seçilsin mi?</string>
   <string name="wrong_extension">Lütfen %s uzantılı bir dosya seçin.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
@@ -49,6 +51,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">İstatistikler</string>
@@ -60,7 +63,7 @@
   <string name="device">Cihaz</string>
   <string name="memory">Bellek (RAM)</string>
   <string name="inputs">Girdiler</string>
-  <string name="cpu">CPU</string>
+  <string name="cpu">İşlemci</string>
   <string name="cpu_voltage">İşlemci Voltajı</string>
   <string name="cpu_hotplug">İşlemci Hotplug</string>
   <string name="thermal">Termal</string>
@@ -79,7 +82,7 @@
   <string name="custom_controls">Özel denetimler</string>
   <string name="downloads">İndirilenler</string>
   <string name="backup">Yedekleme</string>
-  <string name="build_prop_editor">Build prop Editör</string>
+  <string name="build_prop_editor">Build.prop Düzenleyici</string>
   <string name="profile">Profil</string>
   <string name="recovery">Kurtarma Modu</string>
   <string name="initd">Init.d</string>
@@ -87,6 +90,7 @@
   <string name="settings">Ayarlar</string>
   <string name="about">Hakkında</string>
   <string name="contributors">Katkıda bulunanlar</string>
+  <string name="help">Yardım</string>
   <!-- Overall -->
   <string name="offline">Çevrimdışı</string>
   <string name="core">Çekirdek %d</string>
@@ -192,13 +196,13 @@
   <string name="suspend">Askıya Al</string>
   <string name="suspend_summary">Askıdan al.</string>
   <string name="cpus_boosted">İşlemci hızlandırıldı</string>
-  <string name="cpus_boosted_summary">Aynı anda hızlandırılan maksimum CPU sayısı.</string>
+  <string name="cpus_boosted_summary">Aynı anda hızlandırılan maksimum işlemci sayısı.</string>
   <string name="min_cpu_online">Minimum İşlemci Aktifliği</string>
-  <string name="min_cpu_online_summary">Her zaman online olacak minimum CPU sayısı.</string>
+  <string name="min_cpu_online_summary">Her zaman online olacak minimum işlemci sayısı.</string>
   <string name="max_cpu_online">Maximum İşlemci Aktifliği</string>
-  <string name="max_cpu_online_summary">Her zaman online olacak maksimum CPU sayısı.</string>
-  <string name="max_cpu_online_screen_off">Ekran kapalıyken acık CPU sayısı</string>
-  <string name="max_cpu_online_screen_off_summary">Ekran kapalıyken açık maksimum CPU sayısı.</string>
+  <string name="max_cpu_online_summary">Her zaman online olacak maksimum işlemci sayısı.</string>
+  <string name="max_cpu_online_screen_off">Ekran kapalıyken açık işlemci sayısı</string>
+  <string name="max_cpu_online_screen_off_summary">Ekran kapalıyken açık maksimum işlemci sayısı.</string>
   <string name="suspend_defer_time">Askıya Alma Zamanını Erteleme</string>
   <string name="defer_sampling">Örnekleme Erteleme</string>
   <string name="boost_lock_duration">kilit süresini artırma</string>
@@ -266,8 +270,8 @@
   <string name="cpu_up_rate">Yüksek İşlemci Oranı</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Qualcomm\'un MPDecision\'u için çekirdek-içi bir alternatif. mrg666 tarafından geliştirildi.</string>
-  <string name="min_cpu_online_screen_off">Ekran kapalıyken acık CPU sayısı</string>
-  <string name="min_cpu_online_screen_off_summary">Ekran kapalıyken açık maksimum CPU sayısı.</string>
+  <string name="min_cpu_online_screen_off">Ekran kapalıyken açık işlemci sayısı</string>
+  <string name="min_cpu_online_screen_off_summary">Ekran kapalıyken açık maksimum işlemci sayısı.</string>
   <string name="endurance_level">Dayanıklılık düzeyi</string>
   <string name="endurance_level_summary">Güc tasarruf profili.</string>
   <string name="quad_core_mode">Dört çekirdek modu</string>
@@ -442,23 +446,26 @@
   <string name="s2s_summary">Parmağınızı ekran üstünde kaydırınca ekran kilitlensin.</string>
   <string name="s2s_right">Sağa kaydırma</string>
   <string name="s2s_left">Sola kaydırma</string>
-  <string name="s2s_any">Sola veya sağa kaydırın</string>
+  <string name="s2s_any">Sola veya Sağa kaydırın</string>
   <string name="slide_up">Yukarı kaydır</string>
   <string name="slide_down">Aşağı kaydır</string>
   <string name="slide_left">Sola kaydır</string>
-  <string name="slide_right">Sağa Kaydır</string>
+  <string name="slide_right">Sağa kaydır</string>
   <string name="draw_e">E Çiz</string>
   <string name="draw_o">O Çiz</string>
   <string name="draw_w">W Çiz</string>
   <string name="draw_c">C Çiz</string>
   <string name="draw_m">M Çiz</string>
-  <string name="camera_gesture">Kamera hareketi</string>
+  <string name="camera_gesture">Kamera Hareketi</string>
   <string name="camera_gesture_summary">Ekranda bir halka çizerek varsayılan kamera uygulamasını başltın.</string>
-  <string name="pocket_mode">Cep veya çanta modu</string>
-  <string name="timeout">Zamanaşımı</string>
+  <string name="pocket_mode">Cep Modu</string>
+  <string name="timeout">Zaman aşımı</string>
   <string name="timeout_summary">Ekran kapandıktan sonra uyandırma kontrolleri devre dışı bırakılması için bir süre ayarlayın.</string>
   <string name="power_key_suspend">Güç Anahtarı Askıya Alma</string>
   <string name="power_key_suspend_summary">Ekran güç anahtarı ile devre dışı bırakıldığında bu etkinleştirilmesi uyku modundan çıkarma denetimlerini dönecek.</string>
+  <string name="area">Alan</string>
+  <string name="width">Genişlik</string>
+  <string name="height">Yükseklik</string>
   <string name="vibration_strength">Titreşim Gücü</string>
   <!-- Sound -->
   <string name="sound_control">Ses Denetimi</string>
@@ -489,6 +496,8 @@
   <string name="speed">Hız</string>
   <string name="stock">Stok</string>
   <string name="continuous_light">Sürekli ışık</string>
+  <string name="on">Açık</string>
+  <string name="off">Kapalı</string>
   <string name="fade_in">Aydınlat</string>
   <string name="fade_out">Karart</string>
   <string name="test">Test</string>
@@ -503,7 +512,7 @@
   <string name="read_ahead_summary">Telefon hafızasına önceden okuma değeri.</string>
   <string name="rotational">Dönel depolama</string>
   <string name="rotational_summary">Cihazı dönel hafıza olarak onar.</string>
-  <string name="iostats">G/ç istatistikleri</string>
+  <string name="iostats">G/ç İstatistikleri</string>
   <string name="iostats_summary">Bu depolama aygıtı için G / Ç istatistiklerini koruyun. Bu G/Ç izleme uygulamalarını devre dışı bırakabilir.</string>
   <string name="add_random">Rasgele ekle</string>
   <string name="add_random_summary">Dönel depolama için entropi çizin.</string>
@@ -518,8 +527,8 @@
   <string name="sleep_milliseconds">Taramalar arasında uyku</string>
   <string name="deferred_timer">Ertelenmiş zamanlayıcı</string>
   <string name="deferred_timer_summary">Cpu kullanımını azaltır fakat bellek tasarrufunu azaltır.</string>
-  <string name="max_cpu_usage">Max CPU kullanımı</string>
-  <string name="max_cpu_usage_summary">Sayfaları birleştirme sırasında kullanmak için Max CPU yüzdesi.</string>
+  <string name="max_cpu_usage">Maks. işlemci kullanımı</string>
+  <string name="max_cpu_usage_summary">Sayfaları birleştirme sırasında kullanmak için maks. işlemci yüzdesi.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Önplan Uygulamaları</string>
   <string name="lmk_adaptive">Adaptif bellek katili</string>
@@ -589,15 +598,15 @@
   <string name="welcome">Hoşgeldiniz</string>
   <string name="custom_controls_summary">Bu bölümde diğer kontrolleri oluşturabilir veya dışardan aktarabilirsiniz fakat şu anlık uygulamada bulunmamaktadır.</string>
   <string name="example">Örnek</string>
-  <string name="custom_controls_example_summary">Örnek mi ihtiyacınız var? Tıklayın &lt; bir href = \"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\" &gt; &lt; bir &gt; burada.</string>
+  <string name="custom_controls_example_summary">Örneğe mi ihtiyacınız var? Buraya &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;tıklayın&lt;a&gt;.</string>
   <string name="create">Oluştur</string>
-  <string name="import_item">İçeri aktar</string>
+  <string name="import_item">İçe Aktar</string>
   <string name="control_switch">Değiştir</string>
   <string name="control_seekbar">Atlama barı</string>
   <string name="title">Başlık</string>
   <string name="description">Açıklama</string>
   <string name="applying">Uygulanıyor</string>
-  <string name="seekbar_min">Dakika</string>
+  <string name="seekbar_min">Minimum</string>
   <string name="seekbar_max">Maksimum</string>
   <string name="seekbar_progress">İlerleme</string>
   <string name="control_generic">Genel</string>
@@ -605,7 +614,7 @@
   <string name="required">gerekli</string>
   <string name="output">Çıktı</string>
   <string name="edit">Düzenle</string>
-  <string name="export">Dışarı aktar</string>
+  <string name="export">Dışa Aktar</string>
   <string name="delete">Sil</string>
   <string name="sure_question">Emin misiniz?</string>
   <string name="name">Ad</string>
@@ -615,34 +624,34 @@
   <string name="import_malformed">Alma dosyası hatalı biçimlendirilmiş!</string>
   <string name="import_wrong_version">Alınan dosyanın sürümü çok eski!</string>
   <!-- Downloads -->
-  <string name="download_error">%s dosyayı indirme başarsız.</string>
+  <string name="download_error">%s indirme başarsız.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
-  <string name="check_md5">Md5 kontrolü</string>
+  <string name="check_md5">Md5 kontrol ediliyor</string>
   <string name="install">Yükle</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
-  <string name="manual_flashing">Ben ellerimi kullanırım</string>
+  <string name="manual_flashing">Ellerimi kullanacağım</string>
   <string name="file_location">Dosya %s içine kaydedildi</string>
   <string name="backing_up">Yedekleniyor</string>
-  <string name="flashing">Flashlanıyor</string>
-  <string name="restoring">Geri yükleme</string>
+  <string name="flashing">Flaşlanıyor</string>
+  <string name="restoring">Geri Yükleniyor</string>
   <!-- Backup -->
-  <string name="boot_partition">Önyükleme bölümü</string>
-  <string name="recovery_partition">Kurtarma bölümü</string>
+  <string name="boot_partition">Boot bölümü</string>
+  <string name="recovery_partition">Recovery bölümü</string>
   <string name="fota_partition">Fota bölümü</string>
-  <string name="flash">Flaş</string>
+  <string name="flash">Flaşla</string>
   <!-- Build prop Editor -->
   <string name="add">Ekle</string>
   <string name="item_count">%s öğe</string>
-  <string name="items_count">%s öğeler</string>
+  <string name="items_count">%s öğe</string>
   <string name="key">Anahtar</string>
   <string name="value">Değer</string>
   <string name="key_empty">Anahtar boş olamaz!</string>
   <!-- Profile -->
   <string name="apply_on_boot_not_available">Profil modunda yaptığınız değişiklikler cihaz başına ne kadar etkili olmayacaktır.</string>
-  <string name="profile_warning">Yaptığınız bütün değişiklikler profilinize kaydedildi.Ama dikkat! ayarlarınız cihaz başlatılırken etkili olmayacaktır.</string>
+  <string name="profile_warning">Yaptığınız bütün değişiklikler profilinize kaydedildi. Ama dikkat! Ayarlarınız cihaz başlatılırken etkili olmayacaktır.</string>
   <string name="no_changes">Hiçbir değişiklik yapılmadı!</string>
-  <string name="apply_question">Uygula %s?</string>
+  <string name="apply_question">%s uygulansın mı?</string>
   <string name="append">Ekle</string>
   <string name="details">Ayrıntılar</string>
   <string name="press_again_to_apply">Tekrar uygulamak için %s düğmesine basın.</string>
@@ -651,23 +660,24 @@
   <string name="profile_tasker_toast">Profil uygulanırken bir bildirim göster</string>
   <string name="profile_tile">Profil karosu</string>
   <string name="profile_tile_summary">Bir profil seçmenizi sağlayan bir karo göster.</string>
-  <string name="profile_select">Profil seç</string>
+  <string name="profile_select">Profil Seçin</string>
   <string name="applying_profile">%s Uygulanıyor!</string>
-  <string name="no_profiles">Profili bulunamadı! Bundan önce oluşturmanız gerekir.</string>
-  <string name="sections_disabled">Tüm bölümleri devre dışı bırakıldı! Senin için profili yok.</string>
-  <string name="new_mode">New</string>
-  <string name="current_settings">Geçerli Ayarlar</string>
-  <string name="select_all">Tümünü Seç</string>
+  <string name="no_profiles">Profil bulunamadı! Bunları önce oluşturmanız gerekiyor.</string>
+  <string name="sections_disabled">Tüm bölümler devre dışı bırakıldı! Sizin için hiçbir profil yok.</string>
+  <string name="new_mode">Yeni</string>
+  <string name="current_settings">Geçerli ayarlar</string>
+  <string name="select_all">Tümünü seç</string>
   <string name="nothing_selected">Hiçbir şey seçilmedi</string>
+  <string name="profile_empty">Profil boş!</string>
   <!-- Recovery -->
-  <string name="reboot">Yeniden başlat</string>
-  <string name="reboot_soft">Yazılımsal yeniden başlatma</string>
-  <string name="reboot_recovery">Kurtarma Modunda Yeniden Başlat</string>
+  <string name="reboot">Yeniden Başlat</string>
+  <string name="reboot_soft">Yazılımsal Yeniden Başlat</string>
+  <string name="reboot_recovery">Recovery Modunda Yeniden Başlat</string>
   <string name="wipe_data">Verileri Sil</string>
   <string name="wipe_cache">Önbelleği sil</string>
-  <string name="flash_zip">Zip flashla</string>
+  <string name="flash_zip">Zip Dosyası Flaşla</string>
   <string name="add_action_first">Önce bir eylem eklemeniz gerekir!</string>
-  <string name="flash_now_confirm">Eylemleri çalıştırmak istiyor musunuz? Sizin cihazınız yeniden başlatma gibi kurtarma ve onları eklediğiniz gibi eylemleri sırayla çalışır.</string>
+  <string name="flash_now_confirm">Eylemleri çalıştırmak istiyor musunuz? Cihazınız recovery modunda yeniden başlayacak ve eylemleri eklediğiniz sırayla çalışacaktır.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d taklit et</string>
   <string name="emulate_initd_summary">Aygıtınızın varsayılan olarak Init.d desteklemiyorsa, açmak için etkinleştirebilirsiniz.</string>
@@ -678,10 +688,10 @@
   <string name="on_boot_welcome_summary">Bu bölüm size cihaz açılırken ne olduğunu gösterir. boşsa hiçbir şey olmamış demektir.</string>
   <string name="delete_question">%s silinsin mi?</string>
   <string name="arguments">Bağımsız değişkenler: %s</string>
-  <string name="disable_question">Devre dışı bırakılsınmı %s?</string>
+  <string name="disable_question">%s devre dışı bırakılsın mı?</string>
   <!-- Settings -->
   <string name="fahrenheit_title">Fahrenayt</string>
-  <string name="fahrenheit_summary">Sicaklıllar fahrenayt cinsinden gösterilsin.</string>
+  <string name="fahrenheit_summary">Sıcaklık ölçümü için fahrenayt kullan.</string>
   <string name="force_english">İngilizce dilini kullanmaya zorla</string>
   <string name="user_interface">Kullanıcı Arayüzü</string>
   <string name="dark_theme">Koyu tema</string>
@@ -709,15 +719,16 @@
   <string name="driver_message_summary">Sürücü iletisi (dmesg)  /sdcard/dmesg.txt adresine kopyalandı</string>
   <string name="security">Güvenlik</string>
   <string name="set_password">Şifre Belirle</string>
-  <string name="delete_password">Parolayı sil</string>
+  <string name="set_password_summary">Kernel Adiutor\'u bir şifre ayarlayarak koruyabilirsiniz. Bu uygulamayı her açtığınızda bu şifreyi girmeniz gerekir. Eğer unutursanız, cihazınızın ayarlarından bu uygulamanın verilerini silin. Korkmayın şifrenizi paylaşmayacağım.</string>
+  <string name="delete_password">Şifreyi Sil</string>
   <string name="old_password">Eski parola</string>
-  <string name="new_password">Yeni parola</string>
-  <string name="confirm_new_password">Yeni parolayı onayla</string>
-  <string name="old_password_wrong">Eski parola yanlış</string>
-  <string name="password_empty">Parola kısmı boş</string>
-  <string name="password_not_match">Yeni parola onayı eşleşmiyor</string>
-  <string name="password_too_long">Parola çok uzun (en fazla 32 karakter olabiir)</string>
-  <string name="set_password_first">İlk olarak parola ayarlayın</string>
+  <string name="new_password">Yeni şifre</string>
+  <string name="confirm_new_password">Yeni şifreyi onayla</string>
+  <string name="old_password_wrong">Eski şifre yanlış</string>
+  <string name="password_empty">Şifre boş</string>
+  <string name="password_not_match">Şifreler eşleşmiyor</string>
+  <string name="password_too_long">Şifre çok uzun (en fazla 32 karakter)</string>
+  <string name="set_password_first">İlk olarak bir şifre ayarlayın</string>
   <string name="fingerprint_summary">Parmak izi güvenlik kontrol geçmek için kullanın. Uzun kayıtlı parmak izleri var gibi bu işe yarar.</string>
   <string name="sections">Bölümler</string>
   <!-- About -->
@@ -727,15 +738,15 @@
   <string name="commits">%d işlendi</string>
   <string name="no_internet">Lütfen internet bağlantınızı kontrol edin!</string>
   <!-- Help -->
-  <string name="misspelled">Neden \"Adiutor\" yanlış?</string>
-  <string name="misspelled_summary">Adiutor Latin ve yardımcı anlamına gelir.</string>
+  <string name="misspelled">Neden \"Adiutor\" sözcüğünde bir yazım hatası yaptınız?</string>
+  <string name="misspelled_summary">Adiutor, Latincedir ve yardımcı anlamına gelir.</string>
   <string name="have_to_donate">Bu premium özelliklerini kullanmak için bağış var mı?</string>
   <string name="have_to_donate_summary">Hayır bu uygulama Açık Kaynak kollu sen kolayca yapabilirsin bağış özellikleri sen hata ayıklama uygulamasını yaptıktan sonra açılır. Kodları değiştirmene gerek yok.</string>
-  <string name="cpu_freq_not_sticking">Neden benim kararlı CPU frekansım yok?</string>
+  <string name="cpu_freq_not_sticking">Neden benim kararlı işlemci frekansım yok?</string>
   <string name="feature_not_appearing">x ve y özellikleri neden gösterilmiyor?</string>
   <string name="feature_not_appearing_summary">Cihazınız tarafından desteklenen özellikleri gösterilir!</string>
   <string name="feature_function">x in özelliği nedir?</string>
   <string name="feature_function_summary">Ne bu kontrol ediyor bilmiyorsanız, o zaman sadece dokunmayın. pahalı donanım ile oynamadan önce lütfen ön araştırma yapın.</string>
   <string name="add_new_features">X ve y özelliği ekleyebilir misin?</string>
-  <string name="add_new_features_summary">Bunu söylemek zordur. Tüm özellikleri eklemek çalışıyorum ama bu uygulamayı her cihaz için kullanılır duruma getirmek zordur.</string>
+  <string name="add_new_features_summary">Bunu söylemek zordur. Tüm özellikleri eklemek için çalışıyorum ama bu uygulamayı her cihaz için kullanılır duruma getirmek zordur.</string>
 </resources>

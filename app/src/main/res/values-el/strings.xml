@@ -18,17 +18,24 @@
   <string name="cancel">Ακύρωση</string>
   <string name="ok">OK</string>
   <string name="unknown">Άγνωστη</string>
+  <string name="license_invalid">Ευχαριστώ για την αγορά της εφαρμογής δωρεάς! Δυστυχώς ο έλεγχος της άδειας απέτυχε. Παρακαλώ δοκιμάστε ξανά αργότερα. Εάν συνεχιστεί το πρόβλημα, παρακαλώ επικοινωνήστε μαζί μου.</string>
   <string name="pirated">Φαίνεται όπως δεν αγοράστηκε με δωρεά app μέσω του Play Store! Αν χρησιμοποιείται πειρατικά την εφαρμογή, τότε ντροπή σε σας!</string>
   <string name="donate">Δωρεά</string>
   <string name="donate_summary">Αυτή η δυνατότητα είναι διαθέσιμη μόνο όταν είναι εγκατεστημένη η εφαρμογή δωρεά! Μην ανησυχείτε όμως. Επειδή αυτή η εφαρμογή είναι open source μπορείτε εύκολα να δημιουργήσετε εσείς και να καταργήσετε αυτόν τον έλεγχο. Αλλά ελπίζω να σας υποστηρίξει την ανάπτυξη ούτως ή άλλως. Ευχαριστώ για τη χρήση του πυρήνα Adiutor! Μόλις έχετε αγοράσει το δωρεά app πρέπει να κάνετε επανεκκίνηση πυρήνα Adiutor για να ενεργοποιήσετε όλες τις δυνατότητες.</string>
   <string name="donate_nope">Δεν πέφτω για αυτή την απάτη!</string>
   <string name="donate_yes">Λατρεύω αυτό την εφαρμογή. Πρέπει να δωρίσω!</string>
+  <string name="ad_here">Η διαφήμιση σας θα μπορούσε να είναι εδώ</string>
+  <string name="remove_ad">Αφαίρεση διαφήμισης</string>
   <string name="warning">Προειδοποίηση</string>
+  <string name="gh_ad">Αυτή είναι μια μη εμπορική διαφήμιση! Μην το πάρετε στα σοβαρά! Είναι απλά ένας αστείος τρόπος να γεμίσει το κενό όταν μια πραγματική διαφήμιση δεν φορτώνει (κοιτάζω εσάς χρήστες του adblock).</string>
+  <string name="open_ad_anyway">Ανοίξτε την διαφήμιση ούτως ή άλλως</string>
   <string name="apply_on_boot">Εφαρμογή κατά την εκκίνηση</string>
   <string name="apply_on_boot_text">Εφαρμογή των ρυθμίσεων σας σε %d δευτερόλεπτα.</string>
   <string name="apply_on_boot_complete">Εφαρμογή των ρυθμίσεων που έχουν ολοκληρωθεί.</string>
   <string name="apply_on_boot_canceled">Εφαρμογή ρυθμίσεων ακυρώθηκε.</string>
   <string name="not_in_range">Εκτός εμβέλειας</string>
+  <string name="options">Επιλογές</string>
+  <string name="more">Περισσότερα</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Δεν έχετε δικαίωμα πρόσβασης για γράψιμο στο χώρο αποθήκευσης!</string>
   <!-- Editor -->
@@ -47,6 +54,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Στατιστικά</string>
@@ -56,6 +64,7 @@
   <!-- Menus -->
   <string name="overall">Συνολικά</string>
   <string name="device">Συσκευή</string>
+  <string name="memory">Μνήμη</string>
   <string name="inputs">Εισαγωγή</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Τάση CPU</string>
@@ -84,9 +93,11 @@
   <string name="settings">Ρυθμίσεις</string>
   <string name="about">Σχετικά με την εφαρμογή</string>
   <string name="contributors">Χορηγοί</string>
+  <string name="help">Βοήθεια</string>
   <!-- Overall -->
   <string name="offline">Αποσυνδεδεμένος</string>
   <string name="core">Πυρήνας %d</string>
+  <string name="gpu_freq">Συχνότητα της GPU</string>
   <string name="refresh">Ανανέωση</string>
   <string name="reset">Επανεκκίνηση</string>
   <string name="restore">Επαναφορά</string>
@@ -99,8 +110,25 @@
   <string name="vendor">Προμηθευτής</string>
   <string name="features">Δυνατότητες</string>
   <string name="ram">Μνήμη RAM</string>
+  <string name="android_version">Έκδοση Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Κωδική ονομασία Android</string>
+  <string name="fingerprint">Δακτυλικό αποτύπωμα</string>
+  <string name="build_display_id">Αναγνωριστικό Eμφάνισης Έκδοσης</string>
+  <string name="baseband">Βασική Μπάντα</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Αρχικός εκκινητής/Bootloader</string>
+  <string name="hardware">Υλικό</string>
+  <string name="architecture">Αρχιτεκτονική</string>
   <!-- Inputs -->
+  <string name="bus">Δίαυλος</string>
+  <string name="product">Προϊόν</string>
+  <string name="version">Εκδοση</string>
+  <string name="handlers">Χειριστές</string>
   <!-- CPU -->
+  <string name="cores_singular">%d πυρήνας</string>
+  <string name="cores">%d πυρήνες</string>
+  <string name="no_offline_core">Δεν μπορείς να απενεργοποιήσεις αυτόν τον πυρήνα!</string>
   <string name="cpu_max_freq">Μέγιστη Συχνότητα Επεξεργαστή</string>
   <string name="cpu_max_freq_summary">Ορίστε την μέγιστη συχνότητα του Επεξεργαστή.</string>
   <string name="cpu_min_freq">Ελάχιστη Συχνότητα Επεξεργαστή</string>
@@ -110,6 +138,10 @@
   <string name="cpu_governor">Governor Επεξεργαστή</string>
   <string name="cpu_governor_summary">Ο κυβερνήτης της CPU καθορίζει πως συμπεριφέρεται η CPU ανάλογα με τις αλλαγές που συμβαίνουν στο φόρτο εργασίας. Αλλάζοντας τον κυβερνήτη επηρεάζει πως θα αλλάζει τις συχνότητες λειτουργίας που είναι διαθέσιμες η CPU.</string>
   <string name="cpu_governor_tunables">Πίνακες αλλαγών Governor επεξεργαστή</string>
+  <string name="governor_tunables_summary">Τα διάφορα στοιχεία ρύθμισης παραμέτρων που εξαρτώνται από τον Κυβερνήτη.</string>
+  <string name="cpu_governor_tunables_read_error">Απέτυχε η ανάγνωση του τρέχοντος κυβερνήτη της CPU.\n\nIf Αυτό είναι ένα γνωστό πρόβλημα, χρησιμοποιείτε μια QCOM big. LITTLE συσκευή. Το σύστημα αναγκάζει την CPU να απενεργοποιεί πυρήνες κάνοντας εξαιρετικά δύσκολο το διάβασμα ειδικών στατιστικών της CPU. Δοκιμάστε να επιλέξετε αυτή την επιλογή ξανά. Η CPU μερικές φορές αρνείται να ενεργοποιήσει ένα πυρήνα.</string>
+  <string name="tunables_error">%s δεν είναι διαθέσιμo προς συντονισμό</string>
+  <string name="manual">Χειροκίνητο</string>
   <string name="mc_power_saving">Εξοικονόμηση ενέργειας πολλαπλών πυρήνων</string>
   <string name="mc_power_saving_summary">Προσπάθησε να εκτελέσεις εργασίες με όσο το δυνατόν λιγότερους πυρήνες.</string>
   <string name="disabled">Απενεργοποιημένο</string>
@@ -141,9 +173,12 @@
   <string name="mpdecision_summary">Qualcomm hotplugging. Μπορεί να έχετε προβλήματα με την αλλαγή συχνότητας, όταν αυτό είναι ενεργοποιημένο.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Μια αντικατάσταση μέσα στον πυρήνα Qualcomm MPDecision. Αναπτύχθηκε από  τον faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Ο αριθμός στις παρενθέσεις δηλώνει τον αριθμό των ενεργών πυρήνων ανά πάσα στιγμή.</string>
+  <string name="insanity">InSaNiTy</string>
   <string name="balanced">Ισορροπημένη</string>
   <string name="performance">Απόδοση</string>
   <string name="conservative">Συντηρητική</string>
+  <string name="eco_insanity">Eco InSaNiTy</string>
   <string name="eco_performance">Eco απόδοση</string>
   <string name="eco_conservative">Eco συντηρητικών</string>
   <string name="tri">Τρι</string>
@@ -153,6 +188,7 @@
   <string name="eco_mode_summary">Μπαταρία λειτουργία εξοικονόμησης για IntelliPlug.</string>
   <string name="hysteresis">Τιμή υστέρησης</string>
   <string name="hysteresis_summary">Τόσο χαμηλότερη είναι η ταχύτερη ανταπόκριση.</string>
+  <string name="cpu_threshold">CPU Ανώτατο όριο</string>
   <string name="suspend">Αναστολή</string>
   <string name="suspend_summary">Πρόληψη για να αναστέλλει.</string>
   <string name="cpus_boosted">Επεξεργαστές ενίσχυσε</string>
@@ -183,6 +219,7 @@
   <string name="fast_lane_min_freq_summary">Θέτει την ελάχιστη συχνότητα για τη CPU όταν η \"γρήγορη λωρίδα\" φτάνει στο παραπάνω φορτίο.</string>
   <string name="offline_load">Σε μη απευθείας σύνδεση φορτίο</string>
   <string name="io_is_busy">ΙΟ απασχολημένο</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
   <string name="first_level">Πρώτο Επίπεδο</string>
   <string name="first_level_summary">Το όριο για ενεργοποίηση όλων των επεξεργαστών.</string>
   <string name="high_load_counter">Μετρητής υψηλού φορτίου</string>
@@ -258,16 +295,64 @@
   <string name="thermal_limit_high">Θερμικό Άνω Όριο</string>
   <string name="temp_limit">Όριο θερμοκρασίας</string>
   <string name="temp_limit_summary">Αν η θερμοκρασία πάει πάνω από, το thermal θα βάλει \"κόφτη\" στην συχνότητα του επεξεργαστή για να μειωθεί η θερμοκρασία.</string>
+  <string name="allowed_low_low">Φάση 1: Επιτρέπεται Χαμηλή Χαμηλή</string>
+  <string name="allowed_low_high">Φάση 1: Επιτρέπεται Χαμηλή Υψηλή</string>
+  <string name="allowed_low_freq">Φάση 1: Επιτρέπεται Χαμηλή Συχνότητα</string>
+  <string name="allowed_mid_low">Φάση 2: Επιτρέπεται Μεσαία Χαμηλή</string>
+  <string name="allowed_mid_high">Φάση 2: Επιτρέπεται Μεσαία Υψηλή</string>
+  <string name="allowed_mid_freq">Φάση 2: Επιτρέπεται Μεσαία Συχνότητα</string>
+  <string name="allowed_max_low">Φάση 3: Επιτρέπεται Μέγιστη Χαμηλή</string>
+  <string name="allowed_max_high">Φάση 3: Επιτρέπεται Μέγιστη Υψηλή</string>
+  <string name="allowed_max_freq">Φάση 3: Επιτρέπεται Μέγιστη Συχνότητα</string>
+  <string name="check_interval">Μεσοδιάστημα Ελέγχου</string>
+  <string name="shutdown_temp">Θερμοκρασία Τερματισμού</string>
   <!-- GPU -->
   <string name="frequencies">Συχνότητες</string>
+  <string name="gpu_2d_freq">GPU 2D Συχνότητα</string>
+  <string name="gpu_2d_max_freq">GPU 2D Μέγιστη Συχνότητα</string>
+  <string name="gpu_2d_max_freq_summary">Ορίστε την μέγιστη 2D συχνότητα που η GPU πάει μέχρι.</string>
   <string name="gpu_max_freq">Ανώτατη Συχνότητα Κάρτας Γραφικών GPU</string>
   <string name="gpu_max_freq_summary">Ρύθμιση ανώτατης συχνότητας για κάρτα γραφικών GPU.</string>
+  <string name="gpu_min_freq">GPU Ελάχιστη Συχνότητα</string>
+  <string name="gpu_min_freq_summary">Ορίστε την ελάχιστη συχνότητα που η GPU ξεκινάει από.</string>
+  <string name="workload">Φόρτος εργασίας</string>
   <!-- Screen -->
+  <string name="red">Κόκκινο</string>
+  <string name="green">Πράσινο</string>
   <string name="blue">Μπλε</string>
+  <string name="invert_screen">Αναστροφή οθόνης</string>
+  <string name="grayscale_mode">Λειτουργία κλίμακας του γκρι</string>
+  <string name="high_brightness_mode">Λειτουργία υψηλής φωτεινότητας</string>
+  <string name="srgb">sRGB</string>
+  <string name="contrast">Αντίθεση</string>
+  <string name="brightness">Φωτεινότητα</string>
+  <string name="red_positive">Κόκκινο θετικό</string>
+  <string name="green_positive">Πράσινο θετικό</string>
+  <string name="blue_positive">Μπλε θετικό</string>
+  <string name="min_brightness">Ελάχιστη φωτεινότητα</string>
+  <string name="max_brightness">Μέγιστη φωτεινότητα</string>
   <string name="threshold">Κατώτατη τιμή</string>
+  <string name="master_sequence">Κύρια ακολουθία</string>
+  <string name="glove_mode">Λειτουργία γαντιού</string>
+  <string name="glove_mode_summary">Ενεργοποίωντας αυτό θα μπορείτε να χρησιμοποιήσετε το τηλέφωνό σας ακόμα και όταν φοράτε γάντια.</string>
   <!-- Wake -->
+  <string name="dt2w">DoubleTap2Wake</string>
+  <string name="dt2w_summary">Αφυπνίστε τη συσκευή σας με διπλό πάτημα στην οθόνη.</string>
+  <string name="center">Κέντρο</string>
+  <string name="full">Πλήρες</string>
+  <string name="bottom_half">Κάτω μισό</string>
+  <string name="top_half">Επάνω μισό</string>
+  <string name="half">Μισό</string>
+  <string name="s2w">Sweep2Wake</string>
+  <string name="s2w_summary">Αφυπνίστε τη συσκευή σας σαρώνοντας το δάκτυλο σας σε οποιοδήποτε σημείο της οθόνης.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
+  <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Sweep2Wake δεξιά</string>
+  <string name="s2w_left">Sweep2Wake αριστερά</string>
+  <string name="s2w_up">Sweep2Wake Επάνω</string>
   <!-- Sound -->
   <!-- Battery -->
+  <string name="level">Επίπεδο</string>
   <!-- LED -->
   <!-- I/O Scheduler -->
   <!-- Kernel Samepage Merging -->
@@ -284,7 +369,30 @@
   <!-- Init.d -->
   <!-- On Boot -->
   <!-- Settings -->
+  <string name="five_sec">5 δευτερόλεπτα</string>
+  <string name="ten_sec">10 δευτερόλεπτα</string>
+  <string name="twenty_sec">20 δευτερόλεπτα</string>
+  <string name="fifty_sec">50 δευτερόλεπτα</string>
+  <string name="debugging">Εντοπισμός σφαλμάτων</string>
+  <string name="logcat">Logcat</string>
+  <string name="security">Ασφάλεια</string>
+  <string name="set_password">Ορισμός Κωδικού Πρόσβασης</string>
+  <string name="delete_password">Διαγραφή κωδικού πρόσβασης</string>
+  <string name="old_password">Παλιός κωδικός πρόσβασης</string>
+  <string name="new_password">Νέος κωδικός πρόσβασης</string>
+  <string name="confirm_new_password">Επιβεβαίωση νέου κωδικού πρόσβασης</string>
+  <string name="old_password_wrong">Ο παλιός κωδικός πρόσβασης είναι λάθος</string>
+  <string name="password_empty">Ο κωδικός πρόσβασης είναι κενός</string>
+  <string name="set_password_first">Ορίστε έναν κωδικό πρόσβασης πρώτα</string>
+  <string name="sections">Ενότητες</string>
   <!-- About -->
+  <string name="libraries_used">Βιβλιοθήκες που χρησιμοποιούνται</string>
   <!-- Contributors -->
+  <string name="no_internet">Παρακαλώ ελέγξτε τη σύνδεσή σας στο internet!</string>
   <!-- Help -->
+  <string name="misspelled">Γιατί λανθασμένα «Adiutor»;</string>
+  <string name="misspelled_summary">Το Adiutor είναι λατινικό και σημαίνει βοηθός.</string>
+  <string name="feature_function">Τι κάνει το χαρακτηριστικό x;</string>
+  <string name="add_new_features">Θα μπορούσες να προσθέσεις το x και y χαρακτηριστικό;</string>
+  <string name="add_new_features_summary">Μου είναι δύσκολο να το πω. Προσπαθώ να προσθέτω όλα τα χαρακτηριστικά, αλλά είναι δύσκολο να γίνει αυτη η εφαρμογή καθολική για όλες τις συσκευές.</string>
 </resources>

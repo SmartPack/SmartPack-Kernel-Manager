@@ -51,8 +51,6 @@
   <!-- Editor -->
   <string name="save">حفظ</string>
   <!-- File Picker -->
-  <string name="select_question">اختيار%ث ؟</string>
-  <string name="wrong_extension">الرجاء تحديد الملف مع الملحق % ث.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">درجة مئوية</string>
@@ -124,11 +122,13 @@
   <string name="android_codename">الاسم الرمزي للاندرويد</string>
   <string name="fingerprint">بصمة الاصبع</string>
   <string name="build_display_id">بناء معرف العرض</string>
+  <string name="baseband">القاعدي</string>
   <string name="rom">ذاكرة القرائة</string>
   <string name="bootloader">محمل الاقلاع</string>
   <string name="hardware">القطع الداخلية</string>
   <string name="architecture">مهندس معماري</string>
   <!-- Inputs -->
+  <string name="bus">حافلة</string>
   <string name="product">المنتج</string>
   <string name="version">الاصدار</string>
   <!-- CPU -->
@@ -192,6 +192,7 @@
   <string name="min_cpu_online_summary">العدد الأدنى. للمعالجات التي سوف تبقى نشطة على الدوام.</string>
   <string name="max_cpu_online">الحد الاقصى للمعالج في وضع الفعال</string>
   <string name="max_cpu_online_summary">العدد الاقصى للمعالجات التي سوف تبقى فعالة على الدوام.</string>
+  <string name="max_cpu_online_screen_off_summary">الحد الأقصى لعدد وحدات المعالجة المركزية التي ستكون على الإنترنت عند إيقاف تشغيل الشاشة.</string>
   <string name="suspend_defer_time">وقت تأجيل عملية التعليق</string>
   <string name="defer_sampling">تأجيل عملية اخذ العينات</string>
   <string name="boost_lock_duration">تعزيز مدة القفل</string>
