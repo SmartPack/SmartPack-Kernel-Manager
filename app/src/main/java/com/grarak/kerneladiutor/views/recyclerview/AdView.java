@@ -44,7 +44,9 @@ public class AdView extends RecyclerViewItem {
     }
 
     public void ghReady() {
-        mAd.loadGHAd();
+        if (mAd != null) {
+            mAd.loadGHAd();
+        }
     }
 
     @Override
@@ -55,19 +57,25 @@ public class AdView extends RecyclerViewItem {
     @Override
     public void onResume() {
         super.onResume();
-        mAd.resume();
+        if (mAd != null) {
+            mAd.resume();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mAd.pause();
+        if (mAd != null) {
+            mAd.pause();
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAd.destroy();
+        if (mAd != null) {
+            mAd.destroy();
+        }
     }
 
 }
