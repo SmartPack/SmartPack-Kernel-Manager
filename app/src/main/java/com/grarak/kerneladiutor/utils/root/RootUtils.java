@@ -180,7 +180,7 @@ public class RootUtils {
                     e.printStackTrace();
                     denied = true;
                 }
-                return null;
+                return "";
             }
         }
 

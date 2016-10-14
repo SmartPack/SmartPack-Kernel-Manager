@@ -72,7 +72,7 @@ public class Device {
             private String mSysfs;
             private String mHandlers;
 
-            public Item(List<String> input) {
+            private Item(List<String> input) {
                 for (String line : input) {
                     if (line.startsWith("I:")) {
                         line = line.replace("I:", "").trim();
