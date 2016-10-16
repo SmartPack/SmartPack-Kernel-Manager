@@ -371,7 +371,8 @@ public class NavigationActivity extends BaseActivity
         } else {
             if ((sActualFragments.get(mSelection) instanceof BaseFragment
                     && !((BaseFragment) sActualFragments.get(mSelection)).onBackPressed())
-                    || sActualFragments.get(mSelection).getClass() == SettingsFragment.class) {
+                    || (sActualFragments.get(mSelection) != null
+                    && sActualFragments.get(mSelection).getClass() == SettingsFragment.class)) {
                 if (mExit) {
                     mExit = false;
                     super.onBackPressed();

@@ -239,7 +239,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mSearchFragment.setCount(items.size());
+                    if (isAdded()) {
+                        mSearchFragment.setCount(items.size());
+                    }
                 }
             });
         }

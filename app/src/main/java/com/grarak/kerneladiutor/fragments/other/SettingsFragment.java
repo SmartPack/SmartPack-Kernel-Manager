@@ -482,8 +482,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Prefs.saveString(KEY_ACCENT_COLOR,
-                                BorderCircleView.sAccentColors.valueAt(mColorSelection), getActivity());
+                        if (mColorSelection >= 0) {
+                            Prefs.saveString(KEY_ACCENT_COLOR,
+                                    BorderCircleView.sAccentColors.valueAt(mColorSelection), getActivity());
+                        }
                         getActivity().finish();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

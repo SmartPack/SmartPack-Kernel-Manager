@@ -409,8 +409,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             int span = Utils.isTablet(activity) ? Utils.getOrientation(activity) ==
                     Configuration.ORIENTATION_LANDSCAPE ? 3 : 2 : Utils.getOrientation(activity) ==
                     Configuration.ORIENTATION_LANDSCAPE ? 2 : 1;
-            if (mItems.size() != 0 && span > mItems.size()) {
-                span = mItems.size();
+            if (itemsSize() != 0 && span > itemsSize()) {
+                span = itemsSize();
             }
             return span;
         }
