@@ -81,6 +81,7 @@
   <string name="virtual_memory">Memori Virtual</string>
   <string name="entropy">Entropi</string>
   <string name="misc">Lain-lain</string>
+  <string name="custom_controls">Pengaturan Kustom</string>
   <string name="downloads">Unduhan</string>
   <string name="backup">Cadangan</string>
   <string name="build_prop_editor">Penyunting build. prop</string>

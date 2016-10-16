@@ -163,20 +163,20 @@
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал усиления ЦП при обнаружении ввода.</string>
   <string name="input_boost_freq">Повышение частоты при вводе</string>
-  <string name="input_boost_freq_core">Ускорение частоты ядра %d при вводе</string>
+  <string name="input_boost_freq_core">Повышение частоты ядра %d при вводе</string>
   <string name="input_boost_freq_summary">Частота ЦП будет повышена до этой при обнаружении ввода.</string>
   <string name="wakeup_boost">Повышение при пробуждении</string>
   <string name="wakeup_boost_summary">Повышение при пробуждении похоже на повышение при вводе, но срабатывает при включенном экране.</string>
   <string name="hotplug_boost">Усиление hotplug</string>
   <string name="hotplug_boost_summary">Усиление hotplug похоже на усиление при вводе, но срабатывает при переходе ЦП в онлайн.</string>
   <string name="touch_boost">Ускорение прикосновений</string>
-  <string name="touch_boost_summary">Это повысит вашу минимальную скорость ЦП, если вы коснётесь экрана или нажмёте кнопку.</string>
+  <string name="touch_boost_summary">Повышает вашу минимальную скорость ЦП, если вы коснётесь экрана или нажмёте кнопку.</string>
   <!-- CPU Voltage -->
   <string name="global_offset">Глобальное смещение</string>
   <string name="override_vmin">Переопределить минимальное напряжение</string>
   <string name="override_vmin_summary">Отключить ограничения производителя на понижение напряжения</string>
   <!-- CPU Hotplug -->
-  <string name="hotplug_warning">Включено более одной системы горячего подключения!\nПожалуйста, используйте только один вариант.</string>
+  <string name="hotplug_warning">Включено более одной системы hotplug-a!\nПожалуйста, используйте только одну.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Hotplug от Qualcomm. У вас могут быть проблемы со сменой частот, когда он включен.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -258,7 +258,7 @@
   <string name="screen_off_single_cpu">Одно ядро при выключенном экране</string>
   <string name="screen_off_single_cpu_summary">Использовать только одно ядро, когда экран выключен.</string>
   <string name="idle_frequency">Частота простоя</string>
-  <string name="idle_frequency_summary">Если это первое ядро ниже этой частоты, то остальные ядра не подключаются.</string>
+  <string name="idle_frequency_summary">Если первое ядро ниже этой частоты, то не подключать остальные ядра.</string>
   <string name="touch_boost_time">Время ускорения процессора при касании</string>
   <string name="touch_boost_time_summary">Как долго ядро должно быть ускорено после касания экрана.</string>
   <string name="boost_frequency_core">Повышение частоты ядра %d</string>
