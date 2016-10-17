@@ -130,13 +130,16 @@ public class AdNativeExpress extends LinearLayout {
                 (width = mNativeAdLayout.getWidth()) == 0) {
             return;
         }
-        loadNativeAd(width);
+        float deviceDensity = getResources().getDisplayMetrics().density;
+        if (deviceDensity > 0) {
+            loadNativeAd(width, deviceDensity);
+        }
     }
 
-    private void loadNativeAd(int width) {
-        int adWidth = width / (int) getResources().getDisplayMetrics().density;
+    private void loadNativeAd(int width, float deviceDensity) {
+        float adWidth = width / deviceDensity;
         if (adWidth > MAX_WIDTH) adWidth = MAX_WIDTH;
-        mNativeExpressAdView.setAdSize(new AdSize(adWidth, MIN_HEIGHT));
+        mNativeExpressAdView.setAdSize(new AdSize((int) adWidth, MIN_HEIGHT));
         mNativeLoading = true;
         mNativeExpressAdView.loadAd(new AdRequest.Builder().build());
     }
