@@ -233,5 +233,19 @@
       "hero2ltexx"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys7.json"
+  },
+  { 
+    "vendor": [
+      "Sony",	
+      "SONY"
+    ],
+    "device": [
+      "Xperia M",
+      "C1904",
+      "C1905",
+      "D2004",
+      "D2005"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nicki.json"
   }
 ]
