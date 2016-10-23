@@ -19,15 +19,25 @@
   <string name="ok">OK</string>
   <string name="unknown">不明</string>
   <string name="license_invalid">寄付アプリの購入ありがとう！残念ながらライセンス認証に失敗しました。後でもう一度お試しください。それでも動作しない場合は、私に連絡してください。</string>
+  <string name="pirated">このアプリはGoogle Play経由で購入されていないようです!海賊版をお使いの場合、恥を知りなさい!!</string>
   <string name="donate">寄付する</string>
+  <string name="donate_summary">この機能は寄付アプリがインストール済みの際のみ有効です!心配しないでください。何故ならこのアプリはオープンソフトウェアで自分自身でビルド出来このチェックを除去することが可能です。しかし開発者のサポートを希望します。Kernel Adiutorを頂き有難うございます!寄付アプリを購入後全機能を有効化するにはKernel Adiotorを再起動する必要があります。</string>
+  <string name="donate_nope">私はお金を払いたくありません!</string>
+  <string name="donate_yes">このアプリが気に入りました。必ず寄付します!</string>
+  <string name="ad_here">広告がここに表示されます</string>
   <string name="remove_ad">広告を除去</string>
   <string name="warning">警告</string>
+  <string name="gh_ad">これは非商業広告です! 真剣に捉えないで下さい! 実際の広告を表示せず空白を表示する（あなたはadblockユーザのようですね）ための面白い方法です。</string>
+  <string name="open_ad_anyway">ともかく広告を開く</string>
   <string name="apply_on_boot">起動時に適用</string>
   <string name="apply_on_boot_text">%d 秒後に設定を適用します。</string>
   <string name="apply_on_boot_complete">設定の適用が完了しました。</string>
   <string name="apply_on_boot_canceled">設定の適用をキャンセルしました。</string>
+  <string name="not_in_range">有効範囲外</string>
   <string name="options">オプション</string>
+  <string name="more">さらに</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">記憶域への書込制限です!</string>
   <!-- Editor -->
   <string name="save">保存</string>
   <!-- File Picker -->
@@ -93,6 +103,7 @@
   <string name="restore">復元</string>
   <string name="deep_sleep">Deep Sleep</string>
   <string name="uptime">使用時間</string>
+  <string name="error_frequencies">周波数の読込に失敗</string>
   <string name="unused_frequencies">未使用の周波数</string>
   <!-- Device -->
   <string name="processor">プロセッサ</string>
@@ -128,6 +139,7 @@
   <string name="cpu_governor_summary">CPUガバナはCPU負荷の変動に対してどのように動作するかを決定するものです。ガバナの変更により、そのCPUで利用可能な周波数ステップの上昇/下降動作が影響を受けます。</string>
   <string name="cpu_governor_tunables">CPUガバナ設定</string>
   <string name="governor_tunables_summary">ガバナ毎の設定可能な項目を設定します。</string>
+  <string name="cpu_governor_tunables_read_error">現在のCPUガバナの読込に失敗しました。\n\nもしQualcomm big.LITTLE デバイスを使用中ならばこれは既知の問題です。このシステムはCPU固有統計情報を読込するために強制的にCPU のコアを停止します。本オプションを再度選択して下さい。CPUはコアの起動を拒否することがあります。</string>
   <string name="tunables_error">%s は調整することができません</string>
   <string name="manual">マニュアル</string>
   <string name="mc_power_saving">マルチコア省電力モード</string>
@@ -143,6 +155,7 @@
   <string name="cpu_quiet_governor">CPUQuietガバナ</string>
   <string name="cpu_boost">CPUブースト</string>
   <string name="debug_mask">デバッグマスク</string>
+  <string name="debug_mask_summary">操作のデバッグマスクを有効化できます。</string>
   <string name="interval">間隔</string>
   <string name="interval_summary">CPUをブーストする最小間隔です。</string>
   <string name="sync_threshold">同期しきい値</string>
@@ -163,10 +176,12 @@
   <string name="override_vmin">最小電圧を上書きする</string>
   <string name="override_vmin_summary">メーカーによる電圧の下限制限を無効にします。</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">複数の加熱制御が有効化されました! \n1個のみ有効化して下さい。</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">QualcommのHotplugです。有効になっていると、周波数の変更がうまく出来ないことがあります。</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">faux123氏が開発した、Qualcomm MPDecisionの代替です。</string>
+  <string name="cpu_hotplug_profile_summary">() 内の数字は常時オンラインになるコアの数です。</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Balanced</string>
   <string name="performance">Performance</string>
@@ -244,6 +259,7 @@
   <string name="idle_frequency">アイドル時の周波数</string>
   <string name="idle_frequency_summary">最初のコアがこの周波数より低い場合、他のコアをプラグしないようにします。</string>
   <string name="touch_boost_time">タッチブースト時間</string>
+  <string name="touch_boost_time_summary">画面に触れた後、どのくらいCPUをブーストするかを設定します。</string>
   <string name="boost_frequency_core">ブースト周波数 コア %d</string>
   <string name="start_delay">開始の遅延</string>
   <string name="start_delay_summary">Hotplugが動作し始めるまでの時間です。</string>
@@ -257,6 +273,7 @@
   <string name="cpu_down_rate">CPUダウンレート</string>
   <string name="cpu_up_rate">CPUアップレート</string>
   <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Qualcommのホットプラグ手法の代替です。varunchitre15氏が開発しました。</string>
   <string name="min_cpu_online_screen_off">画面消灯時最小CPUオンライン</string>
   <string name="min_cpu_online_screen_off_summary">画面消灯時にオンラインにするCPU数の最小値です。</string>
   <string name="endurance_level">Endurance Level</string>
@@ -266,6 +283,7 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">bbedward氏が開発した、Qualcomm MPDecisionの代替です。</string>
   <string name="wake_wait_time">ウェイク待機時間</string>
+  <string name="wake_wait_time_summary">任意のCPUをオンにするまでの待機時間を設定します。</string>
   <string name="bat_threshold_ignore">無視するバッテリーしきい値</string>
   <string name="bat_threshold_ignore_summary">バッテリー残量が指定値以下の時、コアをオンにしないようにします。</string>
   <string name="autosmp">AutoSMP</string>
@@ -277,19 +295,32 @@
   <string name="cycle_up">アップサイクル</string>
   <string name="cycle_up_summary">前のhotplugイベントから別のコアをプラグするまでの待機時間を指定します。</string>
   <string name="core_control">コアコントロール</string>
+  <string name="core_control_summary">Quallcommのホットプラグソリューションです。残念ながらオフに出来ません。#vlameqcom</string>
   <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">OnePlus の修正版コアコントロール</string>
+  <string name="min_cpus_big">big CPUの最小数</string>
+  <string name="min_cpus_big_summary">オンライン状態であるべき big CPUの最小数です。</string>
+  <string name="busy_down_threshold">ビジーダウンしきい値</string>
+  <string name="busy_down_threshold_summary">big CPUをオフにするべきタイミングのしきい値。</string>
+  <string name="busy_up_threshold">ビジーアップしきい値</string>
+  <string name="busy_up_threshold_summary">big CPUをオンにするべきタイミングのしきい値。</string>
+  <string name="offline_delay">オフライン遅延時間</string>
+  <string name="offline_delay_summary">CPU をオフにするまでの時間。</string>
   <!--Thermal-->
   <string name="thermal_info">一つだけを有効にするようにしてください。同時に複数を有効化すると予期しない動作を引き起こす可能性があります。</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">純正加熱制御ドライバは端末をオーバーヒートから保護します。現在のカーネルに他の加熱制御ドライバがある場合は無効にすることをお薦めします。</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">faux123氏が開発した、Qualcomm Thermaldの代替です。</string>
   <string name="intellithermal_optimized">Intellithermal Optimized</string>
   <string name="intellithermal_optimized_summary">faux123氏とalucard_24氏が開発した、Qualcomm Thermaldの代替です。</string>
+  <string name="thermal_debug_mask_summary">加熱制御のデバッグマスクを有効にします。</string>
   <string name="vdd_restriction">VDD制限</string>
   <string name="freq_throttle_temp">周波数スロットル温度</string>
   <string name="freq_throttle_temp_summary">この温度になると周波数のスロットルを開始します。</string>
   <string name="cpu_throttle_temp">CPUスロットル温度</string>
   <string name="cpu_throttle_temp_summary">この温度になるとCPUをシャットダウンします。</string>
+  <string name="cpu_temp_hysteresis">CPU温度ヒステリシス</string>
   <string name="freq_step">周波数ステップ</string>
   <string name="immediately_limit_stop">Immediately Limit Stop</string>
   <string name="poll">Poll</string>
@@ -337,6 +368,7 @@
   <string name="ramp_thresold">ランプしきい値</string>
   <string name="ramp_thresold_summary">GPU ガバナのランプダウン要求の回数を増やします。高くすると、パフォーマンスが良くなります。</string>
   <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">msm-adreno-tz のオーバーヘッドに対する効果的な対策です。arter97により開発されました。</string>
   <string name="down_differential">Down Differential</string>
   <string name="down_differential_summary">ワークロードがアイドル状態かを判断するしきい値です。</string>
   <string name="idle_wait">アイドル待機</string>
@@ -427,6 +459,7 @@
   <string name="dt2w_charging">充電中のDoubleTap2Wake</string>
   <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">充電中のDoubleTap2Wake + Sweep2Wake</string>
+  <string name="s2s_summary">画面をスワイプすることによりデバイスをロックします</string>
   <string name="s2s_right">右にスワイプ</string>
   <string name="s2s_left">左にスワイプ</string>
   <string name="s2s_any">左か右にスワイプ</string>
@@ -447,6 +480,9 @@
   <string name="timeout_summary">画面消灯後、起動操作が無効になるまでの時間を設定します。</string>
   <string name="power_key_suspend">電源キーサスペンド</string>
   <string name="power_key_suspend_summary">有効にすると、電源キーで画面を消灯したときに起動操作を無効にします。</string>
+  <string name="area">エリア</string>
+  <string name="width">幅</string>
+  <string name="height">高さ</string>
   <string name="vibration_strength">バイブの強さ</string>
   <!-- Sound -->
   <string name="sound_control">サウンド操作</string>
@@ -456,6 +492,11 @@
   <string name="cam_microphone_gain">カメラマイクゲイン</string>
   <string name="speaker_gain">スピーカーゲイン</string>
   <string name="headphone_poweramp_gain">ヘッドフォンPowerAmpゲイン</string>
+  <string name="headphone_tpa6165_gain">ヘッドフォンアンプゲイン(TPA6165 拡張機能)</string>
+  <string name="lock_output_gain">アウトプットゲインを固定</string>
+  <string name="lock_output_gain_summary">ヘッドフォン/スピーカゲインの変更を防止</string>
+  <string name="lock_mic_gain">マイクゲインをロック</string>
+  <string name="lock_mic_gain_summary">マイクロフォンゲインの変更を防止</string>
   <string name="microphone_gain">マイクゲイン</string>
   <string name="volume_gain">ボリュームゲイン</string>
   <!-- Battery -->
@@ -466,12 +507,31 @@
   <string name="usb_fast_charge_summary">USB接続時の充電を高速化します。この設定を変更した後は充電器を抜き差ししてください。</string>
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">どの残量になるまで充電するか、0 から 100 までの値で指定します。</string>
+  <string name="charge_rate">充電率</string>
+  <string name="charging_current">充電電流</string>
+  <string name="charging_current_summary">充電電流を設定します。注意: 1250mAを超えると充電機器に損傷を与える可能性があります。</string>
   <!-- LED -->
   <string name="fade">フェード</string>
+  <string name="fade_summary">点滅防ぐために、フェーディングを有効化します。</string>
+  <string name="intensity">強度</string>
+  <string name="speed">スピード</string>
+  <string name="stock">ストック</string>
+  <string name="continuous_light">連続光</string>
+  <string name="bright_light_environment">高輝度環境下</string>
+  <string name="bright_light_environment_summary">明るい環境下で LED 輝度を相対的に設定します。</string>
+  <string name="low_light_environment">低輝度環境下</string>
+  <string name="low_light_environment_summary">暗い環境で LED の輝度を相対的に設定します。</string>
   <string name="notification">通知</string>
+  <string name="on">On</string>
+  <string name="off">Off</string>
+  <string name="fade_ramp_control">ランプ コントロールをフェード(時間と共に変化)します。</string>
+  <string name="fade_ramp_control_summary">LED フェードイン/アウト(ランプ)制御を有効化/無効化します。</string>
   <string name="fade_in">フェードイン</string>
+  <string name="fade_in_summary">立ち上がり時間を設定します。</string>
   <string name="fade_out">フェードアウト</string>
+  <string name="fade_out_summary">立ち下がり時間を設定します。</string>
   <string name="test">テスト</string>
+  <string name="led_test_summary">Led の設定をテストします。</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">内部ストレージ</string>
   <string name="external_storage">外部ストレージ</string>
@@ -481,16 +541,30 @@
   <string name="scheduler_tunable_summary">スケジューラ毎の設定可能な項目を設定します。</string>
   <string name="read_ahead">先読みサイズ</string>
   <string name="read_ahead_summary">メモリの先読みサイズです。</string>
+  <string name="rotational">回転記憶媒体</string>
+  <string name="rotational_summary">回転記憶媒体としてデバイスを扱います。</string>
+  <string name="iostats">I/O 統計情報</string>
+  <string name="iostats_summary">この記憶域デバイスの I/O 統計を維持します。無効にするとI/O 監視アプリケーションが中断されます。</string>
+  <string name="add_random">ランダムを追加</string>
+  <string name="add_random_summary">スピニング (回転) 記憶媒体からエントロピーを抽出します。</string>
+  <string name="rq_affitiny">RQ の親和性</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">フルスキャン</string>
   <string name="pages_shared">共有されたページ</string>
   <string name="pages_sharing">共有中のページ</string>
   <string name="pages_unshared">未共有のページ</string>
+  <string name="pages_volatile">不安定なページ数</string>
   <string name="ksm_summary">メモリ使用量を削減しますが、CPU使用率に影響を与えます。</string>
   <string name="pages_to_scan">スキャンするページ</string>
+  <string name="sleep_milliseconds">スキャン中にスリープ</string>
+  <string name="deferred_timer">タイマーの遅延</string>
+  <string name="deferred_timer_summary">メモリ使用量の節約と引き換えに CPU の使用率が幾分減少します。</string>
   <string name="max_cpu_usage">最大CPU使用率</string>
+  <string name="max_cpu_usage_summary">ページマージ時の 最大CPU使用率</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前面アプリ</string>
+  <string name="lmk_adaptive">アダプティブ Low メモリキラー</string>
+  <string name="lmk_adaptive_summary">スラッシング状態を検出した時、LMKを動的によりアグレッシブにします。</string>
   <string name="visible_app">表示中アプリ</string>
   <string name="secondary_server">セカンダリサーバ</string>
   <string name="hidden_app">非表示アプリ</string>
@@ -500,11 +574,20 @@
   <string name="light">緩め</string>
   <string name="medium">中</string>
   <string name="very_aggressive">積極的 (強)</string>
+  <string name="kill_lmk">LMK を無効化</string>
+  <string name="kill_lmk_summary">スワップの使用時は、LMK を無効化します。</string>
+  <string name="kill_lmk_threshold">LMK 無効化のしきい値</string>
+  <string name="kill_lmk_threshold_summary">LMKを無効化するためにどのくらいフルスワップする必要があるかを設定します。</string>
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
   <string name="disksize">ディスクサイズ</string>
+  <string name="disksize_summary">物理ストレージに代わりにRAM上の圧縮された仮想デバイスを使用してページングを避けることによってパフォーマンスを向上しようとします。物理ストレージにスワップスペースを使用する必要が生じるまでページングはRAM上で行われます。</string>
   <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap は、スワップ ページの軽量圧縮キャッシュです。それはスワップ アウトされているページを使用し、RAM ベースの動的に割り当てられたメモリ プールに圧縮しようとします。Zswap は基本的に CPU サイクル使用してスワップ I/O を可能な限り削減します。</string>
   <string name="memory_pool">メモリプール</string>
+  <string name="memory_pool_summary">圧縮されたページ キャッシュとして使用できるメイン メモリのメモリ プールの割合。</string>
+  <string name="maximum_compression_ratio">最大圧縮比</string>
+  <string name="maximum_compression_ratio_summary">許容圧縮されたページとして使用可能な最大圧縮率(%で表記)。このレシオが下回った場合のみ圧縮が始まります。</string>
   <!-- Entropy -->
   <string name="available">利用可能</string>
   <string name="poolsize">プールサイズ</string>
@@ -521,6 +604,7 @@
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="gentlefairsleepers_summary">Sleepersの動作をデフォルトの50%にします。無効にすると少しバッテリー消費を抑えられます。</string>
   <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">アーキテクチャー固有の電源機能/節電機能を有効化します。</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
   <string name="power_suspend_mode_summary">Kernel Mode、LCD Hooks、Highest Level Hookはカーネルによって自動的に制御されます。Power Suspend State を手動で有効/無効化したい場合は User Mode を選択してください。</string>
   <string name="autosleep">Autosleep</string>
@@ -547,10 +631,13 @@
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="wlan_wakelock_summary">無効にすると wlan wakelock を阻止します。</string>
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">BlueSleep Wakelock を阻止します。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock ディバイダー</string>
   <!-- Custom Controls -->
   <string name="welcome">ようこそ</string>
+  <string name="custom_controls_summary">このセクションではアプリでは(未だ)提供されていないカスタムコントロールを作成・インポートすることが可能です。</string>
   <string name="example">サンプル</string>
   <string name="custom_controls_example_summary">サンプルが必要ですか？ &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;ここをクリック&lt;a&gt;</string>
   <string name="create">作成</string>
@@ -558,15 +645,37 @@
   <string name="control_switch">スイッチ</string>
   <string name="control_seekbar">シークバー</string>
   <string name="title">タイトル</string>
+  <string name="description">説明</string>
+  <string name="applying">適用</string>
+  <string name="switch_enabled_summary">スイッチが有効かどうか。有効時に1を返し無効時に0を返します。</string>
+  <string name="switch_apply_summary">スイッチがあなたのシェルスクリプトへの引数として1(有効時)もしくは0(無効時)を返します。</string>
+  <string name="seekbar_min">最少</string>
+  <string name="seekbar_max">最大</string>
+  <string name="seekbar_progress">進捗状況</string>
+  <string name="seekbar_progress_summary">シークバーの現在状態です。MinとMaxを定義すると整数配列が生成されます。例：Minが50でMaxが100で進捗が0の場合、50がシークバーの現在の状態となります。</string>
+  <string name="seekbar_apply_summary">シークバーが現在の進捗状況を返します。例えば最小値が50・最大値100でシークバーが70の場合、進捗状況として20が表示されます。</string>
+  <string name="control_generic">標準</string>
+  <string name="generic_value">値</string>
+  <string name="generic_value_summary">エディタでの現在値。基本的には何でもOKです。</string>
+  <string name="generic_apply_summary">エディタで入力された値を返します。</string>
+  <string name="required">必須</string>
+  <string name="output">出力</string>
   <string name="edit">編集</string>
   <string name="export">エクスポート</string>
   <string name="delete">削除</string>
   <string name="sure_question">本当に実行しますか？</string>
   <string name="name">名前</string>
   <string name="already_exists">%s は既に存在します！</string>
+  <string name="exported_item">%1$s は %2$s にエクスポートされました</string>
   <string name="name_empty">名前が入力されていません！</string>
+  <string name="import_malformed">インポート ファイルの形式が正しくありません!</string>
+  <string name="import_wrong_version">インポートファイルのバージョンが古過ぎます!</string>
   <!-- Downloads -->
+  <string name="downloads_error">サポートされたカーネルを見つけることが出来ません! インターネット接続を確認して下さい。</string>
+  <string name="download_error">%s のダウンロード失敗。</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">MD5の確認中</string>
+  <string name="md5_mismatch">ダウンロード済みファイルのMD5はオリジナルと異なります。考えられる理由:\n\n\u2022 ダウロンドー済みファイルの破損\n\n\u2022 開発者が誤ったMD5ファイルを定義した\n\nファイルの再ダウンロード願います。それでもエラーが出る場合、このカーネルの開発者に問い合わせて下さい。</string>
   <string name="install">インストール</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
@@ -576,9 +685,13 @@
   <string name="flashing">フラッシュ中</string>
   <string name="restoring">復元中</string>
   <!-- Backup -->
+  <string name="boot_partition">ブートパテーション</string>
+  <string name="recovery_partition">リカバリーパテーション</string>
+  <string name="fota_partition">FOTAパテーション</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
   <string name="add">追加</string>
+  <string name="backup_item">%1$s は %2$s にバックアップ済</string>
   <string name="item_count">%s アイテム</string>
   <string name="items_count">%s アイテム</string>
   <string name="key">キー</string>
@@ -586,14 +699,22 @@
   <string name="key_empty">キーが空です！</string>
   <!-- Profile -->
   <string name="apply_on_boot_not_available">プロファイルモードの変更内容は、起動時に適用には影響しません。</string>
+  <string name="profile_warning">ここで変更された全ての項目はあなたのプロファイルに保存予定です。しかし注意して下さい!あなたの設定が適用されますが、起動時に有効化されるようには保存されません。</string>
   <string name="no_changes">変更されていません！</string>
   <string name="apply_question">%s を適用しますか？</string>
   <string name="append">追加</string>
   <string name="details">詳細</string>
+  <string name="press_again_to_apply">適用するには再度 %s をタップ</string>
   <string name="applied">適用しました。</string>
   <string name="profile_tasker">Taskerプロファイル</string>
   <string name="profile_tasker_summary">もしあなたがアプリ起動時など特定のイベントでプロファイルを適用したい場合は、Taskerを使用する必要があります。</string>
+  <string name="profile_tasker_toast">tasker がプロファイルを適用する際にトーストを表示</string>
+  <string name="profile_tile">プロファイルタイル</string>
+  <string name="profile_tile_summary">プロファイルの選択が可能なタイルを表示します。</string>
   <string name="profile_select">プロファイルを選択</string>
+  <string name="applying_profile">%s を適用中!</string>
+  <string name="no_profiles">プロファイルが見つかりません! まず最初に作成して下さい。</string>
+  <string name="sections_disabled">全てのセクションが無効です! プロファイルがありません。</string>
   <string name="new_mode">新規作成</string>
   <string name="current_settings">現在の設定</string>
   <string name="select_all">すべて選択</string>
@@ -615,9 +736,11 @@
   <string name="emulate_initd_summary">お使いの端末がデフォルトでinit.dをサポートしていない場合、この機能を有効化すると、その動作をエミュレートすることができます。</string>
   <string name="exceute_question">%s を実行しますか？</string>
   <string name="executing">実行中</string>
+  <string name="result">結果</string>
   <!-- On Boot -->
   <string name="on_boot_welcome_summary">このセクションは、お使いの端末が起動するときに何が起こるかを示しています。空白の場合は何も起こりません。</string>
   <string name="delete_question">%s を削除しますか？</string>
+  <string name="arguments">引数: %s</string>
   <string name="disable_question">%s を無効にしますか？</string>
   <!-- Settings -->
   <string name="fahrenheit_title">華氏（°F）</string>
@@ -637,10 +760,16 @@
   <string name="twenty_sec">20秒</string>
   <string name="fifty_sec">50秒</string>
   <string name="apply_on_boot_test_summary">起動時に適用のテスト。これは、カスタムコントロール、プロファイル、init.dなど起動時に適用されるすべての種類を含みます。</string>
+  <string name="apply_on_boot_running">「起動時に適用」サービスが既に実行済みです。完了するまでお待ちください。</string>
+  <string name="nothing_apply">適用するための設定が見つかりません。</string>
   <string name="hide">非表示</string>
+  <string name="apply_on_boot_hide_summary">「起動時に適用」の通知を消します。遅延がまだ残っています!</string>
   <string name="toast">トースト</string>
+  <string name="apply_on_boot_toast_summary">設定が適用された場合、トーストを表示します。</string>
   <string name="confirmation_notification">確認通知</string>
+  <string name="apply_on_boot_confirmation_notification_summary">「起動時に適用」が通知をonで実行後、「起動時に適用」が起動時に成功したと通知されます。</string>
   <string name="script">スクリプト</string>
+  <string name="apply_on_boot_script_summary">シェルスクリプトを使用し設定を適用します。起動時に障害が発生した場合のみこれを有効化して下さい。本オプション有効化後も問題が解決しない場合は、Kernel Adiutorと競合する他のアプリケーションが無いことを確認して下さい。</string>
   <string name="debugging">デバッグ</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">logcat を /sdcard/logcat.txt にコピー</string>
@@ -650,6 +779,7 @@
   <string name="driver_message_summary">ドライバメッセージ (dmesg) を /sdcard/dmesg.txtにコピーします。</string>
   <string name="security">セキュリティ</string>
   <string name="set_password">パスワードの設定</string>
+  <string name="set_password_summary">パスワードでKernel Adiutor を保護可能です。このアプリケーションを開く際、常に入力する必要が生じます。パスワードを失念した際、Kernel Adiutorのアプリケーションの設定でデータを消去して下さい。パスワードは誰とも共有されません。</string>
   <string name="delete_password">パスワードの削除</string>
   <string name="old_password">現在のパスワード</string>
   <string name="new_password">新しいパスワード</string>
@@ -659,8 +789,25 @@
   <string name="password_not_match">新しいパスワードと確認入力が一致しません</string>
   <string name="password_too_long">パスワードが長すぎます(最大 32 文字)</string>
   <string name="set_password_first">先にパスワードを設定してください</string>
+  <string name="fingerprint_summary">セキュリティチェックを通過するため指紋を使用します。指紋登録済みの場合のみ有効です。</string>
   <string name="sections">セクション</string>
   <!-- About -->
+  <string name="about_me">やぁ、私は Will Ye(@Grarak)、ウィーン在住の19才の学生です。Androidの開発を長い間続けています。Kernel Adiutor の他にも幾つかのデバイスのCyanogenMod のメンテナでもありParanoidAndoroid の開発に携わっています。申し訳ありませんが本アプリの開発にあまり時間を割くことが出来ないことをご了承下さい。</string>
+  <string name="libraries_used">使用中のライブラリ</string>
   <!-- Contributors -->
+  <string name="commits">コミット数 %d</string>
+  <string name="no_internet">インターネット接続を確認して下さい!</string>
   <!-- Help -->
+  <string name="misspelled">\"Auditor\"って綴り間違いじゃないの?</string>
+  <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
+  <string name="have_to_donate">プレミアム機能を使用するには寄付が必要か?</string>
+  <string name="have_to_donate_summary">いいえ、このアプリケーションはオープン ソースであります。簡単に自分でビルド出来ます。寄付版の機能は一度デバッグ用apkをビルドすると有効になり、コードのいかなる行も変更する必要はありません。</string>
+  <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
+  <string name="cpu_freq_not_sticking_summary">これは多くの理由が原因かもしれません。最新の多くのカーネルはCPU の周波数を制御する独自のホットプラグ システムを保有しており、CyanogenMod では周波数を制限するための独自のCPUブースト実装を保有しています。CPU 周波数を変更せず、その仕事をカーネルに任せることをお薦めします。本機能では他の機能もカウントしています!現在の周波数に固執しないのはカーネル/システムがそれの値を変更するつもりがないためです。</string>
+  <string name="feature_not_appearing">xとy機能が表示されない理由は?</string>
+  <string name="feature_not_appearing_summary">お使いのデバイスでサポートされている機能のみが表示されます。</string>
+  <string name="feature_function">x機能って何なの?</string>
+  <string name="feature_function_summary">何を制御するか不明な場合、変更しないでください。文鎮化を避けるためにも、設定を変える前によく検索してください。</string>
+  <string name="add_new_features">xとy機能を追加してもらえますか?</string>
+  <string name="add_new_features_summary">はいとは一概に言えません。すべての機能を追加したいですが、全てのデバイス向けにアプリを普遍的に動作するように作ることは困難だからです。</string>
 </resources>

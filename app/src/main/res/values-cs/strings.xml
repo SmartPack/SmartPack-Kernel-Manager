@@ -24,15 +24,15 @@
   <string name="donate_summary">Tato funkce je dostupná pouze pokud je nainstalována aplikace darování. Nezoufejte! Tato aplikace je open source, takže si ji můžete sami sestavit a toto omezení odstranit. Přesto však doufáme, že vývojáře podpoříte. Děkujeme, že používáte Kernel Adiutor. Jakmile si aplikaci dárce zakoupíte, je třeba Kernel Adiutor restartovat pro zpřístupnění všech funkcí.</string>
   <string name="donate_nope">Takovému podvodu nepodlehnu!</string>
   <string name="donate_yes">Mám rád tuto aplikaci. Musim přispět!</string>
-  <string name="ad_here">Vaše reklama může být zde</string>
+  <string name="ad_here">Zde by mohla být Vaše reklama</string>
   <string name="remove_ad">Odstranit reklamu</string>
   <string name="warning">Varování</string>
   <string name="gh_ad">Toto je nekomerční reklama. Neberte to vážně. Je to jen vtipný způsob, jak vyplnit místo, když nelze načíst skutečnou reklamu (teď koukáme na vás, uživatelé blokátorů reklam).</string>
   <string name="open_ad_anyway">Přesto reklamu otevřít</string>
   <string name="apply_on_boot">Použít při spuštění</string>
   <string name="apply_on_boot_text">Používám nastavení v %d sekundách.</string>
-  <string name="apply_on_boot_complete">Aplikuji nastavení dokončeno.</string>
-  <string name="apply_on_boot_canceled">Aplikuji nastavení zrušeno.</string>
+  <string name="apply_on_boot_complete">Použití nastavení dokončeno.</string>
+  <string name="apply_on_boot_canceled">Použití nastavení zrušeno.</string>
   <string name="not_in_range">Není v rozsahu</string>
   <string name="options">Možnosti</string>
   <string name="more">Více</string>
@@ -82,6 +82,7 @@
   <string name="virtual_memory">Virtuální paměť</string>
   <string name="entropy">Entropie</string>
   <string name="misc">Různé</string>
+  <string name="custom_controls">Vlastní ovládací prvky</string>
   <string name="downloads">Stahování</string>
   <string name="backup">Zálohovat</string>
   <string name="build_prop_editor">Editor Build.prop</string>
@@ -120,20 +121,26 @@
   <string name="hardware">Hardware</string>
   <string name="architecture">Architektura</string>
   <!-- Inputs -->
+  <string name="bus">Sběrnice</string>
   <string name="product">Produkt</string>
   <string name="version">Verze</string>
+  <string name="handlers">Obslužné rutiny</string>
   <!-- CPU -->
   <string name="cores_singular">%d jádro</string>
   <string name="cores">%d jádra</string>
+  <string name="no_offline_core">Toto jádro nelze odpojit!</string>
   <string name="cpu_max_freq">Maximální frekvence procesoru</string>
   <string name="cpu_max_freq_summary">Nastavení maximální frekvence procesoru.</string>
   <string name="cpu_min_freq">Minimální frekvence procesoru</string>
-  <string name="cpu_min_freq_summary">Snížit minimální frekvenci procesoru až na.</string>
+  <string name="cpu_min_freq_summary">Nastavit minimální frekvenci toto CPU může klesnout.</string>
   <string name="cpu_max_screen_off_freq">Maximální frekvence procesoru při vypnuté obrazovce</string>
   <string name="cpu_max_screen_off_freq_summary">Nastavení maximální frekvence procesoru při vypnutém displeji.</string>
   <string name="cpu_governor">Správce procesoru</string>
   <string name="cpu_governor_summary">Správce procesoru (governor) určuje, jak procesor reaguje na změny v zatížení. Změna správce zdrojů ovlivní způsob přepínání mezi frekvencemi procesoru.</string>
   <string name="cpu_governor_tunables">Ladění správce procesoru</string>
+  <string name="governor_tunables_summary">Různá nastavení zvoleného Governoru.</string>
+  <string name="cpu_governor_tunables_read_error">Nepodařilo se přistoupit k současnému CPU governoru.\n\nPokud používáte zařízení typu QCOM big.LITTLE, pak to je známý problém. Systém vynucuje nutí CPU vypnout jádra, což činí čtení CPU statistik extrémně obtížným. Zkuste zvolit toto nastavení znovu. CPU občas odmítne zapnout jádro.</string>
+  <string name="tunables_error">%s se nedá ladit</string>
   <string name="mc_power_saving">Úspora energie více jader</string>
   <string name="mc_power_saving_summary">Snaha o seskupení úkolů na co nejméně jader.</string>
   <string name="disabled">Vypnuto</string>
@@ -151,25 +158,28 @@
   <string name="interval_summary">Minimální interval pro zvýšení taktů procesoru.</string>
   <string name="sync_threshold">Práh synchronizace</string>
   <string name="sync_threshold_summary">Pokud zatížení procesoru překročí nastavenou prahovou hodnotu, procesor se přetaktuje na tuto hodnotu frekvence.</string>
-  <string name="input_interval">Vstupní Interval</string>
-  <string name="input_interval_summary">Minimální interval zrychlení procesoru, při zjištění vstupu.</string>
-  <string name="input_boost_freq">Vstupní hodnota frekvence zrychlení</string>
-  <string name="input_boost_freq_summary">Frekvence procesoru se zvýšila na tuto hodnotu po zjištění vstupu.</string>
-  <string name="wakeup_boost">Rychlost probuzení</string>
+  <string name="input_interval">Interval vstupu</string>
+  <string name="input_interval_summary">Minimální interval po který je CPU zrychleno po zjištění vstupu.</string>
+  <string name="input_boost_freq">Frekvence zrychlení při vstupu</string>
+  <string name="input_boost_freq_core">Frekvence zrychlení při vstupu jádra %d</string>
+  <string name="input_boost_freq_summary">Frekvence CPU na kterou se má zvýšit při zjištění vstupu.</string>
+  <string name="wakeup_boost">Zrychlení při probuzení</string>
   <string name="wakeup_boost_summary">Wakeup zrychlení je podobné zrychlení na vstupu, ale vyskytuje se, když je obrazovka zapnuta.</string>
-  <string name="hotplug_boost">Hotplug rychlost</string>
+  <string name="hotplug_boost">Zrychlení při hotplugu</string>
   <string name="hotplug_boost_summary">Hotplug zrychlení je podobné zrychlení na vstupu, ale vyskytuje se při přechodu procesoru do online režimu.</string>
-  <string name="touch_boost">Zesílení dotyků</string>
+  <string name="touch_boost">Zrychlení při dotyku</string>
   <string name="touch_boost_summary">Navýšení minimální rychlosti procesoru při dotyku obrazovky nebo při stisku klávesy.</string>
   <!-- CPU Voltage -->
   <string name="global_offset">Globální nastavení</string>
   <string name="override_vmin">Přepsat minimální napětí</string>
   <string name="override_vmin_summary">Vypněte tuto volbu pro odstranění undervolting omezení od výrobce zařízení</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Více hotplugging systémů je zapnuto!\nPoužívejte prosím pouze jeden.</string>
   <string name="mpdecision">MPDecision</string>
-  <string name="mpdecision_summary">Qualcomm hotplugging řešení. Pokud je tato možnost povolena, můžete zaznamenat potíže se změnami frekvencí.</string>
+  <string name="mpdecision_summary">Hotplugging řešení Qualcommu. Pokud je toto povoleno, můžete mít problémy se změnou frekvencí.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinutý faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Číslo v závorkách značí množství zapnutých jader v danou dobu.</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Vyvážený</string>
   <string name="performance">Výkon</string>
@@ -184,6 +194,8 @@
   <string name="eco_mode_summary">Režim úspory energie pro IntelliPlug.</string>
   <string name="hysteresis">Hodnota hystereze</string>
   <string name="hysteresis_summary">Čím je nižší, tím rychlejší reakce.</string>
+  <string name="cpu_threshold">Hranice CPU</string>
+  <string name="cpu_threshold_summary">Čím vyšší, tím méně CPU je používáno.</string>
   <string name="suspend">Odstavit</string>
   <string name="suspend_summary">Zabránění odstavení.</string>
   <string name="cpus_boosted">CPU posílení</string>
@@ -192,6 +204,8 @@
   <string name="min_cpu_online_summary">Minimální počet procesorů, které budou vždy online.</string>
   <string name="max_cpu_online">Maximální počet CPU online</string>
   <string name="max_cpu_online_summary">Maximální počet procesorů, které budou vždy online.</string>
+  <string name="max_cpu_online_screen_off">Maximum CPU bez obrazovky</string>
+  <string name="max_cpu_online_screen_off_summary">Maximální počet CPU, která budou zapnuta při vypnuté obrazovce.</string>
   <string name="suspend_defer_time">Doba odložení odstavení</string>
   <string name="defer_sampling">Odložit vzorkování</string>
   <string name="boost_lock_duration">Doba trvání uzamčení vyšších taktů procesoru</string>
@@ -202,25 +216,57 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinut týmem Code_Blue.</string>
   <string name="powersaver_mode">Úsporný režim</string>
-  <string name="up_threshold_summary">Po překročení této hodnoty aktivuje ovladač další jádro.</string>
+  <string name="powersaver_mode_summary">Zapne jen 1 CPU s frekvencí @1728MHz.</string>
+  <string name="up_threshold">Hranice zvýšení</string>
+  <string name="up_threshold_summary">Po překročení této hranice ovladač zapne jedno další jádro.</string>
+  <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="msm_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul myfluxi.</string>
+  <string name="history_size">Velikost historie</string>
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
+  <string name="mako_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul franciscofranco.</string>
+  <string name="cpus_on_touch">Počet CPU při doteku</string>
+  <string name="cpus_on_touch_summary">Počet zapnutých CPU při dotyku obrazovky nebo stisku tlačítka.</string>
   <string name="first_level">První úroveň</string>
   <string name="timer">Časovač</string>
+  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="mb_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul show-p1984.</string>
+  <string name="screen_off_single_cpu">Jedno CPU při vyp. displeji</string>
   <string name="screen_off_single_cpu_summary">Používat pouze jedno jádro, když je displej vypnut.</string>
+  <string name="idle_frequency">Frekvence při nečinnosti</string>
+  <string name="idle_frequency_summary">Pokud je první jádro pod touto frekvencí, pak nepřipojovat další jádra.</string>
+  <string name="touch_boost_time">Doba zrychlení při dotyku</string>
+  <string name="touch_boost_time_summary">Jak dlouho by mělo být CPU zrychleno po dotyku obrazovky.</string>
   <string name="boost_frequency_core">Zvýšení frekvence jádra %d</string>
   <string name="start_delay">Prodleva spuštění</string>
+  <string name="start_delay_summary">Doba než hotplug začne pracovat.</string>
   <string name="delay">Prodleva</string>
   <string name="delay_summary">Čas mezi kontrolami.</string>
   <string name="pause">Pauza</string>
+  <string name="alucard_hotplug">Alucard Hotplug</string>
+  <string name="alucard_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul Alucard.</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul varunchitre15.</string>
   <string name="endurance_level_summary">Úsporný profil.</string>
+  <string name="quad_core_mode">Režim Quad-Core</string>
   <string name="dual_core_mode">Režim Dual-Core</string>
+  <string name="zen_decision">Zen Decision</string>
+  <string name="zen_decision_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul bbedward.</string>
   <string name="wake_wait_time">Čekací doba pro probuzení</string>
   <string name="wake_wait_time_summary">Doba čekání před uvedením některého jádra do chodu.</string>
+  <string name="bat_threshold_ignore">Baterie Hranice ignorování</string>
+  <string name="bat_threshold_ignore_summary">Nezapínat jádra pokud je nabito pod vybranou kapacitu.</string>
+  <string name="autosmp">AutoSMP</string>
+  <string name="autosmp_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul mrg666.</string>
   <string name="core_control">Řízení Jádra</string>
   <!--Thermal-->
   <string name="thermal_info">Používejte pouze jeden teplotní ovladač, použití více ovladačů ve stejnou dobu může vést k neočekávanému chování.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Původní teplotní ovladač, který zabraňuje zařízení se přehřát. Pokud má použité jádro alternativní, toto by mělo být vypnuto.</string>
+  <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123.</string>
+  <string name="intellithermal_optimized">Intellithermal Optimized</string>
   <string name="intellithermal_optimized_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123 a alucard_24.</string>
   <string name="freq_step">Krok frekvence</string>
   <string name="temp_hysteresis">Teplotní hystereze</string>
@@ -261,6 +307,7 @@
   <string name="screen_value">Hustota rastru</string>
   <string name="screen_contrast">Kontrast obrazovky</string>
   <string name="high_brightness_mode">Režim vysokého jasu</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gama</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jas</string>
@@ -336,6 +383,9 @@
   <string name="usb_fast_charge">Rychlé USB nabíjení</string>
   <string name="usb_fast_charge_summary">Rychlejší nabíjení zařízení při připojení přes USB. Při změně této volby odpojte a znovu zapojte nabíječku.</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
+  <string name="charge_rate">Rychlost nabíjení</string>
+  <string name="charging_current">Nabíjecí proud</string>
+  <string name="charging_current_summary">Nastavit nabíjecí proud. Upozornění: Více jak 1250 mA může poškodit regulátor nabíjení.</string>
   <!-- LED -->
   <string name="speed">Rychlost</string>
   <string name="notification">Upozornění</string>
@@ -385,9 +435,19 @@
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
   <!-- Custom Controls -->
+  <string name="welcome">Vítejte</string>
+  <string name="custom_controls_summary">V této sekci můžete vytvářet nebo importovat vlastní ovládací prvky, které (ještě) v této aplikaci neexistují.</string>
+  <string name="example">Ukázky</string>
+  <string name="custom_controls_example_summary">Potřebujete ukázku? Klikněte &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;zde&lt;a&gt;.</string>
+  <string name="create">Vytvořit</string>
+  <string name="import_item">Importovat</string>
+  <string name="control_switch">Přepínač</string>
+  <string name="control_seekbar">Posuvník</string>
   <string name="title">Název</string>
   <string name="description">Popis</string>
   <string name="applying">Použití</string>
+  <string name="seekbar_min">Min</string>
+  <string name="seekbar_max">Max</string>
   <string name="required">vyžadováno</string>
   <string name="edit">Upravit</string>
   <string name="delete">Smazat</string>
@@ -403,6 +463,8 @@
   <string name="flashing">Flashování</string>
   <string name="restoring">Obnovování</string>
   <!-- Backup -->
+  <string name="boot_partition">Spouštěcí oddíl</string>
+  <string name="recovery_partition">Oddíl pro obnovení</string>
   <!-- Build prop Editor -->
   <string name="add">Přidat</string>
   <string name="key">Klíč</string>
@@ -421,7 +483,28 @@
   <!-- On Boot -->
   <string name="delete_question">Odstranit %s?</string>
   <!-- Settings -->
+  <string name="fahrenheit_title">Stupňe Fahrenheita</string>
+  <string name="fahrenheit_summary">Používat stupeňe Fahrenheita pro měření teploty.</string>
+  <string name="force_english">Vynutit použití angličtiny</string>
+  <string name="user_interface">Uživatelské prostředí</string>
   <string name="dark_theme">Tmavý motiv</string>
+  <string name="material_icon">Ikona Material</string>
+  <string name="accent_color">Barva zvýraznění</string>
+  <string name="instant">Bez prodlevy</string>
+  <string name="five_sec">5 vteřin</string>
+  <string name="ten_sec">10 vteřin</string>
+  <string name="twenty_sec">20 vteřin</string>
+  <string name="fifty_sec">50 vteřin</string>
+  <string name="apply_on_boot_running">Služba aplikování při spuštění již běží, Počkejte prosím než skončí.</string>
+  <string name="nothing_apply">Nenalezeno nic k aplikování!</string>
+  <string name="hide">Skrýt</string>
+  <string name="apply_on_boot_hide_summary">Skrýt oznámení aplikování při spuštění. Prodleva ale zůstane!</string>
+  <string name="toast">Zpráva</string>
+  <string name="apply_on_boot_toast_summary">Zobraz zprávu po aplikaci nastavení.</string>
+  <string name="confirmation_notification">Potvrzující oznámení</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Po aplikování při spuštění se zapnutými oznámeními ukaž oznámení s potvrzením, zda aplikování při spuštění bylo úspěšné.</string>
+  <string name="script">Skript</string>
+  <string name="apply_on_boot_script_summary">Použij shell skript pro aplikování nastavení. Povolte toto prosím pouze pokud máte potíže s aplikováním při spuštění. Pokud i po povolení tohoto nastavení problém přetrvává, pak se prosím ujistěte, že neběží žádná jiná aplikace nekompatibilní s Kernel Adiutorem.</string>
   <string name="debugging">Ladění</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopírovat protokol logcat do /sdcard/logcat.txt</string>
@@ -441,8 +524,12 @@
   <string name="password_not_match">Zadaná hesla nesouhlasí</string>
   <string name="password_too_long">Heslo je příliš dlouhé (max. 32 znaků)</string>
   <string name="set_password_first">Nejprve nastavte heslo</string>
+  <string name="sections">Sekce</string>
   <!-- About -->
+  <string name="about_me">Ahoj, já jsem Willi Ye aka Grarak, devatenáctiletý student žijící ve Vídni. Vyvíjím na Androidu už docela dlouho. Vedle Kernel Adiutoru také spravuju CyanogenMod pro několik zařízení a pracuji na ParanoidAndroidu. Tak prosím pochopte, pokud nebudu mít čas tuto aplikaci aktualizovat.</string>
+  <string name="libraries_used">Použité knihovny</string>
   <!-- Contributors -->
+  <string name="commits">%d commitů</string>
   <string name="no_internet">Zkontrolujte připojení k internetu</string>
   <!-- Help -->
   <string name="misspelled">Není „Adiutor“ překlep?</string>
@@ -450,6 +537,7 @@
   <string name="have_to_donate">Chci-li používat prémiové funkce, musím přispět na vývoj?</string>
   <string name="have_to_donate_summary">Ne, tato aplikace je open source. Pokud chcete, můžete si ji sami sestavit. Prémiové funkce jsou ve výchozím stavu povoleny jakmile provedete sestavení a ladění apk balíčku, takže není potřeba přepisovat jediný řádek kódu.</string>
   <string name="cpu_freq_not_sticking">Proč je mnou nastavená frekvence procesoru ignorována?</string>
+  <string name="cpu_freq_not_sticking_summary">To může být z mnoha důvodů. Mnoho kernelů dnes má vlastní hotplugging systém, který řídí frekvenci CPU a CyanogenMod má vlastní CPU Boost implementaci, kterou reguluje frekvenci. Doporučil bych nesahat na CPU frekvence a nechat dělat kernel jeho práci. To platí i pro ostatní funkce! Pokud nedrží nastavené, tak je to tím, že kernel/systém Vám nechce umožnit je měnit.</string>
   <string name="feature_not_appearing">Proč se nezobrazují funkce X a Y?</string>
   <string name="feature_not_appearing_summary">Zobrazeny jsou pouze funkce podporované vaším zařízením.</string>
   <string name="feature_function">Co dělá funkce X?</string>

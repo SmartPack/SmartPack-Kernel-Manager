@@ -634,7 +634,7 @@
   <string name="boot_partition">Boot-Partition</string>
   <string name="recovery_partition">Recovery-Partition</string>
   <string name="fota_partition">FOTA-Partition</string>
-  <string name="flash">flashen</string>
+  <string name="flash">Flash</string>
   <!-- Build prop Editor -->
   <string name="add">Hinzufügen</string>
   <string name="backup_item">%1$s wurde zu %2$s gesichert</string>

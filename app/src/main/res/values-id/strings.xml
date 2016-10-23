@@ -137,6 +137,7 @@
   <string name="cpu_governor_summary">Pengontrol CPU menentukan perubahan perilaku CPU ketika kelebihan beban. Merubah Pengontrol akan mempengaruhi nilai skala fekuensi CPU yang tersedia.</string>
   <string name="cpu_governor_tunables">Pengontrol CPU Yang Bisa Dirubah</string>
   <string name="governor_tunables_summary">Beragam pilihan konfigurasi yang bergantung-Governor.</string>
+  <string name="cpu_governor_tunables_read_error">Gagal untuk membaca perintah dari CPU.\n\nIf anda sedang menggunakan QCOM besar. Perangkat kecil ini adalah masalah yang sudah diketahui. Ini memaksa sistem untuk mematikan inti dari CPU dan membuat CPU sulit untuk membaca status spesifik CPU. Coba untuk memilih pengaturan ini lagi. CPU terkadang menolak untuk mengaktifkan inti.</string>
   <string name="tunables_error">%s is not tuneable</string>
   <string name="manual">Manual</string>
   <string name="mc_power_saving">Penghemat Daya Inti Majemuk</string>
@@ -160,6 +161,7 @@
   <string name="input_interval">Tulis nilai Interval</string>
   <string name="input_interval_summary">Interval minimum CPU akan ditingkatkan jika nilai masukan terdeteksi.</string>
   <string name="input_boost_freq">Masukan Peningkatan Frekuensi</string>
+  <string name="input_boost_freq_core">Peningkatan masukan frekuensi inti</string>
   <string name="input_boost_freq_summary">Frekuensi CPU akan ditingkatkan sesuai nilai masukan jika ditentukan.</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost mirip dengan Indput Boost tetapi hal ini terjadi ketika layar diaktifkan (dari kondisi mati).</string>
@@ -172,10 +174,12 @@
   <string name="override_vmin">Pengambil-alih Tegangan Terendah</string>
   <string name="override_vmin_summary">Non-aktifkan untuk menghilangkan batas Perendah Tegangan bawaan</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Lebih dari satu sistem hotplugging aktif!, Tolong hanya gunakan satu.</string>
   <string name="mpdecision">Penentu MP</string>
   <string name="mpdecision_summary">Pengaturan hotplug bawaan Qualcomm\'s. Anda munkin akan mengalami masalah saat merubah frekuensi ketika pilihan ini aktif.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Sebuah nilai kernel pengganti untuk Penentu MP bawaan milik Quallcomm. Dikembangkan oleh faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Angka dalam indikasi kurung merupakan jumlah inti yang aktif pada setiap waktu.</string>
   <string name="insanity">Indonesia</string>
   <string name="balanced">Seimbang</string>
   <string name="performance">Performa</string>
@@ -190,6 +194,8 @@
   <string name="eco_mode_summary">Modus penghemat baterai untuk IntelliPlug.</string>
   <string name="hysteresis">Nilai Histeresis</string>
   <string name="hysteresis_summary">Semakin rendah, respon semakin cepat.</string>
+  <string name="cpu_threshold">Batas muatan CPU</string>
+  <string name="cpu_threshold_summary">Semakin tinggi, semakin rendah CPU digunakan.</string>
   <string name="suspend">Tangguhkan</string>
   <string name="suspend_summary">Cegah penagguhan.</string>
   <string name="cpus_boosted">Peningkatan CPU</string>
@@ -198,6 +204,8 @@
   <string name="min_cpu_online_summary">Jumlah terendah CPU yang akan selalu aktif.</string>
   <string name="max_cpu_online">CPU Aktif terbanyak</string>
   <string name="max_cpu_online_summary">Jumlah tertinggi CPU Aktif yang akan selalu aktif.</string>
+  <string name="max_cpu_online_screen_off">CPU maksimal pada saat layar mati</string>
+  <string name="max_cpu_online_screen_off_summary">Jumlah maksimal dari CPU yang akan aktif pada saat layar mati.</string>
   <string name="suspend_defer_time">Menangguhkan waktu tunda</string>
   <string name="defer_sampling">Sampel Penundaan</string>
   <string name="boost_lock_duration">Durasi Kunci Peningkat</string>
@@ -208,6 +216,7 @@
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Kernel pengganti Penentu MP bawaan Qualcomm. Dikembangkan oleh tim Code_Blue.</string>
   <string name="powersaver_mode">Modus Penghemat daya</string>
+  <string name="powersaver_mode_summary">Atur 1 batas CPU maksimal yang aktif dengan frekuensi @1782Mhz.</string>
   <string name="up_threshold">Batas Atas</string>
   <string name="up_threshold_summary">Melebihi batas ini driver akan membuat satu inti lain untuk aktif.</string>
   <string name="up_timer_cnt">Kontrol Waktu Aktif</string>
@@ -230,6 +239,8 @@
   <string name="io_is_busy_summary">Digunakan agar hotplug menentukan waktu I/O menjadi waktu beban CPU.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Kernel pengganti Penentu MP bawaan Qualcomm. Dikembangkan oleh franciscofranco.</string>
+  <string name="cpus_on_touch">CPU yang di sentuh</string>
+  <string name="cpus_on_touch_summary">Jumlah dari CPU yang aktif ketika layar di sentuh atau tombol di tekan.</string>
   <string name="cpu_freq_unplug_limit">Batas Frekuensi CPU Tak-tersambung</string>
   <string name="first_level">Tingkat Satu</string>
   <string name="first_level_summary">Batas untuk semua CPU yang aktif.</string>
@@ -242,9 +253,13 @@
   <string name="msm_mpdecision_hotplug">Penentu MP Hotplug MSM</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Pengganti Penentu MP bawaan Qualcomm. Dikembangkan oleh show-p1984.</string>
+  <string name="screen_off_single_cpu">Layar mati CPU Tunggal</string>
+  <string name="screen_off_single_cpu_summary">Gunakan hanya satu CPU pada saat layar mati.</string>
   <string name="idle_frequency">Frekuensi Menganggur</string>
   <string name="idle_frequency_summary">Jika inti pertama dibawah frekuensi itu, maka jangan jalankan inti yang lain.</string>
   <string name="touch_boost_time">Waktu Peningkat Sentuh</string>
+  <string name="touch_boost_time_summary">Berapa lama CPU harus di tingkatkan setelah menyetuh layar.</string>
+  <string name="boost_frequency_core">Tingkatkan frekuensi inti</string>
   <string name="start_delay">Jeda Sebelum Mulai</string>
   <string name="start_delay_summary">Waktu sampai Hotplug mulai bekerja.</string>
   <string name="delay">Jeda</string>
@@ -256,6 +271,10 @@
   <string name="sampling_rate">Rasio Sampling</string>
   <string name="cpu_down_rate">Rasio CPU Turun</string>
   <string name="cpu_up_rate">Rasio CPU Naik</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Sebuah kernel pengganti untuk hotplugging Qualcomm\'s. Dikembangkan oleh varunchitre15.</string>
+  <string name="min_cpu_online_screen_off">CPU Minimal pada saat layar mati</string>
+  <string name="min_cpu_online_screen_off_summary">Jumlah minimal CPU yang akan aktif ketika layar mati.</string>
   <string name="endurance_level">Tingkat daya tahan</string>
   <string name="endurance_level_summary">Profil penghemat daya.</string>
   <string name="quad_core_mode">Modus Empat-Inti</string>
@@ -263,6 +282,7 @@
   <string name="zen_decision">Zen Decission</string>
   <string name="zen_decision_summary">Kernel pengganti untuk Penentu MP bawaan milik Quallcomm. Dikembangkan oleh bbedward.</string>
   <string name="wake_wait_time">Waktu Tunggu Bangun</string>
+  <string name="wake_wait_time_summary">Berapa lama untuk menunggu sebelum mengaktifkan beberapa CPU.</string>
   <string name="bat_threshold_ignore">Batas Abaian Baterai</string>
   <string name="bat_threshold_ignore_summary">Jangan nyalakan inti manapun saat dibawah kapasitas terpilih.</string>
   <string name="autosmp">AutoSMP</string>
@@ -274,16 +294,32 @@
   <string name="cycle_up">Siklus Atas</string>
   <string name="cycle_up_summary">Siklus tunggu setelah peristiwa hotplug terakhir untuk mencabut inti lain.</string>
   <string name="core_control">Kontrol Inti</string>
+  <string name="core_control_summary">Solusi hotplugging Qualcomm\'s. Maaf anda tidak bisa mematikannya. #blameqcom</string>
+  <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">Inti kontrol yang telah dimodifikasi untuk OnePlus\'.</string>
+  <string name="min_cpus_big">Minimum besar CPU</string>
+  <string name="min_cpus_big_summary">Jumlah minimum dari besar CPU yang harus aktif.</string>
+  <string name="busy_down_threshold">Batas sibuk bawah</string>
+  <string name="busy_down_threshold_summary">Batas ketika CPU besar harus dimatikan.</string>
+  <string name="busy_up_threshold">Batas sibuk atas</string>
+  <string name="busy_up_threshold_summary">Batas ketika CPU besar harus di aktifkan.</string>
+  <string name="offline_delay">Penundaan offline</string>
+  <string name="offline_delay_summary">Waktu sebelum mematikan CPU.</string>
   <!--Thermal-->
   <string name="thermal_info">Gunakan salah satu driver termal dari pilihan berikut, menggunakan lebih pada saat yang sama dapat menyebabkan perilaku yang tidak terduga.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Driver termal bawaan yang mencegah perangkat dari kepanasan. Ini dapat dimatikan karena kernel saat ini memiliki alternatif.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Nilai kernel pengganti Qualcomm Thermald. Dikembangkan oleh faux123.</string>
   <string name="intellithermal_optimized">Intellithermal Teroptimalkan</string>
   <string name="intellithermal_optimized_summary">Nilai kernel pengganti Qualcomm Thermald. Dikembangkan oleh faux123 dan alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Mengijinkan anda untuk mengaktifkan debug mask untuk operasi termal.</string>
   <string name="vdd_restriction">Pembatasan VDD</string>
   <string name="freq_throttle_temp">Pengendur Frekuensi Suhu</string>
   <string name="freq_throttle_temp_summary">Suhu untuk memulai pengenduran frekuensi.</string>
+  <string name="cpu_throttle_temp">Pengendali temperatur CPU</string>
+  <string name="cpu_throttle_temp_summary">Temperatur memulain untuk mematikan CPU.</string>
+  <string name="cpu_temp_hysteresis">Temperatur Histeris CPU</string>
   <string name="freq_step">Langkah Frekuensi</string>
   <string name="immediately_limit_stop">Batas Penghentian Segera</string>
   <string name="poll">Penjajak</string>
@@ -311,6 +347,8 @@
   <string name="check_interval">Jangka Pengecekan</string>
   <string name="shutdown_temp">Suhu Pematian</string>
   <!-- GPU -->
+  <string name="frequencies">Frekuensi</string>
+  <string name="gpu_2d_freq">Frekuensi 2D GPU</string>
   <string name="gpu_2d_max_freq">Frekuensi Tertinggi GPU 2D</string>
   <string name="gpu_2d_max_freq_summary">Atur skala frekuensi GPU 2D tertinggi secara keseluruhan.</string>
   <string name="gpu_max_freq">Frekuensi GPU Tertinggi</string>
@@ -321,6 +359,7 @@
   <string name="gpu_2d_governor_summary">Setting 2D governor untuk GPU.</string>
   <string name="gpu_governor">GPU Governor</string>
   <string name="gpu_governor_summary">Atur Governor GPU.</string>
+  <string name="gpu_governor_tunables">Pengontrol perintah GPU</string>
   <string name="simple_gpu_algorithm">Algoritma GPU biasa</string>
   <string name="simple_gpu_algorithm_summary">Tambakan untuk Andreno TZ GPU Gorvenor. Dev By Faux123.</string>
   <string name="laziness">Laziness</string>
@@ -328,6 +367,7 @@
   <string name="ramp_thresold">Batasan ramp</string>
   <string name="ramp_thresold_summary">Hal ini meningkatkan jumlah kali jalan Gubernur GPU permintaan terendah. Semakin tinggi, kinerja lebih yang Anda dapatkan.</string>
   <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Solusi yang efisien untuk msm-adreno-tz dari kepanasan. Dikembangkan oleh arter97.</string>
   <string name="down_differential">Down Differenctial</string>
   <string name="down_differential_summary">Ambang batas untuk menentukan jika diberikan beban kerja adalah menganggur.</string>
   <string name="idle_wait">Menunggu menganggur</string>
@@ -335,6 +375,7 @@
   <string name="workload">Beban kinerja</string>
   <string name="workload_summary">Adreno idler akan lebih aktif mencoba untuk jalan turun frekuensi jika ini diatur ke nilai yang lebih tinggi.</string>
   <!-- Screen -->
+  <string name="screen_color">Warna layar</string>
   <string name="red">Merah</string>
   <string name="green">Hijau</string>
   <string name="blue">Biru</string>
@@ -451,15 +492,44 @@
   <string name="headphone_poweramp_gain">Peningkatan Speaker PowerAmp</string>
   <string name="headphone_tpa6165_gain">Headphone Amp Gain (Ekstensi TPA6165)</string>
   <string name="lock_output_gain">Kunci Capaian Keluaran</string>
+  <string name="lock_output_gain_summary">Mencegah modifikasi dari headphone / peningkatan speaker</string>
+  <string name="lock_mic_gain">Kunci peningkatan mikrofon</string>
+  <string name="lock_mic_gain_summary">Mencegah modifikasi dari peningkatan mikrophone</string>
   <string name="microphone_gain">Peningkatan Mikrofon</string>
   <string name="volume_gain">Peningkatan Volume</string>
   <!-- Battery -->
+  <string name="level">Tingkat</string>
+  <string name="voltage">Tegangan</string>
+  <string name="capacity">Kapasitas</string>
   <string name="usb_fast_charge">Pengecasan Cepat USB</string>
   <string name="usb_fast_charge_summary">Perangkat akan lebih cepat terisi saat terhubung dengan USB. Colokkan kembali saat mengganti pilihan ini.</string>
   <string name="blx">Baterai eXtender</string>
   <string name="blx_summary">Menetapkan batas kapasitas baterai dimana akan diisi setelah melewati nilai tertentu antara 0 dan 100.</string>
+  <string name="charge_rate">Rasio pengisian</string>
+  <string name="charging_current">Pengisian sekarang</string>
+  <string name="charging_current_summary">Atur pengisian sekarang. Bahaya: Melebihi 1250mA mungkin dapat merusak driver pengisian anda.</string>
   <!-- LED -->
+  <string name="fade">Pudar</string>
+  <string name="fade_summary">Aktifkan untuk memudar. Non aktifkan untuk berkedip.</string>
+  <string name="intensity">Intensitas</string>
+  <string name="speed">Kecepatan</string>
+  <string name="stock">Bawaan</string>
+  <string name="continuous_light">Cahaya terus-menerus</string>
+  <string name="bright_light_environment">Lingkungan cahaya yang terang</string>
+  <string name="bright_light_environment_summary">Mengatur intensitas relatif dari LED ketika terang di lingkungan cerah.</string>
+  <string name="low_light_environment">Lingukangan rendah cahaya</string>
+  <string name="low_light_environment_summary">Atur intensitas relatif dari LED ketika lingkungan cahaya rendah.</string>
+  <string name="notification">Notifikasi</string>
+  <string name="on">Aktif</string>
+  <string name="off">Mati</string>
+  <string name="fade_ramp_control">Kendali pudar ramp</string>
+  <string name="fade_ramp_control_summary">Pengendali aktif atau non aktif LED masuk/keluar (ramp).</string>
+  <string name="fade_in">Pudar ke dalam</string>
+  <string name="fade_in_summary">Atur periode waktu dari lereng yang meningkat.</string>
+  <string name="fade_out">Pudar keluar</string>
+  <string name="fade_out_summary">Atur periode waktu dari lereng yang jatuh.</string>
   <string name="test">Coba</string>
+  <string name="led_test_summary">Uji Led dengan pengaturan anda.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Penyimpanan Internal</string>
   <string name="external_storage">Penyimpanan Eksternal</string>
@@ -469,6 +539,13 @@
   <string name="scheduler_tunable_summary">Konfigurasi berbagai item yang bergantung pada Penjadwal.</string>
   <string name="read_ahead">Pra-baca</string>
   <string name="read_ahead_summary">Nilai pra-baca pada memory ponsel.</string>
+  <string name="rotational">Penyimpanan rotasi</string>
+  <string name="rotational_summary">Perlakukan perangkat sebagai penyimpanan rotasi.</string>
+  <string name="iostats">Statistik I/O</string>
+  <string name="iostats_summary">Pertahankan statistik I/O untuk penyimpanan perangkat. Menonaktifkan akan memberhentikan pemantauan aplikasi I/O.</string>
+  <string name="add_random">Tambah acak</string>
+  <string name="add_random_summary">Gambar entropi dari penyimpanan yang berputar (rotasi).</string>
+  <string name="rq_affitiny">Afinitas RQ</string>
   <!-- Kernel Samepage Merging -->
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplikasi Latar Depan</string>

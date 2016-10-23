@@ -540,13 +540,13 @@
   <string name="scheduler_tunable">调度器微调</string>
   <string name="scheduler_tunable_summary">这些配置项与您使用的调度器有关</string>
   <string name="read_ahead">预读</string>
-  <string name="read_ahead_summary">手机内存中的预读值。</string>
+  <string name="read_ahead_summary">手机内存预读值。</string>
   <string name="rotational">硬盘存储</string>
   <string name="rotational_summary">将设备视为硬盘存储</string>
   <string name="iostats">I/O 统计</string>
   <string name="iostats_summary">维护此存储设备的 I/O 统计。禁用此选项将影响监控 I/O 的应用程序。</string>
   <string name="add_random">添加随机性</string>
-  <string name="add_random_summary">从旋转存储（硬盘设备）吸取熵</string>
+  <string name="add_random_summary">从旋转存储（硬盘设备）获取熵。</string>
   <string name="rq_affitiny">RQ 归属</string>
   <string name="rq_affinity_summary">尝试使 CPU 核心完成更完整的调度请求。值越高越激进。</string>
   <!-- Kernel Samepage Merging -->
@@ -568,7 +568,7 @@
   <string name="lmk_adaptive_summary">检测到系统颠簸出现时动态地让 LMK 更加激进。</string>
   <string name="visible_app">可见程序</string>
   <string name="secondary_server">辅助服务</string>
-  <string name="hidden_app">隐藏程序</string>
+  <string name="hidden_app">不可见（后台）程序</string>
   <string name="content_providers">内容提供程序</string>
   <string name="empty_app">空程序</string>
   <string name="very_light">极轻</string>
@@ -679,8 +679,8 @@
   <string name="check_md5">检查 md5</string>
   <string name="md5_mismatch">已下载的文件的MD5不符合校验值。可能原因有：\n\n\u2022 下载的文件已损坏\n\u2022 开发者给出了错误的MD5\n\n请尝试再次下载该文件。如果您仍然收到此错误，请联系此内核的开发人员。</string>
   <string name="install">安装</string>
-  <string name="cwm_recovery">CWM 恢复模式</string>
-  <string name="twrp">TWRP 恢复模式</string>
+  <string name="cwm_recovery">CWM 恢复程序</string>
+  <string name="twrp">TWRP 恢复程序</string>
   <string name="manual_flashing">我用自己的</string>
   <string name="file_location">已下载文件位于 %s</string>
   <string name="backing_up">正在备份</string>
@@ -740,7 +740,7 @@
   <string name="executing">正在执行</string>
   <string name="result">结果</string>
   <!-- On Boot -->
-  <string name="on_boot_welcome_summary">这里会显示当您的设备开机时将会发生的事件。如果这里是空的，那么启动时不会发生什么。</string>
+  <string name="on_boot_welcome_summary">这里显示您的设备开机时将会发生的事件。如果这里是空的，那么启动时不会发生什么。</string>
   <string name="delete_question">删除 %s？</string>
   <string name="arguments">参数︰%s</string>
   <string name="disable_question">禁用 %s？</string>

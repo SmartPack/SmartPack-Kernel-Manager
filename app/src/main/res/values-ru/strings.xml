@@ -167,8 +167,8 @@
   <string name="input_boost_freq_summary">Частота ЦП будет повышена до этой при обнаружении ввода.</string>
   <string name="wakeup_boost">Повышение при пробуждении</string>
   <string name="wakeup_boost_summary">Повышение при пробуждении похоже на повышение при вводе, но срабатывает при включенном экране.</string>
-  <string name="hotplug_boost">Усиление hotplug</string>
-  <string name="hotplug_boost_summary">Усиление hotplug похоже на усиление при вводе, но срабатывает при переходе ЦП в онлайн.</string>
+  <string name="hotplug_boost">Ускорение горячего подключения</string>
+  <string name="hotplug_boost_summary">Ускорение горячего подключения похоже на ускорение ввода, но срабатывает при работе процессора онлайн.</string>
   <string name="touch_boost">Ускорение прикосновений</string>
   <string name="touch_boost_summary">Повышает вашу минимальную скорость ЦП, если вы коснётесь экрана или нажмёте кнопку.</string>
   <!-- CPU Voltage -->
@@ -331,7 +331,7 @@
   <string name="temp_safety">Безопасная температура </string>
   <string name="temp_throttle">Троттлинг</string>
   <string name="temp_throttle_summary">Переключатель лимита тепературы SoC.</string>
-  <string name="temp_limit">Температурный предел</string>
+  <string name="temp_limit">Ограничение температуры</string>
   <string name="temp_limit_summary">Если температура поднимается, термодатчик будет регулировать частоту процессора для снижения температуры.</string>
   <string name="freq_limit_debug">Отладка лимита частот</string>
   <string name="freq_limit_debug_summary">Это позволяет отладить троттлинг ЦП при достижении температурного максимума.</string>
