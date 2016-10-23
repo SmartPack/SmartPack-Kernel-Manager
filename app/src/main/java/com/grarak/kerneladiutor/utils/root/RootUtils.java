@@ -117,10 +117,10 @@ public class RootUtils {
      */
     public static class SU {
 
-        private Process process;
-        private BufferedWriter mOutputWriter;
-        private BufferedReader mInputReader;
-        private final boolean root;
+        private Process mProcess;
+        private BufferedWriter mWriter;
+        private BufferedReader mReader;
+        private final boolean mRoot;
         private final String mTag;
         private boolean closed;
         private boolean denied;
@@ -131,17 +131,17 @@ public class RootUtils {
         }
 
         public SU(boolean root, String tag) {
-            this.root = root;
+            mRoot = root;
             mTag = tag;
             try {
                 if (mTag != null) {
                     Log.i(mTag, String.format("%s initialized", root ? "SU" : "SH"));
                 }
                 firstTry = true;
-                process = Runtime.getRuntime().exec(root ? "su" : "sh");
-                mOutputWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-                mInputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            } catch (IOException ignored) {
+                mProcess = Runtime.getRuntime().exec(root ? "su" : "sh");
+                mWriter = new BufferedWriter(new OutputStreamWriter(mProcess.getOutputStream()));
+                mReader = new BufferedReader(new InputStreamReader(mProcess.getInputStream()));
+            } catch (IOException e) {
                 if (mTag != null) {
                     Log.e(mTag, root ? "Failed to run shell as su" : "Failed to run shell as sh");
                 }
@@ -155,15 +155,17 @@ public class RootUtils {
                 try {
                     StringBuilder sb = new StringBuilder();
                     String callback = "/shellCallback/";
-                    mOutputWriter.write(command + "\necho " + callback + "\n");
-                    mOutputWriter.flush();
+                    mWriter.write(command + "\necho " + callback + "\n");
+                    mWriter.flush();
 
-                    String line;
-                    while ((line = mInputReader.readLine()) != null) {
-                        if (line.equals(callback)) {
+                    int i;
+                    char[] buffer = new char[256];
+                    while (true) {
+                        sb.append(buffer, 0, mReader.read(buffer));
+                        if ((i = sb.indexOf(callback)) > -1) {
+                            sb.delete(i, i + callback.length());
                             break;
                         }
-                        sb.append(line).append("\n");
                     }
                     firstTry = false;
                     if (mTag != null) {
@@ -180,28 +182,32 @@ public class RootUtils {
                     e.printStackTrace();
                     denied = true;
                 }
-                return "";
+                return null;
             }
         }
 
         public void close() {
             try {
-                mOutputWriter.write("exit\n");
-                mOutputWriter.flush();
+                mWriter.write("exit\n");
+                mWriter.flush();
 
-                process.waitFor();
-
-                mOutputWriter.close();
-                mInputReader.close();
-                process.destroy();
-                if (mTag != null) {
-                    Log.i(mTag, root ? "SU closed: " + process.exitValue() : "SH closed: "
-                            + process.exitValue());
-                }
-                closed = true;
-            } catch (Exception e) {
+                mWriter.close();
+                mReader.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            try {
+                mProcess.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            mProcess.destroy();
+            if (mTag != null) {
+                Log.i(mTag, String.format("%s closed: %d", mRoot ? "SU" : "SH", mProcess.exitValue()));
+            }
+            closed = true;
         }
 
     }
