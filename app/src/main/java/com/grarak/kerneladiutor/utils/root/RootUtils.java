@@ -188,10 +188,12 @@ public class RootUtils {
 
         public void close() {
             try {
-                mWriter.write("exit\n");
-                mWriter.flush();
+                if (mWriter != null) {
+                    mWriter.write("exit\n");
+                    mWriter.flush();
 
-                mWriter.close();
+                    mWriter.close();
+                }
                 mReader.close();
             } catch (IOException e) {
                 e.printStackTrace();

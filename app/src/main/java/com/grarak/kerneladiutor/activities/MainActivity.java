@@ -264,10 +264,10 @@ public class MainActivity extends BaseActivity {
                     if (mApplicationInfo != null && mPackageInfo != null && mPackageInfo.versionCode == 130) {
                         mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
                                 new File(mApplicationInfo.publicSourceDir));
-
                         try {
-                            mInternetAvailable =
-                                    Runtime.getRuntime().exec("ping -W 5 -c 1 8.8.8.8").waitFor() == 0;
+                            Process process = Runtime.getRuntime().exec("ping -W 5 -c 1 8.8.8.8");
+                            mInternetAvailable = process.waitFor() == 0;
+                            process.destroy();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -285,6 +285,7 @@ public class MainActivity extends BaseActivity {
                                 "com.grarak.kerneladiutordonate.MainActivity"));
                         startActivityForResult(intent, 0);
                     } else if (mApplicationInfo != null && mPackageInfo != null
+                            && mPackageInfo.versionCode == 130
                             && !mInternetAvailable && !mPatched) {
                         launch(0);
                     } else {

@@ -136,6 +136,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     protected void init() {
         super.init();
+        if (!isAdded()) return;
 
         if (mTaskerMode) {
             addViewPagerFragment(new TaskerToastFragment());
