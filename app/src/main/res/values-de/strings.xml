@@ -4,10 +4,10 @@
   <string name="app_name">Kernel Adiutor</string>
   <string name="checking_info">Überprüfe Informationen&#8230;</string>
   <string name="checking_root">Überprüfung von Root</string>
-  <string name="searching_busybox">Suche nach busybox</string>
+  <string name="searching_busybox">Suche nach Busybox</string>
   <string name="collecting_info">Sammeln von Informationen</string>
   <string name="no_root">Kein Root</string>
-  <string name="no_busybox">Kein busybox</string>
+  <string name="no_busybox">Keine Busybox</string>
   <!-- Security -->
   <string name="password">Passwort</string>
   <string name="password_wrong">Das Passwort ist falsch</string>
@@ -92,7 +92,7 @@
   <string name="on_boot">Beim Start</string>
   <string name="settings">Einstellungen</string>
   <string name="about">Über uns</string>
-  <string name="contributors">Unterstützer</string>
+  <string name="contributors">Mitwirkende</string>
   <string name="help">Hilfe</string>
   <!-- Overall -->
   <string name="offline">Abgeschaltet</string>
@@ -114,7 +114,7 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android Codename</string>
   <string name="fingerprint">Fingerabdruck</string>
-  <string name="build_display_id">Anzeige-ID erstellen</string>
+  <string name="build_display_id">Build-Nummer</string>
   <string name="baseband">Baseband</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Bootloader</string>
@@ -584,7 +584,7 @@
   <string name="welcome">Willkommen</string>
   <string name="custom_controls_summary">In diesem Abschnitt können Sie benutzerdefinierte Steuerelemente erstellen oder importieren welche es in der App (noch) nicht gibt.</string>
   <string name="example">Beispiele</string>
-  <string name="custom_controls_example_summary">Beispiele Erwünscht? Klicke &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;here&lt;a&gt;.</string>
+  <string name="custom_controls_example_summary">Beispiel benötigt? Klicke &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;hier&lt;a&gt;.</string>
   <string name="create">Erstellen</string>
   <string name="import_item">Importien</string>
   <string name="control_switch">Umschalten</string>
@@ -640,7 +640,7 @@
   <string name="backup_item">%1$s wurde zu %2$s gesichert</string>
   <string name="item_count">%s Element</string>
   <string name="items_count">%s Elemente</string>
-  <string name="key">Taste</string>
+  <string name="key">Schlüssel</string>
   <string name="value">Wert</string>
   <string name="key_empty">Schlüssel kann nicht leer sein!</string>
   <!-- Profile -->
@@ -664,8 +664,8 @@
   <!-- On Boot -->
   <!-- Settings -->
   <string name="dark_theme">Dunkles Design</string>
-  <string name="hide">verstecken</string>
-  <string name="apply_on_boot_hide_summary">Verstecke die Benachrichtung von Anwenden beim Boot. Die Anwende-Verzögerung bleibt!</string>
+  <string name="hide">Verstecken</string>
+  <string name="apply_on_boot_hide_summary">Verstecke die Benachrichtung von Anwenden beim Boot. Die Verzögerung bleibt bestehen!</string>
   <string name="toast">Kurzzeit-Benachrichtigung</string>
   <string name="confirmation_notification">Bestätigende Benachrichtigung</string>
   <string name="apply_on_boot_confirmation_notification_summary">Zeige eine Benachrichtigung dass der Vorgang erfolgreich war, nach der sichtbaren Benachrichtigung des Anwenden beim Boot.</string>
@@ -679,6 +679,7 @@
   <string name="driver_message_summary">Treiber-Nachricht (Dmesg) auf /sdcard/dmesg.txt speichern</string>
   <!-- About -->
   <!-- Contributors -->
+  <string name="commits">%d Änderungen</string>
   <!-- Help -->
   <string name="misspelled_summary">Adiutor ist lateinisch und bedeutet Helfer.</string>
   <string name="have_to_donate">Muss ich spenden, um die Premium Funktionen zu nutzen?</string>

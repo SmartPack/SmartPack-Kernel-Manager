@@ -34,6 +34,8 @@
   <string name="apply_on_boot_complete">Mise en œuvre des paramètres terminée</string>
   <string name="apply_on_boot_canceled">Mise en œuvre des paramètres annulée</string>
   <string name="not_in_range">Hors de gamme</string>
+  <string name="options">Paramètres</string>
+  <string name="more">Plus</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Autorisation d\'écriture sur le stockage refusée !</string>
   <!-- Editor -->
@@ -52,6 +54,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kO</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistiques</string>
@@ -94,6 +97,7 @@
   <!-- Overall -->
   <string name="offline">Hors-Ligne</string>
   <string name="core">Coeur %d</string>
+  <string name="gpu_freq">Fréquence du GPU</string>
   <string name="refresh">Actualiser</string>
   <string name="reset">Réinitialiser</string>
   <string name="restore">Restaurer</string>
