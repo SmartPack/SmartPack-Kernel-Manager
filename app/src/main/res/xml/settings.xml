@@ -37,6 +37,10 @@
         <com.grarak.kerneladiutor.views.preference.ColorPreference
             android:key="accent_color"
             android:summary="@string/accent_color" />
+        <SwitchPreference
+            android:key="section_icons"
+            android:summary="@string/section_icons_summary"
+            android:title="@string/section_icons" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/apply_on_boot">

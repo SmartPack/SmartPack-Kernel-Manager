@@ -801,6 +801,8 @@
     <string name="force_cards">Force cards</string>
     <string name="force_cards_summary">Use cards for items if possible.</string>
     <string name="accent_color">Accent Color</string>
+    <string name="section_icons">Section Icons</string>
+    <string name="section_icons_summary">Show icons for each section in navigation drawer.</string>
     <string name="instant">Instant</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>

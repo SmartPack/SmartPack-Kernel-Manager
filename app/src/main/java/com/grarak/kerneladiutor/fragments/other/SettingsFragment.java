@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v7.app.AlertDialog;
@@ -56,6 +57,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_FORCE_CARDS = "forcecards";
     private static final String KEY_ACCENT_COLOR = "accent_color";
+    private static final String KEY_SECTIONS_ICON = "section_icons";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
     private static final String KEY_LOGCAT = "logcat";
@@ -144,6 +146,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_FORCE_CARDS).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
+        findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -168,16 +171,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         }
 
         PreferenceCategory sectionsCategory = (PreferenceCategory) findPreference(KEY_SECTIONS);
-        for (int id : NavigationActivity.sFragments.keySet()) {
-            if (NavigationActivity.sFragments.get(id) != null
-                    && NavigationActivity.sFragments.get(id).getClass() != SettingsFragment.class) {
+        for (NavigationActivity.NavigationFragment navigationFragment : NavigationActivity.sFragments) {
+            Fragment fragment = navigationFragment.mFragment;
+            int id = navigationFragment.mId;
+
+            if (fragment != null && fragment.getClass() != SettingsFragment.class) {
                 SwitchPreferenceCompat switchPreference = new SwitchPreferenceCompat(
                         new ContextThemeWrapper(getActivity(), R.style.Preference_SwitchPreferenceCompat_Material));
                 switchPreference.setSummary(getString(id));
-                switchPreference.setKey(NavigationActivity.sFragments.get(id).getClass()
-                        .getSimpleName() + "_enabled");
-                switchPreference.setChecked(Prefs.getBoolean(NavigationActivity.sFragments.get(id).getClass()
-                        .getSimpleName() + "_enabled", true, getActivity()));
+                switchPreference.setKey(fragment.getClass().getSimpleName() + "_enabled");
+                switchPreference.setChecked(Prefs.getBoolean(fragment.getClass().getSimpleName()
+                        + "_enabled", true, getActivity()));
                 switchPreference.setOnPreferenceChangeListener(this);
                 switchPreference.setPersistent(false);
                 sectionsCategory.addPreference(switchPreference);
@@ -211,7 +215,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 }
                 return true;
             default:
-                if (key.endsWith("_enabled")) {
+                if (key.equals(KEY_SECTIONS_ICON) || key.endsWith("_enabled")) {
+                    if (key.equals(KEY_SECTIONS_ICON) && !Utils.DONATED) {
+                        ViewUtils.dialogDonate(getActivity()).show();
+                        return false;
+                    }
                     Prefs.saveBoolean(key, checked, getActivity());
                     ((NavigationActivity) getActivity()).appendFragments();
                     return true;

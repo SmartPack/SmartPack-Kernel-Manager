@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.activities;
 
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -32,6 +33,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -97,79 +99,83 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.AdNativeExpress;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public final static LinkedHashMap<Integer, Fragment> sFragments = new LinkedHashMap<>();
+    public final static List<NavigationFragment> sFragments = new ArrayList<>();
     public final static LinkedHashMap<Integer, Fragment> sActualFragments = new LinkedHashMap<>();
 
+    private static final NavigationFragment mDownloadsFragment = new NavigationFragment(R.string.downloads);
+
     static {
-        sFragments.put(R.string.statistics, null);
-        sFragments.put(R.string.overall, new OverallFragment());
-        sFragments.put(R.string.device, new DeviceFragment());
+        sFragments.add(new NavigationFragment(R.string.statistics));
+        sFragments.add(new NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_charts));
+        sFragments.add(new NavigationFragment(R.string.device, new DeviceFragment(), R.drawable.ic_device));
         if (Device.MemInfo.getItems().size() > 0) {
-            sFragments.put(R.string.memory, new MemoryFragment());
+            sFragments.add(new NavigationFragment(R.string.memory, new MemoryFragment(), R.drawable.ic_save));
         }
-        sFragments.put(R.string.inputs, new InputsFragment());
-        sFragments.put(R.string.kernel, null);
-        sFragments.put(R.string.cpu, new CPUFragment());
+        sFragments.add(new NavigationFragment(R.string.inputs, new InputsFragment(), R.drawable.ic_keyboard));
+        sFragments.add(new NavigationFragment(R.string.kernel));
+        sFragments.add(new NavigationFragment(R.string.cpu, new CPUFragment(), R.drawable.ic_cpu));
         if (Voltage.supported()) {
-            sFragments.put(R.string.cpu_voltage, new CPUVoltageFragment());
+            sFragments.add(new NavigationFragment(R.string.cpu_voltage, new CPUVoltageFragment(), R.drawable.ic_bolt));
         }
         if (Hotplug.supported()) {
-            sFragments.put(R.string.cpu_hotplug, new CPUHotplugFragment());
+            sFragments.add(new NavigationFragment(R.string.cpu_hotplug, new CPUHotplugFragment(), R.drawable.ic_switch));
         }
         if (Thermal.supported()) {
-            sFragments.put(R.string.thermal, new ThermalFragment());
+            sFragments.add(new NavigationFragment(R.string.thermal, new ThermalFragment(), R.drawable.ic_temperature));
         }
         if (GPU.supported()) {
-            sFragments.put(R.string.gpu, new GPUFragment());
+            sFragments.add(new NavigationFragment(R.string.gpu, new GPUFragment(), R.drawable.ic_gpu));
         }
         if (Screen.supported()) {
-            sFragments.put(R.string.screen, new ScreenFragment());
+            sFragments.add(new NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_laptop));
         }
         if (Wake.supported()) {
-            sFragments.put(R.string.wake, new WakeFrament());
+            sFragments.add(new NavigationFragment(R.string.wake, new WakeFrament(), R.drawable.ic_unlock));
         }
         if (Sound.supported()) {
-            sFragments.put(R.string.sound, new SoundFragment());
+            sFragments.add(new NavigationFragment(R.string.sound, new SoundFragment(), R.drawable.ic_music));
         }
-        sFragments.put(R.string.battery, new BatteryFragment());
+        sFragments.add(new NavigationFragment(R.string.battery, new BatteryFragment(), R.drawable.ic_battery));
         if (LED.supported()) {
-            sFragments.put(R.string.led, new LEDFragment());
+            sFragments.add(new NavigationFragment(R.string.led, new LEDFragment(), R.drawable.ic_led));
         }
         if (IO.supported()) {
-            sFragments.put(R.string.io_scheduler, new IOFragment());
+            sFragments.add(new NavigationFragment(R.string.io_scheduler, new IOFragment(), R.drawable.ic_sdcard));
         }
         if (KSM.supported()) {
-            sFragments.put(R.string.ksm, new KSMFragment());
+            sFragments.add(new NavigationFragment(R.string.ksm, new KSMFragment(), R.drawable.ic_merge));
         }
         if (LMK.supported()) {
-            sFragments.put(R.string.lmk, new LMKFragment());
+            sFragments.add(new NavigationFragment(R.string.lmk, new LMKFragment(), R.drawable.ic_stackoverflow));
         }
-        sFragments.put(R.string.virtual_memory, new VMFragment());
+        sFragments.add(new NavigationFragment(R.string.virtual_memory, new VMFragment(), R.drawable.ic_server));
         if (Entropy.supported()) {
-            sFragments.put(R.string.entropy, new EntropyFragment());
+            sFragments.add(new NavigationFragment(R.string.entropy, new EntropyFragment(), R.drawable.ic_numbers));
         }
-        sFragments.put(R.string.misc, new MiscFragment());
-        sFragments.put(R.string.tools, null);
-        sFragments.put(R.string.custom_controls, new CustomControlsFragment());
-        sFragments.put(R.string.downloads, null);
+        sFragments.add(new NavigationFragment(R.string.misc, new MiscFragment(), R.drawable.ic_clear));
+        sFragments.add(new NavigationFragment(R.string.tools));
+        sFragments.add(new NavigationFragment(R.string.custom_controls, new CustomControlsFragment(), R.drawable.ic_console));
+        sFragments.add(mDownloadsFragment);
         if (Backup.hasBackup()) {
-            sFragments.put(R.string.backup, new BackupFragment());
+            sFragments.add(new NavigationFragment(R.string.backup, new BackupFragment(), R.drawable.ic_restore));
         }
-        sFragments.put(R.string.build_prop_editor, new BuildpropFragment());
-        sFragments.put(R.string.profile, new ProfileFragment());
-        sFragments.put(R.string.recovery, new RecoveryFragment());
-        sFragments.put(R.string.initd, new InitdFragment());
-        sFragments.put(R.string.on_boot, new OnBootFragment());
-        sFragments.put(R.string.other, null);
-        sFragments.put(R.string.settings, new SettingsFragment());
-        sFragments.put(R.string.about, new AboutFragment());
-        sFragments.put(R.string.contributors, new ContributorsFragment());
-        sFragments.put(R.string.help, new HelpFragment());
+        sFragments.add(new NavigationFragment(R.string.build_prop_editor, new BuildpropFragment(), R.drawable.ic_edit));
+        sFragments.add(new NavigationFragment(R.string.profile, new ProfileFragment(), R.drawable.ic_layers));
+        sFragments.add(new NavigationFragment(R.string.recovery, new RecoveryFragment(), R.drawable.ic_security));
+        sFragments.add(new NavigationFragment(R.string.initd, new InitdFragment(), R.drawable.ic_shell));
+        sFragments.add(new NavigationFragment(R.string.on_boot, new OnBootFragment(), R.drawable.ic_start));
+        sFragments.add(new NavigationFragment(R.string.other));
+        sFragments.add(new NavigationFragment(R.string.settings, new SettingsFragment(), R.drawable.ic_settings));
+        sFragments.add(new NavigationFragment(R.string.about, new AboutFragment(), R.drawable.ic_about));
+        sFragments.add(new NavigationFragment(R.string.contributors, new ContributorsFragment(), R.drawable.ic_people));
+        sFragments.add(new NavigationFragment(R.string.help, new HelpFragment(), R.drawable.ic_help));
     }
 
     private static Thread mPatchingThread;
@@ -179,6 +185,7 @@ public class NavigationActivity extends BaseActivity
         void onBannerResize();
     }
 
+    private SparseArray<Drawable> mDrawables = new SparseArray<>();
     private Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
@@ -213,9 +220,10 @@ public class NavigationActivity extends BaseActivity
 
         SupportedDownloads support = new SupportedDownloads(this);
         if (support.getLink() != null) {
-            sFragments.put(R.string.downloads, DownloadsFragment.newInstance(support));
+            mDownloadsFragment.mFragment = DownloadsFragment.newInstance(support);
+            mDownloadsFragment.mDrawable = R.drawable.ic_download;
         } else {
-            sFragments.remove(R.string.downloads);
+            sFragments.remove(mDownloadsFragment);
         }
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -346,21 +354,36 @@ public class NavigationActivity extends BaseActivity
         menu.clear();
 
         SubMenu lastSubMenu = null;
-        for (int id : sFragments.keySet()) {
-            if (sFragments.get(id) == null) {
+        for (NavigationFragment navigationFragment : sFragments) {
+            Fragment fragment = navigationFragment.mFragment;
+            int id = navigationFragment.mId;
+            Drawable drawable = getNavigationDrawable(navigationFragment.mDrawable == 0
+                    || !Prefs.getBoolean("section_icons", false, this) || !Utils.DONATED ?
+                    R.drawable.ic_blank : navigationFragment.mDrawable);
+
+            if (fragment == null) {
                 lastSubMenu = menu.addSubMenu(id);
                 sActualFragments.put(id, null);
-            } else if (Prefs.getBoolean(sFragments.get(id).getClass().getSimpleName() + "_enabled",
+            } else if (Prefs.getBoolean(fragment.getClass().getSimpleName() + "_enabled",
                     true, this)) {
                 MenuItem menuItem = lastSubMenu == null ? menu.add(0, id, 0, id) :
                         lastSubMenu.add(0, id, 0, id);
-                menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_blank));
+                menuItem.setIcon(drawable);
                 menuItem.setCheckable(true);
                 if (mSelection != 0) {
                     mNavigationView.setCheckedItem(mSelection);
                 }
-                sActualFragments.put(id, sFragments.get(id));
+                sActualFragments.put(id, fragment);
             }
+        }
+    }
+
+    private Drawable getNavigationDrawable(int drawableId) {
+        if (mDrawables.indexOfKey(drawableId) >= 0) {
+            return mDrawables.get(drawableId);
+        } else {
+            mDrawables.put(drawableId, ContextCompat.getDrawable(this, drawableId));
+            return getNavigationDrawable(drawableId);
         }
     }
 
@@ -450,6 +473,28 @@ public class NavigationActivity extends BaseActivity
     public static void bannerResize() {
         if (sCallback != null) {
             sCallback.onBannerResize();
+        }
+    }
+
+    public static class NavigationFragment {
+
+        public int mId;
+        public Fragment mFragment;
+        private int mDrawable;
+
+        private NavigationFragment(int id) {
+            this(id, null, 0);
+        }
+
+        private NavigationFragment(int id, Fragment fragment, int drawable) {
+            mId = id;
+            mFragment = fragment;
+            mDrawable = drawable;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(mId);
         }
     }
 
