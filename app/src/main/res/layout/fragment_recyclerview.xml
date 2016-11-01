@@ -18,11 +18,15 @@
         android:layout_height="@dimen/banner_default_height"
         android:orientation="vertical">
 
-        <include layout="@layout/viewpager_view" />
+        <include
+            layout="@layout/viewpager_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="5dp"
             android:background="@drawable/dropshadow" />
     </LinearLayout>
 
