@@ -20,8 +20,13 @@
 package com.grarak.kerneladiutor.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -100,8 +105,10 @@ import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.AdNativeExpress;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -113,7 +120,7 @@ public class NavigationActivity extends BaseActivity
 
     static {
         sFragments.add(new NavigationFragment(R.string.statistics));
-        sFragments.add(new NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_charts));
+        sFragments.add(new NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_chart));
         sFragments.add(new NavigationFragment(R.string.device, new DeviceFragment(), R.drawable.ic_device));
         if (Device.MemInfo.getItems().size() > 0) {
             sFragments.add(new NavigationFragment(R.string.memory, new MemoryFragment(), R.drawable.ic_save));
@@ -134,7 +141,7 @@ public class NavigationActivity extends BaseActivity
             sFragments.add(new NavigationFragment(R.string.gpu, new GPUFragment(), R.drawable.ic_gpu));
         }
         if (Screen.supported()) {
-            sFragments.add(new NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_laptop));
+            sFragments.add(new NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_display));
         }
         if (Wake.supported()) {
             sFragments.add(new NavigationFragment(R.string.wake, new WakeFrament(), R.drawable.ic_unlock));
@@ -247,6 +254,18 @@ public class NavigationActivity extends BaseActivity
             mSelection = savedInstanceState.getInt("selection");
             mLicenseDialog = savedInstanceState.getBoolean("license");
             mFetchingAds = savedInstanceState.getBoolean("fetching_ads");
+        }
+
+        String section = getIntent().getStringExtra("section");
+        if (section != null) {
+            for (int id : sActualFragments.keySet()) {
+                if (sActualFragments.get(id) != null
+                        && sActualFragments.get(id).getClass().getCanonicalName().equals(section)) {
+                    mSelection = id;
+                    break;
+                }
+            }
+            getIntent().removeExtra("section");
         }
 
         if (mSelection == 0 || !sActualFragments.containsKey(mSelection)) {
@@ -376,6 +395,68 @@ public class NavigationActivity extends BaseActivity
                 sActualFragments.put(id, fragment);
             }
         }
+        setShortcuts();
+    }
+
+    private NavigationFragment getNavigationFragment(Fragment fragment) {
+        for (NavigationFragment navigationFragment : sFragments) {
+            if (fragment == navigationFragment.mFragment) {
+                return navigationFragment;
+            }
+        }
+        return null;
+    }
+
+    private void setShortcuts() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
+        HashMap<Fragment, Integer> openendFragmentsCount = new HashMap<>();
+
+        for (int id : sActualFragments.keySet()) {
+            Fragment fragment = sActualFragments.get(id);
+            if (fragment == null || fragment.getClass() == SettingsFragment.class) continue;
+
+            int opened = Prefs.getInt(fragment.getClass().getSimpleName() + "_opened", 0, this);
+            openendFragmentsCount.put(fragment, opened);
+        }
+
+        int max = 0;
+        for (Map.Entry<Fragment, Integer> map : openendFragmentsCount.entrySet()) {
+            if (max < map.getValue()) {
+                max = map.getValue();
+            }
+        }
+
+        int count = 0;
+        List<ShortcutInfo> shortcutInfos = new ArrayList<>();
+        ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+        shortcutManager.removeAllDynamicShortcuts();
+        for (int i = max; i >= 0; i--) {
+            for (Map.Entry<Fragment, Integer> map : openendFragmentsCount.entrySet()) {
+                if (i == map.getValue()) {
+                    NavigationFragment navFragment = getNavigationFragment(map.getKey());
+                    if (navFragment == null) continue;
+
+                    if (count == 4) break;
+                    count++;
+
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.putExtra("section", navFragment.mFragment.getClass().getCanonicalName());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                    ShortcutInfo shortcut = new ShortcutInfo.Builder(this,
+                            navFragment.mFragment.getClass().getSimpleName())
+                            .setShortLabel(getString(navFragment.mId))
+                            .setLongLabel(getString(R.string.open, getString(navFragment.mId)))
+                            .setIcon(Icon.createWithResource(this, navFragment.mDrawable == 0 ?
+                                    R.drawable.ic_blank : navFragment.mDrawable))
+                            .setIntent(intent)
+                            .build();
+                    shortcutInfos.add(shortcut);
+                }
+            }
+        }
+        shortcutManager.setDynamicShortcuts(shortcutInfos);
     }
 
     private Drawable getNavigationDrawable(int drawableId) {
@@ -460,6 +541,10 @@ public class NavigationActivity extends BaseActivity
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
                 res + "_key").commit();
+
+        String openedName = fragment.getClass().getSimpleName() + "_opened";
+        Prefs.saveInt(openedName, Prefs.getInt(openedName, 0, this) + 1, this);
+        setShortcuts();
     }
 
     private Fragment getFragment(int res) {

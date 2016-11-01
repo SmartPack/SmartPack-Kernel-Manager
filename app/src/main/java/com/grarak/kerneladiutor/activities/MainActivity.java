@@ -136,6 +136,10 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent(this, NavigationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("result", code);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
         Prefs.saveInt("license", code, this);
         startActivity(intent);
         finish();

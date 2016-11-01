@@ -101,6 +101,10 @@ public class RootUtils {
         return getSU().runCommand(command);
     }
 
+    public static boolean SUClosed() {
+        return su == null || su.closed;
+    }
+
     public static SU getSU() {
         if (su == null || su.closed || su.denied) {
             if (su != null && !su.closed) {

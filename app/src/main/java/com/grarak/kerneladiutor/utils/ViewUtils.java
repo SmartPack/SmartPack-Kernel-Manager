@@ -92,6 +92,14 @@ public class ViewUtils {
         fragment.show(ft, "dialog");
     }
 
+    public static void dismissDialog(FragmentManager manager) {
+        FragmentTransaction ft = manager.beginTransaction();
+        Fragment fragment = manager.findFragmentByTag("dialog");
+        if (fragment != null) {
+            ft.remove(fragment).commit();
+        }
+    }
+
     public static float getActionBarSize(Context context) {
         TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
         float size = typedArray.getDimension(0, 0);

@@ -43,6 +43,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.XYGraph;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -413,6 +414,7 @@ public class OverallFragment extends RecyclerViewFragment {
                             mFreqs = new int[CPUFreq.getCpuCount()];
                         }
                         for (int i = 0; i < mFreqs.length; i++) {
+                            if (RootUtils.SUClosed()) break;
                             mFreqs[i] = CPUFreq.getCurFreq(i);
                         }
                         mThread = null;

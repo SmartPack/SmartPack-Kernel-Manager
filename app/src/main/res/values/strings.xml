@@ -7,6 +7,7 @@
     <string name="collecting_info">Collecting info</string>
     <string name="no_root">No root</string>
     <string name="no_busybox">No busybox</string>
+    <string name="open">Open %s</string>
 
     <!-- Security -->
     <string name="password">Password</string>
@@ -790,6 +791,7 @@
     <string name="disable_question">Disable %s?</string>
 
     <!-- Settings -->
+    <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>
     <string name="force_english">Force displaying english language</string>

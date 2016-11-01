@@ -20,8 +20,12 @@
 package com.grarak.kerneladiutor.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,7 +69,9 @@ public class EditorActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, Menu.FIRST, Menu.FIRST, getString(R.string.save)).setIcon(R.drawable.ic_save)
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_save);
+        DrawableCompat.setTint(drawable, Color.WHITE);
+        menu.add(0, Menu.FIRST, Menu.FIRST, getString(R.string.save)).setIcon(drawable)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
     }
