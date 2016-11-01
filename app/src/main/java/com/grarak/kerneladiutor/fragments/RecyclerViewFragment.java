@@ -37,6 +37,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -664,7 +665,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         if (showViewPager()) {
             menu.add(0, 0, Menu.NONE, R.string.options)
-                    .setIcon(R.drawable.ic_launcher_preview)
+                    .setIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_launcher_preview))
                     .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
         if (showTopFab()) {
