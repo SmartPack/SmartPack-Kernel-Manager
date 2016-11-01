@@ -175,8 +175,7 @@ public class MainActivity extends BaseActivity {
         private void collectData() {
             Battery.supported(MainActivity.this);
             CPUBoost.supported();
-            CPUFreq.sCoreCtlMinCpu = Prefs.getInt("core_ctl_min_cpus_big",
-                    CPUFreq.getCpuCount() == 6 ? 2 : 0, MainActivity.this);
+            CPUFreq.sCoreCtlMinCpu = Prefs.getInt("core_ctl_min_cpus_big", 2, MainActivity.this);
             Device.CPUInfo.load();
             Device.Input.supported();
             Device.MemInfo.load();
