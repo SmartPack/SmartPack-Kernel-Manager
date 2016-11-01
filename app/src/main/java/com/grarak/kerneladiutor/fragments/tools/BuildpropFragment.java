@@ -191,16 +191,23 @@ public class BuildpropFragment extends RecyclerViewFragment {
                     || (mValueText != null && !value.contains(mValueText)))) {
                 continue;
             }
+
+            int color = ViewUtils.getThemeAccentColor(getActivity());
+            String colorCode = "#"
+                    + Integer.toHexString(Color.red(color))
+                    + Integer.toHexString(Color.green(color))
+                    + Integer.toHexString(Color.blue(color));
+
             DescriptionView descriptionView = new DescriptionView();
             if (mKeyText != null && !mKeyText.isEmpty()) {
                 descriptionView.setTitle(Utils.htmlFrom(title.replace(mKeyText,
-                        "<b><font color=\"#ff4081\">" + mKeyText + "</font></b>")));
+                        "<b><font color=\"" + colorCode + "\">" + mKeyText + "</font></b>")));
             } else {
                 descriptionView.setTitle(title);
             }
             if (mValueText != null && !mValueText.isEmpty()) {
                 descriptionView.setSummary(Utils.htmlFrom(value.replace(mValueText,
-                        "<b><font color=\"#ff4081\">" + mValueText + "</font></b>")));
+                        "<b><font color=\"" + colorCode + "\">" + mKeyText + "</font></b>")));
             } else {
                 descriptionView.setSummary(value);
             }
