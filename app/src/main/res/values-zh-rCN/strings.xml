@@ -18,7 +18,7 @@
   <string name="cancel">取消 </string>
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
-  <string name="license_invalid">感谢您购买捐赠本应用！可惜我们无法验证您的购买记录。请稍候再试。如果依然不行，请尝试删除并重装您的捐赠应用，或与开发者联系。</string>
+  <string name="license_invalid">感谢您捐赠本应用！可惜我们无法验证您的购买记录。请稍候再试。如果依然无法工作，请删除您的捐赠应用尝试重装，再与开发者联系。</string>
   <string name="pirated">该捐赠版应用看上去并非通过Play商店购买！如果你是盗用它，那么你该感到羞愧！</string>
   <string name="donate">捐助</string>
   <string name="donate_summary">此功能仅在捐赠版应用安装后可用！别怕，本应用是开源软件，因此您可以轻松地自己构建它并删除此检查。尽管如此，我还是希望您支持开发人员。感谢您使用 Kernel Adiutor！购买捐赠版应用后，您必须重新启动 Kernel Adiutor 以启用所有功能。</string>
