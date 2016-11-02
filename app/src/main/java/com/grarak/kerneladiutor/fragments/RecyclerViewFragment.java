@@ -579,7 +579,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                     if (mTopFab != null && showTopFab()) {
                         mTopFab.hide();
                     }
-                    if (showBottomFab()) {
+                    if (mBottomFab != null && showBottomFab()) {
                         mBottomFab.hide();
                     }
                 }
