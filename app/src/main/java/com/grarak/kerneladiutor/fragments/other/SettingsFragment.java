@@ -1,6 +1,7 @@
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -81,7 +82,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!Utils.DONATED) {
-            Prefs.saveBoolean(KEY_FORCE_CARDS, false, getActivity());
+            Prefs.remove(KEY_HIDE_BANNER, getActivity());
+            Prefs.remove(KEY_FORCE_CARDS, getActivity());
+            Prefs.remove(KEY_ACCENT_COLOR, getActivity());
+            Prefs.remove(KEY_SECTIONS_ICON, getActivity());
         }
         setRetainInstance(true);
     }
@@ -229,6 +233,23 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         return false;
     }
 
+    private static class MessengerHandler extends Handler {
+
+        private final Context mContext;
+
+        private MessengerHandler(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.arg1 == 1 && mContext != null) {
+                Utils.toast(R.string.nothing_apply, mContext);
+            }
+        }
+    }
+
     @Override
     public boolean onPreferenceClick(Preference preference) {
         String key = preference.getKey();
@@ -261,15 +282,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     Utils.toast(R.string.apply_on_boot_running, getActivity());
                 } else {
                     Intent intent = new Intent(getActivity(), Service.class);
-                    intent.putExtra("messenger", new Messenger(new Handler() {
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-                            if (msg.arg1 == 1) {
-                                Utils.toast(R.string.nothing_apply, getActivity());
-                            }
-                        }
-                    }));
+                    intent.putExtra("messenger", new Messenger(new MessengerHandler(getActivity())));
                     getActivity().startService(intent);
                 }
                 return true;
