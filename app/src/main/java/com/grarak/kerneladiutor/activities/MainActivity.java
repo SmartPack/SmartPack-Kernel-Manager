@@ -73,14 +73,16 @@ public class MainActivity extends BaseActivity {
     private TextView mRootAccess;
     private TextView mBusybox;
     private TextView mCollectInfo;
-    private boolean mExecuting;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Don't initialize analytics with debug build
         if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
+
         setContentView(R.layout.activity_main);
 
         View splashBackground = findViewById(R.id.splash_background);
@@ -88,50 +90,66 @@ public class MainActivity extends BaseActivity {
         mBusybox = (TextView) findViewById(R.id.busybox_text);
         mCollectInfo = (TextView) findViewById(R.id.info_collect_text);
 
+        // Hide huge banner in landscape mode
         if (Utils.getOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
             splashBackground.setVisibility(View.GONE);
         }
 
         if (savedInstanceState == null) {
+            /**
+             * Launch password activity when one is set,
+             * otherwise run {@link CheckingTask}
+             */
             String password;
             if (!(password = Prefs.getString("password", "", this)).isEmpty()) {
                 Intent intent = new Intent(this, SecurityActivity.class);
                 intent.putExtra(SecurityActivity.PASSWORD_INTENT, password);
                 startActivityForResult(intent, 1);
             } else {
-                execute();
+                new CheckingTask().execute();
             }
-        } else {
-            mExecuting = savedInstanceState.getBoolean("executing");
         }
-    }
-
-    private void execute() {
-        if (!mExecuting) {
-            new CheckingTask().execute();
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("executing", mExecuting);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        /*
+         * 0: License check result
+         * 1: Password check result
+         */
         if (requestCode == 0) {
+
+            /*
+             * -1: Default (no license check executed)
+             *  0: License check was successful
+             *  1: Something went wrong when checking license
+             *  2: License is invalid
+             *  3: Donate apk is patched/cracked
+             */
             launch(data == null ? -1 : data.getIntExtra("result", -1));
+
         } else if (requestCode == 1) {
+
+            /*
+             * 0: Password is wrong
+             * 1: Password is correct
+             */
             if (resultCode == 1) {
-                execute();
+                new CheckingTask().execute();
             } else {
                 finish();
             }
+
         }
     }
 
+    /**
+     * Launch {@link NavigationActivity} which is the actual interface
+     *
+     * @param code license check result see {@link #onActivityResult(int, int, Intent)}
+     */
     private void launch(int code) {
         Intent intent = new Intent(this, NavigationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -151,19 +169,20 @@ public class MainActivity extends BaseActivity {
         private boolean mHasBusybox;
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mExecuting = true;
-        }
-
-        @Override
         protected Void doInBackground(Void... params) {
+            // Check for root access
             mHasRoot = RootUtils.rootAccess();
             publishProgress(0);
+
+            // If root is available continue
             if (mHasRoot) {
+                // Check for busybox/toybox
                 mHasBusybox = RootUtils.busyboxInstalled();
                 publishProgress(1);
+
+                // If busybox/toybox is available continue
                 if (mHasBusybox) {
+                    // Collect information for caching
                     collectData();
                     publishProgress(2);
                 }
@@ -171,11 +190,16 @@ public class MainActivity extends BaseActivity {
             return null;
         }
 
-        // For caching
+        /**
+         * Determinate what sections are supported
+         */
         private void collectData() {
             Battery.supported(MainActivity.this);
             CPUBoost.supported();
+
+            // Assign core ctl min cpu
             CPUFreq.sCoreCtlMinCpu = Prefs.getInt("core_ctl_min_cpus_big", 2, MainActivity.this);
+
             Device.CPUInfo.load();
             Device.Input.supported();
             Device.MemInfo.load();
@@ -197,11 +221,20 @@ public class MainActivity extends BaseActivity {
             Wake.supported();
 
             if (!BuildConfig.DEBUG) {
+                // Send SoC type to analytics to collect stats
                 Answers.getInstance().logCustom(new CustomEvent("SoC")
                         .putCustomAttribute("type", Device.getBoard()));
             }
         }
 
+        /**
+         * Let the user know what we are doing right now
+         *
+         * @param values progress
+         *               0: Checking root
+         *               1: Checking busybox/toybox
+         *               2: Collecting information
+         */
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
@@ -224,6 +257,11 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            /*
+             * If root or busybox/toybox are not available,
+             * launch text activity which let the user know
+             * what the problem is.
+             */
             if (!mHasRoot || !mHasBusybox) {
                 Intent intent = new Intent(MainActivity.this, TextActivity.class);
                 intent.putExtra(TextActivity.MESSAGE_INTENT, getString(mHasRoot ?
@@ -236,13 +274,17 @@ public class MainActivity extends BaseActivity {
                 finish();
 
                 if (!BuildConfig.DEBUG) {
+                    // Send problem to analytics to collect stats
                     Answers.getInstance().logCustom(new CustomEvent("Can't access")
                             .putCustomAttribute("no_found", mHasRoot ? "no busybox" : "no root"));
                 }
                 return;
             }
 
+            // Initialize Google Ads
             MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
+
+            // Execute another AsyncTask for license checking
             new AsyncTask<Void, Void, Boolean>() {
 
                 private ApplicationInfo mApplicationInfo;
@@ -294,7 +336,6 @@ public class MainActivity extends BaseActivity {
                     } else {
                         launch(mPatched ? 3 : -1);
                     }
-                    mExecuting = false;
                 }
             }.execute();
         }

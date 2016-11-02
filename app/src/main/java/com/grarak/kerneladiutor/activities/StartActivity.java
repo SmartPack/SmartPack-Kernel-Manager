@@ -33,6 +33,11 @@ import io.fabric.sdk.android.Fabric;
  */
 public class StartActivity extends Activity {
 
+    /*
+     * This activity only existed, so the user can toggle between
+     * classic and material icon.
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
