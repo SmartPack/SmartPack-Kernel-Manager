@@ -67,5 +67,12 @@
     "gpu": "/sys/class/thermal/thermal_zone15/temp",
     "cpu-offset": 10,
     "gpu-offset": 10
+  },
+  {
+    "board": "msm8996pro",
+    "cpu": "/sys/class/thermal/thermal_zone4/temp",
+    "gpu": "/sys/class/thermal/thermal_zone15/temp",
+    "cpu-offset": 10,
+    "gpu-offset": 10
   }
 ]

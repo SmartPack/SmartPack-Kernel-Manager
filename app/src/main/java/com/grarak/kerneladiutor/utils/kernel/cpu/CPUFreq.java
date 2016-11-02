@@ -632,7 +632,8 @@ public class CPUFreq {
     }
 
     private static boolean is8996() {
-        return Device.getBoard().equalsIgnoreCase("msm8996");
+        String board = Device.getBoard();
+        return board.equalsIgnoreCase("msm8996") || board.equalsIgnoreCase("msm8996pro");
     }
 
     public static int getCpuCount() {
