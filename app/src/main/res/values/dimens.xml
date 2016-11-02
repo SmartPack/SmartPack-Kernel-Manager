@@ -10,6 +10,8 @@
     <dimen name="recyclerview_fab_margin_top">-48dp</dimen>
     <dimen name="recyclerview_fab_margin_bottom">8dp</dimen>
 
+    <dimen name="app_bar_elevation">10dp</dimen>
+
     <dimen name="cardview_radius">3dp</dimen>
     <dimen name="cardview_elevation">3dp</dimen>
 

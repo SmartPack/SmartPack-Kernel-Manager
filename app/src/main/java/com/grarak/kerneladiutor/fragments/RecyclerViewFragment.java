@@ -38,6 +38,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -302,6 +303,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             layoutParams.height = 0;
             mViewPagerParent.requestLayout();
             setAppBarLayoutAlpha(255);
+
+            mAppBarLayout.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ViewCompat.setElevation(mAppBarLayout, getResources().getDimension(R.dimen.app_bar_elevation));
+                }
+            }, 150);
+
             if (hideBanner()) {
                 if (showTopFab()) {
                     mTopFab.hide();
@@ -796,6 +805,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (mAppBarLayout != null) {
             if (!isForeground()) {
                 mAppBarLayout.setTranslationY(0);
+                ViewCompat.setElevation(mAppBarLayout, 0);
             }
         }
         if (mLoader != null) {

@@ -30,6 +30,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.StringRes;
@@ -135,11 +136,11 @@ public class Utils {
     }
 
     public static CharSequence htmlFrom(String text) {
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        //    return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
-        //} else {
-        return Html.fromHtml(text);
-        //}
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(text);
+        }
     }
 
     public static String getPath(Uri uri, Context context) {
