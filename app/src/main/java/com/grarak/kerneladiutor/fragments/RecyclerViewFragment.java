@@ -302,9 +302,14 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             layoutParams.height = 0;
             mViewPagerParent.requestLayout();
             setAppBarLayoutAlpha(255);
-            if (hideBanner() && showTopFab()) {
-                mTopFab.hide();
-                mTopFab = null;
+            if (hideBanner()) {
+                if (showTopFab()) {
+                    mTopFab.hide();
+                    mTopFab = null;
+                } else if (showBottomFab()) {
+                    mBottomFab.hide();
+                    mBottomFab = null;
+                }
             }
         }
     }
@@ -589,7 +594,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         if (mTopFab != null && showTopFab()) {
             mTopFab.show();
         }
-        if (showBottomFab()) {
+        if (mBottomFab != null && showBottomFab()) {
             mBottomFab.show();
         }
         adjustScrollPosition();
@@ -672,6 +677,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             menu.add(0, 1, Menu.NONE, R.string.more)
                     .setIcon(getTopFabDrawable())
                     .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        } else if (showBottomFab()) {
+            menu.add(0, 1, Menu.NONE, R.string.more)
+                    .setIcon(getBottomFabDrawable())
+                    .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
     }
 
@@ -683,7 +692,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                         ViewPagerDialog.newInstance(getBannerHeight(), mViewPagerFragments));
                 return true;
             case 1:
-                onTopFabClick();
+                if (showTopFab()) {
+                    onTopFabClick();
+                } else if (showBottomFab()) {
+                    onBottomFabClick();
+                }
                 return true;
         }
         return false;
