@@ -48,6 +48,13 @@
     "gpu-offset": 1
   },
   {
+    "board": "msm8974pro-ac",
+    "cpu": "/sys/class/thermal/thermal_zone5/temp",
+    "gpu": "/sys/class/thermal/thermal_zone9/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
+  },
+  {
     "board": "msm8992",
     "cpu": "/sys/class/thermal/thermal_zone7/temp",
     "gpu": "/sys/class/thermal/thermal_zone11/temp",
