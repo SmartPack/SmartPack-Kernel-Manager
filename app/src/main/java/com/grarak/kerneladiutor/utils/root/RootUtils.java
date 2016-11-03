@@ -25,9 +25,12 @@ import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by willi on 30.12.15.
@@ -129,6 +132,7 @@ public class RootUtils {
         private boolean closed;
         private boolean denied;
         private boolean firstTry;
+        private File mLogFile;
 
         public SU() {
             this(true, null);
@@ -145,6 +149,7 @@ public class RootUtils {
                 mProcess = Runtime.getRuntime().exec(root ? "su" : "sh");
                 mWriter = new BufferedWriter(new OutputStreamWriter(mProcess.getOutputStream()));
                 mReader = new BufferedReader(new InputStreamReader(mProcess.getInputStream()));
+                mLogFile = new File(Utils.getInternalDataStorage() + "/log.txt");
             } catch (IOException e) {
                 if (mTag != null) {
                     Log.e(mTag, root ? "Failed to run shell as su" : "Failed to run shell as sh");
@@ -175,6 +180,8 @@ public class RootUtils {
                     if (mTag != null) {
                         Log.i(mTag, "run: " + command + " output: " + sb.toString().trim());
                     }
+                    logFile(command + ": " + sb.toString().trim());
+
                     return sb.toString().trim();
                 } catch (IOException e) {
                     closed = true;
@@ -188,6 +195,15 @@ public class RootUtils {
                 }
                 return null;
             }
+        }
+
+        private void logFile(String log) {
+            if (mLogFile.length() / 1024 / 1024 > 1) {
+                mLogFile.delete();
+            }
+            Utils.writeFile(mLogFile.toString(),
+                    new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()) + ": " + log + "\n",
+                    true, false);
         }
 
         public void close() {
