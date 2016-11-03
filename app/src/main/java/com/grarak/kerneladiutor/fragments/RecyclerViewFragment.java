@@ -129,14 +129,16 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
 
-        if (mViewPagerFragments != null) {
+        if (mViewPagerFragments != null && !hideBanner()) {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             for (Fragment fragment : mViewPagerFragments) {
                 fragmentTransaction.remove(fragment);
             }
             fragmentTransaction.commit();
+            mViewPagerFragments.clear();
+        } else {
+            mViewPagerFragments = new ArrayList<>();
         }
-        mViewPagerFragments = new ArrayList<>();
         mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
         mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
@@ -153,8 +155,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mAppBarLayout.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ViewCompat.setElevation(mAppBarLayout, showViewPager() && !hideBanner() ?
-                            0 : getResources().getDimension(R.dimen.app_bar_elevation));
+                    if (mAppBarLayout != null && isAdded() && getActivity() != null) {
+                        ViewCompat.setElevation(mAppBarLayout, showViewPager() && !hideBanner() ?
+                                0 : getResources().getDimension(R.dimen.app_bar_elevation));
+                    }
                 }
             }, 150);
         }

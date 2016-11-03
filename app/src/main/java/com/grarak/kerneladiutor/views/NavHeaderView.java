@@ -122,7 +122,6 @@ public class NavHeaderView extends LinearLayout {
                                 animateBg();
                                 break;
                         }
-
                     }
                 }).show();
             }
