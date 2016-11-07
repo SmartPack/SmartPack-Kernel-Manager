@@ -27,7 +27,7 @@ import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ProgressBar;

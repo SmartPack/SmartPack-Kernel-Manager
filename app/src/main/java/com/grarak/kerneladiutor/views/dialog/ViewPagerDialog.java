@@ -21,9 +21,9 @@ package com.grarak.kerneladiutor.views.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +39,7 @@ import java.util.List;
  * Created by willi on 23.08.16.
  */
 
-public class ViewPagerDialog extends DialogFragment {
+public class ViewPagerDialog extends AppCompatDialogFragment {
 
     public static ViewPagerDialog newInstance(int height, List<Fragment> fragments) {
         ViewPagerDialog fragment = new ViewPagerDialog();
@@ -54,7 +54,7 @@ public class ViewPagerDialog extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+        setStyle(AppCompatDialogFragment.STYLE_NO_TITLE, 0);
     }
 
     @Nullable

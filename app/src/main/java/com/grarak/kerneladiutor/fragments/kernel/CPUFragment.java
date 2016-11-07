@@ -20,7 +20,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;

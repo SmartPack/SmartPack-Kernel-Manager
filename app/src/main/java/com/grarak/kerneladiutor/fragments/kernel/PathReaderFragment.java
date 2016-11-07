@@ -22,7 +22,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
