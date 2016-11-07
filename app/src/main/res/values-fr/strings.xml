@@ -330,6 +330,7 @@
   <string name="screen_value">Valeur de l\'Ecran</string>
   <string name="screen_contrast">Contraste de l\'Ecran</string>
   <string name="high_brightness_mode">Mode haute luminosité</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Gamma</string>
   <string name="red_greys">Rouges Gris</string>
   <string name="red_mids">Rouges Intermédiaires</string>
@@ -353,6 +354,7 @@
   <string name="blue_negative">Bleu Négatif</string>
   <string name="white_point">Point Blanc</string>
   <string name="lcd_backlight">Rétro-éclairage LCD</string>
+  <string name="gamma_profiles_summary">Après avoir sélectionné un profil, veuillez éteindre puis rallumer votre écran.</string>
   <string name="brightness_mode">Utilisé le rétro-éclairage exponentiel plutôt que le mode linéaire.</string>
   <string name="min_brightness">Luminosité Minimum</string>
   <string name="min_brightness_summary">Permet de baisser la luminosité en deçà de la limite autorisée par la ROM.</string>
@@ -376,8 +378,10 @@
   <string name="full">Plein</string>
   <string name="bottom_half">Bas moitié</string>
   <string name="top_half">Moitié supérieure</string>
+  <string name="half">Moitié</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Réveillez votre appareil en balayant sur l\'écran.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Sweep2Wake vers la droite</string>
   <string name="s2w_left">Sweep2Wake vers la gauche</string>
@@ -418,6 +422,7 @@
   <string name="microphone_gain">Amplification microphone</string>
   <string name="volume_gain">Amplification du volume</string>
   <!-- Battery -->
+  <string name="level">Niveau</string>
   <string name="usb_fast_charge">Charge Rapide USB</string>
   <string name="usb_fast_charge_summary">L\'appareil se chargera plus vite lorsqu\'il est connecté en USB. Rebranchez votre chargeur lorsque vous modifiez cette option.</string>
   <string name="blx">Prolongateur d\'autonomie</string>
@@ -507,16 +512,33 @@
   <!-- Profile -->
   <string name="applied">Appliqué</string>
   <!-- Recovery -->
+  <string name="reboot">Redémarrer</string>
+  <string name="reboot_soft">Redémarrage logiciel</string>
+  <string name="reboot_recovery">Redémarrage dans le Recovery</string>
+  <string name="reboot_bootloader">Redémarrage dans le bootloader</string>
+  <string name="reboot_download">Redémarrage dans le mode Download</string>
   <string name="wipe_data">Effacer les données</string>
   <string name="wipe_cache">Effacer le Cache</string>
   <string name="flash_zip">Flasher un zip</string>
+  <string name="add_action_first">Vous devez d\'abord ajouter une action !</string>
   <string name="flash_now_confirm">Voulez-vous lancer vos actions ? Votre appareil va redémarrer en mode recovery et les actions vont être lancées dans l\'ordre où vous les avez ajoutées.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Émulation init.d</string>
+  <string name="emulate_initd_summary">Si votre appareil ne supporte pas Init.d par défaut, vous pouvez activer cela afin d\'imiter son comportement.</string>
+  <string name="exceute_question">Exécuter %s ?</string>
   <string name="executing">En cours d\'exécution</string>
+  <string name="result">Résultat</string>
   <!-- On Boot -->
+  <string name="delete_question">Supprimer %s ?</string>
+  <string name="disable_question">Désactiver %s ?</string>
   <!-- Settings -->
+  <string name="open_settings">Ouvrir Paramètres</string>
+  <string name="fahrenheit_title">Fahrenheit</string>
+  <string name="fahrenheit_summary">Utiliser le Fahrenheit afin de mesurer la température.</string>
+  <string name="force_english">Forcer l\'affichage de la langue Anglaise</string>
+  <string name="user_interface">Interface Utilisateur</string>
   <string name="dark_theme">Thème sombre</string>
+  <string name="material_icon">Icônes Material Design</string>
   <string name="debugging">Débogage</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copier le logcat vers /sdcard/logcat.txt</string>
@@ -524,7 +546,16 @@
   <string name="last_kmsg_summary">Copiez /proc/last_kmsg vers /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Message du Pilote</string>
   <string name="driver_message_summary">Copier le message du driver (dmesg) vers /sdcard/dmesg.txt</string>
+  <string name="old_password">Ancien mot de passe</string>
+  <string name="new_password">Nouveau mot de passe</string>
+  <string name="confirm_new_password">Confirmez le nouveau mot de passe</string>
+  <string name="old_password_wrong">L\'ancien mot de passe est faux</string>
+  <string name="password_empty">Le mot de passe est vide</string>
+  <string name="password_too_long">Le mot de passe est trop long (max. 32 caractères)</string>
+  <string name="set_password_first">Définissez d\'abord un mot de passe</string>
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="have_to_donate_summary">Non, cette application est open source. Vous pouvez facilement la compiler. Les fonctions de la donation sont activés par défaut lorsque vous compilez un apk, donc il y a aucun besoin de changer des lignes de code.</string>
+  <string name="cpu_freq_not_sticking">Pourquoi la fréquence CPU que j\'ai choisie n\'est pas conservée ?</string>
 </resources>

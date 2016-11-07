@@ -8,6 +8,7 @@
   <string name="collecting_info">Сбор информации</string>
   <string name="no_root">Рут отсутствует</string>
   <string name="no_busybox">Busybox отсутствует</string>
+  <string name="open">Открыть %s</string>
   <!-- Security -->
   <string name="password">Пароль</string>
   <string name="password_wrong">Неверный пароль</string>
@@ -174,7 +175,7 @@
   <!-- CPU Voltage -->
   <string name="global_offset">Глобальное смещение</string>
   <string name="override_vmin">Переопределить минимальное напряжение</string>
-  <string name="override_vmin_summary">Отключить ограничения производителя на понижение напряжения</string>
+  <string name="override_vmin_summary">Отключите, чтобы снять ограничения производителя на понижение напряжения</string>
   <!-- CPU Hotplug -->
   <string name="hotplug_warning">Включено более одной системы hotplug-a!\nПожалуйста, используйте только одну.</string>
   <string name="mpdecision">MPDecision</string>
@@ -745,6 +746,7 @@
   <string name="arguments">Параметры: %s</string>
   <string name="disable_question">Отключить %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Открыть настройки</string>
   <string name="fahrenheit_title">По Фаренгейту</string>
   <string name="fahrenheit_summary">Использовать измерение температуры по Фаренгейту.</string>
   <string name="force_english">Принудительно использовать английский язык</string>
@@ -756,6 +758,8 @@
   <string name="force_cards">Карточки принудительно</string>
   <string name="force_cards_summary">Использовать карточки для объектов, если возможно.</string>
   <string name="accent_color">Цветовой акцент</string>
+  <string name="section_icons">Значки разделов</string>
+  <string name="section_icons_summary">Показывать значки для каждого раздела в панели навигации.</string>
   <string name="instant">Мгновенно</string>
   <string name="five_sec">5 секунд</string>
   <string name="ten_sec">10 секунд</string>

@@ -8,6 +8,7 @@
   <string name="collecting_info">Információ gyűjtése</string>
   <string name="no_root">Nincs root jog</string>
   <string name="no_busybox">Nincs busybox</string>
+  <string name="open">%s megnyitása</string>
   <!-- Security -->
   <string name="password">Jelszó</string>
   <string name="password_wrong">Hibás jelszó</string>
@@ -745,6 +746,7 @@
   <string name="arguments">Paraméterek: %s</string>
   <string name="disable_question">%s tiltása?</string>
   <!-- Settings -->
+  <string name="open_settings">Beállítások megnyitása</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Fahrenheit használata a hőmérséklet méréséhez.</string>
   <string name="force_english">Angol nyelvű megjelenítés kényszerítése</string>
@@ -756,6 +758,8 @@
   <string name="force_cards">Kártyák kényszerítése</string>
   <string name="force_cards_summary">Használjon kártyákat az elemekhez, ha lehetséges.</string>
   <string name="accent_color">Másodlagos szín</string>
+  <string name="section_icons">Szakasz ikonok</string>
+  <string name="section_icons_summary">Ikonok megjelenítése minden szakaszhoz a navigációs fiókban.</string>
   <string name="instant">Azonnali</string>
   <string name="five_sec">5 másodperc</string>
   <string name="ten_sec">10 másodperc</string>

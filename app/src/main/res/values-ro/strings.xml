@@ -8,6 +8,7 @@
   <string name="collecting_info">Se colecteaza informatia</string>
   <string name="no_root">Nu am obţinut accesul la root</string>
   <string name="no_busybox">Nu ai instalat busybox-ul</string>
+  <string name="open">Deschide</string>
   <!-- Security -->
   <string name="password">Introdu parola</string>
   <string name="password_wrong">Parola corecta</string>
@@ -18,6 +19,7 @@
   <string name="cancel">Anulare</string>
   <string name="ok">OK</string>
   <string name="unknown">Necunoscut</string>
+  <string name="license_invalid">Va mulțumesc pentru achiziționarea aplicației de donare! Din păcate verificarea licientei nu a fost finalizată. Va rugam încercați din nou mai târziu. Dacă tot nu functioneaza, va rog contactati-ma.</string>
   <string name="pirated">Se pare ca donatie app nu a fost cumparat prin Play Store. Dacă l-ai piratate apoi rusine!</string>
   <string name="donate">Donează</string>
   <string name="donate_summary">Această caracteristică este disponibilă numai atunci când aplicaţia de donatie este instalat! Nu vă faceţi griji deşi. Deoarece această app este open source cu uşurinţă pot construi singur şi scoateţi această verificare. Dar sper că veţi sprijini dezvoltatorii oricum. Vă mulţumim pentru utilizarea Kernel Adiutor! Odată ce aţi cumpărat app de donaţie trebuie să reporniţi Adiutor kernel-ului pentru a permite toate caracteristicile.</string>
@@ -26,11 +28,15 @@
   <string name="ad_here">Reclama ta poate fi aici</string>
   <string name="remove_ad">Eliminati reclamele</string>
   <string name="warning">Atenție</string>
+  <string name="gh_ad">Acesta este un avertisment necomercial! Nu il luați în serios! Este doar un mod amuzant de a umple locul liber atunci cand un avertisment nu se încarcă (mă uit la voi utilizatori adblock).</string>
+  <string name="open_ad_anyway">Deschide-ti anunțul oricum</string>
   <string name="apply_on_boot">Aplică pe boot</string>
   <string name="apply_on_boot_text">Aplicarea setarilor in %d secunde.</string>
   <string name="apply_on_boot_complete">Aplicarea setarilor s-a sfirşit.</string>
   <string name="apply_on_boot_canceled">Aplicarea setarilor s-a anulat.</string>
   <string name="not_in_range">Nu este in zona se acoperire</string>
+  <string name="options">Opțiuni </string>
+  <string name="more">Mai multe</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Permisiune refuzată pentru scrierea in stocare!</string>
   <!-- Editor -->
@@ -49,6 +55,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Statistică</string>
@@ -58,6 +65,7 @@
   <!-- Menus -->
   <string name="overall">Per asamblu</string>
   <string name="device">Dispozitiv</string>
+  <string name="memory">Memorie</string>
   <string name="inputs">Intrări</string>
   <string name="cpu">CPU ( Procesor )</string>
   <string name="cpu_voltage">Tensiunea CPU-lui</string>
@@ -82,12 +90,15 @@
   <string name="profile">Profilul</string>
   <string name="recovery">Mod Recuperare</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">La deschidere</string>
   <string name="settings">Opțiuni</string>
   <string name="about">Despre</string>
   <string name="contributors">Contribuitori</string>
+  <string name="help">Ajutor</string>
   <!-- Overall -->
   <string name="offline">Deconectat</string>
   <string name="core">Core %d</string>
+  <string name="gpu_freq">Frecvența GPU</string>
   <string name="refresh">Reîmprospătează</string>
   <string name="reset">Resetează</string>
   <string name="restore">Restabilire</string>
@@ -98,8 +109,25 @@
   <!-- Device -->
   <string name="processor">Procesor</string>
   <string name="vendor">Distribuitor</string>
+  <string name="features">Caracteristici</string>
+  <string name="ram">RAM</string>
+  <string name="android_version">Versiune Android</string>
+  <string name="android_api_level">Android SDK</string>
+  <string name="android_codename">Nume de cod Android</string>
+  <string name="fingerprint">Amprentă</string>
+  <string name="build_display_id">ID Display</string>
+  <string name="baseband">Baseband</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
+  <string name="hardware">Hardware-ul</string>
+  <string name="architecture">Arhitectură</string>
   <!-- Inputs -->
+  <string name="bus">Magistrala</string>
+  <string name="product">Produs</string>
+  <string name="version">Versiune</string>
   <!-- CPU -->
+  <string name="cores">%d nuclee</string>
+  <string name="no_offline_core">Nu puteți închide acest nucleu!</string>
   <string name="cpu_max_freq">Frecvenţă maximă CPU</string>
   <string name="cpu_max_freq_summary">Setaţi frecvenţa maximă CPU până la limita scarei ei.</string>
   <string name="cpu_min_freq">Frecvenţă minimă CPU</string>
@@ -107,7 +135,12 @@
   <string name="cpu_max_screen_off_freq">Frecvența CPU-lui maxim la Ecran oprit</string>
   <string name="cpu_max_screen_off_freq_summary">Setaţi frecvenţa maximă CPU atunci, când ecranul este dezactivat.</string>
   <string name="cpu_governor">CPU Governor</string>
+  <string name="cpu_governor_summary">Guvernatorul CPU determină modul în care Procesorul se comportă al răspunsului la schimbările de muncă. Schimbarea guvernatorului va avea un impact pe CPU prin frecvenţa disponibila.</string>
   <string name="cpu_governor_tunables">CPU Governor Turnables</string>
+  <string name="governor_tunables_summary">Diferite elemente de configurare care sunt dependente de guvernator.</string>
+  <string name="cpu_governor_tunables_read_error">Imposibil de citit guvernatorul actual al procesorului.\n\nIf îl utilizaţi o QCOM mare. Deget MIC drac aceasta este o problemă cunoscută. Sistemul forţele CPU la spre nap off miezuri ceea ce îl face extrem de greu de citit statistici specifice CPU. Încercaţi să selectaţi această opţiune din nou. CPU uneori refuză să porniţi un miez.</string>
+  <string name="tunables_error">%s nu este reglabilă</string>
+  <string name="manual">Manualul utilizatorului</string>
   <string name="mc_power_saving">Multicore Power Saving</string>
   <string name="mc_power_saving_summary">Încercaţi să folosiți prin Group Tasks cei mai puțin corii posibili.</string>
   <string name="disabled">Dezactivat</string>
@@ -121,6 +154,7 @@
   <string name="cpu_quiet_governor">Guvernatorul CPUQuiet</string>
   <string name="cpu_boost">CPU Boost</string>
   <string name="debug_mask">Debug Mask</string>
+  <string name="debug_mask_summary">Vă permite să activați debug mask pentru operaţiuni.</string>
   <string name="interval">Interval</string>
   <string name="interval_summary">Intervalul minim un CPU este amplificat.</string>
   <string name="sync_threshold">Sync Threshold</string>
@@ -128,6 +162,7 @@
   <string name="input_interval">Input Interval</string>
   <string name="input_interval_summary">Intervalul minim unui CPU este amplificat, când este detectat de input.</string>
   <string name="input_boost_freq">Frecvenţa de intrare Boost</string>
+  <string name="input_boost_freq_core">Bază de frecvenţă impuls de intrare %s</string>
   <string name="input_boost_freq_summary">Frecventa CPU pentru a fi amplificat această frecvență la intrare de detectare.</string>
   <string name="wakeup_boost">Boost la pornire</string>
   <string name="wakeup_boost_summary">Wakeup Boost este similar cu impuls de pornire, dar apare atunci când ecranul este pornit.</string>
@@ -140,6 +175,7 @@
   <string name="override_vmin">Suprascrie minimul de tensiune</string>
   <string name="override_vmin_summary">Dezactivează setările producătorului referitoare la voltaj</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Mai multe sisteme de hotplug sunt activate! \nVa rugam utilizati numai unul.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="balanced">Echilibrat</string>

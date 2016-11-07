@@ -26,6 +26,7 @@
   <string name="ad_here">Reklam burada olabilir</string>
   <string name="remove_ad">Reklamları kaldır</string>
   <string name="warning">Dikkat</string>
+  <string name="open_ad_anyway">Herzaman_reklam_aç</string>
   <string name="apply_on_boot">Açılışta uygula</string>
   <string name="apply_on_boot_text">Ayarlar %d saniyede uygulanıyor.</string>
   <string name="apply_on_boot_complete">Ayarları uygulama tamamlandı.</string>
@@ -138,6 +139,7 @@
   <string name="governor_tunables_summary">İşlemci Düzenleyicisine bağlı çeşitli yapılandırmalar.</string>
   <string name="cpu_governor_tunables_read_error">Büyük bir QCOM kullandığınız geçerli CPU.\n\nIf yöneticisini okuma başarısız oldu.Bu bilinen bir sorundur. Sistem CPU çekirdeklerini fazla islemden dolayı kapatmaya zorlar. Bu seçeneği yeniden seçmeyi deneyin.CPU bazen kapatmayı deneyebilir.</string>
   <string name="tunables_error">%s ayarlanabilir değil</string>
+  <string name="manual">Kılavuz</string>
   <string name="mc_power_saving">Çoklu Çekirdek Güç Tasarrufu</string>
   <string name="mc_power_saving_summary">İşlemleri olabilecek en az sayıda çekirdeğe gruplamaya çalış.</string>
   <string name="disabled">Etkin Değil</string>
@@ -159,6 +161,7 @@
   <string name="input_interval">Giriş Aralığı</string>
   <string name="input_interval_summary">Giriş algılandığında İşlemci Hızlandırma için minimum aralık.</string>
   <string name="input_boost_freq">Giriş Arttırma Frekansı</string>
+  <string name="input_boost_freq_core">çekirdek_frekans_yükseltici_girdi</string>
   <string name="input_boost_freq_summary">İşlemci frekansı giriş tespiti üzerine bu frekansa artırdığını edilecek.</string>
   <string name="wakeup_boost">Uyandırma hızlandırması</string>
   <string name="wakeup_boost_summary">Uyandırma Boost hızlandırma girişine benzer, ancak ekran açık olduğunda oluşur.</string>
@@ -287,11 +290,15 @@
   <string name="downrate_limits">Düşük Oran Sınırları</string>
   <string name="uprate_limits">Yüksek Oran Sınırları</string>
   <string name="cycle_down">Aşağıya döngü</string>
+  <string name="cycle_down_summary">Son ekleme olayından başka bir çekirdek ekleme olayına kadar beklenmesi gereken döngüler.</string>
   <string name="cycle_up">Yukarı döngü</string>
+  <string name="cycle_up_summary">En son ekleme olayından başka bir çekirdek eklemeye kadar beklenmesi gereken döngüler.</string>
   <string name="core_control">Çekirdek Kontrolü</string>
   <string name="core_control_summary">Qualcomm\'s hotplugging çözüm. Üzgünüm bunu kapatamazsın. #blameqcom</string>
   <string name="hcube">H-küp</string>
   <string name="hcube_summary">OnePlus\'un modifeli çekirdek kontrolü.</string>
+  <string name="min_cpus_big">En düşük CPU\'ların en büyüğü</string>
+  <string name="min_cpus_big_summary">Çevirimiçi olan büyük CPU\'ların en az miktarı.</string>
   <string name="busy_down_threshold">Eşik meşgul</string>
   <string name="busy_down_threshold_summary">Büyük işlemcilerin kapatılması için eşik.</string>
   <string name="busy_up_threshold">Eşik meşgül olmak için</string>
@@ -364,6 +371,7 @@
   <string name="down_differential">Düşük Diferansiyel</string>
   <string name="down_differential_summary">Belirli iş yükünü kullanılmıyorsa eşiği belirler.</string>
   <string name="idle_wait">Boşta bekleme</string>
+  <string name="idle_wait_summary">Frekansı düşürmeden önce beklenmesi gereken olay sayısı. Adreno boşa çıkarıcısı frekansı düşürmeden önce şimdiki olay tamamen boşa çıkana kadar boşta bekleyen olaylar. Bu kodlama kaydırırken veya oyun oynarken oluşan küçük teklemeleri engellemek içindir. Eğer bu daha düşük bir değere ayarlanırsa Adreno boşa çıkarıcısı daha aktif bir şekilde frekansı düşürmeye çalışacaktır.</string>
   <string name="workload">İş yükü</string>
   <!-- Screen -->
   <string name="screen_color">Ekran rengi</string>

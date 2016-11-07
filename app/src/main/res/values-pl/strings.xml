@@ -8,6 +8,7 @@
   <string name="collecting_info">Zbieranie informacji</string>
   <string name="no_root">Brak roota</string>
   <string name="no_busybox">Brak busybox</string>
+  <string name="open">Otwórz %s</string>
   <!-- Security -->
   <string name="password">Hasło</string>
   <string name="password_wrong">Złe hasło</string>
@@ -18,7 +19,7 @@
   <string name="cancel">Anuluj</string>
   <string name="ok">Ok</string>
   <string name="unknown">Nieznany</string>
-  <string name="license_invalid">Dzięki za kupienie aplikacji-darowizny! Niestety weryfikacja licencji się nie powiodła. Spróbuj ponownie później. Jeśli problem nie ustępuje, proszę się ze mną skontaktować.</string>
+  <string name="license_invalid">Dziękujemy za zakup aplikacji darowizny! Niestety sprawdzanie licencji nie powiodło się. Proszę spróbować ponownie później. Jeśli nadal nie działa, proszę o kontakt.</string>
   <string name="pirated">Wygląda na to, że aplikacja-darowizna nie została zakupiona poprzez Sklep Play! Jeżeli ją spiraciłeś, wstydź się!</string>
   <string name="donate">Wspomóż</string>
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za korzystanie z Kernel Adiutora! Po zakupieniu aplikacji-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
@@ -99,7 +100,7 @@
   <string name="core">Rdzeń %d</string>
   <string name="gpu_freq">Częstotliwość GPU</string>
   <string name="refresh">Odśwież</string>
-  <string name="reset">Reset</string>
+  <string name="reset">Przywróć domyślne</string>
   <string name="restore">Przywróć</string>
   <string name="deep_sleep">Głęboki sen</string>
   <string name="uptime">Czas działania</string>
@@ -138,7 +139,7 @@
   <string name="cpu_governor">Zarządca CPU</string>
   <string name="cpu_governor_summary">Zarządca CPU określa w jaki sposób CPU się zachowuje w odpowiedzi na obciążenie. Zmiana zarządcy ma wpływ na to, w jaki sposób CPU zmienia różne dostępne częstotliwości.</string>
   <string name="cpu_governor_tunables">Konfiguracja zarządcy procesora</string>
-  <string name="governor_tunables_summary">Różne elementy konfiguracji obecnego zarządcy.</string>
+  <string name="governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
   <string name="manual">Manualny</string>
@@ -147,7 +148,7 @@
   <string name="disabled">Wyłączone</string>
   <string name="enabled">Włączone</string>
   <string name="aggressive">Agresywny</string>
-  <string name="power_saving_wq">Rozkład zadań na włączone rdzenie aby oszczędzać energię.</string>
+  <string name="power_saving_wq">Rozkłada zadania na włączone rdzenie aby oszczędzać energię.</string>
   <string name="cfs_scheduler_policy">Zarządzanie CFS</string>
   <string name="cfs_scheduler_policy_summary">Decyduje jak zarządca CFS rozkłada zadania na różne podzespoły CPU.</string>
   <string name="cpu_quiet">CPUQuiet</string>
@@ -187,7 +188,7 @@
   <string name="performance">Wydajny</string>
   <string name="conservative">Konserwatywny</string>
   <string name="eco_insanity">Eco InSaNiTy</string>
-  <string name="eco_performance">Ekonomiczna Wydajność</string>
+  <string name="eco_performance">Eko Wydajny</string>
   <string name="eco_conservative">Ekonomiczny Konserwatyzm</string>
   <string name="tri">Tri</string>
   <string name="eco">Eco</string>
@@ -206,8 +207,8 @@
   <string name="min_cpu_online_summary">Minimum włączonych rdzeni, które zawsze będą włączone.</string>
   <string name="max_cpu_online">Maksimum włączonych rdzeni</string>
   <string name="max_cpu_online_summary">Maksymalna liczba rdzeni, które zawsze będą dostępne.</string>
-  <string name="max_cpu_online_screen_off">Maksymalna ilość rdzeni przy wyłączonym ekranie</string>
-  <string name="max_cpu_online_screen_off_summary">Maksymalna liczba rdzeni, która będzie włączona gdy ekran jest wyłączony.</string>
+  <string name="max_cpu_online_screen_off">Maksymalna ilość aktywnych rdzeni przy wyłączonym ekranie</string>
+  <string name="max_cpu_online_screen_off_summary">Maksymalna liczba rdzeni, która będzie aktywna gdy ekran jest wyłączony.</string>
   <string name="boost_lock_duration">Czas trwania wzmacniania</string>
   <string name="boost_lock_duration_summary">Minimalny interwał, podczas którego CPU jest wzmocniony.</string>
   <string name="down_lock_duration">Czas trwania limitu częstotliwości</string>
@@ -235,7 +236,7 @@
   <string name="io_is_busy_summary">Sprawia, że hotplug bierze pod uwagę czas oczekiwanie CPU na I/O, podczas obliczania użycia.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez franciscofranco.</string>
-  <string name="cpus_on_touch">Ilość cpu przy wciśnięciu</string>
+  <string name="cpus_on_touch">Ilość cpu przy dotyku</string>
   <string name="cpus_on_touch_summary">Liczba włączonych CPU podczas dotykania ekranu lub wciśnięcia przycisków.</string>
   <string name="cpu_freq_unplug_limit">CPU Frequency Unplug Limit</string>
   <string name="first_level">Pierwszy poziom</string>
@@ -243,20 +244,20 @@
   <string name="high_load_counter">High Load Counter</string>
   <string name="load_threshold">Próg obciążenia</string>
   <string name="load_threshold_summary">Próg do włączenia wszystkich procesorów.</string>
-  <string name="max_load_counter">Max Load Counter</string>
-  <string name="min_time_cpu_online">Minimalna czas, gdy rdzeń jest aktywny</string>
+  <string name="max_load_counter">Licznik Maksymalnego obciążenia</string>
+  <string name="min_time_cpu_online">Minimalny czas, gdy rdzeń jest aktywny</string>
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Hotplug \"Bricked\"</string>
   <string name="mb_hotplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez show-p1984.</string>
-  <string name="screen_off_single_cpu">Wyłączony ekran to włączony jeden rdzeń</string>
-  <string name="screen_off_single_cpu_summary">Włącz tylko jedeń rdzeń, gdy ekran jest wyłączony.</string>
+  <string name="screen_off_single_cpu">Jeden rdzeń gdy ekran jest wyłączony</string>
+  <string name="screen_off_single_cpu_summary">Użyj tylko jednego CPU, gdy ekran jest wyłączony.</string>
   <string name="idle_frequency">Częstotliwość przy bezczynności</string>
   <string name="idle_frequency_summary">Kiedy pierwszy rdzeń jest poniżej tej częstotliwości, nie uruchamiaj innych rdzeni.</string>
   <string name="touch_boost_time">Czas Boost\'a podczas dotyku</string>
   <string name="touch_boost_time_summary">Jak długo częstotliwość CPU będzie zwiększona po dotknięciu ekranu.</string>
-  <string name="boost_frequency_core">Częstotliwość Boost\'a Rdzeni/a %d</string>
-  <string name="start_delay">Włącz opóźnienie</string>
+  <string name="boost_frequency_core">Częstotliwość przyspieszenia Rdzenia %d</string>
+  <string name="start_delay">Opóźnienie przy starcie</string>
   <string name="start_delay_summary">Czas aż Hotplug zacznie działać.</string>
   <string name="delay">Opóźnienie</string>
   <string name="delay_summary">Czas między sprawdzeniami.</string>
@@ -278,7 +279,7 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez bbedward.</string>
   <string name="wake_wait_time">Czas oczekiwania na wybudzenie</string>
-  <string name="wake_wait_time_summary">Z jakim opóźnieniem włączyć pozostałe CPU.</string>
+  <string name="wake_wait_time_summary">Z jakim opóźnieniem włączyć kolejne CPU.</string>
   <string name="bat_threshold_ignore">Próg baterii do ignorowania obciążenia</string>
   <string name="bat_threshold_ignore_summary">Nie włączaj rdzeni jeśli % baterii jest poniżej wybranej wartości.</string>
   <string name="autosmp">AutoSMP</string>
@@ -304,10 +305,10 @@
   <!--Thermal-->
   <string name="thermal_info">Używaj tylko jednego zarządcy termalnego, używanie więcej niż jednego na raz może spowodować niespodziewane błędy.</string>
   <string name="thermald">Thermald</string>
-  <string name="thermald_summary">Stockowy sterownik termiczny, który ochrania urządzanie przed przegrzaniem. Powinno zostać wyłączone jeżeli alternatywny sterownik został włączony.</string>
+  <string name="thermald_summary">Domyślny sterownik termiczny, który ochrania urządzanie przed przegrzaniem. Powinno zostać wyłączone jeżeli alternatywny sterownik został włączony.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Wewnętrzny zamiennik dla Thermald od Qualcomma. Praca faux123.</string>
-  <string name="intellithermal_optimized">Intellithermal Optimized</string>
+  <string name="intellithermal_optimized">Intellithermal Optymalny</string>
   <string name="intellithermal_optimized_summary">Alternatywa dla zarządcy termalnego Thermald Qualcomm\'a. Rozwijany przez faux123 i alucard_24.</string>
   <string name="thermal_debug_mask_summary">Pozwala Ci aktywować maskę debugowania dla operacji termicznych.</string>
   <string name="vdd_restriction">Ograniczenie VDD</string>
@@ -331,6 +332,12 @@
   <string name="freq_limit_debug_summary">Pozwala Ci to na debugowanie ogranicznika częstotliwości CPU, gdy temperatura maksymalna zostanie przekroczona.</string>
   <string name="temp_limit_min_freq">Minimalna częstotliwość dla limitu temperatury</string>
   <string name="temp_limit_min_freq_summary">Sterownik termalny użyje tej częstotliwości do zmniejszenia temperatury.</string>
+  <string name="allowed_low_freq">Dozwolona niska częstotliwość</string>
+  <string name="allowed_mid_high">Faza 2: Dozwolone Średnio-Wysokie</string>
+  <string name="allowed_mid_freq">Faza 2: Dozwolona Średnia częstotliwość</string>
+  <string name="allowed_max_low">Faza 3: Dozwolona Maksymalna częstotliwość</string>
+  <string name="allowed_max_high">Faza 3: Dozwolona Maksymalna częstotliwość</string>
+  <string name="allowed_max_freq">Faza 3: Dozwolona Częstotliwość Max</string>
   <string name="check_interval">Interwał sprawdzania</string>
   <string name="shutdown_temp">Temperatura wyłączenia</string>
   <!-- GPU -->
@@ -349,7 +356,7 @@
   <string name="gpu_governor_tunables">Konfiguracja zarządcy GPU</string>
   <string name="simple_gpu_algorithm">Prosty Algorytm GPU</string>
   <string name="simple_gpu_algorithm_summary">Dodatek dla MSM Adreno TZ GPU Governor. Rozwijany przez faux123.</string>
-  <string name="laziness">Lenistwo</string>
+  <string name="laziness">Ospałość</string>
   <string name="laziness_summary">To ustawienie zwiększa pułap do zwiększenia i obniżenia częstotliwości GPU. Im niższa wartość, tym większa wydajność.</string>
   <string name="ramp_thresold">Ignorowanie zapytań</string>
   <string name="ramp_thresold_summary">To ustawienie zwiększa ilość razy GPU ignoruje zapytania o obniżenia częstotliwości GPU. Im wyższa wartość, tym większa wydajność.</string>
@@ -357,7 +364,7 @@
   <string name="adreno_idler_summary">Efektywne obejście dla opóźnień msm-adreno-tz. Rozwijany przez arter97.</string>
   <string name="down_differential">Odjemnik górnego progu</string>
   <string name="down_differential_summary">Rożnica górnego progu i jego odjemnika, pozwala określić, czy dane obciążenie jest bezczynne.</string>
-  <string name="idle_wait">Bezczynne czekanie</string>
+  <string name="idle_wait">Czas bezczynności</string>
   <string name="idle_wait_summary">Ilość wydarzeń po których częstotliwość zostanie obniżona. Liczba wydarzeń bezczynnego czekania, która jest potrzebna by Adreno idler uznał wydarzenie jako bezczynne i tym samym zmniejszył częstotliwość. Dzięki temu nie występuje efekt mikro-lagów podczas skrolowania czy też grania. Im mniejsza wartość, tym Adreno idler częściej będzie obniżał częstotliwość.</string>
   <string name="workload">Obciążenie</string>
   <string name="workload_summary">Gdy ustawiona zostanie większa wartość Adreno Idler, będzie starał się częściej obniżać częstotliwość.</string>
@@ -729,6 +736,7 @@
   <string name="arguments">Argumenty: %s</string>
   <string name="disable_question">Wyłączyć %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Otwórz ustawienia</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Użyj stopni fahrenheita do mierzenia temperatury.</string>
   <string name="force_english">Wymuś wyświetlanie języka angielskiego</string>
@@ -739,6 +747,9 @@
   <string name="hide_banner">Ukryj banner</string>
   <string name="force_cards">Wymuś korzystanie z kart</string>
   <string name="force_cards_summary">Używa karty dla elementów, jeśli jest to możliwe.</string>
+  <string name="accent_color">Kolor akcentów</string>
+  <string name="section_icons">Ikony sekcji</string>
+  <string name="section_icons_summary">Pokaż ikony wszystkich sekcji na pasku nawigacji</string>
   <string name="instant">Natychmiastowo</string>
   <string name="five_sec">5 sekund</string>
   <string name="ten_sec">10 sekund</string>
