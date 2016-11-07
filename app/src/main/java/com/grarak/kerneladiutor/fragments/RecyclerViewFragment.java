@@ -151,7 +151,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mAppBarLayout = ((BaseActivity) getActivity()).getAppBarLayout();
         mToolBar = ((BaseActivity) getActivity()).getToolBar();
 
-        if (!isForeground()) {
+        if (mAppBarLayout != null && !isForeground()) {
             mAppBarLayout.postDelayed(new Runnable() {
                 @Override
                 public void run() {
