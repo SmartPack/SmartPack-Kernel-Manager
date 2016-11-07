@@ -37,6 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-thin"
+                android:gravity="center"
+                android:padding="10dp"
                 android:text="@string/ad_here"
                 android:textSize="22sp"
                 android:visibility="gone" />
