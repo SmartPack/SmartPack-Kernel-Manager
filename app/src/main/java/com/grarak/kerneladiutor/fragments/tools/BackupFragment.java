@@ -29,7 +29,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.FilePickerActivity;
@@ -39,6 +38,7 @@ import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
@@ -56,12 +56,12 @@ public class BackupFragment extends RecyclerViewFragment {
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mPermissionDenied;
 
-    private AlertDialog.Builder mOptionsDialog;
-    private AlertDialog.Builder mBackupFlashingDialog;
+    private Dialog mOptionsDialog;
+    private Dialog mBackupFlashingDialog;
     private Backup.PARTITION mBackupPartition;
-    private AlertDialog.Builder mItemOptionsDialog;
-    private AlertDialog.Builder mDeleteDialog;
-    private AlertDialog.Builder mRestoreDialog;
+    private Dialog mItemOptionsDialog;
+    private Dialog mDeleteDialog;
+    private Dialog mRestoreDialog;
 
     private boolean mLoaded;
 
@@ -214,7 +214,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                         @Override
                         public void onClick(RecyclerViewItem item) {
-                            mItemOptionsDialog = new AlertDialog.Builder(getActivity())
+                            mItemOptionsDialog = new Dialog(getActivity())
                                     .setItems(getResources().getStringArray(R.array.backup_item_options),
                                             new DialogInterface.OnClickListener() {
                                                 @Override
@@ -253,7 +253,7 @@ public class BackupFragment extends RecyclerViewFragment {
             return;
         }
 
-        mOptionsDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.backup_options), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -280,7 +280,7 @@ public class BackupFragment extends RecyclerViewFragment {
 
     private void showBackupFlashingDialog(final File file) {
         final LinkedHashMap<String, Backup.PARTITION> menu = getPartitionMenu();
-        mBackupFlashingDialog = new AlertDialog.Builder(getActivity()).setItems(menu.keySet().toArray(
+        mBackupFlashingDialog = new Dialog(getActivity()).setItems(menu.keySet().toArray(
                 new String[menu.size()]), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

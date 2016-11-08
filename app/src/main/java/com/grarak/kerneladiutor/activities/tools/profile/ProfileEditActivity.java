@@ -25,7 +25,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BaseActivity;
@@ -33,6 +32,7 @@ import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -102,7 +102,7 @@ public class ProfileEditActivity extends BaseActivity {
         private Profiles.ProfileItem mItem;
         private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
-        private AlertDialog.Builder mDeleteDialog;
+        private Dialog mDeleteDialog;
 
         @Override
         protected boolean showViewPager() {

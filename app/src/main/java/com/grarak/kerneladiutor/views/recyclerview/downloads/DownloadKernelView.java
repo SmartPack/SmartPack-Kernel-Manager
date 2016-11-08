@@ -23,11 +23,9 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -42,6 +40,7 @@ import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 import java.io.File;
@@ -257,7 +256,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                                             R.string.install)).show();
                                 } else {
                                     String[] items = view.getResources().getStringArray(R.array.downloads_recovery);
-                                    new AlertDialog.Builder(view.getContext()).setSingleChoiceItems(items, 0,
+                                    new Dialog(view.getContext()).setSingleChoiceItems(items, 0,
                                             new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {

@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
-import android.app.AlertDialog;
 import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;
@@ -34,6 +33,7 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpu.Misc;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -45,7 +45,6 @@ import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -78,7 +77,7 @@ public class CPUFragment extends RecyclerViewFragment {
     private String mCPUGovernorStrLITTLE;
 
     private PathReaderFragment mGovernorTunableFragment;
-    private AlertDialog.Builder mGovernorTunableErrorDialog;
+    private Dialog mGovernorTunableErrorDialog;
 
     private ThreadPoolExecutor mPool;
     private Thread mRefreshThread;

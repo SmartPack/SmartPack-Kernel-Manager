@@ -260,7 +260,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                         }
                         mDelay = false;
                     }
-                    if (isAdded()) {
+                    if (isAdded() && getActivity() != null) {
                         List<RecyclerViewItem> items = new ArrayList<>();
                         addItems(items);
                         return items;

@@ -22,7 +22,6 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
-import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -32,6 +31,7 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -158,14 +158,14 @@ public class PathReaderFragment extends RecyclerViewFragment {
 
     private void showArrayDialog(final String value, final String[] values, final String path,
                                  final String name) {
-        new AlertDialog.Builder(getActivity()).setItems(
+        new Dialog(getActivity()).setItems(
                 getResources().getStringArray(R.array.path_reader_options),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                new AlertDialog.Builder(getActivity()).setItems(values, new DialogInterface.OnClickListener() {
+                                new Dialog(getActivity()).setItems(values, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         run(path, values[which], path);

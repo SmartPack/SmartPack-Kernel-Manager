@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,6 +44,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -63,9 +63,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
     private String mValueText;
 
     private SearchFragment mSearchFragment;
-    private AlertDialog.Builder mAddDialog;
-    private AlertDialog.Builder mItemOptionsDialog;
-    private AlertDialog.Builder mDeleteDialog;
+    private Dialog mAddDialog;
+    private Dialog mItemOptionsDialog;
+    private Dialog mDeleteDialog;
 
     private String mKey;
     private String mValue;
@@ -214,7 +214,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    mItemOptionsDialog = new AlertDialog.Builder(getActivity()).setItems(
+                    mItemOptionsDialog = new Dialog(getActivity()).setItems(
                             getResources().getStringArray(R.array.build_prop_item_options),
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -317,7 +317,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     @Override
     protected void onBottomFabClick() {
         super.onBottomFabClick();
-        mAddDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mAddDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.build_prop_add_options), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -396,7 +396,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
         public void setCount(int count) {
             mItemsCount = count;
-            if (mItemsText != null) {
+            if (mItemsText != null && isAdded()) {
                 mItemsText.setText(getString(count == 1 ? R.string.item_count : R.string.items_count, count));
             }
         }

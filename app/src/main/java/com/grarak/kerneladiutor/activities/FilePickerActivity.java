@@ -30,13 +30,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
-import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -108,7 +108,7 @@ public class FilePickerActivity extends BaseActivity {
         private Drawable mDirImage;
         private Drawable mFileImage;
         private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadAsyncTask;
-        private AlertDialog.Builder mPickDialog;
+        private Dialog mPickDialog;
 
         @Override
         protected boolean showViewPager() {

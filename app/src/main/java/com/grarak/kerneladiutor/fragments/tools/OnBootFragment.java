@@ -21,7 +21,6 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.Settings;
@@ -31,6 +30,7 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
@@ -52,7 +52,7 @@ public class OnBootFragment extends RecyclerViewFragment {
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
-    private AlertDialog.Builder mDeleteDialog;
+    private Dialog mDeleteDialog;
 
     @Override
     protected void init() {

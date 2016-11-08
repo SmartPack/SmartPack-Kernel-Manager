@@ -214,7 +214,9 @@ public class RootUtils {
 
                     mWriter.close();
                 }
-                mReader.close();
+                if (mReader != null) {
+                    mReader.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

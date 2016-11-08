@@ -33,7 +33,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
@@ -64,6 +63,7 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -90,13 +90,13 @@ public class ProfileFragment extends RecyclerViewFragment {
     private boolean mLoaded;
 
     private LinkedHashMap<String, String> mCommands;
-    private AlertDialog.Builder mDeleteDialog;
-    private AlertDialog.Builder mApplyDialog;
+    private Dialog mDeleteDialog;
+    private Dialog mApplyDialog;
     private Profiles.ProfileItem mExportProfile;
-    private AlertDialog.Builder mOptionsDialog;
-    private AlertDialog.Builder mDonateDialog;
+    private Dialog mOptionsDialog;
+    private Dialog mDonateDialog;
     private ImportProfile mImportProfile;
-    private AlertDialog.Builder mSelectDialog;
+    private Dialog mSelectDialog;
 
     private DetailsFragment mDetailsFragment;
 
@@ -394,7 +394,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     protected void onTopFabClick() {
         super.onTopFabClick();
 
-        mOptionsDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.profile_options), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

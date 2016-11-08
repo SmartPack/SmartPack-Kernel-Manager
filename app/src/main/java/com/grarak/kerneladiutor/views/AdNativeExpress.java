@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -40,6 +39,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -197,7 +197,7 @@ public class AdNativeExpress extends LinearLayout {
             mGHImage.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(getContext()).setTitle(R.string.warning)
+                    new Dialog(getContext()).setTitle(R.string.warning)
                             .setMessage(R.string.gh_ad)
                             .setPositiveButton(R.string.open_ad_anyway,
                                     new DialogInterface.OnClickListener() {

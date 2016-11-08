@@ -23,14 +23,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -39,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -49,24 +47,6 @@ import java.util.Set;
  * Created by willi on 16.04.16.
  */
 public class ViewUtils {
-
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable) drawable).getBitmap();
-        }
-
-        int width = drawable.getIntrinsicWidth();
-        width = width > 0 ? width : 1;
-        int height = drawable.getIntrinsicHeight();
-        height = height > 0 ? height : 1;
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
-    }
 
     public static int getTextSecondaryColor(Context context) {
         TypedValue value = new TypedValue();
@@ -133,8 +113,8 @@ public class ViewUtils {
         void onClick(String text, String text2);
     }
 
-    public static AlertDialog.Builder dialogDonate(final Context context) {
-        return new AlertDialog.Builder(context).setTitle(context.getString(R.string.donate))
+    public static Dialog dialogDonate(final Context context) {
+        return new Dialog(context).setTitle(context.getString(R.string.donate))
                 .setMessage(context.getString(R.string.donate_summary)).setNegativeButton(
                         context.getString(R.string.donate_nope), new DialogInterface.OnClickListener() {
                             @Override
@@ -149,10 +129,10 @@ public class ViewUtils {
                 });
     }
 
-    public static AlertDialog.Builder dialogEditTexts(String text, String text2, String hint, String hint2,
-                                                      final DialogInterface.OnClickListener negativeListener,
-                                                      final onDialogEditTextsListener onDialogEditTextListener,
-                                                      Context context) {
+    public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,
+                                         final DialogInterface.OnClickListener negativeListener,
+                                         final onDialogEditTextsListener onDialogEditTextListener,
+                                         Context context) {
         LinearLayout layout = new LinearLayout(context);
         layout.setOrientation(LinearLayout.VERTICAL);
         int padding = (int) context.getResources().getDimension(R.dimen.dialog_padding);
@@ -183,13 +163,12 @@ public class ViewUtils {
         layout.addView(editText);
         layout.addView(editText2);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setView(layout);
+        Dialog dialog = new Dialog(context).setView(layout);
         if (negativeListener != null) {
-            builder.setNegativeButton(context.getString(R.string.cancel), negativeListener);
+            dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
         }
         if (onDialogEditTextListener != null) {
-            builder.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+            dialog.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     onDialogEditTextListener.onClick(editText.getText().toString(), editText2.getText().toString());
@@ -203,18 +182,18 @@ public class ViewUtils {
                 }
             });
         }
-        return builder;
+        return dialog;
     }
 
-    public static AlertDialog.Builder dialogEditText(String text, final DialogInterface.OnClickListener negativeListener,
-                                                     final OnDialogEditTextListener onDialogEditTextListener,
-                                                     Context context) {
+    public static Dialog dialogEditText(String text, final DialogInterface.OnClickListener negativeListener,
+                                        final OnDialogEditTextListener onDialogEditTextListener,
+                                        Context context) {
         return dialogEditText(text, negativeListener, onDialogEditTextListener, -1, context);
     }
 
-    public static AlertDialog.Builder dialogEditText(String text, final DialogInterface.OnClickListener negativeListener,
-                                                     final OnDialogEditTextListener onDialogEditTextListener, int inputType,
-                                                     Context context) {
+    public static Dialog dialogEditText(String text, final DialogInterface.OnClickListener negativeListener,
+                                        final OnDialogEditTextListener onDialogEditTextListener, int inputType,
+                                        Context context) {
         LinearLayout layout = new LinearLayout(context);
         int padding = (int) context.getResources().getDimension(R.dimen.dialog_padding);
         layout.setPadding(padding, padding, padding, padding);
@@ -233,13 +212,12 @@ public class ViewUtils {
 
         layout.addView(editText);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setView(layout);
+        Dialog dialog = new Dialog(context).setView(layout);
         if (negativeListener != null) {
-            builder.setNegativeButton(context.getString(R.string.cancel), negativeListener);
+            dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
         }
         if (onDialogEditTextListener != null) {
-            builder.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+            dialog.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     onDialogEditTextListener.onClick(editText.getText().toString());
@@ -253,24 +231,23 @@ public class ViewUtils {
                 }
             });
         }
-        return builder;
+        return dialog;
     }
 
-    public static AlertDialog.Builder dialogBuilder(CharSequence message, DialogInterface.OnClickListener negativeListener,
-                                                    DialogInterface.OnClickListener positiveListener,
-                                                    DialogInterface.OnDismissListener dismissListener, Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(message);
+    public static Dialog dialogBuilder(CharSequence message, DialogInterface.OnClickListener negativeListener,
+                                       DialogInterface.OnClickListener positiveListener,
+                                       DialogInterface.OnDismissListener dismissListener, Context context) {
+        Dialog dialog = new Dialog(context).setMessage(message);
         if (negativeListener != null) {
-            builder.setNegativeButton(context.getString(R.string.cancel), negativeListener);
+            dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
         }
         if (positiveListener != null) {
-            builder.setPositiveButton(context.getString(R.string.ok), positiveListener);
+            dialog.setPositiveButton(context.getString(R.string.ok), positiveListener);
         }
         if (dismissListener != null) {
-            builder.setOnDismissListener(dismissListener);
+            dialog.setOnDismissListener(dismissListener);
         }
-        return builder;
+        return dialog;
     }
 
     private static final Set<CustomTarget> mProtectedFromGarbageCollectorTargets = new HashSet<>();
@@ -328,7 +305,7 @@ public class ViewUtils {
         return width != newWidth || height != newHeight ? resizeBitmap(bitmap, newWidth, newHeight) : bitmap;
     }
 
-    public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+    private static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
     }
 

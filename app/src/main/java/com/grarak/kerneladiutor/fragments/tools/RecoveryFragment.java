@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.PopupMenu;
@@ -48,6 +47,7 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Recovery;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -61,10 +61,10 @@ import java.util.List;
  */
 public class RecoveryFragment extends RecyclerViewFragment {
 
-    private AlertDialog.Builder mRebootDialog;
-    private AlertDialog.Builder mRebootConfirmDialog;
-    private AlertDialog.Builder mAddDialog;
-    private AlertDialog.Builder mFlashDialog;
+    private Dialog mRebootDialog;
+    private Dialog mRebootConfirmDialog;
+    private Dialog mAddDialog;
+    private Dialog mFlashDialog;
 
     private List<Recovery> mCommands = new ArrayList<>();
 
@@ -117,7 +117,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     }
 
     private void add() {
-        mAddDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mAddDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.recovery_commands), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -230,7 +230,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
     }
 
     private void reboot() {
-        mRebootDialog = new AlertDialog.Builder(getActivity()).setItems(getResources()
+        mRebootDialog = new Dialog(getActivity()).setItems(getResources()
                 .getStringArray(R.array.recovery_reboot_options), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, final int selection) {

@@ -14,7 +14,6 @@ import android.os.Messenger;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-import android.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -38,6 +37,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.BorderCircleView;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -362,7 +362,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         confirmNewPassword.setHint(getString(R.string.confirm_new_password));
         linearLayout.addView(confirmNewPassword);
 
-        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+        new Dialog(getActivity()).setView(linearLayout)
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -426,7 +426,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         mPassword.setHint(getString(R.string.password));
         linearLayout.addView(mPassword);
 
-        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+        new Dialog(getActivity()).setView(linearLayout)
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -494,7 +494,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             subView.addView(circle);
         }
 
-        new AlertDialog.Builder(getActivity()).setView(linearLayout)
+        new Dialog(getActivity()).setView(linearLayout)
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

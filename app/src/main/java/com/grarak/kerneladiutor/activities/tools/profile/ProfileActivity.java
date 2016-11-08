@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.activities.tools.profile;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +46,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,7 +102,7 @@ public class ProfileActivity extends BaseActivity {
                 currentSettings();
             }
         } else {
-            new AlertDialog.Builder(this).setItems(getResources().getStringArray(R.array.profile_modes),
+            new Dialog(this).setItems(getResources().getStringArray(R.array.profile_modes),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

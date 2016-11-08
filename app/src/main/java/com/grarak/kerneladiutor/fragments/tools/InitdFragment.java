@@ -29,7 +29,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
@@ -48,6 +47,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Initd;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -63,9 +63,9 @@ public class InitdFragment extends RecyclerViewFragment {
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
 
-    private AlertDialog.Builder mExecuteDialog;
-    private AlertDialog.Builder mResultDialog;
-    private AlertDialog.Builder mDeleteDialog;
+    private Dialog mExecuteDialog;
+    private Dialog mResultDialog;
+    private Dialog mDeleteDialog;
     private boolean mShowCreateNameDialog;
 
     private String mCreateName;

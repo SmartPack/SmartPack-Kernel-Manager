@@ -27,7 +27,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +44,7 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.CustomControlException;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Items;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Values;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -61,10 +61,10 @@ import java.util.List;
  */
 public class CustomControlsFragment extends RecyclerViewFragment {
 
-    private AlertDialog.Builder mOptionsDialog;
-    private AlertDialog.Builder mItemsDialog;
-    private AlertDialog.Builder mDeleteDialog;
-    private AlertDialog.Builder mDonateDialog;
+    private Dialog mOptionsDialog;
+    private Dialog mItemsDialog;
+    private Dialog mDeleteDialog;
+    private Dialog mDonateDialog;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadingThread;
     private AsyncTask<Void, Void, ImportControl> mImportingThread;
@@ -88,7 +88,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     @Override
     protected void onTopFabClick() {
         super.onTopFabClick();
-        mOptionsDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.custom_controls_options), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -130,7 +130,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     }
 
     private void showControls() {
-        mItemsDialog = new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(
+        mItemsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
                 R.array.custom_controls_items), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
