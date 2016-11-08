@@ -54,7 +54,8 @@ public class Tile extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ACTION_TOGGLE_STATE.equals(intent.getAction())) {
-            Log.i(TAG, intent.getStringExtra(NAME));
+            String name = intent.getStringExtra(NAME);
+            if (name != null) Log.i(TAG, name);
             String[] commands = intent.getStringArrayExtra(COMMANDS);
             if (commands != null) {
                 List<String> adjustedCommands = new ArrayList<>();
