@@ -8,6 +8,7 @@
   <string name="collecting_info">Coletando informações</string>
   <string name="no_root">Sem root</string>
   <string name="no_busybox">Sem busybox</string>
+  <string name="open">Abrir %s</string>
   <!-- Security -->
   <string name="password">Senha</string>
   <string name="password_wrong">A senha está incorreta</string>
@@ -745,6 +746,7 @@
   <string name="arguments">Argumentos: %s</string>
   <string name="disable_question">Desabilitar %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Abrir configurações</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="fahrenheit_summary">Use fahrenheit para medir a temperatura.</string>
   <string name="force_english">Forçar exibição do idioma inglês</string>
@@ -756,6 +758,8 @@
   <string name="force_cards">Forçar cards</string>
   <string name="force_cards_summary">Use cards para itens, se possível.</string>
   <string name="accent_color">Cor de Destaque</string>
+  <string name="section_icons">Ícones de Seção</string>
+  <string name="section_icons_summary">Exibe ícones para cada seção na gaveta de navegação.</string>
   <string name="instant">Imediato</string>
   <string name="five_sec">5 segundos</string>
   <string name="ten_sec">10 segundos</string>

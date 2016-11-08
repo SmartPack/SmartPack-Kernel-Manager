@@ -161,7 +161,6 @@
   <string name="input_interval">Giriş Aralığı</string>
   <string name="input_interval_summary">Giriş algılandığında İşlemci Hızlandırma için minimum aralık.</string>
   <string name="input_boost_freq">Giriş Arttırma Frekansı</string>
-  <string name="input_boost_freq_core">çekirdek_frekans_yükseltici_girdi</string>
   <string name="input_boost_freq_summary">İşlemci frekansı giriş tespiti üzerine bu frekansa artırdığını edilecek.</string>
   <string name="wakeup_boost">Uyandırma hızlandırması</string>
   <string name="wakeup_boost_summary">Uyandırma Boost hızlandırma girişine benzer, ancak ekran açık olduğunda oluşur.</string>

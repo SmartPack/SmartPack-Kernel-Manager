@@ -162,7 +162,6 @@
   <string name="input_interval">Input Interval</string>
   <string name="input_interval_summary">Intervalul minim unui CPU este amplificat, când este detectat de input.</string>
   <string name="input_boost_freq">Frecvenţa de intrare Boost</string>
-  <string name="input_boost_freq_core">Bază de frecvenţă impuls de intrare %s</string>
   <string name="input_boost_freq_summary">Frecventa CPU pentru a fi amplificat această frecvență la intrare de detectare.</string>
   <string name="wakeup_boost">Boost la pornire</string>
   <string name="wakeup_boost_summary">Wakeup Boost este similar cu impuls de pornire, dar apare atunci când ecranul este pornit.</string>
