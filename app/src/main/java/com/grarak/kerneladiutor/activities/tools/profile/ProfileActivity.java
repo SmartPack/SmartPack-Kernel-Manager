@@ -24,12 +24,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatImageButton;
 import android.view.LayoutInflater;
@@ -244,7 +244,7 @@ public class ProfileActivity extends BaseActivity {
         }
     }
 
-    public static class CurrentSettingsFragment extends AppCompatDialogFragment {
+    public static class CurrentSettingsFragment extends DialogFragment {
 
         public static CurrentSettingsFragment newInstance(LinkedHashMap<String, Fragment> sections) {
             CurrentSettingsFragment fragment = new CurrentSettingsFragment();
@@ -259,7 +259,7 @@ public class ProfileActivity extends BaseActivity {
             super.onCreate(savedInstanceState);
             setRetainInstance(true);
             setCancelable(false);
-            setStyle(AppCompatDialogFragment.STYLE_NO_TITLE, 0);
+            setStyle(DialogFragment.STYLE_NO_TITLE, 0);
         }
 
         @Nullable

@@ -24,7 +24,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
@@ -122,7 +121,6 @@ public class Tile extends BroadcastReceiver {
             CMStatusBarManager.getInstance(context).publishTile(0, mCustomTile);
         } catch (Exception e) {
             Prefs.saveBoolean("profiletile", false, context);
-            Utils.toast(e.getMessage(), context, Toast.LENGTH_LONG);
         }
     }
 
