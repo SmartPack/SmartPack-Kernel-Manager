@@ -82,6 +82,15 @@ public class CardView extends RecyclerViewItem {
         return R.layout.rv_card_view;
     }
 
+    @Override
+    public void onRecyclerViewCreate(Activity activity) {
+        super.onRecyclerViewCreate(activity);
+
+        for (RecyclerViewItem item : mItems) {
+            item.onRecyclerViewCreate(activity);
+        }
+    }
+
     private void initLayouts(View view) {
         mRootView = (android.support.v7.widget.CardView) view;
         mTitleParent = view.findViewById(R.id.title_parent);

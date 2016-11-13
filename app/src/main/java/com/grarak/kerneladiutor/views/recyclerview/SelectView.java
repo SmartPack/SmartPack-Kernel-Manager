@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
@@ -44,13 +45,18 @@ public class SelectView extends ValueView {
     private List<String> mItems = new ArrayList<>();
 
     @Override
-    public void onCreateView(View view) {
-        mView = view;
-        super.onCreateView(view);
+    public void onRecyclerViewCreate(Activity activity) {
+        super.onRecyclerViewCreate(activity);
 
         if (mDialog != null) {
             mDialog.show();
         }
+    }
+
+    @Override
+    public void onCreateView(View view) {
+        mView = view;
+        super.onCreateView(view);
     }
 
     public void setItem(String item) {

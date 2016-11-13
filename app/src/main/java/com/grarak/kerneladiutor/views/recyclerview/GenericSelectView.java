@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
@@ -40,20 +41,23 @@ public class GenericSelectView extends ValueView {
     private boolean mShowDialog;
 
     @Override
-    public void onCreateView(View view) {
+    public void onRecyclerViewCreate(Activity activity) {
+        super.onRecyclerViewCreate(activity);
 
+        if (mShowDialog) {
+            showDialog(activity);
+        }
+    }
+
+    @Override
+    public void onCreateView(View view) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog(v.getContext());
             }
         });
-
         super.onCreateView(view);
-
-        if (mShowDialog) {
-            showDialog(view.getContext());
-        }
     }
 
     public void setValueRaw(String value) {

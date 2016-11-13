@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
+import android.app.Activity;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -47,6 +48,9 @@ public abstract class RecyclerViewItem {
 
     @LayoutRes
     public abstract int getLayoutRes();
+
+    public void onRecyclerViewCreate(Activity activity) {
+    }
 
     void onCreateHolder(ViewGroup parent, View view) {
     }
