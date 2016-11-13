@@ -454,7 +454,7 @@ public class NavigationActivity extends BaseActivity
                     ShortcutInfo shortcut = new ShortcutInfo.Builder(this,
                             navFragment.mFragment.getClass().getSimpleName())
                             .setShortLabel(getString(navFragment.mId))
-                            .setLongLabel(getString(R.string.open, getString(navFragment.mId)))
+                            .setLongLabel(Utils.strFormat(getString(R.string.open), getString(navFragment.mId)))
                             .setIcon(Icon.createWithResource(this, navFragment.mDrawable == 0 ?
                                     R.drawable.ic_blank : navFragment.mDrawable))
                             .setIntent(intent)

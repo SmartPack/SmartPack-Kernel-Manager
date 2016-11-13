@@ -82,7 +82,7 @@ public class BaseActivity extends AppCompatActivity {
             theme = sAccentColors.get(accent);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        super.setTheme(theme);
+        setTheme(theme);
         super.onCreate(savedInstanceState);
         if (Prefs.getBoolean("forceenglish", false, this)) {
             Utils.setLocale("en_US", this);
@@ -92,7 +92,7 @@ public class BaseActivity extends AppCompatActivity {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ViewUtils.getColorPrimaryDarkColor(this));
+            window.setStatusBarColor(statusBarColor());
         }
     }
 
@@ -120,6 +120,10 @@ public class BaseActivity extends AppCompatActivity {
 
     protected boolean setStatusBarColor() {
         return true;
+    }
+
+    protected int statusBarColor() {
+        return ViewUtils.getColorPrimaryDarkColor(this);
     }
 
 }

@@ -1,102 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Red" parent="AppTheme">
+    <style name="Theme.Red" parent="AppThemeParent">
         <item name="colorAccent">@color/red_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Red.Dark</item>
     </style>
 
-    <style name="Theme.Red.Dark" parent="AppThemeDark">
+    <style name="Theme.Red.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/red_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Red.Dark</item>
     </style>
 
-    <style name="Theme.Pink" parent="AppTheme">
+    <style name="Theme.Pink" parent="AppThemeParent">
         <item name="colorAccent">@color/pink_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Pink.Dark</item>
     </style>
 
-    <style name="Theme.Pink.Dark" parent="AppThemeDark">
+    <style name="Theme.Pink.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/pink_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Pink.Dark</item>
     </style>
 
-    <style name="Theme.Purple" parent="AppTheme">
+    <style name="Theme.Purple" parent="AppThemeParent">
         <item name="colorAccent">@color/purple_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Purple.Dark</item>
     </style>
 
-    <style name="Theme.Purple.Dark" parent="AppThemeDark">
+    <style name="Theme.Purple.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/purple_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Purple.Dark</item>
     </style>
 
-    <style name="Theme.Blue" parent="AppTheme">
+    <style name="Theme.Blue" parent="AppThemeParent">
         <item name="colorAccent">@color/blue_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Blue.Dark</item>
     </style>
 
-    <style name="Theme.Blue.Dark" parent="AppThemeDark">
+    <style name="Theme.Blue.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/blue_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Blue.Dark</item>
     </style>
 
-    <style name="Theme.Green" parent="AppTheme">
+    <style name="Theme.Green" parent="AppThemeParent">
         <item name="colorAccent">@color/green_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Green.Dark</item>
     </style>
 
-    <style name="Theme.Green.Dark" parent="AppThemeDark">
+    <style name="Theme.Green.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/green_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Green.Dark</item>
     </style>
 
-    <style name="Theme.Orange" parent="AppTheme">
+    <style name="Theme.Orange" parent="AppThemeParent">
         <item name="colorAccent">@color/orange_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Orange.Dark</item>
     </style>
 
-    <style name="Theme.Orange.Dark" parent="AppThemeDark">
+    <style name="Theme.Orange.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/orange_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Orange.Dark</item>
     </style>
 
-    <style name="Theme.Brown" parent="AppTheme">
+    <style name="Theme.Brown" parent="AppThemeParent">
         <item name="colorAccent">@color/brown_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Brown.Dark</item>
     </style>
 
-    <style name="Theme.Brown.Dark" parent="AppThemeDark">
+    <style name="Theme.Brown.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/brown_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Brown.Dark</item>
     </style>
 
-    <style name="Theme.Grey" parent="AppTheme">
+    <style name="Theme.Grey" parent="AppThemeParent">
         <item name="colorAccent">@color/grey_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Grey.Dark</item>
     </style>
 
-    <style name="Theme.Grey.Dark" parent="AppThemeDark">
+    <style name="Theme.Grey.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/grey_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Grey.Dark</item>
     </style>
 
-    <style name="Theme.BlueGrey" parent="AppTheme">
+    <style name="Theme.BlueGrey" parent="AppThemeParent">
         <item name="colorAccent">@color/blue_grey_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.BlueGrey.Dark</item>
     </style>
 
-    <style name="Theme.BlueGrey.Dark" parent="AppThemeDark">
+    <style name="Theme.BlueGrey.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/blue_grey_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.BlueGrey.Dark</item>
     </style>
 
-    <style name="Theme.Teal" parent="AppTheme">
+    <style name="Theme.Teal" parent="AppThemeParent">
         <item name="colorAccent">@color/teal_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Teal.Dark</item>
     </style>
 
-    <style name="Theme.Teal.Dark" parent="AppThemeDark">
+    <style name="Theme.Teal.Dark" parent="AppThemeParentDark">
         <item name="colorAccent">@color/teal_accent</item>
         <item name="edittext_build_prop_style">@style/Theme.Teal.Dark</item>
     </style>

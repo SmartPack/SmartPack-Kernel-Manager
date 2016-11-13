@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:context="com.grarak.kerneladiutor.activities.NavigationActivity"
     tools:openDrawer="start">
 
     <FrameLayout
@@ -22,7 +23,6 @@
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </FrameLayout>
 
     <android.support.design.widget.NavigationView
