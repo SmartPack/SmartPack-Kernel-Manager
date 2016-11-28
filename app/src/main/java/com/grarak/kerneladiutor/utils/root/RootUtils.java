@@ -31,6 +31,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by willi on 30.12.15.
@@ -202,7 +203,8 @@ public class RootUtils {
                 mLogFile.delete();
             }
             Utils.writeFile(mLogFile.toString(),
-                    new SimpleDateFormat("dd-MM-yy HH:mm:ss").format(new Date()) + ": " + log + "\n",
+                    new SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.ENGLISH)
+                            .format(new Date()) + ": " + log + "\n",
                     true, false);
         }
 
@@ -221,15 +223,17 @@ public class RootUtils {
                 e.printStackTrace();
             }
 
-            try {
-                mProcess.waitFor();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            if (mProcess != null) {
+                try {
+                    mProcess.waitFor();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            mProcess.destroy();
-            if (mTag != null) {
-                Log.i(mTag, String.format("%s closed: %d", mRoot ? "SU" : "SH", mProcess.exitValue()));
+                mProcess.destroy();
+                if (mTag != null) {
+                    Log.i(mTag, String.format("%s closed: %d", mRoot ? "SU" : "SH", mProcess.exitValue()));
+                }
             }
             closed = true;
         }
