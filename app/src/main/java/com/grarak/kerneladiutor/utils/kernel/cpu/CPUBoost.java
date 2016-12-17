@@ -34,9 +34,15 @@ import java.util.List;
 public class CPUBoost {
 
     private static final String CPU_BOOST = "/sys/module/cpu_boost/parameters";
-    private static final String CPU_BOOST_ENABLE = CPU_BOOST + "/cpu_boost";
-    private static final String CPU_BOOST_ENABLE_2 = CPU_BOOST + "/cpuboost_enable";
-    private static final String CPU_BOOST_ENABLE_3 = CPU_BOOST + "/input_boost_enabled";
+
+    private static final List<String> sEnable = new ArrayList<>();
+
+    static {
+        sEnable.add(CPU_BOOST + "/cpu_boost");
+        sEnable.add(CPU_BOOST + "/cpuboost_enable");
+        sEnable.add(CPU_BOOST + "/input_boost_enabled");
+    }
+
     private static final String CPU_BOOST_DEBUG_MASK = CPU_BOOST + "/debug_mask";
     private static final String CPU_BOOST_MS = CPU_BOOST + "/boost_ms";
     private static final String CPU_BOOST_SYNC_THRESHOLD = CPU_BOOST + "/sync_threshold";
@@ -152,7 +158,8 @@ public class CPUBoost {
     }
 
     public static void enableCpuBoost(boolean enable, Context context) {
-        run(Control.write(ENABLE.equals(CPU_BOOST_ENABLE_2) ? enable ? "Y" : "N" : enable ? "1" : "0", ENABLE),
+        run(Control.write(
+                ENABLE.endsWith("cpuboost_enable") ? (enable ? "Y" : "N") : (enable ? "1" : "0"), ENABLE),
                 ENABLE, context);
     }
 
@@ -163,9 +170,12 @@ public class CPUBoost {
 
     public static boolean hasEnable() {
         if (ENABLE == null) {
-            if (Utils.existFile(CPU_BOOST_ENABLE)) ENABLE = CPU_BOOST_ENABLE;
-            else if (Utils.existFile(CPU_BOOST_ENABLE_2)) ENABLE = CPU_BOOST_ENABLE_2;
-            else if (Utils.existFile(CPU_BOOST_ENABLE_3)) ENABLE = CPU_BOOST_ENABLE_3;
+            for (String file : sEnable) {
+                if (Utils.existFile(file)) {
+                    ENABLE = file;
+                    return true;
+                }
+            }
         }
         return ENABLE != null;
     }
