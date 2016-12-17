@@ -62,13 +62,16 @@ public class Calibration {
 
     private static final String HBM = "/sys/class/graphics/fb0/hbm";
 
-    private static final String SRGB = "/sys/class/graphics/fb0/SRGB";
+    private static final List<String> sSRGB = new ArrayList<>();
 
     private static final List<String> sColors = new ArrayList<>();
     private static final List<String> sColorEnables = new ArrayList<>();
     private static final List<String> sNewKCAL = new ArrayList<>();
 
     static {
+        sSRGB.add("/sys/class/graphics/fb0/SRGB");
+        sSRGB.add("/sys/class/graphics/fb0/srgb");
+
         sColors.add(KCAL_CTRL);
         sColors.add(DIAG0_POWER);
         sColors.add(COLOR_CONTROL_MUILTIPLIER);
@@ -89,6 +92,8 @@ public class Calibration {
         sNewKCAL.add(KCAL_CTRL_CONT);
     }
 
+    private static String SRGB;
+
     private static String COLOR;
     private static String COLOR_ENABLE;
 
@@ -99,11 +104,20 @@ public class Calibration {
     }
 
     public static boolean isSRGBEnabled() {
-        return Utils.readFile(SRGB).contains("mode = 1");
+        String value = Utils.readFile(SRGB);
+        return value.equals("1") || value.contains("mode = 1");
     }
 
     public static boolean hasSRGB() {
-        return Utils.existFile(SRGB);
+        if (SRGB == null) {
+            for (String file : sSRGB) {
+                if (Utils.existFile(file)) {
+                    SRGB = file;
+                    return true;
+                }
+            }
+        }
+        return SRGB != null;
     }
 
     public static void enableScreenHBM(boolean enable, Context context) {
