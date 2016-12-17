@@ -36,6 +36,7 @@ public class CPUBoost {
     private static final String CPU_BOOST = "/sys/module/cpu_boost/parameters";
     private static final String CPU_BOOST_ENABLE = CPU_BOOST + "/cpu_boost";
     private static final String CPU_BOOST_ENABLE_2 = CPU_BOOST + "/cpuboost_enable";
+    private static final String CPU_BOOST_ENABLE_3 = CPU_BOOST + "/input_boost_enabled";
     private static final String CPU_BOOST_DEBUG_MASK = CPU_BOOST + "/debug_mask";
     private static final String CPU_BOOST_MS = CPU_BOOST + "/boost_ms";
     private static final String CPU_BOOST_SYNC_THRESHOLD = CPU_BOOST + "/sync_threshold";
@@ -164,6 +165,7 @@ public class CPUBoost {
         if (ENABLE == null) {
             if (Utils.existFile(CPU_BOOST_ENABLE)) ENABLE = CPU_BOOST_ENABLE;
             else if (Utils.existFile(CPU_BOOST_ENABLE_2)) ENABLE = CPU_BOOST_ENABLE_2;
+            else if (Utils.existFile(CPU_BOOST_ENABLE_3)) ENABLE = CPU_BOOST_ENABLE_3;
         }
         return ENABLE != null;
     }
