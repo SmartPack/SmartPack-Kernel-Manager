@@ -512,6 +512,7 @@
     <string name="area">Area</string>
     <string name="width">Width</string>
     <string name="height">Height</string>
+    <string name="vibration">Vibration</string>
     <string name="vibration_strength">Vibration Strength</string>
 
     <!-- Sound -->

@@ -48,6 +48,7 @@ public class Misc {
 
     private static final String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
+    private static final String VIBRATION = "/proc/touchpanel/haptic_feedback_disable";
     private static final String VIB_VIBRATION = "/sys/android_touch2/vib_strength";
 
     private static final HashMap<String, List<Integer>> sWakeFiles = new HashMap<>();
@@ -102,6 +103,18 @@ public class Misc {
 
     public static boolean hasVibVibration() {
         return Utils.existFile(VIB_VIBRATION);
+    }
+
+    public static void enableVibration(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", VIBRATION), VIB_VIBRATION, context);
+    }
+
+    public static boolean isVibrationEnabled() {
+        return Utils.readFile(VIBRATION).equals("1");
+    }
+
+    public static boolean hasVibration() {
+        return Utils.existFile(VIBRATION);
     }
 
     public static void enablePowerKeySuspend(boolean enable, Context context) {

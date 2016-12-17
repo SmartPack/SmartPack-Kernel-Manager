@@ -84,9 +84,7 @@ public class WakeFrament extends RecyclerViewFragment {
             powerKeySuspendInit(items);
         }
         areaInit(items);
-        if (Misc.hasVibVibration()) {
-            vibrationInit(items);
-        }
+        vibrationInit(items);
     }
 
     private void dt2wInit(List<RecyclerViewItem> items) {
@@ -344,23 +342,39 @@ public class WakeFrament extends RecyclerViewFragment {
     }
 
     private void vibrationInit(List<RecyclerViewItem> items) {
-        SeekBarView vibration = new SeekBarView();
-        vibration.setTitle(getString(R.string.vibration_strength));
-        vibration.setUnit("%");
-        vibration.setMax(90);
-        vibration.setProgress(Misc.getVibVibration());
-        vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                Misc.setVibVibration(position, getActivity());
-            }
+        if (Misc.hasVibration()) {
+            SwitchView vibration = new SwitchView();
+            vibration.setSummary(getString(R.string.vibration));
+            vibration.setChecked(Misc.isVibrationEnabled());
+            vibration.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableVibration(isChecked, getActivity());
+                }
+            });
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
+            items.add(vibration);
+        }
 
-        items.add(vibration);
+        if (Misc.hasVibVibration()) {
+            SeekBarView vibVibration = new SeekBarView();
+            vibVibration.setTitle(getString(R.string.vibration_strength));
+            vibVibration.setUnit("%");
+            vibVibration.setMax(90);
+            vibVibration.setProgress(Misc.getVibVibration());
+            vibVibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setVibVibration(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(vibVibration);
+        }
     }
 
 }
