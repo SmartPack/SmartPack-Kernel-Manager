@@ -85,7 +85,6 @@ public class WebpageReader extends ThreadTask<String, String> {
                     }
                     break;
                 } else if (mCancelled) {
-                    mConnection.disconnect();
                     return "";
                 }
         } catch (MalformedURLException e) {

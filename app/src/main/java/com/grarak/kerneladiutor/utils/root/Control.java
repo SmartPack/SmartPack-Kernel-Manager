@@ -19,10 +19,17 @@
  */
 package com.grarak.kerneladiutor.utils.root;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.database.Settings;
+import com.grarak.kerneladiutor.services.monitor.IMonitor;
+import com.grarak.kerneladiutor.services.monitor.Monitor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -47,11 +54,11 @@ public class Control {
     }
 
     public static String startService(String prop) {
-        return "start " + prop;
+        return "setprop ctl.start " + prop;
     }
 
     public static String stopService(String prop) {
-        return "stop " + prop;
+        return "stop ctl.stop " + prop;
     }
 
     public static String write(String text, String path) {
@@ -66,7 +73,7 @@ public class Control {
         return "chown " + group + " " + file;
     }
 
-    private synchronized void apply(String command, String category, String id, Context context) {
+    private synchronized void apply(String command, String category, String id, final Context context) {
         if (context != null) {
             if (mProfileMode) {
                 Log.i(TAG, "Added to profile: " + id);
@@ -88,6 +95,25 @@ public class Control {
         if (command.startsWith("#")) return;
         RootUtils.runCommand(command);
         Log.i(TAG, command);
+        if (context != null) {
+            context.bindService(new Intent(context, Monitor.class), new ServiceConnection() {
+                        @Override
+                        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                            try {
+                                IMonitor monitor = IMonitor.Stub.asInterface(iBinder);
+                                monitor.onSettingsChange();
+                                context.unbindService(this);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onServiceDisconnected(ComponentName componentName) {
+                        }
+                    },
+                    Context.BIND_AUTO_CREATE);
+        }
     }
 
     private void run(final String command, final String category, final String id,

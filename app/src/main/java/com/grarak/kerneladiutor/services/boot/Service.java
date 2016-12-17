@@ -68,10 +68,6 @@ public class Service extends android.app.Service {
     private static final String TAG = Service.class.getSimpleName();
     private static boolean sCancel;
 
-    private HashMap<String, Boolean> mCategoryEnabled = new HashMap<>();
-    private HashMap<String, String> mCustomControls = new HashMap<>();
-    private List<String> mProfiles = new ArrayList<>();
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -79,9 +75,7 @@ public class Service extends android.app.Service {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
-
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Messenger messenger = null;
         if (intent != null) {
             Bundle extras = intent.getExtras();
@@ -110,21 +104,23 @@ public class Service extends android.app.Service {
         boolean enabled = false;
         final Settings settings = new Settings(this);
         Controls controls = new Controls(this);
-        List<Profiles.ProfileItem> profiles = new Profiles(this).getAllProfiles();
 
+        final HashMap<String, Boolean> mCategoryEnabled = new HashMap<>();
+        final HashMap<String, String> mCustomControls = new HashMap<>();
+        final List<String> mProfiles = new ArrayList<>();
+
+        List<Profiles.ProfileItem> profiles = new Profiles(this).getAllProfiles();
         if (messenger == null) {
             Tile.publishProfileTile(profiles, this);
         }
 
         for (Settings.SettingsItem item : settings.getAllSettings()) {
             if (!mCategoryEnabled.containsKey(item.getCategory())) {
-                mCategoryEnabled.put(item.getCategory(), Prefs.getBoolean(item.getCategory(), false, this));
-            }
-        }
-        for (String key : mCategoryEnabled.keySet()) {
-            if (mCategoryEnabled.get(key)) {
-                enabled = true;
-                break;
+                boolean categoryEnabled = Prefs.getBoolean(item.getCategory(), false, this);
+                mCategoryEnabled.put(item.getCategory(), categoryEnabled);
+                if (!enabled && categoryEnabled) {
+                    enabled = true;
+                }
             }
         }
         for (Controls.ControlItem item : controls.getAllControls()) {
@@ -152,7 +148,7 @@ public class Service extends android.app.Service {
                 }
             }
             stopSelf();
-            return;
+            return START_NOT_STICKY;
         }
 
         final int seconds = Utils.strToInt(Prefs.getString("applyonbootdelay", "10", this));
@@ -161,8 +157,9 @@ public class Service extends android.app.Service {
                 true, this);
         final boolean toast = Prefs.getBoolean("applyonboottoast", false, this);
         final boolean script = Prefs.getBoolean("applyonbootscript", false, this);
-        PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 0, new Intent(this,
-                CancelReceiver.class), 0);
+
+        PendingIntent cancelIntent = PendingIntent.getBroadcast(this, 1,
+                new Intent(this, CancelReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         PackageManager pm = getPackageManager();
         Intent launchIntent = pm.getLaunchIntentForPackage(BuildConfig.APPLICATION_ID);
@@ -179,6 +176,7 @@ public class Service extends android.app.Service {
                             R.mipmap.ic_launcher_material : R.mipmap.ic_launcher)
                     .addAction(0, getString(R.string.cancel), cancelIntent)
                     .setAutoCancel(true)
+                    .setOngoing(true)
                     .setContentIntent(contentIntent)
                     .setWhen(0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -199,6 +197,7 @@ public class Service extends android.app.Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                sCancel = false;
                 for (int i = 0; i < seconds; i++) {
                     if (!hideNotification) {
                         if (sCancel) {
@@ -326,6 +325,8 @@ public class Service extends android.app.Service {
                 stopSelf();
             }
         }).start();
+
+        return START_NOT_STICKY;
     }
 
     public static List<String> getApplyCpu(CPUFreq.ApplyCpu applyCpu, RootUtils.SU su) {

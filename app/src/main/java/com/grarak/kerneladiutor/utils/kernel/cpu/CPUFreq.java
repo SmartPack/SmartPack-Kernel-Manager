@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.utils.kernel.cpu;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;
@@ -36,9 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -685,19 +681,14 @@ public class CPUFreq {
     }
 
     private static Usage[] getUsages() {
-        try {
-            RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
-            Usage[] usage = new Usage[getCpuCount() + 1];
-            for (int i = 0; i < usage.length; i++)
-                usage[i] = new Usage(reader.readLine());
-            reader.close();
-            return usage;
-        } catch (FileNotFoundException e) {
-            Log.i(TAG, "/proc/stat does not exist");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String[] stats = Utils.readFile("/proc/stat").split("\\r?\\n");
+
+        Usage[] usage = new Usage[getCpuCount() + 1];
+        for (int i = 0; i < usage.length; i++) {
+            if (i >= stats.length) return null;
+            usage[i] = new Usage(stats[i]);
         }
-        return null;
+        return usage;
     }
 
     private static class Usage {

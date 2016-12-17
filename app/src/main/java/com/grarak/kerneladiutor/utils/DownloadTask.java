@@ -85,9 +85,6 @@ public class DownloadTask extends ThreadTask<String, String> {
             int count;
             while (true) {
                 if (mCancelled) {
-                    input.close();
-                    output.close();
-                    connection.disconnect();
                     return "cancelled";
                 }
 
@@ -100,7 +97,9 @@ public class DownloadTask extends ThreadTask<String, String> {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    onDownloadListener.onUpdate(cs, ts);
+                                    if (!mActivity.isFinishing()) {
+                                        onDownloadListener.onUpdate(cs, ts);
+                                    }
                                 }
                             });
                         }

@@ -82,7 +82,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <service android:name=".services.boot.Service" />
+        <service
+            android:name=".services.monitor.Monitor"
+            android:process=":monitoring" />
+
         <receiver android:name=".services.boot.Service$CancelReceiver" />
 
         <!-- Profile Widget -->

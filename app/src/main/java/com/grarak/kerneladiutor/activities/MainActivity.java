@@ -300,7 +300,9 @@ public class MainActivity extends BaseActivity {
                                 "com.grarak.kerneladiutordonate", 0);
                         mPackageInfo = getPackageManager().getPackageInfo(
                                 "com.grarak.kerneladiutordonate", 0);
-                        Utils.DONATED = false;
+                        if (BuildConfig.DEBUG) {
+                            Utils.DONATED = false;
+                        }
                     } catch (PackageManager.NameNotFoundException ignored) {
                     }
                 }

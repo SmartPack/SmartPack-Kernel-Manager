@@ -96,6 +96,7 @@
     <string name="virtual_memory">Virtual Memory</string>
     <string name="entropy">Entropy</string>
     <string name="misc">Misc</string>
+    <string name="data_sharing">Data Sharing</string>
     <string name="custom_controls">Custom Controls</string>
     <string name="downloads">Downloads</string>
     <string name="backup">Backup</string>
@@ -673,6 +674,9 @@
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
+
+    <!-- Data Sharing -->
+    <string name="data_sharing_summary">Since a lot of people struggle to find suitable settings for their device and need guidance by more advanced users, I came up with this.\n\nThis feature will collect settings of the more advanced users and then measure cpu and battery performance. The best settings for each chipset will be available to all people afterwards. This application won\'t collect any personal data!</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>
