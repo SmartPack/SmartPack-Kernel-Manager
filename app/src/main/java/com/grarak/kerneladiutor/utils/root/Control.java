@@ -54,11 +54,11 @@ public class Control {
     }
 
     public static String startService(String prop) {
-        return "setprop ctl.start " + prop;
+        return setProp("ctl.start", prop);
     }
 
     public static String stopService(String prop) {
-        return "stop ctl.stop " + prop;
+        return setProp("ctl.stop", prop);
     }
 
     public static String write(String text, String path) {
