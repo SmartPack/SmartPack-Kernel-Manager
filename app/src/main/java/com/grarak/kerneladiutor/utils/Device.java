@@ -154,7 +154,7 @@ public class Device {
         public static void load() {
             for (String prop : sProps) {
                 ROM_VERSION = RootUtils.getProp(prop);
-                if (!ROM_VERSION.isEmpty()) {
+                if (ROM_VERSION != null && !ROM_VERSION.isEmpty()) {
                     break;
                 }
             }

@@ -61,8 +61,6 @@ import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
-import java.io.File;
-
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -128,7 +126,17 @@ public class MainActivity extends BaseActivity {
              *  2: License is invalid
              *  3: Donate apk is patched/cracked
              */
-            launch(data == null ? -1 : data.getIntExtra("result", -1));
+            int result = data == null ? -1 : data.getIntExtra("result", -1);
+            if (result == 0) {
+                try {
+                    ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(
+                            "com.grarak.kerneladiutordonate", 0);
+                    Utils.writeFile(applicationInfo.dataDir + "/license",
+                            Utils.encodeString(Utils.getAndroidId(this)), false, true);
+                } catch (PackageManager.NameNotFoundException ignored) {
+                }
+            }
+            launch(result);
 
         } else if (requestCode == 1) {
 
@@ -291,6 +299,7 @@ public class MainActivity extends BaseActivity {
                 private PackageInfo mPackageInfo;
                 private boolean mPatched;
                 private boolean mInternetAvailable;
+                private boolean mLicensedCached;
 
                 @Override
                 protected void onPreExecute() {
@@ -309,33 +318,45 @@ public class MainActivity extends BaseActivity {
 
                 @Override
                 protected Boolean doInBackground(Void... params) {
-                    if (mApplicationInfo != null && mPackageInfo != null && mPackageInfo.versionCode == 130) {
-                        mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
-                                new File(mApplicationInfo.publicSourceDir));
+                    if (mApplicationInfo != null && mPackageInfo != null
+                            && mPackageInfo.versionCode == 130) {
+                        mPatched = !Utils.getMD5sum(mApplicationInfo.publicSourceDir)
+                                .equals("5c7a92a5b2dcec409035e1114e815b00");
                         try {
-                            Process process = Runtime.getRuntime().exec("ping -W 5 -c 1 8.8.8.8");
-                            mInternetAvailable = process.waitFor() == 0;
-                            process.destroy();
+                            if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
+                                String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
+                                if (!content.isEmpty() && (content = Utils.decodeString(content)) != null) {
+                                    if (content.equals(Utils.getAndroidId(MainActivity.this))) {
+                                        mLicensedCached = true;
+                                    }
+                                }
+                            }
+
+                            if (!mLicensedCached) {
+                                Process process = Runtime.getRuntime().exec("ping -W 5 -c 1 8.8.8.8");
+                                mInternetAvailable = process.waitFor() == 0;
+                                process.destroy();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        return !mPatched;
                     }
-                    return mApplicationInfo != null && mPackageInfo != null && mPackageInfo.versionCode == 130
-                            && !mPatched;
+                    return false;
                 }
 
                 @Override
-                protected void onPostExecute(Boolean aBoolean) {
-                    super.onPostExecute(aBoolean);
-                    if (aBoolean && mInternetAvailable) {
+                protected void onPostExecute(Boolean donationValid) {
+                    super.onPostExecute(donationValid);
+                    if (donationValid && mLicensedCached) {
+                        launch(0);
+                    } else if (donationValid && mInternetAvailable) {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.setComponent(new ComponentName("com.grarak.kerneladiutordonate",
                                 "com.grarak.kerneladiutordonate.MainActivity"));
                         startActivityForResult(intent, 0);
-                    } else if (mApplicationInfo != null && mPackageInfo != null
-                            && mPackageInfo.versionCode == 130
-                            && !mInternetAvailable && !mPatched) {
-                        launch(0);
+                    } else if (donationValid) {
+                        launch(1);
                     } else {
                         launch(mPatched ? 3 : -1);
                     }

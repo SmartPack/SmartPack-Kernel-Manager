@@ -219,7 +219,7 @@ public class DownloadKernelView extends RecyclerViewItem {
 
                 @Override
                 public Boolean doInBackground(Void arg) {
-                    return Utils.checkMD5(md5, new File(path));
+                    return Utils.getMD5sum(path).equals(md5);
                 }
 
                 @Override

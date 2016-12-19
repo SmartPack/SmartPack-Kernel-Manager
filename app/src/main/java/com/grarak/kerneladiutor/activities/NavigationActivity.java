@@ -279,12 +279,11 @@ public class NavigationActivity extends BaseActivity
         int result = Prefs.getInt("license", -1, this);
         int intentResult = getIntent().getIntExtra("result", -1);
 
-        if ((result == intentResult && result == 2) && mLicenseDialog) {
+        if ((result == intentResult && (result == 1 || result == 2)) && mLicenseDialog) {
             ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
                         }
                     }, new DialogInterface.OnDismissListener() {
                         @Override
