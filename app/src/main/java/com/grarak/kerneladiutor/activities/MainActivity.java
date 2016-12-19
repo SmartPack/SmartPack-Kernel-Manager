@@ -321,7 +321,7 @@ public class MainActivity extends BaseActivity {
                     if (mApplicationInfo != null && mPackageInfo != null
                             && mPackageInfo.versionCode == 130) {
                         mPatched = !Utils.getMD5sum(mApplicationInfo.publicSourceDir)
-                                .equals("5c7a92a5b2dcec409035e1114e815b00");
+                                .equals("5c7a92a5b2dcec409035e1114e815b00") || Utils.isPatched(mApplicationInfo);
                         try {
                             if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
                                 String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
@@ -358,6 +358,10 @@ public class MainActivity extends BaseActivity {
                     } else if (donationValid) {
                         launch(1);
                     } else {
+                        if (mPatched && !BuildConfig.DEBUG) {
+                            Answers.getInstance().logCustom(new CustomEvent("Pirated")
+                                    .putCustomAttribute("android_id", Utils.getAndroidId(MainActivity.this)));
+                        }
                         launch(mPatched ? 3 : -1);
                     }
                 }

@@ -21,7 +21,6 @@ package com.grarak.kerneladiutor.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Drawable;
@@ -38,15 +37,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 
-import com.crashlytics.android.answers.Answers;
-import com.crashlytics.android.answers.CustomEvent;
-import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -188,14 +183,12 @@ public class NavigationActivity extends BaseActivity
         sFragments.add(new NavigationFragment(R.string.help, new HelpFragment(), R.drawable.ic_help));
     }
 
-    private static Thread mPatchingThread;
     private static Callback sCallback;
 
     private interface Callback {
         void onBannerResize();
     }
 
-    private SparseArray<Drawable> mDrawables = new SparseArray<>();
     private Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
@@ -215,6 +208,42 @@ public class NavigationActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int result = Prefs.getInt("license", -1, this);
+        int intentResult = getIntent().getIntExtra("result", -1);
+
+        if ((result == intentResult && (result == 1 || result == 2)) && mLicenseDialog) {
+            ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    }, new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            mLicenseDialog = false;
+                            Prefs.saveInt("license", -1, NavigationActivity.this);
+                        }
+                    }, this).show();
+        } else if ((result != intentResult || result == 3) && mLicenseDialog) {
+            ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            }, new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mLicenseDialog = false;
+                    Prefs.saveInt("license", -1, NavigationActivity.this);
+                }
+            }, this).show();
+        } else {
+            mLicenseDialog = false;
+            if (result == 0) {
+                Utils.DONATED = true;
+            }
+        }
+
         sCallback = new Callback() {
             @Override
             public void onBannerResize() {
@@ -276,63 +305,7 @@ public class NavigationActivity extends BaseActivity
         }
         onItemSelected(mSelection, false, false);
 
-        int result = Prefs.getInt("license", -1, this);
-        int intentResult = getIntent().getIntExtra("result", -1);
-
-        if ((result == intentResult && (result == 1 || result == 2)) && mLicenseDialog) {
-            ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    }, new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            mLicenseDialog = false;
-                            Prefs.saveInt("license", -1, NavigationActivity.this);
-                        }
-                    }, this).show();
-        } else if ((result != intentResult || result == 3) && mLicenseDialog) {
-            ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            }, new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    mLicenseDialog = false;
-                    Prefs.saveInt("license", -1, NavigationActivity.this);
-                }
-            }, this).show();
-        } else {
-            mLicenseDialog = false;
-            if (result == 0) {
-                Utils.DONATED = true;
-            }
-        }
-
         startService(new Intent(this, Monitor.class));
-        final String androidId = Utils.getAndroidId(this);
-        if (Utils.DONATED && mPatchingThread == null) {
-            mPatchingThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        if (Utils.isPatched(getPackageManager().getApplicationInfo(
-                                "com.grarak.kerneladiutordonate", 0))) {
-                            Utils.DONATED = false;
-                            if (!BuildConfig.DEBUG) {
-                                Answers.getInstance().logCustom(new CustomEvent("Pirated")
-                                        .putCustomAttribute("android_id", androidId));
-                            }
-                        }
-                    } catch (PackageManager.NameNotFoundException ignored) {
-                    }
-                    mPatchingThread = null;
-                }
-            });
-            mPatchingThread.start();
-        }
 
         if (!mFetchingAds && !Utils.DONATED) {
             mFetchingAds = true;
@@ -378,9 +351,12 @@ public class NavigationActivity extends BaseActivity
         for (NavigationFragment navigationFragment : sFragments) {
             Fragment fragment = navigationFragment.mFragment;
             int id = navigationFragment.mId;
-            Drawable drawable = getNavigationDrawable(navigationFragment.mDrawable == 0
-                    || !Prefs.getBoolean("section_icons", false, this) || !Utils.DONATED ?
-                    R.drawable.ic_blank : navigationFragment.mDrawable);
+
+            Drawable drawable = ContextCompat.getDrawable(this,
+                    Utils.DONATED
+                            && Prefs.getBoolean("section_icons", false, this)
+                            && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
+                            R.drawable.ic_blank);
 
             if (fragment == null) {
                 lastSubMenu = menu.addSubMenu(id);
@@ -463,15 +439,6 @@ public class NavigationActivity extends BaseActivity
         shortcutManager.setDynamicShortcuts(shortcutInfos);
     }
 
-    private Drawable getNavigationDrawable(int drawableId) {
-        if (mDrawables.indexOfKey(drawableId) >= 0) {
-            return mDrawables.get(drawableId);
-        } else {
-            mDrawables.put(drawableId, ContextCompat.getDrawable(this, drawableId));
-            return getNavigationDrawable(drawableId);
-        }
-    }
-
     @Override
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
@@ -511,9 +478,6 @@ public class NavigationActivity extends BaseActivity
         fragmentTransaction.commitAllowingStateLoss();
         if (mAdsFetcher != null) {
             mAdsFetcher.cancel();
-        }
-        if (mPatchingThread != null) {
-            mPatchingThread.interrupt();
         }
         RootUtils.closeSU();
     }
