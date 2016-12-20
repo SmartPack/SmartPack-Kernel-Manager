@@ -45,22 +45,23 @@ public class Monitor extends Service {
                 mTimes = new ArrayList<>();
             }
 
-            if (!charging) {
+            if (charging) {
+                mLevel = 0;
+                mTime = 0;
+            } else {
                 long time = System.nanoTime();
                 int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 
                 if (mLevel > level && mTime != 0 && mLevel - level > 0) {
-                    mTimes.add((time - mTime) / (mLevel - level));
+                    mTimes.add(TimeUnit.SECONDS.convert((time - mTime) / (mLevel - level),
+                            TimeUnit.NANOSECONDS));
                 }
                 mLevel = level;
                 mTime = time;
             }
 
-            if (mTimes.size() == 15) {
+            if (mTimes.size() >= 15) {
                 postCreate(mTimes.toArray(new Long[mTimes.size()]));
-                mTimes.clear();
-                mLevel = 0;
-                mTime = 0;
             }
         }
     };
@@ -89,7 +90,7 @@ public class Monitor extends Service {
 
                     JSONArray batteryTimes = new JSONArray();
                     for (long time : times) {
-                        batteryTimes.put(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS));
+                        batteryTimes.put(time);
                     }
                     data.put("times", batteryTimes);
 
