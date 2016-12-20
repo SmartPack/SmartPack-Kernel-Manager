@@ -200,6 +200,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                     mFabButton.setImageDrawable(mDownloadDrawable);
                     mProgressParent.setVisibility(View.INVISIBLE);
                     mDownloadTask.cancel();
+                    mDownloadTask = null;
                 }
             }
         });
