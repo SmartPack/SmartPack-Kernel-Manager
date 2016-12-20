@@ -130,16 +130,17 @@ public class CardView extends RecyclerViewItem {
                 if (mLayoutParent.getVisibility() == View.VISIBLE) {
                     mLayoutHeight = mLayoutParent.getHeight();
                 }
-                mShowLayout = !mShowLayout;
-                animateLayout(!mShowLayout);
-                viewChanged();
+                if (mLayoutAnimator == null) {
+                    mShowLayout = !mShowLayout;
+                    animateLayout(!mShowLayout);
+                    viewChanged();
+                }
             }
         });
         super.onCreateView(view);
     }
 
     private void animateLayout(final boolean collapse) {
-        if (mLayoutAnimator != null) return;
         mArrow.animate().rotationX(collapse ? 180 : 0).setDuration(500).start();
         mLayoutAnimator = ValueAnimator.ofInt(collapse ? mLayoutHeight : 0, collapse ? 0 : mLayoutHeight);
         mLayoutAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
