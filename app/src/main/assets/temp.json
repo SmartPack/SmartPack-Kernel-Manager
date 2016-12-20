@@ -1,8 +1,10 @@
 [
   {
     "board": "apq8084",
-    "cpu": "/sys/class/thermal/thermal_zone5/temp",
-    "cpu-offset": 1
+    "cpu": "/sys/class/thermal/thermal_zone6/temp",
+    "gpu": "/sys/class/thermal/thermal_zone11/temp",
+    "cpu-offset": 1,
+    "gpu-offset": 1
   },
   {
     "board": "baytrail",
