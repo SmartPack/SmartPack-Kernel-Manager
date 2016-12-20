@@ -4,7 +4,7 @@
     "cpu": "/sys/class/thermal/thermal_zone6/temp",
     "gpu": "/sys/class/thermal/thermal_zone11/temp",
     "cpu-offset": 1,
-    "gpu-offset": 1
+    "gpu-offset": 1000
   },
   {
     "board": "baytrail",
