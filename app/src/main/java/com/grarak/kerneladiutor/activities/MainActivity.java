@@ -61,6 +61,8 @@ import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import java.io.File;
+
 import io.fabric.sdk.android.Fabric;
 
 /**
@@ -320,8 +322,9 @@ public class MainActivity extends BaseActivity {
                 protected Boolean doInBackground(Void... params) {
                     if (mApplicationInfo != null && mPackageInfo != null
                             && mPackageInfo.versionCode == 130) {
-                        mPatched = !Utils.getMD5sum(mApplicationInfo.publicSourceDir)
-                                .equals("5c7a92a5b2dcec409035e1114e815b00") || Utils.isPatched(mApplicationInfo);
+                        mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
+                                new File(mApplicationInfo.publicSourceDir))
+                                || Utils.isPatched(mApplicationInfo);
                         try {
                             if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
                                 String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
