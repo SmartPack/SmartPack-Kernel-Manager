@@ -681,7 +681,9 @@ public class CPUFreq {
     }
 
     private static Usage[] getUsages() {
-        String[] stats = Utils.readFile("/proc/stat").split("\\r?\\n");
+        String stat = Utils.readFile("/proc/stat");
+        if (stat == null) return null;
+        String[] stats = stat.split("\\r?\\n");
 
         Usage[] usage = new Usage[getCpuCount() + 1];
         for (int i = 0; i < usage.length; i++) {

@@ -223,7 +223,7 @@ public class Misc {
 
     public static boolean supported() {
         return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasPowerKeySuspend()
-                || hasVibVibration();
+                || hasVibration() || hasVibVibration();
     }
 
     private static void run(String command, String id, Context context) {
