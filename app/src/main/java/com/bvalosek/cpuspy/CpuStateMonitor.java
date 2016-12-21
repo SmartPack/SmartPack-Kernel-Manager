@@ -115,16 +115,12 @@ public class CpuStateMonitor {
      */
     public long getTotalStateTime() {
         long sum = 0;
-        long offset = 0;
 
         for (CpuState state : mStates) {
             sum += state.getDuration();
         }
-        for (int i = 0; i < mOffsets.size(); i++) {
-            offset += mOffsets.valueAt(i);
-        }
 
-        return sum - offset;
+        return sum;
     }
 
     /**
