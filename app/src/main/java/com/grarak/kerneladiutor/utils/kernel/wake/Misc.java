@@ -106,11 +106,11 @@ public class Misc {
     }
 
     public static void enableVibration(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", VIBRATION), VIB_VIBRATION, context);
+        run(Control.write(enable ? "0" : "1", VIBRATION), VIB_VIBRATION, context);
     }
 
     public static boolean isVibrationEnabled() {
-        return Utils.readFile(VIBRATION).equals("1");
+        return Utils.readFile(VIBRATION).equals("0");
     }
 
     public static boolean hasVibration() {
