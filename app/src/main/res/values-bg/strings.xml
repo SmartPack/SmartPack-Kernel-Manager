@@ -149,6 +149,7 @@
   <string name="userspace">Потребителско пространство</string>
   <string name="hybrid">Хибрид</string>
   <string name="hostname">Име на хост</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Добре дошли</string>
   <string name="example">Примери</string>

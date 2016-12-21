@@ -9,6 +9,7 @@
   <string name="collecting_info">A obter a informação</string>
   <string name="no_root">Sem root</string>
   <string name="no_busybox">Sem busybox</string>
+  <string name="open">Abrir %s</string>
   <!-- Security -->
   <string name="password">Palavra-passe</string>
   <string name="password_wrong">A palavra-passe está errada</string>
@@ -22,8 +23,12 @@
   <string name="donate">Doar</string>
   <string name="donate_nope">Eu não vou cair neste esquema!</string>
   <string name="donate_yes">Eu gosto desta app. Devo doar!</string>
+  <string name="remove_ad">Remover anúncio</string>
   <string name="warning">Aviso</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
+  <string name="not_in_range">Fora de alcance</string>
+  <string name="options">Opções</string>
+  <string name="more">Mais</string>
   <!-- Permissions Denied -->
   <!-- Editor -->
   <string name="save">Guardar</string>
@@ -73,9 +78,11 @@
   <string name="profile">Perfil</string>
   <string name="recovery">Recuperação</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">No arranque</string>
   <string name="settings">Definições</string>
   <string name="about">Sobre</string>
   <string name="contributors">Colaboradores</string>
+  <string name="help">Ajuda</string>
   <!-- Overall -->
   <string name="offline">Off-line</string>
   <string name="core">Núcleo %d</string>
@@ -93,13 +100,16 @@
   <string name="android_api_level">SDK de Android</string>
   <string name="android_codename">Nome de Código de Android</string>
   <string name="fingerprint">Assinatura Digital</string>
+  <string name="hardware">Hardware</string>
   <string name="architecture">Arquitetura</string>
   <!-- Inputs -->
   <string name="bus">Bus</string>
   <string name="product">Produto</string>
   <string name="version">Versão</string>
   <!-- CPU -->
+  <string name="cores_singular">%d núcleos</string>
   <string name="cores">%d núcleos</string>
+  <string name="no_offline_core">Não pode desligar este núcleo!</string>
   <string name="cpu_max_freq">Frequência máxima CPU</string>
   <string name="cpu_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
   <string name="cpu_min_freq">Frequência mínima CPU</string>
@@ -345,6 +355,10 @@
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Acorda seu dispositivo com um scroll no ecrã.</string>
   <string name="s2s">Sweep2Sleep</string>
+  <string name="s2w_right">Sweep2Wake direita</string>
+  <string name="s2w_left">Sweep2Wake esquerda</string>
+  <string name="s2w_up">Sweep2Wake cima</string>
+  <string name="s2w_down">Sweep2Wake baixo</string>
   <string name="lenient">Sweep2Wake Leniency</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Acorda seu dispositivo tocando no ecrã.</string>
@@ -369,6 +383,9 @@
   <string name="timeout">Tempo expirou</string>
   <string name="power_key_suspend">Suspender na tecla de power</string>
   <string name="power_key_suspend_summary">Ligar está opção vai desligar os wake controls quando o ecrã for desligado através do botão de power.</string>
+  <string name="area">Área</string>
+  <string name="width">Largura</string>
+  <string name="height">Altura</string>
   <string name="vibration_strength">Força de vibração</string>
   <!-- Sound -->
   <string name="sound_control">Controle de som</string>
@@ -390,10 +407,18 @@
   <string name="charge_rate">Percentagem de Carregamento</string>
   <string name="charging_current">Carregamento Atual</string>
   <!-- LED -->
+  <string name="fade">Desvanecimento</string>
   <string name="intensity">Intensidade</string>
   <string name="speed">Velocidade</string>
   <string name="stock">Stock</string>
   <string name="continuous_light">Luz contínua</string>
+  <string name="notification">Notificação</string>
+  <string name="on">Ligado</string>
+  <string name="off">Desligado</string>
+  <string name="fade_in">Desvanecer</string>
+  <string name="fade_in_summary">Define o período de tempo da subida.</string>
+  <string name="fade_out">Desaparecer</string>
+  <string name="fade_out_summary">Define o período de tempo da queda.</string>
   <string name="test">Teste</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Armazenamento interno</string>
@@ -404,6 +429,7 @@
   <string name="scheduler_tunable_summary">Os vários itens de configuração que são dependentes do Agendador.</string>
   <string name="read_ahead">Read-ahead</string>
   <string name="read_ahead_summary">O valor de Read-ahead na memória do telefone.</string>
+  <string name="rotational">Armazenamento rotativo</string>
   <string name="iostats">Estatísticas de I/O</string>
   <string name="add_random">Adicionar Aleatório</string>
   <!-- Kernel Samepage Merging -->
@@ -466,6 +492,7 @@
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Bem-vindo</string>
   <string name="custom_controls_summary">Nesta secção pode criar ou importar controlos personalizados, que ainda não existem na app.</string>
@@ -486,8 +513,11 @@
   <string name="edit">Editar</string>
   <string name="export">Exportar</string>
   <string name="delete">Excluir</string>
+  <string name="sure_question">Tem a certeza?</string>
   <string name="name">Nome</string>
+  <string name="name_empty">O nome está vazio!</string>
   <!-- Downloads -->
+  <string name="download_error">Falha a descarregar %s.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="check_md5">Verificação de md5</string>
   <string name="install">Instalar</string>
@@ -504,17 +534,30 @@
   <string name="fota_partition">Partição de FOTA</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="item_count">%s item</string>
+  <string name="items_count">%s itens</string>
   <string name="key">Chave</string>
   <string name="value">Valor</string>
   <string name="key_empty">Chave não pode estar vazia!</string>
   <!-- Profile -->
   <string name="no_changes">Não foram efetuadas alterações!</string>
   <string name="apply_question">Aplicar %s?</string>
+  <string name="append">Anexar</string>
   <string name="details">Detalhes</string>
   <string name="applied">Aplicado</string>
   <string name="profile_select">Selecionar Perfil</string>
   <string name="applying_profile">A aplicar %s!</string>
+  <string name="new_mode">Novo</string>
+  <string name="current_settings">Configurações atuais</string>
+  <string name="select_all">Selecionar tudo</string>
+  <string name="nothing_selected">Nada selecionado</string>
+  <string name="profile_empty">O perfil está vazio!</string>
   <!-- Recovery -->
+  <string name="reboot">Reiniciar</string>
+  <string name="reboot_soft">Reiniciar Rápido</string>
+  <string name="reboot_recovery">Reiniciar em Recuperação</string>
+  <string name="reboot_bootloader">Reiniciar Bootloader</string>
+  <string name="reboot_download">Reiniciar download</string>
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar Cache</string>
   <string name="flash_zip">Flash Zip</string>
@@ -529,8 +572,10 @@
   <string name="arguments">Argumentos: %s</string>
   <string name="disable_question">Desativar %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Abrir configurações</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="instant">Instantâneo</string>
   <string name="ten_sec">10 segundos</string>
   <string name="twenty_sec">20 segundos</string>
   <string name="fifty_sec">50 segundos</string>
@@ -549,6 +594,7 @@
   <string name="confirm_new_password">Confirmar nova palavra-passe</string>
   <string name="old_password_wrong">A palavra-passe antiga está errada</string>
   <string name="password_empty">A palavra-passe está em branco</string>
+  <string name="password_not_match">A senha não coincide com a confirmação</string>
   <string name="set_password_first">Defina primeiro uma palavra-passe</string>
   <string name="sections">Secções</string>
   <!-- About -->
@@ -556,4 +602,8 @@
   <!-- Contributors -->
   <string name="no_internet">Por favor, verifique a sua ligação à Internet!</string>
   <!-- Help -->
+  <string name="misspelled">Porque é que \"Auditor\" está mal escrito?</string>
+  <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
+  <string name="add_new_features">Pode adicionar o recurso x e y?</string>
+  <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos.</string>
 </resources>

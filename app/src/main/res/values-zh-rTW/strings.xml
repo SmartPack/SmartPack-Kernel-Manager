@@ -8,6 +8,7 @@
   <string name="collecting_info">蒐集資訊中</string>
   <string name="no_root">沒有 Root 權限</string>
   <string name="no_busybox">沒有 Busybox 指令</string>
+  <string name="open">開啟 %s</string>
   <!-- Security -->
   <string name="password">密碼</string>
   <string name="password_wrong">密碼錯誤</string>
@@ -18,7 +19,6 @@
   <string name="cancel">取消</string>
   <string name="ok">確定</string>
   <string name="unknown">未知</string>
-  <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me.</string>
   <string name="pirated">看來，這個捐贈版的應用程式並非透過 Play商店 購買的！如果您是盜來的，老子會鄙視您😬</string>
   <string name="donate">捐贈</string>
   <string name="donate_summary">本功能僅供有安裝捐贈版的應用程式使用。不過別擔心，因為本應用程式是一個開放原始碼的軟體，您可以輕易的組建它並移除這個檢查。但是，無論如何我希望您支援開發人員。感謝您使用 Kernel Adiutor！一旦您購買了捐贈版的應用程式，您必須重新啟動 Kernel Adiutor 以開啟所有功能。</string>
@@ -373,8 +373,11 @@
   <string name="down_differential">Down Differential</string>
   <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
   <string name="idle_wait">閒置等待</string>
+  <string name="idle_wait_summary">在緩慢降下頻率前，必須等待數個事件。在閒置等待事件在現在的事件以前，必須全部閒置Adreno管理器才會緩慢下降頻率。這個措施是為了避免在進行遊戲或滑動時，可能會造成的微小Lag。如果你將這個值降低，Adreno管理器將會更頻繁的嘗試降低頻率</string>
   <string name="workload">工作負載</string>
+  <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
   <!-- Screen -->
+  <string name="screen_color">螢幕色彩</string>
   <string name="red">紅色</string>
   <string name="green">綠色</string>
   <string name="blue">藍色</string>
@@ -399,20 +402,27 @@
   <string name="blue_positive">藍色積極</string>
   <string name="blue_negative">藍色負</string>
   <string name="lcd_backlight">液晶顯示螢幕背光</string>
+  <string name="gamma_profiles_summary">選擇設定檔後，請將螢幕關閉再打開</string>
   <string name="min_brightness">最小亮度</string>
+  <string name="min_brightness_summary">允許你將LCD螢幕亮度降得比原廠設定的低</string>
   <string name="max_brightness">最大亮度</string>
+  <string name="max_brightness_summary">允許你將LCD螢幕亮度調得比原廠設定還高</string>
   <string name="backlight_dimmer">背光源調光器</string>
   <string name="threshold">門檻值</string>
   <string name="offset">偏移量</string>
+  <string name="negative_toggle_summary">啟用通過按選單按鈕四次即可反相螢幕顏色的功能</string>
   <string name="register_hook">註冊勾點</string>
   <string name="master_sequence">主序列</string>
   <string name="glove_mode">Glove模式</string>
+  <string name="glove_mode_summary">啟用這個可以讓你在戴著手套時使用手機</string>
   <!-- Wake -->
   <string name="dt2w">雙擊螢幕喚醒</string>
   <string name="dt2w_summary">雙擊螢幕來喚醒您的裝置</string>
   <string name="center">中間</string>
+  <string name="full">滿</string>
   <string name="bottom_half">下半部</string>
   <string name="top_half">上半部</string>
+  <string name="half">一半</string>
   <string name="s2w">滑動螢幕喚醒</string>
   <string name="s2w_summary">滑動螢幕來喚醒您的裝置</string>
   <string name="s2s">滑動睡眠</string>
@@ -434,11 +444,16 @@
   <string name="camera_gesture">相機手勢</string>
   <string name="camera_gesture_summary">藉由劃一圈圈於螢幕上來執行預設的相機APP。</string>
   <string name="pocket_mode">口袋模式</string>
+  <string name="timeout">逾時</string>
   <string name="power_key_suspend">電源鍵暫停</string>
   <string name="power_key_suspend_summary">開啟這項目當您按電源鍵關閉螢幕，將會關閉喚醒控制。</string>
+  <string name="area">區域</string>
+  <string name="width">寬度</string>
+  <string name="height">高度</string>
   <string name="vibration_strength">震動強度</string>
   <!-- Sound -->
   <string name="sound_control">聲音控制</string>
+  <string name="headset_highperf_mode">耳機高效能模式</string>
   <string name="headphone_gain">耳機增益</string>
   <string name="handset_microphone_gain">頭戴式麥克風增益</string>
   <string name="speaker_gain">喇叭增益</string>
@@ -453,9 +468,13 @@
   <string name="blx">電池壽命擴展</string>
   <!-- LED -->
   <string name="speed">速度</string>
+  <string name="notification">通知</string>
   <string name="on">開</string>
   <string name="off">關</string>
+  <string name="fade_in">漸進</string>
+  <string name="fade_out">漸出</string>
   <string name="test">測試</string>
+  <string name="led_test_summary">使用目前的設定測試LED</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">內部儲存空間</string>
   <string name="external_storage">外部儲存空間</string>
@@ -465,6 +484,7 @@
   <string name="read_ahead">預讀</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">完整掃描</string>
+  <string name="max_cpu_usage">最大CPU使用量</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">前臺應用程式</string>
   <string name="visible_app">可見的應用程式</string>
@@ -491,17 +511,30 @@
   <string name="tcp">TCP 擁塞控制演算法</string>
   <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連接單次發送的分組數量的算法。它通過增減單次發送量逐步調整，使之逼近當前網絡的承載量。</string>
   <string name="hostname">主機名稱</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">歡迎</string>
   <string name="create">新增</string>
+  <string name="import_item">匯入</string>
   <string name="control_switch">開關</string>
   <string name="control_seekbar">搜尋欄</string>
   <string name="title">標題</string>
+  <string name="description">描述</string>
   <string name="applying">套用中</string>
+  <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
+  <string name="seekbar_min">最小</string>
+  <string name="seekbar_max">最大</string>
+  <string name="seekbar_progress">進度</string>
+  <string name="generic_value">數值</string>
+  <string name="output">輸出</string>
   <string name="edit">編輯</string>
+  <string name="export">匯出</string>
   <string name="delete">刪除</string>
+  <string name="sure_question">你確定？</string>
   <string name="name">名稱</string>
   <string name="already_exists">%s 已經存在！</string>
+  <string name="name_empty">名字不能為空白！</string>
+  <string name="import_wrong_version">匯入的檔案版本太舊了！</string>
   <!-- Downloads -->
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="install">安装</string>
@@ -514,9 +547,14 @@
   <string name="restoring">還原中</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="key">密碼</string>
   <string name="value">值</string>
+  <string name="key_empty">密碼不能為空白！</string>
   <!-- Profile -->
+  <string name="no_changes">沒有任何更改作用！</string>
+  <string name="apply_question">套用%s?</string>
   <string name="applied">套用成功</string>
+  <string name="applying_profile">套用%s中！</string>
   <!-- Recovery -->
   <string name="wipe_data">Wipe Data</string>
   <string name="wipe_cache">Wipe Cache</string>

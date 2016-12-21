@@ -18,7 +18,6 @@
   <string name="cancel">Annuleer</string>
   <string name="ok">Oké</string>
   <string name="unknown">Onbekend</string>
-  <string name="license_invalid">Bedankt voor uw aankoop van de donatie-app! Helaas is de licentie controle mislukt. Probeer het later nog eens. Als het nog steeds niet werkt, neem dan contact met mij op.</string>
   <string name="pirated">Het lijkt erop dat de donatie app niet via de Play Store is aangeschaft! Als u het illegaal gedownload hebt, schaam u dan!</string>
   <string name="donate">Doneer</string>
   <string name="donate_summary">Deze functie is alleen beschikbaar wanneer de donatie-app geïnstalleerd is! Maar maak je geen zorgen hoor. Omdat deze app opensource is kunt u hem gemakkelijk zelf bouwen en deze controle verwijderen. Maar ik hoop dat u ontwikkelaars toch ondersteund. Bedankt voor het gebruik van Kernel Adiutor! Zodra u de donatie app hebt gekocht moet u Kernel Adiutor opnieuw opstarten zodat alle functies beschikbaar worden.</string>
@@ -392,6 +391,7 @@
   <!-- Virtual Memory -->
   <!-- Entropy -->
   <!-- Misc -->
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <!-- Downloads -->
   <!-- Backup -->

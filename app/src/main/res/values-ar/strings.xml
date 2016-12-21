@@ -18,10 +18,6 @@
   <string name="cancel">إلغاء الأمر</string>
   <string name="ok">موافق</string>
   <string name="unknown">مجهول</string>
-  <string name="license_invalid">شكرا على شراء تطبيق التبرع
-للأسف فشل التحقق من الترخيص 
-اعد المحاولة لاحقا
-الرجاء الإتصال بي اذا لم ينجح التحقق من الترخيص.</string>
   <string name="pirated">يبدو ان تطبيق التبرع يريد ان تتم عملية الشراء عن طريق جوجل بلي
 اذا قمت بقرصنة التطبيق عندها عليك الخجل من نفسك!</string>
   <string name="donate">تبرع</string>
@@ -235,6 +231,7 @@
   <!-- Virtual Memory -->
   <!-- Entropy -->
   <!-- Misc -->
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <!-- Downloads -->
   <!-- Backup -->

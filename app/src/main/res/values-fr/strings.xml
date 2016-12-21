@@ -18,7 +18,6 @@
   <string name="cancel">Annuler</string>
   <string name="ok">OK</string>
   <string name="unknown">Inconnu</string>
-  <string name="license_invalid">Merci d\'avoir acheté l\'application de don ! Malheureusement le contrôle de licence a échoué. Veuillez réessayer plus tard. Si cela ne fonctionne toujours pas, veuillez me contacter.</string>
   <string name="pirated">Il semblerait que l\'application de don n\'a pas été achetée sur le Play Store ! Si vous l\'avez piraté : honte à vous !</string>
   <string name="donate">Faire un don</string>
   <string name="donate_summary">Cette fonctionnalité est disponible uniquement lorsque l’application de don est installée ! Ne vous inquiétez pas pour autant, car cette application est \"open source\". Vous pouvez facilement la compiler, et supprimer cette vérification. Mais j’espère que, de toute manière, vous soutenez les développeurs. Merci d’utiliser Kernel Adiutor ! Après avoir acheté l’application de don, vous devez redémarrer Kernel Adiutor pour activer toutes les fonctionnalités.</string>
@@ -492,6 +491,7 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="edit">Editer</string>
   <string name="delete">Suppression</string>

@@ -19,7 +19,6 @@
   <string name="cancel">Mégse</string>
   <string name="ok">OK</string>
   <string name="unknown">Ismeretlen</string>
-  <string name="license_invalid">Köszönjük, hogy megvásároltad a támogatói alkalmazást! Sajnos a licenc ellenőrzés sikertelen. Kérjük, próbálkozz később. Ha még mindig nem működik, lépj kapcsolatba velem.</string>
   <string name="pirated">Úgy látszik a támogatói alkalmazás nem a Play Áruházon keresztül lett megvásárolva! Ha lekalózkodtad, akkor szégyelld magad!</string>
   <string name="donate">Támogatás</string>
   <string name="donate_summary">Ez a szolgáltatás csak akkor vehető igénybe, ha a támogatói alkalmazás telepítve van! Mégse aggódj. Mivel ez az alkalmazás nyit forráskódú, így könnyen magad is építheted eltávolítva ezt az ellenőrzést. De remélem támogatod a fejlesztőket. Köszönjük, hogy a Kernel Adiutor-t használod! Ha megvásároltad a támogatói alkalmazást, akkor újra kell indítani a Kernel Adiutor-t ahhoz, hogy minden funkció engedélyezésre kerüljön.</string>
@@ -637,6 +636,7 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx wakelock elválasztó</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>

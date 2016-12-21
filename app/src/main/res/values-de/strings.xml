@@ -8,6 +8,7 @@
   <string name="collecting_info">Sammeln von Informationen</string>
   <string name="no_root">Kein Root</string>
   <string name="no_busybox">Keine Busybox</string>
+  <string name="open">Öffne %s</string>
   <!-- Security -->
   <string name="password">Passwort</string>
   <string name="password_wrong">Das Passwort ist falsch</string>
@@ -18,7 +19,6 @@
   <string name="cancel">Abbrechen</string>
   <string name="ok">OK</string>
   <string name="unknown">Unbekannt</string>
-  <string name="license_invalid">Vielen Dank für den Kauf der Spenden-App! Leider ist die Lizenzüberprüfung fehlgeschlagen, bitte versuche es später erneut. Wenn es weiterhin nicht funktioniert, kontaktiere mich bitte.</string>
   <string name="pirated">Es scheint, dass du die Spenden-App nicht über den Play Store gekauft hast. Wenn du sie Raubkopiert hast, dann schäme dich!</string>
   <string name="donate">Spende</string>
   <string name="donate_summary">Diese Funktion ist nur verfügbar, wenn du die Spenden-App installiert hast. Aber keine Sorge. Da die App Open Source ist, kannst du die App einfach selbst builden und diesen Check entfernen. Aber ich hoffe du unterstützt uns trotzdem. Danke dass du Kernel Adiutor verwendest! Sobald du die Spenden-App gekauft hast, musst du Kernel Adiutor neustarten um alle Funktionen freizuschalten.</string>
@@ -363,6 +363,7 @@
   <string name="laziness_summary">Dies erhöht die Schwelle für die GPU-Frequenzen. Die Leistung wird gesteigert, je niedriger die Schwelle ist.</string>
   <string name="ramp_thresold_summary">Dies erhöht die Anzahl der Zeiten die der GPU-Governor Rampe hinunter Anfragen. Je höher es ist, umso mehr Leistung erhältst du.</string>
   <string name="adreno_idler">Adreno Rad</string>
+  <string name="adreno_idler_summary">Eine effiziente Behebung für msm-adreno-tz\'s Überhitzungen. Entwickelt von arter97.</string>
   <string name="down_differential">Nach unten Differential</string>
   <string name="down_differential_summary">Auslastungswert zur Bestimmung der Schwelle zum Leerlauf.</string>
   <string name="idle_wait">Leerlaufschwelle</string>
@@ -513,6 +514,7 @@
   <string name="notification">Benachrichtigung</string>
   <string name="on">An</string>
   <string name="off">Aus</string>
+  <string name="fade_ramp_control_summary">Aktiviere oder deaktiviere das LED verblassen.</string>
   <string name="fade_in">Einblenden</string>
   <string name="fade_in_summary">Legt die Zeitspanne der ansteigenden Kurve fest.</string>
   <string name="fade_out">Ausblenden</string>
@@ -533,7 +535,19 @@
   <string name="iostats">I/O-Statistiken</string>
   <string name="iostats_summary">Erhalte I/O-Statistiken für dieses Speichergerät. Deaktivieren lässt I/O-Monitoring-Apps nicht mehr korrekt funktionieren.</string>
   <string name="add_random">Zufällige hinzufügen</string>
+  <string name="rq_affitiny">RQ Affinität</string>
+  <string name="rq_affinity_summary">Versuche Scheduler anfragen auf dem Kern CPU von dem Sie stammen zu vollenden. Höhere Werte sind aggressiver.</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">Komplette Überprüfung</string>
+  <string name="pages_shared">Geteilte Seiten</string>
+  <string name="pages_sharing">Teilende Seiten</string>
+  <string name="pages_unshared">Ungeteilte Seiten</string>
+  <string name="pages_volatile">Flüchtige Seiten</string>
+  <string name="ksm_summary">Reduziert den Speicherverbrauch, erhört aber die CPU Auslastung.</string>
+  <string name="pages_to_scan">Zu scannende Seiten</string>
+  <string name="sleep_milliseconds">Warte zwischen scans</string>
+  <string name="deferred_timer">Auszusetzende Timer</string>
+  <string name="max_cpu_usage">Max. CPU Verwendung</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Vordergrund-Anwendungen</string>
   <string name="visible_app">Sichtbare Anwendungen</string>
@@ -546,6 +560,7 @@
   <string name="medium">Mittel</string>
   <string name="very_aggressive">Sehr aggressiv</string>
   <!-- Virtual Memory -->
+  <string name="disksize">Speichergröße</string>
   <!-- Entropy -->
   <string name="available">Verfügbar</string>
   <string name="read">Lesen</string>
@@ -580,6 +595,7 @@
   <string name="wlan_ctrl_wakelock_summary">Verhindere Wlan_ctrl Wakelock.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Willkommen</string>
   <string name="custom_controls_summary">In diesem Abschnitt können Sie benutzerdefinierte Steuerelemente erstellen oder importieren welche es in der App (noch) nicht gibt.</string>

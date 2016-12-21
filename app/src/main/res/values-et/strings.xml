@@ -100,6 +100,7 @@
   <string name="hybrid">Hübriid</string>
   <string name="network">Võrk</string>
   <string name="hostname">Hosti nimi</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="edit">Muuda</string>
   <string name="delete">Kustuta</string>

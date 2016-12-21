@@ -18,6 +18,7 @@
   <string name="cancel">Prekliči</string>
   <string name="ok">Vredu</string>
   <string name="unknown">Neznano</string>
+  <string name="pirated">Kaže, da donacijska aplikacija ni bila kupljena preko Play Store! Če ste jo pridobili na črno potem sram vas bodi!</string>
   <string name="donate">Donacija</string>
   <string name="donate_nope">Ne bom nasedel tej prevari!</string>
   <string name="donate_yes">Aplikacija mi je všeč. Moram donirati!</string>
@@ -493,6 +494,7 @@
   <string name="wlan_wakelock_summary">Prepreči wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock delilnik</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock delilnik</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="edit">Uredi</string>
   <string name="delete">Izbriši</string>

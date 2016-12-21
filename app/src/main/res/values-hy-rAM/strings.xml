@@ -194,6 +194,7 @@
   <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Բարի գալուստ</string>
   <string name="example">Օրինակներ</string>

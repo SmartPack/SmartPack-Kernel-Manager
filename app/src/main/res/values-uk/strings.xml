@@ -8,6 +8,7 @@
   <string name="collecting_info">Збирання інформації</string>
   <string name="no_root">Root відсутній</string>
   <string name="no_busybox">Busybox відсутній</string>
+  <string name="open">Відкрити %s</string>
   <!-- Security -->
   <string name="password">Пароль</string>
   <string name="password_wrong">Невірний пароль</string>
@@ -18,7 +19,6 @@
   <string name="cancel">Скасувати</string>
   <string name="ok">Ок</string>
   <string name="unknown">Невідомо</string>
-  <string name="license_invalid">Дякуємо за придбання програми! На жаль ліцензію не вдалося перевірити. Будь ласка, спробуйте ще раз пізніше. Якщо програма не працює, будь ласка, зв\'яжіться зі мною.</string>
   <string name="donate">Підтримати</string>
   <string name="ad_here">Ваша реклама може бути тут</string>
   <string name="remove_ad">Видалити рекламу</string>
@@ -43,6 +43,7 @@
   <string name="ms">ms</string>
   <string name="mv">mV</string>
   <string name="min">хв</string>
+  <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
   <!-- Special signs -->
@@ -288,7 +289,9 @@
   <string name="gpu_2d_governor">GPU 2D контролер</string>
   <string name="gpu_2d_governor_summary">Встановити 2D планувальник для ЦП.</string>
   <string name="gpu_governor">GPU контролер</string>
+  <string name="gpu_governor_tunables">Параметри планувальника CPU</string>
   <!-- Screen -->
+  <string name="screen_color">Колір екрану</string>
   <string name="red">Червоний</string>
   <string name="green">Зелений</string>
   <string name="blue">Cиній</string>
@@ -395,6 +398,7 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Ласкаво просимо</string>
   <string name="example">Приклади</string>

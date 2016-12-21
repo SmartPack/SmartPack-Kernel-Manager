@@ -405,6 +405,7 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="edit">수정</string>
   <string name="delete">삭제</string>

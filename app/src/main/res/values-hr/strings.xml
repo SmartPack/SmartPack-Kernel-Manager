@@ -393,6 +393,7 @@
   <string name="sensor_ind_wakelock_summary">Spriječiti buđenje uređaja pri deaktiviranoj automatskoj svjetlini zaslona.</string>
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Dobro došli</string>
   <string name="custom_controls_summary">U ovom odjeljku možete stvoriti ili uvesti prilagođene kontrole koje (još) ne postoje u aplikaciji.</string>

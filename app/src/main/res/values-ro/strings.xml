@@ -19,7 +19,6 @@
   <string name="cancel">Anulare</string>
   <string name="ok">OK</string>
   <string name="unknown">Necunoscut</string>
-  <string name="license_invalid">Va mulțumesc pentru achiziționarea aplicației de donare! Din păcate verificarea licientei nu a fost finalizată. Va rugam încercați din nou mai târziu. Dacă tot nu functioneaza, va rog contactati-ma.</string>
   <string name="pirated">Se pare ca donatie app nu a fost cumparat prin Play Store. Dacă l-ai piratate apoi rusine!</string>
   <string name="donate">Donează</string>
   <string name="donate_summary">Această caracteristică este disponibilă numai atunci când aplicaţia de donatie este instalat! Nu vă faceţi griji deşi. Deoarece această app este open source cu uşurinţă pot construi singur şi scoateţi această verificare. Dar sper că veţi sprijini dezvoltatorii oricum. Vă mulţumim pentru utilizarea Kernel Adiutor! Odată ce aţi cumpărat app de donaţie trebuie să reporniţi Adiutor kernel-ului pentru a permite toate caracteristicile.</string>
@@ -237,6 +236,7 @@
   <!-- Virtual Memory -->
   <!-- Entropy -->
   <!-- Misc -->
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <!-- Downloads -->
   <!-- Backup -->

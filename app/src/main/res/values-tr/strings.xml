@@ -8,6 +8,7 @@
   <string name="collecting_info">Bilgiler toplanıyor</string>
   <string name="no_root">Root erişimi sağlanamadı</string>
   <string name="no_busybox">Busybox yüklü değil</string>
+  <string name="open">%s aç</string>
   <!-- Security -->
   <string name="password">Şifre</string>
   <string name="password_wrong">Şifre yanlış</string>
@@ -26,6 +27,7 @@
   <string name="ad_here">Reklam burada olabilir</string>
   <string name="remove_ad">Reklamları kaldır</string>
   <string name="warning">Dikkat</string>
+  <string name="gh_ad">Bu ticari olmayan bir reklamdır! Bunu ciddiye almayın! Gerçek bir reklam yüklenemediğinde alanı doldurmanın komik yolu (adblock kullanıcılarına bakıyorsun).</string>
   <string name="open_ad_anyway">Herzaman_reklam_aç</string>
   <string name="apply_on_boot">Açılışta uygula</string>
   <string name="apply_on_boot_text">Ayarlar %d saniyede uygulanıyor.</string>
@@ -161,6 +163,7 @@
   <string name="input_interval">Giriş Aralığı</string>
   <string name="input_interval_summary">Giriş algılandığında İşlemci Hızlandırma için minimum aralık.</string>
   <string name="input_boost_freq">Giriş Arttırma Frekansı</string>
+  <string name="input_boost_freq_core">Giriş Artırma Frekansı Çekirdek %d</string>
   <string name="input_boost_freq_summary">İşlemci frekansı giriş tespiti üzerine bu frekansa artırdığını edilecek.</string>
   <string name="wakeup_boost">Uyandırma hızlandırması</string>
   <string name="wakeup_boost_summary">Uyandırma Boost hızlandırma girişine benzer, ancak ekran açık olduğunda oluşur.</string>
@@ -372,6 +375,7 @@
   <string name="idle_wait">Boşta bekleme</string>
   <string name="idle_wait_summary">Frekansı düşürmeden önce beklenmesi gereken olay sayısı. Adreno boşa çıkarıcısı frekansı düşürmeden önce şimdiki olay tamamen boşa çıkana kadar boşta bekleyen olaylar. Bu kodlama kaydırırken veya oyun oynarken oluşan küçük teklemeleri engellemek içindir. Eğer bu daha düşük bir değere ayarlanırsa Adreno boşa çıkarıcısı daha aktif bir şekilde frekansı düşürmeye çalışacaktır.</string>
   <string name="workload">İş yükü</string>
+  <string name="workload_summary">Adreno idler, daha yüksek bir değere ayarlanırsa frekansı daha sık bir şekilde yükseltmeye çalışacaktır.</string>
   <!-- Screen -->
   <string name="screen_color">Ekran rengi</string>
   <string name="red">Kırmızı</string>
@@ -410,7 +414,10 @@
   <string name="blue_negative">Mavi negatif</string>
   <string name="white_point">Beyaz Nokta</string>
   <string name="lcd_backlight">LCD arkaışık</string>
+  <string name="gamma_profiles_summary">Bir profil seçtikten sonra, lütfen ekranınızı kapatın ve açın.</string>
+  <string name="brightness_mode">Doğrusal mod yerine üstel aydınlatma modunu kullan.</string>
   <string name="min_brightness">Minimum Parlaklık</string>
+  <string name="min_brightness_summary">LCD ekranın parlaklığını stok romunkinden daha düşük bir seviyeye düşürmenizi sağlar.</string>
   <string name="max_brightness">Maksimum parlaklık</string>
   <string name="max_brightness_summary">LCD ekranın parlaklığını olabildiğinden daha yüksek olmaya zorla. Bu stock romlarda çalışabilir.</string>
   <string name="backlight_dimmer">Kısık Arka Işık</string>
@@ -420,7 +427,9 @@
   <string name="negative_toggle_summary">Ekran renklerini tersine çevirme hızlı bir şekilde 4 kez menü düğmesine basarak etkinleştirin.</string>
   <string name="mdnie_global_controls">mDNIe genel denetimleri</string>
   <string name="register_hook">Kayıt kancası</string>
+  <string name="register_hook_summary">Kayıt ara kesimi bir kanca gibi davranıyor ve senaryo ayarlarını yakalamayı ve delta denetimleri aracılığıyla onları değiştirmeyi sağlayacak. Bir senaryonun taban sırasına bir ayarı (kaydı) yoksa, o zaman kanca tarafından değiştirilemez.</string>
   <string name="master_sequence">Ana sıra</string>
+  <string name="master_sequence_summary">Ana dizinin etkinleştirilmesi, Samsung profillerini ve senaryolarını devre dışı bırakıp yok sayacak ve ROM kontrollerini devre dışı bırakacaktır.</string>
   <string name="glove_mode">Eldiven modu</string>
   <string name="glove_mode_summary">Bunun etkinleştirilmesiyle eldiven giyerken telefonunuzu kullanmanıza izin verir.</string>
   <!-- Wake -->
@@ -466,6 +475,7 @@
   <string name="camera_gesture">Kamera Hareketi</string>
   <string name="camera_gesture_summary">Ekranda bir halka çizerek varsayılan kamera uygulamasını başltın.</string>
   <string name="pocket_mode">Cep Modu</string>
+  <string name="pocket_mode_summary">Bunu etkinleştirmek, cihaz bir cebe girdiğinde uyandırma kontrollerini kapatacaktır.</string>
   <string name="timeout">Zaman aşımı</string>
   <string name="timeout_summary">Ekran kapandıktan sonra uyandırma kontrolleri devre dışı bırakılması için bir süre ayarlayın.</string>
   <string name="power_key_suspend">Güç Anahtarı Askıya Alma</string>
@@ -483,6 +493,10 @@
   <string name="speaker_gain">Hoparlör Yükseltmesi</string>
   <string name="headphone_poweramp_gain">Kulaklık PowerAmp Yükseltmesi</string>
   <string name="headphone_tpa6165_gain">Kulaklık Amp kazanç (TPA6165 uzantılı)</string>
+  <string name="lock_output_gain">Çıkış Artırmayı Kilitle</string>
+  <string name="lock_output_gain_summary">Kulaklık/hoparlör sesini artıran değişiklikleri önle</string>
+  <string name="lock_mic_gain">Mikrofon Artırmayı Kilitle</string>
+  <string name="lock_mic_gain_summary">Mikrofon sesini artıran değişiklikleri önle</string>
   <string name="microphone_gain">Mikrofon kazancı</string>
   <string name="volume_gain">Ses kazanç</string>
   <!-- Battery -->
@@ -503,11 +517,21 @@
   <string name="speed">Hız</string>
   <string name="stock">Stok</string>
   <string name="continuous_light">Sürekli ışık</string>
+  <string name="bright_light_environment">Parlak Işık Ortamı</string>
+  <string name="bright_light_environment_summary">Parlak ortamlarda LED\'in göreceli yoğunluğunu ayarla.</string>
+  <string name="low_light_environment">Düşük Işık Ortamı</string>
+  <string name="low_light_environment_summary">Düşük parlaklıklı ortamlarda LED\'in göreceli yoğunluğunu ayarla.</string>
+  <string name="notification">Bildirim</string>
   <string name="on">Açık</string>
   <string name="off">Kapalı</string>
+  <string name="fade_ramp_control">Ramp Kontrolünü Soldur</string>
+  <string name="fade_ramp_control_summary">Led azaltma/soldurma (ramp) kontrolünü etkinleştir veya devre dışı bırak.</string>
   <string name="fade_in">Aydınlat</string>
+  <string name="fade_in_summary">Yükselen eğimin zaman periyodunu ayarlar.</string>
   <string name="fade_out">Karart</string>
+  <string name="fade_out_summary">Düşen eğimin zaman periyodunu ayarlar.</string>
   <string name="test">Test</string>
+  <string name="led_test_summary">Ayarlarınızla led\'inizi test edin.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Dahili Depolama</string>
   <string name="external_storage">Harici Depolama</string>
@@ -523,6 +547,8 @@
   <string name="iostats_summary">Bu depolama aygıtı için G / Ç istatistiklerini koruyun. Bu G/Ç izleme uygulamalarını devre dışı bırakabilir.</string>
   <string name="add_random">Rasgele ekle</string>
   <string name="add_random_summary">Dönel depolama için entropi çizin.</string>
+  <string name="rq_affitiny">RQ Yakınlığı</string>
+  <string name="rq_affinity_summary">Zamanlayıcı taleplerini, yapıldıkları CPU çekirdeğinde tamamlamaya çalış. Yüksek değerler daha agresiftir.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Tam tarama</string>
   <string name="pages_shared">Paylaşılan Sayfalar</string>
@@ -557,6 +583,12 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
   <string name="disksize_summary">Disk belleği fiziksel depolama, bunun yerine sıkıştırılmış bir sanal aygıt RAM\'de kullanarak kaçınarak performans arttırmaya çalışır. Takas alanı üzerinde fiziksel depolama alanı alanı kullanmak gereklidir kadar disk belleği RAM yer alır.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap takas sayfaları için hafif sıkıştırılmış bir önbellektir. Dışa aktarılma sürecindeki sayfaları alır ve bunları dinamik olarak ayrılmış bir RAM tabanlı bellek havuzuna sıkıştırmaya çalışır. Zswap, temel olarak, CPU dönüşümlerini, potansiyel olarak azaltılmış takas G/Ç için gerçekleştirir.</string>
+  <string name="memory_pool">Bellek havuzu</string>
+  <string name="memory_pool_summary">Sıkıştırılmış sayfa önbelleği olarak kullanılabilen ana bellek yüzdesi.</string>
+  <string name="maximum_compression_ratio">Maksimum sıkıştırma oranı</string>
+  <string name="maximum_compression_ratio_summary">Kabul edilebilir bir sıkıştırılmış sayfa için, yüzde olarak maksimum sıkıştırma oranı. En azından bu orana göre sıkışmayan herhangi bir sayfa reddedilecektir.</string>
   <!-- Entropy -->
   <string name="available">Kullanılabilir</string>
   <string name="poolsize">HavuzBoyutu</string>
@@ -571,8 +603,12 @@
   <string name="dynamic_fsync">Dinamik Fsync</string>
   <string name="dynamic_fsync_summary">Etkin olduğunda ve ekran üzerinde fsync işlemi zaman uyumsuz. Ekran kapalı iken, bu işlem zaman uyumlu olarak yapılır.</string>
   <string name="gentlefairsleepers">Nazik adil uyuyanlar</string>
+  <string name="gentlefairsleepers_summary">Sadece uyuyanlara hizmet açığının %50\'sini ver. Bunu devre dışı bırakmak biraz pil tasarrufu yaptırabilir.</string>
   <string name="arch_power">Arch gücü</string>
+  <string name="arch_power_summary">Arch Özel Güç Fonksiyonunu/Tasarruflarını Etkinleştir.
+</string>
   <string name="power_suspend_mode">Güç Askıya Alma Modu</string>
+  <string name="power_suspend_mode_summary">Çekirdek Modu, LCD Kancalar ve En Yüksek Seviye Kanca, çekirdek tarafından otomatik olarak yönetilir. Güç Askıya Alma Durumunu elle etkinleştirmek veya devre dışı bırakmak için Kullanıcı Modu\'nu seçin.</string>
   <string name="autosleep">Oto uyku</string>
   <string name="userspace">Kullanıcı Alanı</string>
   <string name="lcd_panel">LCD Panel</string>
@@ -601,6 +637,7 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock bölücü</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock bölücü</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock bölücü</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Hoşgeldiniz</string>
   <string name="custom_controls_summary">Bu bölümde diğer kontrolleri oluşturabilir veya dışardan aktarabilirsiniz fakat şu anlık uygulamada bulunmamaktadır.</string>
@@ -613,12 +650,19 @@
   <string name="title">Başlık</string>
   <string name="description">Açıklama</string>
   <string name="applying">Uygulanıyor</string>
+  <string name="switch_enabled_summary">Anahtarın etkin olup olmadığı. Etkinleştirmek için 1\'e devre dışı bırakmak için 0\'a getirin.</string>
+  <string name="switch_apply_summary">Anahtar kabuk komut dosyanızı argüman olarak 1 (etkin) veya 0 (devre dışı) yapar.</string>
   <string name="seekbar_min">Minimum</string>
   <string name="seekbar_max">Maksimum</string>
   <string name="seekbar_progress">İlerleme</string>
+  <string name="seekbar_progress_summary">Arama çubuğunun geçerli durumu. Min ve maks tanımlanarak bir tamsayı dizisi oluşturulur. Örneğin: Min 50 ve Maks 100 ve ilerleme 0 iken, 50, arama çubuğunun geçerli durumudur.</string>
+  <string name="seekbar_apply_summary">Arama çubuğunu mevcut ilerleme durumuna getirir. Örneğin, Min 50, Maks 100 ve arama çubuğu 70 olduğunda ilerlemeyi 20\'ye getirir.</string>
   <string name="control_generic">Genel</string>
   <string name="generic_value">Değer</string>
+  <string name="generic_value_summary">Düzenleyicinin şu anki değeri. Temel olarak her şey olabilir.</string>
+  <string name="generic_apply_summary">Düzenleyici, girilen her şeyi geriye döndürür.</string>
   <string name="required">gerekli</string>
+  <string name="hit_test">Önce testi uygulamak zorundasın!</string>
   <string name="output">Çıktı</string>
   <string name="edit">Düzenle</string>
   <string name="export">Dışa Aktar</string>
@@ -631,9 +675,11 @@
   <string name="import_malformed">Alma dosyası hatalı biçimlendirilmiş!</string>
   <string name="import_wrong_version">Alınan dosyanın sürümü çok eski!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Desteklenen herhangi bir kernel bulunamadı! Lütfen internet erişiminizi kontrol edin.</string>
   <string name="download_error">%s indirme başarsız.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
   <string name="check_md5">Md5 kontrol ediliyor</string>
+  <string name="md5_mismatch">İndirilen dosya farklı bir MD5\'e sahip. Şu nedenlerden olabilir:\n\n\u2022 İndirilen dosya bozuk\n\u2022 Geliştirici yanlış bir MD5 bildirdi.\n\nDosyayı tekrar indirmeyi deneyin. Bu hatayı almaya devam ederseniz, lütfen kernelin geliştiricisi ile iletişime geçin.</string>
   <string name="install">Yükle</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
@@ -649,6 +695,7 @@
   <string name="flash">Flaşla</string>
   <!-- Build prop Editor -->
   <string name="add">Ekle</string>
+  <string name="backup_item">%1$s %2$s içine yedeklendi</string>
   <string name="item_count">%s öğe</string>
   <string name="items_count">%s öğe</string>
   <string name="key">Anahtar</string>
@@ -664,6 +711,7 @@
   <string name="press_again_to_apply">Tekrar uygulamak için %s düğmesine basın.</string>
   <string name="applied">Uygulandı</string>
   <string name="profile_tasker">Profil çalışanı</string>
+  <string name="profile_tasker_summary">Belirli bir etkinlikte, örneğin bir uygulama başlatmak gibi bir profil uygulamak istiyorsanız, Tasker kullanmalısınız.</string>
   <string name="profile_tasker_toast">Profil uygulanırken bir bildirim göster</string>
   <string name="profile_tile">Profil karosu</string>
   <string name="profile_tile_summary">Bir profil seçmenizi sağlayan bir karo göster.</string>
@@ -680,6 +728,8 @@
   <string name="reboot">Yeniden Başlat</string>
   <string name="reboot_soft">Yazılımsal Yeniden Başlat</string>
   <string name="reboot_recovery">Recovery Modunda Yeniden Başlat</string>
+  <string name="reboot_bootloader">BootLoader\'da Başlat</string>
+  <string name="reboot_download">Download modunda başlat</string>
   <string name="wipe_data">Verileri Sil</string>
   <string name="wipe_cache">Önbelleği sil</string>
   <string name="flash_zip">Zip Dosyası Flaşla</string>
@@ -697,12 +747,21 @@
   <string name="arguments">Bağımsız değişkenler: %s</string>
   <string name="disable_question">%s devre dışı bırakılsın mı?</string>
   <!-- Settings -->
+  <string name="open_settings">Ayarları aç</string>
   <string name="fahrenheit_title">Fahrenayt</string>
   <string name="fahrenheit_summary">Sıcaklık ölçümü için fahrenayt kullan.</string>
   <string name="force_english">İngilizce dilini kullanmaya zorla</string>
   <string name="user_interface">Kullanıcı Arayüzü</string>
   <string name="dark_theme">Koyu tema</string>
   <string name="material_icon">Material simge</string>
+  <string name="banner_resizer">Banner boyutlandırıcı</string>
+  <string name="hide_banner">Banner\'i gizle</string>
+  <string name="force_cards">Kartları zorla</string>
+  <string name="force_cards_summary">Mümkünse öğeler için kartları kullan.</string>
+  <string name="accent_color">Vurgu Rengi</string>
+  <string name="section_icons">Bölüm Simgeleri</string>
+  <string name="section_icons_summary">Gezinme çekmecesinde her bölüm için simgeler göster.</string>
+  <string name="instant">Hızlı</string>
   <string name="five_sec">5 saniye</string>
   <string name="ten_sec">10 saniye</string>
   <string name="twenty_sec">20 saniye</string>
@@ -717,6 +776,7 @@
   <string name="confirmation_notification">Onay bildirimi</string>
   <string name="apply_on_boot_confirmation_notification_summary">Görünür bir bildirimle cihaz açıldıktan sonra ayarların uygulandığını gösteren bir bildirim göster.</string>
   <string name="script">Komut dosyası</string>
+  <string name="apply_on_boot_script_summary">Ayarları uygulamak için bir kabuk komut dosyası kullanın. Lütfen bunu sadece açılışta uygula ile sorun yaşıyorsanız etkinleştirin. Bu seçeneği etkinleştirdikten sonra sorun hala devam ediyorsa, lütfen Kernel Adiutor ile başka hiçbir uygulamanın çakışmadığından emin olun.</string>
   <string name="debugging">Hata ayıklanıyor</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Logcat  /sdcard/logcat.txt adresine kopyalandı</string>
@@ -750,6 +810,7 @@
   <string name="have_to_donate">Bu premium özelliklerini kullanmak için bağış var mı?</string>
   <string name="have_to_donate_summary">Hayır bu uygulama Açık Kaynak kollu sen kolayca yapabilirsin bağış özellikleri sen hata ayıklama uygulamasını yaptıktan sonra açılır. Kodları değiştirmene gerek yok.</string>
   <string name="cpu_freq_not_sticking">Neden benim kararlı işlemci frekansım yok?</string>
+  <string name="cpu_freq_not_sticking_summary">Bu, birçok nedenden dolayı olabilir. Birçok kernelin günümüzde CPU frekansını kontrol eden kendi hotplugging sistemi vardır ve CyanogenMod frekansı düzenleyen kendi CPU Boost uygulamasına sahiptir. CPU frekanslarına dokunmamanızı ve kernelin işini yapmasına izin vermenizi öneririm. Bu, diğer işlevler için de geçerlidir! Ayarları değiştiremiyorsanız, kernel/sistem onları değiştirmenize izin vermediği içindir.</string>
   <string name="feature_not_appearing">x ve y özellikleri neden gösterilmiyor?</string>
   <string name="feature_not_appearing_summary">Cihazınız tarafından desteklenen özellikleri gösterilir!</string>
   <string name="feature_function">x in özelliği nedir?</string>

@@ -19,7 +19,6 @@
   <string name="cancel">Отмена</string>
   <string name="ok">OK</string>
   <string name="unknown">Неизвестно</string>
-  <string name="license_invalid">Спасибо за покупку приложения-пожертвования! К сожалению, проверка лицензии не удалась. Пожалуйста, попробуйте позже. Если она всё ещё не работает, пожалуйста, свяжитесь со мной.</string>
   <string name="pirated">Похоже, приложение-пожертвование не было куплено через Play Маркет! Если вы спиратили его, то вам должно быть стыдно!</string>
   <string name="donate">Пожертвовать</string>
   <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование Kernel Adiutor! После покупки приложения-пожертвования, вам нужно перезапустить Kernel Auditor для того, чтобы включить все функции.</string>
@@ -142,7 +141,7 @@
   <string name="governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
   <string name="cpu_governor_tunables_read_error">Не удалось определить текущий регулятор.\n\nЕсли вы используете устройство QCOM с big.LITTLE, то это известная проблема. Система заставляет ЦП отключать ядра, делая крайне тяжелым считывание определённой статистики ЦП. Попробуйте выбрать эту опцию еще раз. Иногда ЦП отказывается включить ядро.</string>
   <string name="tunables_error">%s не настраивается</string>
-  <string name="manual">Руководство</string>
+  <string name="manual">Ручная установка</string>
   <string name="mc_power_saving">Многоядерное энергосбережение</string>
   <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
   <string name="disabled">Отключено</string>
@@ -154,7 +153,7 @@
   <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_quiet_summary">CPUQuiet реализует политику по отключению ядер процессора. Данная политика сохраняет заряд батареи без вреда производительности.</string>
   <string name="cpu_quiet_governor">Регулятор CPUQuiet</string>
-  <string name="cpu_boost">Ускорение ЦП</string>
+  <string name="cpu_boost">Усиление ЦП</string>
   <string name="debug_mask">Маска отладки</string>
   <string name="debug_mask_summary">Позволяет вам активировать маску отладки для операций.</string>
   <string name="interval">Интервал</string>
@@ -163,14 +162,14 @@
   <string name="sync_threshold_summary">Когда загрузка ядра превышает установленный порог, текущее ядро повышается до этой частоты.</string>
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал усиления ЦП при обнаружении ввода.</string>
-  <string name="input_boost_freq">Повышение частоты при вводе</string>
+  <string name="input_boost_freq">Частота усиления при вводе</string>
   <string name="input_boost_freq_core">Повышение частоты ядра %d при вводе</string>
   <string name="input_boost_freq_summary">Частота ЦП будет повышена до этой при обнаружении ввода.</string>
-  <string name="wakeup_boost">Повышение при пробуждении</string>
-  <string name="wakeup_boost_summary">Повышение при пробуждении похоже на повышение при вводе, но срабатывает при включенном экране.</string>
-  <string name="hotplug_boost">Ускорение горячего подключения</string>
-  <string name="hotplug_boost_summary">Ускорение горячего подключения похоже на ускорение ввода, но срабатывает при работе процессора онлайн.</string>
-  <string name="touch_boost">Ускорение прикосновений</string>
+  <string name="wakeup_boost">Усиление при пробуждении</string>
+  <string name="wakeup_boost_summary">Усиление при пробуждении похоже на усиление при вводе, но срабатывает при включении экрана.</string>
+  <string name="hotplug_boost">Усиление при hotplug-е</string>
+  <string name="hotplug_boost_summary">Усиление при hotplug-е похоже на усиление при вводе, но срабатывает при переходе ядра в онлайн.</string>
+  <string name="touch_boost">Усиление при касании</string>
   <string name="touch_boost_summary">Повышает вашу минимальную скорость ЦП, если вы коснётесь экрана или нажмёте кнопку.</string>
   <!-- CPU Voltage -->
   <string name="global_offset">Глобальное смещение</string>
@@ -201,7 +200,7 @@
   <string name="cpu_threshold_summary">Чем выше, тем меньше используемых ядер.</string>
   <string name="suspend">Приостановить</string>
   <string name="suspend_summary">Предотвращение перехода в ожидание.</string>
-  <string name="cpus_boosted">Количество ускоренных ядер ЦП</string>
+  <string name="cpus_boosted">Ядер усилено</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно ускоренных ядер ЦП.</string>
   <string name="min_cpu_online">Минимальное количество работающих ядер</string>
   <string name="min_cpu_online_summary">Минимальное количество ядер ЦП, которые будут всегда онлайн.</string>
@@ -212,7 +211,7 @@
   <string name="suspend_defer_time">Время отсрочки задержки</string>
   <string name="defer_sampling">Отложенная выборка</string>
   <string name="boost_lock_duration">Повышение длительности блокировки</string>
-  <string name="boost_lock_duration_summary">Минимальный интервал ускорения ядра.</string>
+  <string name="boost_lock_duration_summary">Минимальный интервал усиления ядра.</string>
   <string name="down_lock_duration">Вниз длительности блокировки</string>
   <string name="down_lock_duration_summary">Минимальный интервал работы ядра.</string>
   <string name="fshift">FShift</string>
@@ -260,8 +259,8 @@
   <string name="screen_off_single_cpu_summary">Использовать только одно ядро, когда экран выключен.</string>
   <string name="idle_frequency">Частота простоя</string>
   <string name="idle_frequency_summary">Если первое ядро ниже этой частоты, то не подключать остальные ядра.</string>
-  <string name="touch_boost_time">Время ускорения процессора при касании</string>
-  <string name="touch_boost_time_summary">Как долго ядро должно быть ускорено после касания экрана.</string>
+  <string name="touch_boost_time">Время усиления при касании</string>
+  <string name="touch_boost_time_summary">Как долго ядро должно быть усилено после касания экрана.</string>
   <string name="boost_frequency_core">Повышение частоты ядра %d</string>
   <string name="start_delay">Задержка перед запуском</string>
   <string name="start_delay_summary">Время до начала работы hotplug.</string>
@@ -303,9 +302,9 @@
   <string name="min_cpus_big">Минимум процессоров big</string>
   <string name="min_cpus_big_summary">Минимальное количество процессоров big, которые должны быть онлайн.</string>
   <string name="busy_down_threshold">Нижний порог занятости</string>
-  <string name="busy_down_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
+  <string name="busy_down_threshold_summary">Порог для отключения кластера big CPU.</string>
   <string name="busy_up_threshold">Верхний порог занятости</string>
-  <string name="busy_up_threshold_summary">Пороговая нагрузка, при которой будут включены большие ядра.</string>
+  <string name="busy_up_threshold_summary">Порог для включения кластера big CPU.</string>
   <string name="offline_delay">Задержка оффлайн</string>
   <string name="offline_delay_summary">Время до отключения ядра.</string>
   <!--Thermal-->
@@ -637,6 +636,7 @@
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD wakelock divider</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Добро пожаловать</string>
   <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
@@ -805,7 +805,7 @@
   <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
   <!-- Help -->
   <string name="misspelled">Почему неправильно написано \"Adiutor\"?</string>
-  <string name="misspelled_summary">Слово Adiutor — латинское и означает \"помошник\".</string>
+  <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
   <string name="have_to_donate">Должен ли я пожертвовать, чтобы использовать эти премиум-функции?</string>
   <string name="have_to_donate_summary">Нет, это приложение с открытым исходным кодом. Вы с лёгкостью можете собрать его самостоятельно. Функции при пожертвовании включены по умолчанию, если вы соберёте отладочный apk, так что нет нужды править ни одну строчку кода.</string>
   <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>

@@ -18,7 +18,6 @@
   <string name="cancel">Zrušit</string>
   <string name="ok">OK</string>
   <string name="unknown">Neznámé</string>
-  <string name="license_invalid">Děkujeme za přispění na vývoj! Naneštěstí, kontrola licence se nezdařila. Prosím, zkuste to znovu později. V případě přetrvávajících potíží nás, prosím, kontaktujte.</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
   <string name="donate_summary">Tato funkce je dostupná pouze pokud je nainstalována aplikace darování. Nezoufejte! Tato aplikace je open source, takže si ji můžete sami sestavit a toto omezení odstranit. Přesto však doufáme, že vývojáře podpoříte. Děkujeme, že používáte Kernel Adiutor. Jakmile si aplikaci dárce zakoupíte, je třeba Kernel Adiutor restartovat pro zpřístupnění všech funkcí.</string>
@@ -434,6 +433,7 @@
   <string name="wakelock">Zákaz úsporného režimu</string>
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Vítejte</string>
   <string name="custom_controls_summary">V této sekci můžete vytvářet nebo importovat vlastní ovládací prvky, které (ještě) v této aplikaci neexistují.</string>

@@ -8,6 +8,7 @@
   <string name="collecting_info">情報の収集中</string>
   <string name="no_root">Root権限がありません</string>
   <string name="no_busybox">Busyboxがありません</string>
+  <string name="open">%sを開く</string>
   <!-- Security -->
   <string name="password">パスワード</string>
   <string name="password_wrong">パスワードが間違っています</string>
@@ -18,8 +19,7 @@
   <string name="cancel">キャンセル</string>
   <string name="ok">OK</string>
   <string name="unknown">不明</string>
-  <string name="license_invalid">寄付アプリの購入ありがとう！残念ながらライセンス認証に失敗しました。後でもう一度お試しください。それでも動作しない場合は、私に連絡してください。</string>
-  <string name="pirated">このアプリはGoogle Play経由で購入されていないようです!海賊版をお使いの場合、恥を知りなさい!!</string>
+  <string name="pirated">このアプリはGoogle Play経由で購入されていないようです!海賊版を使っているなら恥を知りなさい!!</string>
   <string name="donate">寄付する</string>
   <string name="donate_summary">この機能は寄付アプリがインストール済みの際のみ有効です!心配しないでください。何故ならこのアプリはオープンソフトウェアで自分自身でビルド出来このチェックを除去することが可能です。しかし開発者のサポートを希望します。Kernel Adiutorを頂き有難うございます!寄付アプリを購入後全機能を有効化するにはKernel Adiotorを再起動する必要があります。</string>
   <string name="donate_nope">私はお金を払いたくありません!</string>
@@ -27,7 +27,7 @@
   <string name="ad_here">広告がここに表示されます</string>
   <string name="remove_ad">広告を除去</string>
   <string name="warning">警告</string>
-  <string name="gh_ad">これは非商業広告です! 真剣に捉えないで下さい! 実際の広告を表示せず空白を表示する（あなたはadblockユーザのようですね）ための面白い方法です。</string>
+  <string name="gh_ad">これは非商業広告です! 真剣に捉えないで下さい! 実際の広告を表示されない場合にスペースを埋めるための面白い方法です。(あなたはadblockユーザのようですね?)</string>
   <string name="open_ad_anyway">ともかく広告を開く</string>
   <string name="apply_on_boot">起動時に適用</string>
   <string name="apply_on_boot_text">%d 秒後に設定を適用します。</string>
@@ -37,7 +37,7 @@
   <string name="options">オプション</string>
   <string name="more">さらに</string>
   <!-- Permissions Denied -->
-  <string name="permission_denied_write_storage">記憶域への書込制限です!</string>
+  <string name="permission_denied_write_storage">ストレージへの書込権限が拒否されました!</string>
   <!-- Editor -->
   <string name="save">保存</string>
   <!-- File Picker -->
@@ -91,7 +91,7 @@
   <string name="initd">Init.d</string>
   <string name="on_boot">起動時</string>
   <string name="settings">設定</string>
-  <string name="about">アプリついて</string>
+  <string name="about">アプリについて</string>
   <string name="contributors">貢献者</string>
   <string name="help">ヘルプ</string>
   <!-- Overall -->
@@ -110,7 +110,7 @@
   <string name="vendor">ベンダー</string>
   <string name="features">機能</string>
   <string name="ram">RAM</string>
-  <string name="android_version">Androidバージョン</string>
+  <string name="android_version">Android バージョン</string>
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Androidコードネーム</string>
   <string name="fingerprint">フィンガープリント</string>
@@ -197,6 +197,7 @@
   <string name="hysteresis">ヒステリシス値</string>
   <string name="hysteresis_summary">値が低ければ低いほど、IntelliPlugが素早く動作するようになります。</string>
   <string name="cpu_threshold">CPUしきい値</string>
+  <string name="cpu_threshold_summary">高くすると CPU の使用が少なくなります。</string>
   <string name="suspend">サスペンド</string>
   <string name="suspend_summary">サスペンドを阻止します。</string>
   <string name="cpus_boosted">ブーストCPU数</string>
@@ -254,7 +255,7 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">show-p1984氏が開発した、Qualcomm MPDecisionの代替です。</string>
-  <string name="screen_off_single_cpu">画面消灯時一CPU</string>
+  <string name="screen_off_single_cpu">画面消灯時シングルCPU</string>
   <string name="screen_off_single_cpu_summary">画面消灯時に動作させるCPUを一つだけにします。</string>
   <string name="idle_frequency">アイドル時の周波数</string>
   <string name="idle_frequency_summary">最初のコアがこの周波数より低い場合、他のコアをプラグしないようにします。</string>
@@ -295,7 +296,7 @@
   <string name="cycle_up">アップサイクル</string>
   <string name="cycle_up_summary">前のhotplugイベントから別のコアをプラグするまでの待機時間を指定します。</string>
   <string name="core_control">コアコントロール</string>
-  <string name="core_control_summary">Quallcommのホットプラグソリューションです。残念ながらオフに出来ません。#vlameqcom</string>
+  <string name="core_control_summary">Quallcommのホットプラグソリューションです。残念ながらオフに出来ません。#blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus の修正版コアコントロール</string>
   <string name="min_cpus_big">big CPUの最小数</string>
@@ -635,6 +636,7 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock ディバイダー</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">ようこそ</string>
   <string name="custom_controls_summary">このセクションではアプリでは(未だ)提供されていないカスタムコントロールを作成・インポートすることが可能です。</string>
@@ -659,6 +661,7 @@
   <string name="generic_value_summary">エディタでの現在値。基本的には何でもOKです。</string>
   <string name="generic_apply_summary">エディタで入力された値を返します。</string>
   <string name="required">必須</string>
+  <string name="hit_test">まずテストしてください!</string>
   <string name="output">出力</string>
   <string name="edit">編集</string>
   <string name="export">エクスポート</string>
@@ -743,6 +746,7 @@
   <string name="arguments">引数: %s</string>
   <string name="disable_question">%s を無効にしますか？</string>
   <!-- Settings -->
+  <string name="open_settings">設定を開く</string>
   <string name="fahrenheit_title">華氏（°F）</string>
   <string name="fahrenheit_summary">温度測定に華氏を使用します。</string>
   <string name="force_english">英語を強制使用</string>
@@ -750,10 +754,12 @@
   <string name="dark_theme">ダークテーマ</string>
   <string name="material_icon">マテリアルアイコン</string>
   <string name="banner_resizer">バナーのリサイズ</string>
-  <string name="hide_banner">バナー非表示</string>
+  <string name="hide_banner">バナーを非表示</string>
   <string name="force_cards">カードを強制使用</string>
   <string name="force_cards_summary">可能な限り、項目にカードを使用します。</string>
   <string name="accent_color">アクセントカラー</string>
+  <string name="section_icons">セクションのアイコン</string>
+  <string name="section_icons_summary">ナビゲーションドロワーの各セクションにアイコンを表示します。</string>
   <string name="instant">即時</string>
   <string name="five_sec">5秒</string>
   <string name="ten_sec">10秒</string>
@@ -798,10 +804,10 @@
   <string name="commits">コミット数 %d</string>
   <string name="no_internet">インターネット接続を確認して下さい!</string>
   <!-- Help -->
-  <string name="misspelled">\"Auditor\"って綴り間違いじゃないの?</string>
+  <string name="misspelled">\"Auditor\" のスペルミスじゃないの？</string>
   <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
-  <string name="have_to_donate">プレミアム機能を使用するには寄付が必要か?</string>
-  <string name="have_to_donate_summary">いいえ、このアプリケーションはオープン ソースであります。簡単に自分でビルド出来ます。寄付版の機能は一度デバッグ用apkをビルドすると有効になり、コードのいかなる行も変更する必要はありません。</string>
+  <string name="have_to_donate">プレミアム機能を使用するには寄付が必要ですか？</string>
+  <string name="have_to_donate_summary">いいえ、このアプリケーションはオープンソースです。簡単に自分でビルド出来ます。寄付版の機能は一度デバッグ用apkをビルドすると有効になり、コードのいかなる行も変更する必要はありません。</string>
   <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
   <string name="cpu_freq_not_sticking_summary">これは多くの理由が原因かもしれません。最新の多くのカーネルはCPU の周波数を制御する独自のホットプラグ システムを保有しており、CyanogenMod では周波数を制限するための独自のCPUブースト実装を保有しています。CPU 周波数を変更せず、その仕事をカーネルに任せることをお薦めします。本機能では他の機能もカウントしています!現在の周波数に固執しないのはカーネル/システムがそれの値を変更するつもりがないためです。</string>
   <string name="feature_not_appearing">xとy機能が表示されない理由は?</string>

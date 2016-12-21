@@ -19,7 +19,6 @@
   <string name="cancel">Anuluj</string>
   <string name="ok">Ok</string>
   <string name="unknown">Nieznany</string>
-  <string name="license_invalid">Dziękujemy za zakup aplikacji darowizny! Niestety sprawdzanie licencji nie powiodło się. Proszę spróbować ponownie później. Jeśli nadal nie działa, proszę o kontakt.</string>
   <string name="pirated">Wygląda na to, że aplikacja-darowizna nie została zakupiona poprzez Sklep Play! Jeżeli ją spiraciłeś, wstydź się!</string>
   <string name="donate">Wspomóż</string>
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za korzystanie z Kernel Adiutora! Po zakupieniu aplikacji-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
@@ -209,6 +208,8 @@
   <string name="max_cpu_online_summary">Maksymalna liczba rdzeni, które zawsze będą dostępne.</string>
   <string name="max_cpu_online_screen_off">Maksymalna ilość aktywnych rdzeni przy wyłączonym ekranie</string>
   <string name="max_cpu_online_screen_off_summary">Maksymalna liczba rdzeni, która będzie aktywna gdy ekran jest wyłączony.</string>
+  <string name="suspend_defer_time">Czas wstrzymania uśpienia</string>
+  <string name="defer_sampling">Próbkowanie wstrzymania</string>
   <string name="boost_lock_duration">Czas trwania wzmacniania</string>
   <string name="boost_lock_duration_summary">Minimalny interwał, podczas którego CPU jest wzmocniony.</string>
   <string name="down_lock_duration">Czas trwania limitu częstotliwości</string>
@@ -627,6 +628,7 @@
   <string name="wlan_rx_wakelock_divider">Podzielnik wakelocka wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Podzielnik wakelocka msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Podzielnik wakelocka BCMDHD</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Witamy</string>
   <string name="custom_controls_summary">W tej sekcji możesz utworzyć lub zaimportować niestandardowe reguły, które obecnie nie istnieją w tej aplikacji (jeszcze).</string>

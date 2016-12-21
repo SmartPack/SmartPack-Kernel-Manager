@@ -8,6 +8,7 @@
   <string name="collecting_info">正在收集信息</string>
   <string name="no_root">无 root 权限</string>
   <string name="no_busybox">没有安装 busybox</string>
+  <string name="open">打开 %s</string>
   <!-- Security -->
   <string name="password">密码</string>
   <string name="password_wrong">密码错误</string>
@@ -18,7 +19,6 @@
   <string name="cancel">取消 </string>
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
-  <string name="license_invalid">感谢您捐赠本应用！可惜我们无法验证您的购买记录。请稍候再试。如果依然无法工作，请删除您的捐赠应用尝试重装，再与开发者联系。</string>
   <string name="pirated">该捐赠版应用看上去并非通过Play商店购买！如果你是盗用它，那么你该感到羞愧！</string>
   <string name="donate">捐助</string>
   <string name="donate_summary">此功能仅在捐赠版应用安装后可用！别怕，本应用是开源软件，因此您可以轻松地自己构建它并删除此检查。尽管如此，我还是希望您支持开发人员。感谢您使用 Kernel Adiutor！购买捐赠版应用后，您必须重新启动 Kernel Adiutor 以启用所有功能。</string>
@@ -636,6 +636,7 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
   <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>
@@ -745,6 +746,7 @@
   <string name="arguments">参数︰%s</string>
   <string name="disable_question">禁用 %s？</string>
   <!-- Settings -->
+  <string name="open_settings">打开设置</string>
   <string name="fahrenheit_title">华氏温度</string>
   <string name="fahrenheit_summary">使用华氏温度计量标准。</string>
   <string name="force_english">强制显示英语内容</string>
@@ -756,6 +758,8 @@
   <string name="force_cards">强制使用卡片</string>
   <string name="force_cards_summary">将项目尽可能显示在卡片中。</string>
   <string name="accent_color">强调色</string>
+  <string name="section_icons">栏目图标</string>
+  <string name="section_icons_summary">在导航抽屉中为每一节显示图标。</string>
   <string name="instant">立即</string>
   <string name="five_sec">5 秒</string>
   <string name="ten_sec">10 秒</string>

@@ -282,6 +282,7 @@
   <string name="network">Мрежа</string>
   <string name="tcp">ТЦП алгоритам загушења</string>
   <string name="hostname">Име домаћина</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="title">Наслов</string>
   <string name="description">Опис</string>

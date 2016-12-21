@@ -594,6 +594,7 @@
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock jakaja</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock jakaja</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock jakaja</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Tervetuloa</string>
   <string name="custom_controls_summary">Tässä osiossa voit luoda tai tuoda kustomoituja kontrolleja, jotka eivät vielä ole ohjelmassa.</string>

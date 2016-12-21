@@ -218,6 +218,7 @@
   <string name="hostname">Värdnamn</string>
   <string name="smb135x_wakelock_summary">Förhindra \"wakelock\" när ström är frånkopplad.</string>
   <string name="sensor_ind_wakelock_summary">Förhindra \"wakelock\" när \"Ambient Display\" inaktiveras.</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="edit">Ändra</string>
   <string name="delete">Radera</string>

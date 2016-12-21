@@ -7,6 +7,7 @@
   <string name="collecting_info">Mengumpulkan informasi</string>
   <string name="no_root">Tidak ada akses root</string>
   <string name="no_busybox">Tidak ada busybox</string>
+  <string name="open">Buka %s</string>
   <!-- Security -->
   <string name="password">Kata sandi</string>
   <string name="password_wrong">Kata sandi salah</string>
@@ -17,7 +18,6 @@
   <string name="cancel">Batal</string>
   <string name="ok">Oke</string>
   <string name="unknown">Tidak diketahui</string>
-  <string name="license_invalid">Terima kasih telah membeli aplikasi donasi! Sayangnya pemeriksaan lisensi gagal. Mohon coba lagi nanti. Jika masih belum bisa, silakan hubungi saya.</string>
   <string name="pirated">Sepertinya aplikasi donasi tidak dibeli melalui Play Store! Jika Anda membajaknya, Anda memalukan!</string>
   <string name="donate">Donasi</string>
   <string name="donate_summary">Fitur ini hanya tersedia jika aplikasi donasi terpasang! Namun jangan khawatir. Karena aplikasi ini open source Anda dapat dengan mudah membuat sendiri dan menghapus pemeriksaan ini. Tapi saya harap Anda mendukung pengembang pula. Terima kasih karena menggunakan Kernel Adiutor! Setelah Anda membeli aplikasi donasi Anda harus me-restart Kernel Adiutor untuk mengaktifkan semua fitur.</string>
@@ -546,9 +546,24 @@
   <string name="add_random">Tambah acak</string>
   <string name="add_random_summary">Gambar entropi dari penyimpanan yang berputar (rotasi).</string>
   <string name="rq_affitiny">Afinitas RQ</string>
+  <string name="rq_affinity_summary">Coba untuk menjadwalkan untuk menyelesaikan permintaan inti CPU yang telah dibuat. Nilai - nilai yang lebih tinggi akan lebih agresif.</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">Pindai Menyeluruh</string>
+  <string name="pages_shared">Memori Cpu yang telah di bagi</string>
+  <string name="pages_sharing">Memori Cpu yang sedang di bagi</string>
+  <string name="pages_unshared">Memori Cpu yang tidak dibagi</string>
+  <string name="pages_volatile">Memori CPU yang volatil</string>
+  <string name="ksm_summary">Mengurangi pengunaan memory, tetapi memiliki dampak pada pengunaan CPU.</string>
+  <string name="pages_to_scan">Memori CPU yang akan dipindah</string>
+  <string name="sleep_milliseconds">Istirahat di antara pemindahan</string>
+  <string name="deferred_timer">Waktu penundaan</string>
+  <string name="deferred_timer_summary">Mengurangi beberapa pengunaan CPU sebagai hasil dari mengurangi penggunaan memori.</string>
+  <string name="max_cpu_usage">Penggunan CPU Maksimal</string>
+  <string name="max_cpu_usage_summary">Presentasi maksimal CPU ketika Memori CPU sedang di gabungkan.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplikasi Latar Depan</string>
+  <string name="lmk_adaptive">Penyesuaian Low Memory Killer</string>
+  <string name="lmk_adaptive_summary">Buat LMK lebih agresif secara dinamis ketika menghapus skenario terdeteksi.</string>
   <string name="visible_app">Aplikasi Terlihat</string>
   <string name="secondary_server">Server Sekunder</string>
   <string name="hidden_app">Aplikasi Tersembunyi</string>
@@ -558,7 +573,20 @@
   <string name="light">Ringan</string>
   <string name="medium">Menengah</string>
   <string name="very_aggressive">Sangat Agresif</string>
+  <string name="kill_lmk">Matikan LMK</string>
+  <string name="kill_lmk_summary">Matikan LMK ketika swap sedang digunakan.</string>
+  <string name="kill_lmk_threshold">Matikan batas LMK</string>
+  <string name="kill_lmk_threshold_summary">Berapa besar swap yang dibutuhkan untuk mematikan LMK.</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Ukuran penyimpanan</string>
+  <string name="disksize_summary">Mencoba untuk meningkatkan performa dengan menghindari memori cpu pada penyimpanan fisik, daripada menggunakan kompresi perangkat virtual di RAM. memori cpu mengambil tempat di RAM sampai penggunaan sisa swap di penyimpanan fisik sangat dibutuhkan.</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSWAP adalah kompresi cache ringan untuk memori swap. Ini mengambil beberapa memori yang sedang dalam proses penukaran keluar dan permintaan kompresi untuk secara dinamis di alokasi ke RAM pada pool memori. Zswap pada dasarnya menukar pergerakan CPU untuk mempotensikan pengurangan penukaran I/O.</string>
+  <string name="memory_pool">Pool penyimpanan</string>
+  <string name="memory_pool_summary">Persentasi pool memori dari memori utama yang mungkin telah menggunakan bagian cache yang telah terkompresi.</string>
+  <string name="maximum_compression_ratio">Rasio kompresi maksimal</string>
+  <string name="maximum_compression_ratio_summary">Kompresi ratio maksimal, dengan persentasi, untuk persetujuan bagian yang terkompresi. Bagian mana yang tidak terkompresi oleh setidaknya rasio ini akan ditolak.</string>
   <!-- Entropy -->
   <string name="available">Tersedia</string>
   <string name="poolsize">Poolsize</string>
@@ -574,6 +602,8 @@
   <string name="dynamic_fsync_summary">Ketika aktif dan layar hidup, operasi fsync menjadi asynchronous. Ketika layar mati, operasi ini menjadi synchronously</string>
   <string name="gentlefairsleepers">Keadilan adil sleepers</string>
   <string name="gentlefairsleepers_summary">Hanya memberikan 50% sleepers dari layanan. Menonaktifkan dapat menghemat sedikit daya baterai.</string>
+  <string name="arch_power">Kekuatan Arch</string>
+  <string name="arch_power_summary">Aktifkan kekuatan fungsi/penghematan spesifik Arch.</string>
   <string name="power_suspend_mode">Modus Penangguh Daya</string>
   <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks dan Tingkat Hook Tertinggi otomatis dikelola oleh kernel, untuk mengaktifkan atau menonaktifkan Kondisi Penangguh Daya secara manual, pilih Modus Pengguna.</string>
   <string name="autosleep">Autosleep</string>
@@ -599,14 +629,55 @@
   <string name="wlan_ctrl_wakelock_summary">Mencegah wlan_ctrl wakelock.</string>
   <string name="wlan_wakelock">wlan Wakelock</string>
   <string name="wlan_wakelock_summary">Mencegah wlan wakelock.</string>
+  <string name="bluesleep_wakelock">Wakelock BlueSleep</string>
+  <string name="bluesleep_wakelock_summary">Mencegah wakelock BlueSleep</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock pembagi</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock pembagi</string>
+  <string name="bcmdhd_wakelock_divider">BCMDHD pembagi wakelock</string>
+  <!-- Data Sharing -->
   <!-- Custom Controls -->
+  <string name="welcome">Selamat Datang</string>
+  <string name="custom_controls_summary">Di bagian ini kamu dapat membuat atau mengimpor kontrol kustom, yang belum / tidak ada di aplikasi.</string>
+  <string name="example">Contoh</string>
+  <string name="custom_controls_example_summary">Perlu Contoh? Klik &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\"&gt;here&lt;a&gt;.</string>
+  <string name="create">Buat</string>
+  <string name="import_item">Impor</string>
+  <string name="control_switch">Alihkan</string>
+  <string name="control_seekbar">Seekbar</string>
+  <string name="title">Judul</string>
+  <string name="description">Deskripsi</string>
+  <string name="applying">Menerapkan</string>
+  <string name="switch_enabled_summary">Apakah pengalihan telah diaktifkan, Kembali ke 1 untuk mengaktifkan dan 0 untuk menonaktifkan.</string>
+  <string name="switch_apply_summary">Pengalihan akan kembali ke 1 (aktif) atau 0 (nonaktif) sebagai argumen ke skrip shell anda.</string>
+  <string name="seekbar_min">Minimal</string>
+  <string name="seekbar_max">Maksimal</string>
+  <string name="seekbar_progress">Proses</string>
+  <string name="seekbar_progress_summary">Keadaan saat ini di seekbar, Dengan mendefinisikan minimal dan maksimal integer array dapat membuat. Untuk contoh: Minimal adalah 50 dan Maksimal adalah 100 dan proses adalah 0, itu dapat berarti 50 dari keadaan saat ini dar seekbar.</string>
+  <string name="seekbar_apply_summary">Seekbar akan kembali ke proses saat ini. Sebagai contoh nilai minimal anda adalah 50 dan maksimal adalah 100 dan seekbar ada di 70, maka ini akan kembali ke 20 sebagai proses.</string>
+  <string name="control_generic">Umum</string>
+  <string name="generic_value">Nilai</string>
+  <string name="generic_value_summary">Nilai saat ini dari editor. Dapat didasari oleh apa pun.</string>
+  <string name="generic_apply_summary">Editor akan kembali ke apa pun ketika sudah masuk.</string>
+  <string name="required">diperlukan</string>
+  <string name="hit_test">Anda harus menekan test terlebih dahulu!</string>
+  <string name="output">Keluaran</string>
   <string name="edit">Sunting</string>
+  <string name="export">Ekspor</string>
   <string name="delete">Hapus</string>
+  <string name="sure_question">Apakah adan yakin?</string>
   <string name="name">Nama</string>
+  <string name="already_exists">%s sudah tersedia!</string>
+  <string name="exported_item">%1$s Telah di ekspor ke %2$s</string>
+  <string name="name_empty">Nama kosong!</string>
+  <string name="import_malformed">Mengimpor file mengalamai kegagalan!</string>
+  <string name="import_wrong_version">Versi dari file yang diimpor terlalu tua!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Tidak dapat menemukan dukungan dari kernel! Silahkan periksa akses internet anda.</string>
+  <string name="download_error">Gagal untuk mengunduh %s.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Memeriksa md5</string>
+  <string name="md5_mismatch">File yang telah diunduh memiliki MD5 yang berbeda. Ini memiliki diikuti dengan beberapa alasan:\n\n\u2022 File yang anda unduh telah korup\n\u2022 Pengembang salah dalam mendeklarasikan MD5\n\nCoba untuk mendownload file ini lagi. Jika anda masih mengalami kegagalan, silahkan hubungi pengembang kernel ini.</string>
+  <string name="install">Pasang</string>
   <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Saya akan menggunakan tangan saya</string>
@@ -615,10 +686,20 @@
   <string name="flashing">Flashing</string>
   <string name="restoring">Mengembalikan</string>
   <!-- Backup -->
+  <string name="boot_partition">Partisi boot</string>
+  <string name="recovery_partition">Partisi Recovery (Pemulihan)</string>
+  <string name="fota_partition">Partisi Fota</string>
+  <string name="flash">Install</string>
   <!-- Build prop Editor -->
+  <string name="add">Tambah</string>
+  <string name="backup_item">%1$s telah di cadangkan ke %2$s</string>
+  <string name="item_count">%s unit</string>
+  <string name="items_count">%s beberapa unit</string>
   <string name="key">Tombol</string>
   <string name="value">Nilai</string>
+  <string name="key_empty">Kunci tidak dapat kosong!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Didalam mode profil penggantian yang anda lakukan tidak memiliki dampak ke dalam penerapan dalam boot.</string>
   <string name="applied">Diterapkan</string>
   <!-- Recovery -->
   <string name="wipe_data">Hapus Data</string>
