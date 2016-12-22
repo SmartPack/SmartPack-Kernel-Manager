@@ -413,9 +413,14 @@ public class OverallFragment extends RecyclerViewFragment {
                             mFreqs = new int[CPUFreq.getCpuCount()];
                         }
                         for (int i = 0; i < mFreqs.length; i++) {
-                            if (RootUtils.SUClosed()) break;
+                            if (getActivity() == null) break;
                             mFreqs[i] = CPUFreq.getCurFreq(i);
                         }
+
+                        if (getActivity() == null) {
+                            RootUtils.closeSU();
+                        }
+
                         mThread = null;
                     }
                 });

@@ -151,6 +151,7 @@
     <!-- CPU -->
     <string name="cores_singular">%d core</string>
     <string name="cores">%d cores</string>
+    <string name="cpu_usage">CPU Usage</string>
     <string name="no_offline_core">You can\'t offline this core!</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
     <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>

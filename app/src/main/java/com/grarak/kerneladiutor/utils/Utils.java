@@ -74,6 +74,15 @@ public class Utils {
     public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
 
+    public static float getAverage(float... numbers) {
+        float average = 0;
+        for (float num : numbers) {
+            average += num;
+        }
+        average /= numbers.length;
+        return average;
+    }
+
     public static String getRandomString(int length) {
         Random random = new Random();
         String text = "";

@@ -648,27 +648,20 @@ public class CPUFreq {
 
     public static float[] getCpuUsage() {
         try {
-            Usage[] usage1 = getUsages();
+            Usage[] prevUsage = getUsages();
             Thread.sleep(500);
-            Usage[] usage2 = getUsages();
+            Usage[] usage = getUsages();
 
-            if (usage1 != null && usage2 != null) {
-                float[] pers = new float[usage1.length];
-                for (int i = 0; i < usage1.length; i++) {
-                    long idle1 = usage1[i].getIdle();
-                    long up1 = usage1[i].getUptime();
+            if (prevUsage != null && usage != null) {
+                float[] pers = new float[prevUsage.length];
+                for (int i = 0; i < prevUsage.length; i++) {
+                    float prevIdle = prevUsage[i].getIdle();
+                    float prevUp = prevUsage[i].getUptime();
 
-                    long idle2 = usage2[i].getIdle();
-                    long up2 = usage2[i].getUptime();
+                    float idle = usage[i].getIdle();
+                    float up = usage[i].getUptime();
 
-                    float cpu = -1f;
-                    if (idle1 >= 0 && up1 >= 0 && idle2 >= 0 && up2 >= 0) {
-                        if ((up2 + idle2) > (up1 + idle1) && up2 >= up1) {
-                            cpu = (up2 - up1) / (float) ((up2 + idle2) - (up1 + idle1));
-                            cpu *= 100.0f;
-                        }
-                    }
-
+                    float cpu = (up - prevUp) / ((up + idle) - (prevUp + prevIdle)) * 100;
                     pers[i] = cpu < 0 ? 0 : cpu > 100 ? 100 : cpu;
                 }
                 return pers;
@@ -700,7 +693,7 @@ public class CPUFreq {
         private Usage(String stats) {
             if (stats == null) return;
 
-            String[] values = stats.replace("  ", " ").split(" ");
+            String[] values = stats.replaceAll("\\s{2,}", " ").trim().split(" ");
             this.stats = new long[values.length - 1];
             for (int i = 0; i < this.stats.length; i++) {
                 this.stats[i] = Utils.strToLong(values[i + 1]);
@@ -708,19 +701,19 @@ public class CPUFreq {
         }
 
         public long getUptime() {
-            if (stats == null) return -1L;
-            long l = 0L;
-            for (int i = 0; i < stats.length; i++) {
-                if (i != 3) l += stats[i];
+            if (stats == null) return 0;
+            long l = 0;
+            for (int i = 0; i < stats.length - 2; i++) {
+                if (i != 3 && i != 4) l += stats[i];
             }
             return l;
         }
 
         private long getIdle() {
             try {
-                return stats == null ? -1L : stats[3];
+                return stats == null ? 0 : stats[3] + stats[4];
             } catch (ArrayIndexOutOfBoundsException e) {
-                return -1L;
+                return 0;
             }
         }
 
