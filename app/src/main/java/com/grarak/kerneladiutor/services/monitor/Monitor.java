@@ -52,7 +52,7 @@ public class Monitor extends Service {
                 long time = System.nanoTime();
                 int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 
-                if (mLevel > level && mTime != 0 && mLevel - level > 0) {
+                if (mLevel != 0 && mLevel > level && mTime != 0 && mTime < time && mLevel - level > 0) {
                     mTimes.add(TimeUnit.SECONDS.convert((time - mTime) / (mLevel - level),
                             TimeUnit.NANOSECONDS));
                 }
@@ -60,8 +60,11 @@ public class Monitor extends Service {
                 mTime = time;
             }
 
-            if (mTimes.size() >= 15) {
+            if (mTimes.size() % 15 == 0) {
                 postCreate(mTimes.toArray(new Long[mTimes.size()]));
+                if (mTimes.size() >= 100) {
+                    mTimes.clear();
+                }
             }
         }
     };
