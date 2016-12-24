@@ -32,6 +32,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.StringRes;
@@ -73,6 +74,14 @@ public class Utils {
     private static final String TAG = Utils.class.getSimpleName();
     public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
+
+    public static boolean isScreenOn(Context context) {
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return powerManager.isInteractive();
+        }
+        return powerManager.isScreenOn();
+    }
 
     public static float getAverage(float... numbers) {
         float average = 0;

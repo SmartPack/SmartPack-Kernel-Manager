@@ -34,6 +34,8 @@ public class Monitor extends Service {
     private long mTime;
     private List<Long> mTimes;
     private Server mServer;
+    private boolean mScreenOn;
+    private boolean mCalculating;
 
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
@@ -45,26 +47,44 @@ public class Monitor extends Service {
                 mTimes = new ArrayList<>();
             }
 
-            if (charging) {
+            if (charging || !mScreenOn) {
                 mLevel = 0;
                 mTime = 0;
             } else {
+                mCalculating = true;
+
                 long time = System.nanoTime();
                 int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
 
                 if (mLevel != 0 && mLevel > level && mTime != 0 && mTime < time && mLevel - level > 0) {
-                    mTimes.add(TimeUnit.SECONDS.convert((time - mTime) / (mLevel - level),
-                            TimeUnit.NANOSECONDS));
+                    long seconds = TimeUnit.SECONDS.convert((time - mTime) / (mLevel - level),
+                            TimeUnit.NANOSECONDS);
+                    if (seconds >= 100) {
+                        mTimes.add(seconds);
+
+                        if (mTimes.size() % 15 == 0) {
+                            postCreate(mTimes.toArray(new Long[mTimes.size()]));
+                            if (mTimes.size() >= 100) {
+                                mTimes.clear();
+                            }
+                        }
+                    }
                 }
                 mLevel = level;
                 mTime = time;
             }
 
-            if (mTimes.size() % 15 == 0) {
-                postCreate(mTimes.toArray(new Long[mTimes.size()]));
-                if (mTimes.size() >= 100) {
-                    mTimes.clear();
-                }
+            mCalculating = false;
+        }
+    };
+
+    private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mScreenOn = intent.getAction().equals(Intent.ACTION_SCREEN_ON);
+            if (!mScreenOn && !mCalculating) {
+                mLevel = 0;
+                mTime = 0;
             }
         }
     };
@@ -135,6 +155,14 @@ public class Monitor extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         mServer = new Server("https://www.grarak.com");
         registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        IntentFilter screenFilter = new IntentFilter();
+        screenFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        screenFilter.addAction(Intent.ACTION_SCREEN_ON);
+        registerReceiver(mScreenReceiver, screenFilter);
+
+        mScreenOn = Utils.isScreenOn(this);
+
         return START_STICKY;
     }
 
@@ -142,6 +170,7 @@ public class Monitor extends Service {
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mBatteryReceiver);
+        unregisterReceiver(mScreenReceiver);
     }
 
 }
