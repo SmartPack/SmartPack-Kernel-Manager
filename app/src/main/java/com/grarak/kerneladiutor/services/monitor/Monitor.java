@@ -32,8 +32,8 @@ public class Monitor extends Service {
 
     private int mLevel;
     private long mTime;
-    private List<Long> mTimes;
-    private Server mServer;
+    private List<Long> mTimes = new ArrayList<>();
+    private Server mServer = new Server("https://www.grarak.com");
     private boolean mScreenOn;
     private boolean mCalculating;
 
@@ -42,10 +42,6 @@ public class Monitor extends Service {
         public void onReceive(Context context, Intent intent) {
             int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
             boolean charging = status == BatteryManager.BATTERY_STATUS_CHARGING;
-
-            if (mTimes == null) {
-                mTimes = new ArrayList<>();
-            }
 
             if (charging || !mScreenOn) {
                 mLevel = 0;
@@ -152,8 +148,9 @@ public class Monitor extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        mServer = new Server("https://www.grarak.com");
+    public void onCreate() {
+        super.onCreate();
+
         registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         IntentFilter screenFilter = new IntentFilter();
@@ -162,7 +159,10 @@ public class Monitor extends Service {
         registerReceiver(mScreenReceiver, screenFilter);
 
         mScreenOn = Utils.isScreenOn(this);
+    }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
     }
 
