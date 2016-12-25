@@ -47,6 +47,7 @@ import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.SynchronousQueue;
@@ -692,28 +693,35 @@ public class CPUFragment extends RecyclerViewFragment {
         }
 
         refreshCores(mCoresBig);
-        refreshCores(mCoresLITTLE);
+        if (CPUFreq.isBigLITTLE()) {
+            refreshCores(mCoresLITTLE);
+        }
     }
 
     private void refreshUsages(float[] usages, XYGraphView graph, List<Integer> cores) {
-        Float average = null;
-        for (int core : cores) {
-            if (core + 1 < usages.length && !CPUFreq.isOffline(core)) {
-                if (average == null) {
-                    average = Utils.getAverage(usages[core + 1]);
-                } else {
-                    average = Utils.getAverage(average, usages[core + 1]);
+        if (graph != null) {
+            Float average = null;
+            for (int core : cores) {
+                if (core + 1 < usages.length && !CPUFreq.isOffline(core)) {
+                    if (average == null) {
+                        average = Utils.getAverage(usages[core + 1]);
+                    } else {
+                        average = Utils.getAverage(average, usages[core + 1]);
+                    }
                 }
             }
-        }
-        if (average != null) {
-            graph.setText(Math.round(average) + "%");
-            graph.addPercentage(Math.round(average));
+            if (average != null) {
+                graph.setText(Math.round(average) + "%");
+                graph.addPercentage(Math.round(average));
+            }
         }
     }
 
     private void refreshCores(Map<Integer, SwitchView> map) {
-        for (Map.Entry<Integer, SwitchView> coreSet : map.entrySet()) {
+        Iterator<Map.Entry<Integer, SwitchView>> it = map.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<Integer, SwitchView> coreSet = it.next();
             SwitchView switchView = coreSet.getValue();
             if (switchView != null) {
                 final int core = coreSet.getKey();

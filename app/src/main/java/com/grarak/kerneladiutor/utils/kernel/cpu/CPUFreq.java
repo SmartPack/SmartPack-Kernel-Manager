@@ -74,8 +74,6 @@ public class CPUFreq {
     private static SparseArray<List<Integer>> sFreqs = new SparseArray<>();
     private static String[] sGovernors;
 
-    private static final String TAG = CPUFreq.class.getSimpleName();
-
     public static String getGovernorTunablesPath(int cpu, String governor) {
         if (Utils.existFile(Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor))) {
             return CPU_GOVERNOR_TUNABLES_CORE.replace("%s", governor);
@@ -469,16 +467,19 @@ public class CPUFreq {
                 } else {
                     file = Utils.strFormat(TIME_STATE_2, cpu);
                 }
-                String[] valueArray = Utils.readFile(file).trim().split("\\r?\\n");
-                List<Integer> freqs = new ArrayList<>();
-                for (String freq : valueArray) {
-                    long freqInt = Utils.strToLong(freq.split(" ")[0]);
-                    if (file.endsWith("opp_table")) {
-                        freqInt /= 1000;
+                String value = Utils.readFile(file);
+                if (value != null) {
+                    String[] valueArray = value.trim().split("\\r?\\n");
+                    List<Integer> freqs = new ArrayList<>();
+                    for (String freq : valueArray) {
+                        long freqInt = Utils.strToLong(freq.split(" ")[0]);
+                        if (file.endsWith("opp_table")) {
+                            freqInt /= 1000;
+                        }
+                        freqs.add((int) freqInt);
                     }
-                    freqs.add((int) freqInt);
+                    sFreqs.put(cpu, freqs);
                 }
-                sFreqs.put(cpu, freqs);
             } else if (Utils.existFile(Utils.strFormat(AVAILABLE_FREQS, cpu))) {
                 int readcpu = cpu;
                 boolean offline = isOffline(cpu);

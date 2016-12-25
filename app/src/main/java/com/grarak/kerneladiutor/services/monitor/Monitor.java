@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
@@ -96,6 +97,7 @@ public class Monitor extends Service {
                     data.put("android_id", Utils.getAndroidId(Monitor.this));
                     data.put("android_version", Device.getVersion());
                     data.put("kernel_version", Device.getKernelVersion(true, false));
+                    data.put("app_version", BuildConfig.VERSION_NAME);
                     data.put("board", Device.getBoard(false));
                     data.put("model", Device.getModel());
                     data.put("vendor", Device.getVendor());
