@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
-import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +79,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             viewGroup.removeView(view);
         }
         if (mItems.get(position).cardCompatible()
-                && Utils.DONATED
                 && Prefs.getBoolean("forcecards", false, view.getContext())) {
             CardView cardView = new CardView(view.getContext());
             cardView.setRadius(view.getResources().getDimension(R.dimen.cardview_radius));
