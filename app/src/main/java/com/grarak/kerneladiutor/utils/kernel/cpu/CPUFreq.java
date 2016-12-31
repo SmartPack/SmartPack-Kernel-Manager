@@ -318,7 +318,10 @@ public class CPUFreq {
             }
 
             if (Utils.existFile(Utils.strFormat(CPU_AVAILABLE_GOVERNORS, 0))) {
-                sGovernors = Utils.readFile(Utils.strFormat(CPU_AVAILABLE_GOVERNORS, 0)).split(" ");
+                String value = Utils.readFile(Utils.strFormat(CPU_AVAILABLE_GOVERNORS, 0));
+                if (value != null) {
+                    sGovernors = value.split(" ");
+                }
             }
 
             if (offline) {

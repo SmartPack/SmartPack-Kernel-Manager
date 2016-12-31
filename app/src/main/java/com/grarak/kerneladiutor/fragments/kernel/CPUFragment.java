@@ -20,7 +20,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
-import android.util.Log;
+import android.util.SparseArray;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -46,13 +46,11 @@ import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by willi on 01.05.16.
@@ -71,8 +69,8 @@ public class CPUFragment extends RecyclerViewFragment {
     private SelectView mCPUMaxScreenOffLITTLE;
     private SelectView mCPUGovernorLITTLE;
 
-    private Map<Integer, SwitchView> mCoresBig = new HashMap<>();
-    private Map<Integer, SwitchView> mCoresLITTLE = new HashMap<>();
+    private SparseArray<SwitchView> mCoresBig = new SparseArray<>();
+    private SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
 
     private float[] mCPUUsages;
     private int mCPUMaxFreqBig;
@@ -717,32 +715,32 @@ public class CPUFragment extends RecyclerViewFragment {
         }
     }
 
-    private void refreshCores(Map<Integer, SwitchView> map) {
-        Iterator<Map.Entry<Integer, SwitchView>> it = map.entrySet().iterator();
+    private void refreshCores(SparseArray<SwitchView> array) {
+        try {
+            for (int i = 0; i < array.size(); i++) {
+                SwitchView switchView = array.valueAt(i);
+                if (switchView != null) {
+                    final int core = array.keyAt(i);
+                    int freq = CPUFreq.getCurFreq(core);
 
-        while (it.hasNext()) {
-            Map.Entry<Integer, SwitchView> coreSet = it.next();
-            SwitchView switchView = coreSet.getValue();
-            if (switchView != null) {
-                final int core = coreSet.getKey();
-                int freq = CPUFreq.getCurFreq(core);
-
-                String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
-                        + getString(R.string.mhz);
-                switchView.clearOnSwitchListener();
-                switchView.setChecked(freq != 0);
-                switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
-                switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                    @Override
-                    public void onChanged(SwitchView switchView, boolean isChecked) {
-                        if (core == 0) {
-                            Utils.toast(R.string.no_offline_core, getActivity());
-                        } else {
-                            CPUFreq.onlineCpu(core, isChecked, true, getActivity());
+                    String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
+                            + getString(R.string.mhz);
+                    switchView.clearOnSwitchListener();
+                    switchView.setChecked(freq != 0);
+                    switchView.setSummary(getString(R.string.core, core + 1) + " - " + freqText);
+                    switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                        @Override
+                        public void onChanged(SwitchView switchView, boolean isChecked) {
+                            if (core == 0) {
+                                Utils.toast(R.string.no_offline_core, getActivity());
+                            } else {
+                                CPUFreq.onlineCpu(core, isChecked, true, getActivity());
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
+        } catch (ConcurrentModificationException ignored) {
         }
     }
 }

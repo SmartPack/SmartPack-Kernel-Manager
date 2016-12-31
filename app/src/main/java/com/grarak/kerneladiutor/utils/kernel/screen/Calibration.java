@@ -312,8 +312,11 @@ public class Calibration {
                 }
                 break;
             default:
-                for (String color : Utils.readFile(COLOR).split(" ")) {
-                    list.add(String.valueOf(Utils.strToLong(color)));
+                String value = Utils.readFile(COLOR);
+                if (value != null) {
+                    for (String color : value.split(" ")) {
+                        list.add(String.valueOf(Utils.strToLong(color)));
+                    }
                 }
                 break;
         }
