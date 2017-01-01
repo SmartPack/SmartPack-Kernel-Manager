@@ -248,5 +248,21 @@
       "D2005"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nicki.json"
+  },
+  { 
+    "vendor": [
+      "LeEco",	
+      "LeTv"
+    ],
+    "device": [
+      "s2",
+      "X526",
+      "x526",
+      "le_s2",
+      "le_ww_s2",
+      "le_s2_ww"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/s2.json"
   }
 ]
+
