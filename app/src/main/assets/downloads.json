@@ -166,6 +166,38 @@
   },
   {
     "vendor": [
+      "motorola",
+      "Motorola"
+    ],
+    "device": [
+      "falcon",
+      "falcon_umts",
+      "falcon_gpe",
+      "falcon_cdma",
+      "XT1031",
+      "XT1032",
+      "XT1033",
+      "XT1034"
+    ],
+    "link": "https://raw.githubusercontent.com/BryanByteZero/KernelAdiutor/master/download/falcon.json"
+  },
+  {
+    "vendor": [
+      "motorola",
+      "Motorola"
+    ],
+    "device": [
+      "peregrine",
+      "peregrine_umts",
+      "peregrine_cdma",
+      "XT1039",
+      "XT1040",
+      "XT1045"
+    ],
+    "link": "https://raw.githubusercontent.com/BryanByteZero/KernelAdiutor/master/download/peregrine.json" 
+  },
+  {  
+    "vendor": [
       "YU"
     ],
     "device": [
