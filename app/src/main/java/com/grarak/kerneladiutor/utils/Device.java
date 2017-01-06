@@ -233,6 +233,13 @@ public class Device {
             return getString("vendor_id", root);
         }
 
+        public static String getCpuInfo(boolean root) {
+            if (CPUINFO == null) {
+                load(root);
+            }
+            return CPUINFO;
+        }
+
         private static String getString(String prefix, boolean root) {
             if (CPUINFO == null) {
                 load(root);
