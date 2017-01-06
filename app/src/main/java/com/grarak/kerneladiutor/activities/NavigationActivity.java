@@ -25,6 +25,7 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -113,76 +114,6 @@ public class NavigationActivity extends BaseActivity
     public final static List<NavigationFragment> sFragments = new ArrayList<>();
     public final static LinkedHashMap<Integer, Fragment> sActualFragments = new LinkedHashMap<>();
 
-    private static final NavigationFragment mDownloadsFragment = new NavigationFragment(R.string.downloads);
-
-    static {
-        sFragments.add(new NavigationFragment(R.string.statistics));
-        sFragments.add(new NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_chart));
-        sFragments.add(new NavigationFragment(R.string.device, new DeviceFragment(), R.drawable.ic_device));
-        if (Device.MemInfo.getItems().size() > 0) {
-            sFragments.add(new NavigationFragment(R.string.memory, new MemoryFragment(), R.drawable.ic_save));
-        }
-        sFragments.add(new NavigationFragment(R.string.inputs, new InputsFragment(), R.drawable.ic_keyboard));
-        sFragments.add(new NavigationFragment(R.string.kernel));
-        sFragments.add(new NavigationFragment(R.string.cpu, new CPUFragment(), R.drawable.ic_cpu));
-        if (Voltage.supported()) {
-            sFragments.add(new NavigationFragment(R.string.cpu_voltage, new CPUVoltageFragment(), R.drawable.ic_bolt));
-        }
-        if (Hotplug.supported()) {
-            sFragments.add(new NavigationFragment(R.string.cpu_hotplug, new CPUHotplugFragment(), R.drawable.ic_switch));
-        }
-        if (Thermal.supported()) {
-            sFragments.add(new NavigationFragment(R.string.thermal, new ThermalFragment(), R.drawable.ic_temperature));
-        }
-        if (GPU.supported()) {
-            sFragments.add(new NavigationFragment(R.string.gpu, new GPUFragment(), R.drawable.ic_gpu));
-        }
-        if (Screen.supported()) {
-            sFragments.add(new NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_display));
-        }
-        if (Wake.supported()) {
-            sFragments.add(new NavigationFragment(R.string.wake, new WakeFrament(), R.drawable.ic_unlock));
-        }
-        if (Sound.supported()) {
-            sFragments.add(new NavigationFragment(R.string.sound, new SoundFragment(), R.drawable.ic_music));
-        }
-        sFragments.add(new NavigationFragment(R.string.battery, new BatteryFragment(), R.drawable.ic_battery));
-        if (LED.supported()) {
-            sFragments.add(new NavigationFragment(R.string.led, new LEDFragment(), R.drawable.ic_led));
-        }
-        if (IO.supported()) {
-            sFragments.add(new NavigationFragment(R.string.io_scheduler, new IOFragment(), R.drawable.ic_sdcard));
-        }
-        if (KSM.supported()) {
-            sFragments.add(new NavigationFragment(R.string.ksm, new KSMFragment(), R.drawable.ic_merge));
-        }
-        if (LMK.supported()) {
-            sFragments.add(new NavigationFragment(R.string.lmk, new LMKFragment(), R.drawable.ic_stackoverflow));
-        }
-        sFragments.add(new NavigationFragment(R.string.virtual_memory, new VMFragment(), R.drawable.ic_server));
-        if (Entropy.supported()) {
-            sFragments.add(new NavigationFragment(R.string.entropy, new EntropyFragment(), R.drawable.ic_numbers));
-        }
-        sFragments.add(new NavigationFragment(R.string.misc, new MiscFragment(), R.drawable.ic_clear));
-        sFragments.add(new NavigationFragment(R.string.tools));
-        sFragments.add(new NavigationFragment(R.string.data_sharing, new DataSharingFragment(), R.drawable.ic_database));
-        sFragments.add(new NavigationFragment(R.string.custom_controls, new CustomControlsFragment(), R.drawable.ic_console));
-        sFragments.add(mDownloadsFragment);
-        if (Backup.hasBackup()) {
-            sFragments.add(new NavigationFragment(R.string.backup, new BackupFragment(), R.drawable.ic_restore));
-        }
-        sFragments.add(new NavigationFragment(R.string.build_prop_editor, new BuildpropFragment(), R.drawable.ic_edit));
-        sFragments.add(new NavigationFragment(R.string.profile, new ProfileFragment(), R.drawable.ic_layers));
-        sFragments.add(new NavigationFragment(R.string.recovery, new RecoveryFragment(), R.drawable.ic_security));
-        sFragments.add(new NavigationFragment(R.string.initd, new InitdFragment(), R.drawable.ic_shell));
-        sFragments.add(new NavigationFragment(R.string.on_boot, new OnBootFragment(), R.drawable.ic_start));
-        sFragments.add(new NavigationFragment(R.string.other));
-        sFragments.add(new NavigationFragment(R.string.settings, new SettingsFragment(), R.drawable.ic_settings));
-        sFragments.add(new NavigationFragment(R.string.about, new AboutFragment(), R.drawable.ic_about));
-        sFragments.add(new NavigationFragment(R.string.contributors, new ContributorsFragment(), R.drawable.ic_people));
-        sFragments.add(new NavigationFragment(R.string.help, new HelpFragment(), R.drawable.ic_help));
-    }
-
     private static Callback sCallback;
 
     private interface Callback {
@@ -206,9 +137,109 @@ public class NavigationActivity extends BaseActivity
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (sFragments.size() <= 0) {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    initFragments();
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void aVoid) {
+                    super.onPostExecute(aVoid);
+
+                    for (NavigationActivity.NavigationFragment fragment : sFragments) {
+                        if (fragment.mId == R.string.downloads) {
+                            fragment.mFragment = new SettingsFragment();
+                            fragment.mDrawable = R.drawable.ic_download;
+                        }
+                    }
+
+                    init(savedInstanceState);
+                }
+            }.execute();
+        } else {
+            init(savedInstanceState);
+        }
+    }
+
+    private void initFragments() {
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.statistics));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_chart));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.device, new DeviceFragment(), R.drawable.ic_device));
+        if (Device.MemInfo.getItems().size() > 0) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.memory, new MemoryFragment(), R.drawable.ic_save));
+        }
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.inputs, new InputsFragment(), R.drawable.ic_keyboard));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.kernel));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu, new CPUFragment(), R.drawable.ic_cpu));
+        if (Voltage.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_voltage, new CPUVoltageFragment(), R.drawable.ic_bolt));
+        }
+        if (Hotplug.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_hotplug, new CPUHotplugFragment(), R.drawable.ic_switch));
+        }
+        if (Thermal.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.thermal, new ThermalFragment(), R.drawable.ic_temperature));
+        }
+        if (GPU.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.gpu, new GPUFragment(), R.drawable.ic_gpu));
+        }
+        if (Screen.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_display));
+        }
+        if (Wake.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, new WakeFrament(), R.drawable.ic_unlock));
+        }
+        if (Sound.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.sound, new SoundFragment(), R.drawable.ic_music));
+        }
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.battery, new BatteryFragment(), R.drawable.ic_battery));
+        if (LED.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.led, new LEDFragment(), R.drawable.ic_led));
+        }
+        if (IO.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.io_scheduler, new IOFragment(), R.drawable.ic_sdcard));
+        }
+        if (KSM.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.ksm, new KSMFragment(), R.drawable.ic_merge));
+        }
+        if (LMK.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.lmk, new LMKFragment(), R.drawable.ic_stackoverflow));
+        }
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.virtual_memory, new VMFragment(), R.drawable.ic_server));
+        if (Entropy.supported()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.entropy, new EntropyFragment(), R.drawable.ic_numbers));
+        }
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, new MiscFragment(), R.drawable.ic_clear));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.data_sharing, new DataSharingFragment(), R.drawable.ic_database));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, new CustomControlsFragment(), R.drawable.ic_console));
+
+        SupportedDownloads supportedDownloads = new SupportedDownloads(this);
+        if (supportedDownloads.getLink() != null) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.downloads, DownloadsFragment.newInstance(supportedDownloads), R.drawable.ic_download));
+        }
+        if (Backup.hasBackup()) {
+            sFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, new BackupFragment(), R.drawable.ic_restore));
+        }
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.build_prop_editor, new BuildpropFragment(), R.drawable.ic_edit));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, new ProfileFragment(), R.drawable.ic_layers));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.recovery, new RecoveryFragment(), R.drawable.ic_security));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, new InitdFragment(), R.drawable.ic_shell));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, new OnBootFragment(), R.drawable.ic_start));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.settings));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.about, new AboutFragment(), R.drawable.ic_about));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, new ContributorsFragment(), R.drawable.ic_people));
+        sFragments.add(new NavigationActivity.NavigationFragment(R.string.help, new HelpFragment(), R.drawable.ic_help));
+    }
+
+    private void init(Bundle savedInstanceState) {
         int result = Prefs.getInt("license", -1, this);
         int intentResult = getIntent().getIntExtra("result", -1);
 
@@ -256,14 +287,6 @@ public class NavigationActivity extends BaseActivity
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
         setSupportActionBar(toolbar);
-
-        SupportedDownloads support = new SupportedDownloads(this);
-        if (support.getLink() != null) {
-            mDownloadsFragment.mFragment = DownloadsFragment.newInstance(support);
-            mDownloadsFragment.mDrawable = R.drawable.ic_download;
-        } else {
-            sFragments.remove(mDownloadsFragment);
-        }
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, 0, 0);
@@ -537,11 +560,11 @@ public class NavigationActivity extends BaseActivity
         public Fragment mFragment;
         private int mDrawable;
 
-        private NavigationFragment(int id) {
+        NavigationFragment(int id) {
             this(id, null, 0);
         }
 
-        private NavigationFragment(int id, Fragment fragment, int drawable) {
+        NavigationFragment(int id, Fragment fragment, int drawable) {
             mId = id;
             mFragment = fragment;
             mDrawable = drawable;
