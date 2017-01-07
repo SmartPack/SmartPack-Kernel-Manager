@@ -49,6 +49,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
@@ -65,6 +66,9 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.codetail.animation.SupportAnimator;
+import io.codetail.animation.ViewAnimationUtils;
 
 /**
  * Created by willi on 16.04.16.
@@ -90,6 +94,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     private ViewPagerAdapter mViewPagerAdapter;
     private View mViewPagerParent;
     private ViewPager mViewPager;
+    private View mViewPagerShadow;
     private CirclePageIndicator mCirclePageIndicator;
 
     private FloatingActionButton mTopFab;
@@ -141,6 +146,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
         mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
+        mViewPagerShadow = mRootView.findViewById(R.id.viewpager_shadow);
+        mViewPagerShadow.setVisibility(View.INVISIBLE);
         mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
         resizeBanner();
         mViewPagerParent.setVisibility(View.INVISIBLE);
@@ -282,6 +289,32 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                         public void run() {
                             mRecyclerView.scrollToPosition(0);
                             mLayoutManager.scrollToPosition(0);
+
+                            mRecyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_bottom));
+                        }
+                    });
+                    mViewPager.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            int cx = mViewPager.getWidth();
+
+                            SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
+                                    mViewPager, cx / 2, 0, 0, cx);
+                            animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
+                                @Override
+                                public void onAnimationStart() {
+                                    super.onAnimationStart();
+                                    mViewPager.setVisibility(View.VISIBLE);
+                                }
+
+                                @Override
+                                public void onAnimationEnd() {
+                                    super.onAnimationEnd();
+                                    mViewPagerShadow.setVisibility(View.VISIBLE);
+                                }
+                            });
+                            animator.setDuration(400);
+                            animator.start();
                         }
                     });
                     mLoader = null;

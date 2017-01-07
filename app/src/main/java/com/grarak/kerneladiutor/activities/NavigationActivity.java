@@ -153,9 +153,9 @@ public class NavigationActivity extends BaseActivity
                     super.onPostExecute(aVoid);
 
                     for (NavigationActivity.NavigationFragment fragment : sFragments) {
-                        if (fragment.mId == R.string.downloads) {
+                        if (fragment.mId == R.string.settings) {
                             fragment.mFragment = new SettingsFragment();
-                            fragment.mDrawable = R.drawable.ic_download;
+                            fragment.mDrawable = R.drawable.ic_settings;
                         }
                     }
 
