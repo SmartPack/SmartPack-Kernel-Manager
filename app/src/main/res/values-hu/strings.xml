@@ -19,6 +19,7 @@
   <string name="cancel">Mégse</string>
   <string name="ok">OK</string>
   <string name="unknown">Ismeretlen</string>
+  <string name="license_invalid">Köszönöm, hogy megvásárolta a támogatói alkalmazást! Sajnos a licenc ellenőrzése sikertelen. Kérjük, próbálkozzon később. Ha még mindig nem működik, lépjen kapcsolatba velem. Internet hozzáférésre van szükség!</string>
   <string name="pirated">Úgy látszik a támogatói alkalmazás nem a Play Áruházon keresztül lett megvásárolva! Ha lekalózkodtad, akkor szégyelld magad!</string>
   <string name="donate">Támogatás</string>
   <string name="donate_summary">Ez a szolgáltatás csak akkor vehető igénybe, ha a támogatói alkalmazás telepítve van! Mégse aggódj. Mivel ez az alkalmazás nyit forráskódú, így könnyen magad is építheted eltávolítva ezt az ellenőrzést. De remélem támogatod a fejlesztőket. Köszönjük, hogy a Kernel Adiutor-t használod! Ha megvásároltad a támogatói alkalmazást, akkor újra kell indítani a Kernel Adiutor-t ahhoz, hogy minden funkció engedélyezésre kerüljön.</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">Virtuális memória</string>
   <string name="entropy">Entrópia</string>
   <string name="misc">Egyéb</string>
+  <string name="data_sharing">Adatok megosztása</string>
   <string name="custom_controls">Egyéni vezérlők</string>
   <string name="downloads">Letöltések</string>
   <string name="backup">Biztonsági mentés</string>
@@ -483,6 +485,7 @@
   <string name="area">Terület</string>
   <string name="width">Szélesség</string>
   <string name="height">Magasság</string>
+  <string name="vibration">Rezgés</string>
   <string name="vibration_strength">Rezgés erőssége</string>
   <!-- Sound -->
   <string name="sound_control">Hangvezérlő</string>
@@ -637,6 +640,7 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Mivel sok ember küzd azzal, hogy megtalálja az eszközéhez megfelelő beállításokat és a haladó felhasználók iránymutatása kell neki, ezt ötlöttem ki.\n\nEz a szolgáltatás a haladó felhasználók számára gyűjti a beállításokat majd a cpu és az akkumulátor teljesítményt méri. A legjobb beállítás minden chipset számára elérhető lesz utána mindenkinek. Ez az alkalmazás nem gyűjt semmilyen személyes adatot!</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>

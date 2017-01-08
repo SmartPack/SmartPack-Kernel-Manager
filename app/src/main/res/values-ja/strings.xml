@@ -19,6 +19,7 @@
   <string name="cancel">キャンセル</string>
   <string name="ok">OK</string>
   <string name="unknown">不明</string>
+  <string name="license_invalid">寄付アプリをご購入いただきありがとうございます！ 残念ながらライセンスの確認に失敗しました。 後でもう一度お試しください。 それでも動作しない場合は、私に連絡してください。 あなたはインターネットへのアクセスが必要です！</string>
   <string name="pirated">このアプリはGoogle Play経由で購入されていないようです!海賊版を使っているなら恥を知りなさい!!</string>
   <string name="donate">寄付する</string>
   <string name="donate_summary">この機能は寄付アプリがインストール済みの際のみ有効です!心配しないでください。何故ならこのアプリはオープンソフトウェアで自分自身でビルド出来このチェックを除去することが可能です。しかし開発者のサポートを希望します。Kernel Adiutorを頂き有難うございます!寄付アプリを購入後全機能を有効化するにはKernel Adiotorを再起動する必要があります。</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">仮想メモリ</string>
   <string name="entropy">エントロピー</string>
   <string name="misc">その他</string>
+  <string name="data_sharing">データ共有</string>
   <string name="custom_controls">カスタムコントロール</string>
   <string name="downloads">ダウンロード</string>
   <string name="backup">バックアップ</string>
@@ -484,6 +486,7 @@
   <string name="area">エリア</string>
   <string name="width">幅</string>
   <string name="height">高さ</string>
+  <string name="vibration">バイブレーション</string>
   <string name="vibration_strength">バイブの強さ</string>
   <!-- Sound -->
   <string name="sound_control">サウンド操作</string>
@@ -637,6 +640,7 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock ディバイダー</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">多くの人たちがデバイスの適切な設定を見つけるのに苦労している為、上級ユーザーによるガイダンスがより必要です。\n\nこの機能は、そんな上級ユーザーの設定を収集し、CPUとバッテリーのパフォーマンスを測定します。 各チップセットでの最適な設定は、後で全ての人が利用できるようになります。 このアプリケーションは個人情報を収集しません！</string>
   <!-- Custom Controls -->
   <string name="welcome">ようこそ</string>
   <string name="custom_controls_summary">このセクションではアプリでは(未だ)提供されていないカスタムコントロールを作成・インポートすることが可能です。</string>

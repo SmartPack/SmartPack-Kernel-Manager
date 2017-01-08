@@ -86,6 +86,7 @@
   <string name="virtual_memory">الذاكرة الافتراضية</string>
   <string name="entropy">انتروبيا</string>
   <string name="misc">متنوع</string>
+  <string name="data_sharing">مشاركة البيانات</string>
   <string name="custom_controls">تخصيص التحكم</string>
   <string name="downloads">التحميلات</string>
   <string name="backup">نسخة احتياطية</string>
@@ -128,6 +129,7 @@
   <string name="product">المنتج</string>
   <string name="version">الاصدار</string>
   <!-- CPU -->
+  <string name="cores_singular">أساسي %d</string>
   <string name="no_offline_core">لا يمكنك جعل هذه النواة غير متصلة!</string>
   <string name="cpu_max_freq">التردد الاقصى للمعالج</string>
   <string name="cpu_max_freq_summary">تعيين الجداول الخاصة بل ترددات القصوى للمعالج.</string>

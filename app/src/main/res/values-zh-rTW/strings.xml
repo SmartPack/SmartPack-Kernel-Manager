@@ -8,7 +8,7 @@
   <string name="collecting_info">蒐集資訊中</string>
   <string name="no_root">沒有 Root 權限</string>
   <string name="no_busybox">沒有 Busybox 指令</string>
-  <string name="open">開啟 %s</string>
+  <string name="open">開啟％S</string>
   <!-- Security -->
   <string name="password">密碼</string>
   <string name="password_wrong">密碼錯誤</string>
@@ -34,18 +34,18 @@
   <string name="apply_on_boot_complete">設定值套用 成功！</string>
   <string name="apply_on_boot_canceled">設定值套用 已取消。</string>
   <string name="not_in_range">不在有效的範圍內</string>
-  <string name="options">選項</string>
+  <string name="options">設定</string>
   <string name="more">更多</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">系統權限拒絕對裝置進行寫入</string>
   <!-- Editor -->
   <string name="save">儲存</string>
   <!-- File Picker -->
-  <string name="select_question">選擇 %s 嗎？</string>
+  <string name="select_question">選擇％S嗎？</string>
   <string name="wrong_extension">請選擇一個檔案來對 %s 進行擴充</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
-  <string name="celsius">º C</string>
+  <string name="celsius">？C</string>
   <string name="fahrenheit">℉</string>
   <string name="mb">MB</string>
   <string name="ms">毫秒</string>
@@ -57,7 +57,7 @@
   <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
-  <string name="statistics">統計資訊</string>
+  <string name="statistics">統計</string>
   <string name="kernel">核心</string>
   <string name="tools">工具</string>
   <string name="other">其他</string>
@@ -68,7 +68,7 @@
   <string name="inputs">輸入</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">CPU 電壓</string>
-  <string name="cpu_hotplug">CPU 熱插拔</string>
+  <string name="cpu_hotplug">CPU熱插拔</string>
   <string name="thermal">溫度管理</string>
   <string name="gpu">GPU</string>
   <string name="screen">螢幕</string>
@@ -76,12 +76,12 @@
   <string name="sound">聲音</string>
   <string name="battery">電池</string>
   <string name="led">LED</string>
-  <string name="io_scheduler">I/O 排程</string>
-  <string name="ksm">核心同頁合併(Kernel Samepage Merging)</string>
+  <string name="io_scheduler">I / O排程器</string>
+  <string name="ksm">內核Samepage合併</string>
   <string name="lmk">低記憶體清除機制</string>
   <string name="virtual_memory">虛擬記憶體</string>
   <string name="entropy">熵</string>
-  <string name="misc">雜項</string>
+  <string name="misc">其他設定</string>
   <string name="custom_controls">自訂控制</string>
   <string name="downloads">下載</string>
   <string name="backup">備份</string>
@@ -91,25 +91,25 @@
   <string name="initd">啟動腳本</string>
   <string name="on_boot">開機啟用</string>
   <string name="settings">設定</string>
-  <string name="about">關於</string>
+  <string name="about">關於本軟體</string>
   <string name="contributors">貢獻者</string>
   <string name="help">説明</string>
   <!-- Overall -->
-  <string name="offline">離線</string>
+  <string name="offline">離線使用</string>
   <string name="core">核心 %d</string>
   <string name="gpu_freq">GPU Frequency</string>
   <string name="refresh">重新整理</string>
-  <string name="reset">重新設置</string>
+  <string name="reset">重設</string>
   <string name="restore">還原</string>
   <string name="deep_sleep">深度睡眠</string>
   <string name="uptime">核心啟用時間</string>
   <string name="error_frequencies">載入頻率失敗</string>
   <string name="unused_frequencies">未使用的頻率</string>
   <!-- Device -->
-  <string name="processor">CPU 處理器</string>
+  <string name="processor">處理器</string>
   <string name="vendor">製造商</string>
   <string name="features">功能</string>
-  <string name="ram">記憶體</string>
+  <string name="ram">隨機存取存儲器</string>
   <string name="android_version">Android 版本</string>
   <string name="android_api_level">Android SDK 版本</string>
   <string name="android_codename">Android 代號</string>
@@ -140,9 +140,9 @@
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
   <string name="governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
   <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
-  <string name="tunables_error">%s 不可調整</string>
+  <string name="tunables_error">％S不可調整</string>
   <string name="manual">Manual</string>
-  <string name="mc_power_saving">多核心省電</string>
+  <string name="mc_power_saving">％S不可調整</string>
   <string name="mc_power_saving_summary">盡可能用最少的核心來分配處理任務</string>
   <string name="disabled">已停用</string>
   <string name="enabled">已啟用</string>
@@ -407,9 +407,9 @@
   <string name="min_brightness_summary">允許你將LCD螢幕亮度降得比原廠設定的低</string>
   <string name="max_brightness">最大亮度</string>
   <string name="max_brightness_summary">允許你將LCD螢幕亮度調得比原廠設定還高</string>
-  <string name="backlight_dimmer">背光源調光器</string>
-  <string name="threshold">門檻值</string>
-  <string name="offset">偏移量</string>
+  <string name="backlight_dimmer">背光調光器</string>
+  <string name="threshold">Threshold Value</string>
+  <string name="offset">Offset</string>
   <string name="negative_toggle_summary">啟用通過按選單按鈕四次即可反相螢幕顏色的功能</string>
   <string name="register_hook">註冊勾點</string>
   <string name="master_sequence">主序列</string>
@@ -418,7 +418,7 @@
   <!-- Wake -->
   <string name="dt2w">雙擊螢幕喚醒</string>
   <string name="dt2w_summary">雙擊螢幕來喚醒您的裝置</string>
-  <string name="center">中間</string>
+  <string name="center">Center</string>
   <string name="full">滿</string>
   <string name="bottom_half">下半部</string>
   <string name="top_half">上半部</string>

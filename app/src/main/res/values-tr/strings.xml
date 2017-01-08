@@ -19,6 +19,7 @@
   <string name="cancel">İptal</string>
   <string name="ok">Tamam</string>
   <string name="unknown">Bilinmeyen</string>
+  <string name="license_invalid">Bağış uygulamasını aldığınız için teşekkürler! Maalesef lisans kontrolü başarısız oldu. Lütfen daha sonra tekrar deneyin. Hâlâ çalışmıyorsa, lütfen bana ulaşın. İnternet erişimine ihtiyacınız var!</string>
   <string name="pirated">Bağış uygulaması Google Play\'den satın alınmamış gibi gözüküyor! Eğer korsan ise, o zaman yazıklar olsun!</string>
   <string name="donate">Bağış Yap</string>
   <string name="donate_summary">Bu özellik sadece bağıs uygulaması yüklüyken kullanabilir. Ama üzülme. Çünkü bu uygulama açık kaynak kodlu kendin kolayca uygulamayı oluşturabilirsin ve bu denetimi kaldırabilirsin. Ama yinede bize destek olmanı isteriz. Kernel Adiutor kullandığın için teşekkürler! Bağıs uygulamasını satın aldıysanız uygulamayı yeniden başlatmalısınız.</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">Sanal Bellek</string>
   <string name="entropy">Entropi</string>
   <string name="misc">Çeşitli</string>
+  <string name="data_sharing">Veri Paylaşımı</string>
   <string name="custom_controls">Özel denetimler</string>
   <string name="downloads">İndirilenler</string>
   <string name="backup">Yedekleme</string>
@@ -483,6 +485,7 @@
   <string name="area">Alan</string>
   <string name="width">Genişlik</string>
   <string name="height">Yükseklik</string>
+  <string name="vibration">Titreşim</string>
   <string name="vibration_strength">Titreşim Gücü</string>
   <!-- Sound -->
   <string name="sound_control">Ses Denetimi</string>
@@ -638,6 +641,7 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock bölücü</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock bölücü</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Birçok kişi cihazları için uygun ayarları bulmak için uğraştığından ve daha gelişmiş kullanıcılar tarafından yönlendirmeye ihtiyaç duyduğundan, bunu buldum.\n\nBu özellik, daha gelişmiş kullanıcıların ayarlarını toplayacak ve cpu ve pil performansını ölçecek. Her chipset için en iyi ayarlar daha sonra herkes tarafından kullanılabilecektir. Bu uygulama herhangi bir kişisel veri toplamaz!</string>
   <!-- Custom Controls -->
   <string name="welcome">Hoşgeldiniz</string>
   <string name="custom_controls_summary">Bu bölümde diğer kontrolleri oluşturabilir veya dışardan aktarabilirsiniz fakat şu anlık uygulamada bulunmamaktadır.</string>

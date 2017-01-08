@@ -46,6 +46,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Estatísticas</string>
@@ -55,6 +56,7 @@
   <!-- Menus -->
   <string name="overall">Geral</string>
   <string name="device">Dispositivo</string>
+  <string name="memory">Memória</string>
   <string name="inputs">Entradas</string>
   <string name="cpu">CPU</string>
   <string name="cpu_voltage">Voltagem do CPU</string>
@@ -71,6 +73,7 @@
   <string name="virtual_memory">Memória Virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Diversos</string>
+  <string name="data_sharing">Partilha de dados</string>
   <string name="custom_controls">Controles Personalizados</string>
   <string name="downloads">Transferências</string>
   <string name="backup">Cópia de Segurança</string>
@@ -90,7 +93,10 @@
   <string name="refresh">Atualizar</string>
   <string name="reset">Reiniciar</string>
   <string name="restore">Restaurar</string>
+  <string name="deep_sleep">Sono profundo</string>
   <string name="uptime">Uptime</string>
+  <string name="error_frequencies">Falha ao carregar frequências</string>
+  <string name="unused_frequencies">Frequências não utilizadas</string>
   <!-- Device -->
   <string name="processor">Processador</string>
   <string name="vendor">Fabricante</string>
@@ -100,6 +106,9 @@
   <string name="android_api_level">SDK de Android</string>
   <string name="android_codename">Nome de Código de Android</string>
   <string name="fingerprint">Assinatura Digital</string>
+  <string name="baseband">Banda base</string>
+  <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
   <string name="hardware">Hardware</string>
   <string name="architecture">Arquitetura</string>
   <!-- Inputs -->
@@ -119,6 +128,7 @@
   <string name="cpu_governor">Governador CPU</string>
   <string name="cpu_governor_tunables">Parâmetros governador CPU</string>
   <string name="tunables_error">%s não é ajustável</string>
+  <string name="manual">Manual</string>
   <string name="mc_power_saving">Modo de Poupança Multinuclear</string>
   <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possíveis.</string>
   <string name="disabled">Desativado</string>
@@ -140,6 +150,7 @@
   <string name="input_boost_freq">Frequência de entrada de Boost</string>
   <string name="input_boost_freq_summary">Frequência da CPU para ser impulsionado para esta frequência em cima da deteção de entrada.</string>
   <string name="wakeup_boost">WakeUp Boost</string>
+  <string name="hotplug_boost">Hotplug Boost</string>
   <string name="touch_boost">Toque Boost</string>
   <string name="touch_boost_summary">Isto irá aumentar sua velocidade mínima da CPU se você toca no ecrã ou pressione um botão.</string>
   <!-- CPU Voltage -->
@@ -232,6 +243,7 @@
   <string name="sampling_rate">Taxa de amostragem</string>
   <string name="cpu_down_rate">Taxa de CPU para baixo</string>
   <string name="cpu_up_rate">Taxa de CPU acordado</string>
+  <string name="thunderplug">Thunderplug</string>
   <string name="endurance_level">Nível de resistência</string>
   <string name="endurance_level_summary">Um perfil de economia de energia.</string>
   <string name="quad_core_mode">Modo Quad-Core</string>
@@ -243,6 +255,7 @@
   <string name="cycle_up">Ciclo para cima</string>
   <string name="core_control">Controlo do núcleo</string>
   <string name="hcube">H-Cube</string>
+  <string name="offline_delay">Atraso off-line</string>
   <!--Thermal-->
   <string name="thermal_info">Use apenas um condutor térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.</string>
   <string name="thermald">Thermald</string>
@@ -386,6 +399,7 @@
   <string name="area">Área</string>
   <string name="width">Largura</string>
   <string name="height">Altura</string>
+  <string name="vibration">Vibração</string>
   <string name="vibration_strength">Força de vibração</string>
   <!-- Sound -->
   <string name="sound_control">Controle de som</string>
@@ -456,6 +470,7 @@
   <!-- Virtual Memory -->
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disksize</string>
+  <string name="zswap">ZSWAP</string>
   <!-- Entropy -->
   <string name="available">Disponível</string>
   <string name="poolsize">Poolsize</string>
@@ -515,6 +530,7 @@
   <string name="delete">Excluir</string>
   <string name="sure_question">Tem a certeza?</string>
   <string name="name">Nome</string>
+  <string name="already_exists">%s já existe!</string>
   <string name="name_empty">O nome está vazio!</string>
   <!-- Downloads -->
   <string name="download_error">Falha a descarregar %s.</string>
@@ -534,6 +550,7 @@
   <string name="fota_partition">Partição de FOTA</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="add">Adicionar</string>
   <string name="item_count">%s item</string>
   <string name="items_count">%s itens</string>
   <string name="key">Chave</string>
@@ -575,10 +592,15 @@
   <string name="open_settings">Abrir configurações</string>
   <string name="fahrenheit_title">Fahrenheit</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="section_icons">Ícones de secção</string>
   <string name="instant">Instantâneo</string>
+  <string name="five_sec">5 Segundos</string>
   <string name="ten_sec">10 segundos</string>
   <string name="twenty_sec">20 segundos</string>
   <string name="fifty_sec">50 segundos</string>
+  <string name="nothing_apply">Nada encontrado para aplicar!</string>
+  <string name="confirmation_notification">Notificação de confirmação</string>
+  <string name="script">Script</string>
   <string name="debugging">Depuração</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Cópia do Logcat para /sdcard/logcat.txt</string>

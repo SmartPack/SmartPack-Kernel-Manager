@@ -19,6 +19,7 @@
   <string name="cancel">取消 </string>
   <string name="ok">确定</string>
   <string name="unknown">未知</string>
+  <string name="license_invalid">感谢您购买了捐赠版！可惜我们无法验证您的购买记录。请稍候再试。如果依然无法工作，请联系我。您需要保持网络畅通！</string>
   <string name="pirated">该捐赠版应用看上去并非通过Play商店购买！如果你是盗用它，那么你该感到羞愧！</string>
   <string name="donate">捐助</string>
   <string name="donate_summary">此功能仅在捐赠版应用安装后可用！别怕，本应用是开源软件，因此您可以轻松地自己构建它并删除此检查。尽管如此，我还是希望您支持开发人员。感谢您使用 Kernel Adiutor！购买捐赠版应用后，您必须重新启动 Kernel Adiutor 以启用所有功能。</string>
@@ -50,7 +51,7 @@
   <string name="mb">MB</string>
   <string name="ms">毫秒</string>
   <string name="mv">mV</string>
-  <string name="min">分钟</string>
+  <string name="min">最小</string>
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">虚拟内存</string>
   <string name="entropy">熵</string>
   <string name="misc">杂项</string>
+  <string name="data_sharing">数据分享</string>
   <string name="custom_controls">自定义控制</string>
   <string name="downloads">下载</string>
   <string name="backup">备份</string>
@@ -364,7 +366,7 @@
   <string name="gpu_governor_tunables">GPU 调速器微调</string>
   <string name="simple_gpu_algorithm">简单的 GPU 算法</string>
   <string name="simple_gpu_algorithm_summary">一个由 faux123 开发的 MSM Adreno TZ GPU 调度器扩展。</string>
-  <string name="laziness">懒惰</string>
+  <string name="laziness">Laziness</string>
   <string name="laziness_summary">这会增加升降 GPU 频率的阈值。阀值越低，手机性能就越好。</string>
   <string name="ramp_thresold">斜坡阀值</string>
   <string name="ramp_thresold_summary">增加的次数的 GPU 总督斜向下的请求。值越高越高，手机性能就越高！</string>
@@ -483,6 +485,7 @@
   <string name="area">地区</string>
   <string name="width">宽度</string>
   <string name="height">高度</string>
+  <string name="vibration">震动</string>
   <string name="vibration_strength">振动强度</string>
   <!-- Sound -->
   <string name="sound_control">声音控制</string>
@@ -637,6 +640,7 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">因为很多人很难找到适合自己设备的设置，需要资深用户指导，我想出了这个办法。\n\n这个功能会收集资深用户的设置，并测量该设置下cpu和续航的表现。每个芯片的最佳设置会在随后提供给所有人。应用不会收集任何个人信息！</string>
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
   <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>

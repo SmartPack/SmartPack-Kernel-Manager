@@ -19,6 +19,7 @@
   <string name="cancel">Cancelar</string>
   <string name="ok">Ok</string>
   <string name="unknown">Desconocido</string>
+  <string name="license_invalid">Gracias por comprar la aplicación de donación! Desafortunadamente la verificación de licencia falló. Por favor intenta nuevamente más tarde. Si todavía no está funcionando, por favor ponte en contacto conmigo. Necesitas acceso a internet!</string>
   <string name="pirated">Parece que la aplicación de la donación no fue adquirida a través de Play Store! Si lo piratea, entonces la vergüenza en usted!</string>
   <string name="donate">Donar</string>
   <string name="donate_summary">Esta función sólo está disponible cuando se instala la app de donación! No te preocupes, esta aplicación es de código abierto fácilmente puede construirlo usted mismo y quitar esta comprobación. Pero espero que usted apoya a los desarrolladores de todos modos. Gracias por usar Kernel Adiutor! Una vez que compraste la aplicación donación que tienes que reiniciar Adiutor Kernel para habilitar todas las funciones.</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">Memoria Virtual</string>
   <string name="entropy">Entropía</string>
   <string name="misc">Miscelaneos</string>
+  <string name="data_sharing">Intercambio de datos</string>
   <string name="custom_controls">Controles personalizados</string>
   <string name="downloads">Descargas</string>
   <string name="backup">Copia de seguridad</string>
@@ -483,6 +485,7 @@
   <string name="area">Área</string>
   <string name="width">Ancho</string>
   <string name="height">Altura</string>
+  <string name="vibration">Vibración</string>
   <string name="vibration_strength">Intensidad de vibración</string>
   <!-- Sound -->
   <string name="sound_control">Control de sonido</string>
@@ -637,6 +640,7 @@
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Ya que a muchos usuarios les cuesta encontrar la configuracion adecuada para sus dispositivos y necesitan la guia de usuarios avanzados, pense en esto.\n\nEsta funcion recolectara las configuraciones de usuarios avanzados y medira el rendimiento del CPU y la bateria. Las mejores configuraciones para cada chipset estaran disponibles para todo el mundo luego. Esto no recolectara ningun dato personal!</string>
   <!-- Custom Controls -->
   <string name="welcome">Bienvenido(a)</string>
   <string name="custom_controls_summary">En esta sección usted puede crear o importar controles personalizados, que no existen en la app (todavía).</string>

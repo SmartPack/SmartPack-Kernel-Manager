@@ -19,6 +19,7 @@
   <string name="cancel">Cancelar</string>
   <string name="ok">OK</string>
   <string name="unknown">Desconhecida</string>
+  <string name="license_invalid">Obrigado por adquirir o aplicativo de doação! Infelizmente, a verificação da licença falhou. Por favor, tente novamente mais tarde. Se ainda não estiver funcionando, contacte-me. É necessário acesso à internet!</string>
   <string name="pirated">Parece que o app de doação não foi adquirido através da Google Play! Se você o pirateou, deveria se envergonhar!</string>
   <string name="donate">Faça uma doação</string>
   <string name="donate_summary">Esse recurso está disponível somente quando o app de doação está instalado! Mas não se preocupe. Porque este app é de código aberto, você pode facilmente compilá-lo e remover esta verificação. Mas eu realmente espero que você apoie os desenvolvedores. Obrigado por usar o Kernel Adiutor! Uma vez que você comprou o app de doação, será necessário reiniciar o Kernel Adiutor para habilitar todos os recursos.</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">Memória Virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Diversos</string>
+  <string name="data_sharing">Compartilhamento de Dados</string>
   <string name="custom_controls">Controles Personalizados</string>
   <string name="downloads">Downloads</string>
   <string name="backup">Cópia de segurança</string>
@@ -483,6 +485,7 @@
   <string name="area">Área</string>
   <string name="width">Largura</string>
   <string name="height">Altura</string>
+  <string name="vibration">Vibração</string>
   <string name="vibration_strength">Intensidade da vibração</string>
   <!-- Sound -->
   <string name="sound_control">Controle de som</string>
@@ -637,6 +640,7 @@
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Tendo em vista que muitas pessoas se esforçam para encontrar as configurações adequadas para seu dispositivo e precisam de orientação por usuários mais avançados, surjo com esse objetivo.\n\nEsta funcionalidade irá recolher as definições dos usuários mais avançados e depois, medir o desempenho da cpu e da bateria. As melhores configurações para cada chipset estarão, em seguida, disponíveis para todas as pessoas. Esta aplicativo não irá coletar quaisquer dados pessoais!</string>
   <!-- Custom Controls -->
   <string name="welcome">Bem-vindo</string>
   <string name="custom_controls_summary">Nesta seção você pode criar ou importar controles personalizados, que não existem (ainda) no app.</string>

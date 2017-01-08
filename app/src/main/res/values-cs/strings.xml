@@ -8,6 +8,7 @@
   <string name="collecting_info">Shromažďování informací</string>
   <string name="no_root">Nemáte root oprávnění</string>
   <string name="no_busybox">Nemáte busybox</string>
+  <string name="open">Otevřít %s</string>
   <!-- Security -->
   <string name="password">Heslo</string>
   <string name="password_wrong">Špatné heslo</string>
@@ -18,6 +19,7 @@
   <string name="cancel">Zrušit</string>
   <string name="ok">OK</string>
   <string name="unknown">Neznámé</string>
+  <string name="license_invalid">Děkujeme za zakoupení příspěvkové aplikace! Bohužel, kontrola licence se nezdařila. Prosím zkuste to později. Pokud to stále nefunguje, prosím, kontaktujte mne. Je potřeba připojení k internetu!</string>
   <string name="pirated">Vypadá to, že příspěvek na aplikaci nebyl zakoupen přes Play Store! Pokud jsi pirát, styď se!</string>
   <string name="donate">Přispět</string>
   <string name="donate_summary">Tato funkce je dostupná pouze pokud je nainstalována aplikace darování. Nezoufejte! Tato aplikace je open source, takže si ji můžete sami sestavit a toto omezení odstranit. Přesto však doufáme, že vývojáře podpoříte. Děkujeme, že používáte Kernel Adiutor. Jakmile si aplikaci dárce zakoupíte, je třeba Kernel Adiutor restartovat pro zpřístupnění všech funkcí.</string>
@@ -81,6 +83,7 @@
   <string name="virtual_memory">Virtuální paměť</string>
   <string name="entropy">Entropie</string>
   <string name="misc">Různé</string>
+  <string name="data_sharing">Sdílení dat</string>
   <string name="custom_controls">Vlastní ovládací prvky</string>
   <string name="downloads">Stahování</string>
   <string name="backup">Zálohovat</string>
@@ -140,6 +143,7 @@
   <string name="governor_tunables_summary">Různá nastavení zvoleného Governoru.</string>
   <string name="cpu_governor_tunables_read_error">Nepodařilo se přistoupit k současnému CPU governoru.\n\nPokud používáte zařízení typu QCOM big.LITTLE, pak to je známý problém. Systém vynucuje nutí CPU vypnout jádra, což činí čtení CPU statistik extrémně obtížným. Zkuste zvolit toto nastavení znovu. CPU občas odmítne zapnout jádro.</string>
   <string name="tunables_error">%s se nedá ladit</string>
+  <string name="manual">Manuálně</string>
   <string name="mc_power_saving">Úspora energie více jader</string>
   <string name="mc_power_saving_summary">Snaha o seskupení úkolů na co nejméně jader.</string>
   <string name="disabled">Vypnuto</string>
@@ -153,6 +157,7 @@
   <string name="cpu_quiet_governor">Správce procesoru CPUQuiet</string>
   <string name="cpu_boost">CPU zrychlení</string>
   <string name="debug_mask">Ladící maska</string>
+  <string name="debug_mask_summary">Umožňuje aktivovat ladící masku pro operace.</string>
   <string name="interval">Interval</string>
   <string name="interval_summary">Minimální interval pro zvýšení taktů procesoru.</string>
   <string name="sync_threshold">Práh synchronizace</string>
@@ -218,15 +223,23 @@
   <string name="powersaver_mode_summary">Zapne jen 1 CPU s frekvencí @1728MHz.</string>
   <string name="up_threshold">Hranice zvýšení</string>
   <string name="up_threshold_summary">Po překročení této hranice ovladač zapne jedno další jádro.</string>
+  <string name="up_timer_cnt_summary">Časovač řízení pro aktivní jádra.</string>
+  <string name="down_timer_cnt_summary">Časovač řízení pro neaktivní jádra.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul myfluxi.</string>
   <string name="history_size">Velikost historie</string>
+  <string name="update_rate">Rychlost aktualizace</string>
+  <string name="fast_lane_load_summary">Zlepšení odezvy okamžitým zapojením všech jader v případě, že aktuální zatížení některého jádra je nad určitou hranicí.</string>
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul franciscofranco.</string>
   <string name="cpus_on_touch">Počet CPU při doteku</string>
   <string name="cpus_on_touch_summary">Počet zapnutých CPU při dotyku obrazovky nebo stisku tlačítka.</string>
   <string name="first_level">První úroveň</string>
+  <string name="first_level_summary">Hranice pro zapojení všech jader.</string>
+  <string name="load_threshold">Hranice zatížení</string>
+  <string name="load_threshold_summary">Hranice pro zapojení všech jader.</string>
+  <string name="max_load_counter">Počítadlo maximálního zatížení</string>
   <string name="timer">Časovač</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
@@ -245,8 +258,10 @@
   <string name="pause">Pauza</string>
   <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul Alucard.</string>
+  <string name="sampling_rate">Vzorkovací frekvence</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul varunchitre15.</string>
+  <string name="min_cpu_online_screen_off_summary">Minimální počet jader, která budou zapnuta při vypnuté obrazovce.</string>
   <string name="endurance_level_summary">Úsporný profil.</string>
   <string name="quad_core_mode">Režim Quad-Core</string>
   <string name="dual_core_mode">Režim Dual-Core</string>
@@ -294,6 +309,7 @@
   <string name="simple_gpu_algorithm_summary">Doplněk pro správce grafiky MSM Adreno TZ, vyvinutý uživatelem faux123.</string>
   <string name="workload">Pracovní vytížení</string>
   <!-- Screen -->
+  <string name="screen_color">Barvy obrazovky</string>
   <string name="red">Červená</string>
   <string name="green">Zelená</string>
   <string name="blue">Modrá</string>
@@ -331,6 +347,7 @@
   <string name="full">Celá</string>
   <string name="bottom_half">Dolní polovina</string>
   <string name="top_half">Horní polovina</string>
+  <string name="half">Polovina</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Probuzení zařízení přejetím po displeji.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -358,6 +375,9 @@
   <string name="draw_w">Nakreslení W</string>
   <string name="draw_c">Nakreslení C</string>
   <string name="draw_m">Nakreslení M</string>
+  <string name="camera_gesture_summary">Spustit výchozí fotoaparát nakreslením kruhu na obrazovku.</string>
+  <string name="pocket_mode">Režim v kapse</string>
+  <string name="pocket_mode_summary">Povolení této volby vypne prvky probouzející zařízení, když je zařízení v kapse.</string>
   <string name="timeout">Časový limit</string>
   <string name="timeout_summary">Nastavení doby po vypnutí obrazovky, kdy budou ovladače probuzení vypnuty.</string>
   <string name="power_key_suspend">Odstavení klávesou napájení</string>
@@ -365,6 +385,7 @@
   <string name="area">Oblast</string>
   <string name="width">Šířka</string>
   <string name="height">Výška</string>
+  <string name="vibration">Vibrace</string>
   <string name="vibration_strength">Intenzita vibrace</string>
   <!-- Sound -->
   <string name="sound_control">Ovládání zvuku</string>
@@ -381,16 +402,23 @@
   <string name="capacity">Kapacita</string>
   <string name="usb_fast_charge">Rychlé USB nabíjení</string>
   <string name="usb_fast_charge_summary">Rychlejší nabíjení zařízení při připojení přes USB. Při změně této volby odpojte a znovu zapojte nabíječku.</string>
+  <string name="blx">Prodloužení výdrže baterie</string>
   <string name="blx_summary">Nastavení omezení kapacity, na kterou bude baterie nabita pomocí hodnoty mezi 0 a 100.</string>
   <string name="charge_rate">Rychlost nabíjení</string>
   <string name="charging_current">Nabíjecí proud</string>
   <string name="charging_current_summary">Nastavit nabíjecí proud. Upozornění: Více jak 1250 mA může poškodit regulátor nabíjení.</string>
   <!-- LED -->
+  <string name="intensity">Intenzita</string>
   <string name="speed">Rychlost</string>
+  <string name="stock">Základní</string>
+  <string name="continuous_light">Nepřetržité světlo</string>
+  <string name="bright_light_environment">Jasně osvětlené prostředí</string>
+  <string name="low_light_environment">Slabě osvětlené prostředí</string>
   <string name="notification">Upozornění</string>
   <string name="on">ZAP</string>
   <string name="off">VYP</string>
   <string name="test">Zkouška</string>
+  <string name="led_test_summary">Test LED diody s Vaším nastavením.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Vnitřní uložiště</string>
   <string name="external_storage">Externí úložiště</string>
@@ -400,7 +428,18 @@
   <string name="scheduler_tunable_summary">Různé možnosti konfigurace, které závisí na použitém plánovači.</string>
   <string name="read_ahead">Čtení předem</string>
   <string name="read_ahead_summary">Read-ahead hodnota pro paměť zařízení.</string>
+  <string name="iostats">I/O statistiky</string>
   <!-- Kernel Samepage Merging -->
+  <string name="full_scans">Úplné skenování</string>
+  <string name="pages_shared">Sdílené stránky</string>
+  <string name="pages_sharing">Sdílení stránek</string>
+  <string name="pages_unshared">Nesdílené stránky</string>
+  <string name="pages_volatile">Nestálé stránky</string>
+  <string name="ksm_summary">Snižuje využití paměti, ale má vliv na využití procesoru.</string>
+  <string name="pages_to_scan">Stránky pro skenování</string>
+  <string name="sleep_milliseconds">Uspání mezi skenováním (ms)</string>
+  <string name="deferred_timer_summary">Snižuje využití procesoru za cenu menší úspory paměti.</string>
+  <string name="max_cpu_usage">Maximální zatížení CPU</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplikace v popředí</string>
   <string name="visible_app">Viditelné aplikace</string>
@@ -423,6 +462,8 @@
   <string name="fsync">Fsync</string>
   <string name="power_suspend_mode">Režim odstavení výkonu</string>
   <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks a Highest Level Hook jsou automaticky spravovány jádrem operačního systému. Pro ruční zapnutí nebo vypnutí stavu odstavení výkonu zvolte uživatelský režim.</string>
+  <string name="autosleep">Automatické uspání</string>
+  <string name="userspace">Uživatelský prostor</string>
   <string name="lcd_panel">LCD panel</string>
   <string name="hybrid">Hybridní</string>
   <string name="power_suspend_state">Stav odstavení výkonu</string>
@@ -448,13 +489,31 @@
   <string name="applying">Použití</string>
   <string name="seekbar_min">Min</string>
   <string name="seekbar_max">Max</string>
+  <string name="seekbar_progress">Stav</string>
+  <string name="control_generic">Obecný</string>
+  <string name="generic_value">Hodnota</string>
+  <string name="generic_value_summary">Aktuální hodnota editoru. Může být v podstatě cokoliv.</string>
+  <string name="generic_apply_summary">Editor vrátí cokoliv, co bylo zadáno.</string>
   <string name="required">vyžadováno</string>
+  <string name="hit_test">Nejdříve stiskněte test!</string>
+  <string name="output">Výstup</string>
   <string name="edit">Upravit</string>
+  <string name="export">Export</string>
   <string name="delete">Smazat</string>
   <string name="sure_question">Opravdu chcete pokračovat?</string>
   <string name="name">Název</string>
+  <string name="already_exists">%s již existuje!</string>
+  <string name="exported_item">%1$s byl exportován do %2$s</string>
+  <string name="name_empty">Název není vyplněn!</string>
+  <string name="import_malformed">Import soubor je poškozen!</string>
+  <string name="import_wrong_version">Verze import souboru je příliš stará!</string>
   <!-- Downloads -->
+  <string name="downloads_error">Nelze najít žádný podporovaný kernel! Prosím zkontrolujte své internetové připojení.</string>
+  <string name="download_error">Nepodařilo se stáhnout %s.</string>
   <string name="downloading_counting">%1$s/%2$s</string>
+  <string name="check_md5">Kontrola md5</string>
+  <string name="md5_mismatch">Stažený soubor má jinou hodnotu kontrolního součtu MD5. To může mít několik důvodů:\n\n\u2022 Stažený soubor je porušený\n\u2022 Vývojář deklaroval chybné MD5\n\nZkuste soubor stáhnout znovu. Pokud se stále bude zobrazovat tato chyba, prosím kontaktujte vývojáře daného kernelu.</string>
+  <string name="install">Nainstalovat</string>
   <string name="cwm_recovery">CWM Recovery menu</string>
   <string name="twrp">TWRP</string>
   <string name="manual_flashing">Udělám to ručně</string>
@@ -467,9 +526,15 @@
   <string name="recovery_partition">Oddíl pro obnovení</string>
   <!-- Build prop Editor -->
   <string name="add">Přidat</string>
+  <string name="backup_item">%1$s byla zálohována do %2$s</string>
+  <string name="item_count">%s položka</string>
+  <string name="items_count">%s položek</string>
   <string name="key">Klíč</string>
   <string name="value">Hodnota</string>
+  <string name="key_empty">Klíč nemůže být prázdný!</string>
   <!-- Profile -->
+  <string name="profile_warning">Vše co zde změníte bude uloženo do Vašeho profilu. Ale pozor! Vaše nastavení bude použito, ale nebude uloženo pro použití po spuštění.</string>
+  <string name="no_changes">Nebyly provedeny žádné změny!</string>
   <string name="applied">Použito</string>
   <string name="select_all">Vybrat vše</string>
   <!-- Recovery -->
@@ -481,8 +546,12 @@
   <string name="emulate_initd">Emulace Init.d</string>
   <string name="executing">Provádění</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Zde je zobrazeno co se stane při zapnutí zařízení. Pokud zde nic není, nic se po zapnutí nestane.</string>
   <string name="delete_question">Odstranit %s?</string>
+  <string name="arguments">Parametry: %s</string>
+  <string name="disable_question">Zakázat %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Otevřít Nastavení</string>
   <string name="fahrenheit_title">Stupňe Fahrenheita</string>
   <string name="fahrenheit_summary">Používat stupeňe Fahrenheita pro měření teploty.</string>
   <string name="force_english">Vynutit použití angličtiny</string>
@@ -490,6 +559,8 @@
   <string name="dark_theme">Tmavý motiv</string>
   <string name="material_icon">Ikona Material</string>
   <string name="accent_color">Barva zvýraznění</string>
+  <string name="section_icons">Ikony sekcí</string>
+  <string name="section_icons_summary">Ukáže ikonu pro každou sekci navigační lišty.</string>
   <string name="instant">Bez prodlevy</string>
   <string name="five_sec">5 vteřin</string>
   <string name="ten_sec">10 vteřin</string>
@@ -524,6 +595,7 @@
   <string name="password_not_match">Zadaná hesla nesouhlasí</string>
   <string name="password_too_long">Heslo je příliš dlouhé (max. 32 znaků)</string>
   <string name="set_password_first">Nejprve nastavte heslo</string>
+  <string name="fingerprint_summary">Použít otisk prstu pro bezpečnostní kontrolu. Toto bude fungovat dokud budete mít zaznamenané otisky prstu.</string>
   <string name="sections">Sekce</string>
   <!-- About -->
   <string name="about_me">Ahoj, já jsem Willi Ye aka Grarak, devatenáctiletý student žijící ve Vídni. Vyvíjím na Androidu už docela dlouho. Vedle Kernel Adiutoru také spravuju CyanogenMod pro několik zařízení a pracuji na ParanoidAndroidu. Tak prosím pochopte, pokud nebudu mít čas tuto aplikaci aktualizovat.</string>

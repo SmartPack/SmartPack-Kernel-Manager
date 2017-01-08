@@ -31,6 +31,7 @@
   <string name="options">Opciones</string>
   <string name="more">Más</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">¡Ñegóse\'l permisu pa escribir nel almacenamientu!</string>
   <!-- Editor -->
   <string name="save">Guardar</string>
   <!-- File Picker -->
