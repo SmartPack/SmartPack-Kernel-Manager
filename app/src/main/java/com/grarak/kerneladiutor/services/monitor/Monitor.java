@@ -101,7 +101,7 @@ public class Monitor extends Service {
                     data.put("board", Device.getBoard(false));
                     data.put("model", Device.getModel());
                     data.put("vendor", Device.getVendor());
-                    data.put("cpuinfo", Utils.decodeString(Device.CPUInfo.getCpuInfo(false)));
+                    data.put("cpuinfo", Utils.encodeString(Device.CPUInfo.getCpuInfo(false)));
 
                     JSONArray commands = new JSONArray();
                     Settings settings = new Settings(Monitor.this);

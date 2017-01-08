@@ -146,6 +146,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         }
         mViewPagerParent = mRootView.findViewById(R.id.viewpagerparent);
         mViewPager = (ViewPager) mRootView.findViewById(R.id.viewpager);
+        mViewPager.setVisibility(View.INVISIBLE);
         mViewPagerShadow = mRootView.findViewById(R.id.viewpager_shadow);
         mViewPagerShadow.setVisibility(View.INVISIBLE);
         mCirclePageIndicator = (CirclePageIndicator) mRootView.findViewById(R.id.indicator);
