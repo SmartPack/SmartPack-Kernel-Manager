@@ -27,6 +27,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by willi on 31.12.15.
@@ -375,14 +377,25 @@ public class Device {
         sBoardFormatters.put("mt\\d*.", new BoardFormatter() {
             @Override
             public String format(String board) {
-                return "msm" + board.split("mt")[1].trim().split(" ")[0];
+                return "mt" + board.split("mt")[1].trim().split(" ")[0];
             }
         });
 
         sBoardFormatters.put(".*apq.+.\\d+.*", new BoardFormatter() {
             @Override
             public String format(String board) {
-                return "msm" + board.split("apq")[1].trim().split(" ")[0];
+                return "apq" + board.split("apq")[1].trim().split(" ")[0];
+            }
+        });
+
+        sBoardFormatters.put(".*omap+\\d.*", new BoardFormatter() {
+            @Override
+            public String format(String board) {
+                Matcher matcher = Pattern.compile("omap+\\d").matcher(board);
+                if (matcher.find()) {
+                    return matcher.group();
+                }
+                return null;
             }
         });
 
