@@ -399,6 +399,20 @@ public class Device {
             }
         });
 
+        sBoardFormatters.put("sun+\\d.", new BoardFormatter() {
+            @Override
+            public String format(String board) {
+                return board;
+            }
+        });
+
+        sBoardFormatters.put("spyder", new BoardFormatter() {
+            @Override
+            public String format(String board) {
+                return "omap4";
+            }
+        });
+
         sBoardAliases.put("msm8994v2.1", "msm8994");
         sBoardAliases.put("msm8974pro.*", "msm8974pro");
     }
