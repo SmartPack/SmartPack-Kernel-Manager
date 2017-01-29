@@ -102,6 +102,7 @@ public class Monitor extends Service {
                     data.put("model", Device.getModel());
                     data.put("vendor", Device.getVendor());
                     data.put("cpuinfo", Utils.encodeString(Device.CPUInfo.getCpuInfo(false)));
+                    data.put("fingerprint", Device.getFingerprint());
 
                     JSONArray commands = new JSONArray();
                     Settings settings = new Settings(Monitor.this);
