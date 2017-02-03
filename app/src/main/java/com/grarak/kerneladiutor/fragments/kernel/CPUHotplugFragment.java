@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AutoSmp;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.BluPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.CoreCtl;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.IntelliPlug;
+import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.LazyPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MBHotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MSMHotplug;
@@ -69,6 +70,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         }
         if (IntelliPlug.supported()) {
             intelliPlugInit(items);
+        }
+        if (LazyPlug.supported()) {
+            lazyPlugInit(items);
         }
         if (BluPlug.supported()) {
             bluPlugInit(items);
@@ -132,6 +136,126 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         items.add(mpdecision);
         mEnableViews.add(mpdecision);
+    }
+
+    private void lazyPlugInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> lazyplug = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.lazyplug));
+
+        if (LazyPlug.hasLazyPlugEnable()) {
+            SwitchView enable = new SwitchView();
+            enable.setTitle(getString(R.string.lazyplug));
+            enable.setSummary(getString(R.string.lazyplug_summary));
+            enable.setChecked(LazyPlug.isLazyPlugEnabled());
+            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    LazyPlug.enableLazyPlug(isChecked, getActivity());
+                }
+            });
+
+            lazyplug.add(enable);
+            mEnableViews.add(enable);
+        }
+
+        if (LazyPlug.hasLazyPlugProfile()) {
+            SelectView profile = new SelectView();
+            profile.setTitle(getString(R.string.profile));
+            profile.setSummary(getString(R.string.cpu_hotplug_profile_summary));
+            profile.setItems(LazyPlug.getLazyPlugProfileMenu(getActivity()));
+            profile.setItem(LazyPlug.getLazyPlugProfile());
+            profile.setOnItemSelected(new SelectView.OnItemSelected() {
+                @Override
+                public void onItemSelected(SelectView selectView, int position, String item) {
+                    LazyPlug.setLazyPlugProfile(position, getActivity());
+                }
+            });
+
+            lazyplug.add(profile);
+        }
+
+        if (LazyPlug.hasLazyPlugTouchBoost()) {
+            SwitchView touchBoost = new SwitchView();
+            touchBoost.setTitle(getString(R.string.touch_boost));
+            touchBoost.setSummary(getString(R.string.touch_boost_summary));
+            touchBoost.setChecked(LazyPlug.isLazyPlugTouchBoostEnabled());
+            touchBoost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    LazyPlug.enableLazyPlugTouchBoost(isChecked, getActivity());
+                }
+            });
+
+            lazyplug.add(touchBoost);
+        }
+
+        if (LazyPlug.hasLazyPlugHysteresis()) {
+            SeekBarView hysteresis = new SeekBarView();
+            hysteresis.setTitle(getString(R.string.hysteresis));
+            hysteresis.setSummary(getString(R.string.hysteresis_summary));
+            hysteresis.setMax(17);
+            hysteresis.setProgress(LazyPlug.getLazyPlugHysteresis());
+            hysteresis.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    LazyPlug.setLazyPlugHysteresis(position, getActivity());
+                }
+            });
+
+            lazyplug.add(hysteresis);
+        }
+
+        if (LazyPlug.hasLazyPlugThreshold()) {
+            SeekBarView threshold = new SeekBarView();
+            threshold.setTitle(getString(R.string.cpu_threshold));
+            threshold.setSummary(getString(R.string.cpu_threshold_summary));
+            threshold.setMax(1250);
+            threshold.setProgress(LazyPlug.getLazyPlugThreshold());
+            threshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    LazyPlug.setLazyPlugThreshold(position, getActivity());
+                }
+            });
+
+            lazyplug.add(threshold);
+        }
+
+        if (LazyPlug.hasLazyPlugPossibleCores()) {
+            SeekBarView possibleCores = new SeekBarView();
+            possibleCores.setTitle(getString(R.string.possible_cpu_cores));
+            possibleCores.setSummary(getString(R.string.possible_cpu_cores_summary));
+            possibleCores.setMax(CPUFreq.getCpuCount());
+            possibleCores.setMin(1);
+            possibleCores.setProgress(LazyPlug.getLazyPlugPossibleCores() - 1);
+            possibleCores.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    LazyPlug.setLazyPlugPossibleCores(position + 1, getActivity());
+                }
+            });
+
+            lazyplug.add(possibleCores);
+        }
+
+        if (lazyplug.size() > 0) {
+            lazyplug.add(title);
+            items.addAll(lazyplug);
+        }
     }
 
     private void intelliPlugInit(List<RecyclerViewItem> items) {

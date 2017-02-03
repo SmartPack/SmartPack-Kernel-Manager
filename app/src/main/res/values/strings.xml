@@ -207,6 +207,8 @@
     <string name="mpdecision_summary">Qualcomm\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by faux123.</string>
+    <string name="lazyplug">LazyPlug</string>
+    <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by arter97.</string>
     <string name="cpu_hotplug_profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
     <string name="insanity">InSaNiTy</string>
     <string name="balanced">Balanced</string>
@@ -215,6 +217,7 @@
     <string name="eco_insanity">Eco InSaNiTy</string>
     <string name="eco_performance">Eco Performance</string>
     <string name="eco_conservative">Eco Conservative</string>
+    <string name="lazy">Lazy</string>
     <string name="tri">Tri</string>
     <string name="eco">Eco</string>
     <string name="strict">Strict</string>
@@ -234,6 +237,8 @@
     <string name="max_cpu_online_summary">Maximum number of CPUs that will be always online.</string>
     <string name="max_cpu_online_screen_off">Maximum CPU Screen Off</string>
     <string name="max_cpu_online_screen_off_summary">Maximum number of CPUs that will be online when the screen is off.</string>
+    <string name="possible_cpu_cores">Possible CPU Cores</string>
+    <string name="possible_cpu_cores_summary">Possible CPU Cores that lazyplug can use.</string>
     <string name="suspend_defer_time">Suspend Defer Time</string>
     <string name="defer_sampling">Defer Sampling</string>
     <string name="boost_lock_duration">Boost Lock Duration</string>
