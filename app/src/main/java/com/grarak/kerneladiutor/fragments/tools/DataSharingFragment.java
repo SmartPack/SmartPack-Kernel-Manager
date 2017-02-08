@@ -19,8 +19,11 @@
  */
 package com.grarak.kerneladiutor.fragments.tools;
 
+import android.content.Intent;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
@@ -46,6 +49,11 @@ public class DataSharingFragment extends RecyclerViewFragment {
         datasharing.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
+                if (isChecked) {
+                    getActivity().startService(new Intent(getActivity(), Monitor.class));
+                } else {
+                    getActivity().stopService(new Intent(getActivity(), Monitor.class));
+                }
                 Prefs.saveBoolean("data_sharing", isChecked, getActivity());
             }
         });
