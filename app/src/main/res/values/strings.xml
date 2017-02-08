@@ -241,6 +241,11 @@
     <string name="down_lock_duration">Down Lock Duration</string>
     <string name="down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
     <string name="fshift">FShift</string>
+    <string name="lazyplug">LazyPlug</string>
+    <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by arter97.</string>
+    <string name="lazy">Lazy</string>
+    <string name="possible_cpu_cores">Possible CPU Cores</string>
+    <string name="possible_cpu_cores_summary">Possible CPU Cores that lazyplug can use.</string>
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
     <string name="powersaver_mode">Powersaver Mode</string>
