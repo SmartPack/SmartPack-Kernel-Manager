@@ -8,6 +8,7 @@
   <string name="collecting_info">Info verzamelen</string>
   <string name="no_root">Geen root</string>
   <string name="no_busybox">Geen busybox</string>
+  <string name="open">Open %s</string>
   <!-- Security -->
   <string name="password">Wachtwoord</string>
   <string name="password_wrong">Onjuist wachtwoord</string>
@@ -81,6 +82,7 @@
   <string name="virtual_memory">Virtueel Geheugen</string>
   <string name="entropy">Entropie</string>
   <string name="misc">Overige</string>
+  <string name="data_sharing">Data Delen</string>
   <string name="custom_controls">Aangepaste besturingsmethoden</string>
   <string name="downloads">Downloads</string>
   <string name="backup">Back-up</string>
@@ -127,6 +129,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d core</string>
   <string name="cores">%d cores</string>
+  <string name="cpu_usage">Processor gebruik</string>
   <string name="no_offline_core">U kunt deze core niet offline zetten!</string>
   <string name="cpu_max_freq">Maximale CPU Frequentie</string>
   <string name="cpu_max_freq_summary">Stel de maximale frequentie van de CPU in</string>
@@ -318,6 +321,7 @@
   <string name="vdd_restriction">VDD beperking</string>
   <string name="freq_throttle_temp">Temperatuur frequentieversnelling</string>
   <string name="freq_throttle_temp_summary">Temperatuur voor versnellen frequenties.</string>
+  <string name="cpu_throttle_temp_summary">Maximale temperatuur voordat de processors uitgezet moeten worden.</string>
   <string name="freq_step">Frequentiestap</string>
   <string name="immediately_limit_stop">Grens Onmiddellijk Afbreken</string>
   <string name="poll">Stemming</string>
@@ -351,15 +355,35 @@
   <string name="gpu_2d_governor">GPU 2D Gouverneur</string>
   <string name="laziness">Luiheid</string>
   <!-- Screen -->
+  <string name="screen_color">Scherm kleur</string>
+  <string name="red">Rood</string>
   <string name="green">Groen</string>
   <string name="blue">Blauw</string>
   <string name="min_rgb">Ondergrens RGB waarde</string>
   <string name="invert_screen">Scherm omkeren</string>
   <string name="saturation_intensity">Saturatie intensiteit</string>
   <string name="grayscale_mode">Grijstinten mode</string>
+  <string name="screen_hue">Scherm tint</string>
   <string name="screen_hue_summary">Je kunt problemen krijgen met MSM8x26 SoC bij invoer van een hoge waarde.</string>
   <string name="screen_value">Schermwaarde</string>
   <string name="screen_contrast">Schermcontrast</string>
+  <string name="high_brightness_mode">Hoge helderheid modus</string>
+  <string name="srgb">sRGB</string>
+  <string name="gamma">Gamma</string>
+  <string name="red_greys">Rode Grijswaarden</string>
+  <string name="red_mids">Rode Middenwaarden</string>
+  <string name="red_blacks">Rode Zwartwaarden</string>
+  <string name="red_whites">Rode Witwaarden</string>
+  <string name="green_greys">Groen Grijswaarden</string>
+  <string name="green_mids">Groene Midwaarden</string>
+  <string name="green_blacks">Groene Zwartwaarden</string>
+  <string name="green_whites">Groen Witwaarden</string>
+  <string name="blue_greys">Blauwe Grijswaarden</string>
+  <string name="blue_mids">Blauwe Midwaarden</string>
+  <string name="blue_blacks">Blauwe Zwartwaarden</string>
+  <string name="blue_whites">Blauwe Witwaarden</string>
+  <string name="contrast">Contrast</string>
+  <string name="brightness">Helderheid</string>
   <string name="threshold">Drempelwaarde</string>
   <!-- Wake -->
   <string name="slide_up">Veeg omhoog</string>

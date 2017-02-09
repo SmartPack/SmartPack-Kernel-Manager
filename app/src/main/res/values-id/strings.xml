@@ -259,7 +259,6 @@
   <string name="idle_frequency_summary">Jika inti pertama dibawah frekuensi itu, maka jangan jalankan inti yang lain.</string>
   <string name="touch_boost_time">Waktu Peningkat Sentuh</string>
   <string name="touch_boost_time_summary">Berapa lama CPU harus di tingkatkan setelah menyetuh layar.</string>
-  <string name="boost_frequency_core">Tingkatkan frekuensi inti</string>
   <string name="start_delay">Jeda Sebelum Mulai</string>
   <string name="start_delay_summary">Waktu sampai Hotplug mulai bekerja.</string>
   <string name="delay">Jeda</string>

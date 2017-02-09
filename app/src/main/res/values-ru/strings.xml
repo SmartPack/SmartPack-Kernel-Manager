@@ -83,6 +83,7 @@
   <string name="virtual_memory">Виртуальная память</string>
   <string name="entropy">Энтропия</string>
   <string name="misc">Разное</string>
+  <string name="data_sharing">Обмен данными</string>
   <string name="custom_controls">Пользовательские функции</string>
   <string name="downloads">Загрузки</string>
   <string name="backup">Резервное копирование</string>
@@ -129,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">Ядро %d</string>
   <string name="cores">Ядра: %d</string>
+  <string name="cpu_usage">Использование ЦП</string>
   <string name="no_offline_core">Вы не можете отключить это ядро!</string>
   <string name="cpu_max_freq">Максимальная частота ЦП</string>
   <string name="cpu_max_freq_summary">Установите максимальную частоту работы ЦП.</string>
@@ -639,6 +641,7 @@
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD wakelock divider</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Так как много людей пытаются найти подходящие настройки для своего устройства и нуждаются в руководстве более продвинутых пользователей, я пришел с этим. Эта функция будет собирать настройки более продвинутых пользователей, а затем измерять производительность ЦП и батареи. Лучшие настройки для каждого набора микросхем будут впоследствии доступны для всех людей. Это приложение не будет собирать какие-либо личные данные!</string>
   <!-- Custom Controls -->
   <string name="welcome">Добро пожаловать</string>
   <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
@@ -767,7 +770,7 @@
   <string name="ten_sec">10 секунд</string>
   <string name="twenty_sec">20 секунд</string>
   <string name="fifty_sec">50 секунд</string>
-  <string name="apply_on_boot_test_summary">Тест применяется на загрузке. Это включает в себя все виды вещей, которые применяются как во время загрузки, такие как пользовательские элементы управления, профили, init.d, и т.д.</string>
+  <string name="apply_on_boot_test_summary">Тест применения при загрузке. Это включает в себя проверку всего, что применяется во время загрузки, например пользовательские элементы управления, профили, init.d, и т.д.</string>
   <string name="apply_on_boot_running">Применение настроек при загрузке уже активировано. Пожалуйста, дождитесь, пока оно не завершится.</string>
   <string name="nothing_apply">Ничего не найдено для применения!</string>
   <string name="hide">Скрыть</string>

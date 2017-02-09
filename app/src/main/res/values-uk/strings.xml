@@ -19,10 +19,17 @@
   <string name="cancel">Скасувати</string>
   <string name="ok">Ок</string>
   <string name="unknown">Невідомо</string>
+  <string name="license_invalid">Дякую за покупку додатка-пожертвування! На жаль, перевірка ліцензії не вдалася. Будь ласка, спробуйте ще раз пізніше. Якщо вона все ще не працює, будь ласка, зв\'яжіться зі мною. Вам необхідний доступ до інтернету!</string>
+  <string name="pirated">Схоже, додаток-пожертвування не було куплено через Play Маркет! Якщо ви анексували його, то вам повинно бути соромно!</string>
   <string name="donate">Підтримати</string>
+  <string name="donate_summary">Ця функція доступна тільки коли встановлено додаток-пожертвування! Тим не менш, не хвилюйтеся. Так як у цього додатка відкритий вихідний код, ви без праці можете зібрати його самостійно і прибрати цю перевірку. Але я сподіваюся, що ви в будь-якому випадку підтримаєте розробників. Спасибі за використання ядра Adiutor! Після покупки програми-пожертвування, вам потрібно перезапустити Kernel Auditor для того, щоб включити всі функції.</string>
+  <string name="donate_nope">Я не попадусь на цю аферу!</string>
+  <string name="donate_yes">Я люблю цю аплікацію. Повинен пожертвувати!</string>
   <string name="ad_here">Ваша реклама може бути тут</string>
   <string name="remove_ad">Видалити рекламу</string>
   <string name="warning">Попередження</string>
+  <string name="gh_ad">Це не комерційна реклама! Не сприймаєте її серйозно! Просто веселий спосіб заповнити пустоту, коли справжня реклама не вантажиться (дивлячись на вас, користувачі adblock).</string>
+  <string name="open_ad_anyway">Всеодно відкрити рекламу</string>
   <string name="apply_on_boot">Застосувати під час завантаження</string>
   <string name="apply_on_boot_text">Застосування налаштувань за %d секунд.</string>
   <string name="apply_on_boot_complete">Застосування налаштувань завершено.</string>
@@ -31,10 +38,12 @@
   <string name="options">Налаштування</string>
   <string name="more">Більше</string>
   <!-- Permissions Denied -->
+  <string name="permission_denied_write_storage">Відмовлено в дозволі на запис в пам\'ять пристрою!</string>
   <!-- Editor -->
   <string name="save">Зберегти</string>
   <!-- File Picker -->
   <string name="select_question">Вибрати %s?</string>
+  <string name="wrong_extension">Будь-ласка, виберіть файл з розширенням %s.</string>
   <!-- Units -->
   <string name="mhz">MHz</string>
   <string name="celsius">ºC</string>
@@ -46,6 +55,7 @@
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
+  <string name="px">пкс</string>
   <!-- Special signs -->
   <!-- Headers -->
   <string name="statistics">Статистика</string>
@@ -73,6 +83,7 @@
   <string name="virtual_memory">Віртуальна пам\'ять</string>
   <string name="entropy">Ентропія</string>
   <string name="misc">Різне</string>
+  <string name="data_sharing">Обмін даними</string>
   <string name="custom_controls">Функції користувача</string>
   <string name="downloads">Завантаження</string>
   <string name="backup">Резервна копія</string>
@@ -80,6 +91,7 @@
   <string name="profile">Профіль</string>
   <string name="recovery">Recovery</string>
   <string name="initd">Init.d</string>
+  <string name="on_boot">При завантаженні</string>
   <string name="settings">Налаштування</string>
   <string name="about">Про додаток</string>
   <string name="contributors">Автори та перекладачі</string>
@@ -105,6 +117,7 @@
   <string name="android_codename">Кодове ім\'я Android</string>
   <string name="fingerprint">Відбитки пальців</string>
   <string name="build_display_id">Номер збірки</string>
+  <string name="baseband">Модем</string>
   <string name="rom">Прошивка</string>
   <string name="bootloader">Завантажувач</string>
   <string name="hardware">Устаткування</string>
@@ -117,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d ядро</string>
   <string name="cores">%d ядра</string>
+  <string name="cpu_usage">Використання ЦП</string>
   <string name="no_offline_core">Ви не можете вимкнути це ядро!</string>
   <string name="cpu_max_freq">Макс. частота CPU</string>
   <string name="cpu_max_freq_summary">Встановлення максимальної частоти CPU.</string>
@@ -128,6 +142,7 @@
   <string name="cpu_governor_summary">Планувальник CPU визначає, як буде поводити себе процесор у відповідь на зміни робочого навантаження. Зміна планувальника буде впливати на те, як CPU змінює робочі частоти.</string>
   <string name="cpu_governor_tunables">Параметри планувальника CPU</string>
   <string name="governor_tunables_summary">Різні параметри конфігурації які залежать від планувальника.</string>
+  <string name="cpu_governor_tunables_read_error">Неможливо визначити поточний регулятор. \ n \ nЯкщо ви використовуєте пристрій QCOM з big.LITTLE, то це відома проблема. Система змушує ЦП відключати ядра, роблячи вкрай важким зчитування певної статистики ЦП. Спробуйте вибрати цю опцію ще раз. Іноді ЦП відмовляється включити ядро.</string>
   <string name="tunables_error">%s не може бути налаштований</string>
   <string name="manual">Довідник</string>
   <string name="mc_power_saving">Багатоядерне енергозбереження</string>
@@ -143,6 +158,7 @@
   <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">Розгін CPU</string>
   <string name="debug_mask">Дебаг маска</string>
+  <string name="debug_mask_summary">Дозволяє вам активувати маску відлагодження для операцій.</string>
   <string name="interval">Інтервал</string>
   <string name="interval_summary">Мінімальний інтервал розгону CPU.</string>
   <string name="sync_threshold">Межа синхронізації</string>
@@ -150,6 +166,7 @@
   <string name="input_interval">Інтервал вводу</string>
   <string name="input_interval_summary">Мінімальний інтервал при якому підвищується частота CPU після виявленні введення.</string>
   <string name="input_boost_freq">Частота розгону при введенні</string>
+  <string name="input_boost_freq_core">Підвищення частоти ядра %d при введенні</string>
   <string name="input_boost_freq_summary">При дотику частота CPU буде підвищена до даної.</string>
   <string name="wakeup_boost">Задіяти прискорення</string>
   <string name="wakeup_boost_summary">Пробудження Boost схоже на введення boost, але це відбувається, коли екран увімкнено.</string>
@@ -162,10 +179,12 @@
   <string name="override_vmin">Перевизначити мінімальну напругу</string>
   <string name="override_vmin_summary">Вимкнути встановлене виробником обмеження на undervolting</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Включено більше однієї системи hotplug-а! \ n Будь-ласка, використовуйте тільки одну.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Контроль ядер CPU,  створений Qualcomm. Можуть виникнути проблеми зі зміною частоти CPU, якщо ввімкнено.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Вбудована в ядро заміна для MDPecision від Qualcomm. Розроблено faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Число в дужках вказує кількість ядер онлайн в будь-який час.</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Збалансований</string>
   <string name="performance">Продуктивність</string>
@@ -180,6 +199,8 @@
   <string name="eco_mode_summary">Енергозберігаючий режим для IntelliPlug.</string>
   <string name="hysteresis">Значення гістерезису</string>
   <string name="hysteresis_summary">Чим нижче значення, тим швидший відгук.</string>
+  <string name="cpu_threshold">CPU поріг</string>
+  <string name="cpu_threshold_summary">Чим вище, тим менше використовуваних ядер.</string>
   <string name="suspend">Призупинення</string>
   <string name="suspend_summary">Попереджати призупинення.</string>
   <string name="cpus_boosted">Прискорені ядра CPU</string>
@@ -188,6 +209,7 @@
   <string name="min_cpu_online_summary">Мінімальна кількість ядер, які будуть завжди онлайн.</string>
   <string name="max_cpu_online">Макс. кількість ядер онлайн</string>
   <string name="max_cpu_online_summary">Максимальна кількість ядер, які будуть завжди онлайн.</string>
+  <string name="max_cpu_online_screen_off">Максимальна кількість ядер при ВИМК екрані</string>
   <string name="suspend_defer_time">Suspend Defer Time</string>
   <string name="defer_sampling">Defer Sampling</string>
   <string name="boost_lock_duration">Boost Lock Duration</string>
@@ -201,13 +223,19 @@
   <string name="up_threshold">Up Threshold</string>
   <string name="up_threshold_summary">Over this threshold the driver will put one more core online.</string>
   <string name="up_timer_cnt">Up Timer Control</string>
+  <string name="down_timer_cnt_summary">Управління таймером зниження частоти процесора.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="history_size">Об\'єм історії</string>
   <string name="update_rate">Рейтинг оновлення</string>
   <string name="fast_lane_load">Fast Lane Load</string>
   <string name="offline_load">Оффлайн завантаження</string>
   <string name="io_is_busy">IO є зайнятий</string>
+  <string name="io_is_busy_summary">Використовується, щоби заставити hotplug розглядати час вводу/виводу, як час завантаження процесора.</string>
+  <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Заміна в ядра для Qualcomm в MPDecision. Розроблена franciscofranco.</string>
+  <string name="cpus_on_touch">Ядра при торканні</string>
+  <string name="cpus_on_touch_summary">Кількість ядер онлайн при дотику до екрану або натисканні кнопок.</string>
+  <string name="cpu_freq_unplug_limit">Частота процесора відключіть обмеження</string>
   <string name="first_level">Перший рівень</string>
   <string name="first_level_summary">Граничне значення онлайну всіх процесорів.</string>
   <string name="high_load_counter">лічильник високих навантажень</string>
@@ -216,18 +244,31 @@
   <string name="max_load_counter">Лічильник максимальної швидкості завантаження</string>
   <string name="min_time_cpu_online">Мінімальний час онлайну процесора</string>
   <string name="timer">Таймер</string>
+  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
+  <string name="mb_hotplug_summary">Ядерна заміна MPDecision от Qualcomm. Розроблено show-p1984.</string>
+  <string name="screen_off_single_cpu">Одне ядро ​​при вимкненому екрані</string>
+  <string name="screen_off_single_cpu_summary">Використовувати тільки одно ядро, коли екран вимкнений.</string>
   <string name="idle_frequency">холоста частота</string>
   <string name="idle_frequency_summary">Якщо перше ядро не перевищує цієї частоти, не підключати інші ядра.</string>
   <string name="touch_boost_time">Сенсорне збільшення часу</string>
+  <string name="touch_boost_time_summary">Як довго ядро повинно бути посиленим після торкання екрану.</string>
+  <string name="boost_frequency_core">Підвищення частоти ядра %d</string>
+  <string name="start_delay">Затримкаперед запуском</string>
   <string name="start_delay_summary">Час, через скільки розпочне працювати Hotplug.</string>
   <string name="delay">Затримка</string>
   <string name="delay_summary">Час між перевірками.</string>
   <string name="pause">Пауза</string>
   <string name="pause_summary">Якщо щось заважає роботі ЦП, переходити у режим сну на даний час.</string>
+  <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Заміна ядра для Qualcomm\'s MPDecision. Розробник Alucard.</string>
   <string name="sampling_rate">Частота дискретизації</string>
   <string name="cpu_down_rate">Зменшити швидкість ЦП</string>
   <string name="cpu_up_rate">CPU Up Rate</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Ядерна заміна hotplug от Qualcomm. Розроблено varunchitre15.</string>
+  <string name="min_cpu_online_screen_off">Минимальна кількість ядер при вимкненому екрані</string>
+  <string name="min_cpu_online_screen_off_summary">Мінімальна кількість ядер, які будуть онлайн при вимкненому екрані.</string>
   <string name="endurance_level">Рівень витривалості</string>
   <string name="endurance_level_summary">Режим енергозбереження.</string>
   <string name="quad_core_mode">Чотирьохядерний режим</string>
@@ -235,13 +276,18 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">Заміна ядра для Qualcomm\'s MPDecision. Розробник bbedward.</string>
   <string name="wake_wait_time">Час очікування пробудження</string>
+  <string name="wake_wait_time_summary">Як довго чекати перед включенням будь-якого ядра.</string>
   <string name="bat_threshold_ignore">Ігронувати поріг батареї</string>
   <string name="bat_threshold_ignore_summary">Не вмикати жодне ядро, коли рівень заряду нижче обраної ємності.</string>
   <string name="autosmp">Автоматичне SMP</string>
   <string name="autosmp_summary">Вбудована заміна для MPDecision від Qualcomm. Розробник - mrg666.</string>
   <string name="downrate_limits">Обмеження пониження</string>
   <string name="uprate_limits">Обмеження підвищення</string>
+  <string name="cycle_down">Циклу вниз</string>
+  <string name="cycle_down_summary">Цикли очікування після останньої роботи hotplug-а до відключення другого ядра.</string>
+  <string name="cycle_up">Цикл вверх</string>
   <string name="core_control">Керування ядром</string>
+  <string name="busy_up_threshold">Верхній поріг зайнятості</string>
   <!--Thermal-->
   <string name="thermal_info">Використовуйте тільки один термічний драйвер з наступних опцій, використання більше одного одночасно може спровокувати непередбаченні результати.</string>
   <string name="thermald">Thermald</string>
@@ -290,32 +336,53 @@
   <string name="gpu_2d_governor_summary">Встановити 2D планувальник для ЦП.</string>
   <string name="gpu_governor">GPU контролер</string>
   <string name="gpu_governor_tunables">Параметри планувальника CPU</string>
+  <string name="laziness">Лінощі</string>
+  <string name="laziness_summary">Збільшує рівень збільшення чи зменшення частоти GPU. Чим менше значення, тим більша продуктивність</string>
   <!-- Screen -->
   <string name="screen_color">Колір екрану</string>
   <string name="red">Червоний</string>
   <string name="green">Зелений</string>
   <string name="blue">Cиній</string>
+  <string name="min_rgb">Мінімальне значення RGB</string>
+  <string name="invert_screen">Інверсія екрану</string>
+  <string name="saturation_intensity">Рівень насиченості</string>
+  <string name="grayscale_mode">Режим градацій сірого</string>
+  <string name="screen_hue">Колір екрану</string>
   <string name="screen_hue_summary">У вас можуть виникнути проблеми під час встановлення високих значень у MSM8x26 SoC.</string>
   <string name="screen_value">Яскравість</string>
   <string name="screen_contrast">Контрастність</string>
   <string name="high_brightness_mode">Режим високої яскравості</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Гама</string>
   <string name="red_greys">Червний сірий</string>
   <string name="red_mids">Червоний середній</string>
   <string name="red_blacks">Червоний чорний</string>
+  <string name="red_whites">Білі в червоному</string>
+  <string name="green_greys">Сірі в зеленому</string>
+  <string name="green_mids">Середні в зеленому</string>
+  <string name="green_blacks">Чорні в зеленому</string>
+  <string name="green_whites">Білі в зеленому</string>
+  <string name="blue_greys">Блакитний в сірому</string>
+  <string name="blue_mids">Середні в блакитному</string>
+  <string name="blue_blacks">Чорні в блакитному</string>
+  <string name="blue_whites">Білі в синьому</string>
   <string name="contrast">Контрастність</string>
   <string name="brightness">Яскравість</string>
+  <string name="red_positive">Позитив червоного</string>
+  <string name="red_negative">Негатив червоного</string>
+  <string name="green_positive">Позитив зеленого</string>
   <string name="green_negative">Зелений негатив</string>
   <string name="blue_positive">Синій позитив</string>
   <string name="blue_negative">Синій негатив</string>
   <string name="white_point">Біла точка</string>
   <string name="lcd_backlight">Підсвічування РК-Монітора</string>
+  <string name="gamma_profiles_summary">Після вибору профілю, будь-ласка, ввімкніть вимкніть екран.</string>
   <string name="brightness_mode">Використати режим експоненційного підсвічення замість режиму \"лінійний\".</string>
   <string name="min_brightness">Мінімально яскравості</string>
   <string name="min_brightness_summary">Дозволяє зменшити яскравість РКМ екрану на стільки, що жоден склад і не зрівняється.</string>
   <string name="max_brightness">Максимум яскравості</string>
   <string name="max_brightness_summary">Дозволяє збільшити яскравість екрана LCD так, що й на складі сховати неможливо.</string>
-  <string name="backlight_dimmer">\"Ближнє світло фар\"</string>
+  <string name="backlight_dimmer">Зменшення яскравості дисплея</string>
   <string name="threshold">Граничне значення</string>
   <string name="offset">Зсув</string>
   <string name="negative_toggle">Перемикач негативу</string>
@@ -334,8 +401,10 @@
   <string name="full">Повний</string>
   <string name="bottom_half">Нижня половина</string>
   <string name="top_half">Верхня половина</string>
+  <string name="half">Половина</string>
   <string name="s2w">Жест для пробудження</string>
   <string name="s2w_summary">Пробудження свайпом по екрану.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Свайп вправо для пробудження</string>
   <string name="s2w_left">Свайп вліво для пробудження</string>
@@ -350,7 +419,9 @@
   <string name="dt2s_summary">Заблокуйте пристрій подвійним дотиком у верхній частині екрану.</string>
   <string name="s2w_charging">Sweep2Wake під час зарядки</string>
   <string name="dt2w_charging">Пробудження по подв. тапу під час зарядки</string>
+  <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake під час зарядки</string>
+  <string name="s2s_summary">Відключення екрану свайпом.</string>
   <string name="s2s_right">Зрушити вправо</string>
   <string name="s2s_left">Зрушити вліво</string>
   <string name="s2s_any">Зрушити вправо або вліво</string>
@@ -358,38 +429,93 @@
   <string name="slide_down">Зрушення вниз</string>
   <string name="slide_left">Зрушення вліво</string>
   <string name="slide_right">Зрушення вправо</string>
+  <string name="draw_e">Намалюйте Е</string>
+  <string name="draw_o"> Намалюйте О</string>
+  <string name="draw_w">Намалюйте W</string>
+  <string name="draw_c">Намалюйте С</string>
+  <string name="draw_m">Намалюйте М</string>
+  <string name="camera_gesture">Жест камери</string>
   <string name="timeout">Час очікування</string>
   <!-- Sound -->
   <string name="sound_control">Управління звуком</string>
+  <string name="headset_highperf_mode">Режим високої якості для навушників</string>
+  <string name="microphone_gain">Підсилення мікрофону</string>
+  <string name="volume_gain">Збільшення гучності</string>
   <!-- Battery -->
   <string name="level">Рівень</string>
   <string name="voltage">Напруга</string>
+  <string name="usb_fast_charge">Швидка зарядка через USB</string>
+  <string name="usb_fast_charge_summary">Пристрій буде заряджатися швидше, коли воно підключене через USB. Перепідключити пристрій після зміни цієї опції.</string>
   <!-- LED -->
   <string name="fade">Затухання</string>
   <string name="intensity">Інтенсивність</string>
   <string name="speed">Швидкість</string>
+  <string name="stock">Стандартний</string>
+  <string name="continuous_light">Безперевне світло</string>
+  <string name="bright_light_environment">Висока освітленість</string>
+  <string name="bright_light_environment_summary">Встановіть відносну інтенсивність світлодіода при яскравому світлі.</string>
+  <string name="low_light_environment">Низька освітленіть</string>
+  <string name="low_light_environment_summary">Встановіть відносну інтенсивність світлодіода при слабкому світлі.</string>
+  <string name="notification">Повідомлення</string>
+  <string name="on">Вкл</string>
+  <string name="off">Викл</string>
+  <string name="fade_ramp_control">Керування затемненням</string>
+  <string name="fade_ramp_control_summary">Увімкніть або вимкніть керування затемненням світлодіода</string>
+  <string name="fade_in">Поява</string>
+  <string name="fade_in_summary">Встановлення періоду збільшення.</string>
+  <string name="fade_out">Зникнення</string>
+  <string name="fade_out_summary">Встановлення інтервалу зменшення</string>
   <string name="test">Перевірка</string>
+  <string name="led_test_summary">Перевірити настройки індикатора.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Внутрішня пам’ять</string>
   <string name="external_storage">Зовнішній накопичувач</string>
   <string name="scheduler">Планувальник</string>
+  <string name="scheduler_summary">Встановіть алгоритм підйому вводу/виводу. Планувальник вирішує, як обробляти запити вводу/виводу.</string>
+  <string name="scheduler_tunable">Настройки планувальника</string>
+  <string name="scheduler_tunable_summary">Компоненти конфігурації, що залежать від планувальника.</string>
+  <string name="read_ahead">Попереднє зчитування</string>
+  <string name="read_ahead_summary">Значення пост-читання пам\'яті телефону.</string>
+  <string name="rotational">Перемінна пам\'ять</string>
+  <string name="rotational_summary">Вважати пристрій з перемінною пам\'яттю.</string>
+  <string name="iostats">Статистика вводу/виводу</string>
+  <string name="add_random">Додати випадкове значення</string>
+  <string name="add_random_summary">Вимальовування ентропії відносно обертання.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Повне сканування</string>
   <string name="pages_shared">Сторінки якими поділились</string>
   <string name="pages_sharing">Сторінки якими діляться</string>
   <string name="pages_unshared">Сторінки якими не поділились</string>
   <string name="pages_volatile">Непоєднувані сторінки</string>
+  <string name="pages_to_scan">Сторінки для сканування</string>
+  <string name="sleep_milliseconds">Період між скануванням в мілісекундах</string>
+  <string name="deferred_timer">Відложений таймер</string>
   <!-- Low Memory Killer -->
+  <string name="foreground_app">Активні аплікації</string>
   <string name="visible_app">Видимі додатки</string>
   <string name="secondary_server">Вторинний сервер</string>
   <string name="hidden_app">Приховані додатки</string>
+  <string name="content_providers">Контент-провайдери</string>
+  <string name="empty_app">Порожні аплікації</string>
+  <string name="very_light">Дуже легкий</string>
   <string name="light">Легкий</string>
   <string name="medium">Середній</string>
   <string name="very_aggressive">Дуже агресивний</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Размір диску</string>
+  <string name="maximum_compression_ratio">Максимальний коефіцієнт стиснення</string>
   <!-- Entropy -->
+  <string name="available">Доступно</string>
+  <string name="poolsize">Розмір пулу</string>
+  <string name="read">Читання</string>
+  <string name="write">Запис</string>
   <!-- Misc -->
+  <string name="dynamic_fsync">Динамичний Fsync</string>
+  <string name="autosleep">Автосон</string>
   <string name="userspace">Простір користувача</string>
+  <string name="lcd_panel">Дисплей</string>
+  <string name="hybrid">Гібридний</string>
   <string name="network">Мережа</string>
   <string name="hostname">Ім\'я хоста</string>
   <string name="wakelock">Wakelock</string>
@@ -398,6 +524,9 @@
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Запобігти BlueSleep Wakelock.</string>
+  <string name="wlan_rx_wakelock_divider">дільник wlan_rx Wakelock</string>
   <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Ласкаво просимо</string>
@@ -405,9 +534,15 @@
   <string name="create">Створити</string>
   <string name="import_item">Імпорт</string>
   <string name="control_switch">Перемикач</string>
+  <string name="control_seekbar">Стрічка пошуку</string>
   <string name="title">Заголовок</string>
   <string name="description">Опис</string>
   <string name="applying">Застосування</string>
+  <string name="switch_enabled_summary">Вказує, чи включений перемикач. 1 - включений і 0 - вимкнений.</string>
+  <string name="switch_apply_summary">Перемикач буде повертати 1 (включено) або 0 (відключено), в якості аргументу вашому скрипту.</string>
+  <string name="seekbar_min">Минимально</string>
+  <string name="seekbar_max">Максимально</string>
+  <string name="seekbar_progress">Прогресс</string>
   <string name="generic_value">Значення</string>
   <string name="edit">Редагувати</string>
   <string name="export">Експорт</string>
@@ -425,57 +560,123 @@
   <string name="manual_flashing">Я буду використовувати мої руки</string>
   <string name="restoring">Відновлення в процесі</string>
   <!-- Backup -->
+  <string name="fota_partition">Розділ оновлення</string>
+  <string name="flash">Прошити</string>
   <!-- Build prop Editor -->
+  <string name="add">Додати</string>
   <string name="item_count">%s елемент</string>
   <string name="items_count">%s елементів</string>
   <string name="key">Ключ</string>
   <string name="value">Значення</string>
   <!-- Profile -->
   <string name="apply_question">Застосувати %s?</string>
+  <string name="append">Додати</string>
   <string name="details">Подробиці</string>
   <string name="press_again_to_apply">Натисніть %s знову, щоб застосувати.</string>
   <string name="applied">Застосовано</string>
+  <string name="profile_tasker">Планувальник профілів</string>
+  <string name="profile_tile">Плитка профілю</string>
+  <string name="profile_tile_summary">Показати плитку, що дозволяє вам вибрати профіль.</string>
   <string name="profile_select">Виберіть профіль</string>
   <string name="applying_profile">Застосування %s!</string>
+  <string name="no_profiles">Профіль не знайдено! Ви повинні спочатку створити їх.</string>
+  <string name="sections_disabled">Всі секції відключені! Профілів не залишилося.</string>
   <string name="new_mode">Новий</string>
   <string name="current_settings">Поточні налаштування</string>
   <string name="select_all">Обрати все</string>
   <string name="nothing_selected">Нічого не обрано</string>
+  <string name="profile_empty">Профіль порожній!</string>
   <!-- Recovery -->
+  <string name="reboot">Перевантажити</string>
+  <string name="reboot_soft">Перезапуск інтерфейсу</string>
+  <string name="reboot_recovery">Перевантажити в рекавері</string>
+  <string name="reboot_bootloader">Перезавантажити в завантажувач</string>
+  <string name="reboot_download">Перезавантажити в режим завантаження</string>
   <string name="wipe_data">Очистити Data</string>
   <string name="wipe_cache">Очистити Cache</string>
   <string name="flash_zip">Прошити zip</string>
+  <string name="add_action_first">Спочатку додайте дію.</string>
   <string name="flash_now_confirm">Ви бажаєте запустити всі ваші дії? Ваш пристрій завантажеться у режим рековері і запустить всі дії попорядку, так як ви вказали.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Емуляція Init.d</string>
+  <string name="emulate_initd_summary">Якщо ваш пристрій не підтримує init.d, можна ввімкнути тут його емуляцію.</string>
   <string name="exceute_question">Виконати %s?</string>
   <string name="executing">Виконання</string>
   <string name="result">Результат</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Цей розділ показує вам, що станеться, коли ваш пристрій завантажиться. Якщо він порожній, то нічого не станеться після завантаження.</string>
   <string name="delete_question">Видалити %s?</string>
   <string name="arguments">Аргументи: %s</string>
   <string name="disable_question">Вимкнути %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Відкрити настройки</string>
+  <string name="fahrenheit_title">По Фаренгейту</string>
+  <string name="fahrenheit_summary">Використовувати вимір температури за Фаренгейтом.</string>
+  <string name="force_english">Примусово використовувати англійську мову</string>
+  <string name="user_interface">Користувацький інтерфейс</string>
   <string name="dark_theme">Темна тема</string>
+  <string name="material_icon">Іконка Material</string>
+  <string name="banner_resizer">Зміна розміру банера</string>
+  <string name="hide_banner">Скрити банер</string>
+  <string name="force_cards">Картки примусово</string>
+  <string name="force_cards_summary">Використовувати картки для об\'єктів, якщо можливо.</string>
+  <string name="accent_color">Колірний акцент</string>
+  <string name="section_icons">Значки розділів</string>
+  <string name="section_icons_summary">Показувати значки для кожного розділу в панелі навігації.</string>
+  <string name="instant">Миттєво</string>
+  <string name="five_sec">5 секунд</string>
   <string name="ten_sec">10 секунд</string>
   <string name="twenty_sec">20 секунд</string>
   <string name="fifty_sec">50 секунд</string>
+  <string name="apply_on_boot_test_summary">Тест застосування при завантаженні. Це включає в себе перевірку всього, що застосовується під час завантаження, наприклад призначені для користувача елементи управління, профілі, init.d, і т.д.</string>
+  <string name="apply_on_boot_running">Застосування налаштувань при завантаженні вже активовано. Будь ласка, дочекайтеся, поки воно не завершиться.</string>
   <string name="nothing_apply">Нічого не знайдено для застосування!</string>
   <string name="hide">Приховати</string>
+  <string name="apply_on_boot_hide_summary">Приховати повідомлення при застосуванні налаштувань при завантаженні. При цьому затримка залишиться!</string>
+  <string name="toast">Спливаюче сповіщення</string>
+  <string name="apply_on_boot_toast_summary">Показувати спливаюче повідомлення, коли настройки були застосовані.</string>
+  <string name="confirmation_notification">Повідомлення підтвердження</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Після вибору Застосовувати при завантаженні, виводиться повідомлення про вдалому застосуванні.</string>
+  <string name="script">Скрипт</string>
+  <string name="apply_on_boot_script_summary">Використовувати консольний скрипт для застосування налаштувань. Будь ласка, включайте це тільки якщо у вас є проблеми із застосуванням при завантаженні. Якщо ж проблема все ще залишиться після включення цієї опції, будь ласка, перевірте, чи немає інших додатків, які конфліктують з Kernel Adiutor.</string>
   <string name="debugging">Налагодження</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопіювати logcat в /sdcard/logcat.txt</string>
+  <string name="last_kmsg">Останнє повідомлення ядра</string>
+  <string name="last_kmsg_summary">Скопіювати /proc/last_kmsg в /sdcard/last_kmsg.txt</string>
+  <string name="driver_message">Повідомлення драйвера</string>
+  <string name="driver_message_summary">Скопіювати повідомлення драйвера (dmesg) в /sdcard/dmesg.txt</string>
   <string name="security">Безпека</string>
   <string name="set_password">Встановити пароль</string>
+  <string name="set_password_summary">Ви можете захистити Kernel Adiutor, встановивши пароль. Кожен раз, коли ви відкриєте цей додаток, ви повинні ввести його. Якщо ви його забудете, просто зітріть дані цього додатка в налаштуваннях вашого пристрою. Не хвилюйтеся, я не поділюся вашим паролем.</string>
   <string name="delete_password">Видалити пароль</string>
   <string name="old_password">Старий пароль</string>
   <string name="new_password">Новий пароль</string>
   <string name="confirm_new_password">Підтвердіть новий пароль</string>
   <string name="old_password_wrong">Старий пароль невірний</string>
   <string name="password_empty">Пароль порожній</string>
+  <string name="password_not_match">Новий пароль не збігається з підтвердженням</string>
+  <string name="password_too_long">Пароль занадто довгий (макс. 32 символи)</string>
   <string name="set_password_first">Спочатку встановіть пароль</string>
+  <string name="fingerprint_summary">Використовувати відбиток пальця для проходження перевірки безпеки. Це буде працювати до тих пір, поки у вас є зареєстровані відбитки.</string>
   <string name="sections">Розділи</string>
   <!-- About -->
+  <string name="about_me">Привіт, я Віллі Йе ака Grarak, 19-річний студент з Відня. Я займаюся Android-розробкою досить довгий час. Крім Kernel Adiutor, я також підтримую CyanogenMod для декількох пристроїв і працюю над ParanoidAndroid. Тому прошу зрозуміти, якщо я не знайду час оновити додаток.</string>
+  <string name="libraries_used">Використані бібліотеки</string>
   <!-- Contributors -->
+  <string name="commits">Зміни: %d</string>
+  <string name="no_internet">Будь-ласка, перевірте інтернет-з\'єднання!</string>
   <!-- Help -->
+  <string name="misspelled">Чому неправильно написано \"Adiutor\"?</string>
+  <string name="misspelled_summary">\"Adiutor\" латинською означає \"помічник\".</string>
+  <string name="have_to_donate">Чи повинен я пожертвувати, щоб використовувати ці преміум-функції?</string>
+  <string name="have_to_donate_summary">Ні, це додаток з відкритим вихідним кодом. Ви з легкістю можете зібрати його самостійно. Функції при пожертвуванні включені за замовчуванням, якщо ви зберете відлагоджений Apk, так що немає потреби правити ні один рядок коду.</string>
+  <string name="cpu_freq_not_sticking">Чому моя частота ЦП не залишається обраною?</string>
+  <string name="cpu_freq_not_sticking_summary">Це може бути викликано багатьма причинами. У наші дні, багато ядер мають власні системи hotplag-а, які контролюють частоту ЦП, і CyanogenMod має свою власну реалізацію посилення ЦП, яка регулює частоту. Я б запропонував вам не чіпати частоти ЦП і дати ядру робити свою роботу. Це також стосується і інших функцій! Якщо вони не тримаються, то це тому що ядро ​​/ система не хоче дозволити вам змінити його.</string>
+  <string name="feature_not_appearing">Чому функції x і y не відображаються?</string>
+  <string name="feature_not_appearing_summary">Відображаються лише функції, що підтримують ваш пристрій!</string>
+  <string name="feature_function">Що робить функція x?</string>
+  <string name="feature_function_summary">Якщо ви не знаєте, що робить ця функція, то просто не чіпайте її. Будь ласка, проведіть ретельне дослідження, перш ніж грати з вашим дорогим залізом.</string>
+  <string name="add_new_features">Чи могли б ви додати функцію x і y?</string>
+  <string name="add_new_features_summary">Складно сказати. Я намагаюся додавати всі функції, але складно зробити цей додаток універсальним для всіх пристроїв.</string>
 </resources>

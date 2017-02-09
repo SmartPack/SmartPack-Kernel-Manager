@@ -130,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d コア</string>
   <string name="cores">%d コア</string>
+  <string name="cpu_usage">CPU 使用率</string>
   <string name="no_offline_core">このコアをオフラインすることはできません！</string>
   <string name="cpu_max_freq">CPU 最大周波数</string>
   <string name="cpu_max_freq_summary">使用するCPU周波数の最大値を設定します。</string>

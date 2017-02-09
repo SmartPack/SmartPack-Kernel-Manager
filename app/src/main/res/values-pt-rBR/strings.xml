@@ -130,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d núcleo</string>
   <string name="cores">%d núcleos</string>
+  <string name="cpu_usage">Uso da CPU</string>
   <string name="no_offline_core">Você não pode desligar este núcleo!</string>
   <string name="cpu_max_freq">Frequência máxima da CPU</string>
   <string name="cpu_max_freq_summary">Definir a frequência máxima da CPU.</string>

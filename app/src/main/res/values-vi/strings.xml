@@ -261,7 +261,7 @@
   <string name="idle_frequency_summary">Nếu lõi đầu tiên ở dưới tần số này thì không bật các lõi còn lại.</string>
   <string name="touch_boost_time">Touch Boost Time</string>
   <string name="touch_boost_time_summary">Làm thế nào long CPU nên được thúc đẩy mạnh mẽ sau khi chạm vào màn hình.</string>
-  <string name="boost_frequency_core">Đầu vào tăng cường tần số lõi %s</string>
+  <string name="boost_frequency_core">Đầu vào tăng cường tần số lõi %d</string>
   <string name="start_delay">Bắt đầu chậm trễ</string>
   <string name="start_delay_summary">Thời gian cho đến khi Hotplug bắt đầu làm việc.</string>
   <string name="delay">Độ trễ</string>

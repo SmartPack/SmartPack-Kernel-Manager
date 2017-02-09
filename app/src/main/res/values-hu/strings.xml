@@ -130,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d mag</string>
   <string name="cores">%d mag</string>
+  <string name="cpu_usage">CPU használat</string>
   <string name="no_offline_core">Nem kapcsolhatod ki ezt a magot!</string>
   <string name="cpu_max_freq">Maximális CPU frekvencia</string>
   <string name="cpu_max_freq_summary">A maximális frekvencia, amit a CPU használhat.</string>
