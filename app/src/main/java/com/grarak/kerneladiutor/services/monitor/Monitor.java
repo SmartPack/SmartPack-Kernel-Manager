@@ -94,7 +94,7 @@ public class Monitor extends Service {
             public void run() {
                 try {
                     JSONObject data = new JSONObject();
-                    data.put("android_id", Utils.decodeString(Utils.getAndroidId(Monitor.this)));
+                    data.put("android_id", Utils.getAndroidId(Monitor.this));
                     data.put("android_version", Device.getVersion());
                     data.put("kernel_version", Device.getKernelVersion(true, false));
                     data.put("app_version", BuildConfig.VERSION_NAME);
