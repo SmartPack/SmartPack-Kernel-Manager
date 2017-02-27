@@ -50,6 +50,7 @@ public class Vibration {
         sVibrations.put("/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle", new MinMax(25, 100));
         sVibrations.put("/sys/module/qpnp_vibrator/parameters/vib_voltage", new MinMax(12, 31));
         sVibrations.put("/sys/vibrator/pwmvalue", new MinMax(0, 127));
+        sVibrations.put("/sys/kernel/thunderquake_engine/level", new MinMax(0, 7));
     }
 
     private static String FILE;
