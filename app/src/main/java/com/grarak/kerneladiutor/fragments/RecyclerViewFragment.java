@@ -288,34 +288,40 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                     mRecyclerView.post(new Runnable() {
                         @Override
                         public void run() {
-                            mRecyclerView.scrollToPosition(0);
-                            mLayoutManager.scrollToPosition(0);
+                            Activity activity;
+                            if ((activity = getActivity()) != null) {
+                                mRecyclerView.scrollToPosition(0);
+                                mLayoutManager.scrollToPosition(0);
 
-                            mRecyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_bottom));
+                                mRecyclerView.startAnimation(AnimationUtils.loadAnimation(
+                                        activity, R.anim.slide_in_bottom));
+                            }
                         }
                     });
                     mViewPager.post(new Runnable() {
                         @Override
                         public void run() {
-                            int cx = mViewPager.getWidth();
+                            if (getActivity() != null) {
+                                int cx = mViewPager.getWidth();
 
-                            SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
-                                    mViewPager, cx / 2, 0, 0, cx);
-                            animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
-                                @Override
-                                public void onAnimationStart() {
-                                    super.onAnimationStart();
-                                    mViewPager.setVisibility(View.VISIBLE);
-                                }
+                                SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
+                                        mViewPager, cx / 2, 0, 0, cx);
+                                animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
+                                    @Override
+                                    public void onAnimationStart() {
+                                        super.onAnimationStart();
+                                        mViewPager.setVisibility(View.VISIBLE);
+                                    }
 
-                                @Override
-                                public void onAnimationEnd() {
-                                    super.onAnimationEnd();
-                                    mViewPagerShadow.setVisibility(View.VISIBLE);
-                                }
-                            });
-                            animator.setDuration(400);
-                            animator.start();
+                                    @Override
+                                    public void onAnimationEnd() {
+                                        super.onAnimationEnd();
+                                        mViewPagerShadow.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                                animator.setDuration(400);
+                                animator.start();
+                            }
                         }
                     });
                     mLoader = null;
