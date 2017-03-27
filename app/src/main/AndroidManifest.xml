@@ -77,9 +77,13 @@
         <activity android:name=".activities.BannerResizerActivity" />
         <activity android:name=".activities.tools.profile.ProfileEditActivity" />
 
-        <receiver android:name=".services.boot.Receiver">
+        <receiver
+            android:name=".services.boot.Receiver"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
