@@ -75,6 +75,19 @@ public class Utils {
     public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
 
+    public static String upperCaseEachWord(String text) {
+        char[] chars = text.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (i == 0) {
+                chars[i] = Character.toUpperCase(chars[0]);
+            } else if (Character.isWhitespace(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+            }
+        }
+
+        return new String(chars);
+    }
+
     public static boolean isScreenOn(Context context) {
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {

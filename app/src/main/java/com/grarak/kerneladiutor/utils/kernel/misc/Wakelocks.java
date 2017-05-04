@@ -20,7 +20,9 @@
 package com.grarak.kerneladiutor.utils.kernel.misc;
 
 import android.content.Context;
+import android.support.annotation.StringRes;
 
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -33,36 +35,93 @@ import java.util.List;
  */
 public class Wakelocks {
 
-    private static final String SENSOR_IND = "/sys/module/wakeup/parameters/enable_si_ws";
-    private static final String MSM_HSIC_HOST = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
-    private static final String BLUESLEEP = "/sys/module/wakeup/parameters/enable_bluesleep_ws";
     private static final String WLAN_RX_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     private static final String MSM_HSIC_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
     private static final String BCMDHD_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
 
-    private static final List<String> sSMB135 = new ArrayList<>();
-    private static final List<String> sWlanRx = new ArrayList<>();
-    private static final List<String> sWlanctrl = new ArrayList<>();
-    private static final List<String> sWlan = new ArrayList<>();
+    public static class Wakelock {
 
-    static {
-        sSMB135.add("/sys/module/smb135x_charger/parameters/use_wlock");
-        sSMB135.add("/sys/module/wakeup/parameters/enable_smb135x_wake_ws");
+        private final String mPath;
+        @StringRes
+        private final int mTitle;
+        @StringRes
+        private final int mDescription;
 
-        sWlanRx.add("/sys/module/wakeup/parameters/wlan_rx_wake");
-        sWlanRx.add("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws");
+        private Boolean mExists;
 
-        sWlanctrl.add("/sys/module/wakeup/parameters/wlan_ctrl_wake");
-        sWlanctrl.add("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws");
+        private Wakelock(String path) {
+            this(path, 0, 0);
+        }
 
-        sWlan.add("/sys/module/wakeup/parameters/wlan_wake");
-        sWlan.add("/sys/module/wakeup/parameters/enable_wlan_wake_ws");
+        private Wakelock(String path, @StringRes int title, @StringRes int description) {
+            mPath = path;
+            mTitle = title;
+            mDescription = description;
+        }
+
+        public String getDescription(Context context) {
+            return mDescription == 0 ? null : context.getString(mDescription);
+        }
+
+        public String getTitle(Context context) {
+            if (mTitle != 0) {
+                return context.getString(mTitle);
+            }
+
+            String[] paths = mPath.split("/");
+            return Utils.upperCaseEachWord(paths[paths.length - 1].replace("enable_", "")
+                    .replace("_ws", "").replace("_", " "));
+        }
+
+        public void enable(boolean enable, Context context) {
+            run(Control.write(enable ? "Y" : "N", mPath), mPath, context);
+        }
+
+        public boolean isEnabled() {
+            return Utils.readFile(mPath).equals("Y");
+        }
+
+        public boolean exists() {
+            if (mExists == null) {
+                return (mExists = Utils.existFile(mPath));
+            }
+            return mExists;
+        }
+
     }
 
-    private static String SMB135X;
-    private static String WLAN_RX;
-    private static String WLAN_CTRL;
-    private static String WLAN;
+    private static final List<Wakelock> sWakelocks = new ArrayList<>();
+
+    static {
+        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
+                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
+                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
+                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws"));
+    }
 
     public static void setBCMDHDDivider(int value, Context context) {
         run(Control.write(String.valueOf(value), BCMDHD_DIVIDER), BCMDHD_DIVIDER, context);
@@ -104,120 +163,8 @@ public class Wakelocks {
         return Utils.existFile(WLAN_RX_DIVIDER);
     }
 
-    public static void enableBlueSleep(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", BLUESLEEP), BLUESLEEP, context);
-    }
-
-    public static boolean isBlueSleepEnabled() {
-        return Utils.readFile(BLUESLEEP).equals("Y");
-    }
-
-    public static boolean hasBlueSleep() {
-        return Utils.existFile(BLUESLEEP);
-    }
-
-    public static void enableWlan(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", WLAN), WLAN, context);
-    }
-
-    public static boolean isWlanEnabled() {
-        return Utils.readFile(WLAN).equals("Y");
-    }
-
-    public static boolean hasWlan() {
-        if (WLAN == null) {
-            for (String file : sWlan) {
-                if (Utils.existFile(file)) {
-                    WLAN = file;
-                    return true;
-                }
-            }
-        }
-        return WLAN != null;
-    }
-
-    public static void enableWlanctrl(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", WLAN_CTRL), WLAN_CTRL, context);
-    }
-
-    public static boolean isWlanctrlEnabled() {
-        return Utils.readFile(WLAN_CTRL).equals("Y");
-    }
-
-    public static boolean hasWlanctrl() {
-        if (WLAN_CTRL == null) {
-            for (String file : sWlanctrl) {
-                if (Utils.existFile(file)) {
-                    WLAN_CTRL = file;
-                    return true;
-                }
-            }
-        }
-        return WLAN_CTRL != null;
-    }
-
-    public static void enableWlanrx(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", WLAN_RX), WLAN_RX, context);
-    }
-
-    public static boolean isWlanrxEnabled() {
-        return Utils.readFile(WLAN_RX).equals("Y");
-    }
-
-    public static boolean hasWlanrx() {
-        if (WLAN_RX == null) {
-            for (String file : sWlanRx) {
-                if (Utils.existFile(file)) {
-                    WLAN_RX = file;
-                    return true;
-                }
-            }
-        }
-        return WLAN_RX != null;
-    }
-
-    public static void enableMsmHsicHost(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", MSM_HSIC_HOST), MSM_HSIC_HOST, context);
-    }
-
-    public static boolean isMsmHsicHostEnabled() {
-        return Utils.readFile(MSM_HSIC_HOST).equals("Y");
-    }
-
-    public static boolean hasMsmHsicHost() {
-        return Utils.existFile(MSM_HSIC_HOST);
-    }
-
-    public static void enableSensorInd(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", SENSOR_IND), SENSOR_IND, context);
-    }
-
-    public static boolean isSensorIndEnabled() {
-        return Utils.readFile(SENSOR_IND).equals("Y");
-    }
-
-    public static boolean hasSensorInd() {
-        return Utils.existFile(SENSOR_IND);
-    }
-
-    public static void enableSmb135x(boolean enable, Context context) {
-        run(Control.write(enable ? "Y" : "N", SMB135X), SMB135X, context);
-    }
-
-    public static boolean isSmb135xEnabled() {
-        return Utils.readFile(SMB135X).equals("Y");
-    }
-
-    public static boolean hasSmb135x() {
-        if (SMB135X == null) {
-            for (String file : sSMB135) {
-                if (Utils.existFile(file)) {
-                    SMB135X = file;
-                    return true;
-                }
-            }
-        }
-        return SMB135X != null;
+    public static List<Wakelock> getWakelocks() {
+        return sWakelocks;
     }
 
     private static void run(String command, String id, Context context) {
