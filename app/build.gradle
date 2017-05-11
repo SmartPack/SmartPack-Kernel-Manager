@@ -19,8 +19,8 @@ android {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 235
-        versionName "0.9.7.1 beta"
+        versionCode 236
+        versionName "0.9.7.2"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
