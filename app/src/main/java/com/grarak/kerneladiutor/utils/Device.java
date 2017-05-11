@@ -412,6 +412,12 @@ public class Device {
                 return "omap4";
             }
         });
+        sBoardFormatters.put("tuna", new BoardFormatter() {
+            @Override
+            public String format(String board) {
+                return "omap4";
+            }
+        });
 
         sBoardAliases.put("msm8994v2.1", "msm8994");
         sBoardAliases.put("msm8974pro.*", "msm8974pro");

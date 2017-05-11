@@ -295,109 +295,27 @@ public class MiscFragment extends RecyclerViewFragment {
     private void wakelockInit(List<RecyclerViewItem> items) {
         List<RecyclerViewItem> wakelocks = new ArrayList<>();
 
-        if (Wakelocks.hasSmb135x()) {
-            SwitchView smb135x = new SwitchView();
-            smb135x.setTitle(getString(R.string.smb135x_wakelock));
-            smb135x.setSummary(getString(R.string.smb135x_wakelock_summary));
-            smb135x.setChecked(Wakelocks.isSmb135xEnabled());
-            smb135x.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+        for (final Wakelocks.Wakelock wakelock : Wakelocks.getWakelocks()) {
+            if (!wakelock.exists()) continue;
+
+            String description = wakelock.getDescription(getActivity());
+
+            SwitchView switchView = new SwitchView();
+            if (description == null) {
+                switchView.setSummary(wakelock.getTitle(getActivity()));
+            } else {
+                switchView.setTitle(wakelock.getTitle(getActivity()));
+                switchView.setSummary(description);
+            }
+            switchView.setChecked(wakelock.isEnabled());
+            switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableSmb135x(isChecked, getActivity());
+                    wakelock.enable(isChecked, getActivity());
                 }
             });
 
-            wakelocks.add(smb135x);
-        }
-
-        if (Wakelocks.hasSensorInd()) {
-            SwitchView sensorInd = new SwitchView();
-            sensorInd.setTitle(getString(R.string.sensor_ind_wakelock));
-            sensorInd.setSummary(getString(R.string.sensor_ind_wakelock_summary));
-            sensorInd.setChecked(Wakelocks.isSensorIndEnabled());
-            sensorInd.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableSensorInd(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(sensorInd);
-        }
-
-        if (Wakelocks.hasMsmHsicHost()) {
-            SwitchView msmHsicHost = new SwitchView();
-            msmHsicHost.setTitle(getString(R.string.msm_hsic_host_wakelock));
-            msmHsicHost.setSummary(getString(R.string.msm_hsic_host_wakelock_summary));
-            msmHsicHost.setChecked(Wakelocks.isMsmHsicHostEnabled());
-            msmHsicHost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableMsmHsicHost(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(msmHsicHost);
-        }
-
-        if (Wakelocks.hasWlanrx()) {
-            SwitchView wlanRx = new SwitchView();
-            wlanRx.setTitle(getString(R.string.wlan_rx_wakelock));
-            wlanRx.setSummary(getString(R.string.wlan_rx_wakelock_summary));
-            wlanRx.setChecked(Wakelocks.isWlanrxEnabled());
-            wlanRx.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableWlanrx(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(wlanRx);
-        }
-
-        if (Wakelocks.hasWlanctrl()) {
-            SwitchView wlanCtrl = new SwitchView();
-            wlanCtrl.setTitle(getString(R.string.wlan_ctrl_wakelock));
-            wlanCtrl.setSummary(getString(R.string.wlan_ctrl_wakelock_summary));
-            wlanCtrl.setChecked(Wakelocks.isWlanctrlEnabled());
-            wlanCtrl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableWlanctrl(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(wlanCtrl);
-        }
-
-        if (Wakelocks.hasWlan()) {
-            SwitchView wlan = new SwitchView();
-            wlan.setTitle(getString(R.string.wlan_wakelock));
-            wlan.setSummary(getString(R.string.wlan_wakelock_summary));
-            wlan.setChecked(Wakelocks.isWlanEnabled());
-            wlan.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableWlan(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(wlan);
-        }
-
-        if (Wakelocks.hasBlueSleep()) {
-            SwitchView blueSleep = new SwitchView();
-            blueSleep.setTitle(getString(R.string.bluesleep_wakelock));
-            blueSleep.setSummary(getString(R.string.bluesleep_wakelock_summary));
-            blueSleep.setChecked(Wakelocks.isBlueSleepEnabled());
-            blueSleep.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Wakelocks.enableBlueSleep(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(blueSleep);
+            wakelocks.add(switchView);
         }
 
         if (Wakelocks.hasWlanrxDivider()) {

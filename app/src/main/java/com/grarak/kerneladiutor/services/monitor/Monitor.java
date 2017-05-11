@@ -94,7 +94,7 @@ public class Monitor extends Service {
             public void run() {
                 try {
                     JSONObject data = new JSONObject();
-                    data.put("android_id", Utils.decodeString(Utils.getAndroidId(Monitor.this)));
+                    data.put("android_id", Utils.getAndroidId(Monitor.this));
                     data.put("android_version", Device.getVersion());
                     data.put("kernel_version", Device.getKernelVersion(true, false));
                     data.put("app_version", BuildConfig.VERSION_NAME);
@@ -102,6 +102,7 @@ public class Monitor extends Service {
                     data.put("model", Device.getModel());
                     data.put("vendor", Device.getVendor());
                     data.put("cpuinfo", Utils.encodeString(Device.CPUInfo.getCpuInfo(false)));
+                    data.put("fingerprint", Device.getFingerprint());
 
                     JSONArray commands = new JSONArray();
                     Settings settings = new Settings(Monitor.this);

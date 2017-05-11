@@ -19,9 +19,14 @@
  */
 package com.grarak.kerneladiutor.fragments.tools;
 
+import android.content.Intent;
+
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
@@ -34,18 +39,29 @@ import java.util.List;
 public class DataSharingFragment extends RecyclerViewFragment {
 
     @Override
-    protected boolean showViewPager() {
-        return false;
+    protected void init() {
+        super.init();
+
+        addViewPagerFragment(DescriptionFragment.newInstance(
+                getString(R.string.welcome), getString(R.string.data_sharing_summary)));
+        addViewPagerFragment(DescriptionFragment.newInstance(
+                getString(R.string.welcome),
+                Utils.htmlFrom(getString(R.string.data_sharing_summary_link))));
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         SwitchView datasharing = new SwitchView();
-        datasharing.setSummary(getString(R.string.data_sharing_summary));
+        datasharing.setSummary(getString(R.string.sharing_enable));
         datasharing.setChecked(Prefs.getBoolean("data_sharing", true, getActivity()));
         datasharing.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
+                if (isChecked) {
+                    getActivity().startService(new Intent(getActivity(), Monitor.class));
+                } else {
+                    getActivity().stopService(new Intent(getActivity(), Monitor.class));
+                }
                 Prefs.saveBoolean("data_sharing", isChecked, getActivity());
             }
         });

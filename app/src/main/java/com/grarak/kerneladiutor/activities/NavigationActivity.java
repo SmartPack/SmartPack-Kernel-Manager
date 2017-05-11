@@ -331,7 +331,9 @@ public class NavigationActivity extends BaseActivity
         }
         onItemSelected(mSelection, false, false);
 
-        startService(new Intent(this, Monitor.class));
+        if (Prefs.getBoolean("data_sharing", true, this)) {
+            startService(new Intent(this, Monitor.class));
+        }
 
         if (!mFetchingAds && !Utils.DONATED) {
             mFetchingAds = true;

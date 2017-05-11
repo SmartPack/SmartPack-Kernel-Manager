@@ -130,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d 个核心</string>
   <string name="cores">%d 个核心</string>
+  <string name="cpu_usage">CPU 使用率</string>
   <string name="no_offline_core">你不能让这个核心离线！</string>
   <string name="cpu_max_freq">CPU 最高频率</string>
   <string name="cpu_max_freq_summary">设置 CPU 能调节到的最高频率。</string>
@@ -508,7 +509,7 @@
   <string name="capacity">容量</string>
   <string name="usb_fast_charge">USB 快充</string>
   <string name="usb_fast_charge_summary">加快使用 USB 连接的设备的充电速度。更改此选项后，请重新拔插充电器。</string>
-  <string name="blx">电池寿命延长器</string>
+  <string name="blx">电池寿命延长</string>
   <string name="blx_summary">设置电池充电时等同满电容量的上限（在 0–100 之间）。</string>
   <string name="charge_rate">充电速率</string>
   <string name="charging_current">充电电流</string>

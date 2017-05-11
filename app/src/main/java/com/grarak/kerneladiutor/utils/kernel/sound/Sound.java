@@ -354,13 +354,15 @@ public class Sound {
                 || hasMicrophoneGain() || hasVolumeGain();
     }
 
-    private static int getChecksum(int arg0, int arg1) {
-        return 0xff & (Integer.MAX_VALUE ^ (arg0 & 0xff) + (arg1 & 0xff));
+    private static long getChecksum(int a, int b) {
+        return (Integer.MAX_VALUE * 2L + 1L) ^ (a + b);
     }
 
     private static void fauxRun(String value, String path, String id, Context context) {
-        int checksum = value.contains(" ") ? getChecksum(Utils.strToInt(value.split(" ")[0]),
-                Utils.strToInt(value.split(" ")[1])) : getChecksum(Utils.strToInt(value), 0);
+        long checksum = value.contains(" ") ?
+                getChecksum(Utils.strToInt(value.split(" ")[0]),
+                        Utils.strToInt(value.split(" ")[1])) :
+                getChecksum(Utils.strToInt(value), 0);
         run(Control.write(value + " " + checksum, path), id, context);
         run(Control.write(value, path), id + "nochecksum", context);
     }

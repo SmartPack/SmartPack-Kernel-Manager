@@ -19,6 +19,7 @@
   <string name="cancel">取消</string>
   <string name="ok">確定</string>
   <string name="unknown">未知</string>
+  <string name="license_invalid">感謝您購買捐贈應用程序！不幸的是許可證檢查失敗。請稍後再試。如果它仍然不工作，請與我聯繫。</string>
   <string name="pirated">看來，這個捐贈版的應用程式並非透過 Play商店 購買的！如果您是盜來的，老子會鄙視您😬</string>
   <string name="donate">捐贈</string>
   <string name="donate_summary">本功能僅供有安裝捐贈版的應用程式使用。不過別擔心，因為本應用程式是一個開放原始碼的軟體，您可以輕易的組建它並移除這個檢查。但是，無論如何我希望您支援開發人員。感謝您使用 Kernel Adiutor！一旦您購買了捐贈版的應用程式，您必須重新啟動 Kernel Adiutor 以開啟所有功能。</string>
@@ -82,6 +83,7 @@
   <string name="virtual_memory">虛擬記憶體</string>
   <string name="entropy">熵</string>
   <string name="misc">其他設定</string>
+  <string name="data_sharing">資料共用</string>
   <string name="custom_controls">自訂控制</string>
   <string name="downloads">下載</string>
   <string name="backup">備份</string>

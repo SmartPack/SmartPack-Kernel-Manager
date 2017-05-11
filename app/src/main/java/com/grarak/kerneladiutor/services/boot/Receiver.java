@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.grarak.kerneladiutor.services.monitor.Monitor;
+import com.grarak.kerneladiutor.utils.Prefs;
 
 /**
  * Created by willi on 03.05.16.
@@ -33,8 +34,10 @@ public class Receiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            context.startService(new Intent(context, Monitor.class));
             context.startService(new Intent(context, Service.class));
+            if (Prefs.getBoolean("data_sharing", true, context)) {
+                context.startService(new Intent(context, Monitor.class));
+            }
         }
     }
 
