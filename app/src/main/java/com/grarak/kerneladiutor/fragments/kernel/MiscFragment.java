@@ -343,6 +343,31 @@ public class MiscFragment extends RecyclerViewFragment {
             wakelocks.add(wlanrxDivider);
         }
 
+        if (Wakelocks.hasWlanctrlDivider()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i < 17; i++) {
+                list.add((100 / i) + "%");
+            }
+            list.add("0%");
+
+            SeekBarView wlanctrlDivider = new SeekBarView();
+            wlanctrlDivider.setTitle(getString(R.string.wlan_ctrl_wakelock_divider));
+            wlanctrlDivider.setItems(list);
+            wlanctrlDivider.setProgress(Wakelocks.getWlanctrlDivider());
+            wlanctrlDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Wakelocks.setWlanctrlDivider(position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            wakelocks.add(wlanctrlDivider);
+        }
+
         if (Wakelocks.hasMsmHsicDivider()) {
             List<String> list = new ArrayList<>();
             for (int i = 1; i < 17; i++) {
