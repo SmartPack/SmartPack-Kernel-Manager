@@ -296,6 +296,23 @@
       "le_s2_ww"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/s2.json"
+  },
+  { 
+    "vendor": [
+      "LeEco",	
+      "LeTv"
+    ],
+    "device": [
+      "x3",
+      "X3",
+      "x500",
+      "X500",
+      "x507",
+      "X507",
+      "x509",
+      "X509"
+    ],
+    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/x3.json"
   }
 ]
 
