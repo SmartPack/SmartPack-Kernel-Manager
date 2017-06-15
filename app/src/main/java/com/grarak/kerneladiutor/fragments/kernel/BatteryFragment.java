@@ -161,7 +161,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             chargingCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Battery.setChargingCurrent((position + 10) * 100, getActivity());
+                    Battery.setChargingCurrent((position + 10) * 10, getActivity());
                 }
 
                 @Override
