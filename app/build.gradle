@@ -13,14 +13,14 @@ apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 236
-        versionName "0.9.7.2"
+        versionCode 237
+        versionName "0.9.70.3"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
