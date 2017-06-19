@@ -146,8 +146,6 @@
   <string name="suspend">השהה</string>
   <string name="suspend_summary">מנע השהייה.</string>
   <string name="cpus_boosted">מעבדים שהומהרו</string>
-  <string name="min_cpu_online_summary">מספר מינימלי של מעבדים שייפעלו תמיד.</string>
-  <string name="max_cpu_online_summary">מספר מקסימלי של מעבדים שייפעלו תמיד.</string>
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="powersaver_mode">מצב חיסכון בחשמל</string>

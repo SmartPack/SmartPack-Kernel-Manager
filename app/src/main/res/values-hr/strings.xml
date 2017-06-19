@@ -8,6 +8,7 @@
   <string name="collecting_info">Prikupljanje informacija</string>
   <string name="no_root">Nema roota</string>
   <string name="no_busybox">Nema busyboxa</string>
+  <string name="open">Otvori %s</string>
   <!-- Security -->
   <string name="password">Lozinka</string>
   <string name="password_wrong">Lozinka je pogrešna</string>
@@ -18,6 +19,7 @@
   <string name="cancel">Odustani</string>
   <string name="ok">U redu</string>
   <string name="unknown">Nepoznato</string>
+  <string name="license_invalid">Hvala vam što ste kupili donacijsku aplikaciju! Nažalost, provjera licence nije uspjela. Molimo pokušajte kasnije. Ako još uvijek ne radi, kontaktirajte me. Trebate pristup internetu!</string>
   <string name="pirated">Izgleda da donacijska aplikacija nije kupljena u Trgovini Play! Ako ste je preuzeli piratsku verziju s interneta, može vas biti sram!</string>
   <string name="donate">Donirajte</string>
   <string name="donate_summary">Ova je značajka dostupna samo ako je instalirana donacijska aplikacija! Ali, ne trebate se brinuti. Ova je aplikacija aplikacija otvorenog koda i lako je možete sami izgraditi i ukloniti ovu provjeru. Ali nadam se da u svakom slučaju podržavate razvojne programere. Hvala vam što se koristite Kernel Adiutorom! Kada kupite donacijsku aplikaciju morate ponovno pokrenuti Kernel Adiutor kako biste omogućili sve značajke.</string>
@@ -26,12 +28,15 @@
   <string name="ad_here">Vaš oglas može biti ovdje.</string>
   <string name="remove_ad">Ukloni oglase</string>
   <string name="warning">Upozorenje</string>
+  <string name="gh_ad">Ovo je ne-komercijalni oglas! Nemojte ovo shvatiti ozbiljno! Samo smiješan način ispunjavanja prostora kada se stvarni oglas ne učita (odnosi se na korisnike adblock usluge).</string>
   <string name="open_ad_anyway">Svejedno otvori oglas</string>
   <string name="apply_on_boot">Primijeni pri pokretanju sustava</string>
   <string name="apply_on_boot_text">Primjenjivanje postavki za %d s.</string>
   <string name="apply_on_boot_complete">Primjenjivanje postavki je završeno.</string>
   <string name="apply_on_boot_canceled">Primjenjivanje postavki je otkazano.</string>
   <string name="not_in_range">Nije u rasponu</string>
+  <string name="options">Opcije</string>
+  <string name="more">Više</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Odbijeno je dopuštenje za pisanje po pohrani!</string>
   <!-- Editor -->
@@ -78,6 +83,7 @@
   <string name="virtual_memory">Virtualna memorija</string>
   <string name="entropy">Entropija</string>
   <string name="misc">Razno</string>
+  <string name="data_sharing">Dijeljenje podataka</string>
   <string name="custom_controls">Prilagođene kontrole</string>
   <string name="downloads">Preuzimanja</string>
   <string name="backup">Sigurnosna kopija</string>
@@ -110,6 +116,7 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Kodno ime Androida</string>
   <string name="fingerprint">Otisak prsta</string>
+  <string name="build_display_id">Oznaka modela</string>
   <string name="baseband">Baseband</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Bootloader</string>
@@ -123,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">Jezgre: %d</string>
   <string name="cores">Jezgre: %d</string>
+  <string name="cpu_usage">Upotreba procesora</string>
   <string name="no_offline_core">Ne možete postaviti ovu jezgru kao neaktivnu!</string>
   <string name="cpu_max_freq">Najviša frekvencija CPU-a</string>
   <string name="cpu_max_freq_summary">Postavite najvišu frekvenciju koju CPU može ostvariti.</string>
@@ -133,12 +141,16 @@
   <string name="cpu_governor">Governor CPU-a</string>
   <string name="cpu_governor_summary">Governor CPU-a određuje kako će se procesor ponašati pod promjenama opterećenja. Promjena governora utjecat će na način na koji se procesor mijenja kroz korake frekvencije koji su dostupni za vaš CPU.</string>
   <string name="cpu_governor_tunables">Postavke governora CPU-a</string>
+  <string name="governor_tunables_summary">Razne konfiguracijske stavke koje ovise o definiciji regulacije frekvencije Cpu-a.</string>
+  <string name="cpu_governor_tunables_read_error">Čitanje trenutne definicije regulacije frekvencije Cpu-a nije uspjelo. \n\n Ako koristite QCOM big.LITTLE uređaj, to je poznati problem. Sustav prisiljava CPU da isključi jezgre, te je sustavu izuzetno teško pročitati specifične statistike CPU-a. Pokušajte ponovno odabrati ovu opciju. CPU ponekad odbija uključiti jezgru.</string>
   <string name="tunables_error">%s ne može se mijenjati.</string>
+  <string name="manual">Ručno</string>
   <string name="mc_power_saving">Višejezgrena štednja energije</string>
   <string name="mc_power_saving_summary">Pokušava grupirati zadatke u što je manje jezgri moguće.</string>
   <string name="disabled">Onemogućeno</string>
   <string name="enabled">Omogućeno</string>
   <string name="aggressive">Agresivno</string>
+  <string name="power_saving_wq">Raspored radnih redova na aktivnim procesorima radi uštede energije.</string>
   <string name="cfs_scheduler_policy">CFS Scheduler: pravila</string>
   <string name="cfs_scheduler_policy_summary">Pravila određuju za CFS Scheduler kako rasporediti zadatke po različitim CPU jezgrama.</string>
   <string name="cpu_quiet">CPUQuiet</string>
@@ -146,6 +158,7 @@
   <string name="cpu_quiet_governor">CPUQuiet Governor</string>
   <string name="cpu_boost">Ubrzavanje CPU-a</string>
   <string name="debug_mask">Maska za ispravljanje grešaka</string>
+  <string name="debug_mask_summary">Omogućuje vam aktiviranje maske za uklanjanje pogrešaka pri radu.</string>
   <string name="interval">Razdoblje</string>
   <string name="interval_summary">Najkraće razdoblje u kojem je CPU ubrzan.</string>
   <string name="sync_threshold">Prag sinkroniziranja</string>
@@ -153,10 +166,12 @@
   <string name="input_interval">Unos razdoblja</string>
   <string name="input_interval_summary">Najkraće razdoblje kroz koje je CPU ubrzan nakon odčitavanja unosa.</string>
   <string name="input_boost_freq">Rast frekvencije pri unosu</string>
+  <string name="input_boost_freq_core">Unos povećanja frekvencije jezgre %d</string>
   <string name="input_boost_freq_summary">CPU frekvencija će porasti do ove vrijednosti pri otkrivanju unosa.</string>
   <string name="wakeup_boost">Ubrzanje buđenja</string>
   <string name="wakeup_boost_summary">Ubrzanje buđenja slično je ubrzanju unosa, ali odvija se kada je zaslon isključen.</string>
   <string name="hotplug_boost">Ubrzanje hotpluga</string>
+  <string name="hotplug_boost_summary">Hotplug Boost je sličan unosu povećanja frekvencije, ali se događa kada CPU-i počinju biti aktivni.</string>
   <string name="touch_boost">Ubrzavanje reakcije na dodir</string>
   <string name="touch_boost_summary">Ovo će ubrzati minimalnu brzinu CPU-a čim dodirnete zaslon ili pritisnete tipku.</string>
   <!-- CPU Voltage -->
@@ -164,10 +179,12 @@
   <string name="override_vmin">Preinači minimalni napon</string>
   <string name="override_vmin_summary">Iskljuci za uklanjanje ograničenja proizvođača na undervolting</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">Omogućeno je više sustava za hotplugging! \n Molim koristite samo jedan.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Qualcommovo rješenje za hotplugging. Ako ovo omogućite mogli biste se suočiti s teškoćama pri mijenjanju frekvencija.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Zamjena unutar kernela za Qualcomm\'s MPDecision. Programirao: faux123.</string>
+  <string name="cpu_hotplug_profile_summary">Broj u zagradama označava količinu aktivnih jezgri u bilo kojem trenutku.</string>
   <string name="insanity">InSaNiTy</string>
   <string name="balanced">Uravnoteženo</string>
   <string name="performance">Moćno</string>
@@ -183,14 +200,15 @@
   <string name="hysteresis">Vrijednost Hysteresis-a</string>
   <string name="hysteresis_summary">Čim niža vrijednost, tim brža reakcija.</string>
   <string name="cpu_threshold">Prag CPU-a</string>
+  <string name="cpu_threshold_summary">Što je veća vrijednost, manje CPU-ova se koristi.</string>
   <string name="suspend">Obustaviti</string>
   <string name="suspend_summary">Spriječiti obustavljanje.</string>
   <string name="cpus_boosted">CPU ubrzavanje</string>
   <string name="cpus_boosted_summary">Najveći broj istovremeno ubrzanih CPU-a.</string>
   <string name="min_cpu_online">Najmanji broj aktivnih CPU-a</string>
-  <string name="min_cpu_online_summary">Najmanji broj CPU-a koji će uvijek ostati aktivni.</string>
   <string name="max_cpu_online">Najviše CPU-a u pogonu</string>
-  <string name="max_cpu_online_summary">Najveći broj CPU-a koji će uvijek biti u pogonu.</string>
+  <string name="max_cpu_online_screen_off">Najveći broj CPU-a pri isključenom zaslonu</string>
+  <string name="max_cpu_online_screen_off_summary">Najveći broj procesora koji će biti aktivni kada je zaslon isključen.</string>
   <string name="suspend_defer_time">Obustavljanje vremena odgađanja</string>
   <string name="defer_sampling">Odgađanje ispitivanja uzoraka</string>
   <string name="boost_lock_duration">Vrijeme trajnog ubrzanog rada</string>
@@ -198,9 +216,15 @@
   <string name="down_lock_duration">Trajanje Down Lock-a</string>
   <string name="down_lock_duration_summary">Najkraće razdoblje CPU-a u pogonu.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Izmjena u kernelu za Qualcommov MPDecision. Razvijena od strane arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Moguće CPU jezgre</string>
+  <string name="possible_cpu_cores_summary">Moguće CPU jezgre koje lazyplug može koristiti.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Zamjena unutar kernela za Qualcomm\'s MPDecision. Programirao: Code_Blue tim.</string>
   <string name="powersaver_mode">Modus štednje baterije</string>
+  <string name="powersaver_mode_summary">Postavlja maksimum 1 aktivni CPU s frekvencijom @ 1728MHz.</string>
   <string name="up_threshold">Threshold granica za u pogonu</string>
   <string name="up_threshold_summary">Iznad ove razine driver će uključiti dodatnu jezgru u pogon.</string>
   <string name="up_timer_cnt">Timer postavke za u pogonu</string>
@@ -224,6 +248,7 @@
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Zamjena za Qualcomms MPDecision unutar kernela. Programirao: franciscofranco.</string>
   <string name="cpus_on_touch">CPU-i na dodir</string>
+  <string name="cpus_on_touch_summary">Broj aktivnih procesora kada dodirnete zaslon ili pritisnete gumb.</string>
   <string name="cpu_freq_unplug_limit">Granična frekvencija iskopčavanja CPU-a</string>
   <string name="first_level">Prva razina</string>
   <string name="first_level_summary">Granica za uključivanje svih CPU jezgri.</string>
@@ -236,9 +261,13 @@
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Zamjena unutar kernela za Qualcomm\'s MPDecision. Programirao: show-p1984.</string>
+  <string name="screen_off_single_cpu">Jedna jezgra pri isključenom zaslonu</string>
+  <string name="screen_off_single_cpu_summary">Koristi samo jednu jezgru dok je zaslon isključen.</string>
   <string name="idle_frequency">Frekvencija u mirovanju</string>
   <string name="idle_frequency_summary">Ako se frekvencija prve jezgre spusti ispod ove vrijednosti, ne uključuj ostale jezgre.</string>
   <string name="touch_boost_time">Vrijeme poticaja pri dodiru</string>
+  <string name="touch_boost_time_summary">Koliko dugo CPU mora biti pojačan nakon dodirivanja zaslona.</string>
+  <string name="boost_frequency_core">Unos povećanja frekvencije jezgre %d</string>
   <string name="start_delay">Zakašnjenje započinjanja</string>
   <string name="start_delay_summary">Razdoblje nakon kojeg Hotplug počinje djelovati.</string>
   <string name="delay">Kašnjenje</string>
@@ -251,6 +280,9 @@
   <string name="cpu_down_rate">Učestalost isključivanja CPU-a</string>
   <string name="cpu_up_rate">Učestalost aktiviranja CPU-a</string>
   <string name="thunderplug">ThunderPlug</string>
+  <string name="thunderplug_summary">Izmjena u kernelu za Qualcommov hotplugging. Razvijeno od strane varunchitre15.</string>
+  <string name="min_cpu_online_screen_off">Najmanji broj jezgri pri isključenom zaslonu</string>
+  <string name="min_cpu_online_screen_off_summary">Minimalni broj procesora koji će biti aktivni kada je zaslon isključen.</string>
   <string name="endurance_level">Razina izdržljivosti</string>
   <string name="endurance_level_summary">Profil za uštedu energije.</string>
   <string name="quad_core_mode">4-jezgreni način</string>
@@ -258,19 +290,38 @@
   <string name="zen_decision">Zen odluka</string>
   <string name="zen_decision_summary">Zamjena unutar kernela za Qualcomov MPDecision. Programirao: bbedward.</string>
   <string name="wake_wait_time">Vrijeme čekanja za buđenje</string>
+  <string name="wake_wait_time_summary">Kolik čekati prije uključivanja bilo kojeg CPU-a.</string>
   <string name="bat_threshold_ignore">Zanemarivanje praga baterije</string>
   <string name="bat_threshold_ignore_summary">Ne uključuj nijednu jezgru kada je razina napunjenosti ispod odabranog kapaciteta.</string>
   <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">Zamjena unutar kernela za Qualcomov MPDecision. Programirao: mrg666.</string>
+  <string name="downrate_limits">Ograničenja pogoršanja</string>
+  <string name="uprate_limits">Ograničenja poboljšavanja</string>
+  <string name="cycle_down">Ciklus dolje</string>
+  <string name="cycle_down_summary">Broj ciklusa koje je potrebno pričekati nakon posljednjeg hotplug događaja kako bi se odspojila druga jezgra.</string>
+  <string name="cycle_up">Ciklus gore</string>
+  <string name="cycle_up_summary">Broj ciklusa koje je potrebno pričekati nakon posljednjeg hotplug događaja kako bi se priključila druga jezgra.</string>
   <string name="core_control">Kontrola jezgri</string>
   <string name="core_control_summary">Qualcommovo rješenje za hotplugging. Žao nam je ako ovo ne možete isključiti. #kriviteqcom</string>
+  <string name="hcube">H-kocka</string>
+  <string name="hcube_summary">OnePlusova modificirana kontrola jezgre.</string>
+  <string name="min_cpus_big">Minimum velikih CPUova</string>
+  <string name="min_cpus_big_summary">Minimalna količina velikih procesora koji bi trebali biti aktivni.</string>
+  <string name="busy_down_threshold">Donji prag zauzeća</string>
+  <string name="busy_down_threshold_summary">Prag kod kojeg je potrebno velike CPUove ugasiti.</string>
+  <string name="busy_up_threshold">Gornji prag zauzeća</string>
+  <string name="busy_up_threshold_summary">Prag kod kojeg je potrebno velike CPUove upaliti.</string>
+  <string name="offline_delay">Izvanmrežno kašnjenje</string>
+  <string name="offline_delay_summary">Vrijeme prije isključivanja CPU-a.</string>
   <!--Thermal-->
   <string name="thermal_info">Preporučamo da koristite samo jedan driver. Korištenjem više od jednog istovremeno može utjecati na neuobičajeno ponašanje, osim ako ih vaš kernel već koristi više po defaultu.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Tvornički toplinski upravljački program koji sprječava pregrijavanje uređaja. To bi se trebalo onemogućiti ako trenutni kernel ima alternativu.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Zamjena unutar kernela za Qualcomov Mpdecision. Programirao: faux123.</string>
   <string name="intellithermal_optimized">Intellithermal Optimiziran</string>
   <string name="intellithermal_optimized_summary">Zamjena unutar kernela za Qualcomov Mpdecision. Programirali: faux123 i alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Omogućuje vam aktiviranje maske za uklanjanje pogrešaka za toplinske postupke.</string>
   <string name="vdd_restriction">VDD ograničenje</string>
   <string name="freq_step">Korak frekvencije</string>
   <string name="temp_limit">Toplotna granica</string>
@@ -412,6 +463,7 @@
   <string name="flashing">Instaliranje</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
+  <string name="add">Dodati</string>
   <string name="key">Ključ</string>
   <string name="value">Vrijednost</string>
   <!-- Profile -->
@@ -431,4 +483,5 @@
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="have_to_donate_summary">Ne, ova aplikacija je aplikacija otvorenog koda. Lako je možete sami izgraditi. Značajke donacijske aplikacije omogućene su prema zadanim postavkama nakon što izradite. apk za uklanjanje pogrešaka pa nema potrebe za promjenom koda.</string>
 </resources>

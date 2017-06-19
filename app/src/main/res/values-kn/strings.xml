@@ -114,9 +114,7 @@
   <string name="cpus_boosted">ಸಿಪಿಯುಗಳು ಬೂಸ್ಟ್ ಆಗಿದೆ</string>
   <string name="cpus_boosted_summary">ಒಟ್ಟಗೆ ಬೂಸ್ಟ್ ಆದ ಗರಿಷ್ಟ ಸಿಪಿಯುಗಳ ಸಂಖ್ಯೆ.</string>
   <string name="min_cpu_online">ಕನಿಷ್ಠ ಸಿಪಿಯು ಆನ್‍ಲೈನ್</string>
-  <string name="min_cpu_online_summary">ಎಂದಿಗೂ ಆನ್‍ಲೈನ್ ಇರುವ ಕನಿಷ್ಠ ಸಿಪಿಯು‍ಗಳ ಸಂಖ್ಯೆ.</string>
   <string name="max_cpu_online">ಗರಿಷ್ಠ ಸಿಪಿಯು ಆನ್‍ಲೈನ್</string>
-  <string name="max_cpu_online_summary">ಎಂದಿಗೂ ಆನ್‍ಲೈನ್ ಇರುವ ಗರಿಷ್ಠ ಸಿಪಿಯು‍ಗಳ ಸಂಖ್ಯೆ.</string>
   <string name="suspend_defer_time">ಸಸ್ಪೆಂಡ್ ಡಿಫರ್ ಟೈಮ್</string>
   <string name="defer_sampling">ಡಿಫರ್ ಸ್ಯಾಂಪ್ಲಿಂಗ್</string>
   <string name="boost_lock_duration">ಬೂಸ್ಟ್ ಲಾಕ್ ಅವಧಿ</string>

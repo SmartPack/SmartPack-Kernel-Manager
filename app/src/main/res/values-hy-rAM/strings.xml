@@ -7,6 +7,7 @@
   <string name="collecting_info">Տվյալների կուտակում</string>
   <string name="no_root">Root չկա</string>
   <string name="no_busybox">Busybox չկա</string>
+  <string name="open">Բացել %s</string>
   <!-- Security -->
   <string name="password">Գաղտնաբառ</string>
   <string name="password_wrong">Գաղտնաբառը սխալ է</string>
@@ -90,10 +91,12 @@
   <string name="android_codename">Android Codename</string>
   <string name="fingerprint">Մատնահետք</string>
   <string name="rom">ROM</string>
+  <string name="bootloader">Bootloader</string>
   <!-- Inputs -->
   <string name="version">Տարբերակ</string>
   <!-- CPU -->
   <string name="cores">Միջուկներ. %d</string>
+  <string name="cpu_usage">CPU Օգտագ.</string>
   <string name="manual">Ձեռնարկ</string>
   <string name="disabled">Անջատված է</string>
   <string name="enabled">Միացված է</string>
@@ -114,6 +117,7 @@
   <string name="fshift">FShift</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="history_size">Պատմության չափը</string>
+  <string name="first_level">Առաջին Մակարդակ</string>
   <string name="delay">Հետաձգել</string>
   <string name="pause">Ընդմիջել</string>
   <!--Thermal-->

@@ -206,9 +206,7 @@
   <string name="cpus_boosted">CPU-k gyorsítva</string>
   <string name="cpus_boosted_summary">Maximálisan gyorsított magok száma egy időben.</string>
   <string name="min_cpu_online">Minimális aktív CPU</string>
-  <string name="min_cpu_online_summary">A mindig aktív CPU minimális száma.</string>
   <string name="max_cpu_online">Maximális aktív CPU</string>
-  <string name="max_cpu_online_summary">A mindig aktív CPU maximális száma.</string>
   <string name="max_cpu_online_screen_off">Maximális CPU kikapcsolt képernyőnél</string>
   <string name="max_cpu_online_screen_off_summary">A mindig aktív CPU maximális száma, ha a képernyő ki van kapcsolva.</string>
   <string name="suspend_defer_time">Felfüggesztés idejének elhalasztása</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">Aktívan tartás időtartama</string>
   <string name="down_lock_duration_summary">A CPU aktívan tartásának minimális időköze.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Egy kernelen belüli Qualcomm MPDecision helyettesítő. Fejlesztő: arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Lehetséges CPU magok</string>
+  <string name="possible_cpu_cores_summary">Lehetséges CPU mag, amit a lazyplug használhat.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Egy kernelen belüli Qualcomm MPDecision helyettesítő. Fejlesztő: Code_Blue csapat.</string>
   <string name="powersaver_mode">Energiatakarékos mód</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">Mivel sok ember küzd azzal, hogy megtalálja az eszközéhez megfelelő beállításokat és a haladó felhasználók iránymutatása kell neki, ezt ötlöttem ki.\n\nEz a szolgáltatás a haladó felhasználók számára gyűjti a beállításokat majd a cpu és az akkumulátor teljesítményt méri. A legjobb beállítás minden chipset számára elérhető lesz utána mindenkinek. Ez az alkalmazás nem gyűjt semmilyen személyes adatot!</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>
@@ -803,7 +805,6 @@
   <string name="fingerprint_summary">Ujjlenyomat használata a biztonsági ellenőrzéshez. Ez addig fog működni, amíg az ujjlenyomata regisztrálva van.</string>
   <string name="sections">Szekciók</string>
   <!-- About -->
-  <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében CyanogenMod közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
   <string name="libraries_used">Használt könyvtárak</string>
   <!-- Contributors -->
   <string name="commits">%d változtatás</string>

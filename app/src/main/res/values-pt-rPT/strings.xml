@@ -182,9 +182,7 @@
   <string name="cpus_boosted">CPUs impulsionados</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs impulsionados ao mesmo tempo.</string>
   <string name="min_cpu_online">Mínimo CPU on-line</string>
-  <string name="min_cpu_online_summary">Número mínimo de CPUs que estará sempre on-line.</string>
   <string name="max_cpu_online">Máximo CPU on-line</string>
-  <string name="max_cpu_online_summary">Número máximo de CPUs que estará sempre on-line.</string>
   <string name="suspend_defer_time">Suspender adiar o tempo</string>
   <string name="defer_sampling">Adiar amostragem</string>
   <string name="boost_lock_duration">Duração do bloqueio do Boost</string>

@@ -206,9 +206,7 @@
   <string name="cpus_boosted">CPU 升频</string>
   <string name="cpus_boosted_summary">同一时间内被升频的 CPU 最大数量。</string>
   <string name="min_cpu_online">最小 CPU 在线数量</string>
-  <string name="min_cpu_online_summary">在任意时间在线 CPU 的最小数值。</string>
   <string name="max_cpu_online">最大 CPU 在线数量</string>
-  <string name="max_cpu_online_summary">在任意时间在线 CPU 的最大数值。</string>
   <string name="max_cpu_online_screen_off">关闭屏幕时的最大CPU频率</string>
   <string name="max_cpu_online_screen_off_summary">屏幕关闭时的最大CPU核心数</string>
   <string name="suspend_defer_time">待机推迟时间</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">下线锁定持续</string>
   <string name="down_lock_duration_summary">单个 CPU 保持在线的最小间隔。</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">由 arter97 开发的高通 MPDecision 替代方案。</string>
+  <string name="lazy">懒</string>
+  <string name="possible_cpu_cores">可使用的CPU内核</string>
+  <string name="possible_cpu_cores_summary">Lazyplug可使用的CPU内核。</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">由 Code_Blue 团队开发的高通 MPDecision 替代方案。</string>
   <string name="powersaver_mode">节点模式</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">因为很多人很难找到适合自己设备的设置，需要资深用户指导，我想出了这个办法。\n\n这个功能会收集资深用户的设置，并测量该设置下cpu和续航的表现。每个芯片的最佳设置会在随后提供给所有人。应用不会收集任何个人信息！</string>
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
   <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>
@@ -803,7 +805,6 @@
   <string name="fingerprint_summary">使用指纹来验证密码。如果您已注册指纹，这个功能会正常工作。</string>
   <string name="sections">分区</string>
   <!-- About -->
-  <string name="about_me">你好，我是 Willie Ye，也称 @Grarak，一个住在奥地利维也纳的19岁学生。我在 Android 平台开发已有相当长时间了，除 Kernel Adiutor 以外我还在维护一些设备的 CyanogenMod，同时也花时间在 ParanoidAndroid 上。所以如果我没有时间更新这个应用，也请理解。</string>
   <string name="libraries_used">使用的程序库</string>
   <!-- Contributors -->
   <string name="commits">%d 次提交</string>

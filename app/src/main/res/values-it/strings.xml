@@ -13,7 +13,7 @@
   <string name="password">Password</string>
   <string name="password_wrong">Password errata</string>
   <string name="select_picture">Selezionare Immagine</string>
-  <string name="no_picture">Nessuna foto</string>
+  <string name="no_picture">Nessuna Immagine</string>
   <string name="went_wrong">Qualcosa è andato storto!</string>
   <string name="press_back_again_exit">Premi ancora indietro per uscire</string>
   <string name="cancel">Annulla</string>
@@ -78,9 +78,9 @@
   <string name="battery">Batteria</string>
   <string name="led">LED</string>
   <string name="io_scheduler">Scheduler I/O</string>
-  <string name="ksm">Fusione pagine del kernel</string>
+  <string name="ksm">Kernel Samepage Merging</string>
   <string name="lmk">Low Memory Killer</string>
-  <string name="virtual_memory">Memoria virtuale</string>
+  <string name="virtual_memory">Memoria Virtuale</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Varie</string>
   <string name="data_sharing">Condivisione dei dati</string>
@@ -135,7 +135,7 @@
   <string name="cpu_max_freq">Massima frequenza CPU</string>
   <string name="cpu_max_freq_summary">Impostare la massima frequenza della CPU.</string>
   <string name="cpu_min_freq">Frequenza Minima CPU</string>
-  <string name="cpu_min_freq_summary">Impostare il valore minimo di frequenza della CPU.</string>
+  <string name="cpu_min_freq_summary">Imposta il valore minimo di frequenza della CPU.</string>
   <string name="cpu_max_screen_off_freq">Massima frequenza CPU a schermo spento</string>
   <string name="cpu_max_screen_off_freq_summary">Imposta la frequenza massima della CPU da scalare fino a quando lo schermo è spento.</string>
   <string name="cpu_governor">Governor CPU</string>
@@ -206,9 +206,7 @@
   <string name="cpus_boosted">CPU potenziate</string>
   <string name="cpus_boosted_summary">Numero massimo di CPU potenziate allo stesso tempo.</string>
   <string name="min_cpu_online">Numero minimo di CPU Attive</string>
-  <string name="min_cpu_online_summary">Numero minimo di CPU che saranno sempre online.</string>
   <string name="max_cpu_online">Numero massimo di CPU online</string>
-  <string name="max_cpu_online_summary">Numero massimo di CPU che saranno sempre online.</string>
   <string name="max_cpu_online_screen_off">Massimo CPU a schermo spento</string>
   <string name="max_cpu_online_screen_off_summary">Numero massimo di CPU attivi a schermo spento.</string>
   <string name="suspend_defer_time">Sospendere il tempo di ritardo</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">Durata del blocco bassa</string>
   <string name="down_lock_duration_summary">Intervallo minimo per mantenere online una CPU.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Un\'alternativa all\'interno del kernel per l\'MPDecision di Qualcomm. Sviluppato da arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Core CPU possibili</string>
+  <string name="possible_cpu_cores_summary">Core CPU possibili che lazyplug può utilizzare.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Un\'alternativa all\'interno del kernel per l\'MPDecision di Qualcomm. Sviluppato da Code_Blue team.</string>
   <string name="powersaver_mode">Modalità risparmio energetico</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Divisore BCMDHD Wakelock</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">Dal momento che molte persone hanno avuto problemi a trovare le impostazioni adatte al proprio dispositivo e necessitavano di una guida da parte di utenti più esperti, ho creato questa.\n\nQuesta funzione raccoglierà le impostazioni degli utenti più esperti e misurerà le performance della CPU e della batteria. I migliori settaggi saranno disponibili successivamente a tutti. Quest\'app non raccoglierà alcun dato personale!</string>
   <!-- Custom Controls -->
   <string name="welcome">Benvenuto</string>
   <string name="custom_controls_summary">In questa sezione puoi creare o importare controlli personalizzati che non esistono nell\'app (per ora).</string>
@@ -803,7 +805,6 @@
   <string name="fingerprint_summary">Utilizza le impronte digitali per il controllo sicurezza. Questo funzionerà fino a quando avrai impronte digitali registrate.</string>
   <string name="sections">Sezioni</string>
   <!-- About -->
-  <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la CyanogenMod per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
   <string name="libraries_used">Librerie usate</string>
   <!-- Contributors -->
   <string name="commits">%d commit</string>

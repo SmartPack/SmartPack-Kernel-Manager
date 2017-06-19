@@ -186,9 +186,7 @@
   <string name="cpus_boosted">CPUs puxaes</string>
   <string name="cpus_boosted_summary">Númberu máximu de CPUs que puxarán al mesmu tiempu.</string>
   <string name="min_cpu_online">CPUs mínimes en llinia</string>
-  <string name="min_cpu_online_summary">El númberu mínimu de CPUs que tarán siempres en llinia.</string>
   <string name="max_cpu_online">CPUs máximes en llinia</string>
-  <string name="max_cpu_online_summary">El númberu máximu de CPUs que tarán siempres en llinia.</string>
   <string name="defer_sampling">Amuesa apostalgada</string>
   <string name="boost_lock_duration">Duración del caltenimientu de puxu</string>
   <string name="boost_lock_duration_summary">Interválu mínimu nel qu\'una CPU puxa.</string>

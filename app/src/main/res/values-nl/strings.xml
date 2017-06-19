@@ -205,9 +205,7 @@
   <string name="cpus_boosted">CPUs Versterkt</string>
   <string name="cpus_boosted_summary">Maximum aantal versterkte CPUs op hetzelfde moment.</string>
   <string name="min_cpu_online">Minimale CPU\'s online</string>
-  <string name="min_cpu_online_summary">Minimaal aantal CPU\'s die altijd online zullen zijn.</string>
   <string name="max_cpu_online">Maximaal aantal CPU\'s online</string>
-  <string name="max_cpu_online_summary">Maximaal aantal CPU\'s die altijd online zullen zijn.</string>
   <string name="max_cpu_online_screen_off">Maximum CPU scherm uit</string>
   <string name="max_cpu_online_screen_off_summary">Maximum aantal CPU\'s online zijn zal wanneer het scherm uitgeschakeld is.</string>
   <string name="suspend_defer_time">Staak Uitsteltijd</string>

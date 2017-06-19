@@ -155,9 +155,7 @@
   <string name="cpus_boosted">Förstärkta CPU:er</string>
   <string name="cpus_boosted_summary">Max antal CPU:er som är förstärkta samtidigt.</string>
   <string name="min_cpu_online">Lägsta antal aktiverade CPU:er</string>
-  <string name="min_cpu_online_summary">Lägsta antal CPU:er som alltid kommer vara aktiva.</string>
   <string name="max_cpu_online">Högsta antal aktiverade CPU:er</string>
-  <string name="max_cpu_online_summary">Högsta antal CPU:er som alltid kommer vara aktiva.</string>
   <string name="max_cpu_online_screen_off">Maximal CPU Skärm Avstängd</string>
   <string name="max_cpu_online_screen_off_summary">Maximalt antal processorer som kommer vara online när skärmen är avstängd.</string>
   <string name="boost_lock_duration">Boost Lock-varaktighet</string>

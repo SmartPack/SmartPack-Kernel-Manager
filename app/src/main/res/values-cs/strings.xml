@@ -6,7 +6,7 @@
   <string name="checking_root">Kontrola root oprávnění</string>
   <string name="searching_busybox">Hledání busyboxu</string>
   <string name="collecting_info">Shromažďování informací</string>
-  <string name="no_root">Nemáte root oprávnění</string>
+  <string name="no_root">Žádný kořenové oprávněni</string>
   <string name="no_busybox">Nemáte busybox</string>
   <string name="open">Otevřít %s</string>
   <!-- Security -->
@@ -130,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d jádro</string>
   <string name="cores">%d jádra</string>
+  <string name="cpu_usage">Využití CPU</string>
   <string name="no_offline_core">Toto jádro nelze odpojit!</string>
   <string name="cpu_max_freq">Maximální frekvence procesoru</string>
   <string name="cpu_max_freq_summary">Nastavení maximální frekvence procesoru.</string>
@@ -205,9 +206,7 @@
   <string name="cpus_boosted">CPU posílení</string>
   <string name="cpus_boosted_summary">Maximální počet procesorových jader, které se přetaktují ve stejném čase.</string>
   <string name="min_cpu_online">Minimální počet CPU online</string>
-  <string name="min_cpu_online_summary">Minimální počet procesorů, které budou vždy online.</string>
   <string name="max_cpu_online">Maximální počet CPU online</string>
-  <string name="max_cpu_online_summary">Maximální počet procesorů, které budou vždy online.</string>
   <string name="max_cpu_online_screen_off">Maximum CPU bez obrazovky</string>
   <string name="max_cpu_online_screen_off_summary">Maximální počet CPU, která budou zapnuta při vypnuté obrazovce.</string>
   <string name="suspend_defer_time">Doba odložení odstavení</string>
@@ -217,29 +216,47 @@
   <string name="down_lock_duration">Doba trvání do uzamčení spodní frekvence procesoru</string>
   <string name="down_lock_duration_summary">Minimální doba, po kterou je CPU držen online.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul arter97.</string>
+  <string name="lazy">Líný</string>
+  <string name="possible_cpu_cores">Dostupné jádra CPU</string>
+  <string name="possible_cpu_cores_summary">Jádra CPU, které můžou používat LazyPlug.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinut týmem Code_Blue.</string>
   <string name="powersaver_mode">Úsporný režim</string>
   <string name="powersaver_mode_summary">Zapne jen 1 CPU s frekvencí @1728MHz.</string>
   <string name="up_threshold">Hranice zvýšení</string>
   <string name="up_threshold_summary">Po překročení této hranice ovladač zapne jedno další jádro.</string>
+  <string name="up_timer_cnt">Horni Časovač řízení</string>
   <string name="up_timer_cnt_summary">Časovač řízení pro aktivní jádra.</string>
+  <string name="down_timer_cnt">Dolni Časovač řízení</string>
   <string name="down_timer_cnt_summary">Časovač řízení pro neaktivní jádra.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul myfluxi.</string>
   <string name="history_size">Velikost historie</string>
+  <string name="history_size_summary">Počet vzorků podílejících se na zatížení CPU. Menší hodnota znamená větší, ale méně stabilní výkon.</string>
   <string name="update_rate">Rychlost aktualizace</string>
+  <string name="update_rate_summary">Interval odběru vzorků zatížení mezi procesory. Nižší znamená rychlejší/nestabilnější.</string>
+  <string name="fast_lane_load">Rychlý přístup k zátěži (Fast Lane Load)</string>
   <string name="fast_lane_load_summary">Zlepšení odezvy okamžitým zapojením všech jader v případě, že aktuální zatížení některého jádra je nad určitou hranicí.</string>
+  <string name="fast_lane_min_freq">Minimální frekvence Fast Lane</string>
+  <string name="fast_lane_min_freq_summary">Nastavení minimální frekvence procesoru, při níž Fast Lane dosáhne vyšší zátěži.</string>
+  <string name="offline_load">Offline nahravani</string>
+  <string name="offline_load_summary">Nepřepínat procesor do režimu offline, pokud klesne pod nejnižší úroveň prahu zatížení.</string>
   <string name="io_is_busy">I/O plánovač je zaneprázdněn</string>
+  <string name="io_is_busy_summary">Používá se na hotplug, s přihlédnutím na I/O čas zatížení CPU.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
   <string name="mako_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul franciscofranco.</string>
   <string name="cpus_on_touch">Počet CPU při doteku</string>
   <string name="cpus_on_touch_summary">Počet zapnutých CPU při dotyku obrazovky nebo stisku tlačítka.</string>
+  <string name="cpu_freq_unplug_limit">Hraniční frekvence odpojení CPU</string>
   <string name="first_level">První úroveň</string>
   <string name="first_level_summary">Hranice pro zapojení všech jader.</string>
+  <string name="high_load_counter">Vysoké zatížení čítač</string>
   <string name="load_threshold">Hranice zatížení</string>
   <string name="load_threshold_summary">Hranice pro zapojení všech jader.</string>
   <string name="max_load_counter">Počítadlo maximálního zatížení</string>
+  <string name="min_time_cpu_online">Minimální čas aktivity CPU</string>
   <string name="timer">Časovač</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
@@ -256,12 +273,17 @@
   <string name="delay">Prodleva</string>
   <string name="delay_summary">Čas mezi kontrolami.</string>
   <string name="pause">Pauza</string>
+  <string name="pause_summary">Pokud je na CPU připojeno ještě něco jiného, přepne se do režimu spánku na zde zadaný čas.</string>
   <string name="alucard_hotplug">Alucard Hotplug</string>
   <string name="alucard_hotplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul Alucard.</string>
   <string name="sampling_rate">Vzorkovací frekvence</string>
+  <string name="cpu_down_rate">Frekvence CPU dolů</string>
+  <string name="cpu_up_rate">Zvýšení rychlosti CPU</string>
   <string name="thunderplug">ThunderPlug</string>
   <string name="thunderplug_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul varunchitre15.</string>
+  <string name="min_cpu_online_screen_off">Minimální počet jader CPU při vypnuté obrazovce</string>
   <string name="min_cpu_online_screen_off_summary">Minimální počet jader, která budou zapnuta při vypnuté obrazovce.</string>
+  <string name="endurance_level">Úroveň zatížení</string>
   <string name="endurance_level_summary">Úsporný profil.</string>
   <string name="quad_core_mode">Režim Quad-Core</string>
   <string name="dual_core_mode">Režim Dual-Core</string>
@@ -273,7 +295,21 @@
   <string name="bat_threshold_ignore_summary">Nezapínat jádra pokud je nabito pod vybranou kapacitu.</string>
   <string name="autosmp">AutoSMP</string>
   <string name="autosmp_summary">Náhrada za Qualcomm MPDecision v jádře. Vyvinul mrg666.</string>
+  <string name="downrate_limits">Limity snížení</string>
+  <string name="uprate_limits">Limity zvýšení</string>
+  <string name="cycle_down">Cyklus dolů</string>
+  <string name="cycle_down_summary">Počet cyklů čekání od poslední události hotplug před odpojením dalšího jádra.</string>
+  <string name="cycle_up">Cyklus nahoru</string>
+  <string name="cycle_up_summary">Počet cyklů čekání od poslední události hotplug před připojením dalšího jádra.</string>
   <string name="core_control">Řízení Jádra</string>
+  <string name="core_control_summary">Qualcomm hotplug. Je nám líto, nelze jej vypnout. #blameqcom</string>
+  <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">Upravené ovládání jádra OnePlus.</string>
+  <string name="min_cpus_big">Minimální počet CPU big</string>
+  <string name="min_cpus_big_summary">Minimální počet CPU big, které by měly být online.</string>
+  <string name="busy_down_threshold">Dolní práh zaneprázdněnosti</string>
+  <string name="busy_up_threshold">Horní práh zaneprázdněnosti</string>
+  <string name="offline_delay">Offline zpoždění</string>
   <!--Thermal-->
   <string name="thermal_info">Používejte pouze jeden teplotní ovladač, použití více ovladačů ve stejnou dobu může vést k neočekávanému chování.</string>
   <string name="thermald">Thermald</string>
@@ -282,7 +318,13 @@
   <string name="intellithermal_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123.</string>
   <string name="intellithermal_optimized">Intellithermal Optimized</string>
   <string name="intellithermal_optimized_summary">Náhrada za Thermald od Qualcommu. Vyvinul faux123 a alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Umožňuje aktivovat vzor ladění pro tepelné operace.</string>
+  <string name="vdd_restriction">VDD omezení</string>
+  <string name="freq_throttle_temp">Snižování frekvence při teplotě</string>
+  <string name="cpu_throttle_temp_summary">Teplota pro zahájení odstavování jader.</string>
+  <string name="cpu_temp_hysteresis">Hystereze teploty CPU</string>
   <string name="freq_step">Krok frekvence</string>
+  <string name="poll">Anketa</string>
   <string name="temp_hysteresis">Teplotní hystereze</string>
   <string name="thermal_limit_low">Nízký teplotní limit</string>
   <string name="thermal_limit_high">Vysoký teplotní limit</string>
@@ -307,6 +349,7 @@
   <string name="gpu_governor_summary">Nastavení správce grafiky.</string>
   <string name="simple_gpu_algorithm">Jednoduchý algoritmus grafiky</string>
   <string name="simple_gpu_algorithm_summary">Doplněk pro správce grafiky MSM Adreno TZ, vyvinutý uživatelem faux123.</string>
+  <string name="laziness">Lenost</string>
   <string name="workload">Pracovní vytížení</string>
   <!-- Screen -->
   <string name="screen_color">Barvy obrazovky</string>
@@ -324,6 +367,7 @@
   <string name="high_brightness_mode">Režim vysokého jasu</string>
   <string name="srgb">sRGB</string>
   <string name="gamma">Gama</string>
+  <string name="red_greys">červeno šedá</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jas</string>
   <string name="lcd_backlight">Podsvícení LCD</string>
@@ -598,7 +642,6 @@
   <string name="fingerprint_summary">Použít otisk prstu pro bezpečnostní kontrolu. Toto bude fungovat dokud budete mít zaznamenané otisky prstu.</string>
   <string name="sections">Sekce</string>
   <!-- About -->
-  <string name="about_me">Ahoj, já jsem Willi Ye aka Grarak, devatenáctiletý student žijící ve Vídni. Vyvíjím na Androidu už docela dlouho. Vedle Kernel Adiutoru také spravuju CyanogenMod pro několik zařízení a pracuji na ParanoidAndroidu. Tak prosím pochopte, pokud nebudu mít čas tuto aplikaci aktualizovat.</string>
   <string name="libraries_used">Použité knihovny</string>
   <!-- Contributors -->
   <string name="commits">%d commitů</string>

@@ -206,9 +206,7 @@
   <string name="cpus_boosted">Ядер усилено</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно ускоренных ядер ЦП.</string>
   <string name="min_cpu_online">Минимальное количество работающих ядер</string>
-  <string name="min_cpu_online_summary">Минимальное количество ядер ЦП, которые будут всегда онлайн.</string>
   <string name="max_cpu_online">Максимальное количество работающих ядер</string>
-  <string name="max_cpu_online_summary">Максимальное число ядер, которые будут всегда онлайн.</string>
   <string name="max_cpu_online_screen_off">Максимальное количество ядер при ВЫКЛ экране</string>
   <string name="max_cpu_online_screen_off_summary">Максимальное число ядер, которые будут онлайн при выключенном экране.</string>
   <string name="suspend_defer_time">Время отсрочки задержки</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">Вниз длительности блокировки</string>
   <string name="down_lock_duration_summary">Минимальный интервал работы ядра.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Возможные ядра процессора</string>
+  <string name="possible_cpu_cores_summary">Ядра процессора, который может использовать lazyplug.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
   <string name="powersaver_mode">Режим энергосбережения</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD wakelock divider</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">Так как много людей пытаются найти подходящие настройки для своего устройства и нуждаются в руководстве более продвинутых пользователей, я пришел с этим. Эта функция будет собирать настройки более продвинутых пользователей, а затем измерять производительность ЦП и батареи. Лучшие настройки для каждого набора микросхем будут впоследствии доступны для всех людей. Это приложение не будет собирать какие-либо личные данные!</string>
   <!-- Custom Controls -->
   <string name="welcome">Добро пожаловать</string>
   <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
@@ -803,7 +805,6 @@
   <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
   <string name="sections">Разделы</string>
   <!-- About -->
-  <string name="about_me">Привет, я Вилли Йе aka Grarak, 19-летний студент из Вены. Я занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor, я также поддерживаю CyanogenMod для нескольких устройств и работаю над ParanoidAndroid. Поэтому прошу понять, если я не найду время обновить приложение.</string>
   <string name="libraries_used">Использованые библиотеки</string>
   <!-- Contributors -->
   <string name="commits">Изменения: %d</string>

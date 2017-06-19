@@ -7,6 +7,7 @@
   <string name="collecting_info">Kerätään tietoja</string>
   <string name="no_root">Ei root oikeuksia</string>
   <string name="no_busybox">Ei busyboxia</string>
+  <string name="open">Avaa %s</string>
   <!-- Security -->
   <string name="password">Salasana</string>
   <string name="password_wrong">Salasana on väärä</string>
@@ -17,6 +18,7 @@
   <string name="cancel">Peruuta</string>
   <string name="ok">OK</string>
   <string name="unknown">Tuntematon</string>
+  <string name="license_invalid">Kiitos lahjoitussovelluksen ostosta! Valitettavasti lisennsin tarkistus epäonnistui. Yritä myöhemmin uudelleen. Jos se ei onnistu silloinkaan, ota yhteyttä. Tarvitset internetyhteyden!</string>
   <string name="pirated">Näyttäisi siltä, että lahjoitusversiota ei ole ostettu Google Playsta! Jos olet piratoinut sen, häpeä!</string>
   <string name="donate">Lahjoita</string>
   <string name="donate_summary">Tämä toiminto on saatavilla ainoastaan, kun lahjoitusversio on asennettu! Mutta älä hätäile. Koska tämä sovellus perustuu avoimeen lähdekoodiin, voit helposti koodata sen itse ja poistaa tämän ilmoituksen. Mutta toivon, että tuet kehittäjiä jokatapauksessa. Kiitos kun käytät Kernel Audiutoria! Kun olet ostanut lahjoitusversion, sinun täytyy käynnistää ohjelma uudelleen aktivoidaksesi kaikki ominaisuudet.</string>
@@ -25,12 +27,15 @@
   <string name="ad_here">Sinun mainoksesi voisi olla tässä</string>
   <string name="remove_ad">Poista mainokset</string>
   <string name="warning">Varoitus</string>
+  <string name="gh_ad">Tämä ei ole kaupallinen mainos! Älä ota tätä tosissasi! Tämä on vain hauska tapa täyttää tila kun oikea mainos ei lataudu (koskien teitä mainosestojen käyttäjät).</string>
   <string name="open_ad_anyway">Avaa mainos jokatapauksessa</string>
   <string name="apply_on_boot">Toteuta käynnistyessä</string>
   <string name="apply_on_boot_text">Otetaan asetukset käyttöön %d sekunnissa.</string>
   <string name="apply_on_boot_complete">Asetukset otettiin käyttöön.</string>
   <string name="apply_on_boot_canceled">Asetuksien käyttöönotto peruutettiin.</string>
-  <string name="not_in_range">Ei kantamalla</string>
+  <string name="not_in_range">Äänialan ulkopuolella</string>
+  <string name="options">Vaihtoehdot</string>
+  <string name="more">Lisää</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">Muistiin kirjoittaminen estetty!</string>
   <!-- Editor -->
@@ -87,6 +92,7 @@
   <string name="settings">Asetukset</string>
   <string name="about">Tietoa</string>
   <string name="contributors">Avustajat</string>
+  <string name="help">Ohjeet</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Ydin %d</string>
@@ -119,7 +125,9 @@
   <string name="version">Versio</string>
   <string name="handlers">Käsittelijät</string>
   <!-- CPU -->
+  <string name="cores_singular">%d ydin</string>
   <string name="cores">%d ydintä</string>
+  <string name="cpu_usage">Suorittimen käyttö</string>
   <string name="no_offline_core">Et pysty asettaa tätä ydintä Offline-tilaan!</string>
   <string name="cpu_max_freq">Suorittimen suurin taajuus</string>
   <string name="cpu_max_freq_summary">Aseta suurin kellotaajuus, jonka suoritin saavuttaa.</string>
@@ -148,13 +156,14 @@
   <string name="debug_mask">Debug Mask</string>
   <string name="debug_mask_summary">Sallii sinun aktivoida debug maskin eri toiminnoille.</string>
   <string name="interval">Aikaväli</string>
-  <string name="interval_summary">Pienin aikaväli, jolla suoritinta boostataan.</string>
+  <string name="interval_summary">Suorittimen tehostuksien lyhyin kesto.</string>
   <string name="sync_threshold">Päivityskynnys</string>
   <string name="sync_threshold_summary">Kun suoritinlataukset ylittävät määritetyn kynnysarvon, nykyinen suoritin nostetaan tähän taajuuteen.</string>
   <string name="input_interval">Syöttöväli</string>
-  <string name="input_interval_summary">Suorittimen pienin tehonlisäys, kun syöttöä on havaittu.</string>
+  <string name="input_interval_summary">Suorittimen tehostuksien lyhyin aikaväli kun syöttöä havaitaan.</string>
   <string name="input_boost_freq">Input Boost-taajuus</string>
-  <string name="input_boost_freq_summary">Suorittimen taajuus nostetaan täksi taajuudeksi, kun syöttöä havaitaan.</string>
+  <string name="input_boost_freq_core">Syöttötaajuuden nosto, Ydin %d</string>
+  <string name="input_boost_freq_summary">Suorittimen taajuus nostetaan tähän arvoon, kun syöttöä havaitaan.</string>
   <string name="wakeup_boost">Herätys-boosti</string>
   <string name="wakeup_boost_summary">Wakeup Boost on samanlainen kuin input boost, mutta se esiintyy kun näyttö kytketään päälle.</string>
   <string name="hotplug_boost">Hotplug-boosti</string>
@@ -193,9 +202,7 @@
   <string name="cpus_boosted">Prosessoreiden jännitteet kasvatettu</string>
   <string name="cpus_boosted_summary">Enimmäismäärä ytimiä, joita boostataan samaan aikaan.</string>
   <string name="min_cpu_online">Vähimmäismäärä suorittimia päällä</string>
-  <string name="min_cpu_online_summary">Vähimmäismäärä ytimiä, jotka ovat aina päällä.</string>
   <string name="max_cpu_online">Maksimimäärä ytimiä päällä</string>
-  <string name="max_cpu_online_summary">Enimmäismäärä ytimiä, jotka ovat aina päällä.</string>
   <string name="max_cpu_online_screen_off">Max. ytimet näyttö sammuneena</string>
   <string name="max_cpu_online_screen_off_summary">Enimmäismäärä ytimiä, jotka ovat päällä kun näyttö on sammutettu.</string>
   <string name="suspend_defer_time">Suspend Defer Time</string>
@@ -205,6 +212,11 @@
   <string name="down_lock_duration">Boostin poispäältä lukituksen aika</string>
   <string name="down_lock_duration_summary">Pienin aikaväli, jolla suoritinta pidetään päällä.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Käytettävissä olevat prosessoriytimet</string>
+  <string name="possible_cpu_cores_summary">Käytettävissä olevat prosessotiytimet joita lazyplug voi käyttää.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Kernelinsisäinen korvaaja Qualcommin MPDecisionille. Kehittänyt Code_Blue team.</string>
   <string name="powersaver_mode">Virransäästötila</string>
@@ -468,17 +480,20 @@
   <string name="timeout_summary">Aseta aika, jonka jälkeen heräämiskontrollit kytketään pois päältä näytön sammuttamisen jälkeen (säästää akkua).</string>
   <string name="power_key_suspend">Virtanäppäin keskeyttämään</string>
   <string name="power_key_suspend_summary">Tämän aktivoiminen sulkee heräämiskontrollit, kun laite sammutetaan painamalla virtanäppäintä (säästää akkua).</string>
-  <string name="vibration_strength">Tärinän voimakkuus</string>
+  <string name="width">Leveys</string>
+  <string name="height">Korkeus</string>
+  <string name="vibration">Värinä</string>
+  <string name="vibration_strength">Värinän voimakkuus</string>
   <!-- Sound -->
   <string name="sound_control">Äänikontrollit</string>
   <string name="headset_highperf_mode">Kuulokkeiden High Performance -tila</string>
-  <string name="headphone_gain">Kuulokkeiden lisävolumi</string>
-  <string name="handset_microphone_gain">Puhelumikrofonin lisävolumi</string>
-  <string name="cam_microphone_gain">Kameramikrofonin lisävolumi</string>
-  <string name="speaker_gain">Kaiuttimen lisävolumi</string>
+  <string name="headphone_gain">Kuulokkeiden äänenvoimakkuuden lisäys</string>
+  <string name="handset_microphone_gain">Puhelumikrofonin äänenvoimakkuuden lisäys</string>
+  <string name="cam_microphone_gain">Kameran mikrofonin äänenvoimakkuuden lisäys</string>
+  <string name="speaker_gain">Kaiuttimen äänenvoimakkuuden lisäys</string>
   <string name="headphone_poweramp_gain">Kuulokkeiden lisäampeeriteho</string>
-  <string name="microphone_gain">Mikrofonin lisävolumi</string>
-  <string name="volume_gain">Lisävolume</string>
+  <string name="microphone_gain">Mikrofonin äänenvoimakkuuden lisäys</string>
+  <string name="volume_gain">Äänenvoimakkuuden lisäys</string>
   <!-- Battery -->
   <string name="level">Taso</string>
   <string name="voltage">Jännite</string>
@@ -497,6 +512,12 @@
   <string name="speed">Nopeus</string>
   <string name="stock">Alkuperäinen</string>
   <string name="continuous_light">Jatkuva valo</string>
+  <string name="on">On</string>
+  <string name="off">Off</string>
+  <string name="fade_in">Häivytys sisään</string>
+  <string name="fade_in_summary">Asettaa aikavälin voimistuvalle nousulle.</string>
+  <string name="fade_out">Häivytys ulos</string>
+  <string name="fade_out_summary">Asettaa aikaväli laskevalle muutokselle.</string>
   <string name="test">Testaa</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Sisäinen muisti</string>
@@ -650,6 +671,8 @@
   <string name="fota_partition">Fota osio</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
+  <string name="add">Lisää</string>
+  <string name="backup_item">%1$s on varmuuskopioitu kohteeseen %2$s</string>
   <string name="item_count">%s kohdetta</string>
   <string name="items_count">%s kohdetta</string>
   <string name="key">Avainarvo</string>
@@ -676,7 +699,11 @@
   <string name="current_settings">Nykyiset asetukset</string>
   <string name="select_all">Valitse kaikki</string>
   <string name="nothing_selected">Mitään ei ole valittu</string>
+  <string name="profile_empty">Profiilion tyhjä!</string>
   <!-- Recovery -->
+  <string name="reboot">Käynnistä uudelleen</string>
+  <string name="reboot_soft">Käynnistä uudelleen (soft)</string>
+  <string name="reboot_recovery">Käynnistä Recovery -tilaan</string>
   <string name="wipe_data">Poista tiedot</string>
   <string name="wipe_cache">Tyhjennä välimuisti</string>
   <string name="flash_zip">Asenna Zip</string>
@@ -734,7 +761,6 @@
   <string name="fingerprint_summary">Käytä sormenjälkeä suojauksen avaamiseen. Tämä toimii, jos sinulla on sormenjälki rekisteröitynä.</string>
   <string name="sections">Alueet</string>
   <!-- About -->
-  <string name="about_me">Hei! Minä olen Willi Ye alias Grarak, 19-vuotias opiskelija, joka asuu Wienissä. Olen ollut Android-kehittäjänä jo melko pitkään. Kernel Adiutorin ohella olen myös ylläpitänyt CyanogenModia muutamille puhelinmalleille ja olen työskennellyt ParanoidAndroidin parissa. Siksi toivonkin, että ymmärrät, jos en aina löydä aikaa tämän sovelluksen päivittämiseen.</string>
   <string name="libraries_used">Käytet kirjastot</string>
   <!-- Contributors -->
   <string name="commits">%d on samaa mieltä</string>

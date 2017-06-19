@@ -176,9 +176,7 @@
   <string name="cpus_boosted">CPU je pospešen</string>
   <string name="cpus_boosted_summary">Največje število pospešenih jeder naenkrat.</string>
   <string name="min_cpu_online">Najmanjše število aktivnih CPU jeder</string>
-  <string name="min_cpu_online_summary">Najmanjše število jeder CPU, ki bojo vedno aktivna.</string>
   <string name="max_cpu_online">Najvišje število aktivnih CPU jeder</string>
-  <string name="max_cpu_online_summary">Največje število jeder CPU, ki bojo vedno aktivna.</string>
   <string name="suspend_defer_time">Suspendiraj odložni čas</string>
   <string name="defer_sampling">Odloži vzorčenje</string>
   <string name="boost_lock_duration">Trajanje zaklepanja pospeška</string>

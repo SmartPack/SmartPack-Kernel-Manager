@@ -82,6 +82,7 @@
   <string name="virtual_memory">Pamięć wirtualna</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Różne</string>
+  <string name="data_sharing">Udostępnianie danych</string>
   <string name="custom_controls">Własne ustawienia</string>
   <string name="downloads">Pliki do pobrania</string>
   <string name="backup">Kopia zapasowa</string>
@@ -128,6 +129,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d rdzeń</string>
   <string name="cores">%d rdzeni/e</string>
+  <string name="cpu_usage">Użycie CPU</string>
   <string name="no_offline_core">Nie możesz wyłączyć tego rdzenia!</string>
   <string name="cpu_max_freq">Maks. częstotliwość CPU</string>
   <string name="cpu_max_freq_summary">Ustaw maks. częstotliwość CPU.</string>
@@ -203,9 +205,7 @@
   <string name="cpus_boosted">Wzmocnienie CPU</string>
   <string name="cpus_boosted_summary">Maksymalna liczba CPU wzmocniona w tym samym czasie.</string>
   <string name="min_cpu_online">Minimum włączonych rdzeni</string>
-  <string name="min_cpu_online_summary">Minimum włączonych rdzeni, które zawsze będą włączone.</string>
   <string name="max_cpu_online">Maksimum włączonych rdzeni</string>
-  <string name="max_cpu_online_summary">Maksymalna liczba rdzeni, które zawsze będą dostępne.</string>
   <string name="max_cpu_online_screen_off">Maksymalna ilość aktywnych rdzeni przy wyłączonym ekranie</string>
   <string name="max_cpu_online_screen_off_summary">Maksymalna liczba rdzeni, która będzie aktywna gdy ekran jest wyłączony.</string>
   <string name="suspend_defer_time">Czas wstrzymania uśpienia</string>
@@ -475,6 +475,7 @@
   <string name="area">Obszar</string>
   <string name="width">Szerokość</string>
   <string name="height">Wysokość</string>
+  <string name="vibration">Wibracje</string>
   <string name="vibration_strength">Siła wibracji</string>
   <!-- Sound -->
   <string name="sound_control">Kontrola dźwięku</string>
@@ -790,7 +791,6 @@
   <string name="fingerprint_summary">Skorzystaj z twojego odciska palców by móc korzystać z aplikacji. Opcja ta działa, dopóki twój odcisk palca został zarejestrowany na twoim urządzeniu.</string>
   <string name="sections">Działy</string>
   <!-- About -->
-  <string name="about_me">Witaj, jestem Willi Ye aka Grarak, jestem 19-letnim studentem z Wiednia. Zajmuję się programowaniem Androida od dłuższego czasu. Poza Kernel Adiutorem utrzymuję również CyanogenMod dla kilku urządzeń oraz pracuję nad ParanoidAndroid. Więc zrozum, proszę, że nie mogę znaleźć zbyt wiele czasu na aktualizacje tej aplikacji.</string>
   <string name="libraries_used">Użyte biblioteki</string>
   <!-- Contributors -->
   <string name="commits">%d commit\'a/ów</string>

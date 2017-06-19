@@ -193,9 +193,7 @@
   <string name="cpus_boosted">Επεξεργαστές ενίσχυσε</string>
   <string name="cpus_boosted_summary">Μέγιστος αριθμός των CPU που ενίσχυσε την ίδια στιγμή.</string>
   <string name="min_cpu_online">Ελάχιστη CPU σε απευθείας σύνδεση</string>
-  <string name="min_cpu_online_summary">Ελάχιστος αριθμός των CPU που θα είναι πάντα σε απευθείας σύνδεση.</string>
   <string name="max_cpu_online">Μέγιστη CPU σε απευθείας σύνδεση</string>
-  <string name="max_cpu_online_summary">Ελάχιστος αριθμός των CPU που θα είναι πάντα σε απευθείας σύνδεση.</string>
   <string name="boost_lock_duration">Διάρκεια κλειδώματος ώθησης</string>
   <string name="boost_lock_duration_summary">Ελάχιστο διάστημα μίας extra ώθησης του επεξεργαστή.</string>
   <string name="down_lock_duration_summary">Ελάχιστο διάστημα μια CPU διατηρείται σε σύνδεση.</string>

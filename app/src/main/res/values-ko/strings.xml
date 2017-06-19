@@ -126,9 +126,7 @@
   <string name="cpus_boosted">CPU 증폭</string>
   <string name="cpus_boosted_summary">한번에 가속될 CPU의 최대 개수입니다.</string>
   <string name="min_cpu_online">최소로 사용할 코어 개수</string>
-  <string name="min_cpu_online_summary">항상 사용할 코어의 최소 개수입니다.</string>
   <string name="max_cpu_online">최대로 사용할 코어 개수</string>
-  <string name="max_cpu_online_summary">항상 사용할 코어의 최대 개수입니다.</string>
   <string name="suspend_defer_time">일시정지 시간 지연</string>
   <string name="defer_sampling">샘플링 지연</string>
   <string name="boost_lock_duration">잠금 지속기간 지연</string>

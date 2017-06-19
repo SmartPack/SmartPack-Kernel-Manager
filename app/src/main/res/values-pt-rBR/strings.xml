@@ -206,9 +206,7 @@
   <string name="cpus_boosted">CPUs impulsionados</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs impulsionados ao mesmo tempo.</string>
   <string name="min_cpu_online">Mínimo de CPUs Online</string>
-  <string name="min_cpu_online_summary">Número mínimo de CPUs que estarão sempre online.</string>
   <string name="max_cpu_online">Máximo de CPUs Online</string>
-  <string name="max_cpu_online_summary">Número máximo de CPUs que estarão sempre online.</string>
   <string name="max_cpu_online_screen_off">Máximo de CPUs com a tela desligada</string>
   <string name="max_cpu_online_screen_off_summary">Número máximo de CPUs que estarão online quando a tela estiver desligada.</string>
   <string name="suspend_defer_time">Suspender tempo de atraso</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">Duração de bloqueio</string>
   <string name="down_lock_duration_summary">Intervalo mínimo no qual a CPU é mantida online.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Uma alternativa de hotplug no kernel para Qualcomm\'s MPDecision. Desenvolvido por arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Possíveis núcleos de CPU</string>
+  <string name="possible_cpu_cores_summary">Possíveis núcleos de CPU que o lazyplug pode usar.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Uma substituição no kernel para MPDecision da Qualcomm. Desenvolvido pela equipe Code_Blue.</string>
   <string name="powersaver_mode">Modo de economia de energia</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">Tendo em vista que muitas pessoas se esforçam para encontrar as configurações adequadas para seu dispositivo e precisam de orientação por usuários mais avançados, surjo com esse objetivo.\n\nEsta funcionalidade irá recolher as definições dos usuários mais avançados e depois, medir o desempenho da cpu e da bateria. As melhores configurações para cada chipset estarão, em seguida, disponíveis para todas as pessoas. Esta aplicativo não irá coletar quaisquer dados pessoais!</string>
   <!-- Custom Controls -->
   <string name="welcome">Bem-vindo</string>
   <string name="custom_controls_summary">Nesta seção você pode criar ou importar controles personalizados, que não existem (ainda) no app.</string>
@@ -803,7 +805,6 @@
   <string name="fingerprint_summary">Use a impressão digital para passar a verificação de segurança. Isto funcionará enquanto você tiver impressões digitais registadas.</string>
   <string name="sections">Seções</string>
   <!-- About -->
-  <string name="about_me">Oi, eu sou Willi Ye aka Grarak, uma estudante de 19 anos vivendo em Viena. Tenho desenvolvido para Android por muito tempo. Juntamente com o Kernel Adiutor estou mantendo CyanogenMod para alguns dispositivos e trabalhando no ParanoidAndroid. Então por favor, entenda se eu não encontrar tempo para atualizar este aplicativo.</string>
   <string name="libraries_used">Bibliotecas usadas</string>
   <!-- Contributors -->
   <string name="commits">%d commits</string>

@@ -19,10 +19,10 @@
   <string name="cancel">キャンセル</string>
   <string name="ok">OK</string>
   <string name="unknown">不明</string>
-  <string name="license_invalid">寄付アプリをご購入いただきありがとうございます！ 残念ながらライセンスの確認に失敗しました。 後でもう一度お試しください。 それでも動作しない場合は、私に連絡してください。 あなたはインターネットへのアクセスが必要です！</string>
-  <string name="pirated">このアプリはGoogle Play経由で購入されていないようです!海賊版を使っているなら恥を知りなさい!!</string>
+  <string name="license_invalid">寄付アプリをご購入いただきありがとうございます！ 残念ながらライセンスの確認に失敗しました。 後でもう一度お試しください。 それでも動作しない場合は、開発者に連絡してください。 インターネット接続が必要です！</string>
+  <string name="pirated">このアプリは Google Play ストア経由で購入されていないようです！海賊版を使っているなら恥を知りなさい!!</string>
   <string name="donate">寄付する</string>
-  <string name="donate_summary">この機能は寄付アプリがインストール済みの際のみ有効です!心配しないでください。何故ならこのアプリはオープンソフトウェアで自分自身でビルド出来このチェックを除去することが可能です。しかし開発者のサポートを希望します。Kernel Adiutorを頂き有難うございます!寄付アプリを購入後全機能を有効化するにはKernel Adiotorを再起動する必要があります。</string>
+  <string name="donate_summary">この機能は寄付アプリがインストール済みの際のみ有効です！このアプリはオープンソースのため、自分自身でビルドしてこのチェックを削除することもできるので心配しないでください。ただ、削除せずに開発者を助けてくれることを望みます。Kernel Adiutor を使ってくださりありがとうございます！寄付アプリを購入した後、全機能を有効化するには Kernel Adiutor を再起動してください。</string>
   <string name="donate_nope">私はお金を払いたくありません!</string>
   <string name="donate_yes">このアプリが気に入りました。必ず寄付します!</string>
   <string name="ad_here">広告がここに表示されます</string>
@@ -36,7 +36,7 @@
   <string name="apply_on_boot_canceled">設定の適用をキャンセルしました。</string>
   <string name="not_in_range">有効範囲外</string>
   <string name="options">オプション</string>
-  <string name="more">さらに</string>
+  <string name="more">その他</string>
   <!-- Permissions Denied -->
   <string name="permission_denied_write_storage">ストレージへの書込権限が拒否されました!</string>
   <!-- Editor -->
@@ -99,13 +99,13 @@
   <!-- Overall -->
   <string name="offline">オフライン</string>
   <string name="core">コア %d</string>
-  <string name="gpu_freq">GPU周波数</string>
+  <string name="gpu_freq">GPU 周波数</string>
   <string name="refresh">更新</string>
   <string name="reset">リセット</string>
   <string name="restore">復元</string>
   <string name="deep_sleep">Deep Sleep</string>
   <string name="uptime">使用時間</string>
-  <string name="error_frequencies">周波数の読込に失敗</string>
+  <string name="error_frequencies">周波数の読み込みに失敗しました</string>
   <string name="unused_frequencies">未使用の周波数</string>
   <!-- Device -->
   <string name="processor">プロセッサ</string>
@@ -114,7 +114,7 @@
   <string name="ram">RAM</string>
   <string name="android_version">Android バージョン</string>
   <string name="android_api_level">Android SDK</string>
-  <string name="android_codename">Androidコードネーム</string>
+  <string name="android_codename">Android コードネーム</string>
   <string name="fingerprint">フィンガープリント</string>
   <string name="build_display_id">ビルド番号</string>
   <string name="baseband">ベースバンド</string>
@@ -134,7 +134,7 @@
   <string name="no_offline_core">このコアをオフラインすることはできません！</string>
   <string name="cpu_max_freq">CPU 最大周波数</string>
   <string name="cpu_max_freq_summary">使用するCPU周波数の最大値を設定します。</string>
-  <string name="cpu_min_freq">CPU最小周波数</string>
+  <string name="cpu_min_freq">CPU 最小周波数</string>
   <string name="cpu_min_freq_summary">使用するCPU周波数の最小値を設定します。</string>
   <string name="cpu_max_screen_off_freq">画面消灯時のCPU最大周波数</string>
   <string name="cpu_max_screen_off_freq_summary">画面消灯時に使用するCPU周波数の最大値を設定します。</string>
@@ -206,9 +206,7 @@
   <string name="cpus_boosted">ブーストCPU数</string>
   <string name="cpus_boosted_summary">同時にブーストするCPU数の最大値です。</string>
   <string name="min_cpu_online">最小CPUオンライン</string>
-  <string name="min_cpu_online_summary">オンラインにするCPU数の最小値です。</string>
   <string name="max_cpu_online">最大CPUオンライン</string>
-  <string name="max_cpu_online_summary">オンラインにするCPU数の最大値です。</string>
   <string name="max_cpu_online_screen_off">画面消灯時最大CPUオンライン</string>
   <string name="max_cpu_online_screen_off_summary">画面消灯時にオンラインにするCPU数の最大値です。</string>
   <string name="suspend_defer_time">サスペンド遅延時間</string>
@@ -218,6 +216,11 @@
   <string name="down_lock_duration">ダウンロック時間</string>
   <string name="down_lock_duration_summary">CPUをオンラインのままにする最小間隔です。</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">arter97氏が開発した、Qualcomm MPDecisionの代替です。</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">使用可能な CPU コア</string>
+  <string name="possible_cpu_cores_summary">LazyPlug が使用できる CPU コアを設定します。</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Code_Blue teamが開発した、Qualcomm MPDecisionの代替です。</string>
   <string name="powersaver_mode">省電力モード</string>
@@ -277,9 +280,9 @@
   <string name="cpu_down_rate">CPUダウンレート</string>
   <string name="cpu_up_rate">CPUアップレート</string>
   <string name="thunderplug">ThunderPlug</string>
-  <string name="thunderplug_summary">Qualcommのホットプラグ手法の代替です。varunchitre15氏が開発しました。</string>
-  <string name="min_cpu_online_screen_off">画面消灯時最小CPUオンライン</string>
-  <string name="min_cpu_online_screen_off_summary">画面消灯時にオンラインにするCPU数の最小値です。</string>
+  <string name="thunderplug_summary">Qualcomm のホットプラグの代替です。varunchitre15氏が開発しました。</string>
+  <string name="min_cpu_online_screen_off">画面消灯時最小 CPU</string>
+  <string name="min_cpu_online_screen_off_summary">画面消灯時にオンラインにする CPU 数の最小値です。</string>
   <string name="endurance_level">Endurance Level</string>
   <string name="endurance_level_summary">節電プロファイルです。</string>
   <string name="quad_core_mode">クアッドコアモード</string>
@@ -287,7 +290,7 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">bbedward氏が開発した、Qualcomm MPDecisionの代替です。</string>
   <string name="wake_wait_time">ウェイク待機時間</string>
-  <string name="wake_wait_time_summary">任意のCPUをオンにするまでの待機時間を設定します。</string>
+  <string name="wake_wait_time_summary">任意の CPU をオンにするまでの待機時間を設定します。</string>
   <string name="bat_threshold_ignore">無視するバッテリーしきい値</string>
   <string name="bat_threshold_ignore_summary">バッテリー残量が指定値以下の時、コアをオンにしないようにします。</string>
   <string name="autosmp">AutoSMP</string>
@@ -299,21 +302,21 @@
   <string name="cycle_up">アップサイクル</string>
   <string name="cycle_up_summary">前のhotplugイベントから別のコアをプラグするまでの待機時間を指定します。</string>
   <string name="core_control">コアコントロール</string>
-  <string name="core_control_summary">Quallcommのホットプラグソリューションです。残念ながらオフに出来ません。#blameqcom</string>
+  <string name="core_control_summary">Quallcomm のホットプラグです。残念ながらオフに出来ません。#blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus の修正版コアコントロール</string>
-  <string name="min_cpus_big">big CPUの最小数</string>
-  <string name="min_cpus_big_summary">オンライン状態であるべき big CPUの最小数です。</string>
+  <string name="min_cpus_big">big CPU の最小数</string>
+  <string name="min_cpus_big_summary">big CPU の最小数</string>
   <string name="busy_down_threshold">ビジーダウンしきい値</string>
-  <string name="busy_down_threshold_summary">big CPUをオフにするべきタイミングのしきい値。</string>
+  <string name="busy_down_threshold_summary">big CPU をオフにするべきタイミングのしきい値です。</string>
   <string name="busy_up_threshold">ビジーアップしきい値</string>
-  <string name="busy_up_threshold_summary">big CPUをオンにするべきタイミングのしきい値。</string>
+  <string name="busy_up_threshold_summary">big CPUをオンにするべきタイミングのしきい値です。</string>
   <string name="offline_delay">オフライン遅延時間</string>
-  <string name="offline_delay_summary">CPU をオフにするまでの時間。</string>
+  <string name="offline_delay_summary">CPU をオフにするまでの時間です。</string>
   <!--Thermal-->
   <string name="thermal_info">一つだけを有効にするようにしてください。同時に複数を有効化すると予期しない動作を引き起こす可能性があります。</string>
   <string name="thermald">Thermald</string>
-  <string name="thermald_summary">純正加熱制御ドライバは端末をオーバーヒートから保護します。現在のカーネルに他の加熱制御ドライバがある場合は無効にすることをお薦めします。</string>
+  <string name="thermald_summary">純正加熱制御ドライバは端末をオーバーヒートから保護します。現在のカーネルに他の加熱制御ドライバがある場合は無効にすることをおすすめします。</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">faux123氏が開発した、Qualcomm Thermaldの代替です。</string>
   <string name="intellithermal_optimized">Intellithermal Optimized</string>
@@ -353,7 +356,7 @@
   <string name="shutdown_temp">シャットダウン温度</string>
   <!-- GPU -->
   <string name="frequencies">周波数</string>
-  <string name="gpu_2d_freq">GPU 2D周波数</string>
+  <string name="gpu_2d_freq">GPU 2D 周波数</string>
   <string name="gpu_2d_max_freq">GPU 2D 最大周波数</string>
   <string name="gpu_2d_max_freq_summary">使用する GPU 2D 周波数の最大値を設定します。</string>
   <string name="gpu_max_freq">GPU 最大周波数</string>
@@ -364,7 +367,7 @@
   <string name="gpu_2d_governor_summary">GPU 2D ガバナを設定します。</string>
   <string name="gpu_governor">GPU ガバナ</string>
   <string name="gpu_governor_summary">GPUのガバナを設定します。</string>
-  <string name="gpu_governor_tunables">GPUガバナ設定</string>
+  <string name="gpu_governor_tunables">GPU ガバナ設定</string>
   <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
   <string name="simple_gpu_algorithm_summary">faux123 氏が開発した、MSM Adreno TZ GPU ガバナのアドオンです。</string>
   <string name="laziness">Laziness</string>
@@ -372,7 +375,7 @@
   <string name="ramp_thresold">ランプしきい値</string>
   <string name="ramp_thresold_summary">GPU ガバナのランプダウン要求の回数を増やします。高くすると、パフォーマンスが良くなります。</string>
   <string name="adreno_idler">Adreno Idler</string>
-  <string name="adreno_idler_summary">msm-adreno-tz のオーバーヘッドに対する効果的な対策です。arter97により開発されました。</string>
+  <string name="adreno_idler_summary">msm-adreno-tz のオーバーヘッドに対する効果的な対策です。arter97氏により開発されました。</string>
   <string name="down_differential">Down Differential</string>
   <string name="down_differential_summary">ワークロードがアイドル状態かを判断するしきい値です。</string>
   <string name="idle_wait">アイドル待機</string>
@@ -463,7 +466,7 @@
   <string name="dt2w_charging">充電中のDoubleTap2Wake</string>
   <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">充電中のDoubleTap2Wake + Sweep2Wake</string>
-  <string name="s2s_summary">画面をスワイプすることによりデバイスをロックします</string>
+  <string name="s2s_summary">画面をスワイプすることでデバイスをロックします。</string>
   <string name="s2s_right">右にスワイプ</string>
   <string name="s2s_left">左にスワイプ</string>
   <string name="s2s_any">左か右にスワイプ</string>
@@ -497,7 +500,7 @@
   <string name="cam_microphone_gain">カメラマイクゲイン</string>
   <string name="speaker_gain">スピーカーゲイン</string>
   <string name="headphone_poweramp_gain">ヘッドフォンPowerAmpゲイン</string>
-  <string name="headphone_tpa6165_gain">ヘッドフォンアンプゲイン(TPA6165 拡張機能)</string>
+  <string name="headphone_tpa6165_gain">ヘッドフォンアンプゲイン (TPA6165 拡張機能)</string>
   <string name="lock_output_gain">アウトプットゲインを固定</string>
   <string name="lock_output_gain_summary">ヘッドフォン/スピーカゲインの変更を防止</string>
   <string name="lock_mic_gain">マイクゲインをロック</string>
@@ -527,8 +530,8 @@
   <string name="low_light_environment">低輝度環境下</string>
   <string name="low_light_environment_summary">暗い環境で LED の輝度を相対的に設定します。</string>
   <string name="notification">通知</string>
-  <string name="on">On</string>
-  <string name="off">Off</string>
+  <string name="on">ON</string>
+  <string name="off">OFF</string>
   <string name="fade_ramp_control">ランプ コントロールをフェード(時間と共に変化)します。</string>
   <string name="fade_ramp_control_summary">LED フェードイン/アウト(ランプ)制御を有効化/無効化します。</string>
   <string name="fade_in">フェードイン</string>
@@ -603,9 +606,9 @@
   <string name="crc">ソフトウェア CRC 制御</string>
   <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30% 低下することがあります。</string>
   <string name="fsync">Fsync</string>
-  <string name="fsync_summary">無効にするとファイルシステムのパフォーマンスが向上しますが、クラッシュ時にデータ喪失する可能性があります。</string>
+  <string name="fsync_summary">無効にするとファイルシステムのパフォーマンスが向上しますが、クラッシュ時にデータを喪失する可能性があります。</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
-  <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
+  <string name="dynamic_fsync_summary">有効にすると画面点灯中の fsync 操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
   <string name="gentlefairsleepers_summary">Sleepersの動作をデフォルトの50%にします。無効にすると少しバッテリー消費を抑えられます。</string>
   <string name="arch_power">Arch Power</string>
@@ -641,7 +644,6 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock ディバイダー</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">多くの人たちがデバイスの適切な設定を見つけるのに苦労している為、上級ユーザーによるガイダンスがより必要です。\n\nこの機能は、そんな上級ユーザーの設定を収集し、CPUとバッテリーのパフォーマンスを測定します。 各チップセットでの最適な設定は、後で全ての人が利用できるようになります。 このアプリケーションは個人情報を収集しません！</string>
   <!-- Custom Controls -->
   <string name="welcome">ようこそ</string>
   <string name="custom_controls_summary">このセクションではアプリでは(未だ)提供されていないカスタムコントロールを作成・インポートすることが可能です。</string>
@@ -693,9 +695,9 @@
   <string name="flashing">フラッシュ中</string>
   <string name="restoring">復元中</string>
   <!-- Backup -->
-  <string name="boot_partition">ブートパテーション</string>
-  <string name="recovery_partition">リカバリーパテーション</string>
-  <string name="fota_partition">FOTAパテーション</string>
+  <string name="boot_partition">Boot 領域</string>
+  <string name="recovery_partition">Recovery 領域</string>
+  <string name="fota_partition">FOTA 領域</string>
   <string name="flash">Flash</string>
   <!-- Build prop Editor -->
   <string name="add">追加</string>
@@ -755,7 +757,7 @@
   <string name="fahrenheit_title">華氏（°F）</string>
   <string name="fahrenheit_summary">温度測定に華氏を使用します。</string>
   <string name="force_english">英語を強制使用</string>
-  <string name="user_interface">ユーザーインターフェイス</string>
+  <string name="user_interface">ユーザーインターフェース</string>
   <string name="dark_theme">ダークテーマ</string>
   <string name="material_icon">マテリアルアイコン</string>
   <string name="banner_resizer">バナーのリサイズ</string>
@@ -792,7 +794,7 @@
   <string name="set_password">パスワードの設定</string>
   <string name="set_password_summary">パスワードでKernel Adiutor を保護可能です。このアプリケーションを開く際、常に入力する必要が生じます。パスワードを失念した際、Kernel Adiutorのアプリケーションの設定でデータを消去して下さい。パスワードは誰とも共有されません。</string>
   <string name="delete_password">パスワードの削除</string>
-  <string name="old_password">現在のパスワード</string>
+  <string name="old_password">古いパスワード</string>
   <string name="new_password">新しいパスワード</string>
   <string name="confirm_new_password">新しいパスワード（確認）</string>
   <string name="old_password_wrong">古いパスワードが間違っています</string>
@@ -803,16 +805,15 @@
   <string name="fingerprint_summary">セキュリティチェックを通過するため指紋を使用します。指紋登録済みの場合のみ有効です。</string>
   <string name="sections">セクション</string>
   <!-- About -->
-  <string name="about_me">やぁ、私は Will Ye(@Grarak)、ウィーン在住の19才の学生です。Androidの開発を長い間続けています。Kernel Adiutor の他にも幾つかのデバイスのCyanogenMod のメンテナでもありParanoidAndoroid の開発に携わっています。申し訳ありませんが本アプリの開発にあまり時間を割くことが出来ないことをご了承下さい。</string>
   <string name="libraries_used">使用中のライブラリ</string>
   <!-- Contributors -->
   <string name="commits">コミット数 %d</string>
   <string name="no_internet">インターネット接続を確認して下さい!</string>
   <!-- Help -->
-  <string name="misspelled">\"Auditor\" のスペルミスじゃないの？</string>
+  <string name="misspelled">\"Auditor\" はスペルミスじゃないの？</string>
   <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
   <string name="have_to_donate">プレミアム機能を使用するには寄付が必要ですか？</string>
-  <string name="have_to_donate_summary">いいえ、このアプリケーションはオープンソースです。簡単に自分でビルド出来ます。寄付版の機能は一度デバッグ用apkをビルドすると有効になり、コードのいかなる行も変更する必要はありません。</string>
+  <string name="have_to_donate_summary">いいえ、このアプリはオープンソースです。簡単に自分でビルド出来ます。寄付版の機能は一度デバッグ用 apk をビルドすると有効になり、コードのいかなる行も変更する必要はありません。</string>
   <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
   <string name="cpu_freq_not_sticking_summary">これは多くの理由が原因かもしれません。最新の多くのカーネルはCPU の周波数を制御する独自のホットプラグ システムを保有しており、CyanogenMod では周波数を制限するための独自のCPUブースト実装を保有しています。CPU 周波数を変更せず、その仕事をカーネルに任せることをお薦めします。本機能では他の機能もカウントしています!現在の周波数に固執しないのはカーネル/システムがそれの値を変更するつもりがないためです。</string>
   <string name="feature_not_appearing">xとy機能が表示されない理由は?</string>

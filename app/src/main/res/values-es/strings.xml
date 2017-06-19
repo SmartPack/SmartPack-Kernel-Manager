@@ -206,9 +206,7 @@
   <string name="cpus_boosted">CPUs potenciadas</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs potenciadas al mismo tiempo.</string>
   <string name="min_cpu_online">Mínimo CPU activos</string>
-  <string name="min_cpu_online_summary">Número mínimo de CPUs que estarán siempre activos.</string>
   <string name="max_cpu_online">Máximo CPU activos</string>
-  <string name="max_cpu_online_summary">Número máximo de CPUs que estarán siempre activos.</string>
   <string name="max_cpu_online_screen_off">Máximo de CPUs con la Pantalla Apagada</string>
   <string name="max_cpu_online_screen_off_summary">Máximo número de CPUs activos cuando la pantalla está apagada.</string>
   <string name="suspend_defer_time">Suspender Tiempo de Retraso</string>
@@ -218,6 +216,8 @@
   <string name="down_lock_duration">Reducir duración de Bloqueo</string>
   <string name="down_lock_duration_summary">Intervalo mínimo que un CPU se mantendrá activo.</string>
   <string name="fshift">FShit</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazy">Pereza</string>
   <string name="blu_plug">Blu-Plug</string>
   <string name="blu_plug_summary">Reemplazo del MPDecision de Qualcomm. Desarrollado por Code_Blue team.</string>
   <string name="powersaver_mode">Modo económico</string>
@@ -641,7 +641,6 @@
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary">Ya que a muchos usuarios les cuesta encontrar la configuracion adecuada para sus dispositivos y necesitan la guia de usuarios avanzados, pense en esto.\n\nEsta funcion recolectara las configuraciones de usuarios avanzados y medira el rendimiento del CPU y la bateria. Las mejores configuraciones para cada chipset estaran disponibles para todo el mundo luego. Esto no recolectara ningun dato personal!</string>
   <!-- Custom Controls -->
   <string name="welcome">Bienvenido(a)</string>
   <string name="custom_controls_summary">En esta sección usted puede crear o importar controles personalizados, que no existen en la app (todavía).</string>
@@ -803,7 +802,6 @@
   <string name="fingerprint_summary">Utilizar huellas dactilares para pasar control de seguridad. Esto funcionará si tienes huellas dactilares registradas.</string>
   <string name="sections">Secciones</string>
   <!-- About -->
-  <string name="about_me">Hola, soy Willi Ye aka Grarak, un estudiante de 19 años viviendo en Viena. He estado desarrollando en Android durante mucho tiempo. Ademas de Kernel Adiutor también mantengo CyanogenMod para algunos dispositivos y trabajo en ParanoidAndroid. Así que por favor comprenda si no encuentro el tiempo para actualizar esta aplicación.</string>
   <string name="libraries_used">Librerías utilizadas</string>
   <!-- Contributors -->
   <string name="commits">%d cambios</string>

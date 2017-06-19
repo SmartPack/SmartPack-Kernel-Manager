@@ -187,9 +187,7 @@
   <string name="cpus_boosted">تم تعزيز المعالج</string>
   <string name="cpus_boosted_summary">العدد الاقصى من المعالجات التي تم تعزيزها بنفس الوقت.</string>
   <string name="min_cpu_online">الحد الادنى للمعالج عند وضع الفعال</string>
-  <string name="min_cpu_online_summary">العدد الأدنى. للمعالجات التي سوف تبقى نشطة على الدوام.</string>
   <string name="max_cpu_online">الحد الاقصى للمعالج في وضع الفعال</string>
-  <string name="max_cpu_online_summary">العدد الاقصى للمعالجات التي سوف تبقى فعالة على الدوام.</string>
   <string name="max_cpu_online_screen_off_summary">الحد الأقصى لعدد وحدات المعالجة المركزية التي ستكون على الإنترنت عند إيقاف تشغيل الشاشة.</string>
   <string name="suspend_defer_time">وقت تأجيل عملية التعليق</string>
   <string name="defer_sampling">تأجيل عملية اخذ العينات</string>

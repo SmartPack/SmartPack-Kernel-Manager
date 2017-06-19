@@ -206,9 +206,7 @@
   <string name="cpus_boosted">Прискорені ядра CPU</string>
   <string name="cpus_boosted_summary">Максимальна кількість ядер, прискорених одночасно.</string>
   <string name="min_cpu_online">Мін. кількість ядер онлайн</string>
-  <string name="min_cpu_online_summary">Мінімальна кількість ядер, які будуть завжди онлайн.</string>
   <string name="max_cpu_online">Макс. кількість ядер онлайн</string>
-  <string name="max_cpu_online_summary">Максимальна кількість ядер, які будуть завжди онлайн.</string>
   <string name="max_cpu_online_screen_off">Максимальна кількість ядер при ВИМК екрані</string>
   <string name="suspend_defer_time">Suspend Defer Time</string>
   <string name="defer_sampling">Defer Sampling</string>
@@ -661,7 +659,6 @@
   <string name="fingerprint_summary">Використовувати відбиток пальця для проходження перевірки безпеки. Це буде працювати до тих пір, поки у вас є зареєстровані відбитки.</string>
   <string name="sections">Розділи</string>
   <!-- About -->
-  <string name="about_me">Привіт, я Віллі Йе ака Grarak, 19-річний студент з Відня. Я займаюся Android-розробкою досить довгий час. Крім Kernel Adiutor, я також підтримую CyanogenMod для декількох пристроїв і працюю над ParanoidAndroid. Тому прошу зрозуміти, якщо я не знайду час оновити додаток.</string>
   <string name="libraries_used">Використані бібліотеки</string>
   <!-- Contributors -->
   <string name="commits">Зміни: %d</string>

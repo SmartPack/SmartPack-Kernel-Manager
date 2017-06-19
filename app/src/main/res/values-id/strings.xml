@@ -18,6 +18,7 @@
   <string name="cancel">Batal</string>
   <string name="ok">Oke</string>
   <string name="unknown">Tidak diketahui</string>
+  <string name="license_invalid">Terima kasih karena sudah membeli aplikasi donasi ini. Sayangnya proses cek lisensi gagal. Silakan coba lagi nanti. Jika masih belum bisa, Tolong hubungi saya. Anda memerlukan akses internet!</string>
   <string name="pirated">Sepertinya aplikasi donasi tidak dibeli melalui Play Store! Jika Anda membajaknya, Anda memalukan!</string>
   <string name="donate">Donasi</string>
   <string name="donate_summary">Fitur ini hanya tersedia jika aplikasi donasi terpasang! Namun jangan khawatir. Karena aplikasi ini open source Anda dapat dengan mudah membuat sendiri dan menghapus pemeriksaan ini. Tapi saya harap Anda mendukung pengembang pula. Terima kasih karena menggunakan Kernel Adiutor! Setelah Anda membeli aplikasi donasi Anda harus me-restart Kernel Adiutor untuk mengaktifkan semua fitur.</string>
@@ -81,6 +82,7 @@
   <string name="virtual_memory">Memori Virtual</string>
   <string name="entropy">Entropi</string>
   <string name="misc">Lain-lain</string>
+  <string name="data_sharing">Berbagi data</string>
   <string name="custom_controls">Pengaturan Kustom</string>
   <string name="downloads">Unduhan</string>
   <string name="backup">Cadangan</string>
@@ -126,6 +128,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d inti</string>
   <string name="cores">%d inti core</string>
+  <string name="cpu_usage">Penggunaan CPU</string>
   <string name="no_offline_core">Anda tidak dapat memadamkan inti core ini!</string>
   <string name="cpu_max_freq">Frekuensi CPU Tertinggi</string>
   <string name="cpu_max_freq_summary">Atur skala frekuensi CPU tertinggi secara keseluruhan.</string>
@@ -201,9 +204,7 @@
   <string name="cpus_boosted">Peningkatan CPU</string>
   <string name="cpus_boosted_summary">Jumlah tertinggi CPU yang ditingkatkan pada waktu yang sama.</string>
   <string name="min_cpu_online">CPU Aktif terendah</string>
-  <string name="min_cpu_online_summary">Jumlah terendah CPU yang akan selalu aktif.</string>
   <string name="max_cpu_online">CPU Aktif terbanyak</string>
-  <string name="max_cpu_online_summary">Jumlah tertinggi CPU Aktif yang akan selalu aktif.</string>
   <string name="max_cpu_online_screen_off">CPU maksimal pada saat layar mati</string>
   <string name="max_cpu_online_screen_off_summary">Jumlah maksimal dari CPU yang akan aktif pada saat layar mati.</string>
   <string name="suspend_defer_time">Menangguhkan waktu tunda</string>
@@ -213,6 +214,11 @@
   <string name="down_lock_duration">Durasi Kunci Bawah</string>
   <string name="down_lock_duration_summary">Selang waktu terendah CPU tetap aktif.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Pengganti yang sudah termasuk di dalam kernel untuk MPDecision milik Qualcomm.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Inti CPU yang memungkinkan</string>
+  <string name="possible_cpu_cores_summary">Inti CPU yang mungkin bisa menggunakan lazyplug</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Kernel pengganti Penentu MP bawaan Qualcomm. Dikembangkan oleh tim Code_Blue.</string>
   <string name="powersaver_mode">Modus Penghemat daya</string>
@@ -480,6 +486,7 @@
   <string name="area">Daerah</string>
   <string name="width">Lebar</string>
   <string name="height">Tinggi</string>
+  <string name="vibration">Tingkat getaran</string>
   <string name="vibration_strength">Kekuatan Getaran</string>
   <!-- Sound -->
   <string name="sound_control">Kontrol Suara</string>
@@ -699,18 +706,61 @@
   <string name="key_empty">Kunci tidak dapat kosong!</string>
   <!-- Profile -->
   <string name="apply_on_boot_not_available">Didalam mode profil penggantian yang anda lakukan tidak memiliki dampak ke dalam penerapan dalam boot.</string>
+  <string name="profile_warning">Semua yang anda rubah di sini akan tersimpan pada profilmu. Tapi mohon diingat! Pengaturanmu juga akan diterapkan, tapi tidak  akan sampai tersimpan dan diterapkan pada saat boot.</string>
+  <string name="no_changes">Tidak ada perubahan apapun!</string>
+  <string name="apply_question">Terapkan %s?</string>
+  <string name="details">Rincian</string>
+  <string name="press_again_to_apply">Tekan lagi %s untuk menerapkan.</string>
   <string name="applied">Diterapkan</string>
+  <string name="profile_tile">Judul profil</string>
+  <string name="profile_select">Pilih profil</string>
+  <string name="applying_profile">Menerapkan %s!</string>
+  <string name="no_profiles">Tidak ada profil ditemukan! Anda harus membuatnya terlebih dahulu.</string>
+  <string name="sections_disabled">Semua seksi dinonaktifkan! Tidak ada profil untuk anda</string>
+  <string name="new_mode">Baru</string>
+  <string name="current_settings">Pengaturan aktif</string>
+  <string name="select_all">Pilih semua</string>
+  <string name="nothing_selected">Tidak ada yang dipilih</string>
+  <string name="profile_empty">Profil kosong!</string>
   <!-- Recovery -->
+  <string name="reboot">Hidupkan ulang</string>
+  <string name="reboot_recovery">Hidupkan ulang ke recovery</string>
+  <string name="reboot_bootloader">Hidupkan ulang ke bootloader</string>
+  <string name="reboot_download">Reboot ke Download mode</string>
   <string name="wipe_data">Hapus Data</string>
   <string name="wipe_cache">Hapus Cache</string>
   <string name="flash_zip">Flash Zip</string>
   <string name="flash_now_confirm">Apakah Anda ingin menjalankan tindakan Anda? Perangkat akan reboot ke recovery dan tindakan akan dijalankan sesuai dengan urutan yang anda tambahkan.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulasikan Init.d</string>
+  <string name="exceute_question">Jalankan %s?</string>
   <string name="executing">Menjalankan</string>
+  <string name="result">Hasil</string>
   <!-- On Boot -->
+  <string name="on_boot_welcome_summary">Bagian ini menunjukkan hal-hal apa yang akan terjadi ketika perangkat boot. Jika kosong, maka tidak akan terjadi setelah boot.</string>
+  <string name="delete_question">Hapus [%s]?</string>
+  <string name="arguments">Argumen: %s</string>
+  <string name="disable_question">Menonaktifkan %s?</string>
   <!-- Settings -->
+  <string name="open_settings">Buka Pengaturan</string>
+  <string name="fahrenheit_title">Fahrenheit</string>
+  <string name="fahrenheit_summary">Gunakan fahrenheit untuk mengukur suhu.</string>
+  <string name="force_english">Tetap tampilkan bahasa Inggris</string>
+  <string name="user_interface">Antarmuka pengguna</string>
   <string name="dark_theme">Tema gelap</string>
+  <string name="material_icon">Ikon Material</string>
+  <string name="banner_resizer">Ukur ulang banner</string>
+  <string name="hide_banner">Sembunyikan banner</string>
+  <string name="instant">Instan</string>
+  <string name="five_sec">5 detik</string>
+  <string name="ten_sec">10 detik</string>
+  <string name="twenty_sec">20 detik</string>
+  <string name="fifty_sec">50 detik</string>
+  <string name="nothing_apply">Tidak ada apapun yang diterapkan!</string>
+  <string name="hide">Sembunyikan</string>
+  <string name="confirmation_notification">Notifikasi konfirmasi</string>
+  <string name="script">Skrip</string>
+  <string name="apply_on_boot_script_summary">Gunakan shell script untuk menerapkan pengaturan. Harap hanya mengaktifkan ini jika Anda memiliki masalah dengan terapkan saat boot. Jika masalah tetap berlanjut setelah mengaktifkan opsi ini, pastikan tidak ada aplikasi lain bertentangan dengan Kernel Adiutor.</string>
   <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Salin logcat ke /sdcard/logcat.txt</string>
@@ -718,9 +768,30 @@
   <string name="last_kmsg_summary">Salin /proc/last_kmsg ke /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Driver massage</string>
   <string name="driver_message_summary">Menyalin pesan driver (dmesg) ke /sdcard/dmesg.txt</string>
+  <string name="security">Keamanan</string>
+  <string name="set_password">Tetapkan sandi</string>
+  <string name="set_password_summary">Anda dapat melindungi Kernel Adiutor dengan membuat password. Setiap kali Anda membuka aplikasi ini, Anda harus memasukkannya. Jika Anda lupa, cukup hapus data dari aplikasi ini dalam pengaturan perangkat Anda. Jangan khawatir saya tidak akan membagikan password Anda.</string>
+  <string name="delete_password">Hapus Kata Sandi</string>
+  <string name="old_password">Kata sandi lama</string>
+  <string name="new_password">Password baru</string>
+  <string name="confirm_new_password">Konfirmasikan password baru</string>
+  <string name="old_password_wrong">Password lama salah</string>
+  <string name="password_empty">Password kosong</string>
+  <string name="password_not_match">Pssword baru tidak sesuai konfirmasi</string>
+  <string name="password_too_long">Password terlalu panjang (maks 32 karakter)</string>
+  <string name="set_password_first">Tentukan kata sandi dulu</string>
+  <string name="fingerprint_summary">Gunakan sidik jari untuk dapat melewati pemeriksaan keamanan. Ini akan bekerja selama Anda memiliki sidik jari yang terdaftar.</string>
+  <string name="sections">Bagian</string>
   <!-- About -->
+  <string name="libraries_used">Library yang digunakan</string>
   <!-- Contributors -->
+  <string name="no_internet">Silakan periksa koneksi internet Anda!</string>
   <!-- Help -->
+  <string name="misspelled">Mengapa anda salah mengeja \"Adiutor\"?</string>
+  <string name="misspelled_summary">Adiutor berasal dari bahasa Latin dan berarti penolong.</string>
+  <string name="have_to_donate">Apakah saya harus menyumbang untuk menggunakan fitur-fitur premium tersebut?</string>
+  <string name="have_to_donate_summary">Tidak, aplikasi ini adalah open source. Anda dapat dengan mudah membangun sendiri. Fitur donasi diaktifkan secara default setelah Anda membangun apk debugging, sehingga tidak perlu untuk mengubah baris kode.</string>
+  <string name="cpu_freq_not_sticking">Mengapa pengaturan frekuensi CPU saya selalu berubah?</string>
   <string name="cpu_freq_not_sticking_summary">Hal ini dapat terjadi dengan berbagai alasan. Sekarang banyak kernel yang mempunyai sistem HotPlug yang dapat mengatur frekuensi CPU dan CyanogenMod mempunya implementasi CPU boost sendiri yang mengatur frekuensinya. Saya menyarankan Anda untuk tidak menyentuh frekuensi CPU dan biarkan kernel melakukan pekerjaannya. Ini juga termasuk pada fungsi-fungsi lainnya! Jika mereka tidak berubah, mungkin karena kernel/sistem tidak menginginkan Anda merubahnya.</string>
   <string name="feature_not_appearing">Mengapa fitur x dan y tidak muncul?</string>
   <string name="feature_not_appearing_summary">Hanya fitur yang didukung perangkatmu yang di tunjukkan!</string>

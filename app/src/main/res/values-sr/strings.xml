@@ -3,10 +3,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="app_name">Кернел Адиутор</string>
   <string name="checking_info">Проверавам податке&#8230;</string>
-  <string name="checking_root">Проверавам роот приступ</string>
+  <string name="checking_root">Проверавам корени приступ</string>
   <string name="searching_busybox">Тражим busybox</string>
   <string name="collecting_info">Сакупљам податке</string>
-  <string name="no_root">Нема роот приступа</string>
+  <string name="no_root">Нема кореног приступа</string>
   <string name="no_busybox">Нема busybox-а</string>
   <string name="open">Отвори %s</string>
   <!-- Security -->
@@ -18,7 +18,7 @@
   <string name="press_back_again_exit">Притисните назад опет за излаз</string>
   <string name="cancel">Одустани</string>
   <string name="ok">У реду</string>
-  <string name="unknown">Непознат</string>
+  <string name="unknown">Непознато</string>
   <string name="pirated">Изгледа да донирана апликација није купљена кроз Плеј Продавницу! Ако сте је пиратовали, треба да вас је срамота!</string>
   <string name="donate">Донирај</string>
   <string name="donate_nope">Нећу пасти на ову превару!</string>
@@ -35,7 +35,7 @@
   <string name="options">Опције</string>
   <string name="more">Још</string>
   <!-- Permissions Denied -->
-  <string name="permission_denied_write_storage">Дозвола је одбијена за писање у складиште!</string>
+  <string name="permission_denied_write_storage">Дозвола за писање у складиште је одбијена!</string>
   <!-- Editor -->
   <string name="save">Сачувај</string>
   <!-- File Picker -->

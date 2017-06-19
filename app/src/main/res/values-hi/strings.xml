@@ -19,6 +19,7 @@
   <string name="cancel">रद्द करें</string>
   <string name="ok">ठीक</string>
   <string name="unknown">अज्ञात</string>
+  <string name="license_invalid">डोनेशन ऐप की खरीद के लिए धन्यवाद! दुर्भाग्य से लाइसेंस जाँच विफल हुई। कृपया बाद में पुन: प्रयास करें। अगर यह अभी भी काम नहीं कर रहा है, कृपया मुझे संपर्क करें। आप को इंटरनेट का उपयोग की आवश्यकता है!</string>
   <string name="pirated">लगता है आपने डोनेशन एप को प्ले स्टोर से नही खरीदा! अगर यह पायरेटेड है, तो यह शर्म की बात है!</string>
   <string name="donate">दान करें</string>
   <string name="donate_summary">यह फीचर सिर्फ डोनेशन एप पर उपलब्ध है! परेशान ना हों। क्योकि यह एप ओपन सोर्स हे आप आसानी से खुद बना सकते हे तथा इस चेक को हटा सकते है। वैसे लेकिन मैं आशा करता हु की आप डेवलोपर्स को सपोर्ट करें। kernel adiutor का उपयोग करने के लिए धन्यवाद! एक बार आप डोनेशन एप खरीदे तो सभी फीचर्स को इनेबल करने के लिए एप को दोबारा स्टार्ट करे।</string>
@@ -83,6 +84,7 @@
   <string name="virtual_memory">आभासी मेमोरी</string>
   <string name="entropy">एन्ट्रॉपी</string>
   <string name="misc">विविध</string>
+  <string name="data_sharing">डेटा साझा करना</string>
   <string name="custom_controls">कस्टम कंट्रोल्स</string>
   <string name="downloads">डाउनलोड</string>
   <string name="backup">बैकअप</string>
@@ -128,6 +130,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d कोर</string>
   <string name="cores">%d कोर्स</string>
+  <string name="cpu_usage">सीपीयु उपयोग</string>
   <string name="no_offline_core">आप इस कोर को ऑफलाइन नही कर सकते!</string>
   <string name="cpu_max_freq">CPU अधिकतम आवृत्ति</string>
   <string name="cpu_max_freq_summary">अधिकतम CPU को मापता है अप करने के लिए आवृत्ति सेट करें।</string>
@@ -155,6 +158,7 @@
   <string name="cpu_quiet_governor">CPUQuiet के गवर्नर</string>
   <string name="cpu_boost">CPU बूस्ट</string>
   <string name="debug_mask">मुखौटा डीबग करें</string>
+  <string name="debug_mask_summary">डीबग मास्क के संचालन को सक्रिय करने के लिए आप की अनुमति देता है।</string>
   <string name="interval">अंतराल</string>
   <string name="interval_summary">न्यूनतम अंतराल एक CPU को बल मिला है।</string>
   <string name="sync_threshold">सिंक दहलीज</string>
@@ -162,6 +166,7 @@
   <string name="input_interval">निवेश् अन्तराल</string>
   <string name="input_interval_summary">निवेश् ज्ञात होने पर न्युनतम् अन्तराल का पता चलता हे, व सिपियु बेहतर् कार्य करता हे।</string>
   <string name="input_boost_freq">इनपुट बूस्ट आवृत्ति</string>
+  <string name="input_boost_freq_core">इनपुट बूस्ट फ्रीक्वेंसी कोर %d</string>
   <string name="input_boost_freq_summary">इनपुट पहचान पर इस आवृत्ति के लिए बढ़ाया जा करने के लिए CPU आवृत्ति।</string>
   <string name="wakeup_boost">वेकअप बूस्ट</string>
   <string name="wakeup_boost_summary">Wakeup बूस्ट बूस्ट इनपुट करने के लिए समान है, लेकिन यह तब होता है जब स्क्रीन पर बदल दिया है।</string>
@@ -174,10 +179,12 @@
   <string name="override_vmin">न्यूनतम वोल्टेज को ओवरराइड करें</string>
   <string name="override_vmin_summary">अंडरवोल्टिंग पर निर्माता सीमा को निकालने के लिए अक्षम करें</string>
   <!-- CPU Hotplug -->
+  <string name="hotplug_warning">एक से अधिक हॉटप्लगींग प्रणाली सक्षम कि गई है! \nPlease केवल एक का उपयोग करें।</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Qualcomm का होटपल्गिंग समाधान. आपको फ्रीक्युंसी बदलने मे दिक्कतें आ सकती है अगर यह चल रहा है.</string>
   <string name="intelliplug">IntelliPlug</string>
   <string name="intelliplug_summary">Qualcomm के MPDecision के लिए एक कर्नेल में प्रतिस्थापन। Faux123 द्वारा विकसित की है।</string>
+  <string name="cpu_hotplug_profile_summary">कोष्ठक में संख्या किसी भी समय ऑनलाइन कोर की मात्रा अकिंत करता है।</string>
   <string name="insanity">पागलपन</string>
   <string name="balanced">संतुलित</string>
   <string name="performance">ताकत</string>
@@ -192,14 +199,16 @@
   <string name="eco_mode_summary">बैटरी बचत मोड IntelliPlug के लिए</string>
   <string name="hysteresis">हिस्टैरिसीस मान</string>
   <string name="hysteresis_summary">कम यह है, तेजी से प्रतिक्रिया।</string>
+  <string name="cpu_threshold">सीपीयु सीमा</string>
+  <string name="cpu_threshold_summary">जितना उच्च, ऊतना कम सीपीयु उपयोग किया जाता है।</string>
   <string name="suspend">सस्पेंड</string>
   <string name="suspend_summary">निलंबित करने को रोकने।</string>
   <string name="cpus_boosted">सीपीयू और बढ़ाया</string>
   <string name="cpus_boosted_summary">एक ही समय में और बढ़ाया सीपीयू की अधिकतम संख्या।</string>
   <string name="min_cpu_online">न्यूनतम ऑनलाइन सीपीयू</string>
-  <string name="min_cpu_online_summary">हमेशा ऑनलाइन हो जाएगा सीपीयू की न्यूनतम संख्या।</string>
   <string name="max_cpu_online">अधिकतम सीपीयू ऑनलाइन</string>
-  <string name="max_cpu_online_summary">हमेशा ऑनलाइन हो जाएगा सीपीयू की न्यूनतम संख्या।</string>
+  <string name="max_cpu_online_screen_off">अधिकतम सीपीयु स्क्रीन बंद</string>
+  <string name="max_cpu_online_screen_off_summary">स्क्रीन बंद होने पर ओनलाईन सीपीयु की अधिकतम संख्या।</string>
   <string name="suspend_defer_time">निलंबित समय स्थगित</string>
   <string name="defer_sampling">नमूनाकरण स्थगित</string>
   <string name="boost_lock_duration">बूस्ट अवरोध अवधि</string>
@@ -207,6 +216,10 @@
   <string name="down_lock_duration">नीचे ताला अवधि</string>
   <string name="down_lock_duration_summary">न्यूनतम अंतराल के एक सीपीयू ऑनलाइन रखा जाता है।</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">लेझीप्लग</string>
+  <string name="lazy">लेझी</string>
+  <string name="possible_cpu_cores">संभव सीपीयु कोर</string>
+  <string name="possible_cpu_cores_summary">संभव सीपीयु कोर जो लेझीप्लग का उपयोग कर सकते हैं।</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Qualcomm के MPDecision के लिए एक कर्नेल में प्रतिस्थापन। Code_Blue टीम द्वारा विकसित की है।</string>
   <string name="powersaver_mode">पावरबचतकर्ता मोड</string>
@@ -554,4 +567,6 @@
   <!-- About -->
   <!-- Contributors -->
   <!-- Help -->
+  <string name="add_new_features">आप x और y सुविधा जोड़ सकता है?</string>
+  <string name="add_new_features_summary">यह कहना मुश्किल है। मैं सभी सुविधाओं को जोड़ने के लिए प्रयास करूंगा, लेकिन यह ऐप को सभी उपकरणों के लिए सार्वभौमिक बनाना मुश्किल है।</string>
 </resources>
