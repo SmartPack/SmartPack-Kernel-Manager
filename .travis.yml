@@ -6,8 +6,8 @@ android:
     - extra-android-m2repository
     - platform-tools
     - tools
-    - build-tools-25.0.2
-    - android-25
+    - build-tools-26.0.0
+    - android-26
 
 jdk:
   - oraclejdk8

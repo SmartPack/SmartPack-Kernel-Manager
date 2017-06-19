@@ -98,14 +98,13 @@ public class Temperature {
             CPU_NODE = TEMP_JSON.getCPU();
             if (Utils.existFile(CPU_NODE)) {
                 CPU_OFFSET = TEMP_JSON.getCPUOffset();
-                if (CPU_OFFSET != 1 && Utils.readFile(CPU_NODE).length() == 2) {
+                if (Utils.readFile(CPU_NODE).length() == 2) {
                     CPU_OFFSET = 1;
                 }
                 return true;
             }
-            CPU_NODE = null;
+            return false;
         }
-        if (CPU_NODE != null) return true;
         for (String node : sCPUTemps.keySet()) {
             if (Utils.existFile(node)) {
                 CPU_NODE = node;
@@ -116,9 +115,6 @@ public class Temperature {
         if (CPU_NODE == null && Utils.existFile(THERMAL_ZONE0)) {
             CPU_NODE = THERMAL_ZONE0;
             CPU_OFFSET = 1000;
-        }
-        if (CPU_NODE != null && Utils.readFile(CPU_NODE).length() == 2) {
-            CPU_OFFSET = 1;
         }
         return CPU_NODE != null;
     }
