@@ -229,9 +229,9 @@
     <string name="cpus_boosted">CPUs Boosted</string>
     <string name="cpus_boosted_summary">Maximum number of CPUs boosted at the same time.</string>
     <string name="min_cpu_online">Minimum CPU Online</string>
-    <string name="min_cpu_online_summary">Minimum number of CPUs that will be always online.</string>
+    <string name="min_cpu_online_summary">Minimum number of CPUs that will be online.</string>
     <string name="max_cpu_online">Maximum CPU Online</string>
-    <string name="max_cpu_online_summary">Maximum number of CPUs that will be always online.</string>
+    <string name="max_cpu_online_summary">Maximum number of CPUs that will be online.</string>
     <string name="max_cpu_online_screen_off">Maximum CPU Screen Off</string>
     <string name="max_cpu_online_screen_off_summary">Maximum number of CPUs that will be online when the screen is off.</string>
     <string name="suspend_defer_time">Suspend Defer Time</string>
@@ -338,6 +338,12 @@
     <string name="busy_up_threshold_summary">Threshold when big CPUs should be turned on.</string>
     <string name="offline_delay">Offline Delay</string>
     <string name="offline_delay_summary">Time before turning off a CPU.</string>
+    <string name="aio_hotplug">AiO Hotplug</string>
+    <string name="aio_hotplug_summary">All in One HotPlug for Qualcomm devices. Developed by Shoaib0597.</string>
+    <string name="max_cpu_online_big">Maximum big CPUs Online</string>
+    <string name="max_cpu_online_big_summary">Maximum number of big CPUs that will be online.</string>
+    <string name="max_cpu_online_little">Maximum LITTLE CPUs Online</string>
+    <string name="max_cpu_online_little_summary">Maximum number of LITTLE CPUs that will be online.</string>
 
     <!--Thermal-->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
