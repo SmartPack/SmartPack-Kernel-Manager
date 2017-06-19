@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
+import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AiOHotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AlucardHotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AutoSmp;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.BluPlug;
@@ -100,6 +101,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         }
         if (CoreCtl.supported()) {
             coreCtlInit(items);
+        }
+        if (AiOHotplug.supported()) {
+            aioHotplugInit(items);
         }
 
         for (SwitchView view : mEnableViews) {
@@ -2288,6 +2292,106 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             }
 
             items.addAll(coreCtl);
+        }
+    }
+
+    private void aioHotplugInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> aioHotplug = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.aio_hotplug));
+
+        if (AiOHotplug.hasToggle()) {
+            SwitchView toggle = new SwitchView();
+            toggle.setTitle(getString(R.string.aio_hotplug));
+            toggle.setSummary(getString(R.string.aio_hotplug_summary));
+            toggle.setChecked(AiOHotplug.isEnabled());
+            toggle.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    AiOHotplug.enable(isChecked, getActivity());
+                }
+            });
+
+            aioHotplug.add(toggle);
+            mEnableViews.add(toggle);
+        }
+
+        if (AiOHotplug.hasCores()) {
+            SeekBarView maxCpus = new SeekBarView();
+            maxCpus.setTitle(getString(R.string.max_cpu_online));
+            maxCpus.setSummary(getString(R.string.max_cpu_online_summary));
+            maxCpus.setMax(CPUFreq.getCpuCount());
+            maxCpus.setMin(1);
+            maxCpus.setProgress(AiOHotplug.getCores() - 1);
+            maxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AiOHotplug.setCores(position + 1, getActivity());
+                }
+            });
+
+            aioHotplug.add(maxCpus);
+        }
+
+        if (CPUFreq.isBigLITTLE() && AiOHotplug.hasBigCores()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= CPUFreq.getBigCpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView bigMaxCpus = new SeekBarView();
+            bigMaxCpus.setTitle(getString(R.string.max_cpu_online_big));
+            bigMaxCpus.setSummary(getString(R.string.max_cpu_online_big_summary));
+            bigMaxCpus.setItems(list);
+            bigMaxCpus.setProgress(AiOHotplug.getBigCores());
+            bigMaxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AiOHotplug.setBigCores(position, getActivity());
+                }
+            });
+
+            aioHotplug.add(bigMaxCpus);
+        }
+
+        if (CPUFreq.isBigLITTLE() && AiOHotplug.hasLITTLECores()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= CPUFreq.getLITTLECpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView LITTLEMaxCpus = new SeekBarView();
+            LITTLEMaxCpus.setTitle(getString(R.string.max_cpu_online_little));
+            LITTLEMaxCpus.setSummary(getString(R.string.max_cpu_online_little_summary));
+            LITTLEMaxCpus.setItems(list);
+            LITTLEMaxCpus.setProgress(AiOHotplug.getLITTLECores());
+            LITTLEMaxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AiOHotplug.setLITTLECores(position, getActivity());
+                }
+            });
+
+            aioHotplug.add(LITTLEMaxCpus);
+        }
+
+        if (aioHotplug.size() > 0) {
+            items.add(title);
+            items.addAll(aioHotplug);
         }
     }
 
