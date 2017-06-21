@@ -46,7 +46,8 @@ public class Dt2w {
     private static final String DT2W_WAKE_GESTURE = "/sys/devices/platform/spi-tegra114.2/spi_master/spi2/spi2.0/input/input0/wake_gesture";
     private static final String DT2W_WAKE_GESTURE_2 = "/sys/devices/soc.0/f9924000.i2c/i2c-2/2-0070/input/input0/wake_gesture";
     private static final String DT2W_FT5X06 = "/sys/bus/i2c/drivers/ft5x06_i2c/5-0038/d2w_switch";
-
+    private static final String DT2W_SMDK4412 = "/sys/devices/virtual/misc/touchwake/knockon";
+    
     private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
     private static final List<Integer> sLgeTouchCoreMenu = new ArrayList<>();
     private static final List<Integer> sAndroidTouchMenu = new ArrayList<>();
@@ -77,6 +78,7 @@ public class Dt2w {
         sFiles.put(DT2W_WAKE_GESTURE, sGenericMenu);
         sFiles.put(DT2W_WAKE_GESTURE_2, sGenericMenu);
         sFiles.put(DT2W_FT5X06, sGenericMenu);
+        sFiles.put(DT2W_SMDK4412, sGenericMenu);
     }
 
     private static String FILE;
