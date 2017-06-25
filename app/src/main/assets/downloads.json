@@ -109,17 +109,6 @@
       "lge LGE"
     ],
     "device": [
-      "bullhead"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/bullhead.json"
-  },
-  {
-    "vendor": [
-      "LGE",
-      "lge",
-      "lge LGE"
-    ],
-    "device": [
       "jagnm"
     ],
     "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3beat_jagnm.json"
