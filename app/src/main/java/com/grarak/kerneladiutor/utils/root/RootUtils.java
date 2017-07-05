@@ -79,10 +79,12 @@ public class RootUtils {
     }
 
     public static void mount(boolean writeable, String mountpoint, SU su) {
-        su.runCommand(writeable ? "mount -o remount,rw " + mountpoint + " " + mountpoint :
-                "mount -o remount,ro " + mountpoint + " " + mountpoint);
-        su.runCommand(writeable ? "mount -o remount,rw " + mountpoint :
-                "mount -o remount,ro " + mountpoint);
+        su.runCommand(String.format("mount -o remount,%s %s %s",
+                writeable ? "rw" : "ro", mountpoint, mountpoint));
+        su.runCommand(String.format("mount -o remount,%s %s",
+                writeable ? "rw" : "ro", mountpoint));
+        su.runCommand(String.format("mount -o %s,remount %s",
+                writeable ? "rw" : "ro", mountpoint));
     }
 
     public static String runScript(String text, String... arguments) {
