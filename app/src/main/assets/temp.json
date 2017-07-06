@@ -65,30 +65,30 @@
   },
   {
     "board": "msm8994",
-    "cpu": "/sys/class/thermal/thermal_zone9/temp",
+    "cpu": "/sys/class/thermal/thermal_zone8/temp",
     "gpu": "/sys/class/thermal/thermal_zone13/temp",
     "cpu-offset": 1,
     "gpu-offset": 1
   },
   {
     "board": "msm8996",
-    "cpu": "/sys/class/thermal/thermal_zone4/temp",
-    "gpu": "/sys/class/thermal/thermal_zone15/temp",
+    "cpu": "/sys/class/thermal/thermal_zone5/temp",
+    "gpu": "/sys/class/thermal/thermal_zone16/temp",
     "cpu-offset": 10,
     "gpu-offset": 10
   },
   {
     "board": "msm8996pro",
-    "cpu": "/sys/class/thermal/thermal_zone4/temp",
-    "gpu": "/sys/class/thermal/thermal_zone15/temp",
+    "cpu": "/sys/class/thermal/thermal_zone5/temp",
+    "gpu": "/sys/class/thermal/thermal_zone16/temp",
     "cpu-offset": 10,
     "gpu-offset": 10
   },
   {
     "board": "msm8998",
-    "cpu": "/sys/class/thermal/thermal_zone1/temp",
-    "gpu": "/sys/class/thermal/thermal_zone13/temp",
-    "cpu-offset": 1000,
+    "cpu": "/sys/class/thermal/thermal_zone11/temp",
+    "gpu": "/sys/class/thermal/thermal_zone21/temp",
+    "cpu-offset": 10,
     "gpu-offset": 10
   }
 ]
