@@ -26,6 +26,7 @@ import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.List;
 
@@ -58,9 +59,15 @@ public class SoundFragment extends RecyclerViewFragment {
         if (Sound.hasCamMicrophoneGain()) {
             camMicrophoneGainInit(items);
         }
+        if (Sound.hasHeadphoneFlar()) {
+            headphoneFlarInit(items);
+        }
         if (Sound.hasSpeakerGain()) {
             speakerGainInit(items);
         }
+        if (Sound.hasMicrophoneFlar()) {
+            microphoneFlarInit(items);
+        }        
         if (Sound.hasHeadphonePowerAmpGain()) {
             headphonePowerAmpGainInit(items);
         }
@@ -292,6 +299,48 @@ public class SoundFragment extends RecyclerViewFragment {
         });
 
         items.add(volumeGain);
+    }
+
+   private void headphoneFlarInit(List<RecyclerViewItem> items) {
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.sound_control));
+
+        SeekBarView headphoneFlar = new SeekBarView();
+        headphoneFlar.setTitle(getString(R.string.headphone_gain));
+        headphoneFlar.setItems(Sound.getHeadphoneFlarLimits());
+        headphoneFlar.setProgress(Sound.getHeadphoneFlarLimits().indexOf(Sound.getHeadphoneFlar()));
+        headphoneFlar.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Sound.setHeadphoneFlar(value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+        items.add(title);
+        items.add(headphoneFlar);
+    }
+
+    private void microphoneFlarInit(List<RecyclerViewItem> items) {
+        SeekBarView microphoneFlar = new SeekBarView();
+        microphoneFlar.setTitle(getString(R.string.microphone_gain));
+        microphoneFlar.setItems(Sound.getMicrophoneFlarLimits());
+        microphoneFlar.setProgress(Sound.getMicrophoneFlarLimits().indexOf(Sound.getMicrophoneFlar()));
+        microphoneFlar.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Sound.setMicrophoneFlar(value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(microphoneFlar);
     }
 
 }
