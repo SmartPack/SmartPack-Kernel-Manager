@@ -842,7 +842,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     protected boolean showAd() {
-        return true;
+        return false;
     }
 
     public void ghAdReady() {

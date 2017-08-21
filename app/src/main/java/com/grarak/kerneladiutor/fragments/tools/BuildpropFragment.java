@@ -83,11 +83,6 @@ public class BuildpropFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected boolean showAd() {
-        return false;
-    }
-
-    @Override
     protected void init() {
         super.init();
 

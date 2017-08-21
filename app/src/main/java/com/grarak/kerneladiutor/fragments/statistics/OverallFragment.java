@@ -453,4 +453,9 @@ public class OverallFragment extends RecyclerViewFragment {
 
     }
 
+    @Override
+    protected boolean showAd() {
+        return true;
+    }
+
 }

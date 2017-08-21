@@ -480,4 +480,10 @@ public class BackupFragment extends RecyclerViewFragment {
         mPermissionDenied = false;
         mLoaded = false;
     }
+
+    @Override
+    protected boolean showAd() {
+        return true;
+    }
+
 }

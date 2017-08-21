@@ -338,4 +338,10 @@ public class RecoveryFragment extends RecyclerViewFragment {
         super.onDestroy();
         mCommands.clear();
     }
+
+    @Override
+    protected boolean showAd() {
+        return true;
+    }
+
 }

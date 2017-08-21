@@ -64,4 +64,9 @@ public class MemoryFragment extends RecyclerViewFragment {
         }
     }
 
+    @Override
+    protected boolean showAd() {
+        return true;
+    }
+
 }
