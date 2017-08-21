@@ -90,5 +90,12 @@
     "gpu": "/sys/class/thermal/thermal_zone21/temp",
     "cpu-offset": 10,
     "gpu-offset": 10
+  },
+  {
+    "board": "mt6735",
+    "cpu": "/sys/class/thermal/thermal_zone2/temp",
+    "gpu": "/sys/class/thermal/thermal_zone9/temp",
+    "cpu-offset": 1000,
+    "gpu-offset": 1000
   }
 ]
