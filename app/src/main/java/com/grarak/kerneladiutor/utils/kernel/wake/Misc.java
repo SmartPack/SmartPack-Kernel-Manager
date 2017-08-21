@@ -45,11 +45,17 @@ public class Misc {
 
     private static final String WAKE_TIMEOUT = "/sys/android_touch/wake_timeout";
     private static final String WAKE_TIMEOUT_2 = "/sys/android_touch2/wake_timeout";
+    private static final String T2W_TIMEOUT_SMDK4412 = "/sys/devices/virtual/misc/touchwake/delay";
+
+    private static final String T2W_CHARGE_TIMEOUT_SMDK4412 = "/sys/devices/virtual/misc/touchwake/charging_delay";
 
     private static final String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
+    private static final String KEYPOWER_MODE_SMDK4412 = "/sys/devices/virtual/misc/touchwake/keypower_mode";
 
     private static final String VIBRATION = "/proc/touchpanel/haptic_feedback_disable";
     private static final String VIB_VIBRATION = "/sys/android_touch2/vib_strength";
+
+    private static final String CHARGING_MODE_SMDK4412 = "/sys/devices/virtual/misc/touchwake/charging_mode";
 
     private static final HashMap<String, List<Integer>> sWakeFiles = new HashMap<>();
     private static final List<Integer> sScreenWakeOptionsMenu = new ArrayList<>();
@@ -86,6 +92,7 @@ public class Misc {
     static {
         sTimeoutFiles.put(WAKE_TIMEOUT, 30);
         sTimeoutFiles.put(WAKE_TIMEOUT_2, 10);
+        sTimeoutFiles.put(T2W_TIMEOUT_SMDK4412, 60);
     }
 
     private static String WAKE;
@@ -127,6 +134,43 @@ public class Misc {
 
     public static boolean hasPowerKeySuspend() {
         return Utils.existFile(POWER_KEY_SUSPEND);
+    }
+
+    public static void enableKeyPowerMode(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", KEYPOWER_MODE_SMDK4412), KEYPOWER_MODE_SMDK4412, context);
+    }
+
+    public static boolean isKeyPowerModeEnabled() {
+        return Utils.readFile(KEYPOWER_MODE_SMDK4412).equals("1");
+    }
+
+    public static boolean hasKeyPowerMode() {
+        return Utils.existFile(KEYPOWER_MODE_SMDK4412);
+    }
+
+    public static void enableChargingMode(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", CHARGING_MODE_SMDK4412), CHARGING_MODE_SMDK4412, context);
+    }
+
+    public static boolean isChargingModeEnabled() {
+        return Utils.readFile(CHARGING_MODE_SMDK4412).equals("1");
+    }
+
+    public static boolean hasChargingMode() {
+        return Utils.existFile(CHARGING_MODE_SMDK4412);
+    }
+
+    public static void setChargeTimeout(int value, Context context) {
+        run(Control.write(String.valueOf(value), T2W_CHARGE_TIMEOUT_SMDK4412),
+                T2W_CHARGE_TIMEOUT_SMDK4412, context);
+    }
+
+    public static int getChargeTimeout() {
+        return Utils.strToInt(Utils.readFile(T2W_CHARGE_TIMEOUT_SMDK4412));
+    }
+
+    public static boolean hasChargeTimeout() {
+        return Utils.existFile(T2W_CHARGE_TIMEOUT_SMDK4412);
     }
 
     public static void setTimeout(int value, Context context) {
@@ -222,8 +266,8 @@ public class Misc {
     }
 
     public static boolean supported() {
-        return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasPowerKeySuspend()
-                || hasVibration() || hasVibVibration();
+        return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasChargeTimeout() || hasPowerKeySuspend()
+                || hasKeyPowerMode() || hasChargingMode() || hasVibration() || hasVibVibration();
     }
 
     private static void run(String command, String id, Context context) {

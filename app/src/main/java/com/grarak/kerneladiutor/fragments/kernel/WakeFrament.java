@@ -80,8 +80,17 @@ public class WakeFrament extends RecyclerViewFragment {
         if (Misc.hasTimeout()) {
             timeoutInit(items);
         }
+        if (Misc.hasChargeTimeout()) {
+            chargetimeoutInit(items);
+        }
         if (Misc.hasPowerKeySuspend()) {
             powerKeySuspendInit(items);
+        }
+        if (Misc.hasKeyPowerMode()) {
+            keyPowerModeInit(items);
+        }
+        if (Misc.hasChargingMode()) {
+            chargingModeInit(items);
         }
         areaInit(items);
         vibrationInit(items);
@@ -273,6 +282,32 @@ public class WakeFrament extends RecyclerViewFragment {
         items.add(timeout);
     }
 
+    private void chargetimeoutInit(List<RecyclerViewItem> items) {
+        List<String> list = new ArrayList<>();
+        list.add(getString(R.string.disabled));
+        for (int i = 1; i <= 60; i++) {
+            list.add(i + getString(R.string.min));
+        }
+
+        SeekBarView chargetimeout = new SeekBarView();
+        chargetimeout.setTitle(getString(R.string.charge_timeout));
+        chargetimeout.setSummary(getString(R.string.charge_timeout_summary));
+        chargetimeout.setItems(list);
+        chargetimeout.setProgress(Misc.getChargeTimeout());
+        chargetimeout.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                Misc.setChargeTimeout(position, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        items.add(chargetimeout);
+    }
+
     private void powerKeySuspendInit(List<RecyclerViewItem> items) {
         SwitchView powerKeySuspend = new SwitchView();
         powerKeySuspend.setTitle(getString(R.string.power_key_suspend));
@@ -286,6 +321,36 @@ public class WakeFrament extends RecyclerViewFragment {
         });
 
         items.add(powerKeySuspend);
+    }
+
+    private void keyPowerModeInit(List<RecyclerViewItem> items) {
+        SwitchView keyPowerMode = new SwitchView();
+        keyPowerMode.setTitle(getString(R.string.key_power_mode));
+        keyPowerMode.setSummary(getString(R.string.key_power_mode_summary));
+        keyPowerMode.setChecked(Misc.isKeyPowerModeEnabled());
+        keyPowerMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enableKeyPowerMode(isChecked, getActivity());
+            }
+        });
+
+        items.add(keyPowerMode);
+    }
+
+    private void chargingModeInit(List<RecyclerViewItem> items) {
+        SwitchView chargingMode = new SwitchView();
+        chargingMode.setTitle(getString(R.string.charging_mode));
+        chargingMode.setSummary(getString(R.string.charging_mode_summary));
+        chargingMode.setChecked(Misc.isChargingModeEnabled());
+        chargingMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enableChargingMode(isChecked, getActivity());
+            }
+        });
+
+        items.add(chargingMode);
     }
 
     private void areaInit(List<RecyclerViewItem> items) {

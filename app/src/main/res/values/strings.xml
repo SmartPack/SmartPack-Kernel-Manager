@@ -519,6 +519,8 @@
     <string name="pocket_mode_summary">Enabling this will turn off wake controls when the device is in a pocket.</string>
     <string name="timeout">Timeout</string>
     <string name="timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
+    <string name="charge_timeout">Charge Timeout</string>
+    <string name="charge_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off while charging.</string>
     <string name="power_key_suspend">Power Key Suspend</string>
     <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
     <string name="area">Area</string>
@@ -526,6 +528,10 @@
     <string name="height">Height</string>
     <string name="vibration">Vibration</string>
     <string name="vibration_strength">Vibration Strength</string>
+    <string name="key_power_mode">Power Key Mode</string>
+    <string name="key_power_mode_summary">Wake controls will only be active when you put your device into sleep with the power key.</string>
+    <string name="charging_mode">Charging Mode</string>
+    <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>
