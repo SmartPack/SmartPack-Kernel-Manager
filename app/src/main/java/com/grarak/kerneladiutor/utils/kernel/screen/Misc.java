@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2015-2017 Willi Ye <williye97@gmail.com>
  *
  * This file is part of Kernel Adiutor.
  *
@@ -23,6 +23,7 @@ import android.content.Context;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.Switch;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
@@ -51,10 +52,9 @@ public class Misc {
     private static final String REGISTER_HOOK = "/sys/class/misc/mdnie/hook_intercept";
     private static final String MASTER_SEQUENCE = "/sys/class/misc/mdnie/sequence_intercept";
 
-    private static final String GLOVE_MODE = "/sys/devices/virtual/touchscreen/touchscreen_dev/mode";
-
     private static final List<String> sBackLightDimmer = new ArrayList<>();
     private static final HashMap<String, Integer> sMinBrightnessFiles = new HashMap<>();
+    private static final HashMap<String, Switch> sGloveMode = new HashMap<>();
 
     static {
         sBackLightDimmer.add(LM3630_BACKLIGHT_DIMMER);
@@ -63,21 +63,35 @@ public class Misc {
         sMinBrightnessFiles.put(LM3630_MIN_BRIGHTNESS, 50);
         sMinBrightnessFiles.put(MSM_BACKLIGHT_DIMMER, 100);
         sMinBrightnessFiles.put(PSB_BL_MIN_BRIGHTNESS, 13);
+
+        sGloveMode.put("/sys/devices/virtual/touchscreen/touchscreen_dev/mode", new Switch("glove", "normal"));
+        sGloveMode.put("/sys/lenovo_tp_gestures/tpd_glove_status", new Switch("1", "0"));
     }
 
     private static String BACKLIGHT_DIMMER;
     private static String MIN_BRIGHTNESS;
+    private static String GLOVE_MODE;
 
     public static void enableGloveMode(boolean enable, Context context) {
-        run(Control.write(enable ? "glove" : "normal", GLOVE_MODE), GLOVE_MODE, context);
+        Switch gloveSwitch = sGloveMode.get(GLOVE_MODE);
+        run(Control.write(enable ? gloveSwitch.getEnable() : gloveSwitch.getDisable(),
+                GLOVE_MODE), GLOVE_MODE, context);
     }
 
     public static boolean isGloveModeEnabled() {
-        return Utils.readFile(GLOVE_MODE).equals("glove");
+        return Utils.readFile(GLOVE_MODE).equals(sGloveMode.get(GLOVE_MODE).getEnable());
     }
 
     public static boolean hasGloveMode() {
-        return Utils.existFile(GLOVE_MODE);
+        if (GLOVE_MODE == null) {
+            for (String file : sGloveMode.keySet()) {
+                if (Utils.existFile(file)) {
+                    GLOVE_MODE = file;
+                    return true;
+                }
+            }
+        }
+        return GLOVE_MODE != null;
     }
 
     public static void enableMasterSequence(boolean enable, Context context) {
