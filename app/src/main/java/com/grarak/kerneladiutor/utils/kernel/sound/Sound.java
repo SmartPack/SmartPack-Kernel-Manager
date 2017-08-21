@@ -52,14 +52,21 @@ public class Sound {
     private static final String MIC_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
     private static final String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/volume_boost";
 
+    private static final String HEADPHONE_FLAR = "/sys/kernel/sound_control/headphone_gain";
+    private static final String MICROPHONE_FLAR = "/sys/kernel/sound_control/mic_gain";
+    private static final String SPEAKER_FLAR = "/sys/kernel/sound_control/speaker_gain";
+
     private static final List<String> sSpeakerGainFiles = new ArrayList<>();
 
     private static final List<String> sFauxLimits = new ArrayList<>();
     private static final List<String> sFrancoLimits = new ArrayList<>();
+    private static final List<String> sFlarLimits = new ArrayList<>();
+    private static final List<String> sFlarHpLimits = new ArrayList<>();
 
     static {
         sSpeakerGainFiles.add(SPEAKER_GAIN);
         sSpeakerGainFiles.add(SPEAKER_BOOST);
+        sSpeakerGainFiles.add(SPEAKER_FLAR);
     }
 
     static {
@@ -69,6 +76,14 @@ public class Sound {
 
         for (int i = -20; i < 21; i++) {
             sFrancoLimits.add(String.valueOf(i));
+        }
+
+        for (int i = -10; i < 21; i++) {
+            sFlarLimits.add(String.valueOf(i));
+        }
+        
+        for (int i = -40; i < 21; i++) {
+            sFlarHpLimits.add(String.valueOf(i));
         }
     }
 
@@ -194,8 +209,12 @@ public class Sound {
                     value = String.valueOf(newGain + 256);
                     fauxRun(value + " " + value, SPEAKER_GAIN, SPEAKER_GAIN, context);
                 }
+                break;
             case SPEAKER_BOOST:
                 run(Control.write(value, SPEAKER_BOOST), SPEAKER_BOOST, context);
+                break;
+            case SPEAKER_FLAR:
+                run(Control.write(value, SPEAKER_FLAR), SPEAKER_FLAR, context);
                 break;
         }
     }
@@ -212,6 +231,8 @@ public class Sound {
                 break;
             case SPEAKER_BOOST:
                 return Utils.readFile(SPEAKER_BOOST);
+            case SPEAKER_FLAR:
+                return Utils.readFile(SPEAKER_FLAR);
         }
         return "";
     }
@@ -222,6 +243,8 @@ public class Sound {
                 return sFauxLimits;
             case SPEAKER_BOOST:
                 return sFrancoLimits;
+            case SPEAKER_FLAR:
+                return sFlarLimits;
         }
         return new ArrayList<>();
     }
@@ -351,7 +374,8 @@ public class Sound {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || hasHeadphoneGain()
                 || hasHandsetMicrophoneGain() || hasCamMicrophoneGain() || hasSpeakerGain()
                 || hasHeadphonePowerAmpGain() || hasLockOutputGain() || hasLockMicGain()
-                || hasMicrophoneGain() || hasVolumeGain();
+                || hasMicrophoneGain() || hasVolumeGain() || hasHeadphoneFlar() 
+                || hasMicrophoneFlar();
     }
 
     private static long getChecksum(int a, int b) {
@@ -369,6 +393,48 @@ public class Sound {
 
     private static void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.SOUND, id, context);
+    }
+
+    public static void setHeadphoneFlar(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -40 && newGain <= 20) {
+            fauxRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+        }
+    }
+
+    public static String getHeadphoneFlar() {
+        String value = Utils.readFile(HEADPHONE_FLAR);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 216 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public static List<String> getHeadphoneFlarLimits() {
+        return sFlarHpLimits;
+    }
+
+    public static boolean hasHeadphoneFlar() {
+        return Utils.existFile(HEADPHONE_FLAR);
+    }
+
+    public static void setMicrophoneFlar(String value, Context context) {
+        run(Control.write(value, MICROPHONE_FLAR), MICROPHONE_FLAR, context);
+    }
+
+    public static String getMicrophoneFlar() {
+        return Utils.readFile(MICROPHONE_FLAR);
+    }
+
+    public static List<String> getMicrophoneFlarLimits() {
+        return sFlarLimits;
+    }
+
+    public static boolean hasMicrophoneFlar() {
+        return Utils.existFile(MICROPHONE_FLAR);
     }
 
 }
