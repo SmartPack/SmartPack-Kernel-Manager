@@ -41,7 +41,7 @@ import java.util.List;
 /**
  * Created by willi on 23.06.16.
  */
-public class WakeFrament extends RecyclerViewFragment {
+public class WakeFragment extends RecyclerViewFragment {
 
     @Override
     protected void init() {
