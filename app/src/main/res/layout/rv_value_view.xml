@@ -15,8 +15,6 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:fontFamily="sans-serif-medium"
             android:textColor="?android:attr/textColorPrimary" />
 
         <LinearLayout
@@ -50,10 +48,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="end" />
-
             </FrameLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

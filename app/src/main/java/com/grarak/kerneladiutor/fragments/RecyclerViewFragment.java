@@ -121,7 +121,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                             @Nullable final Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_recyclerview, container, false);
         if (mHandler == null) {
             getActivity().runOnUiThread(new Runnable() {
@@ -298,32 +298,37 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                             }
                         }
                     });
-                    mViewPager.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (getActivity() != null) {
-                                int cx = mViewPager.getWidth();
+                    if (savedInstanceState == null) {
+                        mViewPager.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (getActivity() != null) {
+                                    int cx = mViewPager.getWidth();
 
-                                SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
-                                        mViewPager, cx / 2, 0, 0, cx);
-                                animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
-                                    @Override
-                                    public void onAnimationStart() {
-                                        super.onAnimationStart();
-                                        mViewPager.setVisibility(View.VISIBLE);
-                                    }
+                                    SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
+                                            mViewPager, cx / 2, 0, 0, cx);
+                                    animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
+                                        @Override
+                                        public void onAnimationStart() {
+                                            super.onAnimationStart();
+                                            mViewPager.setVisibility(View.VISIBLE);
+                                        }
 
-                                    @Override
-                                    public void onAnimationEnd() {
-                                        super.onAnimationEnd();
-                                        mViewPagerShadow.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                                animator.setDuration(400);
-                                animator.start();
+                                        @Override
+                                        public void onAnimationEnd() {
+                                            super.onAnimationEnd();
+                                            mViewPagerShadow.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                    animator.setDuration(400);
+                                    animator.start();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        mViewPager.setVisibility(View.VISIBLE);
+                        mViewPagerShadow.setVisibility(View.VISIBLE);
+                    }
                     mLoader = null;
                 }
             };

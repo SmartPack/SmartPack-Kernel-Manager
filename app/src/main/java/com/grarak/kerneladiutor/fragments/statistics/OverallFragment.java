@@ -49,7 +49,6 @@ import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.StatsView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyButtonView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
@@ -257,9 +256,9 @@ public class OverallFragment extends RecyclerViewFragment {
 
         if (monitor.getStates().size() == 0) {
             card.clearItems();
-            TitleView errorTitle = new TitleView();
-            errorTitle.setText(getString(R.string.error_frequencies));
-            card.addItem(errorTitle);
+            DescriptionView errorView = new DescriptionView();
+            errorView.setTitle(getString(R.string.error_frequencies));
+            card.addItem(errorView);
             return;
         }
 
@@ -285,9 +284,9 @@ public class OverallFragment extends RecyclerViewFragment {
      * @return A nicely formatted String representing tSec seconds
      */
     private String sToString(long tSec) {
-        int h = (int) (tSec / (60 * 60));
-        int m = ((int) tSec % (60 * 60)) / 60;
-        int s = ((int) tSec % (60 * 60)) % 60;
+        int h = (int) tSec / 60 / 60;
+        int m = (int) tSec / 60 % 60;
+        int s = (int) tSec % 60;
         String sDur;
         sDur = h + ":";
         if (m < 10) sDur += "0";

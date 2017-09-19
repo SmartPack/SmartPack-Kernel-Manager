@@ -16,10 +16,9 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
             android:gravity="center_horizontal"
             android:textIsSelectable="true"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <View
             style="@style/Divider"
@@ -38,11 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-medium"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textIsSelectable="true"
-            android:textSize="13sp" />
+            android:textIsSelectable="true" />
 
         <LinearLayout
             android:id="@+id/downloadSection"
@@ -128,7 +125,5 @@
             android:background="?attr/selectableItemBackground"
             android:text="@string/install"
             android:visibility="gone" />
-
     </LinearLayout>
-
 </android.support.v7.widget.CardView>

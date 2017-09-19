@@ -42,6 +42,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.EditorActivity;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.fragments.SwitcherFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -88,7 +89,16 @@ public class InitdFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(new EmulateInitdFragment());
+        addViewPagerFragment(SwitcherFragment.newInstance(
+                getString(R.string.emulate_initd),
+                getString(R.string.emulate_initd_summary),
+                Prefs.getBoolean("initd_onboot", false, getActivity()),
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        Prefs.saveBoolean("initd_onboot", b, getActivity());
+                    }
+                }));
 
         if (mExecuteDialog != null) {
             mExecuteDialog.show();
@@ -333,26 +343,6 @@ public class InitdFragment extends RecyclerViewFragment {
             mLoader = null;
         }
         mLoaded = false;
-    }
-
-    public static class EmulateInitdFragment extends BaseFragment {
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_emulate_initd, container, false);
-
-            SwitchCompat switchCompat = (SwitchCompat) rootView.findViewById(R.id.switcher);
-            switchCompat.setChecked(Prefs.getBoolean("initd_onboot", false, getActivity()));
-            switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    Prefs.saveBoolean("initd_onboot", b, getActivity());
-                }
-            });
-
-            return rootView;
-        }
     }
 
     @Override

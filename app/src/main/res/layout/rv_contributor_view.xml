@@ -30,9 +30,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
                 android:ellipsize="middle"
-                android:fontFamily="sans-serif-medium"
                 android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
@@ -40,8 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="middle" />
-
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

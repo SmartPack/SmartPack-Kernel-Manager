@@ -699,6 +699,21 @@
     <string name="data_sharing_summary">Share your settings with others! Kernel Adiutor will automatically collect information and compile a score list available to all people.</string>
     <string name="data_sharing_summary_link">You can access the list on &lt;a href="https://www.grarak.com/kerneladiutor">grarak.com&lt;/a>.</string>
     <string name="sharing_enable">Sharing enable</string>
+    <string name="filter">Filter</string>
+    <string name="board">Board</string>
+    <string name="show_all">Show all</string>
+    <string name="failed_board">Failed to load boards.</string>
+    <string name="failed_devices">Failed to load devices.</string>
+    <string name="previous">Previous</string>
+    <string name="page">Page</string>
+    <string name="next">Next</string>
+    <string name="kernel_version">Kernel Version</string>
+    <string name="potential_sot">Potential SOT</string>
+    <string name="screen_always_on">when screen is always on</string>
+    <string name="lower_better">lower is better</string>
+    <string name="cpu_score">CPU Score</string>
+    <string name="cpu_information">CPU Information</string>
+    <string name="default_settings">Default (no modifications made)</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>

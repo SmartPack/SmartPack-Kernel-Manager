@@ -29,6 +29,5 @@
             android:maxLines="1"
             android:textAllCaps="true"
             android:textSize="12sp" />
-
     </LinearLayout>
 </FrameLayout>

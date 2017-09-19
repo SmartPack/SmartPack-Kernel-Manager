@@ -71,9 +71,9 @@ public class ContributorsFragment extends RecyclerViewFragment {
 
         showProgress();
         if (mWebpageReader == null) {
-            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
+            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageListener() {
                 @Override
-                public void onCallback(String raw, CharSequence html) {
+                public void onSuccess(String url, String raw, CharSequence html) {
                     if (!isAdded()) return;
                     hideProgress();
                     Contributors contributors = new Contributors(raw);
@@ -88,8 +88,13 @@ public class ContributorsFragment extends RecyclerViewFragment {
                         error();
                     }
                 }
+
+                @Override
+                public void onFailure(String url) {
+                    error();
+                }
             });
-            mWebpageReader.execute("https://api.github.com/repos/Grarak/KernelAdiutor/contributors");
+            mWebpageReader.get("https://api.github.com/repos/Grarak/KernelAdiutor/contributors");
         }
     }
 

@@ -30,7 +30,6 @@
                     android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
                     android:textColor="?android:attr/textColorPrimary" />
 
                 <TextView
@@ -48,9 +47,7 @@
                 android:layout_gravity="center_vertical"
                 android:tint="?android:attr/textColorSecondary"
                 app:srcCompat="@drawable/ic_arrow" />
-
         </LinearLayout>
-
     </FrameLayout>
 
     <LinearLayout
@@ -58,5 +55,4 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical" />
-
 </LinearLayout>

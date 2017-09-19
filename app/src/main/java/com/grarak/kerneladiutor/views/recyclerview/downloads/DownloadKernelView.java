@@ -33,7 +33,6 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.DownloadTask;
-import com.grarak.kerneladiutor.utils.ThreadTask;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -57,7 +56,7 @@ public class DownloadKernelView extends RecyclerViewItem {
     private Drawable mDownloadDrawable;
     private Drawable mCancelDrawable;
     private DownloadTask mDownloadTask;
-    private ThreadTask<Void, Boolean> mCheckMD5Task;
+    private Thread mCheckMD5Task;
 
     private View mDownloadSection;
     private View mProgressParent;
@@ -67,6 +66,8 @@ public class DownloadKernelView extends RecyclerViewItem {
     private View mCheckMD5;
     private View mMismatchMD5;
     private View mInstallButton;
+
+    private int mRecoverySelection;
 
     public DownloadKernelView(Activity activity, SupportedDownloads.KernelContent.Download download) {
         mActvity = activity;
@@ -156,7 +157,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                         private int mPercentage;
 
                         @Override
-                        public void onUpdate(int currentSize, int totalSize) {
+                        public void onUpdate(String url, int currentSize, int totalSize) {
                             int percentage = Math.round(currentSize * 100f / totalSize);
                             if (mPercentage != percentage) {
                                 mPercentage = percentage;
@@ -171,7 +172,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                         }
 
                         @Override
-                        public void onSuccess(String path) {
+                        public void onSuccess(String url, String path) {
                             mFabButton.setImageDrawable(mDownloadDrawable);
                             mProgressParent.setVisibility(View.INVISIBLE);
                             mDownloadTask = null;
@@ -179,7 +180,7 @@ public class DownloadKernelView extends RecyclerViewItem {
                         }
 
                         @Override
-                        public void onCancel() {
+                        public void onCancel(String url) {
                             mFabButton.setImageDrawable(mDownloadDrawable);
                             mProgressParent.setVisibility(View.INVISIBLE);
                             mMismatchMD5.setVisibility(View.GONE);
@@ -187,15 +188,16 @@ public class DownloadKernelView extends RecyclerViewItem {
                         }
 
                         @Override
-                        public void onFailure(String error) {
+                        public void onFailure(String url) {
                             Utils.toast(view.getContext().getString(R.string.download_error, titleText),
                                     view.getContext());
                             mFabButton.setImageDrawable(mDownloadDrawable);
                             mProgressParent.setVisibility(View.INVISIBLE);
                             mDownloadTask = null;
                         }
-                    }, Utils.getInternalDataStorage() + "/downloads/" + titleText.toString() + ".zip");
-                    mDownloadTask.execute(mDownload.getUrl());
+                    });
+                    mDownloadTask.get(mDownload.getUrl(),
+                            Utils.getInternalDataStorage() + "/downloads/" + titleText.toString() + ".zip");
                 } else {
                     mFabButton.setImageDrawable(mDownloadDrawable);
                     mProgressParent.setVisibility(View.INVISIBLE);
@@ -208,95 +210,93 @@ public class DownloadKernelView extends RecyclerViewItem {
 
     private void checkMD5(final String md5, final String path, final String installMethod) {
         if (mCheckMD5Task == null) {
-            mCheckMD5Task = new ThreadTask<Void, Boolean>(mActvity) {
-
-                private int mSelection;
-
+            mDownloadSection.setVisibility(View.GONE);
+            mCheckMD5Task = new Thread(new Runnable() {
                 @Override
-                public void onPreExecute() {
-                    super.onPreExecute();
-                    mDownloadSection.setVisibility(View.GONE);
+                public void run() {
+                    final boolean match = Utils.checkMD5(md5, new File(path));
+                    mActvity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            postMD5Check(match, path, installMethod);
+                        }
+                    });
                 }
-
-                @Override
-                public Boolean doInBackground(Void arg) {
-                    return Utils.checkMD5(md5, new File(path));
-                }
-
-                @Override
-                public void onPostExecute(Boolean ret) {
-                    super.onPostExecute(ret);
-                    if (ret) {
-                        mInstallButton.setVisibility(View.VISIBLE);
-                        mInstallButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(final View view) {
-                                if (!Utils.existFile(path)) {
-                                    Utils.toast(view.getContext().getString(R.string.went_wrong),
-                                            view.getContext());
-                                    return;
-                                }
-                                if (installMethod != null) {
-                                    ViewUtils.dialogBuilder(view.getContext().getString(R.string.sure_question),
-                                            new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                }
-                                            }, new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    RootUtils.runCommand(installMethod.replace("$FILE", path));
-                                                    RootUtils.runCommand("rm -f " + path);
-                                                    RootUtils.runCommand("reboot");
-                                                }
-                                            }, new DialogInterface.OnDismissListener() {
-                                                @Override
-                                                public void onDismiss(DialogInterface dialogInterface) {
-                                                }
-                                            }, view.getContext()).setTitle(view.getContext().getString(
-                                            R.string.install)).show();
-                                } else {
-                                    String[] items = view.getResources().getStringArray(R.array.downloads_recovery);
-                                    new Dialog(view.getContext()).setSingleChoiceItems(items, 0,
-                                            new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    mSelection = i;
-                                                }
-                                            }).setPositiveButton(view.getContext().getString(R.string.ok),
-                                            new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    if (mSelection == 2) {
-                                                        Utils.toast(view.getContext().getString(
-                                                                R.string.file_location, path), view.getContext());
-                                                        return;
-                                                    }
-
-                                                    Recovery recovery = new Recovery(
-                                                            Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(path));
-                                                    Recovery.RECOVERY type = mSelection == 1 ?
-                                                            Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM;
-                                                    RootFile recoveryFile = new RootFile("/cache/recovery/"
-                                                            + recovery.getFile(type));
-                                                    for (String command : recovery.getCommands(type)) {
-                                                        recoveryFile.write(command, true);
-                                                    }
-                                                    RootUtils.runCommand("reboot recovery");
-                                                }
-                                            }).show();
-                                }
-                            }
-                        });
-                    } else {
-                        mMismatchMD5.setVisibility(View.VISIBLE);
-                    }
-                    mCheckMD5.setVisibility(View.GONE);
-                    mDownloadSection.setVisibility(View.VISIBLE);
-                    mCheckMD5Task = null;
-                }
-            }.execute(null);
+            });
+            mCheckMD5Task.start();
         }
+    }
+
+    private void postMD5Check(boolean match, final String path, final String installMethod) {
+        if (match) {
+            mInstallButton.setVisibility(View.VISIBLE);
+            mInstallButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    if (!Utils.existFile(path)) {
+                        Utils.toast(view.getContext().getString(R.string.went_wrong),
+                                view.getContext());
+                        return;
+                    }
+                    if (installMethod != null) {
+                        ViewUtils.dialogBuilder(view.getContext().getString(R.string.sure_question),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                }, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        RootUtils.runCommand(installMethod.replace("$FILE", path));
+                                        RootUtils.runCommand("rm -f " + path);
+                                        RootUtils.runCommand("reboot");
+                                    }
+                                }, new DialogInterface.OnDismissListener() {
+                                    @Override
+                                    public void onDismiss(DialogInterface dialogInterface) {
+                                    }
+                                }, view.getContext()).setTitle(view.getContext().getString(
+                                R.string.install)).show();
+                    } else {
+                        mRecoverySelection = 0;
+                        String[] items = view.getResources().getStringArray(R.array.downloads_recovery);
+                        new Dialog(view.getContext()).setSingleChoiceItems(items, 0,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        mRecoverySelection = i;
+                                    }
+                                }).setPositiveButton(view.getContext().getString(R.string.ok),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        if (mRecoverySelection == 2) {
+                                            Utils.toast(view.getContext().getString(
+                                                    R.string.file_location, path), view.getContext());
+                                            return;
+                                        }
+
+                                        Recovery recovery = new Recovery(
+                                                Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(path));
+                                        Recovery.RECOVERY type = mRecoverySelection == 1 ?
+                                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM;
+                                        RootFile recoveryFile = new RootFile("/cache/recovery/"
+                                                + recovery.getFile(type));
+                                        for (String command : recovery.getCommands(type)) {
+                                            recoveryFile.write(command, true);
+                                        }
+                                        RootUtils.runCommand("reboot recovery");
+                                    }
+                                }).show();
+                    }
+                }
+            });
+        } else {
+            mMismatchMD5.setVisibility(View.VISIBLE);
+        }
+        mCheckMD5.setVisibility(View.GONE);
+        mDownloadSection.setVisibility(View.VISIBLE);
+        mCheckMD5Task = null;
     }
 
     public void pause() {

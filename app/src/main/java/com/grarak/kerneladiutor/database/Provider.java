@@ -141,14 +141,18 @@ public abstract class Provider {
 
     public static class DBJsonItem {
 
-        protected JSONObject item;
+        private JSONObject mItem;
 
         protected DBJsonItem() {
-            item = new JSONObject();
+            mItem = new JSONObject();
+        }
+
+        protected DBJsonItem(JSONObject item) {
+            mItem = item;
         }
 
         public JSONObject getItem() {
-            return item;
+            return mItem;
         }
 
         public int getInt(String name) {

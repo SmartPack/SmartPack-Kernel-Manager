@@ -1,4 +1,23 @@
-package com.grarak.kerneladiutor.utils;
+/*
+ * Copyright (C) 2017 Willi Ye <williye97@gmail.com>
+ *
+ * This file is part of Kernel Adiutor.
+ *
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+package com.grarak.kerneladiutor.utils.server;
 
 import org.json.JSONObject;
 
@@ -14,19 +33,17 @@ import java.net.URL;
  * Created by willi on 02.12.16.
  */
 
-public class Server {
+public class ServerCreateDevice extends Server {
 
-    private String mAddress;
-
-    public Server(String address) {
-        mAddress = address;
+    public ServerCreateDevice(String address) {
+        super(address);
     }
 
     public String postDeviceCreate(JSONObject data) {
         HttpURLConnection connection = null;
         try {
             String text = data.toString();
-            URL url = new URL(mAddress + "/kerneladiutor/api/v1/device/create");
+            URL url = new URL(getAddress("/kerneladiutor/api/v1/device/create"));
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");

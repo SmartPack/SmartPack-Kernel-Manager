@@ -4,17 +4,16 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/apply_on_boot"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/switcher"

@@ -7,24 +7,21 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/profile_tile"
         android:textColor="@color/white"
-        android:textSize="22sp" />
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:linksClickable="true"
-        android:text="@string/profile_tile_summary"
-        android:textColor="@color/white"
-        android:textIsSelectable="true"
-        android:textSize="16sp" />
+        android:textColor="@color/textcolor_dark"
+        android:textIsSelectable="true" />
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/switcher"

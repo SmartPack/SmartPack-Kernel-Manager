@@ -12,6 +12,8 @@
         <item name="android:textColorSecondary">@color/textcolor_light</item>
         <item name="android:textColorPrimaryInverse">@color/white</item>
         <item name="native_express_id">@string/native_express_id_light</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:textDirection">locale</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
@@ -26,6 +28,8 @@
         <item name="android:textColorSecondary">@color/textcolor_dark</item>
         <item name="android:textColorPrimaryInverse">@color/black</item>
         <item name="native_express_id">@string/native_express_id_dark</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:textDirection">locale</item>
     </style>
 
     <style name="AppThemeParent" parent="AppTheme" />

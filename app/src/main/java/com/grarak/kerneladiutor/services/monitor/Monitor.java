@@ -1,3 +1,22 @@
+/*
+ * Copyright (C) 2017 Willi Ye <williye97@gmail.com>
+ *
+ * This file is part of Kernel Adiutor.
+ *
+ * Kernel Adiutor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Kernel Adiutor is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package com.grarak.kerneladiutor.services.monitor;
 
 import android.app.Service;
@@ -14,8 +33,10 @@ import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
-import com.grarak.kerneladiutor.utils.Server;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.utils.server.ServerCreateDevice;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +55,7 @@ public class Monitor extends Service {
     private int mLevel;
     private long mTime;
     private List<Long> mTimes = new ArrayList<>();
-    private Server mServer = new Server("https://www.grarak.com");
+    private ServerCreateDevice mServerCreateDevice = new ServerCreateDevice("https://www.grarak.com");
     private boolean mScreenOn;
     private boolean mCalculating;
 
@@ -79,6 +100,12 @@ public class Monitor extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             mScreenOn = intent.getAction().equals(Intent.ACTION_SCREEN_ON);
+            if (mScreenOn) {
+                RootUtils.SU su = new RootUtils.SU();
+                su.runCommand(Control.write("0", "/sys/class/graphics/fb0/SRGB"));
+                su.runCommand(Control.write("1", "/sys/class/graphics/fb0/SRGB"));
+                su.close();
+            }
             if (!mScreenOn && !mCalculating) {
                 mLevel = 0;
                 mTime = 0;
@@ -126,7 +153,7 @@ public class Monitor extends Service {
                     } catch (Exception ignored) {
                     }
 
-                    mServer.postDeviceCreate(data);
+                    mServerCreateDevice.postDeviceCreate(data);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

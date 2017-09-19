@@ -92,6 +92,5 @@
                 android:textAllCaps="true"
                 android:textSize="12sp" />
         </LinearLayout>
-
     </LinearLayout>
 </FrameLayout>

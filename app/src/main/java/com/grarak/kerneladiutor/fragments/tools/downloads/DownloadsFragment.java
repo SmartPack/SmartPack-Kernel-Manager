@@ -80,12 +80,12 @@ public class DownloadsFragment extends RecyclerViewFragment {
         super.postInit();
         if (mWebpageReader == null && mSupport != null) {
             showProgress();
-            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
+            mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageListener() {
 
                 private int mKernelCount;
 
                 @Override
-                public void onCallback(String raw, CharSequence html) {
+                public void onSuccess(String url, String raw, CharSequence html) {
                     if (!isAdded()) return;
                     hideProgress();
                     final SupportedDownloads.Kernels kernels = new SupportedDownloads.Kernels(raw);
@@ -94,9 +94,9 @@ public class DownloadsFragment extends RecyclerViewFragment {
                     final List<SupportedDownloads.KernelContent> contents = new ArrayList<>();
                     if (kernels.readable()) {
                         for (int i = 0; i < kernels.length(); i++) {
-                            WebpageReader reader = new WebpageReader(getActivity(), new WebpageReader.WebpageCallback() {
+                            WebpageReader reader = new WebpageReader(getActivity(), new WebpageReader.WebpageListener() {
                                 @Override
-                                public void onCallback(String raw, CharSequence html) {
+                                public void onSuccess(String url, String raw, CharSequence html) {
                                     if (!isAdded()) return;
                                     mKernelCount++;
                                     SupportedDownloads.KernelContent content = new SupportedDownloads.KernelContent(raw);
@@ -107,13 +107,22 @@ public class DownloadsFragment extends RecyclerViewFragment {
                                         addViews(contents);
                                     }
                                 }
+
+                                @Override
+                                public void onFailure(String url) {
+                                }
                             });
-                            reader.execute(kernels.getLink(i));
+                            reader.get(kernels.getLink(i));
                             mKernelWebpageReader.add(reader);
                         }
                     } else {
                         error();
                     }
+                }
+
+                @Override
+                public void onFailure(String url) {
+                    error();
                 }
 
                 private void addViews(List<SupportedDownloads.KernelContent> contents) {
@@ -140,7 +149,7 @@ public class DownloadsFragment extends RecyclerViewFragment {
                     }
                 }
             });
-            mWebpageReader.execute(mSupport.getLink());
+            mWebpageReader.get(mSupport.getLink());
         }
     }
 

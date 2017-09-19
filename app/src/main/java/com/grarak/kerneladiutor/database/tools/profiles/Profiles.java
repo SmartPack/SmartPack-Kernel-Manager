@@ -76,7 +76,7 @@ public class Profiles extends Provider {
         private JSONArray mCommands;
 
         private ProfileItem(JSONObject object) {
-            item = object;
+            super(object);
             try {
                 mCommands = object.getJSONArray("commands");
             } catch (JSONException ignored) {
@@ -86,6 +86,19 @@ public class Profiles extends Provider {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+
+        public ProfileItem(String name, List<String> commands) {
+            try {
+                mCommands = new JSONArray();
+                for (String command : commands) {
+                    mCommands.put(command);
+                }
+                getItem().put("name", name);
+                getItem().put("commands", mCommands);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
 

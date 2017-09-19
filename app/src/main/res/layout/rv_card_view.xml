@@ -27,15 +27,14 @@
                 android:orientation="horizontal"
                 android:padding="10dp">
 
-                <android.support.v7.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/card_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
                     android:layout_weight="1"
                     android:focusable="false"
-                    android:fontFamily="sans-serif-thin"
-                    android:textSize="20sp" />
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="18sp" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/arrow_image"

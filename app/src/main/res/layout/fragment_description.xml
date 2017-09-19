@@ -19,16 +19,14 @@
             android:focusable="false"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
             android:gravity="center"
             android:linksClickable="true"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textColor="@color/textcolor_dark" />
     </LinearLayout>
 </ScrollView>

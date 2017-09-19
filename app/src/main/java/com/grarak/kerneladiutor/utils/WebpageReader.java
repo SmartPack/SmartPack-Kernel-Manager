@@ -20,100 +20,101 @@
 package com.grarak.kerneladiutor.utils;
 
 import android.app.Activity;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
  * Created by willi on 06.07.16.
  */
-public class WebpageReader extends ThreadTask<String, String> {
+public class WebpageReader {
 
-    private static final String TAG = WebpageReader.class.getSimpleName();
+    public interface WebpageListener {
 
-    public interface WebpageCallback {
-        void onCallback(String raw, CharSequence html);
+        void onSuccess(String url, String raw, CharSequence html);
+
+        void onFailure(String url);
     }
 
-    private final WebpageCallback mWebpageCallback;
+    private Activity mActivity;
     private HttpURLConnection mConnection;
-    private boolean mConnected;
-    private boolean mCancelled;
+    private WebpageListener mWebpageListener;
 
-    public WebpageReader(Activity activity, WebpageCallback webpageCallback) {
-        super(activity);
-        this.mWebpageCallback = webpageCallback;
+    public WebpageReader(Activity activity, WebpageListener webpageListener) {
+        mActivity = activity;
+        mWebpageListener = webpageListener;
     }
 
-    @Override
-    public String doInBackground(String arg) {
-        InputStream is = null;
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
+    public void get(final String link) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                BufferedReader reader = null;
+                try {
+                    mConnection = (HttpURLConnection) new URL(link).openConnection();
+                    mConnection.setRequestMethod("GET");
+                    mConnection.setConnectTimeout(10000);
+                    mConnection.setReadTimeout(10000);
 
-        try {
-            String line;
-            URL url = new URL(arg);
-            mConnection = (HttpURLConnection) url.openConnection();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        mConnection.connect();
-                        mConnected = true;
-                    } catch (IOException e) {
-                        mCancelled = true;
+                    InputStream inputStream;
+                    if (mConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        inputStream = mConnection.getInputStream();
+                    } else {
+                        inputStream = mConnection.getErrorStream();
                     }
-                }
-            }).start();
-            while (true)
-                if (mConnected) {
-                    if (mConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                        return "";
-                    }
-                    is = mConnection.getInputStream();
-                    br = new BufferedReader(new InputStreamReader(is));
 
-                    while ((line = br.readLine()) != null) {
+                    reader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
                         sb.append(line).append("\n");
                     }
-                    break;
-                } else if (mCancelled) {
-                    return "";
-                }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to read url: " + arg);
-        } finally {
-            try {
-                if (is != null) is.close();
-                if (br != null) br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            if (mConnection != null) {
-                mConnection.disconnect();
+                    success(link, sb.toString());
+                } catch (IOException ignored) {
+                    failure(link);
+                } finally {
+                    try {
+                        if (reader != null) reader.close();
+                    } catch (IOException ignored) {
+                    }
+                }
             }
-        }
-        return sb.toString().trim();
+        }).start();
     }
 
-    @Override
-    public void onPostExecute(String ret) {
-        super.onPostExecute(ret);
-        mWebpageCallback.onCallback(ret, Utils.htmlFrom(ret));
+    private void success(final String url, final String result) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mWebpageListener.onSuccess(url, result, Utils.htmlFrom(result));
+            }
+        });
+    }
+
+    private void failure(final String url) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mWebpageListener.onFailure(url);
+            }
+        });
     }
 
     public void cancel() {
-        mCancelled = true;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (mConnection != null) {
+                    mConnection.disconnect();
+                }
+            }
+        }).start();
     }
 
 }

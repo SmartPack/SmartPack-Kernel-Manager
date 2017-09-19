@@ -20,13 +20,20 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.activities.DataSharingSearchActivity;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
@@ -37,6 +44,30 @@ import java.util.List;
  */
 
 public class DataSharingFragment extends RecyclerViewFragment {
+
+    @Override
+    protected boolean showBottomFab() {
+        return true;
+    }
+
+    @Override
+    protected Drawable getBottomFabDrawable() {
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(
+                getActivity(), R.drawable.ic_search));
+        DrawableCompat.setTint(drawable, Color.WHITE);
+        return drawable;
+    }
+
+    @Override
+    protected void onBottomFabClick() {
+        super.onBottomFabClick();
+        if (!Utils.DONATED) {
+            ViewUtils.dialogDonate(getActivity());
+            return;
+        }
+
+        startActivity(new Intent(getActivity(), DataSharingSearchActivity.class));
+    }
 
     @Override
     protected void init() {

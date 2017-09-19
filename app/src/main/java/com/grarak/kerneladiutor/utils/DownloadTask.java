@@ -33,137 +33,147 @@ import java.net.URL;
 /**
  * Created by willi on 08.07.16.
  */
-public class DownloadTask extends ThreadTask<String, String> {
+public class DownloadTask {
+
+    public interface OnDownloadListener {
+        void onUpdate(String url, int currentSize, int totalSize);
+
+        void onSuccess(String url, String path);
+
+        void onCancel(String url);
+
+        void onFailure(String url);
+    }
 
     private final Activity mActivity;
     private final OnDownloadListener onDownloadListener;
-    private PowerManager.WakeLock mWakeLock;
-    private final String mPath;
-    private boolean mDownloading = true;
+    private PowerManager.WakeLock mWakelock;
+    private HttpURLConnection mConnection;
     private boolean mCancelled;
+    private boolean mPause;
 
-    public DownloadTask(Activity activity, OnDownloadListener onDownloadListener, String path) {
-        super(activity);
+    public DownloadTask(Activity activity, OnDownloadListener onDownloadListener) {
         mActivity = activity;
         this.onDownloadListener = onDownloadListener;
-        mPath = path;
     }
 
-    @Override
-    public void onPreExecute() {
-        super.onPreExecute();
-
-        new File(mPath).getParentFile().mkdirs();
-
+    public void get(final String link, final String path) {
         PowerManager pm = (PowerManager) mActivity.getSystemService(Context.POWER_SERVICE);
-        mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
-        mWakeLock.acquire();
-    }
+        mWakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
+        mWakelock.acquire();
 
-    @Override
-    public String doInBackground(String arg) {
-        InputStream input = null;
-        FileOutputStream output = null;
-        HttpURLConnection connection = null;
+        new File(path).getParentFile().mkdirs();
 
-        try {
-            URL url = new URL(arg);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                InputStream input = null;
+                FileOutputStream fileOutput = null;
 
-            if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return "Server returned HTTP " + connection.getResponseCode()
-                        + " " + connection.getResponseMessage();
-            }
+                try {
+                    mConnection = (HttpURLConnection) new URL(link).openConnection();
+                    mConnection.connect();
 
-            int totalSize = connection.getContentLength();
-            input = connection.getInputStream();
-            output = new FileOutputStream(mPath);
+                    if (mConnection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                        failure(link, path);
+                        releaseWakelock();
+                        return;
+                    }
 
-            byte data[] = new byte[4096];
-            int currentSize = 0;
-            int count;
-            while (true) {
-                if (mCancelled) {
-                    return "cancelled";
-                }
+                    int totalSize = mConnection.getContentLength();
+                    input = mConnection.getInputStream();
+                    fileOutput = new FileOutputStream(path);
 
-                if (mDownloading) {
-                    if ((count = input.read(data)) != -1) {
-                        currentSize += count;
-                        if (totalSize > 0) {
-                            final int cs = currentSize;
-                            final int ts = totalSize;
-                            mActivity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (!mActivity.isFinishing()) {
-                                        onDownloadListener.onUpdate(cs, ts);
-                                    }
+                    byte data[] = new byte[4096];
+                    int currentSize = 0;
+                    int count;
+                    while (true) {
+                        if (!mPause) {
+                            if ((count = input.read(data)) != -1) {
+                                currentSize += count;
+                                if (totalSize > 0) {
+                                    final int cs = currentSize;
+                                    final int ts = totalSize;
+                                    mActivity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (!mActivity.isFinishing()) {
+                                                onDownloadListener.onUpdate(link, cs, ts);
+                                            }
+                                        }
+                                    });
                                 }
-                            });
+                                fileOutput.write(data, 0, count);
+                            } else {
+                                success(link, path);
+                                break;
+                            }
                         }
-                        output.write(data, 0, count);
+                    }
+                } catch (IOException ignored) {
+                    if (mCancelled) {
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                onDownloadListener.onCancel(link);
+                            }
+                        });
                     } else {
-                        break;
+                        failure(link, path);
+                    }
+                    mCancelled = false;
+                } finally {
+                    try {
+                        if (fileOutput != null) fileOutput.close();
+                        if (input != null) input.close();
+                    } catch (IOException ignored) {
                     }
                 }
-            }
-        } catch (Exception e) {
-            return e.getMessage();
-        } finally {
-            try {
-                if (output != null) {
-                    output.close();
-                }
-                if (input != null) {
-                    input.close();
-                }
-            } catch (IOException ignored) {
-            }
 
-            if (connection != null) {
-                connection.disconnect();
+                releaseWakelock();
             }
-        }
-        return null;
+        }).start();
     }
 
-    @Override
-    public void onPostExecute(String ret) {
-        super.onPostExecute(ret);
+    private void success(final String url, final String path) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                onDownloadListener.onSuccess(url, path);
+            }
+        });
+    }
 
-        mWakeLock.release();
-        if (ret == null) {
-            onDownloadListener.onSuccess(mPath);
-        } else if (ret.equals("cancelled")) {
-            new File(mPath).delete();
-            onDownloadListener.onCancel();
-        } else {
-            onDownloadListener.onFailure(ret);
-        }
+    private void failure(final String url, final String path) {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                onDownloadListener.onFailure(url);
+                new File(path).delete();
+            }
+        });
     }
 
     public void pause() {
-        mDownloading = false;
+        mPause = true;
     }
 
     public void resume() {
-        mDownloading = true;
+        mPause = false;
     }
 
     public void cancel() {
         mCancelled = true;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mConnection.disconnect();
+            }
+        }).start();
     }
 
-    public interface OnDownloadListener {
-        void onUpdate(int currentSize, int totalSize);
-
-        void onSuccess(String path);
-
-        void onCancel();
-
-        void onFailure(String error);
+    private void releaseWakelock() {
+        mWakelock.release();
     }
 
 }

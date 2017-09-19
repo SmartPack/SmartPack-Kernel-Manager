@@ -76,6 +76,7 @@
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity android:name=".activities.BannerResizerActivity" />
         <activity android:name=".activities.tools.profile.ProfileEditActivity" />
+        <activity android:name=".activities.DataSharingSearchActivity" />
 
         <receiver
             android:name=".services.boot.Receiver"

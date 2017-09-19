@@ -76,7 +76,7 @@ public class Settings extends Provider {
     public static class SettingsItem extends DBJsonItem {
 
         private SettingsItem(JSONObject object) {
-            item = object;
+            super(object);
         }
 
         public String getSetting() {

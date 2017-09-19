@@ -601,10 +601,7 @@ public class CPUFreq {
         if (sBigCpu == -1 || sLITTLECpu == -1) {
             if (getCpuCount() <= 4 && !is8996()
                     || (Device.getBoard().startsWith("mt6") && !Device.getBoard().startsWith("mt6595"))
-                    || Device.getBoard().startsWith("msm8953")
-                    || Device.getBoard().startsWith("msm8929")
-                    || Device.getBoard().startsWith("msm8937")
-                    || Device.getBoard().startsWith("msm8940")) return false;
+                    || Device.getBoard().startsWith("msm8929")) return false;
 
             if (is8996()) {
                 sBigCpu = 2;
