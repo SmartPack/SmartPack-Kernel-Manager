@@ -338,6 +338,8 @@
     <string name="busy_up_threshold_summary">Threshold when big CPUs should be turned on.</string>
     <string name="offline_delay">Offline Delay</string>
     <string name="offline_delay_summary">Time before turning off a CPU.</string>
+    <string name="online_delay">Online Delay</string>
+    <string name="online_delay_summary">Time before turning on a CPU.</string>
     <string name="aio_hotplug">AiO Hotplug</string>
     <string name="aio_hotplug_summary">All in One HotPlug for Qualcomm devices. Developed by Shoaib0597.</string>
     <string name="max_cpu_online_big">Maximum big CPUs Online</string>
