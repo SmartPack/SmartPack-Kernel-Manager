@@ -560,6 +560,28 @@
     <string name="charge_rate">Charge Rate</string>
     <string name="charging_current">Charging Current</string>
     <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
+    <string name="charge_levels">Charge Levels Interface</string>
+    <string name="charge_levels_summary">Setting levels higher than your device supports can damage your device and any device it is plugged into. USE CAUTION.</string>
+    <string name="custom_charge">Custom level</string>
+    <string name="charge_level_ac">AC Charge mA</string>
+    <string name="charge_level_ac_summary">Choose your Level</string>
+    <string name="charge_level_usb">USB Charge mA</string>
+    <string name="charge_level_usb_summary">Choose your Level</string>
+    <string name="charge_level_wireless">WIRELESS Charge mA</string>
+    <string name="charge_level_wireless_summary">Choose your Level</string>
+    <string name="mtp_fast_charge">MTP During Fast Charge</string>
+    <string name="mtp_fast_charge_summary">You can choose if you want MTP during fast charge or not.</string>
+    <string name="screen_limit">Screen On Current Limit</string>
+    <string name="screen_limit_summary">Our device majorly reduces the amount of power it draws from the power supply when the screen is on. This happens with and without fast charging capable adapters.</string>
+    <string name="warning_charge">WARNING CHARGE AREA</string>
+    <string name="charging_custom_ac">Charging Current AC</string>
+    <string name="charging_current_ac_summary">Set charging current. Caution: Exceeding 2100mA may damage your equipment.</string>
+    <string name="charging_custom_usb">Charging Current USB</string>
+    <string name="charging_current_usb_summary">Set charging current. Caution: Exceeding 1000mA may damage your USB driver.</string>
+    <string name="charging_custom_wireless">Charging Current WIRELESS</string>
+    <string name="charging_current_wireless_summary">Set charging current. Caution: Exceeding 1200mA may damage your equipment.</string>
+    <string name="failsafe">Failsafe</string>
+    <string name="failsafe_summary">If disabled, you can choose your charging current that is not supported by your equipment (i have limited for secure...)</string>
 
     <!-- LED -->
     <string name="fade">Fade</string>
