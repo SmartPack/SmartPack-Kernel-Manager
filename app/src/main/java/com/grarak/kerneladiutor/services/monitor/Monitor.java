@@ -34,8 +34,6 @@ import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.server.ServerCreateDevice;
 
 import org.json.JSONArray;
@@ -100,12 +98,6 @@ public class Monitor extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             mScreenOn = intent.getAction().equals(Intent.ACTION_SCREEN_ON);
-            if (mScreenOn) {
-                RootUtils.SU su = new RootUtils.SU();
-                su.runCommand(Control.write("0", "/sys/class/graphics/fb0/SRGB"));
-                su.runCommand(Control.write("1", "/sys/class/graphics/fb0/SRGB"));
-                su.close();
-            }
             if (!mScreenOn && !mCalculating) {
                 mLevel = 0;
                 mTime = 0;
