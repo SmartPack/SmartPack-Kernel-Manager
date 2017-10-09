@@ -313,6 +313,8 @@
   <string name="busy_up_threshold_summary">Порог для включения кластера big CPU.</string>
   <string name="offline_delay">Задержка оффлайн</string>
   <string name="offline_delay_summary">Время до отключения ядра.</string>
+  <string name="online_delay">Задержка онлайн</string>
+  <string name="online_delay_summary">Время до включения ядра.</string>
   <!--Thermal-->
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>

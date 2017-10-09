@@ -44,6 +44,7 @@ public class CoreCtl {
     private static final String BUSY_DOWN_THRESHOLD = "/busy_down_thres";
     private static final String BUSY_UP_THRESHOLD = "/busy_up_thres";
     private static final String OFFLINE_DELAY_MS = "/offline_delay_ms";
+    private static final String ONLINE_DELAY_MS = "/online_delay_ms";
 
     private static final List<String> sFiles = new ArrayList<>();
 
@@ -62,6 +63,18 @@ public class CoreCtl {
 
     public static boolean hasOfflineDelayMs() {
         return Utils.existFile(PARENT + OFFLINE_DELAY_MS);
+    }
+
+    public static void setOnlineDelayMs(int value, Context context) {
+        run(Control.write(String.valueOf(value), PARENT + ONLINE_DELAY_MS), PARENT + ONLINE_DELAY_MS, context);
+    }
+
+    public static int getOnlineDelayMs() {
+        return Utils.strToInt(Utils.readFile(PARENT + ONLINE_DELAY_MS));
+    }
+
+    public static boolean hasOnlineDelayMs() {
+        return Utils.existFile(PARENT + ONLINE_DELAY_MS);
     }
 
     public static void setBusyUpThreshold(int value, Context context) {
