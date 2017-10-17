@@ -33,7 +33,6 @@ import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
@@ -62,7 +61,7 @@ public class DataSharingFragment extends RecyclerViewFragment {
     protected void onBottomFabClick() {
         super.onBottomFabClick();
         if (!Utils.DONATED) {
-            ViewUtils.dialogDonate(getActivity());
+            ViewUtils.dialogDonate(getActivity()).show();
             return;
         }
 
