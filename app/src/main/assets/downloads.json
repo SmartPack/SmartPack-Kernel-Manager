@@ -1,307 +1,83 @@
 [
   {
     "vendor": [
-      "HTC",
-      "htc"
-    ],
-    "device": [
-      "a5",
-      "a5chl",
-      "a5ul",
-      "a5dwg",
-      "a5dug",
-      "htc_a5",
-      "htc_a5chl",
-      "htc_a5ul",
-      "htc_a5dwg",
-      "htc_a5dug"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/desire816.json"
-  },
-  {
-    "vendor": [
-      "samsung"
-    ],
-    "device": [
-      "GT-I9103"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxyr.json"
-  },
-  {
-    "vendor": [
-      "OnePlus"
-    ],
-    "device": [
-      "A0001",
-      "bacon"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/oneplusone.json"
-  },
-  {
-    "vendor": [
-      "Micromax",
-      "Spice",
-      "Karbonn",
-      "Roar",
-      "Mito",
-      "Evercoss",
-      "Nexian",
-      "Cherry Mobile",
-      "MyPhone",
-      "QMobile"
-    ],
-    "device": [
-      "sprout4",
-      "sprout8",
-      "sprout",
-      "sprout_b"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sprout.json"
-  },
-  {
-    "vendor": [
-      "LGE"
-    ],
-    "device": [
-      "d850",
-      "d851",
-      "d852",
-      "d855",
-      "f400",
-      "ls990",
-      "vs985"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3.json"
-  },
-  {
-    "vendor": [
-      "samsung"
-    ],
-    "device": [
-      "SM-G900T",
-      "kltetmo"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/sm-g900t.json"
-  },
-  {
-    "vendor": [
-      "Sony"
-    ],
-    "device": [
-      "huashan"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/xperiasp.json"
-  },
-  {
-    "vendor": [
       "samsung"
     ],
     "device": [
       "SM-G900F",
-      "klte"
+      "SM-G900V",
+      "SM-G902L",
+      "klte",
+      "kltexxx",
+      "kltevzw"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys5.json"
-  },
-  {
-    "vendor": [
-      "LGE",
-      "lge",
-      "lge LGE"
-    ],
-    "device": [
-      "jagnm"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3beat_jagnm.json"
-  },
-  {
-    "vendor": [
-      "LGE",
-      "lge",
-      "lge LGE"
-    ],
-    "device": [
-      "jag3gds"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/g3beat_jag3gds.json"
-  },
-  {
-    "vendor": [
-      "Motorola"
-    ],
-    "device": [
-      "Condor"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/condor.json"
-  },
-  {
-    "vendor": [
-      "motorola",
-      "Motorola"
-    ],
-    "device": [
-      "quark",
-      "Quark",
-      "quark_lra",
-      "quark_umts",
-      "Moto MAXX",
-      "xt1225",
-      "XT1225",
-      "xt1250",
-      "XT1250",
-      "xt1254",
-      "XT1254"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/quark.json"
-  },
-  {
-    "vendor": [
-      "motorola",
-      "Motorola"
-    ],
-    "device": [
-      "falcon",
-      "falcon_umts",
-      "falcon_gpe",
-      "falcon_cdma",
-      "XT1031",
-      "XT1032",
-      "XT1033",
-      "XT1034"
-    ],
-    "link": "https://raw.githubusercontent.com/BryanByteZero/KernelAdiutor/master/download/falcon.json"
-  },
-  {
-    "vendor": [
-      "motorola",
-      "Motorola"
-    ],
-    "device": [
-      "peregrine",
-      "peregrine_umts",
-      "peregrine_cdma",
-      "XT1039",
-      "XT1040",
-      "XT1045"
-    ],
-    "link": "https://raw.githubusercontent.com/BryanByteZero/KernelAdiutor/master/download/peregrine.json" 
-  },
-  {  
-    "vendor": [
-      "YU"
-    ],
-    "device": [
-      "YUREKA"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/tomato.json"
-  },
-  {
-    "vendor": [
-      "YU"
-    ],
-    "device": [
-      "YUPHORIA"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/lettuce.json"
-  },
-  {
-    "vendor": [
-      "YU"
-    ],
-    "device": [
-      "YUNIQUE"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/jalebi.json"
-  },
-  {
-    "vendor": [
-      "Xiaomi",
-      "XIAOMI",
-      "xiaomi",
-      "Wingtech",
-      "wingtech",
-      "WINGTECH"
-    ],
-    "device": [
-      "HM2014811",
-      "HM2014812",
-      "HM2014813",
-      "HM2014814",
-      "HM2014815",
-      "HM2014816",
-      "HM2014817",
-      "HM2014818",
-      "HM2014819",
-      "HM2014820",
-      "HM2014821"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/wingtech.json"
-  },
-  {
-    "vendor": [
-      "huawei"
-    ],
-    "device": [
-      "Angler"
-    ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/angler.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
   },
   {
     "vendor": [
       "samsung"
     ],
     "device": [
-      "heroltexx",
-      "hero2ltexx"
+      "SM-G900P",
+      "SM-G900I",
+      "kltexxx",
+      "kltespr",
+      "kltedv"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/galaxys7.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
   },
-  { 
+  {
     "vendor": [
-      "Sony",	
-      "SONY"
+      "samsung"
     ],
     "device": [
-      "nicki",
-      "lineage_nicki",
-      "Xperia M",
-      "C1904",
-      "C1905",
-      "D2004",
-      "D2005"
+      "SM-G900FD",
+      "SM-G900MD",
+      "kltexxx",
+      "klteduos"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/nicki.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
   },
-  { 
+  {
     "vendor": [
-      "LeEco",	
-      "LeTv"
+      "samsung"
     ],
     "device": [
-      "s2",
-      "X526",
-      "x526",
-      "le_s2",
-      "le_ww_s2",
-      "le_s2_ww"
+      "SM-G900S",
+      "SM-G900k",
+      "SM-G900L",
+      "kltexxx",
+      "kltekor",
+      "klteskt",
+      "kltektt",
+      "kltelgt"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/s2.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
   },
-  { 
+  {
     "vendor": [
-      "LeEco",	
-      "LeTv"
+      "samsung"
     ],
     "device": [
-      "x3",
-      "X3",
-      "x500",
-      "X500",
-      "x507",
-      "X507",
-      "x509",
-      "X509"
+      "SM-G906S",
+      "SM-G906k",
+      "SM-G906L",
+      "lentislte",
+      "lentisltexxx",
+      "lentislteskt",
+      "lentisltektt",
+      "lentisltelgt"
     ],
-    "link": "https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/download/x3.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/lentisltexxx.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
+      "SM-G901F",
+      "kccat6"
+    ],
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/lentisltexxx.jso"
   }
 ]
-
