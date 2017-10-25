@@ -35,12 +35,17 @@ public class HelpFragment extends RecyclerViewFragment {
     private static final LinkedHashMap<Integer, Integer> sHelps = new LinkedHashMap<>();
 
     static {
-        sHelps.put(R.string.misspelled, R.string.misspelled_summary);
-        sHelps.put(R.string.have_to_donate, R.string.have_to_donate_summary);
+        sHelps.put(R.string.how_different, R.string.how_different_summary);
+        sHelps.put(R.string.lost_sound, R.string.lost_sound_summary);
         sHelps.put(R.string.cpu_freq_not_sticking, R.string.cpu_freq_not_sticking_summary);
         sHelps.put(R.string.feature_not_appearing, R.string.feature_not_appearing_summary);
-        sHelps.put(R.string.feature_function, R.string.feature_function_summary);
+        sHelps.put(R.string.can_i_use, R.string.can_i_use_summary);
         sHelps.put(R.string.add_new_features, R.string.add_new_features_summary);
+        sHelps.put(R.string.rom_abc, R.string.rom_abc_summary);
+        sHelps.put(R.string.better_than, R.string.better_than_summary);
+        sHelps.put(R.string.how_abt_sot, R.string.how_abt_sot_summary);
+        sHelps.put(R.string.what_best, R.string.what_best_summary);
+        sHelps.put(R.string.found_bugs, R.string.found_bugs_summary);
     }
 
     @Override
