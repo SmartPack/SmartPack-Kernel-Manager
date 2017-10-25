@@ -135,12 +135,17 @@ public class SupportedDownloads {
             return getString("github");
         }
 
+        public String getPayPal() {
+            return getString("paypal");
+        }
+
+
         public String getGooglePlus() {
             return getString("google_plus");
         }
 
-        public String getPayPal() {
-            return getString("paypal");
+        public String getDownFolder() {
+            return getString("downfolder");
         }
 
         public List<Feature> getFeatures() {
