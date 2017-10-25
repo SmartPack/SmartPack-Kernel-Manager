@@ -20,7 +20,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0-sp-" + getDate()
+        versionName "1.1-sp-" + getDate()
         vectorDrawables.useSupportLibrary = true
         archivesBaseName = "SmartPack-Kernel Manager-v$versionName"
     }
