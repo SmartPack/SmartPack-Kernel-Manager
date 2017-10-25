@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Kernel Adiutor</string>
+    <string name="app_name">SmartPack-Kernel Manager</string>
 
     <string name="checking_info">Checking info…</string>
     <string name="checking_root">Checking root access</string>
@@ -71,7 +71,7 @@
 
     <!-- Headers -->
     <string name="statistics">Statistics</string>
-    <string name="kernel">Kernel</string>
+    <string name="kernel">SmartPack-Kernel</string>
     <string name="tools">Tools</string>
     <string name="other">Other</string>
 
@@ -108,7 +108,7 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="help">Help</string>
+    <string name="help">FAQ</string>
 
     <!-- Overall -->
     <string name="offline">Offline</string>
@@ -887,7 +887,7 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me">Hi, I\'m Willi Ye aka Grarak, a 19 year old student living in Vienna. I\'ve been developing on Android for quite a long time. Beside Kernel Adiutor I\'m also maintaining LineageOS for few devices and working on ParanoidAndroid. So please understand if I don\'t find the time to update this application.</string>
+    <string name="about_me">SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer. If you like SmartPack-Kernel, please consider to donate to me, by clicking the logo which is left to this text, since it will help me to continue this project more active, though it is not at all necessary.</string>
     <string name="libraries_used">Libraries used</string>
 
     <!-- Contributors -->
@@ -895,16 +895,26 @@
     <string name="no_internet">Please check your internet connection!</string>
 
     <!-- Help -->
-    <string name="misspelled">Why did you misspell \"Adiutor\"?</string>
-    <string name="misspelled_summary">Adiutor is Latin and means helper.</string>
-    <string name="have_to_donate">Do I have to donate in order to use those premium features?</string>
-    <string name="have_to_donate_summary">No, this application is open source. You can easily build it yourself. Donation features are enabled by default once you build a debugging apk, so no need to change any line of code.</string>
+    <string name="how_different">How this app different from Grarak’s official Kernel Adiutor?</string>
+    <string name="how_different_summary">Honestly, not much other than some minor tweaks to meet the needs of Smart-Pack-Kernel. The only notable difference is the availability of OTA/notification support for SmartPack-Kernel.</string>
+    <string name="lost_sound">I lost sound after installing this kernel. What should I do?</string>
+    <string name="lost_sound_summary">It is most likely due to some conflict between the kernel default settings and your local settings with in the app. To solve this, you need to reboot your device after removing ‘Apply on boot’ from Sound menu.</string>
     <string name="cpu_freq_not_sticking">Why doesn\'t my determined CPU freq stick?</string>
     <string name="cpu_freq_not_sticking_summary">This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulate the frequency. I would suggest you don\'t touch the CPU frequencies and let the kernel do its job. This also counts for other functions! If they don\'t stick, it\'s because the kernel/system doesn\'t want to let you change it.</string>
     <string name="feature_not_appearing">Why don\'t features x and y show up?</string>
-    <string name="feature_not_appearing_summary">Only features which are supported by your device are shown!</string>
-    <string name="feature_function">What does feature x do?</string>
-    <string name="feature_function_summary">If you don\'t know what this control does, then simply don\'t touch it. Please do a proper research before playing with your expensive hardware.</string>
-    <string name="add_new_features">Could you add feature x and y?</string>
-    <string name="add_new_features_summary">That\'s hard to say. I try to add all features, but it\'s hard to make this app universal for all devices.</string>
+    <string name="feature_not_appearing_summary">Only features which are supported by SmartPack-kernel are shown.</string>
+    <string name="can_i_use">Can I use this app with another custom kernel?</string>
+    <string name="can_i_use_summary">Of course. It will work as nice as that of Grarak’s official Kernel Adiutor.</string>
+    <string name="add_new_features">Could you add feature x and y to your kernel?</string>
+    <string name="add_new_features_summary">Not sure. It depends on the feature and the capability of device. Anyway, I’m happy to check and add, if possible, any useful features (unless it is too experimental or dangerous) to my kernel. Please give your suggestions in the official xda thread.</string>
+    <string name="rom_abc">Is this kernel compatible with ROM(s) a/b/c?</string>
+    <string name="rom_abc_summary">I do not know. All of my kernels are based off and tested only on Lineage-OS. However, if  your ROM(s) a/b/c are based on Lineage-OS (and uses the same kernel source code), it will most probably work.</string>
+    <string name="better_than">Is this kernel better than stock/‘xyz’ kernel(s)?</string>
+    <string name="better_than_summary">Regarding stock, Yes, It should be better in many aspects (Otherwise it will never been published). Regarding ‘xyz’ kernels, I don’t know. I even may not used your mentioned ‘xyz’ kernels.</string>
+    <string name="how_abt_sot">How about performance/SOT?</string>
+    <string name="how_abt_sot_summary">Since SOT, performance etc. are largely based on several factors such as ROM, installed apps etc., I no one else can predict the performance/SOT of your mobile. So, you should test and find out that by yourself.</string>
+    <string name="what_best">Can you tell me the best settings for performance/SOT?</string>
+    <string name="what_best_summary">Again, that depends on several factors. I can only say my favorite settings that gives me best results in my favorite ROM.</string>
+    <string name="found_bugs">I found a bug, what do I do?</string>
+    <string name="found_bugs_summary">Please provide as much information as possible (such as what feature, what didn\'t work, screenshots or logcat if possible) and post in the xda thread.</string>
 </resources>
