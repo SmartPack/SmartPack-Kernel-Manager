@@ -67,6 +67,16 @@
                     android:visibility="gone"
                     app:srcCompat="@drawable/ic_paypal" />
 
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/downfolder_button"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_downfolder" />
+
             </LinearLayout>
 
             <View
