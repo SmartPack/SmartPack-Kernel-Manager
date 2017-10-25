@@ -19,9 +19,10 @@ android {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 243
-        versionName "0.9.73.1"
+        versionCode 1
+        versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        archivesBaseName = "SmartPack-Kernel Manager-v$versionName"
     }
     buildTypes {
         release {
@@ -60,5 +61,3 @@ dependencies {
     compile 'org.cyanogenmod:platform.sdk:5.0.1'
     testCompile 'junit:junit:4.12'
 }
-
-apply plugin: 'com.google.gms.google-services'
