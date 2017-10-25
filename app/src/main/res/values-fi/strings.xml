@@ -766,16 +766,4 @@
   <string name="commits">%d on samaa mieltä</string>
   <string name="no_internet">Tarkista verkkoyhteytesi!</string>
   <!-- Help -->
-  <string name="misspelled">Miksi teit kirjoitusvirheen sanassa \"Adiutor\"?</string>
-  <string name="misspelled_summary">Adiutor on latinaa ja takoittaa auttajaa.</string>
-  <string name="have_to_donate">Tarvitseeko minun lahjoittaa, jotta saan kaikki Premium ominaisuudet?</string>
-  <string name="have_to_donate_summary">Ei, tämä sovellus perustuu avoimeen lähdekoodiin. Voit helposti rakentaa toimintoja itse. Lahjoitustoiminnot ovat oletuksena aktivoituja, kun luot vianetsintä apk:n, joten siinä ei tarvitse muuttaa yhtäkään riviä koodia.</string>
-  <string name="cpu_freq_not_sticking">Miksi valitsemani suorittimen kellotaajuudet eivät pysy?</string>
-  <string name="cpu_freq_not_sticking_summary">Tämä voi johtua monista eri syistä. Monissa kerneleissä on nykypäivänä omat hotplugging-järjestelmät, jotka ohjaavat suorittimen kellotaajuuksia. Myös CyanogenModissa on oma suorittimen boost-toiminto sisäänrakennettuna, joka säätelee kellotaajuuksia. Ehdotankin, että et koske ollenkaan suorittimen kellotaajuuksiin vaan annat kernelin hoitaa sen homman. Tämä pätee myös muihin toimintoihin! Jos ne eivät pysy päällä, se johtuu siitä, että kernel/järjestelmä ei anna sinun muokata niitä.</string>
-  <string name="feature_not_appearing">Miksi en näe toimintoja x ja y?</string>
-  <string name="feature_not_appearing_summary">Vain ne ominaisuudet näkyvät, joita puhelimesi tukee!</string>
-  <string name="feature_function">Mitä toiminto x tekee?</string>
-  <string name="feature_function_summary">Jos et tiedä mitä tämä asetus tekee, älä yksinkertaisesti koske siihen. Tutki asiaa kunnolla, ennen kuin alat leikkimään kalliilla laitteellasi.</string>
-  <string name="add_new_features">Voisitko lisätä ominaisuuden x ja y?</string>
-  <string name="add_new_features_summary">Vaikea sanoa. Yritän lisäämään kaikki ominaisuudet, mutta on vaikee tehdä tästä sovelluksesta kaikille laitteille sopivaa.</string>
 </resources>
