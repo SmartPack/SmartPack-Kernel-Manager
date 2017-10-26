@@ -147,6 +147,10 @@ public class SupportedDownloads {
             return getString("telegram");
         }
 
+        public String getChangelog() {
+            return getString("changelog");
+        }
+
         public String getDownFolder() {
             return getString("downfolder");
         }

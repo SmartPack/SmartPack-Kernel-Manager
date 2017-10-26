@@ -54,8 +54,9 @@ public class DownloadAboutView extends RecyclerViewItem {
         final String paypal = mKernelContent.getPayPal();
         final String downfolder = mKernelContent.getDownFolder();
         final String telegram = mKernelContent.getTelegram();
+        final String changelog = mKernelContent.getChangelog();
 
-        if (xda != null || github != null || googlePlus != null || telegram != null || downfolder != null || paypal != null) {
+        if (xda != null || github != null || googlePlus != null || telegram != null || changelog != null || downfolder != null || paypal != null) {
             view.findViewById(R.id.links_layout).setVisibility(View.VISIBLE);
 
             if (xda != null) {
@@ -94,6 +95,16 @@ public class DownloadAboutView extends RecyclerViewItem {
                     @Override
                     public void onClick(View view) {
                         Utils.launchUrl(telegram, view.getContext());
+                    }
+                });
+            }
+
+            if (changelog != null) {
+                view.findViewById(R.id.changelog_button).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.changelog_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Utils.launchUrl(changelog, view.getContext());
                     }
                 });
             }
