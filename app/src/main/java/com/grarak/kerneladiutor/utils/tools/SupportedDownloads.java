@@ -139,9 +139,12 @@ public class SupportedDownloads {
             return getString("paypal");
         }
 
-
         public String getGooglePlus() {
             return getString("google_plus");
+        }
+
+        public String getTelegram() {
+            return getString("telegram");
         }
 
         public String getDownFolder() {
