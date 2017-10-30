@@ -912,9 +912,15 @@
     <string name="better_than">Q8. Is this kernel better than stock/‘xyz’ kernel(s)?</string>
     <string name="better_than_summary">Ans. Regarding stock, Yes, It should be better in many aspects (Otherwise it will never been published). Regarding ‘xyz’ kernels, I don’t know. I even may not used your mentioned ‘xyz’ kernels.</string>
     <string name="how_abt_sot">Q9. How about performance/SOT?</string>
-    <string name="how_abt_sot_summary">Ans. Since SOT, performance etc. are largely based on several factors such as ROM, installed apps etc., I no one else can predict the performance/SOT of your mobile. So, you should test and find out that by yourself.</string>
+    <string name="how_abt_sot_summary">Ans. Since SOT, performance etc. are largely based on several factors such as ROM, installed apps etc. No one else can exactly predict the performance/SOT of your mobile. So, you should test and find out that by yourself.</string>
     <string name="what_best">Q10. Can you tell me the best settings for performance/SOT?</string>
     <string name="what_best_summary">Ans. Again, that depends on several factors. I can only say my favorite settings that gives me best results in my favorite ROM.</string>
-    <string name="found_bugs">Q11. I found a bug, what do I do?</string>
+    <string name="battery_drain">Q11. I’m facing heavy battery drain after installing your kernel. Any solution?</string>
+    <string name="battery_drain_summary">Ans. In my opinion, any kernel including mine is not capable to make such a big difference (neither positive nor negative) in battery life. It should be because of your ROM, Gapps, other installed apps, wake-locks etc.</string>
+    <string name="random_reboots">Q12. Why my phone freezes and randomly reboots after installing your kernel?</string>
+    <string name="random_reboots_summary">Ans. Probably you activated more than one CPU hotplugs? Are you using cpufreq governor zzmove, however, mpdecission (or any other hotplug) still enabled?.</string>
+    <string name="cache_dalvik">Q13. Do I need to wipe cache/dalvik cache before/after flashing your kerne?</string>
+    <string name="cache_dalvik_summary">Ans. The answer is simply ‘NO’. Because, the kernel does not even ‘see’ cache/dalvik cache.</string>
+    <string name="found_bugs">Q14. I found a bug, what do I do?</string>
     <string name="found_bugs_summary">Ans. Please provide as much information as possible (such as what feature, what didn\'t work, screenshots or logcat if possible) and post in the xda thread.</string>
 </resources>
