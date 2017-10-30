@@ -45,6 +45,9 @@ public class HelpFragment extends RecyclerViewFragment {
         sHelps.put(R.string.better_than, R.string.better_than_summary);
         sHelps.put(R.string.how_abt_sot, R.string.how_abt_sot_summary);
         sHelps.put(R.string.what_best, R.string.what_best_summary);
+        sHelps.put(R.string.battery_drain, R.string.battery_drain_summary);
+        sHelps.put(R.string.random_reboots, R.string.random_reboots_summary);
+        sHelps.put(R.string.cache_dalvik, R.string.cache_dalvik_summary);
         sHelps.put(R.string.found_bugs, R.string.found_bugs_summary);
     }
 
