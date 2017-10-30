@@ -1,6 +1,6 @@
 # SmartPack-Kernel Manger
 
-## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer. The purpose of this page is to ensure timely update to this app. All the new versions can be found in the ‘Downloads’ section. Enjoy.
+## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
 
 ## Release history
 ## 3. SmartPack-Kernel Manager-v1.3
@@ -13,6 +13,6 @@ Changes: Adding app-update page to ‘Download’ section. Minor updates to FAQ.
 
 Changes: First public release
 
-## 1. SmartPack-Kernel Manager-versions till 1.1
+## 1. Versions till 1.1
 
 Un-released (only for internal testing).
