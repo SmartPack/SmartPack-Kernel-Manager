@@ -35,7 +35,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
@@ -90,7 +90,7 @@ public class Service extends android.app.Service {
                 pm.setComponentEnabledSetting(new ComponentName(this, StartActivity.class),
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
                 pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
-                                BuildConfig.APPLICATION_ID + ".activities.StartActivity"),
+                                StartActivity.class.getName()),
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
             } else {
                 Utils.setStartActivity(Prefs.getBoolean("materialicon", false, this), this);
