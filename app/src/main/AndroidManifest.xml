@@ -43,12 +43,11 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
-        <activity-alias
-            android:name=".activities.StartActivity-Material"
-            android:banner="@drawable/ic_banner_material"
+
+        <activity
+            android:name=".activities.StartActivityMaterial"
             android:enabled="false"
-            android:icon="@mipmap/ic_launcher_material"
-            android:targetActivity=".activities.StartActivity">
+            android:icon="@mipmap/ic_launcher_material">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +57,7 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-        </activity-alias>
+        </activity>
 
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.NavigationActivity" />

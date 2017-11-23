@@ -45,6 +45,7 @@ import android.widget.Toast;
 
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.activities.StartActivity;
+import com.grarak.kerneladiutor.activities.StartActivityMaterial;
 import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -107,12 +108,12 @@ public class Utils {
 
     public static String getRandomString(int length) {
         Random random = new Random();
-        String text = "";
+        StringBuilder text = new StringBuilder();
         String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         for (int i = 0; i < length; i++) {
-            text += chars.charAt(random.nextInt(chars.length()));
+            text.append(chars.charAt(random.nextInt(chars.length())));
         }
-        return text;
+        return text.toString();
     }
 
     public static long computeSHAHash(String password) throws Exception {
@@ -144,7 +145,7 @@ public class Utils {
                 material ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED :
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
         pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
-                        BuildConfig.APPLICATION_ID + ".activities.StartActivity-Material"),
+                        StartActivityMaterial.class.getName()),
                 material ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED :
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
