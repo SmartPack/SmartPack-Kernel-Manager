@@ -27,7 +27,7 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
-import com.grarak.kerneladiutor.services.boot.Service;
+import com.grarak.kerneladiutor.services.boot.ApplyOnBoot;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
@@ -64,7 +64,7 @@ public class Tile extends BroadcastReceiver {
                         CPUFreq.ApplyCpu applyCpu;
                         if (command.startsWith("#") && command.contains("%d")
                                 && (applyCpu = new CPUFreq.ApplyCpu(command.substring(1))).toString() != null) {
-                            adjustedCommands.addAll(Service.getApplyCpu(applyCpu, su));
+                            adjustedCommands.addAll(ApplyOnBoot.getApplyCpu(applyCpu, su));
                         } else {
                             adjustedCommands.add(command);
                         }
