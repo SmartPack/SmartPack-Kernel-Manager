@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2015-2017 Willi Ye <williye97@gmail.com>
  *
  * This file is part of Kernel Adiutor.
  *
@@ -137,6 +137,19 @@ public class Utils {
     public static boolean isTv(Context context) {
         return ((UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE))
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+    }
+
+    public static void setupStartActivity(Context context) {
+        PackageManager pm = context.getPackageManager();
+        if (Utils.hideStartActivity()) {
+            pm.setComponentEnabledSetting(new ComponentName(context, StartActivity.class),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
+                            StartActivity.class.getName()),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        } else {
+            Utils.setStartActivity(Prefs.getBoolean("materialicon", false, context), context);
+        }
     }
 
     public static void setStartActivity(boolean material, Context context) {

@@ -55,7 +55,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.SwitcherFragment;
-import com.grarak.kerneladiutor.services.boot.Service;
+import com.grarak.kerneladiutor.services.boot.ApplyOnBoot;
 import com.grarak.kerneladiutor.services.profile.Tile;
 import com.grarak.kerneladiutor.services.profile.Widget;
 import com.grarak.kerneladiutor.utils.Prefs;
@@ -361,7 +361,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                                     if (command.getCommand().startsWith("#") && ((applyCpu =
                                             new CPUFreq.ApplyCpu(command.getCommand().substring(1)))
                                             .toString() != null)) {
-                                        for (String applyCpuCommand : Service.getApplyCpu(applyCpu,
+                                        for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu,
                                                 RootUtils.getSU())) {
                                             Control.runSetting(applyCpuCommand, null, null, null);
                                         }
@@ -635,7 +635,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 if (command.getCommand().startsWith("#")
                         & ((applyCpu =
                         new CPUFreq.ApplyCpu(command.getCommand().substring(1))).toString() != null)) {
-                    for (String applyCpuCommand : Service.getApplyCpu(applyCpu, RootUtils.getSU())) {
+                    for (String applyCpuCommand : ApplyOnBoot.getApplyCpu(applyCpu, RootUtils.getSU())) {
                         commandsText.append(applyCpuCommand).append("\n");
                     }
                 } else {

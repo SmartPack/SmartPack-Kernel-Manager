@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.services.boot;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
@@ -34,7 +35,11 @@ public class Receiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            context.startService(new Intent(context, Service.class));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                JobService.start(context);
+            } else {
+                context.startService(new Intent(context, Service.class));
+            }
             if (Prefs.getBoolean("data_sharing", true, context)) {
                 context.startService(new Intent(context, Monitor.class));
             }

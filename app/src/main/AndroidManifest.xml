@@ -87,12 +87,20 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".services.boot.Service" />
+        <service
+            android:name=".services.boot.Service"
+            android:process=":booting" />
+        <service
+            android:name=".services.boot.JobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":booting" />
         <service
             android:name=".services.monitor.Monitor"
             android:process=":monitoring" />
 
-        <receiver android:name=".services.boot.Service$CancelReceiver" />
+        <receiver
+            android:name=".services.boot.ApplyOnBoot$CancelReceiver"
+            android:process=":booting" />
 
         <!-- Profile Widget -->
         <receiver android:name=".services.profile.Widget">
