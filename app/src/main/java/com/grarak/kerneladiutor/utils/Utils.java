@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.utils;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
@@ -447,8 +448,9 @@ public class Utils {
         }
     }
 
-    public static int getOrientation(Context context) {
-        return context.getResources().getConfiguration().orientation;
+    public static int getOrientation(Activity activity) {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode() ?
+                Configuration.ORIENTATION_PORTRAIT : activity.getResources().getConfiguration().orientation;
     }
 
     public static boolean isPropRunning(String key) {
