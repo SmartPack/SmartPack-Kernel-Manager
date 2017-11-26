@@ -8,6 +8,7 @@
     <string name="no_root">No root</string>
     <string name="no_busybox">No busybox</string>
     <string name="open">Open %s</string>
+    <string name="disable">Disable</string>
 
     <!-- Security -->
     <string name="password">Password</string>
@@ -698,6 +699,7 @@
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
 
     <!-- Data Sharing -->
+    <string name="data_sharing_summary_notification">Data sharing is active! Click to learn more about this feature.</string>
     <string name="data_sharing_summary">Share your settings with others! Kernel Adiutor will automatically collect information and compile a score list available to all people.</string>
     <string name="data_sharing_summary_link">You can access the list on &lt;a href="https://www.grarak.com/kerneladiutor">grarak.com&lt;/a>.</string>
     <string name="sharing_enable">Sharing enable</string>

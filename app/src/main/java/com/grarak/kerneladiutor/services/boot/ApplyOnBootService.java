@@ -19,7 +19,13 @@
  */
 package com.grarak.kerneladiutor.services.boot;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
@@ -27,17 +33,41 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 03.05.16.
  */
-public class Service extends android.app.Service {
+public class ApplyOnBootService extends Service {
+
+    private static final int SERVICE_FOREGROUND_ID = 1;
+    static final String CHANNEL_ID = "onboot_notification_channel";
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
+                    getString(R.string.apply_on_boot), NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel.setSound(null, null);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+            Notification.Builder builder = new Notification.Builder(
+                    this, CHANNEL_ID);
+            builder.setContentTitle(getString(R.string.apply_on_boot))
+                    .setSmallIcon(R.mipmap.ic_launcher);
+            startForeground(SERVICE_FOREGROUND_ID, builder.build());
+        }
     }
 
     @Override
@@ -72,7 +102,6 @@ public class Service extends android.app.Service {
             }
             stopSelf();
         }
-
         return START_NOT_STICKY;
     }
 

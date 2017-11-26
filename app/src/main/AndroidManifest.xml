@@ -78,7 +78,7 @@
         <activity android:name=".activities.DataSharingSearchActivity" />
 
         <receiver
-            android:name=".services.boot.Receiver"
+            android:name=".services.boot.OnBootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -88,19 +88,22 @@
         </receiver>
 
         <service
-            android:name=".services.boot.Service"
+            android:name=".services.boot.ApplyOnBootService"
             android:process=":booting" />
-        <service
-            android:name=".services.boot.JobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":booting" />
-        <service
-            android:name=".services.monitor.Monitor"
-            android:process=":monitoring" />
-
         <receiver
             android:name=".services.boot.ApplyOnBoot$CancelReceiver"
             android:process=":booting" />
+
+        <service
+            android:name=".services.monitor.Monitor"
+            android:process=":monitoring" />
+        <service
+            android:name=".services.monitor.Monitor$DisableService"
+            android:process=":monitoring" />
+
+        <receiver
+            android:name=".services.monitor.Monitor$DisableReceiver"
+            android:process=":monitoring" />
 
         <!-- Profile Widget -->
         <receiver android:name=".services.profile.Widget">

@@ -20,19 +20,17 @@
 package com.grarak.kerneladiutor.services.boot;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 
-import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
@@ -60,7 +58,7 @@ import java.util.List;
 public class ApplyOnBoot {
 
     private static final String TAG = ApplyOnBoot.class.getSimpleName();
-    private static final String CHANNEL_ID = "onboot_notification_channel";
+    private static final int NOTIFICATION_ID = 0;
     private static boolean sCancel;
 
     public interface ApplyOnBootListener {
@@ -108,7 +106,6 @@ public class ApplyOnBoot {
         final boolean initdEnabled = Prefs.getBoolean("initd_onboot", false, context);
         enabled = enabled || mCustomControls.size() > 0 || mProfiles.size() > 0 || initdEnabled;
         if (!enabled) {
-            listener.onFinish();
             return false;
         }
 
@@ -122,30 +119,21 @@ public class ApplyOnBoot {
         PendingIntent cancelIntent = PendingIntent.getBroadcast(context, 1,
                 new Intent(context, CancelReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        PackageManager pm = context.getPackageManager();
-        Intent launchIntent = pm.getLaunchIntentForPackage(BuildConfig.APPLICATION_ID);
+        Intent launchIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
 
         final NotificationManager notificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
-                    context.getString(R.string.apply_on_boot), NotificationManager.IMPORTANCE_HIGH);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
         final NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context, CHANNEL_ID);
+                new NotificationCompat.Builder(context, ApplyOnBootService.CHANNEL_ID);
 
         if (!hideNotification) {
             builder.setContentTitle(context.getString(R.string.app_name))
                     .setContentText(context.getString(R.string.apply_on_boot_text, seconds))
-                    .setSmallIcon(Prefs.getBoolean("materialicon", false, context) ?
-                            R.mipmap.ic_launcher_material : R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher)
                     .addAction(0, context.getString(R.string.cancel), cancelIntent)
-                    .setAutoCancel(true)
                     .setOngoing(true)
-                    .setContentIntent(contentIntent)
                     .setWhen(0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 builder.setPriority(Notification.PRIORITY_MAX);
@@ -153,12 +141,12 @@ public class ApplyOnBoot {
         }
 
         final NotificationCompat.Builder builderComplete =
-                new NotificationCompat.Builder(context, CHANNEL_ID);
+                new NotificationCompat.Builder(context, ApplyOnBootService.CHANNEL_ID);
         if (!hideNotification) {
             builderComplete.setContentTitle(context.getString(R.string.app_name))
-                    .setSmallIcon(Prefs.getBoolean("materialicon", false, context) ?
-                            R.mipmap.ic_launcher_material : R.mipmap.ic_launcher)
-                    .setContentIntent(contentIntent);
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(contentIntent)
+                    .setAutoCancel(true);
         }
 
         final Handler handler = new Handler();
@@ -174,7 +162,7 @@ public class ApplyOnBoot {
                         }
                         builder.setContentText(context.getString(R.string.apply_on_boot_text, seconds - i));
                         builder.setProgress(seconds, i, false);
-                        notificationManager.notify(0, builder.build());
+                        notificationManager.notify(NOTIFICATION_ID, builder.build());
                     }
                     try {
                         Thread.sleep(1000);
@@ -186,9 +174,9 @@ public class ApplyOnBoot {
                     if (confirmationNotification) {
                         builderComplete.setContentText(context.getString(sCancel ? R.string.apply_on_boot_canceled :
                                 R.string.apply_on_boot_complete));
-                        notificationManager.notify(0, builderComplete.build());
+                        notificationManager.notify(NOTIFICATION_ID, builderComplete.build());
                     } else {
-                        notificationManager.cancel(0);
+                        notificationManager.cancel(NOTIFICATION_ID);
                     }
 
                     if (sCancel) {

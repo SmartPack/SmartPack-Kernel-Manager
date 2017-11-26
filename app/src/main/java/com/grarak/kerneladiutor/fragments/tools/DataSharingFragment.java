@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2015-2017 Willi Ye <williye97@gmail.com>
  *
  * This file is part of Kernel Adiutor.
  *
@@ -88,7 +88,7 @@ public class DataSharingFragment extends RecyclerViewFragment {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
                 if (isChecked) {
-                    getActivity().startService(new Intent(getActivity(), Monitor.class));
+                    Utils.startService(getActivity(), new Intent(getActivity(), Monitor.class));
                 } else {
                     getActivity().stopService(new Intent(getActivity(), Monitor.class));
                 }
