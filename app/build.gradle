@@ -18,8 +18,8 @@ android {
         applicationId "com.grarak.kerneladiutor"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 244
-        versionName "0.9.73.2"
+        versionCode 246
+        versionName "0.9.73.3"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
