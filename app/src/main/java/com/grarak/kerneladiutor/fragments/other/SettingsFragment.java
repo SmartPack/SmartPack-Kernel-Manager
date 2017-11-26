@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2015-2017 Willi Ye <williye97@gmail.com>
  *
  * This file is part of Kernel Adiutor.
  *
@@ -50,7 +50,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BannerResizerActivity;
 import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
-import com.grarak.kerneladiutor.services.boot.Service;
+import com.grarak.kerneladiutor.services.boot.ApplyOnBootService;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -293,12 +293,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 }
                 return true;
             case KEY_APPLY_ON_BOOT_TEST:
-                if (Utils.isServiceRunning(Service.class, getActivity())) {
+                if (Utils.isServiceRunning(ApplyOnBootService.class, getActivity())) {
                     Utils.toast(R.string.apply_on_boot_running, getActivity());
                 } else {
-                    Intent intent = new Intent(getActivity(), Service.class);
+                    Intent intent = new Intent(getActivity(), ApplyOnBootService.class);
                     intent.putExtra("messenger", new Messenger(new MessengerHandler(getActivity())));
-                    getActivity().startService(intent);
+                    Utils.startService(getActivity(), intent);
                 }
                 return true;
             case KEY_LOGCAT:

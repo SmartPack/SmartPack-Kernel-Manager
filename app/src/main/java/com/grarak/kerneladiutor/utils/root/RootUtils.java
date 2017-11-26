@@ -125,7 +125,7 @@ public class RootUtils {
         private final boolean mRoot;
         private final String mTag;
         private boolean closed;
-        private boolean denied;
+        public boolean denied;
         private boolean firstTry;
 
         public SU() {

@@ -19,18 +19,27 @@
  */
 package com.grarak.kerneladiutor.services.monitor;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.BuildConfig;
+import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.database.Settings;
+import com.grarak.kerneladiutor.fragments.tools.DataSharingFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -49,6 +58,9 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Monitor extends Service {
+
+    private static final String CHANNEL_ID = "monitor_notification_channel";
+    private static final int SERVICE_FOREGROUND_ID = 2;
 
     private int mLevel;
     private long mTime;
@@ -97,6 +109,7 @@ public class Monitor extends Service {
     private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.i("blaa", "screen");
             mScreenOn = intent.getAction().equals(Intent.ACTION_SCREEN_ON);
             if (!mScreenOn && !mCalculating) {
                 mLevel = 0;
@@ -171,8 +184,39 @@ public class Monitor extends Service {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
+                    getString(R.string.data_sharing), NotificationManager.IMPORTANCE_MIN);
+            notificationManager.createNotificationChannel(notificationChannel);
+
+            PendingIntent disableIntent = PendingIntent.getBroadcast(this, 1,
+                    new Intent(this, DisableReceiver.class),
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+            Intent launchIntent = new Intent(this, MainActivity.class);
+            launchIntent.putExtra("section", DataSharingFragment.class.getCanonicalName());
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                    launchIntent, 0);
+
+            Notification.Builder builder =
+                    new Notification.Builder(this, CHANNEL_ID);
+            builder.setContentTitle(getString(R.string.data_sharing))
+                    .setContentText(getString(R.string.data_sharing_summary_notification))
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(contentIntent)
+                    .addAction(0, getString(R.string.disable), disableIntent);
+            startForeground(SERVICE_FOREGROUND_ID, builder.build());
+        }
 
         registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
@@ -185,15 +229,38 @@ public class Monitor extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY;
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mBatteryReceiver);
         unregisterReceiver(mScreenReceiver);
     }
+
+    public static class DisableService extends Service {
+
+        @Nullable
+        @Override
+        public IBinder onBind(Intent intent) {
+            return null;
+        }
+
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            Prefs.saveBoolean("data_sharing", false, this);
+            stopSelf();
+        }
+
+    }
+
+    public static class DisableReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(final Context context, Intent intent) {
+            context.startService(new Intent(context, DisableService.class));
+            context.stopService(new Intent(context, Monitor.class));
+        }
+
+    }
+
 
 }

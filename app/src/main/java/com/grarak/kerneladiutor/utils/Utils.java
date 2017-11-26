@@ -30,6 +30,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -41,6 +42,7 @@ import android.support.v4.view.ViewCompat;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
 
@@ -77,6 +79,14 @@ public class Utils {
     public static boolean DONATED = BuildConfig.DEBUG;
     public static boolean DARK_THEME;
 
+    public static void startService(Context context, Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
+    }
+
     public static String upperCaseEachWord(String text) {
         char[] chars = text.toCharArray();
         for (int i = 0; i < chars.length; i++) {
@@ -91,11 +101,18 @@ public class Utils {
     }
 
     public static boolean isScreenOn(Context context) {
-        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return powerManager.isInteractive();
+            DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+            for (Display display : dm.getDisplays()) {
+                if (display.getState() != Display.STATE_OFF) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            return powerManager.isScreenOn();
         }
-        return powerManager.isScreenOn();
     }
 
     public static float getAverage(float... numbers) {
@@ -145,11 +162,10 @@ public class Utils {
         if (Utils.hideStartActivity()) {
             pm.setComponentEnabledSetting(new ComponentName(context, StartActivity.class),
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-            pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
-                            StartActivity.class.getName()),
+            pm.setComponentEnabledSetting(new ComponentName(context, StartActivityMaterial.class),
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
         } else {
-            Utils.setStartActivity(Prefs.getBoolean("materialicon", false, context), context);
+            setStartActivity(Prefs.getBoolean("materialicon", false, context), context);
         }
     }
 
@@ -158,8 +174,7 @@ public class Utils {
         pm.setComponentEnabledSetting(new ComponentName(context, StartActivity.class),
                 material ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED :
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-        pm.setComponentEnabledSetting(new ComponentName(BuildConfig.APPLICATION_ID,
-                        StartActivityMaterial.class.getName()),
+        pm.setComponentEnabledSetting(new ComponentName(context, StartActivityMaterial.class),
                 material ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED :
                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     }
