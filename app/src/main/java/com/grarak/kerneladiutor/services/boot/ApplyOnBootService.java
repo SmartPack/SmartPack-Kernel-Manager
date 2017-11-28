@@ -34,6 +34,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.utils.NotificationId;
 import com.grarak.kerneladiutor.utils.Utils;
 
 /**
@@ -41,7 +42,6 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class ApplyOnBootService extends Service {
 
-    private static final int SERVICE_FOREGROUND_ID = 1;
     static final String CHANNEL_ID = "onboot_notification_channel";
 
     @Nullable
@@ -66,7 +66,7 @@ public class ApplyOnBootService extends Service {
                     this, CHANNEL_ID);
             builder.setContentTitle(getString(R.string.apply_on_boot))
                     .setSmallIcon(R.mipmap.ic_launcher);
-            startForeground(SERVICE_FOREGROUND_ID, builder.build());
+            startForeground(NotificationId.APPLY_ON_BOOT, builder.build());
         }
     }
 
