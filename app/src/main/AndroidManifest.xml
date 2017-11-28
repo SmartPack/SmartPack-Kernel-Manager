@@ -87,23 +87,11 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".services.boot.ApplyOnBootService"
-            android:process=":booting" />
-        <receiver
-            android:name=".services.boot.ApplyOnBoot$CancelReceiver"
-            android:process=":booting" />
+        <service android:name=".services.boot.ApplyOnBootService" />
+        <receiver android:name=".services.boot.ApplyOnBoot$CancelReceiver" />
 
-        <service
-            android:name=".services.monitor.Monitor"
-            android:process=":monitoring" />
-        <service
-            android:name=".services.monitor.Monitor$DisableService"
-            android:process=":monitoring" />
-
-        <receiver
-            android:name=".services.monitor.Monitor$DisableReceiver"
-            android:process=":monitoring" />
+        <service android:name=".services.monitor.Monitor" />
+        <receiver android:name=".services.monitor.Monitor$DisableReceiver" />
 
         <!-- Profile Widget -->
         <receiver android:name=".services.profile.Widget">
@@ -148,10 +136,7 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".services.profile.Tasker"
-            android:process=":background">
-
+        <receiver android:name=".services.profile.Tasker">
             <intent-filter>
                 <action android:name="com.twofortyfouram.locale.intent.action.FIRE_SETTING" />
             </intent-filter>

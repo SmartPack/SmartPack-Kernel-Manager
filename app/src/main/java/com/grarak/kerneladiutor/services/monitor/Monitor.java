@@ -41,6 +41,7 @@ import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.database.Settings;
 import com.grarak.kerneladiutor.fragments.tools.DataSharingFragment;
 import com.grarak.kerneladiutor.utils.Device;
+import com.grarak.kerneladiutor.utils.NotificationId;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.server.ServerCreateDevice;
@@ -60,7 +61,6 @@ import java.util.concurrent.TimeUnit;
 public class Monitor extends Service {
 
     private static final String CHANNEL_ID = "monitor_notification_channel";
-    private static final int SERVICE_FOREGROUND_ID = 2;
 
     private int mLevel;
     private long mTime;
@@ -215,7 +215,7 @@ public class Monitor extends Service {
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentIntent(contentIntent)
                     .addAction(0, getString(R.string.disable), disableIntent);
-            startForeground(SERVICE_FOREGROUND_ID, builder.build());
+            startForeground(NotificationId.MONITOR, builder.build());
         }
 
         registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -235,28 +235,11 @@ public class Monitor extends Service {
         unregisterReceiver(mScreenReceiver);
     }
 
-    public static class DisableService extends Service {
-
-        @Nullable
-        @Override
-        public IBinder onBind(Intent intent) {
-            return null;
-        }
-
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            Prefs.saveBoolean("data_sharing", false, this);
-            stopSelf();
-        }
-
-    }
-
     public static class DisableReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(final Context context, Intent intent) {
-            context.startService(new Intent(context, DisableService.class));
+            Prefs.saveBoolean("data_sharing", false, context);
             context.stopService(new Intent(context, Monitor.class));
         }
 
