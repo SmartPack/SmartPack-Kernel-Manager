@@ -204,7 +204,9 @@ public class Monitor extends Service {
                     PendingIntent.FLAG_UPDATE_CURRENT);
 
             Intent launchIntent = new Intent(this, MainActivity.class);
+            launchIntent.setAction(Intent.ACTION_VIEW);
             launchIntent.putExtra("section", DataSharingFragment.class.getCanonicalName());
+            launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                     launchIntent, 0);
 
