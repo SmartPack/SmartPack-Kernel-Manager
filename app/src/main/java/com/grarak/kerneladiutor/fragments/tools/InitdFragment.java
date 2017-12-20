@@ -344,10 +344,4 @@ public class InitdFragment extends RecyclerViewFragment {
         }
         mLoaded = false;
     }
-
-    @Override
-    protected boolean showAd() {
-        return true;
-    }
-
 }

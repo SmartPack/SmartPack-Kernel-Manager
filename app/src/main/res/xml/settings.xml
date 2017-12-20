@@ -2,10 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        android:key="adview"
-        app:layout="@layout/rv_ad_view" />
-
     <SwitchPreferenceCompat
         android:key="useretardedmeasurement"
         android:summary="@string/fahrenheit_summary"

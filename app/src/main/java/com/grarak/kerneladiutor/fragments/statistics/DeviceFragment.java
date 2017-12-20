@@ -110,9 +110,4 @@ public class DeviceFragment extends RecyclerViewFragment {
         items.add(boardCard);
     }
 
-    @Override
-    protected boolean showAd() {
-        return true;
-    }
-
 }

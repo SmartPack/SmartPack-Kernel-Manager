@@ -80,9 +80,4 @@ public class InputsFragment extends RecyclerViewFragment {
         }
     }
 
-    @Override
-    protected boolean showAd() {
-        return true;
-    }
-
 }

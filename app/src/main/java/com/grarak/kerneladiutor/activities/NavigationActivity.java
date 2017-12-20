@@ -104,7 +104,6 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
-import com.grarak.kerneladiutor.views.AdNativeExpress;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -127,9 +126,6 @@ public class NavigationActivity extends BaseActivity
 
     private int mSelection;
     private boolean mLicenseDialog = true;
-
-    private WebpageReader mAdsFetcher;
-    private boolean mFetchingAds;
 
     @Override
     protected boolean setStatusBarColor() {
@@ -304,7 +300,6 @@ public class NavigationActivity extends BaseActivity
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
             mLicenseDialog = savedInstanceState.getBoolean("license");
-            mFetchingAds = savedInstanceState.getBoolean("fetching_ads");
         }
 
         appendFragments(false);
@@ -327,28 +322,6 @@ public class NavigationActivity extends BaseActivity
 
         if (Prefs.getBoolean("data_sharing", true, this)) {
             startService(new Intent(this, Monitor.class));
-        }
-
-        if (!mFetchingAds && !Utils.DONATED) {
-            mFetchingAds = true;
-            mAdsFetcher = new WebpageReader(this, new WebpageReader.WebpageListener() {
-                @Override
-                public void onSuccess(String url, String raw, CharSequence html) {
-                    AdNativeExpress.GHAds ghAds = new AdNativeExpress.GHAds(raw);
-                    if (ghAds.readable()) {
-                        ghAds.cache(NavigationActivity.this);
-                        Fragment fragment = getFragment(mSelection);
-                        if (fragment instanceof RecyclerViewFragment) {
-                            ((RecyclerViewFragment) fragment).ghAdReady();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(String url) {
-                }
-            });
-            mAdsFetcher.get(AdNativeExpress.ADS_FETCH);
         }
     }
 
@@ -502,9 +475,6 @@ public class NavigationActivity extends BaseActivity
             }
         }
         fragmentTransaction.commitAllowingStateLoss();
-        if (mAdsFetcher != null) {
-            mAdsFetcher.cancel();
-        }
         RootUtils.closeSU();
     }
 
@@ -515,7 +485,6 @@ public class NavigationActivity extends BaseActivity
         outState.putParcelableArrayList("fragments", mFragments);
         outState.putInt("selection", mSelection);
         outState.putBoolean("license", mLicenseDialog);
-        outState.putBoolean("fetching_ads", mFetchingAds);
     }
 
     @Override
