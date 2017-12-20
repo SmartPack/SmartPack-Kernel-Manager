@@ -23,10 +23,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.crashlytics.android.Crashlytics;
 import com.grarak.kerneladiutor.BuildConfig;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by willi on 02.08.16.
@@ -41,9 +38,6 @@ public class StartActivityMaterial extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, new Crashlytics());
-        }
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (getIntent().getExtras() != null) {

@@ -98,10 +98,4 @@ public class DataSharingFragment extends RecyclerViewFragment {
 
         items.add(datasharing);
     }
-
-    @Override
-    protected boolean showAd() {
-        return true;
-    }
-
 }

@@ -68,7 +68,6 @@ import java.util.List;
 public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
-    private static final String KEY_AD_VIEW = "adview";
     private static final String KEY_FORCE_ENGLISH = "forceenglish";
     private static final String KEY_USER_INTERFACE = "user_interface";
     private static final String KEY_DARK_THEME = "darktheme";
@@ -143,10 +142,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     private void init() {
         addPreferencesFromResource(R.xml.settings);
-
-        if (Utils.DONATED) {
-            getPreferenceScreen().removePreference(findPreference(KEY_AD_VIEW));
-        }
 
         SwitchPreferenceCompat forceEnglish = (SwitchPreferenceCompat) findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
