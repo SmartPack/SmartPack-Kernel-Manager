@@ -39,11 +39,9 @@ public class Temperature {
 
     private static final HashMap<String, Integer> sCPUTemps = new HashMap<>();
 
-    private static final String THERMAL_ZONE0 = "/sys/class/thermal/thermal_zone0/temp";
-
     static {
+        sCPUTemps.put("/sys/class/thermal/thermal_zone0/temp", 1000);
         sCPUTemps.put("/sys/devices/platform/omap/omap_temp_sensor.0/temperature", 1000);
-        sCPUTemps.put("/proc/mtktscpu/mtktscpu_temperature", 1000);
     }
 
     private static TempJson TEMP_JSON;
@@ -110,17 +108,13 @@ public class Temperature {
             if (Utils.existFile(node)) {
                 CPU_NODE = node;
                 CPU_OFFSET = sCPUTemps.get(CPU_NODE);
+                if (Utils.readFile(CPU_NODE).length() == 2) {
+                    CPU_OFFSET = 1;
+                }
                 return true;
             }
         }
-        if (CPU_NODE == null && Utils.existFile(THERMAL_ZONE0)) {
-            CPU_NODE = THERMAL_ZONE0;
-            CPU_OFFSET = 1000;
-        }
-        if (CPU_NODE != null && Utils.readFile(CPU_NODE).length() == 2) {
-            CPU_OFFSET = 1;
-        }
-        return CPU_NODE != null;
+        return false;
     }
 
     public static boolean supported(Context context) {
@@ -139,7 +133,7 @@ public class Temperature {
 
         private JSONObject mDeviceJson;
 
-        private TempJson(Context context) {
+        public TempJson(Context context) {
             try {
                 JSONArray tempArray = new JSONArray(Utils.readAssetFile(context, "temp.json"));
                 for (int i = 0; i < tempArray.length(); i++) {
@@ -154,7 +148,7 @@ public class Temperature {
             }
         }
 
-        private int getGPUOffset() {
+        public int getGPUOffset() {
             try {
                 return mDeviceJson.getInt("gpu-offset");
             } catch (JSONException ignored) {
@@ -162,7 +156,7 @@ public class Temperature {
             }
         }
 
-        private int getCPUOffset() {
+        public int getCPUOffset() {
             try {
                 return mDeviceJson.getInt("cpu-offset");
             } catch (JSONException ignored) {
