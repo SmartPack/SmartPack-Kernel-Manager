@@ -33,7 +33,7 @@ android {
         versionName "1.4-sp-" + getDate()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        archivesBaseName = "SmartPack-Kernel Manager-v$versionName"
+        archivesBaseName = "$applicationId-v$versionName"
     }
 	
     buildTypes {
