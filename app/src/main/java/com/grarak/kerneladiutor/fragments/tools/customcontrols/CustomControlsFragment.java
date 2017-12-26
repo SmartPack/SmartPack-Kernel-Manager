@@ -64,7 +64,6 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     private Dialog mOptionsDialog;
     private Dialog mItemsDialog;
     private Dialog mDeleteDialog;
-    private Dialog mDonateDialog;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadingThread;
     private AsyncTask<Void, Void, ImportControl> mImportingThread;
@@ -97,22 +96,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                         showControls();
                         break;
                     case 1:
-                        if (Utils.DONATED) {
-                            Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                            intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                            intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
-                            startActivityForResult(intent, 1);
-                        } else {
-                            mDonateDialog = ViewUtils.dialogDonate(getActivity())
-                                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            mDonateDialog = null;
-                                        }
-                                    });
-                            mDonateDialog.show();
-                        }
-                        break;
+                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
+                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
+                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
+                        startActivityForResult(intent, 1);
                 }
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -163,9 +150,6 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             }
             if (mExportItem != null) {
                 showExportDialog();
-            }
-            if (mDonateDialog != null) {
-                mDonateDialog.show();
             }
         } catch (NullPointerException ignored) {
         }
