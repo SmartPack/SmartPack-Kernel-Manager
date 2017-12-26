@@ -285,8 +285,6 @@
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
     <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
-    <string name="bricked_hotplug">Bricked Hotplug</string>
-    <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
     <string name="screen_off_single_cpu">Screen off Single CPU</string>
     <string name="screen_off_single_cpu_summary">Use only one CPU when screen is off.</string>
     <string name="idle_frequency">Idle Frequency</string>
@@ -305,8 +303,6 @@
     <string name="sampling_rate">Sampling Rate</string>
     <string name="cpu_down_rate">CPU Down Rate</string>
     <string name="cpu_up_rate">CPU Up Rate</string>
-    <string name="thunderplug">ThunderPlug</string>
-    <string name="thunderplug_summary">An in-kernel replacement for Qualcomm\'s hotplugging. Developed by varunchitre15.</string>
     <string name="min_cpu_online_screen_off">Minimum CPU Screen Off</string>
     <string name="min_cpu_online_screen_off_summary">Minimum number of CPUs that will be online when the screen is off.</string>
     <string name="endurance_level">Endurance Level</string>
@@ -319,8 +315,6 @@
     <string name="wake_wait_time_summary">How long to wait before turning on any CPUs.</string>
     <string name="bat_threshold_ignore">Battery Threshold Ignore</string>
     <string name="bat_threshold_ignore_summary">Don\'t turn on any cores when charge is below the selected capacity.</string>
-    <string name="autosmp">AutoSMP</string>
-    <string name="autosmp_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by mrg666.</string>
     <string name="downrate_limits">Downrate Limits</string>
     <string name="uprate_limits">Uprate Limits</string>
     <string name="cycle_down">Cycle Down</string>
