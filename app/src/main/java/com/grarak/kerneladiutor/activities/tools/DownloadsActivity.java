@@ -71,7 +71,7 @@ public class DownloadsActivity extends BaseActivity {
         }
 
         if (downloads.size() > 0) {
-            items.put(getString(R.string.downloads), DownloadKernelFragment.newInstance(downloads));
+            items.put(getString(R.string.update), DownloadKernelFragment.newInstance(downloads));
         }
 
         viewPager.setOffscreenPageLimit(items.size());
