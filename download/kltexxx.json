@@ -1,7 +1,3 @@
 [
-  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/app-update.json",
-  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/kltekor.json",
-  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/klte.json",
-  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/klteduos.json",
-  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/kltespr.json"
+  "https://raw.githubusercontent.com/SmartPack/SmartPack-OTA/master/app-update.json"
 ]
