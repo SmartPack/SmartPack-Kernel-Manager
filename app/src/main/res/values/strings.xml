@@ -99,7 +99,6 @@
     <string name="misc">Misc</string>
     <string name="data_sharing">Data Sharing</string>
     <string name="custom_controls">Custom Controls</string>
-    <string name="downloads">Downloads</string>
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
@@ -109,6 +108,7 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
+    <string name="update">Check for Update</string>
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
@@ -893,7 +893,7 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer. If you like SmartPack-Kernel, please consider to donate to me, by clicking the logo which is left to this text, since it will help me to continue this project more active, though it is not at all necessary.</string>
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.\n\nIf you like SmartPack-Kernel, please consider to donate to me as it is helpful to continue this project more active, though it is not at all necessary.</string>
     <string name="libraries_used">Libraries used</string>
 
     <!-- Contributors -->

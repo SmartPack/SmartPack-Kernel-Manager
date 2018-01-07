@@ -231,7 +231,7 @@ public class NavigationActivity extends BaseActivity
 
         SupportedDownloads supportedDownloads = new SupportedDownloads(this);
         if (supportedDownloads.getLink() != null) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.downloads, DownloadsFragment.class, R.drawable.ic_download));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.update, DownloadsFragment.class, R.drawable.ic_download));
         }
         if (Backup.hasBackup()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, BackupFragment.class, R.drawable.ic_restore));
