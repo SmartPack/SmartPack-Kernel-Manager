@@ -759,7 +759,7 @@
     <string name="install">Install</string>
     <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
-    <string name="manual_flashing">I will use my hands</string>
+    <string name="manual_flashing">Install later</string>
     <string name="file_location">Downloaded file is in %s</string>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>
