@@ -108,7 +108,7 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="update">Check for Update</string>
+    <string name="update">Updates</string>
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
