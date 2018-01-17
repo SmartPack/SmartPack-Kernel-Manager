@@ -343,6 +343,8 @@ public class BuildpropFragment extends RecyclerViewFragment {
         if (mLoader != null) {
             mLoader.cancel(true);
         }
+        mKeyText = null;
+        mValueText = null;
     }
 
     public static class SearchFragment extends BaseFragment {
