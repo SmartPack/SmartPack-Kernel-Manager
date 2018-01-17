@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 Willi Ye <williye97@gmail.com>
+ * Copyright (C) 2015-2018 Willi Ye <williye97@gmail.com>
  *
  * This file is part of Kernel Adiutor.
  *
@@ -463,9 +463,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     protected void removeItem(RecyclerViewItem recyclerViewItem) {
         int position = mItems.indexOf(recyclerViewItem);
         if (position >= 0) {
-            mItems.remove(recyclerViewItem);
+            mItems.remove(position);
             if (mRecyclerViewAdapter != null) {
                 mRecyclerViewAdapter.notifyItemRemoved(position);
+                mRecyclerViewAdapter.notifyItemRangeChanged(position, mItems.size());
             }
         }
     }
@@ -474,6 +475,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         mItems.clear();
         if (mRecyclerViewAdapter != null) {
             mRecyclerViewAdapter.notifyDataSetChanged();
+            mRecyclerView.setAdapter(mRecyclerViewAdapter);
             mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
             adjustScrollPosition();
         }
@@ -639,21 +641,23 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     }
 
     protected void showProgress() {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (isAdded()) {
-                    mProgress.setVisibility(View.VISIBLE);
-                    mRecyclerView.setVisibility(View.INVISIBLE);
-                    if (mTopFab != null && showTopFab()) {
-                        mTopFab.hide();
-                    }
-                    if (mBottomFab != null && showBottomFab()) {
-                        mBottomFab.hide();
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (isAdded()) {
+                        mProgress.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.INVISIBLE);
+                        if (mTopFab != null && showTopFab()) {
+                            mTopFab.hide();
+                        }
+                        if (mBottomFab != null && showBottomFab()) {
+                            mBottomFab.hide();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 
     protected void hideProgress() {
