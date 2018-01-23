@@ -11,7 +11,7 @@
       "kltexxx",
       "kltevzw"
     ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/klte.json"
   },
   {
     "vendor": [
@@ -24,7 +24,7 @@
       "kltespr",
       "kltedv"
     ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltespr.json"
   },
   {
     "vendor": [
@@ -36,7 +36,7 @@
       "kltexxx",
       "klteduos"
     ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/klteduos.json"
   },
   {
     "vendor": [
@@ -52,32 +52,6 @@
       "kltektt",
       "kltelgt"
     ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltexxx.json"
-  },
-  {
-    "vendor": [
-      "samsung"
-    ],
-    "device": [
-      "SM-G906S",
-      "SM-G906k",
-      "SM-G906L",
-      "lentislte",
-      "lentisltexxx",
-      "lentislteskt",
-      "lentisltektt",
-      "lentisltelgt"
-    ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/lentisltexxx.json"
-  },
-  {
-    "vendor": [
-      "samsung"
-    ],
-    "device": [
-      "SM-G901F",
-      "kccat6"
-    ],
-    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/lentisltexxx.jso"
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltekor.json"
   }
 ]
