@@ -28,8 +28,6 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.database.Settings;
-import com.grarak.kerneladiutor.services.monitor.IMonitor;
-import com.grarak.kerneladiutor.services.monitor.Monitor;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -95,25 +93,6 @@ public class Control {
         if (command.startsWith("#")) return;
         RootUtils.runCommand(command);
         Log.i(TAG, command);
-        if (context != null) {
-            context.bindService(new Intent(context, Monitor.class), new ServiceConnection() {
-                        @Override
-                        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                            try {
-                                IMonitor monitor = IMonitor.Stub.asInterface(iBinder);
-                                monitor.onSettingsChange();
-                                context.unbindService(this);
-                            } catch (RemoteException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onServiceDisconnected(ComponentName componentName) {
-                        }
-                    },
-                    Context.BIND_AUTO_CREATE);
-        }
     }
 
     private void run(final String command, final String category, final String id,

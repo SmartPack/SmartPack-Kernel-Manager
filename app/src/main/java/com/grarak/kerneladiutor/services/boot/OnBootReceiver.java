@@ -23,7 +23,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
@@ -40,9 +39,6 @@ public class OnBootReceiver extends BroadcastReceiver {
             su.runCommand("echo /testRoot/");
             if (!su.denied) {
                 Utils.startService(context, new Intent(context, ApplyOnBootService.class));
-                if (Prefs.getBoolean("data_sharing", true, context)) {
-                    Utils.startService(context, new Intent(context, Monitor.class));
-                }
             }
             su.close();
         }
