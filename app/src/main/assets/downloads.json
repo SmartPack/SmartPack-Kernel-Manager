@@ -7,9 +7,16 @@
       "SM-G900F",
       "SM-G900V",
       "SM-G902L",
+      "SM-G900M",
+      "SM-G900R4",
+      "SM-G900R7",
+      "SM-G900T",
+      "M-G900W8",
       "klte",
       "kltexxx",
-      "kltevzw"
+      "kltevzw",
+      "kltetmo",
+      "klteusc"
     ],
     "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/klte.json"
   },
