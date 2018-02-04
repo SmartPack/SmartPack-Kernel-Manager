@@ -35,6 +35,15 @@ import java.util.List;
  */
 public class MemoryFragment extends RecyclerViewFragment {
 
+    private Device.MemInfo mMemInfo;
+
+    @Override
+    protected void init() {
+        super.init();
+
+        mMemInfo = Device.MemInfo.getInstance();
+    }
+
     @Override
     protected boolean showViewPager() {
         return false;
@@ -53,11 +62,11 @@ public class MemoryFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        List<String> mems = Device.MemInfo.getItems();
+        List<String> mems = mMemInfo.getItems();
         for (String mem : mems) {
             DescriptionView memView = new DescriptionView();
             memView.setTitle(mem);
-            memView.setSummary(Device.MemInfo.getItem(mem).replace(" ", "")
+            memView.setSummary(mMemInfo.getItem(mem).replace(" ", "")
                     .replace("kB", getString(R.string.kb)));
 
             items.add(memView);

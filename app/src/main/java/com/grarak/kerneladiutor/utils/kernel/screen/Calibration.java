@@ -33,6 +33,15 @@ import java.util.List;
  */
 public class Calibration {
 
+    private static Calibration sInstance;
+
+    public static Calibration getInstance() {
+        if (sInstance == null) {
+            sInstance = new Calibration();
+        }
+        return sInstance;
+    }
+
     private static final String KCAL = "/sys/devices/platform/kcal_ctrl.0";
     private static final String KCAL_CTRL = KCAL + "/kcal";
     private static final String KCAL_CTRL_CTRL = KCAL + "/kcal_ctrl";
@@ -62,76 +71,92 @@ public class Calibration {
 
     private static final String HBM = "/sys/class/graphics/fb0/hbm";
 
-    private static final List<String> sSRGB = new ArrayList<>();
+    private final List<String> mSRGB = new ArrayList<>();
 
-    private static final List<String> sColors = new ArrayList<>();
-    private static final List<String> sColorEnables = new ArrayList<>();
-    private static final List<String> sNewKCAL = new ArrayList<>();
+    private final List<String> mColors = new ArrayList<>();
+    private final List<String> mColorEnables = new ArrayList<>();
+    private final List<String> mNewKCAL = new ArrayList<>();
 
-    static {
-        sSRGB.add("/sys/class/graphics/fb0/SRGB");
-        sSRGB.add("/sys/class/graphics/fb0/srgb");
+    {
+        mSRGB.add("/sys/class/graphics/fb0/SRGB");
+        mSRGB.add("/sys/class/graphics/fb0/srgb");
 
-        sColors.add(KCAL_CTRL);
-        sColors.add(DIAG0_POWER);
-        sColors.add(COLOR_CONTROL_MUILTIPLIER);
-        sColors.add(SAMOLED_COLOR);
-        sColors.add(FB0_RGB);
-        sColors.add(FB_KCAL);
+        mColors.add(KCAL_CTRL);
+        mColors.add(DIAG0_POWER);
+        mColors.add(COLOR_CONTROL_MUILTIPLIER);
+        mColors.add(SAMOLED_COLOR);
+        mColors.add(FB0_RGB);
+        mColors.add(FB_KCAL);
 
-        sColorEnables.add(KCAL_CTRL_CTRL);
-        sColorEnables.add(KCAL_CTRL_ENABLE);
-        sColorEnables.add(DIAG0_POWER_CTRL);
-        sColorEnables.add(COLOR_CONTROL_CTRL);
+        mColorEnables.add(KCAL_CTRL_CTRL);
+        mColorEnables.add(KCAL_CTRL_ENABLE);
+        mColorEnables.add(DIAG0_POWER_CTRL);
+        mColorEnables.add(COLOR_CONTROL_CTRL);
 
-        sNewKCAL.add(KCAL_CTRL_ENABLE);
-        sNewKCAL.add(KCAL_CTRL_INVERT);
-        sNewKCAL.add(KCAL_CTRL_SAT);
-        sNewKCAL.add(KCAL_CTRL_HUE);
-        sNewKCAL.add(KCAL_CTRL_VAL);
-        sNewKCAL.add(KCAL_CTRL_CONT);
+        mNewKCAL.add(KCAL_CTRL_ENABLE);
+        mNewKCAL.add(KCAL_CTRL_INVERT);
+        mNewKCAL.add(KCAL_CTRL_SAT);
+        mNewKCAL.add(KCAL_CTRL_HUE);
+        mNewKCAL.add(KCAL_CTRL_VAL);
+        mNewKCAL.add(KCAL_CTRL_CONT);
     }
 
-    private static String SRGB;
+    private String SRGB;
 
-    private static String COLOR;
-    private static String COLOR_ENABLE;
+    private String COLOR;
+    private String COLOR_ENABLE;
 
-    private static boolean HBM_NEW;
+    private boolean HBM_NEW;
 
-    public static void enableSRGB(boolean enable, Context context) {
+    private Calibration() {
+        for (String file : mSRGB) {
+            if (Utils.existFile(file)) {
+                SRGB = file;
+                break;
+            }
+        }
+
+        for (String file : mColors) {
+            if (Utils.existFile(file)) {
+                COLOR = file;
+                break;
+            }
+        }
+
+        if (COLOR == null) return;
+        for (String file : mColorEnables) {
+            if (Utils.existFile(file)) {
+                COLOR_ENABLE = file;
+                break;
+            }
+        }
+    }
+
+    public void enableSRGB(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", SRGB), SRGB, context);
     }
 
-    public static boolean isSRGBEnabled() {
+    public boolean isSRGBEnabled() {
         String value = Utils.readFile(SRGB);
         return value.equals("1") || value.contains("mode = 1");
     }
 
-    public static boolean hasSRGB() {
-        if (SRGB == null) {
-            for (String file : sSRGB) {
-                if (Utils.existFile(file)) {
-                    SRGB = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasSRGB() {
         return SRGB != null;
     }
 
-    public static void enableScreenHBM(boolean enable, Context context) {
+    public void enableScreenHBM(boolean enable, Context context) {
         run(Control.write(enable ? HBM_NEW ? "2" : "1" : "0", HBM), HBM, context);
     }
 
-    public static boolean isScreenHBMEnabled() {
+    public boolean isScreenHBMEnabled() {
         if (HBM_NEW) {
             return Utils.readFile(HBM).contains("= 2");
         }
         return Utils.readFile(HBM).equals("1");
     }
 
-    public static boolean hasScreenHBM() {
+    public boolean hasScreenHBM() {
         boolean supported = Utils.existFile(HBM);
         if (supported) {
             HBM_NEW = Utils.readFile(HBM).contains("2-->HBM Enabled");
@@ -140,83 +165,83 @@ public class Calibration {
         return false;
     }
 
-    public static void setScreenContrast(int value, Context context) {
+    public void setScreenContrast(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_CONT), KCAL_CTRL_CONT, context);
     }
 
-    public static int getScreenContrast() {
+    public int getScreenContrast() {
         return Utils.strToInt(Utils.readFile(KCAL_CTRL_CONT));
     }
 
-    public static boolean hasScreenContrast() {
+    public boolean hasScreenContrast() {
         return Utils.existFile(KCAL_CTRL_CONT);
     }
 
-    public static void setScreenValue(int value, Context context) {
+    public void setScreenValue(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_VAL), KCAL_CTRL_VAL, context);
     }
 
-    public static int getScreenValue() {
+    public int getScreenValue() {
         return Utils.strToInt(Utils.readFile(KCAL_CTRL_VAL));
     }
 
-    public static boolean hasScreenValue() {
+    public boolean hasScreenValue() {
         return Utils.existFile(KCAL_CTRL_VAL);
     }
 
-    public static void setScreenHue(int value, Context context) {
+    public void setScreenHue(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_HUE), KCAL_CTRL_HUE, context);
     }
 
-    public static int getScreenHue() {
+    public int getScreenHue() {
         return Utils.strToInt(Utils.readFile(KCAL_CTRL_HUE));
     }
 
-    public static boolean hasScreenHue() {
+    public boolean hasScreenHue() {
         return Utils.existFile(KCAL_CTRL_HUE);
     }
 
-    public static void enableGrayscaleMode(boolean enable, Context context) {
+    public void enableGrayscaleMode(boolean enable, Context context) {
         setSaturationIntensity(enable ? 128 : 255, context);
     }
 
-    public static void setSaturationIntensity(int value, Context context) {
+    public void setSaturationIntensity(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_SAT), KCAL_CTRL_SAT, context);
     }
 
-    public static int getSaturationIntensity() {
+    public int getSaturationIntensity() {
         return Utils.strToInt(Utils.readFile(KCAL_CTRL_SAT));
     }
 
-    public static boolean hasSaturationIntensity() {
+    public boolean hasSaturationIntensity() {
         return Utils.existFile(KCAL_CTRL_SAT);
     }
 
-    public static void enableInvertScreen(boolean enable, Context context) {
+    public void enableInvertScreen(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", KCAL_CTRL_INVERT), KCAL_CTRL_INVERT, context);
     }
 
-    public static boolean isInvertScreenEnabled() {
+    public boolean isInvertScreenEnabled() {
         return Utils.readFile(KCAL_CTRL_INVERT).equals("1");
     }
 
-    public static boolean hasInvertScreen() {
+    public boolean hasInvertScreen() {
         return Utils.existFile(KCAL_CTRL_INVERT);
     }
 
-    public static void setMinColor(int value, Context context) {
+    public void setMinColor(int value, Context context) {
         run(Control.write(String.valueOf(value), KCAL_CTRL_MIN), KCAL_CTRL_MIN, context);
     }
 
-    public static int getMinColor() {
+    public int getMinColor() {
         return Utils.strToInt(Utils.readFile(KCAL_CTRL_MIN));
     }
 
-    public static boolean hasMinColor() {
+    public boolean hasMinColor() {
         return Utils.existFile(KCAL_CTRL_MIN);
     }
 
-    public static void setColors(String values, Context context) {
+    public void setColors(String values, Context context) {
         if (hasColorEnable() && COLOR_CONTROL_CTRL.equals(COLOR_ENABLE)) {
             run(Control.write("0", COLOR_CONTROL_CTRL), COLOR_CONTROL_CTRL, context);
         }
@@ -251,7 +276,7 @@ public class Calibration {
         }
     }
 
-    public static List<String> getLimits() {
+    public List<String> getLimits() {
         List<String> list = new ArrayList<>();
         switch (COLOR) {
             case COLOR_CONTROL_MUILTIPLIER:
@@ -280,8 +305,8 @@ public class Calibration {
         return list;
     }
 
-    private static boolean hasNewKCAL() {
-        for (String file : sNewKCAL) {
+    private boolean hasNewKCAL() {
+        for (String file : mNewKCAL) {
             if (Utils.existFile(file)) {
                 return true;
             }
@@ -289,7 +314,7 @@ public class Calibration {
         return false;
     }
 
-    public static List<String> getColors() {
+    public List<String> getColors() {
         List<String> list = new ArrayList<>();
         switch (COLOR) {
             case COLOR_CONTROL_MUILTIPLIER:
@@ -323,34 +348,20 @@ public class Calibration {
         return list;
     }
 
-    private static boolean hasColorEnable() {
-        if (COLOR_ENABLE != null) return true;
-        for (String file : sColorEnables) {
-            if (Utils.existFile(file)) {
-                COLOR_ENABLE = file;
-                return true;
-            }
-        }
-        return false;
+    private boolean hasColorEnable() {
+        return COLOR_ENABLE != null;
     }
 
-    public static boolean hasColors() {
-        if (COLOR != null) return true;
-        for (String file : sColors) {
-            if (Utils.existFile(file)) {
-                COLOR = file;
-                return true;
-            }
-        }
-        return false;
+    public boolean hasColors() {
+        return COLOR != null;
     }
 
-    public static boolean supported() {
+    public boolean supported() {
         return hasColors() || hasInvertScreen() || hasSaturationIntensity() || hasScreenHue()
                 || hasScreenValue() | hasScreenContrast() || hasScreenHBM() || hasSRGB();
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.SCREEN, id, context);
     }
 

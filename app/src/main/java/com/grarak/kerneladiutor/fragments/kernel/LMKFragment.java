@@ -60,7 +60,7 @@ public class LMKFragment extends RecyclerViewFragment {
     }
 
     private String getAdjustedSize(int... offsets) {
-        long memTotal = Device.MemInfo.getTotalMem() * 1024L / 100L / 4L;
+        long memTotal = Device.MemInfo.getInstance().getTotalMem() * 1024L / 100L / 4L;
         StringBuilder stringBuilder = new StringBuilder();
         for (int offset : offsets) {
             stringBuilder.append(String.valueOf((int) memTotal * offset)).append(",");

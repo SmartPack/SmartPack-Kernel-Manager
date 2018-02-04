@@ -35,6 +35,15 @@ import java.util.List;
  */
 public class Misc {
 
+    private static Misc sInstance;
+
+    public static Misc getInstance() {
+        if (sInstance == null) {
+            sInstance = new Misc();
+        }
+        return sInstance;
+    }
+
     private static final String SCREEN_WAKE_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_wake_options";
 
     private static final String CAMERA_GESTURE = "/sys/android_touch/camera_gesture";
@@ -57,220 +66,215 @@ public class Misc {
 
     private static final String CHARGING_MODE_SMDK4412 = "/sys/devices/virtual/misc/touchwake/charging_mode";
 
-    private static final HashMap<String, List<Integer>> sWakeFiles = new HashMap<>();
-    private static final List<Integer> sScreenWakeOptionsMenu = new ArrayList<>();
+    private final HashMap<String, List<Integer>> mWakeFiles = new HashMap<>();
+    private final List<Integer> mScreenWakeOptionsMenu = new ArrayList<>();
 
-    private static final List<String> sCameraFiles = new ArrayList<>();
+    private final List<String> mCameraFiles = new ArrayList<>();
 
-    private static final List<String> sPocketFiles = new ArrayList<>();
+    private final List<String> mPocketFiles = new ArrayList<>();
 
-    private static final HashMap<String, Integer> sTimeoutFiles = new HashMap<>();
+    private final HashMap<String, Integer> mTimeoutFiles = new HashMap<>();
 
-    static {
-        sScreenWakeOptionsMenu.add(R.string.disabled);
-        sScreenWakeOptionsMenu.add(R.string.s2w);
-        sScreenWakeOptionsMenu.add(R.string.s2w);
-        sScreenWakeOptionsMenu.add(R.string.s2w_charging);
-        sScreenWakeOptionsMenu.add(R.string.dt2w);
-        sScreenWakeOptionsMenu.add(R.string.dt2w_charging);
-        sScreenWakeOptionsMenu.add(R.string.dt2w_s2w);
-        sScreenWakeOptionsMenu.add(R.string.dt2w_s2w_charging);
+    {
+        mScreenWakeOptionsMenu.add(R.string.disabled);
+        mScreenWakeOptionsMenu.add(R.string.s2w);
+        mScreenWakeOptionsMenu.add(R.string.s2w);
+        mScreenWakeOptionsMenu.add(R.string.s2w_charging);
+        mScreenWakeOptionsMenu.add(R.string.dt2w);
+        mScreenWakeOptionsMenu.add(R.string.dt2w_charging);
+        mScreenWakeOptionsMenu.add(R.string.dt2w_s2w);
+        mScreenWakeOptionsMenu.add(R.string.dt2w_s2w_charging);
 
-        sWakeFiles.put(SCREEN_WAKE_OPTIONS, sScreenWakeOptionsMenu);
+        mWakeFiles.put(SCREEN_WAKE_OPTIONS, mScreenWakeOptionsMenu);
     }
 
-    static {
-        sCameraFiles.add(CAMERA_GESTURE);
-        sCameraFiles.add(CAMERA_ENABLE);
+    {
+        mCameraFiles.add(CAMERA_GESTURE);
+        mCameraFiles.add(CAMERA_ENABLE);
     }
 
-    static {
-        sPocketFiles.add(POCKET_MODE);
-        sPocketFiles.add(POCKET_DETECT);
+    {
+        mPocketFiles.add(POCKET_MODE);
+        mPocketFiles.add(POCKET_DETECT);
     }
 
-    static {
-        sTimeoutFiles.put(WAKE_TIMEOUT, 30);
-        sTimeoutFiles.put(WAKE_TIMEOUT_2, 10);
-        sTimeoutFiles.put(T2W_TIMEOUT_SMDK4412, 60);
+    {
+        mTimeoutFiles.put(WAKE_TIMEOUT, 30);
+        mTimeoutFiles.put(WAKE_TIMEOUT_2, 10);
+        mTimeoutFiles.put(T2W_TIMEOUT_SMDK4412, 60);
     }
 
-    private static String WAKE;
-    private static String CAMERA;
-    private static String POCKET;
-    private static String TIMEOUT;
+    private String WAKE;
+    private String CAMERA;
+    private String POCKET;
+    private String TIMEOUT;
 
-    public static void setVibVibration(int value, Context context) {
+    private Misc() {
+        for (String file : mWakeFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                WAKE = file;
+                break;
+            }
+        }
+        for (String file : mCameraFiles) {
+            if (Utils.existFile(file)) {
+                CAMERA = file;
+                break;
+            }
+        }
+        for (String file : mPocketFiles) {
+            if (Utils.existFile(file)) {
+                POCKET = file;
+                break;
+            }
+        }
+        for (String file : mTimeoutFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                TIMEOUT = file;
+                break;
+            }
+        }
+    }
+
+    public void setVibVibration(int value, Context context) {
         run(Control.write(String.valueOf(value), VIB_VIBRATION), VIB_VIBRATION, context);
     }
 
-    public static int getVibVibration() {
+    public int getVibVibration() {
         return Utils.strToInt(Utils.readFile(VIB_VIBRATION));
     }
 
-    public static boolean hasVibVibration() {
+    public boolean hasVibVibration() {
         return Utils.existFile(VIB_VIBRATION);
     }
 
-    public static void enableVibration(boolean enable, Context context) {
+    public void enableVibration(boolean enable, Context context) {
         run(Control.write(enable ? "0" : "1", VIBRATION), VIB_VIBRATION, context);
     }
 
-    public static boolean isVibrationEnabled() {
+    public boolean isVibrationEnabled() {
         return Utils.readFile(VIBRATION).equals("0");
     }
 
-    public static boolean hasVibration() {
+    public boolean hasVibration() {
         return Utils.existFile(VIBRATION);
     }
 
-    public static void enablePowerKeySuspend(boolean enable, Context context) {
+    public void enablePowerKeySuspend(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", POWER_KEY_SUSPEND), POWER_KEY_SUSPEND, context);
     }
 
-    public static boolean isPowerKeySuspendEnabled() {
+    public boolean isPowerKeySuspendEnabled() {
         return Utils.readFile(POWER_KEY_SUSPEND).equals("1");
     }
 
-    public static boolean hasPowerKeySuspend() {
+    public boolean hasPowerKeySuspend() {
         return Utils.existFile(POWER_KEY_SUSPEND);
     }
 
-    public static void enableKeyPowerMode(boolean enable, Context context) {
+    public void enableKeyPowerMode(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", KEYPOWER_MODE_SMDK4412), KEYPOWER_MODE_SMDK4412, context);
     }
 
-    public static boolean isKeyPowerModeEnabled() {
+    public boolean isKeyPowerModeEnabled() {
         return Utils.readFile(KEYPOWER_MODE_SMDK4412).equals("1");
     }
 
-    public static boolean hasKeyPowerMode() {
+    public boolean hasKeyPowerMode() {
         return Utils.existFile(KEYPOWER_MODE_SMDK4412);
     }
 
-    public static void enableChargingMode(boolean enable, Context context) {
+    public void enableChargingMode(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", CHARGING_MODE_SMDK4412), CHARGING_MODE_SMDK4412, context);
     }
 
-    public static boolean isChargingModeEnabled() {
+    public boolean isChargingModeEnabled() {
         return Utils.readFile(CHARGING_MODE_SMDK4412).equals("1");
     }
 
-    public static boolean hasChargingMode() {
+    public boolean hasChargingMode() {
         return Utils.existFile(CHARGING_MODE_SMDK4412);
     }
 
-    public static void setChargeTimeout(int value, Context context) {
+    public void setChargeTimeout(int value, Context context) {
         run(Control.write(String.valueOf(value), T2W_CHARGE_TIMEOUT_SMDK4412),
                 T2W_CHARGE_TIMEOUT_SMDK4412, context);
     }
 
-    public static int getChargeTimeout() {
+    public int getChargeTimeout() {
         return Utils.strToInt(Utils.readFile(T2W_CHARGE_TIMEOUT_SMDK4412));
     }
 
-    public static boolean hasChargeTimeout() {
+    public boolean hasChargeTimeout() {
         return Utils.existFile(T2W_CHARGE_TIMEOUT_SMDK4412);
     }
 
-    public static void setTimeout(int value, Context context) {
+    public void setTimeout(int value, Context context) {
         run(Control.write(String.valueOf(value), TIMEOUT), TIMEOUT, context);
     }
 
-    public static int getTimeout() {
+    public int getTimeout() {
         return Utils.strToInt(Utils.readFile(TIMEOUT));
     }
 
-    public static int getTimeoutMax() {
-        return sTimeoutFiles.get(TIMEOUT);
+    public int getTimeoutMax() {
+        return mTimeoutFiles.get(TIMEOUT);
     }
 
-    public static boolean hasTimeout() {
-        if (TIMEOUT == null) {
-            for (String file : sTimeoutFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    TIMEOUT = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasTimeout() {
         return TIMEOUT != null;
     }
 
-    public static void enablePocket(boolean enable, Context context) {
+    public void enablePocket(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", POCKET), POCKET, context);
     }
 
-    public static boolean isPocketEnabled() {
+    public boolean isPocketEnabled() {
         return Utils.readFile(POCKET).equals("1");
     }
 
-    public static boolean hasPocket() {
-        if (POCKET == null) {
-            for (String file : sPocketFiles) {
-                if (Utils.existFile(file)) {
-                    POCKET = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasPocket() {
         return POCKET != null;
     }
 
-    public static void enableCamera(boolean enable, Context context) {
+    public void enableCamera(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", CAMERA), CAMERA, context);
     }
 
-    public static boolean isCameraEnabled() {
+    public boolean isCameraEnabled() {
         return Utils.readFile(CAMERA).equals("1");
     }
 
-    public static boolean hasCamera() {
-        if (CAMERA == null) {
-            for (String file : sCameraFiles) {
-                if (Utils.existFile(file)) {
-                    CAMERA = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasCamera() {
         return CAMERA != null;
     }
 
-    public static void setWake(int value, Context context) {
+    public void setWake(int value, Context context) {
         run(Control.write(String.valueOf(value), WAKE), WAKE, context);
     }
 
-    public static int getWake() {
+    public int getWake() {
         return Utils.strToInt(Utils.readFile(WAKE));
     }
 
-    public static List<String> getWakeMenu(Context context) {
+    public List<String> getWakeMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : sWakeFiles.get(WAKE)) {
+        for (int id : mWakeFiles.get(WAKE)) {
             list.add(context.getString(id));
         }
         return list;
     }
 
-    public static boolean hasWake() {
-        if (WAKE == null) {
-            for (String file : sWakeFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    WAKE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasWake() {
         return WAKE != null;
     }
 
-    public static boolean supported() {
+    public boolean supported() {
         return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasChargeTimeout() || hasPowerKeySuspend()
                 || hasKeyPowerMode() || hasChargingMode() || hasVibration() || hasVibVibration();
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

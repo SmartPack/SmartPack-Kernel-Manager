@@ -24,6 +24,7 @@ import android.content.Context;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.misc.Misc;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
@@ -36,38 +37,56 @@ import java.util.List;
  */
 public class LED {
 
+    private static LED sInstance;
+
+    public static LED getInstance() {
+        if (sInstance == null) {
+            sInstance = new LED();
+        }
+        return sInstance;
+    }
+
     private static final String RED_FADE = "/sys/class/leds/red/led_fade";
     private static final String RED_INTENSITY = "/sys/class/leds/red/led_intensity";
     private static final String RED_SPEED = "/sys/class/leds/red/led_speed";
     private static final String GREEN_RATE = "/sys/class/leds/green/rate";
 
-    private static final LinkedHashMap<Integer, Boolean> sRedSpeed = new LinkedHashMap<>();
-    private static final LinkedHashMap<Integer, Boolean> sGreenRate = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, Boolean> mRedSpeed = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, Boolean> mGreenRate = new LinkedHashMap<>();
 
-    private static final HashMap<String, LinkedHashMap<Integer, Boolean>> sSpeeds = new HashMap<>();
+    private final HashMap<String, LinkedHashMap<Integer, Boolean>> mSpeeds = new HashMap<>();
 
-    static {
-        sRedSpeed.put(R.string.stock, true);
-        sRedSpeed.put(R.string.continuous_light, true);
+    {
+        mRedSpeed.put(R.string.stock, true);
+        mRedSpeed.put(R.string.continuous_light, true);
         for (int i = 2; i < 21; i++) {
-            sRedSpeed.put(i, false);
+            mRedSpeed.put(i, false);
         }
 
         for (int i = 0; i < 4; i++) {
-            sGreenRate.put(i, false);
+            mGreenRate.put(i, false);
         }
 
-        sSpeeds.put(RED_SPEED, sRedSpeed);
-        sSpeeds.put(GREEN_RATE, sGreenRate);
+        mSpeeds.put(RED_SPEED, mRedSpeed);
+        mSpeeds.put(GREEN_RATE, mGreenRate);
     }
 
-    private static String SPEED;
+    private String SPEED;
 
-    public static void setSpeed(int value, Context context) {
+    private LED() {
+        for (String file : mSpeeds.keySet()) {
+            if (Utils.existFile(file)) {
+                SPEED = file;
+                break;
+            }
+        }
+    }
+
+    public void setSpeed(int value, Context context) {
         run(Control.write(String.valueOf(value), SPEED), SPEED, context);
     }
 
-    public static int getSpeed() {
+    public int getSpeed() {
         String value = Utils.readFile(SPEED);
         if (value.matches("\\d.+.(-)*")) {
             value = value.split("-")[0].trim();
@@ -75,30 +94,23 @@ public class LED {
         return Utils.strToInt(value);
     }
 
-    public static List<String> getSpeedMenu(Context context) {
+    public List<String> getSpeedMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int i : sSpeeds.get(SPEED).keySet()) {
-            list.add(sSpeeds.get(SPEED).get(i) ? context.getString(i) : String.valueOf(i));
+        for (int i : mSpeeds.get(SPEED).keySet()) {
+            list.add(mSpeeds.get(SPEED).get(i) ? context.getString(i) : String.valueOf(i));
         }
         return list;
     }
 
-    public static boolean hasSpeed() {
-        if (SPEED != null) return true;
-        for (String file : sSpeeds.keySet()) {
-            if (Utils.existFile(file)) {
-                SPEED = file;
-                return true;
-            }
-        }
-        return false;
+    public boolean hasSpeed() {
+        return SPEED != null;
     }
 
-    public static void setIntensity(int value, Context context) {
+    public void setIntensity(int value, Context context) {
         run(Control.write(String.valueOf(value), RED_INTENSITY), RED_INTENSITY, context);
     }
 
-    public static int getIntensity() {
+    public int getIntensity() {
         String value = Utils.readFile(RED_INTENSITY);
         if (value.matches("\\d.+.(-)*")) {
             value = value.split("-")[0].trim();
@@ -106,27 +118,27 @@ public class LED {
         return Utils.strToInt(value);
     }
 
-    public static boolean hasIntensity() {
+    public boolean hasIntensity() {
         return Utils.existFile(RED_INTENSITY);
     }
 
-    public static void enableFade(boolean enable, Context context) {
+    public void enableFade(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", RED_FADE), RED_FADE, context);
     }
 
-    public static boolean isFadeEnabled() {
+    public boolean isFadeEnabled() {
         return Utils.readFile(RED_FADE).startsWith("1");
     }
 
-    public static boolean hasFade() {
+    public boolean hasFade() {
         return Utils.existFile(RED_FADE);
     }
 
-    public static boolean supported() {
+    public boolean supported() {
         return hasFade() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.LED, id, context);
     }
 

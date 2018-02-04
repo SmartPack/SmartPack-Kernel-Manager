@@ -82,7 +82,8 @@ public class BluPlug {
     }
 
     public static void setBluPlugMaxFreqScreenOff(int position, Context context) {
-        String command = position == 0 ? "0" : String.valueOf(CPUFreq.getFreqs().get(position - 1));
+        String command = position == 0 ? "0" : String.valueOf(CPUFreq.getInstance(context)
+                .getFreqs().get(position - 1));
         run(Control.write(command, HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF),
                 HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF, context);
     }
@@ -90,11 +91,11 @@ public class BluPlug {
     public static int getBluPlugMaxFreqScreenOff() {
         String value = Utils.readFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
         if (value.equals("0")) return 0;
-        return CPUFreq.getFreqs().indexOf(Utils.strToInt(value)) + 1;
+        return CPUFreq.getInstance().getFreqs().indexOf(Utils.strToInt(value)) + 1;
     }
 
     public static boolean hasBluPlugMaxFreqScreenOff() {
-        return !CPUFreq.hasMaxScreenOffFreq()
+        return !CPUFreq.getInstance().hasMaxScreenOffFreq()
                 && Utils.existFile(HOTPLUG_BLU_PLUG_MAX_FREQ_SCREEN_OFF);
     }
 

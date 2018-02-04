@@ -165,6 +165,8 @@ public class CpuStateMonitor {
      * frequency and a duration (time spent in that state
      */
     public void updateStates() throws CpuStateMonitorException {
+        CPUFreq cpuFreq = CPUFreq.getInstance();
+
         mStates.clear();
         try {
             String file;
@@ -173,13 +175,13 @@ public class CpuStateMonitor {
             } else {
                 file = Utils.strFormat(CPUFreq.TIME_STATE_2, mCore);
             }
-            boolean offline = CPUFreq.isOffline(mCore);
+            boolean offline = cpuFreq.isOffline(mCore);
             if (offline) {
-                CPUFreq.onlineCpu(mCore, true, false, null);
+                cpuFreq.onlineCpu(mCore, true, false, null);
             }
             String states = Utils.readFile(file);
             if (offline) {
-                CPUFreq.onlineCpu(mCore, false, false, null);
+                cpuFreq.onlineCpu(mCore, false, false, null);
             }
             if (states.isEmpty()) {
                 throw new CpuStateMonitorException("Problem opening time-in-states file");

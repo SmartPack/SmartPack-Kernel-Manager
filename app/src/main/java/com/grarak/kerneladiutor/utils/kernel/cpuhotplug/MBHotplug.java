@@ -34,6 +34,15 @@ import java.util.List;
  */
 public class MBHotplug {
 
+    private static MBHotplug sInstance;
+
+    public static MBHotplug getInstance() {
+        if (sInstance == null) {
+            sInstance = new MBHotplug();
+        }
+        return sInstance;
+    }
+
     private static final String MSM_MPDECISION_HOTPLUG = "/sys/kernel/msm_mpdecision/conf";
     private static final String BRICKED_HOTPLUG = "/sys/kernel/bricked_hotplug/conf";
     private static final String MB_ENABLED = "enabled";
@@ -52,186 +61,195 @@ public class MBHotplug {
     private static final String MB_DELAY = "delay";
     private static final String MB_PAUSE = "pause";
 
-    private static String PARENT;
-    private static String MIN_CPUS_FILE;
-    private static String MAX_CPUS_FILE;
+    private String PARENT;
+    private String MIN_CPUS_FILE;
+    private String MAX_CPUS_FILE;
 
-    public static void setMBHotplugPause(int value, Context context) {
+    private MBHotplug() {
+        if (Utils.existFile(MSM_MPDECISION_HOTPLUG)) PARENT = MSM_MPDECISION_HOTPLUG;
+        else if (Utils.existFile(BRICKED_HOTPLUG)) PARENT = BRICKED_HOTPLUG;
+
+        if (PARENT == null) return;
+
+        if (Utils.existFile(PARENT + "/" + MB_MIN_CPUS))
+            MIN_CPUS_FILE = PARENT + "/" + MB_MIN_CPUS;
+        else if (Utils.existFile(PARENT + "/" + MB_MIN_CPUS_ONLINE))
+            MIN_CPUS_FILE = PARENT + "/" + MB_MIN_CPUS_ONLINE;
+
+        if (Utils.existFile(PARENT + "/" + MB_MAX_CPUS))
+            MAX_CPUS_FILE = PARENT + "/" + MB_MAX_CPUS;
+        else if (Utils.existFile(PARENT + "/" + MB_MAX_CPUS_ONLINE))
+            MAX_CPUS_FILE = PARENT + "/" + MB_MAX_CPUS_ONLINE;
+    }
+
+    public void setMBHotplugPause(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_PAUSE), PARENT + "/" + MB_PAUSE, context);
     }
 
-    public static int getMBHotplugPause() {
+    public int getMBHotplugPause() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_PAUSE));
     }
 
-    public static boolean hasMBHotplugPause() {
+    public boolean hasMBHotplugPause() {
         return Utils.existFile(PARENT + "/" + MB_PAUSE);
     }
 
-    public static void setMBHotplugDelay(int value, Context context) {
+    public void setMBHotplugDelay(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_DELAY), PARENT + "/" + MB_DELAY, context);
     }
 
-    public static int getMBHotplugDelay() {
+    public int getMBHotplugDelay() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_DELAY));
     }
 
-    public static boolean hasMBHotplugDelay() {
+    public boolean hasMBHotplugDelay() {
         return Utils.existFile(PARENT + "/" + MB_DELAY);
     }
 
-    public static void setMBHotplugStartDelay(int value, Context context) {
+    public void setMBHotplugStartDelay(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_STARTDELAY),
                 PARENT + "/" + MB_STARTDELAY, context);
     }
 
-    public static int getMBHotplugStartDelay() {
+    public int getMBHotplugStartDelay() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_STARTDELAY));
     }
 
-    public static boolean hasMBHotplugStartDelay() {
+    public boolean hasMBHotplugStartDelay() {
         return Utils.existFile(PARENT + "/" + MB_STARTDELAY);
     }
 
-    public static void setMBHotplugBoostFreqs(int core, int value, Context context) {
+    public void setMBHotplugBoostFreqs(int core, int value, Context context) {
         run(Control.write(core + " " + value, PARENT + "/" + MB_BOOST_FREQS),
                 PARENT + "/" + MB_BOOST_FREQS, context);
     }
 
-    public static List<Integer> getMBHotplugBoostFreqs() {
+    public List<Integer> getMBHotplugBoostFreqs() {
         List<Integer> list = new ArrayList<>();
         for (String freq : Utils.readFile(PARENT + "/" + MB_BOOST_FREQS).split(" "))
             list.add(Utils.strToInt(freq));
         return list;
     }
 
-    public static boolean hasMBHotplugBoostFreqs() {
+    public boolean hasMBHotplugBoostFreqs() {
         return Utils.existFile(PARENT + "/" + MB_BOOST_FREQS);
     }
 
-    public static void setMBHotplugCpusBoosted(int value, Context context) {
+    public void setMBHotplugCpusBoosted(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_CPUS_BOOSTED),
                 PARENT + "/" + MB_CPUS_BOOSTED, context);
     }
 
-    public static int getMBHotplugCpusBoosted() {
+    public int getMBHotplugCpusBoosted() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_CPUS_BOOSTED));
     }
 
-    public static boolean hasMBHotplugCpusBoosted() {
+    public boolean hasMBHotplugCpusBoosted() {
         return Utils.existFile(PARENT + "/" + MB_CPUS_BOOSTED);
     }
 
-    public static void setMBHotplugBoostTime(int value, Context context) {
+    public void setMBHotplugBoostTime(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_BOOST_TIME),
                 PARENT + "/" + MB_BOOST_TIME, context);
     }
 
-    public static int getMBHotplugBoostTime() {
+    public int getMBHotplugBoostTime() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_BOOST_TIME));
     }
 
-    public static boolean hasMBHotplugBoostTime() {
+    public boolean hasMBHotplugBoostTime() {
         return Utils.existFile(PARENT + "/" + MB_BOOST_TIME);
     }
 
-    public static void enableMBHotplugBoost(boolean enable, Context context) {
+    public void enableMBHotplugBoost(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARENT + "/" + MB_BOOST_ENABLED),
                 PARENT + "/" + MB_BOOST_ENABLED, context);
     }
 
-    public static boolean isMBHotplugBoostEnabled() {
+    public boolean isMBHotplugBoostEnabled() {
         return Utils.readFile(PARENT + "/" + MB_BOOST_ENABLED).equals("1");
     }
 
-    public static boolean hasMBHotplugBoostEnable() {
+    public boolean hasMBHotplugBoostEnable() {
         return Utils.existFile(PARENT + "/" + MB_BOOST_ENABLED);
     }
 
-    public static void setMBHotplugIdleFreq(int value, Context context) {
+    public void setMBHotplugIdleFreq(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_IDLE_FREQ),
                 PARENT + "/" + MB_IDLE_FREQ, context);
     }
 
-    public static int getMBHotplugIdleFreq() {
+    public int getMBHotplugIdleFreq() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_IDLE_FREQ));
     }
 
-    public static boolean hasMBHotplugIdleFreq() {
+    public boolean hasMBHotplugIdleFreq() {
         return Utils.existFile(PARENT + "/" + MB_IDLE_FREQ);
     }
 
-    public static void setMBHotplugMaxCpusOnlineSusp(int value, Context context) {
+    public void setMBHotplugMaxCpusOnlineSusp(int value, Context context) {
         run(Control.write(String.valueOf(value), PARENT + "/" + MB_CPUS_ONLINE_SUSP),
                 PARENT + "/" + MB_CPUS_ONLINE_SUSP, context);
     }
 
-    public static int getMBHotplugMaxCpusOnlineSusp() {
+    public int getMBHotplugMaxCpusOnlineSusp() {
         return Utils.strToInt(Utils.readFile(PARENT + "/" + MB_CPUS_ONLINE_SUSP));
     }
 
-    public static boolean hasMBHotplugMaxCpusOnlineSusp() {
+    public boolean hasMBHotplugMaxCpusOnlineSusp() {
         return Utils.existFile(PARENT + "/" + MB_CPUS_ONLINE_SUSP);
     }
 
-    public static void setMBHotplugMaxCpus(int value, Context context) {
+    public void setMBHotplugMaxCpus(int value, Context context) {
         run(Control.write(String.valueOf(value), MAX_CPUS_FILE), MAX_CPUS_FILE, context);
     }
 
-    public static int getMBHotplugMaxCpus() {
+    public int getMBHotplugMaxCpus() {
         return Utils.strToInt(Utils.readFile(MAX_CPUS_FILE));
     }
 
-    public static boolean hasMBHotplugMaxCpus() {
-        if (Utils.existFile(PARENT + "/" + MB_MAX_CPUS))
-            MAX_CPUS_FILE = PARENT + "/" + MB_MAX_CPUS;
-        else if (Utils.existFile(PARENT + "/" + MB_MAX_CPUS_ONLINE))
-            MAX_CPUS_FILE = PARENT + "/" + MB_MAX_CPUS_ONLINE;
+    public boolean hasMBHotplugMaxCpus() {
         return MAX_CPUS_FILE != null;
     }
 
-    public static void setMBHotplugMinCpus(int value, Context context) {
+    public void setMBHotplugMinCpus(int value, Context context) {
         run(Control.write(String.valueOf(value), MIN_CPUS_FILE), MIN_CPUS_FILE, context);
     }
 
-    public static int getMBHotplugMinCpus() {
+    public int getMBHotplugMinCpus() {
         return Utils.strToInt(Utils.readFile(MIN_CPUS_FILE));
     }
 
-    public static boolean hasMBHotplugMinCpus() {
-        if (Utils.existFile(PARENT + "/" + MB_MIN_CPUS))
-            MIN_CPUS_FILE = PARENT + "/" + MB_MIN_CPUS;
-        else if (Utils.existFile(PARENT + "/" + MB_MIN_CPUS_ONLINE))
-            MIN_CPUS_FILE = PARENT + "/" + MB_MIN_CPUS_ONLINE;
+    public boolean hasMBHotplugMinCpus() {
         return MIN_CPUS_FILE != null;
     }
 
-    public static void enableMBHotplugScroffSingleCore(boolean enable, Context context) {
+    public void enableMBHotplugScroffSingleCore(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARENT + "/" + MB_SCROFF_SINGLE_CORE),
                 PARENT + "/" + MB_SCROFF_SINGLE_CORE, context);
     }
 
-    public static boolean isMBHotplugScroffSingleCoreEnabled() {
+    public boolean isMBHotplugScroffSingleCoreEnabled() {
         return Utils.readFile(PARENT + "/" + MB_SCROFF_SINGLE_CORE).equals("1");
     }
 
-    public static boolean hasMBHotplugScroffSingleCore() {
+    public boolean hasMBHotplugScroffSingleCore() {
         return Utils.existFile(PARENT + "/" + MB_SCROFF_SINGLE_CORE);
     }
 
-    public static void enableMBHotplug(boolean enable, Context context) {
+    public void enableMBHotplug(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARENT + "/" + MB_ENABLED), PARENT + "/" + MB_ENABLED, context);
     }
 
-    public static boolean isMBHotplugEnabled() {
+    public boolean isMBHotplugEnabled() {
         return Utils.readFile(PARENT + "/" + MB_ENABLED).equals("1");
     }
 
-    public static boolean hasMBGHotplugEnable() {
+    public boolean hasMBGHotplugEnable() {
         return Utils.existFile(PARENT + "/" + MB_ENABLED);
     }
 
-    public static String getMBName(Context context) {
+    public String getMBName(Context context) {
         switch (PARENT) {
             case MSM_MPDECISION_HOTPLUG:
                 return context.getString(R.string.msm_mpdecision_hotplug);
@@ -242,13 +260,11 @@ public class MBHotplug {
         }
     }
 
-    public static boolean supported() {
-        if (Utils.existFile(MSM_MPDECISION_HOTPLUG)) PARENT = MSM_MPDECISION_HOTPLUG;
-        else if (Utils.existFile(BRICKED_HOTPLUG)) PARENT = BRICKED_HOTPLUG;
+    public boolean supported() {
         return PARENT != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.CPU_HOTPLUG, id, context);
     }
 

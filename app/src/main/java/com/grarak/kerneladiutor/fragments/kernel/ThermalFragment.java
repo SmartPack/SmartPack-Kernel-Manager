@@ -40,10 +40,15 @@ import java.util.List;
  */
 public class ThermalFragment extends RecyclerViewFragment {
 
+    private CPUFreq mCPUFreq;
+    private MSMThermal mMSMThermal;
+
     @Override
     protected void init() {
         super.init();
 
+        mCPUFreq = CPUFreq.getInstance(getActivity());
+        mMSMThermal = MSMThermal.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.warning),
                 getString(R.string.thermal_info)));
@@ -54,7 +59,7 @@ public class ThermalFragment extends RecyclerViewFragment {
         if (Thermald.supported()) {
             thermaldInit(items);
         }
-        if (MSMThermal.supported()) {
+        if (mMSMThermal.supported()) {
             msmThermalInit(items);
         }
     }
@@ -75,80 +80,80 @@ public class ThermalFragment extends RecyclerViewFragment {
     }
 
     private void msmThermalInit(List<RecyclerViewItem> items) {
-        if (MSMThermal.hasIntelliThermalEnable()) {
+        if (mMSMThermal.hasIntelliThermalEnable()) {
             SwitchView intelliThermal = new SwitchView();
             intelliThermal.setTitle(getString(R.string.intellithermal));
             intelliThermal.setSummary(getString(R.string.intellithermal_summary));
-            intelliThermal.setChecked(MSMThermal.isIntelliThermalEnabled());
+            intelliThermal.setChecked(mMSMThermal.isIntelliThermalEnabled());
             intelliThermal.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableIntelliThermal(isChecked, getActivity());
+                    mMSMThermal.enableIntelliThermal(isChecked, getActivity());
                 }
             });
 
             items.add(intelliThermal);
         }
 
-        if (MSMThermal.hasIntelliThermalOptimizedEnable()) {
+        if (mMSMThermal.hasIntelliThermalOptimizedEnable()) {
             SwitchView intelliThermalOptimized = new SwitchView();
             intelliThermalOptimized.setTitle(getString(R.string.intellithermal_optimized));
             intelliThermalOptimized.setSummary(getString(R.string.intellithermal_optimized_summary));
-            intelliThermalOptimized.setChecked(MSMThermal.isIntelliThermalOptimizedEnabled());
+            intelliThermalOptimized.setChecked(mMSMThermal.isIntelliThermalOptimizedEnabled());
             intelliThermalOptimized.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableIntelliThermalOptimized(isChecked, getActivity());
+                    mMSMThermal.enableIntelliThermalOptimized(isChecked, getActivity());
                 }
             });
 
             items.add(intelliThermalOptimized);
         }
 
-        if (MSMThermal.hasThermalDebugMode()) {
+        if (mMSMThermal.hasThermalDebugMode()) {
             SwitchView debugMode = new SwitchView();
             debugMode.setTitle(getString(R.string.debug_mask));
             debugMode.setSummary(getString(R.string.thermal_debug_mask_summary));
-            debugMode.setChecked(MSMThermal.isThermalDebugModeEnabled());
+            debugMode.setChecked(mMSMThermal.isThermalDebugModeEnabled());
             debugMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableThermalDebugMode(isChecked, getActivity());
+                    mMSMThermal.enableThermalDebugMode(isChecked, getActivity());
                 }
             });
 
             items.add(debugMode);
         }
 
-        if (MSMThermal.hasCoreControl()) {
+        if (mMSMThermal.hasCoreControl()) {
             SwitchView coreControl = new SwitchView();
             coreControl.setSummary(getString(R.string.core_control));
-            coreControl.setChecked(MSMThermal.isCoreControlEnabled());
+            coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
             coreControl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableCoreControl(isChecked, getActivity());
+                    mMSMThermal.enableCoreControl(isChecked, getActivity());
                 }
             });
 
             items.add(coreControl);
         }
 
-        if (MSMThermal.hasVddRestrictionEnable()) {
+        if (mMSMThermal.hasVddRestrictionEnable()) {
             SwitchView vddRestriction = new SwitchView();
             vddRestriction.setSummary(getString(R.string.vdd_restriction));
-            vddRestriction.setChecked(MSMThermal.isVddRestrictionEnabled());
+            vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
             vddRestriction.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableVddRestriction(isChecked, getActivity());
+                    mMSMThermal.enableVddRestriction(isChecked, getActivity());
                 }
             });
 
             items.add(vddRestriction);
         }
 
-        if (MSMThermal.hasLimitTempDegC()) {
+        if (mMSMThermal.hasLimitTempDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 50; i <= 100; i++) {
@@ -160,7 +165,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             limitTempDegC.setSummary(getString(R.string.freq_throttle_temp_summary));
             limitTempDegC.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             limitTempDegC.setItems(list);
-            limitTempDegC.setProgress(MSMThermal.getLimitTempDegC() - 50);
+            limitTempDegC.setProgress(mMSMThermal.getLimitTempDegC() - 50);
             limitTempDegC.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -168,14 +173,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setLimitTempDegC(position + 50, getActivity());
+                    mMSMThermal.setLimitTempDegC(position + 50, getActivity());
                 }
             });
 
             items.add(limitTempDegC);
         }
 
-        if (MSMThermal.hasCoreLimitTempDegC()) {
+        if (mMSMThermal.hasCoreLimitTempDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 50; i <= 100; i++) {
@@ -187,7 +192,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             coreLimitTempDegC.setSummary(getString(R.string.cpu_throttle_temp_summary));
             coreLimitTempDegC.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             coreLimitTempDegC.setItems(list);
-            coreLimitTempDegC.setProgress(MSMThermal.getCoreLimitTempDegC() - 50);
+            coreLimitTempDegC.setProgress(mMSMThermal.getCoreLimitTempDegC() - 50);
             coreLimitTempDegC.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -195,14 +200,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setCoreLimitTempDegC(position + 50, getActivity());
+                    mMSMThermal.setCoreLimitTempDegC(position + 50, getActivity());
                 }
             });
 
             items.add(coreLimitTempDegC);
         }
 
-        if (MSMThermal.hasCoreTempHysteresisDegC()) {
+        if (mMSMThermal.hasCoreTempHysteresisDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 0; i <= 20; i++) {
@@ -213,7 +218,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             coreTempHysteresisDegC.setTitle(getString(R.string.cpu_temp_hysteresis));
             coreTempHysteresisDegC.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             coreTempHysteresisDegC.setItems(list);
-            coreTempHysteresisDegC.setProgress(MSMThermal.getCoreTempHysteresisDegC());
+            coreTempHysteresisDegC.setProgress(mMSMThermal.getCoreTempHysteresisDegC());
             coreTempHysteresisDegC.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -221,19 +226,19 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setCoreTempHysteresisDegC(position, getActivity());
+                    mMSMThermal.setCoreTempHysteresisDegC(position, getActivity());
                 }
             });
 
             items.add(coreTempHysteresisDegC);
         }
 
-        if (MSMThermal.hasFreqStep()) {
+        if (mMSMThermal.hasFreqStep()) {
             SeekBarView freqStep = new SeekBarView();
             freqStep.setTitle(getString(R.string.freq_step));
             freqStep.setMax(10);
             freqStep.setMin(1);
-            freqStep.setProgress(MSMThermal.getFreqStep() - 1);
+            freqStep.setProgress(mMSMThermal.getFreqStep() - 1);
             freqStep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -241,34 +246,34 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setFreqStep(position + 1, getActivity());
+                    mMSMThermal.setFreqStep(position + 1, getActivity());
                 }
             });
 
             items.add(freqStep);
         }
 
-        if (MSMThermal.hasImmediatelyLimitStop()) {
+        if (mMSMThermal.hasImmediatelyLimitStop()) {
             SwitchView immediatelyLimitStop = new SwitchView();
             immediatelyLimitStop.setSummary(getString(R.string.immediately_limit_stop));
-            immediatelyLimitStop.setChecked(MSMThermal.isImmediatelyLimitStopEnabled());
+            immediatelyLimitStop.setChecked(mMSMThermal.isImmediatelyLimitStopEnabled());
             immediatelyLimitStop.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableImmediatelyLimitStop(isChecked, getActivity());
+                    mMSMThermal.enableImmediatelyLimitStop(isChecked, getActivity());
                 }
             });
 
             items.add(immediatelyLimitStop);
         }
 
-        if (MSMThermal.hasPollMs()) {
+        if (mMSMThermal.hasPollMs()) {
             SeekBarView pollMs = new SeekBarView();
             pollMs.setTitle(getString(R.string.poll));
             pollMs.setUnit(getString(R.string.ms));
             pollMs.setMax(3000);
             pollMs.setOffset(10);
-            pollMs.setProgress(MSMThermal.getPollMs() / 10);
+            pollMs.setProgress(mMSMThermal.getPollMs() / 10);
             pollMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -276,14 +281,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setPollMs(position * 10, getActivity());
+                    mMSMThermal.setPollMs(position * 10, getActivity());
                 }
             });
 
             items.add(pollMs);
         }
 
-        if (MSMThermal.hasTempHysteresisDegC()) {
+        if (mMSMThermal.hasTempHysteresisDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 0; i <= 20; i++) {
@@ -294,7 +299,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             tempHysteresisDegC.setTitle(getString(R.string.temp_hysteresis));
             tempHysteresisDegC.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             tempHysteresisDegC.setItems(list);
-            tempHysteresisDegC.setProgress(MSMThermal.getTempHysteresisDegC());
+            tempHysteresisDegC.setProgress(mMSMThermal.getTempHysteresisDegC());
             tempHysteresisDegC.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -302,19 +307,19 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setTempHysteresisDegC(position, getActivity());
+                    mMSMThermal.setTempHysteresisDegC(position, getActivity());
                 }
             });
 
             items.add(tempHysteresisDegC);
         }
 
-        if (MSMThermal.hasThermalLimitLow()) {
+        if (mMSMThermal.hasThermalLimitLow()) {
             SeekBarView limitLow = new SeekBarView();
             limitLow.setTitle(getString(R.string.thermal_limit_low));
             limitLow.setMax(30);
             limitLow.setMin(1);
-            limitLow.setProgress(MSMThermal.getThermalLimitLow() - 1);
+            limitLow.setProgress(mMSMThermal.getThermalLimitLow() - 1);
             limitLow.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -322,19 +327,19 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setThermalLimitLow(position + 1, getActivity());
+                    mMSMThermal.setThermalLimitLow(position + 1, getActivity());
                 }
             });
 
             items.add(limitLow);
         }
 
-        if (MSMThermal.hasThermalLimitHigh()) {
+        if (mMSMThermal.hasThermalLimitHigh()) {
             SeekBarView limitHigh = new SeekBarView();
             limitHigh.setTitle(getString(R.string.thermal_limit_high));
             limitHigh.setMax(30);
             limitHigh.setMin(1);
-            limitHigh.setProgress(MSMThermal.getThermalLimitHigh() - 1);
+            limitHigh.setProgress(mMSMThermal.getThermalLimitHigh() - 1);
             limitHigh.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -342,51 +347,51 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setThermalLimitHigh(position + 1, getActivity());
+                    mMSMThermal.setThermalLimitHigh(position + 1, getActivity());
                 }
             });
 
             items.add(limitHigh);
         }
 
-        if (MSMThermal.hasTempSafety()) {
+        if (mMSMThermal.hasTempSafety()) {
             SwitchView tempSafety = new SwitchView();
             tempSafety.setSummary(getString(R.string.temp_safety));
-            tempSafety.setChecked(MSMThermal.isTempSafetyEnabled());
+            tempSafety.setChecked(mMSMThermal.isTempSafetyEnabled());
             tempSafety.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableTempSafety(isChecked, getActivity());
+                    mMSMThermal.enableTempSafety(isChecked, getActivity());
                 }
             });
 
             items.add(tempSafety);
         }
 
-        if (MSMThermal.hasTempThrottleEnable()) {
+        if (mMSMThermal.hasTempThrottleEnable()) {
             SwitchView tempThrottle = new SwitchView();
             tempThrottle.setTitle(getString(R.string.temp_throttle));
             tempThrottle.setSummary(getString(R.string.temp_throttle_summary));
-            tempThrottle.setChecked(MSMThermal.isTempThrottleEnabled());
+            tempThrottle.setChecked(mMSMThermal.isTempThrottleEnabled());
             tempThrottle.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableTempThrottle(isChecked, getActivity());
+                    mMSMThermal.enableTempThrottle(isChecked, getActivity());
                 }
             });
 
             items.add(tempThrottle);
         }
 
-        if (MSMThermal.hasTempLimit()) {
+        if (mMSMThermal.hasTempLimit()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
 
             SeekBarView tempLimit = new SeekBarView();
             tempLimit.setTitle(getString(R.string.temp_limit));
             tempLimit.setSummary(getString(R.string.temp_limit_summary));
             tempLimit.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
-            tempLimit.setItems(MSMThermal.getTempLimitList(fahrenheit));
-            tempLimit.setProgress(MSMThermal.getCurTempLimit() - MSMThermal.getTempLimitMin());
+            tempLimit.setItems(mMSMThermal.getTempLimitList(fahrenheit));
+            tempLimit.setProgress(mMSMThermal.getCurTempLimit() - mMSMThermal.getTempLimitMin());
             tempLimit.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -394,45 +399,45 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setTempLimit(position + MSMThermal.getTempLimitMin(), getActivity());
+                    mMSMThermal.setTempLimit(position + mMSMThermal.getTempLimitMin(), getActivity());
                 }
             });
 
             items.add(tempLimit);
         }
 
-        if (MSMThermal.hasFreqLimitDebug()) {
+        if (mMSMThermal.hasFreqLimitDebug()) {
             SwitchView freqLimitDebug = new SwitchView();
             freqLimitDebug.setTitle(getString(R.string.freq_limit_debug));
             freqLimitDebug.setSummary(getString(R.string.freq_limit_debug_summary));
-            freqLimitDebug.setChecked(MSMThermal.isFreqLimitDebugEnabled());
+            freqLimitDebug.setChecked(mMSMThermal.isFreqLimitDebugEnabled());
             freqLimitDebug.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMThermal.enableFreqLimitDebug(isChecked, getActivity());
+                    mMSMThermal.enableFreqLimitDebug(isChecked, getActivity());
                 }
             });
 
             items.add(freqLimitDebug);
         }
 
-        if (MSMThermal.hasMinFreqIndex() && CPUFreq.getFreqs() != null) {
+        if (mMSMThermal.hasMinFreqIndex() && mCPUFreq.getFreqs() != null) {
             SelectView minFreqIndex = new SelectView();
             minFreqIndex.setTitle(getString(R.string.temp_limit_min_freq));
             minFreqIndex.setSummary(getString(R.string.temp_limit_min_freq_summary));
-            minFreqIndex.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            minFreqIndex.setItem((MSMThermal.getMinFreqIndex() / 1000) + getString(R.string.mhz));
+            minFreqIndex.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            minFreqIndex.setItem((mMSMThermal.getMinFreqIndex() / 1000) + getString(R.string.mhz));
             minFreqIndex.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMThermal.setMinFreqIndex(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMThermal.setMinFreqIndex(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             items.add(minFreqIndex);
         }
 
-        if (MSMThermal.hasAllowedLowLow()) {
+        if (mMSMThermal.hasAllowedLowLow()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -443,7 +448,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedLowLow.setTitle(getString(R.string.allowed_low_low));
             allowedLowLow.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             allowedLowLow.setItems(list);
-            allowedLowLow.setProgress(MSMThermal.getAllowedLowLow() - 40);
+            allowedLowLow.setProgress(mMSMThermal.getAllowedLowLow() - 40);
             allowedLowLow.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -451,14 +456,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedLowLow(position + 40, getActivity());
+                    mMSMThermal.setAllowedLowLow(position + 40, getActivity());
                 }
             });
 
             items.add(allowedLowLow);
         }
 
-        if (MSMThermal.hasAllowedLowHigh()) {
+        if (mMSMThermal.hasAllowedLowHigh()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -469,7 +474,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedLowHigh.setTitle(getString(R.string.allowed_low_high));
             allowedLowHigh.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             allowedLowHigh.setItems(list);
-            allowedLowHigh.setProgress(MSMThermal.getAllowedLowHigh() - 40);
+            allowedLowHigh.setProgress(mMSMThermal.getAllowedLowHigh() - 40);
             allowedLowHigh.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -477,29 +482,29 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedLowHigh(position + 40, getActivity());
+                    mMSMThermal.setAllowedLowHigh(position + 40, getActivity());
                 }
             });
 
             items.add(allowedLowHigh);
         }
 
-        if (MSMThermal.hasAllowedLowFreq() && CPUFreq.getFreqs() != null) {
+        if (mMSMThermal.hasAllowedLowFreq() && mCPUFreq.getFreqs() != null) {
             SelectView allowedLowFreq = new SelectView();
             allowedLowFreq.setSummary(getString(R.string.allowed_low_freq));
-            allowedLowFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            allowedLowFreq.setItem((MSMThermal.getAllowedLowFreq() / 1000) + getString(R.string.mhz));
+            allowedLowFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            allowedLowFreq.setItem((mMSMThermal.getAllowedLowFreq() / 1000) + getString(R.string.mhz));
             allowedLowFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMThermal.setAllowedLowFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMThermal.setAllowedLowFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             items.add(allowedLowFreq);
         }
 
-        if (MSMThermal.hasAllowedMidLow()) {
+        if (mMSMThermal.hasAllowedMidLow()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -510,7 +515,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             alloweMidLow.setTitle(getString(R.string.allowed_mid_low));
             alloweMidLow.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             alloweMidLow.setItems(list);
-            alloweMidLow.setProgress(MSMThermal.getAllowedMidLow() - 40);
+            alloweMidLow.setProgress(mMSMThermal.getAllowedMidLow() - 40);
             alloweMidLow.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -518,14 +523,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedMidLow(position + 40, getActivity());
+                    mMSMThermal.setAllowedMidLow(position + 40, getActivity());
                 }
             });
 
             items.add(alloweMidLow);
         }
 
-        if (MSMThermal.hasAllowedMidHigh()) {
+        if (mMSMThermal.hasAllowedMidHigh()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -536,7 +541,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedMidHigh.setTitle(getString(R.string.allowed_mid_high));
             allowedMidHigh.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             allowedMidHigh.setItems(list);
-            allowedMidHigh.setProgress(MSMThermal.getAllowedMidHigh() - 40);
+            allowedMidHigh.setProgress(mMSMThermal.getAllowedMidHigh() - 40);
             allowedMidHigh.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -544,29 +549,29 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedMidHigh(position + 40, getActivity());
+                    mMSMThermal.setAllowedMidHigh(position + 40, getActivity());
                 }
             });
 
             items.add(allowedMidHigh);
         }
 
-        if (MSMThermal.hasAllowedMidFreq() && CPUFreq.getFreqs() != null) {
+        if (mMSMThermal.hasAllowedMidFreq() && mCPUFreq.getFreqs() != null) {
             SelectView allowedMidFreq = new SelectView();
             allowedMidFreq.setSummary(getString(R.string.allowed_mid_freq));
-            allowedMidFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            allowedMidFreq.setItem((MSMThermal.getAllowedMidFreq() / 1000) + getString(R.string.mhz));
+            allowedMidFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            allowedMidFreq.setItem((mMSMThermal.getAllowedMidFreq() / 1000) + getString(R.string.mhz));
             allowedMidFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMThermal.setAllowedMidFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMThermal.setAllowedMidFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             items.add(allowedMidFreq);
         }
 
-        if (MSMThermal.hasAllowedMaxLow()) {
+        if (mMSMThermal.hasAllowedMaxLow()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -577,7 +582,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             alloweMaxLow.setTitle(getString(R.string.allowed_max_low));
             alloweMaxLow.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             alloweMaxLow.setItems(list);
-            alloweMaxLow.setProgress(MSMThermal.getAllowedMaxLow() - 40);
+            alloweMaxLow.setProgress(mMSMThermal.getAllowedMaxLow() - 40);
             alloweMaxLow.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -585,14 +590,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedMaxLow(position + 40, getActivity());
+                    mMSMThermal.setAllowedMaxLow(position + 40, getActivity());
                 }
             });
 
             items.add(alloweMaxLow);
         }
 
-        if (MSMThermal.hasAllowedMaxHigh()) {
+        if (mMSMThermal.hasAllowedMaxHigh()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -603,7 +608,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             allowedMaxHigh.setTitle(getString(R.string.allowed_max_high));
             allowedMaxHigh.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             allowedMaxHigh.setItems(list);
-            allowedMaxHigh.setProgress(MSMThermal.getAllowedMaxHigh() - 40);
+            allowedMaxHigh.setProgress(mMSMThermal.getAllowedMaxHigh() - 40);
             allowedMaxHigh.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -611,35 +616,35 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setAllowedMaxHigh(position + 40, getActivity());
+                    mMSMThermal.setAllowedMaxHigh(position + 40, getActivity());
                 }
             });
 
             items.add(allowedMaxHigh);
         }
 
-        if (MSMThermal.hasAllowedMaxFreq() && CPUFreq.getFreqs() != null) {
+        if (mMSMThermal.hasAllowedMaxFreq() && mCPUFreq.getFreqs() != null) {
             SelectView allowedMaxFreq = new SelectView();
             allowedMaxFreq.setSummary(getString(R.string.allowed_max_freq));
-            allowedMaxFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            allowedMaxFreq.setItem((MSMThermal.getAllowedMaxFreq() / 1000) + getString(R.string.mhz));
+            allowedMaxFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            allowedMaxFreq.setItem((mMSMThermal.getAllowedMaxFreq() / 1000) + getString(R.string.mhz));
             allowedMaxFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMThermal.setAllowedMaxFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMThermal.setAllowedMaxFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             items.add(allowedMaxFreq);
         }
 
-        if (MSMThermal.hasCheckIntervalMs()) {
+        if (mMSMThermal.hasCheckIntervalMs()) {
             SeekBarView checkIntervalMs = new SeekBarView();
             checkIntervalMs.setTitle(getString(R.string.check_interval));
             checkIntervalMs.setUnit(getString(R.string.ms));
             checkIntervalMs.setMax(3000);
             checkIntervalMs.setOffset(50);
-            checkIntervalMs.setProgress(MSMThermal.getCheckIntervalMs() / 50);
+            checkIntervalMs.setProgress(mMSMThermal.getCheckIntervalMs() / 50);
             checkIntervalMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -647,14 +652,14 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setCheckIntervalMs(position * 50, getActivity());
+                    mMSMThermal.setCheckIntervalMs(position * 50, getActivity());
                 }
             });
 
             items.add(checkIntervalMs);
         }
 
-        if (MSMThermal.hasShutdownTemp()) {
+        if (mMSMThermal.hasShutdownTemp()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
             for (int i = 40; i <= 100; i++) {
@@ -665,7 +670,7 @@ public class ThermalFragment extends RecyclerViewFragment {
             shutDownTemp.setTitle(getString(R.string.shutdown_temp));
             shutDownTemp.setUnit(getString(fahrenheit ? R.string.fahrenheit : R.string.celsius));
             shutDownTemp.setItems(list);
-            shutDownTemp.setProgress(MSMThermal.getShutdownTemp() - 40);
+            shutDownTemp.setProgress(mMSMThermal.getShutdownTemp() - 40);
             shutDownTemp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -673,7 +678,7 @@ public class ThermalFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMThermal.setShutdownTemp(position + 40, getActivity());
+                    mMSMThermal.setShutdownTemp(position + 40, getActivity());
                 }
             });
 

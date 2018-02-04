@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.activities.tools.profile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
@@ -60,6 +61,7 @@ import java.util.List;
 public class ProfileActivity extends BaseActivity {
 
     public static final String POSITION_INTENT = "position";
+    public static final String FRAGMENTS_INTENT = "fragments";
     public static final String RESULT_ID_INTENT = "result_id";
     public static final String RESULT_COMMAND_INTENT = "result_command";
 
@@ -74,18 +76,14 @@ public class ProfileActivity extends BaseActivity {
     protected void onCreate(final @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mItems.clear();
-        boolean add = false;
-        for (int id : NavigationActivity.sActualFragments.keySet()) {
-            if (id == R.string.kernel) {
-                add = true;
-            } else if (add && NavigationActivity.sActualFragments.get(id) != null) {
-                Fragment fragment = getSupportFragmentManager().findFragmentByTag(id + "_key");
-                mItems.put(getString(id), fragment == null ? NavigationActivity.sActualFragments.get(id)
-                        : fragment);
-            } else if (id == R.string.tools) {
-                break;
-            }
+        Intent intent = getIntent();
+
+        ArrayList<NavigationActivity.NavigationFragment> fragments =
+                intent.getParcelableArrayListExtra(FRAGMENTS_INTENT);
+
+        for (NavigationActivity.NavigationFragment navigationFragment : fragments) {
+            mItems.put(getString(navigationFragment.mId), getFragment(navigationFragment.mId,
+                    navigationFragment.mFragmentClass));
         }
 
         if (mItems.size() < 1) {
@@ -94,7 +92,7 @@ public class ProfileActivity extends BaseActivity {
             return;
         }
 
-        mProfilePosition = getIntent().getIntExtra(POSITION_INTENT, -1);
+        mProfilePosition = intent.getIntExtra(POSITION_INTENT, -1);
         if (savedInstanceState != null && (mMode = savedInstanceState.getInt("mode")) != 0) {
             if (mMode == 1) {
                 initNewMode(savedInstanceState);
@@ -117,6 +115,15 @@ public class ProfileActivity extends BaseActivity {
                         }
                     }).setCancelable(false).show();
         }
+    }
+
+    public Fragment getFragment(int res, Class<? extends Fragment> fragmentClass) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(res + "_key");
+        if (fragment == null) {
+            fragment = Fragment.instantiate(this, fragmentClass.getCanonicalName());
+        }
+        return fragment;
     }
 
     private void initNewMode(Bundle savedInstanceState) {
@@ -264,7 +271,7 @@ public class ProfileActivity extends BaseActivity {
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_profile_dialog, container, false);
 
             LinearLayout checkBoxParent = (LinearLayout) rootView.findViewById(R.id.checkbox_parent);

@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,9 @@ import java.util.List;
  * Created by willi on 31.05.16.
  */
 public class ScreenFragment extends RecyclerViewFragment {
+
+    private Calibration mCalibration;
+    private Misc mMisc;
 
     private SeekBarView mColors[];
     private SeekBarView mMinColor;
@@ -86,6 +90,8 @@ public class ScreenFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        mCalibration = Calibration.getInstance();
+        mMisc = Misc.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(new ColorTableFragment());
     }
@@ -111,23 +117,23 @@ public class ScreenFragment extends RecyclerViewFragment {
         }
         lcdBackLightInit(items);
         backlightDimmerInit(items);
-        if (Misc.hasNegativeToggle()) {
+        if (mMisc.hasNegativeToggle()) {
             negativeToggleInit(items);
         }
         mdnieGlobalInit(items);
-        if (Misc.hasGloveMode()) {
+        if (mMisc.hasGloveMode()) {
             gloveModeInit(items);
         }
     }
 
     private void screenColorInit(List<RecyclerViewItem> items) {
-        if (Calibration.hasColors()) {
+        if (mCalibration.hasColors()) {
 
             CardView screenColor = new CardView(getActivity());
             screenColor.setTitle(getString(R.string.screen_color));
 
-            List<String> colors = Calibration.getColors();
-            final List<String> limits = Calibration.getLimits();
+            List<String> colors = mCalibration.getColors();
+            final List<String> limits = mCalibration.getLimits();
             mColors = new SeekBarView[colors.size()];
             for (int i = 0; i < colors.size(); i++) {
                 mColors[i] = new SeekBarView();
@@ -145,16 +151,16 @@ public class ScreenFragment extends RecyclerViewFragment {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {
                         if (mMinColor != null) {
-                            int current = Utils.strToInt(Calibration.getLimits().get(position));
-                            if (Calibration.getMinColor() > current) {
-                                Calibration.setMinColor(current, getActivity());
+                            int current = Utils.strToInt(mCalibration.getLimits().get(position));
+                            if (mCalibration.getMinColor() > current) {
+                                mCalibration.setMinColor(current, getActivity());
                             }
                         }
 
                         int r = mColors[0].getProgress();
                         int g = mColors[1].getProgress();
                         int b = mColors[2].getProgress();
-                        Calibration.setColors(limits.get(r) + " " + limits.get(g) + " " + limits.get(b),
+                        mCalibration.setColors(limits.get(r) + " " + limits.get(g) + " " + limits.get(b),
                                 getActivity());
                     }
                 });
@@ -162,20 +168,22 @@ public class ScreenFragment extends RecyclerViewFragment {
                 screenColor.addItem(mColors[i]);
             }
 
-            items.add(screenColor);
+            if (screenColor.size() > 0) {
+                items.add(screenColor);
+            }
 
-            if (Calibration.hasMinColor()) {
+            if (mCalibration.hasMinColor()) {
                 mMinColor = new SeekBarView();
                 mMinColor.setTitle(getString(R.string.min_rgb));
-                mMinColor.setItems(Calibration.getLimits());
-                mMinColor.setProgress(Calibration.getLimits().indexOf(String.valueOf(Calibration.getMinColor())));
+                mMinColor.setItems(mCalibration.getLimits());
+                mMinColor.setProgress(mCalibration.getLimits().indexOf(String.valueOf(mCalibration.getMinColor())));
                 mMinColor.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {
-                        Calibration.setMinColor(Utils.strToInt(value), getActivity());
+                        mCalibration.setMinColor(Utils.strToInt(value), getActivity());
 
                         StringBuilder colors = new StringBuilder();
-                        for (String color : Calibration.getColors()) {
+                        for (String color : mCalibration.getColors()) {
                             if (Utils.strToInt(value) > Utils.strToInt(color)) {
                                 colors.append(value).append(" ");
                             } else {
@@ -183,7 +191,7 @@ public class ScreenFragment extends RecyclerViewFragment {
                             }
                         }
                         colors.setLength(colors.length() - 1);
-                        Calibration.setColors(colors.toString(), getActivity());
+                        mCalibration.setColors(colors.toString(), getActivity());
                     }
 
                     @Override
@@ -200,22 +208,22 @@ public class ScreenFragment extends RecyclerViewFragment {
             }
         }
 
-        if (Calibration.hasInvertScreen()) {
+        if (mCalibration.hasInvertScreen()) {
             SwitchView invertScreen = new SwitchView();
             invertScreen.setSummary(getString(R.string.invert_screen));
-            invertScreen.setChecked(Calibration.isInvertScreenEnabled());
+            invertScreen.setChecked(mCalibration.isInvertScreenEnabled());
             invertScreen.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Calibration.enableInvertScreen(isChecked, getActivity());
+                    mCalibration.enableInvertScreen(isChecked, getActivity());
                 }
             });
 
             items.add(invertScreen);
         }
 
-        if (Calibration.hasSaturationIntensity()) {
-            int saturation = Calibration.getSaturationIntensity();
+        if (mCalibration.hasSaturationIntensity()) {
+            int saturation = mCalibration.getSaturationIntensity();
             final SeekBarView saturationIntensity = new SeekBarView();
             saturationIntensity.setTitle(getString(R.string.saturation_intensity));
             saturationIntensity.setMax(158);
@@ -224,7 +232,7 @@ public class ScreenFragment extends RecyclerViewFragment {
             saturationIntensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Calibration.setSaturationIntensity(position + 225, getActivity());
+                    mCalibration.setSaturationIntensity(position + 225, getActivity());
                 }
 
                 @Override
@@ -241,7 +249,7 @@ public class ScreenFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     saturationIntensity.setEnabled(!isChecked);
-                    Calibration.enableGrayscaleMode(isChecked, getActivity());
+                    mCalibration.enableGrayscaleMode(isChecked, getActivity());
                     if (!isChecked) {
                         saturationIntensity.setProgress(30);
                     }
@@ -251,16 +259,16 @@ public class ScreenFragment extends RecyclerViewFragment {
             items.add(grayscaleMode);
         }
 
-        if (Calibration.hasScreenHue()) {
+        if (mCalibration.hasScreenHue()) {
             SeekBarView screenHue = new SeekBarView();
             screenHue.setTitle(getString(R.string.screen_hue));
             screenHue.setSummary(getString(R.string.screen_hue_summary));
             screenHue.setMax(1536);
-            screenHue.setProgress(Calibration.getScreenHue());
+            screenHue.setProgress(mCalibration.getScreenHue());
             screenHue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Calibration.setScreenHue(position, getActivity());
+                    mCalibration.setScreenHue(position, getActivity());
                 }
 
                 @Override
@@ -271,15 +279,15 @@ public class ScreenFragment extends RecyclerViewFragment {
             items.add(screenHue);
         }
 
-        if (Calibration.hasScreenValue()) {
+        if (mCalibration.hasScreenValue()) {
             SeekBarView screenValue = new SeekBarView();
             screenValue.setTitle(getString(R.string.screen_value));
             screenValue.setMax(255);
-            screenValue.setProgress(Calibration.getScreenValue() - 128);
+            screenValue.setProgress(mCalibration.getScreenValue() - 128);
             screenValue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Calibration.setScreenValue(position + 128, getActivity());
+                    mCalibration.setScreenValue(position + 128, getActivity());
                 }
 
                 @Override
@@ -290,15 +298,15 @@ public class ScreenFragment extends RecyclerViewFragment {
             items.add(screenValue);
         }
 
-        if (Calibration.hasScreenContrast()) {
+        if (mCalibration.hasScreenContrast()) {
             SeekBarView screenContrast = new SeekBarView();
             screenContrast.setTitle(getString(R.string.screen_contrast));
             screenContrast.setMax(255);
-            screenContrast.setProgress(Calibration.getScreenContrast() - 128);
+            screenContrast.setProgress(mCalibration.getScreenContrast() - 128);
             screenContrast.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Calibration.setScreenContrast(position + 128, getActivity());
+                    mCalibration.setScreenContrast(position + 128, getActivity());
                 }
 
                 @Override
@@ -309,28 +317,28 @@ public class ScreenFragment extends RecyclerViewFragment {
             items.add(screenContrast);
         }
 
-        if (Calibration.hasScreenHBM()) {
+        if (mCalibration.hasScreenHBM()) {
             SwitchView screenHBM = new SwitchView();
             screenHBM.setSummary(getString(R.string.high_brightness_mode));
-            screenHBM.setChecked(Calibration.isScreenHBMEnabled());
+            screenHBM.setChecked(mCalibration.isScreenHBMEnabled());
             screenHBM.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Calibration.enableScreenHBM(isChecked, getActivity());
+                    mCalibration.enableScreenHBM(isChecked, getActivity());
                 }
             });
 
             items.add(screenHBM);
         }
 
-        if (Calibration.hasSRGB()) {
+        if (mCalibration.hasSRGB()) {
             SwitchView sRGB = new SwitchView();
             sRGB.setSummary(getString(R.string.srgb));
-            sRGB.setChecked(Calibration.isSRGBEnabled());
+            sRGB.setChecked(mCalibration.isSRGBEnabled());
             sRGB.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Calibration.enableSRGB(isChecked, getActivity());
+                    mCalibration.enableSRGB(isChecked, getActivity());
                 }
             });
 
@@ -910,31 +918,31 @@ public class ScreenFragment extends RecyclerViewFragment {
         CardView lcdBackLightCard = new CardView(getActivity());
         lcdBackLightCard.setTitle(getString(R.string.lcd_backlight));
 
-        if (Misc.hasBrightnessMode()) {
+        if (mMisc.hasBrightnessMode()) {
             SwitchView brightnessMode = new SwitchView();
             brightnessMode.setSummary(getString(R.string.brightness_mode));
-            brightnessMode.setChecked(Misc.isBrightnessModeEnabled());
+            brightnessMode.setChecked(mMisc.isBrightnessModeEnabled());
             brightnessMode.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableBrightnessMode(isChecked, getActivity());
+                    mMisc.enableBrightnessMode(isChecked, getActivity());
                 }
             });
 
             lcdBackLightCard.addItem(brightnessMode);
         }
 
-        if (Misc.hasLcdMinBrightness()) {
+        if (mMisc.hasLcdMinBrightness()) {
             SeekBarView lcdMinBrightness = new SeekBarView();
             lcdMinBrightness.setTitle(getString(R.string.min_brightness));
             lcdMinBrightness.setSummary(getString(R.string.min_brightness_summary));
             lcdMinBrightness.setMax(114);
             lcdMinBrightness.setMin(2);
-            lcdMinBrightness.setProgress(Misc.getLcdMinBrightness() - 2);
+            lcdMinBrightness.setProgress(mMisc.getLcdMinBrightness() - 2);
             lcdMinBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setLcdMinBrightness(position + 2, getActivity());
+                    mMisc.setLcdMinBrightness(position + 2, getActivity());
                 }
 
                 @Override
@@ -945,17 +953,17 @@ public class ScreenFragment extends RecyclerViewFragment {
             lcdBackLightCard.addItem(lcdMinBrightness);
         }
 
-        if (Misc.hasLcdMaxBrightness()) {
+        if (mMisc.hasLcdMaxBrightness()) {
             SeekBarView lcdMaxBrightness = new SeekBarView();
             lcdMaxBrightness.setTitle(getString(R.string.max_brightness));
             lcdMaxBrightness.setSummary(getString(R.string.max_brightness_summary));
             lcdMaxBrightness.setMax(114);
             lcdMaxBrightness.setMin(2);
-            lcdMaxBrightness.setProgress(Misc.getLcdMaxBrightness() - 2);
+            lcdMaxBrightness.setProgress(mMisc.getLcdMaxBrightness() - 2);
             lcdMaxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setLcdMaxBrightness(position + 2, getActivity());
+                    mMisc.setLcdMaxBrightness(position + 2, getActivity());
                 }
 
                 @Override
@@ -975,30 +983,30 @@ public class ScreenFragment extends RecyclerViewFragment {
         CardView backLightDimmerCard = new CardView(getActivity());
         backLightDimmerCard.setTitle(getString(R.string.backlight_dimmer));
 
-        if (Misc.hasBackLightDimmerEnable()) {
+        if (mMisc.hasBackLightDimmerEnable()) {
             SwitchView backLightDimmer = new SwitchView();
             backLightDimmer.setSummary(getString(R.string.backlight_dimmer));
-            backLightDimmer.setChecked(Misc.isBackLightDimmerEnabled());
+            backLightDimmer.setChecked(mMisc.isBackLightDimmerEnabled());
             backLightDimmer.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableBackLightDimmer(isChecked, getActivity());
+                    mMisc.enableBackLightDimmer(isChecked, getActivity());
                 }
             });
 
             backLightDimmerCard.addItem(backLightDimmer);
         }
 
-        if (Misc.hasMinBrightness()) {
+        if (mMisc.hasMinBrightness()) {
             SeekBarView minBrightness = new SeekBarView();
             minBrightness.setTitle(getString(R.string.min_brightness));
             minBrightness.setSummary(getString(R.string.min_brightness_summary));
-            minBrightness.setMax(Misc.getMaxMinBrightness());
-            minBrightness.setProgress(Misc.getCurMinBrightness());
+            minBrightness.setMax(mMisc.getMaxMinBrightness());
+            minBrightness.setProgress(mMisc.getCurMinBrightness());
             minBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setMinBrightness(position, getActivity());
+                    mMisc.setMinBrightness(position, getActivity());
                 }
 
                 @Override
@@ -1009,15 +1017,15 @@ public class ScreenFragment extends RecyclerViewFragment {
             backLightDimmerCard.addItem(minBrightness);
         }
 
-        if (Misc.hasBackLightDimmerThreshold()) {
+        if (mMisc.hasBackLightDimmerThreshold()) {
             SeekBarView threshold = new SeekBarView();
             threshold.setTitle(getString(R.string.threshold));
             threshold.setMax(50);
-            threshold.setProgress(Misc.getBackLightDimmerThreshold());
+            threshold.setProgress(mMisc.getBackLightDimmerThreshold());
             threshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setBackLightDimmerThreshold(position, getActivity());
+                    mMisc.setBackLightDimmerThreshold(position, getActivity());
                 }
 
                 @Override
@@ -1028,15 +1036,15 @@ public class ScreenFragment extends RecyclerViewFragment {
             backLightDimmerCard.addItem(threshold);
         }
 
-        if (Misc.hasBackLightDimmerOffset()) {
+        if (mMisc.hasBackLightDimmerOffset()) {
             SeekBarView dimmerOffset = new SeekBarView();
             dimmerOffset.setTitle(getString(R.string.offset));
             dimmerOffset.setMax(50);
-            dimmerOffset.setProgress(Misc.getBackLightDimmerOffset());
+            dimmerOffset.setProgress(mMisc.getBackLightDimmerOffset());
             dimmerOffset.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setBackLightDimmerOffset(position, getActivity());
+                    mMisc.setBackLightDimmerOffset(position, getActivity());
                 }
 
                 @Override
@@ -1056,11 +1064,11 @@ public class ScreenFragment extends RecyclerViewFragment {
         SwitchView negative = new SwitchView();
         negative.setTitle(getString(R.string.negative_toggle));
         negative.setSummary(getString(R.string.negative_toggle_summary));
-        negative.setChecked(Misc.isNegativeToggleEnabled());
+        negative.setChecked(mMisc.isNegativeToggleEnabled());
         negative.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableNegativeToggle(isChecked, getActivity());
+                mMisc.enableNegativeToggle(isChecked, getActivity());
             }
         });
 
@@ -1071,30 +1079,30 @@ public class ScreenFragment extends RecyclerViewFragment {
         CardView mdnieCard = new CardView(getActivity());
         mdnieCard.setTitle(getString(R.string.mdnie_global_controls));
 
-        if (Misc.hasRegisterHook()) {
+        if (mMisc.hasRegisterHook()) {
             SwitchView registerHook = new SwitchView();
             registerHook.setTitle(getString(R.string.register_hook));
             registerHook.setSummary(getString(R.string.register_hook_summary));
-            registerHook.setChecked(Misc.isRegisterHookEnabled());
+            registerHook.setChecked(mMisc.isRegisterHookEnabled());
             registerHook.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableRegisterHook(isChecked, getActivity());
+                    mMisc.enableRegisterHook(isChecked, getActivity());
                 }
             });
 
             mdnieCard.addItem(registerHook);
         }
 
-        if (Misc.hasMasterSequence()) {
+        if (mMisc.hasMasterSequence()) {
             SwitchView masterSequence = new SwitchView();
             masterSequence.setTitle(getString(R.string.master_sequence));
             masterSequence.setSummary(getString(R.string.master_sequence_summary));
-            masterSequence.setChecked(Misc.isMasterSequenceEnable());
+            masterSequence.setChecked(mMisc.isMasterSequenceEnable());
             masterSequence.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableMasterSequence(isChecked, getActivity());
+                    mMisc.enableMasterSequence(isChecked, getActivity());
                 }
             });
 
@@ -1110,11 +1118,11 @@ public class ScreenFragment extends RecyclerViewFragment {
         SwitchView glove = new SwitchView();
         glove.setTitle(getString(R.string.glove_mode));
         glove.setSummary(getString(R.string.glove_mode_summary));
-        glove.setChecked(Misc.isGloveModeEnabled());
+        glove.setChecked(mMisc.isGloveModeEnabled());
         glove.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableGloveMode(isChecked, getActivity());
+                mMisc.enableGloveMode(isChecked, getActivity());
             }
         });
 
@@ -1124,7 +1132,7 @@ public class ScreenFragment extends RecyclerViewFragment {
     public static class ColorTableFragment extends BaseFragment {
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
             return new ColorTable(getActivity());
         }

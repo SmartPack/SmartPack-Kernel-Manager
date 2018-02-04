@@ -25,8 +25,10 @@ package com.grarak.kerneladiutor.utils.kernel.wake;
 public class Wake {
 
     public static boolean supported() {
-        return Dt2w.supported() || S2w.supported() || T2w.supported() || Dt2s.supported()
-                || S2s.supported() || Misc.supported() || Gestures.supported();
+        return Dt2w.getInstance().supported() || S2w.getInstance().supported()
+                || T2w.getInstance().supported() || Dt2s.getInstance().supported()
+                || S2s.getInstance().supported() || Misc.getInstance().supported()
+                || Gestures.supported();
     }
 
 }

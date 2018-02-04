@@ -37,9 +37,10 @@ public class MPDecision {
         if (enable) {
             run(Control.startService(HOTPLUG_MPDEC), HOTPLUG_MPDEC, context);
         } else {
+            CPUFreq cpuFreq = CPUFreq.getInstance(context);
             run(Control.stopService(HOTPLUG_MPDEC), HOTPLUG_MPDEC, context);
-            for (int i = 0; i < CPUFreq.getCpuCount(); i++) {
-                CPUFreq.onlineCpu(i, true, ApplyOnBootFragment.CPU_HOTPLUG, false, context);
+            for (int i = 0; i < cpuFreq.getCpuCount(); i++) {
+                cpuFreq.onlineCpu(i, true, ApplyOnBootFragment.CPU_HOTPLUG, false, context);
             }
         }
     }

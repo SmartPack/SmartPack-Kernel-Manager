@@ -25,6 +25,7 @@ import android.util.SparseArray;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Device;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.CoreCtl;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
@@ -44,6 +45,19 @@ import java.util.List;
  * Created by willi on 19.04.16.
  */
 public class CPUFreq {
+
+    private static CPUFreq sInstance;
+
+    public static CPUFreq getInstance() {
+        return getInstance(null);
+    }
+
+    public static CPUFreq getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new CPUFreq(context);
+        }
+        return sInstance;
+    }
 
     private static final String CPU_PRESENT = "/sys/devices/system/cpu/present";
     private static final String CUR_FREQ = "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq";
@@ -67,14 +81,20 @@ public class CPUFreq {
     private static final String CPU_GOVERNOR_TUNABLES = "/sys/devices/system/cpu/cpufreq/%s";
     private static final String CPU_GOVERNOR_TUNABLES_CORE = "/sys/devices/system/cpu/cpu%d/cpufreq/%s";
 
-    private static int sCpuCount;
-    private static int sBigCpu = -1;
-    private static int sLITTLECpu = -1;
-    public static int sCoreCtlMinCpu;
-    private static SparseArray<List<Integer>> sFreqs = new SparseArray<>();
-    private static String[] sGovernors;
+    private int mCpuCount;
+    private int mBigCpu = -1;
+    private int mLITTLECpu = -1;
+    public int mCoreCtlMinCpu = 2;
+    private SparseArray<List<Integer>> sFreqs = new SparseArray<>();
+    private String[] sGovernors;
 
-    public static String getGovernorTunablesPath(int cpu, String governor) {
+    private CPUFreq(Context context) {
+        if (context != null) {
+            mCoreCtlMinCpu = Prefs.getInt("core_ctl_min_cpus_big", 2, context);
+        }
+    }
+
+    public String getGovernorTunablesPath(int cpu, String governor) {
         if (Utils.existFile(Utils.strFormat(CPU_GOVERNOR_TUNABLES_CORE, cpu, governor))) {
             return CPU_GOVERNOR_TUNABLES_CORE.replace("%s", governor);
         } else {
@@ -82,11 +102,11 @@ public class CPUFreq {
         }
     }
 
-    public static boolean isOffline(int cpu) {
+    public boolean isOffline(int cpu) {
         return getCurFreq(cpu) == 0;
     }
 
-    public static void applyCpu(String path, String value, int min, int max, Context context) {
+    public void applyCpu(String path, String value, int min, int max, Context context) {
         boolean cpulock = Utils.existFile(CPU_LOCK_FREQ);
         if (cpulock) {
             run(Control.write("0", CPU_LOCK_FREQ), null, null);
@@ -119,7 +139,7 @@ public class CPUFreq {
                 List<Integer> littleCpus = getLITTLECpuRange();
                 run("#" + new ApplyCpu(path, value, min, max, bigCpus.toArray(new Integer[bigCpus.size()]),
                         littleCpus.toArray(new Integer[littleCpus.size()]),
-                        sCoreCtlMinCpu).toString(), path + min, context);
+                        mCoreCtlMinCpu).toString(), path + min, context);
             } else {
                 run("#" + new ApplyCpu(path, value, min, max).toString(), path + min, context);
             }
@@ -275,15 +295,15 @@ public class CPUFreq {
         }
     }
 
-    public static void setGovernor(String governor, int min, int max, Context context) {
+    public void setGovernor(String governor, int min, int max, Context context) {
         applyCpu(CPU_SCALING_GOVERNOR, governor, min, max, context);
     }
 
-    public static String getGovernor(boolean forceRead) {
+    public String getGovernor(boolean forceRead) {
         return getGovernor(getBigCpu(), forceRead);
     }
 
-    public static String getGovernor(int cpu, boolean forceRead) {
+    public String getGovernor(int cpu, boolean forceRead) {
         boolean offline = forceRead && isOffline(cpu);
         if (offline) {
             onlineCpu(cpu, true, false, null);
@@ -305,7 +325,7 @@ public class CPUFreq {
         return value;
     }
 
-    public static List<String> getGovernors() {
+    public List<String> getGovernors() {
         if (sGovernors == null) {
             boolean offline = isOffline(0);
             if (offline) {
@@ -332,7 +352,7 @@ public class CPUFreq {
         return Arrays.asList(sGovernors);
     }
 
-    private static int getFreq(int cpu, String path, boolean forceRead) {
+    private int getFreq(int cpu, String path, boolean forceRead) {
         boolean offline = forceRead && isOffline(cpu);
         if (offline) {
             onlineCpu(cpu, true, false, null);
@@ -354,34 +374,36 @@ public class CPUFreq {
         return freq;
     }
 
-    public static void setMaxScreenOffFreq(int freq, int min, int max, Context context) {
+    public void setMaxScreenOffFreq(int freq, int min, int max, Context context) {
         applyCpu(CPU_MAX_SCREEN_OFF_FREQ, String.valueOf(freq), min, max, context);
     }
 
-    public static int getMaxScreenOffFreq(boolean forceRead) {
+    public int getMaxScreenOffFreq(boolean forceRead) {
         return getMaxScreenOffFreq(getBigCpu(), forceRead);
     }
 
-    public static int getMaxScreenOffFreq(int cpu, boolean forceRead) {
+    public int getMaxScreenOffFreq(int cpu, boolean forceRead) {
         return getFreq(cpu, CPU_MAX_SCREEN_OFF_FREQ, forceRead);
     }
 
-    public static boolean hasMaxScreenOffFreq() {
+    public boolean hasMaxScreenOffFreq() {
         return hasMaxScreenOffFreq(getBigCpu());
     }
 
-    public static boolean hasMaxScreenOffFreq(int cpu) {
+    public boolean hasMaxScreenOffFreq(int cpu) {
         return Utils.existFile(Utils.strFormat(CPU_MAX_SCREEN_OFF_FREQ, cpu));
     }
 
-    public static void setMinFreq(int freq, int min, int max, Context context) {
+    public void setMinFreq(int freq, int min, int max, Context context) {
+        MSMPerformance msmPerformance = MSMPerformance.getInstance();
         int maxFreq = getMaxFreq(min, false);
+
         if (maxFreq != 0 && freq > maxFreq) {
             setMaxFreq(freq, min, max, context);
         }
-        if (MSMPerformance.hasCpuMinFreq()) {
+        if (msmPerformance.hasCpuMinFreq()) {
             for (int i = min; i <= max; i++) {
-                MSMPerformance.setCpuMinFreq(freq, i, context);
+                msmPerformance.setCpuMinFreq(freq, i, context);
             }
         }
         applyCpu(CPU_MIN_FREQ, String.valueOf(freq), min, max, context);
@@ -390,15 +412,17 @@ public class CPUFreq {
         }
     }
 
-    public static int getMinFreq(boolean forceRead) {
+    public int getMinFreq(boolean forceRead) {
         return getMinFreq(getBigCpu(), forceRead);
     }
 
-    public static int getMinFreq(int cpu, boolean forceRead) {
+    public int getMinFreq(int cpu, boolean forceRead) {
         return getFreq(cpu, CPU_MIN_FREQ, forceRead);
     }
 
-    public static void setMaxFreq(int freq, int min, int max, Context context) {
+    public void setMaxFreq(int freq, int min, int max, Context context) {
+        MSMPerformance msmPerformance = MSMPerformance.getInstance();
+
         if (Utils.existFile(CPU_MSM_CPUFREQ_LIMIT) && freq > Utils.strToInt(Utils.readFile(CPU_MSM_CPUFREQ_LIMIT))) {
             run(Control.write(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT), CPU_MSM_CPUFREQ_LIMIT, context);
         }
@@ -412,9 +436,9 @@ public class CPUFreq {
                         Utils.strFormat(CPU_ENABLE_OC, i), context);
             }
         }
-        if (MSMPerformance.hasCpuMaxFreq()) {
+        if (msmPerformance.hasCpuMaxFreq()) {
             for (int i = min; i <= max; i++) {
-                MSMPerformance.setCpuMaxFreq(freq, i, context);
+                msmPerformance.setCpuMaxFreq(freq, i, context);
             }
         }
         if (Utils.existFile(Utils.strFormat(CPU_MAX_FREQ_KT, 0))) {
@@ -427,11 +451,11 @@ public class CPUFreq {
         }
     }
 
-    public static int getMaxFreq(boolean forceRead) {
+    public int getMaxFreq(boolean forceRead) {
         return getMaxFreq(getBigCpu(), forceRead);
     }
 
-    public static int getMaxFreq(int cpu, boolean forceRead) {
+    public int getMaxFreq(int cpu, boolean forceRead) {
         if (Utils.existFile(Utils.strFormat(CPU_MAX_FREQ_KT, cpu))) {
             return getFreq(cpu, CPU_MAX_FREQ_KT, forceRead);
         } else {
@@ -439,11 +463,11 @@ public class CPUFreq {
         }
     }
 
-    public static List<String> getAdjustedFreq(Context context) {
+    public List<String> getAdjustedFreq(Context context) {
         return getAdjustedFreq(getBigCpu(), context);
     }
 
-    public static List<String> getAdjustedFreq(int cpu, Context context) {
+    public List<String> getAdjustedFreq(int cpu, Context context) {
         List<String> freqs = new ArrayList<>();
         if (getFreqs(cpu) != null) {
             for (int freq : getFreqs(cpu)) {
@@ -453,11 +477,11 @@ public class CPUFreq {
         return freqs;
     }
 
-    public static List<Integer> getFreqs() {
+    public List<Integer> getFreqs() {
         return getFreqs(getBigCpu());
     }
 
-    public static List<Integer> getFreqs(int cpu) {
+    public List<Integer> getFreqs(int cpu) {
         if (sFreqs.indexOfKey(cpu) < 0) {
             if (Utils.existFile(Utils.strFormat(OPP_TABLE, cpu))
                     || Utils.existFile(Utils.strFormat(TIME_STATE, cpu))
@@ -514,7 +538,7 @@ public class CPUFreq {
         return freqs;
     }
 
-    public static int getCurFreq(int cpu) {
+    public int getCurFreq(int cpu) {
         if (Utils.existFile(Utils.strFormat(CUR_FREQ, cpu))) {
             String value = Utils.readFile(Utils.strFormat(CUR_FREQ, cpu));
             if (value != null) {
@@ -524,22 +548,24 @@ public class CPUFreq {
         return 0;
     }
 
-    public static void onlineCpu(int cpu, boolean online, boolean onlineSys, Context context) {
+    public void onlineCpu(int cpu, boolean online, boolean onlineSys, Context context) {
         onlineCpu(cpu, online, ApplyOnBootFragment.CPU, onlineSys, context);
     }
 
-    public static void onlineCpu(int cpu, boolean online, String category, boolean onlineSys,
-                                 Context context) {
+    public void onlineCpu(int cpu, boolean online, String category, boolean onlineSys,
+                          Context context) {
+        CoreCtl coreCtl = CoreCtl.getInstance();
+        MSMPerformance msmPerformance = MSMPerformance.getInstance();
         if (!onlineSys) {
             if (QcomBcl.supported()) {
                 QcomBcl.online(online, category, context);
             }
-            if (CoreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
-                CoreCtl.setMinCpus(online ? getBigCpuRange().size() : sCoreCtlMinCpu, cpu, category,
+            if (coreCtl.hasMinCpus() && getBigCpuRange().contains(cpu)) {
+                coreCtl.setMinCpus(online ? getBigCpuRange().size() : mCoreCtlMinCpu, cpu, category,
                         context);
             }
-            if (MSMPerformance.hasMaxCpus()) {
-                MSMPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
+            if (msmPerformance.hasMaxCpus()) {
+                msmPerformance.setMaxCpus(online ? getBigCpuRange().size() : -1, online ?
                         getLITTLECpuRange().size() : -1, category, context);
             }
         }
@@ -551,7 +577,7 @@ public class CPUFreq {
                 category, Utils.strFormat(CPU_ONLINE, cpu) + "chmod444", context);
     }
 
-    public static List<Integer> getLITTLECpuRange() {
+    public List<Integer> getLITTLECpuRange() {
         List<Integer> list = new ArrayList<>();
         if (!isBigLITTLE()) {
             for (int i = 0; i < getCpuCount(); i++) {
@@ -569,7 +595,7 @@ public class CPUFreq {
         return list;
     }
 
-    public static List<Integer> getBigCpuRange() {
+    public List<Integer> getBigCpuRange() {
         List<Integer> list = new ArrayList<>();
         if (!isBigLITTLE()) {
             for (int i = 0; i < getCpuCount(); i++) {
@@ -587,25 +613,25 @@ public class CPUFreq {
         return list;
     }
 
-    public static int getLITTLECpu() {
+    public int getLITTLECpu() {
         isBigLITTLE();
-        return sLITTLECpu < 0 ? 0 : sLITTLECpu;
+        return mLITTLECpu < 0 ? 0 : mLITTLECpu;
     }
 
-    public static int getBigCpu() {
+    public int getBigCpu() {
         isBigLITTLE();
-        return sBigCpu < 0 ? 0 : sBigCpu;
+        return mBigCpu < 0 ? 0 : mBigCpu;
     }
 
-    public static boolean isBigLITTLE() {
-        if (sBigCpu == -1 || sLITTLECpu == -1) {
+    public boolean isBigLITTLE() {
+        if (mBigCpu == -1 || mLITTLECpu == -1) {
             if (getCpuCount() <= 4 && !is8996()
                     || (Device.getBoard().startsWith("mt6") && !Device.getBoard().startsWith("mt6595"))
                     || Device.getBoard().startsWith("msm8929")) return false;
 
             if (is8996()) {
-                sBigCpu = 2;
-                sLITTLECpu = 0;
+                mBigCpu = 2;
+                mLITTLECpu = 0;
             } else {
                 List<Integer> cpu0Freqs = getFreqs(0);
                 List<Integer> cpu4Freqs = getFreqs(4);
@@ -614,44 +640,44 @@ public class CPUFreq {
                     int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
                     if (cpu0Max > cpu4Max
                             || (cpu0Max == cpu4Max && cpu0Freqs.size() > cpu4Freqs.size())) {
-                        sBigCpu = 0;
-                        sLITTLECpu = 4;
+                        mBigCpu = 0;
+                        mLITTLECpu = 4;
                     } else {
-                        sBigCpu = 4;
-                        sLITTLECpu = 0;
+                        mBigCpu = 4;
+                        mLITTLECpu = 0;
                     }
                 }
             }
 
-            if (sBigCpu == -1 || sLITTLECpu == -1) {
-                sBigCpu = -2;
-                sLITTLECpu = -2;
+            if (mBigCpu == -1 || mLITTLECpu == -1) {
+                mBigCpu = -2;
+                mLITTLECpu = -2;
             }
         }
 
-        return sBigCpu >= 0 && sLITTLECpu >= 0;
+        return mBigCpu >= 0 && mLITTLECpu >= 0;
     }
 
-    private static boolean is8996() {
+    private boolean is8996() {
         String board = Device.getBoard();
         return board.equalsIgnoreCase("msm8996") || board.equalsIgnoreCase("msm8996pro");
     }
 
-    public static int getCpuCount() {
-        if (sCpuCount == 0 && Utils.existFile(CPU_PRESENT)) {
+    public int getCpuCount() {
+        if (mCpuCount == 0 && Utils.existFile(CPU_PRESENT)) {
             try {
                 String output = Utils.readFile(CPU_PRESENT);
-                sCpuCount = output.equals("0") ? 1 : Integer.parseInt(output.split("-")[1]) + 1;
+                mCpuCount = output.equals("0") ? 1 : Integer.parseInt(output.split("-")[1]) + 1;
             } catch (Exception ignored) {
             }
         }
-        if (sCpuCount == 0) {
-            sCpuCount = Runtime.getRuntime().availableProcessors();
+        if (mCpuCount == 0) {
+            mCpuCount = Runtime.getRuntime().availableProcessors();
         }
-        return sCpuCount;
+        return mCpuCount;
     }
 
-    public static float[] getCpuUsage() {
+    public float[] getCpuUsage() {
         try {
             Usage[] prevUsage = getUsages();
             Thread.sleep(500);
@@ -671,14 +697,13 @@ public class CPUFreq {
                 }
                 return pers;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (InterruptedException ignored) {
         }
 
         return null;
     }
 
-    private static Usage[] getUsages() {
+    private Usage[] getUsages() {
         String stat = Utils.readFile("/proc/stat");
         if (stat == null) return null;
         String[] stats = stat.split("\\r?\\n");
@@ -691,7 +716,7 @@ public class CPUFreq {
         return usage;
     }
 
-    private static class Usage {
+    private class Usage {
 
         private long[] stats;
 
@@ -724,7 +749,7 @@ public class CPUFreq {
 
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.CPU, id, context);
     }
 

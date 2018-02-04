@@ -190,8 +190,8 @@ public class Gamma {
 
     public static void setGammaControlProfile(int profile, GammaProfiles.GammaControlProfiles gammaControlProfiles,
                                               Context context) {
-        if (Calibration.hasColors()) {
-            Calibration.setColors(gammaControlProfiles.getKCAL(profile), context);
+        if (Calibration.getInstance().hasColors()) {
+            Calibration.getInstance().setColors(gammaControlProfiles.getKCAL(profile), context);
         }
         setRedGreys(gammaControlProfiles.getRedGreys(profile), context);
         setRedMids(gammaControlProfiles.getRedMids(profile), context);
@@ -346,8 +346,8 @@ public class Gamma {
     }
 
     public static void setKGammaProfile(int profile, GammaProfiles.KGammaProfiles kGammaProfiles, Context context) {
-        if (Calibration.hasColors()) {
-            Calibration.setColors(kGammaProfiles.getKCAL(profile), context);
+        if (Calibration.getInstance().hasColors()) {
+            Calibration.getInstance().setColors(kGammaProfiles.getKCAL(profile), context);
         }
         setKGammaBlue(kGammaProfiles.getGammaBlue(profile), context);
         setKGammaGreen(kGammaProfiles.getGammaGreen(profile), context);

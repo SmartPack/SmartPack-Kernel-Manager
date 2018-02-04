@@ -35,90 +35,118 @@ import java.util.List;
  */
 public class Voltage {
 
+    private static Voltage sIOInstance;
+
+    public static Voltage getInstance() {
+        if (sIOInstance == null) {
+            sIOInstance = new Voltage();
+        }
+        return sIOInstance;
+    }
+
     private static final String CPU_OVERRIDE_VMIN = "/sys/devices/system/cpu/cpu0/cpufreq/override_vmin";
 
     private static final String CPU_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table";
     private static final String CPU_VDD_VOLTAGE = "/sys/devices/system/cpu/cpu0/cpufreq/vdd_levels";
     private static final String CPU_FAUX_VOLTAGE = "/sys/devices/system/cpu/cpufreq/vdd_table/vdd_levels";
 
-    private static final HashMap<String, Boolean> sVoltages = new HashMap<>();
-    private static final HashMap<String, Integer> sOffset = new HashMap<>();
-    private static final HashMap<String, String> sSplitNewline = new HashMap<>();
-    private static final HashMap<String, String> sSplitLine = new HashMap<>();
-    private static final HashMap<String, Boolean> sAppend = new HashMap<>();
+    private final HashMap<String, Boolean> mVoltages = new HashMap<>();
+    private final HashMap<String, Integer> mOffset = new HashMap<>();
+    private final HashMap<String, String> mSplitNewline = new HashMap<>();
+    private final HashMap<String, String> mSplitLine = new HashMap<>();
+    private final HashMap<String, Boolean> mAppend = new HashMap<>();
 
-    static {
-        sVoltages.put(CPU_VOLTAGE, false);
-        sVoltages.put(CPU_VDD_VOLTAGE, true);
-        sVoltages.put(CPU_FAUX_VOLTAGE, true);
+    {
+        mVoltages.put(CPU_VOLTAGE, false);
+        mVoltages.put(CPU_VDD_VOLTAGE, true);
+        mVoltages.put(CPU_FAUX_VOLTAGE, true);
 
-        sOffset.put(CPU_VOLTAGE, 1);
-        sOffset.put(CPU_VDD_VOLTAGE, 1);
-        sOffset.put(CPU_FAUX_VOLTAGE, 1000);
+        mOffset.put(CPU_VOLTAGE, 1);
+        mOffset.put(CPU_VDD_VOLTAGE, 1);
+        mOffset.put(CPU_FAUX_VOLTAGE, 1000);
 
-        sSplitNewline.put(CPU_VOLTAGE, "mV");
-        sSplitNewline.put(CPU_VDD_VOLTAGE, "\\r?\\n");
-        sSplitNewline.put(CPU_FAUX_VOLTAGE, "\\r?\\n");
+        mSplitNewline.put(CPU_VOLTAGE, "mV");
+        mSplitNewline.put(CPU_VDD_VOLTAGE, "\\r?\\n");
+        mSplitNewline.put(CPU_FAUX_VOLTAGE, "\\r?\\n");
 
-        sSplitLine.put(CPU_VOLTAGE, "mhz:");
-        sSplitLine.put(CPU_VDD_VOLTAGE, ":");
-        sSplitLine.put(CPU_FAUX_VOLTAGE, ":");
+        mSplitLine.put(CPU_VOLTAGE, "mhz:");
+        mSplitLine.put(CPU_VDD_VOLTAGE, ":");
+        mSplitLine.put(CPU_FAUX_VOLTAGE, ":");
 
-        sAppend.put(CPU_VOLTAGE, true);
-        sAppend.put(CPU_VDD_VOLTAGE, false);
-        sAppend.put(CPU_FAUX_VOLTAGE, false);
+        mAppend.put(CPU_VOLTAGE, true);
+        mAppend.put(CPU_VDD_VOLTAGE, false);
+        mAppend.put(CPU_FAUX_VOLTAGE, false);
     }
 
-    private static String PATH;
-    private static String[] sFreqs;
+    private String PATH;
+    private String[] sFreqs;
 
-    public static void setGlobalOffset(int adjust, Context context) {
-        String value = "";
-        List<String> voltages = getVoltages();
-        if (voltages == null) return;
-        if (sAppend.get(PATH)) {
-            for (String volt : voltages) {
-                if (!value.isEmpty()) {
-                    value += " ";
-                }
-                value += String.valueOf(Utils.strToInt(volt) + adjust);
+    private Voltage() {
+        for (String path : mVoltages.keySet()) {
+            if (Utils.existFile(path)) {
+                PATH = path;
+                break;
             }
-        } else {
-            value = String.valueOf(adjust * sOffset.get(PATH));
-            if (adjust > 0) value = "+" + value;
         }
 
-        run(Control.write(value, PATH), PATH, context);
+        if (PATH == null) return;
+        String value = Utils.readFile(PATH).replace(" ", "");
+        if (!value.isEmpty()) {
+            String[] lines = value.split(mSplitNewline.get(PATH));
+            sFreqs = new String[lines.length];
+            for (int i = 0; i < sFreqs.length; i++) {
+                sFreqs[i] = lines[i].split(mSplitLine.get(PATH))[0].trim();
+            }
+        }
     }
 
-    public static void setVoltage(String freq, String voltage, Context context) {
+    public void setGlobalOffset(int adjust, Context context) {
+        StringBuilder value = new StringBuilder();
+        List<String> voltages = getVoltages();
+        if (voltages == null) return;
+        if (mAppend.get(PATH)) {
+            for (String volt : voltages) {
+                if (value.length() > 0) {
+                    value.append(" ");
+                }
+                value.append(String.valueOf(Utils.strToInt(volt) + adjust));
+            }
+        } else {
+            value = new StringBuilder(String.valueOf(adjust * mOffset.get(PATH)));
+            if (adjust > 0) value.insert(0, "+");
+        }
+
+        run(Control.write(value.toString(), PATH), PATH, context);
+    }
+
+    public void setVoltage(String freq, String voltage, Context context) {
         int position = getFreqs().indexOf(freq);
-        if (sAppend.get(PATH)) {
-            String command = "";
+        if (mAppend.get(PATH)) {
+            StringBuilder command = new StringBuilder();
             List<String> voltages = getVoltages();
             for (int i = 0; i < voltages.size(); i++) {
                 if (i == position) {
-                    command += command.isEmpty() ? voltage : " " + voltage;
+                    command.append((command.length() == 0) ? voltage : " " + voltage);
                 } else {
-                    command += command.isEmpty() ? voltages.get(i) : " " + voltages.get(i);
+                    command.append((command.length() == 0) ? voltages.get(i) : " " + voltages.get(i));
                 }
             }
-            run(Control.write(command, PATH), PATH, context);
+            run(Control.write(command.toString(), PATH), PATH, context);
         } else {
-            run(Control.write(freq + " " + Utils.strToInt(voltage) * sOffset.get(PATH), PATH), PATH + freq, context);
+            run(Control.write(freq + " " + Utils.strToInt(voltage) * mOffset.get(PATH), PATH), PATH + freq, context);
         }
 
     }
 
-    public static List<String> getVoltages() {
+    public List<String> getVoltages() {
         String value = Utils.readFile(PATH).replace(" ", "");
         if (!value.isEmpty()) {
-            String[] lines = value.split(sSplitNewline.get(PATH));
+            String[] lines = value.split(mSplitNewline.get(PATH));
             List<String> voltages = new ArrayList<>();
             for (String line : lines) {
-                String[] voltageLine = line.split(sSplitLine.get(PATH));
+                String[] voltageLine = line.split(mSplitLine.get(PATH));
                 if (voltageLine.length > 1) {
-                    voltages.add(String.valueOf(Utils.strToInt(voltageLine[1].trim()) / sOffset.get(PATH)));
+                    voltages.add(String.valueOf(Utils.strToInt(voltageLine[1].trim()) / mOffset.get(PATH)));
                 }
             }
             return voltages;
@@ -126,49 +154,32 @@ public class Voltage {
         return null;
     }
 
-    public static List<String> getFreqs() {
-        if (sFreqs == null) {
-            String value = Utils.readFile(PATH).replace(" ", "");
-            if (!value.isEmpty()) {
-                String[] lines = value.split(sSplitNewline.get(PATH));
-                sFreqs = new String[lines.length];
-                for (int i = 0; i < sFreqs.length; i++) {
-                    sFreqs[i] = lines[i].split(sSplitLine.get(PATH))[0].trim();
-                }
-            }
-        }
+    public List<String> getFreqs() {
         if (sFreqs == null) return null;
         return Arrays.asList(sFreqs);
     }
 
-    public static boolean isVddVoltage() {
-        return sVoltages.get(PATH);
+    public boolean isVddVoltage() {
+        return mVoltages.get(PATH);
     }
 
-    public static void enableOverrideVmin(boolean enable, Context context) {
+    public void enableOverrideVmin(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", CPU_OVERRIDE_VMIN), CPU_OVERRIDE_VMIN, context);
     }
 
-    public static boolean isOverrideVminEnabled() {
+    public boolean isOverrideVminEnabled() {
         return Utils.readFile(CPU_OVERRIDE_VMIN).equals("1");
     }
 
-    public static boolean hasOverrideVmin() {
+    public boolean hasOverrideVmin() {
         return Utils.existFile(CPU_OVERRIDE_VMIN);
     }
 
-    public static boolean supported() {
-        if (PATH != null) return true;
-        for (String path : sVoltages.keySet()) {
-            if (Utils.existFile(path)) {
-                PATH = path;
-                return true;
-            }
-        }
-        return false;
+    public boolean supported() {
+        return PATH != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.CPU_VOLTAGE, id, context);
     }
 

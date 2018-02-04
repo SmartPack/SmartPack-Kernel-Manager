@@ -166,11 +166,23 @@ public class Device {
 
     public static class MemInfo {
 
+        private static MemInfo sInstance;
+
+        public static MemInfo getInstance() {
+            if (sInstance == null) {
+                sInstance = new MemInfo();
+            }
+            return sInstance;
+        }
+
         private static final String MEMINFO_PROC = "/proc/meminfo";
+        private String MEMINFO;
 
-        private static String MEMINFO;
+        private MemInfo() {
+            MEMINFO = Utils.readFile(MEMINFO_PROC);
+        }
 
-        public static long getTotalMem() {
+        public long getTotalMem() {
             try {
                 return Long.parseLong(getItem("MemTotal").replaceAll("[^\\d]", "")) / 1024L;
             } catch (NumberFormatException ignored) {
@@ -178,7 +190,7 @@ public class Device {
             }
         }
 
-        public static List<String> getItems() {
+        public List<String> getItems() {
             List<String> list = new ArrayList<>();
             try {
                 for (String line : MEMINFO.split("\\r?\\n")) {
@@ -189,7 +201,7 @@ public class Device {
             return list;
         }
 
-        public static String getItem(String prefix) {
+        public String getItem(String prefix) {
             try {
                 for (String line : MEMINFO.split("\\r?\\n")) {
                     if (line.startsWith(prefix)) {
@@ -199,10 +211,6 @@ public class Device {
             } catch (Exception ignored) {
             }
             return "";
-        }
-
-        public static void load() {
-            MEMINFO = Utils.readFile(MEMINFO_PROC);
         }
 
     }

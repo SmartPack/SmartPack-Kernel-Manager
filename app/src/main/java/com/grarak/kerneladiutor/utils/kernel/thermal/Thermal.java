@@ -25,7 +25,7 @@ package com.grarak.kerneladiutor.utils.kernel.thermal;
 public class Thermal {
 
     public static boolean supported() {
-        return Thermald.supported() || MSMThermal.supported();
+        return Thermald.supported() || MSMThermal.getInstance().supported();
     }
 
 }

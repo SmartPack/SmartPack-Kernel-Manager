@@ -66,22 +66,21 @@ public class TemperatureView extends RecyclerViewItem {
     @Override
     protected void refresh() {
         if (mCPUParent != null) {
-            if (Temperature.hasCPU()) {
+            Temperature temperature = Temperature.getInstance(mCPUParent.getContext());
+            if (temperature.hasCPU()) {
                 mCPUParent.setVisibility(View.VISIBLE);
-                mCPU.setText(Temperature.getCPU(mCPU.getContext()));
+                mCPU.setText(temperature.getCPU(mCPU.getContext()));
             } else {
                 mCPUParent.setVisibility(View.GONE);
             }
-        }
-        if (mGPUParent != null) {
-            if (Temperature.hasGPU()) {
+
+            if (temperature.hasGPU()) {
                 mGPUParent.setVisibility(View.VISIBLE);
-                mGPU.setText(Temperature.getGPU(mGPU.getContext()));
+                mGPU.setText(temperature.getGPU(mGPU.getContext()));
             } else {
                 mGPUParent.setVisibility(View.GONE);
             }
-        }
-        if (mBattery != null) {
+
             double temp = mBatteryTemp;
             boolean useFahrenheit = Utils.useFahrenheit(mBattery.getContext());
             if (useFahrenheit) temp = Utils.celsiusToFahrenheit(temp);

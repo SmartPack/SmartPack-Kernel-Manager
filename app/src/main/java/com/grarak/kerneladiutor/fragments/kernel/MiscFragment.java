@@ -46,29 +46,34 @@ import java.util.List;
  */
 public class MiscFragment extends RecyclerViewFragment {
 
+    private Vibration mVibration;
+    private Misc mMisc;
+
     @Override
     protected void init() {
         super.init();
 
+        mVibration = Vibration.getInstance();
+        mMisc = Misc.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (Vibration.supported()) {
+        if (mVibration.supported()) {
             vibrationInit(items);
         }
-        if (Misc.hasLoggerEnable()) {
+        if (mMisc.hasLoggerEnable()) {
             loggerInit(items);
         }
-        if (Misc.hasCrc()) {
+        if (mMisc.hasCrc()) {
             crcInit(items);
         }
         fsyncInit(items);
-        if (Misc.hasGentleFairSleepers()) {
+        if (mMisc.hasGentleFairSleepers()) {
             gentlefairsleepersInit(items);
         }
-        if (Misc.hasArchPower()) {
+        if (mMisc.hasArchPower()) {
             archPowerInit(items);
         }
         if (PowerSuspend.supported()) {
@@ -79,20 +84,21 @@ public class MiscFragment extends RecyclerViewFragment {
     }
 
     private void vibrationInit(List<RecyclerViewItem> items) {
-        final Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        final Vibrator vibrator = (Vibrator) getActivity()
+                .getSystemService(Context.VIBRATOR_SERVICE);
 
-        final int min = Vibration.getMin();
-        int max = Vibration.getMax();
+        final int min = mVibration.getMin();
+        int max = mVibration.getMax();
         final float offset = (max - min) / 100f;
 
         SeekBarView vibration = new SeekBarView();
         vibration.setTitle(getString(R.string.vibration_strength));
         vibration.setUnit("%");
-        vibration.setProgress(Math.round((Vibration.get() - min) / offset));
+        vibration.setProgress(Math.round((mVibration.get() - min) / offset));
         vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
-                Vibration.setVibration(Math.round(position * offset + min), getActivity());
+                mVibration.setVibration(Math.round(position * offset + min), getActivity());
                 getHandler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -114,11 +120,11 @@ public class MiscFragment extends RecyclerViewFragment {
     private void loggerInit(List<RecyclerViewItem> items) {
         SwitchView logger = new SwitchView();
         logger.setSummary(getString(R.string.android_logger));
-        logger.setChecked(Misc.isLoggerEnabled());
+        logger.setChecked(mMisc.isLoggerEnabled());
         logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableLogger(isChecked, getActivity());
+                mMisc.enableLogger(isChecked, getActivity());
             }
         });
 
@@ -129,11 +135,11 @@ public class MiscFragment extends RecyclerViewFragment {
         SwitchView crc = new SwitchView();
         crc.setTitle(getString(R.string.crc));
         crc.setSummary(getString(R.string.crc_summary));
-        crc.setChecked(Misc.isCrcEnabled());
+        crc.setChecked(mMisc.isCrcEnabled());
         crc.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableCrc(isChecked, getActivity());
+                mMisc.enableCrc(isChecked, getActivity());
             }
         });
 
@@ -141,30 +147,30 @@ public class MiscFragment extends RecyclerViewFragment {
     }
 
     private void fsyncInit(List<RecyclerViewItem> items) {
-        if (Misc.hasFsync()) {
+        if (mMisc.hasFsync()) {
             SwitchView fsync = new SwitchView();
             fsync.setTitle(getString(R.string.fsync));
             fsync.setSummary(getString(R.string.fsync_summary));
-            fsync.setChecked(Misc.isFsyncEnabled());
+            fsync.setChecked(mMisc.isFsyncEnabled());
             fsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableFsync(isChecked, getActivity());
+                    mMisc.enableFsync(isChecked, getActivity());
                 }
             });
 
             items.add(fsync);
         }
 
-        if (Misc.hasDynamicFsync()) {
+        if (mMisc.hasDynamicFsync()) {
             SwitchView dynamicFsync = new SwitchView();
             dynamicFsync.setTitle(getString(R.string.dynamic_fsync));
             dynamicFsync.setSummary(getString(R.string.dynamic_fsync_summary));
-            dynamicFsync.setChecked(Misc.isDynamicFsyncEnabled());
+            dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
             dynamicFsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enableDynamicFsync(isChecked, getActivity());
+                    mMisc.enableDynamicFsync(isChecked, getActivity());
                 }
             });
 
@@ -176,11 +182,11 @@ public class MiscFragment extends RecyclerViewFragment {
         SwitchView gentleFairSleepers = new SwitchView();
         gentleFairSleepers.setTitle(getString(R.string.gentlefairsleepers));
         gentleFairSleepers.setSummary(getString(R.string.gentlefairsleepers_summary));
-        gentleFairSleepers.setChecked(Misc.isGentleFairSleepersEnabled());
+        gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
         gentleFairSleepers.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableGentleFairSleepers(isChecked, getActivity());
+                mMisc.enableGentleFairSleepers(isChecked, getActivity());
             }
         });
 
@@ -191,11 +197,11 @@ public class MiscFragment extends RecyclerViewFragment {
         SwitchView archPower = new SwitchView();
         archPower.setTitle(getString(R.string.arch_power));
         archPower.setSummary(getString(R.string.arch_power_summary));
-        archPower.setChecked(Misc.isArchPowerEnabled());
+        archPower.setChecked(mMisc.isArchPowerEnabled());
         archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableArchPower(isChecked, getActivity());
+                mMisc.enableArchPower(isChecked, getActivity());
             }
         });
 
@@ -263,12 +269,12 @@ public class MiscFragment extends RecyclerViewFragment {
             SelectView tcp = new SelectView();
             tcp.setTitle(getString(R.string.tcp));
             tcp.setSummary(getString(R.string.tcp_summary));
-            tcp.setItems(Misc.getTcpAvailableCongestions());
-            tcp.setItem(Misc.getTcpCongestion());
+            tcp.setItems(mMisc.getTcpAvailableCongestions());
+            tcp.setItem(mMisc.getTcpCongestion());
             tcp.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    Misc.setTcpCongestion(item, getActivity());
+                    mMisc.setTcpCongestion(item, getActivity());
                 }
             });
 
@@ -278,12 +284,12 @@ public class MiscFragment extends RecyclerViewFragment {
 
         GenericSelectView hostname = new GenericSelectView();
         hostname.setSummary(getString(R.string.hostname));
-        hostname.setValue(Misc.getHostname());
+        hostname.setValue(mMisc.getHostname());
         hostname.setValueRaw(hostname.getValue());
         hostname.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
             @Override
             public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                Misc.setHostname(value, getActivity());
+                mMisc.setHostname(value, getActivity());
             }
         });
 

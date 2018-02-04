@@ -53,7 +53,7 @@ public class MakoHotplug {
     }
 
     public static boolean hasMakoHotplugSuspendFreq() {
-        return !CPUFreq.hasMaxScreenOffFreq() && Utils.existFile(MAKO_HOTPLUG_SUSPEND_FREQ);
+        return !CPUFreq.getInstance().hasMaxScreenOffFreq() && Utils.existFile(MAKO_HOTPLUG_SUSPEND_FREQ);
     }
 
     public static void setMakoHotplugTimer(int value, Context context) {

@@ -33,7 +33,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
@@ -109,7 +108,6 @@ public class Monitor extends Service {
     private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i("blaa", "screen");
             mScreenOn = intent.getAction().equals(Intent.ACTION_SCREEN_ON);
             if (!mScreenOn && !mCalculating) {
                 mLevel = 0;

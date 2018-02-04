@@ -40,7 +40,7 @@ public class DashClock extends DashClockExtension {
     @Override
     protected void onUpdateData(int reason) {
         final String status = getString(R.string.app_name);
-        final int cores = CPUFreq.getCpuCount();
+        final int cores = CPUFreq.getInstance(this).getCpuCount();
 
         if (extensionData == null) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -58,9 +58,12 @@ public class DashClock extends DashClockExtension {
                         try {
                             StringBuilder message = new StringBuilder();
                             if (RootUtils.rootAccess()) {
+                                CPUFreq cpuFreq = CPUFreq.getInstance(DashClock.this);
+                                GPUFreq gpuFreq = GPUFreq.getInstance();
+
                                 StringBuilder cpu = new StringBuilder();
                                 for (int i = 0; i < cores; i++) {
-                                    int freq = CPUFreq.getCurFreq(i) / 1000;
+                                    int freq = cpuFreq.getCurFreq(i) / 1000;
                                     if (i != 0) cpu.append(" | ");
                                     cpu.append(freq == 0 ? getString(R.string.offline) : freq);
                                 }
@@ -69,11 +72,11 @@ public class DashClock extends DashClockExtension {
                                             .append(cpu.toString()).append("\n");
                                 }
                                 message.append(getString(R.string.cpu_governor)).append(": ")
-                                        .append(CPUFreq.getGovernor(false)).append("\n");
+                                        .append(cpuFreq.getGovernor(false)).append("\n");
 
-                                if (GPUFreq.hasCurFreq()) {
+                                if (gpuFreq.hasCurFreq()) {
                                     message.append(getString(R.string.gpu)).append(": ")
-                                            .append(GPUFreq.getCurFreq() / 1000000)
+                                            .append(gpuFreq.getCurFreq() / 1000000)
                                             .append(getString(R.string.mhz));
                                 }
                             } else {

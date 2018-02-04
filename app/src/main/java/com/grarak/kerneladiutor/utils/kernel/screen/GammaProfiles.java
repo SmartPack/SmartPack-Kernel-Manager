@@ -37,7 +37,7 @@ public class GammaProfiles {
     private GammaControlProfiles gammaControlProfiles;
     private DsiPanelProfiles dsiPanelProfiles;
 
-    public GammaProfiles(String json) {
+    GammaProfiles(String json) {
         try {
             JSON = new JSONObject(json);
         } catch (JSONException e) {
@@ -46,7 +46,7 @@ public class GammaProfiles {
         }
     }
 
-    public KGammaProfiles getKGamma() {
+    KGammaProfiles getKGamma() {
         try {
             if (kgammaProfiles == null && JSON != null) {
                 kgammaProfiles = new KGammaProfiles(JSON.getJSONArray("k_gamma"));
@@ -57,7 +57,7 @@ public class GammaProfiles {
         }
     }
 
-    public GammaControlProfiles getGammaControl() {
+    GammaControlProfiles getGammaControl() {
         try {
             if (gammaControlProfiles == null && JSON != null) {
                 gammaControlProfiles = new GammaControlProfiles(JSON.getJSONArray("gammacontrol"));
@@ -68,7 +68,7 @@ public class GammaProfiles {
         }
     }
 
-    public DsiPanelProfiles getDsiPanelProfiles() {
+    DsiPanelProfiles getDsiPanelProfiles() {
         try {
             if (dsiPanelProfiles == null && JSON != null) {
                 dsiPanelProfiles = new DsiPanelProfiles(JSON.getJSONArray("dsi_panel"));
@@ -96,7 +96,7 @@ public class GammaProfiles {
 
         private final JSONArray JSON;
 
-        public GammaProfile(JSONArray jsonArray) {
+        GammaProfile(JSONArray jsonArray) {
             JSON = jsonArray;
         }
 
@@ -119,23 +119,23 @@ public class GammaProfiles {
 
     public static class KGammaProfiles extends GammaProfile {
 
-        public KGammaProfiles(JSONArray jsonArray) {
+        KGammaProfiles(JSONArray jsonArray) {
             super(jsonArray);
         }
 
-        public String getGammaRed(int position) {
+        String getGammaRed(int position) {
             return getString("gamma_r", position);
         }
 
-        public String getGammaGreen(int position) {
+        String getGammaGreen(int position) {
             return getString("gamma_g", position);
         }
 
-        public String getGammaBlue(int position) {
+        String getGammaBlue(int position) {
             return getString("gamma_b", position);
         }
 
-        public String getKCAL(int position) {
+        String getKCAL(int position) {
             return getString("kcal", position);
         }
 
@@ -143,71 +143,71 @@ public class GammaProfiles {
 
     public static class GammaControlProfiles extends GammaProfile {
 
-        public GammaControlProfiles(JSONArray jsonArray) {
+        GammaControlProfiles(JSONArray jsonArray) {
             super(jsonArray);
         }
 
-        public String getSaturation(int position) {
+        String getSaturation(int position) {
             return getString("saturation", position);
         }
 
-        public String getBrightness(int position) {
+        String getBrightness(int position) {
             return getString("brightness", position);
         }
 
-        public String getContrast(int position) {
+        String getContrast(int position) {
             return getString("contrast", position);
         }
 
-        public String getBlueWhites(int position) {
+        String getBlueWhites(int position) {
             return getString("blue_whites", position);
         }
 
-        public String getBlueBlacks(int position) {
+        String getBlueBlacks(int position) {
             return getString("blue_blacks", position);
         }
 
-        public String getBlueMids(int position) {
+        String getBlueMids(int position) {
             return getString("blue_mids", position);
         }
 
-        public String getBlueGreys(int position) {
+        String getBlueGreys(int position) {
             return getString("blue_greys", position);
         }
 
-        public String getGreenWhites(int position) {
+        String getGreenWhites(int position) {
             return getString("green_whites", position);
         }
 
-        public String getGreenBlacks(int position) {
+        String getGreenBlacks(int position) {
             return getString("green_blacks", position);
         }
 
-        public String getGreenMids(int position) {
+        String getGreenMids(int position) {
             return getString("green_mids", position);
         }
 
-        public String getGreenGreys(int position) {
+        String getGreenGreys(int position) {
             return getString("green_greys", position);
         }
 
-        public String getRedWhites(int position) {
+        String getRedWhites(int position) {
             return getString("red_whites", position);
         }
 
-        public String getRedBlacks(int position) {
+        String getRedBlacks(int position) {
             return getString("red_blacks", position);
         }
 
-        public String getRedMids(int position) {
+        String getRedMids(int position) {
             return getString("red_mids", position);
         }
 
-        public String getRedGreys(int position) {
+        String getRedGreys(int position) {
             return getString("red_greys", position);
         }
 
-        public String getKCAL(int position) {
+        String getKCAL(int position) {
             return getString("kcal", position);
         }
 
@@ -215,35 +215,35 @@ public class GammaProfiles {
 
     public static class DsiPanelProfiles extends GammaProfile {
 
-        public DsiPanelProfiles(JSONArray jsonArray) {
+        DsiPanelProfiles(JSONArray jsonArray) {
             super(jsonArray);
         }
 
-        public String getWhitePoint(int position) {
+        String getWhitePoint(int position) {
             return getString("white_point", position);
         }
 
-        public String getBlueNegative(int position) {
+        String getBlueNegative(int position) {
             return getString("blue_negative", position);
         }
 
-        public String getBluePositive(int position) {
+        String getBluePositive(int position) {
             return getString("blue_positive", position);
         }
 
-        public String getGreenNegative(int position) {
+        String getGreenNegative(int position) {
             return getString("green_negative", position);
         }
 
-        public String getGreenPositive(int position) {
+        String getGreenPositive(int position) {
             return getString("green_positive", position);
         }
 
-        public String getRedNegative(int position) {
+        String getRedNegative(int position) {
             return getString("red_negative", position);
         }
 
-        public String getRedPositive(int position) {
+        String getRedPositive(int position) {
             return getString("red_positive", position);
         }
 

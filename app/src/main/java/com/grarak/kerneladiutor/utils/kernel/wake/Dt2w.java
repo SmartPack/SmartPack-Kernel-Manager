@@ -35,6 +35,15 @@ import java.util.List;
  */
 public class Dt2w {
 
+    private static Dt2w sInstance;
+
+    public static Dt2w getInstance() {
+        if (sInstance == null) {
+            sInstance = new Dt2w();
+        }
+        return sInstance;
+    }
+
     private static final String LGE_TOUCH_DT2W = "/sys/devices/virtual/input/lge_touch/dt_wake_enabled";
     private static final String LGE_TOUCH_CORE_DT2W = "/sys/module/lge_touch_core/parameters/doubletap_to_wake";
     private static final String LGE_TOUCH_GESTURE = "/sys/devices/virtual/input/lge_touch/touch_gesture";
@@ -49,71 +58,72 @@ public class Dt2w {
     private static final String LENOVO_DT2W = "/sys/lenovo_tp_gestures/tpd_suspend_status";
     private static final String DT2W_SMDK4412 = "/sys/devices/virtual/misc/touchwake/knockon";
 
-    private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
-    private static final List<Integer> sLgeTouchCoreMenu = new ArrayList<>();
-    private static final List<Integer> sAndroidTouchMenu = new ArrayList<>();
-    private static final List<Integer> sGenericMenu = new ArrayList<>();
+    private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
+    private final List<Integer> mLgeTouchCoreMenu = new ArrayList<>();
+    private final List<Integer> mAndroidTouchMenu = new ArrayList<>();
+    private final List<Integer> mGenericMenu = new ArrayList<>();
 
-    static {
-        sLgeTouchCoreMenu.add(R.string.disabled);
-        sLgeTouchCoreMenu.add(R.string.center);
-        sLgeTouchCoreMenu.add(R.string.full);
-        sLgeTouchCoreMenu.add(R.string.bottom_half);
-        sLgeTouchCoreMenu.add(R.string.top_half);
+    {
+        mLgeTouchCoreMenu.add(R.string.disabled);
+        mLgeTouchCoreMenu.add(R.string.center);
+        mLgeTouchCoreMenu.add(R.string.full);
+        mLgeTouchCoreMenu.add(R.string.bottom_half);
+        mLgeTouchCoreMenu.add(R.string.top_half);
 
-        sAndroidTouchMenu.add(R.string.disabled);
-        sAndroidTouchMenu.add(R.string.half);
-        sAndroidTouchMenu.add(R.string.full);
+        mAndroidTouchMenu.add(R.string.disabled);
+        mAndroidTouchMenu.add(R.string.half);
+        mAndroidTouchMenu.add(R.string.full);
 
-        sGenericMenu.add(R.string.disabled);
-        sGenericMenu.add(R.string.enabled);
+        mGenericMenu.add(R.string.disabled);
+        mGenericMenu.add(R.string.enabled);
 
-        sFiles.put(LGE_TOUCH_DT2W, sGenericMenu);
-        sFiles.put(LGE_TOUCH_CORE_DT2W, sLgeTouchCoreMenu);
-        sFiles.put(LGE_TOUCH_GESTURE, sGenericMenu);
-        sFiles.put(ANDROID_TOUCH_DT2W, sAndroidTouchMenu);
-        sFiles.put(ANDROID_TOUCH2_DT2W, sGenericMenu);
-        sFiles.put(TOUCH_PANEL_DT2W, sGenericMenu);
-        sFiles.put(DT2W_WAKEUP_GESTURE, sGenericMenu);
-        sFiles.put(DT2W_ENABLE, sGenericMenu);
-        sFiles.put(DT2W_WAKE_GESTURE, sGenericMenu);
-        sFiles.put(DT2W_WAKE_GESTURE_2, sGenericMenu);
-        sFiles.put(DT2W_FT5X06, sGenericMenu);
-        sFiles.put(LENOVO_DT2W, sGenericMenu);
-        sFiles.put(DT2W_SMDK4412, sGenericMenu);
+        mFiles.put(LGE_TOUCH_DT2W, mGenericMenu);
+        mFiles.put(LGE_TOUCH_CORE_DT2W, mLgeTouchCoreMenu);
+        mFiles.put(LGE_TOUCH_GESTURE, mGenericMenu);
+        mFiles.put(ANDROID_TOUCH_DT2W, mAndroidTouchMenu);
+        mFiles.put(ANDROID_TOUCH2_DT2W, mGenericMenu);
+        mFiles.put(TOUCH_PANEL_DT2W, mGenericMenu);
+        mFiles.put(DT2W_WAKEUP_GESTURE, mGenericMenu);
+        mFiles.put(DT2W_ENABLE, mGenericMenu);
+        mFiles.put(DT2W_WAKE_GESTURE, mGenericMenu);
+        mFiles.put(DT2W_WAKE_GESTURE_2, mGenericMenu);
+        mFiles.put(DT2W_FT5X06, mGenericMenu);
+        mFiles.put(LENOVO_DT2W, mGenericMenu);
+        mFiles.put(DT2W_SMDK4412, mGenericMenu);
     }
 
-    private static String FILE;
+    private String FILE;
 
-    public static void set(int value, Context context) {
+    private Dt2w() {
+        for (String file : mFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+    }
+
+    public void set(int value, Context context) {
         run(Control.write(String.valueOf(value), FILE), FILE, context);
     }
 
-    public static int get() {
+    public int get() {
         return Utils.strToInt(Utils.readFile(FILE));
     }
 
-    public static List<String> getMenu(Context context) {
+    public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : sFiles.get(FILE)) {
+        for (int id : mFiles.get(FILE)) {
             list.add(context.getString(id));
         }
         return list;
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

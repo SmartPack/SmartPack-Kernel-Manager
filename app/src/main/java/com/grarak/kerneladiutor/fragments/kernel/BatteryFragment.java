@@ -44,20 +44,29 @@ import java.util.List;
  */
 public class BatteryFragment extends RecyclerViewFragment {
 
+    private Battery mBattery;
+
     private StatsView mLevel;
     private StatsView mVoltage;
 
-    private static int sBatteryLevel;
-    private static int sBatteryVoltage;
+    private int mBatteryLevel;
+    private int mBatteryVoltage;
+
+    @Override
+    protected void init() {
+        super.init();
+
+        mBattery = Battery.getInstance(getActivity());
+    }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         levelInit(items);
         voltageInit(items);
-        if (Battery.hasForceFastCharge()) {
+        if (mBattery.hasForceFastCharge()) {
             forceFastChargeInit(items);
         }
-        if (Battery.hasBlx()) {
+        if (mBattery.hasBlx()) {
             blxInit(items);
         }
         chargeRateInit(items);
@@ -70,10 +79,8 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (itemsSize() > 2) {
             addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         }
-        if (Battery.hasCapacity(getActivity())) {
-            addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
-                    Battery.getCapacity(getActivity()) + getString(R.string.mah)));
-        }
+        addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
+                mBattery.getCapacity() + getString(R.string.mah)));
     }
 
     private void levelInit(List<RecyclerViewItem> items) {
@@ -94,11 +101,11 @@ public class BatteryFragment extends RecyclerViewFragment {
         SwitchView forceFastCharge = new SwitchView();
         forceFastCharge.setTitle(getString(R.string.usb_fast_charge));
         forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
-        forceFastCharge.setChecked(Battery.isForceFastChargeEnabled());
+        forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
         forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
-                Battery.enableForceFastCharge(isChecked, getActivity());
+                mBattery.enableForceFastCharge(isChecked, getActivity());
             }
         });
 
@@ -116,11 +123,11 @@ public class BatteryFragment extends RecyclerViewFragment {
         blx.setTitle(getString(R.string.blx));
         blx.setSummary(getString(R.string.blx_summary));
         blx.setItems(list);
-        blx.setProgress(Battery.getBlx());
+        blx.setProgress(mBattery.getBlx());
         blx.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
-                Battery.setBlx(position, getActivity());
+                mBattery.setBlx(position, getActivity());
             }
 
             @Override
@@ -135,21 +142,21 @@ public class BatteryFragment extends RecyclerViewFragment {
         CardView chargeRateCard = new CardView(getActivity());
         chargeRateCard.setTitle(getString(R.string.charge_rate));
 
-        if (Battery.hasChargeRateEnable()) {
+        if (mBattery.hasChargeRateEnable()) {
             SwitchView chargeRate = new SwitchView();
             chargeRate.setSummary(getString(R.string.charge_rate));
-            chargeRate.setChecked(Battery.isChargeRateEnabled());
+            chargeRate.setChecked(mBattery.isChargeRateEnabled());
             chargeRate.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Battery.enableChargeRate(isChecked, getActivity());
+                    mBattery.enableChargeRate(isChecked, getActivity());
                 }
             });
 
             chargeRateCard.addItem(chargeRate);
         }
 
-        if (Battery.hasChargingCurrent()) {
+        if (mBattery.hasChargingCurrent()) {
             SeekBarView chargingCurrent = new SeekBarView();
             chargingCurrent.setTitle(getString(R.string.charging_current));
             chargingCurrent.setSummary(getString(R.string.charging_current_summary));
@@ -157,11 +164,11 @@ public class BatteryFragment extends RecyclerViewFragment {
             chargingCurrent.setMax(1500);
             chargingCurrent.setMin(100);
             chargingCurrent.setOffset(10);
-            chargingCurrent.setProgress(Battery.getChargingCurrent() / 10 - 10);
+            chargingCurrent.setProgress(mBattery.getChargingCurrent() / 10 - 10);
             chargingCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Battery.setChargingCurrent((position + 10) * 10, getActivity());
+                    mBattery.setChargingCurrent((position + 10) * 10, getActivity());
                 }
 
                 @Override
@@ -180,8 +187,8 @@ public class BatteryFragment extends RecyclerViewFragment {
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            sBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            sBatteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
+            mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+            mBatteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
         }
     };
 
@@ -189,10 +196,10 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
         if (mLevel != null) {
-            mLevel.setStat(sBatteryLevel + "%");
+            mLevel.setStat(mBatteryLevel + "%");
         }
         if (mVoltage != null) {
-            mVoltage.setStat(sBatteryVoltage + getString(R.string.mv));
+            mVoltage.setStat(mBatteryVoltage + getString(R.string.mv));
         }
     }
 

@@ -45,6 +45,7 @@ import android.widget.TextView;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.FilePickerActivity;
+import com.grarak.kerneladiutor.activities.NavigationActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileEditActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileTaskerActivity;
@@ -69,6 +70,7 @@ import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -195,33 +197,43 @@ public class ProfileFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     clearItems();
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> items) {
-                            super.onPostExecute(items);
-                            for (RecyclerViewItem item : items) {
-                                addItem(item);
-                            }
-                            hideProgress();
-                            mLoader = null;
-                        }
-                    };
+                    mLoader = new UILoader(ProfileFragment.this);
                     mLoader.execute();
                 }
             }, 250);
+        }
+    }
+
+    private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+
+        private WeakReference<ProfileFragment> mRefFragment;
+
+        private UILoader(ProfileFragment fragment) {
+            mRefFragment = new WeakReference<>(fragment);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mRefFragment.get().showProgress();
+        }
+
+        @Override
+        protected List<RecyclerViewItem> doInBackground(Void... voids) {
+            List<RecyclerViewItem> items = new ArrayList<>();
+            mRefFragment.get().load(items);
+            return items;
+        }
+
+        @Override
+        protected void onPostExecute(List<RecyclerViewItem> items) {
+            super.onPostExecute(items);
+            ProfileFragment fragment = mRefFragment.get();
+            for (RecyclerViewItem item : items) {
+                fragment.addItem(item);
+            }
+            fragment.hideProgress();
+            fragment.mLoader = null;
         }
     }
 
@@ -254,7 +266,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             switch (item.getItemId()) {
                                 case 0:
                                     if (Utils.DONATED) {
-                                        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                                        Intent intent = createProfileActivityIntent();
                                         intent.putExtra(ProfileActivity.POSITION_INTENT, position);
                                         startActivityForResult(intent, 2);
                                     } else {
@@ -410,7 +422,7 @@ public class ProfileFragment extends RecyclerViewFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch (i) {
                     case 0:
-                        startActivityForResult(new Intent(getActivity(), ProfileActivity.class), 0);
+                        startActivityForResult(createProfileActivityIntent(), 0);
                         break;
                     case 1:
                         if (Utils.DONATED) {
@@ -438,6 +450,28 @@ public class ProfileFragment extends RecyclerViewFragment {
             }
         });
         mOptionsDialog.show();
+    }
+
+    private Intent createProfileActivityIntent() {
+        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+
+        NavigationActivity activity = (NavigationActivity) getActivity();
+        ArrayList<NavigationActivity.NavigationFragment> fragments = new ArrayList<>();
+        boolean add = false;
+        for (NavigationActivity.NavigationFragment fragment : activity.getFragments()) {
+            if (fragment.mId == R.string.kernel) {
+                add = true;
+                continue;
+            }
+            if (!add) continue;
+            if (fragment.mFragmentClass == null) break;
+            if (activity.getActualFragments().get(fragment.mId) != null) {
+                fragments.add(fragment);
+            }
+        }
+        intent.putParcelableArrayListExtra(ProfileActivity.FRAGMENTS_INTENT, fragments);
+
+        return intent;
     }
 
     @Override

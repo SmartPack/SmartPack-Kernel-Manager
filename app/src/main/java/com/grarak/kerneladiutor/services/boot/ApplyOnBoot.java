@@ -330,7 +330,7 @@ public class ApplyOnBoot {
 
                 if (coreCtlMinPath != null) {
                     commands.add(Control.write(String.valueOf(context == null ?
-                            CPUFreq.sCoreCtlMinCpu : Prefs.getInt("core_ctl_min_cpus_big",
+                            CPUFreq.getInstance().mCoreCtlMinCpu : Prefs.getInt("core_ctl_min_cpus_big",
                             applyCpu.getCoreCtlMin(), context)), coreCtlMinPath));
                 }
                 if (msmPerformanceMinPath != null) {

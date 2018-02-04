@@ -35,77 +35,87 @@ import java.util.List;
  */
 public class Dt2s {
 
+    private static Dt2s sInstance;
+
+    public static Dt2s getInstance() {
+        if (sInstance == null) {
+            sInstance = new Dt2s();
+        }
+        return sInstance;
+    }
+
     private static final String DT2S = "/sys/android_touch2/doubletap2sleep";
     private static final String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
     private static final String WIDTH = "/sys/android_touch2/doubletap2sleep_x";
     private static final String HEIGHT = "/sys/android_touch2/doubletap2sleep_y";
 
-    private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
-    private static final List<Integer> sGenericMenu = new ArrayList<>();
+    private static final HashMap<String, List<Integer>> mFiles = new HashMap<>();
+    private static final List<Integer> mGenericMenu = new ArrayList<>();
 
-    static {
-        sGenericMenu.add(R.string.disabled);
-        sGenericMenu.add(R.string.enabled);
+    {
+        mGenericMenu.add(R.string.disabled);
+        mGenericMenu.add(R.string.enabled);
 
-        sFiles.put(DT2S, sGenericMenu);
-        sFiles.put(SCREEN_SLEEP_OPTIONS, sGenericMenu);
+        mFiles.put(DT2S, mGenericMenu);
+        mFiles.put(SCREEN_SLEEP_OPTIONS, mGenericMenu);
     }
 
-    private static String FILE;
+    private String FILE;
 
-    public static void setHeight(int value, Context context) {
+    private Dt2s() {
+        for (String file : mFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+    }
+
+    public void setHeight(int value, Context context) {
         run(Control.write(String.valueOf(value), HEIGHT), HEIGHT, context);
     }
 
-    public static int getHeight() {
+    public int getHeight() {
         return Utils.strToInt(Utils.readFile(HEIGHT));
     }
 
-    public static boolean hasHeight() {
+    public boolean hasHeight() {
         return Utils.existFile(HEIGHT);
     }
 
-    public static void setWidth(int value, Context context) {
+    public void setWidth(int value, Context context) {
         run(Control.write(String.valueOf(value), WIDTH), WIDTH, context);
     }
 
-    public static int getWidth() {
+    public int getWidth() {
         return Utils.strToInt(Utils.readFile(WIDTH));
     }
 
-    public static boolean hasWidth() {
+    public boolean hasWidth() {
         return Utils.existFile(WIDTH);
     }
 
-    public static void set(int value, Context context) {
+    public void set(int value, Context context) {
         run(Control.write(String.valueOf(value), FILE), FILE, context);
     }
 
-    public static int get() {
+    public int get() {
         return Utils.strToInt(Utils.readFile(FILE));
     }
 
-    public static List<String> getMenu(Context context) {
+    public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : sFiles.get(FILE)) {
+        for (int id : mFiles.get(FILE)) {
             list.add(context.getString(id));
         }
         return list;
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

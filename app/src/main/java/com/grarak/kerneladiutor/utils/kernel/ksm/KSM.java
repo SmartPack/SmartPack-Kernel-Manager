@@ -35,6 +35,15 @@ import java.util.List;
  */
 public class KSM {
 
+    private static KSM sInstance;
+
+    public static KSM getInstance() {
+        if (sInstance == null) {
+            sInstance = new KSM();
+        }
+        return sInstance;
+    }
+
     private static final String KSM = "/sys/kernel/mm/ksm";
     private static final String UKSM = "/sys/kernel/mm/uksm";
     private static final String FULL_SCANS = "/full_scans";
@@ -48,111 +57,112 @@ public class KSM {
     private static final String SLEEP_MILLISECONDS = "/sleep_millisecs";
     private static final String MAX_CPU_PERCENTAGE = "/max_cpu_percentage";
 
-    private static final List<String> sParent = new ArrayList<>();
-    private static final LinkedHashMap<String, Integer> sInfos = new LinkedHashMap<>();
+    private final List<String> mParent = new ArrayList<>();
+    private final LinkedHashMap<String, Integer> mInfos = new LinkedHashMap<>();
 
-    static {
-        sParent.add(KSM);
-        sParent.add(UKSM);
+    {
+        mParent.add(KSM);
+        mParent.add(UKSM);
 
-        sInfos.put(FULL_SCANS, R.string.full_scans);
-        sInfos.put(PAGES_SHARED, R.string.pages_shared);
-        sInfos.put(PAGES_SHARING, R.string.pages_sharing);
-        sInfos.put(PAGES_UNSHARED, R.string.pages_unshared);
-        sInfos.put(PAGES_VOLATILE, R.string.pages_volatile);
+        mInfos.put(FULL_SCANS, R.string.full_scans);
+        mInfos.put(PAGES_SHARED, R.string.pages_shared);
+        mInfos.put(PAGES_SHARING, R.string.pages_sharing);
+        mInfos.put(PAGES_UNSHARED, R.string.pages_unshared);
+        mInfos.put(PAGES_VOLATILE, R.string.pages_volatile);
     }
 
-    private static String PARENT;
+    private String PARENT;
 
-    public static void setMaxCpuPercentage(int value, Context context) {
+    private KSM() {
+        for (String file : mParent) {
+            if (Utils.existFile(file)) {
+                PARENT = file;
+                break;
+            }
+        }
+    }
+
+    public void setMaxCpuPercentage(int value, Context context) {
         run(Control.write(String.valueOf(value), MAX_CPU_PERCENTAGE), MAX_CPU_PERCENTAGE, context);
     }
 
-    public static int getMaxCpuPercentage() {
+    public int getMaxCpuPercentage() {
         return Utils.strToInt(Utils.readFile(MAX_CPU_PERCENTAGE));
     }
 
-    public static boolean hasMaxCpuPercentage() {
+    public boolean hasMaxCpuPercentage() {
         return Utils.existFile(MAX_CPU_PERCENTAGE);
     }
 
-    public static void setSleepMilliseconds(int ms, Context context) {
+    public void setSleepMilliseconds(int ms, Context context) {
         run(Control.write(String.valueOf(ms), PARENT + SLEEP_MILLISECONDS), PARENT + SLEEP_MILLISECONDS, context);
     }
 
-    public static int getSleepMilliseconds() {
+    public int getSleepMilliseconds() {
         return Utils.strToInt(Utils.readFile(PARENT + SLEEP_MILLISECONDS));
     }
 
-    public static boolean hasSleepMilliseconds() {
+    public boolean hasSleepMilliseconds() {
         return Utils.existFile(PARENT + SLEEP_MILLISECONDS);
     }
 
-    public static void setPagesToScan(int pages, Context context) {
+    public void setPagesToScan(int pages, Context context) {
         run(Control.write(String.valueOf(pages), PARENT + PAGES_TO_SCAN), PARENT + PAGES_TO_SCAN, context);
     }
 
-    public static int getPagesToScan() {
+    public int getPagesToScan() {
         return Utils.strToInt(Utils.readFile(PARENT + PAGES_TO_SCAN));
     }
 
-    public static boolean hasPagesToScan() {
+    public boolean hasPagesToScan() {
         return Utils.existFile(PARENT + PAGES_TO_SCAN);
     }
 
-    public static void enableDeferredTimer(boolean enable, Context context) {
+    public void enableDeferredTimer(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARENT + DEFERRED_TIMER), PARENT + DEFERRED_TIMER, context);
     }
 
-    public static boolean isDeferredTimerEnabled() {
+    public boolean isDeferredTimerEnabled() {
         return Utils.readFile(PARENT + DEFERRED_TIMER).equals("1");
     }
 
-    public static boolean hasDeferredTimer() {
+    public boolean hasDeferredTimer() {
         return Utils.existFile(PARENT + DEFERRED_TIMER);
     }
 
-    public static void enableKsm(boolean enable, Context context) {
+    public void enableKsm(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", PARENT + RUN), PARENT + RUN, context);
     }
 
-    public static boolean isEnabled() {
+    public boolean isEnabled() {
         return Utils.readFile(PARENT + RUN).equals("1");
     }
 
-    public static boolean hasEnable() {
+    public boolean hasEnable() {
         return Utils.existFile(PARENT + RUN);
     }
 
-    public static String getInfo(int position) {
-        return Utils.readFile(PARENT + sInfos.keySet().toArray(new String[sInfos.size()])[position]);
+    public String getInfo(int position) {
+        return Utils.readFile(PARENT + mInfos.keySet().toArray(new String[mInfos.size()])[position]);
     }
 
-    public static boolean hasInfo(int position) {
-        return Utils.existFile(PARENT + sInfos.keySet().toArray(new String[sInfos.size()])[position]);
+    public boolean hasInfo(int position) {
+        return Utils.existFile(PARENT + mInfos.keySet().toArray(new String[mInfos.size()])[position]);
     }
 
-    public static String getInfoText(int position, Context context) {
-        return context.getString(sInfos.get(sInfos.keySet().toArray(new String[sInfos.size()])[position]));
+    public String getInfoText(int position, Context context) {
+        return context.getString(mInfos.get(mInfos.keySet().toArray(new String[mInfos.size()])[position]));
     }
 
-    public static int getInfosSize() {
-        return sInfos.size();
+    public int getInfosSize() {
+        return mInfos.size();
     }
 
-    public static boolean supported() {
-        if (PARENT == null) {
-            for (String file : sParent) {
-                if (Utils.existFile(file)) {
-                    PARENT = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return PARENT != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.KSM, id, context);
     }
 

@@ -63,6 +63,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -99,7 +100,7 @@ public class MainActivity extends BaseActivity {
         }
 
         if (savedInstanceState == null) {
-            /**
+            /*
              * Launch password activity when one is set,
              * otherwise run {@link CheckingTask}
              */
@@ -109,7 +110,7 @@ public class MainActivity extends BaseActivity {
                 intent.putExtra(SecurityActivity.PASSWORD_INTENT, password);
                 startActivityForResult(intent, 1);
             } else {
-                new CheckingTask().execute();
+                new CheckingTask(this).execute();
             }
         }
     }
@@ -150,7 +151,7 @@ public class MainActivity extends BaseActivity {
              * 1: Password is correct
              */
             if (resultCode == 1) {
-                new CheckingTask().execute();
+                new CheckingTask(this).execute();
             } else {
                 finish();
             }
@@ -175,26 +176,27 @@ public class MainActivity extends BaseActivity {
         finish();
     }
 
-    private class CheckingTask extends AsyncTask<Void, Integer, Void> {
+    private static class CheckingTask extends AsyncTask<Void, Integer, Void> {
+
+        private WeakReference<MainActivity> mRefActivity;
 
         private boolean mHasRoot;
         private boolean mHasBusybox;
 
+        private CheckingTask(MainActivity activity) {
+            mRefActivity = new WeakReference<>(activity);
+        }
+
         @Override
         protected Void doInBackground(Void... params) {
-            // Check for root access
             mHasRoot = RootUtils.rootAccess();
             publishProgress(0);
 
-            // If root is available continue
             if (mHasRoot) {
-                // Check for busybox/toybox
                 mHasBusybox = RootUtils.busyboxInstalled();
                 publishProgress(1);
 
-                // If busybox/toybox is available continue
                 if (mHasBusybox) {
-                    // Collect information for caching
                     collectData();
                     publishProgress(2);
                 }
@@ -206,30 +208,32 @@ public class MainActivity extends BaseActivity {
          * Determinate what sections are supported
          */
         private void collectData() {
-            Battery.supported(MainActivity.this);
-            CPUBoost.supported();
+            MainActivity activity = mRefActivity.get();
+
+            Battery.getInstance(activity);
+            CPUBoost.getInstance();
 
             // Assign core ctl min cpu
-            CPUFreq.sCoreCtlMinCpu = Prefs.getInt("core_ctl_min_cpus_big", 2, MainActivity.this);
+            CPUFreq.getInstance(activity);
 
             Device.CPUInfo.load();
             Device.Input.supported();
-            Device.MemInfo.load();
+            Device.MemInfo.getInstance();
             Device.ROMInfo.load();
             Device.TrustZone.supported();
             GPU.supported();
             Hotplug.supported();
-            IO.supported();
-            KSM.supported();
-            MSMPerformance.supported();
+            IO.getInstance();
+            KSM.getInstance();
+            MSMPerformance.getInstance();
             QcomBcl.supported();
             Screen.supported();
-            Sound.supported();
-            Temperature.supported(MainActivity.this);
+            Sound.getInstance();
+            Temperature.getInstance(activity);
             Thermal.supported();
-            Tile.publishProfileTile(new Profiles(MainActivity.this).getAllProfiles(), MainActivity.this);
-            Vibration.supported();
-            Voltage.supported();
+            Tile.publishProfileTile(new Profiles(activity).getAllProfiles(), activity);
+            Vibration.getInstance();
+            Voltage.getInstance();
             Wake.supported();
 
             if (!BuildConfig.DEBUG) {
@@ -250,17 +254,19 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            int red = ContextCompat.getColor(MainActivity.this, R.color.red);
-            int green = ContextCompat.getColor(MainActivity.this, R.color.green);
+            MainActivity activity = mRefActivity.get();
+
+            int red = ContextCompat.getColor(activity, R.color.red);
+            int green = ContextCompat.getColor(activity, R.color.green);
             switch (values[0]) {
                 case 0:
-                    mRootAccess.setTextColor(mHasRoot ? green : red);
+                    activity.mRootAccess.setTextColor(mHasRoot ? green : red);
                     break;
                 case 1:
-                    mBusybox.setTextColor(mHasBusybox ? green : red);
+                    activity.mBusybox.setTextColor(mHasBusybox ? green : red);
                     break;
                 case 2:
-                    mCollectInfo.setTextColor(green);
+                    activity.mCollectInfo.setTextColor(green);
                     break;
             }
         }
@@ -268,6 +274,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            MainActivity activity = mRefActivity.get();
 
             /*
              * If root or busybox/toybox are not available,
@@ -275,15 +282,15 @@ public class MainActivity extends BaseActivity {
              * what the problem is.
              */
             if (!mHasRoot || !mHasBusybox) {
-                Intent intent = new Intent(MainActivity.this, TextActivity.class);
-                intent.putExtra(TextActivity.MESSAGE_INTENT, getString(mHasRoot ?
+                Intent intent = new Intent(activity, TextActivity.class);
+                intent.putExtra(TextActivity.MESSAGE_INTENT, activity.getString(mHasRoot ?
                         R.string.no_busybox : R.string.no_root));
                 intent.putExtra(TextActivity.SUMMARY_INTENT,
                         mHasRoot ? "https://play.google.com/store/apps/details?id=stericson.busybox" :
                                 "https://www.google.com/search?site=&source=hp&q=root+"
                                         + Device.getVendor() + "+" + Device.getModel());
-                startActivity(intent);
-                finish();
+                activity.startActivity(intent);
+                activity.finish();
 
                 if (!BuildConfig.DEBUG) {
                     // Send problem to analytics to collect stats
@@ -294,93 +301,103 @@ public class MainActivity extends BaseActivity {
             }
 
             // Initialize Google Ads
-            MobileAds.initialize(MainActivity.this, "ca-app-pub-1851546461606210~9501142287");
+            MobileAds.initialize(activity, "ca-app-pub-1851546461606210~9501142287");
 
             // Execute another AsyncTask for license checking
-            new AsyncTask<Void, Void, Boolean>() {
-
-                private ApplicationInfo mApplicationInfo;
-                private PackageInfo mPackageInfo;
-                private boolean mPatched;
-                private boolean mInternetAvailable;
-                private boolean mLicensedCached;
-
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                    try {
-                        mApplicationInfo = getPackageManager().getApplicationInfo(
-                                "com.grarak.kerneladiutordonate", 0);
-                        mPackageInfo = getPackageManager().getPackageInfo(
-                                "com.grarak.kerneladiutordonate", 0);
-                        if (BuildConfig.DEBUG) {
-                            Utils.DONATED = false;
-                        }
-                    } catch (PackageManager.NameNotFoundException ignored) {
-                    }
-                }
-
-                @Override
-                protected Boolean doInBackground(Void... params) {
-                    if (mApplicationInfo != null && mPackageInfo != null
-                            && mPackageInfo.versionCode == 130) {
-                        try {
-                            mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
-                                    new File(mApplicationInfo.publicSourceDir))
-                                    || Utils.isPatched(mApplicationInfo);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
-                            String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
-                            if (!content.isEmpty() && (content = Utils.decodeString(content)) != null) {
-                                if (content.equals(Utils.getAndroidId(MainActivity.this))) {
-                                    mLicensedCached = true;
-                                }
-                            }
-                        }
-
-                        try {
-                            if (!mLicensedCached) {
-                                HttpURLConnection urlConnection = (HttpURLConnection) new URL("https://www.google.com").openConnection();
-                                urlConnection.setRequestProperty("User-Agent", "Test");
-                                urlConnection.setRequestProperty("Connection", "close");
-                                urlConnection.setConnectTimeout(3000);
-                                urlConnection.connect();
-                                mInternetAvailable = urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK;
-                            }
-                        } catch (IOException ignored) {
-                        }
-
-                        return !mPatched;
-                    }
-                    return false;
-                }
-
-                @Override
-                protected void onPostExecute(Boolean donationValid) {
-                    super.onPostExecute(donationValid);
-                    if (donationValid && mLicensedCached) {
-                        launch(0);
-                    } else if (donationValid && mInternetAvailable) {
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.setComponent(new ComponentName("com.grarak.kerneladiutordonate",
-                                "com.grarak.kerneladiutordonate.MainActivity"));
-                        startActivityForResult(intent, 0);
-                    } else if (donationValid) {
-                        launch(1);
-                    } else {
-                        if (mPatched && !BuildConfig.DEBUG) {
-                            Answers.getInstance().logCustom(new CustomEvent("Pirated")
-                                    .putCustomAttribute("android_id", Utils.getAndroidId(MainActivity.this)));
-                        }
-                        launch(mPatched ? 3 : -1);
-                    }
-                }
-            }.execute();
+            new LoadingTask(activity).execute();
         }
 
+    }
+
+    private static class LoadingTask extends AsyncTask<Void, Void, Boolean> {
+        private WeakReference<MainActivity> mRefActivity;
+
+        private ApplicationInfo mApplicationInfo;
+        private PackageInfo mPackageInfo;
+        private boolean mPatched;
+        private boolean mInternetAvailable;
+        private boolean mLicensedCached;
+
+        private LoadingTask(MainActivity activity) {
+            mRefActivity = new WeakReference<>(activity);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            try {
+                PackageManager packageManager = mRefActivity.get().getPackageManager();
+                mApplicationInfo = packageManager.getApplicationInfo(
+                        "com.grarak.kerneladiutordonate", 0);
+                mPackageInfo = packageManager.getPackageInfo(
+                        "com.grarak.kerneladiutordonate", 0);
+                if (BuildConfig.DEBUG) {
+                    Utils.DONATED = false;
+                }
+            } catch (PackageManager.NameNotFoundException ignored) {
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            if (mApplicationInfo != null && mPackageInfo != null
+                    && mPackageInfo.versionCode == 130) {
+                try {
+                    mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
+                            new File(mApplicationInfo.publicSourceDir))
+                            || Utils.isPatched(mApplicationInfo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
+                    String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
+                    if (!content.isEmpty() && (content = Utils.decodeString(content)) != null) {
+                        if (content.equals(Utils.getAndroidId(mRefActivity.get()))) {
+                            mLicensedCached = true;
+                        }
+                    }
+                }
+
+                try {
+                    if (!mLicensedCached) {
+                        HttpURLConnection urlConnection = (HttpURLConnection) new URL("https://www.google.com").openConnection();
+                        urlConnection.setRequestProperty("User-Agent", "Test");
+                        urlConnection.setRequestProperty("Connection", "close");
+                        urlConnection.setConnectTimeout(3000);
+                        urlConnection.connect();
+                        mInternetAvailable = urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK;
+                    }
+                } catch (IOException ignored) {
+                }
+
+                return !mPatched;
+            }
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean donationValid) {
+            super.onPostExecute(donationValid);
+
+            MainActivity activity = mRefActivity.get();
+            if (donationValid && mLicensedCached) {
+                activity.launch(0);
+            } else if (donationValid && mInternetAvailable) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setComponent(new ComponentName("com.grarak.kerneladiutordonate",
+                        "com.grarak.kerneladiutordonate.MainActivity"));
+                activity.startActivityForResult(intent, 0);
+            } else if (donationValid) {
+                activity.launch(1);
+            } else {
+                if (mPatched && !BuildConfig.DEBUG) {
+                    Answers.getInstance().logCustom(new CustomEvent("Pirated")
+                            .putCustomAttribute("android_id", Utils.getAndroidId(activity)));
+                }
+                activity.launch(mPatched ? 3 : -1);
+            }
+        }
     }
 
 }

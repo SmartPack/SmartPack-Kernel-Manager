@@ -115,7 +115,6 @@ public class BannerResizerActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     Prefs.saveInt("banner_size", seekBar.getProgress() + minHeight, getActivity());
-                    NavigationActivity.bannerResize();
                     getActivity().finish();
                 }
             });

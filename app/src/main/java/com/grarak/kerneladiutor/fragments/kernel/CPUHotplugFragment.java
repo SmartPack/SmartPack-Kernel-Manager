@@ -53,12 +53,23 @@ import java.util.List;
  */
 public class CPUHotplugFragment extends RecyclerViewFragment {
 
+    private CPUFreq mCPUFreq;
+    private IntelliPlug mIntelliPlug;
+    private MSMHotplug mMSMHotplug;
+    private MBHotplug mMBHotplug;
+    private CoreCtl mCoreCtl;
+
     private List<SwitchView> mEnableViews = new ArrayList<>();
 
     @Override
     protected void init() {
         super.init();
 
+        mCPUFreq = CPUFreq.getInstance(getActivity());
+        mIntelliPlug = IntelliPlug.getInstance();
+        mMSMHotplug = MSMHotplug.getInstance();
+        mMBHotplug = mMBHotplug.getInstance();
+        mCoreCtl = CoreCtl.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
@@ -69,7 +80,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         if (MPDecision.supported()) {
             mpdecisionInit(items);
         }
-        if (IntelliPlug.supported()) {
+        if (mIntelliPlug.supported()) {
             intelliPlugInit(items);
         }
         if (LazyPlug.supported()) {
@@ -78,13 +89,13 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         if (BluPlug.supported()) {
             bluPlugInit(items);
         }
-        if (MSMHotplug.supported()) {
+        if (mMSMHotplug.supported()) {
             msmHotplugInit(items);
         }
         if (MakoHotplug.supported()) {
             makoHotplugInit(items);
         }
-        if (MBHotplug.supported()) {
+        if (mMBHotplug.supported()) {
             mbHotplugInit(items);
         }
         if (AlucardHotplug.supported()) {
@@ -99,7 +110,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         if (AutoSmp.supported()) {
             autoSmpInit(items);
         }
-        if (CoreCtl.supported()) {
+        if (mCoreCtl.supported()) {
             coreCtlInit(items);
         }
         if (AiOHotplug.supported()) {
@@ -148,15 +159,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(R.string.intelliplug));
 
-        if (IntelliPlug.hasIntelliPlugEnable()) {
+        if (mIntelliPlug.hasIntelliPlugEnable()) {
             SwitchView enable = new SwitchView();
             enable.setTitle(getString(R.string.intelliplug));
             enable.setSummary(getString(R.string.intelliplug_summary));
-            enable.setChecked(IntelliPlug.isIntelliPlugEnabled());
+            enable.setChecked(mIntelliPlug.isIntelliPlugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IntelliPlug.enableIntelliPlug(isChecked, getActivity());
+                    mIntelliPlug.enableIntelliPlug(isChecked, getActivity());
                 }
             });
 
@@ -164,58 +175,58 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             mEnableViews.add(enable);
         }
 
-        if (IntelliPlug.hasIntelliPlugProfile()) {
+        if (mIntelliPlug.hasIntelliPlugProfile()) {
             SelectView profile = new SelectView();
             profile.setTitle(getString(R.string.profile));
             profile.setSummary(getString(R.string.cpu_hotplug_profile_summary));
-            profile.setItems(IntelliPlug.getIntelliPlugProfileMenu(getActivity()));
-            profile.setItem(IntelliPlug.getIntelliPlugProfile());
+            profile.setItems(mIntelliPlug.getIntelliPlugProfileMenu(getActivity()));
+            profile.setItem(mIntelliPlug.getIntelliPlugProfile());
             profile.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    IntelliPlug.setIntelliPlugProfile(position, getActivity());
+                    mIntelliPlug.setIntelliPlugProfile(position, getActivity());
                 }
             });
 
             intelliplug.add(profile);
         }
 
-        if (IntelliPlug.hasIntelliPlugEco()) {
+        if (mIntelliPlug.hasIntelliPlugEco()) {
             SwitchView eco = new SwitchView();
             eco.setTitle(getString(R.string.eco_mode));
             eco.setSummary(getString(R.string.eco_mode_summary));
-            eco.setChecked(IntelliPlug.isIntelliPlugEcoEnabled());
+            eco.setChecked(mIntelliPlug.isIntelliPlugEcoEnabled());
             eco.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IntelliPlug.enableIntelliPlugEco(isChecked, getActivity());
+                    mIntelliPlug.enableIntelliPlugEco(isChecked, getActivity());
                 }
             });
 
             intelliplug.add(eco);
         }
 
-        if (IntelliPlug.hasIntelliPlugTouchBoost()) {
+        if (mIntelliPlug.hasIntelliPlugTouchBoost()) {
             SwitchView touchBoost = new SwitchView();
             touchBoost.setTitle(getString(R.string.touch_boost));
             touchBoost.setSummary(getString(R.string.touch_boost_summary));
-            touchBoost.setChecked(IntelliPlug.isIntelliPlugTouchBoostEnabled());
+            touchBoost.setChecked(mIntelliPlug.isIntelliPlugTouchBoostEnabled());
             touchBoost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IntelliPlug.enableIntelliPlugTouchBoost(isChecked, getActivity());
+                    mIntelliPlug.enableIntelliPlugTouchBoost(isChecked, getActivity());
                 }
             });
 
             intelliplug.add(touchBoost);
         }
 
-        if (IntelliPlug.hasIntelliPlugHysteresis()) {
+        if (mIntelliPlug.hasIntelliPlugHysteresis()) {
             SeekBarView hysteresis = new SeekBarView();
             hysteresis.setTitle(getString(R.string.hysteresis));
             hysteresis.setSummary(getString(R.string.hysteresis_summary));
             hysteresis.setMax(17);
-            hysteresis.setProgress(IntelliPlug.getIntelliPlugHysteresis());
+            hysteresis.setProgress(mIntelliPlug.getIntelliPlugHysteresis());
             hysteresis.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -223,19 +234,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugHysteresis(position, getActivity());
+                    mIntelliPlug.setIntelliPlugHysteresis(position, getActivity());
                 }
             });
 
             intelliplug.add(hysteresis);
         }
 
-        if (IntelliPlug.hasIntelliPlugThresold()) {
+        if (mIntelliPlug.hasIntelliPlugThresold()) {
             SeekBarView threshold = new SeekBarView();
             threshold.setTitle(getString(R.string.cpu_threshold));
             threshold.setSummary(getString(R.string.cpu_threshold_summary));
             threshold.setMax(1000);
-            threshold.setProgress(IntelliPlug.getIntelliPlugThresold());
+            threshold.setProgress(mIntelliPlug.getIntelliPlugThresold());
             threshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -243,70 +254,70 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugThresold(position, getActivity());
+                    mIntelliPlug.setIntelliPlugThresold(position, getActivity());
                 }
             });
 
             intelliplug.add(threshold);
         }
 
-        if (IntelliPlug.hasIntelliPlugScreenOffMax() && CPUFreq.getFreqs() != null) {
+        if (mIntelliPlug.hasIntelliPlugScreenOffMax() && mCPUFreq.getFreqs() != null) {
             List<String> list = new ArrayList<>();
             list.add(getString(R.string.disabled));
-            list.addAll(CPUFreq.getAdjustedFreq(getActivity()));
+            list.addAll(mCPUFreq.getAdjustedFreq(getActivity()));
 
             SelectView maxScreenOffFreq = new SelectView();
             maxScreenOffFreq.setTitle(getString(R.string.cpu_max_screen_off_freq));
             maxScreenOffFreq.setSummary(getString(R.string.cpu_max_screen_off_freq_summary));
             maxScreenOffFreq.setItems(list);
-            maxScreenOffFreq.setItem(IntelliPlug.getIntelliPlugScreenOffMax());
+            maxScreenOffFreq.setItem(mIntelliPlug.getIntelliPlugScreenOffMax());
             maxScreenOffFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    IntelliPlug.setIntelliPlugScreenOffMax(position, getActivity());
+                    mIntelliPlug.setIntelliPlugScreenOffMax(position, getActivity());
                 }
             });
 
             intelliplug.add(maxScreenOffFreq);
         }
 
-        if (IntelliPlug.hasIntelliPlugDebug()) {
+        if (mIntelliPlug.hasIntelliPlugDebug()) {
             SwitchView debug = new SwitchView();
             debug.setTitle(getString(R.string.debug_mask));
             debug.setSummary(getString(R.string.debug_mask_summary));
-            debug.setChecked(IntelliPlug.isIntelliPlugDebugEnabled());
+            debug.setChecked(mIntelliPlug.isIntelliPlugDebugEnabled());
             debug.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IntelliPlug.enableIntelliPlugDebug(isChecked, getActivity());
+                    mIntelliPlug.enableIntelliPlugDebug(isChecked, getActivity());
                 }
             });
 
             intelliplug.add(debug);
         }
 
-        if (IntelliPlug.hasIntelliPlugSuspend()) {
+        if (mIntelliPlug.hasIntelliPlugSuspend()) {
             SwitchView suspend = new SwitchView();
             suspend.setTitle(getString(R.string.suspend));
             suspend.setSummary(getString(R.string.suspend_summary));
-            suspend.setChecked(IntelliPlug.isIntelliPlugSuspendEnabled());
+            suspend.setChecked(mIntelliPlug.isIntelliPlugSuspendEnabled());
             suspend.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    IntelliPlug.enableIntelliPlugSuspend(isChecked, getActivity());
+                    mIntelliPlug.enableIntelliPlugSuspend(isChecked, getActivity());
                 }
             });
 
             intelliplug.add(suspend);
         }
 
-        if (IntelliPlug.hasIntelliPlugCpusBoosted()) {
+        if (mIntelliPlug.hasIntelliPlugCpusBoosted()) {
             SeekBarView cpusBoosted = new SeekBarView();
             cpusBoosted.setTitle(getString(R.string.cpus_boosted));
             cpusBoosted.setSummary(getString(R.string.cpus_boosted_summary));
-            cpusBoosted.setMax(CPUFreq.getCpuCount());
+            cpusBoosted.setMax(mCPUFreq.getCpuCount());
             cpusBoosted.setMin(1);
-            cpusBoosted.setProgress(IntelliPlug.getIntelliPlugCpusBoosted() - 1);
+            cpusBoosted.setProgress(mIntelliPlug.getIntelliPlugCpusBoosted() - 1);
             cpusBoosted.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -314,20 +325,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugCpusBoosted(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugCpusBoosted(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(cpusBoosted);
         }
 
-        if (IntelliPlug.hasIntelliPlugMinCpusOnline()) {
+        if (mIntelliPlug.hasIntelliPlugMinCpusOnline()) {
             SeekBarView minCpusOnline = new SeekBarView();
             minCpusOnline.setTitle(getString(R.string.min_cpu_online));
             minCpusOnline.setSummary(getString(R.string.min_cpu_online_summary));
-            minCpusOnline.setMax(CPUFreq.getCpuCount());
+            minCpusOnline.setMax(mCPUFreq.getCpuCount());
             minCpusOnline.setMin(1);
-            minCpusOnline.setProgress(IntelliPlug.getIntelliPlugMinCpusOnline() - 1);
+            minCpusOnline.setProgress(mIntelliPlug.getIntelliPlugMinCpusOnline() - 1);
             minCpusOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -335,20 +346,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugMinCpusOnline(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugMinCpusOnline(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(minCpusOnline);
         }
 
-        if (IntelliPlug.hasIntelliPlugMaxCpusOnline()) {
+        if (mIntelliPlug.hasIntelliPlugMaxCpusOnline()) {
             SeekBarView maxCpusOnline = new SeekBarView();
             maxCpusOnline.setTitle(getString(R.string.max_cpu_online));
             maxCpusOnline.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCpusOnline.setMax(CPUFreq.getCpuCount());
+            maxCpusOnline.setMax(mCPUFreq.getCpuCount());
             maxCpusOnline.setMin(1);
-            maxCpusOnline.setProgress(IntelliPlug.getIntelliPlugMaxCpusOnline() - 1);
+            maxCpusOnline.setProgress(mIntelliPlug.getIntelliPlugMaxCpusOnline() - 1);
             maxCpusOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -356,20 +367,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugMaxCpusOnline(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugMaxCpusOnline(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(maxCpusOnline);
         }
 
-        if (IntelliPlug.hasIntelliPlugMaxCpusOnlineSusp()) {
+        if (mIntelliPlug.hasIntelliPlugMaxCpusOnlineSusp()) {
             SeekBarView maxCpusOnlineSusp = new SeekBarView();
             maxCpusOnlineSusp.setTitle(getString(R.string.max_cpu_online_screen_off));
             maxCpusOnlineSusp.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            maxCpusOnlineSusp.setMax(CPUFreq.getCpuCount());
+            maxCpusOnlineSusp.setMax(mCPUFreq.getCpuCount());
             maxCpusOnlineSusp.setMin(1);
-            maxCpusOnlineSusp.setProgress(IntelliPlug.getIntelliPlugMaxCpusOnlineSusp() - 1);
+            maxCpusOnlineSusp.setProgress(mIntelliPlug.getIntelliPlugMaxCpusOnlineSusp() - 1);
             maxCpusOnlineSusp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -377,20 +388,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugMaxCpusOnlineSusp(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugMaxCpusOnlineSusp(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(maxCpusOnlineSusp);
         }
 
-        if (IntelliPlug.hasIntelliPlugSuspendDeferTime()) {
+        if (mIntelliPlug.hasIntelliPlugSuspendDeferTime()) {
             SeekBarView suspendDeferTime = new SeekBarView();
             suspendDeferTime.setTitle(getString(R.string.suspend_defer_time));
             suspendDeferTime.setUnit(getString(R.string.ms));
             suspendDeferTime.setMax(5000);
             suspendDeferTime.setOffset(10);
-            suspendDeferTime.setProgress(IntelliPlug.getIntelliPlugSuspendDeferTime() / 10);
+            suspendDeferTime.setProgress(mIntelliPlug.getIntelliPlugSuspendDeferTime() / 10);
             suspendDeferTime.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -398,19 +409,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugSuspendDeferTime(position * 10, getActivity());
+                    mIntelliPlug.setIntelliPlugSuspendDeferTime(position * 10, getActivity());
                 }
             });
 
             intelliplug.add(suspendDeferTime);
         }
 
-        if (IntelliPlug.hasIntelliPlugDeferSampling()) {
+        if (mIntelliPlug.hasIntelliPlugDeferSampling()) {
             SeekBarView deferSampling = new SeekBarView();
             deferSampling.setTitle(getString(R.string.defer_sampling));
             deferSampling.setUnit(getString(R.string.ms));
             deferSampling.setMax(1000);
-            deferSampling.setProgress(IntelliPlug.getIntelliPlugDeferSampling());
+            deferSampling.setProgress(mIntelliPlug.getIntelliPlugDeferSampling());
             deferSampling.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -418,21 +429,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugDeferSampling(position, getActivity());
+                    mIntelliPlug.setIntelliPlugDeferSampling(position, getActivity());
                 }
             });
 
             intelliplug.add(deferSampling);
         }
 
-        if (IntelliPlug.hasIntelliPlugBoostLockDuration()) {
+        if (mIntelliPlug.hasIntelliPlugBoostLockDuration()) {
             SeekBarView boostLockDuration = new SeekBarView();
             boostLockDuration.setTitle(getString(R.string.boost_lock_duration));
             boostLockDuration.setSummary(getString(R.string.boost_lock_duration_summary));
             boostLockDuration.setUnit(getString(R.string.ms));
             boostLockDuration.setMax(5000);
             boostLockDuration.setMin(1);
-            boostLockDuration.setProgress(IntelliPlug.getIntelliPlugBoostLockDuration() - 1);
+            boostLockDuration.setProgress(mIntelliPlug.getIntelliPlugBoostLockDuration() - 1);
             boostLockDuration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -440,21 +451,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugBoostLockDuration(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugBoostLockDuration(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(boostLockDuration);
         }
 
-        if (IntelliPlug.hasIntelliPlugDownLockDuration()) {
+        if (mIntelliPlug.hasIntelliPlugDownLockDuration()) {
             SeekBarView downLockDuration = new SeekBarView();
             downLockDuration.setTitle(getString(R.string.down_lock_duration));
             downLockDuration.setSummary(getString(R.string.down_lock_duration_summary));
             downLockDuration.setUnit(getString(R.string.ms));
             downLockDuration.setMax(5000);
             downLockDuration.setMin(1);
-            downLockDuration.setProgress(IntelliPlug.getIntelliPlugDownLockDuration() - 1);
+            downLockDuration.setProgress(mIntelliPlug.getIntelliPlugDownLockDuration() - 1);
             downLockDuration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -462,18 +473,18 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugDownLockDuration(position + 1, getActivity());
+                    mIntelliPlug.setIntelliPlugDownLockDuration(position + 1, getActivity());
                 }
             });
 
             intelliplug.add(downLockDuration);
         }
 
-        if (IntelliPlug.hasIntelliPlugFShift()) {
+        if (mIntelliPlug.hasIntelliPlugFShift()) {
             SeekBarView fShift = new SeekBarView();
             fShift.setTitle(getString(R.string.fshift));
             fShift.setMax(4);
-            fShift.setProgress(IntelliPlug.getIntelliPlugFShift());
+            fShift.setProgress(mIntelliPlug.getIntelliPlugFShift());
             fShift.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -481,7 +492,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    IntelliPlug.setIntelliPlugFShift(position, getActivity());
+                    mIntelliPlug.setIntelliPlugFShift(position, getActivity());
                 }
             });
 
@@ -591,7 +602,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView possibleCores = new SeekBarView();
             possibleCores.setTitle(getString(R.string.max_cpu_online));
             possibleCores.setSummary(getString(R.string.possible_cpu_cores_summary));
-            possibleCores.setMax(CPUFreq.getCpuCount());
+            possibleCores.setMax(mCPUFreq.getCpuCount());
             possibleCores.setMin(1);
             possibleCores.setProgress(LazyPlug.getPossibleCores() - 1);
             possibleCores.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -655,7 +666,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView minOnline = new SeekBarView();
             minOnline.setTitle(getString(R.string.min_cpu_online));
             minOnline.setSummary(getString(R.string.min_cpu_online_summary));
-            minOnline.setMax(CPUFreq.getCpuCount());
+            minOnline.setMax(mCPUFreq.getCpuCount());
             minOnline.setMin(1);
             minOnline.setProgress(BluPlug.getBluPlugMinOnline() - 1);
             minOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -676,7 +687,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxOnline = new SeekBarView();
             maxOnline.setTitle(getString(R.string.max_cpu_online));
             maxOnline.setSummary(getString(R.string.max_cpu_online_summary));
-            maxOnline.setMax(CPUFreq.getCpuCount());
+            maxOnline.setMax(mCPUFreq.getCpuCount());
             maxOnline.setMin(1);
             maxOnline.setProgress(BluPlug.getBluPlugMaxOnline() - 1);
             maxOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -697,7 +708,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxCoresScreenOff = new SeekBarView();
             maxCoresScreenOff.setTitle(getString(R.string.max_cpu_online_screen_off));
             maxCoresScreenOff.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            maxCoresScreenOff.setMax(CPUFreq.getCpuCount());
+            maxCoresScreenOff.setMax(mCPUFreq.getCpuCount());
             maxCoresScreenOff.setMin(1);
             maxCoresScreenOff.setProgress(BluPlug.getBluPlugMaxCoresScreenOff() - 1);
             maxCoresScreenOff.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -714,10 +725,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             bluplug.add(maxCoresScreenOff);
         }
 
-        if (BluPlug.hasBluPlugMaxFreqScreenOff() && CPUFreq.getFreqs() != null) {
+        if (BluPlug.hasBluPlugMaxFreqScreenOff() && mCPUFreq.getFreqs() != null) {
             List<String> list = new ArrayList<>();
             list.add(getString(R.string.disabled));
-            list.addAll(CPUFreq.getAdjustedFreq(getActivity()));
+            list.addAll(mCPUFreq.getAdjustedFreq(getActivity()));
 
             SeekBarView maxFreqScreenOff = new SeekBarView();
             maxFreqScreenOff.setTitle(getString(R.string.cpu_max_screen_off_freq));
@@ -820,15 +831,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(R.string.msm_hotplug));
 
-        if (MSMHotplug.hasMsmHotplugEnable()) {
+        if (mMSMHotplug.hasMsmHotplugEnable()) {
             SwitchView enable = new SwitchView();
             enable.setTitle(getString(R.string.msm_hotplug));
             enable.setSummary(getString(R.string.msm_hotplug_summary));
-            enable.setChecked(MSMHotplug.isMsmHotplugEnabled());
+            enable.setChecked(mMSMHotplug.isMsmHotplugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMHotplug.enableMsmHotplug(isChecked, getActivity());
+                    mMSMHotplug.enableMsmHotplug(isChecked, getActivity());
                 }
             });
 
@@ -836,28 +847,28 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             mEnableViews.add(enable);
         }
 
-        if (MSMHotplug.hasMsmHotplugDebugMask()) {
+        if (mMSMHotplug.hasMsmHotplugDebugMask()) {
             SwitchView debugMask = new SwitchView();
             debugMask.setTitle(getString(R.string.debug_mask));
             debugMask.setSummary(getString(R.string.debug_mask_summary));
-            debugMask.setChecked(MSMHotplug.isMsmHotplugDebugMaskEnabled());
+            debugMask.setChecked(mMSMHotplug.isMsmHotplugDebugMaskEnabled());
             debugMask.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMHotplug.enableMsmHotplugDebugMask(isChecked, getActivity());
+                    mMSMHotplug.enableMsmHotplugDebugMask(isChecked, getActivity());
                 }
             });
 
             msmHotplug.add(debugMask);
         }
 
-        if (MSMHotplug.hasMsmHotplugMinCpusOnline()) {
+        if (mMSMHotplug.hasMsmHotplugMinCpusOnline()) {
             SeekBarView minCpusOnline = new SeekBarView();
             minCpusOnline.setTitle(getString(R.string.min_cpu_online));
             minCpusOnline.setSummary(getString(R.string.min_cpu_online_summary));
-            minCpusOnline.setMax(CPUFreq.getCpuCount());
+            minCpusOnline.setMax(mCPUFreq.getCpuCount());
             minCpusOnline.setMin(1);
-            minCpusOnline.setProgress(MSMHotplug.getMsmHotplugMinCpusOnline() - 1);
+            minCpusOnline.setProgress(mMSMHotplug.getMsmHotplugMinCpusOnline() - 1);
             minCpusOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -865,20 +876,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugMinCpusOnline(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugMinCpusOnline(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(minCpusOnline);
         }
 
-        if (MSMHotplug.hasMsmHotplugMaxCpusOnline()) {
+        if (mMSMHotplug.hasMsmHotplugMaxCpusOnline()) {
             SeekBarView maxCpusOnline = new SeekBarView();
             maxCpusOnline.setTitle(getString(R.string.max_cpu_online));
             maxCpusOnline.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCpusOnline.setMax(CPUFreq.getCpuCount());
+            maxCpusOnline.setMax(mCPUFreq.getCpuCount());
             maxCpusOnline.setMin(1);
-            maxCpusOnline.setProgress(MSMHotplug.getMsmHotplugMaxCpusOnline() - 1);
+            maxCpusOnline.setProgress(mMSMHotplug.getMsmHotplugMaxCpusOnline() - 1);
             maxCpusOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -886,20 +897,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugMaxCpusOnline(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugMaxCpusOnline(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(maxCpusOnline);
         }
 
-        if (MSMHotplug.hasMsmHotplugCpusBoosted()) {
+        if (mMSMHotplug.hasMsmHotplugCpusBoosted()) {
             SeekBarView cpusBoosted = new SeekBarView();
             cpusBoosted.setTitle(getString(R.string.cpus_boosted));
             cpusBoosted.setSummary(getString(R.string.cpus_boosted_summary));
-            cpusBoosted.setMax(CPUFreq.getCpuCount());
+            cpusBoosted.setMax(mCPUFreq.getCpuCount());
             cpusBoosted.setMin(1);
-            cpusBoosted.setProgress(MSMHotplug.getMsmHotplugCpusBoosted());
+            cpusBoosted.setProgress(mMSMHotplug.getMsmHotplugCpusBoosted());
             cpusBoosted.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -907,20 +918,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugCpusBoosted(position, getActivity());
+                    mMSMHotplug.setMsmHotplugCpusBoosted(position, getActivity());
                 }
             });
 
             msmHotplug.add(cpusBoosted);
         }
 
-        if (MSMHotplug.hasMsmHotplugMaxCpusOnlineSusp()) {
+        if (mMSMHotplug.hasMsmHotplugMaxCpusOnlineSusp()) {
             SeekBarView maxCpusOnlineSusp = new SeekBarView();
             maxCpusOnlineSusp.setTitle(getString(R.string.max_cpu_online_screen_off));
             maxCpusOnlineSusp.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            maxCpusOnlineSusp.setMax(CPUFreq.getCpuCount());
+            maxCpusOnlineSusp.setMax(mCPUFreq.getCpuCount());
             maxCpusOnlineSusp.setMin(1);
-            maxCpusOnlineSusp.setProgress(MSMHotplug.getMsmHotplugMaxCpusOnlineSusp() - 1);
+            maxCpusOnlineSusp.setProgress(mMSMHotplug.getMsmHotplugMaxCpusOnlineSusp() - 1);
             maxCpusOnlineSusp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -928,20 +939,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugMaxCpusOnlineSusp(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugMaxCpusOnlineSusp(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(maxCpusOnlineSusp);
         }
 
-        if (MSMHotplug.hasMsmHotplugBoostLockDuration()) {
+        if (mMSMHotplug.hasMsmHotplugBoostLockDuration()) {
             SeekBarView boostLockDuration = new SeekBarView();
             boostLockDuration.setTitle(getString(R.string.boost_lock_duration));
             boostLockDuration.setSummary(getString(R.string.boost_lock_duration_summary));
             boostLockDuration.setMax(5000);
             boostLockDuration.setMin(1);
-            boostLockDuration.setProgress(MSMHotplug.getMsmHotplugBoostLockDuration() - 1);
+            boostLockDuration.setProgress(mMSMHotplug.getMsmHotplugBoostLockDuration() - 1);
             boostLockDuration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -949,20 +960,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugBoostLockDuration(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugBoostLockDuration(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(boostLockDuration);
         }
 
-        if (MSMHotplug.hasMsmHotplugDownLockDuration()) {
+        if (mMSMHotplug.hasMsmHotplugDownLockDuration()) {
             SeekBarView downLockDuration = new SeekBarView();
             downLockDuration.setTitle(getString(R.string.down_lock_duration));
             downLockDuration.setSummary(getString(R.string.down_lock_duration_summary));
             downLockDuration.setMax(5000);
             downLockDuration.setMin(1);
-            downLockDuration.setProgress(MSMHotplug.getMsmHotplugDownLockDuration() - 1);
+            downLockDuration.setProgress(mMSMHotplug.getMsmHotplugDownLockDuration() - 1);
             downLockDuration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -970,20 +981,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugDownLockDuration(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugDownLockDuration(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(downLockDuration);
         }
 
-        if (MSMHotplug.hasMsmHotplugHistorySize()) {
+        if (mMSMHotplug.hasMsmHotplugHistorySize()) {
             SeekBarView historySize = new SeekBarView();
             historySize.setTitle(getString(R.string.history_size));
             historySize.setSummary(getString(R.string.history_size_summary));
             historySize.setMax(60);
             historySize.setMin(1);
-            historySize.setProgress(MSMHotplug.getMsmHotplugHistorySize() - 1);
+            historySize.setProgress(mMSMHotplug.getMsmHotplugHistorySize() - 1);
             historySize.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -991,19 +1002,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugHistorySize(position + 1, getActivity());
+                    mMSMHotplug.setMsmHotplugHistorySize(position + 1, getActivity());
                 }
             });
 
             msmHotplug.add(historySize);
         }
 
-        if (MSMHotplug.hasMsmHotplugUpdateRate()) {
+        if (mMSMHotplug.hasMsmHotplugUpdateRate()) {
             SeekBarView updateRate = new SeekBarView();
             updateRate.setTitle(getString(R.string.update_rate));
             updateRate.setSummary(getString(R.string.update_rate_summary));
             updateRate.setMax(60);
-            updateRate.setProgress(MSMHotplug.getMsmHotplugUpdateRate());
+            updateRate.setProgress(mMSMHotplug.getMsmHotplugUpdateRate());
             updateRate.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1011,19 +1022,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugUpdateRate(position, getActivity());
+                    mMSMHotplug.setMsmHotplugUpdateRate(position, getActivity());
                 }
             });
 
             msmHotplug.add(updateRate);
         }
 
-        if (MSMHotplug.hasMsmHotplugFastLaneLoad()) {
+        if (mMSMHotplug.hasMsmHotplugFastLaneLoad()) {
             SeekBarView fastLaneLoad = new SeekBarView();
             fastLaneLoad.setTitle(getString(R.string.fast_lane_load));
             fastLaneLoad.setSummary(getString(R.string.fast_lane_load_summary));
             fastLaneLoad.setMax(400);
-            fastLaneLoad.setProgress(MSMHotplug.getMsmHotplugFastLaneLoad());
+            fastLaneLoad.setProgress(mMSMHotplug.getMsmHotplugFastLaneLoad());
             fastLaneLoad.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1031,34 +1042,34 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugFastLaneLoad(position, getActivity());
+                    mMSMHotplug.setMsmHotplugFastLaneLoad(position, getActivity());
                 }
             });
 
             msmHotplug.add(fastLaneLoad);
         }
 
-        if (MSMHotplug.hasMsmHotplugFastLaneMinFreq() && CPUFreq.getFreqs() != null) {
+        if (mMSMHotplug.hasMsmHotplugFastLaneMinFreq() && mCPUFreq.getFreqs() != null) {
             SelectView fastLaneMinFreq = new SelectView();
             fastLaneMinFreq.setTitle(getString(R.string.fast_lane_min_freq));
             fastLaneMinFreq.setSummary(getString(R.string.fast_lane_min_freq_summary));
-            fastLaneMinFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            fastLaneMinFreq.setItem((MSMHotplug.getMsmHotplugFastLaneMinFreq() / 1000) + getString(R.string.mhz));
+            fastLaneMinFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            fastLaneMinFreq.setItem((mMSMHotplug.getMsmHotplugFastLaneMinFreq() / 1000) + getString(R.string.mhz));
             fastLaneMinFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMHotplug.setMsmHotplugFastLaneMinFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMHotplug.setMsmHotplugFastLaneMinFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             msmHotplug.add(fastLaneMinFreq);
         }
 
-        if (MSMHotplug.hasMsmHotplugOfflineLoad()) {
+        if (mMSMHotplug.hasMsmHotplugOfflineLoad()) {
             SeekBarView offlineLoad = new SeekBarView();
             offlineLoad.setTitle(getString(R.string.offline_load));
             offlineLoad.setSummary(getString(R.string.offline_load_summary));
-            offlineLoad.setProgress(MSMHotplug.getMsmHotplugOfflineLoad());
+            offlineLoad.setProgress(mMSMHotplug.getMsmHotplugOfflineLoad());
             offlineLoad.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1066,35 +1077,35 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugOfflineLoad(position, getActivity());
+                    mMSMHotplug.setMsmHotplugOfflineLoad(position, getActivity());
                 }
             });
 
             msmHotplug.add(offlineLoad);
         }
 
-        if (MSMHotplug.hasMsmHotplugIoIsBusy()) {
+        if (mMSMHotplug.hasMsmHotplugIoIsBusy()) {
             SwitchView ioIsBusy = new SwitchView();
             ioIsBusy.setTitle(getString(R.string.io_is_busy));
             ioIsBusy.setSummary(getString(R.string.io_is_busy_summary));
-            ioIsBusy.setChecked(MSMHotplug.isMsmHotplugIoIsBusyEnabled());
+            ioIsBusy.setChecked(mMSMHotplug.isMsmHotplugIoIsBusyEnabled());
             ioIsBusy.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MSMHotplug.enableMsmHotplugIoIsBusy(isChecked, getActivity());
+                    mMSMHotplug.enableMsmHotplugIoIsBusy(isChecked, getActivity());
                 }
             });
 
             msmHotplug.add(ioIsBusy);
         }
 
-        if (MSMHotplug.hasMsmHotplugSuspendMaxCpus()) {
+        if (mMSMHotplug.hasMsmHotplugSuspendMaxCpus()) {
             SeekBarView suspendMaxCpus = new SeekBarView();
             suspendMaxCpus.setTitle(getString(R.string.max_cpu_online_screen_off));
             suspendMaxCpus.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            suspendMaxCpus.setMax(CPUFreq.getCpuCount());
+            suspendMaxCpus.setMax(mCPUFreq.getCpuCount());
             suspendMaxCpus.setMin(1);
-            suspendMaxCpus.setProgress(MSMHotplug.getMsmHotplugSuspendMaxCpus());
+            suspendMaxCpus.setProgress(mMSMHotplug.getMsmHotplugSuspendMaxCpus());
             suspendMaxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1102,36 +1113,36 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugSuspendMaxCpus(position, getActivity());
+                    mMSMHotplug.setMsmHotplugSuspendMaxCpus(position, getActivity());
                 }
             });
 
             msmHotplug.add(suspendMaxCpus);
         }
 
-        if (MSMHotplug.hasMsmHotplugSuspendFreq() && CPUFreq.getFreqs() != null) {
+        if (mMSMHotplug.hasMsmHotplugSuspendFreq() && mCPUFreq.getFreqs() != null) {
             SelectView suspendFreq = new SelectView();
             suspendFreq.setTitle(getString(R.string.cpu_max_screen_off_freq));
             suspendFreq.setSummary(getString(R.string.cpu_max_screen_off_freq_summary));
-            suspendFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            suspendFreq.setItem((MSMHotplug.getMsmHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
+            suspendFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            suspendFreq.setItem((mMSMHotplug.getMsmHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
             suspendFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MSMHotplug.setMsmHotplugSuspendFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMSMHotplug.setMsmHotplugSuspendFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             msmHotplug.add(suspendFreq);
         }
 
-        if (MSMHotplug.hasMsmHotplugSuspendDeferTime()) {
+        if (mMSMHotplug.hasMsmHotplugSuspendDeferTime()) {
             SeekBarView suspendDeferTime = new SeekBarView();
             suspendDeferTime.setTitle(getString(R.string.suspend_defer_time));
             suspendDeferTime.setUnit(getString(R.string.ms));
             suspendDeferTime.setMax(5000);
             suspendDeferTime.setOffset(10);
-            suspendDeferTime.setProgress(MSMHotplug.getMsmHotplugSuspendDeferTime() / 10);
+            suspendDeferTime.setProgress(mMSMHotplug.getMsmHotplugSuspendDeferTime() / 10);
             suspendDeferTime.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1139,7 +1150,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MSMHotplug.setMsmHotplugSuspendDeferTime(position * 10, getActivity());
+                    mMSMHotplug.setMsmHotplugSuspendDeferTime(position * 10, getActivity());
                 }
             });
 
@@ -1177,7 +1188,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView coresOnTouch = new SeekBarView();
             coresOnTouch.setTitle(getString(R.string.cpus_on_touch));
             coresOnTouch.setSummary(getString(R.string.cpus_on_touch_summary));
-            coresOnTouch.setMax(CPUFreq.getCpuCount());
+            coresOnTouch.setMax(mCPUFreq.getCpuCount());
             coresOnTouch.setMin(1);
             coresOnTouch.setProgress(MakoHotplug.getMakoHotplugCoresOnTouch() - 1);
             coresOnTouch.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -1194,16 +1205,16 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             makoHotplug.add(coresOnTouch);
         }
 
-        if (MakoHotplug.hasMakoHotplugCpuFreqUnplugLimit() && CPUFreq.getFreqs() != null) {
+        if (MakoHotplug.hasMakoHotplugCpuFreqUnplugLimit() && mCPUFreq.getFreqs() != null) {
             SelectView cpufreqUnplugLimit = new SelectView();
             cpufreqUnplugLimit.setSummary(getString(R.string.cpu_freq_unplug_limit));
-            cpufreqUnplugLimit.setItems(CPUFreq.getAdjustedFreq(getActivity()));
+            cpufreqUnplugLimit.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             cpufreqUnplugLimit.setItem((MakoHotplug.getMakoHotplugCpuFreqUnplugLimit() / 1000)
                     + getString(R.string.mhz));
             cpufreqUnplugLimit.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MakoHotplug.setMakoHotplugCpuFreqUnplugLimit(CPUFreq.getFreqs().get(position), getActivity());
+                    MakoHotplug.setMakoHotplugCpuFreqUnplugLimit(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
@@ -1308,7 +1319,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView minCoresOnline = new SeekBarView();
             minCoresOnline.setTitle(getString(R.string.min_cpu_online));
             minCoresOnline.setSummary(getString(R.string.min_cpu_online_summary));
-            minCoresOnline.setMax(CPUFreq.getCpuCount());
+            minCoresOnline.setMax(mCPUFreq.getCpuCount());
             minCoresOnline.setMin(1);
             minCoresOnline.setProgress(MakoHotplug.getMakoHotplugMinCoresOnline() - 1);
             minCoresOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -1343,16 +1354,16 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             makoHotplug.add(timer);
         }
 
-        if (MakoHotplug.hasMakoHotplugSuspendFreq() && CPUFreq.getFreqs() != null) {
+        if (MakoHotplug.hasMakoHotplugSuspendFreq() && mCPUFreq.getFreqs() != null) {
             SelectView suspendFreq = new SelectView();
             suspendFreq.setTitle(getString(R.string.cpu_max_screen_off_freq));
             suspendFreq.setSummary(getString(R.string.cpu_max_screen_off_freq_summary));
-            suspendFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
+            suspendFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
             suspendFreq.setItem((MakoHotplug.getMakoHotplugSuspendFreq() / 1000) + getString(R.string.mhz));
             suspendFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MakoHotplug.setMakoHotplugSuspendFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    MakoHotplug.setMakoHotplugSuspendFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
@@ -1368,17 +1379,17 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     private void mbHotplugInit(List<RecyclerViewItem> items) {
         List<RecyclerViewItem> mbHotplug = new ArrayList<>();
         TitleView title = new TitleView();
-        title.setText(MBHotplug.getMBName(getActivity()));
+        title.setText(mMBHotplug.getMBName(getActivity()));
 
-        if (MBHotplug.hasMBGHotplugEnable()) {
+        if (mMBHotplug.hasMBGHotplugEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(MBHotplug.getMBName(getActivity()));
+            enable.setTitle(mMBHotplug.getMBName(getActivity()));
             enable.setSummary(getString(R.string.mb_hotplug_summary));
-            enable.setChecked(MBHotplug.isMBHotplugEnabled());
+            enable.setChecked(mMBHotplug.isMBHotplugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MBHotplug.enableMBHotplug(isChecked, getActivity());
+                    mMBHotplug.enableMBHotplug(isChecked, getActivity());
                 }
             });
 
@@ -1386,28 +1397,28 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             mEnableViews.add(enable);
         }
 
-        if (MBHotplug.hasMBHotplugScroffSingleCore()) {
+        if (mMBHotplug.hasMBHotplugScroffSingleCore()) {
             SwitchView scroffSingleCore = new SwitchView();
             scroffSingleCore.setTitle(getString(R.string.screen_off_single_cpu));
             scroffSingleCore.setSummary(getString(R.string.screen_off_single_cpu_summary));
-            scroffSingleCore.setChecked(MBHotplug.isMBHotplugScroffSingleCoreEnabled());
+            scroffSingleCore.setChecked(mMBHotplug.isMBHotplugScroffSingleCoreEnabled());
             scroffSingleCore.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MBHotplug.enableMBHotplugScroffSingleCore(isChecked, getActivity());
+                    mMBHotplug.enableMBHotplugScroffSingleCore(isChecked, getActivity());
                 }
             });
 
             mbHotplug.add(scroffSingleCore);
         }
 
-        if (MBHotplug.hasMBHotplugMinCpus()) {
+        if (mMBHotplug.hasMBHotplugMinCpus()) {
             SeekBarView minCpus = new SeekBarView();
             minCpus.setTitle(getString(R.string.min_cpu_online));
             minCpus.setSummary(getString(R.string.min_cpu_online_summary));
-            minCpus.setMax(CPUFreq.getCpuCount());
+            minCpus.setMax(mCPUFreq.getCpuCount());
             minCpus.setMin(1);
-            minCpus.setProgress(MBHotplug.getMBHotplugMinCpus() - 1);
+            minCpus.setProgress(mMBHotplug.getMBHotplugMinCpus() - 1);
             minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1415,20 +1426,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugMinCpus(position + 1, getActivity());
+                    mMBHotplug.setMBHotplugMinCpus(position + 1, getActivity());
                 }
             });
 
             mbHotplug.add(minCpus);
         }
 
-        if (MBHotplug.hasMBHotplugMaxCpus()) {
+        if (mMBHotplug.hasMBHotplugMaxCpus()) {
             SeekBarView maxCpus = new SeekBarView();
             maxCpus.setTitle(getString(R.string.max_cpu_online));
             maxCpus.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCpus.setMax(CPUFreq.getCpuCount());
+            maxCpus.setMax(mCPUFreq.getCpuCount());
             maxCpus.setMin(1);
-            maxCpus.setProgress(MBHotplug.getMBHotplugMaxCpus() - 1);
+            maxCpus.setProgress(mMBHotplug.getMBHotplugMaxCpus() - 1);
             maxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1436,20 +1447,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugMaxCpus(position + 1, getActivity());
+                    mMBHotplug.setMBHotplugMaxCpus(position + 1, getActivity());
                 }
             });
 
             mbHotplug.add(maxCpus);
         }
 
-        if (MBHotplug.hasMBHotplugMaxCpusOnlineSusp()) {
+        if (mMBHotplug.hasMBHotplugMaxCpusOnlineSusp()) {
             SeekBarView maxCpusOnlineSusp = new SeekBarView();
             maxCpusOnlineSusp.setTitle(getString(R.string.max_cpu_online_screen_off));
             maxCpusOnlineSusp.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            maxCpusOnlineSusp.setMax(CPUFreq.getCpuCount());
+            maxCpusOnlineSusp.setMax(mCPUFreq.getCpuCount());
             maxCpusOnlineSusp.setMin(1);
-            maxCpusOnlineSusp.setProgress(MBHotplug.getMBHotplugMaxCpusOnlineSusp() - 1);
+            maxCpusOnlineSusp.setProgress(mMBHotplug.getMBHotplugMaxCpusOnlineSusp() - 1);
             maxCpusOnlineSusp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1457,52 +1468,52 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugMaxCpusOnlineSusp(position + 1, getActivity());
+                    mMBHotplug.setMBHotplugMaxCpusOnlineSusp(position + 1, getActivity());
                 }
             });
 
             mbHotplug.add(maxCpusOnlineSusp);
         }
 
-        if (MBHotplug.hasMBHotplugIdleFreq() && CPUFreq.getFreqs() != null) {
+        if (mMBHotplug.hasMBHotplugIdleFreq() && mCPUFreq.getFreqs() != null) {
             SelectView idleFreq = new SelectView();
             idleFreq.setTitle(getString(R.string.idle_frequency));
             idleFreq.setSummary(getString(R.string.idle_frequency_summary));
-            idleFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
-            idleFreq.setItem((MBHotplug.getMBHotplugIdleFreq() / 1000) + getString(R.string.mhz));
+            idleFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            idleFreq.setItem((mMBHotplug.getMBHotplugIdleFreq() / 1000) + getString(R.string.mhz));
             idleFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
-                    MBHotplug.setMBHotplugIdleFreq(CPUFreq.getFreqs().get(position), getActivity());
+                    mMBHotplug.setMBHotplugIdleFreq(mCPUFreq.getFreqs().get(position), getActivity());
                 }
             });
 
             mbHotplug.add(idleFreq);
         }
 
-        if (MBHotplug.hasMBHotplugBoostEnable()) {
+        if (mMBHotplug.hasMBHotplugBoostEnable()) {
             SwitchView boost = new SwitchView();
             boost.setTitle(getString(R.string.touch_boost));
             boost.setSummary(getString(R.string.touch_boost_summary));
-            boost.setChecked(MBHotplug.isMBHotplugBoostEnabled());
+            boost.setChecked(mMBHotplug.isMBHotplugBoostEnabled());
             boost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    MBHotplug.enableMBHotplugBoost(isChecked, getActivity());
+                    mMBHotplug.enableMBHotplugBoost(isChecked, getActivity());
                 }
             });
 
             mbHotplug.add(boost);
         }
 
-        if (MBHotplug.hasMBHotplugBoostTime()) {
+        if (mMBHotplug.hasMBHotplugBoostTime()) {
             SeekBarView boostTime = new SeekBarView();
             boostTime.setTitle(getString(R.string.touch_boost_time));
             boostTime.setSummary(getString(R.string.touch_boost_time_summary));
             boostTime.setUnit(getString(R.string.ms));
             boostTime.setMax(5000);
             boostTime.setOffset(100);
-            boostTime.setProgress(MBHotplug.getMBHotplugBoostTime() / 100);
+            boostTime.setProgress(mMBHotplug.getMBHotplugBoostTime() / 100);
             boostTime.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1510,20 +1521,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugBoostTime(position * 100, getActivity());
+                    mMBHotplug.setMBHotplugBoostTime(position * 100, getActivity());
                 }
             });
 
             mbHotplug.add(boostTime);
         }
 
-        if (MBHotplug.hasMBHotplugCpusBoosted()) {
+        if (mMBHotplug.hasMBHotplugCpusBoosted()) {
             SeekBarView cpusBoosted = new SeekBarView();
             cpusBoosted.setTitle(getString(R.string.cpus_boosted));
             cpusBoosted.setSummary(getString(R.string.cpus_boosted_summary));
-            cpusBoosted.setMax(CPUFreq.getCpuCount());
+            cpusBoosted.setMax(mCPUFreq.getCpuCount());
             cpusBoosted.setMin(1);
-            cpusBoosted.setProgress(MBHotplug.getMBHotplugCpusBoosted());
+            cpusBoosted.setProgress(mMBHotplug.getMBHotplugCpusBoosted());
             cpusBoosted.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1531,26 +1542,26 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugCpusBoosted(position, getActivity());
+                    mMBHotplug.setMBHotplugCpusBoosted(position, getActivity());
                 }
             });
 
             mbHotplug.add(cpusBoosted);
         }
 
-        if (MBHotplug.hasMBHotplugBoostFreqs() && CPUFreq.getFreqs() != null) {
-            List<Integer> freqs = MBHotplug.getMBHotplugBoostFreqs();
+        if (mMBHotplug.hasMBHotplugBoostFreqs() && mCPUFreq.getFreqs() != null) {
+            List<Integer> freqs = mMBHotplug.getMBHotplugBoostFreqs();
 
             for (int i = 0; i < freqs.size(); i++) {
                 SelectView boostFreq = new SelectView();
                 boostFreq.setSummary(getString(R.string.boost_frequency_core, i));
-                boostFreq.setItems(CPUFreq.getAdjustedFreq(getActivity()));
+                boostFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
                 boostFreq.setItem((freqs.get(i) / 1000) + getString(R.string.mhz));
                 final int pos = i;
                 boostFreq.setOnItemSelected(new SelectView.OnItemSelected() {
                     @Override
                     public void onItemSelected(SelectView selectView, int position, String item) {
-                        MBHotplug.setMBHotplugBoostFreqs(pos, CPUFreq.getFreqs().get(position), getActivity());
+                        mMBHotplug.setMBHotplugBoostFreqs(pos, mCPUFreq.getFreqs().get(position), getActivity());
                     }
                 });
 
@@ -1558,14 +1569,14 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             }
         }
 
-        if (MBHotplug.hasMBHotplugStartDelay()) {
+        if (mMBHotplug.hasMBHotplugStartDelay()) {
             SeekBarView startDelay = new SeekBarView();
             startDelay.setTitle(getString(R.string.start_delay));
             startDelay.setSummary(getString(R.string.start_delay_summary));
             startDelay.setUnit(getString(R.string.ms));
             startDelay.setMax(5000);
             startDelay.setOffset(1000);
-            startDelay.setProgress(MBHotplug.getMBHotplugStartDelay() / 1000);
+            startDelay.setProgress(mMBHotplug.getMBHotplugStartDelay() / 1000);
             startDelay.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1573,20 +1584,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugStartDelay(position * 1000, getActivity());
+                    mMBHotplug.setMBHotplugStartDelay(position * 1000, getActivity());
                 }
             });
 
             mbHotplug.add(startDelay);
         }
 
-        if (MBHotplug.hasMBHotplugDelay()) {
+        if (mMBHotplug.hasMBHotplugDelay()) {
             SeekBarView delay = new SeekBarView();
             delay.setTitle(getString(R.string.delay));
             delay.setSummary(getString(R.string.delay_summary));
             delay.setUnit(getString(R.string.ms));
             delay.setMax(200);
-            delay.setProgress(MBHotplug.getMBHotplugDelay());
+            delay.setProgress(mMBHotplug.getMBHotplugDelay());
             delay.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1594,21 +1605,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugDelay(position, getActivity());
+                    mMBHotplug.setMBHotplugDelay(position, getActivity());
                 }
             });
 
             mbHotplug.add(delay);
         }
 
-        if (MBHotplug.hasMBHotplugPause()) {
+        if (mMBHotplug.hasMBHotplugPause()) {
             SeekBarView pause = new SeekBarView();
             pause.setTitle(getString(R.string.pause));
             pause.setSummary(getString(R.string.pause_summary));
             pause.setUnit(getString(R.string.ms));
             pause.setMax(5000);
             pause.setOffset(1000);
-            pause.setProgress(MBHotplug.getMBHotplugPause() / 1000);
+            pause.setProgress(mMBHotplug.getMBHotplugPause() / 1000);
             pause.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -1616,7 +1627,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    MBHotplug.setMBHotplugPause(position * 1000, getActivity());
+                    mMBHotplug.setMBHotplugPause(position * 1000, getActivity());
                 }
             });
 
@@ -1704,7 +1715,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView minCpusOnline = new SeekBarView();
             minCpusOnline.setTitle(getString(R.string.min_cpu_online));
             minCpusOnline.setSummary(getString(R.string.min_cpu_online_summary));
-            minCpusOnline.setMax(CPUFreq.getCpuCount());
+            minCpusOnline.setMax(mCPUFreq.getCpuCount());
             minCpusOnline.setMin(1);
             minCpusOnline.setProgress(AlucardHotplug.getAlucardHotplugMinCpusOnline() - 1);
             minCpusOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -1725,7 +1736,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxCoresLimit = new SeekBarView();
             maxCoresLimit.setTitle(getString(R.string.max_cpu_online));
             maxCoresLimit.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCoresLimit.setMax(CPUFreq.getCpuCount());
+            maxCoresLimit.setMax(mCPUFreq.getCpuCount());
             maxCoresLimit.setMin(1);
             maxCoresLimit.setProgress(AlucardHotplug.getAlucardHotplugMaxCoresLimit() - 1);
             maxCoresLimit.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -1746,7 +1757,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxCoresLimitSleep = new SeekBarView();
             maxCoresLimitSleep.setTitle(getString(R.string.max_cpu_online_screen_off));
             maxCoresLimitSleep.setSummary(getString(R.string.max_cpu_online_screen_off_summary));
-            maxCoresLimitSleep.setMax(CPUFreq.getCpuCount());
+            maxCoresLimitSleep.setMax(mCPUFreq.getCpuCount());
             maxCoresLimitSleep.setMin(1);
             maxCoresLimitSleep.setProgress(AlucardHotplug.getAlucardHotplugMaxCoresLimitSleep() - 1);
             maxCoresLimitSleep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -1834,7 +1845,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView suspendCpus = new SeekBarView();
             suspendCpus.setTitle(getString(R.string.min_cpu_online_screen_off));
             suspendCpus.setSummary(getString(R.string.min_cpu_online_screen_off_summary));
-            suspendCpus.setMax(CPUFreq.getCpuCount());
+            suspendCpus.setMax(mCPUFreq.getCpuCount());
             suspendCpus.setMin(1);
             suspendCpus.setProgress(ThunderPlug.getThunderPlugSuspendCpus() - 1);
             suspendCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -2062,7 +2073,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView cycleDown = new SeekBarView();
             cycleDown.setTitle(getString(R.string.cycle_down));
             cycleDown.setSummary(getString(R.string.cycle_down_summary));
-            cycleDown.setMax(CPUFreq.getCpuCount());
+            cycleDown.setMax(mCPUFreq.getCpuCount());
             cycleDown.setProgress(AutoSmp.getAutoSmpCycleDown());
             cycleDown.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
@@ -2082,7 +2093,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView cycleUp = new SeekBarView();
             cycleUp.setTitle(getString(R.string.cycle_up));
             cycleUp.setSummary(getString(R.string.cycle_up_summary));
-            cycleUp.setMax(CPUFreq.getCpuCount());
+            cycleUp.setMax(mCPUFreq.getCpuCount());
             cycleUp.setProgress(AutoSmp.getAutoSmpCycleUp());
             cycleUp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
@@ -2123,7 +2134,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxCpus = new SeekBarView();
             maxCpus.setTitle(getString(R.string.max_cpu_online));
             maxCpus.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCpus.setMax(CPUFreq.getCpuCount());
+            maxCpus.setMax(mCPUFreq.getCpuCount());
             maxCpus.setMin(1);
             maxCpus.setProgress(AutoSmp.getAutoSmpMaxCpus() - 1);
             maxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -2144,7 +2155,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView minCpus = new SeekBarView();
             minCpus.setTitle(getString(R.string.min_cpu_online));
             minCpus.setSummary(getString(R.string.min_cpu_online_summary));
-            minCpus.setMax(CPUFreq.getCpuCount());
+            minCpus.setMax(mCPUFreq.getCpuCount());
             minCpus.setMin(1);
             minCpus.setProgress(AutoSmp.getAutoSmpMinCpus() - 1);
             minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -2185,18 +2196,18 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     private void coreCtlInit(List<RecyclerViewItem> items) {
         List<RecyclerViewItem> coreCtl = new ArrayList<>();
         TitleView title = new TitleView();
-        title.setText(getString(CoreCtl.hasEnable() ? R.string.hcube : R.string.core_control));
+        title.setText(getString(mCoreCtl.hasEnable() ? R.string.hcube : R.string.core_control));
 
-        if (CoreCtl.hasMinCpus(CPUFreq.getBigCpu())) {
+        if (mCoreCtl.hasMinCpus(mCPUFreq.getBigCpu())) {
             SeekBarView minCpus = new SeekBarView();
             minCpus.setTitle(getString(R.string.min_cpus_big));
             minCpus.setSummary(getString(R.string.min_cpus_big_summary));
-            minCpus.setMax(CPUFreq.getBigCpuRange().size());
-            minCpus.setProgress(CoreCtl.getMinCpus(CPUFreq.getBigCpu()));
+            minCpus.setMax(mCPUFreq.getBigCpuRange().size());
+            minCpus.setProgress(mCoreCtl.getMinCpus(mCPUFreq.getBigCpu()));
             minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    CoreCtl.setMinCpus(position, CPUFreq.getBigCpu(), getActivity());
+                    mCoreCtl.setMinCpus(position, mCPUFreq.getBigCpu(), getActivity());
                 }
 
                 @Override
@@ -2207,11 +2218,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             coreCtl.add(minCpus);
         }
 
-        if (CoreCtl.hasBusyDownThreshold()) {
+        if (mCoreCtl.hasBusyDownThreshold()) {
             SeekBarView busyDownThreshold = new SeekBarView();
             busyDownThreshold.setTitle(getString(R.string.busy_down_threshold));
             busyDownThreshold.setSummary(getString(R.string.busy_down_threshold_summary));
-            busyDownThreshold.setProgress(CoreCtl.getBusyDownThreshold());
+            busyDownThreshold.setProgress(mCoreCtl.getBusyDownThreshold());
             busyDownThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -2219,18 +2230,18 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    CoreCtl.setBusyDownThreshold(position, getActivity());
+                    mCoreCtl.setBusyDownThreshold(position, getActivity());
                 }
             });
 
             coreCtl.add(busyDownThreshold);
         }
 
-        if (CoreCtl.hasBusyUpThreshold()) {
+        if (mCoreCtl.hasBusyUpThreshold()) {
             SeekBarView busyUpThreshold = new SeekBarView();
             busyUpThreshold.setTitle(getString(R.string.busy_up_threshold));
             busyUpThreshold.setSummary(getString(R.string.busy_up_threshold_summary));
-            busyUpThreshold.setProgress(CoreCtl.getBusyUpThreshold());
+            busyUpThreshold.setProgress(mCoreCtl.getBusyUpThreshold());
             busyUpThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -2238,21 +2249,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    CoreCtl.setBusyUpThreshold(position, getActivity());
+                    mCoreCtl.setBusyUpThreshold(position, getActivity());
                 }
             });
 
             coreCtl.add(busyUpThreshold);
         }
 
-        if (CoreCtl.hasOfflineDelayMs()) {
+        if (mCoreCtl.hasOfflineDelayMs()) {
             SeekBarView offlineDelayMs = new SeekBarView();
             offlineDelayMs.setTitle(getString(R.string.offline_delay));
             offlineDelayMs.setSummary(getString(R.string.offline_delay_summary));
             offlineDelayMs.setUnit(getString(R.string.ms));
             offlineDelayMs.setMax(5000);
             offlineDelayMs.setOffset(100);
-            offlineDelayMs.setProgress(CoreCtl.getOfflineDelayMs() / 100);
+            offlineDelayMs.setProgress(mCoreCtl.getOfflineDelayMs() / 100);
             offlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -2260,21 +2271,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    CoreCtl.setOfflineDelayMs(position * 100, getActivity());
+                    mCoreCtl.setOfflineDelayMs(position * 100, getActivity());
                 }
             });
 
             coreCtl.add(offlineDelayMs);
         }
 
-        if (CoreCtl.hasOnlineDelayMs()) {
+        if (mCoreCtl.hasOnlineDelayMs()) {
             SeekBarView onlineDelayMs = new SeekBarView();
             onlineDelayMs.setTitle(getString(R.string.online_delay));
             onlineDelayMs.setSummary(getString(R.string.online_delay_summary));
             onlineDelayMs.setUnit(getString(R.string.ms));
             onlineDelayMs.setMax(5000);
             onlineDelayMs.setOffset(100);
-            onlineDelayMs.setProgress(CoreCtl.getOnlineDelayMs() / 100);
+            onlineDelayMs.setProgress(mCoreCtl.getOnlineDelayMs() / 100);
             onlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -2282,7 +2293,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-                    CoreCtl.setOnlineDelayMs(position * 100, getActivity());
+                    mCoreCtl.setOnlineDelayMs(position * 100, getActivity());
                 }
             });
 
@@ -2292,15 +2303,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         if (coreCtl.size() > 0) {
             items.add(title);
 
-            if (CoreCtl.hasEnable()) {
+            if (mCoreCtl.hasEnable()) {
                 SwitchView enable = new SwitchView();
                 enable.setTitle(getString(R.string.hcube));
                 enable.setSummary(getString(R.string.hcube_summary));
-                enable.setChecked(CoreCtl.isEnabled());
+                enable.setChecked(mCoreCtl.isEnabled());
                 enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                     @Override
                     public void onChanged(SwitchView switchView, boolean isChecked) {
-                        CoreCtl.enable(isChecked, getActivity());
+                        mCoreCtl.enable(isChecked, getActivity());
                     }
                 });
 
@@ -2342,7 +2353,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             SeekBarView maxCpus = new SeekBarView();
             maxCpus.setTitle(getString(R.string.max_cpu_online));
             maxCpus.setSummary(getString(R.string.max_cpu_online_summary));
-            maxCpus.setMax(CPUFreq.getCpuCount());
+            maxCpus.setMax(mCPUFreq.getCpuCount());
             maxCpus.setMin(1);
             maxCpus.setProgress(AiOHotplug.getCores() - 1);
             maxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -2359,10 +2370,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             aioHotplug.add(maxCpus);
         }
 
-        if (CPUFreq.isBigLITTLE() && AiOHotplug.hasBigCores()) {
+        if (mCPUFreq.isBigLITTLE() && AiOHotplug.hasBigCores()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
-            for (int i = 1; i <= CPUFreq.getBigCpuRange().size(); i++) {
+            for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
                 list.add(String.valueOf(i));
             }
 
@@ -2385,10 +2396,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             aioHotplug.add(bigMaxCpus);
         }
 
-        if (CPUFreq.isBigLITTLE() && AiOHotplug.hasLITTLECores()) {
+        if (mCPUFreq.isBigLITTLE() && AiOHotplug.hasLITTLECores()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
-            for (int i = 1; i <= CPUFreq.getLITTLECpuRange().size(); i++) {
+            for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
                 list.add(String.valueOf(i));
             }
 

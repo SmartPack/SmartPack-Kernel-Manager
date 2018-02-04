@@ -37,6 +37,15 @@ import java.util.List;
  */
 public class GPUFreq {
 
+    private static GPUFreq sIOInstance;
+
+    public static GPUFreq getInstance() {
+        if (sIOInstance == null) {
+            sIOInstance = new GPUFreq();
+        }
+        return sIOInstance;
+    }
+
     private static final String GENERIC_GOVERNORS = "performance powersave ondemand simple conservative";
 
     private static final String CUR_KGSL2D0_QCOM_FREQ = "/sys/devices/platform/kgsl-2d0.0/kgsl/kgsl-2d0/gpuclk";
@@ -77,112 +86,177 @@ public class GPUFreq {
     private static final String SCALING_POWERVR_GOVERNOR = "/sys/devices/platform/dfrgx/devfreq/dfrgx/governor";
     private static final String AVAILABLE_POWERVR_GOVERNORS = "/sys/devices/platform/dfrgx/devfreq/dfrgx/available_governors";
 
-    private static final List<String> sGpuBusys = new ArrayList<>();
-    private static final HashMap<String, Integer> sCurrentFreqs = new HashMap<>();
-    private static final HashMap<String, Integer> sMaxFreqs = new HashMap<>();
-    private static final HashMap<String, Integer> sMinFreqs = new HashMap<>();
-    private static final HashMap<String, Integer> sAvailableFreqs = new HashMap<>();
-    private static final List<String> sScalingGovernors = new ArrayList<>();
-    private static final List<String> sAvailableGovernors = new ArrayList<>();
-    private static final List<String> sTunables = new ArrayList<>();
+    private final List<String> mGpuBusys = new ArrayList<>();
+    private final HashMap<String, Integer> mCurrentFreqs = new HashMap<>();
+    private final HashMap<String, Integer> mMaxFreqs = new HashMap<>();
+    private final HashMap<String, Integer> mMinFreqs = new HashMap<>();
+    private final HashMap<String, Integer> mAvailableFreqs = new HashMap<>();
+    private final List<String> mScalingGovernors = new ArrayList<>();
+    private final List<String> mAvailableGovernors = new ArrayList<>();
+    private final List<String> mTunables = new ArrayList<>();
 
-    static {
-        sGpuBusys.add(KGSL3D0_GPUBUSY);
-        sGpuBusys.add(KGSL3D0_DEVFREQ_GPUBUSY);
+    {
+        mGpuBusys.add(KGSL3D0_GPUBUSY);
+        mGpuBusys.add(KGSL3D0_DEVFREQ_GPUBUSY);
 
-        sCurrentFreqs.put(CUR_KGSL3D0_FREQ, 1000000);
-        sCurrentFreqs.put(CUR_KGSL3D0_DEVFREQ_FREQ, 1000000);
-        sCurrentFreqs.put(CUR_OMAP_FREQ, 1000000);
-        sCurrentFreqs.put(CUR_TEGRA_FREQ, 1000000);
-        sCurrentFreqs.put(CUR_POWERVR_FREQ, 1000);
+        mCurrentFreqs.put(CUR_KGSL3D0_FREQ, 1000000);
+        mCurrentFreqs.put(CUR_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        mCurrentFreqs.put(CUR_OMAP_FREQ, 1000000);
+        mCurrentFreqs.put(CUR_TEGRA_FREQ, 1000000);
+        mCurrentFreqs.put(CUR_POWERVR_FREQ, 1000);
 
-        sMaxFreqs.put(MAX_KGSL3D0_FREQ, 1000000);
-        sMaxFreqs.put(MAX_KGSL3D0_DEVFREQ_FREQ, 1000000);
-        sMaxFreqs.put(MAX_OMAP_FREQ, 1000000);
-        sMaxFreqs.put(MAX_TEGRA_FREQ, 1000000);
-        sMaxFreqs.put(MAX_POWERVR_FREQ, 1000);
+        mMaxFreqs.put(MAX_KGSL3D0_FREQ, 1000000);
+        mMaxFreqs.put(MAX_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        mMaxFreqs.put(MAX_OMAP_FREQ, 1000000);
+        mMaxFreqs.put(MAX_TEGRA_FREQ, 1000000);
+        mMaxFreqs.put(MAX_POWERVR_FREQ, 1000);
 
-        sMinFreqs.put(MIN_KGSL3D0_DEVFREQ_FREQ, 1000000);
-        sMinFreqs.put(MIN_TEGRA_FREQ, 1000000);
-        sMinFreqs.put(MIN_POWERVR_FREQ, 1000);
+        mMinFreqs.put(MIN_KGSL3D0_DEVFREQ_FREQ, 1000000);
+        mMinFreqs.put(MIN_TEGRA_FREQ, 1000000);
+        mMinFreqs.put(MIN_POWERVR_FREQ, 1000);
 
-        sAvailableFreqs.put(AVAILABLE_KGSL3D0_FREQS, 1000000);
-        sAvailableFreqs.put(AVAILABLE_KGSL3D0_DEVFREQ_FREQS, 1000000);
-        sAvailableFreqs.put(AVAILABLE_OMAP_FREQS, 1000000);
-        sAvailableFreqs.put(AVAILABLE_TEGRA_FREQS, 1000000);
-        sAvailableFreqs.put(AVAILABLE_POWERVR_FREQS, 1000);
+        mAvailableFreqs.put(AVAILABLE_KGSL3D0_FREQS, 1000000);
+        mAvailableFreqs.put(AVAILABLE_KGSL3D0_DEVFREQ_FREQS, 1000000);
+        mAvailableFreqs.put(AVAILABLE_OMAP_FREQS, 1000000);
+        mAvailableFreqs.put(AVAILABLE_TEGRA_FREQS, 1000000);
+        mAvailableFreqs.put(AVAILABLE_POWERVR_FREQS, 1000);
 
-        sScalingGovernors.add(SCALING_KGSL3D0_GOVERNOR);
-        sScalingGovernors.add(SCALING_KGSL3D0_DEVFREQ_GOVERNOR);
-        sScalingGovernors.add(SCALING_OMAP_GOVERNOR);
-        sScalingGovernors.add(SCALING_POWERVR_GOVERNOR);
+        mScalingGovernors.add(SCALING_KGSL3D0_GOVERNOR);
+        mScalingGovernors.add(SCALING_KGSL3D0_DEVFREQ_GOVERNOR);
+        mScalingGovernors.add(SCALING_OMAP_GOVERNOR);
+        mScalingGovernors.add(SCALING_POWERVR_GOVERNOR);
 
-        sAvailableGovernors.add(AVAILABLE_KGSL3D0_DEVFREQ_GOVERNORS);
-        sAvailableGovernors.add(AVAILABLE_OMAP_GOVERNORS);
-        sAvailableGovernors.add(AVAILABLE_POWERVR_GOVERNORS);
+        mAvailableGovernors.add(AVAILABLE_KGSL3D0_DEVFREQ_GOVERNORS);
+        mAvailableGovernors.add(AVAILABLE_OMAP_GOVERNORS);
+        mAvailableGovernors.add(AVAILABLE_POWERVR_GOVERNORS);
 
-        sTunables.add(TUNABLES_OMAP);
+        mTunables.add(TUNABLES_OMAP);
     }
 
-    private static String BUSY;
-    private static String CUR_FREQ;
-    private static Integer CUR_FREQ_OFFSET;
-    private static List<Integer> AVAILABLE_FREQS;
-    private static String MAX_FREQ;
-    private static Integer MAX_FREQ_OFFSET;
-    private static String MIN_FREQ;
-    private static Integer MIN_FREQ_OFFSET;
-    private static String GOVERNOR;
-    private static String[] AVAILABLE_GOVERNORS;
-    private static Integer AVAILABLE_GOVERNORS_OFFSET;
-    private static String TUNABLES;
+    private String BUSY;
+    private String CUR_FREQ;
+    private Integer CUR_FREQ_OFFSET;
+    private List<Integer> AVAILABLE_FREQS;
+    private String MAX_FREQ;
+    private Integer MAX_FREQ_OFFSET;
+    private String MIN_FREQ;
+    private Integer MIN_FREQ_OFFSET;
+    private String GOVERNOR;
+    private String[] AVAILABLE_GOVERNORS;
+    private Integer AVAILABLE_GOVERNORS_OFFSET;
+    private String TUNABLES;
 
-    private static Integer[] AVAILABLE_2D_FREQS;
+    private Integer[] AVAILABLE_2D_FREQS;
 
-    public static String getTunables(String governor) {
+    private GPUFreq() {
+        for (String file : mGpuBusys) {
+            if (Utils.existFile(file)) {
+                BUSY = file;
+                break;
+            }
+        }
+
+        for (String file : mCurrentFreqs.keySet()) {
+            if (Utils.existFile(file)) {
+                CUR_FREQ = file;
+                CUR_FREQ_OFFSET = mCurrentFreqs.get(file);
+                break;
+            }
+        }
+
+        for (String file : mAvailableFreqs.keySet()) {
+            if (Utils.existFile(file)) {
+                String freqs[] = Utils.readFile(file).split(" ");
+                AVAILABLE_FREQS = new ArrayList<>();
+                for (String freq : freqs) {
+                    if (!AVAILABLE_FREQS.contains(Utils.strToInt(freq))) {
+                        AVAILABLE_FREQS.add(Utils.strToInt(freq));
+                    }
+                }
+                AVAILABLE_GOVERNORS_OFFSET = mAvailableFreqs.get(file);
+                Collections.sort(AVAILABLE_FREQS);
+                break;
+            }
+        }
+
+        for (String file : mMaxFreqs.keySet()) {
+            if (Utils.existFile(file)) {
+                MAX_FREQ = file;
+                MAX_FREQ_OFFSET = mMaxFreqs.get(file);
+                break;
+            }
+        }
+
+        for (String file : mMinFreqs.keySet()) {
+            if (Utils.existFile(file)) {
+                MIN_FREQ = file;
+                MIN_FREQ_OFFSET = mMinFreqs.get(file);
+                break;
+            }
+        }
+
+        for (String file : mScalingGovernors) {
+            if (Utils.existFile(file)) {
+                GOVERNOR = file;
+                break;
+            }
+        }
+
+        for (String file : mAvailableGovernors) {
+            if (Utils.existFile(file)) {
+                AVAILABLE_GOVERNORS = Utils.readFile(file).split(" ");
+                break;
+            }
+        }
+        if (AVAILABLE_GOVERNORS == null) {
+            AVAILABLE_GOVERNORS = GENERIC_GOVERNORS.split(" ");
+        }
+
+        for (String tunables : mTunables) {
+            if (Utils.existFile(Utils.strFormat(tunables, ""))) {
+                TUNABLES = tunables;
+                break;
+            }
+        }
+    }
+
+    public String getTunables(String governor) {
         return Utils.strFormat(TUNABLES, governor);
     }
 
-    public static boolean hasTunables(String governor) {
-        if (TUNABLES != null) return true;
-        for (String tunables : sTunables) {
-            if (Utils.existFile(Utils.strFormat(tunables, governor))) {
-                TUNABLES = tunables;
-                return true;
-            }
-        }
-        return false;
+    public boolean hasTunables(String governor) {
+        return TUNABLES != null;
     }
 
-    public static void set2dGovernor(String value, Context context) {
+    public void set2dGovernor(String value, Context context) {
         run(Control.write(value, SCALING_KGSL2D0_QCOM_GOVERNOR), SCALING_KGSL2D0_QCOM_GOVERNOR, context);
     }
 
-    public static String get2dGovernor() {
+    public String get2dGovernor() {
         return Utils.readFile(SCALING_KGSL2D0_QCOM_GOVERNOR);
     }
 
-    public static List<String> get2dAvailableGovernors() {
+    public List<String> get2dAvailableGovernors() {
         return Arrays.asList(GENERIC_GOVERNORS.split(" "));
     }
 
-    public static boolean has2dGovernor() {
+    public boolean has2dGovernor() {
         return Utils.existFile(SCALING_KGSL2D0_QCOM_GOVERNOR);
     }
 
-    public static void set2dMaxFreq(int value, Context context) {
+    public void set2dMaxFreq(int value, Context context) {
         run(Control.write(String.valueOf(value), MAX_KGSL2D0_QCOM_FREQ), MAX_KGSL2D0_QCOM_FREQ, context);
     }
 
-    public static int get2dMaxFreq() {
+    public int get2dMaxFreq() {
         return Utils.strToInt(Utils.readFile(MAX_KGSL2D0_QCOM_FREQ));
     }
 
-    public static boolean has2dMaxFreq() {
+    public boolean has2dMaxFreq() {
         return Utils.existFile(MAX_KGSL2D0_QCOM_FREQ);
     }
 
-    public static List<String> get2dAdjustedFreqs(Context context) {
+    public List<String> get2dAdjustedFreqs(Context context) {
         List<String> list = new ArrayList<>();
         for (int freq : get2dAvailableFreqs()) {
             list.add((freq / 1000000) + context.getString(R.string.mhz));
@@ -190,7 +264,7 @@ public class GPUFreq {
         return list;
     }
 
-    public static List<Integer> get2dAvailableFreqs() {
+    public List<Integer> get2dAvailableFreqs() {
         if (AVAILABLE_2D_FREQS == null) {
             if (Utils.existFile(AVAILABLE_KGSL2D0_QCOM_FREQS)) {
                 String[] freqs = Utils.readFile(AVAILABLE_KGSL2D0_QCOM_FREQS).split(" ");
@@ -206,100 +280,63 @@ public class GPUFreq {
         return list;
     }
 
-    public static int get2dCurFreq() {
+    public int get2dCurFreq() {
         return Utils.strToInt(Utils.readFile(CUR_KGSL2D0_QCOM_FREQ));
     }
 
-    public static boolean has2dCurFreq() {
+    public boolean has2dCurFreq() {
         return Utils.existFile(CUR_KGSL2D0_QCOM_FREQ);
     }
 
-    public static void setGovernor(String value, Context context) {
+    public void setGovernor(String value, Context context) {
         run(Control.write(value, GOVERNOR), GOVERNOR, context);
     }
 
-    public static List<String> getAvailableGovernors() {
-        if (AVAILABLE_GOVERNORS == null) {
-            for (String file : sAvailableGovernors) {
-                if (Utils.existFile(file)) {
-                    AVAILABLE_GOVERNORS = Utils.readFile(file).split(" ");
-                    break;
-                }
-            }
-        }
-        if (AVAILABLE_GOVERNORS == null) {
-            AVAILABLE_GOVERNORS = GENERIC_GOVERNORS.split(" ");
-        }
+    public List<String> getAvailableGovernors() {
         return Arrays.asList(AVAILABLE_GOVERNORS);
     }
 
-    public static String getGovernor() {
+    public String getGovernor() {
         return Utils.readFile(GOVERNOR);
     }
 
-    public static boolean hasGovernor() {
-        if (GOVERNOR == null) {
-            for (String file : sScalingGovernors) {
-                if (Utils.existFile(file)) {
-                    GOVERNOR = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasGovernor() {
         return GOVERNOR != null;
     }
 
-    public static void setMinFreq(int value, Context context) {
+    public void setMinFreq(int value, Context context) {
         run(Control.write(String.valueOf(value), MIN_FREQ), MIN_FREQ, context);
     }
 
-    public static int getMinFreqOffset() {
+    public int getMinFreqOffset() {
         return MIN_FREQ_OFFSET;
     }
 
-    public static int getMinFreq() {
+    public int getMinFreq() {
         return Utils.strToInt(Utils.readFile(MIN_FREQ));
     }
 
-    public static boolean hasMinFreq() {
-        if (MIN_FREQ == null) {
-            for (String file : sMinFreqs.keySet()) {
-                if (Utils.existFile(file)) {
-                    MIN_FREQ = file;
-                    MIN_FREQ_OFFSET = sMinFreqs.get(file);
-                    return true;
-                }
-            }
-        }
+    public boolean hasMinFreq() {
         return MIN_FREQ != null;
     }
 
-    public static void setMaxFreq(int value, Context context) {
+    public void setMaxFreq(int value, Context context) {
         run(Control.write(String.valueOf(value), MAX_FREQ), MAX_FREQ, context);
     }
 
-    public static int getMaxFreqOffset() {
+    public int getMaxFreqOffset() {
         return MAX_FREQ_OFFSET;
     }
 
-    public static int getMaxFreq() {
+    public int getMaxFreq() {
         return Utils.strToInt(Utils.readFile(MAX_FREQ));
     }
 
-    public static boolean hasMaxFreq() {
-        if (MAX_FREQ == null) {
-            for (String file : sMaxFreqs.keySet()) {
-                if (Utils.existFile(file)) {
-                    MAX_FREQ = file;
-                    MAX_FREQ_OFFSET = sMaxFreqs.get(file);
-                    return true;
-                }
-            }
-        }
+    public boolean hasMaxFreq() {
         return MAX_FREQ != null;
     }
 
-    public static List<String> getAdjustedFreqs(Context context) {
+    public List<String> getAdjustedFreqs(Context context) {
         List<String> list = new ArrayList<>();
         for (int freq : getAvailableFreqs()) {
             list.add((freq / AVAILABLE_GOVERNORS_OFFSET) + context.getString(R.string.mhz));
@@ -307,68 +344,34 @@ public class GPUFreq {
         return list;
     }
 
-    public static List<Integer> getAvailableFreqs() {
-        if (AVAILABLE_FREQS == null) {
-            for (String file : sAvailableFreqs.keySet()) {
-                if (Utils.existFile(file)) {
-                    String freqs[] = Utils.readFile(file).split(" ");
-                    AVAILABLE_FREQS = new ArrayList<>();
-                    for (String freq : freqs) {
-                        if (!AVAILABLE_FREQS.contains(Utils.strToInt(freq))) {
-                            AVAILABLE_FREQS.add(Utils.strToInt(freq));
-                        }
-                    }
-                    AVAILABLE_GOVERNORS_OFFSET = sAvailableFreqs.get(file);
-                    break;
-                }
-            }
-        }
-        if (AVAILABLE_FREQS == null) return null;
-        Collections.sort(AVAILABLE_FREQS);
+    public List<Integer> getAvailableFreqs() {
         return AVAILABLE_FREQS;
     }
 
-    public static int getCurFreqOffset() {
+    public int getCurFreqOffset() {
         return CUR_FREQ_OFFSET;
     }
 
-    public static int getCurFreq() {
+    public int getCurFreq() {
         return Utils.strToInt(Utils.readFile(CUR_FREQ));
     }
 
-    public static boolean hasCurFreq() {
-        if (CUR_FREQ == null) {
-            for (String file : sCurrentFreqs.keySet()) {
-                if (Utils.existFile(file)) {
-                    CUR_FREQ = file;
-                    CUR_FREQ_OFFSET = sCurrentFreqs.get(file);
-                    return true;
-                }
-            }
-        }
+    public boolean hasCurFreq() {
         return CUR_FREQ != null;
     }
 
-    public static int getBusy() {
+    public int getBusy() {
         String value = Utils.readFile(BUSY);
         float arg1 = Utils.strToFloat(value.split(" ")[0]);
         float arg2 = Utils.strToFloat(value.split(" ")[1]);
         return arg2 == 0 ? 0 : Math.round(arg1 / arg2 * 100f);
     }
 
-    public static boolean hasBusy() {
-        if (BUSY == null) {
-            for (String file : sGpuBusys) {
-                if (Utils.existFile(file)) {
-                    BUSY = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasBusy() {
         return BUSY != null;
     }
 
-    public static boolean supported() {
+    public boolean supported() {
         return hasCurFreq()
                 || (hasMaxFreq() && getAvailableFreqs() != null)
                 || (hasMinFreq() && getAvailableFreqs() != null)
@@ -378,7 +381,7 @@ public class GPUFreq {
                 || has2dGovernor();
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.GPU, id, context);
     }
 

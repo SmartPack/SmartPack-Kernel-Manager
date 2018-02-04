@@ -37,6 +37,15 @@ import java.util.HashMap;
  */
 public class Temperature {
 
+    private static Temperature sInstance;
+
+    public static Temperature getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new Temperature(context);
+        }
+        return sInstance;
+    }
+
     private static final HashMap<String, Integer> sCPUTemps = new HashMap<>();
 
     private static final String THERMAL_ZONE0 = "/sys/class/thermal/thermal_zone0/temp";
@@ -46,15 +55,22 @@ public class Temperature {
         sCPUTemps.put("/proc/mtktscpu/mtktscpu_temperature", 1000);
     }
 
-    private static TempJson TEMP_JSON;
+    private TempJson TEMP_JSON;
 
-    private static String CPU_NODE;
-    private static int CPU_OFFSET;
+    private String CPU_NODE;
+    private int CPU_OFFSET;
 
-    private static String GPU_NODE;
-    private static int GPU_OFFSET;
+    private String GPU_NODE;
+    private int GPU_OFFSET;
 
-    public static String getGPU(Context context) {
+    private Temperature(Context context) {
+        TEMP_JSON = new TempJson(context);
+        if (!TEMP_JSON.supported()) {
+            TEMP_JSON = null;
+        }
+    }
+
+    public String getGPU(Context context) {
         double temp = getGPUTemp();
         boolean useFahrenheit = Utils.useFahrenheit(context);
         if (useFahrenheit) temp = Utils.celsiusToFahrenheit(temp);
@@ -62,11 +78,11 @@ public class Temperature {
                 : R.string.celsius);
     }
 
-    private static double getGPUTemp() {
+    private double getGPUTemp() {
         return (double) Utils.strToInt(Utils.readFile(GPU_NODE)) / GPU_OFFSET;
     }
 
-    public static boolean hasGPU() {
+    public boolean hasGPU() {
         if (TEMP_JSON != null && TEMP_JSON.getGPU() != null) {
             GPU_NODE = TEMP_JSON.getGPU();
             if (Utils.existFile(GPU_NODE)) {
@@ -81,7 +97,7 @@ public class Temperature {
         return false;
     }
 
-    public static String getCPU(Context context) {
+    public String getCPU(Context context) {
         double temp = getCPUTemp();
         boolean useFahrenheit = Utils.useFahrenheit(context);
         if (useFahrenheit) temp = Utils.celsiusToFahrenheit(temp);
@@ -89,11 +105,11 @@ public class Temperature {
                 : R.string.celsius);
     }
 
-    private static double getCPUTemp() {
+    private double getCPUTemp() {
         return (double) Utils.strToInt(Utils.readFile(CPU_NODE)) / CPU_OFFSET;
     }
 
-    public static boolean hasCPU() {
+    public boolean hasCPU() {
         if (TEMP_JSON != null && TEMP_JSON.getCPU() != null) {
             CPU_NODE = TEMP_JSON.getCPU();
             if (Utils.existFile(CPU_NODE)) {
@@ -123,19 +139,13 @@ public class Temperature {
         return CPU_NODE != null;
     }
 
-    public static boolean supported(Context context) {
-        if (TEMP_JSON == null) {
-            TEMP_JSON = new TempJson(context);
-            if (!TEMP_JSON.supported()) {
-                TEMP_JSON = null;
-            }
-        }
+    public boolean supported() {
         return hasCPU() || hasGPU();
     }
 
-    private static class TempJson {
+    private class TempJson {
 
-        private static final String TAG = TempJson.class.getSimpleName();
+        private final String TAG = TempJson.class.getSimpleName();
 
         private JSONObject mDeviceJson;
 

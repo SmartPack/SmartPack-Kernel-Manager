@@ -36,6 +36,7 @@ import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,30 +142,7 @@ public class ProfileEditActivity extends BaseActivity {
                     @Override
                     public void run() {
                         clearItems();
-                        mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-                            @Override
-                            protected void onPreExecute() {
-                                super.onPreExecute();
-                                showProgress();
-                            }
-
-                            @Override
-                            protected List<RecyclerViewItem> doInBackground(Void... params) {
-                                List<RecyclerViewItem> items = new ArrayList<>();
-                                load(items);
-                                return items;
-                            }
-
-                            @Override
-                            protected void onPostExecute(List<RecyclerViewItem> items) {
-                                super.onPostExecute(items);
-                                for (RecyclerViewItem item : items) {
-                                    addItem(item);
-                                }
-                                hideProgress();
-                                mLoader = null;
-                            }
-                        };
+                        mLoader = new UILoader(ProfileEditFragment.this);
                         mLoader.execute();
                     }
                 }, 250);
@@ -211,6 +189,40 @@ public class ProfileEditActivity extends BaseActivity {
             super.onDestroy();
             mProfiles = null;
             mItem = null;
+            mLoader = null;
+        }
+
+        private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+
+            private WeakReference<ProfileEditFragment> mRefFragment;
+
+            private UILoader(ProfileEditFragment fragment) {
+                mRefFragment = new WeakReference<>(fragment);
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mRefFragment.get().showProgress();
+            }
+
+            @Override
+            protected List<RecyclerViewItem> doInBackground(Void... params) {
+                List<RecyclerViewItem> items = new ArrayList<>();
+                mRefFragment.get().load(items);
+                return items;
+            }
+
+            @Override
+            protected void onPostExecute(List<RecyclerViewItem> items) {
+                super.onPostExecute(items);
+                ProfileEditFragment fragment = mRefFragment.get();
+                for (RecyclerViewItem item : items) {
+                    fragment.addItem(item);
+                }
+                fragment.hideProgress();
+                fragment.mLoader = null;
+            }
         }
     }
 

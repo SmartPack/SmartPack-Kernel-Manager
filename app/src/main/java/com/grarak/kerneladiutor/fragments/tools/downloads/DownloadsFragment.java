@@ -40,12 +40,6 @@ import java.util.List;
  */
 public class DownloadsFragment extends RecyclerViewFragment {
 
-    public static DownloadsFragment newInstance(SupportedDownloads support) {
-        DownloadsFragment fragment = new DownloadsFragment();
-        fragment.mSupport = support;
-        return fragment;
-    }
-
     private SupportedDownloads mSupport;
     private WebpageReader mWebpageReader;
     private final List<WebpageReader> mKernelWebpageReader = new ArrayList<>();
@@ -71,14 +65,12 @@ public class DownloadsFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected boolean needDelay() {
-        return false;
-    }
-
-    @Override
     protected void postInit() {
         super.postInit();
-        if (mWebpageReader == null && mSupport != null) {
+        if (mSupport == null) {
+            mSupport = new SupportedDownloads(getActivity());
+        }
+        if (mWebpageReader == null) {
             showProgress();
             mWebpageReader = new WebpageReader(getActivity(), new WebpageReader.WebpageListener() {
 

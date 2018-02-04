@@ -33,6 +33,15 @@ import java.util.List;
  */
 public class CPUBoost {
 
+    private static CPUBoost sInstance;
+
+    public static CPUBoost getInstance() {
+        if (sInstance == null) {
+            sInstance = new CPUBoost();
+        }
+        return sInstance;
+    }
+
     private static final String CPU_BOOST = "/sys/module/cpu_boost/parameters";
 
     private static final List<String> sEnable = new ArrayList<>();
@@ -51,45 +60,54 @@ public class CPUBoost {
     private static final String CPU_BOOST_WAKEUP = CPU_BOOST + "/wakeup_boost";
     private static final String CPU_BOOST_HOTPLUG = CPU_BOOST + "/hotplug_boost";
 
-    private static String ENABLE;
+    private String ENABLE;
 
-    public static void enableCpuBoostWakeup(boolean enable, Context context) {
+    private CPUBoost() {
+        for (String file : sEnable) {
+            if (Utils.existFile(file)) {
+                ENABLE = file;
+                break;
+            }
+        }
+    }
+
+    public void enableCpuBoostWakeup(boolean enable, Context context) {
         run(Control.write(enable ? "Y" : "N", CPU_BOOST_WAKEUP), CPU_BOOST_WAKEUP, context);
     }
 
-    public static boolean isCpuBoostWakeupEnabled() {
+    public boolean isCpuBoostWakeupEnabled() {
         return Utils.readFile(CPU_BOOST_WAKEUP).equals("Y");
     }
 
-    public static boolean hasCpuBoostWakeup() {
+    public boolean hasCpuBoostWakeup() {
         return Utils.existFile(CPU_BOOST_WAKEUP);
     }
 
-    public static void enableCpuBoostHotplug(boolean enable, Context context) {
+    public void enableCpuBoostHotplug(boolean enable, Context context) {
         run(Control.write(enable ? "Y" : "N", CPU_BOOST_HOTPLUG), CPU_BOOST_HOTPLUG, context);
     }
 
-    public static boolean isCpuBoostHotplugEnabled() {
+    public boolean isCpuBoostHotplugEnabled() {
         return Utils.readFile(CPU_BOOST_HOTPLUG).equals("Y");
     }
 
-    public static boolean hasCpuBoostHotplug() {
+    public boolean hasCpuBoostHotplug() {
         return Utils.existFile(CPU_BOOST_HOTPLUG);
     }
 
-    public static void setCpuBoostInputMs(int value, Context context) {
+    public void setCpuBoostInputMs(int value, Context context) {
         run(Control.write(String.valueOf(value), CPU_BOOST_INPUT_MS), CPU_BOOST_INPUT_MS, context);
     }
 
-    public static int getCpuBootInputMs() {
+    public int getCpuBootInputMs() {
         return Utils.strToInt(Utils.readFile(CPU_BOOST_INPUT_MS));
     }
 
-    public static boolean hasCpuBoostInputMs() {
+    public boolean hasCpuBoostInputMs() {
         return Utils.existFile(CPU_BOOST_INPUT_MS);
     }
 
-    public static void setCpuBoostInputFreq(int value, int core, Context context) {
+    public void setCpuBoostInputFreq(int value, int core, Context context) {
         if (Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ).contains(":")) {
             run(Control.write(core + ":" + value, CPU_BOOST_INPUT_BOOST_FREQ),
                     CPU_BOOST_INPUT_BOOST_FREQ + core, context);
@@ -99,7 +117,9 @@ public class CPUBoost {
         }
     }
 
-    public static List<Integer> getCpuBootInputFreq() {
+    public List<Integer> getCpuBootInputFreq() {
+        CPUFreq cpuFreq = CPUFreq.getInstance();
+
         List<Integer> list = new ArrayList<>();
         String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
         if (value.contains(":")) {
@@ -107,85 +127,77 @@ public class CPUBoost {
                 int core = Utils.strToInt(line.split(":")[0]);
                 String freq = line.split(":")[1];
                 try {
-                    list.add(freq.equals("0") ? 0 : CPUFreq.getFreqs(core).indexOf(Utils.strToInt(freq)) + 1);
+                    list.add(freq.equals("0") ? 0 : cpuFreq.getFreqs(core).indexOf(Utils.strToInt(freq)) + 1);
                 } catch (NullPointerException ignored) {
                 }
             }
         } else {
-            list.add(value.equals("0") ? 0 : CPUFreq.getFreqs().indexOf(Utils.strToInt(value)) + 1);
+            list.add(value.equals("0") ? 0 : cpuFreq.getFreqs().indexOf(Utils.strToInt(value)) + 1);
         }
         return list;
     }
 
-    public static boolean hasCpuBoostInputFreq() {
+    public boolean hasCpuBoostInputFreq() {
         return Utils.existFile(CPU_BOOST_INPUT_BOOST_FREQ);
     }
 
-    public static void setCpuBoostSyncThreshold(int value, Context context) {
+    public void setCpuBoostSyncThreshold(int value, Context context) {
         run(Control.write(String.valueOf(value), CPU_BOOST_SYNC_THRESHOLD), CPU_BOOST_SYNC_THRESHOLD, context);
     }
 
-    public static int getCpuBootSyncThreshold() {
-        return CPUFreq.getFreqs().indexOf(Utils.strToInt(Utils.readFile(CPU_BOOST_SYNC_THRESHOLD))) + 1;
+    public int getCpuBootSyncThreshold() {
+        return CPUFreq.getInstance().getFreqs().indexOf(Utils.strToInt(Utils.readFile(CPU_BOOST_SYNC_THRESHOLD))) + 1;
     }
 
-    public static boolean hasCpuBoostSyncThreshold() {
+    public boolean hasCpuBoostSyncThreshold() {
         return Utils.existFile(CPU_BOOST_SYNC_THRESHOLD);
     }
 
-    public static void setCpuBoostMs(int value, Context context) {
+    public void setCpuBoostMs(int value, Context context) {
         run(Control.write(String.valueOf(value), CPU_BOOST_MS), CPU_BOOST_MS, context);
     }
 
-    public static int getCpuBootMs() {
+    public int getCpuBootMs() {
         return Utils.strToInt(Utils.readFile(CPU_BOOST_MS));
     }
 
-    public static boolean hasCpuBoostMs() {
+    public boolean hasCpuBoostMs() {
         return Utils.existFile(CPU_BOOST_MS);
     }
 
-    public static void enableCpuBoostDebugMask(boolean enable, Context context) {
+    public void enableCpuBoostDebugMask(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", CPU_BOOST_DEBUG_MASK), CPU_BOOST_DEBUG_MASK, context);
     }
 
-    public static boolean isCpuBoostDebugMaskEnabled() {
+    public boolean isCpuBoostDebugMaskEnabled() {
         return Utils.readFile(CPU_BOOST_DEBUG_MASK).equals("1");
     }
 
-    public static boolean hasCpuBoostDebugMask() {
+    public boolean hasCpuBoostDebugMask() {
         return Utils.existFile(CPU_BOOST_DEBUG_MASK);
     }
 
-    public static void enableCpuBoost(boolean enable, Context context) {
+    public void enableCpuBoost(boolean enable, Context context) {
         run(Control.write(
                 ENABLE.endsWith("cpuboost_enable") ? (enable ? "Y" : "N") : (enable ? "1" : "0"), ENABLE),
                 ENABLE, context);
     }
 
-    public static boolean isEnabled() {
+    public boolean isEnabled() {
         String value = Utils.readFile(ENABLE);
         return value.equals("1") || value.equals("Y");
     }
 
-    public static boolean hasEnable() {
-        if (ENABLE == null) {
-            for (String file : sEnable) {
-                if (Utils.existFile(file)) {
-                    ENABLE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean hasEnable() {
         return ENABLE != null;
     }
 
-    public static boolean supported() {
+    public boolean supported() {
         return hasEnable() || hasCpuBoostDebugMask() || hasCpuBoostMs() || hasCpuBoostSyncThreshold()
                 || hasCpuBoostInputFreq() || hasCpuBoostInputMs() || hasCpuBoostHotplug() || hasCpuBoostWakeup();
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.CPU, id, context);
     }
 

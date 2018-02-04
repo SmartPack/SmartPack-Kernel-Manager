@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -48,6 +49,7 @@ import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -86,36 +88,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        addViewPagerFragment(mSearchFragment = SearchFragment.newInstance(mKeyText, mValueText,
-                new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        mKeyText = s.toString();
-                        reload(false);
-                    }
-                }, new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        mValueText = s.toString();
-                        reload(false);
-                    }
-                }));
+        addViewPagerFragment(mSearchFragment = new SearchFragment());
 
         if (mAddDialog != null) {
             mAddDialog.show();
@@ -143,36 +116,50 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     clearItems();
-                    mLoader = new AsyncTask<Void, Void, List<RecyclerViewItem>>() {
-                        @Override
-                        protected void onPreExecute() {
-                            super.onPreExecute();
-                            showProgress();
-                        }
-
-                        @Override
-                        protected List<RecyclerViewItem> doInBackground(Void... voids) {
-                            if (read) {
-                                mProps = Buildprop.getProps();
-                            }
-                            List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
-                            return items;
-                        }
-
-                        @Override
-                        protected void onPostExecute(List<RecyclerViewItem> items) {
-                            super.onPostExecute(items);
-                            for (RecyclerViewItem item : items) {
-                                addItem(item);
-                            }
-                            hideProgress();
-                            mLoader = null;
-                        }
-                    };
+                    mLoader = new UILoader(BuildpropFragment.this, read);
                     mLoader.execute();
                 }
             }, 250);
+        }
+    }
+
+    private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
+
+        private WeakReference<BuildpropFragment> mRefFragment;
+        private boolean mRead;
+
+        private UILoader(BuildpropFragment fragment, boolean read) {
+            mRefFragment = new WeakReference<>(fragment);
+            mRead = read;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mRefFragment.get().showProgress();
+        }
+
+        @Override
+        protected List<RecyclerViewItem> doInBackground(Void... voids) {
+            BuildpropFragment fragment = mRefFragment.get();
+            if (mRead) {
+                fragment.mProps = Buildprop.getProps();
+            }
+            List<RecyclerViewItem> items = new ArrayList<>();
+            fragment.load(items);
+            return items;
+        }
+
+        @Override
+        protected void onPostExecute(List<RecyclerViewItem> items) {
+            super.onPostExecute(items);
+            BuildpropFragment fragment = mRefFragment.get();
+
+            for (RecyclerViewItem item : items) {
+                fragment.addItem(item);
+            }
+            fragment.hideProgress();
+            fragment.mLoader = null;
         }
     }
 
@@ -202,7 +189,7 @@ public class BuildpropFragment extends RecyclerViewFragment {
             }
             if (mValueText != null && !mValueText.isEmpty()) {
                 descriptionView.setSummary(Utils.htmlFrom(value.replace(mValueText,
-                        "<b><font color=\"" + colorCode + "\">" + mKeyText + "</font></b>")));
+                        "<b><font color=\"" + colorCode + "\">" + mValueText + "</font></b>")));
             } else {
                 descriptionView.setSummary(value);
             }
@@ -242,7 +229,11 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     if (isAdded()) {
-                        mSearchFragment.setCount(items.size());
+                        SearchFragment fragment = (SearchFragment)
+                                getChildFragmentManager().getFragments().get(0);
+                        if (fragment != null) {
+                            fragment.setCount(items.size());
+                        }
                     }
                 }
             });
@@ -349,40 +340,56 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
     public static class SearchFragment extends BaseFragment {
 
-        public static SearchFragment newInstance(String keyText, String valueText, TextWatcher keyWatcher,
-                                                 TextWatcher valueWatcher) {
-            SearchFragment fragment = new SearchFragment();
-            fragment.mKeyText = keyText;
-            fragment.mValueText = valueText;
-            fragment.mKeyWatcher = keyWatcher;
-            fragment.mValueWatcher = valueWatcher;
-            return fragment;
-        }
-
         private TextView mItemsText;
         private int mItemsCount;
-        private String mKeyText;
-        private String mValueText;
-        private TextWatcher mKeyWatcher;
-        private TextWatcher mValueWatcher;
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
+            final BuildpropFragment fragment = (BuildpropFragment) getParentFragment();
+
             View rootView = inflater.inflate(R.layout.fragment_buildprop_search, container, false);
 
             AppCompatEditText keyEdit = (AppCompatEditText) rootView.findViewById(R.id.key_edittext);
             AppCompatEditText valueEdit = (AppCompatEditText) rootView.findViewById(R.id.value_edittext);
 
-            keyEdit.addTextChangedListener(mKeyWatcher);
-            valueEdit.addTextChangedListener(mValueWatcher);
+            keyEdit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-            if (mKeyText != null) {
-                keyEdit.append(mKeyText);
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    fragment.mKeyText = s.toString();
+                    fragment.reload(false);
+                }
+            });
+            valueEdit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    fragment.mValueText = s.toString();
+                    fragment.reload(false);
+                }
+            });
+
+            if (fragment.mKeyText != null) {
+                keyEdit.append(fragment.mKeyText);
             }
-            if (mValueText != null) {
-                valueEdit.append(mValueText);
+            if (fragment.mKeyText != null) {
+                valueEdit.append(fragment.mKeyText);
             }
 
             mItemsText = (TextView) rootView.findViewById(R.id.found_text);

@@ -32,32 +32,54 @@ import java.util.HashMap;
  */
 public class Vibration {
 
+    private static Vibration sInstance;
+
+    public static Vibration getInstance() {
+        if (sInstance == null) {
+            sInstance = new Vibration();
+        }
+        return sInstance;
+    }
+
     private static final String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
     private static final String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
 
-    private static final HashMap<String, MinMax> sVibrations = new HashMap<>();
+    private final HashMap<String, MinMax> mVibrations = new HashMap<>();
 
-    static {
-        sVibrations.put("/sys/class/timed_output/vibrator/amp", new MinMax(0, 100));
-        sVibrations.put("/sys/class/timed_output/vibrator/level", new MinMax(12, 31));
-        sVibrations.put("/sys/class/timed_output/vibrator/pwm_value", new MinMax("/sys/class/timed_output/vibrator/pwm_min", "/sys/class/timed_output/vibrator/pwm_max", 0, 100));
-        sVibrations.put("/sys/class/timed_output/vibrator/pwm_value_1p", new MinMax(53, 99));
-        sVibrations.put("/sys/class/timed_output/vibrator/voltage_level", new MinMax(1200, 3199));
-        sVibrations.put("/sys/class/timed_output/vibrator/vtg_level", new MinMax("/sys/class/timed_output/vibrator/vtg_min", "/sys/class/timed_output/vibrator/vtg_max", 12, 31));
-        sVibrations.put("/sys/class/timed_output/vibrator/vmax_mv", new MinMax(116, 3596));
-        sVibrations.put("/sys/class/timed_output/vibrator/vmax_mv_strong", new MinMax(116, 3596));
-        sVibrations.put("/sys/devices/platform/tspdrv/nforce_timed", new MinMax(1, 127));
-        sVibrations.put("/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle", new MinMax(25, 100));
-        sVibrations.put("/sys/module/qpnp_vibrator/parameters/vib_voltage", new MinMax(12, 31));
-        sVibrations.put("/sys/vibrator/pwmvalue", new MinMax(0, 127));
-        sVibrations.put("/sys/kernel/thunderquake_engine/level", new MinMax(0, 7));
+    {
+        mVibrations.put("/sys/class/timed_output/vibrator/amp", new MinMax(0, 100));
+        mVibrations.put("/sys/class/timed_output/vibrator/level", new MinMax(12, 31));
+        mVibrations.put("/sys/class/timed_output/vibrator/pwm_value", new MinMax("/sys/class/timed_output/vibrator/pwm_min", "/sys/class/timed_output/vibrator/pwm_max", 0, 100));
+        mVibrations.put("/sys/class/timed_output/vibrator/pwm_value_1p", new MinMax(53, 99));
+        mVibrations.put("/sys/class/timed_output/vibrator/voltage_level", new MinMax(1200, 3199));
+        mVibrations.put("/sys/class/timed_output/vibrator/vtg_level", new MinMax("/sys/class/timed_output/vibrator/vtg_min", "/sys/class/timed_output/vibrator/vtg_max", 12, 31));
+        mVibrations.put("/sys/class/timed_output/vibrator/vmax_mv", new MinMax(116, 3596));
+        mVibrations.put("/sys/class/timed_output/vibrator/vmax_mv_strong", new MinMax(116, 3596));
+        mVibrations.put("/sys/devices/platform/tspdrv/nforce_timed", new MinMax(1, 127));
+        mVibrations.put("/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle", new MinMax(25, 100));
+        mVibrations.put("/sys/module/qpnp_vibrator/parameters/vib_voltage", new MinMax(12, 31));
+        mVibrations.put("/sys/vibrator/pwmvalue", new MinMax(0, 127));
+        mVibrations.put("/sys/kernel/thunderquake_engine/level", new MinMax(0, 7));
     }
 
-    private static String FILE;
-    private static Integer MIN;
-    private static Integer MAX;
+    private String FILE;
+    private Integer MIN;
+    private Integer MAX;
 
-    public static void setVibration(int value, Context context) {
+    private Vibration() {
+        for (String file : mVibrations.keySet()) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+
+        if (FILE == null) return;
+        MIN = mVibrations.get(FILE).getMin();
+        MAX = mVibrations.get(FILE).getMax();
+    }
+
+    public void setVibration(int value, Context context) {
         boolean enable = Utils.existFile(VIB_ENABLE);
         if (enable) {
             run(Control.write("1", VIB_ENABLE), VIB_ENABLE + "enable", context);
@@ -71,21 +93,15 @@ public class Vibration {
         }
     }
 
-    public static int getMax() {
-        if (MAX == null) {
-            MAX = sVibrations.get(FILE).getMax();
-        }
+    public int getMax() {
         return MAX;
     }
 
-    public static int getMin() {
-        if (MIN == null) {
-            MIN = sVibrations.get(FILE).getMin();
-        }
+    public int getMin() {
         return MIN;
     }
 
-    public static int get() {
+    public int get() {
         if (FILE != null) {
             return Utils.strToInt(Utils.readFile(FILE).replace("%", ""));
         }
@@ -94,23 +110,15 @@ public class Vibration {
         return get();
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sVibrations.keySet()) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.MISC, id, context);
     }
 
-    private static class MinMax {
+    private class MinMax {
 
         private int mMin;
         private int mMax;

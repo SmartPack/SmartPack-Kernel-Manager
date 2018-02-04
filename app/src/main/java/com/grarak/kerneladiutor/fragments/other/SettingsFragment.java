@@ -94,8 +94,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private String mDeletePassword;
     private int mColorSelection = -1;
 
-    public boolean mDelay;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,16 +130,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                init();
-                mDelay = false;
-            }
-        }, mDelay ? 250 : 0);
-    }
-
-    private void init() {
         addPreferencesFromResource(R.xml.settings);
 
         if (Utils.DONATED) {
@@ -190,17 +178,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             mFingerprint.setEnabled(!Prefs.getString("password", "", getActivity()).isEmpty());
         }
 
+        NavigationActivity activity = (NavigationActivity) getActivity();
         PreferenceCategory sectionsCategory = (PreferenceCategory) findPreference(KEY_SECTIONS);
-        for (NavigationActivity.NavigationFragment navigationFragment : NavigationActivity.sFragments) {
-            Fragment fragment = navigationFragment.mFragment;
+        for (NavigationActivity.NavigationFragment navigationFragment : activity.getFragments()) {
+            Class<? extends Fragment> fragmentClass = navigationFragment.mFragmentClass;
             int id = navigationFragment.mId;
 
-            if (fragment != null && fragment.getClass() != SettingsFragment.class) {
+            if (fragmentClass != null && fragmentClass != SettingsFragment.class) {
                 SwitchPreferenceCompat switchPreference = new SwitchPreferenceCompat(
                         new ContextThemeWrapper(getActivity(), R.style.Preference_SwitchPreferenceCompat_Material));
                 switchPreference.setSummary(getString(id));
-                switchPreference.setKey(fragment.getClass().getSimpleName() + "_enabled");
-                switchPreference.setChecked(Prefs.getBoolean(fragment.getClass().getSimpleName()
+                switchPreference.setKey(fragmentClass.getSimpleName() + "_enabled");
+                switchPreference.setChecked(Prefs.getBoolean(fragmentClass.getSimpleName()
                         + "_enabled", true, getActivity()));
                 switchPreference.setOnPreferenceChangeListener(this);
                 switchPreference.setPersistent(false);

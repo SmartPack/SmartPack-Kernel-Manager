@@ -26,6 +26,8 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Gravity;
@@ -43,7 +45,6 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.XYGraph;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -63,9 +64,12 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private static final String TAG = OverallFragment.class.getSimpleName();
 
+    private CPUFreq mCPUFreq;
+    private GPUFreq mGPUFreq;
+
     private CPUUsageFragment mCPUUsageFragment;
 
-    private StatsView mGPUFreq;
+    private StatsView mGPUFreqStatsView;
     private TemperatureView mTemperature;
 
     private CardView mFreqBig;
@@ -81,6 +85,11 @@ public class OverallFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        mCPUFreq = CPUFreq.getInstance();
+        mGPUFreq = GPUFreq.getInstance();
+        if (mCPUUsageFragment != null && mCPUUsageFragment.mThread != null) {
+            mCPUUsageFragment.mThread.interrupt();
+        }
         addViewPagerFragment(mCPUUsageFragment = new CPUUsageFragment());
     }
 
@@ -91,11 +100,11 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void statsInit(List<RecyclerViewItem> items) {
-        if (GPUFreq.hasCurFreq()) {
-            mGPUFreq = new StatsView();
-            mGPUFreq.setTitle(getString(R.string.gpu_freq));
+        if (mGPUFreq.hasCurFreq()) {
+            mGPUFreqStatsView = new StatsView();
+            mGPUFreqStatsView.setTitle(getString(R.string.gpu_freq));
 
-            items.add(mGPUFreq);
+            items.add(mGPUFreqStatsView);
         }
         mTemperature = new TemperatureView();
         mTemperature.setFullSpan(mGPUFreq == null);
@@ -163,22 +172,22 @@ public class OverallFragment extends RecyclerViewFragment {
         items.add(frequencyButtonView);
 
         mFreqBig = new CardView(getActivity());
-        if (CPUFreq.isBigLITTLE()) {
+        if (mCPUFreq.isBigLITTLE()) {
             mFreqBig.setTitle(getString(R.string.cluster_big));
         } else {
             mFreqBig.setFullSpan(true);
         }
         items.add(mFreqBig);
 
-        if (CPUFreq.isBigLITTLE()) {
+        if (mCPUFreq.isBigLITTLE()) {
             mFreqLITTLE = new CardView(getActivity());
             mFreqLITTLE.setTitle(getString(R.string.cluster_little));
             items.add(mFreqLITTLE);
         }
 
-        mCpuSpyBig = new CpuSpyApp(CPUFreq.getBigCpu(), getActivity());
-        if (CPUFreq.isBigLITTLE()) {
-            mCpuSpyLITTLE = new CpuSpyApp(CPUFreq.getLITTLECpu(), getActivity());
+        mCpuSpyBig = new CpuSpyApp(mCPUFreq.getBigCpu(), getActivity());
+        if (mCPUFreq.isBigLITTLE()) {
+            mCpuSpyLITTLE = new CpuSpyApp(mCPUFreq.getLITTLECpu(), getActivity());
         }
 
         updateFrequency();
@@ -187,44 +196,46 @@ public class OverallFragment extends RecyclerViewFragment {
     private void updateFrequency() {
         if (mFrequencyTask == null) {
             mFrequencyTask = new FrequencyTask();
-            mFrequencyTask.execute();
+            mFrequencyTask.execute(this);
         }
     }
 
-    private class FrequencyTask extends AsyncTask<Void, Void, Void> {
+    private static class FrequencyTask extends AsyncTask<OverallFragment, Void, OverallFragment> {
+
         private CpuStateMonitor mBigMonitor;
         private CpuStateMonitor mLITTLEMonitor;
 
         @Override
-        protected Void doInBackground(Void... params) {
-            mBigMonitor = mCpuSpyBig.getCpuStateMonitor();
-            if (CPUFreq.isBigLITTLE()) {
-                mLITTLEMonitor = mCpuSpyLITTLE.getCpuStateMonitor();
+        protected OverallFragment doInBackground(OverallFragment... overallFragments) {
+            OverallFragment fragment = overallFragments[0];
+            mBigMonitor = fragment.mCpuSpyBig.getCpuStateMonitor();
+            if (fragment.mCPUFreq.isBigLITTLE()) {
+                mLITTLEMonitor = fragment.mCpuSpyLITTLE.getCpuStateMonitor();
             }
             try {
                 mBigMonitor.updateStates();
             } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
                 Log.e(TAG, "Problem getting CPU states");
             }
-            if (CPUFreq.isBigLITTLE()) {
+            if (fragment.mCPUFreq.isBigLITTLE()) {
                 try {
                     mLITTLEMonitor.updateStates();
                 } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
                     Log.e(TAG, "Problem getting CPU states");
                 }
             }
-            return null;
+            return fragment;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            updateView(mBigMonitor, mFreqBig);
-            if (CPUFreq.isBigLITTLE()) {
-                updateView(mLITTLEMonitor, mFreqLITTLE);
+        protected void onPostExecute(OverallFragment fragment) {
+            super.onPostExecute(fragment);
+            fragment.updateView(mBigMonitor, fragment.mFreqBig);
+            if (fragment.mCPUFreq.isBigLITTLE()) {
+                fragment.updateView(mLITTLEMonitor, fragment.mFreqLITTLE);
             }
-            adjustScrollPosition();
-            mFrequencyTask = null;
+            fragment.adjustScrollPosition();
+            fragment.mFrequencyTask = null;
         }
     }
 
@@ -238,7 +249,7 @@ public class OverallFragment extends RecyclerViewFragment {
         totalTime.setSummary(sToString(monitor.getTotalStateTime() / 100L));
         card.addItem(totalTime);
 
-        /** Get the CpuStateMonitor from the app, and iterate over all states,
+        /* Get the CpuStateMonitor from the app, and iterate over all states,
          * creating a row if the duration is > 0 or otherwise marking it in
          * extraStates (missing) */
         List<String> extraStates = new ArrayList<>();
@@ -330,14 +341,10 @@ public class OverallFragment extends RecyclerViewFragment {
         super.refresh();
 
         if (mGPUFreq != null) {
-            mGPUFreq.setStat((GPUFreq.getCurFreq() / GPUFreq.getCurFreqOffset()) + getString(R.string.mhz));
+            mGPUFreqStatsView.setStat(mGPUFreq.getCurFreq() / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz));
         }
         if (mTemperature != null) {
             mTemperature.setBattery(mBatteryRaw);
-        }
-
-        if (mCPUUsageFragment != null) {
-            mCPUUsageFragment.refresh();
         }
     }
 
@@ -365,16 +372,19 @@ public class OverallFragment extends RecyclerViewFragment {
 
     public static class CPUUsageFragment extends BaseFragment {
 
-        private static List<View> mUsages = new ArrayList<>();
-        private static Thread mThread;
-        private static float[] mCPUUsages;
-        private static int[] mFreqs;
+        private Handler mHandler;
+
+        private List<View> mUsages;
+        private Thread mThread;
+        private float[] mCPUUsages;
+        private int[] mFreqs;
 
         @Nullable
         @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
-            mUsages.clear();
+            mHandler = new Handler();
+            mUsages = new ArrayList<>();
             LinearLayout rootView = new LinearLayout(getActivity());
             rootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -382,7 +392,7 @@ public class OverallFragment extends RecyclerViewFragment {
             rootView.setOrientation(LinearLayout.VERTICAL);
 
             LinearLayout subView = null;
-            for (int i = 0; i < CPUFreq.getCpuCount(); i++) {
+            for (int i = 0; i < CPUFreq.getInstance(getActivity()).getCpuCount(); i++) {
                 if (subView == null || i % 2 == 0) {
                     subView = new LinearLayout(getActivity());
                     subView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -398,55 +408,84 @@ public class OverallFragment extends RecyclerViewFragment {
                 mUsages.add(view);
                 subView.addView(view);
             }
-
             return rootView;
         }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            mHandler.post(mRefresh);
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            mHandler.removeCallbacks(mRefresh);
+            if (mThread != null) {
+                mThread.interrupt();
+                mThread = null;
+            }
+        }
+
+        private Runnable mRefresh = new Runnable() {
+            @Override
+            public void run() {
+                refresh();
+                mHandler.postDelayed(this, 1000);
+            }
+        };
 
         public void refresh() {
             if (mThread == null) {
                 mThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        mCPUUsages = CPUFreq.getCpuUsage();
-                        if (mFreqs == null) {
-                            mFreqs = new int[CPUFreq.getCpuCount()];
-                        }
-                        for (int i = 0; i < mFreqs.length; i++) {
-                            if (getActivity() == null) break;
-                            mFreqs[i] = CPUFreq.getCurFreq(i);
-                        }
+                        while (true) {
+                            if (mThread == null) return;
+                            CPUFreq cpuFreq = CPUFreq.getInstance(getActivity());
+                            mCPUUsages = cpuFreq.getCpuUsage();
+                            if (mFreqs == null) {
+                                mFreqs = new int[cpuFreq.getCpuCount()];
+                            }
+                            for (int i = 0; i < mFreqs.length; i++) {
+                                if (getActivity() == null) break;
+                                mFreqs[i] = cpuFreq.getCurFreq(i);
+                            }
 
-                        if (getActivity() == null) {
-                            RootUtils.closeSU();
+                            if (getActivity() == null) {
+                                mThread = null;
+                            }
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException ignored) {
+                                mThread = null;
+                            }
                         }
-
-                        mThread = null;
                     }
                 });
                 mThread.start();
             }
-            try {
-                for (int i = 0; i < mUsages.size(); i++) {
-                    View usageView = mUsages.get(i);
-                    TextView usageOfflineText = (TextView) usageView.findViewById(R.id.usage_offline_text);
-                    TextView usageLoadText = (TextView) usageView.findViewById(R.id.usage_load_text);
-                    TextView usageFreqText = (TextView) usageView.findViewById(R.id.usage_freq_text);
-                    XYGraph usageGraph = (XYGraph) usageView.findViewById(R.id.usage_graph);
-                    if (mFreqs[i] == 0) {
-                        usageOfflineText.setVisibility(View.VISIBLE);
-                        usageLoadText.setVisibility(View.GONE);
-                        usageFreqText.setVisibility(View.GONE);
-                        usageGraph.addPercentage(0);
-                    } else {
-                        usageOfflineText.setVisibility(View.GONE);
-                        usageLoadText.setVisibility(View.VISIBLE);
-                        usageFreqText.setVisibility(View.VISIBLE);
-                        usageFreqText.setText(Utils.strFormat("%d" + getString(R.string.mhz), mFreqs[i] / 1000));
-                        usageLoadText.setText(Utils.strFormat("%d%%", Math.round(mCPUUsages[i + 1])));
-                        usageGraph.addPercentage(Math.round(mCPUUsages[i + 1]));
-                    }
+
+            if (mFreqs == null || mCPUUsages == null || mUsages == null) return;
+            for (int i = 0; i < mUsages.size(); i++) {
+                View usageView = mUsages.get(i);
+                TextView usageOfflineText = (TextView) usageView.findViewById(R.id.usage_offline_text);
+                TextView usageLoadText = (TextView) usageView.findViewById(R.id.usage_load_text);
+                TextView usageFreqText = (TextView) usageView.findViewById(R.id.usage_freq_text);
+                XYGraph usageGraph = (XYGraph) usageView.findViewById(R.id.usage_graph);
+                if (mFreqs[i] == 0) {
+                    usageOfflineText.setVisibility(View.VISIBLE);
+                    usageLoadText.setVisibility(View.GONE);
+                    usageFreqText.setVisibility(View.GONE);
+                    usageGraph.addPercentage(0);
+                } else {
+                    usageOfflineText.setVisibility(View.GONE);
+                    usageLoadText.setVisibility(View.VISIBLE);
+                    usageFreqText.setVisibility(View.VISIBLE);
+                    usageFreqText.setText(Utils.strFormat("%d" + getString(R.string.mhz), mFreqs[i] / 1000));
+                    usageLoadText.setText(Utils.strFormat("%d%%", Math.round(mCPUUsages[i + 1])));
+                    usageGraph.addPercentage(Math.round(mCPUUsages[i + 1]));
                 }
-            } catch (Exception ignored) {
             }
         }
 

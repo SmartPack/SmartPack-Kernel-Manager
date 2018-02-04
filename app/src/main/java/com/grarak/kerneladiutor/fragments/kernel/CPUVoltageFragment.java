@@ -45,6 +45,8 @@ import java.util.List;
  */
 public class CPUVoltageFragment extends RecyclerViewFragment {
 
+    private Voltage mVoltage;
+
     private List<GenericSelectView> mVoltages = new ArrayList<>();
 
     @Override
@@ -56,6 +58,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        mVoltage = Voltage.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(GlobalOffsetFragment.newInstance(this));
     }
@@ -64,24 +67,24 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         mVoltages.clear();
 
-        if (Voltage.hasOverrideVmin()) {
+        if (mVoltage.hasOverrideVmin()) {
             SwitchView overrideVmin = new SwitchView();
             overrideVmin.setTitle(getString(R.string.override_vmin));
             overrideVmin.setSummary(getString(R.string.override_vmin_summary));
-            overrideVmin.setChecked(Voltage.isOverrideVminEnabled());
+            overrideVmin.setChecked(mVoltage.isOverrideVminEnabled());
             overrideVmin.setFullSpan(true);
             overrideVmin.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Voltage.enableOverrideVmin(isChecked, getActivity());
+                    mVoltage.enableOverrideVmin(isChecked, getActivity());
                 }
             });
 
             items.add(overrideVmin);
         }
 
-        List<String> freqs = Voltage.getFreqs();
-        List<String> voltages = Voltage.getVoltages();
+        List<String> freqs = mVoltage.getFreqs();
+        List<String> voltages = mVoltage.getVoltages();
         if (freqs != null && voltages != null && freqs.size() == voltages.size()) {
             for (int i = 0; i < freqs.size(); i++) {
                 GenericSelectView view = new GenericSelectView();
@@ -93,8 +96,8 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     }
 
     private void reload() {
-        List<String> freqs = Voltage.getFreqs();
-        List<String> voltages = Voltage.getVoltages();
+        List<String> freqs = mVoltage.getFreqs();
+        List<String> voltages = mVoltage.getVoltages();
         if (freqs != null && voltages != null) {
             for (int i = 0; i < mVoltages.size(); i++) {
                 initView(mVoltages.get(i), freqs.get(i), voltages.get(i));
@@ -103,7 +106,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
     }
 
     private void initView(GenericSelectView view, final String freq, String voltage) {
-        String freqText = Voltage.isVddVoltage() ? String.valueOf(Utils.strToInt(freq) / 1000) : freq;
+        String freqText = mVoltage.isVddVoltage() ? String.valueOf(Utils.strToInt(freq) / 1000) : freq;
         view.setTitle(freqText + getString(R.string.mhz));
         view.setSummary(voltage + getString(R.string.mv));
         view.setValue("");
@@ -112,7 +115,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
         view.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
             @Override
             public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                Voltage.setVoltage(freq, value, getActivity());
+                mVoltage.setVoltage(freq, value, getActivity());
                 getHandler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -146,7 +149,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 public void onClick(View v) {
                     mGlobaloffset -= 5;
                     offset.setText(Utils.strFormat("%d" + getString(R.string.mv), mGlobaloffset));
-                    Voltage.setGlobalOffset(-5, getActivity());
+                    Voltage.getInstance().setGlobalOffset(-5, getActivity());
                     if (mCPUVoltageFragment != null) {
                         mCPUVoltageFragment.getHandler().postDelayed(new Runnable() {
                             @Override
@@ -162,7 +165,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment {
                 public void onClick(View v) {
                     mGlobaloffset += 5;
                     offset.setText(Utils.strFormat("%d" + getString(R.string.mv), mGlobaloffset));
-                    Voltage.setGlobalOffset(5, getActivity());
+                    Voltage.getInstance().setGlobalOffset(5, getActivity());
                     if (mCPUVoltageFragment != null) {
                         mCPUVoltageFragment.getHandler().postDelayed(new Runnable() {
                             @Override

@@ -34,19 +34,37 @@ import java.util.List;
  */
 public class T2w {
 
+    private static T2w sInstance;
+
+    public static T2w getInstance() {
+        if (sInstance == null) {
+            sInstance = new T2w();
+        }
+        return sInstance;
+    }
+
     private static final String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
     private static final String TOUCHWAKE_T2W = "/sys/class/misc/touchwake/enabled";
 
-    private static final List<String> sFiles = new ArrayList<>();
+    private final List<String> mFiles = new ArrayList<>();
 
-    static {
-        sFiles.add(TSP_T2W);
-        sFiles.add(TOUCHWAKE_T2W);
+    {
+        mFiles.add(TSP_T2W);
+        mFiles.add(TOUCHWAKE_T2W);
     }
 
-    private static String FILE;
+    private String FILE;
 
-    public static void set(int value, Context context) {
+    private T2w() {
+        for (String file : mFiles) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+    }
+
+    public void set(int value, Context context) {
         if (FILE.equals(TSP_T2W)) {
             run(Control.write(value == 0 ? "OFF" : "AUTO", FILE), FILE, context);
         } else {
@@ -54,7 +72,7 @@ public class T2w {
         }
     }
 
-    public static int get() {
+    public int get() {
         if (FILE.equals(TSP_T2W)) {
             return Utils.readFile(FILE).equals("OFF") ? 0 : 1;
         } else {
@@ -62,26 +80,18 @@ public class T2w {
         }
     }
 
-    public static List<String> getMenu(Context context) {
+    public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
         list.add(context.getString(R.string.disabled));
         list.add(context.getString(R.string.enabled));
         return list;
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sFiles) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

@@ -138,7 +138,7 @@ public class PathReaderFragment extends RecyclerViewFragment {
                 descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                     @Override
                     public void onClick(RecyclerViewItem item) {
-                        List<Integer> freqs = CPUFreq.getFreqs(mMin);
+                        List<Integer> freqs = CPUFreq.getInstance(getActivity()).getFreqs(mMin);
                         int freq = Utils.strToInt(value);
                         if (freqs != null && freq != 0 && freqs.contains(freq)) {
                             String[] values = new String[freqs.size()];
@@ -197,7 +197,7 @@ public class PathReaderFragment extends RecyclerViewFragment {
 
     private void run(String path, String value, String id) {
         if (ApplyOnBootFragment.CPU.equals(mCategory) && mPath.contains("%d")) {
-            CPUFreq.applyCpu(path, value, mMin, mMax, getActivity());
+            CPUFreq.getInstance(getActivity()).applyCpu(path, value, mMin, mMax, getActivity());
         } else {
             Control.runSetting(Control.write(value, path), mCategory, id, getActivity());
         }

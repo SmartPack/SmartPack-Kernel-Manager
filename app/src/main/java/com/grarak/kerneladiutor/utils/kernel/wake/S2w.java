@@ -35,80 +35,90 @@ import java.util.List;
  */
 public class S2w {
 
+    private static S2w sInstance;
+
+    public static S2w getInstance() {
+        if (sInstance == null) {
+            sInstance = new S2w();
+        }
+        return sInstance;
+    }
+
     private static final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     private static final String SW2 = "/sys/android_touch/sweep2wake";
     private static final String SW2_2 = "/sys/android_touch2/sweep2wake";
 
-    private static final String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
+    private final String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
 
-    private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
-    private static final List<Integer> sS2wMenu = new ArrayList<>();
-    private static final List<Integer> sS2w2Menu = new ArrayList<>();
-    private static final List<Integer> sGenericMenu = new ArrayList<>();
+    private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
+    private final List<Integer> mS2wMenu = new ArrayList<>();
+    private final List<Integer> mS2w2Menu = new ArrayList<>();
+    private final List<Integer> mGenericMenu = new ArrayList<>();
 
-    static {
-        sS2wMenu.add(R.string.disabled);
-        sS2wMenu.add(R.string.s2w_s2s);
-        sS2wMenu.add(R.string.s2s);
+    {
+        mS2wMenu.add(R.string.disabled);
+        mS2wMenu.add(R.string.s2w_s2s);
+        mS2wMenu.add(R.string.s2s);
 
-        sS2w2Menu.add(R.string.disabled);
-        sS2w2Menu.add(R.string.s2w_right);
-        sS2w2Menu.add(R.string.s2w_left);
-        sS2w2Menu.add(R.string.s2w_up);
-        sS2w2Menu.add(R.string.s2w_down);
-        sS2w2Menu.add(R.string.s2w_any);
+        mS2w2Menu.add(R.string.disabled);
+        mS2w2Menu.add(R.string.s2w_right);
+        mS2w2Menu.add(R.string.s2w_left);
+        mS2w2Menu.add(R.string.s2w_up);
+        mS2w2Menu.add(R.string.s2w_down);
+        mS2w2Menu.add(R.string.s2w_any);
 
-        sGenericMenu.add(R.string.disabled);
-        sGenericMenu.add(R.string.enabled);
+        mGenericMenu.add(R.string.disabled);
+        mGenericMenu.add(R.string.enabled);
 
-        sFiles.put(S2W_ONLY, sGenericMenu);
-        sFiles.put(SW2, sS2wMenu);
-        sFiles.put(SW2_2, sS2w2Menu);
+        mFiles.put(S2W_ONLY, mGenericMenu);
+        mFiles.put(SW2, mS2wMenu);
+        mFiles.put(SW2_2, mS2w2Menu);
     }
 
-    private static String FILE;
+    private String FILE;
 
-    public static void enableLenient(boolean enable, Context context) {
+    private S2w() {
+        for (String file : mFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+    }
+
+    public void enableLenient(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", LENIENT), LENIENT, context);
     }
 
-    public static boolean isLenientEnabled() {
+    public boolean isLenientEnabled() {
         return Utils.readFile(LENIENT).equals("1");
     }
 
-    public static boolean hasLenient() {
+    public boolean hasLenient() {
         return Utils.existFile(LENIENT);
     }
 
-    public static void set(int value, Context context) {
+    public void set(int value, Context context) {
         run(Control.write(String.valueOf(value), FILE), FILE, context);
     }
 
-    public static int get() {
+    public int get() {
         return Utils.strToInt(Utils.readFile(FILE));
     }
 
-    public static List<String> getMenu(Context context) {
+    public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : sFiles.get(FILE)) {
+        for (int id : mFiles.get(FILE)) {
             list.add(context.getString(id));
         }
         return list;
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

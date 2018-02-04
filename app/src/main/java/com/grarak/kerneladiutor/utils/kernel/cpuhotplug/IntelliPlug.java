@@ -35,6 +35,15 @@ import java.util.List;
  */
 public class IntelliPlug {
 
+    private static IntelliPlug sInstance;
+
+    public static IntelliPlug getInstance() {
+        if (sInstance == null) {
+            sInstance = new IntelliPlug();
+        }
+        return sInstance;
+    }
+
     private static final String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters";
     private static final String HOTPLUG_INTELLI_PLUG_ENABLE = HOTPLUG_INTELLI_PLUG + "/intelli_plug_active";
     private static final String HOTPLUG_INTELLI_PLUG_INSANITY = HOTPLUG_INTELLI_PLUG + "/is_insanity";
@@ -64,267 +73,275 @@ public class IntelliPlug {
     private static final String HOTPLUG_INTELLI_PLUG_5_FSHIFT = HOTPLUG_INTELLI_PLUG_5 + "/nr_fshift";
     private static final String HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX = HOTPLUG_INTELLI_PLUG_5 + "/screen_off_max";
 
-    private static Boolean sUseVersion5;
-    private static Boolean sHasInsanity;
+    private Boolean mUseVersion5;
+    private boolean mHasInsanity;
 
-    public static void setIntelliPlugFShift(int value, Context context) {
+    private IntelliPlug() {
+        if (Utils.existFile(HOTPLUG_INTELLI_PLUG)) mUseVersion5 = false;
+        else if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5)) mUseVersion5 = true;
+        if (mUseVersion5 != null) {
+            mHasInsanity = Utils.existFile(HOTPLUG_INTELLI_PLUG_INSANITY);
+        }
+    }
+
+    public void setIntelliPlugFShift(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_FSHIFT),
                 HOTPLUG_INTELLI_PLUG_5_FSHIFT, context);
     }
 
-    public static int getIntelliPlugFShift() {
+    public int getIntelliPlugFShift() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_FSHIFT));
     }
 
-    public static boolean hasIntelliPlugFShift() {
+    public boolean hasIntelliPlugFShift() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_FSHIFT);
     }
 
-    public static void setIntelliPlugDownLockDuration(int value, Context context) {
+    public void setIntelliPlugDownLockDuration(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION),
                 HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION, context);
     }
 
-    public static int getIntelliPlugDownLockDuration() {
+    public int getIntelliPlugDownLockDuration() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION));
     }
 
-    public static boolean hasIntelliPlugDownLockDuration() {
+    public boolean hasIntelliPlugDownLockDuration() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_DOWN_LOCK_DURATION);
     }
 
-    public static void setIntelliPlugBoostLockDuration(int value, Context context) {
+    public void setIntelliPlugBoostLockDuration(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION),
                 HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION, context);
     }
 
-    public static int getIntelliPlugBoostLockDuration() {
+    public int getIntelliPlugBoostLockDuration() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION));
     }
 
-    public static boolean hasIntelliPlugBoostLockDuration() {
+    public boolean hasIntelliPlugBoostLockDuration() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_BOOST_LOCK_DURATION);
     }
 
-    public static void setIntelliPlugDeferSampling(int value, Context context) {
+    public void setIntelliPlugDeferSampling(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING),
                 HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING, context);
     }
 
-    public static int getIntelliPlugDeferSampling() {
+    public int getIntelliPlugDeferSampling() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING));
     }
 
-    public static boolean hasIntelliPlugDeferSampling() {
+    public boolean hasIntelliPlugDeferSampling() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_DEFER_SAMPLING);
     }
 
-    public static void setIntelliPlugSuspendDeferTime(int value, Context context) {
+    public void setIntelliPlugSuspendDeferTime(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME),
                 HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME, context);
     }
 
-    public static int getIntelliPlugSuspendDeferTime() {
+    public int getIntelliPlugSuspendDeferTime() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME));
     }
 
-    public static boolean hasIntelliPlugSuspendDeferTime() {
+    public boolean hasIntelliPlugSuspendDeferTime() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_SUSPEND_DEFER_TIME);
     }
 
-    public static void setIntelliPlugMaxCpusOnlineSusp(int value, Context context) {
+    public void setIntelliPlugMaxCpusOnlineSusp(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP),
                 HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP, context);
     }
 
-    public static int getIntelliPlugMaxCpusOnlineSusp() {
+    public int getIntelliPlugMaxCpusOnlineSusp() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP));
     }
 
-    public static boolean hasIntelliPlugMaxCpusOnlineSusp() {
+    public boolean hasIntelliPlugMaxCpusOnlineSusp() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE_SUSP);
     }
 
-    public static void setIntelliPlugMaxCpusOnline(int value, Context context) {
+    public void setIntelliPlugMaxCpusOnline(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE),
                 HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE, context);
     }
 
-    public static int getIntelliPlugMaxCpusOnline() {
+    public int getIntelliPlugMaxCpusOnline() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE));
     }
 
-    public static boolean hasIntelliPlugMaxCpusOnline() {
+    public boolean hasIntelliPlugMaxCpusOnline() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_MAX_CPUS_ONLINE);
     }
 
-    public static void setIntelliPlugMinCpusOnline(int value, Context context) {
-        run(Control.write(String.valueOf(value), sUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
-                : MIN_ONLINE_CPUS), sUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
+    public void setIntelliPlugMinCpusOnline(int value, Context context) {
+        run(Control.write(String.valueOf(value), mUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
+                : MIN_ONLINE_CPUS), mUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
                 : MIN_ONLINE_CPUS, context);
     }
 
-    public static int getIntelliPlugMinCpusOnline() {
-        return Utils.strToInt(Utils.readFile(sUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
+    public int getIntelliPlugMinCpusOnline() {
+        return Utils.strToInt(Utils.readFile(mUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE
                 : MIN_ONLINE_CPUS));
     }
 
-    public static boolean hasIntelliPlugMinCpusOnline() {
-        return Utils.existFile(sUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE : MIN_ONLINE_CPUS);
+    public boolean hasIntelliPlugMinCpusOnline() {
+        return Utils.existFile(mUseVersion5 ? HOTPLUG_INTELLI_PLUG_5_MIN_CPUS_ONLINE : MIN_ONLINE_CPUS);
     }
 
-    public static void setIntelliPlugCpusBoosted(int value, Context context) {
+    public void setIntelliPlugCpusBoosted(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED),
                 HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED, context);
     }
 
-    public static int getIntelliPlugCpusBoosted() {
+    public int getIntelliPlugCpusBoosted() {
         return Utils.strToInt(Utils.readFile(HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED));
     }
 
-    public static boolean hasIntelliPlugCpusBoosted() {
+    public boolean hasIntelliPlugCpusBoosted() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_CPUS_BOOSTED);
     }
 
-    public static void enableIntelliPlugSuspend(boolean enable, Context context) {
+    public void enableIntelliPlugSuspend(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", HOTPLUG_INTELLI_PLUG_5_SUSPEND),
                 HOTPLUG_INTELLI_PLUG_5_SUSPEND, context);
     }
 
-    public static boolean isIntelliPlugSuspendEnabled() {
+    public boolean isIntelliPlugSuspendEnabled() {
         return Utils.readFile(HOTPLUG_INTELLI_PLUG_5_SUSPEND).equals("1");
     }
 
-    public static boolean hasIntelliPlugSuspend() {
+    public boolean hasIntelliPlugSuspend() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_SUSPEND);
     }
 
-    public static void enableIntelliPlugDebug(boolean enable, Context context) {
+    public void enableIntelliPlugDebug(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", HOTPLUG_INTELLI_PLUG_5_DEBUG), HOTPLUG_INTELLI_PLUG_5_DEBUG, context);
     }
 
-    public static boolean isIntelliPlugDebugEnabled() {
+    public boolean isIntelliPlugDebugEnabled() {
         return Utils.readFile(HOTPLUG_INTELLI_PLUG_5_DEBUG).equals("1");
     }
 
-    public static boolean hasIntelliPlugDebug() {
+    public boolean hasIntelliPlugDebug() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_5_DEBUG);
     }
 
-    public static void setIntelliPlugScreenOffMax(int position, Context context) {
+    public void setIntelliPlugScreenOffMax(int position, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
 
-        String command = position == 0 ? String.valueOf(1 << 32 - 1) : String.valueOf(CPUFreq.getFreqs()
-                .get(position - 1));
+        String command = position == 0 ? String.valueOf(1L << 32 - 1) : String.valueOf(
+                CPUFreq.getInstance(context).getFreqs().get(position - 1));
         run(Control.write(command, file), file, context);
     }
 
-    public static int getIntelliPlugScreenOffMax() {
+    public int getIntelliPlugScreenOffMax() {
         String file = HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
 
         String value = Utils.readFile(file);
-        if (value.equals(String.valueOf(1 << 32 - 1))
+        if (value.equals(String.valueOf(1L << 32 - 1))
                 || value.equals("0")) return 0;
-        return CPUFreq.getFreqs().indexOf(Utils.strToInt(value)) + 1;
+        return CPUFreq.getInstance().getFreqs().indexOf(Utils.strToInt(value)) + 1;
     }
 
-    public static boolean hasIntelliPlugScreenOffMax() {
-        if (CPUFreq.hasMaxScreenOffFreq()) return false;
+    public boolean hasIntelliPlugScreenOffMax() {
+        if (CPUFreq.getInstance().hasMaxScreenOffFreq()) return false;
         String file = HOTPLUG_INTELLI_PLUG_SCREEN_OFF_MAX;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_SCREEN_OFF_MAX;
         return Utils.existFile(file);
     }
 
-    public static void setIntelliPlugThresold(int value, Context context) {
+    public void setIntelliPlugThresold(int value, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         run(Control.write(String.valueOf(value), file), file, context);
     }
 
-    public static int getIntelliPlugThresold() {
+    public int getIntelliPlugThresold() {
         String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         return Utils.strToInt(Utils.readFile(file));
     }
 
-    public static boolean hasIntelliPlugThresold() {
+    public boolean hasIntelliPlugThresold() {
         String file = HOTPLUG_INTELLI_PLUG_THRESHOLD;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_THRESHOLD;
         return Utils.existFile(file);
     }
 
-    public static void setIntelliPlugHysteresis(int value, Context context) {
+    public void setIntelliPlugHysteresis(int value, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_HYSTERESIS;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
         run(Control.write(String.valueOf(value), file), file, context);
     }
 
-    public static int getIntelliPlugHysteresis() {
+    public int getIntelliPlugHysteresis() {
         String file = HOTPLUG_INTELLI_PLUG_HYSTERESIS;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
         return Utils.strToInt(Utils.readFile(file));
     }
 
-    public static boolean hasIntelliPlugHysteresis() {
+    public boolean hasIntelliPlugHysteresis() {
         String file = HOTPLUG_INTELLI_PLUG_HYSTERESIS;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_HYSTERESIS;
         return Utils.existFile(file);
     }
 
-    public static void enableIntelliPlugTouchBoost(boolean enable, Context context) {
+    public void enableIntelliPlugTouchBoost(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", HOTPLUG_INTELLI_PLUG_TOUCH_BOOST),
                 HOTPLUG_INTELLI_PLUG_TOUCH_BOOST, context);
     }
 
-    public static boolean isIntelliPlugTouchBoostEnabled() {
+    public boolean isIntelliPlugTouchBoostEnabled() {
         return Utils.readFile(HOTPLUG_INTELLI_PLUG_TOUCH_BOOST).equals("1");
     }
 
-    public static boolean hasIntelliPlugTouchBoost() {
+    public boolean hasIntelliPlugTouchBoost() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_TOUCH_BOOST);
     }
 
-    public static void enableIntelliPlugEco(boolean enable, Context context) {
+    public void enableIntelliPlugEco(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", HOTPLUG_INTELLI_PLUG_ECO), HOTPLUG_INTELLI_PLUG_ECO, context);
     }
 
-    public static boolean isIntelliPlugEcoEnabled() {
+    public boolean isIntelliPlugEcoEnabled() {
         return Utils.readFile(HOTPLUG_INTELLI_PLUG_ECO).equals("1");
     }
 
-    public static boolean hasIntelliPlugEco() {
+    public boolean hasIntelliPlugEco() {
         return Utils.existFile(HOTPLUG_INTELLI_PLUG_ECO);
     }
 
-    public static void setIntelliPlugProfile(int value, Context context) {
+    public void setIntelliPlugProfile(int value, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_PROFILE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
         run(Control.write(String.valueOf(value), file), file, context);
     }
 
-    public static int getIntelliPlugProfile() {
+    public int getIntelliPlugProfile() {
         String file = HOTPLUG_INTELLI_PLUG_PROFILE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
         return Utils.strToInt(Utils.readFile(file));
     }
 
-    public static List<String> getIntelliPlugProfileMenu(Context context) {
+    public List<String> getIntelliPlugProfileMenu(Context context) {
         List<String> list = new ArrayList<>();
-        if (sHasInsanity) {
+        if (mHasInsanity) {
             list.add(context.getString(R.string.insanity));
         }
         list.add(context.getString(R.string.balanced));
         list.add(context.getString(R.string.performance));
         list.add(context.getString(R.string.conservative));
-        if (sUseVersion5) {
+        if (mUseVersion5) {
             list.add(context.getString(R.string.disabled));
             list.add(context.getString(R.string.tri));
             list.add(context.getString(R.string.eco));
             list.add(context.getString(R.string.strict));
         } else {
-            if (sHasInsanity) {
+            if (mHasInsanity) {
                 list.add(context.getString(R.string.eco_insanity));
             }
             list.add(context.getString(R.string.eco_performance));
@@ -333,40 +350,35 @@ public class IntelliPlug {
         return list;
     }
 
-    public static boolean hasIntelliPlugProfile() {
+    public boolean hasIntelliPlugProfile() {
         String file = HOTPLUG_INTELLI_PLUG_PROFILE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_PROFILE;
         return Utils.existFile(file);
     }
 
-    public static void enableIntelliPlug(boolean enable, Context context) {
+    public void enableIntelliPlug(boolean enable, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
         run(Control.write(enable ? "1" : "0", file), file, context);
     }
 
-    public static boolean isIntelliPlugEnabled() {
+    public boolean isIntelliPlugEnabled() {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
         return Utils.readFile(file).equals("1");
     }
 
-    public static boolean hasIntelliPlugEnable() {
+    public boolean hasIntelliPlugEnable() {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
-        if (sUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
+        if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
         return Utils.existFile(file);
     }
 
-    public static boolean supported() {
-        if (Utils.existFile(HOTPLUG_INTELLI_PLUG)) sUseVersion5 = false;
-        else if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5)) sUseVersion5 = true;
-        if (sUseVersion5 != null) {
-            sHasInsanity = Utils.existFile(HOTPLUG_INTELLI_PLUG_INSANITY);
-        }
-        return sUseVersion5 != null;
+    public boolean supported() {
+        return mUseVersion5 != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.CPU_HOTPLUG, id, context);
     }
 

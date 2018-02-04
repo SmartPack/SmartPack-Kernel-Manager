@@ -41,7 +41,7 @@ public class DeviceFragment extends RecyclerViewFragment {
         String processor = Device.CPUInfo.getProcessor();
         String hardware = Device.CPUInfo.getVendor();
         String features = Device.CPUInfo.getFeatures();
-        int ram = (int) Device.MemInfo.getTotalMem();
+        int ram = (int) Device.MemInfo.getInstance().getTotalMem();
 
         if (!processor.isEmpty()) {
             addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.processor), processor));

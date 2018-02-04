@@ -35,56 +35,66 @@ import java.util.List;
  */
 public class S2s {
 
+    private static S2s sInstance;
+
+    public static S2s getInstance() {
+        if (sInstance == null) {
+            sInstance = new S2s();
+        }
+        return sInstance;
+    }
+
     private static final String S2S = "/sys/android_touch/sweep2sleep";
     private static final String S2S_2 = "/sys/android_touch2/sweep2sleep";
 
-    private static final HashMap<String, List<Integer>> sFiles = new HashMap<>();
-    private static final List<Integer> sS2s2Menu = new ArrayList<>();
-    private static final List<Integer> sGenericMenu = new ArrayList<>();
+    private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
+    private final List<Integer> mS2s2Menu = new ArrayList<>();
+    private final List<Integer> mGenericMenu = new ArrayList<>();
 
-    static {
-        sS2s2Menu.add(R.string.s2s_right);
-        sS2s2Menu.add(R.string.s2s_left);
-        sS2s2Menu.add(R.string.s2s_any);
+    {
+        mS2s2Menu.add(R.string.s2s_right);
+        mS2s2Menu.add(R.string.s2s_left);
+        mS2s2Menu.add(R.string.s2s_any);
 
-        sGenericMenu.add(R.string.disabled);
-        sGenericMenu.add(R.string.enabled);
+        mGenericMenu.add(R.string.disabled);
+        mGenericMenu.add(R.string.enabled);
 
-        sFiles.put(S2S, sGenericMenu);
-        sFiles.put(S2S_2, sS2s2Menu);
+        mFiles.put(S2S, mGenericMenu);
+        mFiles.put(S2S_2, mS2s2Menu);
     }
 
-    private static String FILE;
+    private String FILE;
 
-    public static void set(int value, Context context) {
+    private S2s() {
+        for (String file : mFiles.keySet()) {
+            if (Utils.existFile(file)) {
+                FILE = file;
+                break;
+            }
+        }
+    }
+
+    public void set(int value, Context context) {
         run(Control.write(String.valueOf(value), FILE), FILE, context);
     }
 
-    public static int get() {
+    public int get() {
         return Utils.strToInt(Utils.readFile(FILE));
     }
 
-    public static List<String> getMenu(Context context) {
+    public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
-        for (int id : sFiles.get(FILE)) {
+        for (int id : mFiles.get(FILE)) {
             list.add(context.getString(id));
         }
         return list;
     }
 
-    public static boolean supported() {
-        if (FILE == null) {
-            for (String file : sFiles.keySet()) {
-                if (Utils.existFile(file)) {
-                    FILE = file;
-                    return true;
-                }
-            }
-        }
+    public boolean supported() {
         return FILE != null;
     }
 
-    private static void run(String command, String id, Context context) {
+    private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.WAKE, id, context);
     }
 

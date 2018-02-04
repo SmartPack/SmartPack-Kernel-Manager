@@ -29,9 +29,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -85,6 +88,7 @@ import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.WebpageReader;
+import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.Hotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuvoltage.Voltage;
 import com.grarak.kerneladiutor.utils.kernel.entropy.Entropy;
@@ -102,23 +106,19 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 import com.grarak.kerneladiutor.views.AdNativeExpress;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public final static List<NavigationFragment> sFragments = new ArrayList<>();
-    public final static LinkedHashMap<Integer, Fragment> sActualFragments = new LinkedHashMap<>();
-
-    private static Callback sCallback;
-
-    private interface Callback {
-        void onBannerResize();
-    }
+    private ArrayList<NavigationFragment> mFragments;
+    private Map<Integer, Class<? extends Fragment>> mActualFragments = new LinkedHashMap<>();
 
     private Handler mHandler = new Handler();
     private DrawerLayout mDrawer;
@@ -139,107 +139,112 @@ public class NavigationActivity extends BaseActivity
     }
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mAllowCommit = true;
-        if (sFragments.size() <= 0) {
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... voids) {
-                    initFragments();
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void aVoid) {
-                    super.onPostExecute(aVoid);
-
-                    for (NavigationActivity.NavigationFragment fragment : sFragments) {
-                        if (fragment.mId == R.string.settings) {
-                            fragment.mFragment = new SettingsFragment();
-                            fragment.mDrawable = R.drawable.ic_settings;
-                        }
-                    }
-
-                    init(savedInstanceState);
-                }
-            }.execute();
+        if (savedInstanceState == null) {
+            new FragmentLoader(this).execute();
         } else {
+            mFragments = savedInstanceState.getParcelableArrayList("fragments");
             init(savedInstanceState);
         }
     }
 
-    private void initFragments() {
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.statistics));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.overall, new OverallFragment(), R.drawable.ic_chart));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.device, new DeviceFragment(), R.drawable.ic_device));
-        if (Device.MemInfo.getItems().size() > 0) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.memory, new MemoryFragment(), R.drawable.ic_save));
+    private static class FragmentLoader extends AsyncTask<Void, Void, Void> {
+
+        private WeakReference<NavigationActivity> mRefActivity;
+
+        private FragmentLoader(NavigationActivity activity) {
+            mRefActivity = new WeakReference<>(activity);
         }
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.inputs, new InputsFragment(), R.drawable.ic_keyboard));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.kernel));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu, new CPUFragment(), R.drawable.ic_cpu));
-        if (Voltage.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_voltage, new CPUVoltageFragment(), R.drawable.ic_bolt));
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mRefActivity.get().initFragments();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mRefActivity.get().init(null);
+        }
+    }
+
+    private void initFragments() {
+        mFragments = new ArrayList<>();
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.statistics));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.overall, OverallFragment.class, R.drawable.ic_chart));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.device, DeviceFragment.class, R.drawable.ic_device));
+        if (Device.MemInfo.getInstance().getItems().size() > 0) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.memory, MemoryFragment.class, R.drawable.ic_save));
+        }
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.inputs, InputsFragment.class, R.drawable.ic_keyboard));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.kernel));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu, CPUFragment.class, R.drawable.ic_cpu));
+        if (Voltage.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_voltage, CPUVoltageFragment.class, R.drawable.ic_bolt));
         }
         if (Hotplug.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_hotplug, new CPUHotplugFragment(), R.drawable.ic_switch));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_hotplug, CPUHotplugFragment.class, R.drawable.ic_switch));
         }
         if (Thermal.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.thermal, new ThermalFragment(), R.drawable.ic_temperature));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.thermal, ThermalFragment.class, R.drawable.ic_temperature));
         }
         if (GPU.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.gpu, new GPUFragment(), R.drawable.ic_gpu));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.gpu, GPUFragment.class, R.drawable.ic_gpu));
         }
         if (Screen.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.screen, new ScreenFragment(), R.drawable.ic_display));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.screen, ScreenFragment.class, R.drawable.ic_display));
         }
         if (Wake.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, new WakeFragment(), R.drawable.ic_unlock));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, WakeFragment.class, R.drawable.ic_unlock));
         }
-        if (Sound.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.sound, new SoundFragment(), R.drawable.ic_music));
+        if (Sound.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.sound, SoundFragment.class, R.drawable.ic_music));
         }
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.battery, new BatteryFragment(), R.drawable.ic_battery));
-        if (LED.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.led, new LEDFragment(), R.drawable.ic_led));
+        if (Battery.getInstance(this).supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.battery, BatteryFragment.class, R.drawable.ic_battery));
         }
-        if (IO.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.io_scheduler, new IOFragment(), R.drawable.ic_sdcard));
+        if (LED.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.led, LEDFragment.class, R.drawable.ic_led));
         }
-        if (KSM.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.ksm, new KSMFragment(), R.drawable.ic_merge));
+        if (IO.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.io_scheduler, IOFragment.class, R.drawable.ic_sdcard));
+        }
+        if (KSM.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.ksm, KSMFragment.class, R.drawable.ic_merge));
         }
         if (LMK.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.lmk, new LMKFragment(), R.drawable.ic_stackoverflow));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.lmk, LMKFragment.class, R.drawable.ic_stackoverflow));
         }
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.virtual_memory, new VMFragment(), R.drawable.ic_server));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.virtual_memory, VMFragment.class, R.drawable.ic_server));
         if (Entropy.supported()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.entropy, new EntropyFragment(), R.drawable.ic_numbers));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.entropy, EntropyFragment.class, R.drawable.ic_numbers));
         }
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, new MiscFragment(), R.drawable.ic_clear));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.data_sharing, new DataSharingFragment(), R.drawable.ic_database));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, new CustomControlsFragment(), R.drawable.ic_console));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, MiscFragment.class, R.drawable.ic_clear));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.data_sharing, DataSharingFragment.class, R.drawable.ic_database));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, CustomControlsFragment.class, R.drawable.ic_console));
 
         SupportedDownloads supportedDownloads = new SupportedDownloads(this);
         if (supportedDownloads.getLink() != null) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.downloads, DownloadsFragment.newInstance(supportedDownloads), R.drawable.ic_download));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.downloads, DownloadsFragment.class, R.drawable.ic_download));
         }
         if (Backup.hasBackup()) {
-            sFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, new BackupFragment(), R.drawable.ic_restore));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, BackupFragment.class, R.drawable.ic_restore));
         }
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.build_prop_editor, new BuildpropFragment(), R.drawable.ic_edit));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, new ProfileFragment(), R.drawable.ic_layers));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.recovery, new RecoveryFragment(), R.drawable.ic_security));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, new InitdFragment(), R.drawable.ic_shell));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, new OnBootFragment(), R.drawable.ic_start));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.settings));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.about, new AboutFragment(), R.drawable.ic_about));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, new ContributorsFragment(), R.drawable.ic_people));
-        sFragments.add(new NavigationActivity.NavigationFragment(R.string.help, new HelpFragment(), R.drawable.ic_help));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.build_prop_editor, BuildpropFragment.class, R.drawable.ic_edit));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, ProfileFragment.class, R.drawable.ic_layers));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.recovery, RecoveryFragment.class, R.drawable.ic_security));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, InitdFragment.class, R.drawable.ic_shell));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, OnBootFragment.class, R.drawable.ic_start));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.about, AboutFragment.class, R.drawable.ic_about));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.help, HelpFragment.class, R.drawable.ic_help));
     }
 
     private void init(Bundle savedInstanceState) {
@@ -278,15 +283,6 @@ public class NavigationActivity extends BaseActivity
             }
         }
 
-        sCallback = new Callback() {
-            @Override
-            public void onBannerResize() {
-                Fragment fragment = sActualFragments.get(mSelection);
-                if (fragment instanceof RecyclerViewFragment) {
-                    ((RecyclerViewFragment) fragment).resizeBanner();
-                }
-            }
-        };
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
         setSupportActionBar(toolbar);
@@ -306,7 +302,6 @@ public class NavigationActivity extends BaseActivity
                 }
             }
         });
-        appendFragments(false);
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
@@ -314,19 +309,20 @@ public class NavigationActivity extends BaseActivity
             mFetchingAds = savedInstanceState.getBoolean("fetching_ads");
         }
 
+        appendFragments(false);
         String section = getIntent().getStringExtra("section");
         if (section != null) {
-            for (int id : sActualFragments.keySet()) {
-                if (sActualFragments.get(id) != null
-                        && sActualFragments.get(id).getClass().getCanonicalName().equals(section)) {
-                    mSelection = id;
+            for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
+                Class<? extends Fragment> fragmentClass = entry.getValue();
+                if (fragmentClass != null && fragmentClass.getCanonicalName().equals(section)) {
+                    mSelection = entry.getKey();
                     break;
                 }
             }
             getIntent().removeExtra("section");
         }
 
-        if (mSelection == 0 || !sActualFragments.containsKey(mSelection)) {
+        if (mSelection == 0 || mActualFragments.get(mSelection) == null) {
             mSelection = firstTab();
         }
         onItemSelected(mSelection, false, false);
@@ -343,11 +339,9 @@ public class NavigationActivity extends BaseActivity
                     AdNativeExpress.GHAds ghAds = new AdNativeExpress.GHAds(raw);
                     if (ghAds.readable()) {
                         ghAds.cache(NavigationActivity.this);
-                        for (int id : sActualFragments.keySet()) {
-                            Fragment fragment = sActualFragments.get(id);
-                            if (fragment instanceof RecyclerViewFragment) {
-                                ((RecyclerViewFragment) fragment).ghAdReady();
-                            }
+                        Fragment fragment = getFragment(mSelection);
+                        if (fragment instanceof RecyclerViewFragment) {
+                            ((RecyclerViewFragment) fragment).ghAdReady();
                         }
                     }
                 }
@@ -361,9 +355,9 @@ public class NavigationActivity extends BaseActivity
     }
 
     private int firstTab() {
-        for (int id : sActualFragments.keySet()) {
-            if (sActualFragments.get(id) != null) {
-                return id;
+        for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
+            if (entry.getValue() != null) {
+                return entry.getKey();
             }
         }
         return 0;
@@ -374,13 +368,13 @@ public class NavigationActivity extends BaseActivity
     }
 
     private void appendFragments(boolean setShortcuts) {
-        sActualFragments.clear();
+        mActualFragments.clear();
         Menu menu = mNavigationView.getMenu();
         menu.clear();
 
         SubMenu lastSubMenu = null;
-        for (NavigationFragment navigationFragment : sFragments) {
-            Fragment fragment = navigationFragment.mFragment;
+        for (NavigationFragment navigationFragment : mFragments) {
+            Class<? extends Fragment> fragmentClass = navigationFragment.mFragmentClass;
             int id = navigationFragment.mId;
 
             Drawable drawable = ContextCompat.getDrawable(this,
@@ -389,10 +383,10 @@ public class NavigationActivity extends BaseActivity
                             && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
                             R.drawable.ic_blank);
 
-            if (fragment == null) {
+            if (fragmentClass == null) {
                 lastSubMenu = menu.addSubMenu(id);
-                sActualFragments.put(id, null);
-            } else if (Prefs.getBoolean(fragment.getClass().getSimpleName() + "_enabled",
+                mActualFragments.put(id, null);
+            } else if (Prefs.getBoolean(fragmentClass.getSimpleName() + "_enabled",
                     true, this)) {
                 MenuItem menuItem = lastSubMenu == null ? menu.add(0, id, 0, id) :
                         lastSubMenu.add(0, id, 0, id);
@@ -401,7 +395,7 @@ public class NavigationActivity extends BaseActivity
                 if (mSelection != 0) {
                     mNavigationView.setCheckedItem(mSelection);
                 }
-                sActualFragments.put(id, fragment);
+                mActualFragments.put(id, fragmentClass);
             }
         }
         if (setShortcuts) {
@@ -409,9 +403,9 @@ public class NavigationActivity extends BaseActivity
         }
     }
 
-    private NavigationFragment getNavigationFragment(Fragment fragment) {
-        for (NavigationFragment navigationFragment : sFragments) {
-            if (fragment == navigationFragment.mFragment) {
+    private NavigationFragment findNavigationFragmentByClass(Class<? extends Fragment> fragmentClass) {
+        for (NavigationFragment navigationFragment : mFragments) {
+            if (fragmentClass == navigationFragment.mFragmentClass) {
                 return navigationFragment;
             }
         }
@@ -420,54 +414,55 @@ public class NavigationActivity extends BaseActivity
 
     private void setShortcuts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
-        HashMap<Fragment, Integer> openendFragmentsCount = new HashMap<>();
 
-        for (int id : sActualFragments.keySet()) {
-            Fragment fragment = sActualFragments.get(id);
-            if (fragment == null || fragment.getClass() == SettingsFragment.class) continue;
+        PriorityQueue<Class<? extends Fragment>> queue = new PriorityQueue<>(
+                new Comparator<Class<? extends Fragment>>() {
+                    @Override
+                    public int compare(Class<? extends Fragment> o1, Class<? extends Fragment> o2) {
+                        int opened1 = Prefs.getInt(o1.getSimpleName() + "_opened",
+                                0, NavigationActivity.this);
+                        int opened2 = Prefs.getInt(o2.getSimpleName() + "_opened",
+                                0, NavigationActivity.this);
+                        return opened2 - opened1;
+                    }
+                });
 
-            int opened = Prefs.getInt(fragment.getClass().getSimpleName() + "_opened", 0, this);
-            openendFragmentsCount.put(fragment, opened);
+        for (Map.Entry<Integer, Class<? extends Fragment>> entry : mActualFragments.entrySet()) {
+            Class<? extends Fragment> fragmentClass = entry.getValue();
+            if (fragmentClass == null || fragmentClass == SettingsFragment.class) continue;
+
+            queue.offer(fragmentClass);
         }
 
-        int max = 0;
-        for (Map.Entry<Fragment, Integer> map : openendFragmentsCount.entrySet()) {
-            if (max < map.getValue()) {
-                max = map.getValue();
-            }
-        }
-
-        int count = 0;
         List<ShortcutInfo> shortcutInfos = new ArrayList<>();
         ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
         shortcutManager.removeAllDynamicShortcuts();
-        for (int i = max; i >= 0; i--) {
-            for (Map.Entry<Fragment, Integer> map : openendFragmentsCount.entrySet()) {
-                if (i == map.getValue()) {
-                    NavigationFragment navFragment = getNavigationFragment(map.getKey());
-                    if (navFragment == null) continue;
+        for (int i = 0; i < 4; i++) {
+            NavigationFragment fragment = findNavigationFragmentByClass(queue.poll());
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.putExtra("section", fragment.mFragmentClass.getCanonicalName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                    if (count == 4) break;
-                    count++;
-
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.putExtra("section", navFragment.mFragment.getClass().getCanonicalName());
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    ShortcutInfo shortcut = new ShortcutInfo.Builder(this,
-                            navFragment.mFragment.getClass().getSimpleName())
-                            .setShortLabel(getString(navFragment.mId))
-                            .setLongLabel(Utils.strFormat(getString(R.string.open), getString(navFragment.mId)))
-                            .setIcon(Icon.createWithResource(this, navFragment.mDrawable == 0 ?
-                                    R.drawable.ic_blank : navFragment.mDrawable))
-                            .setIntent(intent)
-                            .build();
-                    shortcutInfos.add(shortcut);
-                }
-            }
+            ShortcutInfo shortcut = new ShortcutInfo.Builder(this,
+                    fragment.mFragmentClass.getSimpleName())
+                    .setShortLabel(getString(fragment.mId))
+                    .setLongLabel(Utils.strFormat(getString(R.string.open), getString(fragment.mId)))
+                    .setIcon(Icon.createWithResource(this, fragment.mDrawable == 0 ?
+                            R.drawable.ic_blank : fragment.mDrawable))
+                    .setIntent(intent)
+                    .build();
+            shortcutInfos.add(shortcut);
         }
         shortcutManager.setDynamicShortcuts(shortcutInfos);
+    }
+
+    public ArrayList<NavigationFragment> getFragments() {
+        return mFragments;
+    }
+
+    public Map<Integer, Class<? extends Fragment>> getActualFragments() {
+        return mActualFragments;
     }
 
     @Override
@@ -475,10 +470,9 @@ public class NavigationActivity extends BaseActivity
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
-            if ((sActualFragments.get(mSelection) instanceof BaseFragment
-                    && !((BaseFragment) sActualFragments.get(mSelection)).onBackPressed())
-                    || (sActualFragments.get(mSelection) != null
-                    && sActualFragments.get(mSelection).getClass() == SettingsFragment.class)) {
+            Fragment currentFragment = getFragment(mSelection);
+            if (!(currentFragment instanceof BaseFragment)
+                    || !((BaseFragment) currentFragment).onBackPressed()) {
                 if (mExit) {
                     mExit = false;
                     super.onBackPressed();
@@ -499,14 +493,15 @@ public class NavigationActivity extends BaseActivity
     @Override
     public void finish() {
         super.finish();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        for (int key : sActualFragments.keySet()) {
-            Fragment fragment = getSupportFragmentManager().findFragmentByTag(key + "_key");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        for (int id : mActualFragments.keySet()) {
+            Fragment fragment = fragmentManager.findFragmentByTag(id + "_key");
             if (fragment != null) {
                 fragmentTransaction.remove(fragment);
             }
         }
-        fragmentTransaction.commitAllowingStateLoss();
+        fragmentTransaction.commit();
         if (mAdsFetcher != null) {
             mAdsFetcher.cancel();
         }
@@ -518,6 +513,7 @@ public class NavigationActivity extends BaseActivity
         super.onSaveInstanceState(outState);
 
         mAllowCommit = false;
+        outState.putParcelableArrayList("fragments", mFragments);
         outState.putInt("selection", mSelection);
         outState.putBoolean("license", mLicenseDialog);
         outState.putBoolean("fetching_ads", mFetchingAds);
@@ -529,27 +525,30 @@ public class NavigationActivity extends BaseActivity
         return true;
     }
 
-    private void onItemSelected(final int res, boolean delay, boolean saveOpened) {
+    private void onItemSelected(final int res, final boolean delay, boolean saveOpened) {
         mDrawer.closeDrawer(GravityCompat.START);
         getSupportActionBar().setTitle(getString(res));
         mNavigationView.setCheckedItem(res);
         mSelection = res;
-        Fragment fragment = getFragment(res);
-        if (fragment instanceof RecyclerViewFragment) {
-            ((RecyclerViewFragment) fragment).mDelay = delay;
-        } else if (fragment instanceof SettingsFragment) {
-            ((SettingsFragment) fragment).mDelay = delay;
-        }
-        if (mAllowCommit) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
-                    res + "_key").commit();
-        }
+        final Fragment fragment = getFragment(res);
 
         if (saveOpened) {
             String openedName = fragment.getClass().getSimpleName() + "_opened";
             Prefs.saveInt(openedName, Prefs.getInt(openedName, 0, this) + 1, this);
         }
         setShortcuts();
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (!isFinishing()) {
+                    if (mAllowCommit) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
+                                res + "_key").commit();
+                    }
+                }
+            }
+        }, delay ? 250 : 0);
     }
 
     @Override
@@ -559,39 +558,71 @@ public class NavigationActivity extends BaseActivity
     }
 
     private Fragment getFragment(int res) {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(res + "_key");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentByTag(res + "_key");
         if (fragment == null) {
-            return sActualFragments.get(res);
+            fragment = Fragment.instantiate(this, mActualFragments.get(res).getCanonicalName());
         }
         return fragment;
     }
 
-    public static void bannerResize() {
-        if (sCallback != null) {
-            sCallback.onBannerResize();
-        }
-    }
-
-    public static class NavigationFragment {
+    public static class NavigationFragment implements Parcelable {
 
         public int mId;
-        public Fragment mFragment;
+        public Class<? extends Fragment> mFragmentClass;
         private int mDrawable;
 
         NavigationFragment(int id) {
             this(id, null, 0);
         }
 
-        NavigationFragment(int id, Fragment fragment, int drawable) {
+        NavigationFragment(int id, Class<? extends Fragment> fragment, int drawable) {
             mId = id;
-            mFragment = fragment;
+            mFragmentClass = fragment;
             mDrawable = drawable;
+        }
+
+        NavigationFragment(Parcel parcel) {
+            mId = parcel.readInt();
+            try {
+                String name = parcel.readString();
+                if (!name.isEmpty()) {
+                    mFragmentClass = (Class<? extends Fragment>) Class.forName(name);
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            mDrawable = parcel.readInt();
         }
 
         @Override
         public String toString() {
             return String.valueOf(mId);
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(mId);
+            dest.writeString(mFragmentClass == null ? "" : mFragmentClass.getCanonicalName());
+            dest.writeInt(mDrawable);
+        }
+
+        public static final Creator CREATOR = new Creator<NavigationFragment>() {
+            @Override
+            public NavigationFragment createFromParcel(Parcel source) {
+                return new NavigationFragment(source);
+            }
+
+            @Override
+            public NavigationFragment[] newArray(int size) {
+                return new NavigationFragment[0];
+            }
+        };
     }
 
 }
