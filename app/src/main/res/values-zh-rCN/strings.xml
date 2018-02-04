@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPU 升频</string>
   <string name="cpus_boosted_summary">同一时间内被升频的 CPU 最大数量。</string>
   <string name="min_cpu_online">最小 CPU 在线数量</string>
+  <string name="min_cpu_online_summary">在线 CPU 的最小数量。</string>
   <string name="max_cpu_online">最大 CPU 在线数量</string>
+  <string name="max_cpu_online_summary">在线 CPU 的最大数量。</string>
   <string name="max_cpu_online_screen_off">关闭屏幕时的最大CPU频率</string>
   <string name="max_cpu_online_screen_off_summary">屏幕关闭时的最大CPU核心数</string>
   <string name="suspend_defer_time">待机推迟时间</string>
@@ -313,6 +315,13 @@
   <string name="busy_up_threshold_summary">大核Cpu应该开启时的阈值。</string>
   <string name="offline_delay">离线延迟</string>
   <string name="offline_delay_summary">CPU 被关闭前的时间。</string>
+  <string name="aio_hotplug">AiO 热插拔</string>
+  <string name="aio_hotplug_summary">高通设备的整合型热插拔。
+由 Shoaib0597 开发。</string>
+  <string name="max_cpu_online_big">最大 CPU 在线数量</string>
+  <string name="max_cpu_online_big_summary">CPU 大核最大在线数量。</string>
+  <string name="max_cpu_online_little">CPU 小核最大在线数量</string>
+  <string name="max_cpu_online_little_summary">在线 CPU 小核的最大数量。</string>
   <!--Thermal-->
   <string name="thermal_info">请在下方只选择一个要使用的发热控制驱动，同时使用多个驱动可能会导致意外的行为。</string>
   <string name="thermald">Thermald</string>
@@ -641,9 +650,13 @@
   <string name="bluesleep_wakelock">BlueSleep 唤醒锁</string>
   <string name="bluesleep_wakelock_summary">阻止 BlueSleep 唤醒锁。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">和他人分享你的设置！Kernel Adiutor 将自动收集信息并制作一个面向所有人的排行榜。</string>
+  <string name="data_sharing_summary_link">你可以在&lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;访问此列表。</string>
+  <string name="sharing_enable">共享启用</string>
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
   <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>
@@ -805,6 +818,7 @@
   <string name="fingerprint_summary">使用指纹来验证密码。如果您已注册指纹，这个功能会正常工作。</string>
   <string name="sections">分区</string>
   <!-- About -->
+  <string name="about_me">你好，我是 Willie Ye，也称@Grarak，一个住在奥地利维也纳的19岁学生。我在 Android 平台开发已有相当长时间了，除 Kernel Adiutor 以外我还在维护一些设备的 LineageOS，同时也花时间在 ParanoidAndroid 上。所以如果我没有时间更新这个应用，也请理解。</string>
   <string name="libraries_used">使用的程序库</string>
   <!-- Contributors -->
   <string name="commits">%d 次提交</string>

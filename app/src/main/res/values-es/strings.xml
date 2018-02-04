@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPUs potenciadas</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs potenciadas al mismo tiempo.</string>
   <string name="min_cpu_online">Mínimo CPU activos</string>
+  <string name="min_cpu_online_summary">Minimo numero de CPUs que estan en linea.</string>
   <string name="max_cpu_online">Máximo CPU activos</string>
+  <string name="max_cpu_online_summary">Número mínimo de CPUs que estarán siempre activos.</string>
   <string name="max_cpu_online_screen_off">Máximo de CPUs con la Pantalla Apagada</string>
   <string name="max_cpu_online_screen_off_summary">Máximo número de CPUs activos cuando la pantalla está apagada.</string>
   <string name="suspend_defer_time">Suspender Tiempo de Retraso</string>
@@ -217,7 +219,10 @@
   <string name="down_lock_duration_summary">Intervalo mínimo que un CPU se mantendrá activo.</string>
   <string name="fshift">FShit</string>
   <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Un reemplazo en el núcleo de MPDecision de Qualcomm. Desarrollado por arter97.</string>
   <string name="lazy">Pereza</string>
+  <string name="possible_cpu_cores">Núcleos de CPU posible</string>
+  <string name="possible_cpu_cores_summary">Posibles núcleos de CPU lazyplug puede utilizar.</string>
   <string name="blu_plug">Blu-Plug</string>
   <string name="blu_plug_summary">Reemplazo del MPDecision de Qualcomm. Desarrollado por Code_Blue team.</string>
   <string name="powersaver_mode">Modo económico</string>
@@ -310,6 +315,12 @@
   <string name="busy_up_threshold_summary">Umbral en que las grandes CPUs deben ser encendidas.</string>
   <string name="offline_delay">Retraso para desactivar</string>
   <string name="offline_delay_summary">Tiempo antes de apagar la CPU.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">Todo en uno HotPlug para dispositivos Qualcomm. Desarrollado por Shoaib0597.</string>
+  <string name="max_cpu_online_big">Máximos grandes CPU Online</string>
+  <string name="max_cpu_online_big_summary">Número máximo de CPU grandes que estará en línea.</string>
+  <string name="max_cpu_online_little">Máximos CPUs LITTLE encendidos</string>
+  <string name="max_cpu_online_little_summary">El número máximo de CPUs LITTLE que estarán encendidos.</string>
   <!--Thermal-->
   <string name="thermal_info">Usar solo un Thermal driver en las opciones, usar mas al mismo tiempo puede provocar problemas.</string>
   <string name="thermald">Thermald</string>
@@ -638,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="bluesleep_wakelock_summary">Evitar BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor de Wakelock de wlan_rx</string>
+  <string name="wlan_ctrl_wakelock_divider">w_lan Control Wakelock Divisor</string>
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">¡Comparte tus ajustes con otros! Kernel Adiutor recogerá automáticamente información y elaborará una lista de puntuación para todas las personas.</string>
+  <string name="data_sharing_summary_link">Puedes acceder a la lista en &lt; a href = \"https://www.grarak.com/kerneladiutor\" &gt; grarak.com &lt; /a &gt;.</string>
+  <string name="sharing_enable">Habilitar la compartición</string>
   <!-- Custom Controls -->
   <string name="welcome">Bienvenido(a)</string>
   <string name="custom_controls_summary">En esta sección usted puede crear o importar controles personalizados, que no existen en la app (todavía).</string>
@@ -802,6 +817,7 @@
   <string name="fingerprint_summary">Utilizar huellas dactilares para pasar control de seguridad. Esto funcionará si tienes huellas dactilares registradas.</string>
   <string name="sections">Secciones</string>
   <!-- About -->
+  <string name="about_me">Hola, soy Willi Ye aka Grarak, un estudiante de 19 años viviendo en Viena. He estado desarrollando en Android durante mucho tiempo. Además de Kernel Adiutor también mantengo LineageOS para algunos dispositivos y trabajo en ParanoidAndroid. Así que por favor comprenda si no encuentro el tiempo para actualizar esta aplicación.</string>
   <string name="libraries_used">Librerías utilizadas</string>
   <!-- Contributors -->
   <string name="commits">%d cambios</string>

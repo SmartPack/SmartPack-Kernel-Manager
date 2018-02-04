@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPUs impulsionados</string>
   <string name="cpus_boosted_summary">Número máximo de CPUs impulsionados ao mesmo tempo.</string>
   <string name="min_cpu_online">Mínimo de CPUs Online</string>
+  <string name="min_cpu_online_summary">Número mínimo de CPUs que estarão online.</string>
   <string name="max_cpu_online">Máximo de CPUs Online</string>
+  <string name="max_cpu_online_summary">Número máximo de CPUs que estarão online.</string>
   <string name="max_cpu_online_screen_off">Máximo de CPUs com a tela desligada</string>
   <string name="max_cpu_online_screen_off_summary">Número máximo de CPUs que estarão online quando a tela estiver desligada.</string>
   <string name="suspend_defer_time">Suspender tempo de atraso</string>
@@ -313,6 +315,12 @@
   <string name="busy_up_threshold_summary">Limite para quando as CPUs big devem ser ligadas.</string>
   <string name="offline_delay">Atraso para desligar</string>
   <string name="offline_delay_summary">Tempo antes de desligar a CPU.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">All in One HotPlug para dispositivos Qualcomm. Desenvolvido por Shoaib0597.</string>
+  <string name="max_cpu_online_big">Máximo de CPUs big online</string>
+  <string name="max_cpu_online_big_summary">Número máximo de CPUs big que estarão online.</string>
+  <string name="max_cpu_online_little">Máximo de CPUs LITTLE online</string>
+  <string name="max_cpu_online_little_summary">Número máximo de CPUs LITTLE que estarão online.</string>
   <!--Thermal-->
   <string name="thermal_info">Use apenas um condutor térmico entre as seguintes opções, usando mais ao mesmo tempo pode causar um comportamento inesperado.</string>
   <string name="thermald">Thermald</string>
@@ -641,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="bluesleep_wakelock_summary">Prevenir BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor wlan_rx Wakelock</string>
+  <string name="wlan_ctrl_wakelock_divider">Divisor wlan_ctrl Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">Divisor BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Compartilhe suas configurações com outros! O Kernel Adiutor irá coletar informações automaticamente e compilar uma lista de pontuação disponível para todas as pessoas.</string>
+  <string name="data_sharing_summary_link">Você pode acessar a lista em &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Habilitar compartilhamento</string>
   <!-- Custom Controls -->
   <string name="welcome">Bem-vindo</string>
   <string name="custom_controls_summary">Nesta seção você pode criar ou importar controles personalizados, que não existem (ainda) no app.</string>
@@ -805,6 +817,7 @@
   <string name="fingerprint_summary">Use a impressão digital para passar a verificação de segurança. Isto funcionará enquanto você tiver impressões digitais registadas.</string>
   <string name="sections">Seções</string>
   <!-- About -->
+  <string name="about_me">Oi, eu sou Willi Ye aka Grarak, uma estudante de 19 anos vivendo em Viena. Tenho desenvolvido para Android há bastante tempo. Ao lado do Kernel Adiutor, também mantenho o LineageOS para alguns dispositivos e trabalhando no ParanoidAndroid. Então por favor, entenda se eu não encontrar tempo para atualizar este aplicativo.</string>
   <string name="libraries_used">Bibliotecas usadas</string>
   <!-- Contributors -->
   <string name="commits">%d commits</string>

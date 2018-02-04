@@ -28,7 +28,7 @@
   <string name="ad_here">Reklamınız burada olabilir</string>
   <string name="remove_ad">Reklamı kaldır</string>
   <string name="warning">Uyarı</string>
-  <string name="gh_ad">Bu ticari olmayan bir reklamdır! Bunu ciddiye almayın! Gerçek bir reklam yüklenemediğinde alanı doldurmanın komik bir yolu (adblock kullanıcılarına bak).</string>
+  <string name="gh_ad">Bu ticari olmayan bir reklamdır! Bunu ciddiye almayın! Gerçek bir reklam yüklenemediğinde alanı doldurmanın komik bir yolu (adblock kullanıcısına bakıyorum).</string>
   <string name="open_ad_anyway">Yine de reklam aç</string>
   <string name="apply_on_boot">Açılışta uygula</string>
   <string name="apply_on_boot_text">%d saniyede ayarları uyguluyor.</string>
@@ -206,7 +206,9 @@
   <string name="cpus_boosted">İşlemci Hızlandırıldı</string>
   <string name="cpus_boosted_summary">Aynı anda hızlandırılan maksimum işlemci sayısı.</string>
   <string name="min_cpu_online">Minimum İşlemci Aktifliği</string>
+  <string name="min_cpu_online_summary">Açık olacak minimum işlemci sayısı.</string>
   <string name="max_cpu_online">Maksimum İşlemci Aktifliği</string>
+  <string name="max_cpu_online_summary">Açık olacak maksimum işlemci sayısı.</string>
   <string name="max_cpu_online_screen_off">Ekran kapalıyken açık işlemci sayısı</string>
   <string name="max_cpu_online_screen_off_summary">Ekran kapalıyken açık maksimum işlemci sayısı.</string>
   <string name="suspend_defer_time">Askıya Alma Zamanını Erteleme</string>
@@ -313,6 +315,12 @@
   <string name="busy_up_threshold_summary">Büyük işlemcilerin açılacağı eşik.</string>
   <string name="offline_delay">Çevrimdışı Gecikme</string>
   <string name="offline_delay_summary">Bir işlemci açılmadan önce gerekli zaman.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">Qualcomm cihazlar için Shoaib0597 tarafından geliştirilen hepsi bir arada tak çıkar çözümü.</string>
+  <string name="max_cpu_online_big">Maksimum Büyük İşlemci Aktifliği</string>
+  <string name="max_cpu_online_big_summary">Açık olacak maksimum Büyük İşlemci sayısı.</string>
+  <string name="max_cpu_online_little">Maksimum Küçük İşlemci Aktifliği</string>
+  <string name="max_cpu_online_little_summary">Açık olacak maksimum Küçük İşlemci sayısı.</string>
   <!--Thermal-->
   <string name="thermal_info">Aşağıdaki seçenekler arasından tek bir termal sürücü kullanın, aynı anda daha fazla kullanmak beklenmedik davranışlara neden olabilir.</string>
   <string name="thermald">Isıl</string>
@@ -642,9 +650,13 @@
   <string name="bluesleep_wakelock">BlueSleep Uyandırma kilidi</string>
   <string name="bluesleep_wakelock_summary">BlueSleep uyandırma kilidini önle.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Uyandırma kilidi Bölücü</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl Uyandırma kilidi Bölücü</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Uyandırma kilidi Bölücü</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Uyandırma kilidi Bölücü</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Ayarlarınızı başkalarıyla paylaşın! Kernel Adiutor otomatik olarak bilgi toplayacak ve tüm insanlar tarafından kullanılabilir bir puan listesini derleyecektir.</string>
+  <string name="data_sharing_summary_link">Listeye şuradan ulaşabilirsiniz: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Paylaşım etkinliği</string>
   <!-- Custom Controls -->
   <string name="welcome">Hoş geldiniz</string>
   <string name="custom_controls_summary">Bu bölümde, uygulamada (henüz) olmayan özel denetimleri oluşturabilir veya içe aktarabilirsiniz.</string>
@@ -806,6 +818,7 @@
   <string name="fingerprint_summary">Güvenlik kontrolünü geçmek için parmak izi kullanın. Bu parmak izleriniz kayıtlı olduğu sürece işe yarayacaktır.</string>
   <string name="sections">Bölümler</string>
   <!-- About -->
+  <string name="about_me">Merhaba, ben Willi Ye yani Grarak, Viyana\'da yaşayan 19 yaşında bir öğrenciyim. Oldukça uzun bir süredir Android\'de geliştirme yapıyorum. Ayrıca Kernel Adiutor\'un yanı sıra birkaç aygıt için LineageOS sağlıyor ve ParanoidAndroid üzerinde çalışıyorum. Bu yüzden, bu uygulamayı güncelleyecek zaman bulamazsam lütfen anlayın.</string>
   <string name="libraries_used">Kullanılan kütüphaneler</string>
   <!-- Contributors -->
   <string name="commits">%d işlendi</string>

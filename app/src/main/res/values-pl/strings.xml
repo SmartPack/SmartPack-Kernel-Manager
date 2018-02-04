@@ -19,6 +19,7 @@
   <string name="cancel">Anuluj</string>
   <string name="ok">Ok</string>
   <string name="unknown">Nieznany</string>
+  <string name="license_invalid">Dziękujemy za zakup aplikacji darowizny! Niestety sprawdzanie licencji nie powiodło się. Proszę spróbować ponownie później. Jeśli nadal nie działa, proszę o kontakt. Wymagany dostęp do internetu!</string>
   <string name="pirated">Wygląda na to, że aplikacja-darowizna nie została zakupiona poprzez Sklep Play! Jeżeli ją spiraciłeś, wstydź się!</string>
   <string name="donate">Wspomóż</string>
   <string name="donate_summary">Ta funkcja jest dostępna tylko wtedy, kiedy aplikacja-darowizna jest zainstalowana! Nie bój się jednak - ponieważ jest to aplikacja open source, możesz łatwo skompilować ją sam i znieść ten limit. Niemniej, mam nadzieję, że tak czy siak nas, tj. deweloperów, wesprzesz. Dzięki za korzystanie z Kernel Adiutora! Po zakupieniu aplikacji-darowizny musisz zrestartować program, by wszystkie dodatkowe funkcje się uaktywniły.</string>
@@ -37,7 +38,7 @@
   <string name="options">Ustawienia</string>
   <string name="more">Więcej</string>
   <!-- Permissions Denied -->
-  <string name="permission_denied_write_storage">Nie przyznano uprawnienia do zapisywania do pamięci!</string>
+  <string name="permission_denied_write_storage">Nie nadano uprawnień do zapisywania w pamięci!</string>
   <!-- Editor -->
   <string name="save">Zapisz</string>
   <!-- File Picker -->
@@ -143,7 +144,7 @@
   <string name="governor_tunables_summary">Różne elementy konfiguracji zależne od zarządcy procesora.</string>
   <string name="cpu_governor_tunables_read_error">Nie można odczytać aktualnego zarządcy CPU.\n\nJeśli twoje urządzenie posiada QCOM big.LITTLE,to jest to źródło problemu. System wymusza na CPU wyłączenie rdzeni sprawiając,że bardzo trudno jest odczytać pewne statystyki CPU. Spróbuj zaznaczyć tą opcje jeszcze raz. Czasem CPU odmawia włączenie rdzenia.</string>
   <string name="tunables_error">Nie można zmienić %s</string>
-  <string name="manual">Manualny</string>
+  <string name="manual">Ręcznie</string>
   <string name="mc_power_saving">Wielordzeniowe oszczędzanie energii</string>
   <string name="mc_power_saving_summary">Próbuje grupować zadania do jak najmniejszej liczby rdzeni.</string>
   <string name="disabled">Wyłączone</string>
@@ -189,7 +190,7 @@
   <string name="performance">Wydajny</string>
   <string name="conservative">Konserwatywny</string>
   <string name="eco_insanity">Eco InSaNiTy</string>
-  <string name="eco_performance">Eko Wydajny</string>
+  <string name="eco_performance">Ekonomiczna Wydajność</string>
   <string name="eco_conservative">Ekonomiczny Konserwatyzm</string>
   <string name="tri">Tri</string>
   <string name="eco">Eco</string>
@@ -205,7 +206,9 @@
   <string name="cpus_boosted">Wzmocnienie CPU</string>
   <string name="cpus_boosted_summary">Maksymalna liczba CPU wzmocniona w tym samym czasie.</string>
   <string name="min_cpu_online">Minimum włączonych rdzeni</string>
+  <string name="min_cpu_online_summary">Minimalna liczba rdzeni, które zawsze będą włączone.</string>
   <string name="max_cpu_online">Maksimum włączonych rdzeni</string>
+  <string name="max_cpu_online_summary">Maksymalna liczba rdzeni, które zawsze będą włączone.</string>
   <string name="max_cpu_online_screen_off">Maksymalna ilość aktywnych rdzeni przy wyłączonym ekranie</string>
   <string name="max_cpu_online_screen_off_summary">Maksymalna liczba rdzeni, która będzie aktywna gdy ekran jest wyłączony.</string>
   <string name="suspend_defer_time">Czas wstrzymania uśpienia</string>
@@ -215,12 +218,21 @@
   <string name="down_lock_duration">Czas trwania limitu częstotliwości</string>
   <string name="down_lock_duration_summary">Minimalny interwał, podczas którego CPU jest włączony.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez arter97.</string>
+  <string name="lazy">Lazy</string>
+  <string name="possible_cpu_cores">Możliwe rdzenie CPU</string>
+  <string name="possible_cpu_cores_summary">Ilość rdzenii, które lazyplug może wykorzystać.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez Code_Blue.</string>
   <string name="powersaver_mode">Tryb oszczędzania energii</string>
   <string name="powersaver_mode_summary">Maksymalna częstotliwość CPU 1 została ustawiona na @1728MHz.</string>
   <string name="up_threshold">Górny próg</string>
   <string name="up_threshold_summary">Powyżej tego progu, sterownik uruchomi jeden rdzeń więcej.</string>
+  <string name="up_timer_cnt">Programator czasowy dla włączonych rdzeni</string>
+  <string name="up_timer_cnt_summary">Limit czasowy dla włączonych rdzenii.</string>
+  <string name="down_timer_cnt">Programator czasowy dla wyłączonych rdzeni</string>
+  <string name="down_timer_cnt_summary">Limit czasowy dla wyłączonych rdzenii.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
   <string name="msm_hotplug_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez myfluxi.</string>
   <string name="history_size">Rozmiar historii</string>
@@ -246,7 +258,7 @@
   <string name="load_threshold">Próg obciążenia</string>
   <string name="load_threshold_summary">Próg do włączenia wszystkich procesorów.</string>
   <string name="max_load_counter">Licznik Maksymalnego obciążenia</string>
-  <string name="min_time_cpu_online">Minimalny czas, gdy rdzeń jest aktywny</string>
+  <string name="min_time_cpu_online">Minimalna czas, gdy rdzeń jest aktywny</string>
   <string name="timer">Timer</string>
   <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Hotplug \"Bricked\"</string>
@@ -280,7 +292,7 @@
   <string name="zen_decision">Zen Decision</string>
   <string name="zen_decision_summary">Alternatywa dla hotpluga MPDecision Qualcomm\'a. Rozwijany przez bbedward.</string>
   <string name="wake_wait_time">Czas oczekiwania na wybudzenie</string>
-  <string name="wake_wait_time_summary">Z jakim opóźnieniem włączyć kolejne CPU.</string>
+  <string name="wake_wait_time_summary">Z jakim opóźnieniem należy włączyć dowolne rdzenie.</string>
   <string name="bat_threshold_ignore">Próg baterii do ignorowania obciążenia</string>
   <string name="bat_threshold_ignore_summary">Nie włączaj rdzeni jeśli % baterii jest poniżej wybranej wartości.</string>
   <string name="autosmp">AutoSMP</string>
@@ -295,21 +307,27 @@
   <string name="core_control_summary">Rozwiązanie typu hotplug firmy Qualcomm. Niestety nie możesz go wyłączyć. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Zmodyfikowany przez OnePlus system hotplug.</string>
-  <string name="min_cpus_big">Minimum dużego CPU</string>
-  <string name="min_cpus_big_summary">Minimalna ilość dużych CPU, które powinny być uruchomione.</string>
+  <string name="min_cpus_big">Minimum big CPU</string>
+  <string name="min_cpus_big_summary">Minimalna ilość wydajnych rdzeni CPU, które powinny być uruchomione.</string>
   <string name="busy_down_threshold">Dolny próg użycia CPU</string>
   <string name="busy_down_threshold_summary">Próg przy którym duży CPU powinien być wyłączony.</string>
   <string name="busy_up_threshold">Górny próg użycia CPU</string>
   <string name="busy_up_threshold_summary">Próg przy którym duży CPU powinien być włączony.</string>
   <string name="offline_delay">Opóźnienie wyłączenia</string>
   <string name="offline_delay_summary">Czas oczekiwania przed wyłączeniem CPU.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">All in One HotPlug dla urządzeń z procesorem Qualcomm. Rozwijany przez Shoaib0597.</string>
+  <string name="max_cpu_online_big">Maksymalna ilość włączonych rdzenii big</string>
+  <string name="max_cpu_online_big_summary">Maksymalna ilość wydajnych rdzenii CPU, które będą włączone.</string>
+  <string name="max_cpu_online_little">Maksymalna ilość włączonych rdzenii LITTLE</string>
+  <string name="max_cpu_online_little_summary">Maksymalna ilość mniej wydajnych rdzenii CPU, które będą włączone.</string>
   <!--Thermal-->
   <string name="thermal_info">Używaj tylko jednego zarządcy termalnego, używanie więcej niż jednego na raz może spowodować niespodziewane błędy.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Domyślny sterownik termiczny, który ochrania urządzanie przed przegrzaniem. Powinno zostać wyłączone jeżeli alternatywny sterownik został włączony.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Wewnętrzny zamiennik dla Thermald od Qualcomma. Praca faux123.</string>
-  <string name="intellithermal_optimized">Intellithermal Optymalny</string>
+  <string name="intellithermal_optimized">Intellithermal Optimized</string>
   <string name="intellithermal_optimized_summary">Alternatywa dla zarządcy termalnego Thermald Qualcomm\'a. Rozwijany przez faux123 i alucard_24.</string>
   <string name="thermal_debug_mask_summary">Pozwala Ci aktywować maskę debugowania dla operacji termicznych.</string>
   <string name="vdd_restriction">Ograniczenie VDD</string>
@@ -333,11 +351,14 @@
   <string name="freq_limit_debug_summary">Pozwala Ci to na debugowanie ogranicznika częstotliwości CPU, gdy temperatura maksymalna zostanie przekroczona.</string>
   <string name="temp_limit_min_freq">Minimalna częstotliwość dla limitu temperatury</string>
   <string name="temp_limit_min_freq_summary">Sterownik termalny użyje tej częstotliwości do zmniejszenia temperatury.</string>
-  <string name="allowed_low_freq">Dozwolona niska częstotliwość</string>
-  <string name="allowed_mid_high">Faza 2: Dozwolone Średnio-Wysokie</string>
+  <string name="allowed_low_low">Faza 1: Zezwól na Niski Niski</string>
+  <string name="allowed_low_high">Faza 1: Zezwól na Niski Wysoki</string>
+  <string name="allowed_low_freq">Faza 1: Dozwolona niska częstotliwość</string>
+  <string name="allowed_mid_low">Faza 1: Włącz Średni Niski</string>
+  <string name="allowed_mid_high">Faza 2: Zezwól na Średni Wysoki</string>
   <string name="allowed_mid_freq">Faza 2: Dozwolona Średnia częstotliwość</string>
-  <string name="allowed_max_low">Faza 3: Dozwolona Maksymalna częstotliwość</string>
-  <string name="allowed_max_high">Faza 3: Dozwolona Maksymalna częstotliwość</string>
+  <string name="allowed_max_low">Faza 3: Włącz Maksymalny Niski</string>
+  <string name="allowed_max_high">Faza 3: Zezwól na Maksymalny Wysoki</string>
   <string name="allowed_max_freq">Faza 3: Dozwolona Częstotliwość Max</string>
   <string name="check_interval">Interwał sprawdzania</string>
   <string name="shutdown_temp">Temperatura wyłączenia</string>
@@ -420,6 +441,7 @@
   <string name="negative_toggle_summary">Pozwala na inwersje kolorów poprzez 4 krotne wciśnięcie przycisku MENU.</string>
   <string name="mdnie_global_controls">globoalna kontrola mDNIe</string>
   <string name="register_hook">Hook rejestrów</string>
+  <string name="register_hook_summary">Przechwytywanie rejestrów działa jak hook umożliwi wyłapanie ustawień scenariusza i modyfikacje ich przez kontroler delta. Jeżeli scenariusz w swej bazowej sekwencji nie posiada ustawienia(rejestru) wtedy nie można go zmodyfikować poprzez hook.</string>
   <string name="master_sequence">Główna Sekwencja</string>
   <string name="master_sequence_summary">Włączenie głównej sekwencji wyłączy i zignoruje profile i scenariusze Samsunga, możliwość korzystania z ROM control, zostanie wyłączona.</string>
   <string name="glove_mode">Tryb rękawiczek</string>
@@ -627,9 +649,13 @@
   <string name="bluesleep_wakelock">Wakelock BlueSleep</string>
   <string name="bluesleep_wakelock_summary">Zapobiega wakelock\'owi BlueSleep.</string>
   <string name="wlan_rx_wakelock_divider">Podzielnik wakelocka wlan_rx</string>
+  <string name="wlan_ctrl_wakelock_divider">Podzielnik wakelocka wlan_ctrl</string>
   <string name="msm_hsic_wakelock_divider">Podzielnik wakelocka msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Podzielnik wakelocka BCMDHD</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Udostępnij swoje ustawienia z innymi! Kernel Adiutor będzie automatycznie zbierał informacje i kompilował listę dostępną dla każdego.</string>
+  <string name="data_sharing_summary_link">Możesz uzyskać dostęp do lista na stronie &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Zezwól na udostępnianie</string>
   <!-- Custom Controls -->
   <string name="welcome">Witamy</string>
   <string name="custom_controls_summary">W tej sekcji możesz utworzyć lub zaimportować niestandardowe reguły, które obecnie nie istnieją w tej aplikacji (jeszcze).</string>
@@ -791,6 +817,7 @@
   <string name="fingerprint_summary">Skorzystaj z twojego odciska palców by móc korzystać z aplikacji. Opcja ta działa, dopóki twój odcisk palca został zarejestrowany na twoim urządzeniu.</string>
   <string name="sections">Działy</string>
   <!-- About -->
+  <string name="about_me">Witaj, jestem Willi Ye aka Grarak, jestem 19-letnim studentem z Wiednia. Zajmuję się programowaniem Androida od dłuższego czasu. Poza Kernel Adiutorem utrzymuję również LineageOS dla kilku urządzeń oraz pracuję nad ParanoidAndroid. Więc zrozum, proszę, że nie mogę znaleźć zbyt wiele czasu na aktualizacje tej aplikacji.</string>
   <string name="libraries_used">Użyte biblioteki</string>
   <!-- Contributors -->
   <string name="commits">%d commit\'a/ów</string>

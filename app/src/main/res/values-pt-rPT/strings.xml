@@ -23,8 +23,10 @@
   <string name="donate">Doar</string>
   <string name="donate_nope">Eu não vou cair neste esquema!</string>
   <string name="donate_yes">Eu gosto desta app. Devo doar!</string>
+  <string name="ad_here">O seu anúncio pode estar aqui</string>
   <string name="remove_ad">Remover anúncio</string>
   <string name="warning">Aviso</string>
+  <string name="open_ad_anyway">Abra o anúncio de qualquer maneira</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
   <string name="not_in_range">Fora de alcance</string>
   <string name="options">Opções</string>
@@ -70,6 +72,7 @@
   <string name="led">LED</string>
   <string name="io_scheduler">Planeamento I/O</string>
   <string name="ksm">Memória Partilhada de Kernel</string>
+  <string name="lmk">Low Memory Killer</string>
   <string name="virtual_memory">Memória Virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc">Diversos</string>
@@ -118,6 +121,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d núcleos</string>
   <string name="cores">%d núcleos</string>
+  <string name="cpu_usage">Utilização do CPU</string>
   <string name="no_offline_core">Não pode desligar este núcleo!</string>
   <string name="cpu_max_freq">Frequência máxima CPU</string>
   <string name="cpu_max_freq_summary">Máxima frequência até onde o CPU aumenta.</string>
@@ -469,6 +473,8 @@
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disksize</string>
   <string name="zswap">ZSWAP</string>
+  <string name="maximum_compression_ratio">Taxa de compressão máxima</string>
+  <string name="maximum_compression_ratio_summary">Taxa de compressão máxima, como percentagem, para uma página de comprimida aceitável. Qualquer página que não comprima pelo menos nesta proporção será rejeitada.</string>
   <!-- Entropy -->
   <string name="available">Disponível</string>
   <string name="poolsize">Poolsize</string>
@@ -503,9 +509,13 @@
   <string name="wlan_ctrl_wakelock_summary">Evite wlan_ctrl wakelock.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Evitar BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Partilhe as suas configurações com outras pessoas! O kernel adiutor recolhe informação automaticamente e compila uma lista disponivel para todos.</string>
+  <string name="data_sharing_summary_link">Você pode aceder à lista em &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <!-- Custom Controls -->
   <string name="welcome">Bem-vindo</string>
   <string name="custom_controls_summary">Nesta secção pode criar ou importar controlos personalizados, que ainda não existem na app.</string>
@@ -521,6 +531,7 @@
   <string name="seekbar_progress">Progresso</string>
   <string name="control_generic">Genérico</string>
   <string name="generic_value">Valor</string>
+  <string name="generic_apply_summary">Editor irá retornar o que foi escrito.</string>
   <string name="required">obrigatório</string>
   <string name="output">Saída</string>
   <string name="edit">Editar</string>
@@ -559,6 +570,7 @@
   <string name="apply_question">Aplicar %s?</string>
   <string name="append">Anexar</string>
   <string name="details">Detalhes</string>
+  <string name="press_again_to_apply">Pressione %s de novo para aplicar.</string>
   <string name="applied">Aplicado</string>
   <string name="profile_select">Selecionar Perfil</string>
   <string name="applying_profile">A aplicar %s!</string>
@@ -576,6 +588,7 @@
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar Cache</string>
   <string name="flash_zip">Flash Zip</string>
+  <string name="add_action_first">Primeiro tem de adicionar ações!</string>
   <string name="flash_now_confirm">Você quer executar suas ações? Seu dispositivo irá reiniciar para a recuperação e as ações serão executadas na ordem em que elas foram adicionadas.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emular init. d</string>
@@ -597,6 +610,8 @@
   <string name="twenty_sec">20 segundos</string>
   <string name="fifty_sec">50 segundos</string>
   <string name="nothing_apply">Nada encontrado para aplicar!</string>
+  <string name="hide">Ocultar</string>
+  <string name="toast">Pop-up</string>
   <string name="confirmation_notification">Notificação de confirmação</string>
   <string name="script">Script</string>
   <string name="debugging">Depuração</string>
@@ -624,6 +639,7 @@
   <!-- Help -->
   <string name="misspelled">Porque é que \"Auditor\" está mal escrito?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
+  <string name="feature_function">O que é que a característica x faz?</string>
   <string name="add_new_features">Pode adicionar o recurso x e y?</string>
   <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos.</string>
 </resources>

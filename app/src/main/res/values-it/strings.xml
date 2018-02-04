@@ -22,7 +22,7 @@
   <string name="license_invalid">Grazie per aver acquistato l\'app donazione! Purtroppo il controllo della licenza non è riuscito. Riprova più tardi. Se non dovesse funzionare, ti prego di contattarmi. Hai bisogno di una connessione internet!</string>
   <string name="pirated">Sembra che l\'app donazione non è stata acquistata tramite Play Store! Se è piratata, vergognati!</string>
   <string name="donate">Donazioni</string>
-  <string name="donate_summary">Questa funzionalità è disponibile solo quando è installato l\'app donazione! Non preoccuparti. Siccome quest\'app è open source puoi facilmente costruirla da solo e rimuovere questo controllo. Ma spero che comunque sosterrai gli sviluppatori. Grazie per l\'utilizzo del Kernel Adiutor! Una volta acquistata l\'app donazione è necessario riavviare Kernel Adiutor al fine di attivare tutte le funzioni.</string>
+  <string name="donate_summary">Questa funzionalità è disponibile solo quando è installato l\'app donazione! Non preoccuparti. Siccome quest\'app è open source puoi facilmente compilarla da solo e rimuovere questo controllo. Ma spero che comunque sosterrai gli sviluppatori. Grazie per l\'utilizzo di Kernel Adiutor! Una volta acquistata l\'app donazione è necessario riavviare Kernel Adiutor al fine di attivare tutte le funzioni.</string>
   <string name="donate_nope">Non cadrò in questa truffa!</string>
   <string name="donate_yes">Amo questo app. Devo donare!</string>
   <string name="ad_here">Il tuo annuncio potrebbe essere qui</string>
@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPU potenziate</string>
   <string name="cpus_boosted_summary">Numero massimo di CPU potenziate allo stesso tempo.</string>
   <string name="min_cpu_online">Numero minimo di CPU Attive</string>
+  <string name="min_cpu_online_summary">Numero minimo di CPU che saranno online.</string>
   <string name="max_cpu_online">Numero massimo di CPU online</string>
+  <string name="max_cpu_online_summary">Numero massimo di CPU che saranno online.</string>
   <string name="max_cpu_online_screen_off">Massimo CPU a schermo spento</string>
   <string name="max_cpu_online_screen_off_summary">Numero massimo di CPU attivi a schermo spento.</string>
   <string name="suspend_defer_time">Sospendere il tempo di ritardo</string>
@@ -302,7 +304,7 @@
   <string name="cycle_up">Ciclo fino</string>
   <string name="cycle_up_summary">Cicli di attesa dopo l\'ultimo evento di hotplug per collegare un altro core.</string>
   <string name="core_control">Controllo core</string>
-  <string name="core_control_summary">Soluzione hotplugging di Qualcomm. Mi dispiace non puoi disattivarlo. #blameqcom</string>
+  <string name="core_control_summary">Soluzione hotplugging di Qualcomm. Mi dispiace, non puoi disattivarlo. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">OnePlus Core Control modificato.</string>
   <string name="min_cpus_big">Minimo CPU grandi</string>
@@ -313,10 +315,16 @@
   <string name="busy_up_threshold_summary">Soglia per l\'attivazione delle CPU più grandi.</string>
   <string name="offline_delay">Ritardo spegnimento</string>
   <string name="offline_delay_summary">Tempo prima di spegnere una CPU.</string>
+  <string name="aio_hotplug">Hotplug AiO</string>
+  <string name="aio_hotplug_summary">HotPlug All-in-One per device Qualcomm. Sviluppato da Shoaib0597.</string>
+  <string name="max_cpu_online_big">Numero massimo di big CPU online</string>
+  <string name="max_cpu_online_big_summary">Numero massimo di big CPU che saranno online.</string>
+  <string name="max_cpu_online_little">Numero massimo di LITTLE CPU online</string>
+  <string name="max_cpu_online_little_summary">Numero massimo di LITTLE CPU che saranno online.</string>
   <!--Thermal-->
   <string name="thermal_info">Utilizzare solo un driver termico tra le seguenti opzioni, utilizzando più di uno nello stesso momento si può causare un comportamento imprevisto.</string>
   <string name="thermald">Surriscaldamento</string>
-  <string name="thermald_summary">Il driver termico stock che impedisce il surriscaldamento del dispositivo. Deve essere disattivato se il kernel attuale è un\'alternativa.</string>
+  <string name="thermald_summary">Il driver termico stock che impedisce il surriscaldamento del dispositivo. Deve essere disattivato se il kernel in uso fornisce un\'alternativa.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Sostituzione in-kernel per Thermald di Qualcomm. Sviluppato da faux123.</string>
   <string name="intellithermal_optimized">Intellithermal ottimizzato</string>
@@ -641,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="bluesleep_wakelock_summary">Previeni BlueSleep wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl divisore Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
   <string name="bcmdhd_wakelock_divider">Divisore BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Condividi le impostazioni con altri utenti! Kernel Adiutor raccoglie automaticamente informazioni e compila un elenco di punteggi disponibile per tutti.</string>
+  <string name="data_sharing_summary_link">Puoi accedere all\'elenco su &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Abilita condivisione</string>
   <!-- Custom Controls -->
   <string name="welcome">Benvenuto</string>
   <string name="custom_controls_summary">In questa sezione puoi creare o importare controlli personalizzati che non esistono nell\'app (per ora).</string>
@@ -805,6 +817,7 @@
   <string name="fingerprint_summary">Utilizza le impronte digitali per il controllo sicurezza. Questo funzionerà fino a quando avrai impronte digitali registrate.</string>
   <string name="sections">Sezioni</string>
   <!-- About -->
+  <string name="about_me">Ciao, sono Willi Ye aka Grarak, uno studente di 19 anni che vive a Vienna. Sviluppo su Android da un tempo abbastanza lungo. Oltre a Kernel Adiutor sto anche mantenendo la LineageOS per alcuni dispositivi e lavorando su ParanoidAndroid. Quindi ti prego di capire se non trovo il tempo per aggiornare questa app.</string>
   <string name="libraries_used">Librerie usate</string>
   <!-- Contributors -->
   <string name="commits">%d commit</string>

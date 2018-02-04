@@ -93,6 +93,7 @@
   <string name="refresh">Refrescar</string>
   <string name="reset">Reafitar</string>
   <string name="restore">Restaurar</string>
+  <string name="deep_sleep">Sueñu fondo</string>
   <string name="uptime">Tiempu prendíu</string>
   <string name="error_frequencies">Fallu al cargar frecuencies</string>
   <string name="unused_frequencies">Frecuencies ensin usu</string>
@@ -118,6 +119,7 @@
   <!-- CPU -->
   <string name="cores_singular">%d nucleu</string>
   <string name="cores">%d nucleos</string>
+  <string name="cpu_usage">Usu de CPU</string>
   <string name="no_offline_core">¡Nun pue apagar esti nucleu!</string>
   <string name="cpu_max_freq">Frecuencia máxima de CPU</string>
   <string name="cpu_max_freq_summary">Afita la frecuencia máxima a la que la CPU escala.</string>
@@ -392,12 +394,14 @@
   <string name="camera_gesture_summary">Llancia la cámara por defeutu dibuxando un círculu na pantalla.</string>
   <string name="pocket_mode">Mou cartera</string>
   <string name="pocket_mode_summary">Desactivaránse los controles desconsueñu cuando\'l preséu tea en bolsu desactivando esto.</string>
+  <string name="timeout">Escosa de tiempu</string>
   <string name="timeout_summary">Afita una duración al deshabilitase los controles d\'esconsueñu dempués d\'apagase la pantalla.</string>
   <string name="power_key_suspend">Suspensión de tecla prendíu</string>
   <string name="power_key_suspend_summary">Habilitando esto apagaránse los controles d\'esconsueñu cuando s\'apague la pantalla cola tecla prendíu.</string>
   <string name="area">Área</string>
   <string name="width">Anchor</string>
   <string name="height">Altor</string>
+  <string name="vibration">Vibración</string>
   <string name="vibration_strength">Fuercia de vibración</string>
   <!-- Sound -->
   <string name="sound_control">Control de soníu</string>
@@ -418,13 +422,18 @@
   <string name="blx">Battery Life eXtender</string>
   <string name="blx_summary">Afita una llende pa la capacidá a la que la batería cargará pasando\'l valor ente 0 y 100.</string>
   <string name="charge_rate">Tasa de carga</string>
+  <string name="charging_current">Corriente de carga</string>
+  <string name="charging_current_summary">Afita la corriente de carga. Curiáu: Perpasar los 1250mA podría dañar el to preséu de carga.</string>
   <!-- LED -->
   <string name="intensity">Intensidá</string>
   <string name="speed">Velocidá</string>
+  <string name="continuous_light">Lluz continua</string>
+  <string name="bright_light_environment">Entornu de lluz fuerte</string>
   <string name="notification">Avisu</string>
   <string name="on">Sí</string>
   <string name="off">Non</string>
   <string name="test">Prueba</string>
+  <string name="led_test_summary">Prueba\'l led colos tos axustes.</string>
   <!-- I/O Scheduler -->
   <string name="internal_storage">Almacenamientu internu</string>
   <string name="external_storage">Almacenamientu esternu</string>
@@ -441,6 +450,7 @@
   <string name="rq_affitiny">Afinidá RQ</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Escaneos completos</string>
+  <string name="pages_sharing">Compartición de páxines</string>
   <string name="ksm_summary">Amenorga l\'usu de memoria pero tien un impautu nel usu de CPU.</string>
   <string name="pages_to_scan">Páxines pa escaniar</string>
   <string name="deferred_timer_summary">Amenorga dél usu de CPU empara de menos aforros d\'enerxía.</string>
@@ -500,6 +510,8 @@
   <string name="wlan_rx_wakelock_divider">Divisor d\'esconsueñu calteníu de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor d\'esconsueñu calteníu de msm_hsic</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">¡Comparti los tos axustes con otros! Kernel Adiutor recoyerá automáticamente la información y recopilará un llistáu d\'axustes disponibles pa tola xente.</string>
+  <string name="data_sharing_summary_link">Pues acceder al llistáu en &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <!-- Custom Controls -->
   <string name="welcome">Dámoste l\'acoyida</string>
   <string name="custom_controls_summary">Nesta seición pues crear o importar controles personalizaos qu\'(entá) nun esisten n\'aplicación.</string>
@@ -514,6 +526,7 @@
   <string name="seekbar_max">Máx</string>
   <string name="seekbar_progress">Progresu</string>
   <string name="generic_value">Valor</string>
+  <string name="generic_value_summary">El valor actual del editor. Básicamente pue ser cualesquier cosa.</string>
   <string name="output">Salida</string>
   <string name="edit">Editar</string>
   <string name="export">Esportar</string>
@@ -602,15 +615,21 @@
   <string name="driver_message">Mensaxe\'l controlador</string>
   <string name="driver_message_summary">Copia\'l mensaxe del controlador (dmesg) a /sdcard/dmesg.txt</string>
   <string name="security">Seguranza</string>
+  <string name="set_password">Afitar contraseña</string>
+  <string name="set_password_summary">Pues protexer Kernel Adiutor afitando una contraseña. Cada vegada qu\'abras esta aplicación, habrás introducila. Si la escaeces, namái llimpia los datos d\'esta aplicación nos axustes del to preséu. Nun t\'esmolezas, nun compartiré la to contraseña.</string>
   <string name="delete_password">Desaniciar contraseña</string>
   <string name="old_password">Contraseña vieya</string>
   <string name="new_password">Contraseña nueva</string>
   <string name="confirm_new_password">Confirmar contraseña nueva</string>
   <string name="old_password_wrong">La contraseña vieya ye incorreuta</string>
   <string name="password_empty">La contraseña ta balera</string>
+  <string name="password_not_match">La contraseña nueva nun concasa cola de confirmación</string>
+  <string name="password_too_long">La contraseña ye perllarga (32 caráuteres como muncho)</string>
   <string name="set_password_first">Primero afita una contraseña</string>
+  <string name="fingerprint_summary">Usa la buelga pa pasar la comprobación de seguranza. Esto funcionará si tienes buelgues rexistraes.</string>
   <string name="sections">Seiciones</string>
   <!-- About -->
+  <string name="about_me">Hola, soi Willi Ye tamién conocíu como Grarak, un estudiante de 19 años que vive en Viena. Desendolco p\'Android dende hai bien de tiempu. Amás de Kernel Adiutor tamién calteo LineageOS en dellos preseos y trabayo en Paranoid. Asina qu\'entiendi si nun alcuentro tiempu p\'anovar esta aplicación.</string>
   <string name="libraries_used">Biblioteques usaes</string>
   <!-- Contributors -->
   <string name="commits">%d unvios</string>
@@ -618,6 +637,8 @@
   <!-- Help -->
   <string name="misspelled">¿Por qué escribiesti mal «Auditor»?</string>
   <string name="misspelled_summary">«Adiutor» ye llatín y significa «ayudante».</string>
+  <string name="have_to_donate">¿Teo de donar pa usar estes carauterístiques premium?</string>
+  <string name="have_to_donate_summary">Non, esta aplicación ye de códigu llibre. Pues compilala tu mesmu. Les carauterístiques de donación actívense por defeutu namái compliles una APK de depuración, asina que nun precises camudar llinia dala de códigu.</string>
   <string name="cpu_freq_not_sticking">¿Por qué nun se caltién la mio frecuencia de CPU afitada?</string>
   <string name="feature_not_appearing">¿Por qué nun s\'amuesen les carauterístiques X ya Y?</string>
   <string name="feature_function">¿Qué fai la carauterística X?</string>

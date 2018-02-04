@@ -82,6 +82,7 @@
   <string name="downloads">Изтегляния</string>
   <string name="backup">Резервно копие</string>
   <string name="profile">Профил</string>
+  <string name="on_boot">При включване</string>
   <string name="settings">Настройки</string>
   <string name="about">За приложението</string>
   <string name="contributors">Сътрудници</string>
@@ -128,10 +129,14 @@
   <string name="cpu_governor_tunables">Настройки на регулатора на процесора</string>
   <string name="tunables_error">%s е непроменяемо</string>
   <string name="manual">Наръчник</string>
+  <string name="disabled">Деактивирано</string>
+  <string name="enabled">Активирано</string>
   <string name="aggressive">Агресивно</string>
   <string name="interval">Интервал</string>
   <!-- CPU Voltage -->
   <!-- CPU Hotplug -->
+  <string name="mpdecision">MPDecision</string>
+  <string name="intelliplug">IntelliPlug</string>
   <string name="cpu_hotplug_profile_summary">Числото в скобите показва броя ядра вкючени по всяко време.</string>
   <string name="insanity">ЛуДоСт</string>
   <string name="balanced">Балансирано</string>
@@ -160,9 +165,16 @@
   <string name="powersaver_mode">Режим за пестене на енергия</string>
   <string name="history_size">Размери на историята</string>
   <string name="first_level">Първо ниво</string>
+  <string name="load_threshold">Праг на натоварване</string>
   <string name="timer">Таймер</string>
+  <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="pause">Пауза</string>
+  <string name="alucard_hotplug">Alucard Hotplug</string>
+  <string name="thunderplug">ThunderPlug</string>
+  <string name="zen_decision">Zen Decision</string>
+  <string name="autosmp">AutoSMP</string>
   <string name="core_control">Управление на ядрото</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
   <!--Thermal-->
   <string name="poll">Анкета</string>
   <string name="temp_hysteresis">Температурен хистерезис</string>
@@ -170,21 +182,39 @@
   <string name="temp_limit">Температурна граница</string>
   <!-- GPU -->
   <string name="frequencies">Честоти</string>
+  <string name="laziness">Мързел</string>
+  <string name="adreno_idler">Adreno Idler</string>
   <!-- Screen -->
   <string name="screen_color">Цвят на екрана</string>
   <string name="red">Червено</string>
   <string name="green">Зелено</string>
   <string name="blue">Синьо</string>
+  <string name="grayscale_mode">Черно-бял режим</string>
+  <string name="screen_contrast">Контраст</string>
+  <string name="srgb">sRGB</string>
   <string name="gamma">Гама</string>
   <string name="contrast">Контраст</string>
   <string name="brightness">Яркост</string>
+  <string name="lcd_backlight">LCD осветяване</string>
   <string name="min_brightness">Минимална яркост</string>
   <string name="max_brightness">Максимална яркост</string>
+  <string name="glove_mode">Режим ръкавици</string>
+  <string name="glove_mode_summary">Активирането на този режим ще ви позволи да използвате телефона си дори докато носите ръкавици.</string>
   <!-- Wake -->
   <string name="center">В средата</string>
+  <string name="full">Пълно</string>
+  <string name="bottom_half">Долна половина</string>
+  <string name="top_half">Горна половина</string>
+  <string name="half">Половин</string>
+  <string name="s2w_left">Sweep2Wake Наляво</string>
+  <string name="s2w_up">Sweep2Wake Нагоре</string>
+  <string name="s2w_down">Sweep2Wake Надолу</string>
+  <string name="s2w_any">Sweep2Wake Навсякъде</string>
   <string name="area">Област</string>
   <string name="width">Ширина</string>
   <string name="height">Височина</string>
+  <string name="vibration">Вибрация</string>
+  <string name="vibration_strength">Сила на вибрацията</string>
   <!-- Sound -->
   <string name="sound_control">Звуков контрол</string>
   <!-- Battery -->
@@ -192,42 +222,67 @@
   <string name="voltage">Напрежение</string>
   <string name="capacity">Капацитет</string>
   <!-- LED -->
+  <string name="fade">Плавен преход</string>
   <string name="speed">Скорост</string>
+  <string name="notification">Известия</string>
   <string name="on">Вкл.</string>
   <string name="off">Изкл.</string>
+  <string name="fade_in">Плавно появяване</string>
+  <string name="fade_out">Плавно изчезване</string>
+  <string name="test">Тест</string>
   <!-- I/O Scheduler -->
   <!-- Kernel Samepage Merging -->
   <string name="pages_to_scan">Страници за сканиране</string>
   <!-- Low Memory Killer -->
+  <string name="very_light">Много леко</string>
+  <string name="light">Леко</string>
+  <string name="medium">Средно</string>
+  <string name="very_aggressive">Много агресивно</string>
   <!-- Virtual Memory -->
   <string name="disksize">Големина на диска</string>
   <!-- Entropy -->
+  <string name="read">Четене</string>
+  <string name="write">Записване</string>
   <!-- Misc -->
   <string name="android_logger">Влизане в Андроид</string>
+  <string name="fsync">Fsync</string>
+  <string name="dynamic_fsync">Динамичен Fsync</string>
   <string name="autosleep">Автоматично заспиване</string>
   <string name="userspace">Потребителско пространство</string>
   <string name="hybrid">Хибрид</string>
+  <string name="network">Мрежа</string>
   <string name="hostname">Име на хост</string>
   <!-- Data Sharing -->
   <!-- Custom Controls -->
   <string name="welcome">Добре дошли</string>
   <string name="example">Примери</string>
   <string name="create">Създаване</string>
+  <string name="import_item">Импортиране</string>
   <string name="control_switch">Превключване</string>
+  <string name="title">Заглавие</string>
   <string name="description">Описание</string>
   <string name="applying">Прилагане</string>
   <string name="seekbar_min">Минимум</string>
   <string name="seekbar_max">Макс</string>
   <string name="seekbar_progress">Напредък</string>
   <string name="generic_value">Стойност</string>
+  <string name="required">задължително</string>
+  <string name="hit_test">Първо трябва да натиснете тест!</string>
+  <string name="output">Изход</string>
   <string name="edit">Редактиране</string>
+  <string name="export">Износ</string>
   <string name="delete">Изтриване</string>
   <string name="sure_question">Сигурни ли сте?</string>
   <string name="name">Име</string>
   <string name="already_exists">%s вече съществува!</string>
+  <string name="name_empty">Името е празно!</string>
   <!-- Downloads -->
+  <string name="check_md5">Проверка на md5</string>
   <string name="install">Инсталиране</string>
+  <string name="twrp">TWRP</string>
   <string name="manual_flashing">Ще използвам ръцете ми</string>
+  <string name="backing_up">Архивиране</string>
+  <string name="restoring">Възстановяване</string>
   <!-- Backup -->
   <!-- Build prop Editor -->
   <string name="add">Добавяне</string>

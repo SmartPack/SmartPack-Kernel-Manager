@@ -206,8 +206,11 @@
   <string name="cpus_boosted">Прискорені ядра CPU</string>
   <string name="cpus_boosted_summary">Максимальна кількість ядер, прискорених одночасно.</string>
   <string name="min_cpu_online">Мін. кількість ядер онлайн</string>
+  <string name="min_cpu_online_summary">Мінімальна кількість ядер, які завжди будуть онлайн.</string>
   <string name="max_cpu_online">Макс. кількість ядер онлайн</string>
+  <string name="max_cpu_online_summary">Максимальна кількість ядер, які завжди будуть онлайн.</string>
   <string name="max_cpu_online_screen_off">Максимальна кількість ядер при ВИМК екрані</string>
+  <string name="max_cpu_online_screen_off_summary">Максимальна кількість ядер, які будуть онлайн при вимкненому екрані.</string>
   <string name="suspend_defer_time">Suspend Defer Time</string>
   <string name="defer_sampling">Defer Sampling</string>
   <string name="boost_lock_duration">Boost Lock Duration</string>
@@ -215,17 +218,32 @@
   <string name="down_lock_duration">Down Lock Duration</string>
   <string name="down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
   <string name="fshift">FShift</string>
+  <string name="lazyplug">LazyPlug</string>
+  <string name="lazyplug_summary">Вбудована заміна для MPDecision від Qualcomm. Розробник - mrg97.</string>
+  <string name="lazy">Лінива</string>
+  <string name="possible_cpu_cores">Можливі процесорні ядра</string>
+  <string name="possible_cpu_cores_summary">Можливі процесорні ядра, які може використовувати lazyplug.</string>
   <string name="blu_plug">Blu_Plug</string>
   <string name="blu_plug_summary">Вбудована в ядро заміна для MDPecision від Qualcomm. Розроблено Code_Blue team.</string>
   <string name="powersaver_mode">Режим энергозбереження</string>
+  <string name="powersaver_mode_summary">Встановлює максимальну частоту одного активного ядра @1728 MHz.</string>
   <string name="up_threshold">Up Threshold</string>
   <string name="up_threshold_summary">Over this threshold the driver will put one more core online.</string>
   <string name="up_timer_cnt">Up Timer Control</string>
+  <string name="up_timer_cnt_summary">Управління таймером підвищення 
+ частоти процесора.</string>
+  <string name="down_timer_cnt">Зворотній Відлік</string>
   <string name="down_timer_cnt_summary">Управління таймером зниження частоти процесора.</string>
   <string name="msm_hotplug">MSM Hotplug</string>
+  <string name="msm_hotplug_summary">Вбудована заміна для MPDecision від Qualcomm. Розробник - myfluxi.</string>
   <string name="history_size">Об\'єм історії</string>
+  <string name="history_size_summary">Кількість зразків, взятих з урахуванням середнього навантаження серед ядер процесора. Менше значення - швидше / більш нестабільно.</string>
   <string name="update_rate">Рейтинг оновлення</string>
+  <string name="update_rate_summary">Інтервал між вибіркою зразків навантаження процесорних ядер. Менше значення - швидше / більш нестабільно.</string>
   <string name="fast_lane_load">Fast Lane Load</string>
+  <string name="fast_lane_load_summary">Зменшити затримку, миттєво активовуючи всі ядра, якщо поточне навантаження на будь-яке ядро перевищує певний поріг.</string>
+  <string name="fast_lane_min_freq">Мін. частота Fast Lane</string>
+  <string name="fast_lane_min_freq_summary">Встановлення мінімальної частоти процесора, при якій Fast Lane досягне більшого навантаження.</string>
   <string name="offline_load">Оффлайн завантаження</string>
   <string name="io_is_busy">IO є зайнятий</string>
   <string name="io_is_busy_summary">Використовується, щоби заставити hotplug розглядати час вводу/виводу, як час завантаження процесора.</string>
@@ -285,17 +303,37 @@
   <string name="cycle_down_summary">Цикли очікування після останньої роботи hotplug-а до відключення другого ядра.</string>
   <string name="cycle_up">Цикл вверх</string>
   <string name="core_control">Керування ядром</string>
+  <string name="hcube">H-Cube</string>
+  <string name="hcube_summary">Модифікований контроль ядер від OnePlus.</string>
+  <string name="min_cpus_big">Мін. кількість ядер кластеру big</string>
+  <string name="min_cpus_big_summary">Мінімальна кількість ядер кластеру big, що повинні працювати.</string>
+  <string name="busy_down_threshold">Нижній поріг зайнятості</string>
+  <string name="busy_down_threshold_summary">Поріг, для відключення ядер кластеру big</string>
   <string name="busy_up_threshold">Верхній поріг зайнятості</string>
+  <string name="busy_up_threshold_summary">Поріг, для включення ядер кластеру big.</string>
+  <string name="offline_delay">Затримка переключення в офлайн режим</string>
+  <string name="offline_delay_summary">Часу до вимкненням ядра.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">All in One HotPlug для пристроїв Qualcomm. Розробка Shoaib0597.</string>
+  <string name="max_cpu_online_big">Макс. кількість ядер кластеру big</string>
+  <string name="max_cpu_online_big_summary">Максимальна кількість ядер кластеру big, що повинні працювати.</string>
+  <string name="max_cpu_online_little">Макс. кількість ядер кластеру LITTLE</string>
+  <string name="max_cpu_online_little_summary">Максимальна кількість ядер кластеру LITTLE, що повинні працювати.</string>
   <!--Thermal-->
   <string name="thermal_info">Використовуйте тільки один термічний драйвер з наступних опцій, використання більше одного одночасно може спровокувати непередбаченні результати.</string>
   <string name="thermald">Thermald</string>
+  <string name="thermald_summary">Стандартний термодрайвер, який попереджує процесор від перегрівання. Повинен бути виключений, якщо використовується альтернативне ядро.</string>
   <string name="intellithermal">Intellithermal</string>
   <string name="intellithermal_summary">Заміна стандартного контролю температур від Qualcomm. Розроблено faux123.</string>
   <string name="intellithermal_optimized">Intellithermal, оптимізована</string>
   <string name="intellithermal_optimized_summary">Покращена заміна стандартного контролю температур от Qualcomm. Розроблено faux123 і alucard_24.</string>
+  <string name="thermal_debug_mask_summary">Дає змогу активувати маску налагодження для теплових операцій.</string>
   <string name="vdd_restriction">VDD Обмеження</string>
   <string name="freq_throttle_temp">Дроселювання частоти при температурі</string>
   <string name="freq_throttle_temp_summary">Температура початку дроселювання частот.</string>
+  <string name="cpu_throttle_temp">Температура тротлінгу ядра</string>
+  <string name="cpu_throttle_temp_summary">Температура початку відключення ядер.</string>
+  <string name="cpu_temp_hysteresis">Гістерезис температур ядра</string>
   <string name="freq_step">Крок частоти</string>
   <string name="immediately_limit_stop">Відразу ж зупинити</string>
   <string name="poll">Опитування</string>
@@ -324,6 +362,7 @@
   <string name="shutdown_temp">Температура вимкнення</string>
   <!-- GPU -->
   <string name="frequencies">Частоти</string>
+  <string name="gpu_2d_freq">2D частота GPU</string>
   <string name="gpu_2d_max_freq">Максимальна частота GPU при 2D</string>
   <string name="gpu_2d_max_freq_summary">Встановлення максимальної частоти CPU при 2D.</string>
   <string name="gpu_max_freq">Максимальна частота GPU</string>
@@ -333,9 +372,21 @@
   <string name="gpu_2d_governor">GPU 2D контролер</string>
   <string name="gpu_2d_governor_summary">Встановити 2D планувальник для ЦП.</string>
   <string name="gpu_governor">GPU контролер</string>
+  <string name="gpu_governor_summary">Встановити говернер GPU.</string>
   <string name="gpu_governor_tunables">Параметри планувальника CPU</string>
+  <string name="simple_gpu_algorithm">Простий Алгоритм GPU</string>
+  <string name="simple_gpu_algorithm_summary">Доповнення до говернера GPU MSM Andreno TZ. Розроблено faux123.</string>
   <string name="laziness">Лінощі</string>
   <string name="laziness_summary">Збільшує рівень збільшення чи зменшення частоти GPU. Чим менше значення, тим більша продуктивність</string>
+  <string name="ramp_thresold">Порогове обмеження</string>
+  <string name="ramp_thresold_summary">Збільшує частоту запитів уповільнення говернера GPU. Чим вище значення, тим вище буде продуктивність.</string>
+  <string name="adreno_idler">Adreno Idler</string>
+  <string name="down_differential">Диференціал зниження</string>
+  <string name="down_differential_summary">Граничне значення навантаження простою.</string>
+  <string name="idle_wait">Очікування</string>
+  <string name="idle_wait_summary">Кількість подій, після якого частота буде знижена. Adreno Іdler знизить частоту тільки якщо ці події були подіями простою. Це потрібно для того, щоб позбутися від мікро-лагів при прокрутці або під час гри. Чим менше значення, тим більш активно Іdler буде знижувати частоту.</string>
+  <string name="workload">Робоче навантаження</string>
+  <string name="workload_summary">Чим більше значення, тим більш активно Adreno Іdler буде знижувати частоту.</string>
   <!-- Screen -->
   <string name="screen_color">Колір екрану</string>
   <string name="red">Червоний</string>
@@ -433,7 +484,14 @@
   <string name="draw_c">Намалюйте С</string>
   <string name="draw_m">Намалюйте М</string>
   <string name="camera_gesture">Жест камери</string>
+  <string name="camera_gesture_summary">Запуск камери за замовчуванням малюнком кола на екрані.</string>
+  <string name="pocket_mode">Кишеньковий режим</string>
+  <string name="pocket_mode_summary">Активація даної функції вимкне керування пробудженням, коли пристрій знаходиться в кишені.</string>
   <string name="timeout">Час очікування</string>
+  <string name="power_key_suspend">Відключення сенсора при натисканні кнопки живлення</string>
+  <string name="area">Область</string>
+  <string name="width">Ширина</string>
+  <string name="height">Висота</string>
   <!-- Sound -->
   <string name="sound_control">Управління звуком</string>
   <string name="headset_highperf_mode">Режим високої якості для навушників</string>
@@ -510,6 +568,10 @@
   <string name="write">Запис</string>
   <!-- Misc -->
   <string name="dynamic_fsync">Динамичний Fsync</string>
+  <string name="gentlefairsleepers">Ввічливе поводження з сплячими процесами</string>
+  <string name="gentlefairsleepers_summary">Надання сплячим службам тільки 50% їх функціоналу. Відключення цієї функції може сприяти невеликій економії батареї.</string>
+  <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">Включення спеціальних функцій / енергозбереження Arch.</string>
   <string name="autosleep">Автосон</string>
   <string name="userspace">Простір користувача</string>
   <string name="lcd_panel">Дисплей</string>
@@ -573,6 +635,7 @@
   <string name="press_again_to_apply">Натисніть %s знову, щоб застосувати.</string>
   <string name="applied">Застосовано</string>
   <string name="profile_tasker">Планувальник профілів</string>
+  <string name="profile_tasker_toast">Показувати спливаюче повідомлення, коли Tasker застосовує профіль</string>
   <string name="profile_tile">Плитка профілю</string>
   <string name="profile_tile_summary">Показати плитку, що дозволяє вам вибрати профіль.</string>
   <string name="profile_select">Виберіть профіль</string>

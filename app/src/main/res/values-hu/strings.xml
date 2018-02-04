@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPU-k gyorsítva</string>
   <string name="cpus_boosted_summary">Maximálisan gyorsított magok száma egy időben.</string>
   <string name="min_cpu_online">Minimális aktív CPU</string>
+  <string name="min_cpu_online_summary">Az aktív CPU minimális száma.</string>
   <string name="max_cpu_online">Maximális aktív CPU</string>
+  <string name="max_cpu_online_summary">Az aktív CPU maximális száma.</string>
   <string name="max_cpu_online_screen_off">Maximális CPU kikapcsolt képernyőnél</string>
   <string name="max_cpu_online_screen_off_summary">A mindig aktív CPU maximális száma, ha a képernyő ki van kapcsolva.</string>
   <string name="suspend_defer_time">Felfüggesztés idejének elhalasztása</string>
@@ -313,6 +315,12 @@
   <string name="busy_up_threshold_summary">Küszöb, amikor a nagy CPU-kat be kell kapcsolni.</string>
   <string name="offline_delay">Offline késleltetés</string>
   <string name="offline_delay_summary">A CPU kikapcsolása előtti idő.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">Minden egyben HotPlug Qualcomm eszközökhöz. Fejlesztette: Shoaib0597.</string>
+  <string name="max_cpu_online_big">Maximális aktív nagy CPU</string>
+  <string name="max_cpu_online_big_summary">Az aktív nagy CPU maximális száma.</string>
+  <string name="max_cpu_online_little">Maximális aktív KIS CPU</string>
+  <string name="max_cpu_online_little_summary">Az aktív KIS CPU maximális száma.</string>
   <!--Thermal-->
   <string name="thermal_info">Csak egy termikus vezérlőt használj a következő lehetőségek közül, több egy időben való használata szokatlan viselkedést okozhat.</string>
   <string name="thermald">Thermald</string>
@@ -641,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="bluesleep_wakelock_summary">BlueSleep wakelock megakadályozása.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx wakelock elválasztó</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl wakelock elválasztó</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Ossza meg másokkal a beállításait! A Kernel Adiutor automatikusan információkat gyűjt és összeállít egy mindenki számára elérhető pontszám listát.</string>
+  <string name="data_sharing_summary_link">A lista elérhető itt: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Megosztás engedélyezése</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>
@@ -805,6 +817,7 @@
   <string name="fingerprint_summary">Ujjlenyomat használata a biztonsági ellenőrzéshez. Ez addig fog működni, amíg az ujjlenyomata regisztrálva van.</string>
   <string name="sections">Szekciók</string>
   <!-- About -->
+  <string name="about_me">Szia, én Willi Ye (Grarak) vagyok, egy 19 éves Bécsben élő diák. Már elég hosszú ideje fejlesztek Androidra. A Kernel Adiutor mellett néhány eszköz esetében lineageOS közreműködő vagyok és a ParanoidAndroid-on is dolgozom. Így kérlek értsd meg, ha nincs mindig időm az alkalmazás frissítésére.</string>
   <string name="libraries_used">Használt könyvtárak</string>
   <!-- Contributors -->
   <string name="commits">%d változtatás</string>

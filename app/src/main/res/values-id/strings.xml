@@ -50,7 +50,7 @@
   <string name="mb">MB</string>
   <string name="ms">ms</string>
   <string name="mv">mV</string>
-  <string name="min">menit</string>
+  <string name="min">min</string>
   <string name="mah">mAh</string>
   <string name="ma">mA</string>
   <string name="kb">kB</string>
@@ -129,7 +129,7 @@
   <string name="cores_singular">%d inti</string>
   <string name="cores">%d inti core</string>
   <string name="cpu_usage">Penggunaan CPU</string>
-  <string name="no_offline_core">Anda tidak dapat memadamkan inti core ini!</string>
+  <string name="no_offline_core">Anda tidak dapat menonaktifkan inti core ini!</string>
   <string name="cpu_max_freq">Frekuensi CPU Tertinggi</string>
   <string name="cpu_max_freq_summary">Atur skala frekuensi CPU tertinggi secara keseluruhan.</string>
   <string name="cpu_min_freq">Frekuensi CPU Terendah</string>
@@ -164,7 +164,6 @@
   <string name="input_interval">Tulis nilai Interval</string>
   <string name="input_interval_summary">Interval minimum CPU akan ditingkatkan jika nilai masukan terdeteksi.</string>
   <string name="input_boost_freq">Masukan Peningkatan Frekuensi</string>
-  <string name="input_boost_freq_core">Peningkatan masukan frekuensi inti</string>
   <string name="input_boost_freq_summary">Frekuensi CPU akan ditingkatkan sesuai nilai masukan jika ditentukan.</string>
   <string name="wakeup_boost">Wakeup Boost</string>
   <string name="wakeup_boost_summary">Wakeup Boost mirip dengan Indput Boost tetapi hal ini terjadi ketika layar diaktifkan (dari kondisi mati).</string>
@@ -204,7 +203,9 @@
   <string name="cpus_boosted">Peningkatan CPU</string>
   <string name="cpus_boosted_summary">Jumlah tertinggi CPU yang ditingkatkan pada waktu yang sama.</string>
   <string name="min_cpu_online">CPU Aktif terendah</string>
+  <string name="min_cpu_online_summary">Jumlah terendah CPU yang akan selalu aktif.</string>
   <string name="max_cpu_online">CPU Aktif terbanyak</string>
+  <string name="max_cpu_online_summary">Jumlah maksimum CPU yang akan aktif.</string>
   <string name="max_cpu_online_screen_off">CPU maksimal pada saat layar mati</string>
   <string name="max_cpu_online_screen_off_summary">Jumlah maksimal dari CPU yang akan aktif pada saat layar mati.</string>
   <string name="suspend_defer_time">Menangguhkan waktu tunda</string>
@@ -239,7 +240,7 @@
   <string name="fast_lane_load_summary">Meningkatkan latency dengan langsung mengaktifkan semua CPU jika beban saat ini pada CPU apapun di atas ambang batas tertentu.</string>
   <string name="fast_lane_min_freq">Frekuensi Terendah Jalur Cepat</string>
   <string name="fast_lane_min_freq_summary">Menetapkan skala frekuensi CPU terendah ketika jalur cepat mencapai beban di atas.</string>
-  <string name="offline_load">Muatan Tak aktif</string>
+  <string name="offline_load">Muatan Tidak aktif</string>
   <string name="offline_load_summary">Jangan non-aktifkan CPU jika turun hingga dibawah tingkat yang lebih rendah dari batas muatan tertinggi.</string>
   <string name="io_is_busy">IO sedang sibuk</string>
   <string name="io_is_busy_summary">Digunakan agar hotplug menentukan waktu I/O menjadi waktu beban CPU.</string>
@@ -265,6 +266,7 @@
   <string name="idle_frequency_summary">Jika inti pertama dibawah frekuensi itu, maka jangan jalankan inti yang lain.</string>
   <string name="touch_boost_time">Waktu Peningkat Sentuh</string>
   <string name="touch_boost_time_summary">Berapa lama CPU harus di tingkatkan setelah menyetuh layar.</string>
+  <string name="boost_frequency_core">Meningkatkan Frekuensi Core %d</string>
   <string name="start_delay">Jeda Sebelum Mulai</string>
   <string name="start_delay_summary">Waktu sampai Hotplug mulai bekerja.</string>
   <string name="delay">Jeda</string>
@@ -303,13 +305,19 @@
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Inti kontrol yang telah dimodifikasi untuk OnePlus\'.</string>
   <string name="min_cpus_big">Minimum besar CPU</string>
-  <string name="min_cpus_big_summary">Jumlah minimum dari besar CPU yang harus aktif.</string>
+  <string name="min_cpus_big_summary">Jumlah minimal dari besar CPU yang harus aktif.</string>
   <string name="busy_down_threshold">Batas sibuk bawah</string>
   <string name="busy_down_threshold_summary">Batas ketika CPU besar harus dimatikan.</string>
   <string name="busy_up_threshold">Batas sibuk atas</string>
   <string name="busy_up_threshold_summary">Batas ketika CPU besar harus di aktifkan.</string>
   <string name="offline_delay">Penundaan offline</string>
   <string name="offline_delay_summary">Waktu sebelum mematikan CPU.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">Semua dalam Satu HotPlug untuk perangkat Qualcomm. Dikembangkan oleh Shoaib0597.</string>
+  <string name="max_cpu_online_big">Maksimum CPU Besar Aktif</string>
+  <string name="max_cpu_online_big_summary">Jumlah maksimum CPU besar yang akan aktif.</string>
+  <string name="max_cpu_online_little">Maksimal CPU KECIL Aktif</string>
+  <string name="max_cpu_online_little_summary">Jumlah maksimum CPU KECIL yang akan aktif.</string>
   <!--Thermal-->
   <string name="thermal_info">Gunakan salah satu driver termal dari pilihan berikut, menggunakan lebih pada saat yang sama dapat menyebabkan perilaku yang tidak terduga.</string>
   <string name="thermald">Thermald</string>
@@ -638,9 +646,13 @@
   <string name="bluesleep_wakelock">Wakelock BlueSleep</string>
   <string name="bluesleep_wakelock_summary">Mencegah wakelock BlueSleep</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock pembagi</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl Wakelock pembagi</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock pembagi</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD pembagi wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Bagikan pengaturan Anda dengan orang lain! Kernel Adiutor secara otomatis akan mengumpulkan informasi dan menyusun daftar skor yang tersedia untuk semua orang.</string>
+  <string name="data_sharing_summary_link">Anda dapat mengakses daftar di &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Aktifkan bagikan</string>
   <!-- Custom Controls -->
   <string name="welcome">Selamat Datang</string>
   <string name="custom_controls_summary">Di bagian ini kamu dapat membuat atau mengimpor kontrol kustom, yang belum / tidak ada di aplikasi.</string>
@@ -709,10 +721,15 @@
   <string name="profile_warning">Semua yang anda rubah di sini akan tersimpan pada profilmu. Tapi mohon diingat! Pengaturanmu juga akan diterapkan, tapi tidak  akan sampai tersimpan dan diterapkan pada saat boot.</string>
   <string name="no_changes">Tidak ada perubahan apapun!</string>
   <string name="apply_question">Terapkan %s?</string>
+  <string name="append">Menambahkan</string>
   <string name="details">Rincian</string>
   <string name="press_again_to_apply">Tekan lagi %s untuk menerapkan.</string>
   <string name="applied">Diterapkan</string>
+  <string name="profile_tasker">Profil Tugas</string>
+  <string name="profile_tasker_summary">Jika Anda ingin menerapkan profil pada acara tertentu, misalnya meluncurkan aplikasi, Anda harus menggunakan Tugas.</string>
+  <string name="profile_tasker_toast">Menunjukkan notifikasi ketika tugas diterapkan profil</string>
   <string name="profile_tile">Judul profil</string>
+  <string name="profile_tile_summary">Menampilkan lantai yang memungkinkan Anda untuk memilih profil.</string>
   <string name="profile_select">Pilih profil</string>
   <string name="applying_profile">Menerapkan %s!</string>
   <string name="no_profiles">Tidak ada profil ditemukan! Anda harus membuatnya terlebih dahulu.</string>
@@ -724,15 +741,18 @@
   <string name="profile_empty">Profil kosong!</string>
   <!-- Recovery -->
   <string name="reboot">Hidupkan ulang</string>
+  <string name="reboot_soft">Mulai ulang cepat</string>
   <string name="reboot_recovery">Hidupkan ulang ke recovery</string>
   <string name="reboot_bootloader">Hidupkan ulang ke bootloader</string>
   <string name="reboot_download">Reboot ke Download mode</string>
   <string name="wipe_data">Hapus Data</string>
   <string name="wipe_cache">Hapus Cache</string>
   <string name="flash_zip">Flash Zip</string>
+  <string name="add_action_first">Anda harus menambahkan tindakan pertama!</string>
   <string name="flash_now_confirm">Apakah Anda ingin menjalankan tindakan Anda? Perangkat akan reboot ke recovery dan tindakan akan dijalankan sesuai dengan urutan yang anda tambahkan.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulasikan Init.d</string>
+  <string name="emulate_initd_summary">Jika perangkat tidak mendukung Init.d secara default, Anda dapat mengaktifkan ini untuk meniru perilakunya.</string>
   <string name="exceute_question">Jalankan %s?</string>
   <string name="executing">Menjalankan</string>
   <string name="result">Hasil</string>
@@ -751,14 +771,25 @@
   <string name="material_icon">Ikon Material</string>
   <string name="banner_resizer">Ukur ulang banner</string>
   <string name="hide_banner">Sembunyikan banner</string>
+  <string name="force_cards">Memaksa kartu</string>
+  <string name="force_cards_summary">Menggunakan kartu untuk item jika mungkin.</string>
+  <string name="accent_color">Warna Aksen</string>
+  <string name="section_icons">Bagian ikon</string>
+  <string name="section_icons_summary">Menampilkan ikon untuk setiap bagian dalam laci navigasi.</string>
   <string name="instant">Instan</string>
   <string name="five_sec">5 detik</string>
   <string name="ten_sec">10 detik</string>
   <string name="twenty_sec">20 detik</string>
   <string name="fifty_sec">50 detik</string>
+  <string name="apply_on_boot_test_summary">Tes berlaku pada boot. Ini mencakup semua jenis hal-hal yang mendapatkan diterapkan selama boot, seperti kontrol kustom, profil, init.d, dll.</string>
+  <string name="apply_on_boot_running">Menerapkan pada layanan boot telah berjalan. Harap menunggu sampai selesai.</string>
   <string name="nothing_apply">Tidak ada apapun yang diterapkan!</string>
   <string name="hide">Sembunyikan</string>
+  <string name="apply_on_boot_hide_summary">Sembunyikan pemberitahuan berlaku pada boot. Penundaan akan tetap!</string>
+  <string name="toast">Notifikasi</string>
+  <string name="apply_on_boot_toast_summary">Menunjukkan notifikasi ketika pengaturan dapat diterapkan.</string>
   <string name="confirmation_notification">Notifikasi konfirmasi</string>
+  <string name="apply_on_boot_confirmation_notification_summary">Setelah menerapkan pada boot dengan pemberitahuan terlihat, menunjukkan pemberitahuan selanjutnya dengan konfirmasi yang berlaku pada boot berhasil.</string>
   <string name="script">Skrip</string>
   <string name="apply_on_boot_script_summary">Gunakan shell script untuk menerapkan pengaturan. Harap hanya mengaktifkan ini jika Anda memiliki masalah dengan terapkan saat boot. Jika masalah tetap berlanjut setelah mengaktifkan opsi ini, pastikan tidak ada aplikasi lain bertentangan dengan Kernel Adiutor.</string>
   <string name="debugging">Debugging</string>
@@ -783,8 +814,10 @@
   <string name="fingerprint_summary">Gunakan sidik jari untuk dapat melewati pemeriksaan keamanan. Ini akan bekerja selama Anda memiliki sidik jari yang terdaftar.</string>
   <string name="sections">Bagian</string>
   <!-- About -->
+  <string name="about_me">Hi, saya Willi Ye aka Grarak, seorang murid berumur 19 tahun yang bertempat tinggal di Vienna. Saya sudah menjadi developer di Android untuk waktu yang cukup lama. Selain Kernel Adiutor saya juga mengurus CyanogenMod untuk beberapa perangkat dan mengerjakan ParanoidAndroid. Jadi harap mengerti jika saya tidak memiliki waktu untuk memperbarui aplikasi ini.</string>
   <string name="libraries_used">Library yang digunakan</string>
   <!-- Contributors -->
+  <string name="commits">%d komit</string>
   <string name="no_internet">Silakan periksa koneksi internet Anda!</string>
   <!-- Help -->
   <string name="misspelled">Mengapa anda salah mengeja \"Adiutor\"?</string>

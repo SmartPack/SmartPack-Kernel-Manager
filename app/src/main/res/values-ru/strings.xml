@@ -206,7 +206,9 @@
   <string name="cpus_boosted">Ядер усилено</string>
   <string name="cpus_boosted_summary">Макс. количество одновременно ускоренных ядер ЦП.</string>
   <string name="min_cpu_online">Минимальное количество работающих ядер</string>
+  <string name="min_cpu_online_summary">Минимальное количество ядер, которые будут работать.</string>
   <string name="max_cpu_online">Максимальное количество работающих ядер</string>
+  <string name="max_cpu_online_summary">Максимальное количество ядер, которые будут работать.</string>
   <string name="max_cpu_online_screen_off">Максимальное количество ядер при ВЫКЛ экране</string>
   <string name="max_cpu_online_screen_off_summary">Максимальное число ядер, которые будут онлайн при выключенном экране.</string>
   <string name="suspend_defer_time">Время отсрочки задержки</string>
@@ -313,8 +315,12 @@
   <string name="busy_up_threshold_summary">Порог для включения кластера big CPU.</string>
   <string name="offline_delay">Задержка оффлайн</string>
   <string name="offline_delay_summary">Время до отключения ядра.</string>
-  <string name="online_delay">Задержка онлайн</string>
-  <string name="online_delay_summary">Время до включения ядра.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">Всё-в-одном HotPlug для устройств Qualcomm. Разработка Shoaib0597.</string>
+  <string name="max_cpu_online_big">Максимум BIG ядер процессора онлайн</string>
+  <string name="max_cpu_online_big_summary">Максимальное количество ядер BIG процессора, которые будут работать.</string>
+  <string name="max_cpu_online_little">Максимум LITTLE ядер процессора онлайн</string>
+  <string name="max_cpu_online_little_summary">Максимальное количество ядер LITTLE процессора, которые будут работать.</string>
   <!--Thermal-->
   <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
   <string name="thermald">Thermald</string>
@@ -643,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
   <string name="bluesleep_wakelock_summary">Предотвратить BlueSleep Wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
+  <string name="wlan_ctrl_wakelock_divider">Разделитель вэйклоков wlan_ctrl</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD wakelock divider</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Поделитесь Вашими настройками с другими! Kernel Adiutor автоматически соберёт информацию и составит список, доступный всем.</string>
+  <string name="data_sharing_summary_link">Список расположен: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Возможность поделиться включена</string>
   <!-- Custom Controls -->
   <string name="welcome">Добро пожаловать</string>
   <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
@@ -807,6 +817,7 @@
   <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
   <string name="sections">Разделы</string>
   <!-- About -->
+  <string name="about_me">Привет, я Вилли Йе aka Grarak, 19-летний студент из Вены. Я занимаюсь Android-разработкой достаточно долгое время. Помимо Kernel Adiutor, я также поддерживаю LineageOS для нескольких устройств и работаю с ParanoidAndroid. Поэтому прошу отнестись с пониманием, когда я не нахожу время обновить приложение.</string>
   <string name="libraries_used">Использованые библиотеки</string>
   <!-- Contributors -->
   <string name="commits">Изменения: %d</string>

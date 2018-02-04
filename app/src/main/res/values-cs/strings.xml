@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPU posílení</string>
   <string name="cpus_boosted_summary">Maximální počet procesorových jader, které se přetaktují ve stejném čase.</string>
   <string name="min_cpu_online">Minimální počet CPU online</string>
+  <string name="min_cpu_online_summary">Minimální počet procesorů, které budou online.</string>
   <string name="max_cpu_online">Maximální počet CPU online</string>
+  <string name="max_cpu_online_summary">Maximální počet procesorů, které budou online.</string>
   <string name="max_cpu_online_screen_off">Maximum CPU bez obrazovky</string>
   <string name="max_cpu_online_screen_off_summary">Maximální počet CPU, která budou zapnuta při vypnuté obrazovce.</string>
   <string name="suspend_defer_time">Doba odložení odstavení</string>
@@ -308,8 +310,17 @@
   <string name="min_cpus_big">Minimální počet CPU big</string>
   <string name="min_cpus_big_summary">Minimální počet CPU big, které by měly být online.</string>
   <string name="busy_down_threshold">Dolní práh zaneprázdněnosti</string>
+  <string name="busy_down_threshold_summary">Prahová hodnota pro vypnutí velkého clusteru procesoru.</string>
   <string name="busy_up_threshold">Horní práh zaneprázdněnosti</string>
+  <string name="busy_up_threshold_summary">Prahová hodnota pro zapnutí velkého clusteru procesoru.</string>
   <string name="offline_delay">Offline zpoždění</string>
+  <string name="offline_delay_summary">Časová hodnota před vypnutím CPU.</string>
+  <string name="aio_hotplug">AiO Hotplug</string>
+  <string name="aio_hotplug_summary">AiO HotPlug pro zařízení Qualcomm. Vyvinutý Shoaib0597.</string>
+  <string name="max_cpu_online_big">Maximální počet aktivních jader velkého clusteru</string>
+  <string name="max_cpu_online_big_summary">Maximální počet jader velkého clusteru, které budou aktivní.</string>
+  <string name="max_cpu_online_little">Maximální počet aktivních jader malého clusteru</string>
+  <string name="max_cpu_online_little_summary">Maximální počet jader malého clusteru, které budou aktivní.</string>
   <!--Thermal-->
   <string name="thermal_info">Používejte pouze jeden teplotní ovladač, použití více ovladačů ve stejnou dobu může vést k neočekávanému chování.</string>
   <string name="thermald">Thermald</string>
@@ -321,17 +332,34 @@
   <string name="thermal_debug_mask_summary">Umožňuje aktivovat vzor ladění pro tepelné operace.</string>
   <string name="vdd_restriction">VDD omezení</string>
   <string name="freq_throttle_temp">Snižování frekvence při teplotě</string>
+  <string name="freq_throttle_temp_summary">Teplota při které začne snižování frekvence.</string>
+  <string name="cpu_throttle_temp">Snižování teploty jader procesoru</string>
   <string name="cpu_throttle_temp_summary">Teplota pro zahájení odstavování jader.</string>
   <string name="cpu_temp_hysteresis">Hystereze teploty CPU</string>
   <string name="freq_step">Krok frekvence</string>
+  <string name="immediately_limit_stop">Mez okamžitého zastavení</string>
   <string name="poll">Anketa</string>
   <string name="temp_hysteresis">Teplotní hystereze</string>
   <string name="thermal_limit_low">Nízký teplotní limit</string>
   <string name="thermal_limit_high">Vysoký teplotní limit</string>
   <string name="temp_safety">Bezpečná teplota</string>
+  <string name="temp_throttle">Teplotní škrticí klapka</string>
+  <string name="temp_throttle_summary">Hranice přepínače teploty SoC.</string>
   <string name="temp_limit">Teplotní limit</string>
   <string name="temp_limit_summary">Pokud teplota překročí stanovený limit, bude snížena frekvence procesoru za účelem ochlazení.</string>
+  <string name="freq_limit_debug">Limit ladění frekvence</string>
+  <string name="freq_limit_debug_summary">Umožňuje ladění omezování frekvence procesoru při dosažení maximální teploty.</string>
   <string name="temp_limit_min_freq">Teplotní Limit minimální frekvence</string>
+  <string name="temp_limit_min_freq_summary">Řízení teploty použije tuto frekvenci na snížení maximální teploty.</string>
+  <string name="allowed_low_low">Fáze 1: Povolena nízká nízká</string>
+  <string name="allowed_low_high">Fáze 1: Povolena nízká vysoká</string>
+  <string name="allowed_low_freq">Fáze 1: Povolena nízká frekvence</string>
+  <string name="allowed_mid_low">Fáze 2: Povolena střední nízká</string>
+  <string name="allowed_mid_high">Fáze 2: Povolena střední vysoká</string>
+  <string name="allowed_mid_freq">Fáze 2: Povolena střední frekvence</string>
+  <string name="allowed_max_low">Fáze 3: Povolena maximální nízká</string>
+  <string name="allowed_max_high">Fáze 3: Povolena maximální vysoká</string>
+  <string name="allowed_max_freq">Fáze 3: Povolena maximální frekvence</string>
   <string name="check_interval">Interval kontroly</string>
   <string name="shutdown_temp">Teplota vypnutí</string>
   <!-- GPU -->
@@ -347,10 +375,21 @@
   <string name="gpu_2d_governor_summary">Nastavení správce 2D grafiky.</string>
   <string name="gpu_governor">Správce grafiky</string>
   <string name="gpu_governor_summary">Nastavení správce grafiky.</string>
+  <string name="gpu_governor_tunables">Ladění správce GPU</string>
   <string name="simple_gpu_algorithm">Jednoduchý algoritmus grafiky</string>
   <string name="simple_gpu_algorithm_summary">Doplněk pro správce grafiky MSM Adreno TZ, vyvinutý uživatelem faux123.</string>
   <string name="laziness">Lenost</string>
+  <string name="laziness_summary">Zvyšuje práh zvýšení nebo snížení frekvence GPU. Čím nižší je tato hodnota, tím vyšší výkon dosáhnete.</string>
+  <string name="ramp_thresold">Ramp Thresold</string>
+  <string name="ramp_thresold_summary">Zvyšuje frekvenci správce GPU. Čím vyšší hodnota, tím vyšší výkon.</string>
+  <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Efektivní řešení pro zahlcení msm-adreno-tz. Vytvořeno arter97.</string>
+  <string name="down_differential">Diferenciál snížení</string>
+  <string name="down_differential_summary">Práh pro určení, zda je daná pracovní zátěž nečinná.</string>
+  <string name="idle_wait">Nečinné čekání</string>
+  <string name="idle_wait_summary">Počet událostí, po kterých se frekvence začne snižovat. Adreno začne snižovat frekvenci pouze v případě, že tyto události byly události z prostojů. Tato implementace má zabránit mikro-lagům při rolování nebo hraní her. Čím menší hodnota, tím více Adreno sníží frekvenci.</string>
   <string name="workload">Pracovní vytížení</string>
+  <string name="workload_summary">Čím vyšší je hodnota, tím aktivněji bude Adreno snižovat frekvenci.</string>
   <!-- Screen -->
   <string name="screen_color">Barvy obrazovky</string>
   <string name="red">Červená</string>
@@ -368,8 +407,26 @@
   <string name="srgb">sRGB</string>
   <string name="gamma">Gama</string>
   <string name="red_greys">červeno šedá</string>
+  <string name="red_mids">Červená střední</string>
+  <string name="red_blacks">Červeno černá</string>
+  <string name="red_whites">Červeno bílá</string>
+  <string name="green_greys">Zeleno šedá</string>
+  <string name="green_mids">Zelená střední</string>
+  <string name="green_blacks">Zeleno černá</string>
+  <string name="green_whites">Zeleno bílá</string>
+  <string name="blue_greys">Modro šedá</string>
+  <string name="blue_mids">Modrá střední</string>
+  <string name="blue_blacks">Modro černá</string>
+  <string name="blue_whites">Modro bílá</string>
   <string name="contrast">Kontrast</string>
   <string name="brightness">Jas</string>
+  <string name="red_positive">Červená pozitivní</string>
+  <string name="red_negative">Červená negativní</string>
+  <string name="green_positive">Zelená pozitivní</string>
+  <string name="green_negative">Zelená negativní</string>
+  <string name="blue_positive">Modrá pozitivní</string>
+  <string name="blue_negative">Modrá negativní</string>
+  <string name="white_point">Bílý bod</string>
   <string name="lcd_backlight">Podsvícení LCD</string>
   <string name="gamma_profiles_summary">Po výběru profilu vypněte a znovu zapněte displej.</string>
   <string name="brightness_mode">Použít exponenciální režim podsvícení místo lineárního režimu.</string>
@@ -382,6 +439,11 @@
   <string name="offset">Posun</string>
   <string name="negative_toggle">Přepínač inverzních barev</string>
   <string name="negative_toggle_summary">Povolení invertování barev displeje rychlým stisknutím tlačítka menu 4 x za sebou.</string>
+  <string name="mdnie_global_controls">Funkce řízení mDNle</string>
+  <string name="register_hook">Zaregistrovat Hook</string>
+  <string name="register_hook_summary">Zaznamenávání aktů zachycení funguje jako hook a umožňuje nastavení scénářů zachycení a jejich úpravu prostřednictvím delta ovládacích prvků. Pokud scénář nemá nastavení (rejstřík) v základě, nemůže to upravit hook.</string>
+  <string name="master_sequence">Hlavní sekvence</string>
+  <string name="master_sequence_summary">Povolení hlavní sekvence zablokuje a ignoruje profily a scénáře společnosti Samsung. Ovládací prvky ROM budou vypnuty.</string>
   <string name="glove_mode">Režim v rukavicích</string>
   <string name="glove_mode_summary">Povolení této funkce vám umožní používat vaše zařízení i s nasazenými rukavicemi.</string>
   <!-- Wake -->
@@ -394,19 +456,24 @@
   <string name="half">Polovina</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Probuzení zařízení přejetím po displeji.</string>
+  <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Sweep2Wake vpravo</string>
   <string name="s2w_left">Sweep2Wake vlevo</string>
   <string name="s2w_up">Sweep2Wake nahoru</string>
   <string name="s2w_down">Sweep2Wake dolů</string>
   <string name="s2w_any">Sweep2Wake libovolný</string>
+  <string name="lenient">Citlivost Sweep2Wake</string>
+  <string name="lenient_summary">Vyžadováno pouze první a čtvrté tlačítko ke spuštění Sweep2Wake.</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Probuzení zařízení poklepáním na displej.</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Uzamknutí zařízení dvojitým poklepáním na displej.</string>
   <string name="s2w_charging">Sweep2Wake při nabíjení</string>
   <string name="dt2w_charging">DoubleTap2Wake při nabíjení</string>
+  <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake při nabíjení</string>
+  <string name="s2s_summary">Uzamčení zařízení přejetím přes obrazovku.</string>
   <string name="s2s_right">Sweep vpravo</string>
   <string name="s2s_left">Sweep vlevo</string>
   <string name="s2s_any">Sweep vlevo nebo vpravo</string>
@@ -419,6 +486,7 @@
   <string name="draw_w">Nakreslení W</string>
   <string name="draw_c">Nakreslení C</string>
   <string name="draw_m">Nakreslení M</string>
+  <string name="camera_gesture">Gesto fotoaparátu</string>
   <string name="camera_gesture_summary">Spustit výchozí fotoaparát nakreslením kruhu na obrazovku.</string>
   <string name="pocket_mode">Režim v kapse</string>
   <string name="pocket_mode_summary">Povolení této volby vypne prvky probouzející zařízení, když je zařízení v kapse.</string>
@@ -433,11 +501,17 @@
   <string name="vibration_strength">Intenzita vibrace</string>
   <!-- Sound -->
   <string name="sound_control">Ovládání zvuku</string>
+  <string name="headset_highperf_mode">Vysoce výkonný režim sluchátek</string>
   <string name="headphone_gain">Zesílení sluchátek</string>
   <string name="handset_microphone_gain">Zesílení sluchátkového mikrofonu</string>
   <string name="cam_microphone_gain">Zesílení mikrofonu kamery</string>
   <string name="speaker_gain">Zesílení reproduktoru</string>
   <string name="headphone_poweramp_gain">Zesílení PowerAmp sluchátek</string>
+  <string name="headphone_tpa6165_gain">Zesílení sluchátek (rozšíření TPA6165)</string>
+  <string name="lock_output_gain">Blokovat zesílení výstupu</string>
+  <string name="lock_output_gain_summary">Předcházet změnám zesílení sluchátek/reproduktorů</string>
+  <string name="lock_mic_gain">Blokovat zesílení mikrofonu</string>
+  <string name="lock_mic_gain_summary">Předcházet změnám zesílení mikrofonu</string>
   <string name="microphone_gain">Zesílení mikrofonu</string>
   <string name="volume_gain">Zesílení hlasitosti</string>
   <!-- Battery -->
@@ -452,15 +526,25 @@
   <string name="charging_current">Nabíjecí proud</string>
   <string name="charging_current_summary">Nastavit nabíjecí proud. Upozornění: Více jak 1250 mA může poškodit regulátor nabíjení.</string>
   <!-- LED -->
+  <string name="fade">Slábnutí</string>
+  <string name="fade_summary">Zapněte pro slábnutí, vypněte pro blikání.</string>
   <string name="intensity">Intenzita</string>
   <string name="speed">Rychlost</string>
   <string name="stock">Základní</string>
   <string name="continuous_light">Nepřetržité světlo</string>
   <string name="bright_light_environment">Jasně osvětlené prostředí</string>
+  <string name="bright_light_environment_summary">Nastavte relativní intenzitu LED v silně osvětleném prostředí.</string>
   <string name="low_light_environment">Slabě osvětlené prostředí</string>
+  <string name="low_light_environment_summary">Nastavte relativní intenzitu LED v slabě osvětleném prostředí.</string>
   <string name="notification">Upozornění</string>
   <string name="on">ZAP</string>
   <string name="off">VYP</string>
+  <string name="fade_ramp_control">Řízení slábnutí rampy</string>
+  <string name="fade_ramp_control_summary">Zapnout nebo vypnout ovládání stmívání (ramp) LED.</string>
+  <string name="fade_in">Postupné zesvětlení</string>
+  <string name="fade_in_summary">Nastavení časové intervalu periody zesvětlení.</string>
+  <string name="fade_out">Postupné ztmavnutí</string>
+  <string name="fade_out_summary">Nastavení časové intervalu periody ztmavnutí.</string>
   <string name="test">Zkouška</string>
   <string name="led_test_summary">Test LED diody s Vaším nastavením.</string>
   <!-- I/O Scheduler -->
@@ -472,7 +556,14 @@
   <string name="scheduler_tunable_summary">Různé možnosti konfigurace, které závisí na použitém plánovači.</string>
   <string name="read_ahead">Čtení předem</string>
   <string name="read_ahead_summary">Read-ahead hodnota pro paměť zařízení.</string>
+  <string name="rotational">Pevný disk</string>
+  <string name="rotational_summary">Zacházet se zařízením jako s pevným diskem.</string>
   <string name="iostats">I/O statistiky</string>
+  <string name="iostats_summary">Monitorování I/O statistik pro toto úložné zařízení. Zakázáním se přeruší monitorování I/O operací aplikací.</string>
+  <string name="add_random">Přidat náhodnou hodnotu</string>
+  <string name="add_random_summary">Vykreslení entropie relativního otáčení. Čerpá údaje ze zásobníku otáčení (rotací).</string>
+  <string name="rq_affitiny">RQ afinita</string>
+  <string name="rq_affinity_summary">Pokusí se dokončit požadavky plánovače na jádra procesoru, které byly zadány. Vyšší hodnoty jsou agresivnější.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Úplné skenování</string>
   <string name="pages_shared">Sdílené stránky</string>
@@ -482,10 +573,14 @@
   <string name="ksm_summary">Snižuje využití paměti, ale má vliv na využití procesoru.</string>
   <string name="pages_to_scan">Stránky pro skenování</string>
   <string name="sleep_milliseconds">Uspání mezi skenováním (ms)</string>
+  <string name="deferred_timer">Odložený časovač</string>
   <string name="deferred_timer_summary">Snižuje využití procesoru za cenu menší úspory paměti.</string>
   <string name="max_cpu_usage">Maximální zatížení CPU</string>
+  <string name="max_cpu_usage_summary">Maximální procento využití procesoru při slučování stránek.</string>
   <!-- Low Memory Killer -->
   <string name="foreground_app">Aplikace v popředí</string>
+  <string name="lmk_adaptive">Adaptivní LMK</string>
+  <string name="lmk_adaptive_summary">LMK bude více agresivnější, když zjistí přetečení (nedostatek) paměti.</string>
   <string name="visible_app">Viditelné aplikace</string>
   <string name="secondary_server">Sekundární server</string>
   <string name="hidden_app">Skryté aplikace</string>
@@ -495,15 +590,37 @@
   <string name="light">Mírný</string>
   <string name="medium">Střední</string>
   <string name="very_aggressive">Velmi agresivní</string>
+  <string name="kill_lmk">Ukončit LMK</string>
+  <string name="kill_lmk_summary">Ukončit LMK, když se používá odkládací prostor (swap).</string>
+  <string name="kill_lmk_threshold">Odstranit práh LMK</string>
+  <string name="kill_lmk_threshold_summary">Jelikož musí být dokončen plný swap, je třeba ukončit LMK.</string>
   <!-- Virtual Memory -->
+  <string name="zram">Z-RAM</string>
+  <string name="disksize">Velikost disku</string>
+  <string name="disksize_summary">Zlepšení výkonnosti pomocí metody komprese dat v paměti RAM namísto použití paměti úložiště. Využívá RAM tak dlouho, dokud nebude nutné zapsat data do trvalé paměti (swap na úložiště).</string>
+  <string name="zswap">ZSWAP</string>
+  <string name="zswap_summary">ZSwap je mírně komprimovaná mezipaměť odkládání stránek (swap). Vezme existující stránky a pokouší se je zkomprimovat do dynamicky přiděleného paměťového prostoru RAM. Zswap v podstatě vyměňuje cykly procesoru za potencionální snížení nutnosti swapu u operací I/O.</string>
+  <string name="memory_pool">Paměťový prostor</string>
+  <string name="memory_pool_summary">Procento z hlavní paměti, které může být použito jako paměť cache komprimovaných stránek.</string>
+  <string name="maximum_compression_ratio">Maximální kompresní poměr</string>
+  <string name="maximum_compression_ratio_summary">Maximální kompresní poměr v procentech přijatelný pro stlačení stránek. Jakákoliv stránka, která není komprimovaná alespoň do tohoto poměru, bude odmítnuta.</string>
   <!-- Entropy -->
   <string name="available">Dostupná</string>
   <string name="poolsize">PoolSize</string>
   <string name="read">Čtení</string>
   <string name="write">Zápis</string>
   <!-- Misc -->
+  <string name="android_logger">Android logování</string>
+  <string name="crc">Softwarová kontrola CRC</string>
   <string name="crc_summary">CRC je mechanismus, jehož cílem v případě povolení je zabránit poškození dat. Datové bloky mohou ztratit až 30 % jejich výkonu.</string>
   <string name="fsync">Fsync</string>
+  <string name="fsync_summary">Vypněte pro lepší výkon souborového systému za cenu rizika ztráty dat v případě selhání systému.</string>
+  <string name="dynamic_fsync">Dynamické Fsysnc</string>
+  <string name="dynamic_fsync_summary">Pokud je povoleno a je zapnutá obrazovka, fsync operace jsou asynchronní. Když je vypnutá obrazovka, tyto operace se provádí synchronně.</string>
+  <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
+  <string name="gentlefairsleepers_summary">Spícím aplikacím přiděluje jen 50% jejich požadovaných služeb. Deaktivace může ušetřit trochu energie baterie.</string>
+  <string name="arch_power">Arch Power</string>
+  <string name="arch_power_summary">Aktivace funkce úspory energie Arch.</string>
   <string name="power_suspend_mode">Režim odstavení výkonu</string>
   <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks a Highest Level Hook jsou automaticky spravovány jádrem operačního systému. Pro ruční zapnutí nebo vypnutí stavu odstavení výkonu zvolte uživatelský režim.</string>
   <string name="autosleep">Automatické uspání</string>
@@ -513,12 +630,32 @@
   <string name="power_suspend_state">Stav odstavení výkonu</string>
   <string name="power_suspend_state_summary">Ovladač jádra pro správu napájení při vypnuté obrazovce. Větší úspora energie, pokud je zapnuto. Poznámka: Toto nastavení lze změnit pouze, pokud je Režim odstavení výkonu v uživatelském režimu.</string>
   <string name="network">Síť</string>
+  <string name="tcp">Algoritmus přetížení protokolu TCP</string>
   <string name="tcp_summary">„Transmission Control Protocol“ je jedním z hlavních protokolů sady internetových protokolů (IP) a je natolik běžný, že se pro celou sadu běžně používá označení TCP/IP.</string>
   <string name="hostname">Název hostitele</string>
   <string name="wakelock">Zákaz úsporného režimu</string>
+  <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
+  <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
+  <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
+  <string name="msm_hsic_host_wakelock_summary">Předcházení zákazu úsporného režimu msm_hsic_host.</string>
+  <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
+  <string name="wlan_rx_wakelock_summary">Předcházení zákazu úsporného režimu wlan_rx.</string>
+  <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
+  <string name="wlan_ctrl_wakelock_summary">Předcházení zákazu úsporného režimu wlan_ctrl.</string>
+  <string name="wlan_wakelock">wlan Wakelock</string>
+  <string name="wlan_wakelock_summary">Předcházení zákazu úsporného režimu wlan.</string>
+  <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
+  <string name="bluesleep_wakelock_summary">Předcházení zákazu úsporného režimu BlueSleep.</string>
+  <string name="wlan_rx_wakelock_divider">Dělič wlan_rx Wakelock</string>
+  <string name="wlan_ctrl_wakelock_divider">Dělič wlan_ctrl Wakelock</string>
+  <string name="msm_hsic_wakelock_divider">Dělič msm_hsic Wakelock</string>
+  <string name="bcmdhd_wakelock_divider">Dělič BCMDHD Wakelock</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">Sdílejte své nastavení s ostatními! Kernel Adiutor automaticky shromažďuje informace a sestaví seznam výsledků dostupný všem lidem.</string>
+  <string name="data_sharing_summary_link">K seznamu máte přístup na &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
+  <string name="sharing_enable">Povolení sdílení</string>
   <!-- Custom Controls -->
   <string name="welcome">Vítejte</string>
   <string name="custom_controls_summary">V této sekci můžete vytvářet nebo importovat vlastní ovládací prvky, které (ještě) v této aplikaci neexistují.</string>
@@ -531,9 +668,13 @@
   <string name="title">Název</string>
   <string name="description">Popis</string>
   <string name="applying">Použití</string>
+  <string name="switch_enabled_summary">Zobrazuje zda je spínač zapnutý nebo vypnutý. 1 - zapnutý, 0 - vypnutý.</string>
+  <string name="switch_apply_summary">Spínač se nastaví na 1 (zapnuto) nebo 0 (vypnuto) jako argument skriptu.</string>
   <string name="seekbar_min">Min</string>
   <string name="seekbar_max">Max</string>
   <string name="seekbar_progress">Stav</string>
+  <string name="seekbar_progress_summary">Aktuální stav vyhledávacího panelu. Definováním min. a max. se vytvoří celé pole. Například: min. je 50 a max. je 100 a pokrok je 0 což znamená, že 50 je aktuální stav vyhledávacího panelu.</string>
+  <string name="seekbar_apply_summary">Vyhledávací panel vrátí aktuální pokrok. Například: min. je 50, max. je 100 a hledaný řetězec je 70, vrátí 20 jako pokrok.</string>
   <string name="control_generic">Obecný</string>
   <string name="generic_value">Hodnota</string>
   <string name="generic_value_summary">Aktuální hodnota editoru. Může být v podstatě cokoliv.</string>
@@ -568,6 +709,8 @@
   <!-- Backup -->
   <string name="boot_partition">Spouštěcí oddíl</string>
   <string name="recovery_partition">Oddíl pro obnovení</string>
+  <string name="fota_partition">Oddíl aktualizace</string>
+  <string name="flash">Flash</string>
   <!-- Build prop Editor -->
   <string name="add">Přidat</string>
   <string name="backup_item">%1$s byla zálohována do %2$s</string>
@@ -577,18 +720,45 @@
   <string name="value">Hodnota</string>
   <string name="key_empty">Klíč nemůže být prázdný!</string>
   <!-- Profile -->
+  <string name="apply_on_boot_not_available">Změny provedené v režimu profilů nebudou mít vliv na spouštění aplikace při startu.</string>
   <string name="profile_warning">Vše co zde změníte bude uloženo do Vašeho profilu. Ale pozor! Vaše nastavení bude použito, ale nebude uloženo pro použití po spuštění.</string>
   <string name="no_changes">Nebyly provedeny žádné změny!</string>
+  <string name="apply_question">Použít %s?</string>
+  <string name="append">Připojit</string>
+  <string name="details">Podrobnosti</string>
+  <string name="press_again_to_apply">Pro použití stiskněte znovu %s.</string>
   <string name="applied">Použito</string>
+  <string name="profile_tasker">Plánovač profilů</string>
+  <string name="profile_tasker_summary">Pokud chcete použít profil na určité události, jako je například spuštění aplikace, je nutné použít Plánovač profilů.</string>
+  <string name="profile_tasker_toast">Zobrazit vyskakující upozornění, když Plánovač použije profil</string>
+  <string name="profile_tile">Dlaždice profilu</string>
+  <string name="profile_tile_summary">Ukázat dlaždice, které vám umožní vybrat profil.</string>
+  <string name="profile_select">Vybrat profil</string>
+  <string name="applying_profile">Použití %s!</string>
+  <string name="no_profiles">Nebyl nalezen žádný profil! Nejprve ho musíte vytvořit.</string>
+  <string name="sections_disabled">Všechny sekce jsou zakázány! Žádné profily pro vás.</string>
+  <string name="new_mode">Nový</string>
+  <string name="current_settings">Aktuální nastavení</string>
   <string name="select_all">Vybrat vše</string>
+  <string name="nothing_selected">Není nic vybráno</string>
+  <string name="profile_empty">Profil je prázdný!</string>
   <!-- Recovery -->
+  <string name="reboot">Restartovat</string>
+  <string name="reboot_soft">Rychlý restart</string>
+  <string name="reboot_recovery">Restartovat do Recovery menu</string>
+  <string name="reboot_bootloader">Restartovat do Bootloader módu</string>
+  <string name="reboot_download">Restartovat do Download módu</string>
   <string name="wipe_data">Vymazat data</string>
   <string name="wipe_cache">Vymazat cache</string>
   <string name="flash_zip">Flashnout ZIP</string>
+  <string name="add_action_first">Nejprve musíte přidat akci!</string>
   <string name="flash_now_confirm">Chcete provést naplánované akce? Zařízení bude restartováno do recovery menu a akce budou spuštěny v pořadí podle přidání.</string>
   <!-- Init.d -->
   <string name="emulate_initd">Emulace Init.d</string>
+  <string name="emulate_initd_summary">Pokud vaše zařízení ve výchozím nastavení nepodporuje init.d, můžete povolit jeho emulaci.</string>
+  <string name="exceute_question">Vykonat %s?</string>
   <string name="executing">Provádění</string>
+  <string name="result">Výsledek</string>
   <!-- On Boot -->
   <string name="on_boot_welcome_summary">Zde je zobrazeno co se stane při zapnutí zařízení. Pokud zde nic není, nic se po zapnutí nestane.</string>
   <string name="delete_question">Odstranit %s?</string>
@@ -602,6 +772,10 @@
   <string name="user_interface">Uživatelské prostředí</string>
   <string name="dark_theme">Tmavý motiv</string>
   <string name="material_icon">Ikona Material</string>
+  <string name="banner_resizer">Změna velikosti banneru</string>
+  <string name="hide_banner">Skrýt banner</string>
+  <string name="force_cards">Vynutit karty</string>
+  <string name="force_cards_summary">Pokud je to možné, použijte karty pro položky.</string>
   <string name="accent_color">Barva zvýraznění</string>
   <string name="section_icons">Ikony sekcí</string>
   <string name="section_icons_summary">Ukáže ikonu pro každou sekci navigační lišty.</string>
@@ -610,6 +784,7 @@
   <string name="ten_sec">10 vteřin</string>
   <string name="twenty_sec">20 vteřin</string>
   <string name="fifty_sec">50 vteřin</string>
+  <string name="apply_on_boot_test_summary">Test se aplikuje při zavádění. To zahrnuje všechny druhy věcí, které se používají při zavádění, jako jsou vlastní ovládací prvky, profily, init.d atd.</string>
   <string name="apply_on_boot_running">Služba aplikování při spuštění již běží, Počkejte prosím než skončí.</string>
   <string name="nothing_apply">Nenalezeno nic k aplikování!</string>
   <string name="hide">Skrýt</string>
@@ -642,6 +817,7 @@
   <string name="fingerprint_summary">Použít otisk prstu pro bezpečnostní kontrolu. Toto bude fungovat dokud budete mít zaznamenané otisky prstu.</string>
   <string name="sections">Sekce</string>
   <!-- About -->
+  <string name="about_me">Ahoj, já jsem Willi Ye aka Grarak, 19ti letý student žijící ve Vídni. Jsem vývojář Androidu již poměrně dlouho. Kromě Kernel Adiutoru také spravuji LineageOS pro několik zařízení a pracuji na Paranoid Android. Tak prosím pochopte, pokud nebudu mít čas tuto aplikaci aktualizovat.</string>
   <string name="libraries_used">Použité knihovny</string>
   <!-- Contributors -->
   <string name="commits">%d commitů</string>

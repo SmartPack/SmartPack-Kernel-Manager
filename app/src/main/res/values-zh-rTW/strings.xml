@@ -78,7 +78,7 @@
   <string name="battery">電池</string>
   <string name="led">LED</string>
   <string name="io_scheduler">I/O 排程器</string>
-  <string name="ksm">核心同頁合併(Kernel Samepage Merging)</string>
+  <string name="ksm">內核Samepage合併</string>
   <string name="lmk">低記憶體清除機制</string>
   <string name="virtual_memory">虛擬記憶體</string>
   <string name="entropy">熵</string>
@@ -206,7 +206,9 @@
   <string name="cpus_boosted">CPU 已加速</string>
   <string name="cpus_boosted_summary">同時被加速的 CPU 最大數量</string>
   <string name="min_cpu_online">最小 CPU 上線</string>
+  <string name="min_cpu_online_summary">將處於聯機狀態的最少CPU數。</string>
   <string name="max_cpu_online">最大 CPU 上線</string>
+  <string name="max_cpu_online_summary">將處於聯機狀態的最大CPU數。</string>
   <string name="max_cpu_online_screen_off">螢幕關閉時的最大 CPU</string>
   <string name="max_cpu_online_screen_off_summary">當螢幕關閉時上線的最大 CPU 數量。</string>
   <string name="suspend_defer_time">暫停延遲時間</string>
@@ -313,6 +315,12 @@
   <string name="busy_up_threshold_summary">Threshold when big CPUs should be turned on.</string>
   <string name="offline_delay">離線延遲</string>
   <string name="offline_delay_summary">關閉 CPU 前的等待時間。</string>
+  <string name="aio_hotplug">AiO 熱插拔</string>
+  <string name="aio_hotplug_summary">所有在一個熱插拔高通設備。由 Shoaib0597 開發。</string>
+  <string name="max_cpu_online_big">最多在線大核CPU</string>
+  <string name="max_cpu_online_big_summary">將處於聯機狀態的最大CPU數。</string>
+  <string name="max_cpu_online_little">最小 Cpu 線上</string>
+  <string name="max_cpu_online_little_summary">將處於聯機狀態的最大LITTLE CPU數。</string>
   <!--Thermal-->
   <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
   <string name="thermald">原廠溫度管裡</string>
@@ -641,9 +649,13 @@
   <string name="bluesleep_wakelock">BlueSleep Wakelock換醒鎖</string>
   <string name="bluesleep_wakelock_summary">防止BlueSleep喚醒鎖。</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx喚醒鎖分頻器</string>
+  <string name="wlan_ctrl_wakelock_divider">wlan_ctrl喚醒分頻器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic喚醒鎖分頻器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD喚醒鎖分頻器</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary">與他人分享您的設置！內核Adiutor將自動收集信息並編譯可供所有人使用的分數列表。</string>
+  <string name="data_sharing_summary_link">您可以訪問＆lt; a href =“https://www.grarak.com/kerneladiutor”＆gt; grarak.com＆lt; / a＆gt;上的列表。</string>
+  <string name="sharing_enable">共享啟用</string>
   <!-- Custom Controls -->
   <string name="welcome">歡迎</string>
   <string name="custom_controls_summary">在本節中，你可以創建或導入 （尚） 的應用程式中不存在的自訂控制項。</string>
@@ -805,6 +817,7 @@
   <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將工作，只要你有指紋註冊。</string>
   <string name="sections">部分</string>
   <!-- About -->
+  <string name="about_me">嗨，我是Willi Ye aka Grarak，一個19歲的學生住在維也納。我已經在Android上開發了很長時間了。除了內核Adiutor之外，我還為幾個設備維護LineageOS，並且使用ParanoidAndroid。所以請理解如果我沒有找到更新此應用程序的時間。</string>
   <string name="libraries_used">使用的庫</string>
   <!-- Contributors -->
   <string name="commits">%d 提交</string>

@@ -163,7 +163,7 @@
   <string name="input_interval">Khoảng thời gian đầu vào</string>
   <string name="input_interval_summary">Khoảng thời gian tối thiểu tăng cường một CPU khi phát hiện đầu vào.</string>
   <string name="input_boost_freq">Tần số đầu vào tăng cường</string>
-  <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %s</string>
+  <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %d</string>
   <string name="input_boost_freq_summary">CPU được tăng cường đến tần số này khi phát hiện đầu vào.</string>
   <string name="wakeup_boost">Tăng tốc khả năng thức dậy</string>
   <string name="wakeup_boost_summary">Tăng tốc đánh thức tương tự như tăng tốc tín hiệu đầu vào, nhưng nó xảy ra khi màn hình đã được bật.</string>

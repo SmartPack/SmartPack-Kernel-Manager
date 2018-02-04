@@ -206,7 +206,9 @@
   <string name="cpus_boosted">सीपीयू और बढ़ाया</string>
   <string name="cpus_boosted_summary">एक ही समय में और बढ़ाया सीपीयू की अधिकतम संख्या।</string>
   <string name="min_cpu_online">न्यूनतम ऑनलाइन सीपीयू</string>
+  <string name="min_cpu_online_summary">ऑनलाइन रहने वाले सीपीयू की न्यूनतम संख्या।</string>
   <string name="max_cpu_online">अधिकतम सीपीयू ऑनलाइन</string>
+  <string name="max_cpu_online_summary">ऑनलाइन रहने वाले सीपीयू की अधिकतम संख्या।</string>
   <string name="max_cpu_online_screen_off">अधिकतम सीपीयु स्क्रीन बंद</string>
   <string name="max_cpu_online_screen_off_summary">स्क्रीन बंद होने पर ओनलाईन सीपीयु की अधिकतम संख्या।</string>
   <string name="suspend_defer_time">निलंबित समय स्थगित</string>
