@@ -135,15 +135,15 @@ public class GPUFreq {
 
     private String BUSY;
     private String CUR_FREQ;
-    private Integer CUR_FREQ_OFFSET;
+    private int CUR_FREQ_OFFSET;
     private List<Integer> AVAILABLE_FREQS;
     private String MAX_FREQ;
-    private Integer MAX_FREQ_OFFSET;
+    private int MAX_FREQ_OFFSET;
     private String MIN_FREQ;
-    private Integer MIN_FREQ_OFFSET;
+    private int MIN_FREQ_OFFSET;
     private String GOVERNOR;
     private String[] AVAILABLE_GOVERNORS;
-    private Integer AVAILABLE_GOVERNORS_OFFSET;
+    private int AVAILABLE_GOVERNORS_OFFSET;
     private String TUNABLES;
 
     private Integer[] AVAILABLE_2D_FREQS;

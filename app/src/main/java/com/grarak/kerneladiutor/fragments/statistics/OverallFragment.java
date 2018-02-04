@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -67,8 +68,6 @@ public class OverallFragment extends RecyclerViewFragment {
     private CPUFreq mCPUFreq;
     private GPUFreq mGPUFreq;
 
-    private CPUUsageFragment mCPUUsageFragment;
-
     private StatsView mGPUFreqStatsView;
     private TemperatureView mTemperature;
 
@@ -87,10 +86,17 @@ public class OverallFragment extends RecyclerViewFragment {
 
         mCPUFreq = CPUFreq.getInstance();
         mGPUFreq = GPUFreq.getInstance();
-        if (mCPUUsageFragment != null && mCPUUsageFragment.mThread != null) {
-            mCPUUsageFragment.mThread.interrupt();
+
+        for (Fragment fragment : getChildFragmentManager().getFragments()) {
+            if (fragment instanceof CPUUsageFragment) {
+                CPUUsageFragment cpuUsageFragment = (CPUUsageFragment) fragment;
+                if (cpuUsageFragment.mThread != null) {
+                    cpuUsageFragment.mThread.interrupt();
+                    cpuUsageFragment.mThread = null;
+                }
+            }
         }
-        addViewPagerFragment(mCPUUsageFragment = new CPUUsageFragment());
+        addViewPagerFragment(new CPUUsageFragment());
     }
 
     @Override
@@ -276,17 +282,17 @@ public class OverallFragment extends RecyclerViewFragment {
         // for all the 0 duration states, add the the Unused State area
         if (extraStates.size() > 0) {
             int n = 0;
-            String str = "";
+            StringBuilder str = new StringBuilder();
 
             for (String s : extraStates) {
                 if (n++ > 0)
-                    str += ", ";
-                str += s;
+                    str.append(", ");
+                str.append(s);
             }
 
             DescriptionView unusedText = new DescriptionView();
             unusedText.setTitle(getString(R.string.unused_frequencies));
-            unusedText.setSummary(str);
+            unusedText.setSummary(str.toString());
             card.addItem(unusedText);
         }
     }
@@ -340,7 +346,7 @@ public class OverallFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
 
-        if (mGPUFreq != null) {
+        if (mGPUFreqStatsView != null) {
             mGPUFreqStatsView.setStat(mGPUFreq.getCurFreq() / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz));
         }
         if (mTemperature != null) {
@@ -441,22 +447,21 @@ public class OverallFragment extends RecyclerViewFragment {
                     @Override
                     public void run() {
                         while (true) {
-                            if (mThread == null) return;
-                            CPUFreq cpuFreq = CPUFreq.getInstance(getActivity());
-                            mCPUUsages = cpuFreq.getCpuUsage();
-                            if (mFreqs == null) {
-                                mFreqs = new int[cpuFreq.getCpuCount()];
-                            }
-                            for (int i = 0; i < mFreqs.length; i++) {
-                                if (getActivity() == null) break;
-                                mFreqs[i] = cpuFreq.getCurFreq(i);
-                            }
-
-                            if (getActivity() == null) {
-                                mThread = null;
-                            }
+                            if (mThread == null) break;
                             try {
-                                Thread.sleep(1);
+                                CPUFreq cpuFreq = CPUFreq.getInstance(getActivity());
+                                mCPUUsages = cpuFreq.getCpuUsage();
+                                if (mFreqs == null) {
+                                    mFreqs = new int[cpuFreq.getCpuCount()];
+                                }
+                                for (int i = 0; i < mFreqs.length; i++) {
+                                    if (getActivity() == null) break;
+                                    mFreqs[i] = cpuFreq.getCurFreq(i);
+                                }
+
+                                if (getActivity() == null) {
+                                    mThread = null;
+                                }
                             } catch (InterruptedException ignored) {
                                 mThread = null;
                             }
@@ -469,10 +474,10 @@ public class OverallFragment extends RecyclerViewFragment {
             if (mFreqs == null || mCPUUsages == null || mUsages == null) return;
             for (int i = 0; i < mUsages.size(); i++) {
                 View usageView = mUsages.get(i);
-                TextView usageOfflineText = (TextView) usageView.findViewById(R.id.usage_offline_text);
-                TextView usageLoadText = (TextView) usageView.findViewById(R.id.usage_load_text);
-                TextView usageFreqText = (TextView) usageView.findViewById(R.id.usage_freq_text);
-                XYGraph usageGraph = (XYGraph) usageView.findViewById(R.id.usage_graph);
+                TextView usageOfflineText = usageView.findViewById(R.id.usage_offline_text);
+                TextView usageLoadText = usageView.findViewById(R.id.usage_load_text);
+                TextView usageFreqText = usageView.findViewById(R.id.usage_freq_text);
+                XYGraph usageGraph = usageView.findViewById(R.id.usage_graph);
                 if (mFreqs[i] == 0) {
                     usageOfflineText.setVisibility(View.VISIBLE);
                     usageLoadText.setVisibility(View.GONE);

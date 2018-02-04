@@ -33,7 +33,6 @@ import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpu.Misc;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -131,15 +130,19 @@ public class CPUFragment extends RecyclerViewFragment {
     }
 
     private void freqInit(List<RecyclerViewItem> items) {
-        CardView bigCard = new CardView(getActivity());
+        mCPUUsageBig = new XYGraphView();
         if (mCPUFreq.isBigLITTLE()) {
-            bigCard.setTitle(getString(R.string.cluster_big));
+            mCPUUsageBig.setTitle(getString(R.string.cpu_usage_string, getString(R.string.cluster_big)));
+        } else {
+            mCPUUsageBig.setTitle(getString(R.string.cpu_usage));
         }
 
-        mCPUUsageBig = new XYGraphView();
-        mCPUUsageBig.setTitle(getString(R.string.cpu_usage));
+        items.add(mCPUUsageBig);
 
-        bigCard.addItem(mCPUUsageBig);
+        CardView bigCoresCard = new CardView(getActivity());
+        if (mCPUFreq.isBigLITTLE()) {
+            bigCoresCard.setTitle(getString(R.string.cores_string, getString(R.string.cluster_big)));
+        }
 
         final List<Integer> bigCores = mCPUFreq.getBigCpuRange();
 
@@ -149,7 +152,12 @@ public class CPUFragment extends RecyclerViewFragment {
             coreSwitch.setSummary(getString(R.string.core, core + 1));
 
             mCoresBig.put(core, coreSwitch);
-            bigCard.addItem(coreSwitch);
+            bigCoresCard.addItem(coreSwitch);
+        }
+
+        CardView bigFrequenciesCard = new CardView(getActivity());
+        if (mCPUFreq.isBigLITTLE()) {
+            bigFrequenciesCard.setTitle(getString(R.string.frequencies_string, getString(R.string.cluster_big)));
         }
 
         mCPUMaxBig = new SelectView();
@@ -163,7 +171,7 @@ public class CPUFragment extends RecyclerViewFragment {
                         bigCores.get(bigCores.size() - 1), getActivity());
             }
         });
-        bigCard.addItem(mCPUMaxBig);
+        bigFrequenciesCard.addItem(mCPUMaxBig);
 
         mCPUMinBig = new SelectView();
         mCPUMinBig.setTitle(getString(R.string.cpu_min_freq));
@@ -176,7 +184,7 @@ public class CPUFragment extends RecyclerViewFragment {
                         bigCores.get(bigCores.size() - 1), getActivity());
             }
         });
-        bigCard.addItem(mCPUMinBig);
+        bigFrequenciesCard.addItem(mCPUMinBig);
 
         if (mCPUFreq.hasMaxScreenOffFreq()) {
             mCPUMaxScreenOffBig = new SelectView();
@@ -190,7 +198,12 @@ public class CPUFragment extends RecyclerViewFragment {
                             bigCores.get(bigCores.size() - 1), getActivity());
                 }
             });
-            bigCard.addItem(mCPUMaxScreenOffBig);
+            bigFrequenciesCard.addItem(mCPUMaxScreenOffBig);
+        }
+
+        CardView bigGovernorsCard = new CardView(getActivity());
+        if (mCPUFreq.isBigLITTLE()) {
+            bigGovernorsCard.setTitle(getString(R.string.governors_string, getString(R.string.cluster_big)));
         }
 
         mCPUGovernorBig = new SelectView();
@@ -204,7 +217,7 @@ public class CPUFragment extends RecyclerViewFragment {
                         getActivity());
             }
         });
-        bigCard.addItem(mCPUGovernorBig);
+        bigGovernorsCard.addItem(mCPUGovernorBig);
 
         DescriptionView governorTunablesBig = new DescriptionView();
         governorTunablesBig.setTitle(getString(R.string.cpu_governor_tunables));
@@ -215,18 +228,20 @@ public class CPUFragment extends RecyclerViewFragment {
                 showGovernorTunables(bigCores.get(0), bigCores.get(bigCores.size() - 1));
             }
         });
-        bigCard.addItem(governorTunablesBig);
+        bigGovernorsCard.addItem(governorTunablesBig);
 
-        items.add(bigCard);
+        items.add(bigCoresCard);
+        items.add(bigFrequenciesCard);
+        items.add(bigGovernorsCard);
 
         if (mCPUFreq.isBigLITTLE()) {
-            CardView LITTLECard = new CardView(getActivity());
-            LITTLECard.setTitle(getString(R.string.cluster_little));
-
             mCPUUsageLITTLE = new XYGraphView();
-            mCPUUsageLITTLE.setTitle(getString(R.string.cpu_usage));
+            mCPUUsageLITTLE.setTitle(getString(R.string.cpu_usage_string, getString(R.string.cluster_little)));
 
-            LITTLECard.addItem(mCPUUsageLITTLE);
+            items.add(mCPUUsageLITTLE);
+
+            CardView LITTLECoresCard = new CardView(getActivity());
+            LITTLECoresCard.setTitle(getString(R.string.cores_string, getString(R.string.cluster_little)));
 
             final List<Integer> LITTLECores = mCPUFreq.getLITTLECpuRange();
 
@@ -236,8 +251,11 @@ public class CPUFragment extends RecyclerViewFragment {
                 coreSwitch.setSummary(getString(R.string.core, core + 1));
 
                 mCoresLITTLE.put(core, coreSwitch);
-                LITTLECard.addItem(coreSwitch);
+                LITTLECoresCard.addItem(coreSwitch);
             }
+
+            CardView LITTLEFrequenciesCard = new CardView(getActivity());
+            LITTLEFrequenciesCard.setTitle(getString(R.string.frequencies_string, getString(R.string.cluster_little)));
 
             mCPUMaxLITTLE = new SelectView();
             mCPUMaxLITTLE.setTitle(getString(R.string.cpu_max_freq));
@@ -250,7 +268,7 @@ public class CPUFragment extends RecyclerViewFragment {
                             LITTLECores.get(0), LITTLECores.get(LITTLECores.size() - 1), getActivity());
                 }
             });
-            LITTLECard.addItem(mCPUMaxLITTLE);
+            LITTLEFrequenciesCard.addItem(mCPUMaxLITTLE);
 
             mCPUMinLITTLE = new SelectView();
             mCPUMinLITTLE.setTitle(getString(R.string.cpu_min_freq));
@@ -263,7 +281,7 @@ public class CPUFragment extends RecyclerViewFragment {
                             LITTLECores.get(0), LITTLECores.get(LITTLECores.size() - 1), getActivity());
                 }
             });
-            LITTLECard.addItem(mCPUMinLITTLE);
+            LITTLEFrequenciesCard.addItem(mCPUMinLITTLE);
 
             if (mCPUFreq.hasMaxScreenOffFreq(mCPUFreq.getLITTLECpu())) {
                 mCPUMaxScreenOffLITTLE = new SelectView();
@@ -277,8 +295,11 @@ public class CPUFragment extends RecyclerViewFragment {
                                 LITTLECores.get(0), LITTLECores.get(LITTLECores.size() - 1), getActivity());
                     }
                 });
-                LITTLECard.addItem(mCPUMaxScreenOffLITTLE);
+                LITTLEFrequenciesCard.addItem(mCPUMaxScreenOffLITTLE);
             }
+
+            CardView LITTLEGovernorsCard = new CardView(getActivity());
+            LITTLEGovernorsCard.setTitle(getString(R.string.governors_string, getString(R.string.cluster_little)));
 
             mCPUGovernorLITTLE = new SelectView();
             mCPUGovernorLITTLE.setTitle(getString(R.string.cpu_governor));
@@ -291,7 +312,7 @@ public class CPUFragment extends RecyclerViewFragment {
                             getActivity());
                 }
             });
-            LITTLECard.addItem(mCPUGovernorLITTLE);
+            LITTLEGovernorsCard.addItem(mCPUGovernorLITTLE);
 
             DescriptionView governorTunablesLITTLE = new DescriptionView();
             governorTunablesLITTLE.setTitle(getString(R.string.cpu_governor_tunables));
@@ -302,9 +323,11 @@ public class CPUFragment extends RecyclerViewFragment {
                     showGovernorTunables(LITTLECores.get(0), LITTLECores.get(LITTLECores.size() - 1));
                 }
             });
-            LITTLECard.addItem(governorTunablesLITTLE);
+            LITTLEGovernorsCard.addItem(governorTunablesLITTLE);
 
-            items.add(LITTLECard);
+            items.add(LITTLECoresCard);
+            items.add(LITTLEFrequenciesCard);
+            items.add(LITTLEGovernorsCard);
         }
     }
 
@@ -620,38 +643,37 @@ public class CPUFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     while (true) {
-                        if (mRefreshThread == null) return;
-                        mCPUUsages = mCPUFreq.getCpuUsage();
-
-                        if (mCPUMaxBig != null) {
-                            mCPUMaxFreqBig = mCPUFreq.getMaxFreq(mCPUMaxFreqBig == 0);
-                        }
-                        if (mCPUMinBig != null) {
-                            mCPUMinFreqBig = mCPUFreq.getMinFreq(mCPUMinFreqBig == 0);
-                        }
-                        if (mCPUMaxScreenOffBig != null) {
-                            mCPUMaxScreenOffFreqBig = mCPUFreq.getMaxScreenOffFreq(mCPUMaxScreenOffFreqBig == 0);
-                        }
-                        if (mCPUGovernorBig != null) {
-                            mCPUGovernorStrBig = mCPUFreq.getGovernor(mCPUGovernorStrBig == null);
-                        }
-                        if (mCPUMaxLITTLE != null) {
-                            mCPUMaxFreqLITTLE = mCPUFreq.getMaxFreq(mCPUFreq.getLITTLECpu(), mCPUMaxFreqLITTLE == 0);
-                        }
-                        if (mCPUMinLITTLE != null) {
-                            mCPUMinFreqLITTLE = mCPUFreq.getMinFreq(mCPUFreq.getLITTLECpu(), mCPUMinFreqLITTLE == 0);
-                        }
-                        if (mCPUMaxScreenOffLITTLE != null) {
-                            mCPUMaxScreenOffFreqLITTLE = mCPUFreq.getMaxScreenOffFreq(mCPUFreq.getLITTLECpu(),
-                                    mCPUMaxScreenOffFreqLITTLE == 0);
-                        }
-                        if (mCPUGovernorLITTLE != null) {
-                            mCPUGovernorStrLITTLE = mCPUFreq.getGovernor(mCPUFreq.getLITTLECpu(),
-                                    mCPUGovernorStrLITTLE == null);
-                        }
-
+                        if (mRefreshThread == null) break;
                         try {
-                            Thread.sleep(500);
+                            mCPUUsages = mCPUFreq.getCpuUsage();
+
+                            if (mCPUMaxBig != null) {
+                                mCPUMaxFreqBig = mCPUFreq.getMaxFreq(mCPUMaxFreqBig == 0);
+                            }
+                            if (mCPUMinBig != null) {
+                                mCPUMinFreqBig = mCPUFreq.getMinFreq(mCPUMinFreqBig == 0);
+                            }
+                            if (mCPUMaxScreenOffBig != null) {
+                                mCPUMaxScreenOffFreqBig = mCPUFreq.getMaxScreenOffFreq(mCPUMaxScreenOffFreqBig == 0);
+                            }
+                            if (mCPUGovernorBig != null) {
+                                mCPUGovernorStrBig = mCPUFreq.getGovernor(mCPUGovernorStrBig == null);
+                            }
+                            if (mCPUMaxLITTLE != null) {
+                                mCPUMaxFreqLITTLE = mCPUFreq.getMaxFreq(mCPUFreq.getLITTLECpu(), mCPUMaxFreqLITTLE == 0);
+                            }
+                            if (mCPUMinLITTLE != null) {
+                                mCPUMinFreqLITTLE = mCPUFreq.getMinFreq(mCPUFreq.getLITTLECpu(), mCPUMinFreqLITTLE == 0);
+                            }
+                            if (mCPUMaxScreenOffLITTLE != null) {
+                                mCPUMaxScreenOffFreqLITTLE = mCPUFreq.getMaxScreenOffFreq(mCPUFreq.getLITTLECpu(),
+                                        mCPUMaxScreenOffFreqLITTLE == 0);
+                            }
+                            if (mCPUGovernorLITTLE != null) {
+                                mCPUGovernorStrLITTLE = mCPUFreq.getGovernor(mCPUFreq.getLITTLECpu(),
+                                        mCPUGovernorStrLITTLE == null);
+                            }
+
                         } catch (InterruptedException ignored) {
                             mRefreshThread = null;
                         }
@@ -702,25 +724,27 @@ public class CPUFragment extends RecyclerViewFragment {
     @Override
     public void onPause() {
         super.onPause();
-        mRefreshThread = null;
+        if (mRefreshThread != null) {
+            mRefreshThread.interrupt();
+            mRefreshThread = null;
+        }
     }
 
     private void refreshUsages(float[] usages, XYGraphView graph, List<Integer> cores) {
         if (graph != null) {
-            Float average = null;
+            float average = 0;
+            int size = 0;
             for (int core : cores) {
-                if (core + 1 < usages.length && !mCPUFreq.isOffline(core)) {
-                    if (average == null) {
-                        average = Utils.getAverage(usages[core + 1]);
-                    } else {
-                        average = Utils.getAverage(average, usages[core + 1]);
+                if (core + 1 < usages.length) {
+                    if (!mCPUFreq.isOffline(core)) {
+                        average += usages[core + 1];
                     }
+                    size++;
                 }
             }
-            if (average != null) {
-                graph.setText(Math.round(average) + "%");
-                graph.addPercentage(Math.round(average));
-            }
+            average /= size;
+            graph.setText(Math.round(average) + "%");
+            graph.addPercentage(Math.round(average));
         }
     }
 

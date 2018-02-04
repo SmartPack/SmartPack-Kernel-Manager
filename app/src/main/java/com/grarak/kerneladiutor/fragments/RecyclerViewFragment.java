@@ -65,6 +65,7 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewAdapter;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -260,26 +261,30 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
     private static class UILoader extends AsyncTask<Void, Void, List<RecyclerViewItem>> {
 
-        private RecyclerViewFragment mFragment;
+        private WeakReference<RecyclerViewFragment> mRefFragment;
         private Bundle mSavedInstanceState;
 
         private UILoader(RecyclerViewFragment fragment, Bundle savedInstanceState) {
-            mFragment = fragment;
+            mRefFragment = new WeakReference<>(fragment);
             mSavedInstanceState = savedInstanceState;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mFragment.showProgress();
-            mFragment.init();
+            RecyclerViewFragment fragment = mRefFragment.get();
+
+            fragment.showProgress();
+            fragment.init();
         }
 
         @Override
         protected List<RecyclerViewItem> doInBackground(Void... params) {
-            if (mFragment.isAdded() && mFragment.getActivity() != null) {
+            RecyclerViewFragment fragment = mRefFragment.get();
+
+            if (fragment.isAdded() && fragment.getActivity() != null) {
                 List<RecyclerViewItem> items = new ArrayList<>();
-                mFragment.addItems(items);
+                fragment.addItems(items);
                 return items;
             }
             return null;
@@ -290,35 +295,37 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             super.onPostExecute(recyclerViewItems);
             if (isCancelled() || recyclerViewItems == null) return;
 
+            final RecyclerViewFragment fragment = mRefFragment.get();
+
             for (RecyclerViewItem item : recyclerViewItems) {
-                mFragment.addItem(item);
+                fragment.addItem(item);
             }
-            mFragment.hideProgress();
-            mFragment.postInit();
+            fragment.hideProgress();
+            fragment.postInit();
             if (mSavedInstanceState == null) {
-                mFragment.mRecyclerView.post(new Runnable() {
+                fragment.mRecyclerView.post(new Runnable() {
                     @Override
                     public void run() {
-                        Activity activity = mFragment.getActivity();
+                        Activity activity = fragment.getActivity();
                         if (activity != null) {
-                            mFragment.mRecyclerView.startAnimation(AnimationUtils.loadAnimation(
+                            fragment.mRecyclerView.startAnimation(AnimationUtils.loadAnimation(
                                     activity, R.anim.slide_in_bottom));
 
-                            int cx = mFragment.mViewPager.getWidth();
+                            int cx = fragment.mViewPager.getWidth();
 
                             SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
-                                    mFragment.mViewPager, cx / 2, 0, 0, cx);
+                                    fragment.mViewPager, cx / 2, 0, 0, cx);
                             animator.addListener(new SupportAnimator.SimpleAnimatorListener() {
                                 @Override
                                 public void onAnimationStart() {
                                     super.onAnimationStart();
-                                    mFragment.mViewPager.setVisibility(View.VISIBLE);
+                                    fragment.mViewPager.setVisibility(View.VISIBLE);
                                 }
 
                                 @Override
                                 public void onAnimationEnd() {
                                     super.onAnimationEnd();
-                                    mFragment.mViewPagerShadow.setVisibility(View.VISIBLE);
+                                    fragment.mViewPagerShadow.setVisibility(View.VISIBLE);
                                 }
                             });
                             animator.setDuration(400);
@@ -327,10 +334,10 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                     }
                 });
             } else {
-                mFragment.mViewPager.setVisibility(View.VISIBLE);
-                mFragment.mViewPagerShadow.setVisibility(View.VISIBLE);
+                fragment.mViewPager.setVisibility(View.VISIBLE);
+                fragment.mViewPagerShadow.setVisibility(View.VISIBLE);
             }
-            mFragment.mLoader = null;
+            fragment.mLoader = null;
         }
     }
 

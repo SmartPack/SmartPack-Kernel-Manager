@@ -115,15 +115,6 @@ public class Utils {
         }
     }
 
-    public static float getAverage(float... numbers) {
-        float average = 0;
-        for (float num : numbers) {
-            average += num;
-        }
-        average /= numbers.length;
-        return average;
-    }
-
     public static String getRandomString(int length) {
         Random random = new Random();
         StringBuilder text = new StringBuilder();

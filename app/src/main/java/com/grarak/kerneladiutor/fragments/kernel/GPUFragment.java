@@ -59,7 +59,7 @@ public class GPUFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        mGPUFreq = mGPUFreq.getInstance();
+        mGPUFreq = GPUFreq.getInstance();
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 

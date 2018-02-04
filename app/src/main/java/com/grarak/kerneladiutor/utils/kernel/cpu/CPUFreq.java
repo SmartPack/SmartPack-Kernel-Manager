@@ -677,27 +677,24 @@ public class CPUFreq {
         return mCpuCount;
     }
 
-    public float[] getCpuUsage() {
-        try {
-            Usage[] prevUsage = getUsages();
-            Thread.sleep(500);
-            Usage[] usage = getUsages();
+    public float[] getCpuUsage() throws InterruptedException {
+        Usage[] prevUsage = getUsages();
+        Thread.sleep(500);
+        Usage[] usage = getUsages();
 
-            if (prevUsage != null && usage != null) {
-                float[] pers = new float[prevUsage.length];
-                for (int i = 0; i < prevUsage.length; i++) {
-                    float prevIdle = prevUsage[i].getIdle();
-                    float prevUp = prevUsage[i].getUptime();
+        if (prevUsage != null && usage != null) {
+            float[] pers = new float[prevUsage.length];
+            for (int i = 0; i < prevUsage.length; i++) {
+                float prevIdle = prevUsage[i].getIdle();
+                float prevUp = prevUsage[i].getUptime();
 
-                    float idle = usage[i].getIdle();
-                    float up = usage[i].getUptime();
+                float idle = usage[i].getIdle();
+                float up = usage[i].getUptime();
 
-                    float cpu = (up - prevUp) / ((up + idle) - (prevUp + prevIdle)) * 100;
-                    pers[i] = cpu < 0 ? 0 : cpu > 100 ? 100 : cpu;
-                }
-                return pers;
+                float cpu = (up - prevUp) / ((up + idle) - (prevUp + prevIdle)) * 100;
+                pers[i] = cpu < 0 ? 0 : cpu > 100 ? 100 : cpu;
             }
-        } catch (InterruptedException ignored) {
+            return pers;
         }
 
         return null;

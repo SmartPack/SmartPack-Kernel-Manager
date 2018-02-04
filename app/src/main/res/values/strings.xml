@@ -150,9 +150,13 @@
     <string name="handlers">Handlers</string>
 
     <!-- CPU -->
+    <string name="cores_string">%s cores</string>
+    <string name="frequencies_string">%s frequencies</string>
+    <string name="governors_string">%s governors</string>
     <string name="cores_singular">%d core</string>
     <string name="cores">%d cores</string>
     <string name="cpu_usage">CPU Usage</string>
+    <string name="cpu_usage_string">%s CPU Usage</string>
     <string name="no_offline_core">You can\'t offline this core!</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
     <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
