@@ -725,17 +725,6 @@
   <string name="fahrenheit_summary">Käytä fahrenheit-asteita lämpötilojen mittaamiseen.</string>
   <string name="force_english">Pakota englanti näyttökieleksi</string>
   <string name="dark_theme">Tumma teema</string>
-  <string name="banner_resizer">Banner resizer</string>
-  <string name="hide_banner">{
- \" versio \" : 1 ,
- \" ohjaus \" : {
- \" Sovelletaan \" : \" #! / System / bin / sh \ n \ n setenforce $ 1 \" ,
- \" Käyttöön \" : \" #! / System / bin / sh \ n \ n , jos [` getenforce` == \" täytäntöönpano \ \" ]; sitten \ n kaiku 1 \ n muuta \ n echo 0 \ n fi \" ,
- \" otsikko \" : \" Selinux \" ,
- \" description \" : \" Security-Enhanced Linux on Linux-ytimen tietoturvamoduuli, joka tarjoaa mekanismin tukemaan pääsynvalvonnan suojauskäytäntöjä. \" ,
- \" id \" : \" kytkin \"
- }
-}</string>
   <string name="five_sec">5 sekuntia</string>
   <string name="ten_sec">10 sekuntia</string>
   <string name="twenty_sec">20 sekuntia</string>
