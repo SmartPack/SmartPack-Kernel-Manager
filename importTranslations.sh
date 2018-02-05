@@ -1,5 +1,6 @@
 #!/bin/sh
 
+TOPDIR=`realpath .`
 BASE=`pwd`
 ZIP=$1
 
@@ -42,3 +43,10 @@ done
 
 cd ..
 rm -r translations
+cd $TOPDIR
+
+if [ ! -f translation_verifyer ]; then
+    clang++ -std=c++11 translation_verifyer.cpp -o translation_verifyer
+fi
+
+./translation_verifyer app/src/main/res
