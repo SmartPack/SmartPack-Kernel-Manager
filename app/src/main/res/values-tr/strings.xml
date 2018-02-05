@@ -9,6 +9,7 @@
   <string name="no_root">Root yok</string>
   <string name="no_busybox">Busybox yok</string>
   <string name="open">%s aç</string>
+  <string name="disable">Devre dışı bırak</string>
   <!-- Security -->
   <string name="password">Şifre</string>
   <string name="password_wrong">Şifre yanlış</string>
@@ -28,7 +29,7 @@
   <string name="ad_here">Reklamınız burada olabilir</string>
   <string name="remove_ad">Reklamı kaldır</string>
   <string name="warning">Uyarı</string>
-  <string name="gh_ad">Bu ticari olmayan bir reklamdır! Bunu ciddiye almayın! Gerçek bir reklam yüklenemediğinde alanı doldurmanın komik bir yolu (adblock kullanıcısına bakıyorum).</string>
+  <string name="gh_ad">Bu ticari olmayan bir reklamdır! Bunu ciddiye almayın! Gerçek bir reklam yüklenemediğinde (reklam engelleyene bakıyorum) alanı doldurmanın komik bir yolu.</string>
   <string name="open_ad_anyway">Yine de reklam aç</string>
   <string name="apply_on_boot">Açılışta uygula</string>
   <string name="apply_on_boot_text">%d saniyede ayarları uyguluyor.</string>
@@ -128,9 +129,13 @@
   <string name="version">Sürüm</string>
   <string name="handlers">İşleyiciler</string>
   <!-- CPU -->
+  <string name="cores_string">%s çekirdek</string>
+  <string name="frequencies_string">%s frekans</string>
+  <string name="governors_string">%s düzenleyici</string>
   <string name="cores_singular">%d çekirdek</string>
   <string name="cores">%d çekirdek</string>
   <string name="cpu_usage">İşlemci Kullanımı</string>
+  <string name="cpu_usage_string">%s CPU Kullanımı</string>
   <string name="no_offline_core">Seçtiğiniz çekirdek kapatılamıyor!</string>
   <string name="cpu_max_freq">İşlemci Maksimum Frekansı</string>
   <string name="cpu_max_freq_summary">İşlemcinin yükseltileceği maksimum frekansı belirler.</string>
@@ -315,6 +320,8 @@
   <string name="busy_up_threshold_summary">Büyük işlemcilerin açılacağı eşik.</string>
   <string name="offline_delay">Çevrimdışı Gecikme</string>
   <string name="offline_delay_summary">Bir işlemci açılmadan önce gerekli zaman.</string>
+  <string name="online_delay">Çevrimiçi Gecikme</string>
+  <string name="online_delay_summary">İşlemciyi açmadan önce geçen süre.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">Qualcomm cihazlar için Shoaib0597 tarafından geliştirilen hepsi bir arada tak çıkar çözümü.</string>
   <string name="max_cpu_online_big">Maksimum Büyük İşlemci Aktifliği</string>
@@ -492,6 +499,8 @@
   <string name="pocket_mode_summary">Bunu etkinleştirmek, cihaz bir cebe girdiğinde uyandırma kontrollerini kapatacaktır.</string>
   <string name="timeout">Zaman aşımı</string>
   <string name="timeout_summary">Ekran kapandıktan sonra uyandırma kontrollerinin devre dışı bırakılması için bir süre ayarlayın.</string>
+  <string name="charge_timeout">Şarj Zaman Aşımı</string>
+  <string name="charge_timeout_summary">Şarj sırasında ekran kapandıktan sonra uyandırma kontrollerinin devre dışı bırakılacağı bir süre ayarlayın.</string>
   <string name="power_key_suspend">Güç Tuşu Askıya Alma</string>
   <string name="power_key_suspend_summary">Bunu etkinleştirdiğinizde, ekran güç tuşu ile kapatıldığında uyandırma kontrolleri devre dışı bırakılacaktır.</string>
   <string name="area">Alan</string>
@@ -499,6 +508,10 @@
   <string name="height">Yükseklik</string>
   <string name="vibration">Titreşim</string>
   <string name="vibration_strength">Titreşim Gücü</string>
+  <string name="key_power_mode">Güç Tuşu Modu</string>
+  <string name="key_power_mode_summary">Uyandırma kontrolleri, yalnızca cihazınızı güç tuşuyla uyku moduna geçirdiğinizde etkinleşir.</string>
+  <string name="charging_mode">Şarj Modu</string>
+  <string name="charging_mode_summary">Uyandırma kontrolleri yalnızca cihaz şarj edilirken etkinleştirilir.</string>
   <!-- Sound -->
   <string name="sound_control">Ses Denetimi</string>
   <string name="headset_highperf_mode">Kulaklık Yüksek Performans Modu</string>
@@ -654,9 +667,25 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Uyandırma kilidi Bölücü</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Uyandırma kilidi Bölücü</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary_notification">Veri paylaşımı etkin! Bu özellik hakkında daha fazla bilgi edinmek için tıklayın.</string>
   <string name="data_sharing_summary">Ayarlarınızı başkalarıyla paylaşın! Kernel Adiutor otomatik olarak bilgi toplayacak ve tüm insanlar tarafından kullanılabilir bir puan listesini derleyecektir.</string>
   <string name="data_sharing_summary_link">Listeye şuradan ulaşabilirsiniz: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Paylaşım etkinliği</string>
+  <string name="filter">Filtre</string>
+  <string name="board">Pano</string>
+  <string name="show_all">Tümünü göster</string>
+  <string name="failed_board">Pano yüklenemedi.</string>
+  <string name="failed_devices">Cihazlar yüklenemedi.</string>
+  <string name="previous">Önceki</string>
+  <string name="page">Sayfa</string>
+  <string name="next">Sonraki</string>
+  <string name="kernel_version">Kernel Sürümü</string>
+  <string name="potential_sot">Olası Ekran Süresi</string>
+  <string name="screen_always_on">ekran her zaman açık olduğunda</string>
+  <string name="lower_better">düşük daha iyidir</string>
+  <string name="cpu_score">İşlemci Puanı</string>
+  <string name="cpu_information">İşlemci Bilgileri</string>
+  <string name="default_settings">Varsayılan (değişiklik yapılmadı)</string>
   <!-- Custom Controls -->
   <string name="welcome">Hoş geldiniz</string>
   <string name="custom_controls_summary">Bu bölümde, uygulamada (henüz) olmayan özel denetimleri oluşturabilir veya içe aktarabilirsiniz.</string>

@@ -695,7 +695,6 @@
   <!-- Downloads -->
   <string name="downloads_error">Не удалось найти поддерживаемые ядра. Проверьте подключение к интернету.</string>
   <string name="download_error">Сбой загрузки%s.</string>
-  <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="check_md5">Проверка md5</string>
   <string name="md5_mismatch">MD5 хэш загруженного файла другой. Скорее всего, это вызвано тем, что:\n\n\u2022 загруженный файл повреждён\n\u2022 разработчик выложил неверный хэш\n\nПопробуйте загрузить файл заново. Если вы продолжите получать эту ошибку, свяжитесь с разработчиком данного ядра.</string>
   <string name="install">Установить</string>

@@ -31,7 +31,7 @@
   <string name="gh_ad">Toto je nekomerční reklama. Neberte to vážně. Je to jen vtipný způsob, jak vyplnit místo, když nelze načíst skutečnou reklamu (teď koukáme na vás, uživatelé blokátorů reklam).</string>
   <string name="open_ad_anyway">Přesto reklamu otevřít</string>
   <string name="apply_on_boot">Použít při spuštění</string>
-  <string name="apply_on_boot_text">Používám nastavení v %d sekundách.</string>
+  <string name="apply_on_boot_text">Nastavení bude použito během %d sekund.</string>
   <string name="apply_on_boot_complete">Použití nastavení dokončeno.</string>
   <string name="apply_on_boot_canceled">Použití nastavení zrušeno.</string>
   <string name="not_in_range">Není v rozsahu</string>
@@ -48,13 +48,13 @@
   <string name="mhz"> MHz</string>
   <string name="celsius">°C</string>
   <string name="fahrenheit">ºF</string>
-  <string name="mb"> MB</string>
-  <string name="ms"> ms</string>
-  <string name="mv"> mV</string>
+  <string name="mb"> MB</string>
+  <string name="ms"> ms</string>
+  <string name="mv"> mV</string>
   <string name="min">min</string>
-  <string name="mah">mAh</string>
+  <string name="mah"> mAh</string>
   <string name="ma">mA</string>
-  <string name="kb">kB</string>
+  <string name="kb"> kB</string>
   <string name="px">px</string>
   <!-- Special signs -->
   <!-- Headers -->
@@ -70,7 +70,7 @@
   <string name="cpu">Procesor</string>
   <string name="cpu_voltage">Napětí procesoru</string>
   <string name="cpu_hotplug">CPU Hotplug</string>
-  <string name="thermal">Tepelná</string>
+  <string name="thermal">Teplota</string>
   <string name="gpu">Grafika</string>
   <string name="screen">Obrazovka</string>
   <string name="wake">Probuzení</string>
@@ -93,14 +93,14 @@
   <string name="initd">Init.d</string>
   <string name="on_boot">Při spuštění</string>
   <string name="settings">Nastavení</string>
-  <string name="about">O programu</string>
+  <string name="about">O aplikaci</string>
   <string name="contributors">Přispívající</string>
   <string name="help">Nápověda</string>
   <!-- Overall -->
   <string name="offline">Offline</string>
   <string name="core">Jádro %d</string>
   <string name="gpu_freq">Frekvence GPU</string>
-  <string name="refresh">Obnovit</string>
+  <string name="refresh">Aktualizovat</string>
   <string name="reset">Resetovat</string>
   <string name="restore">Obnovit</string>
   <string name="deep_sleep">Hluboký spánek</string>
@@ -116,7 +116,7 @@
   <string name="android_api_level">Android SDK</string>
   <string name="android_codename">Android kódové označení</string>
   <string name="fingerprint">Digitální otisky</string>
-  <string name="build_display_id">Vytvoření displeje ID</string>
+  <string name="build_display_id">ID sestavení displeje</string>
   <string name="baseband">Základní pásmo</string>
   <string name="rom">ROM</string>
   <string name="bootloader">Zavaděč</string>
@@ -303,7 +303,7 @@
   <string name="cycle_down_summary">Počet cyklů čekání od poslední události hotplug před odpojením dalšího jádra.</string>
   <string name="cycle_up">Cyklus nahoru</string>
   <string name="cycle_up_summary">Počet cyklů čekání od poslední události hotplug před připojením dalšího jádra.</string>
-  <string name="core_control">Řízení Jádra</string>
+  <string name="core_control">Řízení jádra</string>
   <string name="core_control_summary">Qualcomm hotplug. Je nám líto, nelze jej vypnout. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Upravené ovládání jádra OnePlus.</string>
@@ -548,7 +548,7 @@
   <string name="test">Zkouška</string>
   <string name="led_test_summary">Test LED diody s Vaším nastavením.</string>
   <!-- I/O Scheduler -->
-  <string name="internal_storage">Vnitřní uložiště</string>
+  <string name="internal_storage">Interní úložiště</string>
   <string name="external_storage">Externí úložiště</string>
   <string name="scheduler">Plánovač</string>
   <string name="scheduler_summary">Nastavení aktivního elevator algoritmu pro I/O operace. Plánovač rozhoduje, jak nakládat s I/O požadavky.</string>
@@ -767,7 +767,7 @@
   <!-- Settings -->
   <string name="open_settings">Otevřít Nastavení</string>
   <string name="fahrenheit_title">Stupňe Fahrenheita</string>
-  <string name="fahrenheit_summary">Používat stupeňe Fahrenheita pro měření teploty.</string>
+  <string name="fahrenheit_summary">Používat stupně Fahrenheita pro měření teploty.</string>
   <string name="force_english">Vynutit použití angličtiny</string>
   <string name="user_interface">Uživatelské prostředí</string>
   <string name="dark_theme">Tmavý motiv</string>
@@ -775,22 +775,22 @@
   <string name="banner_resizer">Změna velikosti banneru</string>
   <string name="hide_banner">Skrýt banner</string>
   <string name="force_cards">Vynutit karty</string>
-  <string name="force_cards_summary">Pokud je to možné, použijte karty pro položky.</string>
+  <string name="force_cards_summary">Zobrazovat položky jako karty, je-li to možné.</string>
   <string name="accent_color">Barva zvýraznění</string>
   <string name="section_icons">Ikony sekcí</string>
-  <string name="section_icons_summary">Ukáže ikonu pro každou sekci navigační lišty.</string>
+  <string name="section_icons_summary">Zobrazit ikonu pro každou sekci navigační lišty.</string>
   <string name="instant">Bez prodlevy</string>
-  <string name="five_sec">5 vteřin</string>
-  <string name="ten_sec">10 vteřin</string>
-  <string name="twenty_sec">20 vteřin</string>
-  <string name="fifty_sec">50 vteřin</string>
+  <string name="five_sec">5 sekund</string>
+  <string name="ten_sec">10 sekund</string>
+  <string name="twenty_sec">20 sekund</string>
+  <string name="fifty_sec">50 sekund</string>
   <string name="apply_on_boot_test_summary">Test se aplikuje při zavádění. To zahrnuje všechny druhy věcí, které se používají při zavádění, jako jsou vlastní ovládací prvky, profily, init.d atd.</string>
-  <string name="apply_on_boot_running">Služba aplikování při spuštění již běží, Počkejte prosím než skončí.</string>
+  <string name="apply_on_boot_running">Služba „použít při spuštění“ již běží. Počkejte než skončí.</string>
   <string name="nothing_apply">Nenalezeno nic k aplikování!</string>
   <string name="hide">Skrýt</string>
-  <string name="apply_on_boot_hide_summary">Skrýt oznámení aplikování při spuštění. Prodleva ale zůstane!</string>
+  <string name="apply_on_boot_hide_summary">Skrýt oznámení použití změn při spuštění. Prodleva zůstane.</string>
   <string name="toast">Zpráva</string>
-  <string name="apply_on_boot_toast_summary">Zobraz zprávu po aplikaci nastavení.</string>
+  <string name="apply_on_boot_toast_summary">Zobrazovat zprávu po použití nastavení.</string>
   <string name="confirmation_notification">Potvrzující oznámení</string>
   <string name="apply_on_boot_confirmation_notification_summary">Po aplikování při spuštění se zapnutými oznámeními ukaž oznámení s potvrzením, zda aplikování při spuštění bylo úspěšné.</string>
   <string name="script">Skript</string>

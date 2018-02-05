@@ -9,6 +9,7 @@
   <string name="no_root">Kein Root</string>
   <string name="no_busybox">Keine Busybox</string>
   <string name="open">Öffne %s</string>
+  <string name="disable">Deaktivieren</string>
   <!-- Security -->
   <string name="password">Passwort</string>
   <string name="password_wrong">Das Passwort ist falsch</string>
@@ -103,7 +104,7 @@
   <string name="refresh">Aktualisieren</string>
   <string name="reset">Zurücksetzen</string>
   <string name="restore">Wiederherstellen</string>
-  <string name="deep_sleep">Ruhemodus</string>
+  <string name="deep_sleep">Tiefschlaf</string>
   <string name="uptime">Laufzeit</string>
   <string name="error_frequencies">Laden der Frequenzen fehlgeschlagen</string>
   <string name="unused_frequencies">Unbenutzte Frequenzen</string>
@@ -128,9 +129,13 @@
   <string name="version">Version</string>
   <string name="handlers">Gesten</string>
   <!-- CPU -->
+  <string name="cores_string">%s Kerne</string>
+  <string name="frequencies_string">%s Frequenzen</string>
+  <string name="governors_string">%s Governors</string>
   <string name="cores_singular">%d Kern</string>
   <string name="cores">%d Kerne</string>
   <string name="cpu_usage">CPU-Auslastung</string>
+  <string name="cpu_usage_string">%s CPU-Auslastung</string>
   <string name="no_offline_core">Dieser Kern kann nicht ausgeschaltet werden!</string>
   <string name="cpu_max_freq">Maximale CPU-Frequenz</string>
   <string name="cpu_max_freq_summary">Ändere die maximale Taktfrequenz der CPU.</string>
@@ -166,7 +171,7 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall des CPU-Boost, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
-  <string name="input_boost_freq_core">Gib die Boost Frequenz des Kerns in % an.</string>
+  <string name="input_boost_freq_core">Berührungs-Frequenzschub Kern %d</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
   <string name="wakeup_boost">Aufwachen beschleunigen</string>
   <string name="wakeup_boost_summary">»Wakeup Boost« ist ähnlich wie »input boost« aber es wird angewendet, wenn der Bildschirm eingeschaltet wird.</string>
@@ -269,7 +274,7 @@
   <string name="idle_frequency_summary">Fällt dieser Kern unter die eingestellte Frequenz,aktiviere auf keinen Fall andere Kerne! </string>
   <string name="touch_boost_time">Boost-Zeit bei Bildschirmberührung</string>
   <string name="touch_boost_time_summary">Dauer \"erhöhter CPU\" nach Aktivierung des Bildschirms</string>
-  <string name="boost_frequency_core">Erhöhte Frequenz vom Kern in %.</string>
+  <string name="boost_frequency_core">Turbo Frequenz von Kern %d</string>
   <string name="start_delay">Startverzögerung</string>
   <string name="start_delay_summary">Dauer bis zur Aktivierung von \"Hotplug\".</string>
   <string name="delay">Verzögerung</string>
@@ -290,7 +295,7 @@
   <string name="quad_core_mode">Quad-Core-Modus</string>
   <string name="dual_core_mode">Dual-Core-Modus</string>
   <string name="zen_decision">Zen Decision</string>
-  <string name="zen_decision_summary">Eine Veränderung im Kernel für Qualcomms \"MPDecision\", entwickelt von \"bbedward\".</string>
+  <string name="zen_decision_summary">Ein Kernel-Ersatz für Qualcomms MPDecision, entwickelt von bbedward.</string>
   <string name="wake_wait_time">Wartezeit bis zur Aktivierung des Bildschirms</string>
   <string name="wake_wait_time_summary">Dauer bis \"Kerne aktiviert werden\".</string>
   <string name="bat_threshold_ignore">Akkugrenzwert ignorieren</string>
@@ -315,6 +320,8 @@
   <string name="busy_up_threshold_summary">Wert bei dem \"bigCPUs\" aktiviert sein sollen.</string>
   <string name="offline_delay">Verzögerung \"Offline\"</string>
   <string name="offline_delay_summary">Dauer bis \"CPU inaktiviert wird\".</string>
+  <string name="online_delay">Online-Verzögerung</string>
+  <string name="online_delay_summary">Zeit vor dem Einschalten einer CPU.</string>
   <string name="aio_hotplug">\"AiO Hotplug\"</string>
   <string name="aio_hotplug_summary">\"AiO HotPlug\" für Qualcomm Geräte. Entwickelt von \"Shoaib0597\".</string>
   <string name="max_cpu_online_big">Anzahl \"maximal aktiver \'bigCPUs\"</string>
@@ -466,7 +473,7 @@
   <string name="lenient">Sweep2Wake Nachsicht</string>
   <string name="lenient_summary">Benötigt nur 1. und 4. für Sweep2Wake.</string>
   <string name="t2w">Tap2Wake</string>
-  <string name="t2w_summary">Wecken Sie Ihr Gerät auf, indem Sie auf den Touchscreen tippen.</string>
+  <string name="t2w_summary">Wecke dein Gerät auf, indem du auf den Touchscreen tippst.</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Sperren des Gerätes durch doppeltes Tippen auf die Oberseite des Bildschirms.</string>
   <string name="s2w_charging">Sweep2Wake während des Ladevorgangs</string>
@@ -520,7 +527,7 @@
   <string name="capacity">Kapazität</string>
   <string name="usb_fast_charge">USB Fast Charge</string>
   <string name="usb_fast_charge_summary">Das Gerät lädt schneller, falls verbunden via USB.</string>
-  <string name="blx">Akkulaufzeit verlängern</string>
+  <string name="blx">Akkulaufzeit eXtender</string>
   <string name="blx_summary">Maximale Kapazität die aufgeladen werden soll.</string>
   <string name="charge_rate">Ladegeschwindigkeit</string>
   <string name="charging_current">Ladestrom</string>
@@ -738,7 +745,7 @@ sicher?</string>
   <string name="profile_tile">Ansicht Profile</string>
   <string name="profile_tile_summary">Zeigt eine Ansicht zum Auswählen eines Profils.</string>
   <string name="profile_select">Profil auswählen</string>
-  <string name="applying_profile">Prozentsatz der Anwendungen</string>
+  <string name="applying_profile">%s wird angewendet!</string>
   <string name="no_profiles">Kein Profil gefunden.Sie müssen erst ein Profil erstellen.</string>
   <string name="sections_disabled">Alle Sektionen deaktiviert! Keine Profile verfügbar.</string>
   <string name="new_mode">Neu</string>
@@ -760,14 +767,14 @@ sicher?</string>
   <!-- Init.d -->
   <string name="emulate_initd">Init.d emulieren</string>
   <string name="emulate_initd_summary"> Falls dein Gerät \"Init.d\" nicht standardmäßig unterstützt, kannst du seine Prozesse emulieren.</string>
-  <string name="exceute_question">Ausgeführter Prozentsatz?</string>
+  <string name="exceute_question">%s ausführen?</string>
   <string name="executing">Ausführung</string>
   <string name="result">Ergebnis</string>
   <!-- On Boot -->
   <string name="on_boot_welcome_summary">Dieser Abschnitt zeigt dir, was passiert, wenn dein Gerät bootet. Falls er leer ist, passiert nichts nach dem Booten.</string>
   <string name="delete_question">Löschen %s?</string>
-  <string name="arguments">Parameter In %?</string>
-  <string name="disable_question">Deaktiviert in %?</string>
+  <string name="arguments">Argumente: %s</string>
+  <string name="disable_question">%s deaktivieren?</string>
   <!-- Settings -->
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="fahrenheit_title">Fahrenheit</string>

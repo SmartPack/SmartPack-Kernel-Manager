@@ -9,6 +9,7 @@
   <string name="no_root">Nincs root jog</string>
   <string name="no_busybox">Nincs busybox</string>
   <string name="open">%s megnyitása</string>
+  <string name="disable">Letiltás</string>
   <!-- Security -->
   <string name="password">Jelszó</string>
   <string name="password_wrong">Hibás jelszó</string>
@@ -128,9 +129,13 @@
   <string name="version">Verizó</string>
   <string name="handlers">Kezelők</string>
   <!-- CPU -->
+  <string name="cores_string">%s mag</string>
+  <string name="frequencies_string">%s frekvencia</string>
+  <string name="governors_string">%s kormányzók</string>
   <string name="cores_singular">%d mag</string>
   <string name="cores">%d mag</string>
   <string name="cpu_usage">CPU használat</string>
+  <string name="cpu_usage_string">%s CPU használat</string>
   <string name="no_offline_core">Nem kapcsolhatod ki ezt a magot!</string>
   <string name="cpu_max_freq">Maximális CPU frekvencia</string>
   <string name="cpu_max_freq_summary">A maximális frekvencia, amit a CPU használhat.</string>
@@ -315,6 +320,8 @@
   <string name="busy_up_threshold_summary">Küszöb, amikor a nagy CPU-kat be kell kapcsolni.</string>
   <string name="offline_delay">Offline késleltetés</string>
   <string name="offline_delay_summary">A CPU kikapcsolása előtti idő.</string>
+  <string name="online_delay">Offline késleltetés</string>
+  <string name="online_delay_summary">A CPU kikapcsolása előtti idő.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">Minden egyben HotPlug Qualcomm eszközökhöz. Fejlesztette: Shoaib0597.</string>
   <string name="max_cpu_online_big">Maximális aktív nagy CPU</string>
@@ -492,6 +499,8 @@
   <string name="pocket_mode_summary">Ha ezt engedélyezed, akkor kikapcsolod az ébresztési vezérlőket, amikor a készülék a zsebedben van.</string>
   <string name="timeout">Időkorlát</string>
   <string name="timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
+  <string name="charge_timeout">Töltés Késleltetés</string>
+  <string name="charge_timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
   <string name="power_key_suspend">Bekapcsológomb felfüggesztése</string>
   <string name="power_key_suspend_summary">Ezt engedélyezve az ébresztési vezérlők kikapcsolásra kerülnek, ha a képernyő a bekapcsoló gombbal lett kikapcsolva.</string>
   <string name="area">Terület</string>
@@ -499,6 +508,10 @@
   <string name="height">Magasság</string>
   <string name="vibration">Rezgés</string>
   <string name="vibration_strength">Rezgés erőssége</string>
+  <string name="key_power_mode">Energiatakarékos mód</string>
+  <string name="key_power_mode_summary">Ellenőrzések nyomán csak akkor aktív, ha teszel a készüléket alvás a bekapcsológombot.</string>
+  <string name="charging_mode">Töltés Mód</string>
+  <string name="charging_mode_summary">Ellenőrzések nyomán csak akkor aktív, ha a készülék töltése.</string>
   <!-- Sound -->
   <string name="sound_control">Hangvezérlő</string>
   <string name="headset_highperf_mode">Fülhallgató nagy teljesítményű mód</string>
@@ -653,9 +666,25 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary_notification">Az adatok megosztása az aktív! Ide kattintva Tudj meg többet ezt a funkciót.</string>
   <string name="data_sharing_summary">Ossza meg másokkal a beállításait! A Kernel Adiutor automatikusan információkat gyűjt és összeállít egy mindenki számára elérhető pontszám listát.</string>
   <string name="data_sharing_summary_link">A lista elérhető itt: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Megosztás engedélyezése</string>
+  <string name="filter">Szűrő</string>
+  <string name="board">Tábla</string>
+  <string name="show_all">Összes megjelenítése</string>
+  <string name="failed_board">Nem sikerült betölteni a táblázatot.</string>
+  <string name="failed_devices">Nem sikerült az eszközlista betöltése</string>
+  <string name="previous">Előző</string>
+  <string name="page">Oldal</string>
+  <string name="next">Következő</string>
+  <string name="kernel_version">Kernel verzió</string>
+  <string name="potential_sot">Potenciális SOT</string>
+  <string name="screen_always_on">Amikor a képernyő be van kapcsolva </string>
+  <string name="lower_better">alacsonyabb a jobb</string>
+  <string name="cpu_score">CPU pontszám</string>
+  <string name="cpu_information">CPU információ</string>
+  <string name="default_settings">Alapértelmezett (nincs módosítások)</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>

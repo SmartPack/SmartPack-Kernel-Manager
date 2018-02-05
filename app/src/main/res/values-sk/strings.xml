@@ -9,6 +9,7 @@
   <string name="no_root">Nemáte root</string>
   <string name="no_busybox">Nemáte busybox</string>
   <string name="open">Otvoriť %s</string>
+  <string name="disable">Vypnuté</string>
   <!-- Security -->
   <string name="password">Heslo</string>
   <string name="password_wrong">Zlé heslo</string>
@@ -128,9 +129,13 @@
   <string name="version">Verzia</string>
   <string name="handlers">Obslužné rutiny</string>
   <!-- CPU -->
+  <string name="cores_string">%s jadrá</string>
+  <string name="frequencies_string">%s frekvencie</string>
+  <string name="governors_string">%s regulátori</string>
   <string name="cores_singular">%d jadro</string>
-  <string name="cores">&amp;d jadrá</string>
+  <string name="cores">%d jadrá</string>
   <string name="cpu_usage">Využitie CPU</string>
+  <string name="cpu_usage_string">%s využitie procesora</string>
   <string name="no_offline_core">Toto jadro nie je možné vypúť!</string>
   <string name="cpu_max_freq">Maximálna frekvencia procesora</string>
   <string name="cpu_max_freq_summary">Nastavenie maximálnej frekvencie procesora.</string>
@@ -315,6 +320,8 @@
   <string name="busy_up_threshold_summary">Prahová hodnota pre zapnutie veľkého klastra procesora.</string>
   <string name="offline_delay">Oneskorenie prepnutia do offline</string>
   <string name="offline_delay_summary">Čas. interval pred vypnutím CPU.</string>
+  <string name="online_delay">Oneskorenie prepnutia do online</string>
+  <string name="online_delay_summary">Čas. interval pred zapnutím CPU.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">Všetko v jednom HotPlug pre zariadenia Qualcomm. Vytvorené Shoaib0597.</string>
   <string name="max_cpu_online_big">Maximálny počet aktívnych jadier veľkého klastra</string>
@@ -492,6 +499,8 @@
   <string name="pocket_mode_summary">Povolením tohto nastavenia sa vypne budenie, keď je zariadenie uložené vo vrecku.</string>
   <string name="timeout">Časový limit</string>
   <string name="timeout_summary">Nastavenie časového intervalu, kedy dôjde k vypnutiu ovládacích prvkov budenia po vypnutí obrazovky.</string>
+  <string name="charge_timeout">Oneskorenie zapnutia nabíjania</string>
+  <string name="charge_timeout_summary">Nastavenie časového intervalu, kedy dôjde k vypnutiu ovládacích prvkov budenia po vypnutí obrazovky počas nabíjania.</string>
   <string name="power_key_suspend">Odstavenie tlačidla Napájanie</string>
   <string name="power_key_suspend_summary">Povolením tohto nastavenia sa vypne budenie, keď je obrazovka vypnutá tlačidlom Napájanie.</string>
   <string name="area">Oblasť</string>
@@ -499,6 +508,10 @@
   <string name="height">Výška</string>
   <string name="vibration">Vibrácie</string>
   <string name="vibration_strength">Intenzita vibrácií</string>
+  <string name="key_power_mode">Režim tlačidla Napájanie</string>
+  <string name="key_power_mode_summary">Ovládanie prebudenia bude aktívne iba vtedy, keď zariadenie uspíte stlačením tlačidla Napájanie.</string>
+  <string name="charging_mode">Režim nabíjania</string>
+  <string name="charging_mode_summary">Ovládanie prebudenia bude aktívne iba vtedy, keď sa zariadenie nabíja.</string>
   <!-- Sound -->
   <string name="sound_control">Ovládanie zvuku</string>
   <string name="headset_highperf_mode">Vysoko výkonný režim slúchadiel</string>
@@ -653,9 +666,25 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakeloc delič</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock delič</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary_notification">Zdieľanie údajov je aktívne! Kliknutím získate viac informácií o tejto funkcii.</string>
   <string name="data_sharing_summary">Zdieľajte svoje nastavenia s ostatnými! Kernel Adiutor automaticky zhromažďuje informácie a zostaví zoznam výsledkov dostupný všetkým ľuďom.</string>
   <string name="data_sharing_summary_link">K zoznamu máte prístup na &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Povolenie zdieľania</string>
+  <string name="filter">Filter</string>
+  <string name="board">Nástenka</string>
+  <string name="show_all">Zobraziť všetko</string>
+  <string name="failed_board">Nepodarilo sa načítať nástenky.</string>
+  <string name="failed_devices">Nepodarilo sa načítať zariadenia.</string>
+  <string name="previous">Predchádzajúca</string>
+  <string name="page">Stránka</string>
+  <string name="next">Ďaľsia</string>
+  <string name="kernel_version">Verzia jadra</string>
+  <string name="potential_sot">Potenciálna hodnota SOT</string>
+  <string name="screen_always_on">keď je obrazovka vždy zapnutá</string>
+  <string name="lower_better">nižšie je lepšie</string>
+  <string name="cpu_score">Skóre CPU</string>
+  <string name="cpu_information">Informácie o CPU</string>
+  <string name="default_settings">Predvolené (bez úprav)</string>
   <!-- Custom Controls -->
   <string name="welcome">Vitajte</string>
   <string name="custom_controls_summary">V tejto sekcii môžete vytvoriť alebo importovať vlastné ovládacie prvky, ktoré neexistujú v aplikácii (zatiaľ).</string>
