@@ -47,7 +47,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-ads:11.8.0'
     implementation 'com.google.firebase:firebase-core:11.8.0'
-    implementation('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
         transitive = true
     }
 
