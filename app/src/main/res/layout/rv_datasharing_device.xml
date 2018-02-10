@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    android:padding="10dp"
-    app:cardCornerRadius="@dimen/cardview_radius"
-    app:cardElevation="@dimen/cardview_elevation"
-    app:cardUseCompatPadding="true">
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/rank"
@@ -62,4 +60,4 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</FrameLayout>

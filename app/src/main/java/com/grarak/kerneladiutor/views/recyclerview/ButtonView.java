@@ -41,11 +41,6 @@ public class ButtonView extends RecyclerViewItem {
     }
 
     @Override
-    protected boolean cardCompatible() {
-        return false;
-    }
-
-    @Override
     public void onCreateView(View view) {
         mButton = view.findViewById(R.id.btn);
 

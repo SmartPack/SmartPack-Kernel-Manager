@@ -252,10 +252,9 @@ public class NavigationActivity extends BaseActivity
     }
 
     private void init(Bundle savedInstanceState) {
-        int result = Prefs.getInt("license", -1, this);
-        int intentResult = getIntent().getIntExtra("result", -1);
+        int result = getIntent().getIntExtra("result", -1);
 
-        if ((result == intentResult && (result == 1 || result == 2)) && mLicenseDialog) {
+        if ((result == 1 || result == 2) && mLicenseDialog) {
             ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -265,10 +264,9 @@ public class NavigationActivity extends BaseActivity
                         @Override
                         public void onDismiss(DialogInterface dialog) {
                             mLicenseDialog = false;
-                            Prefs.saveInt("license", -1, NavigationActivity.this);
                         }
                     }, this).show();
-        } else if ((result != intentResult || result == 3) && mLicenseDialog) {
+        } else if (result == 3 && mLicenseDialog) {
             ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -277,7 +275,6 @@ public class NavigationActivity extends BaseActivity
                 @Override
                 public void onDismiss(DialogInterface dialog) {
                     mLicenseDialog = false;
-                    Prefs.saveInt("license", -1, NavigationActivity.this);
                 }
             }, this).show();
         } else {
