@@ -131,8 +131,6 @@ public class NavigationActivity extends BaseActivity
     private WebpageReader mAdsFetcher;
     private boolean mFetchingAds;
 
-    private boolean mAllowCommit;
-
     @Override
     protected boolean setStatusBarColor() {
         return false;
@@ -142,7 +140,6 @@ public class NavigationActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAllowCommit = true;
         if (savedInstanceState == null) {
             new FragmentLoader(this).execute();
         } else {
@@ -514,7 +511,6 @@ public class NavigationActivity extends BaseActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        mAllowCommit = false;
         outState.putParcelableArrayList("fragments", mFragments);
         outState.putInt("selection", mSelection);
         outState.putBoolean("license", mLicenseDialog);
@@ -540,23 +536,8 @@ public class NavigationActivity extends BaseActivity
         }
         setShortcuts();
 
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isFinishing()) {
-                    if (mAllowCommit) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
-                                res + "_key").commit();
-                    }
-                }
-            }
-        }, delay ? 250 : 0);
-    }
-
-    @Override
-    protected void onResumeFragments() {
-        super.onResumeFragments();
-        mAllowCommit = true;
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
+                res + "_key").commitAllowingStateLoss();
     }
 
     private Fragment getFragment(int res) {
