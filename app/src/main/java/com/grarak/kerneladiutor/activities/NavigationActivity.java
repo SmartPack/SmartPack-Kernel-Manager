@@ -161,14 +161,18 @@ public class NavigationActivity extends BaseActivity
 
         @Override
         protected Void doInBackground(Void... voids) {
-            mRefActivity.get().initFragments();
+            NavigationActivity activity = mRefActivity.get();
+            if (activity == null) return null;
+            activity.initFragments();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mRefActivity.get().init(null);
+            NavigationActivity activity = mRefActivity.get();
+            if (activity == null) return;
+            activity.init(null);
         }
     }
 
@@ -404,6 +408,7 @@ public class NavigationActivity extends BaseActivity
     }
 
     private NavigationFragment findNavigationFragmentByClass(Class<? extends Fragment> fragmentClass) {
+        if (fragmentClass == null) return null;
         for (NavigationFragment navigationFragment : mFragments) {
             if (fragmentClass == navigationFragment.mFragmentClass) {
                 return navigationFragment;
@@ -584,14 +589,7 @@ public class NavigationActivity extends BaseActivity
 
         NavigationFragment(Parcel parcel) {
             mId = parcel.readInt();
-            try {
-                String name = parcel.readString();
-                if (!name.isEmpty()) {
-                    mFragmentClass = (Class<? extends Fragment>) Class.forName(name);
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            mFragmentClass = (Class<? extends Fragment>) parcel.readSerializable();
             mDrawable = parcel.readInt();
         }
 
@@ -608,7 +606,7 @@ public class NavigationActivity extends BaseActivity
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(mId);
-            dest.writeString(mFragmentClass == null ? "" : mFragmentClass.getCanonicalName());
+            dest.writeSerializable(mFragmentClass);
             dest.writeInt(mDrawable);
         }
 

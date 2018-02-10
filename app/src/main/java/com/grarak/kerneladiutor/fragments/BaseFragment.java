@@ -53,6 +53,7 @@ public abstract class BaseFragment extends Fragment {
                 .OnGlobalLayoutListener() {
             public void onGlobalLayout() {
                 view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                if (getActivity() == null) return;
                 onViewFinished();
             }
         });

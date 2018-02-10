@@ -71,20 +71,8 @@ public class CPUFragment extends RecyclerViewFragment {
     private SparseArray<SwitchView> mCoresBig = new SparseArray<>();
     private SparseArray<SwitchView> mCoresLITTLE = new SparseArray<>();
 
-    private float[] mCPUUsages;
-    private int mCPUMaxFreqBig;
-    private int mCPUMinFreqBig;
-    private int mCPUMaxScreenOffFreqBig;
-    private String mCPUGovernorStrBig;
-    private int mCPUMaxFreqLITTLE;
-    private int mCPUMinFreqLITTLE;
-    private int mCPUMaxScreenOffFreqLITTLE;
-    private String mCPUGovernorStrLITTLE;
-
     private PathReaderFragment mGovernorTunableFragment;
     private Dialog mGovernorTunableErrorDialog;
-
-    private Thread mRefreshThread;
 
     @Override
     protected BaseFragment getForegroundFragment() {
@@ -635,58 +623,74 @@ public class CPUFragment extends RecyclerViewFragment {
         items.add(touchBoost);
     }
 
+    private float[] mCPUUsages;
+    private boolean[] mCPUStates;
+    private int[] mCPUFreqs;
+    private int mCPUMaxFreqBig;
+    private int mCPUMinFreqBig;
+    private int mCPUMaxScreenOffFreqBig;
+    private String mCPUGovernorStrBig;
+    private int mCPUMaxFreqLITTLE;
+    private int mCPUMinFreqLITTLE;
+    private int mCPUMaxScreenOffFreqLITTLE;
+    private String mCPUGovernorStrLITTLE;
+
+    @Override
+    protected void refreshThread() {
+        super.refreshThread();
+
+        try {
+            mCPUUsages = mCPUFreq.getCpuUsage();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        mCPUStates = new boolean[mCPUFreq.getCpuCount()];
+        for (int i = 0; i < mCPUStates.length; i++) {
+            mCPUStates[i] = !mCPUFreq.isOffline(i);
+        }
+
+        mCPUFreqs = new int[mCPUFreq.getCpuCount()];
+        for (int i = 0; i < mCPUFreqs.length; i++) {
+            mCPUFreqs[i] = mCPUFreq.getCurFreq(i);
+        }
+
+        if (mCPUMaxBig != null) {
+            mCPUMaxFreqBig = mCPUFreq.getMaxFreq(mCPUMaxFreqBig == 0);
+        }
+        if (mCPUMinBig != null) {
+            mCPUMinFreqBig = mCPUFreq.getMinFreq(mCPUMinFreqBig == 0);
+        }
+        if (mCPUMaxScreenOffBig != null) {
+            mCPUMaxScreenOffFreqBig = mCPUFreq.getMaxScreenOffFreq(mCPUMaxScreenOffFreqBig == 0);
+        }
+        if (mCPUGovernorBig != null) {
+            mCPUGovernorStrBig = mCPUFreq.getGovernor(mCPUGovernorStrBig == null);
+        }
+        if (mCPUMaxLITTLE != null) {
+            mCPUMaxFreqLITTLE = mCPUFreq.getMaxFreq(mCPUFreq.getLITTLECpu(), mCPUMaxFreqLITTLE == 0);
+        }
+        if (mCPUMinLITTLE != null) {
+            mCPUMinFreqLITTLE = mCPUFreq.getMinFreq(mCPUFreq.getLITTLECpu(), mCPUMinFreqLITTLE == 0);
+        }
+        if (mCPUMaxScreenOffLITTLE != null) {
+            mCPUMaxScreenOffFreqLITTLE = mCPUFreq.getMaxScreenOffFreq(mCPUFreq.getLITTLECpu(),
+                    mCPUMaxScreenOffFreqLITTLE == 0);
+        }
+        if (mCPUGovernorLITTLE != null) {
+            mCPUGovernorStrLITTLE = mCPUFreq.getGovernor(mCPUFreq.getLITTLECpu(),
+                    mCPUGovernorStrLITTLE == null);
+        }
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
-        if (mRefreshThread == null) {
-            mRefreshThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        if (mRefreshThread == null) break;
-                        try {
-                            mCPUUsages = mCPUFreq.getCpuUsage();
 
-                            if (mCPUMaxBig != null) {
-                                mCPUMaxFreqBig = mCPUFreq.getMaxFreq(mCPUMaxFreqBig == 0);
-                            }
-                            if (mCPUMinBig != null) {
-                                mCPUMinFreqBig = mCPUFreq.getMinFreq(mCPUMinFreqBig == 0);
-                            }
-                            if (mCPUMaxScreenOffBig != null) {
-                                mCPUMaxScreenOffFreqBig = mCPUFreq.getMaxScreenOffFreq(mCPUMaxScreenOffFreqBig == 0);
-                            }
-                            if (mCPUGovernorBig != null) {
-                                mCPUGovernorStrBig = mCPUFreq.getGovernor(mCPUGovernorStrBig == null);
-                            }
-                            if (mCPUMaxLITTLE != null) {
-                                mCPUMaxFreqLITTLE = mCPUFreq.getMaxFreq(mCPUFreq.getLITTLECpu(), mCPUMaxFreqLITTLE == 0);
-                            }
-                            if (mCPUMinLITTLE != null) {
-                                mCPUMinFreqLITTLE = mCPUFreq.getMinFreq(mCPUFreq.getLITTLECpu(), mCPUMinFreqLITTLE == 0);
-                            }
-                            if (mCPUMaxScreenOffLITTLE != null) {
-                                mCPUMaxScreenOffFreqLITTLE = mCPUFreq.getMaxScreenOffFreq(mCPUFreq.getLITTLECpu(),
-                                        mCPUMaxScreenOffFreqLITTLE == 0);
-                            }
-                            if (mCPUGovernorLITTLE != null) {
-                                mCPUGovernorStrLITTLE = mCPUFreq.getGovernor(mCPUFreq.getLITTLECpu(),
-                                        mCPUGovernorStrLITTLE == null);
-                            }
-
-                        } catch (InterruptedException ignored) {
-                            mRefreshThread = null;
-                        }
-                    }
-                }
-            });
-            mRefreshThread.start();
-        }
-
-        if (mCPUUsages != null) {
-            refreshUsages(mCPUUsages, mCPUUsageBig, mCPUFreq.getBigCpuRange());
+        if (mCPUUsages != null && mCPUStates != null) {
+            refreshUsages(mCPUUsages, mCPUUsageBig, mCPUFreq.getBigCpuRange(), mCPUStates);
             if (mCPUFreq.isBigLITTLE()) {
-                refreshUsages(mCPUUsages, mCPUUsageLITTLE, mCPUFreq.getLITTLECpuRange());
+                refreshUsages(mCPUUsages, mCPUUsageLITTLE, mCPUFreq.getLITTLECpuRange(), mCPUStates);
             }
         }
 
@@ -715,28 +719,22 @@ public class CPUFragment extends RecyclerViewFragment {
             mCPUGovernorLITTLE.setItem(mCPUGovernorStrLITTLE);
         }
 
-        refreshCores(mCoresBig);
-        if (mCPUFreq.isBigLITTLE()) {
-            refreshCores(mCoresLITTLE);
+        if (mCPUFreqs != null) {
+            refreshCores(mCoresBig, mCPUFreqs);
+            if (mCPUFreq.isBigLITTLE()) {
+                refreshCores(mCoresLITTLE, mCPUFreqs);
+            }
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mRefreshThread != null) {
-            mRefreshThread.interrupt();
-            mRefreshThread = null;
-        }
-    }
-
-    private void refreshUsages(float[] usages, XYGraphView graph, List<Integer> cores) {
+    private void refreshUsages(float[] usages, XYGraphView graph, List<Integer> cores,
+                               boolean[] coreStates) {
         if (graph != null) {
             float average = 0;
             int size = 0;
             for (int core : cores) {
                 if (core + 1 < usages.length) {
-                    if (!mCPUFreq.isOffline(core)) {
+                    if (coreStates[core]) {
                         average += usages[core + 1];
                     }
                     size++;
@@ -748,13 +746,13 @@ public class CPUFragment extends RecyclerViewFragment {
         }
     }
 
-    private void refreshCores(SparseArray<SwitchView> array) {
+    private void refreshCores(SparseArray<SwitchView> array, int[] freqs) {
         try {
             for (int i = 0; i < array.size(); i++) {
                 SwitchView switchView = array.valueAt(i);
                 if (switchView != null) {
                     final int core = array.keyAt(i);
-                    int freq = mCPUFreq.getCurFreq(core);
+                    int freq = freqs[core];
 
                     String freqText = freq == 0 ? getString(R.string.offline) : (freq / 1000)
                             + getString(R.string.mhz);

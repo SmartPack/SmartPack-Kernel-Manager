@@ -113,7 +113,7 @@ public class OverallFragment extends RecyclerViewFragment {
             items.add(mGPUFreqStatsView);
         }
         mTemperature = new TemperatureView();
-        mTemperature.setFullSpan(mGPUFreq == null);
+        mTemperature.setFullSpan(mGPUFreqStatsView == null);
 
         items.add(mTemperature);
     }
@@ -342,12 +342,21 @@ public class OverallFragment extends RecyclerViewFragment {
         frequencyCard.addItem(frequencyState);
     }
 
+    private Integer mGPUCurFreq;
+
+    @Override
+    protected void refreshThread() {
+        super.refreshThread();
+
+        mGPUCurFreq = mGPUFreq.getCurFreq();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
 
-        if (mGPUFreqStatsView != null) {
-            mGPUFreqStatsView.setStat(mGPUFreq.getCurFreq() / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz));
+        if (mGPUFreqStatsView != null && mGPUCurFreq != null) {
+            mGPUFreqStatsView.setStat(mGPUCurFreq / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz));
         }
         if (mTemperature != null) {
             mTemperature.setBattery(mBatteryRaw);

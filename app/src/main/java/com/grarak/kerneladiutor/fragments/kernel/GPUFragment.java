@@ -350,29 +350,45 @@ public class GPUFragment extends RecyclerViewFragment {
         }
     }
 
+    private Integer m2dFreq;
+    private List<Integer> m2dFreqs;
+    private Integer mBusy;
+    private Integer mFreq;
+    private List<Integer> mFreqs;
+
+    @Override
+    protected void refreshThread() {
+        super.refreshThread();
+
+        m2dFreq = mGPUFreq.get2dCurFreq();
+        m2dFreqs = mGPUFreq.get2dAvailableFreqs();
+        mBusy = mGPUFreq.hasBusy() ? mGPUFreq.getBusy() : null;
+        mFreq = mGPUFreq.getCurFreq();
+        mFreqs = mGPUFreq.getAvailableFreqs();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
 
-        if (m2dCurFreq != null) {
-            int freq = mGPUFreq.get2dCurFreq();
-            float maxFreq = mGPUFreq.get2dAvailableFreqs().get(mGPUFreq.get2dAvailableFreqs().size() - 1);
-            m2dCurFreq.setText((freq / 1000000) + getString(R.string.mhz));
-            float per = (float) freq / maxFreq * 100f;
+        if (m2dCurFreq != null && m2dFreq != null && m2dFreqs != null) {
+            float maxFreq = m2dFreqs.get(m2dFreqs.size() - 1);
+            m2dCurFreq.setText((m2dFreq / 1000000) + getString(R.string.mhz));
+            float per = (float) m2dFreq / maxFreq * 100f;
             m2dCurFreq.addPercentage(Math.round(per > 100 ? 100 : per < 0 ? 0 : per));
         }
 
-        if (mCurFreq != null) {
+        if (mCurFreq != null && mFreq != null && mFreqs != null) {
             int load = -1;
             String text = "";
-            if (mGPUFreq.hasBusy()) {
-                load = mGPUFreq.getBusy();
+            if (mBusy != null) {
+                load = mBusy;
                 load = load > 100 ? 100 : load < 0 ? 0 : load;
                 text += load + "% - ";
             }
 
-            int freq = mGPUFreq.getCurFreq();
-            float maxFreq = mGPUFreq.getAvailableFreqs().get(mGPUFreq.getAvailableFreqs().size() - 1);
+            int freq = mFreq;
+            float maxFreq = mFreqs.get(mFreqs.size() - 1);
             text += freq / mGPUFreq.getCurFreqOffset() + getString(R.string.mhz);
             mCurFreq.setText(text);
             float per = (float) freq / maxFreq * 100f;

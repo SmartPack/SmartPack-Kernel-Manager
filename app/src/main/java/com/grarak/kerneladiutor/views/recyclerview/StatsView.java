@@ -43,8 +43,8 @@ public class StatsView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mStatView = (TextView) view.findViewById(R.id.stat);
-        mTitleView = (TextView) view.findViewById(R.id.title);
+        mStatView = view.findViewById(R.id.stat);
+        mTitleView = view.findViewById(R.id.title);
 
         super.onCreateView(view);
     }

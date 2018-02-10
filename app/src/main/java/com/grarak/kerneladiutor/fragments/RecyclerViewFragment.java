@@ -44,6 +44,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,6 +69,8 @@ import com.viewpagerindicator.CirclePageIndicator;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import io.codetail.animation.SupportAnimator;
 import io.codetail.animation.ViewAnimationUtils;
@@ -78,6 +81,7 @@ import io.codetail.animation.ViewAnimationUtils;
 public abstract class RecyclerViewFragment extends BaseFragment {
 
     private Handler mHandler;
+    private ScheduledThreadPoolExecutor mPoolExecutor;
 
     private View mRootView;
 
@@ -188,6 +192,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             }
         }) : mRecyclerViewAdapter);
         mRecyclerView.setLayoutManager(mLayoutManager = getLayoutManager());
+        mRecyclerView.setHasFixedSize(true);
 
         if (!Utils.DONATED
                 && !showTopFab()
@@ -826,7 +831,11 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mHandler.post(mRefresh);
+        if (mPoolExecutor == null) {
+            mPoolExecutor = new ScheduledThreadPoolExecutor(1);
+            mPoolExecutor.scheduleWithFixedDelay(mScheduler, 0, 500,
+                    TimeUnit.MILLISECONDS);
+        }
         for (RecyclerViewItem item : mItems) {
             item.onResume();
         }
@@ -835,10 +844,39 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        mHandler.removeCallbacks(mRefresh);
+        if (mPoolExecutor != null) {
+            mPoolExecutor.shutdown();
+            mPoolExecutor = null;
+        }
         for (RecyclerViewItem item : mItems) {
             item.onPause();
         }
+    }
+
+    private Runnable mScheduler = new Runnable() {
+        @Override
+        public void run() {
+            refreshThread();
+
+            Activity activity = getActivity();
+            if (activity == null) return;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (getActivity() != null) {
+                        refresh();
+                    }
+                }
+            });
+        }
+    };
+
+    protected void refreshThread() {
+        Log.i(getClass().getSimpleName(), "refreshThread");
+    }
+
+    protected void refresh() {
+        Log.i(getClass().getSimpleName(), "refresh");
     }
 
     protected boolean showAd() {
@@ -865,9 +903,6 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             mLoader.cancel(true);
             mLoader = null;
         }
-        if (mHandler != null) {
-            mHandler.removeCallbacks(mRefresh);
-        }
         mAdView = null;
         for (RecyclerViewItem item : mItems) {
             item.onDestroy();
@@ -877,16 +912,5 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     protected Handler getHandler() {
         return mHandler;
     }
-
-    protected void refresh() {
-    }
-
-    private Runnable mRefresh = new Runnable() {
-        @Override
-        public void run() {
-            refresh();
-            mHandler.postDelayed(this, 1000);
-        }
-    };
 
 }

@@ -156,13 +156,25 @@ public class KSMFragment extends RecyclerViewFragment {
         }
     }
 
+    private List<String> mInfoSummaries;
+
+    @Override
+    protected void refreshThread() {
+        super.refreshThread();
+
+        mInfoSummaries = new ArrayList<>(mInfos.size());
+        for (int i = 0; i < mInfos.size(); i++) {
+            mInfoSummaries.add(mKSM.getInfo(i));
+        }
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
 
-        if (mInfos.size() > 0) {
+        if (mInfos.size() > 0 && mInfoSummaries != null) {
             for (int i = 0; i < mInfos.size(); i++) {
-                mInfos.get(i).setSummary(mKSM.getInfo(i));
+                mInfos.get(i).setSummary(mInfoSummaries.get(i));
             }
         }
     }

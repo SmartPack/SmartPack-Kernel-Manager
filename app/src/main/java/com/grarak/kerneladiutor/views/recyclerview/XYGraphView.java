@@ -25,8 +25,8 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.views.XYGraph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by willi on 12.05.16.
@@ -39,7 +39,7 @@ public class XYGraphView extends RecyclerViewItem {
 
     private CharSequence mTitleStr;
     private CharSequence mTextStr;
-    private List<Integer> mPercentages = new ArrayList<>();
+    private Queue<Integer> mPercentages = new LinkedBlockingQueue<>();
 
     @Override
     public int getLayoutRes() {
@@ -48,9 +48,9 @@ public class XYGraphView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(View view) {
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mText = (TextView) view.findViewById(R.id.text);
-        mGraph = (XYGraph) view.findViewById(R.id.graph);
+        mTitle = view.findViewById(R.id.title);
+        mText = view.findViewById(R.id.text);
+        mGraph = view.findViewById(R.id.graph);
 
         super.onCreateView(view);
     }
@@ -66,12 +66,11 @@ public class XYGraphView extends RecyclerViewItem {
     }
 
     public void addPercentage(int percentage) {
-        mPercentages.add(percentage);
+        mPercentages.offer(percentage);
         refresh();
     }
 
     @Override
-
     protected void refresh() {
         super.refresh();
         if (mTitle != null && mTitleStr != null) {
@@ -81,9 +80,8 @@ public class XYGraphView extends RecyclerViewItem {
             mText.setText(mTextStr);
         }
         if (mGraph != null) {
-            mGraph.clear();
-            for (int per : mPercentages) {
-                mGraph.addPercentage(per);
+            while (mPercentages.size() != 0) {
+                mGraph.addPercentage(mPercentages.poll());
             }
         }
     }

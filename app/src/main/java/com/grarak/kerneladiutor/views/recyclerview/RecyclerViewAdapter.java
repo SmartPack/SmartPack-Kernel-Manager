@@ -52,7 +52,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        mItems.get(position).onCreateView(holder.itemView);
+        RecyclerViewItem item = mItems.get(position);
+        item.onCreateView(holder.itemView);
     }
 
     @Override
@@ -62,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         RecyclerViewItem item = mItems.get(viewType);
         View view;
         if (item.cacheable()) {
@@ -94,6 +96,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
         item.setOnViewChangeListener(mOnViewChangedListener);
         item.onCreateHolder(parent, view);
+
         return new RecyclerView.ViewHolder(view) {
         };
     }

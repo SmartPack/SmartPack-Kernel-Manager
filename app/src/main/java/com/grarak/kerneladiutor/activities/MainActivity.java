@@ -209,6 +209,7 @@ public class MainActivity extends BaseActivity {
          */
         private void collectData() {
             MainActivity activity = mRefActivity.get();
+            if (activity == null) return;
 
             Battery.getInstance(activity);
             CPUBoost.getInstance();
@@ -255,6 +256,7 @@ public class MainActivity extends BaseActivity {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             MainActivity activity = mRefActivity.get();
+            if (activity == null) return;
 
             int red = ContextCompat.getColor(activity, R.color.red);
             int green = ContextCompat.getColor(activity, R.color.green);
@@ -275,6 +277,7 @@ public class MainActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             MainActivity activity = mRefActivity.get();
+            if (activity == null) return;
 
             /*
              * If root or busybox/toybox are not available,
@@ -325,8 +328,11 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            MainActivity activity = mRefActivity.get();
+            if (activity == null) return;
             try {
-                PackageManager packageManager = mRefActivity.get().getPackageManager();
+                PackageManager packageManager = activity.getPackageManager();
                 mApplicationInfo = packageManager.getApplicationInfo(
                         "com.grarak.kerneladiutordonate", 0);
                 mPackageInfo = packageManager.getPackageInfo(
@@ -340,6 +346,9 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            MainActivity activity = mRefActivity.get();
+            if (activity == null) return false;
+
             if (mApplicationInfo != null && mPackageInfo != null
                     && mPackageInfo.versionCode == 130) {
                 try {
@@ -353,7 +362,7 @@ public class MainActivity extends BaseActivity {
                 if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
                     String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
                     if (!content.isEmpty() && (content = Utils.decodeString(content)) != null) {
-                        if (content.equals(Utils.getAndroidId(mRefActivity.get()))) {
+                        if (content.equals(Utils.getAndroidId(activity))) {
                             mLicensedCached = true;
                         }
                     }
@@ -381,6 +390,8 @@ public class MainActivity extends BaseActivity {
             super.onPostExecute(donationValid);
 
             MainActivity activity = mRefActivity.get();
+            if (activity == null) return;
+
             if (donationValid && mLicensedCached) {
                 activity.launch(0);
             } else if (donationValid && mInternetAvailable) {

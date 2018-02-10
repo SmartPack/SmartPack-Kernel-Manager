@@ -35,8 +35,8 @@ import java.util.List;
  */
 public class EntropyFragment extends RecyclerViewFragment {
 
-    private DescriptionView mAvailable;
-    private DescriptionView mPoolSize;
+    private DescriptionView mAvailableView;
+    private DescriptionView mPoolSizeView;
 
     @Override
     protected void init() {
@@ -49,17 +49,17 @@ public class EntropyFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         int ps = Entropy.getPoolsize();
 
-        mAvailable = new DescriptionView();
-        mAvailable.setTitle(getString(R.string.available));
-        mAvailable.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
+        mAvailableView = new DescriptionView();
+        mAvailableView.setTitle(getString(R.string.available));
+        mAvailableView.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
 
-        items.add(mAvailable);
+        items.add(mAvailableView);
 
-        mPoolSize = new DescriptionView();
-        mPoolSize.setTitle(getString(R.string.poolsize));
-        mPoolSize.setSummary(String.valueOf(ps));
+        mPoolSizeView = new DescriptionView();
+        mPoolSizeView.setTitle(getString(R.string.poolsize));
+        mPoolSizeView.setSummary(String.valueOf(ps));
 
-        items.add(mPoolSize);
+        items.add(mPoolSizeView);
 
         SeekBarView read = new SeekBarView();
         read.setTitle(getString(R.string.read));
@@ -104,16 +104,25 @@ public class EntropyFragment extends RecyclerViewFragment {
         return Utils.roundTo2Decimals((double) available * 100 / (double) poolsize) + "% (" + available + ")";
     }
 
+    private Integer mPoolSize;
+    private Integer mAvailable;
+
+    @Override
+    protected void refreshThread() {
+        super.refreshThread();
+
+        mPoolSize = Entropy.getPoolsize();
+        mAvailable = Entropy.getAvailable();
+    }
+
     @Override
     protected void refresh() {
         super.refresh();
 
-        int ps = Entropy.getPoolsize();
-        if (mAvailable != null) {
-            mAvailable.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
-        }
-        if (mPoolSize != null) {
-            mPoolSize.setSummary(String.valueOf(ps));
+        if (mPoolSize != null && mAvailable != null
+                && mAvailableView != null && mPoolSizeView != null) {
+            mAvailableView.setSummary(getAvailableDescription(mAvailable, mPoolSize));
+            mPoolSizeView.setSummary(String.valueOf(mPoolSize));
         }
     }
 }

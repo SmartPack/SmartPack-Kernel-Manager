@@ -51,9 +51,9 @@ public class TemperatureView extends RecyclerViewItem {
         mCPUParent = view.findViewById(R.id.cpu_parent);
         mGPUParent = view.findViewById(R.id.gpu_parent);
 
-        mCPU = (TextView) view.findViewById(R.id.cpu);
-        mGPU = (TextView) view.findViewById(R.id.gpu);
-        mBattery = (TextView) view.findViewById(R.id.battery);
+        mCPU = view.findViewById(R.id.cpu);
+        mGPU = view.findViewById(R.id.gpu);
+        mBattery = view.findViewById(R.id.battery);
 
         super.onCreateView(view);
     }

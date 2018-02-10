@@ -94,10 +94,10 @@ public class CardView extends RecyclerViewItem {
     private void initLayouts(View view) {
         mRootView = (android.support.v7.widget.CardView) view;
         mTitleParent = view.findViewById(R.id.title_parent);
-        mTitle = (TextView) view.findViewById(R.id.card_title);
-        mArrow = (AppCompatImageView) view.findViewById(R.id.arrow_image);
+        mTitle = view.findViewById(R.id.card_title);
+        mArrow = view.findViewById(R.id.arrow_image);
         mLayoutParent = view.findViewById(R.id.layout_parent);
-        mLayout = (LinearLayout) view.findViewById(R.id.card_layout);
+        mLayout = view.findViewById(R.id.card_layout);
     }
 
     @Override
