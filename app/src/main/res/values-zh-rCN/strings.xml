@@ -9,6 +9,7 @@
   <string name="no_root">无 root 权限</string>
   <string name="no_busybox">没有安装 busybox</string>
   <string name="open">打开 %s</string>
+  <string name="disable">禁用</string>
   <!-- Security -->
   <string name="password">密码</string>
   <string name="password_wrong">密码错误</string>
@@ -128,9 +129,13 @@
   <string name="version">版本</string>
   <string name="handlers">处理程序</string>
   <!-- CPU -->
+  <string name="cores_string">%s核</string>
+  <string name="frequencies_string">%s频率</string>
+  <string name="governors_string">%s调速器</string>
   <string name="cores_singular">%d 个核心</string>
   <string name="cores">%d 个核心</string>
   <string name="cpu_usage">CPU 使用率</string>
+  <string name="cpu_usage_string">%s CPU 使用率</string>
   <string name="no_offline_core">你不能让这个核心离线！</string>
   <string name="cpu_max_freq">CPU 最高频率</string>
   <string name="cpu_max_freq_summary">设置 CPU 能调节到的最高频率。</string>
@@ -315,6 +320,8 @@
   <string name="busy_up_threshold_summary">大核Cpu应该开启时的阈值。</string>
   <string name="offline_delay">离线延迟</string>
   <string name="offline_delay_summary">CPU 被关闭前的时间。</string>
+  <string name="online_delay">在线延迟</string>
+  <string name="online_delay_summary">CPU 被开启前的时间。</string>
   <string name="aio_hotplug">AiO 热插拔</string>
   <string name="aio_hotplug_summary">高通设备的整合型热插拔。
 由 Shoaib0597 开发。</string>
@@ -493,6 +500,8 @@
   <string name="pocket_mode_summary">启用后当设备放在口袋里时会关闭唤醒控制功能。</string>
   <string name="timeout">超时</string>
   <string name="timeout_summary">设置在屏幕关闭多久后唤醒控制失效。</string>
+  <string name="charge_timeout">充电超时</string>
+  <string name="charge_timeout_summary">设置在充电时屏幕关闭多久后唤醒控制失效。</string>
   <string name="power_key_suspend">电源键待机</string>
   <string name="power_key_suspend_summary">启用此项后，当屏幕由电源键关闭时，唤醒控制将会被禁用。</string>
   <string name="area">地区</string>
@@ -500,6 +509,9 @@
   <string name="height">高度</string>
   <string name="vibration">震动</string>
   <string name="vibration_strength">振动强度</string>
+  <string name="key_power_mode">电源键模式</string>
+  <string name="charging_mode">充电模式</string>
+  <string name="charging_mode_summary">唤醒控制只在设备充电时启用</string>
   <!-- Sound -->
   <string name="sound_control">声音控制</string>
   <string name="headset_highperf_mode">耳机高性能模式</string>
@@ -654,9 +666,22 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock 分频器</string>
   <!-- Data Sharing -->
+  <string name="data_sharing_summary_notification">数据分享已启用！点击了解更多关于此功能的信息。</string>
   <string name="data_sharing_summary">和他人分享你的设置！Kernel Adiutor 将自动收集信息并制作一个面向所有人的排行榜。</string>
   <string name="data_sharing_summary_link">你可以在&lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;访问此列表。</string>
   <string name="sharing_enable">共享启用</string>
+  <string name="filter">筛选</string>
+  <string name="show_all">显示全部</string>
+  <string name="failed_devices">加载设备失败。</string>
+  <string name="previous">上一步</string>
+  <string name="page">页</string>
+  <string name="next">下一步</string>
+  <string name="kernel_version">内核版本</string>
+  <string name="potential_sot">预估亮屏时间</string>
+  <string name="screen_always_on">屏幕常亮时</string>
+  <string name="lower_better">数值越低越好</string>
+  <string name="cpu_information">CPU 信息</string>
+  <string name="default_settings">默认（不做任何更改）</string>
   <!-- Custom Controls -->
   <string name="welcome">欢迎</string>
   <string name="custom_controls_summary">在这个功能区您可以创建或导入(目前)不存在于此应用中的自定义控制项。</string>

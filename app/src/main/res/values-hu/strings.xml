@@ -320,7 +320,7 @@
   <string name="busy_up_threshold_summary">Küszöb, amikor a nagy CPU-kat be kell kapcsolni.</string>
   <string name="offline_delay">Offline késleltetés</string>
   <string name="offline_delay_summary">A CPU kikapcsolása előtti idő.</string>
-  <string name="online_delay">Offline késleltetés</string>
+  <string name="online_delay">Online késleltetés</string>
   <string name="online_delay_summary">A CPU kikapcsolása előtti idő.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">Minden egyben HotPlug Qualcomm eszközökhöz. Fejlesztette: Shoaib0597.</string>
@@ -666,7 +666,7 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary_notification">Az adatok megosztása az aktív! Ide kattintva Tudj meg többet ezt a funkciót.</string>
+  <string name="data_sharing_summary_notification">Az adatok megosztása aktív! Ide kattintva tudj meg többet erről a funkcióról.</string>
   <string name="data_sharing_summary">Ossza meg másokkal a beállításait! A Kernel Adiutor automatikusan információkat gyűjt és összeállít egy mindenki számára elérhető pontszám listát.</string>
   <string name="data_sharing_summary_link">A lista elérhető itt: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Megosztás engedélyezése</string>
@@ -681,10 +681,10 @@
   <string name="kernel_version">Kernel verzió</string>
   <string name="potential_sot">Potenciális SOT</string>
   <string name="screen_always_on">Amikor a képernyő be van kapcsolva </string>
-  <string name="lower_better">alacsonyabb a jobb</string>
+  <string name="lower_better">az alacsonyabb jobb</string>
   <string name="cpu_score">CPU pontszám</string>
   <string name="cpu_information">CPU információ</string>
-  <string name="default_settings">Alapértelmezett (nincs módosítások)</string>
+  <string name="default_settings">Alapértelmezett (nincsenek módosítások)</string>
   <!-- Custom Controls -->
   <string name="welcome">Üdvözöllek</string>
   <string name="custom_controls_summary">Ebben a részben hozhatsz létre, vagy importálhatsz egyéni vezérlőket, amelyek nem léteznek az alkalmazásban (még).</string>

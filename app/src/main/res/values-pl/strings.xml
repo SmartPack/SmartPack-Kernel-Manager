@@ -128,9 +128,13 @@
   <string name="version">Wersja</string>
   <string name="handlers">Wywołanie zwrotne</string>
   <!-- CPU -->
+  <string name="cores_string">%s rdzeni</string>
+  <string name="frequencies_string">%s częstotliwości</string>
+  <string name="governors_string">%s zarządcy</string>
   <string name="cores_singular">%d rdzeń</string>
   <string name="cores">%d rdzeni/e</string>
   <string name="cpu_usage">Użycie CPU</string>
+  <string name="cpu_usage_string">%s Zużycia CPU</string>
   <string name="no_offline_core">Nie możesz wyłączyć tego rdzenia!</string>
   <string name="cpu_max_freq">Maks. częstotliwość CPU</string>
   <string name="cpu_max_freq_summary">Ustaw maks. częstotliwość CPU.</string>
@@ -315,6 +319,7 @@
   <string name="busy_up_threshold_summary">Próg przy którym duży CPU powinien być włączony.</string>
   <string name="offline_delay">Opóźnienie wyłączenia</string>
   <string name="offline_delay_summary">Czas oczekiwania przed wyłączeniem CPU.</string>
+  <string name="online_delay_summary">Czas oczekiwania przed włączeniem CPU.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">All in One HotPlug dla urządzeń z procesorem Qualcomm. Rozwijany przez Shoaib0597.</string>
   <string name="max_cpu_online_big">Maksymalna ilość włączonych rdzenii big</string>
@@ -656,6 +661,11 @@
   <string name="data_sharing_summary">Udostępnij swoje ustawienia z innymi! Kernel Adiutor będzie automatycznie zbierał informacje i kompilował listę dostępną dla każdego.</string>
   <string name="data_sharing_summary_link">Możesz uzyskać dostęp do lista na stronie &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Zezwól na udostępnianie</string>
+  <string name="page">Strona</string>
+  <string name="next">Dalej</string>
+  <string name="kernel_version">Wersja jądra</string>
+  <string name="screen_always_on">kiedy ekran jest zawsze uruchomiony</string>
+  <string name="cpu_information">Informacje o CPU</string>
   <!-- Custom Controls -->
   <string name="welcome">Witamy</string>
   <string name="custom_controls_summary">W tej sekcji możesz utworzyć lub zaimportować niestandardowe reguły, które obecnie nie istnieją w tej aplikacji (jeszcze).</string>
