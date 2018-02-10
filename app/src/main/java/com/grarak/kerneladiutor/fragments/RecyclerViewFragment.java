@@ -44,7 +44,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -872,11 +871,9 @@ public abstract class RecyclerViewFragment extends BaseFragment {
     };
 
     protected void refreshThread() {
-        Log.i(getClass().getSimpleName(), "refreshThread");
     }
 
     protected void refresh() {
-        Log.i(getClass().getSimpleName(), "refresh");
     }
 
     protected boolean showAd() {
