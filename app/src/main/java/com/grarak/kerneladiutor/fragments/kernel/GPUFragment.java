@@ -365,6 +365,12 @@ public class GPUFragment extends RecyclerViewFragment {
         mBusy = mGPUFreq.hasBusy() ? mGPUFreq.getBusy() : null;
         mFreq = mGPUFreq.getCurFreq();
         mFreqs = mGPUFreq.getAvailableFreqs();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
