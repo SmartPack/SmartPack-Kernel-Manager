@@ -204,9 +204,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         String key = preference.getKey();
         switch (key) {
             case KEY_FORCE_ENGLISH:
-                if (!checked) {
-                    Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
-                }
             case KEY_DARK_THEME:
                 getActivity().finish();
                 Intent intent = new Intent(getActivity(), MainActivity.class);

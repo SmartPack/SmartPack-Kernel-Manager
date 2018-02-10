@@ -19,8 +19,13 @@
  */
 package com.grarak.kerneladiutor.activities;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.LocaleList;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +41,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Created by willi on 14.04.16.
@@ -84,9 +90,6 @@ public class BaseActivity extends AppCompatActivity {
         }
         setTheme(theme);
         super.onCreate(savedInstanceState);
-        if (Prefs.getBoolean("forceenglish", false, this)) {
-            Utils.setLocale("en_US", this);
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && setStatusBarColor()) {
             Window window = getWindow();
@@ -94,6 +97,40 @@ public class BaseActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(statusBarColor());
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        if (Prefs.getBoolean("forceenglish", false, newBase)) {
+            super.attachBaseContext(wrap(newBase, new Locale("en_US")));
+        } else {
+            super.attachBaseContext(newBase);
+        }
+    }
+
+    public static ContextWrapper wrap(Context context, Locale newLocale) {
+
+        Resources res = context.getResources();
+        Configuration configuration = res.getConfiguration();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            configuration.setLocale(newLocale);
+
+            LocaleList localeList = new LocaleList(newLocale);
+            LocaleList.setDefault(localeList);
+            configuration.setLocales(localeList);
+
+            context = context.createConfigurationContext(configuration);
+
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(newLocale);
+            context = context.createConfigurationContext(configuration);
+        } else {
+            configuration.locale = newLocale;
+            res.updateConfiguration(configuration, res.getDisplayMetrics());
+        }
+
+        return new ContextWrapper(context);
     }
 
     public AppBarLayout getAppBarLayout() {

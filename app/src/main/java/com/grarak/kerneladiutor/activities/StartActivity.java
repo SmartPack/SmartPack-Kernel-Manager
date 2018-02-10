@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -31,7 +30,7 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by willi on 02.08.16.
  */
-public class StartActivity extends Activity {
+public class StartActivity extends BaseActivity {
 
     /*
      * This activity only existed, so the user can toggle between

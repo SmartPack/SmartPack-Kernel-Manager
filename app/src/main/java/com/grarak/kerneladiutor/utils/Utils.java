@@ -67,7 +67,6 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -203,14 +202,6 @@ public class Utils {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static void setLocale(String lang, Context context) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
     }
 
     public static boolean hasCMSDK() {
