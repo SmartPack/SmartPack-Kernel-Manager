@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "35594625822-tn2jap2hed6fk49rt28i2qm2hs3i0qit.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.grarak.kerneladiutor",
+            "certificate_hash": "b2e625e224d6a8ebdb25407a9ad3ceff58081971"
+          }
+        },
+        {
           "client_id": "35594625822-9ir2cg9ruculjh9kvn6srvund5t9v37v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.grarak.kerneladiutor",
-            "certificate_hash": "5CA1C4FA2508E578D98527B077E690C7116C3BD8"
+            "certificate_hash": "5ca1c4fa2508e578d98527b077e690c7116c3bd8"
           }
         },
         {
