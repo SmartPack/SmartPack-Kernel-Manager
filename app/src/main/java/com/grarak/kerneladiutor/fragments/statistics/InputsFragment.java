@@ -46,7 +46,7 @@ public class InputsFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        List<Device.Input.Item> inputs = Device.Input.getItems();
+        List<Device.Input.Item> inputs = Device.Input.getInstance().getItems();
         for (Device.Input.Item input : inputs) {
             String name;
             if ((name = input.getName()) != null) {

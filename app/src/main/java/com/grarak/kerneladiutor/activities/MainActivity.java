@@ -217,11 +217,11 @@ public class MainActivity extends BaseActivity {
             // Assign core ctl min cpu
             CPUFreq.getInstance(activity);
 
-            Device.CPUInfo.load();
-            Device.Input.supported();
+            Device.CPUInfo.getInstance();
+            Device.Input.getInstance();
             Device.MemInfo.getInstance();
-            Device.ROMInfo.load();
-            Device.TrustZone.supported();
+            Device.ROMInfo.getInstance();
+            Device.TrustZone.getInstance();
             GPU.supported();
             Hotplug.supported();
             IO.getInstance();

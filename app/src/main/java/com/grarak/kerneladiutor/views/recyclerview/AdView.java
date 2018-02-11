@@ -40,6 +40,7 @@ public class AdView extends RecyclerViewItem {
     public void onCreateView(View view) {
         mAd = (AdNativeExpress) view;
         setFullSpan(true);
+
         super.onCreateView(view);
     }
 

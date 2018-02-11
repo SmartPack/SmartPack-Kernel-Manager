@@ -467,7 +467,7 @@ public class NavigationActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+        if (mDrawer != null && mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
             Fragment currentFragment = getFragment(mSelection);
@@ -501,7 +501,7 @@ public class NavigationActivity extends BaseActivity
                 fragmentTransaction.remove(fragment);
             }
         }
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
         if (mAdsFetcher != null) {
             mAdsFetcher.cancel();
         }

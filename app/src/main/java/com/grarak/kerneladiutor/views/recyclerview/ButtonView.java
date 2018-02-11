@@ -45,15 +45,17 @@ public class ButtonView extends RecyclerViewItem {
         mButton = view.findViewById(R.id.btn);
 
         super.onCreateView(view);
-        setup();
     }
 
     public void setText(String text) {
         mText = text;
-        setup();
+        refresh();
     }
 
-    private void setup() {
+    @Override
+    protected void refresh() {
+        super.refresh();
+
         if (mButton != null) {
             mButton.setText(mText);
             mButton.setOnClickListener(mOnClickListener);

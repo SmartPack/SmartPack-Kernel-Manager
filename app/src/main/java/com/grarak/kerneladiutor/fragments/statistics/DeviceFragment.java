@@ -38,9 +38,9 @@ public class DeviceFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
-        String processor = Device.CPUInfo.getProcessor();
-        String hardware = Device.CPUInfo.getVendor();
-        String features = Device.CPUInfo.getFeatures();
+        String processor = Device.CPUInfo.getInstance().getProcessor();
+        String hardware = Device.CPUInfo.getInstance().getVendor();
+        String features = Device.CPUInfo.getInstance().getFeatures();
         int ram = (int) Device.MemInfo.getInstance().getTotalMem();
 
         if (!processor.isEmpty()) {
@@ -68,8 +68,8 @@ public class DeviceFragment extends RecyclerViewFragment {
                 {getString(R.string.build_display_id), Device.getBuildDisplayId()},
                 {getString(R.string.baseband), Device.getBaseBand()},
                 {getString(R.string.bootloader), Device.getBootloader()},
-                {getString(R.string.rom), Device.ROMInfo.getVersion()},
-                {getString(R.string.trustzone), Device.TrustZone.getVersion()}
+                {getString(R.string.rom), Device.ROMInfo.getInstance().getVersion()},
+                {getString(R.string.trustzone), Device.TrustZone.getInstance().getVersion()}
         };
 
         String[][] boardInfos = {

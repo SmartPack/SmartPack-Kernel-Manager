@@ -37,16 +37,21 @@ public class Device {
 
     public static class Input {
 
-        private static final String BUS_INPUT = "/proc/bus/input/devices";
-        private static List<Item> mItems;
+        private static Input sInstance;
 
-        public static List<Item> getItems() {
-            if (mItems != null) {
-                return mItems;
+        public static Input getInstance() {
+            if (sInstance == null) {
+                sInstance = new Input();
             }
+            return sInstance;
+        }
 
+        private static final String BUS_INPUT = "/proc/bus/input/devices";
+
+        private List<Item> mItems = new ArrayList<>();
+
+        private Input() {
             String value = Utils.readFile(BUS_INPUT);
-            mItems = new ArrayList<>();
             List<String> input = new ArrayList<>();
             for (String line : value.split("\\r?\\n")) {
                 if (line.isEmpty()) {
@@ -56,12 +61,10 @@ public class Device {
                     input.add(line);
                 }
             }
-
-            return mItems;
         }
 
-        public static void supported() {
-            getItems();
+        public List<Item> getItems() {
+            return mItems;
         }
 
         public static class Item {
@@ -138,6 +141,15 @@ public class Device {
 
     public static class ROMInfo {
 
+        private static ROMInfo sInstance;
+
+        public static ROMInfo getInstance() {
+            if (sInstance == null) {
+                sInstance = new ROMInfo();
+            }
+            return sInstance;
+        }
+
         private static String[] sProps = {
                 "ro.cm.version",
                 "ro.pa.version",
@@ -147,19 +159,19 @@ public class Device {
                 "ro.mod.version",
         };
 
-        private static String ROM_VERSION;
+        private String mROMVersion;
 
-        public static String getVersion() {
-            return ROM_VERSION;
-        }
-
-        public static void load() {
+        private ROMInfo() {
             for (String prop : sProps) {
-                ROM_VERSION = RootUtils.getProp(prop);
-                if (ROM_VERSION != null && !ROM_VERSION.isEmpty()) {
+                mROMVersion = RootUtils.getProp(prop);
+                if (mROMVersion != null && !mROMVersion.isEmpty()) {
                     break;
                 }
             }
+        }
+
+        public String getVersion() {
+            return mROMVersion;
         }
 
     }
@@ -217,45 +229,48 @@ public class Device {
 
     public static class CPUInfo {
 
+        private static CPUInfo sInstance;
+
+        public static CPUInfo getInstance() {
+            if (sInstance == null) {
+                sInstance = new CPUInfo();
+            }
+            return sInstance;
+        }
+
         private static final String CPUINFO_PROC = "/proc/cpuinfo";
 
-        private static String CPUINFO;
+        private final String mCPUInfo;
 
-        public static String getFeatures() {
-            String features = getString("Features", true);
+        private CPUInfo() {
+            mCPUInfo = Utils.readFile(CPUINFO_PROC, false);
+        }
+
+        public String getFeatures() {
+            String features = getString("Features");
             if (!features.isEmpty()) return features;
-            return getString("flags", true);
+            return getString("flags");
         }
 
-        public static String getProcessor() {
-            String pro = getString("Processor", true);
+        public String getProcessor() {
+            String pro = getString("Processor");
             if (!pro.isEmpty()) return pro;
-            return getString("model name", true);
+            return getString("model name");
         }
 
-        public static String getVendor() {
-            return getVendor(true);
-        }
-
-        public static String getVendor(boolean root) {
-            String vendor = getString("Hardware", root);
+        public String getVendor() {
+            String vendor = getString("Hardware");
             if (!vendor.isEmpty()) return vendor;
-            return getString("vendor_id", root);
+            return getString("vendor_id");
         }
 
-        public static String getCpuInfo(boolean root) {
-            if (CPUINFO == null) {
-                load(root);
-            }
-            return CPUINFO;
+        public String getCpuInfo() {
+            return mCPUInfo;
         }
 
-        private static String getString(String prefix, boolean root) {
-            if (CPUINFO == null) {
-                load(root);
-            }
+        private String getString(String prefix) {
             try {
-                for (String line : CPUINFO.split("\\r?\\n")) {
+                for (String line : mCPUInfo.split("\\r?\\n")) {
                     if (line.startsWith(prefix)) {
                         return line.split(":")[1].trim();
                     }
@@ -265,17 +280,19 @@ public class Device {
             return "";
         }
 
-        public static void load() {
-            load(true);
-        }
-
-        public static void load(boolean root) {
-            CPUINFO = Utils.readFile(CPUINFO_PROC, root);
-        }
-
     }
 
     public static class TrustZone {
+
+        private static TrustZone sInstance;
+
+        public static TrustZone getInstance() {
+            if (sInstance == null) {
+                sInstance = new TrustZone();
+            }
+            return sInstance;
+        }
+
         private static HashMap<String, String> PARTITIONS = new HashMap<>();
 
         static {
@@ -283,35 +300,31 @@ public class Device {
             PARTITIONS.put("/dev/block/bootdevice/by-name/tz", "QC_IMAGE_VERSION_STRING=");
         }
 
-        private static String PARTITION;
-        private static String VERSION;
+        private String mVersion = "";
 
-        public static String getVersion() {
-            if (PARTITION == null) {
-                supported();
-                if (PARTITION == null) return "";
-            }
-            if (VERSION != null) return VERSION;
-            String raw = RootUtils.runCommand("strings " + PARTITION + " | grep "
-                    + PARTITIONS.get(PARTITION));
-            for (String line : raw.split("\\r?\\n")) {
-                if (line.startsWith(PARTITIONS.get(PARTITION))) {
-                    return VERSION = line.replace(PARTITIONS.get(PARTITION), "");
+        private TrustZone() {
+            String partition = null;
+
+            for (String p : PARTITIONS.keySet()) {
+                if (Utils.existFile(p)) {
+                    partition = p;
+                    break;
                 }
             }
-            return "";
+
+            if (partition == null) return;
+            String prefix = PARTITIONS.get(partition);
+            String raw = RootUtils.runCommand("strings " + partition + " | grep " + prefix);
+            for (String line : raw.split("\\r?\\n")) {
+                if (line.startsWith(prefix)) {
+                    mVersion = line.replace(prefix, "");
+                    break;
+                }
+            }
         }
 
-        public static boolean supported() {
-            if (PARTITION != null) return true;
-            for (String partition : PARTITIONS.keySet()) {
-                if (Utils.existFile(partition)) {
-                    PARTITION = partition;
-                    getVersion();
-                    return true;
-                }
-            }
-            return false;
+        public String getVersion() {
+            return mVersion;
         }
     }
 
@@ -361,10 +374,6 @@ public class Device {
 
     public static int getSDK() {
         return Build.VERSION.SDK_INT;
-    }
-
-    public static String getBoard() {
-        return getBoard(true);
     }
 
     private interface BoardFormatter {
@@ -431,8 +440,8 @@ public class Device {
         sBoardAliases.put("msm8974pro.*", "msm8974pro");
     }
 
-    public static String getBoard(boolean root) {
-        String hardware = CPUInfo.getVendor(root).toLowerCase();
+    public static String getBoard() {
+        String hardware = CPUInfo.getInstance().getVendor().toLowerCase();
         String ret = null;
         for (String boardregex : sBoardFormatters.keySet()) {
             if (hardware.matches(boardregex)) {
