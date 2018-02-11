@@ -438,6 +438,7 @@ public class NavigationActivity extends BaseActivity
         shortcutManager.removeAllDynamicShortcuts();
         for (int i = 0; i < 4; i++) {
             NavigationFragment fragment = findNavigationFragmentByClass(queue.poll());
+            if (fragment == null || fragment.mFragmentClass == null) continue;
             Intent intent = new Intent(this, MainActivity.class);
             intent.setAction(Intent.ACTION_VIEW);
             intent.putExtra("section", fragment.mFragmentClass.getCanonicalName());

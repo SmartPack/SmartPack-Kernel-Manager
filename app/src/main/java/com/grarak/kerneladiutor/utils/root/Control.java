@@ -24,11 +24,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.database.Settings;
-import com.grarak.kerneladiutor.services.monitor.IMonitor;
 import com.grarak.kerneladiutor.services.monitor.Monitor;
 
 import java.util.ArrayList;
@@ -98,14 +96,12 @@ public class Control {
         if (context != null) {
             context.bindService(new Intent(context, Monitor.class), new ServiceConnection() {
                         @Override
-                        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                            try {
-                                IMonitor monitor = IMonitor.Stub.asInterface(iBinder);
-                                monitor.onSettingsChange();
-                                context.unbindService(this);
-                            } catch (RemoteException e) {
-                                e.printStackTrace();
-                            }
+                        public void onServiceConnected(ComponentName componentName,
+                                                       IBinder iBinder) {
+                            Monitor.MonitorBinder monitorBinder =
+                                    (Monitor.MonitorBinder) iBinder;
+                            monitorBinder.onSettingsChange();
+                            context.unbindService(this);
                         }
 
                         @Override

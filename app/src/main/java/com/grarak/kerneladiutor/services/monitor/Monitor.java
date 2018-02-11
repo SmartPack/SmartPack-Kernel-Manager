@@ -29,9 +29,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 import com.grarak.kerneladiutor.BuildConfig;
@@ -164,16 +164,18 @@ public class Monitor extends Service {
         }).start();
     }
 
-    private IMonitor.Stub mBinder = new IMonitor.Stub() {
-        @Override
-        public void onSettingsChange() throws RemoteException {
+
+    private IBinder mBinder = new MonitorBinder();
+
+    public class MonitorBinder extends Binder {
+        public void onSettingsChange() {
             if (mTimes != null) {
                 mTimes.clear();
                 mLevel = 0;
                 mTime = 0;
             }
         }
-    };
+    }
 
     @Nullable
     @Override
