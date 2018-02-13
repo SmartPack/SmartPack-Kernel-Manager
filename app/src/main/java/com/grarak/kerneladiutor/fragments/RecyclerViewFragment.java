@@ -131,12 +131,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
 
-        if (mViewPagerFragments != null && !hideBanner()) {
+        if (mViewPagerFragments != null) {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             for (Fragment fragment : mViewPagerFragments) {
                 fragmentTransaction.remove(fragment);
             }
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
             mViewPagerFragments.clear();
         } else {
             mViewPagerFragments = new ArrayList<>();
@@ -817,6 +817,12 @@ public abstract class RecyclerViewFragment extends BaseFragment {
         return mRootView;
     }
 
+    protected Fragment getViewPagerFragment(int position) {
+        if (hideBanner()) {
+            return mViewPagerFragments.get(position);
+        }
+        return getChildFragmentManager().getFragments().get(position);
+    }
 
     @Override
     public boolean onBackPressed() {

@@ -27,6 +27,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.AppCompatEditText;
@@ -229,8 +230,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     if (isAdded()) {
+
                         SearchFragment fragment = (SearchFragment)
-                                getChildFragmentManager().getFragments().get(0);
+                                getViewPagerFragment(0);
                         if (fragment != null) {
                             fragment.setCount(items.size());
                         }
@@ -347,7 +349,11 @@ public class BuildpropFragment extends RecyclerViewFragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
-            final BuildpropFragment fragment = (BuildpropFragment) getParentFragment();
+            Fragment fragment = getParentFragment();
+            if (!(fragment instanceof BuildpropFragment)) {
+                fragment = fragment.getParentFragment();
+            }
+            final BuildpropFragment buildpropFragment = (BuildpropFragment) fragment;
 
             View rootView = inflater.inflate(R.layout.fragment_buildprop_search, container, false);
 
@@ -365,8 +371,8 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    fragment.mKeyText = s.toString();
-                    fragment.reload(false);
+                    buildpropFragment.mKeyText = s.toString();
+                    buildpropFragment.reload(false);
                 }
             });
             valueEdit.addTextChangedListener(new TextWatcher() {
@@ -380,16 +386,16 @@ public class BuildpropFragment extends RecyclerViewFragment {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    fragment.mValueText = s.toString();
-                    fragment.reload(false);
+                    buildpropFragment.mValueText = s.toString();
+                    buildpropFragment.reload(false);
                 }
             });
 
-            if (fragment.mKeyText != null) {
-                keyEdit.append(fragment.mKeyText);
+            if (buildpropFragment.mKeyText != null) {
+                keyEdit.append(buildpropFragment.mKeyText);
             }
-            if (fragment.mKeyText != null) {
-                valueEdit.append(fragment.mKeyText);
+            if (buildpropFragment.mKeyText != null) {
+                valueEdit.append(buildpropFragment.mKeyText);
             }
 
             mItemsText = (TextView) rootView.findViewById(R.id.found_text);

@@ -29,7 +29,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -87,15 +86,6 @@ public class OverallFragment extends RecyclerViewFragment {
         mCPUFreq = CPUFreq.getInstance();
         mGPUFreq = GPUFreq.getInstance();
 
-        for (Fragment fragment : getChildFragmentManager().getFragments()) {
-            if (fragment instanceof CPUUsageFragment) {
-                CPUUsageFragment cpuUsageFragment = (CPUUsageFragment) fragment;
-                if (cpuUsageFragment.mThread != null) {
-                    cpuUsageFragment.mThread.interrupt();
-                    cpuUsageFragment.mThread = null;
-                }
-            }
-        }
         addViewPagerFragment(new CPUUsageFragment());
     }
 
