@@ -156,7 +156,7 @@
   <string name="enabled">Aktiviert</string>
   <string name="aggressive">Aggressiv</string>
   <string name="power_saving_wq">Anstehende Aufgaben laufenden CPUs zuweisen, um Strom zu sparen.</string>
-  <string name="cfs_scheduler_policy">Richtlinien für den CFS-Planer</string>
+  <string name="cfs_scheduler_policy">Richtlinien für den CFS-Scheduler</string>
   <string name="cfs_scheduler_policy_summary">Die Richtlinie entscheidet, wie der CFS-Scheduler die Aufgaben auf verschiedene CPU-Einheiten verteilt.</string>
   <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_quiet_summary">CPUQuiet implementiert austauschbare Richtlinien für CPU-Kerne, um diese in den Ruhezustand zu zwingen. Entsprechende Einstellungen sparen Strom ohne die Leistung zu mindern.</string>
@@ -559,7 +559,7 @@
   <string name="external_storage">Externer Speicher</string>
   <string name="scheduler">Scheduler</string>
   <string name="scheduler_summary">Lege einen aktiven I/O Scheduler Algorithmus fest. Der Scheduler entscheidet wie mit I/O Anfragen umgegangen wird.</string>
-  <string name="scheduler_tunable">Einstellungen Zeitplan</string>
+  <string name="scheduler_tunable">Scheduler Tunable</string>
   <string name="scheduler_tunable_summary">Verschiedene Optionen die vom Scheduler abhängig sind.</string>
   <string name="read_ahead">Read-Ahead</string>
   <string name="read_ahead_summary">Der Read-Ahead Wert für den Telefonspeicher.</string>
@@ -570,8 +570,7 @@
   <string name="add_random">Zufälliges hinzufügen</string>
   <string name="add_random_summary">Entropische Aufzeichnung des internen Speichers.</string>
   <string name="rq_affitiny">IRQ Affinität</string>
-  <string name="rq_affinity_summary">Versucht die Zeitschaltanforderungen an den CPU Kern zu erfüllen. Höhere Werte sind
-agressiver.</string>
+  <string name="rq_affinity_summary">Versuche Scheduler-Anfragen auf dem Kern CPU von dem sie stammen zu vollenden. Höhere Werte sind aggressiver.</string>
   <!-- Kernel Samepage Merging -->
   <string name="full_scans">Vollständiger Scan</string>
   <string name="pages_shared">Geteilte Seiten</string>
@@ -665,7 +664,7 @@ kann etwas Akku sparen. </string>
   <string name="data_sharing_summary">Teile deine Einstellungen mit anderen! Kernel Adiutor sammelt automatisch Informationen um eine Liste mit Werten, für allle Menschen zugänglich zu machen.</string>
   <string name="data_sharing_summary_link">Die Liste ist unter  https://www.grarak.com/kerneladiutor aufrufbar
  </string>
-  <string name="sharing_enable">Aktivierte Freigabe</string>
+  <string name="sharing_enable">Austausch aktivieren</string>
   <!-- Custom Controls -->
   <string name="welcome">Willkommen</string>
   <string name="custom_controls_summary">In diesem Abschnitt können Sie benutzerdefinierte Steuerelemente erstellen oder importieren welche es in der App (noch) nicht gibt.</string>

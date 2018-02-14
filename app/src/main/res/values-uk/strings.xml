@@ -9,6 +9,7 @@
   <string name="no_root">Root відсутній</string>
   <string name="no_busybox">Busybox відсутній</string>
   <string name="open">Відкрити %s</string>
+  <string name="disable">Вимкнути</string>
   <!-- Security -->
   <string name="password">Пароль</string>
   <string name="password_wrong">Невірний пароль</string>
@@ -128,9 +129,13 @@
   <string name="version">Версія</string>
   <string name="handlers">Обробники</string>
   <!-- CPU -->
+  <string name="cores_string">%s ядра</string>
+  <string name="frequencies_string">%s частоти</string>
+  <string name="governors_string">%s регулятори</string>
   <string name="cores_singular">%d ядро</string>
   <string name="cores">%d ядра</string>
   <string name="cpu_usage">Використання ЦП</string>
+  <string name="cpu_usage_string">%s Використання ЦП</string>
   <string name="no_offline_core">Ви не можете вимкнути це ядро!</string>
   <string name="cpu_max_freq">Макс. частота CPU</string>
   <string name="cpu_max_freq_summary">Встановлення максимальної частоти CPU.</string>
@@ -245,6 +250,7 @@
   <string name="fast_lane_min_freq">Мін. частота Fast Lane</string>
   <string name="fast_lane_min_freq_summary">Встановлення мінімальної частоти процесора, при якій Fast Lane досягне більшого навантаження.</string>
   <string name="offline_load">Оффлайн завантаження</string>
+  <string name="offline_load_summary">Не вимикайте центральний процесор, якщо він падає нижче нижчих порогових рівнів завантаження.</string>
   <string name="io_is_busy">IO є зайнятий</string>
   <string name="io_is_busy_summary">Використовується, щоби заставити hotplug розглядати час вводу/виводу, як час завантаження процесора.</string>
   <string name="mako_hotplug">Mako Hotplug</string>
@@ -302,7 +308,9 @@
   <string name="cycle_down">Циклу вниз</string>
   <string name="cycle_down_summary">Цикли очікування після останньої роботи hotplug-а до відключення другого ядра.</string>
   <string name="cycle_up">Цикл вверх</string>
+  <string name="cycle_up_summary">Цикли очікування після останньої роботи hotplug-а до підключення іншого ядра.</string>
   <string name="core_control">Керування ядром</string>
+  <string name="core_control_summary">Hotplug від Qualcomm. Вибачте, Ви не можете виключити його. #blameqcom</string>
   <string name="hcube">H-Cube</string>
   <string name="hcube_summary">Модифікований контроль ядер від OnePlus.</string>
   <string name="min_cpus_big">Мін. кількість ядер кластеру big</string>
@@ -313,6 +321,8 @@
   <string name="busy_up_threshold_summary">Поріг, для включення ядер кластеру big.</string>
   <string name="offline_delay">Затримка переключення в офлайн режим</string>
   <string name="offline_delay_summary">Часу до вимкненням ядра.</string>
+  <string name="online_delay">Онлайн затримка</string>
+  <string name="online_delay_summary">Час перед включенням ЦП.</string>
   <string name="aio_hotplug">AiO Hotplug</string>
   <string name="aio_hotplug_summary">All in One HotPlug для пристроїв Qualcomm. Розробка Shoaib0597.</string>
   <string name="max_cpu_online_big">Макс. кількість ядер кластеру big</string>
@@ -381,6 +391,7 @@
   <string name="ramp_thresold">Порогове обмеження</string>
   <string name="ramp_thresold_summary">Збільшує частоту запитів уповільнення говернера GPU. Чим вище значення, тим вище буде продуктивність.</string>
   <string name="adreno_idler">Adreno Idler</string>
+  <string name="adreno_idler_summary">Ефективне рішення для перевантажень msm-adreno-tz\'s. Розроблено arter97.</string>
   <string name="down_differential">Диференціал зниження</string>
   <string name="down_differential_summary">Граничне значення навантаження простою.</string>
   <string name="idle_wait">Очікування</string>
@@ -488,10 +499,14 @@
   <string name="pocket_mode">Кишеньковий режим</string>
   <string name="pocket_mode_summary">Активація даної функції вимкне керування пробудженням, коли пристрій знаходиться в кишені.</string>
   <string name="timeout">Час очікування</string>
+  <string name="charge_timeout">Тайм-аут зарядження</string>
   <string name="power_key_suspend">Відключення сенсора при натисканні кнопки живлення</string>
   <string name="area">Область</string>
   <string name="width">Ширина</string>
   <string name="height">Висота</string>
+  <string name="vibration">Вібрація</string>
+  <string name="vibration_strength">Сила вібрації</string>
+  <string name="charging_mode">Режим заряджання</string>
   <!-- Sound -->
   <string name="sound_control">Управління звуком</string>
   <string name="headset_highperf_mode">Режим високої якості для навушників</string>
@@ -500,10 +515,15 @@
   <!-- Battery -->
   <string name="level">Рівень</string>
   <string name="voltage">Напруга</string>
+  <string name="capacity">Ємність</string>
   <string name="usb_fast_charge">Швидка зарядка через USB</string>
   <string name="usb_fast_charge_summary">Пристрій буде заряджатися швидше, коли воно підключене через USB. Перепідключити пристрій після зміни цієї опції.</string>
+  <string name="charge_rate">Швидкість Заряду</string>
+  <string name="charging_current">Струм заряджання</string>
+  <string name="charging_current_summary">Встановіть струм заряджання. УВАГА: Перевищення струму в 1250мА може пошкодити зарядку або ваш мобільний пристрій.</string>
   <!-- LED -->
   <string name="fade">Затухання</string>
+  <string name="fade_summary">Увімкніть для затемнення, вимкніть для миготіння.</string>
   <string name="intensity">Інтенсивність</string>
   <string name="speed">Швидкість</string>
   <string name="stock">Стандартний</string>

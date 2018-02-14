@@ -131,7 +131,7 @@
   <!-- CPU -->
   <string name="cores_string">%s mag</string>
   <string name="frequencies_string">%s frekvencia</string>
-  <string name="governors_string">%s kormányzók</string>
+  <string name="governors_string">%s irányítók</string>
   <string name="cores_singular">%d mag</string>
   <string name="cores">%d mag</string>
   <string name="cpu_usage">CPU használat</string>
@@ -143,9 +143,9 @@
   <string name="cpu_min_freq_summary">A minimális frekvencia, amit a CPU használhat.</string>
   <string name="cpu_max_screen_off_freq">Maximális CPU frekvencia kikapcsolt képernyőnél</string>
   <string name="cpu_max_screen_off_freq_summary">A maximális frekvencia beállítása, amit a CPU használhat kikapcsolt képernyő mellett.</string>
-  <string name="cpu_governor">CPU ütemező</string>
+  <string name="cpu_governor">CPU irányító</string>
   <string name="cpu_governor_summary">A CPU iránytó határozza meg, hogyan viselkedik a CPU a változó terhelés alatt. Az irányító módosítása hatással lesz arra, hogy hogyan fog lépkedni a CPU az elérhető frekvenciákon.</string>
-  <string name="cpu_governor_tunables">CPU ütemező beállítások</string>
+  <string name="cpu_governor_tunables">CPU irányító hangolások</string>
   <string name="governor_tunables_summary">A különböző konfigurációs elemek, amelyek ütemező-függőek.</string>
   <string name="cpu_governor_tunables_read_error">Nem sikerült beolvasni a jelenlegi CPU ütemezőt.\n\nHa egy QCOM big.LITTLE eszközt használsz, akkor ez egy ismert probléma. A rendszer arra kényszeríti a CPU-t, hogy kikapcsolja a magokat, így rendkívül nehezen olvasható ki a CPU-specifikus statisztika. Próbáld ezt a lehetőséget újra kiválasztani. A CPU néha nem hajlandó a magot bekapcsolni.</string>
   <string name="tunables_error">%s nem hangolható</string>
@@ -379,10 +379,10 @@
   <string name="gpu_min_freq">Minimális GPU frekvencia</string>
   <string name="gpu_min_freq_summary">A minimális frekvencia, amit a GPU használhat.</string>
   <string name="gpu_2d_governor">GPU 2D irányító</string>
-  <string name="gpu_2d_governor_summary">A GPU 2D ütemezőjének beállítása.</string>
-  <string name="gpu_governor">GPU ütemező</string>
+  <string name="gpu_2d_governor_summary">A GPU 2D irányítójának beállítása.</string>
+  <string name="gpu_governor">CPU irányító</string>
   <string name="gpu_governor_summary">A GPU irányítójának beállítása.</string>
-  <string name="gpu_governor_tunables">GPU ütemező beállítások</string>
+  <string name="gpu_governor_tunables">GPU irányító hangolások</string>
   <string name="simple_gpu_algorithm">Egyszerű GPU algoritmus</string>
   <string name="simple_gpu_algorithm_summary">Egy kiegészítő az MSM Adreno TZ GPU irányítóhoz. Fejlesztő: faux123.</string>
   <string name="laziness">Lustaság</string>
@@ -499,7 +499,7 @@
   <string name="pocket_mode_summary">Ha ezt engedélyezed, akkor kikapcsolod az ébresztési vezérlőket, amikor a készülék a zsebedben van.</string>
   <string name="timeout">Időkorlát</string>
   <string name="timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
-  <string name="charge_timeout">Töltés Késleltetés</string>
+  <string name="charge_timeout">Töltés késleltetés</string>
   <string name="charge_timeout_summary">Időtartam beállítása, mikor a ébresztési vezérlők letiltódnak, miután a képernyő kikapcsolt.</string>
   <string name="power_key_suspend">Bekapcsológomb felfüggesztése</string>
   <string name="power_key_suspend_summary">Ezt engedélyezve az ébresztési vezérlők kikapcsolásra kerülnek, ha a képernyő a bekapcsoló gombbal lett kikapcsolva.</string>
@@ -508,10 +508,10 @@
   <string name="height">Magasság</string>
   <string name="vibration">Rezgés</string>
   <string name="vibration_strength">Rezgés erőssége</string>
-  <string name="key_power_mode">Energiatakarékos mód</string>
-  <string name="key_power_mode_summary">Ellenőrzések nyomán csak akkor aktív, ha teszel a készüléket alvás a bekapcsológombot.</string>
-  <string name="charging_mode">Töltés Mód</string>
-  <string name="charging_mode_summary">Ellenőrzések nyomán csak akkor aktív, ha a készülék töltése.</string>
+  <string name="key_power_mode">Bekapcsológomb mód</string>
+  <string name="key_power_mode_summary">Ébresztési vezérlők csak akkor aktívak, ha az eszközt a bekapcsológombbal küldte alvó módba.</string>
+  <string name="charging_mode">Töltés mód</string>
+  <string name="charging_mode_summary">Ébresztési vezérlők csak akkor aktívak, ha a készülék töltődik.</string>
   <!-- Sound -->
   <string name="sound_control">Hangvezérlő</string>
   <string name="headset_highperf_mode">Fülhallgató nagy teljesítményű mód</string>
@@ -666,13 +666,13 @@
   <string name="msm_hsic_wakelock_divider">msm_hsic wakelock elválasztó</string>
   <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock elválasztó</string>
   <!-- Data Sharing -->
-  <string name="data_sharing_summary_notification">Az adatok megosztása aktív! Ide kattintva tudj meg többet erről a funkcióról.</string>
+  <string name="data_sharing_summary_notification">Az adatok megosztása aktív! Ide kattintva tudhat meg többet erről a funkcióról.</string>
   <string name="data_sharing_summary">Ossza meg másokkal a beállításait! A Kernel Adiutor automatikusan információkat gyűjt és összeállít egy mindenki számára elérhető pontszám listát.</string>
   <string name="data_sharing_summary_link">A lista elérhető itt: &lt;a href=\"https://www.grarak.com/kerneladiutor\"&gt;grarak.com&lt;/a&gt;.</string>
   <string name="sharing_enable">Megosztás engedélyezése</string>
   <string name="filter">Szűrő</string>
   <string name="board">Tábla</string>
-  <string name="show_all">Összes megjelenítése</string>
+  <string name="show_all">Összes mutatása</string>
   <string name="failed_board">Nem sikerült betölteni a táblázatot.</string>
   <string name="failed_devices">Nem sikerült az eszközlista betöltése</string>
   <string name="previous">Előző</string>
@@ -680,7 +680,7 @@
   <string name="next">Következő</string>
   <string name="kernel_version">Kernel verzió</string>
   <string name="potential_sot">Potenciális SOT</string>
-  <string name="screen_always_on">Amikor a képernyő be van kapcsolva </string>
+  <string name="screen_always_on">amikor a képernyő be van kapcsolva</string>
   <string name="lower_better">az alacsonyabb jobb</string>
   <string name="cpu_score">CPU pontszám</string>
   <string name="cpu_information">CPU információ</string>

@@ -129,9 +129,9 @@
   <string name="version">版本</string>
   <string name="handlers">处理程序</string>
   <!-- CPU -->
-  <string name="cores_string">%s核</string>
-  <string name="frequencies_string">%s频率</string>
-  <string name="governors_string">%s调速器</string>
+  <string name="cores_string">%s 核</string>
+  <string name="frequencies_string">%s 频率</string>
+  <string name="governors_string">%s 调速器</string>
   <string name="cores_singular">%d 个核心</string>
   <string name="cores">%d 个核心</string>
   <string name="cpu_usage">CPU 使用率</string>
