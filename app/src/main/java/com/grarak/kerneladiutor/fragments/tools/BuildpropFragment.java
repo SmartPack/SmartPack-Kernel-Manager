@@ -230,12 +230,9 @@ public class BuildpropFragment extends RecyclerViewFragment {
                 @Override
                 public void run() {
                     if (isAdded()) {
-
                         SearchFragment fragment = (SearchFragment)
                                 getViewPagerFragment(0);
-                        if (fragment != null) {
-                            fragment.setCount(items.size());
-                        }
+                        fragment.setCount(items.size());
                     }
                 }
             });

@@ -176,8 +176,10 @@ public class DataSharingSearchActivity extends BaseActivity {
             mServerSearchDevice.getBoards(new ServerSearchDevice.BoardSearchListener() {
                 @Override
                 public void onBoardResult(List<String> boards) {
-                    boards.add(0, getString(R.string.show_all));
-                    mBoards = boards;
+                    if (isAdded()) {
+                        boards.add(0, getString(R.string.show_all));
+                        mBoards = boards;
+                    }
                 }
 
                 @Override

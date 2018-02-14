@@ -311,7 +311,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
                     @Override
                     public void run() {
                         Activity activity = fragment.getActivity();
-                        if (activity != null) {
+                        if (fragment.isAdded() && activity != null) {
                             fragment.mRecyclerView.startAnimation(AnimationUtils.loadAnimation(
                                     activity, R.anim.slide_in_bottom));
 

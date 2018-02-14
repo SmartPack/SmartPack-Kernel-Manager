@@ -117,7 +117,7 @@ import java.util.PriorityQueue;
 public class NavigationActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ArrayList<NavigationFragment> mFragments;
+    private ArrayList<NavigationFragment> mFragments = new ArrayList<>();
     private Map<Integer, Class<? extends Fragment>> mActualFragments = new LinkedHashMap<>();
 
     private Handler mHandler = new Handler();
@@ -174,7 +174,7 @@ public class NavigationActivity extends BaseActivity
     }
 
     private void initFragments() {
-        mFragments = new ArrayList<>();
+        mFragments.clear();
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.statistics));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.overall, OverallFragment.class, R.drawable.ic_chart));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.device, DeviceFragment.class, R.drawable.ic_device));
