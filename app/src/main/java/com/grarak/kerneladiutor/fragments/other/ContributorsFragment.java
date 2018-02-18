@@ -74,9 +74,6 @@ public class ContributorsFragment extends RecyclerViewFragment {
                     Contributors contributors = new Contributors(raw);
                     if (contributors.readable()) {
                         for (final Contributors.Contributor contributor : contributors.getContributors()) {
-                            if (contributor.getLogin().equals("Grarak")) {
-                                continue;
-                            }
                             addItem(new ContributorView(contributor));
                         }
                     } else {
