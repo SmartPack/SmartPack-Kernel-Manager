@@ -43,6 +43,17 @@
       "samsung"
     ],
     "device": [
+      "SCL23",
+      "kltexxx",
+      "kltekdi"
+    ],
+    "link": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/kltekdi.json"
+  },
+  {
+    "vendor": [
+      "samsung"
+    ],
+    "device": [
       "SM-G900S",
       "SM-G900k",
       "SM-G900L",
