@@ -47,6 +47,12 @@ android {
     }
 }
 
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
 repositories {
     maven { url "https://jitpack.io" }
     maven { url "https://maven.fabric.io/public" }
@@ -80,5 +86,3 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 }
-
-apply plugin: 'com.google.gms.google-services'
