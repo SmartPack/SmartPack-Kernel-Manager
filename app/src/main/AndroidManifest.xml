@@ -76,7 +76,6 @@
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity android:name=".activities.BannerResizerActivity" />
         <activity android:name=".activities.tools.profile.ProfileEditActivity" />
-        <activity android:name=".activities.DataSharingSearchActivity" />
 
         <receiver
             android:name=".services.boot.OnBootReceiver"
@@ -90,9 +89,6 @@
 
         <service android:name=".services.boot.ApplyOnBootService" />
         <receiver android:name=".services.boot.ApplyOnBoot$CancelReceiver" />
-
-        <service android:name=".services.monitor.Monitor" />
-        <receiver android:name=".services.monitor.Monitor$DisableReceiver" />
 
         <!-- Profile Widget -->
         <receiver android:name=".services.profile.Widget">

@@ -75,14 +75,12 @@ import com.grarak.kerneladiutor.fragments.statistics.MemoryFragment;
 import com.grarak.kerneladiutor.fragments.statistics.OverallFragment;
 import com.grarak.kerneladiutor.fragments.tools.BackupFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
-import com.grarak.kerneladiutor.fragments.tools.DataSharingFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.OnBootFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.fragments.tools.customcontrols.CustomControlsFragment;
 import com.grarak.kerneladiutor.fragments.tools.downloads.DownloadsFragment;
-import com.grarak.kerneladiutor.services.monitor.Monitor;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -222,7 +220,6 @@ public class NavigationActivity extends BaseActivity
         }
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, MiscFragment.class, R.drawable.ic_clear));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
-        mFragments.add(new NavigationActivity.NavigationFragment(R.string.data_sharing, DataSharingFragment.class, R.drawable.ic_database));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, CustomControlsFragment.class, R.drawable.ic_console));
 
         SupportedDownloads supportedDownloads = new SupportedDownloads(this);
@@ -319,10 +316,6 @@ public class NavigationActivity extends BaseActivity
             mSelection = firstTab();
         }
         onItemSelected(mSelection, false, false);
-
-        if (Prefs.getBoolean("data_sharing", true, this)) {
-            startService(new Intent(this, Monitor.class));
-        }
     }
 
     private int firstTab() {
