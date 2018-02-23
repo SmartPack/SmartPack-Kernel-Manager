@@ -25,8 +25,7 @@
     <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
     <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="donate">Donate to Grarak</string>
-    <string name="donate_summary">This feature is only available in the donation version of official Kernel Adiutor (not this modified SmartPack-Kernel Manager)!\n
-*Please Note* If you bought the donation app, you probably need to switch to the official Kernel Adiutor to get the benefits.</string>
+    <string name="donate_summary">This feature is only available in the donation version of official Kernel Adiutor (not this modified SmartPack-Kernel Manager)!\n*Please Note* If you bought the donation app, you probably need to switch to the official Kernel Adiutor to get the benefits.</string>
     <string name="donate_nope">Not now!</string>
     <string name="donate_yes">Donate!</string>
     <string name="ad_here">Your advertisement could be here</string>
