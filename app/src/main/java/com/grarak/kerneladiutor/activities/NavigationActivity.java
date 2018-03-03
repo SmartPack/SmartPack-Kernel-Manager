@@ -506,7 +506,7 @@ public class NavigationActivity extends BaseActivity
     private Fragment getFragment(int res) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(res + "_key");
-        if (fragment == null) {
+        if (fragment == null && mActualFragments.containsKey(res)) {
             fragment = Fragment.instantiate(this, mActualFragments.get(res).getCanonicalName());
         }
         return fragment;
