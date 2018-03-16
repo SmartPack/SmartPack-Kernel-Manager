@@ -235,17 +235,6 @@ public class Utils {
         return path.contains("/") ? path : null;
     }
 
-    public static String getInternalStorage() {
-        String dataPath = existFile("/data/media/0", true) ? "/data/media/0" : "/data/media";
-        if (!new RootFile(dataPath).isEmpty()) {
-            return dataPath;
-        }
-        if (existFile("/sdcard", true)) {
-            return "/sdcard";
-        }
-        return Environment.getExternalStorageDirectory().getPath();
-    }
-
     public static String getInternalDataStorage() {
         return Environment.getExternalStorageDirectory().toString() + "/Android/data/" +
                 BuildConfig.APPLICATION_ID;

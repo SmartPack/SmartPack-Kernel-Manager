@@ -91,10 +91,6 @@ public class Backup {
     };
 
     public static void restore(File file, PARTITION partition_type) {
-        String sdcard = Environment.getExternalStorageDirectory().toString();
-        if (file.toString().startsWith(sdcard)) {
-            file = new File(file.toString().replace(sdcard, Utils.getInternalStorage()));
-        }
         String command = "dd if='" + file.toString() + "' of=" + getPartition(partition_type);
         Log.i(TAG, "Executing: " + command);
         RootUtils.runCommand(command);

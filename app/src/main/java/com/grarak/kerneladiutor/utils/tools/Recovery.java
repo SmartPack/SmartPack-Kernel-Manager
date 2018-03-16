@@ -84,7 +84,7 @@ public class Recovery {
 
             String internalStorage = Environment.getExternalStorageDirectory().toString();
             if (zip.startsWith(internalStorage + "/")) {
-                return zip.replace(internalStorage + "/", Utils.getInternalStorage() + "/");
+                return zip.replace(internalStorage + "/", "/sdcard/");
             }
 
             String externalStorage = Utils.getExternalStorage();
@@ -104,7 +104,7 @@ public class Recovery {
             List<String> commands = new ArrayList<>();
 
             commands.add("format(\"/data\");");
-            commands.add("format(\"" + Utils.getInternalStorage() + "/.android_secure\");");
+            commands.add("format(\"/sdcard/.android_secure\");");
 
             return commands;
         }
