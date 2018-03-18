@@ -76,6 +76,9 @@ public class MiscFragment extends RecyclerViewFragment {
         if (mMisc.hasArchPower()) {
             archPowerInit(items);
         }
+        if (mMisc.hasSELinux()) {
+            selinuxInit(items);
+        }
         if (PowerSuspend.supported()) {
             powersuspendInit(items);
         }
@@ -206,6 +209,21 @@ public class MiscFragment extends RecyclerViewFragment {
         });
 
         items.add(archPower);
+    }
+
+    private void selinuxInit(List<RecyclerViewItem> items) {
+        SwitchView selinux = new SwitchView();
+        selinux.setTitle(getString(R.string.selinux_switch));
+        selinux.setSummary(getString(R.string.selinux_switch_summary));
+        selinux.setChecked(mMisc.isSELinuxEnabled());
+        selinux.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                mMisc.enableSELinux(isChecked, getActivity());
+            }
+        });
+
+        items.add(selinux);
     }
 
     private void powersuspendInit(List<RecyclerViewItem> items) {

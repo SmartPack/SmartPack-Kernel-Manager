@@ -47,7 +47,9 @@ public class Misc {
     private static final String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
     private static final String GENTLE_FAIR_SLEEPERS = "/sys/kernel/sched/gentle_fair_sleepers";
     private static final String ARCH_POWER = "/sys/kernel/sched/arch_power";
+    private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
+
     private static final String HOSTNAME_KEY = "net.hostname";
 
     private final List<String> mLoggers = new ArrayList<>();
@@ -125,6 +127,18 @@ public class Misc {
 
     public boolean hasArchPower() {
         return Utils.existFile(ARCH_POWER);
+    }
+
+    public void enableSELinux(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", SELINUX), SELINUX, context);
+    }
+
+    public boolean isSELinuxEnabled() {
+        return Utils.readFile(SELINUX).equals("1");
+    }
+
+    public boolean hasSELinux() {
+        return Utils.existFile(SELINUX);
     }
 
     public void enableGentleFairSleepers(boolean enable, Context context) {

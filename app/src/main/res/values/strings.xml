@@ -662,6 +662,8 @@
 
     <!-- Misc -->
     <string name="android_logger">Android logging</string>
+    <string name="selinux_switch">SELinux Switch</string>
+    <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
     <string name="fsync">Fsync</string>
