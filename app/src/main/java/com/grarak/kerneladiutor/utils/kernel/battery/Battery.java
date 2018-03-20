@@ -20,6 +20,9 @@
 package com.grarak.kerneladiutor.utils.kernel.battery;
 
 import android.content.Context;
+import android.text.TextUtils;
+ 
+import com.grarak.kerneladiutor.R;
 import android.support.annotation.NonNull;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -28,6 +31,9 @@ import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by willi on 26.06.16.
@@ -44,13 +50,26 @@ public class Battery {
     }
 
     private static final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
+    private static final String MTP_FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/use_mtp_during_fast_charge";
+    private static final String SCREEN_ON_CURRENT_LIMT = "/sys/kernel/fast_charge/screen_on_current_limit";
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
+    private static final String AC_CHARGE_LEVEL = "/sys/kernel/fast_charge/ac_levels";
+    private static final String USB_CHARGE_LEVEL = "/sys/kernel/fast_charge/usb_levels";
+    private static final String WIRELESS_CHARGE_LEVEL = "/sys/kernel/fast_charge/wireless_levels";
+    private static final String FAILSAFE_CONTROL = "/sys/kernel/fast_charge/failsafe";
+    private static final String FAST_CHARGE = "/sys/kernel/fast_charge";
+    private static final String CUSTOM_AC_CHARGE_LEVEL = FAST_CHARGE + "/ac_charge_level";
+    private static final String CUSTOM_USB_CHARGE_LEVEL = FAST_CHARGE + "/usb_charge_level";
+    private static final String CUSTOM_WIRELESS_CHARGE_LEVEL = FAST_CHARGE + "/wireless_charge_level";
 
     private static final String CHARGE_RATE = "/sys/kernel/thundercharge_control";
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
 
     private int mCapacity;
+    private static String[] sBatteryAvailable;
+    private static String[] sBatteryUSBAvailable;
+    private static String[] sBatteryWIRELESSAvailable;
 
     private Battery(Context context) {
         if (mCapacity == 0) {
@@ -104,16 +123,157 @@ public class Battery {
         return Utils.existFile(BLX);
     }
 
-    public void enableForceFastCharge(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
+    public static List<String> enableForceFastCharge(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
+        list.add(context.getString(R.string.enabled));
+        list.add(context.getString(R.string.custom_charge));
+        return list;
     }
 
-    public boolean isForceFastChargeEnabled() {
-        return Utils.readFile(FORCE_FAST_CHARGE).equals("1");
-    }
-
-    public boolean hasForceFastCharge() {
+    public static boolean hasForceFastCharge() {
         return Utils.existFile(FORCE_FAST_CHARGE);
+    }
+    
+    public static int getForceFastCharge() {
+        return Utils.strToInt(Utils.readFile(FORCE_FAST_CHARGE));
+    }
+    
+    public void setForceFastCharge(int value, Context context) {
+        run(Control.write(String.valueOf(value), FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
+    }
+
+    public static boolean hasFastChargeControlAC() {
+        return Utils.existFile(AC_CHARGE_LEVEL);
+    }
+    
+    public static boolean hasFastChargeCustomAC() {
+       return Utils.existFile(CUSTOM_AC_CHARGE_LEVEL);
+    }
+    
+    public static boolean hasChargeCustomAC() {
+        return Utils.existFile(CUSTOM_AC_CHARGE_LEVEL);
+    }
+    
+    public static String getFastChargeCustomAC() {
+        return Utils.readFile(CUSTOM_AC_CHARGE_LEVEL);
+    }
+    
+    public static int getChargeCustomAC() {
+        return Utils.strToInt(Utils.readFile(CUSTOM_AC_CHARGE_LEVEL));
+    }
+
+    public void setFastChargeControlAC (String value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_AC_CHARGE_LEVEL), CUSTOM_AC_CHARGE_LEVEL, context);
+    }
+    
+    public void setChargeControlAC(int value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_AC_CHARGE_LEVEL), CUSTOM_AC_CHARGE_LEVEL, context);
+    }
+    
+    public static List<String> getFastChargeControlAC() {
+        if (sBatteryAvailable == null) {
+            sBatteryAvailable = Utils.readFile(AC_CHARGE_LEVEL).split(" ");
+        }
+        return new ArrayList<>(Arrays.asList(sBatteryAvailable));
+    }
+
+    public static boolean hasFastChargeControlUSB() {
+       return Utils.existFile(USB_CHARGE_LEVEL);
+    }
+    
+    public static boolean hasFastChargeCustomUSB() {
+        return Utils.existFile(CUSTOM_USB_CHARGE_LEVEL);
+    }
+   
+    public static String getFastChargeCustomUSB() {
+        return Utils.readFile(CUSTOM_USB_CHARGE_LEVEL);
+    }
+    
+    public static int getChargeCustomUSB() {
+        return Utils.strToInt(Utils.readFile(CUSTOM_USB_CHARGE_LEVEL));
+    }
+    
+    public static List<String> getFastChargeControlUSB() {
+        if (sBatteryUSBAvailable == null) {
+            sBatteryUSBAvailable = Utils.readFile(USB_CHARGE_LEVEL).split(" ");
+        }
+        return new ArrayList<>(Arrays.asList(sBatteryUSBAvailable));
+    }
+    
+    public void setFastChargeControlUSB (String value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_USB_CHARGE_LEVEL), CUSTOM_USB_CHARGE_LEVEL, context);
+    }
+    
+    public void setChargeControlUSB(int value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_USB_CHARGE_LEVEL), CUSTOM_USB_CHARGE_LEVEL, context);
+    }
+    
+    public boolean hasFastChargeControlWIRELESS() {
+        return Utils.existFile(WIRELESS_CHARGE_LEVEL);
+    }
+    
+    public static String getFastChargeCustomWIRELESS() {
+        return Utils.readFile(CUSTOM_WIRELESS_CHARGE_LEVEL);
+    }
+    
+    public static List<String> getFastChargeControlWIRELESS() {
+        if (sBatteryWIRELESSAvailable == null) {
+            sBatteryWIRELESSAvailable = Utils.readFile(WIRELESS_CHARGE_LEVEL).split(" ");
+        }
+        return new ArrayList<>(Arrays.asList(sBatteryWIRELESSAvailable));
+    }
+    
+    public void setFastChargeControlWIRELESS (String value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_WIRELESS_CHARGE_LEVEL), CUSTOM_WIRELESS_CHARGE_LEVEL, context);
+    }
+    
+    public static boolean hasFastChargeCustomWireless() {
+        return Utils.existFile(CUSTOM_WIRELESS_CHARGE_LEVEL);
+    }
+    
+    public int getChargeCustomWireless() {
+        return Utils.strToInt(Utils.readFile(CUSTOM_WIRELESS_CHARGE_LEVEL));
+    }
+    
+    public void setChargeControlWireless(int value, Context context) {
+        run(Control.write(String.valueOf(value), CUSTOM_WIRELESS_CHARGE_LEVEL), CUSTOM_WIRELESS_CHARGE_LEVEL, context);
+    }
+    
+   public void enableMtpForceFastCharge(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", MTP_FORCE_FAST_CHARGE), MTP_FORCE_FAST_CHARGE, context);
+    }
+
+    public boolean isMtpForceFastChargeEnabled() {
+        return Utils.readFile(MTP_FORCE_FAST_CHARGE).equals("1");
+    }
+
+    public boolean hasMtpForceFastCharge() {
+       return Utils.existFile(MTP_FORCE_FAST_CHARGE);
+    }
+    
+    public void enableScreenCurrentLimit(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", SCREEN_ON_CURRENT_LIMT), SCREEN_ON_CURRENT_LIMT, context);
+    }
+
+    public boolean isScreenCurrentLimit() {
+        return Utils.readFile(SCREEN_ON_CURRENT_LIMT).equals("1");
+    }
+
+   public boolean hasScreenCurrentLimit() {
+        return Utils.existFile(SCREEN_ON_CURRENT_LIMT);
+    }
+    
+    public void enableFailsafe(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", FAILSAFE_CONTROL), FAILSAFE_CONTROL, context);
+    }
+
+    public boolean isFailsafe() {
+        return Utils.readFile(FAILSAFE_CONTROL).equals("1");
+    }
+
+    public boolean hasFailsafe() {
+        return Utils.existFile(FAILSAFE_CONTROL);
     }
 
     public int getCapacity() {
