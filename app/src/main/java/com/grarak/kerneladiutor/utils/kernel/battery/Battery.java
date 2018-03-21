@@ -49,18 +49,21 @@ public class Battery {
         return sInstance;
     }
 
-    private static final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
-    private static final String MTP_FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/use_mtp_during_fast_charge";
-    private static final String SCREEN_ON_CURRENT_LIMT = "/sys/kernel/fast_charge/screen_on_current_limit";
-    private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
-    private static final String AC_CHARGE_LEVEL = "/sys/kernel/fast_charge/ac_levels";
-    private static final String USB_CHARGE_LEVEL = "/sys/kernel/fast_charge/usb_levels";
-    private static final String WIRELESS_CHARGE_LEVEL = "/sys/kernel/fast_charge/wireless_levels";
-    private static final String FAILSAFE_CONTROL = "/sys/kernel/fast_charge/failsafe";
     private static final String FAST_CHARGE = "/sys/kernel/fast_charge";
+    private static final String FORCE_FAST_CHARGE = FAST_CHARGE + "/force_fast_charge";
     private static final String CUSTOM_AC_CHARGE_LEVEL = FAST_CHARGE + "/ac_charge_level";
     private static final String CUSTOM_USB_CHARGE_LEVEL = FAST_CHARGE + "/usb_charge_level";
     private static final String CUSTOM_WIRELESS_CHARGE_LEVEL = FAST_CHARGE + "/wireless_charge_level";
+
+    private static final String MTP_FORCE_FAST_CHARGE = FAST_CHARGE + "/use_mtp_during_fast_charge";
+    private static final String SCREEN_ON_CURRENT_LIMT = FAST_CHARGE + "/screen_on_current_limit";
+
+    private static final String AC_CHARGE_LEVEL = FAST_CHARGE + "/ac_levels";
+    private static final String USB_CHARGE_LEVEL = FAST_CHARGE + "/usb_levels";
+    private static final String WIRELESS_CHARGE_LEVEL = FAST_CHARGE + "/wireless_levels";
+    private static final String FAILSAFE_CONTROL = FAST_CHARGE + "/failsafe";
+
+    private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
     private static final String CHARGE_RATE = "/sys/kernel/thundercharge_control";
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
@@ -145,29 +148,13 @@ public class Battery {
 
     public static boolean hasFastChargeControlAC() {
         return Utils.existFile(AC_CHARGE_LEVEL);
-    }
-    
-    public static boolean hasFastChargeCustomAC() {
-       return Utils.existFile(CUSTOM_AC_CHARGE_LEVEL);
-    }
-    
-    public static boolean hasChargeCustomAC() {
-        return Utils.existFile(CUSTOM_AC_CHARGE_LEVEL);
-    }
-    
+    }  
+   
     public static String getFastChargeCustomAC() {
         return Utils.readFile(CUSTOM_AC_CHARGE_LEVEL);
     }
-    
-    public static int getChargeCustomAC() {
-        return Utils.strToInt(Utils.readFile(CUSTOM_AC_CHARGE_LEVEL));
-    }
 
     public void setFastChargeControlAC (String value, Context context) {
-        run(Control.write(String.valueOf(value), CUSTOM_AC_CHARGE_LEVEL), CUSTOM_AC_CHARGE_LEVEL, context);
-    }
-    
-    public void setChargeControlAC(int value, Context context) {
         run(Control.write(String.valueOf(value), CUSTOM_AC_CHARGE_LEVEL), CUSTOM_AC_CHARGE_LEVEL, context);
     }
     
@@ -181,17 +168,9 @@ public class Battery {
     public static boolean hasFastChargeControlUSB() {
        return Utils.existFile(USB_CHARGE_LEVEL);
     }
-    
-    public static boolean hasFastChargeCustomUSB() {
-        return Utils.existFile(CUSTOM_USB_CHARGE_LEVEL);
-    }
    
     public static String getFastChargeCustomUSB() {
         return Utils.readFile(CUSTOM_USB_CHARGE_LEVEL);
-    }
-    
-    public static int getChargeCustomUSB() {
-        return Utils.strToInt(Utils.readFile(CUSTOM_USB_CHARGE_LEVEL));
     }
     
     public static List<String> getFastChargeControlUSB() {
@@ -202,10 +181,6 @@ public class Battery {
     }
     
     public void setFastChargeControlUSB (String value, Context context) {
-        run(Control.write(String.valueOf(value), CUSTOM_USB_CHARGE_LEVEL), CUSTOM_USB_CHARGE_LEVEL, context);
-    }
-    
-    public void setChargeControlUSB(int value, Context context) {
         run(Control.write(String.valueOf(value), CUSTOM_USB_CHARGE_LEVEL), CUSTOM_USB_CHARGE_LEVEL, context);
     }
     
@@ -225,18 +200,6 @@ public class Battery {
     }
     
     public void setFastChargeControlWIRELESS (String value, Context context) {
-        run(Control.write(String.valueOf(value), CUSTOM_WIRELESS_CHARGE_LEVEL), CUSTOM_WIRELESS_CHARGE_LEVEL, context);
-    }
-    
-    public static boolean hasFastChargeCustomWireless() {
-        return Utils.existFile(CUSTOM_WIRELESS_CHARGE_LEVEL);
-    }
-    
-    public int getChargeCustomWireless() {
-        return Utils.strToInt(Utils.readFile(CUSTOM_WIRELESS_CHARGE_LEVEL));
-    }
-    
-    public void setChargeControlWireless(int value, Context context) {
         run(Control.write(String.valueOf(value), CUSTOM_WIRELESS_CHARGE_LEVEL), CUSTOM_WIRELESS_CHARGE_LEVEL, context);
     }
     
@@ -262,18 +225,6 @@ public class Battery {
 
    public boolean hasScreenCurrentLimit() {
         return Utils.existFile(SCREEN_ON_CURRENT_LIMT);
-    }
-    
-    public void enableFailsafe(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", FAILSAFE_CONTROL), FAILSAFE_CONTROL, context);
-    }
-
-    public boolean isFailsafe() {
-        return Utils.readFile(FAILSAFE_CONTROL).equals("1");
-    }
-
-    public boolean hasFailsafe() {
-        return Utils.existFile(FAILSAFE_CONTROL);
     }
 
     public int getCapacity() {
