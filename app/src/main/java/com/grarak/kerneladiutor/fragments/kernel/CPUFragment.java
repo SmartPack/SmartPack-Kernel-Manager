@@ -116,7 +116,7 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuTouchBoostInit(items);
         }
         if (Misc.hascpuinputboost()) {
-            cpuinputboostInit(items);
+            cpuiboostInit(items);
         }
     }
 
@@ -626,20 +626,64 @@ public class CPUFragment extends RecyclerViewFragment {
         items.add(touchBoost);
     }
 
-    private void cpuinputboostInit(List<RecyclerViewItem> items) {
+    private void cpuiboostInit(List<RecyclerViewItem> items) {
+        CardView cpuiboostCard = new CardView(getActivity());
+        cpuiboostCard.setTitle(getString(R.string.cpuiboost));
+
         if (Misc.hascpuinputboost()) {
-            SwitchView cpuinputboost = new SwitchView();
-            cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
-            cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
-            cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
-            cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+        SwitchView cpuinputboost = new SwitchView();
+        cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
+        cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
+        cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
+        cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enablecpuinputboost(isChecked, getActivity());
+            }
+        });
+
+        cpuiboostCard.addItem(cpuinputboost);
+    }
+
+        if (Misc.hascpuiboostduration()) {
+            SeekBarView cpuiboostduration = new SeekBarView();
+            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
+            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration_summary));
+            cpuiboostduration.setUnit(getString(R.string.ms));
+            cpuiboostduration.setMax(5000);
+            cpuiboostduration.setOffset(10);
+            cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
+            cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enablecpuinputboost(isChecked, getActivity());
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setcpuiboostduration((position * 10), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
                 }
             });
 
-            items.add(cpuinputboost);
+            cpuiboostCard.addItem(cpuiboostduration);
+        }
+
+        if (Misc.hascpuiboostfreq()) {
+        SwitchView cpuiboostfreq = new SwitchView();
+        cpuiboostfreq.setTitle(getString(R.string.cpuiboost_freq));
+        cpuiboostfreq.setSummary(getString(R.string.cpuiboost_freq_summary));
+        cpuiboostfreq.setChecked(Misc.iscpuiboostfreqEnabled());
+        cpuiboostfreq.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                Misc.enablecpuiboostfreq(isChecked, getActivity());
+            }
+        });
+
+        cpuiboostCard.addItem(cpuiboostfreq);
+    }
+
+        if (cpuiboostCard.size() > 0) {
+            items.add(cpuiboostCard);
         }
     }
 
