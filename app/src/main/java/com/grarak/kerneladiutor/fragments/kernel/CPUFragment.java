@@ -631,19 +631,19 @@ public class CPUFragment extends RecyclerViewFragment {
         cpuiboostCard.setTitle(getString(R.string.cpuiboost));
 
         if (Misc.hascpuinputboost()) {
-        SwitchView cpuinputboost = new SwitchView();
-        cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
-        cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
-        cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
-        cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enablecpuinputboost(isChecked, getActivity());
-            }
-        });
+            SwitchView cpuinputboost = new SwitchView();
+            cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
+            cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
+            cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
+            cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enablecpuinputboost(isChecked, getActivity());
+                }
+            });
 
-        cpuiboostCard.addItem(cpuinputboost);
-    }
+            cpuiboostCard.addItem(cpuinputboost);
+        }
 
         if (Misc.hascpuiboostduration()) {
             SeekBarView cpuiboostduration = new SeekBarView();
@@ -668,19 +668,19 @@ public class CPUFragment extends RecyclerViewFragment {
         }
 
         if (Misc.hascpuiboostfreq()) {
-        SwitchView cpuiboostfreq = new SwitchView();
-        cpuiboostfreq.setTitle(getString(R.string.cpuiboost_freq));
-        cpuiboostfreq.setSummary(getString(R.string.cpuiboost_freq_summary));
-        cpuiboostfreq.setChecked(Misc.iscpuiboostfreqEnabled());
-        cpuiboostfreq.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
+            SwitchView cpuiboostfreq = new SwitchView();
+            cpuiboostfreq.setTitle(getString(R.string.cpuiboost_freq));
+            cpuiboostfreq.setSummary(getString(R.string.cpuiboost_freq_summary));
+            cpuiboostfreq.setChecked(Misc.iscpuiboostfreqEnabled());
+            cpuiboostfreq.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
                 Misc.enablecpuiboostfreq(isChecked, getActivity());
-            }
-        });
+                    }
+                });
 
-        cpuiboostCard.addItem(cpuiboostfreq);
-    }
+            cpuiboostCard.addItem(cpuiboostfreq);
+        }
 
         if (cpuiboostCard.size() > 0) {
             items.add(cpuiboostCard);
