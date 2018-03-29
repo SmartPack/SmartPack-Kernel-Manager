@@ -2,6 +2,26 @@
 
 ## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer. If you like his work, please consider to donate to him by clicking the PayPal button next to this test.
 
+## Download
+### ! [Download latest build](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest) ! [All builds](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases) !
+## Added features over official KA
+
+* Advanced Charge Control Interface for yank555.lu's Fast Charge
+* CPU Input Boost (Sultanxda) Control
+* SELinux Switch
+* Significantly modified (for SmartPack-Kernel) OTA implementation
+* Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
+
+## Relevant links
+
+[SmartPack-Kernel for Lineage-OS 14.1/15.1 (kltexxx)](https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206)
+
+[SmartPack-Kernel for Stock Marshmallow (kltexxx)](https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810)
+
+***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
+
+# About official Kernel Adiutor
+
 [![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
 

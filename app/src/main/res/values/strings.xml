@@ -927,7 +927,7 @@
 
     <!-- Help -->
     <string name="how_different">Q1. How this app different from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This app is significantly modified to meet the needs of Smart-Pack-Kernel (e.g. CPU Input Boost control, SELinux switch, OTA support for SmartPack-Kernel, and more).</string>
+    <string name="how_different_summary">Ans. This app is significantly modified to meet the needs of Smart-Pack-Kernel (e.g. CPU Input Boost control, Advanced Charge Control Interface, SELinux switch, OTA support for SmartPack-Kernel, and more).</string>
     <string name="lost_sound">Q2. I lost sound in my kltexxx after installing this kernel. What should I do?</string>
     <string name="lost_sound_summary">Ans. It is most likely due to some conflict between the kernel default settings and your local settings within the app. To solve this, you need to reboot your device after removing ‘Apply on boot’ from Sound menu.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>
