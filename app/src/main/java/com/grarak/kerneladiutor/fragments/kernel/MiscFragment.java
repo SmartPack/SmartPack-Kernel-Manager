@@ -82,6 +82,9 @@ public class MiscFragment extends RecyclerViewFragment {
         if (PowerSuspend.supported()) {
             powersuspendInit(items);
         }
+        if (mMisc.hasdisplaybacklight()) {
+            displaybacklightInit(items);
+        }
         networkInit(items);
         wakelockInit(items);
     }
@@ -277,6 +280,27 @@ public class MiscFragment extends RecyclerViewFragment {
 
             items.add(state);
         }
+    }
+
+    private void displaybacklightInit(List<RecyclerViewItem> items) {
+            SeekBarView displaybacklight = new SeekBarView();
+            displaybacklight.setTitle(getString(R.string.display_backlight));
+            displaybacklight.setSummary(getString(R.string.display_backlight_summary));
+            displaybacklight.setMax(255);
+            displaybacklight.setOffset(5);
+            displaybacklight.setProgress(mMisc.getdisplaybacklight() / 5 );
+            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mMisc.setdisplaybacklight((position * 5), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            items.add(displaybacklight);
     }
 
     private void networkInit(List<RecyclerViewItem> items) {

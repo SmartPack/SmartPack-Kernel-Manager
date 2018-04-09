@@ -50,6 +50,8 @@ public class Misc {
     private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
+    private static final String DISPLAY_BACKLIGHT = "/sys/class/leds/lcd-backlight/max_brightness";
+
     private static final String HOSTNAME_KEY = "net.hostname";
 
     private final List<String> mLoggers = new ArrayList<>();
@@ -115,6 +117,18 @@ public class Misc {
 
     public List<String> getTcpAvailableCongestions() {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
+    }
+
+    public void setdisplaybacklight(int value, Context context) {
+        run(Control.write(String.valueOf(value), DISPLAY_BACKLIGHT), DISPLAY_BACKLIGHT, context);
+    }
+
+    public static int getdisplaybacklight() {
+        return Utils.strToInt(Utils.readFile(DISPLAY_BACKLIGHT));
+    }
+
+    public static boolean hasdisplaybacklight() {
+        return Utils.existFile(DISPLAY_BACKLIGHT);
     }
 
     public void enableArchPower(boolean enable, Context context) {
