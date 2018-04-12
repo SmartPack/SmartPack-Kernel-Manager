@@ -8,6 +8,7 @@
 
 * Advanced Charge Control Interface for yank555.lu's Fast Charge
 * CPU Input Boost (Sultanxda) Control
+* Display Backlight Control
 * SELinux Switch
 * Significantly modified (for SmartPack-Kernel) OTA implementation
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
