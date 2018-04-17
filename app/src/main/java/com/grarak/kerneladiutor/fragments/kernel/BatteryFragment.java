@@ -50,6 +50,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     private StatsView mLevel;
     private StatsView mVoltage;
+    private StatsView mDC;
 
     private int mBatteryLevel;
     private int mBatteryVoltage;
@@ -66,6 +67,10 @@ public class BatteryFragment extends RecyclerViewFragment {
         levelInit(items);
         voltageInit(items);
         chargeRateInit(items);
+        mDC = new StatsView();
+        if (Battery.hasDc()) {
+        items.add(mDC);
+	    }
         if (mBattery.hasBlx()) {
             blxInit(items);
         }
@@ -288,7 +293,25 @@ public class BatteryFragment extends RecyclerViewFragment {
             mLevel.setStat(mBatteryLevel + "%");
         }
         if (mVoltage != null) {
-            mVoltage.setStat(mBatteryVoltage + getString(R.string.mv));
+            mVoltage.setStat(mBatteryVoltage + " mV");
+        }
+        if (mDC != null) {
+			if (Battery.getDc() >= 10000) {
+			float dc = Battery.getDc() /1000;
+			if (Battery.isCharge()){
+			mDC.setTitle("Disconnected");
+            mDC.setStat(0 + (" mA"));}
+            else{
+			mDC.setTitle("Charging");
+            mDC.setStat(String.valueOf(dc) + (" mA"));}}
+			else {
+			float cd = Battery.getDc();
+			if (Battery.isCharge()){
+			mDC.setTitle("Disconnected");
+            mDC.setStat(0 + (" mA"));}
+            else{
+			mDC.setTitle("Charging");
+            mDC.setStat(String.valueOf(cd) + (" mA"));}}
         }
     }
 
