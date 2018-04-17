@@ -178,29 +178,29 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.inputs, InputsFragment.class, R.drawable.ic_keyboard));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.kernel));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu, CPUFragment.class, R.drawable.ic_cpu));
+        if (Hotplug.supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_hotplug, CPUHotplugFragment.class, R.drawable.ic_switch));
+        }
         if (Voltage.getInstance().supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_voltage, CPUVoltageFragment.class, R.drawable.ic_bolt));
         }
-        if (Hotplug.supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.cpu_hotplug, CPUHotplugFragment.class, R.drawable.ic_switch));
+        if (GPU.supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.gpu, GPUFragment.class, R.drawable.ic_gpu));
         }
         if (Thermal.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.thermal, ThermalFragment.class, R.drawable.ic_temperature));
         }
-        if (GPU.supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.gpu, GPUFragment.class, R.drawable.ic_gpu));
+        if (Battery.getInstance(this).supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.battery, BatteryFragment.class, R.drawable.ic_battery));
+        }
+        if (Sound.getInstance().supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.sound, SoundFragment.class, R.drawable.ic_music));
         }
         if (Screen.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.screen, ScreenFragment.class, R.drawable.ic_display));
         }
         if (Wake.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, WakeFragment.class, R.drawable.ic_unlock));
-        }
-        if (Sound.getInstance().supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.sound, SoundFragment.class, R.drawable.ic_music));
-        }
-        if (Battery.getInstance(this).supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.battery, BatteryFragment.class, R.drawable.ic_battery));
         }
         if (LED.getInstance().supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.led, LEDFragment.class, R.drawable.ic_led));
@@ -222,10 +222,6 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, CustomControlsFragment.class, R.drawable.ic_console));
 
-        SupportedDownloads supportedDownloads = new SupportedDownloads(this);
-        if (supportedDownloads.getLink() != null) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.update, DownloadsFragment.class, R.drawable.ic_download));
-        }
         if (Backup.hasBackup()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, BackupFragment.class, R.drawable.ic_restore));
         }
@@ -235,6 +231,10 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, InitdFragment.class, R.drawable.ic_shell));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, OnBootFragment.class, R.drawable.ic_start));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
+        SupportedDownloads supportedDownloads = new SupportedDownloads(this);
+        if (supportedDownloads.getLink() != null) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.update, DownloadsFragment.class, R.drawable.ic_download));
+        }
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.about, AboutFragment.class, R.drawable.ic_about));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));

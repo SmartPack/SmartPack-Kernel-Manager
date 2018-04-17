@@ -82,14 +82,14 @@
     <string name="memory">Memory</string>
     <string name="inputs">Inputs</string>
     <string name="cpu">CPU</string>
-    <string name="cpu_voltage">CPU Voltage</string>
     <string name="cpu_hotplug">CPU Hotplug</string>
-    <string name="thermal">Thermal</string>
+    <string name="cpu_voltage">CPU Voltage</string>
     <string name="gpu">GPU</string>
+    <string name="thermal">Thermal</string>
+    <string name="battery">Battery</string>
+    <string name="sound">Sound</string>
     <string name="screen">Screen</string>
     <string name="wake">Wake</string>
-    <string name="sound">Sound</string>
-    <string name="battery">Battery</string>
     <string name="led">LED</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
@@ -209,11 +209,6 @@
     <string name="cpuiboost_duration_summary">Select Input Boost duration</string>
     <string name="cpuiboost_freq">Input Boost Frequencies</string>
     <string name="cpuiboost_freq_summary">Apply Input Boost Frequencies\nNote: If enabled, a reboot is necessary to disable</string>
-
-    <!-- CPU Voltage -->
-    <string name="global_offset">Global Offset</string>
-    <string name="override_vmin">Override Minimum Voltage</string>
-    <string name="override_vmin_summary">Disable to remove manufacturer limits on undervolting</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>
@@ -361,6 +356,40 @@
     <string name="max_cpu_online_little">Maximum LITTLE CPUs Online</string>
     <string name="max_cpu_online_little_summary">Maximum number of LITTLE CPUs that will be online.</string>
 
+    <!-- CPU Voltage -->
+    <string name="global_offset">Global Offset</string>
+    <string name="override_vmin">Override Minimum Voltage</string>
+    <string name="override_vmin_summary">Disable to remove manufacturer limits on undervolting</string>
+
+    <!-- GPU -->
+    <string name="frequencies">Frequencies</string>
+    <string name="gpu_2d_freq">GPU 2D Frequency</string>
+    <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
+    <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
+    <string name="gpu_max_freq">GPU Maximum Frequency</string>
+    <string name="gpu_max_freq_summary">Set the maximum frequency the GPU scales up to.</string>
+    <string name="gpu_min_freq">GPU Minimum Frequency</string>
+    <string name="gpu_min_freq_summary">Set the minimum frequency the GPU scales down to.</string>
+    <string name="gpu_2d_governor">GPU 2D Governor</string>
+    <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
+    <string name="gpu_governor">GPU Governor</string>
+    <string name="gpu_governor_summary">Set the governor of the GPU.</string>
+    <string name="gpu_governor_tunables">GPU Governor Tunables</string>
+    <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
+    <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
+    <string name="laziness">Laziness</string>
+    <string name="laziness_summary">This increases the threshold to ramp up or down GPU frequencies. The lower it is, the more performance you get.</string>
+    <string name="ramp_thresold">Ramp Thresold</string>
+    <string name="ramp_thresold_summary">This increases the number of times the GPU governor ramp down requests. The higher it is, the more performance you get.</string>
+    <string name="adreno_idler">Adreno Idler</string>
+    <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads. Developed by arter97.</string>
+    <string name="down_differential">Down Differential</string>
+    <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
+    <string name="idle_wait">Idle Wait</string>
+    <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'th events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
+    <string name="workload">Workload</string>
+    <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
+
     <!--Thermal-->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
     <string name="thermald">Thermald</string>
@@ -403,34 +432,47 @@
     <string name="check_interval">Check Interval</string>
     <string name="shutdown_temp">Shutdown Temperature</string>
 
-    <!-- GPU -->
-    <string name="frequencies">Frequencies</string>
-    <string name="gpu_2d_freq">GPU 2D Frequency</string>
-    <string name="gpu_2d_max_freq">GPU 2D Maximum Frequency</string>
-    <string name="gpu_2d_max_freq_summary">Set the maximum 2D frequency the GPU scales up to.</string>
-    <string name="gpu_max_freq">GPU Maximum Frequency</string>
-    <string name="gpu_max_freq_summary">Set the maximum frequency the GPU scales up to.</string>
-    <string name="gpu_min_freq">GPU Minimum Frequency</string>
-    <string name="gpu_min_freq_summary">Set the minimum frequency the GPU scales down to.</string>
-    <string name="gpu_2d_governor">GPU 2D Governor</string>
-    <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
-    <string name="gpu_governor">GPU Governor</string>
-    <string name="gpu_governor_summary">Set the governor of the GPU.</string>
-    <string name="gpu_governor_tunables">GPU Governor Tunables</string>
-    <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
-    <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
-    <string name="laziness">Laziness</string>
-    <string name="laziness_summary">This increases the threshold to ramp up or down GPU frequencies. The lower it is, the more performance you get.</string>
-    <string name="ramp_thresold">Ramp Thresold</string>
-    <string name="ramp_thresold_summary">This increases the number of times the GPU governor ramp down requests. The higher it is, the more performance you get.</string>
-    <string name="adreno_idler">Adreno Idler</string>
-    <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads. Developed by arter97.</string>
-    <string name="down_differential">Down Differential</string>
-    <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
-    <string name="idle_wait">Idle Wait</string>
-    <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'th events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
-    <string name="workload">Workload</string>
-    <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
+    <!-- Battery -->
+    <string name="level">Level</string>
+    <string name="voltage">Voltage</string>
+    <string name="capacity">Capacity</string>
+    <string name="blx">Battery Life eXtender</string>
+    <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
+    <string name="charge_rate">Charge Rate</string>
+    <string name="charging_current">Charging Current</string>
+    <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
+
+    <!-- Advanced Charge Control Interface -->
+    <string name="acci">Advanced Charge Control Interface</string>
+    <string name="fast_charge">Fast Charge</string>
+    <string name="fast_charge_summary">In Custom Mode, the device will charge as per the selected level. Replug your charger when changing this option.</string>
+    <string name="custom_charge">Custom Mode</string>
+    <string name="charge_level_ac">AC Charge Level (mA)</string>
+    <string name="charge_level_ac_summary">Choose your Level</string>
+    <string name="charge_level_usb">USB Charge Level (mA)</string>
+    <string name="charge_level_usb_summary">Choose your Level</string>
+    <string name="charge_level_wireless">WIRELESS Charge Level (mA)</string>
+    <string name="charge_level_wireless_summary">Choose your Level</string>
+    <string name="mtp_fast_charge">MTP while Fast Charge</string>
+    <string name="mtp_fast_charge_summary">Enable MTP while fast charge</string>
+    <string name="screen_limit">Screen On Current Limit</string>
+    <string name="screen_limit_summary">Enable Screen On Current Limit</string>
+
+    <!-- Sound -->
+    <string name="sound_control">Sound Control</string>
+    <string name="headset_highperf_mode">Headset High Performance Mode</string>
+    <string name="headphone_gain">Headphone Gain</string>
+    <string name="handset_microphone_gain">Handset Microphone Gain</string>
+    <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
+    <string name="speaker_gain">Speaker Gain</string>
+    <string name="headphone_poweramp_gain">Headphone PowerAmp Gain</string>
+    <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165 Extension)</string>
+    <string name="lock_output_gain">Lock Output Gain</string>
+    <string name="lock_output_gain_summary">Prevent modifications to headphone/speaker gains</string>
+    <string name="lock_mic_gain">Lock Microphone Gain</string>
+    <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
+    <string name="microphone_gain">Microphone Gain</string>
+    <string name="volume_gain">Volume Gain</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
@@ -548,48 +590,6 @@
     <string name="key_power_mode_summary">Wake controls will only be active when you put your device into sleep with the power key.</string>
     <string name="charging_mode">Charging Mode</string>
     <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
-
-    <!-- Sound -->
-    <string name="sound_control">Sound Control</string>
-    <string name="headset_highperf_mode">Headset High Performance Mode</string>
-    <string name="headphone_gain">Headphone Gain</string>
-    <string name="handset_microphone_gain">Handset Microphone Gain</string>
-    <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
-    <string name="speaker_gain">Speaker Gain</string>
-    <string name="headphone_poweramp_gain">Headphone PowerAmp Gain</string>
-    <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165 Extension)</string>
-    <string name="lock_output_gain">Lock Output Gain</string>
-    <string name="lock_output_gain_summary">Prevent modifications to headphone/speaker gains</string>
-    <string name="lock_mic_gain">Lock Microphone Gain</string>
-    <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
-    <string name="microphone_gain">Microphone Gain</string>
-    <string name="volume_gain">Volume Gain</string>
-
-    <!-- Battery -->
-    <string name="level">Level</string>
-    <string name="voltage">Voltage</string>
-    <string name="capacity">Capacity</string>
-    <string name="blx">Battery Life eXtender</string>
-    <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
-    <string name="charge_rate">Charge Rate</string>
-    <string name="charging_current">Charging Current</string>
-    <string name="charging_current_summary">Set charging current. Caution: Exceeding 1250mA may damage your charging driver.</string>
-
-    <!-- Advanced Charge Control Interface -->
-    <string name="acci">Advanced Charge Control Interface</string>
-    <string name="fast_charge">Fast Charge</string>
-    <string name="fast_charge_summary">In Custom Mode, the device will charge as per the selected level. Replug your charger when changing this option.</string>
-    <string name="custom_charge">Custom Mode</string>
-    <string name="charge_level_ac">AC Charge Level (mA)</string>
-    <string name="charge_level_ac_summary">Choose your Level</string>
-    <string name="charge_level_usb">USB Charge Level (mA)</string>
-    <string name="charge_level_usb_summary">Choose your Level</string>
-    <string name="charge_level_wireless">WIRELESS Charge Level (mA)</string>
-    <string name="charge_level_wireless_summary">Choose your Level</string>
-    <string name="mtp_fast_charge">MTP while Fast Charge</string>
-    <string name="mtp_fast_charge_summary">Enable MTP while fast charge</string>
-    <string name="screen_limit">Screen On Current Limit</string>
-    <string name="screen_limit_summary">Enable Screen On Current Limit</string>
 
     <!-- LED -->
     <string name="fade">Fade</string>
@@ -787,21 +787,6 @@
     <string name="import_malformed">Import file is malformed!</string>
     <string name="import_wrong_version">Version of import file is too old!</string>
 
-    <!-- Downloads -->
-    <string name="downloads_error">Couldn\'t find any supported kernels! Please check your internet access.</string>
-    <string name="download_error">Failed to download %s.</string>
-    <string name="downloading_counting">%1$s/%2$s</string>
-    <string name="check_md5">Checking md5</string>
-    <string name="md5_mismatch">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
-    <string name="install">Install</string>
-    <string name="cwm_recovery">CWM Recovery</string>
-    <string name="twrp">TWRP</string>
-    <string name="manual_flashing">Install later</string>
-    <string name="file_location">Downloaded file is in %s</string>
-    <string name="backing_up">Backing up</string>
-    <string name="flashing">Flashing</string>
-    <string name="restoring">Restoring</string>
-
     <!-- Backup -->
     <string name="boot_partition">Boot partition</string>
     <string name="recovery_partition">Recovery partition</string>
@@ -865,6 +850,21 @@
     <string name="delete_question">Delete %s?</string>
     <string name="arguments">Arguments: %s</string>
     <string name="disable_question">Disable %s?</string>
+
+    <!-- Downloads -->
+    <string name="downloads_error">Couldn\'t find any supported kernels! Please check your internet access.</string>
+    <string name="download_error">Failed to download %s.</string>
+    <string name="downloading_counting">%1$s/%2$s</string>
+    <string name="check_md5">Checking md5</string>
+    <string name="md5_mismatch">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
+    <string name="install">Install</string>
+    <string name="cwm_recovery">CWM Recovery</string>
+    <string name="twrp">TWRP</string>
+    <string name="manual_flashing">Install later</string>
+    <string name="file_location">Downloaded file is in %s</string>
+    <string name="backing_up">Backing up</string>
+    <string name="flashing">Flashing</string>
+    <string name="restoring">Restoring</string>
 
     <!-- Settings -->
     <string name="open_settings">Open Settings</string>
