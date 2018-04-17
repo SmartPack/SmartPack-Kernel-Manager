@@ -10,6 +10,7 @@
 * CPU Input Boost (Sultanxda) Control
 * Display Backlight Control
 * SELinux Switch
+* Real-time Charging Status
 * Significantly modified (for SmartPack-Kernel) OTA implementation
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
 

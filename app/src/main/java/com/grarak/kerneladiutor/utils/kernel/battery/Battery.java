@@ -69,8 +69,8 @@ public class Battery {
     private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
 
-    private static final String CHARGING_CURRENT = "sys/class/power_supply/battery/current_now";
-    private static final String CHARGING_STATUS = "sys/class/power_supply/battery/status";
+    private static final String CHARGING_CURRENT = "/sys/class/power_supply/battery/current_now";
+    private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
 
     private int mCapacity;
     private static String[] sBatteryAvailable;
@@ -230,16 +230,16 @@ public class Battery {
         return Utils.existFile(SCREEN_ON_CURRENT_LIMT);
     }
 
-    public static boolean hasDc() {
+    public static boolean haschargingstatus() {
         return Utils.existFile(CHARGING_CURRENT);
     } 
     
-    public static int getDc() {
+    public static int getchargingstatus() {
         return Utils.strToInt(Utils.readFile(CHARGING_CURRENT));
     }
     
-    public static boolean isCharge() {
-        return Utils.readFile(CHARGING_STATUS).equals("Discharging");
+    public static boolean isChargeStatus() {
+        return Utils.readFile(CHARGE_STATUS).equals("Discharging");
     }
 
     public int getCapacity() {
