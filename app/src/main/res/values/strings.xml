@@ -250,6 +250,7 @@
     <string name="down_lock_duration">Down Lock Duration</string>
     <string name="down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
     <string name="fshift">FShift</string>
+    <string name="lp">LazyPlug Tunables</string>
     <string name="lazyplug">LazyPlug</string>
     <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by arter97.</string>
     <string name="lazy">Lazy</string>
@@ -279,6 +280,7 @@
     <string name="offline_load_summary">Don\'t offline a CPU if it drops under the lower levels up threshold load.</string>
     <string name="io_is_busy">IO is Busy</string>
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
+    <string name="mhp">Mako Hotplug Tunables</string>
     <string name="mako_hotplug">Mako Hotplug</string>
     <string name="mako_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by franciscofranco.</string>
     <string name="cpus_on_touch">CPUs on touch</string>
@@ -308,6 +310,7 @@
     <string name="delay_summary">Time between checks.</string>
     <string name="pause">Pause</string>
     <string name="pause_summary">If something else plugs in the CPU, fall asleep for this amount of time.</string>
+    <string name="ahp">Alucard Hotplug Tunables</string>
     <string name="alucard_hotplug">Alucard Hotplug</string>
     <string name="alucard_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Alucard.</string>
     <string name="sampling_rate">Sampling Rate</string>
