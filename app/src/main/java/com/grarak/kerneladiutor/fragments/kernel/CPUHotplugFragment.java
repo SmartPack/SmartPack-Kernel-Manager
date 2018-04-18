@@ -35,7 +35,6 @@ import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
-import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
@@ -149,7 +148,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (mIntelliPlug.hasIntelliPlugEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.intelliplug));
             enable.setSummary(getString(R.string.intelliplug_summary));
             enable.setChecked(mIntelliPlug.isIntelliPlugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -170,8 +168,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void intelliPlugtunablesInit(List<RecyclerViewItem> items) {
-        CardView intelliPlugCard = new CardView(getActivity());
-        intelliPlugCard.setTitle(getString(R.string.iplug));
+        List<RecyclerViewItem> intelliplug = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.tunables));
 
         if (mIntelliPlug.hasIntelliPlugProfile()) {
             SelectView profile = new SelectView();
@@ -186,7 +186,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(profile);
+            intelliplug.add(profile);
         }
 
         if (mIntelliPlug.hasIntelliPlugEco()) {
@@ -201,7 +201,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(eco);
+            intelliplug.add(eco);
         }
 
         if (mIntelliPlug.hasIntelliPlugTouchBoost()) {
@@ -216,7 +216,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(touchBoost);
+            intelliplug.add(touchBoost);
         }
 
         if (mIntelliPlug.hasIntelliPlugHysteresis()) {
@@ -236,7 +236,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(hysteresis);
+            intelliplug.add(hysteresis);
         }
 
         if (mIntelliPlug.hasIntelliPlugThresold()) {
@@ -256,7 +256,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(threshold);
+            intelliplug.add(threshold);
         }
 
         if (mIntelliPlug.hasIntelliPlugScreenOffMax() && mCPUFreq.getFreqs() != null) {
@@ -276,7 +276,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(maxScreenOffFreq);
+            intelliplug.add(maxScreenOffFreq);
         }
 
         if (mIntelliPlug.hasIntelliPlugDebug()) {
@@ -291,7 +291,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(debug);
+            intelliplug.add(debug);
         }
 
         if (mIntelliPlug.hasIntelliPlugSuspend()) {
@@ -306,7 +306,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(suspend);
+            intelliplug.add(suspend);
         }
 
         if (mIntelliPlug.hasIntelliPlugCpusBoosted()) {
@@ -327,7 +327,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(cpusBoosted);
+            intelliplug.add(cpusBoosted);
         }
 
         if (mIntelliPlug.hasIntelliPlugMinCpusOnline()) {
@@ -348,7 +348,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(minCpusOnline);
+            intelliplug.add(minCpusOnline);
         }
 
         if (mIntelliPlug.hasIntelliPlugMaxCpusOnline()) {
@@ -369,7 +369,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(maxCpusOnline);
+            intelliplug.add(maxCpusOnline);
         }
 
         if (mIntelliPlug.hasIntelliPlugMaxCpusOnlineSusp()) {
@@ -390,7 +390,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(maxCpusOnlineSusp);
+            intelliplug.add(maxCpusOnlineSusp);
         }
 
         if (mIntelliPlug.hasIntelliPlugSuspendDeferTime()) {
@@ -411,7 +411,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(suspendDeferTime);
+            intelliplug.add(suspendDeferTime);
         }
 
         if (mIntelliPlug.hasIntelliPlugDeferSampling()) {
@@ -431,7 +431,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(deferSampling);
+            intelliplug.add(deferSampling);
         }
 
         if (mIntelliPlug.hasIntelliPlugBoostLockDuration()) {
@@ -453,7 +453,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(boostLockDuration);
+            intelliplug.add(boostLockDuration);
         }
 
         if (mIntelliPlug.hasIntelliPlugDownLockDuration()) {
@@ -475,7 +475,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(downLockDuration);
+            intelliplug.add(downLockDuration);
         }
 
         if (mIntelliPlug.hasIntelliPlugFShift()) {
@@ -494,11 +494,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            intelliPlugCard.addItem(fShift);
+            intelliplug.add(fShift);
         }
 
-        if (intelliPlugCard.size() > 0) {
-            items.add(intelliPlugCard);
+        if (intelliplug.size() > 0) {
+            items.add(title);
+            items.addAll(intelliplug);
         }
     }
 
@@ -510,7 +511,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (LazyPlug.hasEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.lazyplug));
             enable.setSummary(getString(R.string.lazyplug_summary));
             enable.setChecked(LazyPlug.isEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -531,8 +531,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void lazyPlugtunablesInit(List<RecyclerViewItem> items) {
-        CardView lazyPlugCard = new CardView(getActivity());
-        lazyPlugCard.setTitle(getString(R.string.lp));
+        List<RecyclerViewItem> lazyplug = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.tunables));
 
         if (LazyPlug.hasProfile()) {
             SelectView profile = new SelectView();
@@ -547,7 +549,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            lazyPlugCard.addItem(profile);
+            lazyplug.add(profile);
         }
 
         if (LazyPlug.hasTouchBoost()) {
@@ -562,7 +564,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            lazyPlugCard.addItem(touchBoost);
+            lazyplug.add(touchBoost);
         }
 
         if (LazyPlug.hasHysteresis()) {
@@ -582,7 +584,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            lazyPlugCard.addItem(hysteresis);
+            lazyplug.add(hysteresis);
         }
 
         if (LazyPlug.hasThreshold()) {
@@ -602,7 +604,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            lazyPlugCard.addItem(threshold);
+            lazyplug.add(threshold);
         }
 
         if (LazyPlug.hasPossibleCores()) {
@@ -623,11 +625,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            lazyPlugCard.addItem(possibleCores);
+            lazyplug.add(possibleCores);
         }
 
-        if (lazyPlugCard.size() > 0) {
-            items.add(lazyPlugCard);
+        if (lazyplug.size() > 0) {
+            items.add(title);
+            items.addAll(lazyplug);
         }
     }
 
@@ -639,7 +642,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (BluPlug.hasBluPlugEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.blu_plug));
             enable.setSummary(getString(R.string.blu_plug_summary));
             enable.setChecked(BluPlug.isBluPlugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -660,8 +662,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void bluPlugtunablesInit(List<RecyclerViewItem> items) {
-        CardView bluPlugCard = new CardView(getActivity());
-        bluPlugCard.setTitle(getString(R.string.bplug));
+        final List<RecyclerViewItem> bluplug = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.tunables));
 
         if (BluPlug.hasBluPlugPowersaverMode()) {
             SwitchView powersaverMode = new SwitchView();
@@ -675,7 +679,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(powersaverMode);
+            bluplug.add(powersaverMode);
         }
 
         if (BluPlug.hasBluPlugMinOnline()) {
@@ -696,7 +700,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(minOnline);
+            bluplug.add(minOnline);
         }
 
         if (BluPlug.hasBluPlugMaxOnline()) {
@@ -717,7 +721,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(maxOnline);
+            bluplug.add(maxOnline);
         }
 
         if (BluPlug.hasBluPlugMaxCoresScreenOff()) {
@@ -738,7 +742,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(maxCoresScreenOff);
+            bluplug.add(maxCoresScreenOff);
         }
 
         if (BluPlug.hasBluPlugMaxFreqScreenOff() && mCPUFreq.getFreqs() != null) {
@@ -762,7 +766,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(maxFreqScreenOff);
+            bluplug.add(maxFreqScreenOff);
         }
 
         if (BluPlug.hasBluPlugUpThreshold()) {
@@ -783,7 +787,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(upThreshold);
+            bluplug.add(upThreshold);
         }
 
         if (BluPlug.hasBluPlugUpTimerCnt()) {
@@ -808,7 +812,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(upTimerCnt);
+            bluplug.add(upTimerCnt);
         }
 
         if (BluPlug.hasBluPlugDownTimerCnt()) {
@@ -833,11 +837,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            bluPlugCard.addItem(downTimerCnt);
+            bluplug.add(downTimerCnt);
         }
 
-        if (bluPlugCard.size() > 0) {
-            items.add(bluPlugCard);
+        if (bluplug.size() > 0) {
+            items.add(title);
+            items.addAll(bluplug);
         }
     }
 
@@ -848,7 +853,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (MakoHotplug.hasMakoHotplugEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.mako_hotplug));
             enable.setSummary(getString(R.string.mako_hotplug_summary));
             enable.setChecked(MakoHotplug.isMakoHotplugEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -869,8 +873,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void makoHotplugtunablesInit(List<RecyclerViewItem> items) {
-        CardView makoHotplugCard = new CardView(getActivity());
-        makoHotplugCard.setTitle(getString(R.string.mhp));
+        List<RecyclerViewItem> makoHotplug = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.tunables));
 
         if (MakoHotplug.hasMakoHotplugCoresOnTouch()) {
             SeekBarView coresOnTouch = new SeekBarView();
@@ -890,7 +895,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(coresOnTouch);
+            makoHotplug.add(coresOnTouch);
         }
 
         if (MakoHotplug.hasMakoHotplugCpuFreqUnplugLimit() && mCPUFreq.getFreqs() != null) {
@@ -906,7 +911,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(cpufreqUnplugLimit);
+            makoHotplug.add(cpufreqUnplugLimit);
         }
 
         if (MakoHotplug.hasMakoHotplugFirstLevel()) {
@@ -926,7 +931,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(firstLevel);
+            makoHotplug.add(firstLevel);
         }
 
         if (MakoHotplug.hasMakoHotplugHighLoadCounter()) {
@@ -944,7 +949,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(highLoadCounter);
+            makoHotplug.add(highLoadCounter);
         }
 
         if (MakoHotplug.hasMakoHotplugLoadThreshold()) {
@@ -964,7 +969,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(loadThreshold);
+            makoHotplug.add(loadThreshold);
         }
 
         if (MakoHotplug.hasMakoHotplugMaxLoadCounter()) {
@@ -982,7 +987,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(maxLoadCounter);
+            makoHotplug.add(maxLoadCounter);
         }
 
         if (MakoHotplug.hasMakoHotplugMinTimeCpuOnline()) {
@@ -1000,7 +1005,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(minTimeCpuOnline);
+            makoHotplug.add(minTimeCpuOnline);
         }
 
         if (MakoHotplug.hasMakoHotplugMinCoresOnline()) {
@@ -1021,7 +1026,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(minCoresOnline);
+            makoHotplug.add(minCoresOnline);
         }
 
         if (MakoHotplug.hasMakoHotplugTimer()) {
@@ -1039,7 +1044,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(timer);
+            makoHotplug.add(timer);
         }
 
         if (MakoHotplug.hasMakoHotplugSuspendFreq() && mCPUFreq.getFreqs() != null) {
@@ -1055,11 +1060,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            makoHotplugCard.addItem(suspendFreq);
+            makoHotplug.add(suspendFreq);
         }
 
-        if (makoHotplugCard.size() > 0) {
-            items.add(makoHotplugCard);
+        if (makoHotplug.size() > 0) {
+            items.add(title);
+            items.addAll(makoHotplug);
         }
     }
 
@@ -1070,7 +1076,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (AlucardHotplug.hasAlucardHotplugEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.alucard_hotplug));
             enable.setSummary(getString(R.string.alucard_hotplug_summary));
             enable.setChecked(AlucardHotplug.isAlucardHotplugEnable());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -1091,8 +1096,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void alucardHotplugtunablesInit(List<RecyclerViewItem> items) {
-        CardView alucardHotplugCard = new CardView(getActivity());
-        alucardHotplugCard.setTitle(getString(R.string.ahp));
+        List<RecyclerViewItem> alucardHotplug = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.tunables));
 
         if (AlucardHotplug.hasAlucardHotplugHpIoIsBusy()) {
             SwitchView ioIsBusy = new SwitchView();
@@ -1106,7 +1112,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(ioIsBusy);
+            alucardHotplug.add(ioIsBusy);
         }
 
         if (AlucardHotplug.hasAlucardHotplugSamplingRate()) {
@@ -1126,7 +1132,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(samplingRate);
+            alucardHotplug.add(samplingRate);
         }
 
         if (AlucardHotplug.hasAlucardHotplugSuspend()) {
@@ -1141,7 +1147,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(suspend);
+            alucardHotplug.add(suspend);
         }
 
         if (AlucardHotplug.hasAlucardHotplugMinCpusOnline()) {
@@ -1162,7 +1168,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(minCpusOnline);
+            alucardHotplug.add(minCpusOnline);
         }
 
         if (AlucardHotplug.hasAlucardHotplugMaxCoresLimit()) {
@@ -1183,7 +1189,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(maxCoresLimit);
+            alucardHotplug.add(maxCoresLimit);
         }
 
         if (AlucardHotplug.hasAlucardHotplugMaxCoresLimitSleep()) {
@@ -1204,7 +1210,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(maxCoresLimitSleep);
+            alucardHotplug.add(maxCoresLimitSleep);
         }
 
         if (AlucardHotplug.hasAlucardHotplugCpuDownRate()) {
@@ -1224,7 +1230,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(cpuDownRate);
+            alucardHotplug.add(cpuDownRate);
         }
 
         if (AlucardHotplug.hasAlucardHotplugCpuUpRate()) {
@@ -1244,11 +1250,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 }
             });
 
-            alucardHotplugCard.addItem(cpuUpRate);
+            alucardHotplug.add(cpuUpRate);
         }
 
-        if (alucardHotplugCard.size() > 0) {
-            items.add(alucardHotplugCard);
+        if (alucardHotplug.size() > 0) {
+            items.add(title);
+            items.addAll(alucardHotplug);
         }
     }
 
