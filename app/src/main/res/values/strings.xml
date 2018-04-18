@@ -214,6 +214,7 @@
     <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>
     <string name="mpdecision">MPDecision</string>
     <string name="mpdecision_summary">Qualcomm\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
+    <string name="iplug">IntelliPlug Tunables</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by faux123.</string>
     <string name="cpu_hotplug_profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
@@ -256,6 +257,7 @@
     <string name="lazy">Lazy</string>
     <string name="possible_cpu_cores">Possible CPU Cores</string>
     <string name="possible_cpu_cores_summary">Possible CPU Cores that lazyplug can use.</string>
+    <string name="bplug">Blu_Plug Tunables</string>
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
     <string name="powersaver_mode">Powersaver Mode</string>
@@ -266,6 +268,7 @@
     <string name="up_timer_cnt_summary">Control timer for up CPUs.</string>
     <string name="down_timer_cnt">Down Timer Control</string>
     <string name="down_timer_cnt_summary">Control timer for down CPUs.</string>
+    <string name="msmhp">MSM Hotplug Tunables</string>
     <string name="msm_hotplug">MSM Hotplug</string>
     <string name="msm_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by myfluxi.</string>
     <string name="history_size">History Size</string>

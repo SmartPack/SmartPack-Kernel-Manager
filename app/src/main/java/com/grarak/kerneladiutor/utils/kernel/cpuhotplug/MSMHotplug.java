@@ -68,6 +68,14 @@ public class MSMHotplug {
     private String IO_IS_BUSY_FILE;
     private String SUSPEND_FREQ_FILE;
 
+    public static boolean msmactive() {
+       return Utils.readFile(HOTPLUG_MSM_ENABLE).equals("1");
+    }
+
+    public static boolean msm2active() {
+       return Utils.readFile(HOTPLUG_MSM_ENABLE_2).equals("1");
+    }
+
     private MSMHotplug() {
         if (Utils.existFile(HOTPLUG_MSM_ENABLE)) {
             ENABLE_FILE = HOTPLUG_MSM_ENABLE;

@@ -151,6 +151,10 @@ public class BluPlug {
         return Utils.existFile(HOTPLUG_BLU_PLUG_POWERSAVER_MODE);
     }
 
+    public static boolean active() {
+        return Utils.readFile(HOTPLUG_BLU_PLUG_ENABLE).equals("1");
+    }
+
     public static void enableBluPlug(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", HOTPLUG_BLU_PLUG_ENABLE), HOTPLUG_BLU_PLUG_ENABLE, context);
     }
