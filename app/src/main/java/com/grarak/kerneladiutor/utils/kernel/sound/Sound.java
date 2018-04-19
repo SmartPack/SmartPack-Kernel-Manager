@@ -65,6 +65,8 @@ public class Sound {
     private static final String MICROPHONE_FLAR = "/sys/kernel/sound_control/mic_gain";
     private static final String SPEAKER_FLAR = "/sys/kernel/sound_control/speaker_gain";
 
+    private static final String WCD9320_SPEAKER_LEAKAGE = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
+
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
 
     private final List<String> mFauxLimits = new ArrayList<>();
@@ -447,5 +449,18 @@ public class Sound {
     public boolean hasMicrophoneFlar() {
         return Utils.existFile(MICROPHONE_FLAR);
     }
+
+   public void enablewcdspeakerleakage(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", WCD9320_SPEAKER_LEAKAGE), WCD9320_SPEAKER_LEAKAGE, context);
+    }
+
+    public boolean iswcdspeakerleakage() {
+        return Utils.readFile(WCD9320_SPEAKER_LEAKAGE).equals("1");
+    }
+
+    public boolean haswcdspeakerleakage() {
+       return Utils.existFile(WCD9320_SPEAKER_LEAKAGE);
+    }
+   
 
 }

@@ -28,6 +28,7 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +48,9 @@ public class SoundFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        if (mSound.haswcdspeakerleakage()) {
+            speakerleakageInit(items);
+        }
         if (mSound.hasSoundControlEnable()) {
             soundControlEnableInit(items);
         }
@@ -88,6 +92,32 @@ public class SoundFragment extends RecyclerViewFragment {
         }
         if (mSound.hasVolumeGain()) {
             volumeGainInit(items);
+        }
+    }
+
+    private void speakerleakageInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> speakerleakage = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.speaker_leakage));
+
+        if (mSound.haswcdspeakerleakage()) {
+            SwitchView wcdspeakerleakage = new SwitchView();
+            wcdspeakerleakage.setSummary(getString(R.string.speaker_leakage_summary));
+            wcdspeakerleakage.setChecked(mSound.iswcdspeakerleakage());
+            wcdspeakerleakage.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mSound.enablewcdspeakerleakage(isChecked, getActivity());
+                }
+            });
+
+            speakerleakage.add(wcdspeakerleakage);
+        }
+
+        if (speakerleakage.size() > 0) {
+            items.add(title);
+            items.addAll(speakerleakage);
         }
     }
 

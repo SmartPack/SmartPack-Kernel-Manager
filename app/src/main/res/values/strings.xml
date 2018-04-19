@@ -412,6 +412,8 @@
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>
+    <string name="speaker_leakage">Speaker Driver Leakage</string>
+    <string name="speaker_leakage_summary">Software workaround to avoid leakage on the speaker driver</string>
     <string name="headset_highperf_mode">Headset High Performance Mode</string>
     <string name="headphone_gain">Headphone Gain</string>
     <string name="handset_microphone_gain">Handset Microphone Gain</string>
