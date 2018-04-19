@@ -70,8 +70,14 @@ public class GPUFragment extends RecyclerViewFragment {
         if (SimpleGPU.supported()) {
             simpleGpuInit(items);
         }
+        if (SimpleGPU.active()) {
+            simpleGputunablesInit(items);
+        }
         if (AdrenoIdler.supported()) {
             adrenoIdlerInit(items);
+        }
+        if (AdrenoIdler.active()) {
+            adrenoIdlertunablesInit(items);
         }
     }
 
@@ -204,7 +210,6 @@ public class GPUFragment extends RecyclerViewFragment {
 
         if (SimpleGPU.hasSimpleGpuEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.simple_gpu_algorithm));
             enable.setSummary(getString(R.string.simple_gpu_algorithm_summary));
             enable.setChecked(SimpleGPU.isSimpleGpuEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -216,6 +221,17 @@ public class GPUFragment extends RecyclerViewFragment {
 
             simpleGpu.add(enable);
         }
+
+        if (simpleGpu.size() > 0) {
+            items.add(title);
+            items.addAll(simpleGpu);
+        }
+    }
+
+    private void simpleGputunablesInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> simpleGpu = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.gpu_tunables));
 
         if (SimpleGPU.hasSimpleGpuLaziness()) {
             SeekBarView laziness = new SeekBarView();
@@ -270,7 +286,6 @@ public class GPUFragment extends RecyclerViewFragment {
 
         if (AdrenoIdler.hasAdrenoIdlerEnable()) {
             SwitchView enable = new SwitchView();
-            enable.setTitle(getString(R.string.adreno_idler));
             enable.setSummary(getString(R.string.adreno_idler_summary));
             enable.setChecked(AdrenoIdler.isAdrenoIdlerEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -282,6 +297,17 @@ public class GPUFragment extends RecyclerViewFragment {
 
             adrenoIdler.add(enable);
         }
+
+        if (adrenoIdler.size() > 0) {
+            items.add(title);
+            items.addAll(adrenoIdler);
+        }
+    }
+
+    private void adrenoIdlertunablesInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> adrenoIdler = new ArrayList<>();
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.gpu_tunables));
 
         if (AdrenoIdler.hasAdrenoIdlerDownDiff()) {
             SeekBarView downDiff = new SeekBarView();

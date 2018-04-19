@@ -59,6 +59,10 @@ public class SimpleGPU {
         return Utils.existFile(SIMPLE_GPU_LAZINESS);
     }
 
+    public static boolean active() {
+        return Utils.readFile(SIMPLE_GPU_ACTIVATE).equals("1");
+    }
+
     public static void enableSimpleGpu(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", SIMPLE_GPU_ACTIVATE), SIMPLE_GPU_ACTIVATE, context);
     }
