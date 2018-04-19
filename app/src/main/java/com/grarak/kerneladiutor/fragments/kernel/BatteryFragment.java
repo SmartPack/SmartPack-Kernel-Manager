@@ -37,6 +37,7 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,8 +106,10 @@ public class BatteryFragment extends RecyclerViewFragment {
     }
 
     private void fastChargeInit(List<RecyclerViewItem> items) {
-        CardView fastChargeCard = new CardView(getActivity());
-        fastChargeCard.setTitle(getString(R.string.acci));
+        List<RecyclerViewItem> fastCharge = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.acci));
 
         if (mBattery.hasForceFastCharge()) {
             SelectView forceFastCharge = new SelectView();
@@ -121,7 +124,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             }
         });
 
-            fastChargeCard.addItem(forceFastCharge);
+            fastCharge.add(forceFastCharge);
 
     }
         
@@ -137,7 +140,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 mBattery.setFastChargeControlAC(item, getActivity());
             }
         });
-            fastChargeCard.addItem(ACLevelCard);
+            fastCharge.add(ACLevelCard);
 
     }
             
@@ -153,7 +156,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 mBattery.setFastChargeControlUSB(item, getActivity());
             }
         });
-            fastChargeCard.addItem(USBLevelCard);
+            fastCharge.add(USBLevelCard);
     }
     
         if (mBattery.hasFastChargeControlWIRELESS()) {
@@ -168,7 +171,7 @@ public class BatteryFragment extends RecyclerViewFragment {
                 mBattery.setFastChargeControlWIRELESS(item, getActivity());
            }
         });
-            fastChargeCard.addItem(WirelessLevelCard);
+            fastCharge.add(WirelessLevelCard);
     }
     
         if (mBattery.hasMtpForceFastCharge()) {
@@ -183,7 +186,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             }
         });
 
-            fastChargeCard.addItem(MtpFastCharge);
+            fastCharge.add(MtpFastCharge);
     }
     
         if (mBattery.hasScreenCurrentLimit()) {
@@ -198,11 +201,12 @@ public class BatteryFragment extends RecyclerViewFragment {
             }
         });
 
-            fastChargeCard.addItem(ScreenLimit);
+            fastCharge.add(ScreenLimit);
         }
 
-        if (fastChargeCard.size() > 0) {
-            items.add(fastChargeCard);
+        if (fastCharge.size() > 0) {
+            items.add(title);
+            items.addAll(fastCharge);
         }
     }
 

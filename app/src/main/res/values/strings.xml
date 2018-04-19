@@ -396,7 +396,7 @@
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Advanced Charge Control Interface</string>
     <string name="fast_charge">Fast Charge</string>
-    <string name="fast_charge_summary">In Custom Mode, the device will charge as per the selected level. Replug your charger when changing this option.</string>
+    <string name="fast_charge_summary">If enabled, the device will charge faster when connected to USB. Select custom mode to charge your device in a custom level. Replug your charger when changing these options.</string>
     <string name="custom_charge">Custom Mode</string>
     <string name="charge_level_ac">AC Charge Level (mA)</string>
     <string name="charge_level_ac_summary">Choose your Level</string>
