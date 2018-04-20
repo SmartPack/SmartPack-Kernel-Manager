@@ -67,12 +67,17 @@ public class Sound {
 
     private static final String WCD9320_SPEAKER_LEAKAGE = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
 
+    private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound/boeffla_sound";
+    private static final String BOEFFLA_SPEAKER = "/sys/class/misc/boeffla_sound/speaker_volume";
+    private static final String BOEFFLA_HP = "/sys/class/misc/boeffla_sound/headphone_volume";
+
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
 
     private final List<String> mFauxLimits = new ArrayList<>();
     private final List<String> mFrancoLimits = new ArrayList<>();
     private final List<String> mFlarLimits = new ArrayList<>();
     private final List<String> mFlarHpLimits = new ArrayList<>();
+    private final List<String> mboefflaLimits = new ArrayList<>();
 
     {
         mSpeakerGainFiles.add(SPEAKER_GAIN);
@@ -95,6 +100,9 @@ public class Sound {
 
         for (int i = -40; i < 21; i++) {
             mFlarHpLimits.add(String.valueOf(i));
+        }
+        for (int i = -30; i < 31; i++) {
+            mboefflaLimits.add(String.valueOf(i));
         }
     }
 
@@ -139,6 +147,22 @@ public class Sound {
 
     public boolean hasMicrophoneGain() {
         return Utils.existFile(MIC_BOOST);
+    }
+
+    public static boolean active() {
+        return Utils.readFile(BOEFFLA_SOUND).equals("Boeffla sound status: 1");
+    }
+
+    public void enableboefflasound(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", BOEFFLA_SOUND), BOEFFLA_SOUND, context);
+    }
+
+    public boolean isboefflasoundenabled() {
+        return Utils.readFile(BOEFFLA_SOUND).equals("Boeffla sound status: 1");
+    }
+
+    public boolean hasboefflasound() {
+       return Utils.existFile(BOEFFLA_SOUND);
     }
 
     public void enableLockMicGain(boolean enable, Context context) {
@@ -265,6 +289,10 @@ public class Sound {
                 return mFrancoLimits;
             case SPEAKER_FLAR:
                 return mFlarLimits;
+            case BOEFFLA_SPEAKER:
+                return mboefflaLimits;
+            case BOEFFLA_HP:
+                return mboefflaLimits;
         }
         return new ArrayList<>();
     }
@@ -386,8 +414,8 @@ public class Sound {
     public boolean supported() {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || hasHeadphoneGain()
                 || hasHandsetMicrophoneGain() || hasCamMicrophoneGain() || hasSpeakerGain()
-                || hasHeadphonePowerAmpGain() || hasLockOutputGain() || hasLockMicGain()
-                || hasMicrophoneGain() || hasVolumeGain() || hasHeadphoneFlar()
+                || hasHeadphonePowerAmpGain() || haswcdspeakerleakage() || hasLockOutputGain() || hasLockMicGain()
+                || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar()
                 || hasMicrophoneFlar();
     }
 
@@ -406,6 +434,50 @@ public class Sound {
 
     private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.SOUND, id, context);
+    }
+
+    public void setboefflaspeaker(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -30 && newGain <= 30) {
+            fauxRun(value + " " + value, BOEFFLA_SPEAKER, BOEFFLA_SPEAKER, context);
+        }
+    }
+
+    public List<String> getboefflaLimits() {
+        return mboefflaLimits;
+    }
+
+    public String getboefflaspeaker() {
+        String value = Utils.readFile(BOEFFLA_SPEAKER);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= -30 && gain <= 30) {
+            return String.valueOf(gain);
+        }
+        return "";
+    }
+
+    public boolean hasboefflaspeaker() {
+        return Utils.existFile(BOEFFLA_SPEAKER);
+    }
+
+    public void setboefflahp(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -30 && newGain <= 30) {
+            fauxRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+        }
+    }
+
+    public String getboefflahp() {
+        String value = Utils.readFile(BOEFFLA_HP);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= -30 && gain <= 30) {
+            return String.valueOf(gain);
+        }
+        return "";
+    }
+
+    public boolean hasboefflahp() {
+        return Utils.existFile(BOEFFLA_HP);
     }
 
     public void setHeadphoneFlar(String value, Context context) {
@@ -450,7 +522,7 @@ public class Sound {
         return Utils.existFile(MICROPHONE_FLAR);
     }
 
-   public void enablewcdspeakerleakage(boolean enable, Context context) {
+    public void enablewcdspeakerleakage(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", WCD9320_SPEAKER_LEAKAGE), WCD9320_SPEAKER_LEAKAGE, context);
     }
 

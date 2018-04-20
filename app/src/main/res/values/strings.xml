@@ -427,6 +427,8 @@
     <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
+    <string name="boefflasound">Boeffla Sound</string>
+    <string name="boefflasound_summary">Turn On/Off Boeffla Sound Engine</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
