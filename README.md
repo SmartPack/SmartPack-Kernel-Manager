@@ -8,6 +8,7 @@
 
 * Advanced Charge Control Interface for yank555.lu's Fast Charge
 * CPU Input Boost (Sultanxda) Control
+* Boeffla Sound (Please note: Currently requires some changes in boeffla_sound.c. Please refer [this](https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/commit/d2cb5948f31997070e334d60523c86d24139d051) commit).
 * Display Backlight Control
 * SELinux Switch
 * Real-time Charging Status

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 14. April 22, 2018
+*Release-tag: v3.4*
+Changes: Added support for Boeffla Sound engine (Sound). Added Real-time charging status (Battery). Switch to Blue accent colors. Rearrange all the Tabs (Updates is now at the bottom). Removed card view from various fragments (not all). Simplified GPU and CPU hotplug a bit (advanced hotplugging options will be visible only if the respective driver is enabled; please note, refreshing the respective pages are required). All-over clean-ups.
+
 ## 13. April 13, 2018
 *Release-tag: v3.3*
 Changes: Merged a lot of changes from official KA.(Misc) Added an option to control maximum display backlight.
