@@ -429,6 +429,10 @@
     <string name="volume_gain">Volume Gain</string>
     <string name="boefflasound">Boeffla Sound</string>
     <string name="boefflasound_summary">Turn On/Off Boeffla Sound Engine</string>
+    <string name="per_channel_controls">Per-channel controls</string>
+    <string name="per_channel_controls_summary">Enable to use different gain values for left and right channels.</string>
+    <string name="headphone_gain_left">Headphone Gain (Left)</string>
+    <string name="headphone_gain_right">Headphone Gain (Right)</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>

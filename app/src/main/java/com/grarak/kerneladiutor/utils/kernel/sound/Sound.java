@@ -149,10 +149,6 @@ public class Sound {
         return Utils.existFile(MIC_BOOST);
     }
 
-    public static boolean active() {
-        return Utils.readFile(BOEFFLA_SOUND).equals("Boeffla sound status: 1");
-    }
-
     public void enableboefflasound(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", BOEFFLA_SOUND), BOEFFLA_SOUND, context);
     }
@@ -416,15 +412,15 @@ public class Sound {
                 || hasHandsetMicrophoneGain() || hasCamMicrophoneGain() || hasSpeakerGain()
                 || hasHeadphonePowerAmpGain() || haswcdspeakerleakage() || hasLockOutputGain() || hasLockMicGain()
                 || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar()
-                || hasMicrophoneFlar();
+                || hasboefflahp() || hasboefflaspeaker() ||hasMicrophoneFlar();
     }
 
-    private long getChecksum(int a, int b) {
-        return (Integer.MAX_VALUE * 2L + 1L) ^ (a + b);
+    private int getChecksum(int arg0, int arg1) {
+        return (Integer.MAX_VALUE ^ (arg0 & 0xff) + (arg1 & 0xff));
     }
 
     private void fauxRun(String value, String path, String id, Context context) {
-        long checksum = value.contains(" ") ?
+        int checksum = value.contains(" ") ?
                 getChecksum(Utils.strToInt(value.split(" ")[0]),
                         Utils.strToInt(value.split(" ")[1])) :
                 getChecksum(Utils.strToInt(value), 0);
@@ -460,18 +456,40 @@ public class Sound {
         return Utils.existFile(BOEFFLA_SPEAKER);
     }
 
-    public void setboefflahp(String value, Context context) {
+    public void setboefflahp(String channel, String value, Context context) {
         int newGain = Utils.strToInt(value);
-        if (newGain >= -30 && newGain <= 30) {
-            fauxRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+        switch (channel) {
+            case "all":
+                if (newGain >= -30 && newGain <= 30) {
+                    fauxRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+                }
+            case "left":
+                String currentGainLeft = getboefflahp("right");
+                if (newGain >= -30 && newGain <= 30) {
+                    fauxRun(value + " " + currentGainLeft, BOEFFLA_HP, BOEFFLA_HP, context);
+                }
+            case "right":
+                String currentGainRight = getboefflahp("left");
+                if (newGain >= -30 && newGain <= 30) {
+                    fauxRun(value + " " + currentGainRight, BOEFFLA_HP, BOEFFLA_HP, context);
+                }
         }
     }
 
-    public String getboefflahp() {
-        String value = Utils.readFile(BOEFFLA_HP);
-        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
-        if (gain >= -30 && gain <= 30) {
-            return String.valueOf(gain);
+    public static String getboefflahp(String channel) {
+        String[] values = Utils.readFile(BOEFFLA_HP).split(" ");
+        int gainLeft = Utils.strToInt(values[0]),
+            gainRight = Utils.strToInt(values[1]);
+        switch (channel) {
+            case "all":
+            case "left":
+                if (gainLeft >= -30 && gainLeft <= 30) {
+                    return String.valueOf(gainLeft);
+                }
+           case "right":
+                if (gainRight >= -30 && gainRight <= 30) {
+                    return String.valueOf(gainRight);
+                }
         }
         return "";
     }

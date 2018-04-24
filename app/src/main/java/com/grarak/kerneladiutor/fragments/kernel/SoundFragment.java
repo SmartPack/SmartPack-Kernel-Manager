@@ -22,8 +22,10 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
@@ -53,9 +55,6 @@ public class SoundFragment extends RecyclerViewFragment {
         }
         if (mSound.hasboefflasound()) {
             boefflasoundInit(items);
-        }
-        if (mSound.active()) {
-            boefflasoundtunablesInit(items);
         }
         if (mSound.hasSoundControlEnable()) {
             soundControlEnableInit(items);
@@ -233,14 +232,11 @@ public class SoundFragment extends RecyclerViewFragment {
     }
 
     private void boefflasoundInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> boefflasound = new ArrayList<>();
 
-        TitleView title = new TitleView();
-        title.setText(getString(R.string.sound_control));
+        CardView boefflasoundCard = new CardView(getActivity());
+        boefflasoundCard.setTitle(getString(R.string.boefflasound));
 
-        if (mSound.hasboefflasound()) {
-        SwitchView boefflasoundenable = new SwitchView();
-        boefflasoundenable.setTitle(getString(R.string.boefflasound));
+        final SwitchView boefflasoundenable = new SwitchView();
         boefflasoundenable.setSummary(getString(R.string.boefflasound_summary));
         boefflasoundenable.setChecked(mSound.isboefflasoundenabled());
         boefflasoundenable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -250,63 +246,112 @@ public class SoundFragment extends RecyclerViewFragment {
             }
         });
 
-            boefflasound.add(boefflasoundenable);
-    }
+        boefflasoundCard.addItem(boefflasoundenable);
 
-        if (boefflasound.size() > 0) {
-            items.add(title);
-            items.addAll(boefflasound);
-        }
-    }
+        final SeekBarView boefflaspeaker = new SeekBarView();
+        boefflaspeaker.setTitle(getString(R.string.speaker_gain));
+        boefflaspeaker.setItems(mSound.getboefflaLimits());
+        boefflaspeaker.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflaspeaker()));
+        boefflaspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                mSound.setboefflaspeaker(value, getActivity());
+            }
 
-    private void boefflasoundtunablesInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> boefflasound = new ArrayList<>();
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
 
-        TitleView title = new TitleView();
+        boefflasoundCard.addItem(boefflaspeaker);
 
-        if (mSound.hasboefflaspeaker()) {
-            SeekBarView boefflaspeaker = new SeekBarView();
-            boefflaspeaker.setTitle(getString(R.string.speaker_gain));
-            boefflaspeaker.setItems(mSound.getboefflaLimits());
-            boefflaspeaker.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflaspeaker()));
-            boefflaspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                     mSound.setboefflaspeaker(value, getActivity());
+        if (!(Prefs.getBoolean("boefflahp_perchannel", false, getActivity())))
+            Prefs.saveBoolean("boefflahp_perchannel", false, getActivity());
+
+        final SwitchView perChannel = new SwitchView();
+        perChannel.setTitle(getString(R.string.per_channel_controls));
+        perChannel.setSummary(getString(R.string.per_channel_controls_summary));
+        perChannel.setChecked(Prefs.getBoolean("boefflahp_perchannel", false, getActivity()));
+
+        boefflasoundCard.addItem(perChannel);
+
+        final SeekBarView boefflahp = new SeekBarView();
+        boefflahp.setTitle(getString(R.string.headphone_gain));
+        boefflahp.setItems(mSound.getboefflaLimits());
+        boefflahp.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("all")));
+        boefflahp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                mSound.setboefflahp("all", value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        final SeekBarView boefflahpLeft = new SeekBarView();
+        boefflahpLeft.setTitle(getString(R.string.headphone_gain_left));
+        boefflahpLeft.setItems(mSound.getboefflaLimits());
+        boefflahpLeft.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("left")));
+        boefflahpLeft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                mSound.setboefflahp("left", value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        final SeekBarView boefflahpRight = new SeekBarView();
+        boefflahpRight.setTitle(getString(R.string.headphone_gain_right));
+        boefflahpRight.setItems(mSound.getboefflaLimits());
+        boefflahpRight.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("right")));
+        boefflahpRight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            @Override
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+                mSound.setboefflahp("right", value, getActivity());
+            }
+
+            @Override
+            public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+        });
+
+        class SeekBarManager {
+            public void showPerChannelSeekbars (boolean enable) {
+                if (enable == true) {
+                    boefflasoundCard.removeItem(boefflahp);
+                    boefflasoundCard.addItem(boefflahpLeft);
+                    boefflasoundCard.addItem(boefflahpRight);
+                } else {
+                    boefflasoundCard.removeItem(boefflahpLeft);
+                    boefflasoundCard.removeItem(boefflahpRight);
+                    boefflasoundCard.addItem(boefflahp);
                 }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            boefflasound.add(boefflaspeaker);
+            }
         }
 
-        if (mSound.hasboefflahp()) {
-            SeekBarView boefflahp = new SeekBarView();
-            boefflahp.setTitle(getString(R.string.headphone_gain));
-            boefflahp.setItems(mSound.getboefflaLimits());
-            boefflahp.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp()));
-            boefflahp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                     mSound.setboefflahp(value, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            boefflasound.add(boefflahp);
+        final SeekBarManager manager = new SeekBarManager();
+        if (Prefs.getBoolean("boefflahp_perchannel", false, getActivity()) == true) {
+            manager.showPerChannelSeekbars(true);
+        } else {
+            manager.showPerChannelSeekbars(false);
         }
+        perChannel.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchview, boolean isChecked) {
+                Prefs.saveBoolean("boefflahp_perchannel", isChecked, getActivity());
+                manager.showPerChannelSeekbars(isChecked);
+            }
+        });
 
-        if (boefflasound.size() > 0) {
-            items.add(title);
-            items.addAll(boefflasound);
-        }
-    }
+        if (boefflasoundCard.size() > 0) {
+            items.add(boefflasoundCard);
+       }
+     }
 
     private void headphonePowerAmpGainInit(List<RecyclerViewItem> items) {
         SeekBarView headphonePowerAmpGain = new SeekBarView();
