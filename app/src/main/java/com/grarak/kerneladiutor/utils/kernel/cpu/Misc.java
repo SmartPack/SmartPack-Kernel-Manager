@@ -91,18 +91,6 @@ public class Misc {
         return Utils.existFile(CPU_INPUT_BOOST_DURATION);
     }
 
-    public static void enablecpuiboostfreq(boolean enable, Context context) {
-        run(Control.write(enable ? "1190400 1497600" : "0 0", CPU_INPUT_BOOST_FREQ), CPU_INPUT_BOOST_FREQ, context);
-    }
-
-    public static boolean iscpuiboostfreqEnabled() {
-        return Utils.readFile(CPU_INPUT_BOOST_FREQ).equals("1190400 1497600");
-    }
-
-    public static boolean hascpuiboostfreq() {
-        return Utils.existFile(CPU_INPUT_BOOST_FREQ);
-    }
-
     public static void setCpuQuietGovernor(String value, Context context) {
         run(Control.write(value, CPU_QUIET_CURRENT_GOVERNOR), CPU_QUIET_CURRENT_GOVERNOR, context);
     }

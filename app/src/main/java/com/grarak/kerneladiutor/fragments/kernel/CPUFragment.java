@@ -627,8 +627,7 @@ public class CPUFragment extends RecyclerViewFragment {
     }
 
     private void cpuiboostInit(List<RecyclerViewItem> items) {
-        CardView cpuiboostCard = new CardView(getActivity());
-        cpuiboostCard.setTitle(getString(R.string.cpuiboost));
+        List<RecyclerViewItem> cpuiboost = new ArrayList<>();
 
         if (Misc.hascpuinputboost()) {
             SwitchView cpuinputboost = new SwitchView();
@@ -642,48 +641,33 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuiboostCard.addItem(cpuinputboost);
+            cpuiboost.add(cpuinputboost);
         }
+        if (Misc.iscpuinputboostEnabled()) {
+		if (Misc.hascpuiboostduration()) {
+		    SeekBarView cpuiboostduration = new SeekBarView();
+		    cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
+		    cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
+		    cpuiboostduration.setUnit(getString(R.string.ms));
+		    cpuiboostduration.setMax(5000);
+		    cpuiboostduration.setOffset(10);
+		    cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
+		    cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            Misc.setcpuiboostduration((position * 10), getActivity());
+		        }
 
-        if (Misc.hascpuiboostduration()) {
-            SeekBarView cpuiboostduration = new SeekBarView();
-            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
-            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration_summary));
-            cpuiboostduration.setUnit(getString(R.string.ms));
-            cpuiboostduration.setMax(5000);
-            cpuiboostduration.setOffset(10);
-            cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
-            cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Misc.setcpuiboostduration((position * 10), getActivity());
-                }
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+		    });
 
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            cpuiboostCard.addItem(cpuiboostduration);
+		    cpuiboost.add(cpuiboostduration);
+		}
         }
-
-        if (Misc.hascpuiboostfreq()) {
-            SwitchView cpuiboostfreq = new SwitchView();
-            cpuiboostfreq.setTitle(getString(R.string.cpuiboost_freq));
-            cpuiboostfreq.setSummary(getString(R.string.cpuiboost_freq_summary));
-            cpuiboostfreq.setChecked(Misc.iscpuiboostfreqEnabled());
-            cpuiboostfreq.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enablecpuiboostfreq(isChecked, getActivity());
-                    }
-                });
-
-            cpuiboostCard.addItem(cpuiboostfreq);
-        }
-
-        if (cpuiboostCard.size() > 0) {
-            items.add(cpuiboostCard);
+        if (cpuiboost.size() > 0) {
+            items.addAll(cpuiboost);
         }
     }
 
