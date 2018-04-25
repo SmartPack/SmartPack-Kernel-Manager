@@ -171,10 +171,6 @@ public class MakoHotplug {
         return Utils.existFile(MAKO_HOTPLUG_CORES_ON_TOUCH);
     }
 
-    public static boolean active() {
-        return Utils.readFile(MAKO_HOTPLUG_ENABLED).equals("1");
-    }
-
     public static void enableMakoHotplug(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", MAKO_HOTPLUG_ENABLED), MAKO_HOTPLUG_ENABLED, context);
     }

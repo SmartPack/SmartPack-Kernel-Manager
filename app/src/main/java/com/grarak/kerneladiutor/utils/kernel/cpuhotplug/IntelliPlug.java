@@ -356,10 +356,6 @@ public class IntelliPlug {
         return Utils.existFile(file);
     }
 
-    public static boolean active() {
-        return Utils.readFile(HOTPLUG_INTELLI_PLUG_ENABLE).equals("1");
-    }
-
     public void enableIntelliPlug(boolean enable, Context context) {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
         if (mUseVersion5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;

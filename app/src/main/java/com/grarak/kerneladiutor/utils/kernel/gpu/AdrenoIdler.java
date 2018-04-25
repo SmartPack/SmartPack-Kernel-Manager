@@ -74,10 +74,6 @@ public class AdrenoIdler {
         return Utils.existFile(ADRENO_IDLER_DOWNDIFFERENTIAL);
     }
 
-    public static boolean active() {
-        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals("Y");
-    }
-
     public static void enableAdrenoIdler(boolean enable, Context context) {
         run(Control.write(enable ? "Y" : "N", ADRENO_IDLER_ACTIVATE), ADRENO_IDLER_ACTIVATE, context);
     }

@@ -120,10 +120,6 @@ public class LazyPlug {
         return Utils.existFile(PROFILE);
     }
 
-    public static boolean active() {
-        return Utils.readFile(ENABLE).equals("1");
-    }
-
     public static void enable(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", ENABLE), ENABLE, context);
     }

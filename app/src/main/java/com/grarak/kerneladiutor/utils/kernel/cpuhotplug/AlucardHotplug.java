@@ -145,10 +145,6 @@ public class AlucardHotplug {
         return Utils.existFile(ALUCARD_HOTPLUG_HP_IO_IS_BUSY);
     }
 
-    public static boolean active() {
-        return Utils.readFile(ALUCARD_HOTPLUG_ENABLE).equals("1");
-    }
-
     public static void enableAlucardHotplug(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", ALUCARD_HOTPLUG_ENABLE), ALUCARD_HOTPLUG_ENABLE, context);
     }
