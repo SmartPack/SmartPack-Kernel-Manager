@@ -127,53 +127,55 @@ public class BatteryFragment extends RecyclerViewFragment {
             fastCharge.add(forceFastCharge);
 
     }
-        
-        if (mBattery.hasFastChargeControlAC()) {
-            SelectView ACLevelCard = new SelectView();
-            ACLevelCard.setTitle(getString(R.string.charge_level_ac));
-            ACLevelCard.setSummary(getString(R.string.charge_level_ac_summary));
-            ACLevelCard.setItems(mBattery.getFastChargeControlAC());
-            ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
-            ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                mBattery.setFastChargeControlAC(item, getActivity());
-            }
-        });
-            fastCharge.add(ACLevelCard);
 
-    }
-            
-        if (mBattery.hasFastChargeControlUSB()) {
-            SelectView USBLevelCard = new SelectView();
-            USBLevelCard.setTitle(getString(R.string.charge_level_usb));
-            USBLevelCard.setSummary(getString(R.string.charge_level_usb_summary));
-            USBLevelCard.setItems(mBattery.getFastChargeControlUSB());
-            USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
-            USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                mBattery.setFastChargeControlUSB(item, getActivity());
-            }
-        });
-            fastCharge.add(USBLevelCard);
-    }
-    
-        if (mBattery.hasFastChargeControlWIRELESS()) {
-            SelectView WirelessLevelCard = new SelectView();
-            WirelessLevelCard.setTitle(getString(R.string.charge_level_wireless));
-            WirelessLevelCard.setSummary(getString(R.string.charge_level_wireless_summary));
-            WirelessLevelCard.setItems(mBattery.getFastChargeControlWIRELESS());
-            WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
-            WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                mBattery.setFastChargeControlWIRELESS(item, getActivity());
-           }
-        });
-            fastCharge.add(WirelessLevelCard);
-    }
-    
+        if (mBattery.iscustomodenabled()) {
+		if (mBattery.hasFastChargeControlAC()) {
+		    SelectView ACLevelCard = new SelectView();
+		    ACLevelCard.setTitle(getString(R.string.charge_level_ac));
+		    ACLevelCard.setSummary(getString(R.string.charge_level_ac_summary));
+		    ACLevelCard.setItems(mBattery.getFastChargeControlAC());
+		    ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
+		    ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+		    @Override
+		    public void onItemSelected(SelectView selectView, int position, String item) {
+		        mBattery.setFastChargeControlAC(item, getActivity());
+		    }
+		});
+		    fastCharge.add(ACLevelCard);
+
+	    }
+		    
+		if (mBattery.hasFastChargeControlUSB()) {
+		    SelectView USBLevelCard = new SelectView();
+		    USBLevelCard.setTitle(getString(R.string.charge_level_usb));
+		    USBLevelCard.setSummary(getString(R.string.charge_level_usb_summary));
+		    USBLevelCard.setItems(mBattery.getFastChargeControlUSB());
+		    USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
+		    USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+		    @Override
+		    public void onItemSelected(SelectView selectView, int position, String item) {
+		        mBattery.setFastChargeControlUSB(item, getActivity());
+		    }
+		});
+		    fastCharge.add(USBLevelCard);
+	    }
+	    
+		if (mBattery.hasFastChargeControlWIRELESS()) {
+		    SelectView WirelessLevelCard = new SelectView();
+		    WirelessLevelCard.setTitle(getString(R.string.charge_level_wireless));
+		    WirelessLevelCard.setSummary(getString(R.string.charge_level_wireless_summary));
+		    WirelessLevelCard.setItems(mBattery.getFastChargeControlWIRELESS());
+		    WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
+		    WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+		    @Override
+		    public void onItemSelected(SelectView selectView, int position, String item) {
+		        mBattery.setFastChargeControlWIRELESS(item, getActivity());
+		   }
+		});
+		    fastCharge.add(WirelessLevelCard);
+	    }
+        }
+
         if (mBattery.hasMtpForceFastCharge()) {
         SwitchView MtpFastCharge = new SwitchView();
         MtpFastCharge.setTitle(getString(R.string.mtp_fast_charge));

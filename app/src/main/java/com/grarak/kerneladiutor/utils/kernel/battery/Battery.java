@@ -149,6 +149,10 @@ public class Battery {
         run(Control.write(String.valueOf(value), FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
     }
 
+    public boolean iscustomodenabled() {
+        return Utils.readFile(FORCE_FAST_CHARGE).equals("2");
+    }
+
     public static boolean hasFastChargeControlAC() {
         return Utils.existFile(AC_CHARGE_LEVEL);
     }  
