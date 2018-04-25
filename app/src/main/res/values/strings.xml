@@ -411,15 +411,8 @@
     <string name="speaker_leakage_summary">Software workaround to avoid leakage on the speaker driver</string>
     <string name="headset_highperf_mode">Headset High Performance Mode</string>
     <string name="headphone_gain">Headphone Gain</string>
-    <string name="handset_microphone_gain">Handset Microphone Gain</string>
-    <string name="cam_microphone_gain">Camcorder Microphone Gain</string>
-    <string name="speaker_gain">Speaker Gain</string>
-    <string name="headphone_poweramp_gain">Headphone PowerAmp Gain</string>
+    <string name="speaker_gain">Speaker Gain</string>>
     <string name="headphone_tpa6165_gain">Headphone Amp Gain (TPA6165 Extension)</string>
-    <string name="lock_output_gain">Lock Output Gain</string>
-    <string name="lock_output_gain_summary">Prevent modifications to headphone/speaker gains</string>
-    <string name="lock_mic_gain">Lock Microphone Gain</string>
-    <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
     <string name="boefflasound">Boeffla Sound</string>
