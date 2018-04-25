@@ -71,6 +71,7 @@ public class Battery {
 
     private static final String CHARGING_CURRENT = "/sys/class/power_supply/battery/current_now";
     private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
+    private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
 
     private int mCapacity;
     private static String[] sBatteryAvailable;
@@ -244,6 +245,18 @@ public class Battery {
     
     public static boolean isChargeStatus() {
         return Utils.readFile(CHARGE_STATUS).equals("Discharging");
+    }
+
+    public static boolean accharge() {
+        return Utils.readFile(CHARGE_SOURCE).equals("3");
+    }
+
+    public static boolean usbcharge() {
+        return Utils.readFile(CHARGE_SOURCE).equals("4");
+    }
+
+    public static boolean wlcharge() {
+        return Utils.readFile(CHARGE_SOURCE).equals("10");
     }
 
     public int getCapacity() {

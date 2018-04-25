@@ -301,13 +301,23 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (mVoltage != null) {
             mVoltage.setStat(mBatteryVoltage + " mV");
         }
-	float chargingrate = Battery.getchargingstatus();
-	if (Battery.isChargeStatus()){
+	float chargingrate = mBattery.getchargingstatus();
+	if (mBattery.isChargeStatus()){
             mChargingStatus.setTitle("Disconnected");
-            mChargingStatus.setStat(0 + (" mA"));}
+            mChargingStatus.setStat(0.0 + (" mA"));}
+	else {
+	if (mBattery.accharge()){
+            mChargingStatus.setTitle("AC Charging");
+            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
+	else if (mBattery.usbcharge()){
+            mChargingStatus.setTitle("USB Charging");
+            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
+	else if (mBattery.wlcharge()){
+            mChargingStatus.setTitle("Wireless Charging");
+            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
 	else {
             mChargingStatus.setTitle("Charging");
-            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
         }
     }
 
