@@ -74,13 +74,58 @@ public class AboutFragment extends RecyclerViewFragment {
     private void librariesInit(List<RecyclerViewItem> items) {
 
         CardView about = new CardView(getActivity());
-        about.setTitle(getString(R.string.app_version));
+        about.setTitle(getString(R.string.app_name));
 
         DescriptionView versioninfo = new DescriptionView();
-        versioninfo.setTitle(getString(R.string.app_name));
+        versioninfo.setTitle(getString(R.string.app_version));
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
 
         about.addItem(versioninfo);
+
+        DescriptionView sourcecode = new DescriptionView();
+        sourcecode.setTitle(getString(R.string.source_code));
+        sourcecode.setSummary(getString(R.string.source_code_summary));
+        sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", getActivity());
+            }
+        });
+
+        DescriptionView appdownloads = new DescriptionView();
+        appdownloads.setTitle(getString(R.string.app_downloads));
+        appdownloads.setSummary(getString(R.string.app_downloads_summary));
+        appdownloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest", getActivity());
+            }
+        });
+
+        DescriptionView changelogs = new DescriptionView();
+        changelogs.setTitle(getString(R.string.change_logs));
+        changelogs.setSummary(getString(R.string.change_logs_summary));
+        changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity());
+            }
+        });
+
+        DescriptionView donatetome = new DescriptionView();
+        donatetome.setTitle(getString(R.string.donate_me));
+        donatetome.setSummary(getString(R.string.donate_me_summary));
+        donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+            }
+        });
+
+        about.addItem(sourcecode);
+        about.addItem(appdownloads);
+        about.addItem(changelogs);
+        about.addItem(donatetome);
         items.add(about);
 
         CardView cardView = new CardView(getActivity());
@@ -111,7 +156,7 @@ public class AboutFragment extends RecyclerViewFragment {
             rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+                    Utils.launchUrl("https://github.com/sunilpaulmathew", getActivity());
                 }
             });
             return rootView;
