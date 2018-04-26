@@ -139,6 +139,18 @@
             </intent-filter>
         </receiver>
 
+        <!-- Profile Tile -->
+        <service
+            android:name=".utils.kernel.spectrum.ProfileTile"
+            android:enabled="true"
+            android:icon="@drawable/ic_spectrum_logo"
+            android:label="@string/profileTile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

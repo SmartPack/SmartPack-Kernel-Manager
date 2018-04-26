@@ -677,6 +677,18 @@
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
 
+    <!-- Performance Tweaks -->
+    <string name="spectrum">Performance Tweaks</string>
+    <string name="profileTile">Profile</string>
+    <string name="spec_title">Performance Tweaks</string>
+    <string name="spec_info">An adaptation of the Spectrum Manager by frap129.\nSelect one among the available pre-defined profiles.</string>
+    <string name="spec_balanced">Balanced</string>
+    <string name="spec_balanced_summary">The default kernel profile designed for smooth performance in basic tasks while maintaining fantastic battery.</string>
+    <string name="spec_performance">Performance</string>
+    <string name="spec_performance_summary">Tuned for top-tier performance in standard tasks with many fewer regressions than Balanced, but maintains battery by limiting graphics.</string>
+    <string name="spec_battery">Battery</string>
+    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to archive long-lasting battery life.</string>
+
     <!-- Data Sharing -->
     <string name="data_sharing_summary_notification">Data sharing is active! Click to learn more about this feature.</string>
     <string name="data_sharing_summary">Share your settings with others! Kernel Adiutor will automatically collect information and compile a score list available to all people.</string>

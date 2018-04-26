@@ -53,6 +53,7 @@ import com.grarak.kerneladiutor.utils.kernel.ksm.KSM;
 import com.grarak.kerneladiutor.utils.kernel.misc.Vibration;
 import com.grarak.kerneladiutor.utils.kernel.screen.Screen;
 import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
+import com.grarak.kerneladiutor.utils.kernel.spectrum.Spectrum;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
@@ -75,6 +76,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Initialice profile Sharedpreference
+        int prof = Utils.strToInt(Spectrum.getProfile());
+        Prefs.saveInt("spectrum_profile", prof, this);
 
         setContentView(R.layout.activity_main);
 

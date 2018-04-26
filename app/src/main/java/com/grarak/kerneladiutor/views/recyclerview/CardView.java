@@ -23,6 +23,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
@@ -69,6 +70,10 @@ public class CardView extends RecyclerViewItem {
     private int mLayoutHeight;
     private ValueAnimator mLayoutAnimator;
     private boolean mShowLayout = true;
+    private boolean mExpandable = true;
+
+    private boolean mGrxIsInitSelected = false;
+    private int mGrxColor = 0;
 
     public CardView(Activity activity) {
         if (activity == null) {
@@ -98,6 +103,7 @@ public class CardView extends RecyclerViewItem {
         mArrow = view.findViewById(R.id.arrow_image);
         mLayoutParent = view.findViewById(R.id.layout_parent);
         mLayout = view.findViewById(R.id.card_layout);
+        if(mGrxIsInitSelected) this.setCardBackgroundColor(mGrxColor);
     }
 
     @Override
@@ -124,19 +130,21 @@ public class CardView extends RecyclerViewItem {
         mLayoutParent.setVisibility(mShowLayout ? View.VISIBLE : View.GONE);
         mArrow.setRotationX(mShowLayout ? 0 : 180);
 
-        mTitleParent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mLayoutParent.getVisibility() == View.VISIBLE) {
-                    mLayoutHeight = mLayoutParent.getHeight();
+        if(mExpandable) {
+            mTitleParent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mLayoutParent.getVisibility() == View.VISIBLE) {
+                        mLayoutHeight = mLayoutParent.getHeight();
+                    }
+                    if (mLayoutAnimator == null) {
+                        mShowLayout = !mShowLayout;
+                        animateLayout(!mShowLayout);
+                        viewChanged();
+                    }
                 }
-                if (mLayoutAnimator == null) {
-                    mShowLayout = !mShowLayout;
-                    animateLayout(!mShowLayout);
-                    viewChanged();
-                }
-            }
-        });
+            });
+        }
         super.onCreateView(view);
     }
 
@@ -178,6 +186,28 @@ public class CardView extends RecyclerViewItem {
     public void setTitle(CharSequence title) {
         mTitleText = title;
         refresh();
+    }
+
+    public void setExpandable(boolean expandable) {
+        mExpandable = expandable;
+        refresh();
+    }
+
+    public void GrxSetInitSelection(boolean isInitSelected, int color ){
+        mGrxIsInitSelected = isInitSelected;
+        mGrxColor = color;
+    }
+
+    public void setCardBackgroundColor(int color){
+        mRootView.setCardBackgroundColor(color);
+    }
+
+    public void setCardBackgroundColor (ColorStateList color){
+        mRootView.setCardBackgroundColor(color);
+    }
+
+    public ColorStateList getCardBackgroundColor(){
+        return mRootView.getCardBackgroundColor();
     }
 
     public void addItem(final RecyclerViewItem item) {
