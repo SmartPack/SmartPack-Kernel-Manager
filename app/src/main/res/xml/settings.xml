@@ -2,6 +2,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <Preference
+        android:key="check_update"
+        android:summary="@string/check_update_summary"
+        android:title="@string/check_update" />
+
     <SwitchPreferenceCompat
         android:key="useretardedmeasurement"
         android:summary="@string/fahrenheit_summary"

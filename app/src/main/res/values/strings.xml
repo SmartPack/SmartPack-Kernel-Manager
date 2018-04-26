@@ -108,7 +108,7 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="update">Updates</string>
+    <string name="kernelupdate">Kernel Updates</string>
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
@@ -827,6 +827,8 @@
     <string name="restoring">Restoring</string>
 
     <!-- Settings -->
+    <string name="check_update">Check for Updates</string>
+    <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
     <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>

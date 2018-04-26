@@ -1,11 +1,13 @@
 {
-  "name": "App-update (latest: v3.4)",
-  "short_description": "<h3>SmartPack-Kernel Manger</h3>",
-  "long_description": "<b>SmartPack-Kernel Manager</b> is a modified version of official <b>Kernel Adiutor</b>, which is originally developed by <i>Willi Ye</i> aka <i>Grarak</i>. <i>All the credits goes to the original developer</i>.<p>The purpose of this page is to ensure timely update to this app. All the new versions can be easily accessible by clicking the above ‘<b>Downloads</b>’ button. Enjoy.</p>",
-  "logo": "https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/sp.jpg",
-  "github": "https://github.com/SmartPack/SmartPack-Kernel-Manager",
-  "telegram": "https://t.me/sunilpaulmathew",
-  "paypal": "https://www.paypal.me/sunilpaulmathew",
-  "changelog": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/change-logs.md",
-  "downfolder": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest"
+  "latestVersion": "3.4-20180422",
+  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v3.4/com.smartpack.kernelmanager-v3.4-20180422-release.apk",
+  "releaseNotes": [
+    "Change-log:",
+    "- Added support for Boeffla Sound engine (Sound).",
+    "- Added Real-time charging status (Battery).",    
+    "- Rearrange all the Tabs (Updates is now at the bottom).",
+    "- Removed card view from various fragments (not all).",
+    "- Switch to Blue accent colors. Rearrange all the Tabs (Updates is now at the bottom).",
+    "- All-over clean-ups."    
+  ]
 }

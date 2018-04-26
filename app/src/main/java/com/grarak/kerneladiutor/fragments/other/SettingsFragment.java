@@ -46,6 +46,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BannerResizerActivity;
 import com.grarak.kerneladiutor.activities.MainActivity;
@@ -86,6 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_DELETE_PASSWORD = "delete_password";
     private static final String KEY_FINGERPRINT = "fingerprint";
     private static final String KEY_SECTIONS = "sections";
+    private static final String KEY_CHECK_UPDATE = "check_update";
 
     private Preference mFingerprint;
 
@@ -145,6 +150,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             findPreference(KEY_MATERIAL_ICON).setOnPreferenceChangeListener(this);
         }
 
+        findPreference(KEY_CHECK_UPDATE).setOnPreferenceClickListener(this);
         findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
@@ -250,6 +256,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public boolean onPreferenceClick(Preference preference) {
         String key = preference.getKey();
         switch (key) {
+            case KEY_CHECK_UPDATE:
+                checkUpdate();
+                return true;
             case KEY_BANNER_RESIZER:
                 if (Utils.DONATED) {
                     Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
@@ -328,6 +337,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
         }
+    }
+
+    private void checkUpdate(){
+        AppUpdater appUpdater = new AppUpdater(getActivity());
+        appUpdater.setDisplay(Display.DIALOG);
+        appUpdater.showAppUpdated(true);
+        appUpdater.setUpdateFrom(UpdateFrom.JSON);
+        appUpdater.setUpdateJSON("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json");
+        appUpdater.start();
     }
 
     private void editPasswordDialog(final String oldPass) {
