@@ -340,12 +340,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     }
 
     private void checkUpdate(){
-        AppUpdater appUpdater = new AppUpdater(getActivity());
-        appUpdater.setDisplay(Display.DIALOG);
-        appUpdater.showAppUpdated(true);
-        appUpdater.setUpdateFrom(UpdateFrom.JSON);
-        appUpdater.setUpdateJSON("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json");
-        appUpdater.start();
+	AppUpdater appUpdater = new AppUpdater(getActivity());
+	appUpdater.setDisplay(Display.DIALOG);
+	appUpdater.setUpdateFrom(UpdateFrom.JSON);
+	appUpdater.setUpdateJSON("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json");
+	appUpdater.showAppUpdated(true);
+	appUpdater.setButtonUpdate("Go to Download page");
+	appUpdater.setTitleOnUpdateNotAvailable("Congrats");
+	appUpdater.setContentOnUpdateNotAvailable("You've already got an up-to-date version of SmartPack-Kernel Manager!");
+	appUpdater.setButtonDoNotShowAgain(null);
+	appUpdater.start();
     }
 
     private void editPasswordDialog(final String oldPass) {

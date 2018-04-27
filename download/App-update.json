@@ -1,6 +1,6 @@
 {
   "latestVersion": "3.4-20180422",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v3.4/com.smartpack.kernelmanager-v3.4-20180422-release.apk",
+  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest",
   "releaseNotes": [
     "Change-log:",
     "- Added support for Boeffla Sound engine (Sound).",
