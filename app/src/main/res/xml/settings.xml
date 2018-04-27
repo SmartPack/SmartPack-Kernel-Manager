@@ -2,10 +2,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory
+        android:key="app_updates"
+        android:title="@string/app_updates">
+
     <Preference
         android:key="check_update"
         android:summary="@string/check_update_summary"
         android:title="@string/check_update" />
+    </PreferenceCategory>
 
     <SwitchPreferenceCompat
         android:key="useretardedmeasurement"

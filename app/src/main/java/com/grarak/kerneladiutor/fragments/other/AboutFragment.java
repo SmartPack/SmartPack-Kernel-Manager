@@ -92,16 +92,6 @@ public class AboutFragment extends RecyclerViewFragment {
             }
         });
 
-        DescriptionView appdownloads = new DescriptionView();
-        appdownloads.setTitle(getString(R.string.app_downloads));
-        appdownloads.setSummary(getString(R.string.app_downloads_summary));
-        appdownloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest", getActivity());
-            }
-        });
-
         DescriptionView changelogs = new DescriptionView();
         changelogs.setTitle(getString(R.string.change_logs));
         changelogs.setSummary(getString(R.string.change_logs_summary));
@@ -123,7 +113,6 @@ public class AboutFragment extends RecyclerViewFragment {
         });
 
         about.addItem(sourcecode);
-        about.addItem(appdownloads);
         about.addItem(changelogs);
         about.addItem(donatetome);
         items.add(about);
