@@ -1,13 +1,13 @@
 {
-  "latestVersion": "3.4-20180422",
+  "latestVersion": "3.5-20180427",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest",
   "releaseNotes": [
     "Change-log:",
-    "- Added support for Boeffla Sound engine (Sound).",
-    "- Added Real-time charging status (Battery).",    
-    "- Rearrange all the Tabs (Updates is now at the bottom).",
-    "- Removed card view from various fragments (not all).",
-    "- Switch to Blue accent colors. Rearrange all the Tabs (Updates is now at the bottom).",
-    "- All-over clean-ups."    
+    "- Boeffla Sound: implement per-channel control for headphone gain.",
+    "- Performance Tweaks: implemented Spectrum Kernel Manager based profile support.",    
+    "- Added a switch to check for updates in Settings.",
+    "- Remove input boost freq control.",
+    "- Added a bunch of data in About fragment.",
+    "- Miscellaneous changes."    
   ]
 }
