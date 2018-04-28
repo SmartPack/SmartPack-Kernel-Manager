@@ -46,15 +46,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
-
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.BannerResizerActivity;
 import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
 import com.grarak.kerneladiutor.services.boot.ApplyOnBootService;
+import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -257,7 +254,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         String key = preference.getKey();
         switch (key) {
             case KEY_CHECK_UPDATE:
-                checkUpdate();
+		if (Build.VERSION.SDK_INT >= 23) {
+		    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+		}
+                AppUpdaterTask.appCheck(getActivity());
                 return true;
             case KEY_BANNER_RESIZER:
                 if (Utils.DONATED) {
@@ -337,19 +337,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
         }
-    }
-
-    private void checkUpdate(){
-	AppUpdater appUpdater = new AppUpdater(getActivity());
-	appUpdater.setDisplay(Display.DIALOG);
-	appUpdater.setUpdateFrom(UpdateFrom.JSON);
-	appUpdater.setUpdateJSON("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json");
-	appUpdater.showAppUpdated(true);
-	appUpdater.setButtonUpdate("Go to Download page");
-	appUpdater.setTitleOnUpdateNotAvailable("Congrats");
-	appUpdater.setContentOnUpdateNotAvailable("You've already got an up-to-date version of SmartPack-Kernel Manager!");
-	appUpdater.setButtonDoNotShowAgain(null);
-	appUpdater.start();
     }
 
     private void editPasswordDialog(final String oldPass) {
