@@ -1,13 +1,10 @@
 {
-  "latestVersion": "3.5-20180427",
+  "latestVersion": "3.6-20180429",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest",
   "releaseNotes": [
     "Change-log:",
-    "- Boeffla Sound: implement per-channel control for headphone gain.",
-    "- Performance Tweaks: implemented Spectrum Kernel Manager based profile support.",    
-    "- Added a switch to check for updates in Settings.",
-    "- Remove input boost freq control.",
-    "- Added a bunch of data in About fragment.",
+    "- App-update: make it more automated and moved into About Page (Now it can download and prompt for the installation).",
+    "- Built on Android Studio 3.1.2, latest stable release.",
     "- Miscellaneous changes."    
   ]
 }
