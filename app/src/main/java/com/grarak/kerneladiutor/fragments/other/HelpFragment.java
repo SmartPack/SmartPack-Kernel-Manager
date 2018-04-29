@@ -36,7 +36,6 @@ public class HelpFragment extends RecyclerViewFragment {
 
     static {
         sHelps.put(R.string.how_different, R.string.how_different_summary);
-        sHelps.put(R.string.lost_sound, R.string.lost_sound_summary);
         sHelps.put(R.string.cpu_freq_not_sticking, R.string.cpu_freq_not_sticking_summary);
         sHelps.put(R.string.feature_not_appearing, R.string.feature_not_appearing_summary);
         sHelps.put(R.string.can_i_use, R.string.can_i_use_summary);
@@ -49,6 +48,7 @@ public class HelpFragment extends RecyclerViewFragment {
         sHelps.put(R.string.random_reboots, R.string.random_reboots_summary);
         sHelps.put(R.string.cache_dalvik, R.string.cache_dalvik_summary);
         sHelps.put(R.string.found_bugs, R.string.found_bugs_summary);
+        sHelps.put(R.string.can_i_contribute, R.string.can_i_contribute_summary);
     }
 
     @Override

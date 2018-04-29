@@ -59,6 +59,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sLibraries.put("Lopez Mikhael,CircularImageView", "https://github.com/lopspower/CircularImageView");
         sLibraries.put("Square,picasso", "https://github.com/square/picasso");
         sLibraries.put("CyanogenMod,CyanogenMod Platform SDK", "https://github.com/CyanogenMod/cm_platform_sdk");
+        sLibraries.put("Javier Santos,AppUpdater", "https://github.com/javiersantos/AppUpdater");
     }
 
     @Override

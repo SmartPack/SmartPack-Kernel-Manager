@@ -1,6 +1,6 @@
 # SmartPack-Kernel Manager
 
-## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer. If you like his work, please consider to donate to him by clicking the PayPal button next to this test.
+## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
 
 ## Download
 ### ! [Download latest build](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/latest) ! [All builds](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases) !
@@ -9,8 +9,10 @@
 * Advanced Charge Control Interface for yank555.lu's Fast Charge
 * CPU Input Boost (Sultanxda) Control
 * Boeffla Sound (Please note: Currently requires some changes in boeffla_sound.c. Please refer [this](https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/commit/d2cb5948f31997070e334d60523c86d24139d051) commit).
+* Spectrum support in-built
 * Display Backlight Control
 * SELinux Switch
+* Auto-updates (in *About* page)
 * Real-time Charging Status
 * Significantly modified (for SmartPack-Kernel) OTA implementation
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
