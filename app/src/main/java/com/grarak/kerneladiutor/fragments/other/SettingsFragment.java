@@ -51,7 +51,6 @@ import com.grarak.kerneladiutor.activities.BannerResizerActivity;
 import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
 import com.grarak.kerneladiutor.services.boot.ApplyOnBootService;
-import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
@@ -87,7 +86,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_DELETE_PASSWORD = "delete_password";
     private static final String KEY_FINGERPRINT = "fingerprint";
     private static final String KEY_SECTIONS = "sections";
-    private static final String KEY_CHECK_UPDATE = "check_update";
 
     private Preference mFingerprint;
 
@@ -147,7 +145,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             findPreference(KEY_MATERIAL_ICON).setOnPreferenceChangeListener(this);
         }
 
-        findPreference(KEY_CHECK_UPDATE).setOnPreferenceClickListener(this);
         findPreference(KEY_DARK_THEME).setOnPreferenceChangeListener(this);
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
@@ -253,12 +250,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     public boolean onPreferenceClick(Preference preference) {
         String key = preference.getKey();
         switch (key) {
-            case KEY_CHECK_UPDATE:
-		if (Build.VERSION.SDK_INT >= 23) {
-		    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-		}
-                AppUpdaterTask.appCheck(getActivity());
-                return true;
             case KEY_BANNER_RESIZER:
                 if (Utils.DONATED) {
                     Intent intent = new Intent(getActivity(), BannerResizerActivity.class);

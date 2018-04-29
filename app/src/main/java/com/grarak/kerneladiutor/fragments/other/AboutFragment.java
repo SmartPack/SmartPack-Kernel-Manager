@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.os.Bundle;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -73,6 +75,12 @@ public class AboutFragment extends RecyclerViewFragment {
 
     private void librariesInit(List<RecyclerViewItem> items) {
 
+	//Initialize auto app update check
+	if (Build.VERSION.SDK_INT >= 23) {
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+	}
+	AppUpdaterTask.autoappCheck(getActivity());
+
         CardView about = new CardView(getActivity());
         about.setTitle(getString(R.string.app_name));
 
@@ -81,6 +89,16 @@ public class AboutFragment extends RecyclerViewFragment {
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
 
         about.addItem(versioninfo);
+
+        DescriptionView updatecheck = new DescriptionView();
+        updatecheck.setTitle(getString(R.string.check_update));
+        updatecheck.setSummary(getString(R.string.check_update_summary));
+        updatecheck.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                AppUpdaterTask.appCheck(getActivity());
+            }
+        });
 
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setTitle(getString(R.string.source_code));
@@ -112,6 +130,7 @@ public class AboutFragment extends RecyclerViewFragment {
             }
         });
 
+        about.addItem(updatecheck);
         about.addItem(sourcecode);
         about.addItem(changelogs);
         about.addItem(donatetome);

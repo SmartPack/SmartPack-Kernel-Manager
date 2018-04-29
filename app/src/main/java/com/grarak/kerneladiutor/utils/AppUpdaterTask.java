@@ -45,4 +45,12 @@ public class AppUpdaterTask {
                     .setButtonDoNotShowAgain(null)
                     .start();
     }
+
+    public static void autoappCheck(Context context){
+            new AppUpdater(context)
+                    .setDisplay(Display.DIALOG)
+                    .setUpdateFrom(UpdateFrom.JSON)
+                    .setUpdateJSON(context.getString(R.string.appupdater_json))
+                    .start();
+    }
 }

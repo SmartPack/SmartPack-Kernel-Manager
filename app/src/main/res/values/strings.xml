@@ -828,7 +828,6 @@
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
-    <string name="app_updates">SmartPack-Kernel Manager Updates</string>
     <string name="appupdater_update_title">New update available!\nv%2$s</string>
     <string name="check_update">Check for Updates</string>
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
