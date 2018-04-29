@@ -1,5 +1,9 @@
 # Change-logs
 
+## 16. April 29, 2018
+*Release-tag: v3.6*
+Changes: App-update: make it more automated and moved into About Page (Now it can download and prompt for the installation). Built on Android Studio 3.1.2, latest stable release. Miscellaneous changes.
+
 ## 15. April 27, 2018
 *Release-tag: v3.5*
 Changes: Boeffla Sound: implement per-channel control for headphone gain. Remove input boost freq control. Performance Tweaks: implemented Spectrum Kernel Manager based profile support. Added a switch to check for updates in Settings. Added a bunch of data in About fragment. Miscellaneous changes.
