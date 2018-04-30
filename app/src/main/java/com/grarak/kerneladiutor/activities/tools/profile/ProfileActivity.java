@@ -86,6 +86,8 @@ public class ProfileActivity extends BaseActivity {
                     navigationFragment.mFragmentClass));
         }
 
+        mItems.remove("Performance Tweaks");
+
         if (mItems.size() < 1) {
             Utils.toast(R.string.sections_disabled, this);
             finish();
