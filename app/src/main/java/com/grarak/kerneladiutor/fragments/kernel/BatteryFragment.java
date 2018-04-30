@@ -301,23 +301,26 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (mVoltage != null) {
             mVoltage.setStat(mBatteryVoltage + " mV");
         }
-	float chargingrate = mBattery.getchargingstatus();
-	if (mBattery.isChargeStatus()){
-            mChargingStatus.setTitle("Disconnected");
-            mChargingStatus.setStat(0.0 + (" mA"));}
-	else {
-	if (mBattery.accharge()){
-            mChargingStatus.setTitle("AC Charging");
-            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
-	else if (mBattery.usbcharge()){
-            mChargingStatus.setTitle("USB Charging");
-            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
-	else if (mBattery.wlcharge()){
-            mChargingStatus.setTitle("Wireless Charging");
-            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
-	else {
-            mChargingStatus.setTitle("Charging");
-            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));}
+        if (mChargingStatus != null) {
+            float chargingrate = mBattery.getchargingstatus();
+            if (mBattery.isChargeStatus()){
+		mChargingStatus.setTitle("Disconnected");
+		mChargingStatus.setStat(0.0 + (" mA"));}
+            else {
+		if (mBattery.accharge()){
+                    mChargingStatus.setTitle("AC Charging");
+                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		} else if (mBattery.usbcharge()){
+                    mChargingStatus.setTitle("USB Charging");
+                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		} else if (mBattery.wlcharge()){
+                    mChargingStatus.setTitle("Wireless Charging");
+                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		} else {
+                    mChargingStatus.setTitle("Charging");
+                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		}
+            }
         }
     }
 
