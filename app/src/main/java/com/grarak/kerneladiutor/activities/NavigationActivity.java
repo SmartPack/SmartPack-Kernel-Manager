@@ -347,10 +347,9 @@ public class NavigationActivity extends BaseActivity
             int id = navigationFragment.mId;
 
             Drawable drawable = ContextCompat.getDrawable(this,
-                    Utils.DONATED
-                            && Prefs.getBoolean("section_icons", false, this)
-                            && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
-                            R.drawable.ic_blank);
+                    Prefs.getBoolean("section_icons", true, this)
+                    && navigationFragment.mDrawable != 0 ? navigationFragment.mDrawable :
+                    R.drawable.ic_blank);
 
             if (fragmentClass == null) {
                 lastSubMenu = menu.addSubMenu(id);
