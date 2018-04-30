@@ -1,5 +1,9 @@
 # Change-logs
 
+## 17. April 30, 2018
+*Release-tag: v3.7*
+Changes: Fixed force closing app while trying to create a *New* Profile. Enabled icons for various pages. Removed Performance Tweaks from Profiles section to avoid conflicts. Removed some obsolete functions from the build environment.
+
 ## 16. April 29, 2018
 *Release-tag: v3.6*
 Changes: App-update: make it more automated and moved into About Page (Now it can download and prompt for the installation). Built on Android Studio 3.1.2, latest stable release. Miscellaneous changes.
