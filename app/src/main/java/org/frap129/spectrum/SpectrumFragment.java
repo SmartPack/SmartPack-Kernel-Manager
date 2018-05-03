@@ -19,24 +19,25 @@
  *
  */
 
-package com.grarak.kerneladiutor.fragments.kernel;
+package org.frap129.spectrum;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 
+import org.frap129.spectrum.Spectrum;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
-import com.grarak.kerneladiutor.utils.kernel.spectrum.Spectrum;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 import java.util.List;
 
-/**
+/*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>
  *
  * Originally authored by Morogoku <morogoku@hotmail.com>

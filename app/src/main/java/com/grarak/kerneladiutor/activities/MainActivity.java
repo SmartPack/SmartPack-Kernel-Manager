@@ -53,10 +53,11 @@ import com.grarak.kerneladiutor.utils.kernel.ksm.KSM;
 import com.grarak.kerneladiutor.utils.kernel.misc.Vibration;
 import com.grarak.kerneladiutor.utils.kernel.screen.Screen;
 import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
-import com.grarak.kerneladiutor.utils.kernel.spectrum.Spectrum;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+
+import org.frap129.spectrum.Spectrum;
 
 import java.io.File;
 import java.io.IOException;

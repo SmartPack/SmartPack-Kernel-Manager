@@ -19,7 +19,7 @@
  *
  */
 
-package com.grarak.kerneladiutor.utils.kernel.spectrum;
+package org.frap129.spectrum;
 
 import android.annotation.TargetApi;
 import android.graphics.drawable.Icon;
@@ -31,7 +31,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 
-/**
+/*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>
  *
  * Originally authored by Morogoku <morogoku@hotmail.com>
