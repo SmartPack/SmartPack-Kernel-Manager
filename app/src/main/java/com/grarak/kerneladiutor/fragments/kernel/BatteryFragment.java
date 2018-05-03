@@ -132,7 +132,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 		if (mBattery.hasFastChargeControlAC()) {
 		    SelectView ACLevelCard = new SelectView();
 		    ACLevelCard.setTitle(getString(R.string.charge_level_ac));
-		    ACLevelCard.setSummary(getString(R.string.charge_level_ac_summary));
+		    ACLevelCard.setSummary(getString(R.string.charge_level_summary));
 		    ACLevelCard.setItems(mBattery.getFastChargeControlAC());
 		    ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
 		    ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
@@ -148,7 +148,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 		if (mBattery.hasFastChargeControlUSB()) {
 		    SelectView USBLevelCard = new SelectView();
 		    USBLevelCard.setTitle(getString(R.string.charge_level_usb));
-		    USBLevelCard.setSummary(getString(R.string.charge_level_usb_summary));
+		    USBLevelCard.setSummary(getString(R.string.charge_level_summary));
 		    USBLevelCard.setItems(mBattery.getFastChargeControlUSB());
 		    USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
 		    USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
@@ -163,7 +163,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 		if (mBattery.hasFastChargeControlWIRELESS()) {
 		    SelectView WirelessLevelCard = new SelectView();
 		    WirelessLevelCard.setTitle(getString(R.string.charge_level_wireless));
-		    WirelessLevelCard.setSummary(getString(R.string.charge_level_wireless_summary));
+		    WirelessLevelCard.setSummary(getString(R.string.charge_level_summary));
 		    WirelessLevelCard.setItems(mBattery.getFastChargeControlWIRELESS());
 		    WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
 		    WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
@@ -303,21 +303,22 @@ public class BatteryFragment extends RecyclerViewFragment {
         }
         if (mChargingStatus != null) {
             float chargingrate = mBattery.getchargingstatus();
-            if (mBattery.isChargeStatus()){
-		mChargingStatus.setTitle("Disconnected");
-		mChargingStatus.setStat(0.0 + (" mA"));}
+            if (mBattery.isDischarging()){
+		mChargingStatus.setTitle("Charge Rate");
+		mChargingStatus.setStat(0.0 + (" mA"));
+            }
             else {
 		if (mBattery.accharge()){
-                    mChargingStatus.setTitle("AC Charging");
+                    mChargingStatus.setTitle("Charge Rate (AC)");
                     mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		} else if (mBattery.usbcharge()){
-                    mChargingStatus.setTitle("USB Charging");
+                    mChargingStatus.setTitle("Charge Rate (USB)");
                     mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		} else if (mBattery.wlcharge()){
-                    mChargingStatus.setTitle("Wireless Charging");
+                    mChargingStatus.setTitle("Charge Rate (Wireless)");
                     mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		} else {
-                    mChargingStatus.setTitle("Charging");
+                    mChargingStatus.setTitle("Charge Rate");
                     mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		}
             }

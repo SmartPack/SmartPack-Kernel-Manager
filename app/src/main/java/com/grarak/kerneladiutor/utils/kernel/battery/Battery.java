@@ -237,13 +237,13 @@ public class Battery {
 
     public static boolean haschargingstatus() {
         return Utils.existFile(CHARGING_CURRENT);
-    } 
+    }
     
     public static int getchargingstatus() {
         return Utils.strToInt(Utils.readFile(CHARGING_CURRENT));
     }
     
-    public static boolean isChargeStatus() {
+    public static boolean isDischarging() {
         return Utils.readFile(CHARGE_STATUS).equals("Discharging");
     }
 
