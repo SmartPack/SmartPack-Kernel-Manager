@@ -31,7 +31,6 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
-import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -68,7 +67,6 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         levelInit(items);
         voltageInit(items);
-        chargeRateInit(items);
         mChargingStatus = new StatsView();
         if (Battery.haschargingstatus()) {
         items.add(mChargingStatus);
@@ -320,52 +318,6 @@ public class BatteryFragment extends RecyclerViewFragment {
         });
 
         items.add(blx);
-    }
-
-    private void chargeRateInit(List<RecyclerViewItem> items) {
-        CardView chargeRateCard = new CardView(getActivity());
-        chargeRateCard.setTitle(getString(R.string.charge_rate));
-
-        if (mBattery.hasChargeRateEnable()) {
-            SwitchView chargeRate = new SwitchView();
-            chargeRate.setSummary(getString(R.string.charge_rate));
-            chargeRate.setChecked(mBattery.isChargeRateEnabled());
-            chargeRate.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mBattery.enableChargeRate(isChecked, getActivity());
-                }
-            });
-
-            chargeRateCard.addItem(chargeRate);
-        }
-
-        if (mBattery.hasChargingCurrent()) {
-            SeekBarView chargingCurrent = new SeekBarView();
-            chargingCurrent.setTitle(getString(R.string.charging_current));
-            chargingCurrent.setSummary(getString(R.string.charging_current_summary));
-            chargingCurrent.setUnit(getString(R.string.ma));
-            chargingCurrent.setMax(1500);
-            chargingCurrent.setMin(100);
-            chargingCurrent.setOffset(10);
-            chargingCurrent.setProgress(mBattery.getChargingCurrent() / 10 - 10);
-            chargingCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mBattery.setChargingCurrent((position + 10) * 10, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            chargeRateCard.addItem(chargingCurrent);
-        }
-
-        if (chargeRateCard.size() > 0) {
-            items.add(chargeRateCard);
-        }
     }
 
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
