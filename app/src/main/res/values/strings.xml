@@ -402,6 +402,7 @@
     <string name="mtp_fast_charge_summary">Enable MTP while fast charge</string>
     <string name="screen_limit">Screen On Current Limit</string>
     <string name="screen_limit_summary">Enable Screen On Current Limit</string>
+    <string name="stockchargelogic">Set 0 for stock charge logic</string>
 
     <!-- Sound -->
     <string name="sound_control">Sound Control</string>

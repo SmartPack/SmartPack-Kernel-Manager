@@ -32,6 +32,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -77,6 +78,9 @@ public class BatteryFragment extends RecyclerViewFragment {
         }
         if (mBattery.hasForceFastCharge()) {
             fastChargeInit(items);
+        }
+        if (mBattery.haschargeLevelAC()) {
+            chargeLevelInit(items);
         }
     }
 
@@ -177,38 +181,118 @@ public class BatteryFragment extends RecyclerViewFragment {
         }
 
         if (mBattery.hasMtpForceFastCharge()) {
-        SwitchView MtpFastCharge = new SwitchView();
-        MtpFastCharge.setTitle(getString(R.string.mtp_fast_charge));
-        MtpFastCharge.setSummary(getString(R.string.mtp_fast_charge_summary));
-        MtpFastCharge.setChecked(mBattery.isMtpForceFastChargeEnabled());
-        MtpFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mBattery.enableMtpForceFastCharge(isChecked, getActivity());
-            }
-        });
+		SwitchView MtpFastCharge = new SwitchView();
+		MtpFastCharge.setTitle(getString(R.string.mtp_fast_charge));
+		MtpFastCharge.setSummary(getString(R.string.mtp_fast_charge_summary));
+		MtpFastCharge.setChecked(mBattery.isMtpForceFastChargeEnabled());
+		MtpFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		    @Override
+		    public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mBattery.enableMtpForceFastCharge(isChecked, getActivity());
+		    }
+		});
 
-            fastCharge.add(MtpFastCharge);
-    }
+		    fastCharge.add(MtpFastCharge);
+        }
     
         if (mBattery.hasScreenCurrentLimit()) {
-        SwitchView ScreenLimit = new SwitchView();
-        ScreenLimit.setTitle(getString(R.string.screen_limit));
-        ScreenLimit.setSummary(getString(R.string.screen_limit_summary));
-        ScreenLimit.setChecked(mBattery.isScreenCurrentLimit());
-        ScreenLimit.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mBattery.enableScreenCurrentLimit(isChecked, getActivity());
-            }
-        });
+		SwitchView ScreenLimit = new SwitchView();
+		ScreenLimit.setTitle(getString(R.string.screen_limit));
+		ScreenLimit.setSummary(getString(R.string.screen_limit_summary));
+		ScreenLimit.setChecked(mBattery.isScreenCurrentLimit());
+		ScreenLimit.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		    @Override
+		    public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mBattery.enableScreenCurrentLimit(isChecked, getActivity());
+		    }
+		});
 
-            fastCharge.add(ScreenLimit);
+		    fastCharge.add(ScreenLimit);
         }
 
         if (fastCharge.size() > 0) {
             items.add(title);
             items.addAll(fastCharge);
+        }
+    }
+
+    private void chargeLevelInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> chargeLevel = new ArrayList<>();
+
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.acci));
+
+        DescriptionView stockchargelogic = new DescriptionView();
+        stockchargelogic.setSummary(getString(R.string.stockchargelogic));
+
+        chargeLevel.add(stockchargelogic);
+
+        if (mBattery.haschargeLevelAC()) {
+            SeekBarView chargeLevelAC = new SeekBarView();
+            chargeLevelAC.setTitle(getString(R.string.charge_level_ac));
+            chargeLevelAC.setUnit(getString(R.string.ma));
+            chargeLevelAC.setMax(2000);
+            chargeLevelAC.setOffset(25);
+            chargeLevelAC.setProgress(mBattery.getchargeLevelAC() / 25 );
+            chargeLevelAC.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mBattery.setchargeLevelAC((position * 25), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            chargeLevel.add(chargeLevelAC);
+        }
+
+        if (mBattery.haschargeLevelUSB()) {
+            SeekBarView chargeLevelUSB = new SeekBarView();
+            chargeLevelUSB.setTitle(getString(R.string.charge_level_usb));
+            chargeLevelUSB.setUnit(getString(R.string.ma));
+            chargeLevelUSB.setMax(1600);
+            chargeLevelUSB.setOffset(25);
+            chargeLevelUSB.setProgress(mBattery.getchargeLevelUSB() / 25 );
+            chargeLevelUSB.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mBattery.setchargeLevelUSB((position * 25), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            chargeLevel.add(chargeLevelUSB);
+        }
+
+        if (mBattery.haschargeLevelWL()) {
+            SeekBarView chargeLevelWL = new SeekBarView();
+            chargeLevelWL.setTitle(getString(R.string.charge_level_wireless));
+            chargeLevelWL.setUnit(getString(R.string.ma));
+            chargeLevelWL.setMax(1600);
+            chargeLevelWL.setOffset(25);
+            chargeLevelWL.setProgress(mBattery.getchargeLevelWL() / 25 );
+            chargeLevelWL.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mBattery.setchargeLevelWL((position * 25), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            chargeLevel.add(chargeLevelWL);
+        }
+
+        if (chargeLevel.size() > 0) {
+            items.add(title);
+            items.addAll(chargeLevel);
         }
     }
 

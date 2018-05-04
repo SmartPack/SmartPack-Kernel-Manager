@@ -63,6 +63,12 @@ public class Battery {
     private static final String WIRELESS_CHARGE_LEVEL = FAST_CHARGE + "/wireless_levels";
     private static final String FAILSAFE_CONTROL = FAST_CHARGE + "/failsafe";
 
+    private static final String CHARGE_LEVEL = "/sys/kernel/charge_levels";
+    private static final String CHARGE_LEVEL_AC = CHARGE_LEVEL + "/charge_level_ac";
+    private static final String CHARGE_LEVEL_USB = CHARGE_LEVEL + "/charge_level_usb";
+    private static final String CHARGE_LEVEL_WL = CHARGE_LEVEL + "/charge_level_wireless";
+    private static final String CHARGE_INFO = CHARGE_LEVEL + "/charge_info";
+
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
     private static final String CHARGE_RATE = "/sys/kernel/thundercharge_control";
@@ -257,6 +263,42 @@ public class Battery {
 
     public static boolean wlcharge() {
         return Utils.readFile(CHARGE_SOURCE).equals("10");
+    }
+
+    public void setchargeLevelAC(int value, Context context) {
+        run(Control.write(String.valueOf(value), CHARGE_LEVEL_AC), CHARGE_LEVEL_AC, context);
+    }
+
+    public static int getchargeLevelAC() {
+        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_AC));
+    }
+
+    public static boolean haschargeLevelAC() {
+        return Utils.existFile(CHARGE_LEVEL_AC);
+    }
+
+    public void setchargeLevelUSB(int value, Context context) {
+        run(Control.write(String.valueOf(value), CHARGE_LEVEL_USB), CHARGE_LEVEL_USB, context);
+    }
+
+    public static int getchargeLevelUSB() {
+        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_USB));
+    }
+
+    public static boolean haschargeLevelUSB() {
+        return Utils.existFile(CHARGE_LEVEL_USB);
+    }
+
+    public void setchargeLevelWL(int value, Context context) {
+        run(Control.write(String.valueOf(value), CHARGE_LEVEL_WL), CHARGE_LEVEL_WL, context);
+    }
+
+    public static int getchargeLevelWL() {
+        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_WL));
+    }
+
+    public static boolean haschargeLevelWL() {
+        return Utils.existFile(CHARGE_LEVEL_WL);
     }
 
     public int getCapacity() {
