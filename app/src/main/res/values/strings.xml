@@ -941,8 +941,6 @@
     <string name="cache_dalvik_summary">Ans. NO. Because the kernel does not even ‘see’ cache/dalvik cache.</string>
     <string name="found_bugs">Q13. I found a bug in your App/Kernel, what do I do?</string>
     <string name="found_bugs_summary">Ans. Please provide as much information as possible (such as what feature, what didn\'t work, screenshots or logcat if possible) and post in the respective xda-developers page. Alternately, you may also submit an issue to the respective GitHub Source.</string>
-    <string name="how_to_update">Q14. How can I update your App?</string>
-    <string name="how_to_update_summary">Ans. Simply go to "About" page and a new update notification will pop-up, if an update is available. For manual checking, click on "Check for Update" in the same page.</string>
-    <string name="can_i_contribute">Q15. Can I contribute to your App/Kernel Projects? If so, How?</string>
+    <string name="can_i_contribute">Q14. Can I contribute to your App/Kernel Projects? If so, How?</string>
     <string name="can_i_contribute_summary">Ans. Absolutely. Any kind of contributions (Donations, Code etc.) are most welcomed and highly appreciated. Please visit "About" Section for more details.</string>
 </resources>

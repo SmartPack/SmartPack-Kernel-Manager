@@ -25,6 +25,18 @@
 
 [SmartPack-Kernel for Stock Marshmallow (kltexxx)](https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810)
 
+## Credits
+
+In addition to official Kernel Adiutor and its related dependencies, I used codes from the following people:
+
+#### Joe Maples
+
+* [Spectrum](https://github.com/frap129/spectrum)
+
+#### Javier Santos
+
+* [AppUpdater](https://github.com/javiersantos/AppUpdater)
+
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
 # About official Kernel Adiutor

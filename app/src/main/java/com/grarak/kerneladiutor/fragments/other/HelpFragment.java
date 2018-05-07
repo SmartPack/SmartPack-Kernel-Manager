@@ -48,7 +48,6 @@ public class HelpFragment extends RecyclerViewFragment {
         sHelps.put(R.string.random_reboots, R.string.random_reboots_summary);
         sHelps.put(R.string.cache_dalvik, R.string.cache_dalvik_summary);
         sHelps.put(R.string.found_bugs, R.string.found_bugs_summary);
-        sHelps.put(R.string.how_to_update, R.string.how_to_update_summary);
         sHelps.put(R.string.can_i_contribute, R.string.can_i_contribute_summary);
     }
 
