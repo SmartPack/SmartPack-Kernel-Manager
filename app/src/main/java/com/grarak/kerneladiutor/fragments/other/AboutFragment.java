@@ -77,12 +77,6 @@ public class AboutFragment extends RecyclerViewFragment {
 
     private void librariesInit(List<RecyclerViewItem> items) {
 
-	//Initialize auto app update check
-	if (Build.VERSION.SDK_INT >= 23) {
-            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-	}
-	AppUpdaterTask.autoappCheck(getActivity());
-
         CardView about = new CardView(getActivity());
         about.setTitle(getString(R.string.app_name));
 
