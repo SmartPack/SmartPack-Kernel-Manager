@@ -142,7 +142,7 @@
 
         <!-- Profile Tile -->
         <service
-            android:name=".utils.kernel.spectrum.ProfileTile"
+            android:name="org.frap129.spectrum.ProfileTile"
             android:enabled="true"
             android:icon="@drawable/ic_spectrum_logo"
             android:label="@string/profileTile"
