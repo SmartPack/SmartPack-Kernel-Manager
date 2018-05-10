@@ -73,7 +73,7 @@ public class CpuStateMonitor {
          */
         @Override
         public int compareTo(@NonNull CpuState another) {
-            return ((Integer) mFreq).compareTo(another.mFreq);
+            return Integer.compare(mFreq, another.mFreq);
         }
     }
 

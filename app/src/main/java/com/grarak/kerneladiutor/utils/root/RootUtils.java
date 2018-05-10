@@ -39,7 +39,7 @@ public class RootUtils {
     public static boolean rootAccess() {
         SU su = getSU();
         su.runCommand("echo /testRoot/");
-        return !su.denied;
+        return !su.mDenied;
     }
 
     public static boolean busyboxInstalled() {
@@ -104,8 +104,8 @@ public class RootUtils {
     }
 
     public static SU getSU() {
-        if (su == null || su.closed || su.denied) {
-            if (su != null && !su.closed) {
+        if (su == null || su.mClosed || su.mDenied) {
+            if (su != null && !su.mClosed) {
                 su.close();
             }
             su = new SU();
@@ -124,9 +124,9 @@ public class RootUtils {
         private BufferedReader mReader;
         private final boolean mRoot;
         private final String mTag;
-        private boolean closed;
-        public boolean denied;
-        private boolean firstTry;
+        private boolean mClosed;
+        public boolean mDenied;
+        private boolean mFirstTry;
 
         public SU() {
             this(true, null);
@@ -139,7 +139,7 @@ public class RootUtils {
                 if (mTag != null) {
                     Log.i(mTag, String.format("%s initialized", root ? "SU" : "SH"));
                 }
-                firstTry = true;
+                mFirstTry = true;
                 mProcess = Runtime.getRuntime().exec(root ? "su" : "sh");
                 mWriter = new BufferedWriter(new OutputStreamWriter(mProcess.getOutputStream()));
                 mReader = new BufferedReader(new InputStreamReader(mProcess.getInputStream()));
@@ -147,8 +147,8 @@ public class RootUtils {
                 if (mTag != null) {
                     Log.e(mTag, root ? "Failed to run shell as su" : "Failed to run shell as sh");
                 }
-                denied = true;
-                closed = true;
+                mDenied = true;
+                mClosed = true;
             }
         }
 
@@ -169,21 +169,21 @@ public class RootUtils {
                             break;
                         }
                     }
-                    firstTry = false;
+                    mFirstTry = false;
                     if (mTag != null) {
                         Log.i(mTag, "run: " + command + " output: " + sb.toString().trim());
                     }
 
                     return sb.toString().trim();
                 } catch (IOException e) {
-                    closed = true;
+                    mClosed = true;
                     e.printStackTrace();
-                    if (firstTry) denied = true;
+                    if (mFirstTry) mDenied = true;
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    denied = true;
+                    mDenied = true;
                 } catch (Exception e) {
                     e.printStackTrace();
-                    denied = true;
+                    mDenied = true;
                 }
                 return null;
             }
@@ -213,10 +213,10 @@ public class RootUtils {
 
                 mProcess.destroy();
                 if (mTag != null) {
-                    Log.i(mTag, String.format("%s closed: %d", mRoot ? "SU" : "SH", mProcess.exitValue()));
+                    Log.i(mTag, String.format("%s mClosed: %d", mRoot ? "SU" : "SH", mProcess.exitValue()));
                 }
             }
-            closed = true;
+            mClosed = true;
         }
 
     }

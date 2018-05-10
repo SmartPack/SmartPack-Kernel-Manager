@@ -37,7 +37,7 @@ public class OnBootReceiver extends BroadcastReceiver {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             RootUtils.SU su = new RootUtils.SU();
             su.runCommand("echo /testRoot/");
-            if (!su.denied) {
+            if (!su.mDenied) {
                 Utils.startService(context, new Intent(context, ApplyOnBootService.class));
             }
             su.close();

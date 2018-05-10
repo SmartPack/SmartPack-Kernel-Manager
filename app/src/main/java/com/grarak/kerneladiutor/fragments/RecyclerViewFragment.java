@@ -197,8 +197,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             }
         });
         {
-            Drawable drawable;
-            if ((drawable = getTopFabDrawable()) != null) {
+            Drawable drawable = getTopFabDrawable();
+            if (drawable != null) {
                 mTopFab.setImageDrawable(drawable);
             }
         }
@@ -210,8 +210,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
             }
         });
         {
-            Drawable drawable;
-            if ((drawable = getBottomFabDrawable()) != null) {
+            Drawable drawable = getBottomFabDrawable();
+            if (drawable != null) {
                 mBottomFab.setImageDrawable(drawable);
             }
         }

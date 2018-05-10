@@ -115,18 +115,11 @@ public class ViewUtils {
 
     public static Dialog dialogDonate(final Context context) {
         return new Dialog(context).setTitle(context.getString(R.string.donate))
-                .setMessage(context.getString(R.string.donate_summary)).setNegativeButton(
-                        context.getString(R.string.donate_nope), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }).setPositiveButton(context.getString(R.string.donate_yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Utils.launchUrl(
-                                "https://play.google.com/store/apps/details?id=com.grarak.kerneladiutordonate", context);
-                    }
-                });
+                .setMessage(context.getString(R.string.donate_summary))
+                .setNegativeButton(context.getString(R.string.donate_nope), (dialog, which) -> {
+                })
+                .setPositiveButton(context.getString(R.string.donate_yes), (dialog, which)
+                        -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.grarak.kerneladiutordonate", context));
     }
 
     public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,
@@ -168,19 +161,15 @@ public class ViewUtils {
             dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
         }
         if (onDialogEditTextListener != null) {
-            dialog.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    onDialogEditTextListener.onClick(editText.getText().toString(), editText2.getText().toString());
-                }
-            }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (negativeListener != null) {
-                        negativeListener.onClick(dialog, 0);
-                    }
-                }
-            });
+            dialog
+                    .setPositiveButton(context.getString(R.string.ok), (dialog1, which)
+                            -> onDialogEditTextListener.onClick(
+                            editText.getText().toString(), editText2.getText().toString()))
+                    .setOnDismissListener(dialog1 -> {
+                        if (negativeListener != null) {
+                            negativeListener.onClick(dialog1, 0);
+                        }
+                    });
         }
         return dialog;
     }
@@ -217,19 +206,13 @@ public class ViewUtils {
             dialog.setNegativeButton(context.getString(R.string.cancel), negativeListener);
         }
         if (onDialogEditTextListener != null) {
-            dialog.setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    onDialogEditTextListener.onClick(editText.getText().toString());
-                }
-            }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    if (negativeListener != null) {
-                        negativeListener.onClick(dialog, 0);
-                    }
-                }
-            });
+            dialog.setPositiveButton(context.getString(R.string.ok), (dialog1, which)
+                    -> onDialogEditTextListener.onClick(editText.getText().toString()))
+                    .setOnDismissListener(dialog1 -> {
+                        if (negativeListener != null) {
+                            negativeListener.onClick(dialog1, 0);
+                        }
+                    });
         }
         return dialog;
     }

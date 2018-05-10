@@ -63,7 +63,7 @@ public class Values {
             throw new CustomControlException("Script is null!");
         }
         String result = RootUtils.runScript(script);
-        if (result != null && !result.isEmpty() && result.matches("(1|0)")) {
+        if (result != null && !result.isEmpty() && result.matches("[10]")) {
             return result.equals("1");
         } else {
             throw new CustomControlException("Boolean script can only return 1 or 0 !");

@@ -737,11 +737,7 @@ public class CPUFreq {
         }
 
         private long getIdle() {
-            try {
-                return stats == null ? 0 : stats[3] + stats[4];
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return 0;
-            }
+            return stats == null || stats.length < 5 ? 0 : stats[3] + stats[4];
         }
 
     }

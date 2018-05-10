@@ -46,7 +46,7 @@ import java.util.Locale;
 /**
  * Created by willi on 14.04.16.
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private static HashMap<String, Integer> sAccentColors = new HashMap<>();
     private static HashMap<String, Integer> sAccentDarkColors = new HashMap<>();

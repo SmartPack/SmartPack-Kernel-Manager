@@ -61,77 +61,48 @@ public class DownloadAboutView extends RecyclerViewItem {
 
             if (xda != null) {
                 view.findViewById(R.id.xda_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.xda_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(xda, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.xda_button).setOnClickListener(v
+                        -> Utils.launchUrl(xda, v.getContext()));
             }
 
             if (github != null) {
                 view.findViewById(R.id.github_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.github_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(github, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.github_button).setOnClickListener(v
+                        -> Utils.launchUrl(github, v.getContext()));
             }
 
             if (googlePlus != null) {
                 view.findViewById(R.id.googleplus_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.googleplus_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(googlePlus, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.googleplus_button).setOnClickListener(v
+                        -> Utils.launchUrl(googlePlus, v.getContext()));
             }
 
             if (telegram != null) {
                 view.findViewById(R.id.telegram_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.telegram_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(telegram, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.telegram_button).setOnClickListener(v
+                        -> Utils.launchUrl(telegram, v.getContext()));
             }
 
             if (changelog != null) {
                 view.findViewById(R.id.changelog_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.changelog_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(changelog, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.changelog_button).setOnClickListener(v
+                        -> Utils.launchUrl(changelog, v.getContext()));
             }
-
             if (paypal != null) {
                 view.findViewById(R.id.paypal_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.paypal_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(paypal, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.paypal_button).setOnClickListener(v
+                        -> Utils.launchUrl(paypal, v.getContext()));
             }
 
             if (downfolder != null) {
                 view.findViewById(R.id.downfolder_button).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.downfolder_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Utils.launchUrl(downfolder, view.getContext());
-                    }
-                });
+                view.findViewById(R.id.downfolder_button).setOnClickListener(v
+                        -> Utils.launchUrl(downfolder, v.getContext()));
             }
         }
 
-        TextView shortDescription = (TextView) view.findViewById(R.id.short_description);
-        TextView longDescription = (TextView) view.findViewById(R.id.long_description);
+        TextView shortDescription = view.findViewById(R.id.short_description);
+        TextView longDescription = view.findViewById(R.id.long_description);
 
         shortDescription.setText(Utils.htmlFrom(mKernelContent.getShortDescription()));
         longDescription.setText(Utils.htmlFrom(mKernelContent.getLongDescription()));

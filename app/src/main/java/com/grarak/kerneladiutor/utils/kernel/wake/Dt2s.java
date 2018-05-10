@@ -52,7 +52,7 @@ public class Dt2s {
     private static final HashMap<String, List<Integer>> mFiles = new HashMap<>();
     private static final List<Integer> mGenericMenu = new ArrayList<>();
 
-    {
+    static {
         mGenericMenu.add(R.string.disabled);
         mGenericMenu.add(R.string.enabled);
 

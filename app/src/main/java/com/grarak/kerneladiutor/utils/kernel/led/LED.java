@@ -24,7 +24,6 @@ import android.content.Context;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.misc.Misc;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;

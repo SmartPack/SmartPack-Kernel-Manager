@@ -457,7 +457,7 @@ public class Utils {
 
     public static boolean hasProp(String key, RootUtils.SU su) {
         try {
-            return su.runCommand("getprop | grep " + key).split("]:").length > 1;
+            return !su.runCommand("getprop | grep " + key).isEmpty();
         } catch (Exception ignored) {
             return false;
         }
@@ -494,31 +494,30 @@ public class Utils {
     }
 
     public static String readFile(String file, RootUtils.SU su) {
-        if (su != null) return new RootFile(file, su).readFile();
+        if (su != null) {
+            return new RootFile(file, su).readFile();
+        }
 
-        StringBuilder s = null;
-        FileReader fileReader = null;
         BufferedReader buf = null;
         try {
-            fileReader = new FileReader(file);
-            buf = new BufferedReader(fileReader);
+            buf = new BufferedReader(new FileReader(file));
 
+            StringBuilder stringBuilder = new StringBuilder();
             String line;
-            s = new StringBuilder();
-            while ((line = buf.readLine()) != null) s.append(line).append("\n");
-        } catch (FileNotFoundException ignored) {
-            Log.e(TAG, "File does not exist " + file);
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to read " + file);
+            while ((line = buf.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+
+            return stringBuilder.toString().trim();
+        } catch (IOException ignored) {
         } finally {
             try {
-                if (fileReader != null) fileReader.close();
                 if (buf != null) buf.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return s == null ? null : s.toString().trim();
+        return null;
     }
 
     public static boolean existFile(String file) {

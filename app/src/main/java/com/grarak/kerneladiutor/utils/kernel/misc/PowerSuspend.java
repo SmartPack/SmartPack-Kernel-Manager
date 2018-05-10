@@ -46,9 +46,7 @@ public class PowerSuspend {
     public static boolean hasNewState() {
         if (Utils.existFile(STATE) && Utils.existFile(VERSION)) {
             String version = Utils.readFile(VERSION);
-            if (version.contains("1.3") || version.contains("1.5")) {
-                return true;
-            }
+            return version.contains("1.3") || version.contains("1.5");
         }
         return false;
     }
