@@ -14,6 +14,7 @@
 * Display Backlight Control
 * SELinux Switch
 * Auto-updates (in *About* page)
+* Boeffla Wakelock Blocker Driver Control
 * Real-time Charging Status
 * LED Blink/Fade support
 * Significantly modified (for SmartPack-Kernel) OTA implementation
