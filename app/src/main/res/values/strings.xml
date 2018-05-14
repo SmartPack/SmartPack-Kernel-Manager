@@ -30,7 +30,7 @@
     <string name="donate_yes">Donate!</string>
     <string name="ad_here">Your advertisement could be here</string>
     <string name="remove_ad">Remove ad</string>
-    <string name="warning">Warning</string>
+    <string name="warning">Warning!</string>
     <string name="gh_ad">This is a non commercial ad! Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users).</string>
     <string name="open_ad_anyway">Open ad anyway</string>
 
@@ -612,6 +612,19 @@
     <string name="kill_lmk_threshold">Kill LMK Threshold</string>
     <string name="kill_lmk_threshold_summary">How full swap needs to be to kill LMK.</string>
 
+    <!-- Wakelock -->
+    <string name="wakelock">Wakelocks</string>
+    <string name="wakelock_summary">Wakelocks are there for a reason. Driver and app developers surely had their reasons to put wakelocks into the code in certain areas. This means, by blocking some of them you can introduce smaller or bigger issues, you can trigger strange side effects and in worst case render the system completely unusable.\nBlocking wakelocks is solely your own responsibility.</string>
+    <string name="boeffla_wakelock">Boeffla Generic Wakelock Blocker</string>
+    <string name="boeffla_wakelock_summary">Disable to block, and Enable to allow</string>
+    <string name="wkl_blocked">Wakelocks Blocked</string>
+    <string name="wkl_allowed">Wakelocks Allowed</string>
+    <string name="wkl_total_time">Time</string>
+    <string name="wkl_wakep_count">Wakeups</string>
+    <string name="wkl_name">Name</string>
+    <string name="wkl_time">Time</string>
+    <string name="wkl_wakeup">Wakeups</string>
+
     <!-- Virtual Memory -->
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
@@ -657,25 +670,6 @@
     <string name="tcp">TCP Congestion Algorithm</string>
     <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="hostname">Hostname</string>
-    <string name="wakelock">Wakelock</string>
-    <string name="smb135x_wakelock">smb135x Wakelock</string>
-    <string name="smb135x_wakelock_summary">Prevent wakelock when power disconnected.</string>
-    <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
-    <string name="sensor_ind_wakelock_summary">Prevent wakelock when Ambient Display disabled.</string>
-    <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
-    <string name="msm_hsic_host_wakelock_summary">Prevent msm_hsic_host wakelock.</string>
-    <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>
-    <string name="wlan_rx_wakelock_summary">Prevent wlan_rx wakelock.</string>
-    <string name="wlan_ctrl_wakelock">wlan_ctrl Wakelock</string>
-    <string name="wlan_ctrl_wakelock_summary">Prevent wlan_ctrl wakelock.</string>
-    <string name="wlan_wakelock">wlan Wakelock</string>
-    <string name="wlan_wakelock_summary">Prevent wlan wakelock.</string>
-    <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
-    <string name="bluesleep_wakelock_summary">Prevent BlueSleep wakelock.</string>
-    <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
-    <string name="wlan_ctrl_wakelock_divider">wlan_ctrl Wakelock Divider</string>
-    <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
-    <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>

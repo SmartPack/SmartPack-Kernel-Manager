@@ -28,7 +28,6 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.misc.Misc;
 import com.grarak.kerneladiutor.utils.kernel.misc.PowerSuspend;
 import com.grarak.kerneladiutor.utils.kernel.misc.Vibration;
-import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -83,7 +82,6 @@ public class MiscFragment extends RecyclerViewFragment {
             powersuspendInit(items);
         }
         networkInit(items);
-        wakelockInit(items);
     }
 
     private void vibrationInit(List<RecyclerViewItem> items) {
@@ -314,136 +312,6 @@ public class MiscFragment extends RecyclerViewFragment {
         networkCard.addItem(hostname);
 
         items.add(networkCard);
-    }
-
-    private void wakelockInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> wakelocks = new ArrayList<>();
-
-        for (final Wakelocks.Wakelock wakelock : Wakelocks.getWakelocks()) {
-            if (!wakelock.exists()) continue;
-
-            String description = wakelock.getDescription(getActivity());
-
-            SwitchView switchView = new SwitchView();
-            if (description == null) {
-                switchView.setSummary(wakelock.getTitle(getActivity()));
-            } else {
-                switchView.setTitle(wakelock.getTitle(getActivity()));
-                switchView.setSummary(description);
-            }
-            switchView.setChecked(wakelock.isEnabled());
-            switchView.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    wakelock.enable(isChecked, getActivity());
-                }
-            });
-
-            wakelocks.add(switchView);
-        }
-
-        if (Wakelocks.hasWlanrxDivider()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 1; i < 17; i++) {
-                list.add((100 / i) + "%");
-            }
-            list.add("0%");
-
-            SeekBarView wlanrxDivider = new SeekBarView();
-            wlanrxDivider.setTitle(getString(R.string.wlan_rx_wakelock_divider));
-            wlanrxDivider.setItems(list);
-            wlanrxDivider.setProgress(Wakelocks.getWlanrxDivider());
-            wlanrxDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Wakelocks.setWlanrxDivider(position, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            wakelocks.add(wlanrxDivider);
-        }
-
-        if (Wakelocks.hasWlanctrlDivider()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 1; i < 17; i++) {
-                list.add((100 / i) + "%");
-            }
-            list.add("0%");
-
-            SeekBarView wlanctrlDivider = new SeekBarView();
-            wlanctrlDivider.setTitle(getString(R.string.wlan_ctrl_wakelock_divider));
-            wlanctrlDivider.setItems(list);
-            wlanctrlDivider.setProgress(Wakelocks.getWlanctrlDivider());
-            wlanctrlDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Wakelocks.setWlanctrlDivider(position, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            wakelocks.add(wlanctrlDivider);
-        }
-
-        if (Wakelocks.hasMsmHsicDivider()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 1; i < 17; i++) {
-                list.add((100 / i) + "%");
-            }
-            list.add("0%");
-
-            SeekBarView msmHsicDivider = new SeekBarView();
-            msmHsicDivider.setTitle(getString(R.string.msm_hsic_wakelock_divider));
-            msmHsicDivider.setItems(list);
-            msmHsicDivider.setProgress(Wakelocks.getMsmHsicDivider());
-            msmHsicDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Wakelocks.setMsmHsicDivider(position, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            wakelocks.add(msmHsicDivider);
-        }
-
-        if (Wakelocks.hasBCMDHDDivider()) {
-            SeekBarView bcmdhdDivider = new SeekBarView();
-            bcmdhdDivider.setTitle(getString(R.string.bcmdhd_wakelock_divider));
-            bcmdhdDivider.setMax(9);
-            bcmdhdDivider.setMin(1);
-            bcmdhdDivider.setProgress(Wakelocks.getBCMDHDDivider() - 1);
-            bcmdhdDivider.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    Wakelocks.setBCMDHDDivider(position + 1, getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            wakelocks.add(bcmdhdDivider);
-        }
-
-        if (wakelocks.size() > 0) {
-            TitleView wakelockTitle = new TitleView();
-            wakelockTitle.setText(getString(R.string.wakelock));
-
-            items.add(wakelockTitle);
-            items.addAll(wakelocks);
-        }
     }
 
 }

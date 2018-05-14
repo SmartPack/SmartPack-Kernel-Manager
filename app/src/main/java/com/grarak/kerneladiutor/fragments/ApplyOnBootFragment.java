@@ -40,6 +40,7 @@ import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LEDFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakelockFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
@@ -68,6 +69,7 @@ public class ApplyOnBootFragment extends BaseFragment {
     public static final String IO = "io_onboot";
     public static final String KSM = "ksm_onboot";
     public static final String LMK = "lmk_onboot";
+    public static final String WAKELOCKS = "wakelocks_onboot";
     public static final String VM = "vm_onboot";
     public static final String ENTROPY = "entropy_onboot";
     public static final String MISC = "misc_onboot";
@@ -88,6 +90,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(IOFragment.class, IO);
         sAssignments.put(KSMFragment.class, KSM);
         sAssignments.put(LMKFragment.class, LMK);
+        sAssignments.put(WakelockFragment.class, MISC);
         sAssignments.put(VMFragment.class, VM);
         sAssignments.put(EntropyFragment.class, ENTROPY);
         sAssignments.put(MiscFragment.class, MISC);

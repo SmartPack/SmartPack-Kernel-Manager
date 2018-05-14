@@ -404,6 +404,18 @@ public class Utils {
         }
     }
 
+    public static String sToString(long tSec) {
+        int h = (int) (tSec / (60 * 60));
+        int m = ((int) tSec % (60 * 60)) / 60;
+        int s = ((int) tSec % (60 * 60)) % 60;
+        String sDur = "";
+        if(h != 0) sDur = h + "h ";
+        if(m != 0) sDur += m + "m ";
+        sDur += s + "s";
+
+        return sDur;
+    }
+
     public static boolean isRTL(View view) {
         return ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL;
     }

@@ -41,6 +41,13 @@
         <item>@string/empty_app</item>
     </string-array>
 
+    <!--Wakelocks-->
+    <string-array name="b_wakelocks_oder">
+        <item>@string/wkl_name</item>
+        <item>@string/wkl_time</item>
+        <item>@string/wkl_wakeup</item>
+    </string-array>
+
     <!-- Misc -->
     <string-array name="powersuspend_items">
         <item>@string/autosleep</item>

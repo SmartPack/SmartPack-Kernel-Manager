@@ -26,8 +26,11 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -35,151 +38,250 @@ import java.util.List;
  */
 public class Wakelocks {
 
-    private static final String WLAN_RX_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
-    private static final String MSM_HSIC_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
-    private static final String BCMDHD_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
-    private static final String WLAN_CTRL_DIVIDER = "/sys/module/bcmdhd/parameters/wlctrl_divide";
+    private static final String BOEFFLAWL = "/sys/devices/virtual/misc/boeffla_wakelock_blocker";
+    private static final String VERSION = BOEFFLAWL + "/version";
+    private static final String DEBUG = BOEFFLAWL + "/debug";
+    private static final String WAKELOCK_BLOCKER = BOEFFLAWL + "/wakelock_blocker";
+    private static final String WAKELOCK_BLOCKER_DEFAULT = BOEFFLAWL + "/wakelock_blocker_default";
+    private static final String WAKELOCK_SOURCES = "/sys/kernel/debug/wakeup_sources";
 
-    public static class Wakelock {
+    // Wakelocks Order: 0-Name, 1-Time, 2-Wakeups
 
-        private final String mPath;
-        @StringRes
-        private final int mTitle;
-        @StringRes
-        private final int mDescription;
+    public static String getboefflawlVersion(){
+        return Utils.readFile(VERSION);
+    }
 
-        private Boolean mExists;
+    public static void CopyWakelockBlockerDefault(){
+        try {
+            String wbd = Utils.readFile(WAKELOCK_BLOCKER_DEFAULT);
+            if (!wbd.contentEquals("")) {
+                String list = "";
+                try {
+                    list = Utils.readFile(WAKELOCK_BLOCKER);
+                    if (list.contentEquals("")) {
+                        list = wbd;
+                    } else {
+                        list = list + ";" + wbd;
+                    }
+                } catch (Exception ignored) {
+                }
 
-        private Wakelock(String path) {
-            this(path, 0, 0);
+                RootUtils.runCommand("echo '" + list + "' > " + WAKELOCK_BLOCKER);
+                RootUtils.runCommand("echo '" + "" + "' > " + WAKELOCK_BLOCKER_DEFAULT);
+            }
+        }catch(Exception ignored){
+        }
+    }
+
+    public static boolean isWakelockBlocked(String wakelock){
+        try {
+            String[] wbs = Utils.readFile(WAKELOCK_BLOCKER).split(";");
+            for (String wb : wbs) {
+                if (wb.contentEquals(wakelock)) {
+                    return true;
+                }
+            }
+        }catch (Exception ignored){
+        }
+        return false;
+    }
+
+    public static void setWakelockBlocked(String wakelock, Context context){
+        String list = "";
+        try {
+            list = Utils.readFile(WAKELOCK_BLOCKER);
+            if (list.contentEquals("")) {
+                list = wakelock;
+            } else {
+                list += ";" + wakelock;
+            }
+        } catch (Exception ignored){
         }
 
-        private Wakelock(String path, @StringRes int title, @StringRes int description) {
-            mPath = path;
-            mTitle = title;
-            mDescription = description;
+        run(Control.write(list, WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
+    }
+
+    public static void setWakelockAllowed(String wakelock, Context context){
+        String list = "";
+        try {
+            String[] wakes = Utils.readFile(WAKELOCK_BLOCKER).split(";");
+            for(String wake : wakes){
+                if(!wake.contentEquals(wakelock)){
+                    if (list.contentEquals("")) {
+                        list = wake;
+                    } else {
+                        list += ";" + wake;
+                    }
+                }
+            }
+        } catch (Exception ignored){
         }
 
-        public String getDescription(Context context) {
-            return mDescription == 0 ? null : context.getString(mDescription);
-        }
+        run(Control.write(list, WAKELOCK_BLOCKER), WAKELOCK_BLOCKER, context);
+    }
 
-        public String getTitle(Context context) {
-            if (mTitle != 0) {
-                return context.getString(mTitle);
+    private static List<String> getWakelockNames(){
+        List<String> list = new ArrayList<>();
+        try {
+            String[] lines = Utils.readFile(WAKELOCK_SOURCES).split("\\r?\\n");
+            for (String line : lines) {
+                if (!line.startsWith("name")) {
+                    String[] wl = line.split("\\s+");
+                    list.add(wl[0]);
+                }
+            }
+        }catch (Exception ignored) {
+        }
+        return list;
+    }
+
+    private static List<Integer> getWakelockTimes(){
+        List<Integer> list = new ArrayList<>();
+        try {
+            String[] lines = Utils.readFile(WAKELOCK_SOURCES).split("\\r?\\n");
+            for (String line : lines) {
+                if (!line.startsWith("name")) {
+                    String[] wl = line.split("\\s+");
+                    list.add(Utils.strToInt(wl[6]));
+                }
+            }
+        }catch (Exception ignored) {
+        }
+        return list;
+    }
+
+    private static List<Integer> getWakelockWakeups(){
+        List<Integer> list = new ArrayList<>();
+        try {
+            String[] lines = Utils.readFile(WAKELOCK_SOURCES).split("\\r?\\n");
+            for (String line : lines) {
+                if (!line.startsWith("name")) {
+                    String[] wl = line.split("\\s+");
+                    list.add(Utils.strToInt(wl[3]));
+                }
+            }
+        }catch (Exception ignored) {
+        }
+        return list;
+    }
+
+    public static List<ListWake> getWakelockList(){
+
+        List<ListWake> list = new ArrayList<>();
+
+        try {
+            List<String> ListName = getWakelockNames();
+            List<Integer> ListTime = getWakelockTimes();
+            List<Integer> ListWakeup = getWakelockWakeups();
+
+            for (int i = 0; i < ListName.size(); i++) {
+                list.add(new ListWake(ListName.get(i), ListTime.get(i), ListWakeup.get(i)));
             }
 
-            String[] paths = mPath.split("/");
-            return Utils.upperCaseEachWord(paths[paths.length - 1].replace("enable_", "")
-                    .replace("_ws", "").replace("_", " "));
+            Collections.sort(list, new Comparator<ListWake>() {
+                @Override
+                public int compare(ListWake w2, ListWake w1) {
+                    try{
+                        return Integer.valueOf(w1.getTime()).compareTo(w2.getTime());
+                    }catch (Exception ignored){
+                    }
+                    return 0;
+                }
+            });
+
+        }catch (Exception ignored){
         }
 
-        public void enable(boolean enable, Context context) {
-            run(Control.write(enable ? "Y" : "N", mPath), mPath, context);
-        }
+        return list;
+    }
 
-        public boolean isEnabled() {
-            return Utils.readFile(mPath).equals("Y");
-        }
+    public static List<ListWake> getWakelockListBlocked(){
 
-        public boolean exists() {
-            if (mExists == null) {
-                return (mExists = Utils.existFile(mPath));
+        List<ListWake> list = new ArrayList<>();
+
+        try {
+            List<String> ListName = getWakelockNames();
+            List<Integer> ListTime = getWakelockTimes();
+            List<Integer> ListWakeup = getWakelockWakeups();
+
+            for (int i = 0; i < ListName.size(); i++) {
+                if(isWakelockBlocked(ListName.get(i))) {
+                    list.add(new ListWake(ListName.get(i), ListTime.get(i), ListWakeup.get(i)));
+                }
             }
-            return mExists;
+
+            Collections.sort(list, new Comparator<ListWake>() {
+                @Override
+                public int compare(ListWake w2, ListWake w1) {
+                    return 0;
+                }
+            });
+
+        }catch (Exception ignored){
         }
 
+        return list;
     }
 
-    private static final List<Wakelock> sWakelocks = new ArrayList<>();
+    public static List<ListWake> getWakelockListAllowed(){
 
-    static {
-        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
-                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
-                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
-                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws"));
+        List<ListWake> list = new ArrayList<>();
+
+        try {
+            List<String> ListName = getWakelockNames();
+            List<Integer> ListTime = getWakelockTimes();
+            List<Integer> ListWakeup = getWakelockWakeups();
+
+            for (int i = 0; i < ListName.size(); i++) {
+                if(!isWakelockBlocked(ListName.get(i))) {
+                    list.add(new ListWake(ListName.get(i), ListTime.get(i), ListWakeup.get(i)));
+                }
+            }
+
+            Collections.sort(list, new Comparator<ListWake>() {
+                @Override
+                public int compare(ListWake w2, ListWake w1) {
+                    return 0;
+                }
+            });
+
+        }catch (Exception ignored){
+        }
+
+        return list;
     }
 
-    public static void setBCMDHDDivider(int value, Context context) {
-        run(Control.write(String.valueOf(value), BCMDHD_DIVIDER), BCMDHD_DIVIDER, context);
+    public static boolean boefflawlsupported() {
+        return Utils.existFile(BOEFFLAWL);
     }
 
-    public static int getBCMDHDDivider() {
-        return Utils.strToInt(Utils.readFile(BCMDHD_DIVIDER));
+    public static class ListWake {
+
+        private String mName;
+        private int mTime;
+        private int mWakeup;
+
+        ListWake(String name, int time, int wakeup){
+            mName = name;
+            mTime = time;
+            mWakeup = wakeup;
+        }
+
+        public String getName(){
+            return mName;
+        }
+
+        public int getTime(){
+            return mTime;
+        }
+
+        public int getWakeup() {
+            return mWakeup;
+        }
     }
 
-    public static boolean hasBCMDHDDivider() {
-        return Utils.existFile(BCMDHD_DIVIDER);
-    }
-
-    public static void setMsmHsicDivider(int value, Context context) {
-        run(Control.write(String.valueOf(value == 15 ? 0 : value + 1), MSM_HSIC_DIVIDER),
-                MSM_HSIC_DIVIDER, context);
-    }
-
-    public static int getMsmHsicDivider() {
-        int value = Utils.strToInt(Utils.readFile(MSM_HSIC_DIVIDER));
-        return value == 0 ? 16 : value - 1;
-    }
-
-    public static boolean hasMsmHsicDivider() {
-        return Utils.existFile(MSM_HSIC_DIVIDER);
-    }
-
-    public static void setWlanrxDivider(int value, Context context) {
-        run(Control.write(String.valueOf(value == 15 ? 0 : value + 1), WLAN_RX_DIVIDER),
-                WLAN_RX_DIVIDER, context);
-    }
-
-    public static int getWlanrxDivider() {
-        int value = Utils.strToInt(Utils.readFile(WLAN_RX_DIVIDER));
-        return value == 0 ? 16 : value - 1;
-    }
-
-    public static boolean hasWlanrxDivider() {
-        return Utils.existFile(WLAN_RX_DIVIDER);
-    }
-
-    public static void setWlanctrlDivider(int value, Context context) {
-        run(Control.write(String.valueOf(value == 15 ? 0 : value + 1), WLAN_CTRL_DIVIDER),
-                WLAN_CTRL_DIVIDER, context);
-    }
-
-    public static int getWlanctrlDivider() {
-        int value = Utils.strToInt(Utils.readFile(WLAN_CTRL_DIVIDER));
-        return value == 0 ? 16 : value - 1;
-    }
-
-    public static boolean hasWlanctrlDivider() {
-        return Utils.existFile(WLAN_CTRL_DIVIDER);
-    }
-
-    public static List<Wakelock> getWakelocks() {
-        return sWakelocks;
+    public static boolean supported() {
+        return boefflawlsupported();
     }
 
     private static void run(String command, String id, Context context) {
