@@ -76,6 +76,20 @@ public class WakelockFragment extends RecyclerViewFragment {
         boefflawl.setSummary("Version: " + Wakelocks.getboefflawlVersion() + "\n" + getString(R.string.boeffla_wakelock_summary));
         items.add(boefflawl);
 
+        SelectView borfflawlorder = new SelectView();
+        borfflawlorder.setTitle(getString(R.string.wkl_order));
+        borfflawlorder.setSummary(getString(R.string.wkl_order_summary));
+        borfflawlorder.setItems(Arrays.asList(getResources().getStringArray(R.array.b_wakelocks_oder)));
+        borfflawlorder.setItem(getString(R.string.wkl_time));
+        borfflawlorder.setOnItemSelected(new SelectView.OnItemSelected() {
+            @Override
+            public void onItemSelected(SelectView selectView, int position, String item) {
+                Wakelocks.setWakelockOrder(position);
+                bwCardReload();
+            }
+        });
+        items.add(borfflawlorder);
+
         List<Wakelocks.ListWake> wakelocksB = Wakelocks.getWakelockListBlocked();
         String titleB = getString(R.string.wkl_blocked);
         CardView cardB = new CardView(getActivity());

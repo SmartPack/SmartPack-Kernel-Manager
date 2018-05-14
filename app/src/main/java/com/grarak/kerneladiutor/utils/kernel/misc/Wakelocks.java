@@ -46,6 +46,7 @@ public class Wakelocks {
     private static final String WAKELOCK_SOURCES = "/sys/kernel/debug/wakeup_sources";
 
     // Wakelocks Order: 0-Name, 1-Time, 2-Wakeups
+    private static int mWakelockOrder = 1;
 
     public static String getboefflawlVersion(){
         return Utils.readFile(VERSION);
@@ -165,6 +166,10 @@ public class Wakelocks {
         return list;
     }
 
+    public static void setWakelockOrder(int order){
+        mWakelockOrder = order;
+    }
+
     public static List<ListWake> getWakelockList(){
 
         List<ListWake> list = new ArrayList<>();
@@ -181,10 +186,14 @@ public class Wakelocks {
             Collections.sort(list, new Comparator<ListWake>() {
                 @Override
                 public int compare(ListWake w2, ListWake w1) {
-                    try{
+                    if(mWakelockOrder == 0) {
+                        return w1.getName().compareTo(w2.getName());
+                    } else if ( mWakelockOrder == 1){
                         return Integer.valueOf(w1.getTime()).compareTo(w2.getTime());
-                    }catch (Exception ignored){
+                    } else if (mWakelockOrder == 2){
+                        return Integer.valueOf(w1.getWakeup()).compareTo(w2.getWakeup());
                     }
+
                     return 0;
                 }
             });
@@ -241,6 +250,13 @@ public class Wakelocks {
             Collections.sort(list, new Comparator<ListWake>() {
                 @Override
                 public int compare(ListWake w2, ListWake w1) {
+                    if(mWakelockOrder == 0) {
+                        return w2.getName().compareTo(w1.getName());
+                    } else if ( mWakelockOrder == 1){
+                        return Integer.valueOf(w1.getTime()).compareTo(w2.getTime());
+                    } else if (mWakelockOrder == 2){
+                        return Integer.valueOf(w1.getWakeup()).compareTo(w2.getWakeup());
+                    }
                     return 0;
                 }
             });
