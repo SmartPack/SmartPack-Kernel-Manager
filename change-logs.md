@@ -1,5 +1,9 @@
 # Change-logs
 
+## 20. May 16, 2018
+*Release-tag: v4.1*
+Changes: Added new 'wakelock' page with full control over Boeffla generic wakelock blocker. Clean-ups and miscellaneous changes.
+
 ## 19. May 10, 2018
 *Release-tag: v4.0*
 Changes: Move auto update check to "Overall" page to initiate app update check at start-up. Update build grade dependancies. Merged a lot of important updates from official KA. Clean-ups and miscellaneous changes.

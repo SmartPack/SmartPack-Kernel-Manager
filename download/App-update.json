@@ -1,11 +1,9 @@
 {
-  "latestVersion": "4.0-20180510",
+  "latestVersion": "4.1-20180516",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Move auto update check to 'Overall' page to initiate app update check at start-up.",
-    "- Update build grade dependancies.",
-    "- Merged a lot of important updates from official KA.",
+    "- Added new 'wakelock' page with full control over Boeffla generic wakelock blocker.",
     "- Clean-ups and miscellaneous changes."    
   ]
 }
