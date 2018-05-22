@@ -62,6 +62,7 @@ public class Sound {
     private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound/boeffla_sound";
     private static final String BOEFFLA_SPEAKER = "/sys/class/misc/boeffla_sound/speaker_volume";
     private static final String BOEFFLA_HP = "/sys/class/misc/boeffla_sound/headphone_volume";
+    private static final String BOEFFLA_VERSION = "/sys/class/misc/boeffla_sound/version";
 
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
 
@@ -145,6 +146,10 @@ public class Sound {
 
     public boolean hasboefflasound() {
        return Utils.existFile(BOEFFLA_SOUND);
+    }
+
+    public String getboefflasoundVersion()  {
+        return Utils.readFile(BOEFFLA_VERSION);
     }
 
     public void setHeadphoneTpaGain(String value, Context context) {

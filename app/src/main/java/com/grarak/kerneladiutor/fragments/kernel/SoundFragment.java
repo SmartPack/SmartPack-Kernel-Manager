@@ -136,9 +136,10 @@ public class SoundFragment extends RecyclerViewFragment {
     private void boefflasoundInit(List<RecyclerViewItem> items) {
 
         CardView boefflasoundCard = new CardView(getActivity());
-        boefflasoundCard.setTitle(getString(R.string.boefflasound));
+        boefflasoundCard.setTitle(getString(R.string.sound_control));
 
         final SwitchView boefflasoundenable = new SwitchView();
+        boefflasoundenable.setTitle(getString(R.string.boefflasound) + " Version: " + mSound.getboefflasoundVersion());
         boefflasoundenable.setSummary(getString(R.string.boefflasound_summary));
         boefflasoundenable.setChecked(mSound.isboefflasoundenabled());
         boefflasoundenable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
