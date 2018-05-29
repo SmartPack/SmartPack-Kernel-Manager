@@ -20,11 +20,10 @@
 * Significantly modified (for SmartPack-Kernel) OTA implementation
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
 
-## Relevant links
+## Donations
+If you want to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.
 
-[SmartPack-Kernel for Lineage-OS 14.1/15.1 (kltexxx)](https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206)
-
-[SmartPack-Kernel for Stock Marshmallow (kltexxx)](https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810)
+[![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.me/sunilpaulmathew)
 
 ## Credits
 
