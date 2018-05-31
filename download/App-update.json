@@ -1,9 +1,10 @@
 {
-  "latestVersion": "4.1-20180516",
+  "latestVersion": "4.2-20180531",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added new 'wakelock' page with full control over Boeffla generic wakelock blocker.",
-    "- Clean-ups and miscellaneous changes."    
+    "- Added version information to boeffla sound.",
+    "- Blue accent is now more intense, like *Pixel* blue.",
+    "- Added new SmartPack header image."    
   ]
 }

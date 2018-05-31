@@ -1,5 +1,9 @@
 # Change-logs
 
+## 21. May 31, 2018
+*Release-tag: v4.2*
+Changes: Added version information to boeffla sound. Blue accent is now more intense, like *Pixel* blue. Added new SmartPack header image.
+
 ## 20. May 16, 2018
 *Release-tag: v4.1*
 Changes: Added new 'wakelock' page with full control over Boeffla generic wakelock blocker. Clean-ups and miscellaneous changes.
