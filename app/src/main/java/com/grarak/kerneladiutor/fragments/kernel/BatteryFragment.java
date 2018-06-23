@@ -71,6 +71,9 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (Battery.haschargingstatus()) {
         items.add(mChargingStatus);
         }
+        if (mBattery.hasbatterychargelimit()) {
+            bclInit(items);
+        }
         if (mBattery.hasBlx()) {
             blxInit(items);
         }
@@ -105,6 +108,29 @@ public class BatteryFragment extends RecyclerViewFragment {
         mVoltage.setTitle(getString(R.string.voltage));
 
         items.add(mVoltage);
+    }
+
+    private void bclInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> bcl = new ArrayList<>();
+
+        if (mBattery.hasbatterychargelimit()) {
+		SwitchView disablebcl = new SwitchView();
+		disablebcl.setTitle(getString(R.string.charging_disable));
+		disablebcl.setSummary(getString(R.string.charging_disable_summary));
+		disablebcl.setChecked(mBattery.batterychargelimitenabled());
+		disablebcl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		    @Override
+		    public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mBattery.enablebatterychargelimit(isChecked, getActivity());
+		    }
+		});
+
+		bcl.add(disablebcl);
+        }
+
+        if (bcl.size() > 0) {
+            items.addAll(bcl);
+        }
     }
 
     private void fastChargeInit(List<RecyclerViewItem> items) {

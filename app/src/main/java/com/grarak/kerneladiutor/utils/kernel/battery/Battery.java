@@ -75,6 +75,8 @@ public class Battery {
     private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
     private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
 
+    private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
+
     private int mCapacity;
     private static String[] sBatteryAvailable;
     private static String[] sBatteryUSBAvailable;
@@ -106,6 +108,22 @@ public class Battery {
 
     public boolean hasBlx() {
         return Utils.existFile(BLX);
+    }
+
+    public boolean hasbatterychargelimit() {
+        return Utils.existFile(BCL);
+    }
+
+    public static String getbatterychargelimit() {
+        return Utils.readFile(BCL);
+    }
+
+    public void enablebatterychargelimit(boolean enable, Context context) {
+        run(Control.write(enable ? "0" : "1", BCL), BCL, context);
+    }
+
+    public boolean batterychargelimitenabled() {
+        return Utils.readFile(BCL).equals("0");
     }
 
     public static List<String> enableForceFastCharge(Context context) {
@@ -189,7 +207,7 @@ public class Battery {
         run(Control.write(String.valueOf(value), CUSTOM_WIRELESS_CHARGE_LEVEL), CUSTOM_WIRELESS_CHARGE_LEVEL, context);
     }
     
-   public void enableMtpForceFastCharge(boolean enable, Context context) {
+    public void enableMtpForceFastCharge(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", MTP_FORCE_FAST_CHARGE), MTP_FORCE_FAST_CHARGE, context);
     }
 
