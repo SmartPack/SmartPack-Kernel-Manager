@@ -19,11 +19,7 @@
  */
 package com.grarak.kerneladiutor.activities;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -59,11 +55,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import org.frap129.spectrum.Spectrum;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * Created by willi on 14.04.16.
@@ -103,7 +95,7 @@ public class MainActivity extends BaseActivity {
             if (!(password = Prefs.getString("password", "", this)).isEmpty()) {
                 Intent intent = new Intent(this, SecurityActivity.class);
                 intent.putExtra(SecurityActivity.PASSWORD_INTENT, password);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 0);
             } else {
                 new CheckingTask(this).execute();
             }
@@ -114,61 +106,24 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*
-         * 0: License check result
-         * 1: Password check result
-         */
         if (requestCode == 0) {
-
-            /*
-             * -1: Default (no license check executed)
-             *  0: License check was successful
-             *  1: Something went wrong when checking license
-             *  2: License is invalid
-             *  3: Donate apk is patched/cracked
-             */
-            int result = data == null ? -1 : data.getIntExtra("result", -1);
-            if (result == 0) {
-                try {
-                    ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(
-                            "com.grarak.kerneladiutordonate", 0);
-                    Utils.writeFile(applicationInfo.dataDir + "/license",
-                            Utils.encodeString(Utils.getAndroidId(this)), false, true);
-                } catch (PackageManager.NameNotFoundException ignored) {
-                }
-            }
-            launch(result);
-
-        } else if (requestCode == 1) {
-
-            /*
-             * 0: Password is wrong
-             * 1: Password is correct
-             */
             if (resultCode == 1) {
                 new CheckingTask(this).execute();
             } else {
                 finish();
             }
-
         }
     }
 
-    /**
-     * Launch {@link NavigationActivity} which is the actual interface
-     *
-     * @param code license check result see {@link #onActivityResult(int, int, Intent)}
-     */
-    private void launch(int code) {
+    private void launch() {
         Intent intent = new Intent(this, NavigationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("result", code);
         if (getIntent().getExtras() != null) {
             intent.putExtras(getIntent().getExtras());
         }
-        Prefs.saveInt("license", code, this);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private static class CheckingTask extends AsyncTask<Void, Integer, Void> {
@@ -288,104 +243,7 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
-            // Execute another AsyncTask for license checking
-            new LoadingTask(activity).execute();
-        }
-
-    }
-
-    private static class LoadingTask extends AsyncTask<Void, Void, Boolean> {
-        private WeakReference<MainActivity> mRefActivity;
-
-        private ApplicationInfo mApplicationInfo;
-        private PackageInfo mPackageInfo;
-        private boolean mPatched;
-        private boolean mInternetAvailable;
-        private boolean mLicensedCached;
-
-        private LoadingTask(MainActivity activity) {
-            mRefActivity = new WeakReference<>(activity);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            MainActivity activity = mRefActivity.get();
-            if (activity == null) return;
-            try {
-                PackageManager packageManager = activity.getPackageManager();
-                mApplicationInfo = packageManager.getApplicationInfo(
-                        "com.grarak.kerneladiutordonate", 0);
-                mPackageInfo = packageManager.getPackageInfo(
-                        "com.grarak.kerneladiutordonate", 0);
-                if (BuildConfig.DEBUG) {
-                    Utils.DONATED = false;
-                }
-            } catch (PackageManager.NameNotFoundException ignored) {
-            }
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            MainActivity activity = mRefActivity.get();
-            if (activity == null) return false;
-
-            if (mApplicationInfo != null && mPackageInfo != null
-                    && mPackageInfo.versionCode == 130) {
-                try {
-                    mPatched = !Utils.checkMD5("5c7a92a5b2dcec409035e1114e815b00",
-                            new File(mApplicationInfo.publicSourceDir))
-                            || Utils.isPatched(mApplicationInfo);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                if (Utils.existFile(mApplicationInfo.dataDir + "/license")) {
-                    String content = Utils.readFile(mApplicationInfo.dataDir + "/license");
-                    if (!content.isEmpty() && (content = Utils.decodeString(content)) != null) {
-                        if (content.equals(Utils.getAndroidId(activity))) {
-                            mLicensedCached = true;
-                        }
-                    }
-                }
-
-                try {
-                    if (!mLicensedCached) {
-                        HttpURLConnection urlConnection = (HttpURLConnection) new URL("https://www.google.com").openConnection();
-                        urlConnection.setRequestProperty("User-Agent", "Test");
-                        urlConnection.setRequestProperty("Connection", "close");
-                        urlConnection.setConnectTimeout(3000);
-                        urlConnection.connect();
-                        mInternetAvailable = urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK;
-                    }
-                } catch (IOException ignored) {
-                }
-
-                return !mPatched;
-            }
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean donationValid) {
-            super.onPostExecute(donationValid);
-
-            MainActivity activity = mRefActivity.get();
-            if (activity == null) return;
-
-            if (donationValid && mLicensedCached) {
-                activity.launch(0);
-            } else if (donationValid && mInternetAvailable) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setComponent(new ComponentName("com.grarak.kerneladiutordonate",
-                        "com.grarak.kerneladiutordonate.MainActivity"));
-                activity.startActivityForResult(intent, 0);
-            } else if (donationValid) {
-                activity.launch(1);
-            } else {
-                activity.launch(mPatched ? 3 : -1);
-            }
+            activity.launch();
         }
     }
 

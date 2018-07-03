@@ -26,7 +26,6 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -238,40 +237,6 @@ public class Utils {
     public static String getInternalDataStorage() {
         return Environment.getExternalStorageDirectory().toString() + "/Android/data/" +
                 BuildConfig.APPLICATION_ID;
-    }
-
-    // Sorry pirates!
-    public static boolean isPatched(ApplicationInfo applicationInfo) {
-        try {
-            boolean withBase = new File(applicationInfo.publicSourceDir).getName().equals("base.apk");
-            if (withBase) {
-                RootFile parent = new RootFile(applicationInfo.publicSourceDir).getParentFile();
-                RootFile odex = new RootFile(parent.toString() + "/oat/*/base.odex");
-                if (odex.exists()) {
-                    String text = RootUtils.runCommand("strings " + odex.toString());
-                    if (text.contains("--dex-file") || text.contains("--oat-file")) {
-                        return true;
-                    }
-                }
-
-                String dex = "/data/dalvik-cache/*/data@app@" + applicationInfo.packageName + "*@classes.dex";
-                if (Utils.existFile(dex)) {
-                    String path = RootUtils.runCommand("realpath " + dex);
-                    if (path != null) {
-                        String text = RootUtils.runCommand("strings " + path);
-                        if (text.contains("--dex-file") || text.contains("--oat-file")) {
-                            return true;
-                        }
-                    }
-                }
-            } else if (Utils.existFile(applicationInfo.publicSourceDir.replace(".apk", ".odex"))) {
-                new RootFile(applicationInfo.publicSourceDir.replace(".apk", ".odex")).delete();
-                RootUtils.runCommand("pkill " + applicationInfo.packageName);
-                return false;
-            }
-        } catch (Exception ignored) {
-        }
-        return false;
     }
 
     // MD5 code from

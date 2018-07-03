@@ -102,7 +102,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", getActivity());
+                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity());
             }
         });
 

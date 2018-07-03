@@ -85,8 +85,6 @@ import com.grarak.kerneladiutor.fragments.tools.downloads.DownloadsFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.utils.WebpageReader;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.Hotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuvoltage.Voltage;
@@ -128,7 +126,6 @@ public class NavigationActivity extends BaseActivity
     private boolean mExit;
 
     private int mSelection;
-    private boolean mLicenseDialog = true;
 
     @Override
     protected boolean setStatusBarColor() {
@@ -253,37 +250,6 @@ public class NavigationActivity extends BaseActivity
     }
 
     private void init(Bundle savedInstanceState) {
-        int result = getIntent().getIntExtra("result", -1);
-
-        if ((result == 1 || result == 2) && mLicenseDialog) {
-            ViewUtils.dialogBuilder(getString(R.string.license_invalid), null,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    }, new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            mLicenseDialog = false;
-                        }
-                    }, this).show();
-        } else if (result == 3 && mLicenseDialog) {
-            ViewUtils.dialogBuilder(getString(R.string.pirated), null, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            }, new DialogInterface.OnDismissListener() {
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    mLicenseDialog = false;
-                }
-            }, this).show();
-        } else {
-            mLicenseDialog = false;
-            if (result == 0) {
-                Utils.DONATED = true;
-            }
-        }
 
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = getToolBar();
@@ -307,7 +273,6 @@ public class NavigationActivity extends BaseActivity
 
         if (savedInstanceState != null) {
             mSelection = savedInstanceState.getInt("selection");
-            mLicenseDialog = savedInstanceState.getBoolean("license");
         }
 
         appendFragments(false);
@@ -487,7 +452,6 @@ public class NavigationActivity extends BaseActivity
 
         outState.putParcelableArrayList("fragments", mFragments);
         outState.putInt("selection", mSelection);
-        outState.putBoolean("license", mLicenseDialog);
     }
 
     @Override

@@ -79,7 +79,7 @@ public class BannerResizerActivity extends BaseActivity {
             int maxHeight = Math.round(getResources().getDimension(R.dimen.banner_max_height));
 
             final View banner = rootView.findViewById(R.id.banner_view);
-            final int px = Prefs.getInt("banner_size", defaultHeight, getActivity());
+            final int px = Prefs.getInt("banner_size", defaultHeight, requireActivity());
             setHeight(banner, px);
 
             final TextView text = (TextView) rootView.findViewById(R.id.seekbar_text);
@@ -114,7 +114,7 @@ public class BannerResizerActivity extends BaseActivity {
             rootView.findViewById(R.id.done).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Prefs.saveInt("banner_size", seekBar.getProgress() + minHeight, getActivity());
+                    Prefs.saveInt("banner_size", seekBar.getProgress() + minHeight, requireActivity());
                     getActivity().finish();
                 }
             });

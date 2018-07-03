@@ -120,14 +120,14 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     @Override
     protected Drawable getTopFabDrawable() {
-        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_add));
         DrawableCompat.setTint(drawable, Color.WHITE);
         return drawable;
     }
 
     @Override
     public int getSpanCount() {
-        int span = Utils.isTablet(getActivity()) ? Utils.getOrientation(getActivity()) ==
+        int span = Utils.isTablet(requireActivity()) ? Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 4 : 3 : Utils.getOrientation(getActivity()) ==
                 Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
         if (itemsSize() != 0 && span > itemsSize()) {
@@ -238,7 +238,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     }
 
     private void load(List<RecyclerViewItem> items) {
-        mProfiles = new Profiles(getActivity());
+        mProfiles = new Profiles(requireActivity());
         List<Profiles.ProfileItem> profileItems = mProfiles.getAllProfiles();
         if (mTaskerMode && profileItems.size() == 0) {
             Snackbar.make(getRootView(), R.string.no_profiles, Snackbar.LENGTH_LONG).show();
@@ -406,7 +406,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
         if (!mTaskerMode) {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), Widget.class));
+            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(requireActivity(), Widget.class));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
             Tile.publishProfileTile(profileItems, getActivity());
         }
@@ -455,7 +455,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     private Intent createProfileActivityIntent() {
         Intent intent = new Intent(getActivity(), ProfileActivity.class);
 
-        NavigationActivity activity = (NavigationActivity) getActivity();
+        NavigationActivity activity = (NavigationActivity) requireActivity();
         ArrayList<NavigationActivity.NavigationFragment> fragments = new ArrayList<>();
         boolean add = false;
         for (NavigationActivity.NavigationFragment fragment : activity.getFragments()) {

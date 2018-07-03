@@ -150,8 +150,8 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         mProgress = mRootView.findViewById(R.id.progress);
 
-        mAppBarLayout = ((BaseActivity) getActivity()).getAppBarLayout();
-        mToolBar = ((BaseActivity) getActivity()).getToolBar();
+        mAppBarLayout = ((BaseActivity) requireActivity()).getAppBarLayout();
+        mToolBar = ((BaseActivity) requireActivity()).getToolBar();
 
         if (mAppBarLayout != null && !isForeground()) {
             mAppBarLayout.postDelayed(new Runnable() {
@@ -715,7 +715,7 @@ public abstract class RecyclerViewFragment extends BaseFragment {
 
         if (showViewPager()) {
             menu.add(0, 0, Menu.NONE, R.string.options)
-                    .setIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_launcher_preview))
+                    .setIcon(ContextCompat.getDrawable(requireActivity(), R.drawable.ic_launcher_preview))
                     .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
         if (showTopFab()) {

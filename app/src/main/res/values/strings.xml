@@ -385,8 +385,8 @@
     <string name="capacity">Capacity</string>
     <string name="blx">Battery Life eXtender</string>
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
-    <string name="charging_disable">Battery Charging</string>
-    <string name="charging_disable_summary">Charging will be stopped immediately if disabled.</string>
+    <string name="charging_disable">Disable Charging</string>
+    <string name="charging_disable_summary">Warning! Charging will be stopped immediately if disabled.</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Advanced Charge Control Interface</string>

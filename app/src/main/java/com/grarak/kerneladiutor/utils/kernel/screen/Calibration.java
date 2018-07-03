@@ -80,6 +80,7 @@ public class Calibration {
     {
         mSRGB.add("/sys/class/graphics/fb0/SRGB");
         mSRGB.add("/sys/class/graphics/fb0/srgb");
+        mSRGB.add("/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/SRGB");
 
         mColors.add(KCAL_CTRL);
         mColors.add(DIAG0_POWER);

@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.views.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -33,7 +34,7 @@ public class Dialog extends AlertDialog.Builder {
 
     private DialogInterface.OnDismissListener mOnDismissListener;
 
-    public Dialog(Context context) {
+    public Dialog(@NonNull Context context) {
         super(context);
     }
 
