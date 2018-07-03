@@ -75,7 +75,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_BANNER_RESIZER = "banner_resizer";
     private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_ACCENT_COLOR = "accent_color";
-    private static final String KEY_SECTIONS_ICON = "section_icons";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
     private static final String KEY_LOGCAT = "logcat";
@@ -99,7 +98,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         if (!Utils.DONATED) {
             Prefs.remove(KEY_HIDE_BANNER, getActivity());
             Prefs.remove(KEY_ACCENT_COLOR, getActivity());
-            Prefs.remove(KEY_SECTIONS_ICON, getActivity());
         }
         setRetainInstance(true);
     }
@@ -149,7 +147,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
-        findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
 
@@ -214,17 +211,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     return false;
                 }
                 return true;
-            default:
-                if (key.equals(KEY_SECTIONS_ICON) || key.endsWith("_enabled")) {
-                    if (key.equals(KEY_SECTIONS_ICON) && !Utils.DONATED) {
-                        ViewUtils.dialogDonate(getActivity()).show();
-                        return false;
-                    }
-                    Prefs.saveBoolean(key, checked, getActivity());
-                    ((NavigationActivity) requireActivity()).appendFragments();
-                    return true;
-                }
-                break;
         }
         return false;
     }
