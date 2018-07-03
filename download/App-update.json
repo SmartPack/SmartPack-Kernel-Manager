@@ -1,10 +1,10 @@
 {
-  "latestVersion": "4.2-20180531",
+  "latestVersion": "4.3-20180703",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added version information to boeffla sound.",
-    "- Blue accent is now more intense, like *Pixel* blue.",
-    "- Added new SmartPack header image."    
+    "- Added a new switch to instantly disable charging (can be used while changing charging rates).",
+    "- Merged lot of changes from official KA.",
+    "- Removed some unwanted options from settings page."    
   ]
 }

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 22. July 03, 2018
+*Release-tag: v4.3*
+Changes: Added a new switch to instantly disable charging (can be used while changing charging rates). Merged lot of changes from official KA. Removed some unwanted options from settings page.
+
 ## 21. May 31, 2018
 *Release-tag: v4.2*
 Changes: Added version information to boeffla sound. Blue accent is now more intense, like *Pixel* blue. Added new SmartPack header image.
