@@ -114,18 +114,18 @@ public class BatteryFragment extends RecyclerViewFragment {
         List<RecyclerViewItem> bcl = new ArrayList<>();
 
         if (mBattery.hasbatterychargelimit()) {
-		SwitchView disablebcl = new SwitchView();
-		disablebcl.setTitle(getString(R.string.charging_disable));
-		disablebcl.setSummary(getString(R.string.charging_disable_summary));
-		disablebcl.setChecked(mBattery.batterychargelimitenabled());
-		disablebcl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		SwitchView enablecharging = new SwitchView();
+		enablecharging.setTitle(getString(R.string.charging_enable));
+		enablecharging.setSummary(getString(R.string.charging_enable_summary));
+		enablecharging.setChecked(mBattery.batterychargelimitenabled());
+		enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		    @Override
 		    public void onChanged(SwitchView switchView, boolean isChecked) {
 		        mBattery.enablebatterychargelimit(isChecked, getActivity());
 		    }
 		});
 
-		bcl.add(disablebcl);
+		bcl.add(enablecharging);
         }
 
         if (bcl.size() > 0) {
