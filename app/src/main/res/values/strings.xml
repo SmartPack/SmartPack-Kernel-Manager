@@ -541,9 +541,6 @@
     <string name="fade">Fade</string>
     <string name="led_fade">LED Blink/Fade</string>
     <string name="fade_summary">Enable for fading, disable for blinking.</string>
-    <string name="red_led_brightness">Adjust Red LED Brightness</string>
-    <string name="blue_led_brightness">Adjust Blue LED Brightness</string>
-    <string name="green_led_brightness">Adjust Green LED Brightness</string>
     <string name="intensity">Intensity</string>
     <string name="speed">Speed</string>
     <string name="stock">Stock</string>
@@ -561,8 +558,6 @@
     <string name="fade_in_summary">Sets the time period of the rising slope.</string>
     <string name="fade_out">Fade out</string>
     <string name="fade_out_summary">Sets the time period of the falling slope.</string>
-    <string name="test">Test</string>
-    <string name="led_test_summary">Enable to test your settings.</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>
@@ -866,6 +861,7 @@
     <string name="fifty_sec">50 seconds</string>
     <string name="apply_on_boot_test_summary">Test apply on boot. This includes all kind of things which are getting applied during booting, such as custom controls, profiles, init.d, etc.</string>
     <string name="apply_on_boot_running">Apply on boot service is already running. Please wait until it finishes.</string>
+    <string name="test">Test</string>
     <string name="nothing_apply">Nothing found to apply!</string>
     <string name="hide">Hide</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>

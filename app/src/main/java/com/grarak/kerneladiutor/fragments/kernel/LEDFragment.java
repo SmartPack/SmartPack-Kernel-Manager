@@ -54,15 +54,6 @@ public class LEDFragment extends RecyclerViewFragment {
         if (mLED.hasLEDFade()) {
             LEDFadeInit(items);
         }
-        if (mLED.hasredledbrightness()) {
-            redledbrightnessInit(items);
-        }
-        if (mLED.hasblueledbrightness()) {
-            blueledbrightnessInit(items);
-        }
-        if (mLED.hasgreenledbrightness()) {
-            greenledbrightnessInit(items);
-        }
         if (mLED.hasIntensity()) {
             intensityInit(items);
         }
@@ -72,9 +63,6 @@ public class LEDFragment extends RecyclerViewFragment {
         brightnessInit(items);
         delayInit(items);
         fadeInit(items);
-        if (Sec.hasPattern()) {
-            testInit(items);
-        }
     }
 
     private void intensityInit(List<RecyclerViewItem> items) {
@@ -134,66 +122,6 @@ public class LEDFragment extends RecyclerViewFragment {
             });
 
             items.add(displaybacklight);
-    }
-
-    private void redledbrightnessInit(List<RecyclerViewItem> items) {
-            SeekBarView redledbrightness = new SeekBarView();
-            redledbrightness.setTitle(getString(R.string.red_led_brightness));
-            redledbrightness.setMax(40);
-            redledbrightness.setOffset(5);
-            redledbrightness.setProgress(mLED.getredledbrightness() / 5 );
-            redledbrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mLED.setredledbrightness((position * 5), getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            items.add(redledbrightness);
-    }
-
-    private void blueledbrightnessInit(List<RecyclerViewItem> items) {
-            SeekBarView blueledbrightness = new SeekBarView();
-            blueledbrightness.setTitle(getString(R.string.blue_led_brightness));
-            blueledbrightness.setMax(100);
-            blueledbrightness.setOffset(5);
-            blueledbrightness.setProgress(mLED.getblueledbrightness() / 5 );
-            blueledbrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mLED.setblueledbrightness((position * 5), getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            items.add(blueledbrightness);
-    }
-
-    private void greenledbrightnessInit(List<RecyclerViewItem> items) {
-            SeekBarView greenledbrightness = new SeekBarView();
-            greenledbrightness.setTitle(getString(R.string.green_led_brightness));
-            greenledbrightness.setMax(40);
-            greenledbrightness.setOffset(5);
-            greenledbrightness.setProgress(mLED.getgreenledbrightness() / 5 );
-            greenledbrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mLED.setgreenledbrightness((position * 5), getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            items.add(greenledbrightness);
     }
 
     private void LEDFadeInit(List<RecyclerViewItem> items) {
@@ -396,21 +324,6 @@ public class LEDFragment extends RecyclerViewFragment {
         if (fadeCard.size() > 0) {
             items.add(fadeCard);
         }
-    }
-
-    private void testInit(List<RecyclerViewItem> items) {
-        SwitchView test = new SwitchView();
-        test.setTitle(getString(R.string.test));
-        test.setSummary(getString(R.string.led_test_summary));
-        test.setChecked(Sec.isTestingPattern());
-        test.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                Sec.testPattern(isChecked);
-            }
-        });
-
-        items.add(test);
     }
 
 }

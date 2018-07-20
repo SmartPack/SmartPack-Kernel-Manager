@@ -38,19 +38,6 @@ public class Sec {
     private static final String LNRC = "/sys/class/sec/led/led_notification_ramp_control";
     private static final String LNRU = "/sys/class/sec/led/led_notification_ramp_up";
     private static final String LNRD = "/sys/class/sec/led/led_notification_ramp_down";
-    private static final String LP = "/sys/class/sec/led/led_pattern";
-
-    public static void testPattern(boolean test) {
-        run(Control.write(test ? "3" : "0", LP), null, null);
-    }
-
-    public static boolean isTestingPattern() {
-        return Utils.readFile(LP).equals("3");
-    }
-
-    public static boolean hasPattern() {
-        return Utils.existFile(LP);
-    }
 
     public static void setNotificationRampDown(int value, Context context) {
         run(Control.write(String.valueOf(value), LNRD), LNRD, context);

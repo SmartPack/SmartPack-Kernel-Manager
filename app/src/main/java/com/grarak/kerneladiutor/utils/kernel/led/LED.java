@@ -54,10 +54,6 @@ public class LED {
 
     private static final String LED_FADE = "/sys/class/sec/led/led_fade";
 
-    private static final String BRIGHTNESS_RED = "/sys/class/leds/led_r/brightness";
-    private static final String BRIGHTNESS_BLUE = "/sys/class/leds/led_b/brightness";
-    private static final String BRIGHTNESS_GREEN = "/sys/class/leds/led_g/brightness";
-
     private final LinkedHashMap<Integer, Boolean> mRedSpeed = new LinkedHashMap<>();
     private final LinkedHashMap<Integer, Boolean> mGreenRate = new LinkedHashMap<>();
 
@@ -165,45 +161,8 @@ public class LED {
         return Utils.existFile(DISPLAY_BACKLIGHT);
     }
 
-    public void setredledbrightness(int value, Context context) {
-        run(Control.write(String.valueOf(value), BRIGHTNESS_RED), BRIGHTNESS_RED, context);
-    }
-
-    public static int getredledbrightness() {
-        return Utils.strToInt(Utils.readFile(BRIGHTNESS_RED));
-    }
-
-    public static boolean hasredledbrightness() {
-        return Utils.existFile(BRIGHTNESS_RED);
-    }
-
-    public void setblueledbrightness(int value, Context context) {
-        run(Control.write(String.valueOf(value), BRIGHTNESS_BLUE), BRIGHTNESS_BLUE, context);
-    }
-
-    public static int getblueledbrightness() {
-        return Utils.strToInt(Utils.readFile(BRIGHTNESS_BLUE));
-    }
-
-    public static boolean hasblueledbrightness() {
-        return Utils.existFile(BRIGHTNESS_BLUE);
-    }
-
-    public void setgreenledbrightness(int value, Context context) {
-        run(Control.write(String.valueOf(value), BRIGHTNESS_GREEN), BRIGHTNESS_GREEN, context);
-    }
-
-    public static int getgreenledbrightness() {
-        return Utils.strToInt(Utils.readFile(BRIGHTNESS_GREEN));
-    }
-
-    public static boolean hasgreenledbrightness() {
-        return Utils.existFile(BRIGHTNESS_GREEN);
-    }
-
     public boolean supported() {
-        return hasFade() || hasLEDFade() || hasdisplaybacklight() || hasIntensity() || hasSpeed() || Sec.supported()
-		|| hasredledbrightness() || hasblueledbrightness() || hasgreenledbrightness();
+        return hasFade() || hasLEDFade() || hasdisplaybacklight() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {
