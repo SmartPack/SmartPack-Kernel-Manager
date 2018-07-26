@@ -338,6 +338,40 @@ public class Device {
         return extended ? Utils.readFile("/proc/version", root) : RootUtils.runCommand("uname -r");
     }
 
+    private static final String SMARTPACK_VERSION = "/version";
+
+    public static boolean hasSmartPackInstalled() {
+        return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
+    }
+
+    public static boolean isklte() {
+        return (Build.BOOTLOADER).contains("G900F") || (Build.BOOTLOADER).contains("G900M") || (Build.BOOTLOADER).contains("G900R4") || (Build.BOOTLOADER).contains("G900R7") || (Build.BOOTLOADER).contains("G900T") || (Build.BOOTLOADER).contains("G900V") || (Build.BOOTLOADER).contains("G900W8") || (Build.BOOTLOADER).contains("S902");
+    }
+
+    public static boolean isklteduos() {
+        return (Build.BOOTLOADER).contains("G900FD") || (Build.BOOTLOADER).contains("G900MD");
+    }
+
+    public static boolean iskltedv() {
+        return (Build.BOOTLOADER).contains("G900P") || (Build.BOOTLOADER).contains("G900I");
+    }
+
+    public static boolean iskltejpn() {
+        return (Build.BOOTLOADER).contains("SC04") || (Build.BOOTLOADER).contains("SCL23");
+    }
+
+    public static boolean iskltekor() {
+        return (Build.BOOTLOADER).contains("G90K") || (Build.BOOTLOADER).contains("G900L") || (Build.BOOTLOADER).contains("G900S");
+    }
+
+    public static boolean hasSmartPackVersion() {
+        return Utils.existFile(SMARTPACK_VERSION);
+    }
+
+    public static String getSmartPackVersion() {
+        return Utils.readFile(SMARTPACK_VERSION);
+    }
+
     public static String getArchitecture() {
         return RootUtils.runCommand("uname -m");
     }

@@ -72,7 +72,8 @@
 
     <!-- Headers -->
     <string name="statistics">Statistics</string>
-    <string name="kernel" translatable="false">SmartPack-Kernel</string>
+    <string name="kernel" translatable="false">Kernel</string>
+    <string name="smartpack_kernel" translatable="false">SmartPack-Kernel</string>
     <string name="tools">Tools</string>
     <string name="other">Other</string>
 
@@ -105,6 +106,7 @@
     <string name="initd">Init.d</string>
     <string name="on_boot">On Boot</string>
     <string name="settings">Settings</string>
+    <string name="smartpack">SmartPack</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
     <string name="kernelupdate">Kernel Updates</string>
@@ -797,6 +799,15 @@
     <string name="flashing">Flashing</string>
     <string name="restoring">Restoring</string>
 
+    <!-- SmartPack -->
+    <string name="support">Support</string>
+    <string name="support_summary">Visit support page at xda-developers.com</string>
+    <string name="website">Website</string>
+    <string name="website_summary">Visit SmartPack homepage</string>
+    <string name="downloads">Download</string>
+    <string name="downloads_summary">Get latest SmartPack-Kernel for your device</string>
+    <string name="reboot_recovery_summary">Reboot and manually flash new Kernel</string>
+
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_title">New update available!\nv%2$s</string>
@@ -874,9 +885,8 @@
     <!-- About -->
     <string name="about_me" translatable="false">SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.\n\nIf you like SmartPack-Kernel, please consider to donate to me as it is helpful to continue this project more active, though it is not at all necessary.</string>
     <string name="libraries_used">Libraries used</string>
-    <string name="app_version">Version</string>
     <string name="source_code">Source Code</string>
-    <string name="source_code_summary">Visit SmartPack-Kernel Manager GitHub repo</string>
+    <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
     <string name="change_logs_summary">View Change-logs</string>
     <string name="donate_me">Donate to Me</string>

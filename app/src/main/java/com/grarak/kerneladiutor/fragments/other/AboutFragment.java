@@ -81,7 +81,7 @@ public class AboutFragment extends RecyclerViewFragment {
         about.setTitle(getString(R.string.app_name));
 
         DescriptionView versioninfo = new DescriptionView();
-        versioninfo.setTitle(getString(R.string.app_version));
+        versioninfo.setTitle(getString(R.string.version));
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
 
         about.addItem(versioninfo);
