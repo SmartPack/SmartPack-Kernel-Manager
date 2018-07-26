@@ -17,7 +17,7 @@
 * Boeffla Wakelock Blocker Driver Control
 * Real-time Charging Status
 * LED Blink/Fade support
-* Significantly modified (for SmartPack-Kernel) OTA implementation
+* Device specific kernel download options for supported devices
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager)
 
 ## Donations
@@ -48,10 +48,6 @@ In addition to official Kernel Adiutor and its related dependencies, I used code
 
 [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G3643L52LJQ7G)
-
-## Kernel Downloader
-
-This is a feature which allows the user to download different custom kernels for their device. To add more kernel the developers have to add support by their own. I wrote up a [documentation](https://github.com/Grarak/KernelAdiutor/wiki/Adding-Download-Support) which explains how to do this.
 
 ## Report a bug or request a feature
 

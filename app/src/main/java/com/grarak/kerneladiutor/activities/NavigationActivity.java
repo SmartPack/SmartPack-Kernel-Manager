@@ -82,7 +82,6 @@ import com.grarak.kerneladiutor.fragments.tools.OnBootFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.fragments.tools.customcontrols.CustomControlsFragment;
-import com.grarak.kerneladiutor.fragments.tools.downloads.DownloadsFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -102,7 +101,6 @@ import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
-import com.grarak.kerneladiutor.utils.tools.SupportedDownloads;
 
 import org.frap129.spectrum.SpectrumFragment;
 import org.frap129.spectrum.Spectrum;
@@ -243,10 +241,6 @@ public class NavigationActivity extends BaseActivity
 	if (SmartPackFragment.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.smartpack, SmartPackFragment.class, R.drawable.ic_download));
 	}
-        SupportedDownloads supportedDownloads = new SupportedDownloads(this);
-        if (supportedDownloads.getLink() != null) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.kernelupdate, DownloadsFragment.class, R.drawable.ic_download));
-        }
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.help, HelpFragment.class, R.drawable.ic_help));

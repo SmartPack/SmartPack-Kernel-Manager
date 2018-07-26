@@ -760,6 +760,8 @@
     <string name="profile_empty">Profile is empty!</string>
 
     <!-- Recovery -->
+    <string name="cwm_recovery">CWM Recovery</string>
+    <string name="twrp">TWRP</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_soft">Soft Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
@@ -768,6 +770,10 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
+    <string name="manual_flashing">Install later</string>
+    <string name="backing_up">Backing up</string>
+    <string name="flashing">Flashing</string>
+    <string name="restoring">Restoring</string>
     <string name="add_action_first">You have to add actions first!</string>
     <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
 
@@ -783,21 +789,6 @@
     <string name="delete_question">Delete %s?</string>
     <string name="arguments">Arguments: %s</string>
     <string name="disable_question">Disable %s?</string>
-
-    <!-- Downloads -->
-    <string name="downloads_error">Couldn\'t find any supported kernels! Please check your internet access.</string>
-    <string name="download_error">Failed to download %s.</string>
-    <string name="downloading_counting">%1$s/%2$s</string>
-    <string name="check_md5">Checking md5</string>
-    <string name="md5_mismatch">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
-    <string name="install">Install</string>
-    <string name="cwm_recovery">CWM Recovery</string>
-    <string name="twrp">TWRP</string>
-    <string name="manual_flashing">Install later</string>
-    <string name="file_location">Downloaded file is in %s</string>
-    <string name="backing_up">Backing up</string>
-    <string name="flashing">Flashing</string>
-    <string name="restoring">Restoring</string>
 
     <!-- SmartPack -->
     <string name="support">Support</string>
