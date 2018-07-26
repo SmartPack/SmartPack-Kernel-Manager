@@ -1,5 +1,9 @@
 # Change-logs
 
+## 23. July 26, 2018
+*Release-tag: v4.4*
+Changes: Added "SmartPack" page, which will allow the device (and SDK level) specific download of the latest kernel all to the supported devices. Removed the old kernel update implementation. Clean-ups to remove a lot of unwanted and fancy stuff from the app.
+
 ## 22. July 03, 2018
 *Release-tag: v4.3*
 Changes: Added a new switch to instantly disable charging (can be used while changing charging rates). Merged lot of changes from official KA. Removed some unwanted options from settings page.

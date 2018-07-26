@@ -1,10 +1,10 @@
 {
-  "latestVersion": "4.3-20180703",
+  "latestVersion": "4.4-20180726",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added a new switch to instantly disable charging (can be used while changing charging rates).",
-    "- Merged lot of changes from official KA.",
-    "- Removed some unwanted options from settings page."    
+    "- Added 'SmartPack' page, which will allow the device (and SDK level) specific download of the latest kernel all to the supported devices.",
+    "- Removed the old kernel update implementation.",
+    "- Clean-ups to remove a lot of unwanted and fancy stuff from the app."    
   ]
 }
