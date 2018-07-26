@@ -79,9 +79,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		public void onClick(RecyclerViewItem item) {
                     if (Build.VERSION.SDK_INT == 23) {
 			Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
+                    } else {
 			Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206", getActivity());
                     }
 		}
