@@ -345,7 +345,7 @@ public class Device {
     }
 
     public static boolean isklte() {
-        return (Build.BOOTLOADER).contains("G900F") || (Build.BOOTLOADER).contains("G900M") || (Build.BOOTLOADER).contains("G900R4") || (Build.BOOTLOADER).contains("G900R7") || (Build.BOOTLOADER).contains("G900T") || (Build.BOOTLOADER).contains("G900V") || (Build.BOOTLOADER).contains("G900W8") || (Build.BOOTLOADER).contains("S902");
+        return (Build.BOOTLOADER).contains("G900FX") || (Build.BOOTLOADER).contains("G900MU") || (Build.BOOTLOADER).contains("G900R4") || (Build.BOOTLOADER).contains("G900R7") || (Build.BOOTLOADER).contains("G900T") || (Build.BOOTLOADER).contains("G900V") || (Build.BOOTLOADER).contains("G900W8") || (Build.BOOTLOADER).contains("S902");
     }
 
     public static boolean isklteduos() {
@@ -361,7 +361,7 @@ public class Device {
     }
 
     public static boolean iskltekor() {
-        return (Build.BOOTLOADER).contains("G90K") || (Build.BOOTLOADER).contains("G900L") || (Build.BOOTLOADER).contains("G900S");
+        return (Build.BOOTLOADER).contains("G900K") || (Build.BOOTLOADER).contains("G900L") || (Build.BOOTLOADER).contains("G900S");
     }
 
     public static boolean hasSmartPackVersion() {
