@@ -26,6 +26,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
+import com.grarak.kerneladiutor.utils.kernel.misc.WakeLockInfo;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -36,6 +37,7 @@ import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -80,7 +82,7 @@ public class WakelockFragment extends RecyclerViewFragment {
         borfflawlorder.setTitle(getString(R.string.wkl_order));
         borfflawlorder.setSummary(getString(R.string.wkl_order_summary));
         borfflawlorder.setItems(Arrays.asList(getResources().getStringArray(R.array.b_wakelocks_oder)));
-        borfflawlorder.setItem(getString(R.string.wkl_time));
+        borfflawlorder.setItem(Wakelocks.getWakelockOrder());
         borfflawlorder.setOnItemSelected(new SelectView.OnItemSelected() {
             @Override
             public void onItemSelected(SelectView selectView, int position, String item) {
@@ -90,67 +92,59 @@ public class WakelockFragment extends RecyclerViewFragment {
         });
         items.add(borfflawlorder);
 
-        List<Wakelocks.ListWake> wakelocksB = Wakelocks.getWakelockListBlocked();
-        String titleB = getString(R.string.wkl_blocked);
-        CardView cardB = new CardView(getActivity());
-        bwCardInit(cardB, titleB, wakelocksB);
-        mWakeCard.add(cardB);
+        List<WakeLockInfo> wakelocksinfo = Wakelocks.getWakelockInfo();
 
-        List<Wakelocks.ListWake> wakelocksA = Wakelocks.getWakelockListAllowed();
+        CardView cardViewB = new CardView(getActivity());
+        String titleB = getString(R.string.wkl_blocked);
+        grxbwCardInit(cardViewB, titleB, wakelocksinfo, false);
+        mWakeCard.add(cardViewB);
+
+        CardView cardViewA = new CardView(getActivity());
         String titleA = getString(R.string.wkl_allowed);
         CardView cardA = new CardView(getActivity());
-        bwCardInit(cardA, titleA, wakelocksA);
-        mWakeCard.add(cardA);
+        grxbwCardInit(cardViewA, titleA, wakelocksinfo, true);
+        mWakeCard.add(cardViewA);
 
         items.addAll(mWakeCard);
     }
 
-    private void bwCardInit(CardView card, String title, List<Wakelocks.ListWake> wakelocks){
+    private void grxbwCardInit(CardView card, String title, List<WakeLockInfo> wakelocksinfo, Boolean state){
         card.clearItems();
         card.setTitle(title);
 
-        for(Wakelocks.ListWake wake : wakelocks){
-
-            final String name = wake.getName();
-            String wakeup = String.valueOf(wake.getWakeup());
-            String time = String.valueOf(wake.getTime() / 1000);
-            time = Utils.sToString(Utils.strToLong(time));
-
-            SwitchView sw = new SwitchView();
-            sw.setTitle(name);
-            sw.setSummary(getString(R.string.wkl_total_time) + ": " + time + "\n" +
-                    getString(R.string.wkl_wakep_count) + ": " + wakeup);
-            sw.setChecked(!Wakelocks.isWakelockBlocked(name));
-            sw.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    if(isChecked) {
+        for(WakeLockInfo wakeLockInfo : wakelocksinfo){
+             if(wakeLockInfo.wState == state) {
+                 final String name = wakeLockInfo.wName;
+                String wakeup = String.valueOf(wakeLockInfo.wWakeups);
+                String time = String.valueOf(wakeLockInfo.wTime / 1000);
+                time = Utils.sToString(Utils.strToLong(time));
+                 SwitchView sw = new SwitchView();
+                sw.setTitle(name);
+                sw.setSummary(getString(R.string.wkl_total_time) + ": " + time + "\n" +
+                        getString(R.string.wkl_wakep_count) + ": " + wakeup);
+                sw.setChecked(wakeLockInfo.wState);
+                sw.addOnSwitchListener((switchView, isChecked) -> {
+                    if (isChecked) {
                         Wakelocks.setWakelockAllowed(name, getActivity());
-                    }else{
+                    } else {
                         Wakelocks.setWakelockBlocked(name, getActivity());
                     }
-                    getHandler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            bwCardReload();
-                        }
-                    }, 50);
-                }
-            });
-
-            card.addItem(sw);
+                    getHandler().postDelayed(this::bwCardReload, 250);
+                });
+                 card.addItem(sw);
+            }
         }
     }
 
     private void bwCardReload() {
 
-        List<Wakelocks.ListWake> wakelocksB = Wakelocks.getWakelockListBlocked();
+	List<WakeLockInfo> wakelocksinfo = Wakelocks.getWakelockInfo();
         String titleB = getString(R.string.wkl_blocked);
-        bwCardInit(mWakeCard.get(0), titleB, wakelocksB);
+        grxbwCardInit(mWakeCard.get(0), titleB, wakelocksinfo, false);
 
-        List<Wakelocks.ListWake> wakelocksA = Wakelocks.getWakelockListAllowed();
         String titleA = getString(R.string.wkl_allowed);
-        bwCardInit(mWakeCard.get(1), titleA, wakelocksA);
+        grxbwCardInit(mWakeCard.get(1), titleA, wakelocksinfo, true);
+
     }
 
 }
