@@ -1,5 +1,9 @@
 # Change-logs
 
+## 24. August 01, 2018
+*Release-tag: v4.5*
+Changes: Clean and update Wakelock page (Now it is significantly fast). Made device-specific kernel download more accurate.
+
 ## 23. July 26, 2018
 *Release-tag: v4.4*
 Changes: Added "SmartPack" page, which will allow the device (and SDK level) specific download of the latest kernel all to the supported devices. Removed the old kernel update implementation. Clean-ups to remove a lot of unwanted and fancy stuff from the app.

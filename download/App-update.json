@@ -1,10 +1,9 @@
 {
-  "latestVersion": "4.4-20180726",
+  "latestVersion": "4.5-20180801",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added 'SmartPack' page, which will allow the device (and SDK level) specific download of the latest kernel all to the supported devices.",
-    "- Removed the old kernel update implementation.",
-    "- Clean-ups to remove a lot of unwanted and fancy stuff from the app."    
+    "- Clean and update Wakelock page (Now it is significantly fast).",
+    "- Made device-specific kernel download more accurate."    
   ]
 }
