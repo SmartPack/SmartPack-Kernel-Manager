@@ -325,6 +325,8 @@
     <string name="gpu_governor_tunables">GPU Governor Tunables</string>
     <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
     <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
+    <string name="adrenoboost">AdrenoBoost</string>
+    <string name="adrenoboost_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by flar2</string>
     <string name="laziness">Laziness</string>
     <string name="laziness_summary">This increases the threshold to ramp up or down GPU frequencies. The lower it is, the more performance you get.</string>
     <string name="ramp_thresold">Ramp Thresold</string>
