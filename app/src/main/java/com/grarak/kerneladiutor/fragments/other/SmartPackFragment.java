@@ -71,55 +71,57 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
             smartpack.addItem(currentspversion);
 
-            DescriptionView xdapage = new DescriptionView();
-            xdapage.setTitle(getString(R.string.support));
-            xdapage.setSummary(getString(R.string.support_summary));
-            xdapage.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-		@Override
-		public void onClick(RecyclerViewItem item) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810", getActivity());
-                    } else {
-			Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206", getActivity());
-                    }
-		}
-            });
+            if (Device.isSamsungmsm8974()) {
+		    DescriptionView xdapage = new DescriptionView();
+		    xdapage.setTitle(getString(R.string.support));
+		    xdapage.setSummary(getString(R.string.support_summary));
+		    xdapage.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/development/kernel-smartpack-project-stock-t3568810", getActivity());
+		            } else {
+				Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206", getActivity());
+		            }
+			}
+		    });
 
-            DescriptionView changelogsp = new DescriptionView();
-            changelogsp.setTitle(getString(R.string.change_logs));
-            changelogsp.setSummary(getString(R.string.change_logs_summary));
-            changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-		@Override
-		public void onClick(RecyclerViewItem item) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Stock/change-logs.md", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Nougat/change-logs.md", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
-                    }
-		}
-            });
+		    DescriptionView changelogsp = new DescriptionView();
+		    changelogsp.setTitle(getString(R.string.change_logs));
+		    changelogsp.setSummary(getString(R.string.change_logs_summary));
+		    changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Stock/change-logs.md", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Nougat/change-logs.md", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
+		            }
+			}
+		    });
 
-            DescriptionView spsource = new DescriptionView();
-            spsource.setTitle(getString(R.string.source_code));
-            spsource.setSummary(getString(R.string.source_code_summary));
-            spsource.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-		@Override
-		public void onClick(RecyclerViewItem item) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/stock", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/Nougat", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/Oreo", getActivity());
-                    }
-		}
-            });
+		    DescriptionView spsource = new DescriptionView();
+		    spsource.setTitle(getString(R.string.source_code));
+		    spsource.setSummary(getString(R.string.source_code_summary));
+		    spsource.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/stock", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/Nougat", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/tree/Oreo", getActivity());
+		            }
+			}
+		    });
 
-            smartpack.addItem(changelogsp);
-            smartpack.addItem(xdapage);
-            smartpack.addItem(spsource);
+		    smartpack.addItem(changelogsp);
+		    smartpack.addItem(xdapage);
+		    smartpack.addItem(spsource);
+		}
 	}
 
 	DescriptionView website = new DescriptionView();
@@ -132,53 +134,56 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
 	});
 
-	DescriptionView downloads = new DescriptionView();
-	downloads.setTitle(getString(R.string.downloads));
-	downloads.setSummary(getString(R.string.downloads_summary));
-	downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-		if (Device.iskltekor()) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
-                    }
-		} else if (Device.isklte()) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
-                    }
-		} else if (Device.iskltedv()) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-kltespr.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltespr.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true", getActivity());
-                    }
-		} else if (Device.isklteduos()) {
-                    if (Build.VERSION.SDK_INT == 23) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
-                    }
-		} else if (Device.iskltejpn()) {
-                    if (Build.VERSION.SDK_INT == 25) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
-                    } else if (Build.VERSION.SDK_INT == 27) {
-			Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
-                    }
-		}
-            }
-	});
+	if (Device.isSamsungmsm8974()) {
+		DescriptionView downloads = new DescriptionView();
+		downloads.setTitle(getString(R.string.downloads));
+		downloads.setSummary(getString(R.string.downloads_summary));
+		downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		    @Override
+		    public void onClick(RecyclerViewItem item) {
+			if (Device.iskltekor()) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
+		            }
+			} else if (Device.isklte()) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
+		            }
+			} else if (Device.iskltedv()) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-kltespr.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltespr.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true", getActivity());
+		            }
+			} else if (Device.isklteduos()) {
+		            if (Build.VERSION.SDK_INT == 23) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/stock/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
+		            }
+			} else if (Device.iskltejpn()) {
+		            if (Build.VERSION.SDK_INT == 25) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
+		            } else if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
+		            }
+			}
+		    }
+		});
+	smartpack.addItem(downloads);
+	}
 
 	DescriptionView recoveryreboot = new DescriptionView();
 	recoveryreboot.setTitle(getString(R.string.reboot_recovery));
@@ -191,13 +196,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	});
 
 	smartpack.addItem(website);
-	smartpack.addItem(downloads);
 	smartpack.addItem(recoveryreboot);
 	items.add(smartpack);
     }
 
     public static boolean supported() {
-        return Device.hasSmartPackVersion() || Device.isklte() || Device.iskltekor() || Device.isklteduos() || Device.iskltedv() || Device.iskltejpn() || Device.hasSmartPackInstalled();
+        return Device.hasSmartPackVersion() || Device.isSamsungmsm8974() || Device.isOnePlusdumpling() || Device.hasSmartPackInstalled();
     }
 
 }

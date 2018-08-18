@@ -344,6 +344,10 @@ public class Device {
         return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
     }
 
+    public static boolean isSamsungmsm8974() {
+        return isklte() || iskltekor() || isklteduos() || iskltedv() || iskltejpn();
+    }
+
     public static boolean isklte() {
         return (Build.BOOTLOADER).contains("G900FX") || (Build.BOOTLOADER).contains("G900MU") || (Build.BOOTLOADER).contains("G900R4") || (Build.BOOTLOADER).contains("G900R7") || (Build.BOOTLOADER).contains("G900T") || (Build.BOOTLOADER).contains("G900V") || (Build.BOOTLOADER).contains("G900W8") || (Build.BOOTLOADER).contains("S902");
     }
@@ -362,6 +366,10 @@ public class Device {
 
     public static boolean iskltekor() {
         return (Build.BOOTLOADER).contains("G900K") || (Build.BOOTLOADER).contains("G900L") || (Build.BOOTLOADER).contains("G900S");
+    }
+
+    public static boolean isOnePlusdumpling() {
+        return (Build.FINGERPRINT).contains("OnePlus5T");
     }
 
     public static boolean hasSmartPackVersion() {
