@@ -62,6 +62,7 @@ public class Sound {
     private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound/boeffla_sound";
     private static final String BOEFFLA_SPEAKER = "/sys/class/misc/boeffla_sound/speaker_volume";
     private static final String BOEFFLA_HP = "/sys/class/misc/boeffla_sound/headphone_volume";
+    private static final String BOEFFLA_EP = "/sys/class/misc/boeffla_sound/earpiece_volume";
     private static final String BOEFFLA_VERSION = "/sys/class/misc/boeffla_sound/version";
 
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
@@ -70,6 +71,7 @@ public class Sound {
     private final List<String> mFlarLimits = new ArrayList<>();
     private final List<String> mFlarHpLimits = new ArrayList<>();
     private final List<String> mboefflaLimits = new ArrayList<>();
+    private final List<String> mboefflaEPLimits = new ArrayList<>();
 
     {
         mSpeakerGainFiles.add(SPEAKER_BOOST);
@@ -91,6 +93,10 @@ public class Sound {
         for (int i = -30; i < 31; i++) {
             mboefflaLimits.add(String.valueOf(i));
         }
+        for (int i = -10; i < 21; i++) {
+            mboefflaEPLimits.add(String.valueOf(i));
+        }
+
     }
 
     private String SPEAKER_GAIN_FILE;
@@ -214,6 +220,8 @@ public class Sound {
                 return mboefflaLimits;
             case BOEFFLA_HP:
                 return mboefflaLimits;
+            case BOEFFLA_EP:
+                return mboefflaEPLimits;
         }
         return new ArrayList<>();
     }
@@ -245,7 +253,7 @@ public class Sound {
     public boolean supported() {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage()
                 || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar()
-                || hasboefflahp() || hasboefflaspeaker();
+                || hasboefflahp() || hasboefflaep() || hasboefflaspeaker();
     }
 
     private int getChecksum(int arg0, int arg1) {
@@ -272,8 +280,19 @@ public class Sound {
         }
     }
 
+    public void setboefflaep(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -10 && newGain <= 20) {
+            SoundRun(value + " " + value, BOEFFLA_EP, BOEFFLA_EP, context);
+        }
+    }
+
     public List<String> getboefflaLimits() {
         return mboefflaLimits;
+    }
+
+    public List<String> getboefflaEPLimits() {
+        return mboefflaEPLimits;
     }
 
     public String getboefflaspeaker() {
@@ -285,8 +304,21 @@ public class Sound {
         return "";
     }
 
+    public String getboefflaep() {
+        String value = Utils.readFile(BOEFFLA_EP);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= -10 && gain <= 20) {
+            return String.valueOf(gain);
+        }
+        return "";
+    }
+
     public boolean hasboefflaspeaker() {
         return Utils.existFile(BOEFFLA_SPEAKER);
+    }
+
+    public boolean hasboefflaep() {
+        return Utils.existFile(BOEFFLA_EP);
     }
 
     public void setboefflahp(String channel, String value, Context context) {

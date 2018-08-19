@@ -422,6 +422,7 @@
     <string name="per_channel_controls_summary">Enable to use different gain values for left and right channels.</string>
     <string name="headphone_gain_left">Headphone Gain (Left)</string>
     <string name="headphone_gain_right">Headphone Gain (Right)</string>
+    <string name="boefflaep">Earpiece Gain (Calls)</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
