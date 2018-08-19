@@ -63,6 +63,7 @@ public class Sound {
     private static final String BOEFFLA_SPEAKER = "/sys/class/misc/boeffla_sound/speaker_volume";
     private static final String BOEFFLA_HP = "/sys/class/misc/boeffla_sound/headphone_volume";
     private static final String BOEFFLA_EP = "/sys/class/misc/boeffla_sound/earpiece_volume";
+    private static final String BOEFFLA_MIC = "/sys/class/misc/boeffla_sound/mic_level_call";
     private static final String BOEFFLA_VERSION = "/sys/class/misc/boeffla_sound/version";
 
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
@@ -72,6 +73,7 @@ public class Sound {
     private final List<String> mFlarHpLimits = new ArrayList<>();
     private final List<String> mboefflaLimits = new ArrayList<>();
     private final List<String> mboefflaEPLimits = new ArrayList<>();
+    private final List<String> mBoefflaMICLimits = new ArrayList<>();
 
     {
         mSpeakerGainFiles.add(SPEAKER_BOOST);
@@ -96,7 +98,9 @@ public class Sound {
         for (int i = -10; i < 21; i++) {
             mboefflaEPLimits.add(String.valueOf(i));
         }
-
+        for (int i = -20; i < 31; i++) {
+            mBoefflaMICLimits.add(String.valueOf(i));
+        }
     }
 
     private String SPEAKER_GAIN_FILE;
@@ -137,7 +141,9 @@ public class Sound {
     public List<String> getMicrophoneGainLimits() {
         return mFrancoLimits;
     }
-
+    public List<String> getBoefflaMICLimits() {
+        return mBoefflaMICLimits;
+    }
     public boolean hasMicrophoneGain() {
         return Utils.existFile(MIC_BOOST);
     }
@@ -222,6 +228,8 @@ public class Sound {
                 return mboefflaLimits;
             case BOEFFLA_EP:
                 return mboefflaEPLimits;
+            case BOEFFLA_MIC:
+                return mBoefflaMICLimits;
         }
         return new ArrayList<>();
     }
@@ -319,6 +327,22 @@ public class Sound {
 
     public boolean hasboefflaep() {
         return Utils.existFile(BOEFFLA_EP);
+    }
+
+    public void setboefflamic(String value, Context context) {
+        run(Control.write(value, BOEFFLA_MIC), BOEFFLA_MIC, context);
+    }
+
+    public String getboefflamic() {
+        return Utils.readFile(BOEFFLA_MIC);
+    }
+
+    public List<String> getboefflamicLimits() {
+        return mBoefflaMICLimits;
+    }
+
+    public boolean hasboefflamic() {
+        return Utils.existFile(BOEFFLA_MIC);
     }
 
     public void setboefflahp(String channel, String value, Context context) {

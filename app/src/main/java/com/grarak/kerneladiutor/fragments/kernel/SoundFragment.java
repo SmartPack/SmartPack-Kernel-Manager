@@ -189,6 +189,25 @@ public class SoundFragment extends RecyclerViewFragment {
 		boefflasoundCard.addItem(boefflaep);
 	}
 
+	if (mSound.hasboefflamic()) {
+		SeekBarView boefflamic = new SeekBarView();
+		boefflamic.setTitle(getString(R.string.microphone_gain) + (" (Calls)"));
+		boefflamic.setItems(mSound.getboefflamicLimits());
+		boefflamic.setProgress(mSound.getboefflamicLimits().indexOf(mSound.getboefflamic()));
+		boefflamic.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		    @Override
+		    public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setboefflamic(value, getActivity());
+		    }
+
+		    @Override
+		    public void onMove(SeekBarView seekBarView, int position, String value) {
+		    }
+		});
+
+		boefflasoundCard.addItem(boefflamic);
+	}
+
         if (!(Prefs.getBoolean("boefflahp_perchannel", false, getActivity())))
             Prefs.saveBoolean("boefflahp_perchannel", false, getActivity());
 
