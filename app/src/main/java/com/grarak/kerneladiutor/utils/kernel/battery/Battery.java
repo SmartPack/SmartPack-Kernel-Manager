@@ -76,7 +76,6 @@ public class Battery {
     private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
 
     private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
-    private static final String BCL_OP5T = "/sys/class/power_supply/battery/charging_enabled";
 
     private int mCapacity;
     private static String[] sBatteryAvailable;
@@ -112,7 +111,7 @@ public class Battery {
     }
 
     public boolean hasbatterychargelimit() {
-        return Utils.existFile(BCL) || Utils.existFile(BCL_OP5T);
+        return Utils.existFile(BCL);
     }
 
     public static String getbatterychargelimit() {
@@ -125,18 +124,6 @@ public class Battery {
 
     public boolean batterychargelimitenabled() {
         return Utils.readFile(BCL).equals("0");
-    }
-
-    public static String getop5tbatterychargelimit() {
-        return Utils.readFile(BCL_OP5T);
-    }
-
-    public void enableop5tbatterychargelimit(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", BCL_OP5T), BCL_OP5T, context);
-    }
-
-    public boolean op5tbatterychargelimitenabled() {
-        return Utils.readFile(BCL_OP5T).equals("1");
     }
 
     public static List<String> enableForceFastCharge(Context context) {

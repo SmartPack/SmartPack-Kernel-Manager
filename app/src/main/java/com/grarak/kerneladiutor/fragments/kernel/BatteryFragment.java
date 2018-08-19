@@ -118,23 +118,13 @@ public class BatteryFragment extends RecyclerViewFragment {
 		SwitchView enablecharging = new SwitchView();
 		enablecharging.setTitle(getString(R.string.charging_enable));
 		enablecharging.setSummary(getString(R.string.charging_enable_summary));
-		if (mBattery.batterychargelimitenabled()) {
-			enablecharging.setChecked(mBattery.batterychargelimitenabled());
-			enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-			    @Override
-			    public void onChanged(SwitchView switchView, boolean isChecked) {
-				mBattery.enablebatterychargelimit(isChecked, getActivity());
-			    }
-			});
-		} else if (mBattery.op5tbatterychargelimitenabled()) {
-			enablecharging.setChecked(mBattery.op5tbatterychargelimitenabled());
-			enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-			    @Override
-			    public void onChanged(SwitchView switchView, boolean isChecked) {
-				mBattery.enableop5tbatterychargelimit(isChecked, getActivity());
-			    }
-			});
-		}
+		enablecharging.setChecked(mBattery.batterychargelimitenabled());
+		enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		    @Override
+		    public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mBattery.enablebatterychargelimit(isChecked, getActivity());
+		    }
+		});
 
 		bcl.add(enablecharging);
         }
