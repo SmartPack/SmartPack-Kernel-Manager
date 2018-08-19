@@ -137,6 +137,14 @@ public class Battery {
     public static boolean hasForceFastCharge() {
         return Utils.existFile(FORCE_FAST_CHARGE);
     }
+
+    public void ForceFastChargeenable(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
+    }
+
+    public boolean isForceFastChargeEnabled() {
+        return Utils.readFile(FORCE_FAST_CHARGE).equals("1");
+    }
     
     public static int getForceFastCharge() {
         return Utils.strToInt(Utils.readFile(FORCE_FAST_CHARGE));

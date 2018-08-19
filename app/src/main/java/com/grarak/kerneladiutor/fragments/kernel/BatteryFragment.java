@@ -31,6 +31,7 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -139,7 +140,21 @@ public class BatteryFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(R.string.acci));
 
-        if (mBattery.hasForceFastCharge()) {
+	if (mBattery.hasForceFastCharge()) {
+	if (Device.isOnePlusdumpling()) {
+		SwitchView forceFastCharge = new SwitchView();
+		forceFastCharge.setTitle(getString(R.string.fast_charge));
+		forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
+		forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
+		forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		    @Override
+		    public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mBattery.ForceFastChargeenable(isChecked, getActivity());
+		    }
+		});
+            fastCharge.add(forceFastCharge);
+
+        } else {
             SelectView forceFastCharge = new SelectView();
             forceFastCharge.setTitle(getString(R.string.fast_charge));
             forceFastCharge.setSummary(getString(R.string.fast_charge_summary));
@@ -153,6 +168,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         });
 
             fastCharge.add(forceFastCharge);
+	}
 
     }
 
