@@ -22,6 +22,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.kernel.led.LED;
 import com.grarak.kerneladiutor.utils.kernel.led.Sec;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -107,19 +108,35 @@ public class LEDFragment extends RecyclerViewFragment {
             SeekBarView displaybacklight = new SeekBarView();
             displaybacklight.setTitle(getString(R.string.display_backlight));
             displaybacklight.setSummary(getString(R.string.display_backlight_summary));
-            displaybacklight.setMax(255);
-            displaybacklight.setOffset(5);
-            displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
-            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mLED.setdisplaybacklight((position * 5), getActivity());
-                }
+            if (Device.isOnePlusdumpling()) {
+		displaybacklight.setMax(1275);
+		displaybacklight.setOffset(25);
+		displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
+		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setdisplaybacklight((position * 25), getActivity());
+		}
 
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+		});
+            } else {
+		displaybacklight.setMax(255);
+		displaybacklight.setOffset(5);
+		displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
+		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setdisplaybacklight((position * 5), getActivity());
+		}
+
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+		});
+            }
 
             items.add(displaybacklight);
     }
