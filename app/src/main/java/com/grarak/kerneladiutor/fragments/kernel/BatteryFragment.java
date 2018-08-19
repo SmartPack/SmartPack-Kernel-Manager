@@ -118,13 +118,23 @@ public class BatteryFragment extends RecyclerViewFragment {
 		SwitchView enablecharging = new SwitchView();
 		enablecharging.setTitle(getString(R.string.charging_enable));
 		enablecharging.setSummary(getString(R.string.charging_enable_summary));
-		enablecharging.setChecked(mBattery.batterychargelimitenabled());
-		enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		    @Override
-		    public void onChanged(SwitchView switchView, boolean isChecked) {
-		        mBattery.enablebatterychargelimit(isChecked, getActivity());
-		    }
-		});
+		if (mBattery.batterychargelimitenabled()) {
+			enablecharging.setChecked(mBattery.batterychargelimitenabled());
+			enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+			    @Override
+			    public void onChanged(SwitchView switchView, boolean isChecked) {
+				mBattery.enablebatterychargelimit(isChecked, getActivity());
+			    }
+			});
+		} else if (mBattery.op5tbatterychargelimitenabled()) {
+			enablecharging.setChecked(mBattery.op5tbatterychargelimitenabled());
+			enablecharging.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+			    @Override
+			    public void onChanged(SwitchView switchView, boolean isChecked) {
+				mBattery.enableop5tbatterychargelimit(isChecked, getActivity());
+			    }
+			});
+		}
 
 		bcl.add(enablecharging);
         }
@@ -380,26 +390,37 @@ public class BatteryFragment extends RecyclerViewFragment {
             mVoltage.setStat(mBatteryVoltage + " mV");
         }
         if (mChargingStatus != null) {
-            float chargingrate = mBattery.getchargingstatus();
-            if (mBattery.isDischarging()){
-		mChargingStatus.setTitle("Charge Rate");
-		mChargingStatus.setStat(0.0 + (" mA"));
-            }
-            else {
-		if (mBattery.accharge()){
-                    mChargingStatus.setTitle("Charge Rate (AC)");
-                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-		} else if (mBattery.usbcharge()){
-                    mChargingStatus.setTitle("Charge Rate (USB)");
-                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-		} else if (mBattery.wlcharge()){
-                    mChargingStatus.setTitle("Charge Rate (Wireless)");
-                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		if (Device.isOnePlusdumpling()) {
+		    float chargingrate = mBattery.getchargeInfo();
+		    if (mBattery.isDischarging()){
+			mChargingStatus.setTitle("Charge Rate");
+			mChargingStatus.setStat(0.0 + (" mA"));
+		    } else {
+			mChargingStatus.setTitle("Charge Rate");
+			 mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		    }
 		} else {
-                    mChargingStatus.setTitle("Charge Rate");
-                    mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		    float chargingrate = mBattery.getchargingstatus();
+		    if (mBattery.isDischarging()){
+			mChargingStatus.setTitle("Charge Rate");
+			mChargingStatus.setStat(0.0 + (" mA"));
+		    }
+		    else {
+			if (mBattery.accharge()){
+		            mChargingStatus.setTitle("Charge Rate (AC)");
+		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			} else if (mBattery.usbcharge()){
+		            mChargingStatus.setTitle("Charge Rate (USB)");
+		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			} else if (mBattery.wlcharge()){
+		            mChargingStatus.setTitle("Charge Rate (Wireless)");
+		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			} else {
+		            mChargingStatus.setTitle("Charge Rate");
+		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			}
+		    }
 		}
-            }
         }
     }
 
