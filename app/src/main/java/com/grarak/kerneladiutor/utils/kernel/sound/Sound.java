@@ -261,7 +261,7 @@ public class Sound {
     public boolean supported() {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage()
                 || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar()
-                || hasboefflahp() || hasboefflaep() || hasboefflaspeaker();
+                || hasboefflahp() || hasboefflaep() || hasboefflamic() || hasboefflaspeaker();
     }
 
     private int getChecksum(int arg0, int arg1) {
