@@ -121,6 +121,34 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    smartpack.addItem(changelogsp);
 		    smartpack.addItem(xdapage);
 		    smartpack.addItem(spsource);
+
+            } else if (Device.isOnePlusdumpling()) {
+		    DescriptionView changelogsp = new DescriptionView();
+		    changelogsp.setTitle(getString(R.string.change_logs));
+		    changelogsp.setSummary(getString(R.string.change_logs_summary));
+		    changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
+		            }
+			}
+		    });
+
+		    DescriptionView spsource = new DescriptionView();
+		    spsource.setTitle(getString(R.string.source_code));
+		    spsource.setSummary(getString(R.string.source_code_summary));
+		    spsource.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/tree/Oreo", getActivity());
+		            }
+			}
+		    });
+
+		    smartpack.addItem(changelogsp);
+		    smartpack.addItem(spsource);
 		}
 	}
 
@@ -178,6 +206,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Nougat/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
 		            } else if (Build.VERSION.SDK_INT == 27) {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
+		            }
+			}
+		    }
+		});
+	smartpack.addItem(downloads);
+
+	} else if (Device.isOnePlusdumpling()) {
+		DescriptionView downloads = new DescriptionView();
+		downloads.setTitle(getString(R.string.downloads));
+		downloads.setSummary(getString(R.string.downloads_summary));
+		downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		    @Override
+		    public void onClick(RecyclerViewItem item) {
+			if (Device.iskltekor()) {
+		            if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true", getActivity());
 		            }
 			}
 		    }
