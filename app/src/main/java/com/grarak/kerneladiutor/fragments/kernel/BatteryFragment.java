@@ -381,7 +381,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         }
         if (mChargingStatus != null) {
 		if (Device.isOnePlusdumpling()) {
-		    float chargingrate = mBattery.getchargeInfo();
+		    float chargingrate = ((mBattery.getchargingstatus() / 1000) * -1);
 		    if (mBattery.isDischarging()){
 			mChargingStatus.setTitle("Charge Rate");
 			mChargingStatus.setStat(0.0 + (" mA"));
