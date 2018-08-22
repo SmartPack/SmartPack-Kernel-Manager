@@ -219,10 +219,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		    @Override
 		    public void onClick(RecyclerViewItem item) {
-			if (Device.iskltekor()) {
-		            if (Build.VERSION.SDK_INT == 27) {
+			if (Build.VERSION.SDK_INT == 27) {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true", getActivity());
-		            }
 			}
 		    }
 		});
