@@ -1,5 +1,9 @@
 # Change-logs
 
+## 25. August 22, 2018
+*Release-tag: v4.6*
+Changes: Added control over Boeffla Mic and Earpiece boost (OP5T). Added Adreno boost control (OP5T). Update charge rate and maximum display backlight control to work properly in OP5T. Bunch of other changes to support OP5T.
+
 ## 24. August 01, 2018
 *Release-tag: v4.5*
 Changes: Clean and update Wakelock page (Now it is significantly fast). Made device-specific kernel download more accurate.
