@@ -140,120 +140,118 @@ public class BatteryFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(R.string.acci));
 
-	if (mBattery.hasForceFastCharge()) {
-	if (Device.isOnePlusdumpling()) {
-		SwitchView forceFastCharge = new SwitchView();
-		forceFastCharge.setTitle(getString(R.string.fast_charge));
-		forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
-		forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
-		forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		    @Override
-		    public void onChanged(SwitchView switchView, boolean isChecked) {
-		        mBattery.ForceFastChargeenable(isChecked, getActivity());
-		    }
-		});
-            fastCharge.add(forceFastCharge);
-
-        } else {
+	if ((mBattery.hasForceFastCharge()) && (mBattery.hasFastChargeControlAC()) && (mBattery.hasFastChargeControlUSB()) && (mBattery.hasFastChargeControlWIRELESS())) {
+            // Initialize Advanced Charge Control Interface 
             SelectView forceFastCharge = new SelectView();
             forceFastCharge.setTitle(getString(R.string.fast_charge));
             forceFastCharge.setSummary(getString(R.string.fast_charge_summary));
             forceFastCharge.setItems(mBattery.enableForceFastCharge(getActivity()));
             forceFastCharge.setItem(mBattery.getForceFastCharge());
             forceFastCharge.setOnItemSelected(new SelectView.OnItemSelected() {
-            @Override
-            public void onItemSelected(SelectView selectView, int position, String item) {
-                mBattery.setForceFastCharge(position, getActivity());
-            }
-        });
+                @Override
+                public void onItemSelected(SelectView selectView, int position, String item) {
+		    mBattery.setForceFastCharge(position, getActivity());
+                }
+            });
+            fastCharge.add(forceFastCharge);
 
+        } else {
+            // Initialize (only) USB Fast Charge
+            SwitchView forceFastCharge = new SwitchView();
+            forceFastCharge.setTitle(getString(R.string.fast_charge));
+            forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
+            forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
+            forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+		    mBattery.ForceFastChargeenable(isChecked, getActivity());
+		}
+            });
             fastCharge.add(forceFastCharge);
 	}
 
-    }
-
         if (mBattery.iscustomodenabled()) {
-		if (mBattery.hasFastChargeControlAC()) {
-		    SelectView ACLevelCard = new SelectView();
-		    ACLevelCard.setTitle(getString(R.string.charge_level_ac));
-		    ACLevelCard.setSummary(getString(R.string.charge_level_summary));
-		    ACLevelCard.setItems(mBattery.getFastChargeControlAC());
-		    ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
-		    ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+            if (mBattery.hasFastChargeControlAC()) {
+		SelectView ACLevelCard = new SelectView();
+		ACLevelCard.setTitle(getString(R.string.charge_level_ac));
+		ACLevelCard.setSummary(getString(R.string.charge_level_summary));
+		ACLevelCard.setItems(mBattery.getFastChargeControlAC());
+		ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
+		ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		    @Override
 		    public void onItemSelected(SelectView selectView, int position, String item) {
 		        mBattery.setFastChargeControlAC(item, getActivity());
 		    }
 		});
-		    fastCharge.add(ACLevelCard);
+		fastCharge.add(ACLevelCard);
 
 	    }
 		    
-		if (mBattery.hasFastChargeControlUSB()) {
-		    SelectView USBLevelCard = new SelectView();
-		    USBLevelCard.setTitle(getString(R.string.charge_level_usb));
-		    USBLevelCard.setSummary(getString(R.string.charge_level_summary));
-		    USBLevelCard.setItems(mBattery.getFastChargeControlUSB());
-		    USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
-		    USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+            if (mBattery.hasFastChargeControlUSB()) {
+		SelectView USBLevelCard = new SelectView();
+		USBLevelCard.setTitle(getString(R.string.charge_level_usb));
+		USBLevelCard.setSummary(getString(R.string.charge_level_summary));
+		USBLevelCard.setItems(mBattery.getFastChargeControlUSB());
+		USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
+		USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		    @Override
 		    public void onItemSelected(SelectView selectView, int position, String item) {
 		        mBattery.setFastChargeControlUSB(item, getActivity());
 		    }
 		});
-		    fastCharge.add(USBLevelCard);
+		fastCharge.add(USBLevelCard);
 	    }
 	    
-		if (mBattery.hasFastChargeControlWIRELESS()) {
-		    SelectView WirelessLevelCard = new SelectView();
-		    WirelessLevelCard.setTitle(getString(R.string.charge_level_wireless));
-		    WirelessLevelCard.setSummary(getString(R.string.charge_level_summary));
-		    WirelessLevelCard.setItems(mBattery.getFastChargeControlWIRELESS());
-		    WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
-		    WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
+            if (mBattery.hasFastChargeControlWIRELESS()) {
+		SelectView WirelessLevelCard = new SelectView();
+		WirelessLevelCard.setTitle(getString(R.string.charge_level_wireless));
+		WirelessLevelCard.setSummary(getString(R.string.charge_level_summary));
+		WirelessLevelCard.setItems(mBattery.getFastChargeControlWIRELESS());
+		WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
+		WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		    @Override
 		    public void onItemSelected(SelectView selectView, int position, String item) {
 		        mBattery.setFastChargeControlWIRELESS(item, getActivity());
 		   }
 		});
-		    fastCharge.add(WirelessLevelCard);
+		fastCharge.add(WirelessLevelCard);
 	    }
         }
 
         if (mBattery.hasMtpForceFastCharge()) {
-		SwitchView MtpFastCharge = new SwitchView();
-		MtpFastCharge.setTitle(getString(R.string.mtp_fast_charge));
-		MtpFastCharge.setSummary(getString(R.string.mtp_fast_charge_summary));
-		MtpFastCharge.setChecked(mBattery.isMtpForceFastChargeEnabled());
-		MtpFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		    @Override
-		    public void onChanged(SwitchView switchView, boolean isChecked) {
-		        mBattery.enableMtpForceFastCharge(isChecked, getActivity());
-		    }
-		});
+            SwitchView MtpFastCharge = new SwitchView();
+            MtpFastCharge.setTitle(getString(R.string.mtp_fast_charge));
+            MtpFastCharge.setSummary(getString(R.string.mtp_fast_charge_summary));
+            MtpFastCharge.setChecked(mBattery.isMtpForceFastChargeEnabled());
+            MtpFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+		    mBattery.enableMtpForceFastCharge(isChecked, getActivity());
+		}
+            });
 
-		    fastCharge.add(MtpFastCharge);
+            fastCharge.add(MtpFastCharge);
         }
     
         if (mBattery.hasScreenCurrentLimit()) {
-		SwitchView ScreenLimit = new SwitchView();
-		ScreenLimit.setTitle(getString(R.string.screen_limit));
-		ScreenLimit.setSummary(getString(R.string.screen_limit_summary));
-		ScreenLimit.setChecked(mBattery.isScreenCurrentLimit());
-		ScreenLimit.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		    @Override
-		    public void onChanged(SwitchView switchView, boolean isChecked) {
-		        mBattery.enableScreenCurrentLimit(isChecked, getActivity());
-		    }
-		});
+            SwitchView ScreenLimit = new SwitchView();
+            ScreenLimit.setTitle(getString(R.string.screen_limit));
+            ScreenLimit.setSummary(getString(R.string.screen_limit_summary));
+            ScreenLimit.setChecked(mBattery.isScreenCurrentLimit());
+            ScreenLimit.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+		    mBattery.enableScreenCurrentLimit(isChecked, getActivity());
+		}
+            });
 
-		    fastCharge.add(ScreenLimit);
-        }
+            fastCharge.add(ScreenLimit);
+	}
 
         if (fastCharge.size() > 0) {
             items.add(title);
             items.addAll(fastCharge);
-        }
+	}
     }
 
     private void chargeLevelInit(List<RecyclerViewItem> items) {
