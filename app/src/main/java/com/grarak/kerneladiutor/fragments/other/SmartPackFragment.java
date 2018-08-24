@@ -123,6 +123,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    smartpack.addItem(spsource);
 
             } else if (Device.isOnePlusdumpling()) {
+		    DescriptionView xdapage = new DescriptionView();
+		    xdapage.setTitle(getString(R.string.support));
+		    xdapage.setSummary(getString(R.string.support_summary));
+		    xdapage.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            Utils.launchUrl("https://forum.xda-developers.com/oneplus-5t/development/kernel-smartpack-linaro-gcc-7-x-oxygen-t3832458", getActivity());
+			}
+		    });
+
 		    DescriptionView changelogsp = new DescriptionView();
 		    changelogsp.setTitle(getString(R.string.change_logs));
 		    changelogsp.setSummary(getString(R.string.change_logs_summary));
@@ -148,6 +158,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    });
 
 		    smartpack.addItem(changelogsp);
+		    smartpack.addItem(xdapage);
 		    smartpack.addItem(spsource);
 		}
 	}
