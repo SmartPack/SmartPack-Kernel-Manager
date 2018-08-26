@@ -66,6 +66,13 @@ public class Sound {
     private static final String BOEFFLA_MIC = "/sys/class/misc/boeffla_sound/mic_level_call";
     private static final String BOEFFLA_VERSION = "/sys/class/misc/boeffla_sound/version";
 
+    private static final String FAUX_SOUND = "/sys/kernel/sound_control_3";
+    private static final String FAUX_SOUND_ENABLE = FAUX_SOUND + "/gpl_sound_control_enabled";
+    private static final String FAUX_SPEAKER = FAUX_SOUND + "/gpl_speaker_gain";
+    private static final String FAUX_HP = FAUX_SOUND + "/gpl_headphone_gain";
+    private static final String FAUX_MIC = FAUX_SOUND + "/gpl_mic_gain";
+    private static final String FAUX_MIC_LOCK = FAUX_SOUND + "/gpl_sound_control_rec_locked";
+
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
 
     private final List<String> mFrancoLimits = new ArrayList<>();
@@ -74,6 +81,7 @@ public class Sound {
     private final List<String> mboefflaLimits = new ArrayList<>();
     private final List<String> mboefflaEPLimits = new ArrayList<>();
     private final List<String> mBoefflaMICLimits = new ArrayList<>();
+    private final List<String> mfauxLimits = new ArrayList<>();
 
     {
         mSpeakerGainFiles.add(SPEAKER_BOOST);
@@ -100,6 +108,9 @@ public class Sound {
         }
         for (int i = -20; i < 31; i++) {
             mBoefflaMICLimits.add(String.valueOf(i));
+        }
+        for (int i = -30; i < 21; i++) {
+            mfauxLimits.add(String.valueOf(i));
         }
     }
 
@@ -258,10 +269,35 @@ public class Sound {
         return Utils.existFile(SOUND_CONTROL_ENABLE);
     }
 
+    public void enablefauxsound(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", FAUX_SOUND_ENABLE), FAUX_SOUND_ENABLE, context);
+    }
+
+    public boolean isfauxsoundEnabled() {
+        return Utils.readFile(FAUX_SOUND_ENABLE).equals("1");
+    }
+
+    public boolean hasfauxsound() {
+       return Utils.existFile(FAUX_SOUND_ENABLE);
+    }
+
+    public void enablefauxmiclock(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", FAUX_MIC_LOCK), FAUX_MIC_LOCK, context);
+    }
+
+    public boolean isfauxmiclockEnabled() {
+        return Utils.readFile(FAUX_MIC_LOCK).equals("1");
+    }
+
+    public boolean hasfauxmiclock() {
+       return Utils.existFile(FAUX_MIC_LOCK);
+    }
+
     public boolean supported() {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage()
                 || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar()
-                || hasboefflahp() || hasboefflaep() || hasboefflamic() || hasboefflaspeaker();
+                || hasboefflahp() || hasboefflaep() || hasboefflamic() || hasboefflaspeaker()
+                || hasfauxsound() || hasfauxmiclock() || hasfauxspeaker() || hasfauxhp() || hasfauxmic();
     }
 
     private int getChecksum(int arg0, int arg1) {
@@ -279,6 +315,85 @@ public class Sound {
 
     private void run(String command, String id, Context context) {
         Control.runSetting(command, ApplyOnBootFragment.SOUND, id, context);
+    }
+
+    public void setfauxspeaker(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= 0 && newGain <= 20) {
+            SoundRun(value + " " + value, FAUX_SPEAKER, FAUX_SPEAKER, context);
+        } else if (newGain <= -1 && newGain >= -30) {
+            value = String.valueOf(newGain + 256);
+            SoundRun(value + " " + value, FAUX_SPEAKER, FAUX_SPEAKER, context);
+        }
+    }
+
+    public void setfauxmic(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= 0 && newGain <= 20) {
+            SoundRun(value + " " + value, FAUX_MIC, FAUX_MIC, context);
+        } else if (newGain <= -1 && newGain >= -30) {
+            value = String.valueOf(newGain + 256);
+            SoundRun(value + " " + value, FAUX_MIC, FAUX_MIC, context);
+        }
+    }
+
+    public void setfauxhp(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= 0 && newGain <= 20) {
+            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+        } else if (newGain <= -1 && newGain >= -30) {
+            value = String.valueOf(newGain + 256);
+            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+        }
+    }
+
+    public List<String> getfauxLimits() {
+        return mfauxLimits;
+    }
+
+    public String getfauxspeaker() {
+        String value = Utils.readFile(FAUX_SPEAKER);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 226 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public String getfauxmic() {
+        String value = Utils.readFile(FAUX_MIC);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 226 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public String getfauxhp() {
+        String value = Utils.readFile(FAUX_HP);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 226 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public boolean hasfauxspeaker() {
+        return Utils.existFile(FAUX_SPEAKER);
+    }
+
+    public boolean hasfauxmic() {
+        return Utils.existFile(FAUX_MIC);
+    }
+
+    public boolean hasfauxhp() {
+        return Utils.existFile(FAUX_HP);
     }
 
     public void setboefflaspeaker(String value, Context context) {

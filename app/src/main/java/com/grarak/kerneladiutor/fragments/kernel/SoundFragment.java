@@ -77,6 +77,9 @@ public class SoundFragment extends RecyclerViewFragment {
         if (mSound.hasVolumeGain()) {
             volumeGainInit(items);
         }
+        if (mSound.hasfauxsound()) {
+            hasfauxsoundInit(items);
+        }
     }
 
     private void speakerleakageInit(List<RecyclerViewItem> items) {
@@ -353,6 +356,99 @@ public class SoundFragment extends RecyclerViewFragment {
 
         items.add(volumeGain);
     }
+
+    private void hasfauxsoundInit(List<RecyclerViewItem> items) {
+
+        CardView fauxsoundCard = new CardView(getActivity());
+        fauxsoundCard.setTitle(getString(R.string.sound_control));
+
+        SwitchView fauxsound = new SwitchView();
+        fauxsound.setTitle(getString(R.string.faux_sound));
+        fauxsound.setSummary(getString(R.string.faux_sound_summary));
+        fauxsound.setChecked(mSound.isfauxsoundEnabled());
+        fauxsound.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                mSound.enablefauxsound(isChecked, getActivity());
+            }
+        });
+        fauxsoundCard.addItem(fauxsound);
+
+	if (mSound.hasfauxspeaker()) {
+            SeekBarView fauxspeaker = new SeekBarView();
+            fauxspeaker.setTitle(getString(R.string.speaker_gain));
+            fauxspeaker.setItems(mSound.getfauxLimits());
+            fauxspeaker.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxspeaker()));
+            fauxspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxspeaker(value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            fauxsoundCard.addItem(fauxspeaker);
+	}
+
+	if (mSound.hasfauxhp()) {
+            SeekBarView fauxhp = new SeekBarView();
+            fauxhp.setTitle(getString(R.string.headphone_gain));
+            fauxhp.setItems(mSound.getfauxLimits());
+            fauxhp.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp()));
+            fauxhp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxhp(value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            fauxsoundCard.addItem(fauxhp);
+	}
+
+	if (mSound.hasfauxmic()) {
+            SeekBarView fauxmic = new SeekBarView();
+            fauxmic.setTitle(getString(R.string.microphone_gain));
+            fauxmic.setItems(mSound.getfauxLimits());
+            fauxmic.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxmic()));
+            fauxmic.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxmic(value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            fauxsoundCard.addItem(fauxmic);
+	}
+
+	if (mSound.hasfauxmiclock()) {
+            SwitchView fauxmiclock = new SwitchView();
+            fauxmiclock.setTitle(getString(R.string.lock_mic_gain));
+            fauxmiclock.setSummary(getString(R.string.lock_mic_gain_summary));
+            fauxmiclock.setChecked(mSound.isfauxmiclockEnabled());
+            fauxmiclock.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+		        mSound.enablefauxmiclock(isChecked, getActivity());
+		}
+            });
+            fauxsoundCard.addItem(fauxmiclock);
+       }
+
+        if (fauxsoundCard.size() > 0) {
+            items.add(fauxsoundCard);
+       }
+     }
 
     private void headphoneFlarInit(List<RecyclerViewItem> items) {
 

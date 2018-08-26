@@ -424,6 +424,10 @@
     <string name="headphone_gain_left">Headphone Gain (Left)</string>
     <string name="headphone_gain_right">Headphone Gain (Right)</string>
     <string name="boefflaep">Earpiece Gain (Calls)</string>
+    <string name="faux_sound">Faux Sound</string>
+    <string name="faux_sound_summary">Turn On/Off Faux Sound Engine</string>
+    <string name="lock_mic_gain">Lock Microphone Gain</string>
+    <string name="lock_mic_gain_summary">Prevent modifications to microphone gains</string>
 
     <!-- Screen -->
     <string name="screen_color">Screen Color</string>
