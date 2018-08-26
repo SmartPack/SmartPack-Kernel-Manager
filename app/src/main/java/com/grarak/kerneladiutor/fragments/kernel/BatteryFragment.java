@@ -387,6 +387,15 @@ public class BatteryFragment extends RecyclerViewFragment {
 			mChargingStatus.setTitle("Charge Rate");
 			 mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		    }
+		} else if (Device.isMotoG3()) {
+		    float chargingrate = (mBattery.getchargingstatus() / 1000);
+		    if (mBattery.isDischarging()){
+			mChargingStatus.setTitle("Charge Rate");
+			mChargingStatus.setStat(0.0 + (" mA"));
+		    } else {
+			mChargingStatus.setTitle("Charge Rate");
+			 mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		    }
 		} else {
 		    float chargingrate = mBattery.getchargingstatus();
 		    if (mBattery.isDischarging()){

@@ -372,6 +372,10 @@ public class Device {
         return (Build.FINGERPRINT).contains("OnePlus5T");
     }
 
+    public static boolean isMotoG3() {
+        return (Build.FINGERPRINT).contains("osprey");
+    }
+
     public static boolean hasSmartPackVersion() {
         return Utils.existFile(SMARTPACK_VERSION);
     }
