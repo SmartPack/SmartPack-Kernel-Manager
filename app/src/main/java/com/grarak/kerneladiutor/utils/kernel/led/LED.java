@@ -51,6 +51,7 @@ public class LED {
     private static final String GREEN_RATE = "/sys/class/leds/green/rate";
 
     private static final String DISPLAY_BACKLIGHT = "/sys/class/leds/lcd-backlight/max_brightness";
+    private static final String CHARGING_LIGHT = "/sys/class/leds/charging/max_brightness";
 
     private static final String LED_FADE = "/sys/class/sec/led/led_fade";
 
@@ -161,8 +162,20 @@ public class LED {
         return Utils.existFile(DISPLAY_BACKLIGHT);
     }
 
+    public void enablescharginglight(boolean enable, Context context) {
+        run(Control.write(enable ? "0" : "255", CHARGING_LIGHT), CHARGING_LIGHT, context);
+    }
+
+    public boolean isscharginglightEnabled() {
+        return Utils.readFile(CHARGING_LIGHT).equals("0");
+    }
+
+    public boolean hascharginglight() {
+       return Utils.existFile(CHARGING_LIGHT);
+    }
+
     public boolean supported() {
-        return hasFade() || hasLEDFade() || hasdisplaybacklight() || hasIntensity() || hasSpeed() || Sec.supported();
+        return hasFade() || hasLEDFade() || hasdisplaybacklight() ||  hascharginglight() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {

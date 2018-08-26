@@ -52,6 +52,9 @@ public class LEDFragment extends RecyclerViewFragment {
         if (mLED.hasdisplaybacklight()) {
             displaybacklightInit(items);
         }
+        if (mLED.hascharginglight()) {
+            charginglightInit(items);
+        }
         if (mLED.hasLEDFade()) {
             LEDFadeInit(items);
         }
@@ -107,7 +110,6 @@ public class LEDFragment extends RecyclerViewFragment {
     private void displaybacklightInit(List<RecyclerViewItem> items) {
             SeekBarView displaybacklight = new SeekBarView();
             displaybacklight.setTitle(getString(R.string.display_backlight));
-            displaybacklight.setSummary(getString(R.string.display_backlight_summary));
             if (Device.isOnePlusdumpling()) {
 		displaybacklight.setMax(1275);
 		displaybacklight.setOffset(25);
@@ -139,6 +141,20 @@ public class LEDFragment extends RecyclerViewFragment {
             }
 
             items.add(displaybacklight);
+    }
+
+    private void charginglightInit(List<RecyclerViewItem> items) {
+	SwitchView charginglight = new SwitchView();
+	charginglight.setTitle(getString(R.string.charging_light));
+	charginglight.setSummary(getString(R.string.charging_light_summary));
+	charginglight.setChecked(mLED.isscharginglightEnabled());
+	charginglight.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+		mLED.enablescharginglight(isChecked, getActivity());;
+		}
+            });
+	items.add(charginglight);
     }
 
     private void LEDFadeInit(List<RecyclerViewItem> items) {
