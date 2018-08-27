@@ -330,10 +330,10 @@ public class Sound {
     public void setfauxmic(String value, Context context) {
         int newGain = Utils.strToInt(value);
         if (newGain >= 0 && newGain <= 20) {
-            SoundRun(value + " " + value, FAUX_MIC, FAUX_MIC, context);
+            SoundRun(value, FAUX_MIC, FAUX_MIC, context);
         } else if (newGain <= -1 && newGain >= -30) {
             value = String.valueOf(newGain + 256);
-            SoundRun(value + " " + value, FAUX_MIC, FAUX_MIC, context);
+            SoundRun(value, FAUX_MIC, FAUX_MIC, context);
         }
     }
 
@@ -364,7 +364,7 @@ public class Sound {
 
     public String getfauxmic() {
         String value = Utils.readFile(FAUX_MIC);
-        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        int gain = Utils.strToInt(value);
         if (gain >= 0 && gain <= 20) {
             return String.valueOf(gain);
         } else if (gain >= 226 && gain <= 255) {
