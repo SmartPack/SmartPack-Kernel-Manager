@@ -9,9 +9,11 @@
 * Advanced Charge Control Interface for yank555.lu's Fast Charge.
 * CPU Input Boost (Sultanxda) Control.
 * Boeffla Sound (Please note: Currently requires some changes in boeffla_sound.c. Please refer [this](https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/commit/d2cb5948f31997070e334d60523c86d24139d051) commit).
+* Significantly different Faux Sound implementation (with per-channel headphone gain).
 * Boeffla Charge Level Interface (Please note: Currently requires some changes in charge_level.c. Please refer [this](https://github.com/SmartPack/Boeffla-Kernel-unofficial-kltexxx/commit/4e22b13b8f1b0c22dff9600e7c1c93e3cc5dad9b) commit).
 * Spectrum support in-built.
 * Display Backlight Control.
+* Adreno Boost (flar2) Control.
 * SELinux Switch.
 * Auto-updates (in *About* page).
 * Boeffla Wakelock Blocker Driver Control.
@@ -19,6 +21,8 @@
 * LED Blink/Fade support.
 * Device specific kernel download options for supported devices.
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager).
+* Compatible with stock & other kernels
+* And much more…
 
 ## Donations
 If you want to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.
