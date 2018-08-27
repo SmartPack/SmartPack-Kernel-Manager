@@ -1,5 +1,9 @@
 # Change-logs
 
+## 26. August 27, 2018
+*Release-tag: v4.7*
+Changes: Added xda support page (OP5T). Fully re-made Advanced Charge Control Interface logic to avoid issues in other devices. LED: add a switch to disable charging light (Moto G 2015). Re-added faux sound with per-channel headphone gain support. Add device specific links for Moto G 2015. 
+
 ## 25. August 22, 2018
 *Release-tag: v4.6*
 Changes: Added control over Boeffla Mic and Earpiece boost (OP5T). Added Adreno boost control (OP5T). Update charge rate and maximum display backlight control to work properly in OP5T. Bunch of other changes to support OP5T.
