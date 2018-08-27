@@ -337,13 +337,32 @@ public class Sound {
         }
     }
 
-    public void setfauxhp(String value, Context context) {
+    public void setfauxhp(String channel, String value, Context context) {
         int newGain = Utils.strToInt(value);
-        if (newGain >= 0 && newGain <= 20) {
-            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
-        } else if (newGain <= -1 && newGain >= -30) {
-            value = String.valueOf(newGain + 256);
-            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+        switch (channel) {
+            case "all":
+            if (newGain >= 0 && newGain <= 20) {
+		SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+            } else if (newGain <= -1 && newGain >= -30) {
+		value = String.valueOf(newGain + 256);
+		SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+            }
+            case "left":
+                String currentGainLeft = getfauxhp("right");
+                if (newGain >= 0 && newGain <= 20) {
+                    SoundRun(value + " " + currentGainLeft, FAUX_HP, FAUX_HP, context);
+                } else if (newGain <= -1 && newGain >= -30) {
+                    value = String.valueOf(newGain + 256);
+                    SoundRun(value + " " + currentGainLeft, FAUX_HP, FAUX_HP, context);
+                }
+            case "right":
+                String currentGainRight = getfauxhp("left");
+                if (newGain >= 0 && newGain <= 20) {
+                    SoundRun(value + " " + currentGainRight, FAUX_HP, FAUX_HP, context);
+                } else if (newGain <= -1 && newGain >= -30) {
+                    value = String.valueOf(newGain + 256);
+                    SoundRun(value + " " + currentGainRight, FAUX_HP, FAUX_HP, context);
+                }
         }
     }
 
@@ -373,13 +392,24 @@ public class Sound {
         return "";
     }
 
-    public String getfauxhp() {
-        String value = Utils.readFile(FAUX_HP);
-        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
-        if (gain >= 0 && gain <= 20) {
-            return String.valueOf(gain);
-        } else if (gain >= 226 && gain <= 255) {
-            return String.valueOf(gain - 256);
+    public static String getfauxhp(String channel) {
+        String[] values = Utils.readFile(FAUX_HP).split(" ");
+        int gainLeft = Utils.strToInt(values[0]),
+            gainRight = Utils.strToInt(values[1]);
+        switch (channel) {
+            case "all":
+            case "left":
+            if (gainLeft >= 0 && gainLeft <= 20) {
+		return String.valueOf(gainLeft);
+            } else if (gainLeft >= 226 && gainLeft <= 255) {
+		return String.valueOf(gainLeft - 256);
+            }
+            case "right":
+            if (gainRight >= 0 && gainRight <= 20) {
+		return String.valueOf(gainRight);
+            } else if (gainRight >= 226 && gainRight <= 255) {
+		return String.valueOf(gainRight - 256);
+            }
         }
         return "";
     }

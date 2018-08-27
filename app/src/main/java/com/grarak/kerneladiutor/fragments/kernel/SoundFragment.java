@@ -393,25 +393,6 @@ public class SoundFragment extends RecyclerViewFragment {
             fauxsoundCard.addItem(fauxspeaker);
 	}
 
-	if (mSound.hasfauxhp()) {
-            SeekBarView fauxhp = new SeekBarView();
-            fauxhp.setTitle(getString(R.string.headphone_gain));
-            fauxhp.setItems(mSound.getfauxLimits());
-            fauxhp.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp()));
-            fauxhp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-		        mSound.setfauxhp(value, getActivity());
-		}
-
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-            });
-
-            fauxsoundCard.addItem(fauxhp);
-	}
-
 	if (mSound.hasfauxmic()) {
             SeekBarView fauxmic = new SeekBarView();
             fauxmic.setTitle(getString(R.string.microphone_gain));
@@ -443,11 +424,96 @@ public class SoundFragment extends RecyclerViewFragment {
 		}
             });
             fauxsoundCard.addItem(fauxmiclock);
-       }
+	}
 
-        if (fauxsoundCard.size() > 0) {
+	if (mSound.hasfauxhp()) {
+            if (!(Prefs.getBoolean("fauxhp_perchannel", false, getActivity())))
+		Prefs.saveBoolean("fauxhp_perchannel", false, getActivity());
+
+		final SwitchView perChannel = new SwitchView();
+		perChannel.setTitle(getString(R.string.per_channel_controls));
+		perChannel.setSummary(getString(R.string.per_channel_controls_summary));
+		perChannel.setChecked(Prefs.getBoolean("fauxhp_perchannel", false, getActivity()));
+
+		fauxsoundCard.addItem(perChannel);
+
+		final SeekBarView fauxhp = new SeekBarView();
+		fauxhp.setTitle(getString(R.string.headphone_gain));
+		fauxhp.setItems(mSound.getfauxLimits());
+		fauxhp.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("all")));
+		fauxhp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                    @Override
+                    public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxhp("all", value, getActivity());
+                    }
+
+                    @Override
+                    public void onMove(SeekBarView seekBarView, int position, String value) {
+                    }
+		});
+
+		final SeekBarView fauxhpleft = new SeekBarView();
+		fauxhpleft.setTitle(getString(R.string.headphone_gain_left));
+		fauxhpleft.setItems(mSound.getfauxLimits());
+		fauxhpleft.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("left")));
+		fauxhpleft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                    @Override
+                    public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxhp("left", value, getActivity());
+                    }
+
+                    @Override
+                    public void onMove(SeekBarView seekBarView, int position, String value) {
+                    }
+		});
+
+		final SeekBarView fauxhpright = new SeekBarView();
+		fauxhpright.setTitle(getString(R.string.headphone_gain_right));
+		fauxhpright.setItems(mSound.getfauxLimits());
+		fauxhpright.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("right")));
+		fauxhpright.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                    @Override
+                    public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setfauxhp("right", value, getActivity());
+                    }
+
+                    @Override
+                    public void onMove(SeekBarView seekBarView, int position, String value) {
+                    }
+		});
+
+		class SeekBarManager {
+                    public void showPerChannelSeekbars (boolean enable) {
+                    if (enable == true) {
+		        fauxsoundCard.removeItem(fauxhp);
+		        fauxsoundCard.addItem(fauxhpleft);
+		        fauxsoundCard.addItem(fauxhpright);
+                    } else {
+		        fauxsoundCard.removeItem(fauxhpleft);
+		        fauxsoundCard.removeItem(fauxhpright);
+		        fauxsoundCard.addItem(fauxhp);
+                    }
+		}
+            }
+
+            final SeekBarManager manager = new SeekBarManager();
+            if (Prefs.getBoolean("fauxhp_perchannel", false, getActivity()) == true) {
+		manager.showPerChannelSeekbars(true);
+            } else {
+		manager.showPerChannelSeekbars(false);
+            }
+            perChannel.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchview, boolean isChecked) {
+                    Prefs.saveBoolean("fauxhp_perchannel", isChecked, getActivity());
+                    manager.showPerChannelSeekbars(isChecked);
+		}
+            });
+	}
+
+	if (fauxsoundCard.size() > 0) {
             items.add(fauxsoundCard);
-       }
+	}
      }
 
     private void headphoneFlarInit(List<RecyclerViewItem> items) {
