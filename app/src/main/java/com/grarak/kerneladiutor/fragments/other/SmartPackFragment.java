@@ -160,7 +160,36 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    smartpack.addItem(changelogsp);
 		    smartpack.addItem(xdapage);
 		    smartpack.addItem(spsource);
-		}
+
+            } else if (Device.isMotoG3()) {
+		    DescriptionView changelogsp = new DescriptionView();
+		    changelogsp.setTitle(getString(R.string.change_logs));
+		    changelogsp.setSummary(getString(R.string.change_logs_summary));
+		    changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
+		            }
+			}
+		    });
+
+		    DescriptionView spsource = new DescriptionView();
+		    spsource.setTitle(getString(R.string.source_code));
+		    spsource.setSummary(getString(R.string.source_code_summary));
+		    spsource.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+			@Override
+			public void onClick(RecyclerViewItem item) {
+		            if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/tree/Oreo", getActivity());
+		            }
+			}
+		    });
+
+		    smartpack.addItem(changelogsp);
+		    smartpack.addItem(spsource);
+
+            }
 	}
 
 	DescriptionView website = new DescriptionView();
@@ -236,6 +265,20 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    }
 		});
 	smartpack.addItem(downloads);
+
+	} else if (Device.isMotoG3()) {
+		DescriptionView downloads = new DescriptionView();
+		downloads.setTitle(getString(R.string.downloads));
+		downloads.setSummary(getString(R.string.downloads_summary));
+		downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		    @Override
+		    public void onClick(RecyclerViewItem item) {
+			if (Build.VERSION.SDK_INT == 27) {
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true", getActivity());
+			}
+		    }
+		});
+	smartpack.addItem(downloads);
 	}
 
 	DescriptionView recoveryreboot = new DescriptionView();
@@ -254,7 +297,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     public static boolean supported() {
-        return Device.hasSmartPackVersion() || Device.isSamsungmsm8974() || Device.isOnePlusdumpling() || Device.hasSmartPackInstalled();
+        return Device.hasSmartPackVersion() || Device.isSamsungmsm8974() || Device.isOnePlusdumpling() || Device.isMotoG3() || Device.hasSmartPackInstalled();
     }
 
 }
