@@ -362,17 +362,19 @@ public class SoundFragment extends RecyclerViewFragment {
         CardView fauxsoundCard = new CardView(getActivity());
         fauxsoundCard.setTitle(getString(R.string.sound_control));
 
-        SwitchView fauxsound = new SwitchView();
-        fauxsound.setTitle(getString(R.string.faux_sound));
-        fauxsound.setSummary(getString(R.string.faux_sound_summary));
-        fauxsound.setChecked(mSound.isfauxsoundEnabled());
-        fauxsound.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mSound.enablefauxsound(isChecked, getActivity());
-            }
-        });
-        fauxsoundCard.addItem(fauxsound);
+	if (mSound.hasfauxsoundenable()) {
+            SwitchView fauxsound = new SwitchView();
+            fauxsound.setTitle(getString(R.string.faux_sound));
+            fauxsound.setSummary(getString(R.string.faux_sound_summary));
+            fauxsound.setChecked(mSound.isfauxsoundEnabled());
+            fauxsound.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+			mSound.enablefauxsound(isChecked, getActivity());
+                }
+            });
+                fauxsoundCard.addItem(fauxsound);
+	}
 
 	if (mSound.hasfauxspeaker()) {
             SeekBarView fauxspeaker = new SeekBarView();

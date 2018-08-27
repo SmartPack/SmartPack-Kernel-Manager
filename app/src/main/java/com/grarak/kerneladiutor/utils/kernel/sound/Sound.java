@@ -278,6 +278,10 @@ public class Sound {
     }
 
     public boolean hasfauxsound() {
+       return Utils.existFile(FAUX_SOUND);
+    }
+
+    public boolean hasfauxsoundenable() {
        return Utils.existFile(FAUX_SOUND_ENABLE);
     }
 
@@ -297,7 +301,7 @@ public class Sound {
         return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage()
                 || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar()
                 || hasboefflahp() || hasboefflaep() || hasboefflamic() || hasboefflaspeaker()
-                || hasfauxsound() || hasfauxmiclock() || hasfauxspeaker() || hasfauxhp() || hasfauxmic();
+                || hasfauxsound() || hasfauxsoundenable() || hasfauxmiclock() || hasfauxspeaker() || hasfauxhp() || hasfauxmic();
     }
 
     private int getChecksum(int arg0, int arg1) {
