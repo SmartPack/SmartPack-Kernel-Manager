@@ -381,6 +381,8 @@ public class Sound {
             return String.valueOf(gain);
         } else if (gain >= 226 && gain <= 255) {
             return String.valueOf(gain - 256);
+        } else if (gain == 172) {
+            return String.valueOf(gain - 172);
         }
         return "";
     }
@@ -392,6 +394,8 @@ public class Sound {
             return String.valueOf(gain);
         } else if (gain >= 226 && gain <= 255) {
             return String.valueOf(gain - 256);
+        } else if (gain == 172) {
+            return String.valueOf(gain - 172);
         }
         return "";
     }
@@ -407,12 +411,16 @@ public class Sound {
 		return String.valueOf(gainLeft);
             } else if (gainLeft >= 226 && gainLeft <= 255) {
 		return String.valueOf(gainLeft - 256);
+            } else if (gainLeft == 172) {
+		return String.valueOf(gainLeft - 172);
             }
             case "right":
             if (gainRight >= 0 && gainRight <= 20) {
 		return String.valueOf(gainRight);
             } else if (gainRight >= 226 && gainRight <= 255) {
 		return String.valueOf(gainRight - 256);
+            } else if (gainRight == 172) {
+		return String.valueOf(gainRight - 172);
             }
         }
         return "";
