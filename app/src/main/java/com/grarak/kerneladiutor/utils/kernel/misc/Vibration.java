@@ -48,7 +48,7 @@ public class Vibration {
 
     {
         mVibrations.put("/sys/class/timed_output/vibrator/amp", new MinMax(0, 100));
-        mVibrations.put("/sys/class/timed_output/vibrator/level", new MinMax(12, 31));
+        mVibrations.put("/sys/class/timed_output/vibrator/level", new MinMax(0, 25));
         mVibrations.put("/sys/class/timed_output/vibrator/pwm_value", new MinMax("/sys/class/timed_output/vibrator/pwm_min", "/sys/class/timed_output/vibrator/pwm_max", 0, 100));
         mVibrations.put("/sys/class/timed_output/vibrator/pwm_value_1p", new MinMax(53, 99));
         mVibrations.put("/sys/class/timed_output/vibrator/voltage_level", new MinMax(1200, 3199));
