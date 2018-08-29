@@ -1,12 +1,12 @@
 {
-  "latestVersion": "4.7-20180827",
+  "latestVersion": "4.8-20180829",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added xda support page (OP5T).",
-    "- Fully re-made Advanced Charge Control Interface logic to avoid issues in other devices.",
-    "- LED: add a switch to disable charging light (Moto G 2015).",
-    "- Re-added faux sound with per-channel headphone gain support.",
-    "- Add device specific links for Moto G 2015."    
+    "- Add an option to directly flash the new kernel (along with download utton).",
+    "- Add an option to reset app settings (SmartPack page).",
+    "- Restrict SmartPack specific stuff to SDK >= 27 (Oreo).",
+    "- Added xda support page (Moto G 2015).",
+    "- Update vibration intensity for OP5T." 
   ]
 }

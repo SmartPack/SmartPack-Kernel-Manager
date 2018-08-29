@@ -1,5 +1,9 @@
 # Change-logs
 
+## 27. August 29, 2018
+*Release-tag: v4.8*
+Changes: Added xda support page (Moto G 2015). Update vibration intensity for OP5T. Add an option to directly flash the new kernel (along with download utton). Add an option to reset app settings (SmartPack page). Restrict SmartPack specific stuff to SDK >= 27 (Oreo). Misc changes.
+
 ## 26. August 27, 2018
 *Release-tag: v4.7*
 Changes: Added xda support page (OP5T). Fully re-made Advanced Charge Control Interface logic to avoid issues in other devices. LED: add a switch to disable charging light (Moto G 2015). Re-added faux sound with per-channel headphone gain support. Add device specific links for Moto G 2015. 
