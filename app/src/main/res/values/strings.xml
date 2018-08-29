@@ -779,7 +779,7 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>
-    <string name="manual_flashing">Install later</string>
+    <string name="manual_flashing">Install later</string>>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>
     <string name="restoring">Restoring</string>
@@ -804,9 +804,14 @@
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="website">Website</string>
     <string name="website_summary">Visit SmartPack homepage</string>
-    <string name="downloads">Download</string>
+    <string name="downloads">Download and Flash</string>
     <string name="downloads_summary">Get latest SmartPack-Kernel for your device</string>
     <string name="reboot_recovery_summary">Reboot and manually flash new Kernel</string>
+    <string name="install_now">Install Now</string>
+    <string name="flash_message">\nPlease proceed only if the download was successful\n</string>
+    <string name="reset_settings">Reset Settings</string>
+    <string name="reset_settings_summary">Warning! App settings will be completely erased</string>
+    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
