@@ -20,6 +20,7 @@
     <string name="press_back_again_exit">Press back again to exit</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
 
     <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
@@ -811,7 +812,9 @@
     <string name="flash_message">\nPlease proceed only if the download was successful\n</string>
     <string name="reset_settings">Reset Settings</string>
     <string name="reset_settings_summary">Warning! App settings will be completely erased</string>
-    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
+    <string name="reset_settings_message">\nApp settings will be completely erased.\n\Are you sure?\n\n</string>
+    <string name="reboot_message">App settings are completely erased. To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
+    <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n\n</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>

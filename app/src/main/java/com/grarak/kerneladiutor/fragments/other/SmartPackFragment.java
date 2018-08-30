@@ -260,19 +260,27 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onClick(RecyclerViewItem item) {
             AlertDialog.Builder resetsettings = new AlertDialog.Builder(getActivity());
-            resetsettings.setTitle(getString(R.string.reboot));
-            resetsettings.setMessage(getString(R.string.reboot_message));
+            resetsettings.setTitle(getString(R.string.warning));
+            resetsettings.setMessage(getString(R.string.reset_settings_message));
             resetsettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
-                RootUtils.runCommand("pm clear com.smartpack.kernelmanager");
             });
-            resetsettings.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
-                RootUtils.runCommand("pm clear com.smartpack.kernelmanager && reboot");
-            });
+            resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+            RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
+		RootUtils.runCommand("pm clear com.smartpack.kernelmanager");
+
+		AlertDialog.Builder reboot = new AlertDialog.Builder(getActivity());
+		reboot.setTitle(getString(R.string.reboot));
+		reboot.setMessage(getString(R.string.reboot_message));
+		reboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+		});
+		reboot.setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
+		        RootUtils.runCommand("reboot");
+			});
+		reboot.show();
+		});
             resetsettings.show();
             }
-        });
+            });
 
 	DescriptionView recoveryreboot = new DescriptionView();
 	recoveryreboot.setTitle(getString(R.string.reboot_recovery));
@@ -280,7 +288,15 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	recoveryreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+            AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+            flash.setTitle(getString(R.string.sure_question));
+            flash.setMessage(getString(R.string.recovery_message));
+            flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+            });
+            flash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
 		RootUtils.runCommand("reboot recovery");
+            });
+            flash.show();
             }
 	});
 
