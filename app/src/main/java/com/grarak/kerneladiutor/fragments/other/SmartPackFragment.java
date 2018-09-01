@@ -270,7 +270,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             reboot.setMessage(getString(R.string.reboot_message));
             reboot.setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
 		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
-		RootUtils.runCommand("pm clear com.smartpack.kernelmanager");
+		RootUtils.runCommand("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
             });
             reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
 		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
