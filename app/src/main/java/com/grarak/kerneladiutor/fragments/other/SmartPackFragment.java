@@ -265,22 +265,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
             resetsettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-            RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
+            AlertDialog.Builder reboot = new AlertDialog.Builder(getActivity());
+            reboot.setTitle(getString(R.string.reboot));
+            reboot.setMessage(getString(R.string.reboot_message));
+            reboot.setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
 		RootUtils.runCommand("pm clear com.smartpack.kernelmanager");
-
-		AlertDialog.Builder reboot = new AlertDialog.Builder(getActivity());
-		reboot.setTitle(getString(R.string.reboot));
-		reboot.setMessage(getString(R.string.reboot_message));
-		reboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-		});
-		reboot.setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
-		        RootUtils.runCommand("reboot");
-			});
+            });
+            reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
+		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
+		RootUtils.runCommand("pm clear com.smartpack.kernelmanager && reboot");
+		    });
 		reboot.show();
 		});
             resetsettings.show();
             }
-            });
+	});
 
 	DescriptionView recoveryreboot = new DescriptionView();
 	recoveryreboot.setTitle(getString(R.string.reboot_recovery));

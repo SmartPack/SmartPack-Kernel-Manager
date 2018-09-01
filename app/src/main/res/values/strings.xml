@@ -773,6 +773,8 @@
     <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
     <string name="reboot">Reboot</string>
+    <string name="reboot_now">Reboot Now</string>
+    <string name="reboot_later">Reboot Later</string>
     <string name="reboot_soft">Soft Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
@@ -813,7 +815,7 @@
     <string name="reset_settings">Reset Settings</string>
     <string name="reset_settings_summary">Warning! App settings will be completely erased</string>
     <string name="reset_settings_message">\nApp settings will be completely erased.\n\Are you sure?\n\n</string>
-    <string name="reboot_message">App settings are completely erased. To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
+    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
     <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n\n</string>
 
     <!-- App Updater -->
