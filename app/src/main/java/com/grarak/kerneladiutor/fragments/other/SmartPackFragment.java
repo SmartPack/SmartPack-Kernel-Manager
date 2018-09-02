@@ -219,20 +219,35 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			});
 			flash.show();
 		} else if (Device.isOnePlusdumpling()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-dumpling.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true", getActivity());
+		            if (Device.isOnePlusOpenBeta()) {
+				RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-dumpling-OB.zip");
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true", getActivity());
+				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+				flash.setTitle(getString(R.string.warning));
+				flash.setMessage(getString(R.string.flash_message));
+				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+				});
+				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
+					RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-dumpling-OB.zip > /cache/recovery/command");
+					RootUtils.runCommand("reboot recovery");
+				});
+				flash.show();
+		            } else {
+				RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-dumpling.zip");
+				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true", getActivity());
+				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+				flash.setTitle(getString(R.string.warning));
+				flash.setMessage(getString(R.string.flash_message));
+				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+				});
+				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
+					RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-dumpling.zip > /cache/recovery/command");
+					RootUtils.runCommand("reboot recovery");
+				});
+				flash.show();
+		            }
 			}
-			AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-			flash.setTitle(getString(R.string.warning));
-			flash.setMessage(getString(R.string.flash_message));
-			flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-			});
-			flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-		            RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-dumpling.zip > /cache/recovery/command");
-		            RootUtils.runCommand("reboot recovery");
-			});
-			flash.show();
 		} else if (Device.isMotoG3()) {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-osprey.zip");
 			if (Build.VERSION.SDK_INT == 27) {
