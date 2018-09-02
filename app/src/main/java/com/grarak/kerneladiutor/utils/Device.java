@@ -158,7 +158,8 @@ public class Device {
                 "ro.slim.version",
                 "ro.mod.version",
                 "ro.lineage.version",
-                "ro.rr.version"
+                "ro.rr.version",
+                "ro.oxygen.version"
         };
 
         private String mROMVersion;
