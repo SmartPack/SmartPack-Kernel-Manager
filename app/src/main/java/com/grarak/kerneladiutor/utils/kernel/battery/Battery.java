@@ -251,16 +251,8 @@ public class Battery {
         return Utils.readFile(CHARGE_STATUS).equals("Discharging");
     }
 
-    public static boolean accharge() {
-        return Utils.readFile(CHARGE_SOURCE).equals("3");
-    }
-
-    public static boolean usbcharge() {
-        return Utils.readFile(CHARGE_SOURCE).equals("4");
-    }
-
-    public static boolean wlcharge() {
-        return Utils.readFile(CHARGE_SOURCE).equals("10");
+    public static int ChargingType() {
+        return Utils.strToInt(Utils.readFile(CHARGE_SOURCE));
     }
 
     public void setchargeLevelAC(int value, Context context) {

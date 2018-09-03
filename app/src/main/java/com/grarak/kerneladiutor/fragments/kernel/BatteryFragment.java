@@ -378,48 +378,35 @@ public class BatteryFragment extends RecyclerViewFragment {
             mVoltage.setStat(mBatteryVoltage + " mV");
         }
         if (mChargingStatus != null) {
-		if (Device.isOnePlusdumpling()) {
-		    float chargingrate = ((mBattery.getchargingstatus() / 1000) * -1);
-		    if (mBattery.isDischarging()){
+		if (mBattery.isDischarging()){
 			mChargingStatus.setTitle("Charge Rate");
 			mChargingStatus.setStat(0.0 + (" mA"));
-		    } else {
+		} else if (mBattery.getchargingstatus() >= 10000) {
+			float chargingrate = (mBattery.getchargingstatus() / 1000);
 			mChargingStatus.setTitle("Charge Rate");
-			 mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-		    }
-		} else if (Device.isMotoG3()) {
-		    float chargingrate = (mBattery.getchargingstatus() / 1000);
-		    if (mBattery.isDischarging()){
+			mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+		} else if (mBattery.getchargingstatus() <= 0) {
+			float chargingrate = ((mBattery.getchargingstatus() / 1000) * -1);
 			mChargingStatus.setTitle("Charge Rate");
-			mChargingStatus.setStat(0.0 + (" mA"));
-		    } else {
-			mChargingStatus.setTitle("Charge Rate");
-			 mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-		    }
+			mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 		} else {
-		    float chargingrate = mBattery.getchargingstatus();
-		    if (mBattery.isDischarging()){
-			mChargingStatus.setTitle("Charge Rate");
-			mChargingStatus.setStat(0.0 + (" mA"));
-		    }
-		    else {
-			if (mBattery.accharge()){
-		            mChargingStatus.setTitle("Charge Rate (AC)");
-		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-			} else if (mBattery.usbcharge()){
-		            mChargingStatus.setTitle("Charge Rate (USB)");
-		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-			} else if (mBattery.wlcharge()){
-		            mChargingStatus.setTitle("Charge Rate (Wireless)");
-		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			float chargingrate = mBattery.getchargingstatus();
+			if (mBattery.ChargingType() == 3) {
+				mChargingStatus.setTitle("Charge Rate (AC)");
+				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			} else if (mBattery.ChargingType() == 4) {
+				mChargingStatus.setTitle("Charge Rate (USB)");
+				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+			} else if (mBattery.ChargingType() == 10) {
+				mChargingStatus.setTitle("Charge Rate (Wireless)");
+				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
 			} else {
-		            mChargingStatus.setTitle("Charge Rate");
-		            mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+				mChargingStatus.setTitle("Charge Rate");
+				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+				}
 			}
-		    }
 		}
-        }
-    }
+	}
 
     @Override
     public void onResume() {
