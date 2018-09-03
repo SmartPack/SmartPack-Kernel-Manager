@@ -140,7 +140,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         TitleView title = new TitleView();
         title.setText(getString(R.string.acci));
 
-	if ((mBattery.hasForceFastCharge()) && (mBattery.hasFastChargeControlAC()) && (mBattery.hasFastChargeControlUSB()) && (mBattery.hasFastChargeControlWIRELESS())) {
+	if ((mBattery.hasForceFastCharge()) && (mBattery.hasFastChargeControlAC()) && (mBattery.hasFastChargeControlUSB())) {
             // Initialize Advanced Charge Control Interface 
             SelectView forceFastCharge = new SelectView();
             forceFastCharge.setTitle(getString(R.string.fast_charge));
