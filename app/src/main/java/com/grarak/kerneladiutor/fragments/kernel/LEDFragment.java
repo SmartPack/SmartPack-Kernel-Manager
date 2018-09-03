@@ -110,7 +110,7 @@ public class LEDFragment extends RecyclerViewFragment {
     private void displaybacklightInit(List<RecyclerViewItem> items) {
             SeekBarView displaybacklight = new SeekBarView();
             displaybacklight.setTitle(getString(R.string.display_backlight));
-            if (Device.isOnePlusdumpling()) {
+            if (mLED.getdisplaybacklight() >= 256) {
 		displaybacklight.setMax(1275);
 		displaybacklight.setOffset(25);
 		displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
