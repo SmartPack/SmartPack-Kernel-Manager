@@ -52,6 +52,9 @@ public class LEDFragment extends RecyclerViewFragment {
         if (mLED.hasdisplaybacklight()) {
             displaybacklightInit(items);
         }
+        if (mLED.hasBacklightMin()) {
+            BacklightMinInit(items);
+        }
         if (mLED.hascharginglight()) {
             charginglightInit(items);
         }
@@ -141,6 +144,40 @@ public class LEDFragment extends RecyclerViewFragment {
             }
 
             items.add(displaybacklight);
+    }
+
+    private void BacklightMinInit(List<RecyclerViewItem> items) {
+	SeekBarView BacklightMin = new SeekBarView();
+	BacklightMin.setTitle(getString(R.string.backlight_min));
+	if (mLED.getdisplaybacklight() >= 256) {
+            BacklightMin.setMax(1275);
+            BacklightMin.setOffset(25);
+            BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
+            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setBacklightMin((position * 25), getActivity());
+		}
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+            items.add(BacklightMin);
+	} else {
+            BacklightMin.setMax(255);
+            BacklightMin.setOffset(5);
+            BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
+            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setBacklightMin((position * 5), getActivity());
+		}
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+            items.add(BacklightMin);
+	}
     }
 
     private void charginglightInit(List<RecyclerViewItem> items) {

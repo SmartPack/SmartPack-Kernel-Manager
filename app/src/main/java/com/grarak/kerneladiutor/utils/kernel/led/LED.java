@@ -51,6 +51,7 @@ public class LED {
     private static final String GREEN_RATE = "/sys/class/leds/green/rate";
 
     private static final String DISPLAY_BACKLIGHT = "/sys/class/leds/lcd-backlight/max_brightness";
+    private static final String BACKLIGHT_MIN = "/sys/module/mdss_fb/parameters/backlight_min";
     private static final String CHARGING_LIGHT = "/sys/class/leds/charging/max_brightness";
 
     private static final String LED_FADE = "/sys/class/sec/led/led_fade";
@@ -162,6 +163,18 @@ public class LED {
         return Utils.existFile(DISPLAY_BACKLIGHT);
     }
 
+    public void setBacklightMin(int value, Context context) {
+        run(Control.write(String.valueOf(value), BACKLIGHT_MIN), BACKLIGHT_MIN, context);
+    }
+
+    public static int getBacklightMin() {
+        return Utils.strToInt(Utils.readFile(BACKLIGHT_MIN));
+    }
+
+    public static boolean hasBacklightMin() {
+        return Utils.existFile(BACKLIGHT_MIN);
+    }
+
     public void enablescharginglight(boolean enable, Context context) {
         run(Control.write(enable ? "0" : "255", CHARGING_LIGHT), CHARGING_LIGHT, context);
     }
@@ -175,7 +188,7 @@ public class LED {
     }
 
     public boolean supported() {
-        return hasFade() || hasLEDFade() || hasdisplaybacklight() ||  hascharginglight() || hasIntensity() || hasSpeed() || Sec.supported();
+        return hasFade() || hasLEDFade() || hasdisplaybacklight() || hasBacklightMin() || hascharginglight() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {
