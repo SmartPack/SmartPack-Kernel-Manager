@@ -1,5 +1,9 @@
 # Change-logs
 
+## 28. September 05, 2018
+*Release-tag: v4.9*
+Changes: SmartPack: add alert messages to Reboot and Reset options. OP5T: add OnePlus version info in Device page and ad support to download Open Beta kernels. Add an option to adjust minimum backlight (brightness). Re-done live charging status and maximum display backlight so that it will work on other devices as well. Misc changes.
+
 ## 27. August 29, 2018
 *Release-tag: v4.8*
 Changes: Added xda support page (Moto G 2015). Update vibration intensity for OP5T. Add an option to directly flash the new kernel (along with download button). Add an option to reset app settings (SmartPack page). Restrict SmartPack specific stuff to SDK >= 27 (Oreo). Misc changes.
