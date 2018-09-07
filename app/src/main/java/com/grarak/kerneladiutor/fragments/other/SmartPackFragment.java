@@ -99,7 +99,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			if (Device.isSamsungmsm8974()) {
 				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
 			} else if (Device.isOnePlusdumpling()) {
-				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
+				if (Device.isOnePlusOpenBeta()) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo_Beta/change-logs.md", getActivity());
+				} else {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
+				}
 			} else if (Device.isMotoG3()) {
 				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
 			}
