@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.BluPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.CoreCtl;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.IntelliPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.LazyPlug;
+import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MSMSleeper;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MakoHotplug;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -75,6 +76,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         }
         if (LazyPlug.supported()) {
             lazyPlugInit(items);
+        }
+        if (MSMSleeper.supported()) {
+            MSMSleeperInit(items);
         }
         if (BluPlug.supported()) {
             bluPlugInit(items);
@@ -543,6 +547,121 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (lazyplug.size() > 0) {
             items.addAll(lazyplug);
+        }
+    }
+
+    private void MSMSleeperInit(List<RecyclerViewItem> items) {
+        List<RecyclerViewItem> msmsleeper = new ArrayList<>();
+
+        if (MSMSleeper.hasEnable()) {
+            SwitchView enable = new SwitchView();
+            enable.setTitle(getString(R.string.msm_sleeper));
+            enable.setSummary(getString(R.string.msm_sleeper_summary));
+            enable.setChecked(MSMSleeper.isEnabled());
+            enable.addOnSwitchListener((switchView, isChecked)
+                    -> MSMSleeper.enable(isChecked, getActivity()));
+
+            msmsleeper.add(enable);
+            mEnableViews.add(enable);
+        }
+
+        if (MSMSleeper.isEnabled()) {
+		if (MSMSleeper.hasMaxOnline()) {
+		    SeekBarView MaxOnline = new SeekBarView();
+		    MaxOnline.setTitle(getString(R.string.max_cpu_online));
+		    MaxOnline.setMax(mCPUFreq.getCpuCount());
+		    MaxOnline.setMin(2);
+		    MaxOnline.setProgress(MSMSleeper.getMaxOnline() - 2);
+		    MaxOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            MSMSleeper.setMaxOnline(position + 2, getActivity());
+		        }
+		    });
+
+		    msmsleeper.add(MaxOnline);
+		}
+		if (MSMSleeper.hasUpCountMax()) {
+		    SeekBarView UpCountMax = new SeekBarView();
+		    UpCountMax.setTitle(getString(R.string.max_up_count));
+		    UpCountMax.setMax(40);
+		    UpCountMax.setProgress(MSMSleeper.getUpCountMax());
+		    UpCountMax.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            MSMSleeper.setUpCountMax(position, getActivity());
+		        }
+		    });
+
+		    msmsleeper.add(UpCountMax);
+		}
+		if (MSMSleeper.hasDownCountMax()) {
+		    SeekBarView DownCountMax = new SeekBarView();
+		    DownCountMax.setTitle(getString(R.string.max_down_count));
+		    DownCountMax.setMax(40);
+		    DownCountMax.setProgress(MSMSleeper.getDownCountMax());
+		    DownCountMax.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            MSMSleeper.setDownCountMax(position, getActivity());
+		        }
+		    });
+
+		    msmsleeper.add(DownCountMax);
+		}
+		if (MSMSleeper.hasSusMaxOnline()) {
+		    SeekBarView SusMaxOnline = new SeekBarView();
+		    SusMaxOnline.setTitle(getString(R.string.suspend_max_online));
+		    SusMaxOnline.setMax(mCPUFreq.getCpuCount());
+		    SusMaxOnline.setMin(1);
+		    SusMaxOnline.setProgress(MSMSleeper.getSusMaxOnline() - 1);
+		    SusMaxOnline.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            MSMSleeper.setSusMaxOnline(position + 1, getActivity());
+		        }
+		    });
+
+		    msmsleeper.add(SusMaxOnline);
+		}
+		if (MSMSleeper.hasUpThreshold()) {
+		    SeekBarView UpThreshold = new SeekBarView();
+		    UpThreshold.setTitle(getString(R.string.up_threshold));
+		    UpThreshold.setMax(100);
+		    UpThreshold.setProgress(MSMSleeper.getUpThreshold());
+		    UpThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		        @Override
+		        public void onMove(SeekBarView seekBarView, int position, String value) {
+		        }
+
+		        @Override
+		        public void onStop(SeekBarView seekBarView, int position, String value) {
+		            MSMSleeper.setUpThreshold(position, getActivity());
+		        }
+		    });
+
+		    msmsleeper.add(UpThreshold);
+		}
+        }
+
+        if (msmsleeper.size() > 0) {
+            items.addAll(msmsleeper);
         }
     }
 

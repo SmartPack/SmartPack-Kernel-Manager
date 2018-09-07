@@ -304,6 +304,11 @@
     <string name="offline_delay_summary">Time before turning off a CPU.</string>
     <string name="online_delay">Online Delay</string>
     <string name="online_delay_summary">Time before turning on a CPU.</string>
+    <string name="msm_sleeper">MSM Sleeper</string>
+    <string name="msm_sleeper_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by flar2.</string>
+    <string name="max_down_count">Offline Core Threshold</string>
+    <string name="max_up_count">Online Core Threshold</string>
+    <string name="suspend_max_online">Max Online Cores during suspend</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
