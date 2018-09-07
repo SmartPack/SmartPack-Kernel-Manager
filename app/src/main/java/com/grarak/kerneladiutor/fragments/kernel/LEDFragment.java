@@ -111,13 +111,14 @@ public class LEDFragment extends RecyclerViewFragment {
     }
 
     private void displaybacklightInit(List<RecyclerViewItem> items) {
-            SeekBarView displaybacklight = new SeekBarView();
-            displaybacklight.setTitle(getString(R.string.display_backlight));
-            if (mLED.getdisplaybacklight() >= 256) {
-		displaybacklight.setMax(1275);
-		displaybacklight.setOffset(25);
-		displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
-		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+	SeekBarView displaybacklight = new SeekBarView();
+	displaybacklight.setTitle(getString(R.string.display_backlight));
+	if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+            // Increase maximum range (Max: 1275; Offset: 25)
+            displaybacklight.setMax(1275);
+            displaybacklight.setOffset(25);
+            displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
+            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
 			mLED.setdisplaybacklight((position * 25), getActivity());
@@ -126,12 +127,13 @@ public class LEDFragment extends RecyclerViewFragment {
 		        @Override
 		        public void onMove(SeekBarView seekBarView, int position, String value) {
 		        }
-		});
-            } else {
-		displaybacklight.setMax(255);
-		displaybacklight.setOffset(5);
-		displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
-		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            });
+	} else {
+	// Set normal range (Max: 255; Offset: 5)
+            displaybacklight.setMax(255);
+            displaybacklight.setOffset(5);
+            displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
+            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
 			mLED.setdisplaybacklight((position * 5), getActivity());
@@ -140,16 +142,17 @@ public class LEDFragment extends RecyclerViewFragment {
 		        @Override
 		        public void onMove(SeekBarView seekBarView, int position, String value) {
 		        }
-		});
-            }
+            });
+	}
 
-            items.add(displaybacklight);
+	items.add(displaybacklight);
     }
 
     private void BacklightMinInit(List<RecyclerViewItem> items) {
 	SeekBarView BacklightMin = new SeekBarView();
 	BacklightMin.setTitle(getString(R.string.backlight_min));
-	if (mLED.getdisplaybacklight() >= 256) {
+	if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+            // Based on the current Maximum Backlight of the display, increase maximum range, if necessary (Max: 1275; Offset: 25)
             BacklightMin.setMax(1275);
             BacklightMin.setOffset(25);
             BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
@@ -164,6 +167,7 @@ public class LEDFragment extends RecyclerViewFragment {
             });
             items.add(BacklightMin);
 	} else {
+            // Set normal range (Max: 255; Offset: 5)
             BacklightMin.setMax(255);
             BacklightMin.setOffset(5);
             BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
@@ -196,7 +200,7 @@ public class LEDFragment extends RecyclerViewFragment {
 
     private void LEDFadeInit(List<RecyclerViewItem> items) {
 	SwitchView LEDFade = new SwitchView();
-	LEDFade.setTitle(getString(R.string.led_fade));
+	LEDFade.setTitle(getString(R.string.fade));
 	LEDFade.setSummary(getString(R.string.fade_summary));
 	LEDFade.setChecked(mLED.isLEDFadeEnabled());
 	LEDFade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
