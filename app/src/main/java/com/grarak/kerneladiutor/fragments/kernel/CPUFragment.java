@@ -109,14 +109,8 @@ public class CPUFragment extends RecyclerViewFragment {
         if (Misc.hasCpuQuiet()) {
             cpuQuietInit(items);
         }
-        if (mCPUBoost.supported()) {
+        if (mCPUBoost.supported() || Misc.hascpuinputboost() || Misc.hasCpuTouchBoost()) {
             cpuBoostInit(items);
-        }
-        if (Misc.hasCpuTouchBoost()) {
-            cpuTouchBoostInit(items);
-        }
-        if (Misc.hascpuinputboost()) {
-            cpuiboostInit(items);
         }
     }
 
@@ -446,10 +440,8 @@ public class CPUFragment extends RecyclerViewFragment {
     }
 
     private void cpuBoostInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> cpuBoost = new ArrayList<>();
-
-        TitleView title = new TitleView();
-        title.setText(getString(R.string.cpu_boost));
+        CardView cpuBoost = new CardView(getActivity());
+        cpuBoost.setTitle(getString(R.string.cpu_boost));
 
         if (mCPUBoost.hasEnable()) {
             SwitchView enable = new SwitchView();
@@ -462,7 +454,59 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(enable);
+            cpuBoost.addItem(enable);
+        }
+
+        if (Misc.hasCpuTouchBoost()) {
+            SwitchView touchBoost = new SwitchView();
+            touchBoost.setTitle(getString(R.string.touch_boost));
+            touchBoost.setSummary(getString(R.string.touch_boost_summary));
+            touchBoost.setChecked(Misc.isCpuTouchBoostEnabled());
+            touchBoost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enableCpuTouchBoost(isChecked, getActivity());
+                }
+            });
+
+            cpuBoost.addItem(touchBoost);
+        }
+
+        if (Misc.hascpuinputboost()) {
+            SwitchView cpuinputboost = new SwitchView();
+            cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
+            cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
+            cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
+            cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    Misc.enablecpuinputboost(isChecked, getActivity());
+                }
+            });
+
+            cpuBoost.addItem(cpuinputboost);
+        }
+
+        if (Misc.hascpuiboostduration()) {
+            SeekBarView cpuiboostduration = new SeekBarView();
+            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
+            cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
+            cpuiboostduration.setUnit(getString(R.string.ms));
+            cpuiboostduration.setMax(5000);
+            cpuiboostduration.setOffset(10);
+            cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
+            cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    Misc.setcpuiboostduration((position * 10), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            cpuBoost.addItem(cpuiboostduration);
         }
 
         if (mCPUBoost.hasCpuBoostDebugMask()) {
@@ -477,7 +521,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(debugMask);
+            cpuBoost.addItem(debugMask);
         }
 
         if (mCPUBoost.hasCpuBoostMs()) {
@@ -499,7 +543,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(ms);
+            cpuBoost.addItem(ms);
         }
 
         if (mCPUBoost.hasCpuBoostSyncThreshold() && mCPUFreq.getFreqs() != null) {
@@ -520,7 +564,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(syncThreshold);
+            cpuBoost.addItem(syncThreshold);
         }
 
         if (mCPUBoost.hasCpuBoostInputMs()) {
@@ -542,7 +586,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(inputMs);
+            cpuBoost.addItem(inputMs);
         }
 
         if (mCPUBoost.hasCpuBoostInputFreq()) {
@@ -571,7 +615,7 @@ public class CPUFragment extends RecyclerViewFragment {
                     }
                 });
 
-                cpuBoost.add(inputCard);
+                cpuBoost.addItem(inputCard);
             }
         }
 
@@ -587,7 +631,7 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(wakeup);
+            cpuBoost.addItem(wakeup);
         }
 
         if (mCPUBoost.hasCpuBoostHotplug()) {
@@ -602,73 +646,12 @@ public class CPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            cpuBoost.add(hotplug);
+            cpuBoost.addItem(hotplug);
         }
 
-        if (cpuBoost.size() > 0) {
-            items.add(title);
-            items.addAll(cpuBoost);
-        }
-    }
-
-    private void cpuTouchBoostInit(List<RecyclerViewItem> items) {
-        SwitchView touchBoost = new SwitchView();
-        touchBoost.setTitle(getString(R.string.touch_boost));
-        touchBoost.setSummary(getString(R.string.touch_boost_summary));
-        touchBoost.setChecked(Misc.isCpuTouchBoostEnabled());
-        touchBoost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                Misc.enableCpuTouchBoost(isChecked, getActivity());
-            }
-        });
-
-        items.add(touchBoost);
-    }
-
-    private void cpuiboostInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> cpuiboost = new ArrayList<>();
-
-        if (Misc.hascpuinputboost()) {
-            SwitchView cpuinputboost = new SwitchView();
-            cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
-            cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
-            cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
-            cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    Misc.enablecpuinputboost(isChecked, getActivity());
-                }
-            });
-
-            cpuiboost.add(cpuinputboost);
-        }
-        if (Misc.iscpuinputboostEnabled()) {
-		if (Misc.hascpuiboostduration()) {
-		    SeekBarView cpuiboostduration = new SeekBarView();
-		    cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
-		    cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
-		    cpuiboostduration.setUnit(getString(R.string.ms));
-		    cpuiboostduration.setMax(5000);
-		    cpuiboostduration.setOffset(10);
-		    cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
-		    cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		        @Override
-		        public void onStop(SeekBarView seekBarView, int position, String value) {
-		            Misc.setcpuiboostduration((position * 10), getActivity());
-		        }
-
-		        @Override
-		        public void onMove(SeekBarView seekBarView, int position, String value) {
-		        }
-		    });
-
-		    cpuiboost.add(cpuiboostduration);
-		}
-        }
-        if (cpuiboost.size() > 0) {
-            items.addAll(cpuiboost);
-        }
+	if (cpuBoost.size() > 0) {
+            items.add(cpuBoost);
+	}
     }
 
     private float[] mCPUUsages;
