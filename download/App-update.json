@@ -1,12 +1,11 @@
 {
-  "latestVersion": "4.9-20180905",
+  "latestVersion": "4.10-20180908",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: add alert messages to Reboot and Reset options.",
-    "- OP5T: add OnePlus version info in Device page and ad support to download Open Beta kernels.",
-    "- Add an option to adjust minimum backlight (brightness).",
-    "- Re-done live charging status and maximum display backlight so that it will work on other devices as well.",
+    "- Add full control to MSM Sleeper.",
+    "- Add all the CPU boost functions (CPU Boost, CPU Input Boost & Touch Boost) into a single card.",
+    "- Update Gradle build dependencies.",
     "- Misc changes." 
   ]
 }

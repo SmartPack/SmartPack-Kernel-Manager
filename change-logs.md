@@ -1,5 +1,9 @@
 # Change-logs
 
+## 29. September 08, 2018
+*Release-tag: v4.10*
+Changes: Add full control to MSM Sleeper. Update Gradle build dependencies. Add all the CPU boost functions (CPU Boost, CPU Input Boost & Touch Boost) into a single card. Misc changes.
+
 ## 28. September 05, 2018
 *Release-tag: v4.9*
 Changes: SmartPack: add alert messages to Reboot and Reset options. OP5T: add OnePlus version info in Device page and ad support to download Open Beta kernels. Add an option to adjust minimum backlight (brightness). Re-done live charging status and maximum display backlight so that it will work on other devices as well. Misc changes.
