@@ -206,8 +206,8 @@
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>
     <string name="cpu_input_boost_summary">Enable CPU Input Boost developed by Sultanxda.</string>
-    <string name="cpuiboost_duration">Input Boost duration (ms)</string>
-    <string name="cpuiboost_duration_summary">Select Input Boost duration</string>
+    <string name="cpuiboost_duration">Input Boost Duration</string>
+    <string name="cpuiboost_duration_summary">Select CPU Input Boost duration</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>
