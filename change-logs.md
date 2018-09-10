@@ -1,5 +1,9 @@
 # Change-logs
 
+## 30. September 10, 2018
+*Release-tag: v5.0*
+Changes: CPU Boost: add control over CPU Input Boost Freq. Overall UI enhancements. SmartPack: Improve auto-flash. appupdater: fetch updates from upstream repo.
+
 ## 29. September 08, 2018
 *Release-tag: v4.10*
 Changes: Add full control to MSM Sleeper. Update Gradle build dependencies. Add all the CPU boost functions (CPU Boost, CPU Input Boost & Touch Boost) into a single card. Misc changes.

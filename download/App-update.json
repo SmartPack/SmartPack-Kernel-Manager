@@ -1,11 +1,11 @@
 {
-  "latestVersion": "4.10-20180908",
+  "latestVersion": "5.0-20180910",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Add full control to MSM Sleeper.",
-    "- Add all the CPU boost functions (CPU Boost, CPU Input Boost & Touch Boost) into a single card.",
-    "- Update Gradle build dependencies.",
-    "- Misc changes." 
+    "- CPU Boost: add control over CPU Input Boost Freq.",
+    "- Overall UI enhancements.",
+    "- SmartPack: Improve kernel auto-flash.",
+    "- appupdater: fetch updates from upstream repo." 
   ]
 }
