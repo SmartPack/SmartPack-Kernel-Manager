@@ -81,19 +81,22 @@ class UtilsLibrary {
     }
 
     static Boolean isUpdateAvailable(Update installedVersion, Update latestVersion) {
-        Boolean res = false;
-
         if (latestVersion.getLatestVersionCode() != null && latestVersion.getLatestVersionCode() > 0) {
             return latestVersion.getLatestVersionCode() > installedVersion.getLatestVersionCode();
         } else {
             if (!TextUtils.equals(installedVersion.getLatestVersion(), "0.0.0.0") && !TextUtils.equals(latestVersion.getLatestVersion(), "0.0.0.0")) {
-                Version installed = new Version(installedVersion.getLatestVersion());
-                Version latest = new Version(latestVersion.getLatestVersion());
-                res = installed.compareTo(latest) < 0;
-            }
+                try
+                {
+                    final Version installed = new Version(installedVersion.getLatestVersion());
+                    final Version latest = new Version(latestVersion.getLatestVersion());
+                    return installed.compareTo(latest) < 0;
+                } catch (Exception e)
+                {
+                    e.printStackTrace();
+                    return false;
+                }
+            } else return false;
         }
-
-        return res;
     }
 
     static Boolean isStringAVersion(String version) {
@@ -232,8 +235,9 @@ class UtilsLibrary {
                     if (splitGitHub.length > 1) {
                         splitGitHub = splitGitHub[1].split("(\")");
                         version = splitGitHub[0].trim();
-                        if (version.contains("v")) { // Some repo uses vX.X.X
-                            splitGitHub = version.split("(v)");
+                        if (version.startsWith("v"))
+                        { // Some repo uses vX.X.X
+                            splitGitHub = version.split("(v)", 2);
                             version = splitGitHub[1].trim();
                         }
                     }
