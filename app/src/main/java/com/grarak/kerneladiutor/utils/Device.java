@@ -389,6 +389,12 @@ public class Device {
         return Utils.readFile(SMARTPACK_VERSION);
     }
 
+    private static final String RECOVERY = "/cache/recovery/";
+
+    public static boolean hasRecovery() {
+        return Utils.existFile(RECOVERY);
+    }
+
     public static String getArchitecture() {
         return RootUtils.runCommand("uname -m");
     }

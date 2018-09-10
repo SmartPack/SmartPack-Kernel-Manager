@@ -817,6 +817,7 @@
     <string name="reboot_recovery_summary">Reboot and manually flash new Kernel</string>
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nPlease proceed only if the download was successful\n</string>
+    <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
     <string name="reset_settings">Reset Settings</string>
     <string name="reset_settings_summary">Warning! App settings will be completely erased</string>
     <string name="reset_settings_message">\nApp settings will be completely erased.\n\Are you sure?\n\n</string>
