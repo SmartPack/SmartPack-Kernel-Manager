@@ -91,6 +91,24 @@ public class Misc {
         return Utils.existFile(CPU_INPUT_BOOST_DURATION);
     }
 
+    public static void setcpuiboostfreq(String value1, String value2, Context context) {
+        String value = value1 + " " + value2;
+        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_FREQ), CPU_INPUT_BOOST_FREQ, context);
+    }
+
+    public static List<String> getcpuiboostfreq() {
+        String freqs[] = Utils.readFile(CPU_INPUT_BOOST_FREQ).split(" ");
+        List<String> ibfreqs = new ArrayList<>();
+        for (String freq : freqs) {
+            ibfreqs.add(freq.trim());
+        }
+        return ibfreqs;
+    }
+
+    public static boolean hascpuiboostfreq() {
+        return Utils.existFile(CPU_INPUT_BOOST_FREQ);
+    }
+
     public static void setCpuQuietGovernor(String value, Context context) {
         run(Control.write(value, CPU_QUIET_CURRENT_GOVERNOR), CPU_QUIET_CURRENT_GOVERNOR, context);
     }
