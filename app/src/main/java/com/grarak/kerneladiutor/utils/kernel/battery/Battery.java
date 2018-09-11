@@ -74,6 +74,7 @@ public class Battery {
     private static final String CHARGING_CURRENT = "/sys/class/power_supply/battery/current_now";
     private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
     private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
+    private static final String CHARGE_TYPE = "/sys/class/power_supply/usb/type";
 
     private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
 
@@ -253,6 +254,18 @@ public class Battery {
 
     public static int ChargingType() {
         return Utils.strToInt(Utils.readFile(CHARGE_SOURCE));
+    }
+
+    public static boolean isDASHCharging() {
+        return Utils.readFile(CHARGE_TYPE).equals("DASH");
+    }
+
+    public static boolean isACCharging() {
+        return Utils.readFile(CHARGE_TYPE).equals("USB_DCP");
+    }
+
+    public static boolean isUSBCharging() {
+        return Utils.readFile(CHARGE_TYPE).equals("USB");
     }
 
     public void setchargeLevelAC(int value, Context context) {
