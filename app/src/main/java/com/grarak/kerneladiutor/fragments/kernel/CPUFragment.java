@@ -32,6 +32,7 @@ import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
+import com.grarak.kerneladiutor.utils.kernel.cpu.CPUInputBoost;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpu.Misc;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
@@ -111,7 +112,7 @@ public class CPUFragment extends RecyclerViewFragment {
         if (Misc.hasCpuQuiet()) {
             cpuQuietInit(items);
         }
-        if (mCPUBoost.supported() || Misc.hascpuinputboost() || Misc.hasCpuTouchBoost()) {
+        if (mCPUBoost.supported() || CPUInputBoost.supported() || Misc.hasCpuTouchBoost()) {
             cpuBoostInit(items);
         }
     }
@@ -554,32 +555,32 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(touchBoost);
         }
 
-        if (Misc.hascpuinputboost()) {
+        if (CPUInputBoost.hascpuinputboost()) {
             SwitchView cpuinputboost = new SwitchView();
             cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
             cpuinputboost.setSummary(getString(R.string.cpu_input_boost_summary));
-            cpuinputboost.setChecked(Misc.iscpuinputboostEnabled());
+            cpuinputboost.setChecked(CPUInputBoost.iscpuinputboostEnabled());
             cpuinputboost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
-			Misc.enablecpuinputboost(isChecked, getActivity());
+			CPUInputBoost.enablecpuinputboost(isChecked, getActivity());
 		}
             });
             cpuBoost.addItem(cpuinputboost);
 	}
 
-	if (Misc.hascpuiboostduration()) { 
+	if (CPUInputBoost.hascpuiboostduration()) { 
             SeekBarView cpuiboostduration = new SeekBarView();
             cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
             cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
             cpuiboostduration.setUnit(" ms");
             cpuiboostduration.setMax(5000);
             cpuiboostduration.setOffset(10);
-            cpuiboostduration.setProgress(Misc.getcpuiboostduration() / 10 );
+            cpuiboostduration.setProgress(CPUInputBoost.getcpuiboostduration() / 10 );
             cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
-			Misc.setcpuiboostduration((position * 10), getActivity());
+			CPUInputBoost.setcpuiboostduration((position * 10), getActivity());
 		}
 
 		@Override
@@ -590,8 +591,8 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(cpuiboostduration);
 	}
 
-	if (Misc.hascpuiboostfreq()) { 
-            List<String> freqs = Misc.getcpuiboostfreq();
+	if (CPUInputBoost.hascpuiboostfreq()) { 
+            List<String> freqs = CPUInputBoost.getcpuiboostfreq();
             final String[] lowFreq = {freqs.get(0)};
             final String[] highFreq = {freqs.get(1)};
 
@@ -604,7 +605,7 @@ public class CPUFragment extends RecyclerViewFragment {
             lowfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                 @Override
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    Misc.setcpuiboostfreq(value, highFreq[0], getActivity());
+                    CPUInputBoost.setcpuiboostfreq(value, highFreq[0], getActivity());
                     genericSelectView.setValue(value);
                     lowFreq[0] = value;
                 }
@@ -620,7 +621,7 @@ public class CPUFragment extends RecyclerViewFragment {
             highfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                 @Override
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    Misc.setcpuiboostfreq(lowFreq[0], value, getActivity());
+                    CPUInputBoost.setcpuiboostfreq(lowFreq[0], value, getActivity());
                     genericSelectView.setValue(value);
                     highFreq[0] = value;
                 }
