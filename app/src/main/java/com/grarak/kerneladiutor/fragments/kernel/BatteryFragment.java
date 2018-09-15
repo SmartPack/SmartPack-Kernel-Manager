@@ -73,7 +73,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (Battery.haschargingstatus()) {
         items.add(mChargingStatus);
         }
-        if (mBattery.hasbatterychargelimit() || mBattery.hasForceFastCharge() || mBattery.haschargeLevelAC()) {
+        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel()) {
             acciInit(items);
         }
         if (mBattery.hasBlx()) {

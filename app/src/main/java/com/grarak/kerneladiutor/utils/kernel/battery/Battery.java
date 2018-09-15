@@ -135,6 +135,10 @@ public class Battery {
         return list;
     }
 
+    public static boolean hasFastCharge() {
+        return Utils.existFile(FAST_CHARGE);
+    }
+
     public static boolean hasForceFastCharge() {
         return Utils.existFile(FORCE_FAST_CHARGE);
     }
@@ -153,10 +157,6 @@ public class Battery {
     
     public void setForceFastCharge(int value, Context context) {
         run(Control.write(String.valueOf(value), FORCE_FAST_CHARGE), FORCE_FAST_CHARGE, context);
-    }
-
-    public boolean iscustomodenabled() {
-        return Utils.readFile(FORCE_FAST_CHARGE).equals("2");
     }
 
     public static boolean hasFastChargeControlAC() {
@@ -268,6 +268,10 @@ public class Battery {
         return Utils.readFile(CHARGE_TYPE).equals("USB");
     }
 
+    public static boolean haschargeLevel() {
+        return Utils.existFile(CHARGE_LEVEL);
+    }
+
     public void setchargeLevelAC(int value, Context context) {
         run(Control.write(String.valueOf(value), CHARGE_LEVEL_AC), CHARGE_LEVEL_AC, context);
     }
@@ -321,7 +325,7 @@ public class Battery {
     }
 
     public boolean supported() {
-        return hasCapacity();
+        return hasCapacity() || hasFastCharge() || haschargeLevel();
     }
 
     private void run(String command, String id, Context context) {
