@@ -59,12 +59,13 @@ public class Sound {
 
     private static final String WCD9320_SPEAKER_LEAKAGE = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
 
-    private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound/boeffla_sound";
-    private static final String BOEFFLA_SPEAKER = "/sys/class/misc/boeffla_sound/speaker_volume";
-    private static final String BOEFFLA_HP = "/sys/class/misc/boeffla_sound/headphone_volume";
-    private static final String BOEFFLA_EP = "/sys/class/misc/boeffla_sound/earpiece_volume";
-    private static final String BOEFFLA_MIC = "/sys/class/misc/boeffla_sound/mic_level_call";
-    private static final String BOEFFLA_VERSION = "/sys/class/misc/boeffla_sound/version";
+    private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound";
+    private static final String BOEFFLA_SOUND_ENABLE = BOEFFLA_SOUND + "/boeffla_sound";
+    private static final String BOEFFLA_SPEAKER = BOEFFLA_SOUND + "/speaker_volume";
+    private static final String BOEFFLA_HP = BOEFFLA_SOUND + "/headphone_volume";
+    private static final String BOEFFLA_EP = BOEFFLA_SOUND + "/earpiece_volume";
+    private static final String BOEFFLA_MIC = BOEFFLA_SOUND + "/mic_level_call";
+    private static final String BOEFFLA_VERSION = BOEFFLA_SOUND + "/version";
 
     private static final String FAUX_SOUND = "/sys/kernel/sound_control_3";
     private static final String FAUX_SOUND_ENABLE = FAUX_SOUND + "/gpl_sound_control_enabled";
@@ -74,14 +75,13 @@ public class Sound {
     private static final String FAUX_MIC_LOCK = FAUX_SOUND + "/gpl_sound_control_rec_locked";
 
     private final List<String> mSpeakerGainFiles = new ArrayList<>();
-
     private final List<String> mFrancoLimits = new ArrayList<>();
     private final List<String> mFlarLimits = new ArrayList<>();
     private final List<String> mFlarHpLimits = new ArrayList<>();
-    private final List<String> mboefflaLimits = new ArrayList<>();
-    private final List<String> mboefflaEPLimits = new ArrayList<>();
+    private final List<String> mBoefflaLimits = new ArrayList<>();
+    private final List<String> mBoefflaEPLimits = new ArrayList<>();
     private final List<String> mBoefflaMICLimits = new ArrayList<>();
-    private final List<String> mfauxLimits = new ArrayList<>();
+    private final List<String> mFauxLimits = new ArrayList<>();
 
     {
         mSpeakerGainFiles.add(SPEAKER_BOOST);
@@ -101,16 +101,16 @@ public class Sound {
             mFlarHpLimits.add(String.valueOf(i));
         }
         for (int i = -30; i < 31; i++) {
-            mboefflaLimits.add(String.valueOf(i));
+            mBoefflaLimits.add(String.valueOf(i));
         }
         for (int i = -10; i < 21; i++) {
-            mboefflaEPLimits.add(String.valueOf(i));
+            mBoefflaEPLimits.add(String.valueOf(i));
         }
         for (int i = -20; i < 31; i++) {
             mBoefflaMICLimits.add(String.valueOf(i));
         }
         for (int i = -30; i < 21; i++) {
-            mfauxLimits.add(String.valueOf(i));
+            mFauxLimits.add(String.valueOf(i));
         }
     }
 
@@ -160,11 +160,15 @@ public class Sound {
     }
 
     public void enableboefflasound(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", BOEFFLA_SOUND), BOEFFLA_SOUND, context);
+        run(Control.write(enable ? "1" : "0", BOEFFLA_SOUND_ENABLE), BOEFFLA_SOUND_ENABLE, context);
     }
 
     public boolean isboefflasoundenabled() {
-        return Utils.readFile(BOEFFLA_SOUND).equals("Boeffla sound status: 1");
+        return Utils.readFile(BOEFFLA_SOUND_ENABLE).equals("Boeffla sound status: 1");
+    }
+
+    public boolean hasboefflasoundenable() {
+       return Utils.existFile(BOEFFLA_SOUND_ENABLE);
     }
 
     public boolean hasboefflasound() {
@@ -234,11 +238,11 @@ public class Sound {
             case SPEAKER_FLAR:
                 return mFlarLimits;
             case BOEFFLA_SPEAKER:
-                return mboefflaLimits;
+                return mBoefflaLimits;
             case BOEFFLA_HP:
-                return mboefflaLimits;
+                return mBoefflaLimits;
             case BOEFFLA_EP:
-                return mboefflaEPLimits;
+                return mBoefflaEPLimits;
             case BOEFFLA_MIC:
                 return mBoefflaMICLimits;
         }
@@ -298,10 +302,8 @@ public class Sound {
     }
 
     public boolean supported() {
-        return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage()
-                || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar()
-                || hasboefflahp() || hasboefflaep() || hasboefflamic() || hasboefflaspeaker()
-                || hasfauxsound() || hasfauxsoundenable() || hasfauxmiclock() || hasfauxspeaker() || hasfauxhp() || hasfauxmic();
+        return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage() || hasfauxsound()
+                || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar();
     }
 
     private int getChecksum(int arg0, int arg1) {
@@ -370,8 +372,8 @@ public class Sound {
         }
     }
 
-    public List<String> getfauxLimits() {
-        return mfauxLimits;
+    public List<String> getFauxLimits() {
+        return mFauxLimits;
     }
 
     public String getfauxspeaker() {
@@ -452,12 +454,12 @@ public class Sound {
         }
     }
 
-    public List<String> getboefflaLimits() {
-        return mboefflaLimits;
+    public List<String> getBoefflaLimits() {
+        return mBoefflaLimits;
     }
 
-    public List<String> getboefflaEPLimits() {
-        return mboefflaEPLimits;
+    public List<String> getBoefflaEPLimits() {
+        return mBoefflaEPLimits;
     }
 
     public String getboefflaspeaker() {
@@ -494,7 +496,7 @@ public class Sound {
         return Utils.readFile(BOEFFLA_MIC);
     }
 
-    public List<String> getboefflamicLimits() {
+    public List<String> getBoefflamicLimits() {
         return mBoefflaMICLimits;
     }
 

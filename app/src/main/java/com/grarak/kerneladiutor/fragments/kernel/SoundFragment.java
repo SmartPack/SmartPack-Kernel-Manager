@@ -78,7 +78,7 @@ public class SoundFragment extends RecyclerViewFragment {
             volumeGainInit(items);
         }
         if (mSound.hasfauxsound()) {
-            hasfauxsoundInit(items);
+            fauxsoundInit(items);
         }
     }
 
@@ -141,133 +141,136 @@ public class SoundFragment extends RecyclerViewFragment {
         CardView boefflasoundCard = new CardView(getActivity());
         boefflasoundCard.setTitle(getString(R.string.sound_control));
 
-        final SwitchView boefflasoundenable = new SwitchView();
-        boefflasoundenable.setTitle(getString(R.string.boefflasound) + " Version: " + mSound.getboefflasoundVersion());
-        boefflasoundenable.setSummary(getString(R.string.boefflasound_summary));
-        boefflasoundenable.setChecked(mSound.isboefflasoundenabled());
-        boefflasoundenable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mSound.enableboefflasound(isChecked, getActivity());
-            }
-        });
+	if (mSound.hasboefflasoundenable()) {
+            SwitchView boefflasoundenable = new SwitchView();
+            boefflasoundenable.setTitle(getString(R.string.boefflasound) + " Version: " + mSound.getboefflasoundVersion());
+            boefflasoundenable.setSummary(getString(R.string.boefflasound_summary));
+            boefflasoundenable.setChecked(mSound.isboefflasoundenabled());
+            boefflasoundenable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			mSound.enableboefflasound(isChecked, getActivity());
+		}
+            });
 
-        boefflasoundCard.addItem(boefflasoundenable);
+            boefflasoundCard.addItem(boefflasoundenable);
+	}
 
 	if (mSound.hasboefflaspeaker()) {
-		final SeekBarView boefflaspeaker = new SeekBarView();
-		boefflaspeaker.setTitle(getString(R.string.speaker_gain));
-		boefflaspeaker.setItems(mSound.getboefflaLimits());
-		boefflaspeaker.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflaspeaker()));
-		boefflaspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
+            SeekBarView boefflaspeaker = new SeekBarView();
+            boefflaspeaker.setTitle(getString(R.string.speaker_gain));
+            boefflaspeaker.setItems(mSound.getBoefflaLimits());
+            boefflaspeaker.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflaspeaker()));
+            boefflaspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
 		        mSound.setboefflaspeaker(value, getActivity());
-		    }
+		}
 
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-		boefflasoundCard.addItem(boefflaspeaker);
+            boefflasoundCard.addItem(boefflaspeaker);
 	}
 
 	if (mSound.hasboefflaep()) {
-		final SeekBarView boefflaep = new SeekBarView();
-		boefflaep.setTitle(getString(R.string.boefflaep));
-		boefflaep.setItems(mSound.getboefflaEPLimits());
-		boefflaep.setProgress(mSound.getboefflaEPLimits().indexOf(mSound.getboefflaep()));
-		boefflaep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
+            SeekBarView boefflaep = new SeekBarView();
+            boefflaep.setTitle(getString(R.string.boefflaep));
+            boefflaep.setItems(mSound.getBoefflaEPLimits());
+            boefflaep.setProgress(mSound.getBoefflaEPLimits().indexOf(mSound.getboefflaep()));
+            boefflaep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
 		        mSound.setboefflaep(value, getActivity());
-		    }
+		}
 
 		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-		boefflasoundCard.addItem(boefflaep);
+            boefflasoundCard.addItem(boefflaep);
 	}
 
 	if (mSound.hasboefflamic()) {
-		SeekBarView boefflamic = new SeekBarView();
-		boefflamic.setTitle(getString(R.string.microphone_gain) + (" (Calls)"));
-		boefflamic.setItems(mSound.getboefflamicLimits());
-		boefflamic.setProgress(mSound.getboefflamicLimits().indexOf(mSound.getboefflamic()));
-		boefflamic.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
+            SeekBarView boefflamic = new SeekBarView();
+            boefflamic.setTitle(getString(R.string.microphone_gain) + (" (Calls)"));
+            boefflamic.setItems(mSound.getBoefflamicLimits());
+            boefflamic.setProgress(mSound.getBoefflamicLimits().indexOf(mSound.getboefflamic()));
+            boefflamic.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
 		        mSound.setboefflamic(value, getActivity());
-		    }
+		}
 
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-		boefflasoundCard.addItem(boefflamic);
+            boefflasoundCard.addItem(boefflamic);
 	}
 
-        if (!(Prefs.getBoolean("boefflahp_perchannel", false, getActivity())))
-            Prefs.saveBoolean("boefflahp_perchannel", false, getActivity());
+	if (mSound.hasboefflahp()) {
+            if (!(Prefs.getBoolean("boefflahp_perchannel", false, getActivity())))
+		Prefs.saveBoolean("boefflahp_perchannel", false, getActivity());
 
-        final SwitchView perChannel = new SwitchView();
-        perChannel.setTitle(getString(R.string.per_channel_controls));
-        perChannel.setSummary(getString(R.string.per_channel_controls_summary));
-        perChannel.setChecked(Prefs.getBoolean("boefflahp_perchannel", false, getActivity()));
+            final SwitchView perChannel = new SwitchView();
+            perChannel.setTitle(getString(R.string.per_channel_controls));
+            perChannel.setSummary(getString(R.string.per_channel_controls_summary));
+            perChannel.setChecked(Prefs.getBoolean("boefflahp_perchannel", false, getActivity()));
 
-        boefflasoundCard.addItem(perChannel);
+            boefflasoundCard.addItem(perChannel);
 
-        final SeekBarView boefflahp = new SeekBarView();
-        boefflahp.setTitle(getString(R.string.headphone_gain));
-        boefflahp.setItems(mSound.getboefflaLimits());
-        boefflahp.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("all")));
-        boefflahp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mSound.setboefflahp("all", value, getActivity());
-            }
+            final SeekBarView boefflahp = new SeekBarView();
+            boefflahp.setTitle(getString(R.string.headphone_gain));
+            boefflahp.setItems(mSound.getBoefflaLimits());
+            boefflahp.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("all")));
+            boefflahp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mSound.setboefflahp("all", value, getActivity());
+		}
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-        final SeekBarView boefflahpLeft = new SeekBarView();
-        boefflahpLeft.setTitle(getString(R.string.headphone_gain_left));
-        boefflahpLeft.setItems(mSound.getboefflaLimits());
-        boefflahpLeft.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("left")));
-        boefflahpLeft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mSound.setboefflahp("left", value, getActivity());
-            }
+            final SeekBarView boefflahpLeft = new SeekBarView();
+            boefflahpLeft.setTitle(getString(R.string.headphone_gain_left));
+            boefflahpLeft.setItems(mSound.getBoefflaLimits());
+            boefflahpLeft.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("left")));
+            boefflahpLeft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mSound.setboefflahp("left", value, getActivity());
+		}
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-        final SeekBarView boefflahpRight = new SeekBarView();
-        boefflahpRight.setTitle(getString(R.string.headphone_gain_right));
-        boefflahpRight.setItems(mSound.getboefflaLimits());
-        boefflahpRight.setProgress(mSound.getboefflaLimits().indexOf(mSound.getboefflahp("right")));
-        boefflahpRight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mSound.setboefflahp("right", value, getActivity());
-            }
+            final SeekBarView boefflahpRight = new SeekBarView();
+            boefflahpRight.setTitle(getString(R.string.headphone_gain_right));
+            boefflahpRight.setItems(mSound.getBoefflaLimits());
+            boefflahpRight.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("right")));
+            boefflahpRight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+         	       mSound.setboefflahp("right", value, getActivity());
+		}
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
-        class SeekBarManager {
-            public void showPerChannelSeekbars (boolean enable) {
+            class SeekBarManager {
+                public void showPerChannelSeekbars (boolean enable) {
                 if (enable == true) {
                     boefflasoundCard.removeItem(boefflahp);
                     boefflasoundCard.addItem(boefflahpLeft);
@@ -293,6 +296,7 @@ public class SoundFragment extends RecyclerViewFragment {
                 manager.showPerChannelSeekbars(isChecked);
             }
         });
+	}
 
         if (boefflasoundCard.size() > 0) {
             items.add(boefflasoundCard);
@@ -357,7 +361,7 @@ public class SoundFragment extends RecyclerViewFragment {
         items.add(volumeGain);
     }
 
-    private void hasfauxsoundInit(List<RecyclerViewItem> items) {
+    private void fauxsoundInit(List<RecyclerViewItem> items) {
 
         CardView fauxsoundCard = new CardView(getActivity());
         fauxsoundCard.setTitle(getString(R.string.sound_control));
@@ -379,8 +383,8 @@ public class SoundFragment extends RecyclerViewFragment {
 	if (mSound.hasfauxspeaker()) {
             SeekBarView fauxspeaker = new SeekBarView();
             fauxspeaker.setTitle(getString(R.string.speaker_gain));
-            fauxspeaker.setItems(mSound.getfauxLimits());
-            fauxspeaker.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxspeaker()));
+            fauxspeaker.setItems(mSound.getFauxLimits());
+            fauxspeaker.setProgress(mSound.getFauxLimits().indexOf(mSound.getfauxspeaker()));
             fauxspeaker.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -398,8 +402,8 @@ public class SoundFragment extends RecyclerViewFragment {
 	if (mSound.hasfauxmic()) {
             SeekBarView fauxmic = new SeekBarView();
             fauxmic.setTitle(getString(R.string.microphone_gain));
-            fauxmic.setItems(mSound.getfauxLimits());
-            fauxmic.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxmic()));
+            fauxmic.setItems(mSound.getFauxLimits());
+            fauxmic.setProgress(mSound.getFauxLimits().indexOf(mSound.getfauxmic()));
             fauxmic.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -441,8 +445,8 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		final SeekBarView fauxhp = new SeekBarView();
 		fauxhp.setTitle(getString(R.string.headphone_gain));
-		fauxhp.setItems(mSound.getfauxLimits());
-		fauxhp.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("all")));
+		fauxhp.setItems(mSound.getFauxLimits());
+		fauxhp.setProgress(mSound.getFauxLimits().indexOf(mSound.getfauxhp("all")));
 		fauxhp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -456,8 +460,8 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		final SeekBarView fauxhpleft = new SeekBarView();
 		fauxhpleft.setTitle(getString(R.string.headphone_gain_left));
-		fauxhpleft.setItems(mSound.getfauxLimits());
-		fauxhpleft.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("left")));
+		fauxhpleft.setItems(mSound.getFauxLimits());
+		fauxhpleft.setProgress(mSound.getFauxLimits().indexOf(mSound.getfauxhp("left")));
 		fauxhpleft.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {
@@ -471,8 +475,8 @@ public class SoundFragment extends RecyclerViewFragment {
 
 		final SeekBarView fauxhpright = new SeekBarView();
 		fauxhpright.setTitle(getString(R.string.headphone_gain_right));
-		fauxhpright.setItems(mSound.getfauxLimits());
-		fauxhpright.setProgress(mSound.getfauxLimits().indexOf(mSound.getfauxhp("right")));
+		fauxhpright.setItems(mSound.getFauxLimits());
+		fauxhpright.setProgress(mSound.getFauxLimits().indexOf(mSound.getfauxhp("right")));
 		fauxhpright.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {
