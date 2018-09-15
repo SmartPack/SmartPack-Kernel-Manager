@@ -50,6 +50,8 @@ public class Misc {
     private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
+    private static final String WIREGUARD = "/sys/module/wireguard/version";
+
     private static final String HOSTNAME_KEY = "net.hostname";
 
     private final List<String> mLoggers = new ArrayList<>();
@@ -200,6 +202,14 @@ public class Misc {
 
     public boolean hasLoggerEnable() {
         return LOGGER_FILE != null;
+    }
+
+    public static boolean hasWireguard() {
+        return Utils.existFile(WIREGUARD);
+    }
+
+    public static String getWireguard() {
+        return Utils.readFile(WIREGUARD);
     }
 
     private void run(String command, String id, Context context) {

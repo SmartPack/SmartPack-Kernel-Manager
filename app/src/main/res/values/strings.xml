@@ -685,6 +685,7 @@
     <string name="tcp">TCP Congestion Algorithm</string>
     <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="hostname">Hostname</string>
+    <string name="wireguard">WireGuard VPN</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>

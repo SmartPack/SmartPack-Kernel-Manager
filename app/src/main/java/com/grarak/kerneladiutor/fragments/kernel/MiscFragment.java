@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.misc.Misc;
 import com.grarak.kerneladiutor.utils.kernel.misc.PowerSuspend;
 import com.grarak.kerneladiutor.utils.kernel.misc.Vibration;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -296,6 +297,14 @@ public class MiscFragment extends RecyclerViewFragment {
 
             networkCard.addItem(tcp);
         } catch (Exception ignored) {
+        }
+
+        if (mMisc.hasWireguard()) {
+            DescriptionView wireguard = new DescriptionView();
+            wireguard.setTitle(getString(R.string.wireguard));
+            wireguard.setSummary(("Version: ") + mMisc.getWireguard());
+
+            networkCard.addItem(wireguard);
         }
 
         GenericSelectView hostname = new GenericSelectView();
