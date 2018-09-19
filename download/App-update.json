@@ -1,11 +1,12 @@
 {
-  "latestVersion": "5.0-20180910",
+  "latestVersion": "5.1-20180919",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Boost: add control over CPU Input Boost Freq.",
-    "- Overall UI enhancements.",
-    "- SmartPack: Improve kernel auto-flash.",
-    "- appupdater: fetch updates from upstream repo." 
+    "- SmartPack: Fully re-construct kernel auto-flash (now much more simple & accurate).",
+    "- Live charging status: Add charging source (Cash/AC/USB) information.",
+    "- Misc: add WireGuard version information.",
+    "- Initial support for OnePlus 5 (since it share a common kernel source with 5T).",
+    "- A lot of under-the-hood changes in Battery, CPU & Sound pages." 
   ]
 }
