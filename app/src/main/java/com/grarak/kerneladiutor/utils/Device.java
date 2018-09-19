@@ -341,6 +341,8 @@ public class Device {
 
     private static final String SMARTPACK_VERSION = "/version";
 
+    private static final String SMARTPACK_DOWNLOADED = "/sdcard/Download/SmartPack-Kernel.zip";
+
     public static boolean hasSmartPackInstalled() {
         return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
     }
@@ -387,6 +389,10 @@ public class Device {
 
     public static String getSmartPackVersion() {
         return Utils.readFile(SMARTPACK_VERSION);
+    }
+
+    public static boolean isSmartPackDownloaded() {
+        return Utils.existFile(SMARTPACK_DOWNLOADED);
     }
 
     private static final String RECOVERY = "/cache/recovery/";

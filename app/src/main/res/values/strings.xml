@@ -20,6 +20,7 @@
     <string name="press_back_again_exit">Press back again to exit</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
+    <string name="exit">Exit</string>
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
 
@@ -814,10 +815,11 @@
     <string name="website">Website</string>
     <string name="website_summary">Visit SmartPack homepage</string>
     <string name="downloads">Download and Flash</string>
-    <string name="downloads_summary">Get latest SmartPack-Kernel for your device</string>
+    <string name="downloads_summary">Get latest SmartPack-Kernel for your device\nWarning! Downloading will take some time to finish! Please be patient!</string>
     <string name="reboot_recovery_summary">Reboot and manually flash new Kernel</string>
+    <string name="autoflash">Auto-flash</string>
     <string name="install_now">Install Now</string>
-    <string name="flash_message">\nPlease proceed only if the download was successful\n</string>
+    <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
     <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
     <string name="reset_settings">Reset Settings</string>
     <string name="reset_settings_summary">Warning! App settings will be completely erased</string>

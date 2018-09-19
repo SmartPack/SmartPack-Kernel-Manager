@@ -147,225 +147,81 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+		// Check and delete an old version of the kernel from the download folder, if any...
+		if (Device.isSmartPackDownloaded()) {
+			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
+		}
+		// Initiate device specific downloads...
 		if (Device.iskltekor()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-kltekor.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true", getActivity());
-			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-kltekor.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
 			}
 		} else if (Device.isklte()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-klte.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true", getActivity());
-			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-klte.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
 			}
 		} else if (Device.iskltedv()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-kltedv.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true", getActivity());
-			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-kltedv.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
 			}
 		} else if (Device.isklteduos()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-klteduos.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true", getActivity());
-			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-klteduos.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
 			}
 		} else if (Device.iskltejpn()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-kltekdi.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true", getActivity());
-			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-kltekdi.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
 			}
 		} else if (Device.isOnePlusdumpling()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            if (Device.isOnePlusOpenBeta()) {
-				RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-dumpling-OB.zip");
-				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true", getActivity());
-				if (Device.hasRecovery()) {
-					AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-					flash.setTitle(getString(R.string.warning));
-					flash.setMessage(getString(R.string.flash_message));
-					flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-					});
-					flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-						RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-dumpling-OB.zip > /cache/recovery/command");
-						RootUtils.runCommand("reboot recovery");
-					});
-					flash.show();
-				} else {
-					AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-					noflash.setTitle(getString(R.string.warning));
-					noflash.setMessage(getString(R.string.no_flash_message));
-					noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-					});
-					noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-					    RootUtils.runCommand("reboot recovery");
-					});
-					noflash.show();
-				}
+				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
 		            } else {
-				RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-dumpling.zip");
-				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true", getActivity());
-				if (Device.hasRecovery()) {
-					AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-					flash.setTitle(getString(R.string.warning));
-					flash.setMessage(getString(R.string.flash_message));
-					flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-					});
-					flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-						RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-dumpling.zip > /cache/recovery/command");
-						RootUtils.runCommand("reboot recovery");
-					});
-					flash.show();
-				} else {
-					AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-					noflash.setTitle(getString(R.string.warning));
-					noflash.setMessage(getString(R.string.no_flash_message));
-					noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-					});
-					noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-					    RootUtils.runCommand("reboot recovery");
-					});
-					noflash.show();
-				}
+				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
 		            }
 			}
 		} else if (Device.isMotoG3()) {
-			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel-osprey.zip");
 			if (Build.VERSION.SDK_INT == 27) {
-		            Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true", getActivity());
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 			}
-			if (Device.hasRecovery()) {
-				AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-				flash.setTitle(getString(R.string.warning));
-				flash.setMessage(getString(R.string.flash_message));
-				flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-				    RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel-osprey.zip > /cache/recovery/command");
-				    RootUtils.runCommand("reboot recovery");
-				});
-				flash.show();
-			} else {
-				AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-				noflash.setTitle(getString(R.string.warning));
-				noflash.setMessage(getString(R.string.no_flash_message));
-				noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-				});
-				noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-				    RootUtils.runCommand("reboot recovery");
-				});
-				noflash.show();
-				}
-			} 
+		}
+		// Proceed only if the download was successful...
+		if (Device.isSmartPackDownloaded()) {
+		    // Show Auto-flash message if we recognize recovery...
+		    if (Device.hasRecovery()) {
+			AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+			flash.setTitle(getString(R.string.autoflash));
+			flash.setMessage(getString(R.string.flash_message));
+			flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
+			});
+			flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
+		            RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel.zip > /cache/recovery/command");
+		            RootUtils.runCommand("reboot recovery");
+			});
+			flash.show();
+		    // If not, show an "Auto-flash not possible" message...
+		    } else {
+			AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
+			noflash.setTitle(getString(R.string.warning));
+			noflash.setMessage(getString(R.string.no_flash_message));
+			noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+			});
+			noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+		            RootUtils.runCommand("reboot recovery");
+			});
+			noflash.show();
 		    }
-		});
+		// Shown "Download failed" message...
+		} else {
+		    AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
+		    downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
+		    downloadfailed.setMessage(getString(R.string.no_internet));
+		    downloadfailed.setPositiveButton(getString(R.string.exit), (dialog1, id1) -> {
+		    });
+		    downloadfailed.show();
+		    }
+		} 
+	});
 	smartpack.addItem(downloads);
 
         DescriptionView reset = new DescriptionView();
