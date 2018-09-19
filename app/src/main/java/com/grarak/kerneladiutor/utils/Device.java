@@ -375,8 +375,8 @@ public class Device {
         return (Build.BOOTLOADER).contains("G900K") || (Build.BOOTLOADER).contains("G900L") || (Build.BOOTLOADER).contains("G900S");
     }
 
-    public static boolean isOnePlusdumpling() {
-        return (Build.FINGERPRINT).contains("OnePlus5T");
+    public static boolean isOnePlusmsm8998() {
+        return (Build.FINGERPRINT).contains("OnePlus5");
     }
 
     public static boolean isMotoG3() {
