@@ -388,6 +388,10 @@
     <string name="allowed_max_freq">Phase 3: Allowed Max Frequency</string>
     <string name="check_interval">Check Interval</string>
     <string name="shutdown_temp">Shutdown Temperature</string>
+    <string name="msm_thermal_simple">Simple Thermal Monitor</string>
+    <string name="msm_thermal_simple_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by Sultanxda.</string>
+    <string name="usermax_freq">User Maximum Frequency</string>
+    <string name="thermal_zone">Thermal Zones</string>
 
     <!-- Battery -->
     <string name="level">Level</string>

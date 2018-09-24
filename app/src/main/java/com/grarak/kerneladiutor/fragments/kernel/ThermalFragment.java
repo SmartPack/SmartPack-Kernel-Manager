@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
@@ -27,6 +29,8 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.thermal.MSMThermal;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermald;
+import com.grarak.kerneladiutor.utils.kernel.thermal.MSMThermalSimple;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -61,6 +65,9 @@ public class ThermalFragment extends RecyclerViewFragment {
         }
         if (mMSMThermal.supported()) {
             msmThermalInit(items);
+        }
+        if (MSMThermalSimple.supported()) {
+            simpleMSMThermalInit(items);
         }
     }
 
@@ -687,4 +694,72 @@ public class ThermalFragment extends RecyclerViewFragment {
 
     }
 
+    private void simpleMSMThermalInit(List<RecyclerViewItem> items) {
+        if (MSMThermalSimple.hasenableswitch()) {
+            SwitchView enableswitch = new SwitchView();
+            enableswitch.setTitle(getString(R.string.msm_thermal_simple));
+            enableswitch.setSummary(getString(R.string.msm_thermal_simple_summary));
+            enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
+            enableswitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
+		}
+            });
+            items.add(enableswitch);
+	}
+
+	if (MSMThermalSimple.hasSamplingMS()) {
+            GenericSelectView samplingMS = new GenericSelectView();
+            samplingMS.setSummary(getString(R.string.sampling_rate) + (" (ms)"));
+            samplingMS.setValue(MSMThermalSimple.getSamplingMS());
+            samplingMS.setInputType(InputType.TYPE_CLASS_NUMBER);
+            samplingMS.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    MSMThermalSimple.setSamplingMS(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(samplingMS);
+	}
+
+	if (MSMThermalSimple.hasUserMaxFreq()) {
+            GenericSelectView userMaxFreq = new GenericSelectView();
+            userMaxFreq.setSummary(getString(R.string.usermax_freq) + (" (Hz)"));
+            userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
+            userMaxFreq.setInputType(InputType.TYPE_CLASS_NUMBER);
+            userMaxFreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    MSMThermalSimple.setUserMaxFreq(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(userMaxFreq);
+	}
+
+        for (int i = 0; i < MSMThermalSimple.size(); i++) {
+            if (MSMThermalSimple.exists(i)) {
+                GenericSelectView thermalZone = new GenericSelectView();
+                thermalZone.setSummary(MSMThermalSimple.getName(i));
+                thermalZone.setValue(MSMThermalSimple.getValue(i));
+                thermalZone.setValueRaw(thermalZone.getValue());
+                thermalZone.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                final int position = i;
+                thermalZone.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        MSMThermalSimple.setValue(value, position, getActivity());
+                        genericSelectView.setValue(value);
+                    }
+                });
+
+                items.add(thermalZone);
+            }
+        }
+    }
 }
