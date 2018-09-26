@@ -31,9 +31,13 @@ import com.grarak.kerneladiutor.utils.root.Control;
 public class VM {
 
     private static final String PATH = "/proc/sys/vm";
-    private static final String[] SUPPORTED_VM = {"dirty_ratio", "dirty_background_ratio", "dirty_expire_centisecs",
-            "dirty_writeback_centisecs", "min_free_kbytes", "oom_kill_allocating_task", "overcommit_ratio", "swappiness",
-            "vfs_cache_pressure", "laptop_mode", "extra_free_kbytes"};
+    private static final String[] SUPPORTED_VM = {"admin_reserve_kbytes", "block_dump", "compact_memory", "compact_unevictable_allowed",
+	"dirty_ratio", "dirty_bytes", "dirty_background_ratio", "dirty_background_bytes", "dirty_expire_centisecs","dirty_writeback_centisecs",
+	"dirtytime_expire_seconds", "drop_caches", "extra_free_kbytes", "extfrag_threshold", "highmem_is_dirtyable", "laptop_mode",
+	"legacy_va_layout", "lowmem_reserve_ratio", "mmap_rnd_compat_bits", "max_map_count", "min_free_kbytes", "min_free_order_shift",
+	"mmap_min_addr", "mmap_rnd_bits", "mobile_page_compaction", "nr_pdflush_threads", "oom_dump_tasks", "oom_kill_allocating_task",
+	"overcommit_kbytes", "overcommit_memory", "overcommit_ratio", "page-cluster", "panic_on_oom", "percpu_pagelist_fraction",
+	"scan_unevictable_pages", "swap_ratio_enable", "swappiness", "stat_interval", "user_reserve_kbytes", "vfs_cache_pressure"};
 
     public static void setValue(String value, int position, Context context) {
         run(Control.write(value, PATH + "/" + SUPPORTED_VM[position]), PATH + "/" +
