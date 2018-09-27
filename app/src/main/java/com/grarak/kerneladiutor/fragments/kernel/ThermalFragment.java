@@ -20,16 +20,19 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.text.InputType;
+import android.support.v7.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.thermal.MSMThermal;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermald;
 import com.grarak.kerneladiutor.utils.kernel.thermal.MSMThermalSimple;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -741,7 +744,29 @@ public class ThermalFragment extends RecyclerViewFragment {
             items.add(userMaxFreq);
 	}
 
-        for (int i = 0; i < MSMThermalSimple.size(); i++) {
+	if (MSMThermalSimple.hasLocalSettings()) {
+            DescriptionView stocksettings = new DescriptionView();
+            stocksettings.setTitle(getString(R.string.stock_settings));
+            stocksettings.setSummary(getString(R.string.stock_settings_summary));
+            stocksettings.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+                    AlertDialog.Builder applysettings = new AlertDialog.Builder(getActivity());
+                    applysettings.setTitle(getString(R.string.sure_question));
+                    applysettings.setMessage(getString(R.string.stock_settings_message));
+                    applysettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    });
+                    applysettings.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+			RootUtils.runCommand("sh /scripts/thermal.sh");
+                    });
+                    applysettings.show();
+		}
+            });
+
+            items.add(stocksettings);
+	}
+
+	for (int i = 0; i < MSMThermalSimple.size(); i++) {
             if (MSMThermalSimple.exists(i)) {
                 GenericSelectView thermalZone = new GenericSelectView();
                 thermalZone.setSummary(MSMThermalSimple.getName(i));

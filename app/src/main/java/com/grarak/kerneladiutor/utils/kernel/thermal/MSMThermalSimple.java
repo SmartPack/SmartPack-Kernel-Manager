@@ -41,6 +41,7 @@ public class MSMThermalSimple {
     private static final String ENABLE = PARENT + "/enabled";
     private static final String SAMPLING_MS = PARENT + "/sampling_ms";
     private static final String USER_MAXFREQ = PARENT + "/user_maxfreq";
+    private static final String LOCAL_SETTINGS = "/scripts/thermal.sh";
     private static final String[] THERMAL_ZONES = {"zone0", "zone1", "zone2",
 	"zone3", "zone4", "zone5", "zone6", "zone7", "zone8", "zone9", "zone10",
 	"zone11", "zone12", "zone13", "zone14", "zone15", "zone16", "zone17",
@@ -101,6 +102,10 @@ public class MSMThermalSimple {
 
     public static int size() {
         return THERMAL_ZONES.length;
+    }
+
+    public static boolean hasLocalSettings() {
+        return Utils.existFile(LOCAL_SETTINGS);
     }
 
     public static boolean supported() {

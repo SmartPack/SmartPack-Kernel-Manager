@@ -392,6 +392,9 @@
     <string name="msm_thermal_simple_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by Sultanxda.</string>
     <string name="usermax_freq">User Maximum Frequency</string>
     <string name="thermal_zone">Thermal Zones</string>
+    <string name="stock_settings">Restore Settings</string>
+    <string name="stock_settings_summary">Click here to apply default settings</string>
+    <string name="stock_settings_message">It will apply default settings provided by the Kernel Developer\n\nPlease reload this page after using this option\n\n</string>
 
     <!-- Battery -->
     <string name="level">Level</string>
