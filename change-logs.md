@@ -1,5 +1,9 @@
 # Change-logs
 
+## 32. September 27, 2018
+*Release-tag: v5.2*
+Changes: Thermal: add full control over Simple MSM Thermal driver  by Sultanxda. Virtual Memmory: Add a bunch of parameters. Core Control: fix some issues.
+
 ## 31. September 19, 2018
 *Release-tag: v5.1*
 Changes: SmartPack: Fully re-construct kernel auto-flash (now much more simple & accurate). Live charging status: Add charging source (Cash/AC/USB) information. Misc: add WireGuard version information. Initial support for OnePlus 5 (since it share a common kernel source with 5T). A lot of under-the-hood changes in Battery, CPU & Sound pages.

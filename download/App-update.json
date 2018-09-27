@@ -1,12 +1,10 @@
 {
-  "latestVersion": "5.1-20180919",
+  "latestVersion": "5.2-20180927",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: Fully re-construct kernel auto-flash (now much more simple & accurate).",
-    "- Live charging status: Add charging source (Cash/AC/USB) information.",
-    "- Misc: add WireGuard version information.",
-    "- Initial support for OnePlus 5 (since it share a common kernel source with 5T).",
-    "- A lot of under-the-hood changes in Battery, CPU & Sound pages." 
+    "- Thermal: add full control over Simple MSM Thermal driver  by Sultanxda.",
+    "- Virtual Memmory: Add a bunch of parameters.",
+    "- Core Control: fix some issues." 
   ]
 }
