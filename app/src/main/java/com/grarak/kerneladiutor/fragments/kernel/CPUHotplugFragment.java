@@ -1228,93 +1228,102 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             mEnableViews.add(enable);
 	}
 
-	SeekBarView minCpus = new SeekBarView();
-	minCpus.setTitle(getString(R.string.min_cpus_big));
-	minCpus.setSummary(getString(R.string.min_cpus_big_summary));
-	minCpus.setMax(mCPUFreq.getBigCpuRange().size());
-	minCpus.setProgress(mCoreCtl.getMinCpus(mCPUFreq.getBigCpu()));
-	minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mCoreCtl.setMinCpus(position, mCPUFreq.getBigCpu(), getActivity());
-            }
+	if (mCoreCtl.hasMinCpus()) {
+            SeekBarView minCpus = new SeekBarView();
+            minCpus.setTitle(getString(R.string.min_cpus_big));
+            minCpus.setSummary(getString(R.string.min_cpus_big_summary));
+            minCpus.setMax(mCPUFreq.getBigCpuRange().size());
+            minCpus.setProgress(mCoreCtl.getMinCpus(mCPUFreq.getBigCpu()));
+            minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setMinCpus(position, mCPUFreq.getBigCpu(), getActivity());
+		}
 
 		@Override
 		public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-	});
+		}
+            });
+            coreCtl.addItem(minCpus);
+	}
 
-	SeekBarView busyDownThreshold = new SeekBarView();
-	busyDownThreshold.setTitle(getString(R.string.busy_down_threshold));
-	busyDownThreshold.setSummary(getString(R.string.busy_down_threshold_summary));
-	busyDownThreshold.setProgress(mCoreCtl.getBusyDownThreshold());
-	busyDownThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
+	if (mCoreCtl.hasBusyDownThreshold()) {
+            SeekBarView busyDownThreshold = new SeekBarView();
+            busyDownThreshold.setTitle(getString(R.string.busy_down_threshold));
+            busyDownThreshold.setSummary(getString(R.string.busy_down_threshold_summary));
+            busyDownThreshold.setProgress(mCoreCtl.getBusyDownThreshold());
+            busyDownThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
 
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mCoreCtl.setBusyDownThreshold(position, getActivity());
-            }
-	});
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setBusyDownThreshold(position, getActivity());
+		}
+            });
+            coreCtl.addItem(busyDownThreshold);
+	}
 
-	SeekBarView busyUpThreshold = new SeekBarView();
-	busyUpThreshold.setTitle(getString(R.string.busy_up_threshold));
-	busyUpThreshold.setSummary(getString(R.string.busy_up_threshold_summary));
-	busyUpThreshold.setProgress(mCoreCtl.getBusyUpThreshold());
-	busyUpThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
+	if (mCoreCtl.hasBusyUpThreshold()) {
+            SeekBarView busyUpThreshold = new SeekBarView();
+            busyUpThreshold.setTitle(getString(R.string.busy_up_threshold));
+            busyUpThreshold.setSummary(getString(R.string.busy_up_threshold_summary));
+            busyUpThreshold.setProgress(mCoreCtl.getBusyUpThreshold());
+            busyUpThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
 
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mCoreCtl.setBusyUpThreshold(position, getActivity());
-            }
-	});
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setBusyUpThreshold(position, getActivity());
+		}
+            });
+            coreCtl.addItem(busyUpThreshold);
+	}
 
-	SeekBarView offlineDelayMs = new SeekBarView();
-	offlineDelayMs.setTitle(getString(R.string.offline_delay));
-	offlineDelayMs.setSummary(getString(R.string.offline_delay_summary));
-	offlineDelayMs.setUnit(getString(R.string.ms));
-	offlineDelayMs.setMax(5000);
-	offlineDelayMs.setOffset(100);
-	offlineDelayMs.setProgress(mCoreCtl.getOfflineDelayMs() / 100);
-	offlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
+	if (mCoreCtl.hasOfflineDelayMs()) {
+            SeekBarView offlineDelayMs = new SeekBarView();
+            offlineDelayMs.setTitle(getString(R.string.offline_delay));
+            offlineDelayMs.setSummary(getString(R.string.offline_delay_summary));
+            offlineDelayMs.setUnit(getString(R.string.ms));
+            offlineDelayMs.setMax(5000);
+            offlineDelayMs.setOffset(100);
+            offlineDelayMs.setProgress(mCoreCtl.getOfflineDelayMs() / 100);
+            offlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
 
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mCoreCtl.setOfflineDelayMs(position * 100, getActivity());
-            }
-	});
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setOfflineDelayMs(position * 100, getActivity());
+		}
+            });
+            coreCtl.addItem(offlineDelayMs);
+	}
 
-	SeekBarView onlineDelayMs = new SeekBarView();
-	onlineDelayMs.setTitle(getString(R.string.online_delay));
-	onlineDelayMs.setSummary(getString(R.string.online_delay_summary));
-	onlineDelayMs.setUnit(getString(R.string.ms));
-	onlineDelayMs.setMax(5000);
-	onlineDelayMs.setOffset(100);
-	onlineDelayMs.setProgress(mCoreCtl.getOnlineDelayMs() / 100);
-	onlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
+	if (mCoreCtl.hasOnlineDelayMs()) {
+            SeekBarView onlineDelayMs = new SeekBarView();
+            onlineDelayMs.setTitle(getString(R.string.online_delay));
+            onlineDelayMs.setSummary(getString(R.string.online_delay_summary));
+            onlineDelayMs.setUnit(getString(R.string.ms));
+            onlineDelayMs.setMax(5000);
+            onlineDelayMs.setOffset(100);
+            onlineDelayMs.setProgress(mCoreCtl.getOnlineDelayMs() / 100);
+            onlineDelayMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
 
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mCoreCtl.setOnlineDelayMs(position * 100, getActivity());
-            }
-	});
-
-	coreCtl.addItem(minCpus);
-	coreCtl.addItem(busyDownThreshold);
-	coreCtl.addItem(busyUpThreshold);
-	coreCtl.addItem(offlineDelayMs);
-	coreCtl.addItem(onlineDelayMs);
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setOnlineDelayMs(position * 100, getActivity());
+		}
+            });
+            coreCtl.addItem(onlineDelayMs);
+	}
 
 	if (coreCtl.size() > 0) {
             items.add(coreCtl);
