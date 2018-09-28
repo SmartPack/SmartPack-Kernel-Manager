@@ -97,7 +97,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     private Dialog mApplyDialog;
     private Profiles.ProfileItem mExportProfile;
     private Dialog mOptionsDialog;
-    private Dialog mDonateDialog;
     private ImportProfile mImportProfile;
     private Dialog mSelectDialog;
 
@@ -174,9 +173,6 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
         if (mOptionsDialog != null) {
             mOptionsDialog.show();
-        }
-        if (mDonateDialog != null) {
-            mDonateDialog.show();
         }
         if (mImportProfile != null) {
             showImportDialog(mImportProfile);
@@ -265,24 +261,14 @@ public class ProfileFragment extends RecyclerViewFragment {
                             List<Profiles.ProfileItem> items = mProfiles.getAllProfiles();
                             switch (item.getItemId()) {
                                 case 0:
-                                    if (Utils.DONATED) {
-                                        Intent intent = createProfileActivityIntent();
-                                        intent.putExtra(ProfileActivity.POSITION_INTENT, position);
-                                        startActivityForResult(intent, 2);
-                                    } else {
-                                        mDonateDialog = ViewUtils.dialogDonate(getActivity());
-                                        mDonateDialog.show();
-                                    }
+                                    Intent create = createProfileActivityIntent();
+                                    create.putExtra(ProfileActivity.POSITION_INTENT, position);
+                                    startActivityForResult(create, 2);
                                     break;
                                 case 1:
-                                    if (Utils.DONATED) {
-                                        Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
-                                        intent.putExtra(ProfileEditActivity.POSITION_INTENT, position);
-                                        startActivityForResult(intent, 3);
-                                    } else {
-                                        mDonateDialog = ViewUtils.dialogDonate(getActivity());
-                                        mDonateDialog.show();
-                                    }
+                                    Intent edit = new Intent(getActivity(), ProfileEditActivity.class);
+                                    edit.putExtra(ProfileEditActivity.POSITION_INTENT, position);
+                                    startActivityForResult(edit, 3);
                                     break;
                                 case 2:
                                     if (items.get(position).getName() != null) {
@@ -425,21 +411,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                         startActivityForResult(createProfileActivityIntent(), 0);
                         break;
                     case 1:
-                        if (Utils.DONATED) {
-                            Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                            intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                            intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
-                            startActivityForResult(intent, 1);
-                        } else {
-                            mDonateDialog = ViewUtils.dialogDonate(getActivity())
-                                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                        @Override
-                                        public void onDismiss(DialogInterface dialog) {
-                                            mDonateDialog = null;
-                                        }
-                                    });
-                            mDonateDialog.show();
-                        }
+                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
+                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
+                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
+                        startActivityForResult(intent, 1);
                         break;
                 }
             }
