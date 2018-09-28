@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -33,6 +35,8 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MSMSleeper;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MakoHotplug;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -1071,22 +1075,18 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	}
 
 	if (AlucardHotplug.hasAlucardHotplugSamplingRate()) {
-            SeekBarView samplingRate = new SeekBarView();
+            GenericSelectView samplingRate = new GenericSelectView();
             samplingRate.setTitle(getString(R.string.sampling_rate));
-            samplingRate.setUnit("%");
-            samplingRate.setMin(1);
-            samplingRate.setProgress(AlucardHotplug.getAlucardHotplugSamplingRate() - 1);
-            samplingRate.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-			AlucardHotplug.setAlucardHotplugSamplingRate(position + 1, getActivity());
-		}
+            samplingRate.setSummary(("Set ") + getString(R.string.sampling_rate));
+            samplingRate.setValue(AlucardHotplug.getAlucardHotplugSamplingRate());
+            samplingRate.setInputType(InputType.TYPE_CLASS_NUMBER);
+            samplingRate.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    AlucardHotplug.setAlucardHotplugSamplingRate(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
             });
-
             alucardHotplug.addItem(samplingRate);
 	}
 
@@ -1203,6 +1203,31 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
             alucardHotplug.addItem(cpuUpRate);
         }
+
+	DescriptionView tunables = new DescriptionView();
+	tunables.setTitle(getString(R.string.adv_hotplug_tunables));
+	tunables.setSummary(getString(R.string.adv_hotplug_tunables_summary));
+	alucardHotplug.addItem(tunables);
+
+        for (int i = 0; i < AlucardHotplug.size(); i++) {
+            if (AlucardHotplug.exists(i)) {
+
+                GenericSelectView advancedtunables = new GenericSelectView();
+                advancedtunables.setSummary(AlucardHotplug.getName(i));
+                advancedtunables.setValue(AlucardHotplug.getValue(i));
+                advancedtunables.setValueRaw(advancedtunables.getValue());
+                advancedtunables.setInputType(InputType.TYPE_CLASS_NUMBER);
+                final int position = i;
+                advancedtunables.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        AlucardHotplug.setValue(value, position, getActivity());
+                        genericSelectView.setValue(value);
+                    }
+                });
+		alucardHotplug.addItem(advancedtunables);
+            }
+	}
 
         if (alucardHotplug.size() > 0) {
             items.add(alucardHotplug);

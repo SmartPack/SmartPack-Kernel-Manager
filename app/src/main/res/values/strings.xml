@@ -291,6 +291,8 @@
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
     <string name="quad_core_mode">Quad-Core mode</string>
     <string name="dual_core_mode">Dual-Core mode</string>
+    <string name="adv_hotplug_tunables">Advanced Hotplug Tunables</string>
+    <string name="adv_hotplug_tunables_summary">Warning! This is only for advanced users.\nPlease do not touch unless you\'re an expert.</string>
     <string name="core_control">Core Control</string>
     <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
     <string name="hcube">H-Cube</string>

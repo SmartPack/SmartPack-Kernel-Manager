@@ -41,6 +41,12 @@ public class AlucardHotplug {
     private static final String ALUCARD_HOTPLUG_CPU_DOWN_RATE = ALUCARD_HOTPLUG + "/cpu_down_rate";
     private static final String ALUCARD_HOTPLUG_CPU_UP_RATE = ALUCARD_HOTPLUG + "/cpu_up_rate";
 
+    private static final String[] HOTPLUG_TUNABLES = {"hotplug_freq_1_1", "hotplug_freq_2_0", "hotplug_freq_2_1", "hotplug_freq_3_0",
+		"hotplug_freq_3_1", "hotplug_freq_4_0", "hotplug_load_1_1", "hotplug_load_2_0", "hotplug_load_2_1", "hotplug_load_3_0",
+		"hotplug_load_3_1", "hotplug_load_4_0", "hotplug_rate_1_1", "hotplug_rate_2_0", "hotplug_rate_2_1", "hotplug_rate_3_0",
+		"hotplug_rate_3_1", "hotplug_rate_4_0", "hotplug_rq_1_1", "hotplug_rq_2_1", "hotplug_rq_2_0", "hotplug_rq_3_0",
+		"hotplug_rq_3_1", "hotplug_rq_4_0"};
+
     public static void setAlucardHotplugCpuUpRate(int value, Context context) {
         run(Control.write(String.valueOf(value), ALUCARD_HOTPLUG_CPU_UP_RATE),
                 ALUCARD_HOTPLUG_CPU_UP_RATE, context);
@@ -119,13 +125,12 @@ public class AlucardHotplug {
         return Utils.existFile(ALUCARD_HOTPLUG_SUSPEND);
     }
 
-    public static void setAlucardHotplugSamplingRate(int value, Context context) {
-        run(Control.write(String.valueOf(value), ALUCARD_HOTPLUG_SAMPLING_RATE),
-                ALUCARD_HOTPLUG_SAMPLING_RATE, context);
+    public static String getAlucardHotplugSamplingRate() {
+        return Utils.readFile(ALUCARD_HOTPLUG_SAMPLING_RATE);
     }
 
-    public static int getAlucardHotplugSamplingRate() {
-        return Utils.strToInt(Utils.readFile(ALUCARD_HOTPLUG_SAMPLING_RATE));
+    public static void setAlucardHotplugSamplingRate(String value, Context context) {
+        run(Control.write(String.valueOf(value), ALUCARD_HOTPLUG_SAMPLING_RATE), ALUCARD_HOTPLUG_SAMPLING_RATE, context);
     }
 
     public static boolean hasAlucardHotplugSamplingRate() {
@@ -155,6 +160,27 @@ public class AlucardHotplug {
 
     public static boolean hasAlucardHotplugEnable() {
         return Utils.existFile(ALUCARD_HOTPLUG_ENABLE);
+    }
+
+    public static void setValue(String value, int position, Context context) {
+        run(Control.write(value, ALUCARD_HOTPLUG + "/" + HOTPLUG_TUNABLES[position]), ALUCARD_HOTPLUG + "/" +
+                HOTPLUG_TUNABLES[position], context);
+    }
+
+    public static String getValue(int position) {
+        return Utils.readFile(ALUCARD_HOTPLUG + "/" + HOTPLUG_TUNABLES[position]);
+    }
+
+    public static String getName(int position) {
+        return HOTPLUG_TUNABLES[position];
+    }
+
+    public static boolean exists(int position) {
+        return Utils.existFile(ALUCARD_HOTPLUG + "/" + HOTPLUG_TUNABLES[position]);
+    }
+
+    public static int size() {
+        return HOTPLUG_TUNABLES.length;
     }
 
     public static boolean supported() {
