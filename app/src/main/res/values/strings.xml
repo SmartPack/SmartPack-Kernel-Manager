@@ -784,8 +784,6 @@
     <string name="profile_empty">Profile is empty!</string>
 
     <!-- Recovery -->
-    <string name="cwm_recovery">CWM Recovery</string>
-    <string name="twrp">TWRP</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>

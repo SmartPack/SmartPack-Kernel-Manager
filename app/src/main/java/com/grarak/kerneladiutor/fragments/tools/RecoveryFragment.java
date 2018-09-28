@@ -208,14 +208,11 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String file = "/cache/recovery/" + mCommands.get(0).getFile(recoveryOption == 1 ?
-                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(Recovery.RECOVERY.TWRP);
                         RootFile recoveryFile = new RootFile(file);
                         recoveryFile.delete();
                         for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(recoveryOption == 1 ?
-                                    Recovery.RECOVERY.TWRP :
-                                    Recovery.RECOVERY.CWM))
+                            for (String command : commands.getCommands(Recovery.RECOVERY.TWRP))
                                 recoveryFile.write(command, true);
                         }
                         RootUtils.runCommand("reboot recovery");
@@ -280,34 +277,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
             mRecoveryOption = Prefs.getInt("recovery_option", 0, getActivity());
 
             LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.layout);
-            String[] options = getResources().getStringArray(R.array.recovery_options);
-
-            final List<AppCompatCheckBox> checkBoxes = new ArrayList<>();
-            for (int i = 0; i < options.length; i++) {
-                AppCompatCheckBox checkBox = new AppCompatCheckBox(
-                        new ContextThemeWrapper(getActivity(),
-                                R.style.Base_Widget_AppCompat_CompoundButton_CheckBox_Custom), null, 0);
-                checkBox.setText(options[i]);
-                checkBox.setTextColor(Color.WHITE);
-                checkBox.setChecked(i == mRecoveryOption);
-                checkBox.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
-
-                final int position = i;
-                checkBox.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        for (int i = 0; i < checkBoxes.size(); i++) {
-                            checkBoxes.get(i).setChecked(position == i);
-                        }
-                        Prefs.saveInt("recovery_option", position, getActivity());
-                        mRecoveryOption = position;
-                    }
-                });
-
-                checkBoxes.add(checkBox);
-                layout.addView(checkBox);
-            }
 
             rootView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                 @Override

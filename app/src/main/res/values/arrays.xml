@@ -69,8 +69,6 @@
 
     <!-- Downloads -->
     <string-array name="downloads_recovery">
-        <item>@string/cwm_recovery</item>
-        <item>@string/twrp</item>
         <item>@string/manual_flashing</item>
     </string-array>
 
@@ -105,10 +103,6 @@
     </string-array>
 
     <!-- Recovery -->
-    <string-array name="recovery_options">
-        <item>@string/cwm_recovery</item>
-        <item>@string/twrp</item>
-    </string-array>
     <string-array name="recovery_reboot_options">
         <item>@string/reboot</item>
         <item>@string/reboot_recovery</item>
