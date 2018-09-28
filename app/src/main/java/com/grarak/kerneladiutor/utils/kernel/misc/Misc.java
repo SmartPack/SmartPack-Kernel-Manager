@@ -185,7 +185,7 @@ public class Misc {
     }
 
     public boolean isCrcEnabled() {
-        return Utils.readFile(CRC_FILE).equals("1");
+        return Utils.readFile(CRC_FILE).equals("1") || Utils.readFile(CRC_FILE).equals("Y");
     }
 
     public boolean hasCrc() {
