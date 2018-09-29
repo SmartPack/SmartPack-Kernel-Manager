@@ -1,5 +1,9 @@
 # Change-logs
 
+## 33. September 29, 2018
+*Release-tag: v5.3*
+Changes: Misc: fix Software CRC check not showing correct status. Tools: Remove all the profile related functions from the donated list. CPU Hotplug: Alucard: Add advanced parameters. Remove Recovery page and add all the necessary functions into SmartPack Page (Advanced Options). Update Gradle builds tools and dependencies. Miscellaneous cleanups and fixes.
+
 ## 32. September 27, 2018
 *Release-tag: v5.2*
 Changes: Thermal: add full control over Simple MSM Thermal driver  by Sultanxda. Virtual Memmory: Add a bunch of parameters. Core Control: fix some issues.
