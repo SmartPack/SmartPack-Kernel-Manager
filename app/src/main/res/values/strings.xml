@@ -823,16 +823,23 @@
     <string name="website_summary">Visit SmartPack homepage</string>
     <string name="downloads">Download and Flash</string>
     <string name="downloads_summary">Get latest SmartPack-Kernel for your device\nWarning! Downloading will take some time to finish! Please be patient!</string>
-    <string name="reboot_recovery_summary">Reboot and manually flash new Kernel</string>
     <string name="autoflash">Auto-flash</string>
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
     <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
-    <string name="reset_settings">Reset Settings</string>
-    <string name="reset_settings_summary">Warning! App settings will be completely erased</string>
-    <string name="reset_settings_message">\nApp settings will be completely erased.\n\Are you sure?\n\n</string>
+    <string name="advance_options">Advanced Options</string>
+    <string name="reset_settings">Reset App</string>
+    <string name="reset_settings_summary">Reset User Settings</string>
+    <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n\n</string>
+    <string name="reboot_recovery_summary">Reboot device into Recovery Mode</string>
+    <string name="reboot_bootloader_summary">Reboot device into Download Mode</string>
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
     <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n\n</string>
+    <string name="bootloader_message">\nYour device will be rebooted into Download Mode.\n\n</string>
+    <string name="wipe_cache_summary">Wipe Cache Partition</string>
+    <string name="wipe_data_summary">Wipe Data Partition</string>
+    <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n\n</string>
+    <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n\n</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>

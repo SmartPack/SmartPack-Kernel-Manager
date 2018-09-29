@@ -224,6 +224,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	});
 	smartpack.addItem(downloads);
 
+	items.add(smartpack);
+
+	CardView advanced = new CardView(getActivity());
+	advanced.setTitle(getString(R.string.advance_options));
+
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
         reset.setSummary(getString(R.string.reset_settings_summary));
@@ -252,6 +257,50 @@ public class SmartPackFragment extends RecyclerViewFragment {
             resetsettings.show();
             }
 	});
+	advanced.addItem(reset);
+
+	// Show wipe (Cache/Data) functions only if we recognize recovery...
+	if (Device.hasRecovery()) {
+            DescriptionView wipe_cache = new DescriptionView();
+            wipe_cache.setTitle(getString(R.string.wipe_cache));
+            wipe_cache.setSummary(getString(R.string.wipe_cache_summary));
+            wipe_cache.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		AlertDialog.Builder wipecache = new AlertDialog.Builder(getActivity());
+		wipecache.setTitle(getString(R.string.sure_question));
+		wipecache.setMessage(getString(R.string.wipe_cache_message));
+		wipecache.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+		});
+		wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
+		    RootUtils.runCommand("echo --wipe_cache > /cache/recovery/command");
+		    RootUtils.runCommand("reboot recovery");
+		});
+		wipecache.show();
+		}
+            });
+            advanced.addItem(wipe_cache);
+
+            DescriptionView wipe_data = new DescriptionView();
+            wipe_data.setTitle(getString(R.string.wipe_data));
+            wipe_data.setSummary(getString(R.string.wipe_data_summary));
+            wipe_data.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		AlertDialog.Builder wipedata = new AlertDialog.Builder(getActivity());
+		wipedata.setTitle(getString(R.string.sure_question));
+		wipedata.setMessage(getString(R.string.wipe_data_message));
+		wipedata.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+		});
+		wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
+		    RootUtils.runCommand("echo --wipe_data > /cache/recovery/command");
+		    RootUtils.runCommand("reboot recovery");
+		});
+		wipedata.show();
+		}
+            });
+            advanced.addItem(wipe_data);
+	}
 
 	DescriptionView recoveryreboot = new DescriptionView();
 	recoveryreboot.setTitle(getString(R.string.reboot_recovery));
@@ -259,21 +308,39 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	recoveryreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-            flash.setTitle(getString(R.string.sure_question));
-            flash.setMessage(getString(R.string.recovery_message));
-            flash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+            AlertDialog.Builder recoveryreboot = new AlertDialog.Builder(getActivity());
+            recoveryreboot.setTitle(getString(R.string.sure_question));
+            recoveryreboot.setMessage(getString(R.string.recovery_message));
+            recoveryreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
-            flash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-		RootUtils.runCommand("reboot recovery");
+            recoveryreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+            	RootUtils.runCommand("reboot recovery");
             });
-            flash.show();
+            recoveryreboot.show();
             }
 	});
+	advanced.addItem(recoveryreboot);
 
-	smartpack.addItem(reset);
-	smartpack.addItem(recoveryreboot);
-	items.add(smartpack);
+	DescriptionView bootloaderreboot = new DescriptionView();
+	bootloaderreboot.setTitle(getString(R.string.reboot_bootloader));
+	bootloaderreboot.setSummary(getString(R.string.reboot_bootloader_summary));
+	bootloaderreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+            AlertDialog.Builder bootloaderreboot = new AlertDialog.Builder(getActivity());
+            bootloaderreboot.setTitle(getString(R.string.sure_question));
+            bootloaderreboot.setMessage(getString(R.string.bootloader_message));
+            bootloaderreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+            });
+            bootloaderreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+            	RootUtils.runCommand("reboot bootloader");
+            });
+            bootloaderreboot.show();
+            }
+	});
+	advanced.addItem(bootloaderreboot);
+
+	items.add(advanced);
     }
 
     public static boolean supported() {
