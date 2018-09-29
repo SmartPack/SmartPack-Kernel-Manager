@@ -104,7 +104,6 @@
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
-    <string name="recovery">Recovery</string>
     <string name="initd">Init.d</string>
     <string name="on_boot">On Boot</string>
     <string name="settings">Settings</string>
@@ -785,24 +784,6 @@
     <string name="nothing_selected">Nothing selected</string>
     <string name="profile_empty">Profile is empty!</string>
 
-    <!-- Recovery -->
-    <string name="reboot">Reboot</string>
-    <string name="reboot_now">Reboot Now</string>
-    <string name="reboot_later">Reboot Later</string>
-    <string name="reboot_soft">Soft Reboot</string>
-    <string name="reboot_recovery">Reboot Recovery</string>
-    <string name="reboot_bootloader">Reboot Bootloader</string>
-    <string name="reboot_download">Reboot Download</string>
-    <string name="wipe_data">Wipe Data</string>
-    <string name="wipe_cache">Wipe Cache</string>
-    <string name="flash_zip">Flash Zip</string>
-    <string name="manual_flashing">Install later</string>>
-    <string name="backing_up">Backing up</string>
-    <string name="flashing">Flashing</string>
-    <string name="restoring">Restoring</string>
-    <string name="add_action_first">You have to add actions first!</string>
-    <string name="flash_now_confirm">Do you want to run your actions? Your device will reboot into recovery and the actions will run in the order as you added them.</string>
-
     <!-- Init.d -->
     <string name="emulate_initd">Emulate Init.d</string>
     <string name="emulate_initd_summary">If your device doesn\'t support Init.d by default, you can enable this to emulate its behaviour.</string>
@@ -828,6 +809,17 @@
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
     <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
     <string name="advance_options">Advanced Options</string>
+    <string name="reboot">Reboot</string>
+    <string name="reboot_now">Reboot Now</string>
+    <string name="reboot_later">Reboot Later</string>
+    <string name="reboot_recovery">Reboot Recovery</string>
+    <string name="reboot_bootloader">Reboot Bootloader</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_cache">Wipe Cache</string>
+    <string name="manual_flashing">Install later</string>>
+    <string name="backing_up">Backing up</string>
+    <string name="flashing">Flashing</string>
+    <string name="restoring">Restoring</string>
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
     <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n\n</string>

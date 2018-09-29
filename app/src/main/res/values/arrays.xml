@@ -67,11 +67,6 @@
         <item>@string/control_generic</item>
     </string-array>
 
-    <!-- Downloads -->
-    <string-array name="downloads_recovery">
-        <item>@string/manual_flashing</item>
-    </string-array>
-
     <!-- Backup -->
     <string-array name="backup_options">
         <item>@string/backup</item>
@@ -100,27 +95,6 @@
     <string-array name="profile_modes">
         <item>@string/new_mode</item>
         <item>@string/current_settings</item>
-    </string-array>
-
-    <!-- Recovery -->
-    <string-array name="recovery_reboot_options">
-        <item>@string/reboot</item>
-        <item>@string/reboot_recovery</item>
-        <item>@string/reboot_bootloader</item>
-        <item>@string/reboot_download</item>
-        <item>@string/reboot_soft</item>
-    </string-array>
-    <string-array name="recovery_reboot_values">
-        <item>reboot</item>
-        <item>reboot recovery</item>
-        <item>reboot bootloader</item>
-        <item>reboot download</item>
-        <item>pkill zygote</item>
-    </string-array>
-    <string-array name="recovery_commands">
-        <item>@string/wipe_data</item>
-        <item>@string/wipe_cache</item>
-        <item>@string/flash_zip</item>
     </string-array>
 
     <!-- Settings -->
