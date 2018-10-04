@@ -630,6 +630,56 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(highfreq);
 	}
 
+	if (CPUInputBoost.hascpuinputboostduration()) {
+            GenericSelectView cpuiboostduration = new GenericSelectView();
+            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration) + (" (ms)"));
+            cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
+            cpuiboostduration.setValue(CPUInputBoost.getcpuinputboostduration());
+            cpuiboostduration.setInputType(InputType.TYPE_CLASS_NUMBER);
+            cpuiboostduration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    CPUInputBoost.setcpuinputboostduration(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            cpuBoost.addItem(cpuiboostduration);
+	}
+
+	if (CPUInputBoost.hascpuinputboostlf()) {
+            GenericSelectView cpuiboostlf = new GenericSelectView();
+            cpuiboostlf.setTitle(getString(R.string.input_boost_freq) + (" (Hz)"));
+            cpuiboostlf.setSummary("Low");
+            cpuiboostlf.setValue(CPUInputBoost.getcpuinputboostlf());
+            cpuiboostlf.setInputType(InputType.TYPE_CLASS_NUMBER);
+            cpuiboostlf.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    CPUInputBoost.setcpuinputboostlf(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            cpuBoost.addItem(cpuiboostlf);
+	}
+
+	if (CPUInputBoost.hascpuinputboosthf()) {
+            GenericSelectView cpuiboosthf = new GenericSelectView();
+            cpuiboosthf.setSummary("High");
+            cpuiboosthf.setValue(CPUInputBoost.getcpuinputboosthf());
+            cpuiboosthf.setInputType(InputType.TYPE_CLASS_NUMBER);
+            cpuiboosthf.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    CPUInputBoost.setcpuinputboosthf(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            cpuBoost.addItem(cpuiboosthf);
+	}
+
 	if (mCPUBoost.hasCpuBoostInputFreq()) {
             List<Integer> freqs = mCPUBoost.getCpuBootInputFreq();
             for (int i = 0; i < freqs.size(); i++) {

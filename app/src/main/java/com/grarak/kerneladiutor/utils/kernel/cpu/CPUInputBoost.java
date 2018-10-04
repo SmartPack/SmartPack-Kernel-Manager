@@ -41,6 +41,11 @@ public class CPUInputBoost {
     private static final String CPU_INPUT_BOOST_DURATION = CPU_INPUT_BOOST + "/ib_duration_ms";
     private static final String CPU_INPUT_BOOST_FREQ = CPU_INPUT_BOOST + "/ib_freqs";
 
+    private static final String CPU_INPUT_BOOST_MODULE = "/sys/module/cpu_input_boost/parameters";
+    private static final String CPU_INPUT_BOOST_MODULE_DURATION = CPU_INPUT_BOOST_MODULE + "/input_boost_duration";
+    private static final String CPU_INPUT_BOOST_LF = CPU_INPUT_BOOST_MODULE + "/input_boost_freq_lp";
+    private static final String CPU_INPUT_BOOST_HF = CPU_INPUT_BOOST_MODULE + "/input_boost_freq_hp";
+
     public static void enablecpuinputboost(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", CPU_INPUT_BOOST_ENABLED), CPU_INPUT_BOOST_ENABLED, context);
     }
@@ -83,8 +88,44 @@ public class CPUInputBoost {
         return Utils.existFile(CPU_INPUT_BOOST_FREQ);
     }
 
+    public static String getcpuinputboostduration() {
+        return Utils.readFile(CPU_INPUT_BOOST_MODULE_DURATION);
+    }
+
+    public static void setcpuinputboostduration(String value, Context context) {
+        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_MODULE_DURATION), CPU_INPUT_BOOST_MODULE_DURATION, context);
+    }
+
+    public static boolean hascpuinputboostduration() {
+        return Utils.existFile(CPU_INPUT_BOOST_MODULE_DURATION);
+    }
+
+    public static String getcpuinputboostlf() {
+        return Utils.readFile(CPU_INPUT_BOOST_LF);
+    }
+
+    public static void setcpuinputboostlf(String value, Context context) {
+        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_LF), CPU_INPUT_BOOST_LF, context);
+    }
+
+    public static boolean hascpuinputboostlf() {
+        return Utils.existFile(CPU_INPUT_BOOST_LF);
+    }
+
+    public static String getcpuinputboosthf() {
+        return Utils.readFile(CPU_INPUT_BOOST_HF);
+    }
+
+    public static void setcpuinputboosthf(String value, Context context) {
+        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_HF), CPU_INPUT_BOOST_HF, context);
+    }
+
+    public static boolean hascpuinputboosthf() {
+        return Utils.existFile(CPU_INPUT_BOOST_HF);
+    }
+
     public static boolean supported() {
-        return Utils.existFile(CPU_INPUT_BOOST);
+        return Utils.existFile(CPU_INPUT_BOOST) || Utils.existFile(CPU_INPUT_BOOST_MODULE);
     }
 
     private static void run(String command, String id, Context context) {
