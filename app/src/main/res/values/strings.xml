@@ -808,6 +808,7 @@
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
     <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
+    <string name="download_failed_message">\nAre you running an unsupported android version?\n\nIf not, please check your internet connection!\n\n</string>
     <string name="advance_options">Advanced Options</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_now">Reboot Now</string>

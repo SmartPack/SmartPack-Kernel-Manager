@@ -196,6 +196,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			});
 			flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
 		            RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel.zip > /cache/recovery/command");
+		            RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		            RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 		            RootUtils.runCommand("reboot recovery");
 			});
 			flash.show();
@@ -207,6 +209,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
 			});
 			noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+		            RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		            RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 		            RootUtils.runCommand("reboot recovery");
 			});
 			noflash.show();
@@ -215,7 +219,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		} else {
 		    AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
 		    downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
-		    downloadfailed.setMessage(getString(R.string.no_internet));
+		    downloadfailed.setMessage(getString(R.string.download_failed_message));
 		    downloadfailed.setPositiveButton(getString(R.string.exit), (dialog1, id1) -> {
 		    });
 		    downloadfailed.show();
@@ -245,11 +249,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             reboot.setTitle(getString(R.string.reboot));
             reboot.setMessage(getString(R.string.reboot_message));
             reboot.setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
+		RootUtils.runCommand("rm -rf /data/data/com.smartpack.kernelmanager/");
 		RootUtils.runCommand("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
             });
             reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-		RootUtils.runCommand("rm -rf /data/com.smartpack.kernelmanager");
+		RootUtils.runCommand("rm -rf /data/data/com.smartpack.kernelmanager/");
+		RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 		RootUtils.runCommand("pm clear com.smartpack.kernelmanager && reboot");
 		    });
 		reboot.show();
@@ -274,6 +280,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		});
 		wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
 		    RootUtils.runCommand("echo --wipe_cache > /cache/recovery/command");
+		    RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		    RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 		    RootUtils.runCommand("reboot recovery");
 		});
 		wipecache.show();
@@ -294,6 +302,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		});
 		wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
 		    RootUtils.runCommand("echo --wipe_data > /cache/recovery/command");
+		    RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		    RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 		    RootUtils.runCommand("reboot recovery");
 		});
 		wipedata.show();
@@ -314,6 +324,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             recoveryreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             recoveryreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+		RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
             	RootUtils.runCommand("reboot recovery");
             });
             recoveryreboot.show();
@@ -333,6 +345,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             bootloaderreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             bootloaderreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+		RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+		RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
             	RootUtils.runCommand("reboot bootloader");
             });
             bootloaderreboot.show();
