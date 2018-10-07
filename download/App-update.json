@@ -1,13 +1,10 @@
 {
-  "latestVersion": "5.3-20180929",
+  "latestVersion": "5.4-20181007",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Misc: fix Software CRC check not showing correct status.",
-    "- Tools: Remove all the profile related functions from the donated list.",
-    "- CPU Hotplug: Alucard: Add advanced parameters.",
-    "- Remove Recovery page and add all the necessary functions into SmartPack Page (Advanced Options).",
-    "- Update Gradle builds tools and dependencies.",
-    "- Miscellaneous cleanups and fixes." 
+    "- CPU: Update CPU Input Boost parameters.",
+    "- Misc: SmartPack: update Auto-flash and other advanced options to ensure data integrity while reboot.",
+    "- SDK: revert to 27 to fix apply on boot on some android versions." 
   ]
 }

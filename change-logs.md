@@ -1,5 +1,9 @@
 # Change-logs
 
+## 34. October 07, 2018
+*Release-tag: v5.4*
+Changes: CPU: Update CPU Input Boost parameters. Misc: SmartPack: update Auto-flash and other advanced options to ensure data integrity while reboot. SDK: revert to 27 to fix apply on boot on some android versions.
+
 ## 33. September 29, 2018
 *Release-tag: v5.3*
 Changes: Misc: fix Software CRC check not showing correct status. Tools: Remove all the profile related functions from the donated list. CPU Hotplug: Alucard: Add advanced parameters. Remove Recovery page and add all the necessary functions into SmartPack Page (Advanced Options). Update Gradle builds tools and dependencies. Miscellaneous cleanups and fixes.
