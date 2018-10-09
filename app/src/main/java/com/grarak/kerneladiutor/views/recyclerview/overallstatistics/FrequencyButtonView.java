@@ -21,9 +21,10 @@ package com.grarak.kerneladiutor.views.recyclerview.overallstatistics;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.support.v7.widget.AppCompatImageButton;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;

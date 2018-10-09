@@ -23,7 +23,7 @@
         android:textColor="@color/textcolor_dark"
         android:textIsSelectable="true" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

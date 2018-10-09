@@ -26,14 +26,15 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.LocaleList;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
+import com.google.android.material.appbar.AppBarLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;

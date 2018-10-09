@@ -19,8 +19,9 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.grarak.kerneladiutor.R;
 

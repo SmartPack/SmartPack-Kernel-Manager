@@ -20,7 +20,8 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.text.InputType;
-import android.support.v7.app.AlertDialog;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;

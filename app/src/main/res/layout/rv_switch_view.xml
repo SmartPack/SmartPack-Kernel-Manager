@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,13 +25,13 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/summary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <android.support.v7.widget.SwitchCompat
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switcher"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"

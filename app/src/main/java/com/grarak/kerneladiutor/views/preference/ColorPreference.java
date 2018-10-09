@@ -20,8 +20,9 @@
 package com.grarak.kerneladiutor.views.preference;
 
 import android.content.Context;
-import android.support.v7.preference.Preference;
 import android.util.AttributeSet;
+
+import androidx.preference.Preference;
 
 import com.grarak.kerneladiutor.R;
 
@@ -41,7 +42,7 @@ public class ColorPreference extends Preference {
     }
 
     public ColorPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, android.support.v7.preference.R.attr.preferenceStyle);
+        this(context, attrs, androidx.preference.R.attr.preferenceStyle);
     }
 
     public ColorPreference(Context context) {

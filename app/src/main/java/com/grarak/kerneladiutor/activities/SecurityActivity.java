@@ -24,15 +24,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
-import android.support.annotation.Nullable;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-import android.support.v7.view.ContextThemeWrapper;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Nullable;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.AppCompatEditText;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.FingerprintUiHelper;

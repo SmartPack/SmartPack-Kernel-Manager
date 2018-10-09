@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/frequency_refresh"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -42,7 +42,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/frequency_reset"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -71,7 +71,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/frequency_restore"
             android:layout_width="30dp"
             android:layout_height="30dp"

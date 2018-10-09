@@ -23,7 +23,8 @@ import android.content.Context;
 import android.text.TextUtils;
  
 import com.grarak.kerneladiutor.R;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;

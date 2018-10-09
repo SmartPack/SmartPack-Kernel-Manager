@@ -20,10 +20,11 @@
 package com.grarak.kerneladiutor.views.recyclerview;
 
 import android.app.Activity;
-import android.support.annotation.LayoutRes;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by willi on 24.04.16.

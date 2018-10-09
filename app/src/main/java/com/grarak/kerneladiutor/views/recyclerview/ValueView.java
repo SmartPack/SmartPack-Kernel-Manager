@@ -19,9 +19,10 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
-import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.StringRes;
 
 import com.grarak.kerneladiutor.R;
 

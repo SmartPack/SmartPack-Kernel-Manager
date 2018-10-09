@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2018-2019 sunilpaulmathew <sunil.kde@gmail.com>
  *
- * This file is part of SmartPack Kernel Manager, which is heavily modified version of Kernel Adiutor,
+ * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
  * originally developed by Willi Ye <williye97@gmail.com>
  *
  * Both SmartPack Kernel Manager & Kernel Adiutor are free softwares: you can redistribute it 
@@ -9,13 +9,13 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Kernel Adiutor is distributed in the hope that it will be useful,
+ * SmartPack Kernel Manager is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Kernel Adiutor.  If not, see <http://www.gnu.org/licenses/>.
+ * along with SmartPack Kernel Manager.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -23,7 +23,8 @@ package org.frap129.spectrum;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
+
+import androidx.core.content.ContextCompat;
 
 import org.frap129.spectrum.Spectrum;
 

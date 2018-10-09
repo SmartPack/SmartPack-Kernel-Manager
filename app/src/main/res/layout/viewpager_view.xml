@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:focusable="false">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

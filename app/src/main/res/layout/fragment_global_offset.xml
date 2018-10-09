@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_minus"
             android:layout_width="30dp"
             android:layout_height="20dp"
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:textColor="@color/white" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_plus"
             android:layout_width="30dp"
             android:layout_height="20dp"

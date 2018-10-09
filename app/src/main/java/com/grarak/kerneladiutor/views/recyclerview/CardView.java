@@ -24,13 +24,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.res.ColorStateList;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.grarak.kerneladiutor.R;
 
@@ -49,7 +50,7 @@ public class CardView extends RecyclerViewItem {
 
     private Activity mActivity;
 
-    private android.support.v7.widget.CardView mRootView;
+    private androidx.cardview.widget.CardView mRootView;
     private View mTitleParent;
     private TextView mTitle;
     private AppCompatImageView mArrow;
@@ -97,7 +98,7 @@ public class CardView extends RecyclerViewItem {
     }
 
     private void initLayouts(View view) {
-        mRootView = (android.support.v7.widget.CardView) view;
+        mRootView = (androidx.cardview.widget.CardView) view;
         mTitleParent = view.findViewById(R.id.title_parent);
         mTitle = view.findViewById(R.id.card_title);
         mArrow = view.findViewById(R.id.arrow_image);

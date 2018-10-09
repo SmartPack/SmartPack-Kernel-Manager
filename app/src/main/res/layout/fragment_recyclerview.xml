@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/top_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:layout_marginTop="@dimen/recyclerview_fab_margin_top"
         android:visibility="gone" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bottom_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_marginRight="@dimen/recyclerview_fab_margin_right"
         android:visibility="gone" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/foreground_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -104,5 +104,5 @@
                 android:layout_height="match_parent" />
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

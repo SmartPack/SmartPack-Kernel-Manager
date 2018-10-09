@@ -20,7 +20,8 @@
 package com.grarak.kerneladiutor.utils.kernel.misc;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;

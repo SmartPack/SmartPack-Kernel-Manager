@@ -24,11 +24,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.widget.FrameLayout;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.ViewUtils;

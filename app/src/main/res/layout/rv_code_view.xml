@@ -67,7 +67,7 @@
             android:text="@string/hit_test"
             android:textSize="12sp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/test_button"
             android:layout_width="50dp"
             android:layout_height="30dp"

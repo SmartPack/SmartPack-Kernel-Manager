@@ -25,14 +25,15 @@ import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewConfigurationCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewConfigurationCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.grarak.kerneladiutor.R;
 

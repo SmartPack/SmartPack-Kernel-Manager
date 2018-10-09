@@ -20,12 +20,13 @@
 package com.grarak.kerneladiutor.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;

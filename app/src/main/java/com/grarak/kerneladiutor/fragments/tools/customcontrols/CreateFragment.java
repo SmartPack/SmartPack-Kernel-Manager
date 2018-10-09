@@ -23,11 +23,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.EditorActivity;

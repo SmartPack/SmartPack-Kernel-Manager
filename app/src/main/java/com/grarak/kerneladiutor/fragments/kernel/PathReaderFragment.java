@@ -21,7 +21,8 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;

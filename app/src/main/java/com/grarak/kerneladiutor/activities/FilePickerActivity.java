@@ -25,11 +25,12 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.app.ActionBar;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.appcompat.app.ActionBar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;

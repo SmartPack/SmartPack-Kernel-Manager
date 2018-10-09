@@ -19,11 +19,12 @@
  */
 package com.grarak.kerneladiutor.views.recyclerview;
 
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.AppCompatEditText;
 
 import com.grarak.kerneladiutor.R;
 

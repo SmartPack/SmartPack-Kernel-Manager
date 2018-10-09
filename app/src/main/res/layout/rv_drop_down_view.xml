@@ -40,7 +40,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/arrow_image"
                 android:layout_width="25dp"
                 android:layout_height="25dp"

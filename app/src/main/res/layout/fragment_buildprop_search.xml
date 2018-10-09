@@ -17,7 +17,7 @@
         android:textSize="13sp"
         android:textStyle="italic" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/key_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:textSize="15sp"
         android:theme="?edittext_build_prop_style" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/value_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

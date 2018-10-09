@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +19,13 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/value"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_minus"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -59,7 +59,7 @@
             app:dsb_indicatorPopupEnabled="false"
             app:dsb_progressColor="?attr/colorAccent" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_plus"
             android:layout_width="30dp"
             android:layout_height="30dp"
