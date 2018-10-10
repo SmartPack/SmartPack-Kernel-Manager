@@ -98,15 +98,31 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		@Override
 		public void onClick(RecyclerViewItem item) {
 			if (Device.isSamsungmsm8974()) {
-				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
+				if (Build.VERSION.SDK_INT == 27) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
+				} else if (Build.VERSION.SDK_INT == 28) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Pie/change-logs.md", getActivity());
+				}
 			} else if (Device.isOnePlusmsm8998()) {
-				if (Device.isOnePlusOpenBeta()) {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo_Beta/change-logs.md", getActivity());
-				} else {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
+				if (Build.VERSION.SDK_INT == 27) {
+					if (Device.isOnePlusOpenBeta()) {
+						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo_Beta/change-logs.md", getActivity());
+					} else {
+						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
+					}
+				} else if (Build.VERSION.SDK_INT == 28) {
+					if (Device.isOnePlusOpenBeta()) {
+						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Pie_Beta/change-logs.md", getActivity());
+					} else {
+						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Pie/change-logs.md", getActivity());
+					}
 				}
 			} else if (Device.isMotoG3()) {
-				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
+				if (Build.VERSION.SDK_INT == 27) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
+				} else if (Build.VERSION.SDK_INT == 28) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Pie/change-logs.md", getActivity());
+				}
 			}
             	}
             });
@@ -136,7 +152,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	website.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-		Utils.launchUrl("https://sunilpaulmathew.github.io/smartpack/", getActivity());
+		if (Device.isSamsungmsm8974()) {
+			Utils.launchUrl("https://sunilpaulmathew.github.io/sgs5/", getActivity());
+		} else if (Device.isOnePlusmsm8998()) {
+			Utils.launchUrl("https://sunilpaulmathew.github.io/op5t/", getActivity());
+		} else if (Device.isMotoG3()) {
+			Utils.launchUrl("https://sunilpaulmathew.github.io/motog2015/", getActivity());
+		}
             }
 	});
 
@@ -156,22 +178,32 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		if (Device.iskltekor()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
 			}
 		} else if (Device.isklte()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
 			}
 		} else if (Device.iskltedv()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
 			}
 		} else if (Device.isklteduos()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
 			}
 		} else if (Device.iskltejpn()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
 			}
 		} else if (Device.isOnePlusmsm8998()) {
 			if (Build.VERSION.SDK_INT == 27) {
@@ -180,10 +212,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		            } else {
 				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
 		            }
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            if (Device.isOnePlusOpenBeta()) {
+				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
+		            } else {
+				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
+		            }
 			}
 		} else if (Device.isMotoG3()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
+			} else if (Build.VERSION.SDK_INT == 28) {
+		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Pie/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 			}
 		}
 		// Proceed only if the download was successful...
