@@ -336,20 +336,16 @@ public class ThermalFragment extends RecyclerViewFragment {
         }
 
         if (mMSMThermal.hasPollMs()) {
-            SeekBarView pollMs = new SeekBarView();
-            pollMs.setTitle(getString(R.string.poll));
-            pollMs.setUnit(getString(R.string.ms));
-            pollMs.setMax(3000);
-            pollMs.setOffset(10);
-            pollMs.setProgress(mMSMThermal.getPollMs() / 10);
-            pollMs.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+            GenericSelectView pollMs = new GenericSelectView();
+            pollMs.setTitle(getString(R.string.poll) + (" (ms)"));
+            pollMs.setSummary(getString(R.string.poll_summary));
+            pollMs.setValue(mMSMThermal.getPollMs());
+            pollMs.setInputType(InputType.TYPE_CLASS_NUMBER);
+            pollMs.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                 @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mMSMThermal.setPollMs(position * 10, getActivity());
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setPollMs(value, getActivity());
+                    genericSelectView.setValue(value);
                 }
             });
 

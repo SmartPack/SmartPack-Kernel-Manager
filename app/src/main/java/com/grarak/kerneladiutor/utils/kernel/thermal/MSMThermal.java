@@ -56,7 +56,6 @@ public class MSMThermal {
     private static final String PARAMETERS_CORE_TEMP_HYSTERESIS_DEGC = "parameters/core_temp_hysteresis_degC";
     private static final String PARAMETERS_FREQ_STEP = "parameters/freq_step";
     private static final String PARAMETERS_IMMEDIATELY_LIMIT_STOP = "parameters/immediately_limit_stop";
-    private static final String PARAMETERS_POLL_MS = "parameters/poll_ms";
     private static final String PARAMETERS_TEMP_HYSTERESIS_DEGC = "parameters/temp_hysteresis_degC";
     private static final String PARAMETERS_THERMAL_LIMIT_LOW = "parameters/thermal_limit_low";
     private static final String PARAMETERS_THERMAL_LIMIT_HIGH = "parameters/thermal_limit_high";
@@ -83,6 +82,7 @@ public class MSMThermal {
     private static final String CONF_CHECK_INTERVAL_MS = MSM_THERMAL_CONF + "/check_interval_ms";
     private static final String CONF_SHUTDOWN_TEMP = MSM_THERMAL_CONF + "/shutdown_temp";
 
+    private static final String POLL_MS = "/sys/module/msm_thermal/parameters/poll_ms";
     private static final String TEMP_THRESHOLD = "/sys/module/msm_thermal/parameters/temperature_threshold";
     private static final String CORE_TEMP_LIMIT_DEGC = "/sys/module/msm_thermal/parameters/core_temp_limit_degC";
     private static final String FREQ_MITIG_TEMP = "/sys/module/msm_thermal/parameters/freq_mitig_temp_degc";
@@ -389,17 +389,16 @@ public class MSMThermal {
         return Utils.existFile(getParent(PARAMETERS_TEMP_HYSTERESIS_DEGC));
     }
 
-    public void setPollMs(int value, Context context) {
-        run(Control.write(String.valueOf(value), getParent(PARAMETERS_POLL_MS)),
-                getParent(PARAMETERS_POLL_MS), context);
+    public void setPollMs(String value, Context context) {
+        run(Control.write(String.valueOf(value), POLL_MS), POLL_MS, context);
     }
 
-    public int getPollMs() {
-        return Utils.strToInt(Utils.readFile(getParent(PARAMETERS_POLL_MS)));
+    public static String getPollMs() {
+        return Utils.readFile(POLL_MS);
     }
 
     public boolean hasPollMs() {
-        return Utils.existFile(getParent(PARAMETERS_POLL_MS));
+        return Utils.existFile(POLL_MS);
     }
 
     public void enableImmediatelyLimitStop(boolean enable, Context context) {

@@ -366,6 +366,7 @@
     <string name="freq_step">Frequency Step</string>
     <string name="immediately_limit_stop">Immediately Limit Stop</string>
     <string name="poll">Poll</string>
+    <string name="poll_summary">Sampling interval to read sensor.</string>
     <string name="temp_hysteresis">Temperature Hysteresis</string>
     <string name="thermal_limit_low">Thermal Limit Low</string>
     <string name="thermal_limit_high">Thermal Limit High</string>
