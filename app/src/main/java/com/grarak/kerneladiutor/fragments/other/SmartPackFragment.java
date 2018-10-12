@@ -75,7 +75,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(currentspversion);
 	}
 
-	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
+	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
             DescriptionView xdapage = new DescriptionView();
             xdapage.setTitle(getString(R.string.support));
             xdapage.setSummary(getString(R.string.support_summary));
@@ -92,6 +92,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		}
             });
             smartpack.addItem(xdapage);
+	}
+
+	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
 
             DescriptionView changelogsp = new DescriptionView();
             changelogsp.setTitle(getString(R.string.change_logs));
@@ -129,6 +132,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
             	}
             });
             smartpack.addItem(changelogsp);
+	}
+
+	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
 
             DescriptionView spsource = new DescriptionView();
             spsource.setTitle(getString(R.string.source_code));
