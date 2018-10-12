@@ -48,18 +48,15 @@ public class AboutFragment extends RecyclerViewFragment {
     private static final LinkedHashMap<String, String> sLibraries = new LinkedHashMap<>();
 
     static {
-        sLibraries.put("Google,v4 Support Library", "https://developer.android.com/topic/libraries/support-library/features.html#v4");
-        sLibraries.put("Google,v7 appcompat library", "https://developer.android.com/topic/libraries/support-library/features.html#v7");
-        sLibraries.put("Google,v7 cardview library", "https://developer.android.com/topic/libraries/support-library/features.html#v7");
-        sLibraries.put("Google,Design Support Library", "https://developer.android.com/topic/libraries/support-library/features.html#design");
-        sLibraries.put("Google,v7/v14 Preference", "https://developer.android.com/reference/android/support/v7/preference/package-summary.html");
-        sLibraries.put("Google,v7 recyclerview library", "https://developer.android.com/topic/libraries/support-library/features.html#v7");
+        sLibraries.put("Google,AndroidX Library", "https://developer.android.com/jetpack/androidx");
+        sLibraries.put("Google,NavigationView library", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
         sLibraries.put("Joe Maples,Spectrum", "https://github.com/frap129/spectrum");
         sLibraries.put("Ozodrukh,CircularReveal", "https://github.com/ozodrukh/CircularReveal");
         sLibraries.put("Roman Nurik,dashclock", "https://github.com/romannurik/dashclock");
         sLibraries.put("Matthew Precious,swirl", "https://github.com/mattprecious/swirl");
         sLibraries.put("Lopez Mikhael,CircularImageView", "https://github.com/lopspower/CircularImageView");
         sLibraries.put("Square,picasso", "https://github.com/square/picasso");
+        sLibraries.put("Square,okhttp", "https://github.com/square");
         sLibraries.put("CyanogenMod,CyanogenMod Platform SDK", "https://github.com/CyanogenMod/cm_platform_sdk");
         sLibraries.put("Javier Santos,AppUpdater", "https://github.com/javiersantos/AppUpdater");
     }
