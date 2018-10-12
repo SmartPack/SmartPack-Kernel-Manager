@@ -83,6 +83,9 @@ public class MSMThermal {
     private static final String CONF_CHECK_INTERVAL_MS = MSM_THERMAL_CONF + "/check_interval_ms";
     private static final String CONF_SHUTDOWN_TEMP = MSM_THERMAL_CONF + "/shutdown_temp";
 
+    private static final String TEMP_THRESHOLD = "/sys/module/msm_thermal/parameters/temperature_threshold";
+    private static final String CORE_TEMP_LIMIT_DEGC = "/sys/module/msm_thermal/parameters/core_temp_limit_degC";
+
     private final HashMap<String, Integer> mTempLimitOffset = new HashMap<>();
     private final HashMap<String, Integer> mTempLimitMin = new HashMap<>();
     private final HashMap<String, Integer> mTempLimitMax = new HashMap<>();
@@ -529,6 +532,30 @@ public class MSMThermal {
 
     public boolean supported() {
         return PARENT != null || hasTempLimit();
+    }
+
+    public static String getTemp_Limit() {
+        return Utils.readFile(TEMP_THRESHOLD);
+    }
+
+    public void setTemp_Limit(String value, Context context) {
+        run(Control.write(String.valueOf(value), TEMP_THRESHOLD), TEMP_THRESHOLD, context);
+    }
+
+    public static boolean hasTemp_Limit() {
+        return Utils.existFile(TEMP_THRESHOLD);
+    }
+
+    public static String getCoreTempLimit() {
+        return Utils.readFile(CORE_TEMP_LIMIT_DEGC);
+    }
+
+    public void setCoreTempLimit(String value, Context context) {
+        run(Control.write(String.valueOf(value), CORE_TEMP_LIMIT_DEGC), CORE_TEMP_LIMIT_DEGC, context);
+    }
+
+    public static boolean hasCoreTempLimit() {
+        return Utils.existFile(CORE_TEMP_LIMIT_DEGC);
     }
 
     private void run(String command, String id, Context context) {

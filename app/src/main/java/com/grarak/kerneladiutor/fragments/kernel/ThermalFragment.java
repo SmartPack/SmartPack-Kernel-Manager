@@ -218,6 +218,25 @@ public class ThermalFragment extends RecyclerViewFragment {
             items.add(coreLimitTempDegC);
         }
 
+        if (mMSMThermal.hasCoreTempLimit()) {
+            boolean fahrenheit = Utils.useFahrenheit(getActivity());
+
+            GenericSelectView coretempLimit = new GenericSelectView();
+            coretempLimit.setTitle(getString(R.string.cpu_throttle_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
+            coretempLimit.setSummary(getString(R.string.cpu_throttle_temp_summary));
+            coretempLimit.setValue(mMSMThermal.getCoreTempLimit());
+            coretempLimit.setInputType(InputType.TYPE_CLASS_NUMBER);
+            coretempLimit.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setCoreTempLimit(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(coretempLimit);
+        }
+
         if (mMSMThermal.hasCoreTempHysteresisDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
@@ -411,6 +430,25 @@ public class ThermalFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mMSMThermal.setTempLimit(position + mMSMThermal.getTempLimitMin(), getActivity());
+                }
+            });
+
+            items.add(tempLimit);
+        }
+
+        if (mMSMThermal.hasTemp_Limit()) {
+            boolean fahrenheit = Utils.useFahrenheit(getActivity());
+
+            GenericSelectView tempLimit = new GenericSelectView();
+            tempLimit.setTitle(getString(R.string.temp_limit) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
+            tempLimit.setSummary(getString(R.string.temp_limit_summary));
+            tempLimit.setValue(mMSMThermal.getTemp_Limit());
+            tempLimit.setInputType(InputType.TYPE_CLASS_NUMBER);
+            tempLimit.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setTemp_Limit(value, getActivity());
+                    genericSelectView.setValue(value);
                 }
             });
 
