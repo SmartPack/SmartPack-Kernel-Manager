@@ -813,8 +813,10 @@
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="website">Website</string>
     <string name="website_summary">Visit SmartPack homepage</string>
+    <string name="download">Download</string>
     <string name="downloads">Download and Flash</string>
-    <string name="downloads_summary">Get latest SmartPack-Kernel for your device\nWarning! Downloading will take some time to finish! Please be patient!</string>
+    <string name="downloads_summary">Get latest SmartPack-Kernel for your device</string>
+    <string name="downloads_message">\nThe app will download the latest version of SmartPack-Kernel available for your device.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
     <string name="autoflash">Auto-flash</string>
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>

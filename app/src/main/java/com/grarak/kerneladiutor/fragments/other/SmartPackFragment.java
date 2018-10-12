@@ -183,6 +183,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    if (Device.isSmartPackDownloaded()) {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
 		    }
+		    // Show an alert dialogue and let the user know the process...
+		    AlertDialog.Builder downloads = new AlertDialog.Builder(getActivity());
+		    downloads.setTitle(getString(R.string.downloads));
+		    downloads.setMessage(getString(R.string.downloads_message));
+		    downloads.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+		    });
+		    downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
 		    // Initiate device specific downloads...
 		    if (Device.iskltekor()) {
 			if (Build.VERSION.SDK_INT == 27) {
@@ -244,7 +251,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		            flash.setMessage(getString(R.string.flash_message));
 		            flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
 		            });
-		            flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
+		            flash.setPositiveButton(getString(R.string.install_now), (dialog2, id2) -> {
 				RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel.zip > /cache/recovery/command");
 				RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
 				RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
@@ -258,7 +265,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		            noflash.setMessage(getString(R.string.no_flash_message));
 		            noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
 		            });
-		            noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+		            noflash.setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
 				RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
 				RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
 				RootUtils.runCommand("reboot recovery");
@@ -270,11 +277,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
 			downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
 			downloadfailed.setMessage(getString(R.string.download_failed_message));
-			downloadfailed.setPositiveButton(getString(R.string.exit), (dialog1, id1) -> {
+			downloadfailed.setPositiveButton(getString(R.string.exit), (dialog2, id2) -> {
 			});
 			downloadfailed.show();
 			}
-		    } 
+		    });
+		    downloads.show();
+		} 
             });
             smartpack.addItem(downloads);
 	}
