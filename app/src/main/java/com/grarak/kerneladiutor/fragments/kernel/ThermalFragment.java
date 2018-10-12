@@ -237,6 +237,44 @@ public class ThermalFragment extends RecyclerViewFragment {
             items.add(coretempLimit);
         }
 
+        if (mMSMThermal.hasFreqmitigTemp()) {
+            boolean fahrenheit = Utils.useFahrenheit(getActivity());
+
+            GenericSelectView Freqtemp = new GenericSelectView();
+            Freqtemp.setTitle(getString(R.string.freq_mitg_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
+            Freqtemp.setSummary(getString(R.string.freq_mitg_temp_summary));
+            Freqtemp.setValue(mMSMThermal.getFreqmitigTemp());
+            Freqtemp.setInputType(InputType.TYPE_CLASS_NUMBER);
+            Freqtemp.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setFreqmitigTemp(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(Freqtemp);
+        }
+
+        if (mMSMThermal.hasHotPlugTemp()) {
+            boolean fahrenheit = Utils.useFahrenheit(getActivity());
+
+            GenericSelectView hotplugtemp = new GenericSelectView();
+            hotplugtemp.setTitle(getString(R.string.hotplug_temp) + (" (") + getString(fahrenheit ? R.string.fahrenheit : R.string.celsius) + (")"));
+            hotplugtemp.setSummary(getString(R.string.hotplug_temp_summary));
+            hotplugtemp.setValue(mMSMThermal.getHotPlugTemp());
+            hotplugtemp.setInputType(InputType.TYPE_CLASS_NUMBER);
+            hotplugtemp.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setHotPlugTemp(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(hotplugtemp);
+        }
+
         if (mMSMThermal.hasCoreTempHysteresisDegC()) {
             boolean fahrenheit = Utils.useFahrenheit(getActivity());
             List<String> list = new ArrayList<>();
@@ -706,6 +744,60 @@ public class ThermalFragment extends RecyclerViewFragment {
             });
 
             items.add(checkIntervalMs);
+        }
+
+        if (mMSMThermal.hasCoreControlMask()) {
+
+            GenericSelectView corecontrolMask = new GenericSelectView();
+            corecontrolMask.setTitle(getString(R.string.core_control_mask));
+            corecontrolMask.setSummary(getString(R.string.core_control_mask_summary));
+            corecontrolMask.setValue(mMSMThermal.getCoreControlMask());
+            corecontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
+            corecontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setCoreControlMask(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(corecontrolMask);
+        }
+
+        if (mMSMThermal.hasFreqControlMask()) {
+
+            GenericSelectView freqcontrolMask = new GenericSelectView();
+            freqcontrolMask.setTitle(getString(R.string.freq_control_mask));
+            freqcontrolMask.setSummary(getString(R.string.freq_control_mask_summary));
+            freqcontrolMask.setValue(mMSMThermal.getFreqControlMask());
+            freqcontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
+            freqcontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setFreqControlMask(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(freqcontrolMask);
+        }
+
+        if (mMSMThermal.hasFreqMitigControlMask()) {
+
+            GenericSelectView freqmitcontrolMask = new GenericSelectView();
+            freqmitcontrolMask.setTitle(getString(R.string.freq_mit_control_mask));
+            freqmitcontrolMask.setSummary(getString(R.string.freq_mit_control_mask_summary));
+            freqmitcontrolMask.setValue(mMSMThermal.getFreqMitigControlMask());
+            freqmitcontrolMask.setInputType(InputType.TYPE_CLASS_NUMBER);
+            freqmitcontrolMask.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMSMThermal.setFreqMitigControlMask(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            items.add(freqmitcontrolMask);
         }
 
         if (mMSMThermal.hasShutdownTemp()) {

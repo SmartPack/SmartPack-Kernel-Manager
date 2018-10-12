@@ -396,6 +396,16 @@
     <string name="stock_settings">Restore Settings</string>
     <string name="stock_settings_summary">Click here to apply default settings</string>
     <string name="stock_settings_message">It will apply default settings provided by the Kernel Developer\n\nPlease reload this page after using this option\n\n</string>
+    <string name="freq_mitg_temp">Frequency Mitigation Temperature</string>
+    <string name="freq_mitg_temp_summary">Threshold temperature to mitigate the CPU max frequency.</string>
+    <string name="hotplug_temp">Hotplugging Temperature</string>
+    <string name="hotplug_temp_summary">Threshold temperature to start shutting down cores.</string>
+    <string name="core_control_mask">Core Control Mask</string>
+    <string name="core_control_mask_summary">The cpu mask that will be used to determine if a core can be controlled or not (Set 0 to disable).</string>
+    <string name="freq_control_mask">Frequency Control Mask</string>
+    <string name="freq_control_mask_summary">The cpu mask that will be used to determine if a core can be used for freq control.</string>
+    <string name="freq_mit_control_mask">Frequency Mitigation Control Mask</string>
+    <string name="freq_mit_control_mask_summary">The frequency mitigation bitmask that will be used to determine if KTM should do emergency frequency mitigation for a core or not.</string>
 
     <!-- Battery -->
     <string name="level">Level</string>

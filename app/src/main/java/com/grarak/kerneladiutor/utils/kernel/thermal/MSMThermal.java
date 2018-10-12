@@ -85,6 +85,11 @@ public class MSMThermal {
 
     private static final String TEMP_THRESHOLD = "/sys/module/msm_thermal/parameters/temperature_threshold";
     private static final String CORE_TEMP_LIMIT_DEGC = "/sys/module/msm_thermal/parameters/core_temp_limit_degC";
+    private static final String FREQ_MITIG_TEMP = "/sys/module/msm_thermal/parameters/freq_mitig_temp_degc";
+    private static final String HOTPLUG_TEMP = "/sys/module/msm_thermal/parameters/hotplug_temp_degC";
+    private static final String CORE_CONTROL_MASK = "/sys/module/msm_thermal/parameters/core_control_mask";
+    private static final String FREQ_CONTROL_MASK = "/sys/module/msm_thermal/parameters/freq_control_mask";
+    private static final String FREQ_MITIG_CONTROL_MASK = "/sys/module/msm_thermal/parameters/freq_mitig_control_mask";
 
     private final HashMap<String, Integer> mTempLimitOffset = new HashMap<>();
     private final HashMap<String, Integer> mTempLimitMin = new HashMap<>();
@@ -556,6 +561,66 @@ public class MSMThermal {
 
     public static boolean hasCoreTempLimit() {
         return Utils.existFile(CORE_TEMP_LIMIT_DEGC);
+    }
+
+    public static String getFreqmitigTemp() {
+        return Utils.readFile(FREQ_MITIG_TEMP);
+    }
+
+    public void setFreqmitigTemp(String value, Context context) {
+        run(Control.write(String.valueOf(value), FREQ_MITIG_TEMP), FREQ_MITIG_TEMP, context);
+    }
+
+    public static boolean hasFreqmitigTemp() {
+        return Utils.existFile(FREQ_MITIG_TEMP);
+    }
+
+    public static String getHotPlugTemp() {
+        return Utils.readFile(HOTPLUG_TEMP);
+    }
+
+    public void setHotPlugTemp(String value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_TEMP), HOTPLUG_TEMP, context);
+    }
+
+    public static boolean hasHotPlugTemp() {
+        return Utils.existFile(HOTPLUG_TEMP);
+    }
+
+    public static String getCoreControlMask() {
+        return Utils.readFile(CORE_CONTROL_MASK);
+    }
+
+    public void setCoreControlMask(String value, Context context) {
+        run(Control.write(String.valueOf(value), CORE_CONTROL_MASK), CORE_CONTROL_MASK, context);
+    }
+
+    public static boolean hasCoreControlMask() {
+        return Utils.existFile(CORE_CONTROL_MASK);
+    }
+
+    public static String getFreqControlMask() {
+        return Utils.readFile(FREQ_CONTROL_MASK);
+    }
+
+    public void setFreqControlMask(String value, Context context) {
+        run(Control.write(String.valueOf(value), FREQ_CONTROL_MASK), FREQ_CONTROL_MASK, context);
+    }
+
+    public static boolean hasFreqControlMask() {
+        return Utils.existFile(FREQ_CONTROL_MASK);
+    }
+
+    public static String getFreqMitigControlMask() {
+        return Utils.readFile(FREQ_MITIG_CONTROL_MASK);
+    }
+
+    public void setFreqMitigControlMask(String value, Context context) {
+        run(Control.write(String.valueOf(value), FREQ_MITIG_CONTROL_MASK), FREQ_MITIG_CONTROL_MASK, context);
+    }
+
+    public static boolean hasFreqMitigControlMask() {
+        return Utils.existFile(FREQ_MITIG_CONTROL_MASK);
     }
 
     private void run(String command, String id, Context context) {
