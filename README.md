@@ -85,17 +85,15 @@ $ ./gradlew build
 
 I used following libraries:
 
-* Google: [v4 Support Library](https://developer.android.com/topic/libraries/support-library/features.html#v4)
-* Google: [v7 appcompat library](https://developer.android.com/topic/libraries/support-library/features.html#v7)
-* Google: [v7 cardview library](https://developer.android.com/topic/libraries/support-library/features.html#v7)
-* Google: [Design Support Library](https://developer.android.com/topic/libraries/support-library/features.html#design)
-* Google: [v7 recyclerview library](https://developer.android.com/topic/libraries/support-library/features.html#v7)
+* Google: [AndroidX Library](https://developer.android.com/jetpack/androidx/)
+* Google: [NavigationView library](https://developer.android.com/reference/com/google/android/material/navigation/NavigationView)
 * Ozodrukh: [CircularReveal](https://github.com/ozodrukh/CircularReveal)
 * Roman Nurik: [dashclock](https://github.com/romannurik/dashclock)
 * Google: [Firebase](https://firebase.google.com)
 * Matthew Precious: [swirl](https://github.com/mattprecious/swirl)
 * Lopez Mikhael: [CircularImageView](https://github.com/lopspower/CircularImageView)
 * Square: [picasso](https://github.com/square/picasso)
+* Square: [okhttp](https://github.com/square/okhttp)
 * CyanogenMod: [CyanogenMod Platform SDK](https://github.com/CyanogenMod/cm_platform_sdk)
 
 Also codes from different people:
