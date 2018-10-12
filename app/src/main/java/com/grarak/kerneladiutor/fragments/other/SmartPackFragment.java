@@ -64,7 +64,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	CardView smartpack = new CardView(getActivity());
 	smartpack.setTitle(getString(R.string.smartpack_kernel));
 
-	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
+	if (Device.hasSmartPackInstalled()) {
             DescriptionView currentspversion = new DescriptionView();
             currentspversion.setTitle(("Current ") + getString(R.string.version));
             if (Device.hasSmartPackVersion()) {
@@ -73,7 +73,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		currentspversion.setSummary(RootUtils.runCommand("uname -r"));
             }
             smartpack.addItem(currentspversion);
+	}
 
+	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
             DescriptionView xdapage = new DescriptionView();
             xdapage.setTitle(getString(R.string.support));
             xdapage.setSummary(getString(R.string.support_summary));
@@ -164,48 +166,49 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
 	smartpack.addItem(website);
 
-	DescriptionView downloads = new DescriptionView();
-	downloads.setTitle(getString(R.string.downloads));
-	downloads.setSummary(getString(R.string.downloads_summary));
-	downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-		// Check and delete an old version of the kernel from the download folder, if any...
-		if (Device.isSmartPackDownloaded()) {
+	if (Build.VERSION.SDK_INT >= 27) {
+            DescriptionView downloads = new DescriptionView();
+            downloads.setTitle(getString(R.string.downloads));
+            downloads.setSummary(getString(R.string.downloads_summary));
+            downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		    // Check and delete an old version of the kernel from the download folder, if any...
+		    if (Device.isSmartPackDownloaded()) {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
-		}
-		// Initiate device specific downloads...
-		if (Device.iskltekor()) {
+		    }
+		    // Initiate device specific downloads...
+		    if (Device.iskltekor()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
 			}
-		} else if (Device.isklte()) {
+		    } else if (Device.isklte()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
 			}
-		} else if (Device.iskltedv()) {
+		    } else if (Device.iskltedv()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
 			}
-		} else if (Device.isklteduos()) {
+		    } else if (Device.isklteduos()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
 			}
-		} else if (Device.iskltejpn()) {
+		    } else if (Device.iskltejpn()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
 			}
-		} else if (Device.isOnePlusmsm8998()) {
+		    } else if (Device.isOnePlusmsm8998()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            if (Device.isOnePlusOpenBeta()) {
 				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
@@ -219,55 +222,56 @@ public class SmartPackFragment extends RecyclerViewFragment {
 				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
 		            }
 			}
-		} else if (Device.isMotoG3()) {
+		    } else if (Device.isMotoG3()) {
 			if (Build.VERSION.SDK_INT == 27) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 			} else if (Build.VERSION.SDK_INT == 28) {
 		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Pie/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 			}
-		}
-		// Proceed only if the download was successful...
-		if (Device.isSmartPackDownloaded()) {
-		    // Show Auto-flash message if we recognize recovery...
-		    if (Device.hasRecovery()) {
-			AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
-			flash.setTitle(getString(R.string.autoflash));
-			flash.setMessage(getString(R.string.flash_message));
-			flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
-			});
-			flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
-		            RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel.zip > /cache/recovery/command");
-		            RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
-		            RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
-		            RootUtils.runCommand("reboot recovery");
-			});
-			flash.show();
-		    // If not, show an "Auto-flash not possible" message...
+		    }
+		    // Proceed only if the download was successful...
+		    if (Device.isSmartPackDownloaded()) {
+			// Show Auto-flash message if we recognize recovery...
+			if (Device.hasRecovery()) {
+		            AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+		            flash.setTitle(getString(R.string.autoflash));
+		            flash.setMessage(getString(R.string.flash_message));
+		            flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
+		            });
+		            flash.setPositiveButton(getString(R.string.install_now), (dialog1, id1) -> {
+				RootUtils.runCommand("echo --update_package=/sdcard/Download/SmartPack-Kernel.zip > /cache/recovery/command");
+				RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+				RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
+				RootUtils.runCommand("reboot recovery");
+		            });
+		            flash.show();
+			// If not, show an "Auto-flash not possible" message...
+			} else {
+		            AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
+		            noflash.setTitle(getString(R.string.warning));
+		            noflash.setMessage(getString(R.string.no_flash_message));
+		            noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+		            });
+		            noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+				RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
+				RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
+				RootUtils.runCommand("reboot recovery");
+		            });
+		            noflash.show();
+			}
+		    // Shown "Download failed" message...
 		    } else {
-			AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
-			noflash.setTitle(getString(R.string.warning));
-			noflash.setMessage(getString(R.string.no_flash_message));
-			noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+			AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
+			downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
+			downloadfailed.setMessage(getString(R.string.download_failed_message));
+			downloadfailed.setPositiveButton(getString(R.string.exit), (dialog1, id1) -> {
 			});
-			noflash.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-		            RootUtils.runCommand("am broadcast android.intent.action.ACTION_SHUTDOWN && sync");
-		            RootUtils.runCommand("echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3");
-		            RootUtils.runCommand("reboot recovery");
-			});
-			noflash.show();
-		    }
-		// Shown "Download failed" message...
-		} else {
-		    AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
-		    downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
-		    downloadfailed.setMessage(getString(R.string.download_failed_message));
-		    downloadfailed.setPositiveButton(getString(R.string.exit), (dialog1, id1) -> {
-		    });
-		    downloadfailed.show();
-		    }
-		} 
-	});
-	smartpack.addItem(downloads);
+			downloadfailed.show();
+			}
+		    } 
+            });
+            smartpack.addItem(downloads);
+	}
 
 	items.add(smartpack);
 
