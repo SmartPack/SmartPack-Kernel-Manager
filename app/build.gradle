@@ -29,8 +29,8 @@ android {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 5
-        versionName "5.4-" + getDate()
+        versionCode 6
+        versionName "6.0-" + getDate()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"

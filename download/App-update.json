@@ -1,10 +1,15 @@
 {
-  "latestVersion": "5.4-20181007",
+  "latestVersion": "6.0-20181013",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU: Update CPU Input Boost parameters.",
-    "- Misc: SmartPack: update Auto-flash and other advanced options to ensure data integrity while reboot.",
-    "- SDK: revert to 27 to fix apply on boot on some android versions." 
+    "- Migrate to AndroidX support library.",
+    "- SDK: Update to 28 (Pie).",
+    "- Thermel: MSM thermal: add support to a bunch of new parameters.",
+    "- SmartPack: Preparations for Pie (SDK == 28) kernel release.",
+    "- SmartPack: Auto-flash: add an alert dialogue with a lot of important information.",
+    "- Wakelocks: update and add a bunch of new wakelocks.",
+    "- About: update support library list.",
+    "- Misc changes." 
   ]
 }
