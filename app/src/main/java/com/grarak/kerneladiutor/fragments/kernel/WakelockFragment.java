@@ -59,20 +59,23 @@ public class WakelockFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-
+	warningInit(items);
         if (Wakelocks.boefflawlsupported()){
             boefflaWakelockInit(items);
         }
 	wakelockInit(items);
     }
 
-    private void boefflaWakelockInit(List<RecyclerViewItem> items){
-        mWakeCard.clear();
+    private void warningInit(List<RecyclerViewItem> items){
 
         DescriptionView warning= new DescriptionView();
         warning.setTitle(getString(R.string.warning));
         warning.setSummary(getString(R.string.wakelock_summary));
         items.add(warning);
+    }
+
+    private void boefflaWakelockInit(List<RecyclerViewItem> items){
+        mWakeCard.clear();
 
         DescriptionView boefflawl = new DescriptionView();
         boefflawl.setTitle(getString(R.string.boeffla_wakelock));

@@ -172,10 +172,6 @@ public class Wakelocks {
         return Utils.existFile(BOEFFLAWL);
     }
 
-    public static boolean supported() {
-        return boefflawlsupported();
-    }
-
     public static class Wakelock {
 
         private final String mPath;
@@ -322,8 +318,16 @@ public class Wakelocks {
         return Utils.existFile(WLAN_CTRL_DIVIDER);
     }
 
+    public static boolean hasWakeLockSource() {
+        return Utils.existFile(WAKELOCK_SOURCES);
+    }
+
     public static List<Wakelock> getWakelocks() {
         return sWakelocks;
+    }
+
+    public static boolean supported() {
+        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider() || hasBCMDHDDivider() || hasWakeLockSource();
     }
 
     private static void run(String command, String id, Context context) {
