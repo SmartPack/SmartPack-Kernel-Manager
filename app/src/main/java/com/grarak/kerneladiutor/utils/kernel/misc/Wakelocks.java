@@ -252,12 +252,20 @@ public class Wakelocks {
                 R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
         sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
                 R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws"));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws"));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws",
+                R.string.ipa_wakelock, R.string.ipa_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws",
+                R.string.netlink_wakelock, R.string.netlink_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws",
+                R.string.qcom_rx_wakelock, R.string.qcom_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws",
+                R.string.timerfd_wakelock, R.string.timerfd_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws",
+                R.string.wlan_extscan_wl_ws_wakelock, R.string.wlan_extscan_wl_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws",
+                R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
+                R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
     }
 
     public static void setBCMDHDDivider(int value, Context context) {
