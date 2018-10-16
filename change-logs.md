@@ -124,18 +124,18 @@ Changes: Minor update: Re-implement OTA support to all the supported variants. S
 *Release-tag: v2.1*
 Changes: Built using Android studio v3 (new). A lot of unused (in SmartPack-Kernel) features (also translations) were simply removed to make the app lighter and faster. Made "Custom controls" as a free feature. Removed kernel download links and renamed “Download” section into “Check for Update” (now it is only for app update). Some simple modifications in “About” section.
 
-## 4. Dec 20, 2018
+## 4. Dec 20, 2017
 *Release-tag: v2.1*
 Changes: Change app id in-order to avoid conflicts with the official app. Adds, crashlytics, google services, etc. have been removed from the app. Removed some unused (by SmartPack-Kernel) stuff from the app to make it more lighter. Up-to-date with official KernelAdiutor.
 
-## 3. Nov 27, 2018
+## 3. Nov 27, 2017
 *Releas4-tag: v1.4*
 Changes: Up-to-date with official KernelAdiutor (which includes an important workaround to fix "apply on boot" in android O).
 
-## 2. Nov 14, 2018
+## 2. Nov 14, 2017
 *Releas4-tag: v1.3*
 Changes: Some simple modifications (mainly cosmetic). Updated FAQ section.
 
-## 1. Nov 14, 2018
+## 1. Nov 14, 2017
 *Releas4-tag: v1.2*
 The very first public release of SmartPack-Kernel Manger, which is a modified version of the official Kernel Adiutor, originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
