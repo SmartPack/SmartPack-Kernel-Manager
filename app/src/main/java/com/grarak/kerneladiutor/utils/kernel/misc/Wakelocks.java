@@ -260,7 +260,7 @@ public class Wakelocks {
                 R.string.wlan_extscan_wl_ws_wakelock, R.string.wlan_extscan_wl_ws_wakelock_summary));
         sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws",
                 R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
-        sWakelocks.add(new Wakelock("sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
                 R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
     }
 
@@ -318,16 +318,12 @@ public class Wakelocks {
         return Utils.existFile(WLAN_CTRL_DIVIDER);
     }
 
-    public static boolean hasWakeLockSource() {
-        return Utils.existFile(WAKELOCK_SOURCES);
-    }
-
     public static List<Wakelock> getWakelocks() {
         return sWakelocks;
     }
 
     public static boolean supported() {
-        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider() || hasBCMDHDDivider() || hasWakeLockSource();
+        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider() || hasBCMDHDDivider();
     }
 
     private static void run(String command, String id, Context context) {
