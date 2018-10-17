@@ -70,10 +70,11 @@ public class AboutFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        aboutInit(items);
         librariesInit(items);
     }
 
-    private void librariesInit(List<RecyclerViewItem> items) {
+    private void aboutInit(List<RecyclerViewItem> items) {
 
         CardView about = new CardView(getActivity());
         about.setTitle(getString(R.string.app_name));
@@ -129,6 +130,9 @@ public class AboutFragment extends RecyclerViewFragment {
         about.addItem(changelogs);
         about.addItem(donatetome);
         items.add(about);
+    }
+
+    private void librariesInit(List<RecyclerViewItem> items) {
 
         CardView cardView = new CardView(getActivity());
         cardView.setTitle(getString(R.string.libraries_used));
