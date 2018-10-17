@@ -95,6 +95,16 @@ public class AboutFragment extends RecyclerViewFragment {
             }
         });
 
+        DescriptionView support = new DescriptionView();
+        support.setTitle(getString(R.string.support));
+        support.setSummary(getString(R.string.support_summary));
+        support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Utils.launchUrl("https://forum.xda-developers.com/android/apps-games/app-smartpack-kernel-manager-t3854717", getActivity());
+            }
+        });
+
         DescriptionView sourcecode = new DescriptionView();
         sourcecode.setTitle(getString(R.string.source_code));
         sourcecode.setSummary(getString(R.string.source_code_summary));
@@ -126,6 +136,7 @@ public class AboutFragment extends RecyclerViewFragment {
         });
 
         about.addItem(updatecheck);
+        about.addItem(support);
         about.addItem(sourcecode);
         about.addItem(changelogs);
         about.addItem(donatetome);
