@@ -237,9 +237,7 @@ public class NavigationActivity extends BaseActivity
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, InitdFragment.class, R.drawable.ic_shell));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, OnBootFragment.class, R.drawable.ic_start));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
-	if (SmartPackFragment.supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.smartpack, SmartPackFragment.class, R.drawable.ic_security));
-	}
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.smartpack, SmartPackFragment.class, R.drawable.ic_security));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.settings, SettingsFragment.class, R.drawable.ic_settings));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.contributors, ContributorsFragment.class, R.drawable.ic_people));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.help, HelpFragment.class, R.drawable.ic_help));

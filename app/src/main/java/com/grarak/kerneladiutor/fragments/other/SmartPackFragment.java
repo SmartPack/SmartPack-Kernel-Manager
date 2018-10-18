@@ -154,25 +154,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(spsource);
 	}
 
-	DescriptionView website = new DescriptionView();
-	website.setTitle(getString(R.string.website));
-	website.setSummary(getString(R.string.website_summary));
-	website.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-		if (Device.isSamsungmsm8974()) {
+	if (supported()) {
+            DescriptionView website = new DescriptionView();
+            website.setTitle(getString(R.string.website));
+            website.setSummary(getString(R.string.website_summary));
+            website.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		    if (Device.isSamsungmsm8974()) {
 			Utils.launchUrl("https://sunilpaulmathew.github.io/sgs5/", getActivity());
-		} else if (Device.isOnePlusmsm8998()) {
+		    } else if (Device.isOnePlusmsm8998()) {
 			Utils.launchUrl("https://sunilpaulmathew.github.io/op5t/", getActivity());
-		} else if (Device.isMotoG3()) {
+		    } else if (Device.isMotoG3()) {
 			Utils.launchUrl("https://sunilpaulmathew.github.io/motog2015/", getActivity());
+		    }
 		}
-            }
-	});
+            });
+            smartpack.addItem(website);
+	}
 
-	smartpack.addItem(website);
-
-	if (Build.VERSION.SDK_INT >= 27) {
+	if (supported() && (Build.VERSION.SDK_INT >= 27)) {
             DescriptionView downloads = new DescriptionView();
             downloads.setTitle(getString(R.string.downloads));
             downloads.setSummary(getString(R.string.downloads_summary));
@@ -288,7 +289,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(downloads);
 	}
 
-	items.add(smartpack);
+	if (smartpack.size() > 0) {
+            items.add(smartpack);
+	}
 
 	CardView advanced = new CardView(getActivity());
 	advanced.setTitle(getString(R.string.advance_options));
