@@ -1,5 +1,9 @@
 # Change-logs
 
+## 36. October 18, 2018
+*Release-tag: v6.1*
+Changes: Wakelocks: Minor bug fixes and improvements. About: link to new support page at xda. SmartPack: add one more klte variant (SM-G900FQ). SmartPack: Advanced (reboot & wipe) Options are now available for all the devices. 
+
 ## 35. October 13, 2018
 *Release-tag: v6.0*
 Changes: Migrate to AndroidX support library. SDK: Update to 28 (Pie). Thermel: MSM thermal: add support to a bunch of new parameters. SmartPack: Preparations for Pie (SDK == 28) kernel release. SmartPack: Auto-flash: add an alert dialogue with a lot of important information. Wakelocks: update and add a bunch of new wakelocks. About: update support library list. Misc changes.
