@@ -1,5 +1,9 @@
 # Change-logs
 
+## 37. October 23, 2018
+*Release-tag: v6.2*
+Changes: Performance Tweaks: add Gaming profile. Performance Tweaks. Fix battery quick tile's not working properly. Update build grade tools (v3.2.1) and Android Studio.
+
 ## 36. October 18, 2018
 *Release-tag: v6.1*
 Changes: Wakelocks: Minor bug fixes and improvements. About: link to new support page at xda. SmartPack: add one more klte variant (SM-G900FQ). SmartPack: Advanced (reboot & wipe) Options are now available for all the devices. 

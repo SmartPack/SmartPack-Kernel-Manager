@@ -1,11 +1,10 @@
 {
-  "latestVersion": "6.1-20181018",
+  "latestVersion": "6.2-20181023",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Wakelocks: Minor bug fixes and improvements.",
-    "- About: link to new support page at xda.",
-    "- SmartPack: add one more klte variant (SM-G900FQ).",
-    "- SmartPack: Advanced (reboot & wipe) Options are now available for all the devices." 
+    "- Performance Tweaks: add Gaming profile.",
+    "- Performance Tweaks: Fix battery quick tile's not working properly.",
+    "- Build tools: Update Android Studio and grade tools (v3.2.1)." 
   ]
 }
