@@ -59,14 +59,13 @@ public class SpectrumFragment extends RecyclerViewFragment {
     private CardView oldCard;
     private DescriptionView oldDesc;
 
-
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
 
         final int balColor = ContextCompat.getColor(getContext(), R.color.colorBalance);
         final int perColor = ContextCompat.getColor(getContext(), R.color.colorPerformance);
         final int batColor = ContextCompat.getColor(getContext(), R.color.colorBattery);
-
+        final int gamColor = ContextCompat.getColor(getContext(), R.color.colorGaming);
 
         //CardView Balanced
         final CardView card0 = new CardView(getActivity());
@@ -86,7 +85,6 @@ public class SpectrumFragment extends RecyclerViewFragment {
 
         card0.addItem(desc0);
         items.add(card0);
-
 
         //CardView Performance
         final CardView card1 = new CardView(getActivity());
@@ -108,7 +106,6 @@ public class SpectrumFragment extends RecyclerViewFragment {
         card1.addItem(desc1);
         items.add(card1);
 
-
         //CardView Battery
         final CardView card2 = new CardView(getActivity());
         card2.setTitle(getString(R.string.spec_battery));
@@ -129,6 +126,25 @@ public class SpectrumFragment extends RecyclerViewFragment {
         card2.addItem(desc2);
         items.add(card2);
 
+        //CardView Gaming
+        final CardView card3 = new CardView(getActivity());
+        card3.setTitle(getString(R.string.spec_gaming));
+        card3.setExpandable(false);
+
+        final DescriptionView desc3 = new DescriptionView();
+        desc3.setSummary(getString(R.string.spec_gaming_summary));
+        desc3.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_spectrum_game));
+
+        card3.setOnItemClickListener(new CardView.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                cardClick(card3, desc3, 3, gamColor);
+            }
+        });
+
+        card3.addItem(desc3);
+        items.add(card3);
+
         //Detects the selected profile on launch
         int mProfile = Prefs.getInt("spectrum_profile", 0, getActivity());
 
@@ -147,8 +163,12 @@ public class SpectrumFragment extends RecyclerViewFragment {
             desc2.GrxSetInitSelection(true, Color.WHITE);
             oldCard = card2;
             oldDesc = desc2;
+        } else if(mProfile == 3){
+            card3.GrxSetInitSelection(true, gamColor);
+            desc3.GrxSetInitSelection(true, Color.WHITE);
+            oldCard = card3;
+            oldDesc = desc3;
         }
-
     }
 
     // Method that completes card onClick tasks

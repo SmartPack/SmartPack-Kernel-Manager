@@ -64,6 +64,13 @@ public class ProfileTile extends TileService {
 
         // Update tile and set profile
         if (isActive && click) {
+            newLabel = "Gaming";
+            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
+            newState = Tile.STATE_ACTIVE;
+            click = false;
+            Spectrum.setProfile(3);
+            Prefs.saveInt("spectrum_profile", 3, getApplicationContext());
+        } else if (!isActive && click) {
             newLabel = "Battery";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
             newState = Tile.STATE_ACTIVE;
@@ -111,7 +118,12 @@ public class ProfileTile extends TileService {
         int newState;
 
         // Update tile
-        if (profile == 2){
+        if (profile == 3){
+            newLabel = "Gaming";
+            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
+            newState = Tile.STATE_ACTIVE;
+            click = false;
+        } else if (profile == 2){
             newLabel = "Battery";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
             newState = Tile.STATE_ACTIVE;

@@ -751,6 +751,8 @@
     <string name="spec_performance_summary">Tuned for top-tier performance in standard tasks with many fewer regressions than Balanced, but maintains battery by limiting graphics.</string>
     <string name="spec_battery">Battery</string>
     <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to archive long-lasting battery life.</string>
+    <string name="spec_gaming">Gaming</string>
+    <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>
