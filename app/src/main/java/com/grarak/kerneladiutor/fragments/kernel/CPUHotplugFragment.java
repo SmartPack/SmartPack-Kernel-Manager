@@ -24,6 +24,7 @@ import android.text.InputType;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.AlucardHotplug;
@@ -1525,15 +1526,20 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             alucardHotplug.addItem(cpuUpRate);
         }
 
-	DescriptionView tunables = new DescriptionView();
+	if (!(Prefs.getBoolean("advanced_tunables", false, getActivity())))
+            Prefs.saveBoolean("advanced_tunables", false, getActivity());
+
+	final SwitchView tunables = new SwitchView();
 	tunables.setTitle(getString(R.string.adv_hotplug_tunables));
 	tunables.setSummary(getString(R.string.adv_hotplug_tunables_summary));
+	tunables.setChecked(Prefs.getBoolean("advanced_tunables", false, getActivity()));
+
 	alucardHotplug.addItem(tunables);
 
-        for (int i = 0; i < AlucardHotplug.size(); i++) {
+	for (int i = 0; i < AlucardHotplug.size(); i++) {
             if (AlucardHotplug.exists(i)) {
 
-                GenericSelectView advancedtunables = new GenericSelectView();
+                final GenericSelectView advancedtunables = new GenericSelectView();
                 advancedtunables.setSummary(AlucardHotplug.getName(i));
                 advancedtunables.setValue(AlucardHotplug.getValue(i));
                 advancedtunables.setValueRaw(advancedtunables.getValue());
@@ -1546,9 +1552,31 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                         genericSelectView.setValue(value);
                     }
                 });
-		alucardHotplug.addItem(advancedtunables);
+                class tunablesManager {
+                public void showadvancedtunables (boolean enable) {
+                if (enable == true) {
+                    alucardHotplug.addItem(advancedtunables);
+                } else {
+                    alucardHotplug.removeItem(advancedtunables);
+                }
             }
-	}
+        }
+	
+        final tunablesManager manager = new tunablesManager();
+            if (Prefs.getBoolean("advanced_tunables", false, getActivity()) == true) {
+                manager.showadvancedtunables(true);
+            } else {
+                manager.showadvancedtunables(false);
+            }
+            tunables.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchview, boolean isChecked) {
+                    Prefs.saveBoolean("advanced_tunables", isChecked, getActivity());
+                    manager.showadvancedtunables(isChecked);
+                }
+            });
+            }
+        }
 
         if (alucardHotplug.size() > 0) {
             items.add(alucardHotplug);
