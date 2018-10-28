@@ -26,8 +26,8 @@ public class Hotplug {
 
     public static boolean supported() {
         return MPDecision.supported() || IntelliPlug.getInstance().supported() || LazyPlug.supported()
-                || BluPlug.supported() || MakoHotplug.supported() || AlucardHotplug.supported()
-		|| CoreCtl.getInstance().supported() || MSMSleeper.supported();
+		|| BluPlug.supported() || MakoHotplug.supported() || MSMHotplug.getInstance().supported()
+		|| AlucardHotplug.supported() || CoreCtl.getInstance().supported() || MSMSleeper.supported();
     }
 
 }
