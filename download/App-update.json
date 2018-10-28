@@ -1,10 +1,9 @@
 {
-  "latestVersion": "6.2-20181023",
+  "latestVersion": "6.3-20181029",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Performance Tweaks: add Gaming profile.",
-    "- Performance Tweaks: Fix battery quick tile's not working properly.",
-    "- Build tools: Update Android Studio and grade tools (v3.2.1)." 
+    "- CPU Hotplug: add back MSM Hotplug.",
+    "- CPU Hotplug: Alucard: hide Advanced tunables from normal view." 
   ]
 }

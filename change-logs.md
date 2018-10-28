@@ -1,5 +1,9 @@
 # Change-logs
 
+## 38. October 29, 2018
+*Release-tag: v6.3*
+Changes: CPU Hotplug: add back MSM Hotplug. Alucard Hotplug: hide Advanced tunables from normal view.
+
 ## 37. October 23, 2018
 *Release-tag: v6.2*
 Changes: Performance Tweaks: add Gaming profile. Performance Tweaks. Fix battery quick tile's not working properly. Update build grade tools (v3.2.1) and Android Studio.
