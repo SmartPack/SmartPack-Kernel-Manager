@@ -162,11 +162,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		@Override
 		public void onClick(RecyclerViewItem item) {
 		    if (Device.isSamsungmsm8974()) {
-			Utils.launchUrl("https://sunilpaulmathew.github.io/sgs5/", getActivity());
+			Utils.launchUrl("https://smartpack.github.io/sgs5/", getActivity());
 		    } else if (Device.isOnePlusmsm8998()) {
-			Utils.launchUrl("https://sunilpaulmathew.github.io/op5t/", getActivity());
+			Utils.launchUrl("https://smartpack.github.io/op5t/", getActivity());
 		    } else if (Device.isMotoG3()) {
-			Utils.launchUrl("https://sunilpaulmathew.github.io/motog2015/", getActivity());
+			Utils.launchUrl("https://smartpack.github.io/motog2015/", getActivity());
 		    }
 		}
             });
