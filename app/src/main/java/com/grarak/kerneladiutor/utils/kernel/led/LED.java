@@ -175,12 +175,12 @@ public class LED {
         return Utils.existFile(BACKLIGHT_MIN);
     }
 
-    public void enablescharginglight(boolean enable, Context context) {
-        run(Control.write(enable ? "0" : "255", CHARGING_LIGHT), CHARGING_LIGHT, context);
+    public void setcharginglight(int value, Context context) {
+        run(Control.write(String.valueOf(value), CHARGING_LIGHT), CHARGING_LIGHT, context);
     }
 
-    public boolean isscharginglightEnabled() {
-        return Utils.readFile(CHARGING_LIGHT).equals("0");
+    public static int getcharginglight() {
+        return Utils.strToInt(Utils.readFile(CHARGING_LIGHT));
     }
 
     public boolean hascharginglight() {

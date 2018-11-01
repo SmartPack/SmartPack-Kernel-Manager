@@ -185,16 +185,20 @@ public class LEDFragment extends RecyclerViewFragment {
     }
 
     private void charginglightInit(List<RecyclerViewItem> items) {
-	SwitchView charginglight = new SwitchView();
+	SeekBarView charginglight = new SeekBarView();
 	charginglight.setTitle(getString(R.string.charging_light));
-	charginglight.setSummary(getString(R.string.charging_light_summary));
-	charginglight.setChecked(mLED.isscharginglightEnabled());
-	charginglight.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+	charginglight.setMax(255);
+	charginglight.setOffset(5);
+	charginglight.setProgress(mLED.getcharginglight() / 5 );
+	charginglight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-		mLED.enablescharginglight(isChecked, getActivity());;
-		}
-            });
+            public void onStop(SeekBarView seekBarView, int position, String value) {
+		mLED.setcharginglight((position * 5), getActivity());
+            }
+            @Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+            }
+	});
 	items.add(charginglight);
     }
 
