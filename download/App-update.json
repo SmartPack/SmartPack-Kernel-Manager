@@ -1,9 +1,11 @@
 {
-  "latestVersion": "6.3-20181029",
+  "latestVersion": "6.4-20181103",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Hotplug: add back MSM Hotplug.",
-    "- CPU Hotplug: Alucard: hide Advanced tunables from normal view." 
+    "- Dispay & LED: switch charging light control to seekbar view (osprey).",
+    "- Wakelocks: Visual improvements.",
+    "- SmartPack: Update weblinks.",
+    "- Miscellaneous cleanings." 
   ]
 }

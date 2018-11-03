@@ -1,5 +1,9 @@
 # Change-logs
 
+## 39. November 03, 2018
+*Release-tag: v6.4*
+Changes: Dispay & LED: switch charging light control to seekbar view (osprey). Wakelocks: Visual improvements. SmartPack: Update weblinks. Miscellaneous cleanings.
+
 ## 38. October 29, 2018
 *Release-tag: v6.3*
 Changes: CPU Hotplug: add back MSM Hotplug. Alucard Hotplug: hide Advanced tunables from normal view.
