@@ -23,12 +23,12 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
 import com.grarak.kerneladiutor.utils.kernel.misc.WakeLockInfo;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
-import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -54,33 +54,25 @@ public class WakelockFragment extends RecyclerViewFragment {
     protected void init() {
         super.init();
 
+        addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.warning),
+                getString(R.string.wakelock_summary)));
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-	warningInit(items);
         if (Wakelocks.boefflawlsupported()){
             boefflaWakelockInit(items);
         }
 	wakelockInit(items);
     }
 
-    private void warningInit(List<RecyclerViewItem> items){
-
-        DescriptionView warning= new DescriptionView();
-        warning.setTitle(getString(R.string.warning));
-        warning.setSummary(getString(R.string.wakelock_summary));
-        items.add(warning);
-    }
-
     private void boefflaWakelockInit(List<RecyclerViewItem> items){
-        mWakeCard.clear();
+        List<RecyclerViewItem> bwl = new ArrayList<>();
 
-        DescriptionView boefflawl = new DescriptionView();
-        boefflawl.setTitle(getString(R.string.boeffla_wakelock));
-        boefflawl.setSummary("Version: " + Wakelocks.getboefflawlVersion() + "\n" + getString(R.string.boeffla_wakelock_summary));
-        items.add(boefflawl);
+        TitleView title = new TitleView();
+        title.setText(getString(R.string.boeffla_wakelock) + "\n" + "Version: " + Wakelocks.getboefflawlVersion());
+        mWakeCard.clear();
 
         SelectView borfflawlorder = new SelectView();
         borfflawlorder.setTitle(getString(R.string.wkl_order));
@@ -94,7 +86,7 @@ public class WakelockFragment extends RecyclerViewFragment {
                 bwCardReload();
             }
         });
-        items.add(borfflawlorder);
+        bwl.add(borfflawlorder);
 
         List<WakeLockInfo> wakelocksinfo = Wakelocks.getWakelockInfo();
 
@@ -109,7 +101,10 @@ public class WakelockFragment extends RecyclerViewFragment {
         grxbwCardInit(cardViewA, titleA, wakelocksinfo, true);
         mWakeCard.add(cardViewA);
 
-        items.addAll(mWakeCard);
+        bwl.addAll(mWakeCard);
+
+        items.add(title);
+        items.addAll(bwl);
     }
 
     private void grxbwCardInit(CardView card, String title, List<WakeLockInfo> wakelocksinfo, Boolean state){
@@ -117,15 +112,16 @@ public class WakelockFragment extends RecyclerViewFragment {
         card.setTitle(title);
 
         for(WakeLockInfo wakeLockInfo : wakelocksinfo){
-             if(wakeLockInfo.wState == state) {
-                 final String name = wakeLockInfo.wName;
+            if(wakeLockInfo.wState == state) {
+                final String name = wakeLockInfo.wName;
                 String wakeup = String.valueOf(wakeLockInfo.wWakeups);
                 String time = String.valueOf(wakeLockInfo.wTime / 1000);
                 time = Utils.sToString(Utils.strToLong(time));
-                 SwitchView sw = new SwitchView();
+
+                SwitchView sw = new SwitchView();
                 sw.setTitle(name);
                 sw.setSummary(getString(R.string.wkl_total_time) + ": " + time + "\n" +
-                        getString(R.string.wkl_wakep_count) + ": " + wakeup);
+				getString(R.string.wkl_wakep_count) + ": " + wakeup);
                 sw.setChecked(wakeLockInfo.wState);
                 sw.addOnSwitchListener((switchView, isChecked) -> {
                     if (isChecked) {
@@ -135,7 +131,7 @@ public class WakelockFragment extends RecyclerViewFragment {
                     }
                     getHandler().postDelayed(this::bwCardReload, 250);
                 });
-                 card.addItem(sw);
+                card.addItem(sw);
             }
         }
     }

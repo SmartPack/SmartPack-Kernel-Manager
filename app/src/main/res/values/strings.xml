@@ -658,9 +658,8 @@
     <!-- Wakelock -->
     <string name="wakelock">Wakelocks</string>
     <string name="wakelocks_other">Other Wakelocks</string>
-    <string name="wakelock_summary">Wakelocks are there for a reason. Driver and app developers surely had their reasons to put wakelocks into the code in certain areas. This means, by blocking some of them you can introduce smaller or bigger issues, you can trigger strange side effects and in worst case render the system completely unusable.\nBlocking wakelocks is solely your own responsibility.</string>
+    <string name="wakelock_summary">Wakelocks are there for a reason. This means, by blocking some of them you can introduce smaller or bigger issues, trigger strange side effects and in the worst case render the system completely unusable. Blocking wakelocks is solely your own responsibility.</string>
     <string name="boeffla_wakelock">Boeffla Generic Wakelock Blocker</string>
-    <string name="boeffla_wakelock_summary">Disable to block, and Enable to allow</string>
     <string name="wkl_order">Wakelocks order</string>
     <string name="wkl_order_summary">Select the listing order of the Wakelocks</string>
     <string name="wkl_blocked">Wakelocks Blocked</string>
