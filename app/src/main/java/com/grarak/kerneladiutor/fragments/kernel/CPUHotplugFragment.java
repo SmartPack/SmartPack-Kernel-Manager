@@ -672,8 +672,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
     }
 
     private void bluPlugInit(List<RecyclerViewItem> items) {
-	final List<RecyclerViewItem> blupluglist = new ArrayList<>();
-
 	CardView bluplug = new CardView(getActivity());
 	bluplug.setTitle(getString(R.string.blu_plug));
 
