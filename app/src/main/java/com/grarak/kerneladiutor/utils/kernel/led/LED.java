@@ -53,6 +53,7 @@ public class LED {
     private static final String DISPLAY_BACKLIGHT = "/sys/class/leds/lcd-backlight/max_brightness";
     private static final String BACKLIGHT_MIN = "/sys/module/mdss_fb/parameters/backlight_min";
     private static final String CHARGING_LIGHT = "/sys/class/leds/charging/max_brightness";
+    private static final String CHARGING_LIGHT_2 = "/sys/class/sec/led/led_intensity";
 
     private static final String LED_FADE = "/sys/class/sec/led/led_fade";
 
@@ -77,6 +78,7 @@ public class LED {
     }
 
     private String SPEED;
+    private String ENABLE_FILE;
 
     private LED() {
         for (String file : mSpeeds.keySet()) {
@@ -84,6 +86,11 @@ public class LED {
                 SPEED = file;
                 break;
             }
+        }
+        if (Utils.existFile(CHARGING_LIGHT)) {
+            ENABLE_FILE = CHARGING_LIGHT;
+        } else if (Utils.existFile(CHARGING_LIGHT_2)) {
+            ENABLE_FILE = CHARGING_LIGHT_2;
         }
     }
 
@@ -176,15 +183,15 @@ public class LED {
     }
 
     public void setcharginglight(int value, Context context) {
-        run(Control.write(String.valueOf(value), CHARGING_LIGHT), CHARGING_LIGHT, context);
+        run(Control.write(String.valueOf(value), ENABLE_FILE), ENABLE_FILE, context);
     }
 
-    public static int getcharginglight() {
-        return Utils.strToInt(Utils.readFile(CHARGING_LIGHT));
+    public int getcharginglight() {
+        return Utils.strToInt(Utils.readFile(ENABLE_FILE));
     }
 
     public boolean hascharginglight() {
-       return Utils.existFile(CHARGING_LIGHT);
+       return ENABLE_FILE != null;
     }
 
     public boolean supported() {
