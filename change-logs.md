@@ -1,5 +1,9 @@
 # Change-logs
 
+## 40. November 06, 2018
+*Release-tag: v6.5*
+Changes: Dispay & LED: update notification led control to for klte. Dispay & LED: properly update and unified some titles. Settings: remove unnecessary margin (visual improvements). Misc: Update androidx appcompat library.
+
 ## 39. November 03, 2018
 *Release-tag: v6.4*
 Changes: Dispay & LED: switch charging light control to seekbar view (osprey). Wakelocks: Visual improvements. SmartPack: Update weblinks. Miscellaneous cleanings.

@@ -1,11 +1,11 @@
 {
-  "latestVersion": "6.4-20181103",
+  "latestVersion": "6.5-20181106",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Dispay & LED: switch charging light control to seekbar view (osprey).",
-    "- Wakelocks: Visual improvements.",
-    "- SmartPack: Update weblinks.",
-    "- Miscellaneous cleanings." 
+    "- Dispay & LED: update notification led control to for klte.",
+    "- Dispay & LED: properly update and unified some titles.",
+    "- Settings: remove unnecessary margin (visual improvements).",
+    "- Misc: Update androidx appcompat library." 
   ]
 }
