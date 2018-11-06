@@ -58,9 +58,6 @@ public class LEDFragment extends RecyclerViewFragment {
         if (mLED.hascharginglight()) {
             charginglightInit(items);
         }
-        if (mLED.hasLEDFade()) {
-            LEDFadeInit(items);
-        }
         if (mLED.hasIntensity()) {
             intensityInit(items);
         }
@@ -74,7 +71,7 @@ public class LEDFragment extends RecyclerViewFragment {
 
     private void intensityInit(List<RecyclerViewItem> items) {
         SeekBarView intensity = new SeekBarView();
-        intensity.setTitle(getString(R.string.intensity));
+        intensity.setTitle(getString(R.string.led_intensity));
         intensity.setUnit("%");
         intensity.setProgress(mLED.getIntensity());
         intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -93,7 +90,7 @@ public class LEDFragment extends RecyclerViewFragment {
 
     private void speedInit(List<RecyclerViewItem> items) {
         SeekBarView speed = new SeekBarView();
-        speed.setTitle(getString(R.string.speed));
+        speed.setTitle(getString(R.string.led_speed));
         speed.setItems(mLED.getSpeedMenu(getActivity()));
         speed.setProgress(mLED.getSpeed());
         speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -112,7 +109,7 @@ public class LEDFragment extends RecyclerViewFragment {
 
     private void displaybacklightInit(List<RecyclerViewItem> items) {
 	SeekBarView displaybacklight = new SeekBarView();
-	displaybacklight.setTitle(getString(R.string.display_backlight));
+	displaybacklight.setTitle(getString(R.string.backlight_max));
 	if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
             // Increase maximum range (Max: 1275; Offset: 25)
             displaybacklight.setMax(1275);
@@ -186,7 +183,7 @@ public class LEDFragment extends RecyclerViewFragment {
 
     private void charginglightInit(List<RecyclerViewItem> items) {
 	SeekBarView charginglight = new SeekBarView();
-	charginglight.setTitle(getString(R.string.charging_light));
+	charginglight.setTitle(getString(R.string.led_intensity));
 	charginglight.setMax(255);
 	charginglight.setOffset(5);
 	charginglight.setProgress(mLED.getcharginglight() / 5 );
@@ -200,21 +197,6 @@ public class LEDFragment extends RecyclerViewFragment {
             }
 	});
 	items.add(charginglight);
-    }
-
-    private void LEDFadeInit(List<RecyclerViewItem> items) {
-	SwitchView LEDFade = new SwitchView();
-	LEDFade.setTitle(getString(R.string.fade));
-	LEDFade.setSummary(getString(R.string.fade_summary));
-	LEDFade.setChecked(mLED.isLEDFadeEnabled());
-	LEDFade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-	@Override
-	public void onChanged(SwitchView switchView, boolean isChecked) {
-		mLED.enableLEDFade(isChecked, getActivity());
-            }
-	});
-
-	items.add(LEDFade);
     }
 
     private void brightnessInit(List<RecyclerViewItem> items) {

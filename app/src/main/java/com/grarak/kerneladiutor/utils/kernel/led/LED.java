@@ -79,6 +79,7 @@ public class LED {
 
     private String SPEED;
     private String ENABLE_FILE;
+    private String FADE_FILE;
 
     private LED() {
         for (String file : mSpeeds.keySet()) {
@@ -91,6 +92,11 @@ public class LED {
             ENABLE_FILE = CHARGING_LIGHT;
         } else if (Utils.existFile(CHARGING_LIGHT_2)) {
             ENABLE_FILE = CHARGING_LIGHT_2;
+        }
+        if (Utils.existFile(LED_FADE)) {
+            FADE_FILE = LED_FADE;
+        } else if (Utils.existFile(RED_FADE)) {
+            FADE_FILE = RED_FADE;
         }
     }
 
@@ -135,27 +141,15 @@ public class LED {
     }
 
     public void enableFade(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", RED_FADE), RED_FADE, context);
+        run(Control.write(enable ? "1" : "0", FADE_FILE), FADE_FILE, context);
     }
 
     public boolean isFadeEnabled() {
-        return Utils.readFile(RED_FADE).startsWith("1");
+        return Utils.readFile(FADE_FILE).startsWith("1");
     }
 
     public boolean hasFade() {
-        return Utils.existFile(RED_FADE);
-    }
-
-    public void enableLEDFade(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", LED_FADE), LED_FADE, context);
-    }
-
-    public boolean isLEDFadeEnabled() {
-        return Utils.readFile(LED_FADE).startsWith("1 - LED fading is enabled");
-    }
-
-    public boolean hasLEDFade() {
-        return Utils.existFile(LED_FADE);
+        return FADE_FILE != null;
     }
 
     public void setdisplaybacklight(int value, Context context) {
@@ -195,7 +189,8 @@ public class LED {
     }
 
     public boolean supported() {
-        return hasFade() || hasLEDFade() || hasdisplaybacklight() || hasBacklightMin() || hascharginglight() || hasIntensity() || hasSpeed() || Sec.supported();
+        return hasFade() || hasdisplaybacklight() || hasBacklightMin() || hascharginglight()
+		|| hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {
