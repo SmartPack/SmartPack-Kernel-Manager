@@ -585,7 +585,7 @@
     <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
 
     <!-- LED -->
-    <string name="fade">LED Blink/Fade</string>
+    <string name="fade">LED Notification (Blink/Fade)</string>
     <string name="fade_summary">Enable for fading, disable for blinking.</string>
     <string name="led_intensity">LED Notification (Intensity)</string>
     <string name="led_speed">LED Notification (Speed)</string>

@@ -181,7 +181,11 @@ public class LED {
     }
 
     public int getcharginglight() {
-        return Utils.strToInt(Utils.readFile(ENABLE_FILE));
+        String value = Utils.readFile(ENABLE_FILE);
+        if (value.matches("\\d.+.(-)*")) {
+            value = value.split("-")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public boolean hascharginglight() {
