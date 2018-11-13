@@ -193,55 +193,23 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
 		    // Initiate device specific downloads...
 		    if (Device.iskltekor()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
 		    } else if (Device.isklte()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
 		    } else if (Device.iskltedv()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
 		    } else if (Device.isklteduos()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
 		    } else if (Device.iskltejpn()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Pie/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
 		    } else if (Device.isOnePlusmsm8998()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            if (Device.isOnePlusOpenBeta()) {
-				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
-		            } else {
-				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
-		            }
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            if (Device.isOnePlusOpenBeta()) {
-				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
-		            } else {
-				RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
-		            }
+			if (Device.isOnePlusOpenBeta()) {
+		            RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo_Beta/kernel-release/SmartPack-Kernel-dumpling-OB.zip?raw=true");
+			} else {
+		            RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
 			}
 		    } else if (Device.isMotoG3()) {
-			if (Build.VERSION.SDK_INT == 27) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
-			} else if (Build.VERSION.SDK_INT == 28) {
-		            RootUtils.runCommand("wget -O /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Pie/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
-			}
+			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 		    }
 		    // Proceed only if the download was successful...
 		    if (Device.isSmartPackDownloaded()) {
