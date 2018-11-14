@@ -278,7 +278,11 @@ public class Battery {
     }
 
     public static int getchargeLevelAC() {
-        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_AC));
+        String value = Utils.readFile(CHARGE_LEVEL_AC);
+        if (value.matches("\\d.+.( mA)")) {
+            value = value.split(" mA")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public static boolean haschargeLevelAC() {
@@ -290,7 +294,11 @@ public class Battery {
     }
 
     public static int getchargeLevelUSB() {
-        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_USB));
+        String value = Utils.readFile(CHARGE_LEVEL_USB);
+        if (value.matches("\\d.+.( mA)")) {
+            value = value.split(" mA")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public static boolean haschargeLevelUSB() {
@@ -302,7 +310,11 @@ public class Battery {
     }
 
     public static int getchargeLevelWL() {
-        return Utils.strToInt(Utils.readFile(CHARGE_LEVEL_WL));
+        String value = Utils.readFile(CHARGE_LEVEL_WL);
+        if (value.matches("\\d.+.( mA)")) {
+            value = value.split(" mA")[0].trim();
+        }
+        return Utils.strToInt(value);
     }
 
     public static boolean haschargeLevelWL() {
