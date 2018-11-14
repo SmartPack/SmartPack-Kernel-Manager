@@ -103,31 +103,15 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		@Override
 		public void onClick(RecyclerViewItem item) {
 			if (Device.isSamsungmsm8974()) {
-				if (Build.VERSION.SDK_INT == 27) {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
-				} else if (Build.VERSION.SDK_INT == 28) {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Pie/change-logs.md", getActivity());
-				}
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
 			} else if (Device.isOnePlusmsm8998()) {
-				if (Build.VERSION.SDK_INT == 27) {
-					if (Device.isOnePlusOpenBeta()) {
-						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo_Beta/change-logs.md", getActivity());
-					} else {
-						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
-					}
-				} else if (Build.VERSION.SDK_INT == 28) {
-					if (Device.isOnePlusOpenBeta()) {
-						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Pie_Beta/change-logs.md", getActivity());
-					} else {
-						Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Pie/change-logs.md", getActivity());
-					}
+				if (Device.isOnePlusOpenBeta()) {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo_Beta/change-logs.md", getActivity());
+				} else {
+					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
 				}
 			} else if (Device.isMotoG3()) {
-				if (Build.VERSION.SDK_INT == 27) {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
-				} else if (Build.VERSION.SDK_INT == 28) {
-					Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Pie/change-logs.md", getActivity());
-				}
+				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
 			}
             	}
             });
