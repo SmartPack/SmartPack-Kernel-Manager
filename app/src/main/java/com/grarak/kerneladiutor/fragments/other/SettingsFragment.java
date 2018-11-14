@@ -217,6 +217,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     return false;
                 }
                 return true;
+            default:
+                if (key.endsWith("_enabled")) {
+                    Prefs.saveBoolean(key, checked, getActivity());
+                    ((NavigationActivity) requireActivity()).appendFragments();
+                    return true;
+                }
+                break;
         }
         return false;
     }
