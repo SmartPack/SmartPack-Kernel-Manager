@@ -1,5 +1,9 @@
 # Change-logs
 
+## 41. November 15, 2018
+*Release-tag: v6.6*
+Changes: App signature: Updates to work on all devices including Samsung TW ROMs. Battery: update charge level interface to support original boeffla driver (no more modifications are needed). Display & Led: update LED brightness to work with more devices. LED Notification Intensity: allow to set any value. Settings: fix option to hide sections. build: update to stable AndroidX (and also update dependencies). SmartPack: Auto-flash: Internal changes for Pie ROMs.
+
 ## 40. November 06, 2018
 *Release-tag: v6.5*
 Changes: Dispay & LED: update notification led control to for klte. Dispay & LED: properly update and unified some titles. Settings: remove unnecessary margin (visual improvements). Misc: Update androidx appcompat library.
