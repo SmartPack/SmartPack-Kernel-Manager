@@ -185,12 +185,11 @@ public class LEDFragment extends RecyclerViewFragment {
 	SeekBarView charginglight = new SeekBarView();
 	charginglight.setTitle(getString(R.string.led_intensity));
 	charginglight.setMax(255);
-	charginglight.setOffset(5);
-	charginglight.setProgress(mLED.getcharginglight() / 5 );
+	charginglight.setProgress(mLED.getcharginglight());
 	charginglight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
-		mLED.setcharginglight((position * 5), getActivity());
+		mLED.setcharginglight((position), getActivity());
             }
             @Override
 		public void onMove(SeekBarView seekBarView, int position, String value) {
