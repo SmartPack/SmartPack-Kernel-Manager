@@ -56,11 +56,6 @@ public class ProfileEditActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sChanged = false;
-        if (!Utils.DONATED) {
-            Utils.toast("nice try", this);
-            finish();
-            return;
-        }
 
         mPosition = getIntent().getIntExtra(POSITION_INTENT, 0);
 
