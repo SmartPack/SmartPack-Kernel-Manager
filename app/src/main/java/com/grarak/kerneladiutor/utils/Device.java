@@ -347,10 +347,6 @@ public class Device {
         return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
     }
 
-    public static boolean isOnePlusOpenBeta() {
-        return (ROMInfo.getInstance().getVersion()).contains("BETA");
-    }
-
     public static boolean isSamsungmsm8974() {
         return isklte() || iskltekor() || isklteduos() || iskltedv() || iskltejpn();
     }
