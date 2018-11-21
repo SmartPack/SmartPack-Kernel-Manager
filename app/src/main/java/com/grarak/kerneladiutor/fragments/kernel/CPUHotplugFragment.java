@@ -1655,6 +1655,24 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             coreCtl.addItem(busyUpThreshold);
 	}
 
+	if (mCoreCtl.hasTaskThreshold()) {
+            SeekBarView taskThreshold = new SeekBarView();
+            taskThreshold.setTitle(getString(R.string.task_threshold));
+            taskThreshold.setSummary(getString(R.string.task_threshold_summary));
+            taskThreshold.setProgress(mCoreCtl.getTaskThreshold());
+            taskThreshold.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mCoreCtl.setTaskThreshold(position, getActivity());
+		}
+            });
+            coreCtl.addItem(taskThreshold);
+	}
+
 	if (mCoreCtl.hasOfflineDelayMs()) {
             SeekBarView offlineDelayMs = new SeekBarView();
             offlineDelayMs.setTitle(getString(R.string.offline_delay));

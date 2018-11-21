@@ -314,6 +314,8 @@
     <string name="busy_down_threshold_summary">Threshold when big CPUs should be turned off.</string>
     <string name="busy_up_threshold">Busy Up Threshold</string>
     <string name="busy_up_threshold_summary">Threshold when big CPUs should be turned on.</string>
+    <string name="task_threshold">Task Threshold</string>
+    <string name="task_threshold_summary">Threshold when balancing tasks into big CPU units.</string>
     <string name="offline_delay">Offline Delay</string>
     <string name="offline_delay_summary">Time before turning off a CPU.</string>
     <string name="online_delay">Online Delay</string>

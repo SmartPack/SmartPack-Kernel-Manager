@@ -52,6 +52,7 @@ public class CoreCtl {
     public static final String MIN_CPUS = "/min_cpus";
     private static final String BUSY_DOWN_THRESHOLD = "/busy_down_thres";
     private static final String BUSY_UP_THRESHOLD = "/busy_up_thres";
+    private static final String TASK_THRESHOLD = "/task_thres";
     private static final String OFFLINE_DELAY_MS = "/offline_delay_ms";
     private static final String ONLINE_DELAY_MS = "/online_delay_ms";
 
@@ -175,6 +176,19 @@ public class CoreCtl {
 
     public boolean hasEnable() {
         return Utils.existFile(PARENT + ENABLE);
+    }
+
+    public void setTaskThreshold(int value, Context context) {
+        run(Control.write(String.valueOf(value), PARENT + TASK_THRESHOLD),
+                PARENT + TASK_THRESHOLD, context);
+    }
+
+    public int getTaskThreshold() {
+        return Utils.strToInt(Utils.readFile(PARENT + TASK_THRESHOLD));
+    }
+
+    public boolean hasTaskThreshold() {
+        return Utils.existFile(PARENT + TASK_THRESHOLD);
     }
 
     public boolean supported() {
