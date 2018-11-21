@@ -1,14 +1,12 @@
 {
-  "latestVersion": "6.6-20181115",
+  "latestVersion": "6.7-20181121",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- App signature: Updates to work on all devices including Samsung TW ROMs.",
-    "- Battery: update charge level interface to support original boeffla driver.",
-    "- Display & Led: update LED brightness to work with more devices.",
-    "- LED Notification Intensity: allow to set any value.",
-    "- Settings: fix option to hide sections.",
-    "- build: update to stable AndroidX (and also update dependencies).",
-    "- SmartPack: Auto-flash: Internal changes for Pie ROMs." 
+    "- Performance tweaks: show un-supported status in quick tile if no spectrum support.",
+    "- CPU Hotplug: Core Control: add Task Threshold.",
+    "- Profile: remove editing profiles from the donated feature.",
+    "- SmartPack: Auto-flash: Internal changes for OnePlus 5/5T.",
+    "- Miscellaneous changes." 
   ]
 }
