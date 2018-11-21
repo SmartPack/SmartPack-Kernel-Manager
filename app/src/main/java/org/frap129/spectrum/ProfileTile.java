@@ -63,34 +63,40 @@ public class ProfileTile extends TileService {
         int newState;
 
         // Update tile and set profile
-        if (isActive && click) {
-            newLabel = "Gaming";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
-            newState = Tile.STATE_ACTIVE;
-            click = false;
-            Spectrum.setProfile(3);
-            Prefs.saveInt("spectrum_profile", 3, getApplicationContext());
-        } else if (!isActive && click) {
-            newLabel = "Battery";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
-            newState = Tile.STATE_ACTIVE;
-            click = true;
-            Spectrum.setProfile(2);
-            Prefs.saveInt("spectrum_profile", 2, getApplicationContext());
-        } else if (isActive && !click){
-            newLabel = "Performance";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
-            newState = Tile.STATE_ACTIVE;
-            click = true;
-            Spectrum.setProfile(1);
-            Prefs.saveInt("spectrum_profile", 1, getApplicationContext());
-        } else {
-            newLabel = "Balance";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
-            newState = Tile.STATE_ACTIVE;
-            click = false;
-            Spectrum.setProfile(0);
-            Prefs.saveInt("spectrum_profile", 0, getApplicationContext());
+        if (!(Spectrum.supported())) {
+            newLabel = "No Spectrum support";
+            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
+            newState = Tile.STATE_INACTIVE;
+        }else {
+            if (isActive && click) {
+		newLabel = "Gaming";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
+		newState = Tile.STATE_ACTIVE;
+		click = false;
+		Spectrum.setProfile(3);
+		Prefs.saveInt("spectrum_profile", 3, getApplicationContext());
+            } else if (!isActive && click) {
+		newLabel = "Battery";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
+		newState = Tile.STATE_ACTIVE;
+		click = true;
+		Spectrum.setProfile(2);
+		Prefs.saveInt("spectrum_profile", 2, getApplicationContext());
+            } else if (isActive && !click){
+		newLabel = "Performance";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
+		newState = Tile.STATE_ACTIVE;
+		click = true;
+		Spectrum.setProfile(1);
+		Prefs.saveInt("spectrum_profile", 1, getApplicationContext());
+            } else {
+		newLabel = "Balance";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
+		newState = Tile.STATE_ACTIVE;
+		click = false;
+		Spectrum.setProfile(0);
+		Prefs.saveInt("spectrum_profile", 0, getApplicationContext());
+            }
         }
 
         // Change the UI of the tile.
@@ -118,31 +124,37 @@ public class ProfileTile extends TileService {
         int newState;
 
         // Update tile
-        if (profile == 3){
-            newLabel = "Gaming";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
-            newState = Tile.STATE_ACTIVE;
-            click = false;
-        } else if (profile == 2){
-            newLabel = "Battery";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
-            newState = Tile.STATE_ACTIVE;
-            click = true;
-        } else if (profile == 1){
-            newLabel = "Performance";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
-            newState = Tile.STATE_ACTIVE;
-            click = true;
-        } else if (profile == 0){
-            newLabel = "Balance";
-            newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
-            newState = Tile.STATE_ACTIVE;
-            click = false;
-        } else {
-            newLabel = "Custom";
+        if (!(Spectrum.supported())) {
+            newLabel = "No Spectrum support";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
-            newState = Tile.STATE_ACTIVE;
-            click = false;
+            newState = Tile.STATE_INACTIVE;
+        }else {
+            if (profile == 3){
+		newLabel = "Gaming";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
+		newState = Tile.STATE_ACTIVE;
+		click = false;
+            } else if (profile == 2){
+		newLabel = "Battery";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
+		newState = Tile.STATE_ACTIVE;
+		click = true;
+            } else if (profile == 1){
+		newLabel = "Performance";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
+		newState = Tile.STATE_ACTIVE;
+		click = true;
+            } else if (profile == 0){
+		newLabel = "Balance";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
+		newState = Tile.STATE_ACTIVE;
+		click = false;
+            } else {
+		newLabel = "Custom";
+		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
+		newState = Tile.STATE_ACTIVE;
+		click = false;
+            }
         }
 
         // Change the UI of the tile.
