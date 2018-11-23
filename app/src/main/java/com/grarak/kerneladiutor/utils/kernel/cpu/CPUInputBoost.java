@@ -36,47 +36,73 @@ import java.util.List;
 
 public class CPUInputBoost {
 
+    private static CPUInputBoost sInstance;
+
+    public static CPUInputBoost getInstance() {
+        if (sInstance == null) {
+            sInstance = new CPUInputBoost();
+        }
+        return sInstance;
+    }
+
     private static final String CPU_INPUT_BOOST = "/sys/kernel/cpu_input_boost";
-    private static final String CPU_INPUT_BOOST_ENABLED = CPU_INPUT_BOOST + "/enabled";
-    private static final String CPU_INPUT_BOOST_DURATION = CPU_INPUT_BOOST + "/ib_duration_ms";
-    private static final String CPU_INPUT_BOOST_FREQ = CPU_INPUT_BOOST + "/ib_freqs";
-
     private static final String CPU_INPUT_BOOST_MODULE = "/sys/module/cpu_input_boost/parameters";
-    private static final String CPU_INPUT_BOOST_MODULE_DURATION = CPU_INPUT_BOOST_MODULE + "/input_boost_duration";
-    private static final String CPU_INPUT_BOOST_LF = CPU_INPUT_BOOST_MODULE + "/input_boost_freq_lp";
-    private static final String CPU_INPUT_BOOST_HF = CPU_INPUT_BOOST_MODULE + "/input_boost_freq_hp";
 
-    public static void enablecpuinputboost(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", CPU_INPUT_BOOST_ENABLED), CPU_INPUT_BOOST_ENABLED, context);
+    private static final String CPU_INPUT_BOOST_ENABLED = "/enabled";
+    private static final String CPU_INPUT_BOOST_DURATION = "/ib_duration_ms";
+    private static final String CPU_INPUT_BOOST_FREQ = "/ib_freqs";
+    private static final String CPU_INPUT_BOOST_MODULE_DURATION = "/input_boost_duration";
+    private static final String CPU_INPUT_BOOST_LF = "/input_boost_freq_lp";
+    private static final String CPU_INPUT_BOOST_HF = "/input_boost_freq_hp";
+
+    private String PARANT;
+    private String INPUT_BOOST_DURATION;
+
+    private CPUInputBoost() {
+        if (Utils.existFile(CPU_INPUT_BOOST)) {
+            PARANT = CPU_INPUT_BOOST;
+        } else if (Utils.existFile(CPU_INPUT_BOOST_MODULE)) {
+            PARANT = CPU_INPUT_BOOST_MODULE;
+        }
+        if (Utils.existFile(PARANT + CPU_INPUT_BOOST_DURATION)) {
+            INPUT_BOOST_DURATION = PARANT + CPU_INPUT_BOOST_DURATION;
+        } else if (Utils.existFile(PARANT + CPU_INPUT_BOOST_MODULE_DURATION)) {
+            INPUT_BOOST_DURATION = PARANT + CPU_INPUT_BOOST_MODULE_DURATION;
+        }
     }
 
-    public static boolean iscpuinputboostEnabled() {
-        return Utils.readFile(CPU_INPUT_BOOST_ENABLED).equals("1");
+
+    public void enablecpuinputboost(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PARANT + CPU_INPUT_BOOST_ENABLED), PARANT + CPU_INPUT_BOOST_ENABLED, context);
     }
 
-    public static boolean hascpuinputboost() {
-        return Utils.existFile(CPU_INPUT_BOOST_ENABLED);
+    public boolean iscpuinputboostEnabled() {
+        return Utils.readFile(PARANT + CPU_INPUT_BOOST_ENABLED).equals("1");
     }
 
-    public static void setcpuiboostduration(int value, Context context) {
-        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_DURATION), CPU_INPUT_BOOST_DURATION, context);
+    public boolean hascpuinputboost() {
+        return Utils.existFile(PARANT + CPU_INPUT_BOOST_ENABLED);
     }
 
-    public static int getcpuiboostduration() {
-        return Utils.strToInt(Utils.readFile(CPU_INPUT_BOOST_DURATION));
+    public void setcpuiboostduration(int value, Context context) {
+        run(Control.write(String.valueOf(value), INPUT_BOOST_DURATION), INPUT_BOOST_DURATION, context);
     }
 
-    public static boolean hascpuiboostduration() {
-        return Utils.existFile(CPU_INPUT_BOOST_DURATION);
+    public int getcpuiboostduration() {
+        return Utils.strToInt(Utils.readFile(INPUT_BOOST_DURATION));
     }
 
-    public static void setcpuiboostfreq(String value1, String value2, Context context) {
+    public boolean hascpuiboostduration() {
+        return INPUT_BOOST_DURATION != null;
+    }
+
+    public void setcpuiboostfreq(String value1, String value2, Context context) {
         String value = value1 + " " + value2;
-        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_FREQ), CPU_INPUT_BOOST_FREQ, context);
+        run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_FREQ), PARANT + CPU_INPUT_BOOST_FREQ, context);
     }
 
-    public static List<String> getcpuiboostfreq() {
-        String freqs[] = Utils.readFile(CPU_INPUT_BOOST_FREQ).split(" ");
+    public List<String> getcpuiboostfreq() {
+        String freqs[] = Utils.readFile(PARANT + CPU_INPUT_BOOST_FREQ).split(" ");
         List<String> ibfreqs = new ArrayList<>();
         for (String freq : freqs) {
             ibfreqs.add(freq.trim());
@@ -84,48 +110,36 @@ public class CPUInputBoost {
         return ibfreqs;
     }
 
-    public static boolean hascpuiboostfreq() {
-        return Utils.existFile(CPU_INPUT_BOOST_FREQ);
+    public boolean hascpuiboostfreq() {
+        return Utils.existFile(PARANT + CPU_INPUT_BOOST_FREQ);
     }
 
-    public static String getcpuinputboostduration() {
-        return Utils.readFile(CPU_INPUT_BOOST_MODULE_DURATION);
+    public String getcpuinputboostlf() {
+        return Utils.readFile(PARANT + CPU_INPUT_BOOST_LF);
     }
 
-    public static void setcpuinputboostduration(String value, Context context) {
-        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_MODULE_DURATION), CPU_INPUT_BOOST_MODULE_DURATION, context);
+    public void setcpuinputboostlf(String value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_LF), PARANT + CPU_INPUT_BOOST_LF, context);
     }
 
-    public static boolean hascpuinputboostduration() {
-        return Utils.existFile(CPU_INPUT_BOOST_MODULE_DURATION);
+    public boolean hascpuinputboostlf() {
+        return Utils.existFile(PARANT + CPU_INPUT_BOOST_LF);
     }
 
-    public static String getcpuinputboostlf() {
-        return Utils.readFile(CPU_INPUT_BOOST_LF);
+    public String getcpuinputboosthf() {
+        return Utils.readFile(PARANT + CPU_INPUT_BOOST_HF);
     }
 
-    public static void setcpuinputboostlf(String value, Context context) {
-        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_LF), CPU_INPUT_BOOST_LF, context);
+    public void setcpuinputboosthf(String value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_HF), PARANT + CPU_INPUT_BOOST_HF, context);
     }
 
-    public static boolean hascpuinputboostlf() {
-        return Utils.existFile(CPU_INPUT_BOOST_LF);
+    public boolean hascpuinputboosthf() {
+        return Utils.existFile(PARANT + CPU_INPUT_BOOST_HF);
     }
 
-    public static String getcpuinputboosthf() {
-        return Utils.readFile(CPU_INPUT_BOOST_HF);
-    }
-
-    public static void setcpuinputboosthf(String value, Context context) {
-        run(Control.write(String.valueOf(value), CPU_INPUT_BOOST_HF), CPU_INPUT_BOOST_HF, context);
-    }
-
-    public static boolean hascpuinputboosthf() {
-        return Utils.existFile(CPU_INPUT_BOOST_HF);
-    }
-
-    public static boolean supported() {
-        return Utils.existFile(CPU_INPUT_BOOST) || Utils.existFile(CPU_INPUT_BOOST_MODULE);
+    public boolean supported() {
+        return PARANT != null;
     }
 
     private static void run(String command, String id, Context context) {
