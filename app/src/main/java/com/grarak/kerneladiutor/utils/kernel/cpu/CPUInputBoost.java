@@ -84,12 +84,12 @@ public class CPUInputBoost {
         return Utils.existFile(PARANT + CPU_INPUT_BOOST_ENABLED);
     }
 
-    public void setcpuiboostduration(int value, Context context) {
+    public void setcpuiboostduration(String value, Context context) {
         run(Control.write(String.valueOf(value), INPUT_BOOST_DURATION), INPUT_BOOST_DURATION, context);
     }
 
-    public int getcpuiboostduration() {
-        return Utils.strToInt(Utils.readFile(INPUT_BOOST_DURATION));
+    public String getcpuiboostduration() {
+        return Utils.readFile(INPUT_BOOST_DURATION);
     }
 
     public boolean hascpuiboostduration() {

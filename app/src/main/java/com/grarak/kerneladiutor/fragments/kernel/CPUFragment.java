@@ -571,22 +571,18 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(cpuinputboost);
 	}
 
-	if (mCPUInputBoost.hascpuiboostduration()) { 
-            SeekBarView cpuiboostduration = new SeekBarView();
-            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration));
+	if (mCPUInputBoost.hascpuiboostduration()) {
+            GenericSelectView cpuiboostduration = new GenericSelectView();
+            cpuiboostduration.setTitle(getString(R.string.cpuiboost_duration) + (" (ms)"));
             cpuiboostduration.setSummary(getString(R.string.cpuiboost_duration_summary));
-            cpuiboostduration.setUnit(" ms");
-            cpuiboostduration.setMax(5000);
-            cpuiboostduration.setProgress(mCPUInputBoost.getcpuiboostduration());
-            cpuiboostduration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-			mCPUInputBoost.setcpuiboostduration((position), getActivity());
-		}
-
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
+            cpuiboostduration.setValue(mCPUInputBoost.getcpuiboostduration());
+            cpuiboostduration.setInputType(InputType.TYPE_CLASS_NUMBER);
+            cpuiboostduration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mCPUInputBoost.setcpuiboostduration(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
             });
 
             cpuBoost.addItem(cpuiboostduration);
