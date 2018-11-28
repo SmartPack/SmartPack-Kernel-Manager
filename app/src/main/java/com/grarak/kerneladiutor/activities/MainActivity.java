@@ -71,7 +71,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Initialice profile Sharedpreference
+        /**
+         * Initialice profile Sharedpreference
+         */
         int prof = Utils.strToInt(Spectrum.getProfile());
         Prefs.saveInt("spectrum_profile", prof, this);
 
@@ -82,7 +84,9 @@ public class MainActivity extends BaseActivity {
         mBusybox = (TextView) findViewById(R.id.busybox_text);
         mCollectInfo = (TextView) findViewById(R.id.info_collect_text);
 
-        // Hide huge banner in landscape mode
+        /**
+         * Hide huge banner in landscape mode
+         */
         if (Utils.getOrientation(this) == Configuration.ORIENTATION_LANDSCAPE) {
             splashBackground.setVisibility(View.GONE);
         }
