@@ -73,6 +73,46 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		currentspversion.setSummary(RootUtils.runCommand("uname -r"));
             }
             smartpack.addItem(currentspversion);
+
+            DescriptionView spversion = new DescriptionView();
+            spversion.setTitle(("Latest ") + getString(R.string.version));
+            if (Device.SmartPackRelease()) {
+		if (!(Device.getSmartPackVersionNumber() == Device.getlatestSmartPackVersionNumber())) {
+		    spversion.setSummary(("~ New Update (") + Device.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+		} else {
+		    spversion.setSummary(Device.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
+		}
+            } else {
+		spversion.setSummary(getString(R.string.latest_version_check));
+            }
+            spversion.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		// Delete latest kernel version information
+		if (Device.haslatestSmartPackVersion()) {
+		    RootUtils.runCommand("rm -r /data/data/com.smartpack.kernelmanager/version");
+		}
+		if (Device.isSamsungmsm8974()) {
+		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
+		} else if (Device.isOnePlusmsm8998()) {
+		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
+		} else if (Device.isMotoG3()) {
+		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
+		}
+		if (Device.SmartPackRelease()) {
+		    if (!(Device.getSmartPackVersionNumber() == Device.getlatestSmartPackVersionNumber())) {
+			spversion.setSummary(("~ New Update (") + Device.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+		    } else {
+			spversion.setSummary(Device.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
+		    }
+            	} else {
+		    if (Device.hasSmartPackVersion()) {
+			spversion.setSummary(getString(R.string.update_check_failed) + getString(R.string.recheck));
+		    }
+		}
+            }
+            });
+            smartpack.addItem(spversion);
 	}
 
 	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {

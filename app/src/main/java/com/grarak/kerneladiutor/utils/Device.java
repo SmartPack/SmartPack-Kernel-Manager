@@ -343,6 +343,8 @@ public class Device {
 
     private static final String SMARTPACK_DOWNLOADED = "/sdcard/Download/SmartPack-Kernel.zip";
 
+    private static final String LATEST_VERSION = "/data/data/com.smartpack.kernelmanager/version";
+
     public static boolean hasSmartPackInstalled() {
         return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
     }
@@ -389,6 +391,10 @@ public class Device {
         return Utils.readFile(SMARTPACK_VERSION);
     }
 
+    public static int getSmartPackVersionNumber() {
+        return Utils.strToInt(Utils.readFile(SMARTPACK_VERSION).replace("stable", "").replace("beta", "").replace("alpha", "").replace("test", "").replace("-", "").replace("v", ""));
+    }
+
     public static boolean isSmartPackDownloaded() {
         return Utils.existFile(SMARTPACK_DOWNLOADED);
     }
@@ -397,6 +403,22 @@ public class Device {
 
     public static boolean hasRecovery() {
         return Utils.existFile(RECOVERY);
+    }
+
+    public static boolean haslatestSmartPackVersion() {
+        return Utils.existFile(LATEST_VERSION);
+    }
+
+    public static String getlatestSmartPackVersion() {
+        return Utils.readFile(LATEST_VERSION);
+    }
+
+    public static boolean SmartPackRelease() {
+        return getlatestSmartPackVersion().contains("alpha-v") || getlatestSmartPackVersion().contains("beta-v") || getlatestSmartPackVersion().contains("stable-v") || getlatestSmartPackVersion().contains("test");
+    }
+
+    public static int getlatestSmartPackVersionNumber() {
+        return Utils.strToInt(Utils.readFile(LATEST_VERSION).replace("stable", "").replace("beta", "").replace("alpha", "").replace("test", "").replace("-", "").replace("v", ""));
     }
 
     public static String getArchitecture() {
