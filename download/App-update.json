@@ -1,12 +1,11 @@
 {
-  "latestVersion": "6.7-20181121",
+  "latestVersion": "6.8-20181129",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Performance tweaks: show un-supported status in quick tile if no spectrum support.",
-    "- CPU Hotplug: Core Control: add Task Threshold.",
-    "- Profile: remove editing profiles from the donated feature.",
-    "- SmartPack: Auto-flash: Internal changes for OnePlus 5/5T.",
-    "- Miscellaneous changes." 
+    "- CPU Input Boost: Bunch of internal changes.",
+    "- CPU Input Boost Duration: switch to Input type.",
+    "- SmartPack: implement the latest kernel version notification (update check).",
+    "- SmartPack: overall (internal) improvements" 
   ]
 }

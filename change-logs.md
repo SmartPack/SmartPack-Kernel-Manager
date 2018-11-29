@@ -1,5 +1,9 @@
 # Change-logs
 
+## 43. November 29, 2018
+*Release-tag: v6.8*
+Changes: CPU Input Boost: Bunch of internal changes. CPU Input Boost Duration: switch to Input type. SmartPack: implement the latest kernel version notification (update check). SmartPack: overall (internal) improvements.
+
 ## 42. November 21, 2018
 *Release-tag: v6.7*
 Changes: Performance tweaks: show un-supported status in quick tile if no spectrum support. CPU Hotplug: Core Control: add Task Threshold. Profile: remove editing profiles from the donated feature. SmartPack: Auto-flash: Internal changes for OnePlus 5/5T. Miscellaneous changes.
