@@ -28,7 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Device;
+import com.grarak.kerneladiutor.utils.other.SmartPack;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -64,11 +64,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	CardView smartpack = new CardView(getActivity());
 	smartpack.setTitle(getString(R.string.smartpack_kernel));
 
-	if (Device.hasSmartPackInstalled()) {
+	if (SmartPack.hasSmartPackInstalled()) {
             DescriptionView currentspversion = new DescriptionView();
             currentspversion.setTitle(("Current ") + getString(R.string.version));
-            if (Device.hasSmartPackVersion()) {
-		currentspversion.setSummary(Device.getSmartPackVersion());
+            if (SmartPack.hasSmartPackVersion()) {
+		currentspversion.setSummary(SmartPack.getSmartPackVersion());
             } else {
 		currentspversion.setSummary(RootUtils.runCommand("uname -r"));
             }
@@ -76,11 +76,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
             DescriptionView spversion = new DescriptionView();
             spversion.setTitle(("Latest ") + getString(R.string.version));
-            if (Device.SmartPackRelease()) {
-		if (!(Device.getSmartPackVersionNumber() == Device.getlatestSmartPackVersionNumber())) {
-		    spversion.setSummary(("~ New Update (") + Device.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+            if (SmartPack.SmartPackRelease()) {
+		if (!(SmartPack.getSmartPackVersionNumber() == SmartPack.getlatestSmartPackVersionNumber())) {
+		    spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
 		} else {
-		    spversion.setSummary(Device.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
+		    spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
 		}
             } else {
 		spversion.setSummary(getString(R.string.latest_version_check));
@@ -89,24 +89,24 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		@Override
 		public void onClick(RecyclerViewItem item) {
 		// Delete latest kernel version information
-		if (Device.haslatestSmartPackVersion()) {
+		if (SmartPack.haslatestSmartPackVersion()) {
 		    RootUtils.runCommand("rm -r /data/data/com.smartpack.kernelmanager/version");
 		}
-		if (Device.isSamsungmsm8974()) {
+		if (SmartPack.isSamsungmsm8974()) {
 		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
-		} else if (Device.isOnePlusmsm8998()) {
+		} else if (SmartPack.isOnePlusmsm8998()) {
 		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
-		} else if (Device.isMotoG3()) {
+		} else if (SmartPack.isMotoG3()) {
 		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
 		}
-		if (Device.SmartPackRelease()) {
-		    if (!(Device.getSmartPackVersionNumber() == Device.getlatestSmartPackVersionNumber())) {
-			spversion.setSummary(("~ New Update (") + Device.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+		if (SmartPack.SmartPackRelease()) {
+		    if (!(SmartPack.getSmartPackVersionNumber() == SmartPack.getlatestSmartPackVersionNumber())) {
+			spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
 		    } else {
-			spversion.setSummary(Device.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
+			spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
 		    }
             	} else {
-		    if (Device.hasSmartPackVersion()) {
+		    if (SmartPack.hasSmartPackVersion()) {
 			spversion.setSummary(getString(R.string.update_check_failed) + getString(R.string.recheck));
 		    }
 		}
@@ -115,18 +115,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(spversion);
 	}
 
-	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
+	if ((SmartPack.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
             DescriptionView xdapage = new DescriptionView();
             xdapage.setTitle(getString(R.string.support));
             xdapage.setSummary(getString(R.string.support_summary));
             xdapage.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-            		if (Device.isSamsungmsm8974()) {
+            		if (SmartPack.isSamsungmsm8974()) {
 				Utils.launchUrl("https://forum.xda-developers.com/galaxy-s5/unified-development/kernel-project-kltexxx-t3564206", getActivity());
-			} else if (Device.isOnePlusmsm8998()) {
+			} else if (SmartPack.isOnePlusmsm8998()) {
 				Utils.launchUrl("https://forum.xda-developers.com/oneplus-5t/development/kernel-smartpack-linaro-gcc-7-x-oxygen-t3832458", getActivity());
-			} else if (Device.isMotoG3()) {
+			} else if (SmartPack.isMotoG3()) {
 				Utils.launchUrl("https://forum.xda-developers.com/2015-moto-g/orig-development/kernel-smartpack-linaro-gcc-7-x-lineage-t3834515", getActivity());
 			}
 		}
@@ -134,7 +134,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(xdapage);
 	}
 
-	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
+	if ((SmartPack.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
 
             DescriptionView changelogsp = new DescriptionView();
             changelogsp.setTitle(getString(R.string.change_logs));
@@ -142,11 +142,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
             changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-			if (Device.isSamsungmsm8974()) {
+			if (SmartPack.isSamsungmsm8974()) {
 				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_kltexxx/Oreo/change-logs.md", getActivity());
-			} else if (Device.isOnePlusmsm8998()) {
+			} else if (SmartPack.isOnePlusmsm8998()) {
 				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
-			} else if (Device.isMotoG3()) {
+			} else if (SmartPack.isMotoG3()) {
 				Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_osprey/Oreo/change-logs.md", getActivity());
 			}
             	}
@@ -154,7 +154,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(changelogsp);
 	}
 
-	if ((Device.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
+	if ((SmartPack.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
 
             DescriptionView spsource = new DescriptionView();
             spsource.setTitle(getString(R.string.source_code));
@@ -162,11 +162,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
             spsource.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-			if (Device.isSamsungmsm8974()) {
+			if (SmartPack.isSamsungmsm8974()) {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx", getActivity());
-			} else if (Device.isOnePlusmsm8998()) {
+			} else if (SmartPack.isOnePlusmsm8998()) {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T", getActivity());
-			} else if (Device.isMotoG3()) {
+			} else if (SmartPack.isMotoG3()) {
 				Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_osprey", getActivity());
 			}
 		}
@@ -174,18 +174,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(spsource);
 	}
 
-	if (supported()) {
+	if (SmartPack.supported()) {
             DescriptionView website = new DescriptionView();
             website.setTitle(getString(R.string.website));
             website.setSummary(getString(R.string.website_summary));
             website.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    if (Device.isSamsungmsm8974()) {
+		    if (SmartPack.isSamsungmsm8974()) {
 			Utils.launchUrl("https://smartpack.github.io/sgs5/", getActivity());
-		    } else if (Device.isOnePlusmsm8998()) {
+		    } else if (SmartPack.isOnePlusmsm8998()) {
 			Utils.launchUrl("https://smartpack.github.io/op5t/", getActivity());
-		    } else if (Device.isMotoG3()) {
+		    } else if (SmartPack.isMotoG3()) {
 			Utils.launchUrl("https://smartpack.github.io/motog2015/", getActivity());
 		    }
 		}
@@ -193,7 +193,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(website);
 	}
 
-	if (supported() && (Build.VERSION.SDK_INT >= 27)) {
+	if (SmartPack.supported() && (Build.VERSION.SDK_INT >= 27)) {
             DescriptionView downloads = new DescriptionView();
             downloads.setTitle(getString(R.string.downloads));
             downloads.setSummary(getString(R.string.downloads_summary));
@@ -201,7 +201,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		@Override
 		public void onClick(RecyclerViewItem item) {
 		    // Check and delete an old version of the kernel from the download folder, if any...
-		    if (Device.isSmartPackDownloaded()) {
+		    if (SmartPack.isSmartPackDownloaded()) {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
 		    }
 		    // Show an alert dialogue and let the user know the process...
@@ -212,25 +212,25 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    });
 		    downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
 		    // Initiate device specific downloads...
-		    if (Device.iskltekor()) {
+		    if (SmartPack.iskltekor()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekor.zip?raw=true");
-		    } else if (Device.isklte()) {
+		    } else if (SmartPack.isklte()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klte.zip?raw=true");
-		    } else if (Device.iskltedv()) {
+		    } else if (SmartPack.iskltedv()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltedv.zip?raw=true");
-		    } else if (Device.isklteduos()) {
+		    } else if (SmartPack.isklteduos()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-klteduos.zip?raw=true");
-		    } else if (Device.iskltejpn()) {
+		    } else if (SmartPack.iskltejpn()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_kltexxx/blob/Oreo/kernel-release/SmartPack-Kernel-kltekdi.zip?raw=true");
-		    } else if (Device.isOnePlusmsm8998()) {
+		    } else if (SmartPack.isOnePlusmsm8998()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
-		    } else if (Device.isMotoG3()) {
+		    } else if (SmartPack.isMotoG3()) {
 			RootUtils.runCommand("curl -L -o /sdcard/Download/SmartPack-Kernel.zip https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/kernel-release/SmartPack-Kernel-osprey.zip?raw=true");
 		    }
 		    // Proceed only if the download was successful...
-		    if (Device.isSmartPackDownloaded()) {
+		    if (SmartPack.isSmartPackDownloaded()) {
 			// Show Auto-flash message if we recognize recovery...
-			if (Device.hasRecovery()) {
+			if (SmartPack.hasRecovery()) {
 		            AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
 		            flash.setTitle(getString(R.string.autoflash));
 		            flash.setMessage(getString(R.string.flash_message));
@@ -313,7 +313,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	advanced.addItem(reset);
 
 	// Show wipe (Cache/Data) functions only if we recognize recovery...
-	if (Device.hasRecovery()) {
+	if (SmartPack.hasRecovery()) {
             DescriptionView wipe_cache = new DescriptionView();
             wipe_cache.setTitle(getString(R.string.wipe_cache));
             wipe_cache.setSummary(getString(R.string.wipe_cache_summary));
@@ -402,10 +402,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	advanced.addItem(bootloaderreboot);
 
 	items.add(advanced);
-    }
-
-    public static boolean supported() {
-        return Device.hasSmartPackVersion() || Device.isSamsungmsm8974() || Device.isOnePlusmsm8998() || Device.isMotoG3() || Device.hasSmartPackInstalled();
     }
 
 }
