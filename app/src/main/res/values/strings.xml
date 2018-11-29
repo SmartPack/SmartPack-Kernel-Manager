@@ -859,9 +859,10 @@
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="website">Website</string>
     <string name="website_summary">Visit SmartPack homepage</string>
+    <string name="get_it">Get It!</string>
+    <string name="get_it_summary">Get latest SmartPack-Kernel for your device</string>
     <string name="download">Download</string>
-    <string name="downloads">Download and Flash</string>
-    <string name="downloads_summary">Get latest SmartPack-Kernel for your device</string>
+    <string name="download_flash">Download and Flash</string>
     <string name="downloads_message">\nThe app will download the latest version of SmartPack-Kernel available for your device.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
     <string name="autoflash">Auto-flash</string>
     <string name="install_now">Install Now</string>
@@ -896,6 +897,8 @@
     <string name="recheck">\n(Click here to re-check)</string>
     <string name="update_check_failed">Failed to get latest version info! Please check your internet connection</string>
     <string name="up_to_date_message">Congrats! You are up-to-date</string>
+    <string name="no_kernel_support">Unsupported Version</string>
+    <string name="no_kernel_support_summary">SmartPack-Kernel is not (yet) available for your Android version</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
