@@ -710,6 +710,7 @@
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
 
     <!-- Virtual Memory -->
+    <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
