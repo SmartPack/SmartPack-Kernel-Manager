@@ -32,7 +32,6 @@ import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +52,18 @@ public class VMFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        VMInit(items);
+        if (ZRAM.supported()) {
+            zramInit(items);
+        }
+        zswapInit(items);
+    }
+
+    private void VMInit(List<RecyclerViewItem> items) {
+        CardView vmCard = new CardView(getActivity());
+        vmCard.setTitle(getString(R.string.virtual_memory));
         mVMs.clear();
+
         for (int i = 0; i < VM.size(); i++) {
             if (VM.exists(i)) {
                 GenericSelectView vm = new GenericSelectView();
@@ -72,21 +82,19 @@ public class VMFragment extends RecyclerViewFragment {
                     }
                 });
 
-                items.add(vm);
+                vmCard.addItem(vm);
                 mVMs.add(vm);
             }
         }
 
-        if (ZRAM.supported()) {
-            zramInit(items);
+        if (vmCard.size() > 0) {
+            items.add(vmCard);
         }
-        zswapInit(items);
     }
 
     private void zramInit(List<RecyclerViewItem> items) {
-        TitleView zramTitle = new TitleView();
-        zramTitle.setText(getString(R.string.zram));
-        items.add(zramTitle);
+        CardView zRAM = new CardView(getActivity());
+        zRAM.setTitle(getString(R.string.zram));
 
         SeekBarView zram = new SeekBarView();
         zram.setTitle(getString(R.string.disksize));
@@ -106,7 +114,10 @@ public class VMFragment extends RecyclerViewFragment {
             }
         });
 
-        items.add(zram);
+        zRAM.addItem(zram);
+        if (zRAM.size() > 0) {
+            items.add(zRAM);
+        }
     }
 
     private void zswapInit(List<RecyclerViewItem> items) {
