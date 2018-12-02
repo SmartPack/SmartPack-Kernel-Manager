@@ -95,7 +95,7 @@
     <string name="battery">Battery</string>
     <string name="sound">Sound</string>
     <string name="screen">Screen</string>
-    <string name="wake">Wake</string>
+    <string name="wake">Wake Gestures</string>
     <string name="led">Display and LED</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
