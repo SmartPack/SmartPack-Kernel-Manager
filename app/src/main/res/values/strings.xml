@@ -462,10 +462,6 @@
     <string name="volume_gain">Volume Gain</string>
     <string name="boefflasound">Boeffla Sound</string>
     <string name="boefflasound_summary">Turn On/Off Boeffla Sound Engine</string>
-    <string name="per_channel_controls">Per-channel controls</string>
-    <string name="per_channel_controls_summary">Enable to use different gain values for left and right channels.</string>
-    <string name="headphone_gain_left">Headphone Gain (Left)</string>
-    <string name="headphone_gain_right">Headphone Gain (Right)</string>
     <string name="boefflaep">Earpiece Gain (Calls)</string>
     <string name="faux_sound">Faux Sound</string>
     <string name="faux_sound_summary">Turn On/Off Faux Sound Engine</string>

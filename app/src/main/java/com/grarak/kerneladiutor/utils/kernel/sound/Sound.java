@@ -44,20 +44,22 @@ public class Sound {
     }
 
     private static final String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
-    private static final String HIGHPERF_MODE_ENABLE = "/sys/devices/virtual/misc/soundcontrol/highperf_enabled";
-    private static final String SPEAKER_BOOST = "/sys/devices/virtual/misc/soundcontrol/speaker_boost";
+    private static final String WCD9320_SPEAKER_LEAKAGE = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
 
     private static final String TPA6165_REGISTERS_LIST = "/sys/kernel/debug/tpa6165/registers";
     private static final String TPA6165_SET_REG = "/sys/kernel/debug/tpa6165/set_reg";
 
-    private static final String MIC_BOOST = "/sys/devices/virtual/misc/soundcontrol/mic_boost";
-    private static final String VOLUME_BOOST = "/sys/devices/virtual/misc/soundcontrol/volume_boost";
+    private static final String SOUNDCONTROL = "/sys/devices/virtual/misc/soundcontrol";
+    private static final String HIGHPERF_MODE_ENABLE = SOUNDCONTROL + "/highperf_enabled";
+    private static final String SPEAKER_BOOST = SOUNDCONTROL + "/speaker_boost";
+    private static final String MIC_BOOST = SOUNDCONTROL + "/mic_boost";
+    private static final String VOLUME_BOOST = SOUNDCONTROL + "/volume_boost";
+    private static final String HEADSET_BOOST = SOUNDCONTROL + "/headset_boost";
 
-    private static final String HEADPHONE_FLAR = "/sys/kernel/sound_control/headphone_gain";
-    private static final String MICROPHONE_FLAR = "/sys/kernel/sound_control/mic_gain";
-    private static final String SPEAKER_FLAR = "/sys/kernel/sound_control/speaker_gain";
-
-    private static final String WCD9320_SPEAKER_LEAKAGE = "/sys/module/snd_soc_wcd9320/parameters/spkr_drv_wrnd";
+    private static final String SOUND_CONTROL = "/sys/kernel/sound_control";
+    private static final String HEADPHONE_FLAR = SOUND_CONTROL + "/headphone_gain";
+    private static final String MICROPHONE_FLAR = SOUND_CONTROL + "/mic_gain";
+    private static final String SPEAKER_FLAR = SOUND_CONTROL + "/speaker_gain";
 
     private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound";
     private static final String BOEFFLA_SOUND_ENABLE = BOEFFLA_SOUND + "/boeffla_sound";
@@ -115,6 +117,7 @@ public class Sound {
     }
 
     private String SPEAKER_GAIN_FILE;
+    private String SOUND_CONTROL_DIR;
 
     private Sound() {
         for (String file : mSpeakerGainFiles) {
@@ -122,6 +125,17 @@ public class Sound {
                 SPEAKER_GAIN_FILE = file;
                 break;
             }
+        }
+        if (Utils.existFile(SOUNDCONTROL)) {
+            SOUND_CONTROL_DIR = SOUNDCONTROL;
+        } else if (Utils.existFile(SOUND_CONTROL)) {
+            SOUND_CONTROL_DIR = SOUND_CONTROL;
+        } else if (Utils.existFile(SOUND_CONTROL_ENABLE)) {
+            SOUND_CONTROL_DIR = SOUND_CONTROL_ENABLE;
+        } else if (Utils.existFile(TPA6165_SET_REG)) {
+            SOUND_CONTROL_DIR = TPA6165_SET_REG;
+        } else if (Utils.existFile(TPA6165_REGISTERS_LIST)) {
+            SOUND_CONTROL_DIR = TPA6165_REGISTERS_LIST;
         }
     }
 
@@ -141,6 +155,18 @@ public class Sound {
         return Utils.existFile(VOLUME_BOOST);
     }
 
+    public void setHeadSetGain(int value, Context context) {
+        run(Control.write(String.valueOf(value), HEADSET_BOOST), HEADSET_BOOST, context);
+    }
+
+    public static int getHeadSetGain() {
+        return Utils.strToInt(Utils.readFile(HEADSET_BOOST));
+    }
+
+    public static boolean hasHeadSetGain() {
+        return Utils.existFile(HEADSET_BOOST);
+    }
+
     public void setMicrophoneGain(String value, Context context) {
         run(Control.write(value, MIC_BOOST), MIC_BOOST, context);
     }
@@ -152,9 +178,11 @@ public class Sound {
     public List<String> getMicrophoneGainLimits() {
         return mFrancoLimits;
     }
+
     public List<String> getBoefflaMICLimits() {
         return mBoefflaMICLimits;
     }
+
     public boolean hasMicrophoneGain() {
         return Utils.existFile(MIC_BOOST);
     }
@@ -302,8 +330,7 @@ public class Sound {
     }
 
     public boolean supported() {
-        return hasSoundControlEnable() || hasHighPerfModeEnable() || haswcdspeakerleakage() || hasfauxsound()
-                || hasMicrophoneGain() || hasVolumeGain() || hasboefflasound() || hasHeadphoneFlar() ||hasMicrophoneFlar();
+        return hasSoundControlDir() || haswcdspeakerleakage() || hasfauxsound() || hasboefflasound();
     }
 
     private int getChecksum(int arg0, int arg1) {
@@ -343,32 +370,13 @@ public class Sound {
         }
     }
 
-    public void setfauxhp(String channel, String value, Context context) {
+    public void setfauxhp(String value, Context context) {
         int newGain = Utils.strToInt(value);
-        switch (channel) {
-            case "all":
-            if (newGain >= 0 && newGain <= 20) {
-		SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
-            } else if (newGain <= -1 && newGain >= -30) {
-		value = String.valueOf(newGain + 256);
-		SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
-            }
-            case "left":
-                String currentGainLeft = getfauxhp("right");
-                if (newGain >= 0 && newGain <= 20) {
-                    SoundRun(value + " " + currentGainLeft, FAUX_HP, FAUX_HP, context);
-                } else if (newGain <= -1 && newGain >= -30) {
-                    value = String.valueOf(newGain + 256);
-                    SoundRun(value + " " + currentGainLeft, FAUX_HP, FAUX_HP, context);
-                }
-            case "right":
-                String currentGainRight = getfauxhp("left");
-                if (newGain >= 0 && newGain <= 20) {
-                    SoundRun(value + " " + currentGainRight, FAUX_HP, FAUX_HP, context);
-                } else if (newGain <= -1 && newGain >= -30) {
-                    value = String.valueOf(newGain + 256);
-                    SoundRun(value + " " + currentGainRight, FAUX_HP, FAUX_HP, context);
-                }
+        if (newGain >= 0 && newGain <= 20) {
+            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
+        } else if (newGain <= -1 && newGain >= -30) {
+            value = String.valueOf(newGain + 256);
+            SoundRun(value + " " + value, FAUX_HP, FAUX_HP, context);
         }
     }
 
@@ -402,28 +410,13 @@ public class Sound {
         return "";
     }
 
-    public static String getfauxhp(String channel) {
-        String[] values = Utils.readFile(FAUX_HP).split(" ");
-        int gainLeft = Utils.strToInt(values[0]),
-            gainRight = Utils.strToInt(values[1]);
-        switch (channel) {
-            case "all":
-            case "left":
-            if (gainLeft >= 0 && gainLeft <= 20) {
-		return String.valueOf(gainLeft);
-            } else if (gainLeft >= 226 && gainLeft <= 255) {
-		return String.valueOf(gainLeft - 256);
-            } else if (gainLeft == 172) {
-		return String.valueOf(gainLeft - 172);
-            }
-            case "right":
-            if (gainRight >= 0 && gainRight <= 20) {
-		return String.valueOf(gainRight);
-            } else if (gainRight >= 226 && gainRight <= 255) {
-		return String.valueOf(gainRight - 256);
-            } else if (gainRight == 172) {
-		return String.valueOf(gainRight - 172);
-            }
+    public String getfauxhp() {
+        String value = Utils.readFile(FAUX_HP);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 226 && gain <= 255) {
+            return String.valueOf(gain - 256);
         }
         return "";
     }
@@ -504,40 +497,18 @@ public class Sound {
         return Utils.existFile(BOEFFLA_MIC);
     }
 
-    public void setboefflahp(String channel, String value, Context context) {
+    public void setboefflahp(String value, Context context) {
         int newGain = Utils.strToInt(value);
-        switch (channel) {
-            case "all":
-                if (newGain >= -30 && newGain <= 30) {
-                    SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
-                }
-            case "left":
-                String currentGainLeft = getboefflahp("right");
-                if (newGain >= -30 && newGain <= 30) {
-                    SoundRun(value + " " + currentGainLeft, BOEFFLA_HP, BOEFFLA_HP, context);
-                }
-            case "right":
-                String currentGainRight = getboefflahp("left");
-                if (newGain >= -30 && newGain <= 30) {
-                    SoundRun(value + " " + currentGainRight, BOEFFLA_HP, BOEFFLA_HP, context);
-                }
+        if (newGain >= -30 && newGain <= 30) {
+            SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
         }
     }
 
-    public static String getboefflahp(String channel) {
-        String[] values = Utils.readFile(BOEFFLA_HP).split(" ");
-        int gainLeft = Utils.strToInt(values[0]),
-            gainRight = Utils.strToInt(values[1]);
-        switch (channel) {
-            case "all":
-            case "left":
-                if (gainLeft >= -30 && gainLeft <= 30) {
-                    return String.valueOf(gainLeft);
-                }
-           case "right":
-                if (gainRight >= -30 && gainRight <= 30) {
-                    return String.valueOf(gainRight);
-                }
+    public String getboefflahp() {
+        String value = Utils.readFile(BOEFFLA_HP);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= -30 && gain <= 30) {
+            return String.valueOf(gain);
         }
         return "";
     }
@@ -599,6 +570,13 @@ public class Sound {
     public boolean haswcdspeakerleakage() {
        return Utils.existFile(WCD9320_SPEAKER_LEAKAGE);
     }
-   
+
+    public boolean hasSpeakerGain() {
+        return SPEAKER_GAIN_FILE != null;
+    }
+
+    public boolean hasSoundControlDir() {
+        return Utils.existFile(SOUND_CONTROL_DIR);
+    }
 
 }
