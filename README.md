@@ -9,7 +9,8 @@
 * CPU Input Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
-* Boeffla (Lord Boeffla) & Faux Sound (Faux123) Control (with per-channel headphone gain).
+* Boeffla Sound Control (Lord Boeffla).
+* Significantly different Faux Sound implementation.
 * In-built Spectrum Support (frap129).
 * Adreno Boost (flar2).
 * MSM Sleeper (flar2).
@@ -19,6 +20,7 @@
 * WireGuard version information.
 * Auto-updates (in *About* page).
 * Real-time Charging Status.
+* RAM & Swap Status
 * LED Blink/Fade support.
 * Device & android version specific kernel download & Auto flashing for supported devices.
 * Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager).
@@ -95,6 +97,7 @@ I used following libraries:
 * Square: [picasso](https://github.com/square/picasso)
 * Square: [okhttp](https://github.com/square/okhttp)
 * CyanogenMod: [CyanogenMod Platform SDK](https://github.com/CyanogenMod/cm_platform_sdk)
+* Akexorcist: [Android-RoundCornerProgressBar](https://github.com/akexorcist/Android-RoundCornerProgressBar)
 
 Also codes from different people:
 
