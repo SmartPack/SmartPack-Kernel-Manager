@@ -13,5 +13,6 @@
     <attr name="edittext_build_prop_style" format="reference" />
     <attr name="banner_frame_drawable" format="reference" />
     <attr name="native_express_id" format="string" />
+    <attr name="rcBackgroundColor" format="color"/>
 
 </resources>

@@ -14,6 +14,7 @@
         <item name="native_express_id">@string/native_express_id_light</item>
         <item name="android:textAlignment">gravity</item>
         <item name="android:textDirection">locale</item>
+        <item name="rcBackgroundColor">@color/rcBackground_light</item>
     </style>
 
     <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
@@ -30,6 +31,7 @@
         <item name="native_express_id">@string/native_express_id_dark</item>
         <item name="android:textAlignment">gravity</item>
         <item name="android:textDirection">locale</item>
+        <item name="rcBackgroundColor">@color/rcBackground_dark</item>
     </style>
 
     <style name="AppThemeParent" parent="AppTheme" />

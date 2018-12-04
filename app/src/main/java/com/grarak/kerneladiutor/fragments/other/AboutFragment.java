@@ -59,6 +59,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sLibraries.put("Square,okhttp", "https://github.com/square/okhttp");
         sLibraries.put("CyanogenMod,CyanogenMod Platform SDK", "https://github.com/CyanogenMod/cm_platform_sdk");
         sLibraries.put("Javier Santos,AppUpdater", "https://github.com/javiersantos/AppUpdater");
+        sLibraries.put("Akexorcist,Android-RoundCornerProgressBar", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
     }
 
     @Override

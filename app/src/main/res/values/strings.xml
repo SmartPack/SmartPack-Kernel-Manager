@@ -23,6 +23,9 @@
     <string name="exit">Exit</string>
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
+    <string name="used">Used</string>
+    <string name="free">Free</string>
+    <string name="total">Total</string>
 
     <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
     <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>

@@ -26,4 +26,7 @@
     <color name="colorPerformance">#fb8c00</color>
     <color name="colorBattery">#03a9f4</color>
     <color name="colorGaming">#ef5350</color>
+
+    <color name="rcBackground_light">#dcdcdc</color>
+    <color name="rcBackground_dark">#616161</color>
 </resources>
