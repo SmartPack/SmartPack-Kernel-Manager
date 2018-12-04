@@ -1,5 +1,9 @@
 # Change-logs
 
+## 44. December 04, 2018
+*Release-tag: v6.9*
+Changes: Virtual Memory: Add RAM & Swap info. Virtual Memory: Switch to card view (visual enhancements). Sound: Faux & Boeflfa Headphone: Remove buggy per-channel gain. Sound: Overall changes including a bunch of internal improvements. Misc changes.
+
 ## 43. November 29, 2018
 *Release-tag: v6.8*
 Changes: CPU Input Boost: Bunch of internal changes. CPU Input Boost Duration: switch to Input type. SmartPack: implement the latest kernel version notification (update check). SmartPack: overall (internal) improvements.

@@ -1,11 +1,12 @@
 {
-  "latestVersion": "6.8-20181129",
+  "latestVersion": "6.9-20181204",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Input Boost: Bunch of internal changes.",
-    "- CPU Input Boost Duration: switch to Input type.",
-    "- SmartPack: implement the latest kernel version notification (update check).",
-    "- SmartPack: overall (internal) improvements" 
+    "- Virtual Memory: Add RAM & Swap info.",
+    "- Virtual Memory: Switch to card view (visual enhancements).",
+    "- Sound: Faux & Boeflfa Headphone: Remove buggy per-channel gain.",
+    "- Sound: Overall changes including a bunch of internal improvements.",
+    "- Misc changes." 
   ]
 }
