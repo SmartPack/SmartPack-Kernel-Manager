@@ -67,23 +67,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="debugging_category"
-        android:title="@string/debugging">
-        <Preference
-            android:key="logcat"
-            android:summary="@string/logcat_summary"
-            android:title="@string/logcat" />
-        <Preference
-            android:key="lastkmsg"
-            android:summary="@string/last_kmsg_summary"
-            android:title="@string/last_kmsg" />
-        <Preference
-            android:key="dmesg"
-            android:summary="@string/driver_message_summary"
-            android:title="@string/driver_message" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="security_category"
         android:title="@string/security">
         <Preference

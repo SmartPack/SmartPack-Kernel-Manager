@@ -326,6 +326,69 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	});
 	advanced.addItem(reset);
 
+	DescriptionView logcat = new DescriptionView();
+	logcat.setTitle(getString(R.string.logcat));
+	logcat.setSummary(getString(R.string.logcat_summary));
+	logcat.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+            	RootUtils.runCommand("logcat -d > /sdcard/logcat");
+            	RootUtils.runCommand("logcat  -b radio -v time -d > /sdcard/radio");
+            	RootUtils.runCommand("logcat -b events -v time -d > /sdcard/events");
+            }
+	});
+	advanced.addItem(logcat);
+
+	if (Utils.existFile("/proc/last_kmsg")) {
+            DescriptionView lastkmsg = new DescriptionView();
+            lastkmsg.setTitle(getString(R.string.last_kmsg));
+            lastkmsg.setSummary(getString(R.string.last_kmsg_summary));
+            lastkmsg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		    RootUtils.runCommand("cat /proc/last_kmsg > /sdcard/last_kmsg");
+		}
+            });
+            advanced.addItem(lastkmsg);
+	}
+
+	DescriptionView dmesg = new DescriptionView();
+	dmesg.setTitle(getString(R.string.driver_message));
+	dmesg.setSummary(getString(R.string.driver_message_summary));
+	dmesg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+            	RootUtils.runCommand("dmesg > /sdcard/dmesg");
+            }
+	});
+	advanced.addItem(dmesg);
+
+ 	if (Utils.existFile("/sys/fs/pstore/dmesg-ramoops*")) {
+            DescriptionView dmesgRamoops = new DescriptionView();
+            dmesgRamoops.setTitle(getString(R.string.driver_ramoops));
+            dmesgRamoops.setSummary(getString(R.string.driver_ramoops_summary));
+            dmesgRamoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		    RootUtils.runCommand("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/");
+		}
+            });
+            advanced.addItem(dmesgRamoops);
+	}
+
+ 	if (Utils.existFile("/sys/fs/pstore/console-ramoops*")) {
+            DescriptionView ramoops = new DescriptionView();
+            ramoops.setTitle(getString(R.string.console_ramoops));
+            ramoops.setSummary(getString(R.string.console_ramoops_summary));
+            ramoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+		@Override
+		public void onClick(RecyclerViewItem item) {
+		    RootUtils.runCommand("cat /sys/fs/pstore/console-ramoops* > /sdcard/");
+		}
+            });
+            advanced.addItem(ramoops);
+	}
+
 	// Show wipe (Cache/Data) functions only if we recognize recovery...
 	if (SmartPack.hasRecovery()) {
             DescriptionView wipe_cache = new DescriptionView();

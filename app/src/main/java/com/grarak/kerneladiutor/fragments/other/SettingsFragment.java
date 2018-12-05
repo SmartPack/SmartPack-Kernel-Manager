@@ -20,12 +20,10 @@
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,10 +80,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_ACCENT_COLOR = "accent_color";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
-    private static final String KEY_DEBUGGING_CATEGORY = "debugging_category";
-    private static final String KEY_LOGCAT = "logcat";
-    private static final String KEY_LAST_KMSG = "lastkmsg";
-    private static final String KEY_DMESG = "dmesg";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
     private static final String KEY_SET_PASSWORD = "set_password";
     private static final String KEY_DELETE_PASSWORD = "delete_password";
@@ -154,16 +148,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
-        findPreference(KEY_LOGCAT).setOnPreferenceClickListener(this);
-
-        if (Utils.existFile("/proc/last_kmsg") || Utils.existFile("/sys/fs/pstore/console-ramoops")) {
-            findPreference(KEY_LAST_KMSG).setOnPreferenceClickListener(this);
-        } else {
-            ((PreferenceCategory) findPreference(KEY_DEBUGGING_CATEGORY)).removePreference(
-                    findPreference(KEY_LAST_KMSG));
-        }
-
-        findPreference(KEY_DMESG).setOnPreferenceClickListener(this);
         findPreference(KEY_SET_PASSWORD).setOnPreferenceClickListener(this);
         findPreference(KEY_DELETE_PASSWORD).setOnPreferenceClickListener(this);
 
@@ -281,19 +265,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                     Utils.startService(getActivity(), intent);
                 }
                 return true;
-            case KEY_LOGCAT:
-                new Execute().execute("logcat -d > /sdcard/logcat.txt");
-                return true;
-            case KEY_LAST_KMSG:
-                if (Utils.existFile("/proc/last_kmsg")) {
-                    new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg.txt");
-                } else if (Utils.existFile("/sys/fs/pstore/console-ramoops")) {
-                    new Execute().execute("cat /sys/fs/pstore/console-ramoops > /sdcard/last_kmsg.txt");
-                }
-                return true;
-            case KEY_DMESG:
-                new Execute().execute("dmesg > /sdcard/dmesg.txt");
-                return true;
             case KEY_SET_PASSWORD:
                 editPasswordDialog(Prefs.getString("password", "", getActivity()));
                 return true;
@@ -302,31 +273,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
         }
         return false;
-    }
-
-    private class Execute extends AsyncTask<String, Void, Void> {
-        private ProgressDialog mProgressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage(getString(R.string.executing));
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            RootUtils.runCommand(params[0]);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            mProgressDialog.dismiss();
-        }
     }
 
     private void editPasswordDialog(final String oldPass) {
