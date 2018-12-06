@@ -21,7 +21,9 @@
 
 package com.grarak.kerneladiutor.fragments.other;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 
 import androidx.appcompat.app.AlertDialog;
@@ -332,9 +334,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	logcat.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            	RootUtils.runCommand("logcat -d > /sdcard/logcat");
-            	RootUtils.runCommand("logcat  -b radio -v time -d > /sdcard/radio");
-            	RootUtils.runCommand("logcat -b events -v time -d > /sdcard/events");
+            	new GetLOG().execute("logcat -d > /sdcard/logcat");
+            	new GetLOG().execute("logcat  -b radio -v time -d > /sdcard/radio");
+            	new GetLOG().execute("logcat -b events -v time -d > /sdcard/events");
             }
 	});
 	advanced.addItem(logcat);
@@ -346,7 +348,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             lastkmsg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    RootUtils.runCommand("cat /proc/last_kmsg > /sdcard/last_kmsg");
+		    new GetLOG().execute("cat /proc/last_kmsg > /sdcard/last_kmsg");
 		}
             });
             advanced.addItem(lastkmsg);
@@ -358,7 +360,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	dmesg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            	RootUtils.runCommand("dmesg > /sdcard/dmesg");
+            	new GetLOG().execute("dmesg > /sdcard/dmesg");
             }
 	});
 	advanced.addItem(dmesg);
@@ -370,7 +372,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             dmesgRamoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    RootUtils.runCommand("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/");
+		    new GetLOG().execute("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/");
 		}
             });
             advanced.addItem(dmesgRamoops);
@@ -383,7 +385,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             ramoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    RootUtils.runCommand("cat /sys/fs/pstore/console-ramoops* > /sdcard/");
+		    new GetLOG().execute("cat /sys/fs/pstore/console-ramoops* > /sdcard/");
 		}
             });
             advanced.addItem(ramoops);
@@ -479,6 +481,31 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	advanced.addItem(bootloaderreboot);
 
 	items.add(advanced);
+    }
+
+    private class GetLOG extends AsyncTask<String, Void, Void> {
+        private ProgressDialog mProgressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setMessage(getString(R.string.saving));
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            RootUtils.runCommand(params[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            mProgressDialog.dismiss();
+        }
     }
 
 }

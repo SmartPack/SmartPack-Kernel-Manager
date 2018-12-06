@@ -899,6 +899,7 @@
     <string name="up_to_date_message">Congrats! You are up-to-date</string>
     <string name="no_kernel_support">Unsupported Version</string>
     <string name="no_kernel_support_summary">SmartPack-Kernel is not (yet) available for your Android version</string>
+    <string name="saving">Saving...</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
@@ -954,7 +955,7 @@
     <string name="apply_on_boot_script_summary">Use a shell script to apply settings. Please only enable this if you have troubles with apply on boot. If the problem still persists after enabling this option, please make sure no other app is conflicting with Kernel Adiutor.</string>
     <string name="debugging">Debugging</string>
     <string name="logcat">Logcat(s)</string>
-    <string name="logcat_summary">Save all logs, including radio and events, into \'sdcard\'</string>
+    <string name="logcat_summary">Save all logcats, including radio and events, into \'sdcard\'</string>
     <string name="last_kmsg">Last Kernel Message</string>
     <string name="last_kmsg_summary">Save /proc/last_kmsg into \'sdcard\'</string>
     <string name="console_ramoops">Console Ramoops</string>
