@@ -497,18 +497,37 @@ public class Sound {
         return Utils.existFile(BOEFFLA_MIC);
     }
 
-    public void setboefflahp(String value, Context context) {
+    public void setboefflahpall(String value, Context context) {
         int newGain = Utils.strToInt(value);
-        if (newGain >= -30 && newGain <= 30) {
-            SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+        SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+    }
+
+    public void setboefflahp(String channel, String value, Context context) {
+        value = String.valueOf(Utils.strToInt(value));
+        switch (channel) {
+            case "all":
+                SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+            case "left":
+                String currentGainRight = getboefflahp("right");
+                SoundRun(value + " " + currentGainRight, BOEFFLA_HP, BOEFFLA_HP, context);
+                break;
+            case "right":
+                String currentGainLeft = getboefflahp("left");
+                SoundRun(currentGainLeft + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
+                break;
         }
     }
 
-    public String getboefflahp() {
-        String value = Utils.readFile(BOEFFLA_HP);
-        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
-        if (gain >= -30 && gain <= 30) {
-            return String.valueOf(gain);
+    public String getboefflahp(String channel) {
+        String[] values = Utils.readFile(BOEFFLA_HP).split(" ");
+        String gainLeft = String.valueOf(Utils.strToInt(values[0])),
+            gainRight = String.valueOf(Utils.strToInt(values[1]));
+        switch (channel) {
+            case "all":
+            case "left":
+                return gainLeft;
+            case "right":
+                return gainRight;
         }
         return "";
     }

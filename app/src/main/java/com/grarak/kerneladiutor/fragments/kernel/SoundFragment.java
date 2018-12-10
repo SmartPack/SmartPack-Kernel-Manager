@@ -23,6 +23,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -92,14 +93,23 @@ public class SoundFragment extends RecyclerViewFragment {
 	}
 
 	if (mSound.hasboefflahp()) {
+            if (!(Prefs.getBoolean("perchannel", false, getActivity())))
+		Prefs.saveBoolean("perchannel", false, getActivity());
+
+            final SwitchView perChannel = new SwitchView();
+            perChannel.setSummary(getString(R.string.per_channel_controls));
+            perChannel.setChecked(Prefs.getBoolean("perchannel", false, getActivity()));
+
+            SoundControlCard.addItem(perChannel);
+
             SeekBarView boefflahp = new SeekBarView();
             boefflahp.setTitle(getString(R.string.headphone_gain));
             boefflahp.setItems(mSound.getBoefflaLimits());
-            boefflahp.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp()));
+            boefflahp.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("all")));
             boefflahp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
-			mSound.setboefflahp(value, getActivity());
+			mSound.setboefflahpall(value, getActivity());
 		}
 
 		@Override
@@ -107,8 +117,64 @@ public class SoundFragment extends RecyclerViewFragment {
 		}
             });
 
-            SoundControlCard.addItem(boefflahp);
+            SeekBarView boefflahpl = new SeekBarView();
+            boefflahpl.setTitle(getString(R.string.headphone_gain) + (" (Left)"));
+            boefflahpl.setItems(mSound.getBoefflaLimits());
+            boefflahpl.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("left")));
+            boefflahpl.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mSound.setboefflahp("left", value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            SeekBarView boefflahpr = new SeekBarView();
+            boefflahpr.setTitle(getString(R.string.headphone_gain) + (" (Right)"));
+            boefflahpr.setItems(mSound.getBoefflaLimits());
+            boefflahpr.setProgress(mSound.getBoefflaLimits().indexOf(mSound.getboefflahp("right")));
+            boefflahpr.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			mSound.setboefflahp("right", value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            class SeekBarManager {
+                public void showPerChannelSeekbars (boolean enable) {
+                if (enable == true) {
+                    SoundControlCard.removeItem(boefflahp);
+                    SoundControlCard.addItem(boefflahpl);
+                    SoundControlCard.addItem(boefflahpr);
+                } else {
+                    SoundControlCard.removeItem(boefflahpl);
+                    SoundControlCard.removeItem(boefflahpr);
+                    SoundControlCard.addItem(boefflahp);
+                }
+            }
         }
+
+        final SeekBarManager manager = new SeekBarManager();
+        if (Prefs.getBoolean("perchannel", false, getActivity()) == true) {
+            manager.showPerChannelSeekbars(true);
+        } else {
+            manager.showPerChannelSeekbars(false);
+        }
+        perChannel.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchview, boolean isChecked) {
+                Prefs.saveBoolean("perchannel", isChecked, getActivity());
+                manager.showPerChannelSeekbars(isChecked);
+                }
+            });
+	}
 
 	if (mSound.hasboefflamic()) {
             SeekBarView boefflamic = new SeekBarView();
