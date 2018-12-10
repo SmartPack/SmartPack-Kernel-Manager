@@ -197,7 +197,7 @@ public class SoundFragment extends RecyclerViewFragment {
 
 	if (mSound.hasboefflaep()) {
             SeekBarView boefflaep = new SeekBarView();
-            boefflaep.setTitle(getString(R.string.boefflaep));
+            boefflaep.setTitle(getString(R.string.earpiece_gain));
             boefflaep.setItems(mSound.getBoefflaEPLimits());
             boefflaep.setProgress(mSound.getBoefflaEPLimits().indexOf(mSound.getboefflaep()));
             boefflaep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -463,6 +463,25 @@ public class SoundFragment extends RecyclerViewFragment {
             });
 
             SoundControlCard.addItem(microphoneFlar);
+	}
+
+	if (mSound.hasflarep()) {
+            SeekBarView flarep = new SeekBarView();
+            flarep.setTitle(getString(R.string.earpiece_gain));
+            flarep.setItems(mSound.getMicrophoneFlarLimits());
+            flarep.setProgress(mSound.getMicrophoneFlarLimits().indexOf(mSound.getflarep()));
+            flarep.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		        mSound.setflarep(value, getActivity());
+		}
+
+		    @Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            SoundControlCard.addItem(flarep);
 	}
 
 	if (mSound.haswcdspeakerleakage()) {

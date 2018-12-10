@@ -60,6 +60,7 @@ public class Sound {
     private static final String HEADPHONE_FLAR = SOUND_CONTROL + "/headphone_gain";
     private static final String MICROPHONE_FLAR = SOUND_CONTROL + "/mic_gain";
     private static final String SPEAKER_FLAR = SOUND_CONTROL + "/speaker_gain";
+    private static final String EARPIECE_FLAR = SOUND_CONTROL + "/earpiece_gain";
 
     private static final String BOEFFLA_SOUND = "/sys/class/misc/boeffla_sound";
     private static final String BOEFFLA_SOUND_ENABLE = BOEFFLA_SOUND + "/boeffla_sound";
@@ -534,6 +535,28 @@ public class Sound {
 
     public boolean hasboefflahp() {
         return Utils.existFile(BOEFFLA_HP);
+    }
+
+    public void setflarep(String value, Context context) {
+        int newGain = Utils.strToInt(value);
+        if (newGain >= -10 && newGain <= 20) {
+            SoundRun(value + " " + value, EARPIECE_FLAR, EARPIECE_FLAR, context);
+        }
+    }
+
+    public String getflarep() {
+        String value = Utils.readFile(EARPIECE_FLAR);
+        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
+        if (gain >= 0 && gain <= 20) {
+            return String.valueOf(gain);
+        } else if (gain >= 246 && gain <= 255) {
+            return String.valueOf(gain - 256);
+        }
+        return "";
+    }
+
+    public boolean hasflarep() {
+        return Utils.existFile(EARPIECE_FLAR);
     }
 
     public void setHeadphoneFlar(String value, Context context) {

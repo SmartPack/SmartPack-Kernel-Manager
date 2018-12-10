@@ -462,7 +462,7 @@
     <string name="volume_gain">Volume Gain</string>
     <string name="boefflasound">Boeffla Sound</string>
     <string name="boefflasound_summary">Turn On/Off Boeffla Sound Engine</string>
-    <string name="boefflaep">Earpiece Gain (Calls)</string>
+    <string name="earpiece_gain">Earpiece Gain (Calls)</string>
     <string name="faux_sound">Faux Sound</string>
     <string name="faux_sound_summary">Turn On/Off Faux Sound Engine</string>
     <string name="lock_mic_gain">Lock Microphone Gain</string>
