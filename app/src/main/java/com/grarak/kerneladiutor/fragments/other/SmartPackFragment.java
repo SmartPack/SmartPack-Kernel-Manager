@@ -372,7 +372,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             dmesgRamoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    new GetLOG().execute("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/");
+		    new GetLOG().execute("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/dmesg-ramoops");
 		}
             });
             advanced.addItem(dmesgRamoops);
@@ -385,7 +385,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             ramoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		    new GetLOG().execute("cat /sys/fs/pstore/console-ramoops* > /sdcard/");
+		    new GetLOG().execute("cat /sys/fs/pstore/console-ramoops* > /sdcard/console-ramoops");
 		}
             });
             advanced.addItem(ramoops);
