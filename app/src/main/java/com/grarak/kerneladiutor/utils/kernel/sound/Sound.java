@@ -557,20 +557,45 @@ public class Sound {
         return Utils.existFile(EARPIECE_FLAR);
     }
 
-    public void setHeadphoneFlar(String value, Context context) {
+    public void setHeadphoneFlarAll(String value, Context context) {
         int newGain = Utils.strToInt(value);
-        if (newGain >= -40 && newGain <= 20) {
-            SoundRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+        SoundRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+    }
+
+    public void setHeadphoneFlar(String channel, String value, Context context) {
+        value = String.valueOf(Utils.strToInt(value));
+        switch (channel) {
+            case "all":
+                SoundRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+            case "left":
+                String currentGainRight = getHeadphoneFlar("right");
+                SoundRun(value + " " + currentGainRight, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+                break;
+            case "right":
+                String currentGainLeft = getHeadphoneFlar("left");
+                SoundRun(currentGainLeft + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
+                break;
         }
     }
 
-    public String getHeadphoneFlar() {
-        String value = Utils.readFile(HEADPHONE_FLAR);
-        int gain = Utils.strToInt(value.contains(" ") ? value.split(" ")[0] : value);
-        if (gain >= 0 && gain <= 20) {
-            return String.valueOf(gain);
-        } else if (gain >= 216 && gain <= 255) {
-            return String.valueOf(gain - 256);
+    public String getHeadphoneFlar(String channel) {
+        String[] values = Utils.readFile(HEADPHONE_FLAR).split(" ");
+        int gainLeft = Utils.strToInt(values[0]),
+            gainRight = Utils.strToInt(values[1]);
+        switch (channel) {
+            case "all":
+            case "left":
+		if (gainLeft >= 216) {
+		    return String.valueOf(gainLeft - 256);
+		} else {
+		    return String.valueOf(gainLeft);
+		}
+            case "right":
+		if (gainRight >= 216) {
+		    return String.valueOf(gainRight - 256);
+		} else {
+		    return String.valueOf(gainRight);
+		}
         }
         return "";
     }

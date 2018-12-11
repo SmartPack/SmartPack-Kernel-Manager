@@ -481,14 +481,23 @@ public class SoundFragment extends RecyclerViewFragment {
 	}
 
 	if (mSound.hasHeadphoneFlar()) {
+            if (!(Prefs.getBoolean("perchannel", false, getActivity())))
+		Prefs.saveBoolean("perchannel", false, getActivity());
+
+            final SwitchView perChannel = new SwitchView();
+            perChannel.setSummary(getString(R.string.per_channel_controls));
+            perChannel.setChecked(Prefs.getBoolean("perchannel", false, getActivity()));
+
+            SoundControlCard.addItem(perChannel);
+
             SeekBarView headphoneFlar = new SeekBarView();
             headphoneFlar.setTitle(getString(R.string.headphone_gain));
             headphoneFlar.setItems(mSound.getHeadphoneFlarLimits());
-            headphoneFlar.setProgress(mSound.getHeadphoneFlarLimits().indexOf(mSound.getHeadphoneFlar()));
+            headphoneFlar.setProgress(mSound.getHeadphoneFlarLimits().indexOf(mSound.getHeadphoneFlar("all")));
             headphoneFlar.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mSound.setHeadphoneFlar(value, getActivity());
+                    mSound.setHeadphoneFlarAll(value, getActivity());
 		}
 
 		@Override
@@ -496,7 +505,63 @@ public class SoundFragment extends RecyclerViewFragment {
 		}
             });
 
-            SoundControlCard.addItem(headphoneFlar);
+            SeekBarView headphoneFlarl = new SeekBarView();
+            headphoneFlarl.setTitle(getString(R.string.headphone_gain) + (" (Left)"));
+            headphoneFlarl.setItems(mSound.getHeadphoneFlarLimits());
+            headphoneFlarl.setProgress(mSound.getHeadphoneFlarLimits().indexOf(mSound.getHeadphoneFlar("left")));
+            headphoneFlarl.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mSound.setHeadphoneFlar("left", value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            SeekBarView headphoneFlarr = new SeekBarView();
+            headphoneFlarr.setTitle(getString(R.string.headphone_gain) + (" (Right)"));
+            headphoneFlarr.setItems(mSound.getHeadphoneFlarLimits());
+            headphoneFlarr.setProgress(mSound.getHeadphoneFlarLimits().indexOf(mSound.getHeadphoneFlar("right")));
+            headphoneFlarr.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mSound.setHeadphoneFlar("right", value, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            class SeekBarManager {
+                public void showPerChannelSeekbars (boolean enable) {
+                if (enable == true) {
+                    SoundControlCard.removeItem(headphoneFlar);
+                    SoundControlCard.addItem(headphoneFlarl);
+                    SoundControlCard.addItem(headphoneFlarr);
+                } else {
+                    SoundControlCard.removeItem(headphoneFlarl);
+                    SoundControlCard.removeItem(headphoneFlarr);
+                    SoundControlCard.addItem(headphoneFlar);
+                }
+            }
+        }
+
+        final SeekBarManager manager = new SeekBarManager();
+        if (Prefs.getBoolean("perchannel", false, getActivity()) == true) {
+            manager.showPerChannelSeekbars(true);
+        } else {
+            manager.showPerChannelSeekbars(false);
+        }
+        perChannel.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchview, boolean isChecked) {
+                Prefs.saveBoolean("perchannel", isChecked, getActivity());
+                manager.showPerChannelSeekbars(isChecked);
+                }
+            });
 	}
 
         if (SoundControlCard.size() > 0) {
