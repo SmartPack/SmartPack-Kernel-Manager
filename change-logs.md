@@ -1,5 +1,9 @@
 # Change-logs
 
+## 45. December 11, 2018
+*Release-tag: v6.10*
+Changes: Sound: Boeffla & Flar Headphone: Properly re-implement per-channel gain. Sound: Flar Sound: add earpiece gain. SmartPack: move all the log (logcat, dmesg, last_kmsg etc.) related features into Advanced Options. SmartPack: added options to get dmesg-ramoops, console-ramoops (if available) etc. Misc changes, mainly in Sound page.
+
 ## 44. December 04, 2018
 *Release-tag: v6.9*
 Changes: Virtual Memory: Add RAM & Swap info. Virtual Memory: Switch to card view (visual enhancements). Sound: Faux & Boeflfa Headphone: Remove buggy per-channel gain. Sound: Overall changes including a bunch of internal improvements. Misc changes.
