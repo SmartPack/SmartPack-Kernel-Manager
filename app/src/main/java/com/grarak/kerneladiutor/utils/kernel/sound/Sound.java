@@ -137,6 +137,12 @@ public class Sound {
             SOUND_CONTROL_DIR = TPA6165_SET_REG;
         } else if (Utils.existFile(TPA6165_REGISTERS_LIST)) {
             SOUND_CONTROL_DIR = TPA6165_REGISTERS_LIST;
+        } else if (Utils.existFile(FAUX_SOUND)) {
+            SOUND_CONTROL_DIR = FAUX_SOUND;
+        } else if (Utils.existFile(BOEFFLA_SOUND)) {
+            SOUND_CONTROL_DIR = BOEFFLA_SOUND;
+        } else if (Utils.existFile(WCD9320_SPEAKER_LEAKAGE)) {
+            SOUND_CONTROL_DIR = WCD9320_SPEAKER_LEAKAGE;
         }
     }
 
@@ -198,10 +204,6 @@ public class Sound {
 
     public boolean hasboefflasoundenable() {
        return Utils.existFile(BOEFFLA_SOUND_ENABLE);
-    }
-
-    public boolean hasboefflasound() {
-       return Utils.existFile(BOEFFLA_SOUND);
     }
 
     public String getboefflasoundVersion()  {
@@ -310,10 +312,6 @@ public class Sound {
         return Utils.readFile(FAUX_SOUND_ENABLE).equals("1");
     }
 
-    public boolean hasfauxsound() {
-       return Utils.existFile(FAUX_SOUND);
-    }
-
     public boolean hasfauxsoundenable() {
        return Utils.existFile(FAUX_SOUND_ENABLE);
     }
@@ -331,7 +329,7 @@ public class Sound {
     }
 
     public boolean supported() {
-        return hasSoundControlDir() || haswcdspeakerleakage() || hasfauxsound() || hasboefflasound();
+        return hasSoundControlDir();
     }
 
     private int getChecksum(int arg0, int arg1) {
