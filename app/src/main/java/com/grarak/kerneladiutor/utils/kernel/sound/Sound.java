@@ -504,8 +504,6 @@ public class Sound {
     public void setboefflahp(String channel, String value, Context context) {
         value = String.valueOf(Utils.strToInt(value));
         switch (channel) {
-            case "all":
-                SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
             case "left":
                 String currentGainRight = getboefflahp("right");
                 SoundRun(value + " " + currentGainRight, BOEFFLA_HP, BOEFFLA_HP, context);
@@ -565,8 +563,6 @@ public class Sound {
     public void setHeadphoneFlar(String channel, String value, Context context) {
         value = String.valueOf(Utils.strToInt(value));
         switch (channel) {
-            case "all":
-                SoundRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
             case "left":
                 String currentGainRight = getHeadphoneFlar("right");
                 SoundRun(value + " " + currentGainRight, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
