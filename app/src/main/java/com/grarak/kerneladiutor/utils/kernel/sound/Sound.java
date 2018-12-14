@@ -592,7 +592,13 @@ public class Sound {
     }
 
     public String getMicrophoneFlar() {
-        return Utils.readFile(MICROPHONE_FLAR);
+        int value = Utils.strToInt(Utils.readFile(MICROPHONE_FLAR));
+        if (value >= 0 && value <= 20) {
+            return String.valueOf(value);
+        } else if (value >= 246 && value <= 255) {
+            return String.valueOf(value - 256);
+        }
+        return "";
     }
 
     public List<String> getMicrophoneFlarLimits() {
