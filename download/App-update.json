@@ -1,12 +1,12 @@
 {
-  "latestVersion": "6.10-20181211",
+  "latestVersion": "6.11-20181215",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Sound: Boeffla & Flar Headphone: Properly re-implement per-channel gain.",
-    "- Sound: Flar Sound: add earpiece gain.",
-    "- SmartPack: move all the log (logcat, dmesg, last_kmsg etc.) related features into Advanced Options.",
-    "- SmartPack: added options to get dmesg-ramoops, console-ramoops (if available) etc.",
-    "- Misc changes, mainly in Sound page." 
+    "- Sound: Microphone Flar: Fix negative values not showing correctly.",
+    "- Sound: cleaned a bunch of useless code.",
+    "- SmartPack: logs: fix some logs not saving.",
+    "- SmartPack: Update Auto-flash, Version check and change-logs for Android 9 (Pie).",
+    "- Device: add information about Project Treble Support." 
   ]
 }
