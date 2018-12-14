@@ -493,4 +493,8 @@ public class Device {
         return Build.MODEL;
     }
 
+    public static String getTrebleStatus() {
+        return RootUtils.runCommand("getprop ro.treble.enabled");
+    }
+
 }

@@ -66,6 +66,7 @@ public class DeviceFragment extends RecyclerViewFragment {
                 {getString(R.string.android_codename), Device.getCodename()},
                 {getString(R.string.fingerprint), Device.getFingerprint()},
                 {getString(R.string.build_display_id), Device.getBuildDisplayId()},
+                {getString(R.string.treble_status), Device.getTrebleStatus()},
                 {getString(R.string.baseband), Device.getBaseBand()},
                 {getString(R.string.bootloader), Device.getBootloader()},
                 {getString(R.string.rom), Device.ROMInfo.getInstance().getVersion()},

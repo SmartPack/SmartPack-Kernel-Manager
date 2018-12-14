@@ -146,6 +146,7 @@
     <string name="trustzone" translatable="false">TrustZone</string>
     <string name="hardware">Hardware</string>
     <string name="architecture">Architecture</string>
+    <string name="treble_status">Project Treble Support</string>
 
     <!-- Inputs -->
     <string name="bus">Bus</string>
