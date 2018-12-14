@@ -345,10 +345,6 @@ public class Sound {
         run(Control.write(value, path), id + "nochecksum", context);
     }
 
-    private void run(String command, String id, Context context) {
-        Control.runSetting(command, ApplyOnBootFragment.SOUND, id, context);
-    }
-
     public void setfauxspeaker(String value, Context context) {
         int newGain = Utils.strToInt(value);
         if (newGain >= 0 && newGain <= 20) {
@@ -433,17 +429,11 @@ public class Sound {
     }
 
     public void setboefflaspeaker(String value, Context context) {
-        int newGain = Utils.strToInt(value);
-        if (newGain >= -30 && newGain <= 30) {
-            SoundRun(value + " " + value, BOEFFLA_SPEAKER, BOEFFLA_SPEAKER, context);
-        }
+        SoundRun(value + " " + value, BOEFFLA_SPEAKER, BOEFFLA_SPEAKER, context);
     }
 
     public void setboefflaep(String value, Context context) {
-        int newGain = Utils.strToInt(value);
-        if (newGain >= -10 && newGain <= 20) {
-            SoundRun(value + " " + value, BOEFFLA_EP, BOEFFLA_EP, context);
-        }
+        SoundRun(value + " " + value, BOEFFLA_EP, BOEFFLA_EP, context);
     }
 
     public List<String> getBoefflaLimits() {
@@ -497,12 +487,10 @@ public class Sound {
     }
 
     public void setboefflahpall(String value, Context context) {
-        int newGain = Utils.strToInt(value);
         SoundRun(value + " " + value, BOEFFLA_HP, BOEFFLA_HP, context);
     }
 
     public void setboefflahp(String channel, String value, Context context) {
-        value = String.valueOf(Utils.strToInt(value));
         switch (channel) {
             case "left":
                 String currentGainRight = getboefflahp("right");
@@ -534,10 +522,7 @@ public class Sound {
     }
 
     public void setflarep(String value, Context context) {
-        int newGain = Utils.strToInt(value);
-        if (newGain >= -10 && newGain <= 20) {
-            SoundRun(value + " " + value, EARPIECE_FLAR, EARPIECE_FLAR, context);
-        }
+        SoundRun(value + " " + value, EARPIECE_FLAR, EARPIECE_FLAR, context);
     }
 
     public String getflarep() {
@@ -556,12 +541,10 @@ public class Sound {
     }
 
     public void setHeadphoneFlarAll(String value, Context context) {
-        int newGain = Utils.strToInt(value);
         SoundRun(value + " " + value, HEADPHONE_FLAR, HEADPHONE_FLAR, context);
     }
 
     public void setHeadphoneFlar(String channel, String value, Context context) {
-        value = String.valueOf(Utils.strToInt(value));
         switch (channel) {
             case "left":
                 String currentGainRight = getHeadphoneFlar("right");
@@ -638,6 +621,10 @@ public class Sound {
 
     public boolean hasSoundControlDir() {
         return Utils.existFile(SOUND_CONTROL_DIR);
+    }
+
+    private void run(String command, String id, Context context) {
+        Control.runSetting(command, ApplyOnBootFragment.SOUND, id, context);
     }
 
 }
