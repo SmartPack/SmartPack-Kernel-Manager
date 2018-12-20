@@ -81,7 +81,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             DescriptionView spversion = new DescriptionView();
             spversion.setTitle(("Latest ") + getString(R.string.version));
             if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
-		if (!(SmartPack.getSmartPackVersionNumber() == SmartPack.getlatestSmartPackVersionNumber())) {
+		if (SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()) {
 		    spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
 		} else {
 		    spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
@@ -111,7 +111,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    RootUtils.runCommand("curl -L -o /data/data/com.smartpack.kernelmanager/version https://github.com/SmartPack/SmartPack-Kernel-Project_osprey/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
 		}
 		if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
-		    if (!(SmartPack.getSmartPackVersionNumber() == SmartPack.getlatestSmartPackVersionNumber())) {
+		    if (SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()) {
 			spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
 		    } else {
 			spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
