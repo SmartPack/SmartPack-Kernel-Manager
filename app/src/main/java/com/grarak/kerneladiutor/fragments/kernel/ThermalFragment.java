@@ -21,18 +21,15 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.text.InputType;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.thermal.MSMThermal;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermald;
-import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -77,6 +74,9 @@ public class ThermalFragment extends RecyclerViewFragment {
     }
 
     private void thermaldInit(List<RecyclerViewItem> items) {
+        CardView ThermaldCard = new CardView(getActivity());
+        ThermaldCard.setTitle(getString(R.string.thermald));
+
         SwitchView thermald = new SwitchView();
         thermald.setTitle(getString(R.string.thermald));
         thermald.setSummary(getString(R.string.thermald_summary));
@@ -88,10 +88,14 @@ public class ThermalFragment extends RecyclerViewFragment {
             }
         });
 
-        items.add(thermald);
+	ThermaldCard.addItem(thermald);
+	items.add(ThermaldCard);
     }
 
     private void msmThermalInit(List<RecyclerViewItem> items) {
+        CardView MSMThermal = new CardView(getActivity());
+        MSMThermal.setTitle(getString(R.string.msm_thermal));
+
         if (mMSMThermal.hasIntelliThermalEnable()) {
             SwitchView intelliThermal = new SwitchView();
             intelliThermal.setTitle(getString(R.string.intellithermal));
@@ -104,7 +108,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(intelliThermal);
+            MSMThermal.addItem(intelliThermal);
         }
 
         if (mMSMThermal.hasIntelliThermalOptimizedEnable()) {
@@ -119,7 +123,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(intelliThermalOptimized);
+            MSMThermal.addItem(intelliThermalOptimized);
         }
 
         if (mMSMThermal.hasThermalDebugMode()) {
@@ -134,7 +138,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(debugMode);
+            MSMThermal.addItem(debugMode);
         }
 
         if (mMSMThermal.hasCoreControl()) {
@@ -148,7 +152,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(coreControl);
+            MSMThermal.addItem(coreControl);
         }
 
         if (mMSMThermal.hasVddRestrictionEnable()) {
@@ -162,7 +166,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(vddRestriction);
+            MSMThermal.addItem(vddRestriction);
         }
 
         if (mMSMThermal.hasLimitTempDegC()) {
@@ -189,7 +193,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(limitTempDegC);
+            MSMThermal.addItem(limitTempDegC);
         }
 
         if (mMSMThermal.hasCoreLimitTempDegC()) {
@@ -216,7 +220,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(coreLimitTempDegC);
+            MSMThermal.addItem(coreLimitTempDegC);
         }
 
         if (mMSMThermal.hasCoreTempLimit()) {
@@ -235,7 +239,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(coretempLimit);
+            MSMThermal.addItem(coretempLimit);
         }
 
         if (mMSMThermal.hasFreqmitigTemp()) {
@@ -254,7 +258,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(Freqtemp);
+            MSMThermal.addItem(Freqtemp);
         }
 
         if (mMSMThermal.hasHotPlugTemp()) {
@@ -273,7 +277,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(hotplugtemp);
+            MSMThermal.addItem(hotplugtemp);
         }
 
         if (mMSMThermal.hasCoreTempHysteresisDegC()) {
@@ -299,7 +303,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(coreTempHysteresisDegC);
+            MSMThermal.addItem(coreTempHysteresisDegC);
         }
 
         if (mMSMThermal.hasFreqStep()) {
@@ -319,7 +323,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(freqStep);
+            MSMThermal.addItem(freqStep);
         }
 
         if (mMSMThermal.hasImmediatelyLimitStop()) {
@@ -333,7 +337,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(immediatelyLimitStop);
+            MSMThermal.addItem(immediatelyLimitStop);
         }
 
         if (mMSMThermal.hasPollMs()) {
@@ -350,7 +354,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(pollMs);
+            MSMThermal.addItem(pollMs);
         }
 
         if (mMSMThermal.hasTempHysteresisDegC()) {
@@ -376,7 +380,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(tempHysteresisDegC);
+            MSMThermal.addItem(tempHysteresisDegC);
         }
 
         if (mMSMThermal.hasThermalLimitLow()) {
@@ -396,7 +400,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(limitLow);
+            MSMThermal.addItem(limitLow);
         }
 
         if (mMSMThermal.hasThermalLimitHigh()) {
@@ -416,7 +420,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(limitHigh);
+            MSMThermal.addItem(limitHigh);
         }
 
         if (mMSMThermal.hasTempSafety()) {
@@ -430,7 +434,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(tempSafety);
+            MSMThermal.addItem(tempSafety);
         }
 
         if (mMSMThermal.hasTempThrottleEnable()) {
@@ -445,7 +449,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(tempThrottle);
+            MSMThermal.addItem(tempThrottle);
         }
 
         if (mMSMThermal.hasTempLimit()) {
@@ -468,7 +472,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(tempLimit);
+            MSMThermal.addItem(tempLimit);
         }
 
         if (mMSMThermal.hasTemp_Limit()) {
@@ -487,7 +491,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(tempLimit);
+            MSMThermal.addItem(tempLimit);
         }
 
         if (mMSMThermal.hasFreqLimitDebug()) {
@@ -502,7 +506,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(freqLimitDebug);
+            MSMThermal.addItem(freqLimitDebug);
         }
 
         if (mMSMThermal.hasMinFreqIndex() && mCPUFreq.getFreqs() != null) {
@@ -518,7 +522,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(minFreqIndex);
+            MSMThermal.addItem(minFreqIndex);
         }
 
         if (mMSMThermal.hasAllowedLowLow()) {
@@ -544,7 +548,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedLowLow);
+            MSMThermal.addItem(allowedLowLow);
         }
 
         if (mMSMThermal.hasAllowedLowHigh()) {
@@ -570,7 +574,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedLowHigh);
+            MSMThermal.addItem(allowedLowHigh);
         }
 
         if (mMSMThermal.hasAllowedLowFreq() && mCPUFreq.getFreqs() != null) {
@@ -585,7 +589,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedLowFreq);
+            MSMThermal.addItem(allowedLowFreq);
         }
 
         if (mMSMThermal.hasAllowedMidLow()) {
@@ -611,7 +615,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(alloweMidLow);
+            MSMThermal.addItem(alloweMidLow);
         }
 
         if (mMSMThermal.hasAllowedMidHigh()) {
@@ -637,7 +641,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedMidHigh);
+            MSMThermal.addItem(allowedMidHigh);
         }
 
         if (mMSMThermal.hasAllowedMidFreq() && mCPUFreq.getFreqs() != null) {
@@ -652,7 +656,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedMidFreq);
+            MSMThermal.addItem(allowedMidFreq);
         }
 
         if (mMSMThermal.hasAllowedMaxLow()) {
@@ -678,7 +682,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(alloweMaxLow);
+            MSMThermal.addItem(alloweMaxLow);
         }
 
         if (mMSMThermal.hasAllowedMaxHigh()) {
@@ -704,7 +708,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedMaxHigh);
+            MSMThermal.addItem(allowedMaxHigh);
         }
 
         if (mMSMThermal.hasAllowedMaxFreq() && mCPUFreq.getFreqs() != null) {
@@ -719,7 +723,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(allowedMaxFreq);
+            MSMThermal.addItem(allowedMaxFreq);
         }
 
         if (mMSMThermal.hasCheckIntervalMs()) {
@@ -740,7 +744,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(checkIntervalMs);
+            MSMThermal.addItem(checkIntervalMs);
         }
 
         if (mMSMThermal.hasCoreControlMask()) {
@@ -758,7 +762,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(corecontrolMask);
+            MSMThermal.addItem(corecontrolMask);
         }
 
         if (mMSMThermal.hasFreqControlMask()) {
@@ -776,7 +780,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(freqcontrolMask);
+            MSMThermal.addItem(freqcontrolMask);
         }
 
         if (mMSMThermal.hasFreqMitigControlMask()) {
@@ -794,7 +798,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(freqmitcontrolMask);
+            MSMThermal.addItem(freqmitcontrolMask);
         }
 
         if (mMSMThermal.hasShutdownTemp()) {
@@ -820,12 +824,18 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(shutDownTemp);
+            MSMThermal.addItem(shutDownTemp);
         }
+	if (MSMThermal.size() > 0) {
+            items.add(MSMThermal);
+	}
 
     }
 
     private void simpleMSMThermalInit(List<RecyclerViewItem> items) {
+        CardView SimpleMSMThermal = new CardView(getActivity());
+        SimpleMSMThermal.setTitle(getString(R.string.msm_thermal_simple));
+
         if (MSMThermalSimple.hasenableswitch()) {
             SwitchView enableswitch = new SwitchView();
             enableswitch.setTitle(getString(R.string.msm_thermal_simple));
@@ -837,7 +847,7 @@ public class ThermalFragment extends RecyclerViewFragment {
 			MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
 		}
             });
-            items.add(enableswitch);
+            SimpleMSMThermal.addItem(enableswitch);
 	}
 
 	if (MSMThermalSimple.hasSamplingMS()) {
@@ -853,7 +863,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(samplingMS);
+            SimpleMSMThermal.addItem(samplingMS);
 	}
 
 	if (MSMThermalSimple.hasUserMaxFreq()) {
@@ -869,29 +879,7 @@ public class ThermalFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(userMaxFreq);
-	}
-
-	if (MSMThermalSimple.hasLocalSettings()) {
-            DescriptionView stocksettings = new DescriptionView();
-            stocksettings.setTitle(getString(R.string.stock_settings));
-            stocksettings.setSummary(getString(R.string.stock_settings_summary));
-            stocksettings.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-		@Override
-		public void onClick(RecyclerViewItem item) {
-                    AlertDialog.Builder applysettings = new AlertDialog.Builder(getActivity());
-                    applysettings.setTitle(getString(R.string.sure_question));
-                    applysettings.setMessage(getString(R.string.stock_settings_message));
-                    applysettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    applysettings.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-			RootUtils.runCommand("sh /scripts/thermal.sh");
-                    });
-                    applysettings.show();
-		}
-            });
-
-            items.add(stocksettings);
+            SimpleMSMThermal.addItem(userMaxFreq);
 	}
 
 	for (int i = 0; i < MSMThermalSimple.size(); i++) {
@@ -911,8 +899,11 @@ public class ThermalFragment extends RecyclerViewFragment {
                     }
                 });
 
-                items.add(thermalZone);
+                SimpleMSMThermal.addItem(thermalZone);
             }
         }
+	if (SimpleMSMThermal.size() > 0) {
+            items.add(SimpleMSMThermal);
+	}
     }
 }
