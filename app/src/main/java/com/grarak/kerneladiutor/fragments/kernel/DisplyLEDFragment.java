@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Created by willi on 31.07.16.
  */
-public class LEDFragment extends RecyclerViewFragment {
+public class DisplyLEDFragment extends RecyclerViewFragment {
 
     private LED mLED;
 
