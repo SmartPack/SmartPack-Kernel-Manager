@@ -24,12 +24,12 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.io.IO;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +64,8 @@ public class IOFragment extends RecyclerViewFragment {
     }
 
     private void storageInit(final IO.Storage storage, List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> views = new ArrayList<>();
-        TitleView title = new TitleView();
-        title.setText(getString(storage == IO.Storage.Internal ? R.string.internal_storage
+        CardView StorageCard = new CardView(getActivity());
+        StorageCard.setTitle(getString(storage == IO.Storage.Internal ? R.string.internal_storage
                 : R.string.external_storage));
 
         if (mIO.hasScheduler(storage)) {
@@ -82,7 +81,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(scheduler);
+            StorageCard.addItem(scheduler);
 
             DescriptionView tunable = new DescriptionView();
             tunable.setTitle(getString(R.string.scheduler_tunable));
@@ -94,7 +93,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(tunable);
+            StorageCard.addItem(tunable);
         }
 
         if (mIO.hasReadahead(storage)) {
@@ -117,7 +116,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(readahead);
+            StorageCard.addItem(readahead);
         }
 
         if (mIO.hasRotational(storage)) {
@@ -132,7 +131,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(rotational);
+            StorageCard.addItem(rotational);
         }
 
         if (mIO.hasIOStats(storage)) {
@@ -147,7 +146,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(iostats);
+            StorageCard.addItem(iostats);
         }
 
         if (mIO.hasAddRandom(storage)) {
@@ -162,7 +161,7 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(addRandom);
+            StorageCard.addItem(addRandom);
         }
 
         if (mIO.hasRqAffinity(storage)) {
@@ -182,13 +181,12 @@ public class IOFragment extends RecyclerViewFragment {
                 }
             });
 
-            views.add(rqAffinity);
+            StorageCard.addItem(rqAffinity);
         }
 
-        if (views.size() > 0) {
-            items.add(title);
-            items.addAll(views);
-        }
+	if (StorageCard.size() > 0) {
+            items.add(StorageCard);
+	}
     }
 
     private void showTunables(String scheduler, String path) {
