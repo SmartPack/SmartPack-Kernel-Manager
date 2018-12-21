@@ -19,21 +19,22 @@
  *
  */
 
-package com.grarak.kerneladiutor.fragments.kernel;
+package com.smartpack.kernelmanager.fragments;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
-import com.grarak.kerneladiutor.utils.kernel.misc.WakeLockInfo;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
+
+import com.smartpack.kernelmanager.utils.Wakelocks;
+import com.smartpack.kernelmanager.utils.WakeLockInfo;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.utils.kernel.cpuhotplug;
 
+import com.smartpack.kernelmanager.utils.MSMSleeper;
+
 /**
  * Created by willi on 07.05.16.
  */

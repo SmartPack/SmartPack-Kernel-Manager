@@ -24,7 +24,6 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.gpu.AdrenoIdler;
-import com.grarak.kerneladiutor.utils.kernel.gpu.Adrenoboost;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.SimpleGPU;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -35,6 +34,8 @@ import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
+
+import com.smartpack.kernelmanager.utils.Adrenoboost;
 
 import java.util.ArrayList;
 import java.util.List;

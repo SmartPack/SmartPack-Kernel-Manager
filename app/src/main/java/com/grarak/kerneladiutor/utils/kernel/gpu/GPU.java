@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.utils.kernel.gpu;
 
+import com.smartpack.kernelmanager.utils.Adrenoboost;
+
 /**
  * Created by willi on 12.05.16.
  */

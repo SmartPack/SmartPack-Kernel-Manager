@@ -32,7 +32,6 @@ import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
-import com.grarak.kerneladiutor.utils.kernel.cpu.CPUInputBoost;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.cpu.Misc;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
@@ -45,6 +44,8 @@ import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
+
+import com.smartpack.kernelmanager.utils.CPUInputBoost;
 
 import java.util.ArrayList;
 import java.util.Arrays;

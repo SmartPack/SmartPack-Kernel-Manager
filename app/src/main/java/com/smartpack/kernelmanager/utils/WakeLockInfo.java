@@ -19,10 +19,12 @@
  *
  */
 
-package com.grarak.kerneladiutor.utils.kernel.misc;
+package com.smartpack.kernelmanager.utils;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on August 01, 2018
+ *
+ * Based on the original implementation by MoroGoku
  */
 
 public class WakeLockInfo {

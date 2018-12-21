@@ -19,7 +19,7 @@
  *
  */
 
-package com.grarak.kerneladiutor.utils.kernel.thermal;
+package com.smartpack.kernelmanager.utils;
 
 import android.content.Context;
 

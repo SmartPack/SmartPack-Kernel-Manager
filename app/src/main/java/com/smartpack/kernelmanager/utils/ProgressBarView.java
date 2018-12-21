@@ -19,14 +19,16 @@
  *
  */
 
-package com.grarak.kerneladiutor.views.recyclerview;
+package com.smartpack.kernelmanager.utils;
 
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
+
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 01, 2018

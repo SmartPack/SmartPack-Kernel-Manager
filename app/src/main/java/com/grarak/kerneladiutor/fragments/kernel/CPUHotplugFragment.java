@@ -32,7 +32,6 @@ import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.BluPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.CoreCtl;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.IntelliPlug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.LazyPlug;
-import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MSMSleeper;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MPDecision;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MakoHotplug;
 import com.grarak.kerneladiutor.utils.kernel.cpuhotplug.MSMHotplug;
@@ -44,6 +43,8 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
+
+import com.smartpack.kernelmanager.utils.MSMSleeper;
 
 import java.util.ArrayList;
 import java.util.Arrays;

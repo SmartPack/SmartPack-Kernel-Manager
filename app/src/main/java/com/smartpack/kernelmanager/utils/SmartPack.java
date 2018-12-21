@@ -19,7 +19,7 @@
  *
  */
 
-package com.grarak.kerneladiutor.utils.other;
+package com.smartpack.kernelmanager.utils;
 
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;

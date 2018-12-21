@@ -19,7 +19,7 @@
  *
  */
 
-package com.grarak.kerneladiutor.utils.kernel.gpu;
+package com.smartpack.kernelmanager.utils;
 
 import android.content.Context;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;

@@ -60,14 +60,12 @@ import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LEDFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
-import com.grarak.kerneladiutor.fragments.kernel.WakelockFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
-import com.grarak.kerneladiutor.fragments.other.SmartPackFragment;
 import com.grarak.kerneladiutor.fragments.other.AboutFragment;
 import com.grarak.kerneladiutor.fragments.other.ContributorsFragment;
 import com.grarak.kerneladiutor.fragments.other.HelpFragment;
@@ -98,12 +96,15 @@ import com.grarak.kerneladiutor.utils.kernel.screen.Screen;
 import com.grarak.kerneladiutor.utils.kernel.sound.Sound;
 import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
-import com.grarak.kerneladiutor.utils.kernel.misc.Wakelocks;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 
 import org.frap129.spectrum.SpectrumFragment;
 import org.frap129.spectrum.Spectrum;
+
+import com.smartpack.kernelmanager.fragments.SmartPackFragment;
+import com.smartpack.kernelmanager.fragments.WakelockFragment;
+import com.smartpack.kernelmanager.utils.Wakelocks;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

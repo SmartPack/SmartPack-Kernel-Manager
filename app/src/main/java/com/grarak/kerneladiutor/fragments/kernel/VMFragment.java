@@ -30,10 +30,11 @@ import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZSwap;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
-import com.grarak.kerneladiutor.views.recyclerview.ProgressBarView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+
+import com.smartpack.kernelmanager.utils.ProgressBarView;
 
 import java.util.ArrayList;
 import java.util.List;

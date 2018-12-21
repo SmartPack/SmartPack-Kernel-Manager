@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.utils.kernel.thermal;
 
+import com.smartpack.kernelmanager.utils.MSMThermalSimple;
+
 /**
  * Created by willi on 12.05.16.
  */

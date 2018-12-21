@@ -19,7 +19,7 @@
  *
  */
 
-package com.grarak.kerneladiutor.fragments.other;
+package com.smartpack.kernelmanager.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -30,12 +30,13 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.other.SmartPack;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+
+import com.smartpack.kernelmanager.utils.SmartPack;
 
 import java.util.LinkedHashMap;
 import java.util.List;
