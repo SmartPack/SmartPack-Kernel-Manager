@@ -28,7 +28,7 @@ android {
     defaultConfig {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 6
         versionName "6.11-" + getDate()
         vectorDrawables.useSupportLibrary = true
