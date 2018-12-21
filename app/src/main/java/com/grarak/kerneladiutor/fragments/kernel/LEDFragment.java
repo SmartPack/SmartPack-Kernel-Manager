@@ -61,44 +61,6 @@ public class LEDFragment extends RecyclerViewFragment {
         CardView DisplyAndLED = new CardView(getActivity());
         DisplyAndLED.setTitle(getString(R.string.led));
 
-	if (mLED.hasIntensity()) {
-            SeekBarView intensity = new SeekBarView();
-            intensity.setTitle(getString(R.string.led_intensity));
-            intensity.setUnit("%");
-            intensity.setProgress(mLED.getIntensity());
-            intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-		    mLED.setIntensity(position, getActivity());
-		}
-
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-            });
-
-            DisplyAndLED.addItem(intensity);
-	}
-
-	if (mLED.hasSpeed()) {
-            SeekBarView speed = new SeekBarView();
-            speed.setTitle(getString(R.string.led_speed));
-            speed.setItems(mLED.getSpeedMenu(getActivity()));
-            speed.setProgress(mLED.getSpeed());
-            speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-		    mLED.setSpeed(position, getActivity());
-		}
-
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-            });
-
-            DisplyAndLED.addItem(speed);
-	}
-
 	if (mLED.hasBacklightMin()) {
             SeekBarView displaybacklight = new SeekBarView();
             displaybacklight.setTitle(getString(R.string.backlight_max));
@@ -154,7 +116,6 @@ public class LEDFragment extends RecyclerViewFragment {
 		    public void onMove(SeekBarView seekBarView, int position, String value) {
 		    }
 		});
-		items.add(BacklightMin);
             } else {
 		// Set normal range (Max: 255; Offset: 5)
 		BacklightMin.setMax(255);
@@ -169,8 +130,28 @@ public class LEDFragment extends RecyclerViewFragment {
 		    public void onMove(SeekBarView seekBarView, int position, String value) {
 		    }
 		});
-		DisplyAndLED.addItem(BacklightMin);
             }
+
+            DisplyAndLED.addItem(BacklightMin);
+	}
+
+	if (mLED.hasIntensity()) {
+            SeekBarView intensity = new SeekBarView();
+            intensity.setTitle(getString(R.string.led_intensity));
+            intensity.setUnit("%");
+            intensity.setProgress(mLED.getIntensity());
+            intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		    mLED.setIntensity(position, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            DisplyAndLED.addItem(intensity);
 	}
 
 	if (mLED.hascharginglight()) {
@@ -188,6 +169,25 @@ public class LEDFragment extends RecyclerViewFragment {
 		}
             });
             DisplyAndLED.addItem(charginglight);
+	}
+
+	if (mLED.hasSpeed()) {
+            SeekBarView speed = new SeekBarView();
+            speed.setTitle(getString(R.string.led_speed));
+            speed.setItems(mLED.getSpeedMenu(getActivity()));
+            speed.setProgress(mLED.getSpeed());
+            speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		    mLED.setSpeed(position, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            DisplyAndLED.addItem(speed);
 	}
 
         if (Sec.hasHighpowerCurrent()) {
