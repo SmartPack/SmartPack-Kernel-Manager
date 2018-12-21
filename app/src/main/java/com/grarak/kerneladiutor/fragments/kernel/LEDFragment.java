@@ -49,158 +49,146 @@ public class LEDFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (mLED.hasdisplaybacklight()) {
-            displaybacklightInit(items);
+        if (mLED.hasdisplaybacklight() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
+		|| mLED.hasSpeed() || (Sec.hasNotificationRampDown()) || (Sec.hasNotificationRampUp())
+		|| (Sec.hasNotificationRampControl()) || mLED.hasFade() || Sec.hasNotificationDelayOff()
+		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
+            displayandledInit(items);
         }
-        if (mLED.hasBacklightMin()) {
-            BacklightMinInit(items);
-        }
-        if (mLED.hascharginglight()) {
-            charginglightInit(items);
-        }
-        if (mLED.hasIntensity()) {
-            intensityInit(items);
-        }
-        if (mLED.hasSpeed()) {
-            speedInit(items);
-        }
-        brightnessInit(items);
-        delayInit(items);
-        fadeInit(items);
     }
 
-    private void intensityInit(List<RecyclerViewItem> items) {
-        SeekBarView intensity = new SeekBarView();
-        intensity.setTitle(getString(R.string.led_intensity));
-        intensity.setUnit("%");
-        intensity.setProgress(mLED.getIntensity());
-        intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mLED.setIntensity(position, getActivity());
-            }
+    private void displayandledInit(List<RecyclerViewItem> items) {
+        CardView DisplyAndLED = new CardView(getActivity());
+        DisplyAndLED.setTitle(getString(R.string.led));
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
-
-        items.add(intensity);
-    }
-
-    private void speedInit(List<RecyclerViewItem> items) {
-        SeekBarView speed = new SeekBarView();
-        speed.setTitle(getString(R.string.led_speed));
-        speed.setItems(mLED.getSpeedMenu(getActivity()));
-        speed.setProgress(mLED.getSpeed());
-        speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mLED.setSpeed(position, getActivity());
-            }
-
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
-
-        items.add(speed);
-    }
-
-    private void displaybacklightInit(List<RecyclerViewItem> items) {
-	SeekBarView displaybacklight = new SeekBarView();
-	displaybacklight.setTitle(getString(R.string.backlight_max));
-	if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-            // Increase maximum range (Max: 1275; Offset: 25)
-            displaybacklight.setMax(1275);
-            displaybacklight.setOffset(25);
-            displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
-            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+	if (mLED.hasIntensity()) {
+            SeekBarView intensity = new SeekBarView();
+            intensity.setTitle(getString(R.string.led_intensity));
+            intensity.setUnit("%");
+            intensity.setProgress(mLED.getIntensity());
+            intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
+		    mLED.setIntensity(position, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            DisplyAndLED.addItem(intensity);
+	}
+
+	if (mLED.hasSpeed()) {
+            SeekBarView speed = new SeekBarView();
+            speed.setTitle(getString(R.string.led_speed));
+            speed.setItems(mLED.getSpeedMenu(getActivity()));
+            speed.setProgress(mLED.getSpeed());
+            speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		    mLED.setSpeed(position, getActivity());
+		}
+
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
+
+            DisplyAndLED.addItem(speed);
+	}
+
+	if (mLED.hasBacklightMin()) {
+            SeekBarView displaybacklight = new SeekBarView();
+            displaybacklight.setTitle(getString(R.string.backlight_max));
+            if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+		// Increase maximum range (Max: 1275; Offset: 25)
+		displaybacklight.setMax(1275);
+		displaybacklight.setOffset(25);
+		displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
+		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		    @Override
+		    public void onStop(SeekBarView seekBarView, int position, String value) {
 			mLED.setdisplaybacklight((position * 25), getActivity());
-		}
+		    }
 
-		        @Override
-		        public void onMove(SeekBarView seekBarView, int position, String value) {
-		        }
-            });
-	} else {
-	// Set normal range (Max: 255; Offset: 5)
-            displaybacklight.setMax(255);
-            displaybacklight.setOffset(5);
-            displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
-            displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setdisplaybacklight((position * 5), getActivity());
-		}
-
-		        @Override
-		        public void onMove(SeekBarView seekBarView, int position, String value) {
-		        }
-            });
-	}
-
-	items.add(displaybacklight);
-    }
-
-    private void BacklightMinInit(List<RecyclerViewItem> items) {
-	SeekBarView BacklightMin = new SeekBarView();
-	BacklightMin.setTitle(getString(R.string.backlight_min));
-	if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-            // Based on the current Maximum Backlight of the display, increase maximum range, if necessary (Max: 1275; Offset: 25)
-            BacklightMin.setMax(1275);
-            BacklightMin.setOffset(25);
-            BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
-            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setBacklightMin((position * 25), getActivity());
-		}
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-            });
-            items.add(BacklightMin);
-	} else {
+		    @Override
+		    public void onMove(SeekBarView seekBarView, int position, String value) {
+		    }
+		});
+            } else {
             // Set normal range (Max: 255; Offset: 5)
-            BacklightMin.setMax(255);
-            BacklightMin.setOffset(5);
-            BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
-            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		displaybacklight.setMax(255);
+		displaybacklight.setOffset(5);
+		displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
+		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		    @Override
+		    public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setdisplaybacklight((position * 5), getActivity());
+		    }
+
+		    @Override
+		    public void onMove(SeekBarView seekBarView, int position, String value) {
+		    }
+		});
+            }
+
+            DisplyAndLED.addItem(displaybacklight);
+	}
+
+	if (mLED.hasBacklightMin()) {
+            SeekBarView BacklightMin = new SeekBarView();
+            BacklightMin.setTitle(getString(R.string.backlight_min));
+            if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+		// Based on the current Maximum Backlight of the display, increase maximum range, if necessary (Max: 1275; Offset: 25)
+		BacklightMin.setMax(1275);
+		BacklightMin.setOffset(25);
+		BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
+		BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		    @Override
+		    public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setBacklightMin((position * 25), getActivity());
+		    }
+		    @Override
+		    public void onMove(SeekBarView seekBarView, int position, String value) {
+		    }
+		});
+		items.add(BacklightMin);
+            } else {
+		// Set normal range (Max: 255; Offset: 5)
+		BacklightMin.setMax(255);
+		BacklightMin.setOffset(5);
+		BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
+		BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		    @Override
+		    public void onStop(SeekBarView seekBarView, int position, String value) {
+			mLED.setBacklightMin((position * 5), getActivity());
+		    }
+		    @Override
+		    public void onMove(SeekBarView seekBarView, int position, String value) {
+		    }
+		});
+		DisplyAndLED.addItem(BacklightMin);
+            }
+	}
+
+	if (mLED.hascharginglight()) {
+            SeekBarView charginglight = new SeekBarView();
+            charginglight.setTitle(getString(R.string.led_intensity));
+            charginglight.setMax(255);
+            charginglight.setProgress(mLED.getcharginglight());
+            charginglight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setBacklightMin((position * 5), getActivity());
+		    mLED.setcharginglight((position), getActivity());
 		}
 		@Override
 		public void onMove(SeekBarView seekBarView, int position, String value) {
 		}
             });
-            items.add(BacklightMin);
+            DisplyAndLED.addItem(charginglight);
 	}
-    }
-
-    private void charginglightInit(List<RecyclerViewItem> items) {
-	SeekBarView charginglight = new SeekBarView();
-	charginglight.setTitle(getString(R.string.led_intensity));
-	charginglight.setMax(255);
-	charginglight.setProgress(mLED.getcharginglight());
-	charginglight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-		mLED.setcharginglight((position), getActivity());
-            }
-            @Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-	});
-	items.add(charginglight);
-    }
-
-    private void brightnessInit(List<RecyclerViewItem> items) {
-        CardView brightnessCard = new CardView(getActivity());
-        brightnessCard.setTitle(getString(R.string.brightness));
 
         if (Sec.hasHighpowerCurrent()) {
             SeekBarView highpowerCurrent = new SeekBarView();
@@ -221,7 +209,7 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            brightnessCard.addItem(highpowerCurrent);
+            DisplyAndLED.addItem(highpowerCurrent);
         }
 
         if (Sec.hasLowpowerCurrent()) {
@@ -243,17 +231,8 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            brightnessCard.addItem(lowpowerCurrent);
+            DisplyAndLED.addItem(lowpowerCurrent);
         }
-
-        if (brightnessCard.size() > 0) {
-            items.add(brightnessCard);
-        }
-    }
-
-    private void delayInit(List<RecyclerViewItem> items) {
-        CardView delayCard = new CardView(getActivity());
-        delayCard.setTitle(getString(R.string.delay));
 
         if (Sec.hasNotificationDelayOn()) {
             SeekBarView notificationDelayOn = new SeekBarView();
@@ -273,7 +252,7 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            delayCard.addItem(notificationDelayOn);
+            DisplyAndLED.addItem(notificationDelayOn);
         }
 
         if (Sec.hasNotificationDelayOff()) {
@@ -294,15 +273,9 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            delayCard.addItem(notificationDelayOff);
+            DisplyAndLED.addItem(notificationDelayOff);
         }
 
-        if (delayCard.size() > 0) {
-            items.add(delayCard);
-        }
-    }
-
-    private void fadeInit(List<RecyclerViewItem> items) {
         if (mLED.hasFade()) {
             SwitchView fade = new SwitchView();
             fade.setTitle(getString(R.string.fade));
@@ -315,11 +288,8 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(fade);
+            DisplyAndLED.addItem(fade);
         }
-
-        CardView fadeCard = new CardView(getActivity());
-        fadeCard.setTitle(getString(R.string.fade));
 
         if (Sec.hasNotificationRampControl()) {
             SwitchView notificationRampControl = new SwitchView();
@@ -333,7 +303,7 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            fadeCard.addItem(notificationRampControl);
+            DisplyAndLED.addItem(notificationRampControl);
         }
 
         if (Sec.hasNotificationRampUp()) {
@@ -355,7 +325,7 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            fadeCard.addItem(notificationRampUp);
+            DisplyAndLED.addItem(notificationRampUp);
         }
 
         if (Sec.hasNotificationRampDown()) {
@@ -377,12 +347,12 @@ public class LEDFragment extends RecyclerViewFragment {
                 }
             });
 
-            fadeCard.addItem(notificationRampDown);
+            DisplyAndLED.addItem(notificationRampDown);
         }
 
-        if (fadeCard.size() > 0) {
-            items.add(fadeCard);
-        }
+	if (DisplyAndLED.size() > 0) {
+            items.add(DisplyAndLED);
+	}
     }
 
 }
