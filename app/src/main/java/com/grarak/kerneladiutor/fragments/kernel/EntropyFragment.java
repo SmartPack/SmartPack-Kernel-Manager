@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.entropy.Entropy;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
@@ -47,19 +48,22 @@ public class EntropyFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        CardView EntropyCard = new CardView(getActivity());
+        EntropyCard.setTitle(getString(R.string.entropy));
+
         int ps = Entropy.getPoolsize();
 
         mAvailableView = new DescriptionView();
         mAvailableView.setTitle(getString(R.string.available));
         mAvailableView.setSummary(getAvailableDescription(Entropy.getAvailable(), ps));
 
-        items.add(mAvailableView);
+        EntropyCard.addItem(mAvailableView);
 
         mPoolSizeView = new DescriptionView();
         mPoolSizeView.setTitle(getString(R.string.poolsize));
         mPoolSizeView.setSummary(String.valueOf(ps));
 
-        items.add(mPoolSizeView);
+        EntropyCard.addItem(mPoolSizeView);
 
         SeekBarView read = new SeekBarView();
         read.setTitle(getString(R.string.read));
@@ -78,7 +82,7 @@ public class EntropyFragment extends RecyclerViewFragment {
             }
         });
 
-        items.add(read);
+        EntropyCard.addItem(read);
 
         SeekBarView write = new SeekBarView();
         write.setTitle(getString(R.string.write));
@@ -97,7 +101,11 @@ public class EntropyFragment extends RecyclerViewFragment {
             }
         });
 
-        items.add(write);
+        EntropyCard.addItem(write);
+
+	if (EntropyCard.size() > 0) {
+            items.add(EntropyCard);
+	}
     }
 
     private String getAvailableDescription(int available, int poolsize) {
