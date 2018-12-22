@@ -1,12 +1,11 @@
 {
-  "latestVersion": "6.11-20181215",
+  "latestVersion": "6.12-20181222",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Sound: Microphone Flar: Fix negative values not showing correctly.",
-    "- Sound: cleaned a bunch of useless code.",
-    "- SmartPack: logs: fix some logs not saving.",
-    "- SmartPack: Update Auto-flash, Version check and change-logs for Android 9 (Pie).",
-    "- Device: add information about Project Treble Support." 
+    "- SmartPack: Latest version: Improved update information.",
+    "- build: promote target SDK Version to 28 (Pie).",
+    "- Switch Thermal, IO, Entropy, Display & LED pages into card view (visual improvements).",
+    "- Many other internal improvement." 
   ]
 }

@@ -1,5 +1,9 @@
 # Change-logs
 
+## 47. December 22, 2018
+*Release-tag: v6.12*
+Changes: SmartPack: Latest version: Improved update information. build: promote target SDK Version to 28 (Pie). Switch Thermal, IO, Entropy, Display & LED pages into card view (visual improvements). Moved almost all the SmartPack related stuff to a new place "com/smartpack/kernelmanager" (internal improvement).
+
 ## 46. December 15, 2018
 *Release-tag: v6.11*
 Changes: Sound: Microphone Flar: Fix negative values not showing correctly. Sound: cleaned a bunch of useless code. SmartPack: logs: fix some logs not saving. SmartPack: Update Auto-flash, Version check and change-logs for Android 9 (Pie). Device: add information about Project Treble Support.
