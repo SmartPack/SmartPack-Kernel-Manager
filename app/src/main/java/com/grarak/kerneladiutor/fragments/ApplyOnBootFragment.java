@@ -39,7 +39,7 @@ import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
-import com.grarak.kerneladiutor.fragments.kernel.DisplyLEDFragment;
+import com.grarak.kerneladiutor.fragments.kernel.DisplayLEDFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
@@ -88,7 +88,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(WakeFragment.class, WAKE);
         sAssignments.put(SoundFragment.class, SOUND);
         sAssignments.put(BatteryFragment.class, BATTERY);
-        sAssignments.put(DisplyLEDFragment.class, LED);
+        sAssignments.put(DisplayLEDFragment.class, LED);
         sAssignments.put(IOFragment.class, IO);
         sAssignments.put(KSMFragment.class, KSM);
         sAssignments.put(LMKFragment.class, LMK);

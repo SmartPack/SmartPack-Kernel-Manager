@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Created by willi on 31.07.16.
  */
-public class DisplyLEDFragment extends RecyclerViewFragment {
+public class DisplayLEDFragment extends RecyclerViewFragment {
 
     private LED mLED;
 
@@ -61,7 +61,7 @@ public class DisplyLEDFragment extends RecyclerViewFragment {
         CardView DisplyAndLED = new CardView(getActivity());
         DisplyAndLED.setTitle(getString(R.string.led));
 
-	if (mLED.hasBacklightMin()) {
+	if (mLED.hasdisplaybacklight()) {
             SeekBarView displaybacklight = new SeekBarView();
             displaybacklight.setTitle(getString(R.string.backlight_max));
             if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {

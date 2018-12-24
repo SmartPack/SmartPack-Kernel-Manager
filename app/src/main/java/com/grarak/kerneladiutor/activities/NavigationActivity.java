@@ -58,7 +58,7 @@ import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
 import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
-import com.grarak.kerneladiutor.fragments.kernel.DisplyLEDFragment;
+import com.grarak.kerneladiutor.fragments.kernel.DisplayLEDFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
@@ -205,7 +205,7 @@ public class NavigationActivity extends BaseActivity
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, WakeFragment.class, R.drawable.ic_unlock));
         }
         if (LED.getInstance().supported()) {
-            mFragments.add(new NavigationActivity.NavigationFragment(R.string.led, DisplyLEDFragment.class, R.drawable.ic_led));
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.led, DisplayLEDFragment.class, R.drawable.ic_led));
         }
         if (IO.getInstance().supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.io_scheduler, IOFragment.class, R.drawable.ic_sdcard));
