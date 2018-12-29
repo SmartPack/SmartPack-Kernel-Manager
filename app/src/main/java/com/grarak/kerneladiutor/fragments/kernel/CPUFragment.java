@@ -46,6 +46,7 @@ import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 
 import com.smartpack.kernelmanager.utils.CPUInputBoost;
+import com.smartpack.kernelmanager.utils.MSMLimiter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,6 +118,9 @@ public class CPUFragment extends RecyclerViewFragment {
         }
         if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost()) {
             cpuBoostInit(items);
+        }
+        if (MSMLimiter.supported()) {
+            msmlimiterInit(items);
         }
     }
 
@@ -723,6 +727,44 @@ public class CPUFragment extends RecyclerViewFragment {
 
 	if (cpuBoost.size() > 0) {
             items.add(cpuBoost);
+	}
+    }
+
+    private void msmlimiterInit(List<RecyclerViewItem> items) {
+        CardView msmLimiter = new CardView(getActivity());
+        msmLimiter.setTitle(getString(R.string.msm_limiter));
+
+	if (MSMLimiter.hasenable()) {
+            SwitchView enable = new SwitchView();
+            enable.setSummary(getString(R.string.msm_limiter_summary) + ("\n") + (MSMLimiter.getVersion()));
+            enable.setChecked(MSMLimiter.isEnabled());
+            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    MSMLimiter.enable(isChecked, getActivity());
+                }
+            });
+
+            msmLimiter.addItem(enable);
+	}
+
+	if (MSMLimiter.hasDebugMask()) {
+            SwitchView debugMask = new SwitchView();
+            debugMask.setTitle(getString(R.string.debug_mask));
+            debugMask.setSummary(getString(R.string.debug_mask_summary));
+            debugMask.setChecked(MSMLimiter.isDebugMaskEnabled());
+            debugMask.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    MSMLimiter.enableDebugMask(isChecked, getActivity());
+                }
+            });
+
+            msmLimiter.addItem(debugMask);
+	}
+
+	if (msmLimiter.size() > 0) {
+            items.add(msmLimiter);
 	}
     }
 
