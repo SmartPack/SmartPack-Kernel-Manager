@@ -1,5 +1,9 @@
 # Change-logs
 
+## 48. December 31, 2018
+*Release-tag: v6.13*
+Changes: Display & LED: Fixed Max Backlight Control for some devices. Display & LED: Updated Min Backlight Control for msm_drm devices (e.g. Pocophone). CPU: Added control over Dynamic Stune Boost. CPU: Added initial support for MSM Limiter (only newer versions). Battery: Aligned everything under one card. SmartPack: Disabled everything related to klte SmartPack-Kernel. SmartPack header image: Updated to work in Dark Mode. Misc changes.
+
 ## 47. December 22, 2018
 *Release-tag: v6.12*
 Changes: SmartPack: Latest version: Improved update information. build: promote target SDK Version to 28 (Pie). Switch Thermal, IO, Entropy, Display & LED pages into card view (visual improvements). Moved almost all the SmartPack related stuff to a new place "com/smartpack/kernelmanager" (internal improvement).

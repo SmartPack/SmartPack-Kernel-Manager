@@ -1,11 +1,15 @@
 {
-  "latestVersion": "6.12-20181222",
+  "latestVersion": "6.13-20181231",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: Latest version: Improved update information.",
-    "- build: promote target SDK Version to 28 (Pie).",
-    "- Switch Thermal, IO, Entropy, Display & LED pages into card view (visual improvements).",
-    "- Many other internal improvement." 
+    "- Display & LED: Fixed Max Backlight Control for some devices.",
+    "- Display & LED: Updated Min Backlight Control for msm_drm devices (e.g. Pocophone).",
+    "- CPU: Added control over Dynamic Stune Boost.",
+    "- CPU: Added initial support for MSM Limiter (only newer versions).",
+    "- Battery: Aligned everything under one card.",
+    "- SmartPack: Disabled everything related to klte SmartPack-Kernel.",
+    "- SmartPack header image: Updated to work in Dark Mode.",
+    "- Misc changes." 
   ]
 }
