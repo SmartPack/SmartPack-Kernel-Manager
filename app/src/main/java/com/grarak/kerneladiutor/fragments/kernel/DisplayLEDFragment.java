@@ -52,7 +52,8 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
         if (mLED.hasdisplaybacklight() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
 		|| mLED.hasSpeed() || (Sec.hasNotificationRampDown()) || (Sec.hasNotificationRampUp())
 		|| (Sec.hasNotificationRampControl()) || mLED.hasFade() || Sec.hasNotificationDelayOff()
-		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
+		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()
+		|| mLED.hasdrmBacklightMin()) {
             displayandledInit(items);
         }
     }
@@ -131,6 +132,26 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 		    }
 		});
             }
+
+            DisplyAndLED.addItem(BacklightMin);
+	}
+
+	if (mLED.hasdrmBacklightMin()) {
+            SeekBarView BacklightMin = new SeekBarView();
+            BacklightMin.setTitle(getString(R.string.backlight_min));
+            // For msm_drm devices, again increase maximum range (Max: 4000; Offset: 50)
+            BacklightMin.setMax(4000);
+            BacklightMin.setOffset(50);
+            BacklightMin.setProgress(mLED.getdrmBacklightMin() / 50 );
+            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+		    mLED.setdrmBacklightMin((position * 50), getActivity());
+		}
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+            });
 
             DisplyAndLED.addItem(BacklightMin);
 	}
