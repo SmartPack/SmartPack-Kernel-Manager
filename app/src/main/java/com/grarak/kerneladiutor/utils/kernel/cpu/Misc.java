@@ -47,6 +47,8 @@ public class Misc {
 
     private static final String CPU_TOUCH_BOOST = "/sys/module/msm_performance/parameters/touchboost";
 
+    private static final String DYN_STUNE_BOOST = "/sys/module/cpu_boost/parameters/dynamic_stune_boost";
+
     private static String[] sAvailableCFSSchedulers;
     private static String[] sCpuQuietAvailableGovernors;
 
@@ -60,6 +62,18 @@ public class Misc {
 
     public static boolean hasCpuTouchBoost() {
         return Utils.existFile(CPU_TOUCH_BOOST);
+    }
+
+    public static void setDynStuneBoost(int value, Context context) {
+        run(Control.write(String.valueOf(value), DYN_STUNE_BOOST), DYN_STUNE_BOOST, context);
+    }
+
+    public static int getDynStuneBoost() {
+        return Utils.strToInt(Utils.readFile(DYN_STUNE_BOOST));
+    }
+
+    public static boolean hasDynStuneBoost() {
+        return Utils.existFile(DYN_STUNE_BOOST);
     }
 
     public static void setCpuQuietGovernor(String value, Context context) {

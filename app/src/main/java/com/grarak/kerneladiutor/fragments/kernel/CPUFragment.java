@@ -116,7 +116,7 @@ public class CPUFragment extends RecyclerViewFragment {
         if (Misc.hasCpuQuiet()) {
             cpuQuietInit(items);
         }
-        if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost()) {
+        if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost() || Misc.hasDynStuneBoost()) {
             cpuBoostInit(items);
         }
         if (MSMLimiter.supported()) {
@@ -561,6 +561,24 @@ public class CPUFragment extends RecyclerViewFragment {
 
             cpuBoost.addItem(touchBoost);
         }
+
+        if (Misc.hasDynStuneBoost()) {
+            SeekBarView dynstuneBoost = new SeekBarView();
+            dynstuneBoost.setTitle(getString(R.string.dyn_stune_boost));
+            dynstuneBoost.setProgress(Misc.getDynStuneBoost());
+            dynstuneBoost.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			Misc.setDynStuneBoost(position, getActivity());
+		}
+            });
+
+            cpuBoost.addItem(dynstuneBoost);
+	}
 
         if (mCPUInputBoost.hascpuinputboost()) {
             SwitchView cpuinputboost = new SwitchView();
