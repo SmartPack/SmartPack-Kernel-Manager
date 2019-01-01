@@ -209,6 +209,8 @@
     <string name="msm_limiter">MSM Limiter</string>
     <string name="msm_limiter_summary">Enable MSM Limiter by neobuddy89.</string>
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
+    <string name="adv_dyn_stune_boost">Advanced Settings</string>
+    <string name="adv_dyn_stune_boost_summary">Enable to get access to advanced stune boost settings</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>

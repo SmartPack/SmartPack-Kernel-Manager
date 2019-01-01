@@ -29,6 +29,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUBoost;
@@ -562,24 +563,6 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(touchBoost);
         }
 
-        if (Misc.hasDynStuneBoost()) {
-            SeekBarView dynstuneBoost = new SeekBarView();
-            dynstuneBoost.setTitle(getString(R.string.dyn_stune_boost));
-            dynstuneBoost.setProgress(Misc.getDynStuneBoost());
-            dynstuneBoost.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
-
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-			Misc.setDynStuneBoost(position, getActivity());
-		}
-            });
-
-            cpuBoost.addItem(dynstuneBoost);
-	}
-
         if (mCPUInputBoost.hascpuinputboost()) {
             SwitchView cpuinputboost = new SwitchView();
             cpuinputboost.setTitle(getString(R.string.cpu_input_boost));
@@ -742,6 +725,78 @@ public class CPUFragment extends RecyclerViewFragment {
 
             cpuBoost.addItem(hotplug);
 	}
+
+        if (Misc.hasDynStuneBoost()) {
+            SeekBarView dynstuneBoost = new SeekBarView();
+            dynstuneBoost.setTitle(getString(R.string.dyn_stune_boost));
+            dynstuneBoost.setProgress(Misc.getDynStuneBoost());
+            dynstuneBoost.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			Misc.setDynStuneBoost(position, getActivity());
+		}
+            });
+
+            cpuBoost.addItem(dynstuneBoost);
+	}
+
+	if (!(Prefs.getBoolean("advanced_settings", false, getActivity())))
+            Prefs.saveBoolean("advanced_settings", false, getActivity());
+
+	final SwitchView advsettings = new SwitchView();
+	advsettings.setTitle(getString(R.string.adv_dyn_stune_boost));
+	advsettings.setSummary(getString(R.string.adv_dyn_stune_boost_summary));
+	advsettings.setChecked(Prefs.getBoolean("advanced_settings", false, getActivity()));
+
+        if (Misc.hasDynStuneBoost()) {
+            cpuBoost.addItem(advsettings);
+	}
+
+	for (int i = 0; i < Misc.size(); i++) {
+            if (Misc.exists(i)) {
+                GenericSelectView advStune = new GenericSelectView();
+                advStune.setSummary(Misc.getName(i));
+                advStune.setValue(Misc.getValue(i));
+                advStune.setValueRaw(advStune.getValue());
+                advStune.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                final int position = i;
+                advStune.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        Misc.setValue(value, position, getActivity());
+                        genericSelectView.setValue(value);
+                    }
+                });
+                class advsettingsManager {
+                public void showadvsettings (boolean enable) {
+                if (enable == true) {
+                    cpuBoost.addItem(advStune);
+                } else {
+                    cpuBoost.removeItem(advStune);
+                }
+            }
+        }
+	
+        final advsettingsManager manager = new advsettingsManager();
+            if (Prefs.getBoolean("advanced_settings", false, getActivity()) == true) {
+                manager.showadvsettings(true);
+            } else {
+                manager.showadvsettings(false);
+            }
+            advsettings.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchview, boolean isChecked) {
+                    Prefs.saveBoolean("advanced_settings", isChecked, getActivity());
+                    manager.showadvsettings(isChecked);
+                }
+            });
+            }
+        }
 
 	if (cpuBoost.size() > 0) {
             items.add(cpuBoost);
