@@ -30,7 +30,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 6
-        versionName "6.13-" + getDate()
+        versionName "6.14-" + getDate()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"
