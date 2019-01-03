@@ -61,6 +61,10 @@ public class Misc {
     private static final String REGISTER_HOOK = "/sys/class/misc/mdnie/hook_intercept";
     private static final String MASTER_SEQUENCE = "/sys/class/misc/mdnie/sequence_intercept";
 
+    private static final String DRM_KCAL_RED = "/sys/module/msm_drm/parameters/kcal_red";
+    private static final String DRM_KCAL_GREEN = "/sys/module/msm_drm/parameters/kcal_green";
+    private static final String DRM_KCAL_BLUE = "/sys/module/msm_drm/parameters/kcal_blue";
+
     private final List<String> mBackLightDimmer = new ArrayList<>();
     private final HashMap<String, Integer> mMinBrightnessFiles = new HashMap<>();
     private final HashMap<String, Switch> mGloveMode = new HashMap<>();
@@ -244,11 +248,48 @@ public class Misc {
         return Utils.existFile(LM3530_BRIGTHNESS_MODE);
     }
 
+    public void setkcalRed(int value, Context context) {
+        run(Control.write(String.valueOf(value), DRM_KCAL_RED), DRM_KCAL_RED, context);
+    }
+
+    public static int getkcalRed() {
+        return Utils.strToInt(Utils.readFile(DRM_KCAL_RED));
+    }
+
+    public static boolean haskcalRed() {
+        return Utils.existFile(DRM_KCAL_RED);
+    }
+
+    public void setkcalGreen(int value, Context context) {
+        run(Control.write(String.valueOf(value), DRM_KCAL_GREEN), DRM_KCAL_GREEN, context);
+    }
+
+    public static int getkcalGreen() {
+        return Utils.strToInt(Utils.readFile(DRM_KCAL_GREEN));
+    }
+
+    public static boolean haskcalGreen() {
+        return Utils.existFile(DRM_KCAL_GREEN);
+    }
+
+    public void setkcalBlue(int value, Context context) {
+        run(Control.write(String.valueOf(value), DRM_KCAL_BLUE), DRM_KCAL_BLUE, context);
+    }
+
+    public static int getkcalBlue() {
+        return Utils.strToInt(Utils.readFile(DRM_KCAL_BLUE));
+    }
+
+    public static boolean haskcalBlue() {
+        return Utils.existFile(DRM_KCAL_BLUE);
+    }
+
     public boolean supported() {
         return hasBrightnessMode() || hasLcdMinBrightness() || hasLcdMaxBrightness()
                 || hasBackLightDimmerEnable() || hasMinBrightness() || hasBackLightDimmerThreshold()
                 || hasBackLightDimmerOffset() || hasNegativeToggle() || hasRegisterHook()
-                || hasMasterSequence() || hasGloveMode();
+                || hasMasterSequence() || hasGloveMode() || haskcalBlue()
+		|| haskcalGreen() || haskcalRed();
     }
 
     private void run(String command, String id, Context context) {

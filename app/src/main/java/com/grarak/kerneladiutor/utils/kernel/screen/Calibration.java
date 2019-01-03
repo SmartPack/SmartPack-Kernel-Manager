@@ -46,12 +46,6 @@ public class Calibration {
     private static final String KCAL_CTRL = KCAL + "/kcal";
     private static final String KCAL_CTRL_CTRL = KCAL + "/kcal_ctrl";
     private static final String KCAL_CTRL_ENABLE = KCAL + "/kcal_enable";
-    private static final String KCAL_CTRL_MIN = KCAL + "/kcal_min";
-    private static final String KCAL_CTRL_INVERT = KCAL + "/kcal_invert";
-    private static final String KCAL_CTRL_SAT = KCAL + "/kcal_sat";
-    private static final String KCAL_CTRL_HUE = KCAL + "/kcal_hue";
-    private static final String KCAL_CTRL_VAL = KCAL + "/kcal_val";
-    private static final String KCAL_CTRL_CONT = KCAL + "/kcal_cont";
 
     private static final String DIAG0 = "/sys/devices/platform/DIAG0.0";
     private static final String DIAG0_POWER = DIAG0 + "/power_rail";
@@ -71,6 +65,13 @@ public class Calibration {
 
     private static final String HBM = "/sys/class/graphics/fb0/hbm";
 
+    private final List<String> mKCAL_CTRL_MIN = new ArrayList<>();
+    private final List<String> mKCAL_CTRL_INVERT = new ArrayList<>();
+    private final List<String> mKCAL_CTRL_SAT = new ArrayList<>();
+    private final List<String> mKCAL_CTRL_HUE = new ArrayList<>();
+    private final List<String> mKCAL_CTRL_VAL = new ArrayList<>();
+    private final List<String> mKCAL_CTRL_CONT = new ArrayList<>();
+
     private final List<String> mSRGB = new ArrayList<>();
 
     private final List<String> mColors = new ArrayList<>();
@@ -78,6 +79,19 @@ public class Calibration {
     private final List<String> mNewKCAL = new ArrayList<>();
 
     {
+        mKCAL_CTRL_MIN.add("/sys/devices/platform/kcal_ctrl.0/kcal_min");
+        mKCAL_CTRL_MIN.add("/sys/module/msm_drm/parameters/kcal_min");
+        mKCAL_CTRL_INVERT.add("/sys/devices/platform/kcal_ctrl.0/kcal_invert");
+        mKCAL_CTRL_INVERT.add("/sys/module/msm_drm/parameters/kcal_invert");
+        mKCAL_CTRL_SAT.add("/sys/devices/platform/kcal_ctrl.0/kcal_sat");
+        mKCAL_CTRL_SAT.add("/sys/module/msm_drm/parameters/kcal_sat");
+        mKCAL_CTRL_HUE.add("/sys/devices/platform/kcal_ctrl.0/kcal_hue");
+        mKCAL_CTRL_HUE.add("/sys/module/msm_drm/parameters/kcal_hue");
+        mKCAL_CTRL_VAL.add("/sys/devices/platform/kcal_ctrl.0/kcal_val");
+        mKCAL_CTRL_VAL.add("/sys/module/msm_drm/parameters/kcal_val");
+        mKCAL_CTRL_CONT.add("/sys/devices/platform/kcal_ctrl.0/kcal_cont");
+        mKCAL_CTRL_CONT.add("/sys/module/msm_drm/parameters/kcal_cont");
+
         mSRGB.add("/sys/class/graphics/fb0/SRGB");
         mSRGB.add("/sys/class/graphics/fb0/srgb");
         mSRGB.add("/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/card0-DSI-1/SRGB");
@@ -95,12 +109,14 @@ public class Calibration {
         mColorEnables.add(COLOR_CONTROL_CTRL);
 
         mNewKCAL.add(KCAL_CTRL_ENABLE);
-        mNewKCAL.add(KCAL_CTRL_INVERT);
-        mNewKCAL.add(KCAL_CTRL_SAT);
-        mNewKCAL.add(KCAL_CTRL_HUE);
-        mNewKCAL.add(KCAL_CTRL_VAL);
-        mNewKCAL.add(KCAL_CTRL_CONT);
     }
+
+    private String KCAL_CTRL_MIN;
+    private String KCAL_CTRL_INVERT;
+    private String KCAL_CTRL_SAT;
+    private String KCAL_CTRL_HUE;
+    private String KCAL_CTRL_VAL;
+    private String KCAL_CTRL_CONT;
 
     private String SRGB;
 
@@ -110,6 +126,43 @@ public class Calibration {
     private boolean HBM_NEW;
 
     private Calibration() {
+        for (String file : mKCAL_CTRL_MIN) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_MIN = file;
+                break;
+            }
+        }
+        for (String file : mKCAL_CTRL_INVERT) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_INVERT = file;
+                break;
+            }
+        }
+        for (String file : mKCAL_CTRL_SAT) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_SAT = file;
+                break;
+            }
+        }
+        for (String file : mKCAL_CTRL_HUE) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_HUE = file;
+                break;
+            }
+        }
+        for (String file : mKCAL_CTRL_VAL) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_VAL = file;
+                break;
+            }
+        }
+        for (String file : mKCAL_CTRL_CONT) {
+            if (Utils.existFile(file)) {
+                KCAL_CTRL_CONT = file;
+                break;
+            }
+        }
+
         for (String file : mSRGB) {
             if (Utils.existFile(file)) {
                 SRGB = file;

@@ -99,6 +99,9 @@ public class ScreenFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+	if (mMisc.haskcalRed() || mMisc.haskcalGreen() || mMisc.haskcalBlue()) {
+            kcalColorInit(items);
+	}
         screenColorInit(items);
         List<RecyclerViewItem> gammas = new ArrayList<>();
         if (Gamma.hasKGamma()) {
@@ -125,6 +128,73 @@ public class ScreenFragment extends RecyclerViewFragment {
         if (mMisc.hasGloveMode()) {
             gloveModeInit(items);
         }
+    }
+
+    private void kcalColorInit(List<RecyclerViewItem> items) {
+	CardView kcalCard = new CardView(getActivity());
+	kcalCard.setTitle(getString(R.string.screen_color));
+
+        if (mMisc.haskcalRed()) {
+            SeekBarView kcal = new SeekBarView();
+            kcal.setTitle(getString(R.string.red));
+            kcal.setMax(256);
+            kcal.setProgress(mMisc.getkcalRed());
+            kcal.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mMisc.setkcalRed((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(kcal);
+        }
+
+        if (mMisc.haskcalGreen()) {
+            SeekBarView kcal = new SeekBarView();
+            kcal.setTitle(getString(R.string.green));
+            kcal.setMax(256);
+            kcal.setProgress(mMisc.getkcalGreen());
+            kcal.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mMisc.setkcalGreen((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(kcal);
+        }
+
+        if (mMisc.haskcalBlue()) {
+            SeekBarView kcal = new SeekBarView();
+            kcal.setTitle(getString(R.string.blue));
+            kcal.setMax(256);
+            kcal.setProgress(mMisc.getkcalBlue());
+            kcal.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mMisc.setkcalBlue((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            kcalCard.addItem(kcal);
+        }
+
+
+	if (kcalCard.size() > 0) {
+            items.add(kcalCard);
+	}
     }
 
     private void screenColorInit(List<RecyclerViewItem> items) {
