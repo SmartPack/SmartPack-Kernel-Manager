@@ -78,7 +78,6 @@ public class ThermalFragment extends RecyclerViewFragment {
         ThermaldCard.setTitle(getString(R.string.thermald));
 
         SwitchView thermald = new SwitchView();
-        thermald.setTitle(getString(R.string.thermald));
         thermald.setSummary(getString(R.string.thermald_summary));
         thermald.setChecked(Thermald.isThermaldEnabled());
         thermald.addOnSwitchListener(new SwitchView.OnSwitchListener() {
@@ -838,7 +837,6 @@ public class ThermalFragment extends RecyclerViewFragment {
 
         if (MSMThermalSimple.hasenableswitch()) {
             SwitchView enableswitch = new SwitchView();
-            enableswitch.setTitle(getString(R.string.msm_thermal_simple));
             enableswitch.setSummary(getString(R.string.msm_thermal_simple_summary));
             enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
             enableswitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
