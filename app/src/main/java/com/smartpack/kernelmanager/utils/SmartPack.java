@@ -52,35 +52,6 @@ public class SmartPack {
     /**
      * Check device support
      */
-    public static boolean isSamsungmsm8974() {
-        return isklte() || iskltekor() || isklteduos() || iskltedv() || iskltejpn();
-    }
-
-    public static boolean isklte() {
-        return Device.getBootloader().contains("G900FX") || Device.getBootloader().contains("G900MU")
-		|| Device.getBootloader().contains("G900FQ") || Device.getBootloader().contains("G900R4")
-		|| Device.getBootloader().contains("G900R7") || Device.getBootloader().contains("G900T")
-		|| Device.getBootloader().contains("G900V") || Device.getBootloader().contains("G900W8")
-		|| Device.getBootloader().contains("S902");
-    }
-
-    public static boolean isklteduos() {
-        return Device.getBootloader().contains("G900FD") || Device.getBootloader().contains("G900MD");
-    }
-
-    public static boolean iskltedv() {
-        return Device.getBootloader().contains("G900P") || Device.getBootloader().contains("G900I");
-    }
-
-    public static boolean iskltejpn() {
-        return Device.getBootloader().contains("SC04") || Device.getBootloader().contains("SCL23");
-    }
-
-    public static boolean iskltekor() {
-        return Device.getBootloader().contains("G900K") || Device.getBootloader().contains("G900L")
-		|| Device.getBootloader().contains("G900S");
-    }
-
     public static boolean isOnePlusmsm8998() {
         return Device.getFingerprint().contains("OnePlus5");
     }
@@ -128,6 +99,6 @@ public class SmartPack {
     }
 
     public static boolean supported() {
-        return hasSmartPackVersion() || isSamsungmsm8974() || isOnePlusmsm8998() || isMotoG3() || hasSmartPackInstalled();
+        return hasSmartPackVersion() || isOnePlusmsm8998() || isMotoG3() || hasSmartPackInstalled();
     }
 }
