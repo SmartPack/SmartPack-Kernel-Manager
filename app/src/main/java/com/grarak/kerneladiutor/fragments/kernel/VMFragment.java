@@ -142,12 +142,12 @@ public class VMFragment extends RecyclerViewFragment {
         zram.setSummary(getString(R.string.disksize_summary));
         zram.setUnit(getString(R.string.mb));
         zram.setMax(2048);
-        zram.setOffset(10);
-        zram.setProgress(ZRAM.getDisksize() / 10);
+        zram.setOffset(8);
+        zram.setProgress(ZRAM.getDisksize() / 8);
         zram.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
-                ZRAM.setDisksize(position * 10, getActivity());
+                ZRAM.setDisksize(position * 8, getActivity());
             }
 
             @Override
