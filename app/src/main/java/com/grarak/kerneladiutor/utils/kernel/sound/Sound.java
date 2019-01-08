@@ -475,7 +475,7 @@ public class Sound {
     }
 
     public String getboefflamic() {
-        return Utils.readFile(BOEFFLA_MIC);
+        return Utils.readFile(BOEFFLA_MIC).replace("Mic", "").replace("level", "").replace("call", "").replace(" ", "");
     }
 
     public List<String> getBoefflamicLimits() {
