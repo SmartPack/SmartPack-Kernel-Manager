@@ -1,5 +1,9 @@
 # Change-logs
 
+## 50. January 08, 2019
+*Release-tag: v6.15*
+Changes: CPU Input Boost: added dynamic stune boost configuration. SmartPack: removed klte* devices from the supported list. Sound: Boeffla Sound: updated Mic Volume to work without any special patch. Virtual Memory: Fixed ZRam Max Value.
+
 ## 49. January 03, 2019
 *Release-tag: v6.14*
 Changes: CPU: CPU Boost: added advanced parameters of Dynamic Stune Boost and moved position to bottom. Screen: KCAL: update a bunch of parameters for msm_drm.

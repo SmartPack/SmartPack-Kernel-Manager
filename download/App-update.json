@@ -1,9 +1,11 @@
 {
-  "latestVersion": "6.14-20190103",
+  "latestVersion": "6.15-20190108",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU: CPU Boost: added advanced parameters of Dynamic Stune Boost and moved position to bottom.",
-    "- Screen: KCAL: update a bunch of parameters for msm_drm." 
+    "- CPU Input Boost: added dynamic stune boost configuration.",
+    "- Sound: Boeffla Sound: updated Mic Volume to work without any special patch.",
+    "- Virtual Memory: Fixed ZRam Max Value.",
+    "- SmartPack: removed klte* devices from the supported list."
   ]
 }
