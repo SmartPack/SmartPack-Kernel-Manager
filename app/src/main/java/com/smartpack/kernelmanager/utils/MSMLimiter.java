@@ -82,7 +82,7 @@ public class MSMLimiter {
     }
 
     private static void run(String command, String id, Context context) {
-        Control.runSetting(command, ApplyOnBootFragment.CPU_HOTPLUG, id, context);
+        Control.runSetting(command, ApplyOnBootFragment.CPU, id, context);
     }
 
 }
