@@ -730,6 +730,7 @@
 
     <!-- Misc -->
     <string name="android_logger">Android logging</string>
+    <string name="android_logger_summary">Turn On/Off Android logging</string>
     <string name="printk_logger">PrintK logging</string>
     <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
     <string name="selinux_switch">SELinux Switch</string>

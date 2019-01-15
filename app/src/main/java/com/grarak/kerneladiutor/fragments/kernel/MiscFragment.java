@@ -124,7 +124,8 @@ public class MiscFragment extends RecyclerViewFragment {
 
     private void loggerInit(List<RecyclerViewItem> items) {
         SwitchView logger = new SwitchView();
-        logger.setSummary(getString(R.string.android_logger));
+        logger.setTitle(getString(R.string.android_logger));
+        logger.setSummary(getString(R.string.android_logger_summary));
         logger.setChecked(mMisc.isLoggerEnabled());
         logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
