@@ -52,6 +52,8 @@ public class Misc {
 
     private static final String WIREGUARD = "/sys/module/wireguard/version";
 
+    private static final String PRINTK_MODE = "/sys/kernel/printk_mode/printk_mode";
+
     private static final String HOSTNAME_KEY = "net.hostname";
 
     private final List<String> mLoggers = new ArrayList<>();
@@ -202,6 +204,18 @@ public class Misc {
 
     public boolean hasLoggerEnable() {
         return LOGGER_FILE != null;
+    }
+
+    public void enablePrintKMode(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", PRINTK_MODE), PRINTK_MODE, context);
+    }
+
+    public static boolean isPrintKModeEnabled() {
+        return Utils.readFile(PRINTK_MODE).contains("1");
+    }
+
+    public static boolean hasPrintKMode() {
+        return Utils.existFile(PRINTK_MODE);
     }
 
     public static boolean hasWireguard() {
