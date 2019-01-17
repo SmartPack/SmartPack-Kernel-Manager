@@ -32,6 +32,7 @@ import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import com.smartpack.kernelmanager.utils.ProgressBarView;
@@ -156,6 +157,23 @@ public class VMFragment extends RecyclerViewFragment {
         });
 
         zRAM.addItem(zram);
+
+        if (ZRAM.hasZRAMAlgo()) {
+            SelectView zramAlgo = new SelectView();
+            zramAlgo.setTitle(getString(R.string.zram_algo));
+            zramAlgo.setSummary(getString(R.string.zram_algo_summary));
+            zramAlgo.setItems(ZRAM.getAvailableZRAMAlgos());
+            zramAlgo.setItem(ZRAM.getZRAMAlgo());
+            zramAlgo.setOnItemSelected(new SelectView.OnItemSelected() {
+                @Override
+                public void onItemSelected(SelectView selectView, int position, String item) {
+                    ZRAM.setZRAMAlgo(item, getActivity());
+                }
+            });
+
+            zRAM.addItem(zramAlgo);
+	}
+
         if (zRAM.size() > 0) {
             items.add(zRAM);
         }
