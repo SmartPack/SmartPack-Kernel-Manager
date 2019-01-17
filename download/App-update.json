@@ -1,11 +1,12 @@
 {
-  "latestVersion": "6.15-20190108",
+  "latestVersion": "6.16-20190117",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Input Boost: added dynamic stune boost configuration.",
-    "- Sound: Boeffla Sound: updated Mic Volume to work without any special patch.",
-    "- Virtual Memory: Fixed ZRam Max Value.",
-    "- SmartPack: removed klte* devices from the supported list."
+    "- Misc: added an option to disable PrintK logging via printk_mode interface by Lord Boeffla.",
+    "- Battery: added support to Lord Boeffla's USB fast charge.",
+    "- VM: added control over zRAM compression algorithm.",
+    "- Display & LED: Unified minimum backlight control.",
+    "- Misc changes and some internal improvements."
   ]
 }
