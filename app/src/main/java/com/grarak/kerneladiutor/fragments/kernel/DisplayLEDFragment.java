@@ -100,53 +100,35 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(displaybacklight);
 	}
 
-	if (mLED.hasBacklightMin()) {
+	if (mLED.hasBacklightMin() || mLED.hasdrmBacklightMin()) {
             SeekBarView BacklightMin = new SeekBarView();
             BacklightMin.setTitle(getString(R.string.backlight_min));
-            if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-		// Based on the current Maximum Backlight of the display, increase maximum range, if necessary (Max: 1275; Offset: 25)
+            if (mLED.hasdrmBacklightMin()) {
+		// For msm_drm devices, set maximum range at 4000 (Offset: 50)
+		BacklightMin.setMax(4080);
+		BacklightMin.setOffset(40);
+		BacklightMin.setProgress(mLED.getdrmBacklightMin() / 40 );
+            } else if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+		// Based on the current Maximum Backlight of the display, decide Max range & Offset
 		BacklightMin.setMax(1275);
 		BacklightMin.setOffset(25);
 		BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
-		BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setBacklightMin((position * 25), getActivity());
-		    }
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
             } else {
 		// Set normal range (Max: 255; Offset: 5)
 		BacklightMin.setMax(255);
 		BacklightMin.setOffset(5);
 		BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
-		BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setBacklightMin((position * 5), getActivity());
-		    }
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
             }
-
-            DisplyAndLED.addItem(BacklightMin);
-	}
-
-	if (mLED.hasdrmBacklightMin()) {
-            SeekBarView BacklightMin = new SeekBarView();
-            BacklightMin.setTitle(getString(R.string.backlight_min));
-            // For msm_drm devices, again increase maximum range (Max: 4000; Offset: 50)
-            BacklightMin.setMax(4000);
-            BacklightMin.setOffset(50);
-            BacklightMin.setProgress(mLED.getdrmBacklightMin() / 50 );
             BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
-		    mLED.setdrmBacklightMin((position * 50), getActivity());
+		    if (mLED.hasdrmBacklightMin()) {
+			mLED.setdrmBacklightMin((position * 40), getActivity());
+		    } else if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
+			mLED.setBacklightMin((position * 25), getActivity());
+		    } else {
+			mLED.setBacklightMin((position * 5), getActivity());
+		    }
 		}
 		@Override
 		public void onMove(SeekBarView seekBarView, int position, String value) {
