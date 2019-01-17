@@ -138,15 +138,23 @@ public class BatteryFragment extends RecyclerViewFragment {
 
         } else {
             // Initialize (only) USB Fast Charge
-            if (mBattery.hasForceFastCharge()) {
+            if (mBattery.hasForceFastCharge() || mBattery.hasUSBFastCharge()) {
                 SwitchView forceFastCharge = new SwitchView();
                 forceFastCharge.setTitle(getString(R.string.fast_charge));
                 forceFastCharge.setSummary(getString(R.string.usb_fast_charge_summary));
-                forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
+		if (mBattery.hasForceFastCharge()) {
+		    forceFastCharge.setChecked(mBattery.isForceFastChargeEnabled());
+		} else {
+		    forceFastCharge.setChecked(mBattery.isUSBFastChargeEnabled());
+		}
                 forceFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		    @Override
 		    public void onChanged(SwitchView switchView, boolean isChecked) {
-			mBattery.ForceFastChargeenable(isChecked, getActivity());
+			if (mBattery.hasForceFastCharge()) {
+			    mBattery.ForceFastChargeenable(isChecked, getActivity());
+			} else {
+			    mBattery.USBFastChargeenable(isChecked, getActivity());
+			}
 		    }
                 });
                 acci.addItem(forceFastCharge);

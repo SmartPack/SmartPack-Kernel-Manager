@@ -69,6 +69,7 @@ public class Battery {
     private static final String CHARGE_LEVEL_USB = CHARGE_LEVEL + "/charge_level_usb";
     private static final String CHARGE_LEVEL_WL = CHARGE_LEVEL + "/charge_level_wireless";
     private static final String CHARGE_INFO = CHARGE_LEVEL + "/charge_info";
+    private static final String USB_FAST_CHARGE = "/sys/kernel/charge_levels/enable_usb_fastcharge";
 
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
@@ -329,6 +330,18 @@ public class Battery {
         return Utils.existFile(CHARGE_INFO);
     }
 
+    public static boolean hasUSBFastCharge() {
+        return Utils.existFile(USB_FAST_CHARGE);
+    }
+
+    public void USBFastChargeenable(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", USB_FAST_CHARGE), USB_FAST_CHARGE, context);
+    }
+
+    public boolean isUSBFastChargeEnabled() {
+        return Utils.readFile(USB_FAST_CHARGE).equals("1");
+    }
+
     public int getCapacity() {
         return mCapacity;
     }
@@ -338,7 +351,7 @@ public class Battery {
     }
 
     public boolean supported() {
-        return hasCapacity() || hasFastCharge() || haschargeLevel();
+        return hasCapacity() || hasFastCharge() || haschargeLevel() || hasUSBFastCharge();
     }
 
     private void run(String command, String id, Context context) {
