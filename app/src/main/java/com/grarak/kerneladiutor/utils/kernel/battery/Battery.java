@@ -351,7 +351,8 @@ public class Battery {
     }
 
     public boolean supported() {
-        return hasCapacity() || hasFastCharge() || haschargeLevel() || hasUSBFastCharge();
+        return hasCapacity() || hasFastCharge() || haschargeLevel() || hasUSBFastCharge()
+		|| hasBlx() || hasbatterychargelimit() || haschargingstatus();
     }
 
     private void run(String command, String id, Context context) {
