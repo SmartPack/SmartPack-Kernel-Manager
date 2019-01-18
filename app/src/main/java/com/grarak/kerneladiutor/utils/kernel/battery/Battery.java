@@ -69,7 +69,7 @@ public class Battery {
     private static final String CHARGE_LEVEL_USB = CHARGE_LEVEL + "/charge_level_usb";
     private static final String CHARGE_LEVEL_WL = CHARGE_LEVEL + "/charge_level_wireless";
     private static final String CHARGE_INFO = CHARGE_LEVEL + "/charge_info";
-    private static final String USB_FAST_CHARGE = "/sys/kernel/charge_levels/enable_usb_fastcharge";
+    private static final String USB_FAST_CHARGE = CHARGE_LEVEL + "/enable_usb_fastcharge";
 
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
