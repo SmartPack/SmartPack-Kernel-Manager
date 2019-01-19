@@ -37,17 +37,9 @@ import java.util.List;
 public class MSMLimiter {
 
     private static final String MSM_LIMITER = "/sys/kernel/msm_limiter";
-    private static final String MSM_LIMITER_ENABLE = MSM_LIMITER + "/freq_control";
-    private static final String MPD_ENABLED = MSM_LIMITER + "/mpd_enabled";
+    private static final String MSM_LIMITER_ENABLE = MSM_LIMITER + "/limiter_enabled";
+    private static final String MSM_LIMITER_FREQ_CONTROL = MSM_LIMITER + "/freq_control";
     private static final String DEBUG_MASK = MSM_LIMITER + "/debug_mask";
-    private static final String LIVE_MAX_FREQ = MSM_LIMITER + "/live_max_freq";
-    private static final String LIVE_MIN_FREQ = MSM_LIMITER + "/live_min_freq";
-    private static final String LIVE_CUR = MSM_LIMITER + "/live_cur_freq";
-    private static final String RES_MAX_FREQ = MSM_LIMITER + "/resume_max_freq";
-    private static final String SCAL_GOV = MSM_LIMITER + "/scaling_governor";
-    private static final String SUS_MAX_FREQ = MSM_LIMITER + "/suspend_max_freq";
-    private static final String SUS_MIN_FREQ = MSM_LIMITER + "/suspend_min_freq";
-    private static final String MSM_LIMITER_VERSION = MSM_LIMITER + "/msm_limiter_version";
 
     public static void enable(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", MSM_LIMITER_ENABLE), MSM_LIMITER_ENABLE, context);
@@ -61,6 +53,18 @@ public class MSMLimiter {
         return Utils.existFile(MSM_LIMITER_ENABLE);
     }
 
+    public static void enableFreqControl(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", MSM_LIMITER_FREQ_CONTROL), MSM_LIMITER_FREQ_CONTROL, context);
+    }
+
+    public static boolean isFreqControlEnabled() {
+        return Utils.readFile(MSM_LIMITER_FREQ_CONTROL).equals("1");
+    }
+
+    public static boolean hasFreqControl() {
+        return Utils.existFile(MSM_LIMITER_FREQ_CONTROL);
+    }
+
     public static void enableDebugMask(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", DEBUG_MASK), DEBUG_MASK, context);
     }
@@ -71,10 +75,6 @@ public class MSMLimiter {
 
     public static boolean hasDebugMask() {
         return Utils.existFile(DEBUG_MASK);
-    }
-
-    public static String getVersion() {
-        return Utils.readFile(MSM_LIMITER_VERSION);
     }
 
     public static boolean supported() {

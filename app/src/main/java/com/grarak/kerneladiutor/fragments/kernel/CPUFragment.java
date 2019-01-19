@@ -755,8 +755,7 @@ public class CPUFragment extends RecyclerViewFragment {
 		Prefs.saveBoolean("advanced_settings", false, getActivity());
 
             final SwitchView advsettings = new SwitchView();
-            advsettings.setTitle(getString(R.string.adv_dyn_stune_boost));
-            advsettings.setSummary(getString(R.string.adv_dyn_stune_boost_summary));
+            advsettings.setSummary(getString(R.string.adv_sett));
             advsettings.setChecked(Prefs.getBoolean("advanced_settings", false, getActivity()));
 
             cpuBoost.addItem(advsettings);
@@ -815,7 +814,7 @@ public class CPUFragment extends RecyclerViewFragment {
 
 	if (MSMLimiter.hasenable()) {
             SwitchView enable = new SwitchView();
-            enable.setSummary(getString(R.string.msm_limiter_summary) + ("\n") + (MSMLimiter.getVersion()));
+            enable.setSummary(getString(R.string.msm_limiter_summary));
             enable.setChecked(MSMLimiter.isEnabled());
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                 @Override
@@ -825,6 +824,21 @@ public class CPUFragment extends RecyclerViewFragment {
             });
 
             msmLimiter.addItem(enable);
+	}
+
+	if (MSMLimiter.hasFreqControl()) {
+            SwitchView freqControl = new SwitchView();
+            freqControl.setTitle(getString(R.string.freq_control));
+            freqControl.setSummary(getString(R.string.freq_control_summary));
+            freqControl.setChecked(MSMLimiter.isFreqControlEnabled());
+            freqControl.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    MSMLimiter.enableFreqControl(isChecked, getActivity());
+                }
+            });
+
+            msmLimiter.addItem(freqControl);
 	}
 
 	if (MSMLimiter.hasDebugMask()) {

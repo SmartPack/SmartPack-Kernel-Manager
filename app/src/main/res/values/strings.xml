@@ -208,9 +208,10 @@
     <string name="touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
     <string name="msm_limiter">MSM Limiter</string>
     <string name="msm_limiter_summary">Enable MSM Limiter by neobuddy89.</string>
+    <string name="freq_control">Frequency Control</string>
+    <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
-    <string name="adv_dyn_stune_boost">Advanced Settings</string>
-    <string name="adv_dyn_stune_boost_summary">Enable to get access to advanced stune boost settings</string>
+    <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>
@@ -311,8 +312,6 @@
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
     <string name="quad_core_mode">Quad-Core mode</string>
     <string name="dual_core_mode">Dual-Core mode</string>
-    <string name="adv_hotplug_tunables">Advanced Hotplug Tunables</string>
-    <string name="adv_hotplug_tunables_summary">Warning! This is only for advanced users. Please do not touch unless you\'re an expert.</string>
     <string name="core_control">Core Control</string>
     <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
     <string name="hcube">H-Cube</string>

@@ -1529,8 +1529,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             Prefs.saveBoolean("advanced_tunables", false, getActivity());
 
 	final SwitchView tunables = new SwitchView();
-	tunables.setTitle(getString(R.string.adv_hotplug_tunables));
-	tunables.setSummary(getString(R.string.adv_hotplug_tunables_summary));
+	tunables.setSummary(getString(R.string.adv_sett));
 	tunables.setChecked(Prefs.getBoolean("advanced_tunables", false, getActivity()));
 
 	alucardHotplug.addItem(tunables);
