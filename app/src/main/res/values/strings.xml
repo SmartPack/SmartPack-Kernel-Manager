@@ -1001,6 +1001,7 @@
     <!-- Contributors -->
     <string name="commits">%d commits</string>
     <string name="no_internet">Please check your internet connection!</string>
+    <string name="translators">Translators</string>
 
     <!-- FAQ -->
     <string name="how_different">Q1. How this App different from Grarak’s official Kernel Adiutor?</string>

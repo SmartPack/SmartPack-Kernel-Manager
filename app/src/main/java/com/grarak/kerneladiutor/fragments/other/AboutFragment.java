@@ -62,6 +62,11 @@ public class AboutFragment extends RecyclerViewFragment {
         sLibraries.put("Akexorcist,Android-RoundCornerProgressBar", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
     }
 
+    private static final LinkedHashMap<String, String> sTranslations = new LinkedHashMap<>();
+
+    static {
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -73,6 +78,7 @@ public class AboutFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         aboutInit(items);
         librariesInit(items);
+	translationsInit(items);
     }
 
     private void aboutInit(List<RecyclerViewItem> items) {
@@ -163,6 +169,29 @@ public class AboutFragment extends RecyclerViewFragment {
             cardView.addItem(descriptionView);
         }
         items.add(cardView);
+    }
+
+    private void translationsInit(List<RecyclerViewItem> items) {
+
+        CardView cardView = new CardView(getActivity());
+        cardView.setTitle(getString(R.string.translators));
+
+        for (final String lib : sTranslations.keySet()) {
+            DescriptionView descriptionView = new DescriptionView();
+            descriptionView.setTitle(lib.split(",")[1]);
+            descriptionView.setSummary(lib.split(",")[0]);
+            descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    Utils.launchUrl(sTranslations.get(lib), getActivity());
+                }
+            });
+
+            cardView.addItem(descriptionView);
+        }
+        if (cardView.size() > 0) {
+            items.add(cardView);
+        }
     }
 
     public static class InfoFragment extends BaseFragment {
