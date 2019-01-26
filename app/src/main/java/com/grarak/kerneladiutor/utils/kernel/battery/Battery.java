@@ -73,13 +73,17 @@ public class Battery {
 
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
-    private static final String CHARGING_CURRENT = "/sys/class/power_supply/battery/current_now";
-    private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
-    private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
-    private static final String CHARGE_TYPE = "/sys/class/power_supply/usb/type";
-    private static final String OP_OTG_SWITCH = "/sys/class/power_supply/usb/otg_switch";
+    private static final String POWER_SUPPLY = "/sys/class/power_supply";
+    private static final String CHARGING_CURRENT = POWER_SUPPLY + "/battery/current_now";
+    private static final String CHARGE_STATUS = POWER_SUPPLY + "/battery/status";
+    private static final String CHARGE_SOURCE = POWER_SUPPLY + "/battery/batt_charging_source";
+    private static final String BCL = POWER_SUPPLY + "/battery/batt_slate_mode";
+    private static final String HEALTH = POWER_SUPPLY + "/battery/health";
+    private static final String LEVEL = POWER_SUPPLY + "/battery/capacity";
+    private static final String VOLTAGE = POWER_SUPPLY + "/battery/voltage_now";
 
-    private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
+    private static final String CHARGE_TYPE = POWER_SUPPLY + "/usb/type";
+    private static final String OP_OTG_SWITCH = POWER_SUPPLY + "/usb/otg_switch";
 
     private int mCapacity;
     private static String[] sBatteryAvailable;
@@ -259,6 +263,30 @@ public class Battery {
         return Utils.strToInt(Utils.readFile(CHARGE_SOURCE));
     }
 
+    public static boolean hasBatteryHealth() {
+        return Utils.existFile(HEALTH);
+    }
+
+    public static String BatteryHealth() {
+        return Utils.readFile(HEALTH);
+    }
+
+    public static boolean hasBatteryLevel() {
+        return Utils.existFile(LEVEL);
+    }
+
+    public static int BatteryLevel() {
+        return Utils.strToInt(Utils.readFile(LEVEL));
+    }
+
+    public static boolean hasBatteryVoltage() {
+        return Utils.existFile(VOLTAGE);
+    }
+
+    public static int BatteryVoltage() {
+        return Utils.strToInt(Utils.readFile(VOLTAGE));
+    }
+
     public static boolean isDASHCharging() {
         return Utils.readFile(CHARGE_TYPE).equals("DASH");
     }
@@ -365,7 +393,7 @@ public class Battery {
 
     public boolean supported() {
         return hasCapacity() || hasFastCharge() || haschargeLevel() || hasUSBFastCharge()
-		|| hasBlx() || hasbatterychargelimit() || haschargingstatus() || hasOPOTGSwitch();
+		|| hasBlx() || hasbatterychargelimit() || hasOPOTGSwitch();
     }
 
     private void run(String command, String id, Context context) {

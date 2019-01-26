@@ -35,7 +35,6 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,114 +59,100 @@ public class MiscFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (mVibration.supported()) {
-            vibrationInit(items);
-        }
-        if (mMisc.hasLoggerEnable()) {
-            loggerInit(items);
-        }
-        if (mMisc.hasPrintKMode()) {
-            printkInit(items);
-        }
-        if (mMisc.hasCrc()) {
-            crcInit(items);
-        }
-        fsyncInit(items);
-        if (mMisc.hasGentleFairSleepers()) {
-            gentlefairsleepersInit(items);
-        }
-        if (mMisc.hasArchPower()) {
-            archPowerInit(items);
-        }
-        if (mMisc.hasSELinux()) {
-            selinuxInit(items);
-        }
+	if (mVibration.supported() || mMisc.hasLoggerEnable() || mMisc.hasPrintKMode() || mMisc.hasCrc()
+		|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers()
+		|| mMisc.hasArchPower() || mMisc.hasSELinux()) {
+            miscInit(items);
+	}
         if (PowerSuspend.supported()) {
             powersuspendInit(items);
         }
         networkInit(items);
     }
 
-    private void vibrationInit(List<RecyclerViewItem> items) {
-        final Vibrator vibrator = (Vibrator) getActivity()
+    private void miscInit(List<RecyclerViewItem> items) {
+        CardView miscCard = new CardView(getActivity());
+        miscCard.setTitle(getString(R.string.misc));
+
+	if (mVibration.supported()) {
+	    final Vibrator vibrator = (Vibrator) getActivity()
                 .getSystemService(Context.VIBRATOR_SERVICE);
 
-        final int min = mVibration.getMin();
-        int max = mVibration.getMax();
-        final float offset = (max - min) / 100f;
+	    final int min = mVibration.getMin();
+	    int max = mVibration.getMax();
+	    final float offset = (max - min) / 100f;
 
-        SeekBarView vibration = new SeekBarView();
-        vibration.setTitle(getString(R.string.vibration_strength));
-        vibration.setUnit("%");
-        vibration.setProgress(Math.round((mVibration.get() - min) / offset));
-        vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-            @Override
-            public void onStop(SeekBarView seekBarView, int position, String value) {
-                mVibration.setVibration(Math.round(position * offset + min), getActivity());
-                getHandler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (vibrator != null) {
-                            vibrator.vibrate(300);
-                        }
-                    }
-                }, 250);
-            }
+	    SeekBarView vibration = new SeekBarView();
+	    vibration.setTitle(getString(R.string.vibration_strength));
+	    vibration.setUnit("%");
+	    vibration.setProgress(Math.round((mVibration.get() - min) / offset));
+	    vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mVibration.setVibration(Math.round(position * offset + min), getActivity());
+                    getHandler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+                            if (vibrator != null) {
+				vibrator.vibrate(300);
+                            }
+                    	}
+                    }, 250);
+            	}
 
-            @Override
-            public void onMove(SeekBarView seekBarView, int position, String value) {
-            }
-        });
+            	@Override
+            	public void onMove(SeekBarView seekBarView, int position, String value) {
+            	}
+            });
 
-        items.add(vibration);
-    }
+            miscCard.addItem(vibration);
+	}
 
-    private void loggerInit(List<RecyclerViewItem> items) {
-        SwitchView logger = new SwitchView();
-        logger.setTitle(getString(R.string.android_logger));
-        logger.setSummary(getString(R.string.android_logger_summary));
-        logger.setChecked(mMisc.isLoggerEnabled());
-        logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enableLogger(isChecked, getActivity());
-            }
-        });
+	if (mMisc.hasLoggerEnable()) {
+	    SwitchView logger = new SwitchView();
+	    logger.setTitle(getString(R.string.android_logger));
+	    logger.setSummary(getString(R.string.android_logger_summary));
+	    logger.setChecked(mMisc.isLoggerEnabled());
+	    logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableLogger(isChecked, getActivity());
+		}
+	    });
 
-        items.add(logger);
-    }
+	    miscCard.addItem(logger);
+	}
 
-    private void printkInit(List<RecyclerViewItem> items) {
-        SwitchView printk = new SwitchView();
-        printk.setTitle(getString(R.string.printk_logger));
-        printk.setSummary(getString(R.string.printk_logger_summary));
-        printk.setChecked(mMisc.isPrintKModeEnabled());
-        printk.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enablePrintKMode(isChecked, getActivity());
-            }
-        });
+	if (mMisc.hasPrintKMode()) {
+	    SwitchView printk = new SwitchView();
+	    printk.setTitle(getString(R.string.printk_logger));
+	    printk.setSummary(getString(R.string.printk_logger_summary));
+	    printk.setChecked(mMisc.isPrintKModeEnabled());
+	    printk.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enablePrintKMode(isChecked, getActivity());
+		}
+	    });
 
-        items.add(printk);
-    }
+	    miscCard.addItem(printk);
+	}
 
-    private void crcInit(List<RecyclerViewItem> items) {
-        SwitchView crc = new SwitchView();
-        crc.setTitle(getString(R.string.crc));
-        crc.setSummary(getString(R.string.crc_summary));
-        crc.setChecked(mMisc.isCrcEnabled());
-        crc.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enableCrc(isChecked, getActivity());
-            }
-        });
+	if (mMisc.hasCrc()) {
+	    SwitchView crc = new SwitchView();
+	    crc.setTitle(getString(R.string.crc));
+	    crc.setSummary(getString(R.string.crc_summary));
+	    crc.setChecked(mMisc.isCrcEnabled());
+	    crc.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableCrc(isChecked, getActivity());
+		}
+	    });
 
-        items.add(crc);
-    }
+	    miscCard.addItem(crc);
+	}
 
-    private void fsyncInit(List<RecyclerViewItem> items) {
         if (mMisc.hasFsync()) {
             SwitchView fsync = new SwitchView();
             fsync.setTitle(getString(R.string.fsync));
@@ -180,7 +165,7 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(fsync);
+            miscCard.addItem(fsync);
         }
 
         if (mMisc.hasDynamicFsync()) {
@@ -195,56 +180,63 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(dynamicFsync);
+            miscCard.addItem(dynamicFsync);
+        }
+
+	if (mMisc.hasGentleFairSleepers()) {
+	    SwitchView gentleFairSleepers = new SwitchView();
+	    gentleFairSleepers.setTitle(getString(R.string.gentlefairsleepers));
+	    gentleFairSleepers.setSummary(getString(R.string.gentlefairsleepers_summary));
+	    gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
+	    gentleFairSleepers.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableGentleFairSleepers(isChecked, getActivity());
+		}
+	    });
+
+	    miscCard.addItem(gentleFairSleepers);
+	}
+
+	if (mMisc.hasArchPower()) {
+	    SwitchView archPower = new SwitchView();
+	    archPower.setTitle(getString(R.string.arch_power));
+	    archPower.setSummary(getString(R.string.arch_power_summary));
+	    archPower.setChecked(mMisc.isArchPowerEnabled());
+	    archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableArchPower(isChecked, getActivity());
+		}
+	    });
+
+	    miscCard.addItem(archPower);
+	}
+
+	if (mMisc.hasSELinux()) {
+	    SwitchView selinux = new SwitchView();
+	    selinux.setTitle(getString(R.string.selinux_switch));
+	    selinux.setSummary(getString(R.string.selinux_switch_summary));
+	    selinux.setChecked(mMisc.isSELinuxEnabled());
+	    selinux.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableSELinux(isChecked, getActivity());
+		}
+	    });
+
+	    miscCard.addItem(selinux);
+	}
+
+        if (miscCard.size() > 0) {
+            items.add(miscCard);
         }
     }
 
-    private void gentlefairsleepersInit(List<RecyclerViewItem> items) {
-        SwitchView gentleFairSleepers = new SwitchView();
-        gentleFairSleepers.setTitle(getString(R.string.gentlefairsleepers));
-        gentleFairSleepers.setSummary(getString(R.string.gentlefairsleepers_summary));
-        gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
-        gentleFairSleepers.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enableGentleFairSleepers(isChecked, getActivity());
-            }
-        });
-
-        items.add(gentleFairSleepers);
-    }
-
-    private void archPowerInit(List<RecyclerViewItem> items) {
-        SwitchView archPower = new SwitchView();
-        archPower.setTitle(getString(R.string.arch_power));
-        archPower.setSummary(getString(R.string.arch_power_summary));
-        archPower.setChecked(mMisc.isArchPowerEnabled());
-        archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enableArchPower(isChecked, getActivity());
-            }
-        });
-
-        items.add(archPower);
-    }
-
-    private void selinuxInit(List<RecyclerViewItem> items) {
-        SwitchView selinux = new SwitchView();
-        selinux.setTitle(getString(R.string.selinux_switch));
-        selinux.setSummary(getString(R.string.selinux_switch_summary));
-        selinux.setChecked(mMisc.isSELinuxEnabled());
-        selinux.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                mMisc.enableSELinux(isChecked, getActivity());
-            }
-        });
-
-        items.add(selinux);
-    }
-
     private void powersuspendInit(List<RecyclerViewItem> items) {
+        CardView psCard = new CardView(getActivity());
+        psCard.setTitle(getString(R.string.power_suspend));
+
         if (PowerSuspend.hasMode()) {
             SelectView mode = new SelectView();
             mode.setTitle(getString(R.string.power_suspend_mode));
@@ -258,7 +250,7 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(mode);
+            psCard.addItem(mode);
         }
 
         if (PowerSuspend.hasOldState()) {
@@ -273,7 +265,7 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(state);
+            psCard.addItem(state);
         }
 
         if (PowerSuspend.hasNewState()) {
@@ -293,7 +285,11 @@ public class MiscFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(state);
+            psCard.addItem(state);
+        }
+
+        if (psCard.size() > 0) {
+            items.add(psCard);
         }
     }
 

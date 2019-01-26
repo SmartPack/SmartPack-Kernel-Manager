@@ -25,11 +25,11 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.lmk.LMK;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,27 +74,28 @@ public class LMKFragment extends RecyclerViewFragment {
         if (LMK.hasAdaptive()) {
             adaptiveInit(items);
         }
-        minfreeInit(items);
         profileInit(items);
-        swapWait(items);
     }
 
     private void adaptiveInit(List<RecyclerViewItem> items) {
-        SwitchView adaptive = new SwitchView();
-        adaptive.setTitle(getString(R.string.lmk_adaptive));
-        adaptive.setSummary(getString(R.string.lmk_adaptive_summary));
-        adaptive.setChecked(LMK.isAdaptiveEnabled());
-        adaptive.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-                LMK.enableAdaptive(isChecked, getActivity());
-            }
-        });
+        CardView lmkCard = new CardView(getActivity());
+        lmkCard.setTitle(getString(R.string.lmk));
 
-        items.add(adaptive);
-    }
+	if (LMK.hasAdaptive()) {
+            SwitchView adaptive = new SwitchView();
+            adaptive.setTitle(getString(R.string.lmk_adaptive));
+            adaptive.setSummary(getString(R.string.lmk_adaptive_summary));
+            adaptive.setChecked(LMK.isAdaptiveEnabled());
+            adaptive.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    LMK.enableAdaptive(isChecked, getActivity());
+		}
+            });
 
-    private void minfreeInit(List<RecyclerViewItem> items) {
+            lmkCard.addItem(adaptive);
+	}
+
         mMinFrees.clear();
         List<String> minfrees = LMK.getMinFrees();
         String[] descriptions = getResources().getStringArray(R.array.lmk_names);
@@ -126,33 +127,10 @@ public class LMKFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(minfree);
+            lmkCard.addItem(minfree);
             mMinFrees.add(minfree);
         }
-    }
 
-    private void profileInit(List<RecyclerViewItem> items) {
-        TitleView profilesTitle = new TitleView();
-        profilesTitle.setText(getString(R.string.profile));
-        items.add(profilesTitle);
-
-        for (int id : sProfiles.keySet()) {
-            DescriptionView profile = new DescriptionView();
-            profile.setTitle(getString(id));
-            profile.setSummary(sProfiles.get(id));
-            profile.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    LMK.setMinFree(((DescriptionView) item).getSummary().toString(), getActivity());
-                    refreshMinFree();
-                }
-            });
-
-            items.add(profile);
-        }
-    }
-
-    private void swapWait(List<RecyclerViewItem> items) {
         if (LMK.hasSwapWait()) {
             SwitchView swapWait = new SwitchView();
             swapWait.setTitle(getString(R.string.kill_lmk));
@@ -165,7 +143,7 @@ public class LMKFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(swapWait);
+            lmkCard.addItem(swapWait);
         }
 
         if (LMK.hasSwapWaitPercent()) {
@@ -192,7 +170,35 @@ public class LMKFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(swapWaitPercent);
+            lmkCard.addItem(swapWaitPercent);
+        }
+
+        if (lmkCard.size() > 0) {
+            items.add(lmkCard);
+        }
+    }
+
+    private void profileInit(List<RecyclerViewItem> items) {
+        CardView profileCard = new CardView(getActivity());
+        profileCard.setTitle(getString(R.string.profile));
+
+        for (int id : sProfiles.keySet()) {
+            DescriptionView profile = new DescriptionView();
+            profile.setTitle(getString(id));
+            profile.setSummary(sProfiles.get(id));
+            profile.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    LMK.setMinFree(((DescriptionView) item).getSummary().toString(), getActivity());
+                    refreshMinFree();
+                }
+            });
+
+            profileCard.addItem(profile);
+        }
+
+	if (profileCard.size() > 0) {
+            items.add(profileCard);
         }
     }
 

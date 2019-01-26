@@ -32,7 +32,6 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 
 import com.smartpack.kernelmanager.utils.Adrenoboost;
@@ -67,8 +66,7 @@ public class GPUFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        freqInit(items);
-        governorInit(items);
+        gpuInit(items);
         if (SimpleGPU.supported()) {
             simpleGpuInit(items);
         }
@@ -80,20 +78,20 @@ public class GPUFragment extends RecyclerViewFragment {
         }
     }
 
-    private void freqInit(List<RecyclerViewItem> items) {
-        CardView freqCard = new CardView(getActivity());
-        freqCard.setTitle(getString(R.string.frequencies));
+    private void gpuInit(List<RecyclerViewItem> items) {
+        CardView gpuCard = new CardView(getActivity());
+        gpuCard.setTitle(getString(R.string.gpu));
 
         if (mGPUFreq.has2dCurFreq() && mGPUFreq.get2dAvailableFreqs() != null) {
             m2dCurFreq = new XYGraphView();
             m2dCurFreq.setTitle(getString(R.string.gpu_2d_freq));
-            freqCard.addItem(m2dCurFreq);
+            gpuCard.addItem(m2dCurFreq);
         }
 
         if (mGPUFreq.hasCurFreq() && mGPUFreq.getAvailableFreqs() != null) {
             mCurFreq = new XYGraphView();
             mCurFreq.setTitle(getString(R.string.gpu_freq));
-            freqCard.addItem(mCurFreq);
+            gpuCard.addItem(mCurFreq);
         }
 
         if (mGPUFreq.has2dMaxFreq() && mGPUFreq.get2dAvailableFreqs() != null) {
@@ -109,7 +107,7 @@ public class GPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            freqCard.addItem(max2dFreq);
+            gpuCard.addItem(max2dFreq);
         }
 
         if (mGPUFreq.hasMaxFreq() && mGPUFreq.getAvailableFreqs() != null) {
@@ -125,7 +123,7 @@ public class GPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            freqCard.addItem(maxFreq);
+            gpuCard.addItem(maxFreq);
         }
 
         if (mGPUFreq.hasMinFreq() && mGPUFreq.getAvailableFreqs() != null) {
@@ -141,15 +139,9 @@ public class GPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            freqCard.addItem(minFreq);
+            gpuCard.addItem(minFreq);
         }
 
-        if (freqCard.size() > 0) {
-            items.add(freqCard);
-        }
-    }
-
-    private void governorInit(List<RecyclerViewItem> items) {
         if (mGPUFreq.has2dGovernor()) {
             SelectView governor2d = new SelectView();
             governor2d.setTitle(getString(R.string.gpu_2d_governor));
@@ -163,7 +155,7 @@ public class GPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(governor2d);
+            gpuCard.addItem(governor2d);
         }
 
         if (mGPUFreq.hasGovernor()) {
@@ -179,7 +171,7 @@ public class GPUFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(governor);
+            gpuCard.addItem(governor);
 
             if (mGPUFreq.hasTunables(governor.getValue())) {
                 DescriptionView tunables = new DescriptionView();
@@ -197,8 +189,12 @@ public class GPUFragment extends RecyclerViewFragment {
                     }
                 });
 
-                items.add(tunables);
+                gpuCard.addItem(tunables);
             }
+        }
+
+        if (gpuCard.size() > 0) {
+            items.add(gpuCard);
         }
     }
 
@@ -335,16 +331,17 @@ public class GPUFragment extends RecyclerViewFragment {
 	}
     }
 
-     private void adrenoboostInit(List<RecyclerViewItem> items) {
-        List<RecyclerViewItem> adrenoboost = new ArrayList<>();
-         if (Adrenoboost.supported()) {
+    private void adrenoboostInit(List<RecyclerViewItem> items) {
+        CardView adrenoboost = new CardView(getActivity());
+        adrenoboost.setTitle(getString(R.string.adrenoboost));
+
+	if (Adrenoboost.supported()) {
   		 List<String> list = new ArrayList<>();
             list.add("Off");
             list.add("Low");
             list.add("Medium");
             list.add("High");
             SeekBarView boost = new SeekBarView();
-            boost.setTitle(getString(R.string.adrenoboost));
             boost.setSummary(getString(R.string.adrenoboost_summary));
             boost.setItems(list);
             boost.setProgress(Adrenoboost.getAdrenoBoost());
@@ -357,11 +354,12 @@ public class GPUFragment extends RecyclerViewFragment {
                     Adrenoboost.setAdrenoBoost(position, getActivity());
                 }
             });
-             adrenoboost.add(boost);
-        }
-         if (adrenoboost.size() > 0) {
-            items.addAll(adrenoboost);
-        }
+
+	    adrenoboost.addItem(boost);
+	}
+	if (adrenoboost.size() > 0) {
+            items.add(adrenoboost);
+	}
     }
 
     private Integer m2dFreq;

@@ -117,6 +117,7 @@
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
+    <string name="general_info">General Information</string>
     <string name="offline">Offline</string>
     <string name="core">Core %d</string>
     <string name="gpu_freq">GPU Frequency</string>
@@ -429,8 +430,6 @@
     <string name="freq_mit_control_mask_summary">The frequency mitigation bitmask that will be used to determine if KTM should do emergency frequency mitigation for a core or not.</string>
 
     <!-- Battery -->
-    <string name="level">Level</string>
-    <string name="voltage">Voltage</string>
     <string name="capacity">Capacity</string>
     <string name="blx">Battery Life eXtender</string>
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
@@ -748,6 +747,7 @@
     <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. Disabling this can save a little battery power.</string>
     <string name="arch_power">Arch Power</string>
     <string name="arch_power_summary">Enable Arch Specific Power Function/Savings.</string>
+    <string name="power_suspend">Power Suspend</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="autosleep">Autosleep</string>

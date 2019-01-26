@@ -45,7 +45,9 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.AppUpdaterTask;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
 import com.grarak.kerneladiutor.views.XYGraph;
@@ -57,6 +59,8 @@ import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyBu
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
 
+import com.smartpack.kernelmanager.utils.ProgressBarView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +71,15 @@ public class OverallFragment extends RecyclerViewFragment {
 
     private static final String TAG = OverallFragment.class.getSimpleName();
 
+    private Device.MemInfo mMemInfo;
+    private ProgressBarView mem;
+    private ProgressBarView swap;
+
     private CPUFreq mCPUFreq;
     private GPUFreq mGPUFreq;
+
+    private StatsView mBatteryInfo;
+    private StatsView mChargingStatus;
 
     private StatsView mGPUFreqStatsView;
     private TemperatureView mTemperature;
@@ -90,6 +101,7 @@ public class OverallFragment extends RecyclerViewFragment {
         mGPUFreq = GPUFreq.getInstance();
 
         addViewPagerFragment(new CPUUsageFragment());
+        mMemInfo = Device.MemInfo.getInstance();
     }
 
     @Override
@@ -99,16 +111,58 @@ public class OverallFragment extends RecyclerViewFragment {
     }
 
     private void statsInit(List<RecyclerViewItem> items) {
+        CardView infoCard = new CardView(getActivity());
+        infoCard.setTitle(getString(R.string.general_info));
+
         if (mGPUFreq.hasCurFreq()) {
             mGPUFreqStatsView = new StatsView();
             mGPUFreqStatsView.setTitle(getString(R.string.gpu_freq));
 
-            items.add(mGPUFreqStatsView);
+            infoCard.addItem(mGPUFreqStatsView);
         }
         mTemperature = new TemperatureView();
         mTemperature.setFullSpan(mGPUFreqStatsView == null);
 
-        items.add(mTemperature);
+        infoCard.addItem(mTemperature);
+
+        long swap_total = mMemInfo.getItemMb("SwapTotal");
+        long mem_total = mMemInfo.getItemMb("MemTotal");
+        long swap_progress = swap_total - mMemInfo.getItemMb("SwapFree");
+        long mem_progress = mem_total - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"));
+
+        if ((mem_total) != 0) {
+            mem = new ProgressBarView();
+            mem.setTitle(getString(R.string.ram));
+            mem.setItems(mem_total, mem_progress);
+            mem.setUnit(getResources().getString(R.string.mb));
+            mem.setProgressColor(getResources().getColor(R.color.green_accent));
+
+            infoCard.addItem(mem);
+        }
+
+        if ((swap_total) != 0) {
+            swap = new ProgressBarView();
+            swap.setTitle(getString(R.string.swap));
+            swap.setItems(swap_total, swap_progress);
+            swap.setUnit(getResources().getString(R.string.mb));
+            swap.setProgressColor(getResources().getColor(R.color.orange_accent));
+
+            infoCard.addItem(swap);
+        }
+
+        mBatteryInfo = new StatsView();
+        if (Battery.hasBatteryLevel() || Battery.hasBatteryVoltage() || Battery.hasBatteryHealth()) {
+            infoCard.addItem(mBatteryInfo);
+        }
+
+        mChargingStatus = new StatsView();
+        if (Battery.haschargingstatus()) {
+            infoCard.addItem(mChargingStatus);
+        }
+
+        if (infoCard.size() > 0) {
+            items.add(infoCard);
+        }
     }
 
     private void frequenciesInit(List<RecyclerViewItem> items) {
@@ -174,7 +228,7 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mCPUFreq.isBigLITTLE()) {
             mFreqBig.setTitle(getString(R.string.cluster_big));
         } else {
-            mFreqBig.setFullSpan(true);
+            mFreqBig.setTitle(getString(R.string.cpu));
         }
         items.add(mFreqBig);
 
@@ -354,6 +408,66 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mTemperature != null) {
             mTemperature.setBattery(mBatteryRaw);
         }
+        if (mChargingStatus != null) {
+	    float chargingrate = Battery.getchargingstatus();
+	    if (Battery.isDischarging()){		
+		mChargingStatus.setTitle("Discharge Rate");
+		if (chargingrate >= 10000) {
+		    mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
+		} else if (chargingrate <= 0) {
+		    mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
+		} else {
+		    mChargingStatus.setStat(String.valueOf(chargingrate * -1) + (" mA"));
+		}		
+	    } else if (chargingrate >= 10000) {
+		if (Battery.isACCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.isUSBCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
+		}
+		mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
+	    } else if (chargingrate <= 0) {
+		if (Battery.isDASHCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (Dash)");
+		} else if (Battery.isACCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.isUSBCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
+		}
+		mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
+	    } else {
+		if (Battery.ChargingType() == 3) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.ChargingType() == 4) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else if (Battery.ChargingType() == 10) {
+		    mChargingStatus.setTitle("Charge Rate (Wireless)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
+		}
+		mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+	    }
+	}
+        if (mBatteryInfo != null) {
+	    float level = Battery.BatteryLevel();
+	    float voltage = Battery.BatteryVoltage();
+	    if (Battery.hasBatteryHealth()) {
+	    	mBatteryInfo.setTitle(getString(R.string.battery) + (" (Health: ") + (Battery.BatteryHealth()) + (")"));
+	    } else {
+	    	mBatteryInfo.setTitle(getString(R.string.battery));
+	    }
+	    if (Battery.hasBatteryLevel() && Battery.hasBatteryVoltage()) {
+	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %  -  VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
+	    } else if (Battery.hasBatteryLevel() && !(Battery.hasBatteryVoltage())) {
+	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %"));
+	    } else if (!(Battery.hasBatteryLevel()) && Battery.hasBatteryVoltage()) {
+	    	mBatteryInfo.setStat(("VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
+	    }
+	}
     }
 
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
