@@ -65,6 +65,7 @@ public class AboutFragment extends RecyclerViewFragment {
     private static final LinkedHashMap<String, String> sTranslations = new LinkedHashMap<>();
 
     static {
+        sTranslations.put("Chinese (Traditional),jason5545", "https://github.com/jason5545");
     }
 
     @Override
