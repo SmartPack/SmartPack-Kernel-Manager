@@ -77,6 +77,7 @@ public class Battery {
     private static final String CHARGE_STATUS = "/sys/class/power_supply/battery/status";
     private static final String CHARGE_SOURCE = "/sys/class/power_supply/battery/batt_charging_source";
     private static final String CHARGE_TYPE = "/sys/class/power_supply/usb/type";
+    private static final String OP_OTG_SWITCH = "/sys/class/power_supply/usb/otg_switch";
 
     private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
 
@@ -342,6 +343,18 @@ public class Battery {
         return Utils.readFile(USB_FAST_CHARGE).equals("1");
     }
 
+    public static boolean hasOPOTGSwitch() {
+        return Utils.existFile(OP_OTG_SWITCH);
+    }
+
+    public void OPOTGenable(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", OP_OTG_SWITCH), OP_OTG_SWITCH, context);
+    }
+
+    public boolean isOPOTGEnabled() {
+        return Utils.readFile(OP_OTG_SWITCH).equals("1");
+    }
+
     public int getCapacity() {
         return mCapacity;
     }
@@ -352,7 +365,7 @@ public class Battery {
 
     public boolean supported() {
         return hasCapacity() || hasFastCharge() || haschargeLevel() || hasUSBFastCharge()
-		|| hasBlx() || hasbatterychargelimit() || haschargingstatus();
+		|| hasBlx() || hasbatterychargelimit() || haschargingstatus() || hasOPOTGSwitch();
     }
 
     private void run(String command, String id, Context context) {

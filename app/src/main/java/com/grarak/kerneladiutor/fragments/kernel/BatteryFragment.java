@@ -72,7 +72,7 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (Battery.haschargingstatus()) {
             items.add(mChargingStatus);
         }
-        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx()) {
+        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx() || mBattery.hasOPOTGSwitch()) {
             acciInit(items);
         }
     }
@@ -327,6 +327,20 @@ public class BatteryFragment extends RecyclerViewFragment {
             });
 
             acci.addItem(blx);
+	}
+
+	if (mBattery.hasOPOTGSwitch()) {
+            SwitchView OnePlusOTG = new SwitchView();
+            OnePlusOTG.setTitle(getString(R.string.otg_enable));
+            OnePlusOTG.setSummary(getString(R.string.otg_enable_summary));
+            OnePlusOTG.setChecked(mBattery.isOPOTGEnabled());
+            OnePlusOTG.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			mBattery.OPOTGenable(isChecked, getActivity());
+		}
+            });
+            acci.addItem(OnePlusOTG);
 	}
 
         if (acci.size() > 0) {

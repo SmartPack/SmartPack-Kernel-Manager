@@ -441,6 +441,8 @@
     <string name="acci">Advanced Charge Control Interface</string>
     <string name="fast_charge">Fast Charge</string>
     <string name="fast_charge_summary">If enabled, the device will charge faster when connected to USB. Select custom mode to charge your device in a custom level. Replug your charger when changing these options.</string>
+    <string name="otg_enable">OTG Switch</string>
+    <string name="otg_enable_summary">Permanently enable USB On-The-Go (OTG) mode on supported OnePlus devices.</string>
     <string name="usb_fast_charge_summary">Device will charge faster when connected with USB. Replug your charger when changing this option.</string>
     <string name="custom_charge">Custom Mode</string>
     <string name="charge_level_ac">Charge Level (AC)</string>
