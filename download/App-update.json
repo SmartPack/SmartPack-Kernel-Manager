@@ -1,12 +1,16 @@
 {
-  "latestVersion": "6.16-20190117",
+  "latestVersion": "7.0-20190126",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Misc: added an option to disable PrintK logging via printk_mode interface by Lord Boeffla.",
-    "- Battery: added support to Lord Boeffla's USB fast charge.",
-    "- VM: added control over zRAM compression algorithm.",
-    "- Display & LED: Unified minimum backlight control.",
-    "- Misc changes and some internal improvements."
+    "- User Interface is largely modified (e.g. Overall, CPU, GPU, Battery, LMK, Misc etc).",
+    "- Moved almost all the information services (Battery, charging & RAM) into the overall page.",
+    "- CPU: cleaned up & updated MSM Limiter.",
+    "- build: updated gradle build tools.",
+    "- About: added information about app translators.",
+    "- Battery: added OTG Switch to permanently enable USB On-The-Go (OTG) mode.",
+    "- AppUpdater: merged updates from the upstream repo",
+    "- Misc: Added Chinese (Traditional) translation (Credits: jason5545).",
+    "- Miscellaneous changes and internal improvements. Please visit GitHub for more informationMisc."
   ]
 }
