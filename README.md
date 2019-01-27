@@ -44,6 +44,26 @@ In addition to official Kernel Adiutor and its related dependencies, I used code
 
 * [AppUpdater](https://github.com/javiersantos/AppUpdater)
 
+#### Translations
+* [jason5545](https://github.com/jason5545), Chinese (Traditional)
+
+## Report a bug or request a feature
+
+You can report a bug or request a feature by [opening an issue](https://github.com/SmartPack/SmartPack-Kernel-Manager/issues/new).
+
+#### How to report a bug
+* A detailed description of the bug
+* Logcat
+* Make sure that no similar bugs are already reported
+
+#### How to request a feature
+* A detailed description of the feature
+* All kind of information
+* Paths to sysFS interface
+* What's the content of the sysFS interface
+* How to apply a new value
+* Make sure that no similar feature us already requested.
+
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
 # About official Kernel Adiutor
@@ -55,33 +75,6 @@ In addition to official Kernel Adiutor and its related dependencies, I used code
 
 [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
 [![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G3643L52LJQ7G)
-
-## Report a bug or request a feature
-
-You can report a bug or request a feature by [opening an issue](https://github.com/Grarak/KernelAdiutor/issues/new).
-
-#### How to report a bug
-* A detailed description of the bug
-* Logcat
-* Make sure there are no similar bug reports already
-
-#### How to request a feature
-* A detailed description of the feature
-* All kind of information
-* Paths to sys interface
-* What's the content if the sys file
-* How to apply a new value
-* Make sure there are no similar feature requests already
-
-## Download & Build
-
-Clone the project and come in:
-
-``` bash
-$ git clone git://github.com/Grarak/KernelAdiutor.git
-$ cd KernelAdiutor
-$ ./gradlew build
-```
 
 ## Credits
 
