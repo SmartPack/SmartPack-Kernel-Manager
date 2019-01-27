@@ -435,6 +435,8 @@
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
     <string name="charging_enable">Enable Charging</string>
     <string name="charging_enable_summary">Warning! Charging will be stopped immediately if disabled.</string>
+    <string name="thunder_charge">Thunder Charge</string>
+    <string name="thunder_charge_summary">Enable Thunder Charge by varun.chitre15</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Advanced Charge Control Interface</string>

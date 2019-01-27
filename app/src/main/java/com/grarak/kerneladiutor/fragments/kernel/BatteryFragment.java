@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
@@ -28,6 +30,7 @@ import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -53,7 +56,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx() || mBattery.hasOPOTGSwitch()) {
+        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx() || mBattery.hasOPOTGSwitch() || mBattery.hasThunderCharge()) {
             acciInit(items);
         }
     }
@@ -306,6 +309,55 @@ public class BatteryFragment extends RecyclerViewFragment {
 		}
             });
             acci.addItem(OnePlusOTG);
+	}
+
+        if (mBattery.hasThunderChargeEnable()) {
+            SwitchView enable = new SwitchView();
+	    enable.setTitle(getString(R.string.thunder_charge));
+            enable.setSummary(getString(R.string.thunder_charge_summary));
+            enable.setChecked(mBattery.isThunderChargeEnabled());
+            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			mBattery.enableThunderCharge(isChecked, getActivity());
+		}
+            });
+
+            acci.addItem(enable);
+        }
+
+	if (mBattery.hasThunderChargeAC()) {
+            GenericSelectView acharge = new GenericSelectView();
+            acharge.setTitle(getString(R.string.charge_level_ac));
+            acharge.setSummary(getString(R.string.charge_level_summary));
+            acharge.setValue(mBattery.getThunderChargeAC());
+            acharge.setInputType(InputType.TYPE_CLASS_NUMBER);
+            acharge.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mBattery.setThunderChargeAC(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            acci.addItem(acharge);
+	}
+
+	if (mBattery.hasThunderChargeUSB()) {
+            GenericSelectView usbcharge = new GenericSelectView();
+            usbcharge.setTitle(getString(R.string.charge_level_usb));
+            usbcharge.setSummary(getString(R.string.charge_level_summary));
+            usbcharge.setValue(mBattery.getThunderChargeUSB());
+            usbcharge.setInputType(InputType.TYPE_CLASS_NUMBER);
+            usbcharge.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mBattery.setThunderChargeUSB(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            acci.addItem(usbcharge);
 	}
 
         if (acci.size() > 0) {

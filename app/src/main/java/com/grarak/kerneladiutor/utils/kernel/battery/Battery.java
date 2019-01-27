@@ -71,6 +71,12 @@ public class Battery {
     private static final String CHARGE_INFO = CHARGE_LEVEL + "/charge_info";
     private static final String USB_FAST_CHARGE = CHARGE_LEVEL + "/enable_usb_fastcharge";
 
+    private static final String THUNDER_CHARGE = "/sys/kernel/thundercharge_control";
+    private static final String THUNDER_CHARGE_ENABLE = THUNDER_CHARGE + "/enabled";
+    private static final String THUNDER_CHARGE_AC = THUNDER_CHARGE + "/custom_ac_current";
+    private static final String THUNDER_CHARGE_USB = THUNDER_CHARGE + "/custom_usb_current";
+    private static final String THUNDER_CHARGE_VERSION = THUNDER_CHARGE + "/version";
+
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
     private static final String POWER_SUPPLY = "/sys/class/power_supply";
@@ -369,6 +375,46 @@ public class Battery {
 
     public boolean isUSBFastChargeEnabled() {
         return Utils.readFile(USB_FAST_CHARGE).equals("1");
+    }
+
+    public static boolean hasThunderCharge() {
+        return Utils.existFile(THUNDER_CHARGE);
+    }
+
+    public static boolean hasThunderChargeEnable() {
+        return Utils.existFile(THUNDER_CHARGE_ENABLE);
+    }
+
+    public void enableThunderCharge(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", THUNDER_CHARGE_ENABLE), THUNDER_CHARGE_ENABLE, context);
+    }
+
+    public boolean isThunderChargeEnabled() {
+        return Utils.readFile(THUNDER_CHARGE_ENABLE).equals("1");
+    }
+
+    public void setThunderChargeAC(String value, Context context) {
+        run(Control.write(String.valueOf(value), THUNDER_CHARGE_AC), THUNDER_CHARGE_AC, context);
+    }
+
+    public static String getThunderChargeAC() {
+        return Utils.readFile(THUNDER_CHARGE_AC);
+    }
+
+    public static boolean hasThunderChargeAC() {
+        return Utils.existFile(THUNDER_CHARGE_AC);
+    }
+
+    public void setThunderChargeUSB(String value, Context context) {
+        run(Control.write(String.valueOf(value), THUNDER_CHARGE_USB), THUNDER_CHARGE_USB, context);
+    }
+
+    public static String getThunderChargeUSB() {
+        return Utils.readFile(THUNDER_CHARGE_USB);
+    }
+
+    public static boolean hasThunderChargeUSB() {
+        return Utils.existFile(THUNDER_CHARGE_USB);
     }
 
     public static boolean hasOPOTGSwitch() {
