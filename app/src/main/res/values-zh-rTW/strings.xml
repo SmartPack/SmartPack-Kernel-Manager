@@ -100,7 +100,6 @@
     <string name="contributors">貢獻者</string>
     <string name="kernelupdate">核心更新</string>
     <!-- Overall -->
-    <string name="general_info">基本資訊</string>
     <string name="offline">離線</string>
     <string name="core">核心 %d</string>
     <string name="gpu_freq">GPU 頻率</string>

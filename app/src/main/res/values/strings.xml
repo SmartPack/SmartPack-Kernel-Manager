@@ -117,7 +117,6 @@
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
-    <string name="general_info">General Information</string>
     <string name="offline">Offline</string>
     <string name="core">Core %d</string>
     <string name="gpu_freq">GPU Frequency</string>

@@ -24,6 +24,7 @@ import android.text.InputType;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.kernel.vm.VM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZSwap;
@@ -33,6 +34,8 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+
+import com.smartpack.kernelmanager.utils.ProgressBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,20 +47,58 @@ public class VMFragment extends RecyclerViewFragment {
 
     private List<GenericSelectView> mVMs = new ArrayList<>();
 
+    private Device.MemInfo mMemInfo;
+    private ProgressBarView mem;
+    private ProgressBarView swap;
+
     @Override
     protected void init() {
         super.init();
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
+        mMemInfo = Device.MemInfo.getInstance();
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+        memoryInit(items);
         VMInit(items);
         if (ZRAM.supported()) {
             zramInit(items);
         }
         zswapInit(items);
+    }
+
+    private void memoryInit (List<RecyclerViewItem> items){
+        CardView memcard = new CardView(getActivity());
+        memcard.setTitle(getString(R.string.memory));
+
+        long swap_total = mMemInfo.getItemMb("SwapTotal");
+        long mem_total = mMemInfo.getItemMb("MemTotal");
+        long swap_progress = swap_total - mMemInfo.getItemMb("SwapFree");
+        long mem_progress = mem_total - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"));
+
+        if ((mem_total) != 0) {
+            mem = new ProgressBarView();
+            mem.setTitle(getString(R.string.ram));
+            mem.setItems(mem_total, mem_progress);
+            mem.setUnit(getResources().getString(R.string.mb));
+            mem.setProgressColor(getResources().getColor(R.color.blue_accent));
+            memcard.addItem(mem);
+        }
+
+        if ((swap_total) != 0) {
+            swap = new ProgressBarView();
+            swap.setTitle(getString(R.string.swap));
+            swap.setItems(swap_total, swap_progress);
+            swap.setUnit(getResources().getString(R.string.mb));
+            swap.setProgressColor(getResources().getColor(R.color.green_accent));
+            memcard.addItem(swap);
+        }
+
+        if (memcard.size() > 0) {
+            items.add(memcard);
+        }
     }
 
     private void VMInit(List<RecyclerViewItem> items) {
