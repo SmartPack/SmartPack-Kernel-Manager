@@ -49,7 +49,7 @@ public class VM {
     }
 
     public static String getName(int position) {
-        return SUPPORTED_VM[position];
+        return Utils.upperCaseEachWord(SUPPORTED_VM[position]).replace("_", " ");
     }
 
     public static boolean exists(int position) {
