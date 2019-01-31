@@ -710,6 +710,16 @@
     <string name="wlan_ctrl_wakelock_divider">wlan_ctrl Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
+    <string name="wkl_sensorhub">SensorHub</string>
+    <string name="wkl_sensorhub_summary">The SensorHub Wakelock is one of the biggest wake sources. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
+    <string name="wkl_ssp">SSP</string>
+    <string name="wkl_ssp_summary">The SSP Wakelock is one of the biggest wake sources after Sensorhub. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
+    <string name="wkl_gps">GPS</string>
+    <string name="wkl_gps_summary">The bcm4359 Wakelock (GPS chip) is one of the biggest wake sources after Sensorhub &amp; SSP. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
+    <string name="wkl_wireless">Wireless</string>
+    <string name="wkl_wireless_summary">Wireless Wakelock. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
+    <string name="wkl_bluetooth">Bluetooth</string>
+    <string name="wkl_bluetooth_summary">Bluetooth Wakelock. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
 
     <!-- Virtual Memory -->
     <string name="swap">SWAP</string>

@@ -97,6 +97,16 @@ public class Wakelocks {
                 R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
         sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
                 R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_sensorhub_wl",
+                R.string.wkl_sensorhub, R.string.wkl_sensorhub_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ssp_wl",
+                R.string.wkl_ssp, R.string.wkl_ssp_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bcmdhd4359_wl",
+                R.string.wkl_gps, R.string.wkl_gps_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_wl",
+                R.string.wkl_wireless, R.string.wkl_wireless_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_wl",
+                R.string.wkl_bluetooth, R.string.wkl_bluetooth_summary));
     }
 
     // Wakelocks Order: 0-Name, 1-Time, 2-Wakeups
