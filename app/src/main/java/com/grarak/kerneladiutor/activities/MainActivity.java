@@ -54,6 +54,8 @@ import com.grarak.kerneladiutor.utils.kernel.thermal.Thermal;
 import com.grarak.kerneladiutor.utils.kernel.wake.Wake;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import com.smartpack.kernelmanager.utils.Wakelocks;
+
 import org.frap129.spectrum.Spectrum;
 
 import java.lang.ref.WeakReference;
@@ -70,6 +72,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /**
+         * Initialize Boeffla Wakelock Blocker
+         */
+        if(Wakelocks.boefflawlsupported()) {
+            Wakelocks.CopyWakelockBlockerDefault();
+        }
 
         /**
          * Initialice profile Sharedpreference
