@@ -55,6 +55,50 @@ public class Wakelocks {
     private static final String BCMDHD_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
     private static final String WLAN_CTRL_DIVIDER = "/sys/module/bcmdhd/parameters/wlctrl_divide";
 
+    private static final String WL_PARENT_1 = "/sys/module/wakeup/parameters";
+    private static final String WL_PARENT_2 = "/sys/module/smb135x_charger/parameters";
+
+    private static final List<Wakelock> sWakelocks = new ArrayList<>();
+
+    static {
+        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
+                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
+                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
+                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
+                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
+                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
+                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
+                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws",
+                R.string.ipa_wakelock, R.string.ipa_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws",
+                R.string.netlink_wakelock, R.string.netlink_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws",
+                R.string.qcom_rx_wakelock, R.string.qcom_rx_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws",
+                R.string.timerfd_wakelock, R.string.timerfd_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws",
+                R.string.wlan_extscan_wl_ws_wakelock, R.string.wlan_extscan_wl_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws",
+                R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
+        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
+                R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
+    }
+
     // Wakelocks Order: 0-Name, 1-Time, 2-Wakeups
     private static int mWakelockOrder = 1;
 
@@ -228,47 +272,6 @@ public class Wakelocks {
 
     }
 
-    private static final List<Wakelock> sWakelocks = new ArrayList<>();
-
-    static {
-        sWakelocks.add(new Wakelock("/sys/module/smb135x_charger/parameters/use_wlock",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_smb135x_wake_ws",
-                R.string.smb135x_wakelock, R.string.smb135x_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_si_ws",
-                R.string.sensor_ind_wakelock, R.string.sensor_ind_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_msm_hsic_ws",
-                R.string.msm_hsic_host_wakelock, R.string.msm_hsic_host_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_rx_wake",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws",
-                R.string.wlan_rx_wakelock, R.string.wlan_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_ctrl_wake",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws",
-                R.string.wlan_ctrl_wakelock, R.string.wlan_ctrl_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/wlan_wake",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_wake_ws",
-                R.string.wlan_wakelock, R.string.wlan_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluesleep_ws",
-                R.string.bluesleep_wakelock, R.string.bluesleep_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_ipa_ws",
-                R.string.ipa_wakelock, R.string.ipa_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_netlink_ws",
-                R.string.netlink_wakelock, R.string.netlink_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws",
-                R.string.qcom_rx_wakelock, R.string.qcom_rx_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_timerfd_ws",
-                R.string.timerfd_wakelock, R.string.timerfd_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws",
-                R.string.wlan_extscan_wl_ws_wakelock, R.string.wlan_extscan_wl_ws_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_wlan_ws",
-                R.string.wlan_ws_wakelock, R.string.wlan_ws_wakelock_summary));
-        sWakelocks.add(new Wakelock("/sys/module/wakeup/parameters/enable_bluedroid_timer_ws",
-                R.string.bluedroid_timer_wakelock, R.string.bluedroid_timer_wakelock_summary));
-    }
-
     public static void setBCMDHDDivider(int value, Context context) {
         run(Control.write(String.valueOf(value), BCMDHD_DIVIDER), BCMDHD_DIVIDER, context);
     }
@@ -327,8 +330,13 @@ public class Wakelocks {
         return sWakelocks;
     }
 
+    public static boolean hasotherWakeLocks() {
+        return Utils.existFile(WL_PARENT_1) || Utils.existFile(WL_PARENT_2);
+    }
+
     public static boolean supported() {
-        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider() || hasBCMDHDDivider();
+        return boefflawlsupported() || hasWlanctrlDivider() || hasWlanrxDivider() || hasMsmHsicDivider()
+	|| hasBCMDHDDivider() || hasotherWakeLocks();
     }
 
     private static void run(String command, String id, Context context) {
