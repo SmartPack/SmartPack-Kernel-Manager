@@ -1,5 +1,9 @@
 # Change-logs
 
+## 53. February 01, 2019
+*Release-tag: v7.1*
+Changes: Battery: Added thunder charge controller. Partially reverted the recent UI changes by considering user feedbacks (The app should now launch much fast). Wakelocks: Initialized boeffla wakelock blocker at launch for that the wakelocks blocked by default will be listed properly. Wakelocks: Fixed some wakelocks not showing up. Wakelocks: Added support to more wakelocks. Virtual memory: Updated title display style. Misc: Updated Chinese traditional translations.
+
 ## 52. January 26, 2019
 *Release-tag: v7.0*
 Changes: User Interface is largely modified (e.g. Overall, CPU, GPU, Battery, LMK, Misc etc). Moved almost all the information services (Battery, charging & RAM) into the overall page. CPU: cleaned up & updated MSM Limiter. build: updated gradle build tools. About: added Translators. Battery: added OTG Switch to permanently enable USB On-The-Go (OTG) mode. AppUpdater: merged updates from the upstream repo. Misc: Added Chinese (Traditional) translation (Credits: jason5545). Miscellaneous other changes. Please visit GitHub for more information.
