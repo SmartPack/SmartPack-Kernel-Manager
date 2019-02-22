@@ -237,8 +237,7 @@ public class Utils {
     }
 
     public static String getInternalDataStorage() {
-        return Environment.getExternalStorageDirectory().toString() + "/Android/data/" +
-                BuildConfig.APPLICATION_ID;
+        return Environment.getExternalStorageDirectory().toString() + "/SP";
     }
 
     // MD5 code from
