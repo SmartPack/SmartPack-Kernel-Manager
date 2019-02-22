@@ -91,7 +91,7 @@ public class Misc {
     }
 
     public static String getName(int position) {
-        return STUNE[position];
+        return STUNE[position].replace("_", " ").replace(".", " ");
     }
 
     public static boolean exists(int position) {
