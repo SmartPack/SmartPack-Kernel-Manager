@@ -56,10 +56,6 @@ public class SmartPack {
         return Device.getFingerprint().contains("OnePlus5");
     }
 
-    public static boolean isMotoG3() {
-        return Device.getFingerprint().contains("osprey");
-    }
-
     /**
      * Get current SmartPack version
      */
@@ -99,6 +95,6 @@ public class SmartPack {
     }
 
     public static boolean supported() {
-        return hasSmartPackVersion() || isOnePlusmsm8998() || isMotoG3() || hasSmartPackInstalled();
+        return hasSmartPackVersion() || isOnePlusmsm8998() || hasSmartPackInstalled();
     }
 }
