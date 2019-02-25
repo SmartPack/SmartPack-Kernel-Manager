@@ -22,6 +22,8 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.content.Context;
 import android.os.Vibrator;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -211,6 +213,38 @@ public class MiscFragment extends RecyclerViewFragment {
 	    });
 
 	    miscCard.addItem(archPower);
+	}
+
+	if (mMisc.hasLeases()) {
+	    SwitchView enable = new SwitchView();
+	    enable.setTitle(getString(R.string.leases_enable));
+	    enable.setSummary(getString(R.string.leases_enable_summary));
+	    enable.setChecked(mMisc.isLeasesEnabled());
+	    enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableLeases(isChecked, getActivity());
+		}
+	    });
+
+	    miscCard.addItem(enable);
+	}
+
+	if (mMisc.hasLeaseBreakTime()) {
+            GenericSelectView leaseBreakTime = new GenericSelectView();
+            leaseBreakTime.setTitle(getString(R.string.lease_break_time) + (" (s)"));
+            leaseBreakTime.setSummary(getString(R.string.lease_break_time_summary));
+            leaseBreakTime.setValue(mMisc.getLeaseBreakTime());
+            leaseBreakTime.setInputType(InputType.TYPE_CLASS_NUMBER);
+            leaseBreakTime.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mMisc.setLeaseBreakTime(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            miscCard.addItem(leaseBreakTime);
 	}
 
 	if (mMisc.hasSELinux()) {

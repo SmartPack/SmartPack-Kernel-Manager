@@ -50,6 +50,9 @@ public class Misc {
     private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
+    private static final String LEASES_ENABLE = "/proc/sys/fs/leases-enable";
+    private static final String LEASE_BREAK_TIME = "/proc/sys/fs/lease-break-time";
+
     private static final String WIREGUARD = "/sys/module/wireguard/version";
 
     private static final String PRINTK_MODE = "/sys/kernel/printk_mode/printk_mode";
@@ -224,6 +227,30 @@ public class Misc {
 
     public static String getWireguard() {
         return Utils.readFile(WIREGUARD);
+    }
+
+    public void enableLeases(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", LEASES_ENABLE), LEASES_ENABLE, context);
+    }
+
+    public boolean isLeasesEnabled() {
+        return Utils.readFile(LEASES_ENABLE).equals("1");
+    }
+
+    public boolean hasLeases() {
+        return Utils.existFile(LEASES_ENABLE);
+    }
+
+    public static String getLeaseBreakTime() {
+        return Utils.readFile(LEASE_BREAK_TIME);
+    }
+
+    public void setLeaseBreakTime(String value, Context context) {
+        run(Control.write(String.valueOf(value), LEASE_BREAK_TIME), LEASE_BREAK_TIME, context);
+    }
+
+    public static boolean hasLeaseBreakTime() {
+        return Utils.existFile(LEASE_BREAK_TIME);
     }
 
     private void run(String command, String id, Context context) {

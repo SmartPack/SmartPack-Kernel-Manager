@@ -772,6 +772,10 @@
     <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="hostname">Hostname</string>
     <string name="wireguard">WireGuard VPN</string>
+    <string name="leases_enable">Leases Enable</string>
+    <string name="leases_enable_summary">Enable or disable file leases on a system-wide basis</string>
+    <string name="lease_break_time">Lease Break Time</string>
+    <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>
