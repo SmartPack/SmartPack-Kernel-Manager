@@ -1,5 +1,9 @@
 # Change-logs
 
+## 54. February 25, 2019
+*Release-tag: v7.2*
+Changes: Moved profiles and backup's into a new folder "SP" inside internal storage. Misc: added control over Leases Breaks & Lease Break Time. Translations: added Chinese simplified (credits: Roiyaru). SmartPack: removed Moto G 2015 from the supported devices list.
+
 ## 53. February 01, 2019
 *Release-tag: v7.1*
 Changes: Battery: Added thunder charge controller. Partially reverted the recent UI changes by considering user feedbacks (The app should now launch much fast). Wakelocks: Initialized boeffla wakelock blocker at launch for that the wakelocks blocked by default will be listed properly. Wakelocks: Fixed some wakelocks not showing up. Wakelocks: Added support to more wakelocks. Virtual memory: Updated title display style. Misc: Updated Chinese traditional translations.
