@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+
+import com.smartpack.kernelmanager.utils.KLapse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +102,9 @@ public class ScreenFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+	if (KLapse.supported()) {
+            klapsInit(items);
+	}
 	if (mMisc.haskcalRed() || mMisc.haskcalGreen() || mMisc.haskcalBlue()) {
             kcalColorInit(items);
 	}
@@ -128,6 +134,324 @@ public class ScreenFragment extends RecyclerViewFragment {
         if (mMisc.hasGloveMode()) {
             gloveModeInit(items);
         }
+    }
+
+    private void klapsInit(List<RecyclerViewItem> items) {
+	CardView klapseCard = new CardView(getActivity());
+	klapseCard.setTitle(getString(R.string.klapse));
+
+        if (KLapse.hasEnable()) {
+	    SwitchView enable = new SwitchView();
+	    enable.setSummary(getString(R.string.klapse_summary));
+	    enable.setChecked(KLapse.isEnabled());
+	    enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+	    	@Override
+	    	public void onChanged(SwitchView switchView, boolean isChecked) {
+		    KLapse.enable(isChecked, getActivity());
+	    	}
+	    });
+
+	    klapseCard.addItem(enable);
+	}
+
+        if (KLapse.hasklapseStart()) {
+            SeekBarView klapseStart = new SeekBarView();
+            klapseStart.setTitle(getString(R.string.night_mode_schedule));
+            klapseStart.setSummary(getString(R.string.start_time));
+            klapseStart.setMax(23);
+            klapseStart.setProgress(KLapse.getklapseStart());
+            klapseStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setklapseStart((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(klapseStart);
+        }
+
+        if (KLapse.hasklapseStop()) {
+            SeekBarView klapseStop = new SeekBarView();
+            klapseStop.setSummary(getString(R.string.end_time));
+            klapseStop.setMax(23);
+            klapseStop.setProgress(KLapse.getklapseStop());
+            klapseStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setklapseStop((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(klapseStop);
+        }
+
+        if (KLapse.hasScalingRate()) {
+            GenericSelectView scalingRate = new GenericSelectView();
+            scalingRate.setTitle(getString(R.string.scaling_rate));
+            scalingRate.setSummary(getString(R.string.scaling_rate_summary));
+            scalingRate.setValue(KLapse.getScalingRate());
+            scalingRate.setInputType(InputType.TYPE_CLASS_NUMBER);
+            scalingRate.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setScalingRate(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(scalingRate);
+        }
+
+        if (KLapse.hasFadeBackMinutes()) {
+            GenericSelectView fadebackMinutes = new GenericSelectView();
+            fadebackMinutes.setTitle(getString(R.string.fadeback_time));
+            fadebackMinutes.setSummary(getString(R.string.fadeback_time_summary));
+            fadebackMinutes.setValue(KLapse.getFadeBackMinutes());
+            fadebackMinutes.setInputType(InputType.TYPE_CLASS_NUMBER);
+            fadebackMinutes.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setFadeBackMinutes(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(fadebackMinutes);
+        }
+
+        if (KLapse.hasklapseRed()) {
+            SeekBarView targetRed = new SeekBarView();
+            targetRed.setTitle(getString(R.string.nightmode_rgb));
+            targetRed.setSummary(getString(R.string.red));
+            targetRed.setMax(256);
+            targetRed.setProgress(KLapse.getklapseRed());
+            targetRed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setklapseRed((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(targetRed);
+        }
+
+        if (KLapse.hasklapseGreen()) {
+            SeekBarView targetGreen = new SeekBarView();
+            targetGreen.setSummary(getString(R.string.green));
+            targetGreen.setMax(256);
+            targetGreen.setProgress(KLapse.getklapseGreen());
+            targetGreen.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setklapseGreen((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(targetGreen);
+        }
+
+        if (KLapse.hasklapseBlue()) {
+            SeekBarView targetBlue = new SeekBarView();
+            targetBlue.setSummary(getString(R.string.blue));
+            targetBlue.setMax(256);
+            targetBlue.setProgress(KLapse.getklapseBlue());
+            targetBlue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setklapseBlue((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(targetBlue);
+        }
+
+        if (KLapse.hasDayTimeRed()) {
+            SeekBarView dayTimeRed = new SeekBarView();
+            dayTimeRed.setTitle(getString(R.string.daytime_rgb));
+            dayTimeRed.setSummary(getString(R.string.red));
+            dayTimeRed.setMax(256);
+            dayTimeRed.setProgress(KLapse.getDayTimeRed());
+            dayTimeRed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setDayTimeRed((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(dayTimeRed);
+        }
+
+        if (KLapse.hasDayTimeGreen()) {
+            SeekBarView dayTimeGreen = new SeekBarView();
+            dayTimeGreen.setSummary(getString(R.string.green));
+            dayTimeGreen.setMax(256);
+            dayTimeGreen.setProgress(KLapse.getDayTimeGreen());
+            dayTimeGreen.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setDayTimeGreen((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(dayTimeGreen);
+        }
+
+        if (KLapse.hasDayTimeBlue()) {
+            SeekBarView dayTimeBlue = new SeekBarView();
+            dayTimeBlue.setSummary(getString(R.string.blue));
+            dayTimeBlue.setMax(256);
+            dayTimeBlue.setProgress(KLapse.getDayTimeBlue());
+            dayTimeBlue.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setDayTimeBlue((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(dayTimeBlue);
+        }
+
+        if (KLapse.hasAutoBrightnessFactor()) {
+	    SwitchView autoBrightness = new SwitchView();
+	    autoBrightness.setTitle(getString(R.string.auto_brightness));
+	    autoBrightness.setSummary(getString(R.string.auto_brightness_summary));
+	    autoBrightness.setChecked(KLapse.isAutoBrightnessFactorEnabled());
+	    autoBrightness.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+	    	@Override
+	    	public void onChanged(SwitchView switchView, boolean isChecked) {
+		    KLapse.enableAutoBrightnessFactor(isChecked, getActivity());
+	    	}
+	    });
+
+	    klapseCard.addItem(autoBrightness);
+	}
+
+        if (KLapse.hasBrightFactStart()) {
+            SeekBarView brightFactStart = new SeekBarView();
+            brightFactStart.setTitle(getString(R.string.auto_brightness_schedule));
+            brightFactStart.setSummary(getString(R.string.start_time));
+            brightFactStart.setMax(23);
+            brightFactStart.setProgress(KLapse.getBrightFactStart());
+            brightFactStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setBrightFactStart((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(brightFactStart);
+        }
+
+        if (KLapse.hasBrightFactStop()) {
+            SeekBarView brightFactStop = new SeekBarView();
+            brightFactStop.setSummary(getString(R.string.end_time));
+            brightFactStop.setMax(23);
+            brightFactStop.setProgress(KLapse.getBrightFactStop());
+            brightFactStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setBrightFactStop((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            klapseCard.addItem(brightFactStop);
+        }
+
+        if (KLapse.hasBrightnessFactor()) {
+            GenericSelectView brightnessFactor = new GenericSelectView();
+            brightnessFactor.setTitle(getString(R.string.brightness_factor));
+            brightnessFactor.setSummary(getString(R.string.brightness_factor_summary));
+            brightnessFactor.setValue(KLapse.getBrightnessFactor());
+            brightnessFactor.setInputType(InputType.TYPE_CLASS_NUMBER);
+            brightnessFactor.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setBrightnessFactor(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(brightnessFactor);
+        }
+
+        if (KLapse.hasPulseFreq()) {
+            GenericSelectView pulseFreq = new GenericSelectView();
+            pulseFreq.setTitle(getString(R.string.pulse_freq));
+            pulseFreq.setSummary(getString(R.string.pulse_freq_summary));
+            pulseFreq.setValue(KLapse.getPulseFreq());
+            pulseFreq.setInputType(InputType.TYPE_CLASS_NUMBER);
+            pulseFreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setPulseFreq(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(pulseFreq);
+        }
+
+        if (KLapse.hasBacklightRange()) {
+            GenericSelectView backlightRange = new GenericSelectView();
+            backlightRange.setTitle(getString(R.string.backlight_range));
+            backlightRange.setSummary(getString(R.string.backlight_range_summary));
+            backlightRange.setValue(KLapse.getBacklightRange());
+            backlightRange.setInputType(InputType.TYPE_CLASS_NUMBER);
+            backlightRange.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setBacklightRange(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(backlightRange);
+        }
+
+	if (klapseCard.size() > 0) {
+            items.add(klapseCard);
+	}
+
     }
 
     private void kcalColorInit(List<RecyclerViewItem> items) {
