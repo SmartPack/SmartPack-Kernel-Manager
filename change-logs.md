@@ -1,5 +1,9 @@
 # Change-logs
 
+## 55. March 06, 2019
+*Release-tag: v7.3*
+Changes: Screen: Added support to K-Lapse, A kernel level live-display module. Updated gradle to 3.3.2. Updated spectrum support checking method.
+
 ## 54. February 25, 2019
 *Release-tag: v7.2*
 Changes: Moved profiles and backup's into a new folder "SP" inside internal storage. Misc: added control over Leases Breaks & Lease Break Time. Translations: added Chinese simplified (credits: Roiyaru). SmartPack: removed Moto G 2015 from the supported devices list.

@@ -1,11 +1,10 @@
 {
-  "latestVersion": "7.2-20190225",
+  "latestVersion": "7.3-20190306",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Moved profiles and backup's into a new folder 'SP' inside internal storage.",
-    "- Misc: added control over Leases Breaks & Lease Break Time.",
-    "- Translations: added Chinese simplified (credits: Roiyaru).",
-    "- SmartPack: removed Moto G 2015 from the supported devices list."
+    "- Added support to K-Lapse, A kernel level live-display module.",
+    "- Updated gradle to 3.3.2.",
+    "- Updated spectrum support checking method."
   ]
 }
