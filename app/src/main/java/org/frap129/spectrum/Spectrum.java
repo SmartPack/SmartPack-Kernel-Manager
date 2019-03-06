@@ -23,7 +23,6 @@ package org.frap129.spectrum;
 
 import android.os.AsyncTask;
 
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 /*
@@ -35,9 +34,6 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
  */
 
 public class Spectrum {
-
-    private static final String SPECTRUM = "/init.spectrum.sh";
-
 
     public static String getProfile(){
         return RootUtils.runCommand("getprop persist.spectrum.profile");
@@ -65,6 +61,6 @@ public class Spectrum {
     }
 
     public static boolean supported() {
-        return Utils.existFile(SPECTRUM);
+        return RootUtils.getProp("spectrum.support").equals("1");
     }
 }
