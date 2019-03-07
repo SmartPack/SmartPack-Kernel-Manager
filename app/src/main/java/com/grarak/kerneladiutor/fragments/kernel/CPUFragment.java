@@ -117,7 +117,8 @@ public class CPUFragment extends RecyclerViewFragment {
         if (Misc.hasCpuQuiet()) {
             cpuQuietInit(items);
         }
-        if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost() || Misc.hasDynStuneBoost()) {
+        if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost()
+		|| Misc.hasDynStuneBoost() || Misc.hasDynStuneBoostDuration()) {
             cpuBoostInit(items);
         }
         if (MSMLimiter.supported()) {
@@ -734,6 +735,22 @@ public class CPUFragment extends RecyclerViewFragment {
             });
 
             cpuBoost.addItem(dynstuneBoost);
+
+            if (Misc.hasDynStuneBoostDuration()) {
+            	GenericSelectView stuneBoostDuration = new GenericSelectView();
+            	stuneBoostDuration.setSummary(getString(R.string.stune_boost_ms) + (" (ms)"));
+            	stuneBoostDuration.setValue(Misc.getDynStuneBoostDuration());
+            	stuneBoostDuration.setInputType(InputType.TYPE_CLASS_NUMBER);
+            	stuneBoostDuration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    	Misc.setDynStuneBoostDuration(value, getActivity());
+                    	genericSelectView.setValue(value);
+                    }
+            	});
+
+                cpuBoost.addItem(stuneBoostDuration);
+	    }
 
             if (!(Prefs.getBoolean("advanced_settings", false, getActivity())))
 		Prefs.saveBoolean("advanced_settings", false, getActivity());

@@ -211,6 +211,7 @@
     <string name="freq_control">Frequency Control</string>
     <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
+    <string name="stune_boost_ms">Stune Boost Duration</string>
     <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Input Boost -->
