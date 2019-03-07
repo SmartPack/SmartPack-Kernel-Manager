@@ -551,8 +551,7 @@
     <string name="brightness_factor">Brightness Factor</string>
     <string name="brightness_factor_summary">Turn off K-Lapse Auto-brightness control to use this feature. Values: 2-10 (10: Accurate brightness; 5: 50% of current brightness).</string>
     <string name="auto_brightness_schedule">Auto-brightness Schedule (Hour)</string>
-    <string name="backlight_range">Backlight Range (Min - Max)</string>
-    <string name="backlight_range_summary">The brightness range within which K-Lapse should scale from Daytime to Night Mode Colors.</string>
+    <string name="backlight_range">Backlight Range</string>
     <string name="pulse_freq">Pulse Frequency</string>
     <string name="pulse_freq_summary">The number of milliseconds after which klapse_pulse is called.</string>
 

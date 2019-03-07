@@ -434,20 +434,34 @@ public class ScreenFragment extends RecyclerViewFragment {
         }
 
         if (KLapse.hasBacklightRange()) {
-            GenericSelectView backlightRange = new GenericSelectView();
-            backlightRange.setTitle(getString(R.string.backlight_range));
-            backlightRange.setSummary(getString(R.string.backlight_range_summary));
-            backlightRange.setValue(KLapse.getBacklightRange());
-            backlightRange.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightRange.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+            GenericSelectView backlightRangeMin = new GenericSelectView();
+            backlightRangeMin.setTitle(getString(R.string.backlight_range));
+            backlightRangeMin.setSummary("Min");
+            backlightRangeMin.setValue(KLapse.getBacklightRange("min"));
+            backlightRangeMin.setInputType(InputType.TYPE_CLASS_NUMBER);
+            backlightRangeMin.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                 @Override
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBacklightRange(value, getActivity());
+                    KLapse.setBacklightRange("min", value, getActivity());
                     genericSelectView.setValue(value);
                 }
             });
 
-            klapseCard.addItem(backlightRange);
+            klapseCard.addItem(backlightRangeMin);
+
+            GenericSelectView backlightRangeMax = new GenericSelectView();
+            backlightRangeMax.setSummary("Max");
+            backlightRangeMax.setValue(KLapse.getBacklightRange("max"));
+            backlightRangeMax.setInputType(InputType.TYPE_CLASS_NUMBER);
+            backlightRangeMax.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setBacklightRange("max", value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            klapseCard.addItem(backlightRangeMax);
         }
 
 	if (klapseCard.size() > 0) {

@@ -244,12 +244,43 @@ public class KLapse {
         return Utils.existFile(BRIGHTNESS_FACTOR_END);
     }
 
-    public static void setBacklightRange(String value, Context context) {
-        run(Control.write(String.valueOf(value), BACKLIGHT_RANGE), BACKLIGHT_RANGE, context);
+    private static int getChecksum(int arg0, int arg1) {
+        return (Integer.MAX_VALUE ^ (arg0 & 0xff) + (arg1 & 0xff));
     }
 
-    public static String getBacklightRange() {
-        return Utils.readFile(BACKLIGHT_RANGE);
+    private static void KLpaseRun(String value, String path, String id, Context context) {
+        int checksum = value.contains(" ") ?
+                getChecksum(Utils.strToInt(value.split(" ")[0]),
+                        Utils.strToInt(value.split(" ")[1])) :
+                getChecksum(Utils.strToInt(value), 0);
+        run(Control.write(value + " " + checksum, path), id, context);
+        run(Control.write(value, path), id + "nochecksum", context);
+    }
+
+    public static void setBacklightRange(String channel, String value, Context context) {
+        switch (channel) {
+            case "min":
+                String currentMax = getBacklightRange("max");
+		KLpaseRun(value + " " + currentMax, BACKLIGHT_RANGE, BACKLIGHT_RANGE, context);
+                break;
+            case "max":
+                String currentMin = getBacklightRange("min");
+		KLpaseRun(currentMin + " " + value, BACKLIGHT_RANGE, BACKLIGHT_RANGE, context);
+                break;
+        }
+    }
+
+    public static String getBacklightRange(String channel) {
+        String[] values = Utils.readFile(BACKLIGHT_RANGE).split(" ");
+        String Min = String.valueOf(Utils.strToInt(values[0])),
+            Max = String.valueOf(Utils.strToInt(values[1]));
+        switch (channel) {
+            case "min":
+                return Min;
+            case "max":
+                return Max;
+        }
+        return "";
     }
 
     public static boolean hasBacklightRange() {
