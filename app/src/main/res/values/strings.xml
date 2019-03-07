@@ -533,7 +533,10 @@
 
     <!-- K-Lapse -->
     <string name="klapse">K-Lapse</string>
-    <string name="klapse_summary">Enable K-Lapse, a kernel level live-display module by tanish2k09. This switch should be enabled to tune the rest of K-Lapse parameters.</string>
+    <string name="klapse_summary">Select preferred K-Lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-Lapse parameters.</string>
+    <string name="turn_off">Turned-Off</string>
+    <string name="time_scale">Time Based Scaling</string>
+    <string name="bright_scale">Brightness Based Scaling</string>
     <string name="night_mode_schedule">Night Mode Schedule (Hour)</string>
     <string name="start_time">Start</string>
     <string name="end_time">End</string>

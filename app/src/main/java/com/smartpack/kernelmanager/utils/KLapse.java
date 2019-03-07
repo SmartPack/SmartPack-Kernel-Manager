@@ -24,6 +24,7 @@ package com.smartpack.kernelmanager.utils;
 import android.content.Context;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
@@ -55,16 +56,24 @@ public class KLapse {
     private static final String PULSE_FREQ = KLAPSE + "/pulse_freq";
     private static final String BACKLIGHT_RANGE = KLAPSE + "/backlight_range";
 
-    public static void enable(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", KLAPSE_ENABLE), KLAPSE_ENABLE, context);
-    }
-
-    public static boolean isEnabled() {
-        return Utils.readFile(KLAPSE_ENABLE).startsWith("1");
-    }
-
     public static boolean hasEnable() {
         return Utils.existFile(KLAPSE_ENABLE);
+    }
+
+    public static List<String> enable(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.turn_off));
+        list.add(context.getString(R.string.time_scale));
+        list.add(context.getString(R.string.bright_scale));
+        return list;
+    }
+
+    public static int getklapseEnable() {
+        return Utils.strToInt(Utils.readFile(KLAPSE_ENABLE));
+    }
+    
+    public static void setklapseEnable(int value, Context context) {
+        run(Control.write(String.valueOf(value), KLAPSE_ENABLE), KLAPSE_ENABLE, context);
     }
 
     public static void setklapseStart(int value, Context context) {
