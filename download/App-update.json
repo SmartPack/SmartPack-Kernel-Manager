@@ -1,10 +1,10 @@
 {
-  "latestVersion": "7.3-20190306",
+  "latestVersion": "7.4-20190309",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Added support to K-Lapse, A kernel level live-display module.",
-    "- Updated gradle to 3.3.2.",
-    "- Updated spectrum support checking method."
+    "- Screen: K-Lapse: added control over brightness-based scaling mode.",
+    "- Screen: K-Lapse: Separatedd Min & Max backlight range.",
+    "- CPU: CPU Boost: added support to Dynamic Stune Boost duration."
   ]
 }
