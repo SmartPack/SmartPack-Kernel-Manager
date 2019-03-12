@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
@@ -26,6 +28,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.io.IO;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -182,7 +185,42 @@ public class IOFragment extends RecyclerViewFragment {
             });
 
             StorageCard.addItem(rqAffinity);
-        }
+	}
+
+	if (mIO.hasNomerges(storage)) {
+	    SeekBarView Nomerges = new SeekBarView();
+            Nomerges.setTitle(getString(R.string.nomerges));
+            Nomerges.setSummary(getString(R.string.nomerges_summary));
+            Nomerges.setMax(2);
+            Nomerges.setProgress(mIO.getNomerges(storage));
+            Nomerges.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mIO.setNomerges(storage, position, getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            StorageCard.addItem(Nomerges);
+	}
+
+	if (mIO.hasNrRequests(storage)) {
+            GenericSelectView NrRequests = new GenericSelectView();
+            NrRequests.setTitle(getString(R.string.nr_requests));
+            NrRequests.setSummary(getString(R.string.nr_requests_summary));
+            NrRequests.setValue(mIO.getNrRequests(storage));
+            NrRequests.setValueRaw(NrRequests.getValue());
+            NrRequests.setInputType(InputType.TYPE_CLASS_NUMBER);
+            NrRequests.setOnGenericValueListener((genericSelectView, value) -> {
+                mIO.setNrRequests(storage, value, getActivity());
+                genericSelectView.setValue(value);
+            });
+
+            StorageCard.addItem(NrRequests);
+	}
 
 	if (StorageCard.size() > 0) {
             items.add(StorageCard);
