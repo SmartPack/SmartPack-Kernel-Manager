@@ -1051,7 +1051,7 @@
 
     <!-- FAQ -->
     <string name="how_different">Q1. How this App different from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This App is significantly modified to meet the needs of Smart-Pack-Kernel (e.g. CPU Input Boost control, Advanced Charge Control Interface (Samsung msm8974 kernels), SELinux switch, OTA support for SmartPack-Kernel, Display Backlight Control and more).</string>
+    <string name="how_different_summary">Ans. This App is significantly modified to meet the needs of Smart-Pack-Kernel. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
     <string name="can_i_use">Q2. Can I use this App with other custom kernels?</string>
     <string name="can_i_use_summary">Ans. Why not? It will work as usual.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>

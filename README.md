@@ -9,7 +9,9 @@
 * CPU Input Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
-* Boeffla Sound Control (Lord Boeffla).
+* K-Lapse Support (tanish2k09)
+* Boeffla Sound (Lord Boeffla) with Per-channel Control
+* Per-channel control for Flar's sound
 * Significantly different Faux Sound implementation.
 * In-built Spectrum Support (frap129).
 * Adreno Boost (flar2).
