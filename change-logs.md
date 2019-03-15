@@ -1,5 +1,9 @@
 # Change-logs
 
+## 57. March 15, 2019
+*Release-tag: v7.5*
+Changes: I/O: Add support to No-Merges & NR Requests. Other (minor) changes.
+
 ## 56. March 09, 2019
 *Release-tag: v7.4*
 Changes: Screen: K-Lapse: added control over brightness-based scaling mode. Screen: K-Lapse: Separated backlight range Min & Max. CPU: CPU Boost: added support to Dynamic Stune Boost duration.
