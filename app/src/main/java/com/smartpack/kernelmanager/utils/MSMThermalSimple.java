@@ -92,7 +92,7 @@ public class MSMThermalSimple {
     }
 
     public static String getName(int position) {
-        return THERMAL_ZONES[position];
+        return Utils.upperCaseEachWord(THERMAL_ZONES[position]);
     }
 
     public static boolean exists(int position) {

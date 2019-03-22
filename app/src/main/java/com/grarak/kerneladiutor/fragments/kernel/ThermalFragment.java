@@ -883,7 +883,7 @@ public class ThermalFragment extends RecyclerViewFragment {
 	for (int i = 0; i < MSMThermalSimple.size(); i++) {
             if (MSMThermalSimple.exists(i)) {
                 GenericSelectView thermalZone = new GenericSelectView();
-                thermalZone.setSummary(MSMThermalSimple.getName(i));
+                thermalZone.setSummary(("Thermal ") + MSMThermalSimple.getName(i));
                 thermalZone.setValue(MSMThermalSimple.getValue(i));
                 thermalZone.setValueRaw(thermalZone.getValue());
                 thermalZone.setInputType(InputType.TYPE_CLASS_NUMBER);
