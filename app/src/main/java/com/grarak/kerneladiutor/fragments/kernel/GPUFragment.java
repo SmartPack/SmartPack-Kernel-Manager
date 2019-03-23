@@ -202,19 +202,34 @@ public class GPUFragment extends RecyclerViewFragment {
         CardView simpleGpu = new CardView(getActivity());
         simpleGpu.setTitle(getString(R.string.simple_gpu_algorithm));
 
+	SeekBarView laziness = new SeekBarView();
+	SeekBarView rampThreshold = new SeekBarView();
+
 	SwitchView enable = new SwitchView();
 	enable.setSummary(getString(R.string.simple_gpu_algorithm_summary));
 	enable.setChecked(SimpleGPU.isSimpleGpuEnabled());
-	enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-		SimpleGPU.enableSimpleGpu(isChecked, getActivity());
-            }
+	enable.addOnSwitchListener((switchView, isChecked) -> {
+	    SimpleGPU.enableSimpleGpu(isChecked, getActivity());
+	    getHandler().postDelayed(() -> {
+	    // Show or hide other options on the basis of the main driver status
+	    if (SimpleGPU.isSimpleGpuEnabled()) {
+		if (SimpleGPU.hasSimpleGpuLaziness()) {
+		    laziness.setProgress(SimpleGPU.getSimpleGpuLaziness());
+		    simpleGpu.addItem(laziness);
+		}
+		if (SimpleGPU.hasSimpleGpuRampThreshold()) {
+		    rampThreshold.setProgress(SimpleGPU.getSimpleGpuRampThreshold());
+		    simpleGpu.addItem(rampThreshold);
+		}
+	    } else {
+		simpleGpu.removeItem(laziness);
+		simpleGpu.removeItem(rampThreshold);
+	    }
+	}, 100);
 	});
 
 	simpleGpu.addItem(enable);
 
-	SeekBarView laziness = new SeekBarView();
 	laziness.setTitle(getString(R.string.laziness));
 	laziness.setSummary(getString(R.string.laziness_summary));
 	laziness.setMax(10);
@@ -230,9 +245,12 @@ public class GPUFragment extends RecyclerViewFragment {
             }
 	});
 
-	simpleGpu.addItem(laziness);
+	if (SimpleGPU.isSimpleGpuEnabled() && SimpleGPU.hasSimpleGpuLaziness()) {
+	    simpleGpu.addItem(laziness);
+	} else {
+	    simpleGpu.removeItem(laziness);
+	}
 
-	SeekBarView rampThreshold = new SeekBarView();
 	rampThreshold.setTitle(getString(R.string.ramp_thresold));
 	rampThreshold.setSummary(getString(R.string.ramp_thresold_summary));
 	rampThreshold.setMax(10);
@@ -248,7 +266,11 @@ public class GPUFragment extends RecyclerViewFragment {
             }
 	});
 
-	simpleGpu.addItem(rampThreshold);
+	if (SimpleGPU.isSimpleGpuEnabled() && SimpleGPU.hasSimpleGpuRampThreshold()) {
+	    simpleGpu.addItem(rampThreshold);
+	} else {
+	    simpleGpu.removeItem(rampThreshold);
+	}
 
         if (simpleGpu.size() > 0) {
             items.add(simpleGpu);
@@ -259,19 +281,41 @@ public class GPUFragment extends RecyclerViewFragment {
         CardView adrenoIdler = new CardView(getActivity());
         adrenoIdler.setTitle(getString(R.string.adreno_idler));
 
+	SeekBarView downDiff = new SeekBarView();
+	SeekBarView idleWait = new SeekBarView();
+	SeekBarView idleWorkload = new SeekBarView();
+
 	SwitchView enable = new SwitchView();
 	enable.setSummary(getString(R.string.adreno_idler_summary));
 	enable.setChecked(AdrenoIdler.isAdrenoIdlerEnabled());
-	enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-            @Override
-            public void onChanged(SwitchView switchView, boolean isChecked) {
-		AdrenoIdler.enableAdrenoIdler(isChecked, getActivity());
-            }
+	enable.addOnSwitchListener((switchView, isChecked) -> {
+	    AdrenoIdler.enableAdrenoIdler(isChecked, getActivity());
+	    getHandler().postDelayed(() -> {
+	    // Show or hide other adreno idler options on the basis of the main driver status
+	    if (AdrenoIdler.isAdrenoIdlerEnabled()) {
+		if (AdrenoIdler.hasAdrenoIdlerDownDiff()) {
+		    downDiff.setProgress(AdrenoIdler.getAdrenoIdlerDownDiff());
+		    adrenoIdler.addItem(downDiff);
+		}
+		if (AdrenoIdler.hasAdrenoIdlerIdleWait()) {
+		    idleWait.setProgress(AdrenoIdler.getAdrenoIdlerIdleWait());
+		    adrenoIdler.addItem(idleWait);
+		}
+		if (AdrenoIdler.hasAdrenoIdlerIdleWorkload()) {
+		    idleWorkload.setProgress(AdrenoIdler.getAdrenoIdlerIdleWorkload() - 1);
+		    adrenoIdler.addItem(idleWorkload);
+		}
+	    } else {
+		adrenoIdler.removeItem(downDiff);
+		adrenoIdler.removeItem(idleWait);
+		adrenoIdler.removeItem(idleWorkload);
+	    }
+	}, 100);
+
 	});
 
 	adrenoIdler.addItem(enable);
 
-	SeekBarView downDiff = new SeekBarView();
 	downDiff.setTitle(getString(R.string.down_differential));
 	downDiff.setSummary(getString(R.string.down_differential_summary));
 	downDiff.setMax(99);
@@ -287,9 +331,12 @@ public class GPUFragment extends RecyclerViewFragment {
             }
 	});
 
-	adrenoIdler.addItem(downDiff);
+	if (AdrenoIdler.isAdrenoIdlerEnabled() && AdrenoIdler.hasAdrenoIdlerDownDiff()) {
+	    adrenoIdler.addItem(downDiff);
+	} else {
+	    adrenoIdler.removeItem(downDiff);
+	}
 
-	SeekBarView idleWait = new SeekBarView();
 	idleWait.setTitle(getString(R.string.idle_wait));
 	idleWait.setSummary(getString(R.string.idle_wait_summary));
 	idleWait.setMax(99);
@@ -305,9 +352,12 @@ public class GPUFragment extends RecyclerViewFragment {
             }
 	});
 
-	adrenoIdler.addItem(idleWait);
+	if (AdrenoIdler.isAdrenoIdlerEnabled() && AdrenoIdler.hasAdrenoIdlerIdleWait()) {
+	    adrenoIdler.addItem(idleWait);
+	} else {
+	    adrenoIdler.removeItem(idleWait);
+	}
 
-	SeekBarView idleWorkload = new SeekBarView();
 	idleWorkload.setTitle(getString(R.string.workload));
 	idleWorkload.setSummary(getString(R.string.workload_summary));
 	idleWorkload.setMax(10);
@@ -324,7 +374,11 @@ public class GPUFragment extends RecyclerViewFragment {
             }
 	});
 
-	adrenoIdler.addItem(idleWorkload);
+	if (AdrenoIdler.isAdrenoIdlerEnabled() && AdrenoIdler.hasAdrenoIdlerIdleWorkload()) {
+	    adrenoIdler.addItem(idleWorkload);
+	} else {
+	    adrenoIdler.removeItem(idleWorkload);
+	}
 
 	if (adrenoIdler.size() > 0) {
             items.add(adrenoIdler);
