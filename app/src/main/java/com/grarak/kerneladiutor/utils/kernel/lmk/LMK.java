@@ -75,6 +75,10 @@ public class LMK {
         return Arrays.asList(value.split(","));
     }
 
+    public static boolean hasMinFree() {
+        return Utils.existFile(MINFREE);
+    }
+
     public static void enableAdaptive(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", ADAPTIVE), ADAPTIVE, context);
     }

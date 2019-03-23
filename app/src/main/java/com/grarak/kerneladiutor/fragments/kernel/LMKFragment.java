@@ -71,13 +71,13 @@ public class LMKFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (LMK.hasAdaptive()) {
-            adaptiveInit(items);
+        if (LMK.hasAdaptive() || LMK.hasMinFree() || LMK.hasSwapWaitPercent() || LMK.hasSwapWait()) {
+            lmkInit(items);
         }
         profileInit(items);
     }
 
-    private void adaptiveInit(List<RecyclerViewItem> items) {
+    private void lmkInit(List<RecyclerViewItem> items) {
         CardView lmkCard = new CardView(getActivity());
         lmkCard.setTitle(getString(R.string.lmk));
 
