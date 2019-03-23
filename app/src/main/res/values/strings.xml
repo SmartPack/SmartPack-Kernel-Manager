@@ -98,7 +98,8 @@
     <string name="wake">Wake Gestures</string>
     <string name="led">Display and LED</string>
     <string name="io_scheduler">I/O Scheduler</string>
-    <string name="ksm">Kernel Samepage Merging</string>
+    <string name="ksm">KSM</string>
+    <string name="uksm">UKSM</string>
     <string name="lmk">Low Memory Killer</string>
     <string name="virtual_memory">Virtual Memory</string>
     <string name="entropy">Entropy</string>
@@ -674,6 +675,8 @@
     <string name="deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
     <string name="max_cpu_usage">Max CPU Usage</string>
     <string name="max_cpu_usage_summary">Max CPU percentage to use when merging pages.</string>
+    <string name="uksm_governor">UKSM CPU Governor</string>
+    <string name="uksm_governor_summary">Set the CPU Governor for UKSM.</string>
 
     <!-- Low Memory Killer -->
     <string name="foreground_app">Foreground Applications</string>

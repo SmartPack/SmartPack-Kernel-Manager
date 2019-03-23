@@ -23,9 +23,11 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.ksm.KSM;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
+import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.ArrayList;
@@ -40,6 +42,10 @@ public class KSMFragment extends RecyclerViewFragment {
 
     private List<DescriptionView> mInfos = new ArrayList<>();
 
+    public int getSpanCount() {
+        return super.getSpanCount() + 1;
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -51,6 +57,14 @@ public class KSMFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         infoInit(items);
+
+        CardView ksm = new CardView(getActivity());
+        if (mKSM.isUKSM()) {
+            ksm.setTitle("Ultra Kernel Samepage Merging");
+        } else {
+            ksm.setTitle("Kernel Samepage Merging");
+        }
+        ksm.setFullSpan(true);
 
         if (mKSM.hasEnable()) {
             SwitchView enable = new SwitchView();
@@ -64,7 +78,18 @@ public class KSMFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(enable);
+            ksm.addItem(enable);
+        }
+
+	if (mKSM.hasCpuGovernor()) {
+            SelectView governor = new SelectView();
+            governor.setTitle(getString(R.string.uksm_governor));
+            governor.setSummary(getString(R.string.uksm_governor_summary));
+            governor.setItems(mKSM.getCpuGovernors());
+            governor.setItem(mKSM.getCpuGovernor());
+            governor.setOnItemSelected((selectView, position, item)
+                    -> mKSM.setCpuGovernor(item, getActivity()));
+             ksm.addItem(governor);
         }
 
         if (mKSM.hasDeferredTimer()) {
@@ -79,7 +104,7 @@ public class KSMFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(deferredTimer);
+            ksm.addItem(deferredTimer);
         }
 
         if (mKSM.hasPagesToScan()) {
@@ -98,7 +123,7 @@ public class KSMFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(pagesToScan);
+            ksm.addItem(pagesToScan);
         }
 
         if (mKSM.hasSleepMilliseconds()) {
@@ -119,7 +144,7 @@ public class KSMFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(sleepMilliseconds);
+            ksm.addItem(sleepMilliseconds);
         }
 
         if (mKSM.hasMaxCpuPercentage()) {
@@ -139,7 +164,11 @@ public class KSMFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(maxCpuPercentage);
+            ksm.addItem(maxCpuPercentage);
+        }
+
+	if (ksm.size() > 0) {
+            items.add(ksm);
         }
     }
 
