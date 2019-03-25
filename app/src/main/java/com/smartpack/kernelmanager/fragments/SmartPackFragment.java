@@ -67,7 +67,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	CardView smartpack = new CardView(getActivity());
 	smartpack.setTitle(getString(R.string.smartpack_kernel));
 
-	if (SmartPack.hasSmartPackInstalled()) {
+	if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {
             DescriptionView currentspversion = new DescriptionView();
             currentspversion.setTitle(("Current ") + getString(R.string.version));
             if (SmartPack.hasSmartPackVersion()) {
@@ -78,7 +78,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(currentspversion);
 	}
 
-	if (SmartPack.supported() && (Build.VERSION.SDK_INT >= 27)) {
+	if (SmartPack.supported() && Build.VERSION.SDK_INT >= 27) {
             DescriptionView spversion = new DescriptionView();
             spversion.setTitle(("Latest ") + getString(R.string.version));
             if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
@@ -189,7 +189,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(downloads);
 	}
 
-	if ((SmartPack.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 25)) {
+	if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {
             DescriptionView xdapage = new DescriptionView();
             xdapage.setTitle(getString(R.string.support));
             xdapage.setSummary(getString(R.string.support_summary));
@@ -215,9 +215,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		}
             });
             smartpack.addItem(spsource);
-	}
-
-	if ((SmartPack.hasSmartPackInstalled()) && (Build.VERSION.SDK_INT >= 27)) {
 
             DescriptionView changelogsp = new DescriptionView();
             changelogsp.setTitle(getString(R.string.change_logs));

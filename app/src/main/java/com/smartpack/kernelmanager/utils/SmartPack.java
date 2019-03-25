@@ -95,6 +95,6 @@ public class SmartPack {
     }
 
     public static boolean supported() {
-        return hasSmartPackVersion() || isOnePlusmsm8998() || hasSmartPackInstalled();
+        return isOnePlusmsm8998();
     }
 }
