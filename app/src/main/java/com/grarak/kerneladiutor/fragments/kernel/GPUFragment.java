@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
@@ -28,6 +30,7 @@ import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
 import com.grarak.kerneladiutor.utils.kernel.gpu.SimpleGPU;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -35,6 +38,7 @@ import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 
 import com.smartpack.kernelmanager.utils.Adrenoboost;
+import com.smartpack.kernelmanager.utils.DevfreqBoost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +79,9 @@ public class GPUFragment extends RecyclerViewFragment {
         }
         if (Adrenoboost.supported()) {
             adrenoboostInit(items);
+        }
+        if (DevfreqBoost.supported()) {
+            devfreqBoostInit(items);
         }
     }
 
@@ -413,6 +420,51 @@ public class GPUFragment extends RecyclerViewFragment {
 	}
 	if (adrenoboost.size() > 0) {
             items.add(adrenoboost);
+	}
+    }
+
+    private void devfreqBoostInit(List<RecyclerViewItem> items) {
+        CardView devfreqboost = new CardView(getActivity());
+        devfreqboost.setTitle(getString(R.string.devfreq_boost));
+
+	if (DevfreqBoost.hasDevfreqboostDuration()) {
+            GenericSelectView dbduration = new GenericSelectView();
+            dbduration.setTitle(getString(R.string.devfreq_boost_ms) + (" (ms)"));
+            dbduration.setSummary(getString(R.string.devfreq_boost_ms_summary));
+            dbduration.setValue(DevfreqBoost.getDevfreqboostDuration());
+            dbduration.setInputType(InputType.TYPE_CLASS_NUMBER);
+            dbduration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    DevfreqBoost.setDevfreqboostDuration(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+	    devfreqboost.addItem(dbduration);
+
+	}
+
+	if (DevfreqBoost.hasDevfreqboostFreq()) {
+            GenericSelectView dbfreq = new GenericSelectView();
+            dbfreq.setTitle(getString(R.string.devfreq_boost_freq) + (" (Hz)"));
+            dbfreq.setSummary(getString(R.string.devfreq_boost_freq_summary));
+            dbfreq.setValue(DevfreqBoost.getDevfreqboostFreq());
+            dbfreq.setInputType(InputType.TYPE_CLASS_NUMBER);
+            dbfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    DevfreqBoost.setDevfreqboostFreq(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+	    devfreqboost.addItem(dbfreq);
+
+	}
+
+	if (devfreqboost.size() > 0) {
+            items.add(devfreqboost);
 	}
     }
 

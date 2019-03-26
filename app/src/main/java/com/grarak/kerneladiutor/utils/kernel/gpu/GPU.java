@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.utils.kernel.gpu;
 
 import com.smartpack.kernelmanager.utils.Adrenoboost;
+import com.smartpack.kernelmanager.utils.DevfreqBoost;
 
 /**
  * Created by willi on 12.05.16.
@@ -27,7 +28,9 @@ import com.smartpack.kernelmanager.utils.Adrenoboost;
 public class GPU {
 
     public static boolean supported() {
-        return GPUFreq.getInstance().supported() || SimpleGPU.supported() || AdrenoIdler.supported() || Adrenoboost.supported();
+        return GPUFreq.getInstance().supported() || SimpleGPU.supported()
+		|| AdrenoIdler.supported() || Adrenoboost.supported()
+		|| DevfreqBoost.supported();
     }
 
 }

@@ -363,6 +363,11 @@
     <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
     <string name="adrenoboost">AdrenoBoost</string>
     <string name="adrenoboost_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by flar2</string>
+    <string name="devfreq_boost">Devfreq Boost</string>
+    <string name="devfreq_boost_ms">Boost Duration</string>
+    <string name="devfreq_boost_ms_summary">Set devfreq boost duration</string>
+    <string name="devfreq_boost_freq">Boost Frequency</string>
+    <string name="devfreq_boost_freq_summary">Set devfreq boost frequency</string>
     <string name="laziness">Laziness</string>
     <string name="laziness_summary">This increases the threshold to ramp up or down GPU frequencies. The lower it is, the more performance you get.</string>
     <string name="ramp_thresold">Ramp Thresold</string>
