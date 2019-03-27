@@ -394,17 +394,21 @@ public class ScreenFragment extends RecyclerViewFragment {
         }
 
         if (KLapse.hasBrightnessFactor()) {
-	    GenericSelectView brightnessFactor = new GenericSelectView();
+	    SeekBarView brightnessFactor = new SeekBarView();
             brightnessFactor.setTitle(getString(R.string.brightness_factor));
             brightnessFactor.setSummary(getString(R.string.brightness_factor_summary));
-            brightnessFactor.setValue(KLapse.getBrightnessFactor());
-            brightnessFactor.setInputType(InputType.TYPE_CLASS_NUMBER);
-            brightnessFactor.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBrightnessFactor(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
+            brightnessFactor.setMax(10);
+            brightnessFactor.setMin(2);
+            brightnessFactor.setProgress(KLapse.getBrightnessFactor() - 2);
+            brightnessFactor.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+		@Override
+		public void onMove(SeekBarView seekBarView, int position, String value) {
+		}
+
+		@Override
+		public void onStop(SeekBarView seekBarView, int position, String value) {
+			KLapse.setBrightnessFactor(position + 2, getActivity());
+		}
             });
 
 	    klapseCard.addItem(brightnessFactor);

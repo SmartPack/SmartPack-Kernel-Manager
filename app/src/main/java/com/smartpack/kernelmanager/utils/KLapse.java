@@ -196,12 +196,12 @@ public class KLapse {
         return Utils.existFile(DAYTIME_BLUE);
     }
 
-    public static void setBrightnessFactor(String value, Context context) {
+    public static void setBrightnessFactor(int value, Context context) {
         run(Control.write(String.valueOf(value), BRIGHTNESS_FACTOR), BRIGHTNESS_FACTOR, context);
     }
 
-    public static String getBrightnessFactor() {
-        return Utils.readFile(BRIGHTNESS_FACTOR);
+    public static int getBrightnessFactor() {
+        return Utils.strToInt(Utils.readFile(BRIGHTNESS_FACTOR));
     }
 
     public static boolean hasBrightnessFactor() {
