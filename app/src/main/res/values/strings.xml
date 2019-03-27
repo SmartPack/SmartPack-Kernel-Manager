@@ -335,6 +335,10 @@
     <string name="max_down_count">Offline Core Threshold</string>
     <string name="max_up_count">Online Core Threshold</string>
     <string name="suspend_max_online">Max Online Cores during suspend</string>
+    <string name="hotplug_frequency">Hotplug Frequency</string>
+    <string name="hotplug_load">Hotplug Load</string>
+    <string name="hotplug_rate">Hotplug Rate</string>
+    <string name="hotplug_rq">Hotplug RQ</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
