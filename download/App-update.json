@@ -1,9 +1,16 @@
 {
-  "latestVersion": "7.5-20190315",
+  "latestVersion": "7.6-20190327",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- I/O: Add support to No-Merges & NR Requests.",
-    "- Misc: Other (minor) changes."
+    "- CPU Hotplug & Sound: Overall changes in the appearance.",
+    "- KSM: Updated for UKSM.",
+    "- GPU: Adreno idler & Simple GPU Algo: Visual enhancements.",
+    "- GPU: Added devfreq boost control.",
+    "- Screen: KLapse: Updated brightness control.",
+    "- Screen: KLapse: Brightness factor: Switched to seekbar view.",
+    "- SmartPack: Properly updated device support check.",
+    "- Thermal: MSM Simple: Updated thermal zone display style.",
+    "- LMK: Fixed some options not showing."
   ]
 }

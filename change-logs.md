@@ -1,5 +1,9 @@
 # Change-logs
 
+## 58. March 27, 2019
+*Release-tag: v7.6*
+Changes: CPU Hotplug & Sound: Overall changes in the appearance. KSM: Updated for UKSM. GPU: Adreno idler & Simple GPU Algo: Visual enhancements. GPU: Added devfreq boost control. Screen: KLapse: Updated brightness control. Screen: KLapse: Brightness factor: Switched to seekbar view. SmartPack: Properly updated support check logic to avoid issues in discontinued devices. Thermal: MSM Simple: Updated thermal zone display style. LMK: Fixed some options not showing.
+
 ## 57. March 15, 2019
 *Release-tag: v7.5*
 Changes: I/O: Add support to No-Merges & NR Requests. Other (minor) changes.
