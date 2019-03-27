@@ -345,77 +345,6 @@ public class ScreenFragment extends RecyclerViewFragment {
             klapseCard.addItem(dayTimeBlue);
         }
 
-        if (KLapse.hasAutoBrightnessFactor()) {
-	    SwitchView autoBrightness = new SwitchView();
-	    autoBrightness.setTitle(getString(R.string.auto_brightness));
-	    autoBrightness.setSummary(getString(R.string.auto_brightness_summary));
-	    autoBrightness.setChecked(KLapse.isAutoBrightnessFactorEnabled());
-	    autoBrightness.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-	    	@Override
-	    	public void onChanged(SwitchView switchView, boolean isChecked) {
-		    KLapse.enableAutoBrightnessFactor(isChecked, getActivity());
-	    	}
-	    });
-
-	    klapseCard.addItem(autoBrightness);
-	}
-
-        if (KLapse.hasBrightFactStart()) {
-            SeekBarView brightFactStart = new SeekBarView();
-            brightFactStart.setTitle(getString(R.string.auto_brightness_schedule));
-            brightFactStart.setSummary(getString(R.string.start_time));
-            brightFactStart.setMax(23);
-            brightFactStart.setProgress(KLapse.getBrightFactStart());
-            brightFactStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    KLapse.setBrightFactStart((position), getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            klapseCard.addItem(brightFactStart);
-        }
-
-        if (KLapse.hasBrightFactStop()) {
-            SeekBarView brightFactStop = new SeekBarView();
-            brightFactStop.setSummary(getString(R.string.end_time));
-            brightFactStop.setMax(23);
-            brightFactStop.setProgress(KLapse.getBrightFactStop());
-            brightFactStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    KLapse.setBrightFactStop((position), getActivity());
-                }
-
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
-
-            klapseCard.addItem(brightFactStop);
-        }
-
-        if (KLapse.hasBrightnessFactor()) {
-            GenericSelectView brightnessFactor = new GenericSelectView();
-            brightnessFactor.setTitle(getString(R.string.brightness_factor));
-            brightnessFactor.setSummary(getString(R.string.brightness_factor_summary));
-            brightnessFactor.setValue(KLapse.getBrightnessFactor());
-            brightnessFactor.setInputType(InputType.TYPE_CLASS_NUMBER);
-            brightnessFactor.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBrightnessFactor(value, getActivity());
-                    genericSelectView.setValue(value);
-                }
-            });
-
-            klapseCard.addItem(brightnessFactor);
-        }
-
         if (KLapse.hasPulseFreq()) {
             GenericSelectView pulseFreq = new GenericSelectView();
             pulseFreq.setTitle(getString(R.string.pulse_freq));
@@ -462,6 +391,99 @@ public class ScreenFragment extends RecyclerViewFragment {
             });
 
             klapseCard.addItem(backlightRangeMax);
+        }
+
+        if (KLapse.hasBrightnessFactor()) {
+	    GenericSelectView brightnessFactor = new GenericSelectView();
+            brightnessFactor.setTitle(getString(R.string.brightness_factor));
+            brightnessFactor.setSummary(getString(R.string.brightness_factor_summary));
+            brightnessFactor.setValue(KLapse.getBrightnessFactor());
+            brightnessFactor.setInputType(InputType.TYPE_CLASS_NUMBER);
+            brightnessFactor.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    KLapse.setBrightnessFactor(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+	    klapseCard.addItem(brightnessFactor);
+        }
+
+	SeekBarView brightFactStart = new SeekBarView();
+	SeekBarView brightFactStop = new SeekBarView();
+
+        if (KLapse.hasAutoBrightnessFactor()) {
+	    SwitchView autoBrightness = new SwitchView();
+	    autoBrightness.setTitle(getString(R.string.auto_brightness));
+	    autoBrightness.setSummary(getString(R.string.auto_brightness_summary));
+	    autoBrightness.setChecked(KLapse.isAutoBrightnessFactorEnabled());
+            autoBrightness.addOnSwitchListener((switchView, isChecked) -> {
+		KLapse.enableAutoBrightnessFactor(isChecked, getActivity());
+		getHandler().postDelayed(() -> {
+		// Show or hide other Brightness options on the basis of the status of this switch
+		if (KLapse.isAutoBrightnessFactorEnabled()) {
+		    if (KLapse.hasBrightFactStart()) {
+			brightFactStart.setProgress(KLapse.getBrightFactStart());
+			klapseCard.addItem(brightFactStart);
+		    }
+		    if (KLapse.hasBrightFactStop()) {
+			brightFactStop.setProgress(KLapse.getBrightFactStop());
+			klapseCard.addItem(brightFactStop);
+		    }
+	    	} else {
+		    klapseCard.removeItem(brightFactStart);
+		    klapseCard.removeItem(brightFactStop);
+	    	}
+	    }, 100);
+	    });
+
+	    klapseCard.addItem(autoBrightness);
+	}
+
+        if (KLapse.hasBrightFactStart()) {
+            brightFactStart.setTitle(getString(R.string.auto_brightness_schedule));
+            brightFactStart.setSummary(getString(R.string.start_time));
+            brightFactStart.setMax(23);
+            brightFactStart.setProgress(KLapse.getBrightFactStart());
+            brightFactStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setBrightFactStart((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+	    if (KLapse.isAutoBrightnessFactorEnabled()) {
+		klapseCard.addItem(brightFactStart);
+	    } else {
+		klapseCard.removeItem(brightFactStart);
+	    }
+        }
+
+        if (KLapse.hasBrightFactStop()) {
+            brightFactStop.setSummary(getString(R.string.end_time));
+            brightFactStop.setMax(23);
+            brightFactStop.setProgress(KLapse.getBrightFactStop());
+            brightFactStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    KLapse.setBrightFactStop((position), getActivity());
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+	    if (KLapse.isAutoBrightnessFactorEnabled()) {
+		klapseCard.addItem(brightFactStop);
+	    } else {
+		klapseCard.removeItem(brightFactStop);
+	    }
         }
 
 	if (klapseCard.size() > 0) {
