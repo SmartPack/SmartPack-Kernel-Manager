@@ -62,13 +62,22 @@ public class ProfileTile extends TileService {
         String newLabel;
         int newState;
 
+
+
         // Update tile and set profile
         if (!(Spectrum.supported())) {
             newLabel = "No Spectrum support";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
             newState = Tile.STATE_INACTIVE;
         }else {
-            if (isActive && click) {
+                  if (isActive && click) {
+                newLabel = "Battery+";
+                newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
+                newState = Tile.STATE_ACTIVE;
+                click = false;
+                Spectrum.setProfile(4);
+                Prefs.saveInt("spectrum_profile", 4, getApplicationContext());
+           } else if (isActive && click) {
 		newLabel = "Gaming";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
 		newState = Tile.STATE_ACTIVE;
@@ -128,8 +137,13 @@ public class ProfileTile extends TileService {
             newLabel = "No Spectrum support";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
             newState = Tile.STATE_INACTIVE;
-        }else {
-            if (profile == 3){
+        } else {
+               if (profile == 4){
+                newLabel = "Battery+";
+                newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_Battery+);
+                newState = Tile.STATE_ACTIVE;
+                click = false;
+            } else if (profile == 3){
 		newLabel = "Gaming";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
 		newState = Tile.STATE_ACTIVE;

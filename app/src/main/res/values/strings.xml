@@ -831,6 +831,8 @@
     <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to archive long-lasting battery life.</string>
     <string name="spec_gaming">Gaming</string>
     <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
+    <string name="spec_battery+">Battery+</string>
+    <string name="spec_gaming_summary">Identical to battery profile except more aggresive battery recommended below 20% battery life</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>
