@@ -116,11 +116,11 @@ public class CPUInputBoost {
         return Utils.existFile(PARANT + CPU_INPUT_BOOST_FREQ);
     }
 
-    public String getcpuinputboostlf() {
-        return Utils.readFile(PARANT + CPU_INPUT_BOOST_LF);
+    public int getcpuinputboostlf() {
+        return Utils.strToInt(Utils.readFile(PARANT + CPU_INPUT_BOOST_LF));
     }
 
-    public void setcpuinputboostlf(String value, Context context) {
+    public void setcpuinputboostlf(int value, Context context) {
         run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_LF), PARANT + CPU_INPUT_BOOST_LF, context);
     }
 
@@ -128,11 +128,11 @@ public class CPUInputBoost {
         return Utils.existFile(PARANT + CPU_INPUT_BOOST_LF);
     }
 
-    public String getcpuinputboosthf() {
-        return Utils.readFile(PARANT + CPU_INPUT_BOOST_HF);
+    public int getcpuinputboosthf() {
+        return Utils.strToInt(Utils.readFile(PARANT + CPU_INPUT_BOOST_HF));
     }
 
-    public void setcpuinputboosthf(String value, Context context) {
+    public void setcpuinputboosthf(int value, Context context) {
         run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_HF), PARANT + CPU_INPUT_BOOST_HF, context);
     }
 
