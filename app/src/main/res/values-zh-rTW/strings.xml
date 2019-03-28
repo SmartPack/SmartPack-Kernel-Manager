@@ -83,7 +83,8 @@
     <string name="wake">喚醒手勢</string>
     <string name="led">LED</string>
     <string name="io_scheduler">I/O 排程器</string>
-    <string name="ksm">核心Samepage合併</string>
+    <string name="ksm">KSM</string>
+	<string name="uksm">UKSM</string>
     <string name="lmk">低記憶體清除機制</string>
     <string name="virtual_memory">虛擬記憶體</string>
     <string name="entropy">熵</string>
@@ -158,8 +159,7 @@
     <string name="disabled">已停用</string>
     <string name="enabled">已啟用</string>
     <string name="aggressive">積極的</string>
-    <string name="power_saving_wq">在未休眠的核心上分配工作隊列以節省電力
-停用時將只分配在同一個核心上</string>
+    <string name="power_saving_wq">在未休眠的核心上分配工作隊列以節省電力。停用時將只分配在同一個核心上</string>
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
@@ -188,6 +188,7 @@
     <string name="freq_control">頻率控制</string>
     <string name="freq_control_summary">允許 msm 限制器控制 cpu 的頻率。</string>
     <string name="dyn_stune_boost">動態調整增強</string>
+	<string name="stune_boost_ms">Stune Boost Duration</string>
     <string name="adv_sett">進階設定</string>
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU輸入加速</string>
@@ -308,6 +309,10 @@
     <string name="max_down_count">核心下線閾值</string>
     <string name="max_up_count">核心下線閾值</string>
     <string name="suspend_max_online">休眠時最大上線核心數</string>
+	<string name="hotplug_frequency">熱插拔頻率</string>
+    <string name="hotplug_load">熱插拔負載</string>
+    <string name="hotplug_rate">熱插拔速率</string>
+    <string name="hotplug_rq">熱插拔 RQ</string>
     <!-- CPU Voltage -->
     <string name="global_offset">全局偏移</string>
     <string name="override_vmin">重置最低電壓</string>
@@ -329,11 +334,16 @@
     <string name="simple_gpu_algorithm">簡單的 GPU 的演算法</string>
     <string name="simple_gpu_algorithm_summary">由 faux123 開發的附加 MSM Adreno TZ GPU 管理模式</string>
     <string name="adrenoboost">AdrenoBoost</string>
-    <string name="adrenoboost_summary">Msm adreno tz gpu 調速器的附加元件。由 flar2 開發</string>
+    <string name="adrenoboost_summary">Msm adreno tz GPU 調速器的附加元件。由 flar2 開發</string>
+	<string name="devfreq_boost">Devfreq 增益</string>
+    <string name="devfreq_boost_ms">增益時長</string>
+    <string name="devfreq_boost_ms_summary">設定 devfreq 增益長度</string>
+    <string name="devfreq_boost_freq">增益頻率</string>
+    <string name="devfreq_boost_freq_summary">設定 devfreq 增益頻率</string>
     <string name="laziness">懶惰</string>
-    <string name="laziness_summary">這將增加提高或降低 gpu 頻率的閾值。越低, 你得到的性能就越高。</string>
+    <string name="laziness_summary">這將增加提高或降低 GPU 頻率的閾值。越低, 你得到的性能就越高。</string>
     <string name="ramp_thresold">Ramp 閾值</string>
-    <string name="ramp_thresold_summary">這將增加 gpu 調控器降低請求的次數。它越高, 你得到的性能就越高。</string>
+    <string name="ramp_thresold_summary">這將增加 GPU 調控器降低請求的次數。它越高, 你得到的性能就越高。</string>
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">一個有效的解決方法的 msm-adreno-tz 的間接費用。由arter97開發。</string>
     <string name="down_differential">向下差速器</string>
@@ -348,8 +358,8 @@
     <string name="thermald_summary">避免裝置過熱的原廠溫度管理。如果目前核心有其它選項時應該停用。</string>
     <string name="intellithermal">Intellithermal</string>
     <string name="intellithermal_summary">將高通的溫度管裡更換為由 faux123 開發的核心</string>
-    <string name="intellithermal_optimized">Intellithermal Optimized</string>
-    <string name="intellithermal_optimized_summary">將高通的溫度管裡更換為由 faux123 與 alucard_24 開發的核心</string>
+    <string name="intellithermal_optimized">Intellithermal 優化版</string>
+    <string name="intellithermal_optimized_summary">將高通的溫度管理更換為由 faux123 與 alucard_24 開發的核心</string>
     <string name="thermal_debug_mask_summary">允許您啟動偵錯調試遮罩。</string>
     <string name="vdd_restriction">VDD限制</string>
     <string name="freq_throttle_temp">頻率調節溫度</string>
@@ -494,8 +504,33 @@
     <string name="register_hook_summary">註冊攔截行為像一個鉤子，並將啟用捕獲場景設定並透過delta控件修改它們。如果場景在其基本序列中沒有設定（寄存器），則它不能被鉤子修改。</string>
     <string name="master_sequence">主序列</string>
     <string name="master_sequence_summary">使主序列將停用並忽略三星的設定檔和方案、 ROM 的控制項將被停用。</string>
-    <string name="glove_mode">Glove模式</string>
+    <string name="glove_mode">手套模式</string>
     <string name="glove_mode_summary">啟用這個可以讓你在戴著手套時使用手機</string>
+	
+    <!-- K-Lapse -->
+    <string name="klapse">K-Lapse</string>
+	<string name="klapse_summary">選擇偏好的 K-Lapse 模式, 由 tanish2k09 的核心級即時顯示模組。這不應該設定為關閉來調整其餘的 K-Lapse 參數.</string>
+	<string name="turn_off">已關閉</string>
+   	<string name="time_scale">基於時間的縮放比例</string>
+	<string name="bright_scale">基於亮度的縮放比例</string>
+	<string name="night_mode_schedule">夜間模式排程 (小時)</string>
+	<string name="start_time">開始時間</string>
+	<string name="end_time">結束時間</string>
+	<string name="scaling_rate">縮放率 (分鐘)</string>
+	<string name="scaling_rate_summary">控制 RGB 在開始和停止小時範圍內從白天到夜間模式的時間</string>
+	<string name="fadeback_time">回退時間 (分鐘)</string>
+	<string name="fadeback_time_summary">結束時間之前, RGB 應開始返回到 "白天" 顏色的分鐘數.</string>
+	<string name="daytime_rgb">白天的顏色</string>
+	<string name="nightmode_rgb">夜間模式顏色</string>
+	<string name="auto_brightness">自動亮度</string>
+	<string name="auto_brightness_summary">在設定的時間範圍內自動設定亮度因數.</string>
+	<string name="brightness_factor">亮度因數</string>
+	<string name="brightness_factor_summary">10: 精確的亮度; 5:50% 的目前亮度.</string>
+	<string name="auto_brightness_schedule">自動亮度排程 (小時)</string>
+	<string name="backlight_range">背光範圍</string>
+	<string name="pulse_freq">脈衝頻率</string>
+	<string name="pulse_freq_summary">在它之後調用 klapse_pulse 的毫秒數.</string>
+
     <!-- Wake -->
     <string name="dt2w">雙擊螢幕喚醒</string>
     <string name="dt2w_summary">雙擊螢幕來喚醒您的裝置</string>
@@ -589,12 +624,15 @@
     <string name="rotational">旋轉儲存裝置(Hdd機械硬碟)</string>
     <string name="rotational_summary">將本裝置視為旋轉儲存裝置(Hdd機械硬碟)。</string>
     <string name="iostats">I/O 統計資料</string>
-    <string name="iostats_summary">維護此儲存裝置的 I/O 統計資料。停用將中斷 I/O 監控程式。
-(提升I/O效能但增加I/O錯誤的可能)</string>
-    <string name="add_random">添加隨機</string>
-    <string name="add_random_summary">從旋轉儲存裝置(Hdd機械硬碟) 獲取熵</string>
+    <string name="iostats_summary">維護此儲存裝置的 I/O 統計資料。停用將中斷 I/O 監控程式。(提升I/O效能但增加I/O錯誤的可能)</string>
+    <string name="add_random">增加隨機</string>
+    <string name="add_random_summary">從旋轉儲存裝置(HDD機械硬碟) 取得熵</string>
     <string name="rq_affitiny">請求(Request) 隊列(Queue) 親和性(Affinity)</string>
     <string name="rq_affinity_summary">盡可能讓核心完成自己發出的調度程序請求，而非給其他的核心來完成，數值越高越積極</string>
+	<string name="nomerges">不合併</string>
+    <string name="nomerges_summary">這使使用者能停用塊層中 IO 合併請求所涉及的查找邏輯。</string>
+    <string name="nr_requests">NR 請求</string>
+    <string name="nr_requests_summary">這將控制在塊層中可以為讀取或寫入請求分配的請求數。</string>
     <!-- Kernel Samepage Merging -->
     <string name="full_scans">完整掃描</string>
     <string name="pages_shared">共享的頁面</string>
@@ -608,6 +646,8 @@
     <string name="deferred_timer_summary">降低一些 CPU 使用率，較少的記憶體節省效果。</string>
     <string name="max_cpu_usage">最大 CPU 使用率</string>
     <string name="max_cpu_usage_summary">合併頁面時要使用的最大CPU百分比。</string>
+	<string name="uksm_governor">UKSM CPU 調速器</string>
+    <string name="uksm_governor_summary">為 UKSM 設定 CPU 調速器。</string>
     <!-- Low Memory Killer -->
     <string name="foreground_app">前台應用程式</string>
     <string name="lmk_adaptive">自適應低記憶體殺手</string>
@@ -720,6 +760,11 @@
     <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連線單次傳送的分組數量的算法。它透過增減單次傳送量逐步調整，使之逼近目前網路的承載量。</string>
     <string name="hostname">主機名稱</string>
     <string name="wireguard">WireGuard VPN</string>
+	<string name="leases_enable">Leases Enable</string>
+    <string name="leases_enable_summary">Enable or disable file leases on a system-wide basis</string>
+    <string name="lease_break_time">Lease Break Time</string>
+    <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
+
     <!-- Performance Tweaks -->
     <string name="spectrum">性能調整</string>
     <string name="profileTile">設定檔</string>
@@ -951,27 +996,27 @@
     <string name="translators">翻譯人員</string>
     <!-- FAQ -->
     <string name="how_different">問題1。這個應用程式跟Grarak的官方版 Kernel Adiutor 有何不同之處？</string>
-    <string name="how_different_summary">答案. 此應用程式經過顯著修改, 以滿足Smartpack核心 (例如 CPU 輸入升壓控制, 進階充電控制介面 (三星 msm8974 核心), SELinux 開關, OTA 支援, 顯示背光控制和更多) 的需求。</string>
+    <string name="how_different_summary">答案：此應用程式經過顯著修改, 以滿足	Smart-Pack核心的需求。這個應用程式的一些附加功能包括但不限於, 即 CPU 輸入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. 進階充電控制介面 (Samsung msm8974 核心), vi. Boeffla 喚醒鎖, vii. Boeffla 和 Flar 的聲音控制與每個通道的支援, viii. SELinux 開關, ix. Smartpack核心的 OTA 支援、x. 顯示背光控制等。</string>
     <string name="can_i_use">問題2。我可以將此應用程式與其他自訂核心一起使用嗎？</string>
-    <string name="can_i_use_summary">答案。為什麼不呢？它將像往常一樣工作。</string>
+    <string name="can_i_use_summary">答案：為什麼不呢？它將像往常一樣運作。</string>
     <string name="cpu_freq_not_sticking">問題3。為什麼我設定的 CPU 頻率不會固定？</string>
-    <string name="cpu_freq_not_sticking_summary">答案。這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
+    <string name="cpu_freq_not_sticking_summary">答案：這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
     <string name="feature_not_appearing">問題4。為什麼功能 x 和 y 沒有顯示？</string>
-    <string name="feature_not_appearing_summary">答案。僅顯示已安裝核心支援的功能。</string>
+    <string name="feature_not_appearing_summary">答案：僅顯示已安裝核心支援的功能。</string>
     <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
-    <string name="add_new_features_summary">這很難說。我嘗試添加所有功能，但很難使這個應用程式通用的所有裝置。</string>
+    <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式通用的所有裝置。</string>
     <string name="rom_abc">問題6。核心是否與 ROM a/b/c 相容？</string>
-    <string name="rom_abc_summary">答案。我不知道。我所有的核心都是基於Lineage-OS/原廠ROM上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
+    <string name="rom_abc_summary">答案：我不知道。我所有的核心都是基於Lineage-OS/原廠ROM上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
     <string name="better_than">問題7。你的核心比原廠/\' x/y/z \' 核心好嗎？</string>
-    <string name="better_than_summary">答案。關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 \"x/y/z\" 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
+    <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 \"x/y/z\" 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
     <string name="how_abt_sot">問題8。性能/SOT 如何？</string>
-    <string name="how_abt_sot_summary">答案。由於 sot、性能等主要基於幾個因素, 如 ROM、已安裝的應用程式等, 沒有其他人能夠準確預測您的手機的性能。所以, 你應該自己測試。</string>
+    <string name="how_abt_sot_summary">答案：由於 sot、性能等主要基於幾個因素, 如 ROM、已安裝的應用程式等, 沒有其他人能夠準確預測您的手機的性能。所以, 你應該自己測試。</string>
     <string name="what_best">問題9。你能告訴我性能的最佳設定嗎？</string>
-    <string name="what_best_summary">答案。同樣, 這取決於幾個因素。我只能分享我最喜歡的設定, 給我最好的結果在我最喜歡的 ROM。</string>
+    <string name="what_best_summary">答案：同樣, 這取決於幾個因素。我只能分享我最喜歡的設定, 給我最好的結果在我最喜歡的 ROM。</string>
     <string name="battery_drain">問題10。安裝核心後, 我遇到了大量耗電。有什麼解決辦法嗎？</string>
     <string name="battery_drain_summary">答案.。在我看來, 包括我在內的任何核心都無法在電池壽命方面產生如此大的變化 (既不是積極的, 也不是消極的)。這應該是因為你的 ROM, gapp, 其他已安裝的應用程式, 喚醒鎖等。</string>
     <string name="cache_dalvik">問題11。在安裝核心後, 我是否需要在之前擦除 cache/dalvik 快取？</string>
-    <string name="cache_dalvik_summary">答案。不用。因為核心甚至沒有 \"看到\" cache/dalvik 快取。</string>
+    <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 \"看到\" cache/dalvik 快取。</string>
     <string name="found_bugs">問題12。我在你的 app/核心中發現了一個錯誤, 我該怎麼辦？</string>
     <string name="found_bugs_summary">答案請提供盡可能多的資訊 (如什麼功能、哪些功能不起作用、螢幕截圖或 logcat (如果可能), 並在相應的 xda 開發人員頁面中發佈。或者, 您也可以將問題提交到相應的 github 源。</string>
     <string name="can_i_contribute">問題13。我可以為您的 app/核心專案做出貢獻嗎？如果是, 如何做到？</string>
