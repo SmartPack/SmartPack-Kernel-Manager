@@ -367,6 +367,10 @@ public class CPUFragment extends RecyclerViewFragment {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
                 Misc.enablePowerSavingWq(isChecked, getActivity());
+		getHandler().postDelayed(() -> {
+		powerSavingWq.setChecked(Misc.isPowerSavingWqEnabled());
+		},
+	    500);
             }
         });
 
@@ -383,6 +387,10 @@ public class CPUFragment extends RecyclerViewFragment {
             @Override
             public void onItemSelected(SelectView selectView, int position, String item) {
                 Misc.setCFSScheduler(item, getActivity());
+		getHandler().postDelayed(() -> {
+		cfsScheduler.setItem(Misc.getCurrentCFSScheduler());
+		},
+	    500);
             }
         });
 
@@ -402,6 +410,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     Misc.enableCpuQuiet(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    cpuQuietEnable.setChecked(Misc.isCpuQuietEnabled());
+		    },
+	    	500);
                 }
             });
 
@@ -484,6 +496,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mCPUBoost.setCpuBoostMs(position * 10, getActivity());
+		    getHandler().postDelayed(() -> {
+		    ms.setProgress(mCPUBoost.getCpuBootMs() / 10);
+		    },
+	    	500);
                 }
             });
 
@@ -527,6 +543,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mCPUBoost.setCpuBoostInputMs(position * 10, getActivity());
+		    getHandler().postDelayed(() -> {
+		    inputMs.setProgress(mCPUBoost.getCpuBootInputMs() / 10);
+		    },
+	    	500);
                 }
             });
 
@@ -573,6 +593,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mCPUInputBoost.setcpuiboostduration(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    cpuiboostduration.setValue(mCPUInputBoost.getcpuiboostduration());
+		    },
+	    	500);
                 }
             });
 
@@ -596,6 +620,10 @@ public class CPUFragment extends RecyclerViewFragment {
                     mCPUInputBoost.setcpuiboostfreq(value, highFreq[0], getActivity());
                     genericSelectView.setValue(value);
                     lowFreq[0] = value;
+		    getHandler().postDelayed(() -> {
+		    lowfreq.setValueRaw(lowfreq.getValue().replace(" Hz", ""));
+		    },
+	    	500);
                 }
             });
 
@@ -612,6 +640,10 @@ public class CPUFragment extends RecyclerViewFragment {
                     mCPUInputBoost.setcpuiboostfreq(lowFreq[0], value, getActivity());
                     genericSelectView.setValue(value);
                     highFreq[0] = value;
+		    getHandler().postDelayed(() -> {
+		    highfreq.setValueRaw(highfreq.getValue().replace(" Hz", ""));
+		    },
+	    	500);
                 }
             });
 
@@ -629,6 +661,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mCPUInputBoost.setcpuinputboostlf(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    cpuiboostlf.setValue(mCPUInputBoost.getcpuinputboostlf());
+		    },
+	    	500);
                 }
             });
 
@@ -645,6 +681,10 @@ public class CPUFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mCPUInputBoost.setcpuinputboosthf(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    cpuiboosthf.setValue(mCPUInputBoost.getcpuinputboosthf());
+		    },
+	    	500);
                 }
             });
 
