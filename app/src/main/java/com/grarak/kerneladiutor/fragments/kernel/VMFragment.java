@@ -120,7 +120,11 @@ public class VMFragment extends RecyclerViewFragment {
                     public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                         VM.setValue(value, position, getActivity());
                         genericSelectView.setValue(value);
-                        refreshVMs();
+			getHandler().postDelayed(() -> {
+			for (int i = 0; i < mVMs.size(); i++) {
+		            vm.setValue(VM.getValue(i));
+		        }},
+		    500);
                     }
                 });
 
@@ -149,6 +153,10 @@ public class VMFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
                 ZRAM.setDisksize(position * 8, getActivity());
+		getHandler().postDelayed(() -> {
+		zram.setProgress(ZRAM.getDisksize() / 8);
+		},
+	    500);
             }
 
             @Override
@@ -168,6 +176,10 @@ public class VMFragment extends RecyclerViewFragment {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
                     ZRAM.setZRAMAlgo(item, getActivity());
+		    getHandler().postDelayed(() -> {
+		    zramAlgo.setItem(ZRAM.getZRAMAlgo());
+		    },
+		500);
                 }
             });
 
@@ -192,6 +204,10 @@ public class VMFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     ZSwap.enable(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    zswap.setChecked(ZSwap.isEnabled());
+		    },
+	    	500);
                 }
             });
 
@@ -209,6 +225,10 @@ public class VMFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     ZSwap.setMaxPoolPercent(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    maxPoolPercent.setProgress(ZSwap.getMaxPoolPercent());
+		    },
+	    	500);
                 }
 
                 @Override
@@ -229,6 +249,10 @@ public class VMFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     ZSwap.setMaxCompressionRatio(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    maxCompressionRatio.setProgress(ZSwap.getMaxCompressionRatio());
+		    },
+	    	500);
                 }
 
                 @Override
@@ -242,18 +266,6 @@ public class VMFragment extends RecyclerViewFragment {
         if (zswapCard.size() > 0) {
             items.add(zswapCard);
         }
-    }
-
-    private void refreshVMs() {
-        getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < mVMs.size(); i++) {
-                    mVMs.get(i).setValue(VM.getValue(i));
-                    mVMs.get(i).setValueRaw(mVMs.get(i).getValue());
-                }
-            }
-        }, 250);
     }
 
 }
