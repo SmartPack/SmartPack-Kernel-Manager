@@ -10,6 +10,7 @@
     <string name="no_busybox">没有 Busybox 指令</string>
     <string name="open">开启 %s</string>
     <string name="disable">停用</string>
+
     <!-- Security -->
     <string name="password">密码</string>
     <string name="password_wrong">密码错误</string>
@@ -43,13 +44,18 @@
     <string name="not_in_range">不在有效的范围内</string>
     <string name="options">选项</string>
     <string name="more">更多</string>
+
     <!-- Permissions Denied -->
     <string name="permission_denied_write_storage">系统权限拒绝对装置进行写入</string>
+
     <!-- Editor -->
+
     <string name="save">储存</string>
+
     <!-- File Picker -->
     <string name="select_question">选择 %s 吗？ </string>
     <string name="wrong_extension">请选择一个档案来对 %s 进行扩充</string>
+
     <!-- Units -->
     <string name="mhz">MHz</string>
     <string name="celsius">ºC</string>
@@ -62,11 +68,14 @@
     <string name="ma">mA</string>
     <string name="kb">kB</string>
     <string name="px">像素</string>
+
     <!-- Special signs -->
     <!-- Headers -->
+
     <string name="statistics">统计资讯</string>
     <string name="tools">工具</string>
     <string name="other">其他</string>
+
     <!-- Menus -->
     <string name="overall">概观</string>
     <string name="device">装置</string>
@@ -99,6 +108,7 @@
     <string name="about">关于</string>
     <string name="contributors">贡献者</string>
     <string name="kernelupdate">核心更新</string>
+
     <!-- Overall -->
     <string name="offline">离线</string>
     <string name="core">核心 %d</string>
@@ -110,6 +120,7 @@
     <string name="uptime">核心启用时间</string>
     <string name="error_frequencies">载入频率失败</string>
     <string name="unused_frequencies">未使用的频率</string>
+
     <!-- Device -->
     <string name="processor">处理器</string>
     <string name="vendor">制造商</string>
@@ -126,11 +137,13 @@
     <string name="hardware">硬体</string>
     <string name="architecture">CPU 架构</string>
     <string name="treble_status">Project Treble 支援</string>
+
     <!-- Inputs -->
     <string name="bus">汇流排(Bus)</string>
     <string name="product">产品</string>
     <string name="version">版本</string>
     <string name="handlers">管理者</string>
+
     <!-- CPU -->
     <string name="cores_string">%s 核心</string>
     <string name="frequencies_string">%s 频率</string>
@@ -188,11 +201,13 @@
     <string name="freq_control_summary">允许 msm 限制器控制 cpu 的频率。 </string>
     <string name="dyn_stune_boost">动态调整增强</string>
     <string name="adv_sett">进阶设定</string>
+
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU输入加速</string>
     <string name="cpu_input_boost_summary">启用 sultanxda 开发的 cpu 输入加速。 </string>
     <string name="cpuiboost_duration">输入加速持续时间</string>
     <string name="cpuiboost_duration_summary">设定 CPU输入加速持续时间</string>
+
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">已启用多个热插拔系统！ \n您只能使用一个。 </string>
     <string name="mpdecision">MPDecision热插拔</string>
@@ -307,10 +322,12 @@
     <string name="max_down_count">核心下线阈值</string>
     <string name="max_up_count">核心下线阈值</string>
     <string name="suspend_max_online">休眠时最大上线核心数</string>
+
     <!-- CPU Voltage -->
     <string name="global_offset">全局偏移</string>
     <string name="override_vmin">重置最低电压</string>
     <string name="override_vmin_summary">停用制造商对降压的限制</string>
+
     <!-- GPU -->
     <string name="frequencies">频率</string>
     <string name="gpu_2d_freq">GPU 2D 频率</string>
@@ -341,6 +358,7 @@
     <string name="idle_wait_summary">要降低频率斜向进刀之前等待的事件数。 Idlewait\'th 事件在目前之前必须前肾上腺托辊坡道下频率都处于空闲状态。这种实现是为了防止微型滞后上滚动或玩游戏。肾上腺托辊将更积极地尝试斜向频率下刀，如果这设定为较低的值。 </string>
     <string name="workload">工作负载</string>
     <string name="workload_summary">如果将这个值调高，Adreno管理器将会更频繁的尝试降低频率</string>
+
     <!--Thermal-->
     <string name="thermal_info">在下面选项中只使用一种温度管理，同时使用超过一种可能会导致不可预期的行为。 </string>
     <string name="thermald">原厂温度管里</string>
@@ -398,12 +416,14 @@
     <string name="freq_control_mask_summary">CPU 遮罩, 用于确定是否可以将核心用于 freq 控制。 </string>
     <string name="freq_mit_control_mask">Frequency Mitigation Control Mask</string>
     <string name="freq_mit_control_mask_summary">频率缓解位元遮罩, 用于确定 ktm 是否应对核心进行紧急频率缓解。 </string>
+
     <!-- Battery -->
     <string name="capacity">容量</string>
     <string name="blx">电池寿命扩展</string>
     <string name="blx_summary">For设定限制容量的电池将充电透过传递一个值介于0和100之间。 </string>
     <string name="charging_enable">启用充电</string>
     <string name="charging_enable_summary">警告！如果停用, 充电将立即停止。 </string>
+
     <!-- Advanced Charge Control Interface -->
     <string name="acci">进阶充电控制介面</string>
     <string name="fast_charge">快速充电</string>
@@ -421,6 +441,7 @@
     <string name="screen_limit">萤幕开启时充电电流限制</string>
     <string name="screen_limit_summary">启用萤幕开启时充电电流限制</string>
     <string name="stockchargelogic">原厂充电逻辑设定为0</string>
+
     <!-- Sound -->
     <string name="sound_control">声音控制</string>
     <string name="speaker_leakage">扬声器驱动程式泄漏</string>
@@ -439,6 +460,7 @@
     <string name="lock_mic_gain">锁定麦克风增益</string>
     <string name="lock_mic_gain_summary">防止对麦克风增益进行修改</string>
     <string name="per_channel_controls">独立声道控制</string>
+
     <!-- Screen -->
     <string name="screen_color">萤幕色彩</string>
     <string name="red">红色</string>
@@ -495,6 +517,7 @@
     <string name="master_sequence_summary">使主序列将停用并忽略三星的设定档和方案、 ROM 的控制项将被停用。 </string>
     <string name="glove_mode">Glove模式</string>
     <string name="glove_mode_summary">启用这个可以让你在戴着手套时使用手机</string>
+
     <!-- Wake -->
     <string name="dt2w">双击萤幕唤醒</string>
     <string name="dt2w_summary">双击萤幕来唤醒您的装置</string>
@@ -554,6 +577,7 @@
     <string name="key_power_mode_summary">只有当您使用电源键将装置置于睡眠状态时, 唤醒控制项才会处于启用状态。 </string>
     <string name="charging_mode">充电模式</string>
     <string name="charging_mode_summary">只有在装置充电时, 唤醒控制项才会处于启用状态。 </string>
+
     <!-- LED -->
     <string name="fade">淡出：</string>
     <string name="fade_summary">为衰落启用、 停用闪烁。 </string>
@@ -576,7 +600,8 @@
     <string name="fade_out_summary">设定时间段的上升斜率。 </string>
     <string name="backlight_max">显示背光 (最大值)</string>
     <string name="backlight_min">显示背光 (最小值)</string>
-<!-- I/O Scheduler -->
+
+    <!-- I/O Scheduler -->
     <string name="internal_storage">内部储存空间</string>
     <string name="external_storage">外部储存空间</string>
     <string name="scheduler">排程器</string>
@@ -593,6 +618,7 @@
     <string name="add_random_summary">从旋转储存装置(Hdd机械硬碟) 获取熵</string>
     <string name="rq_affitiny">请求(Request) 队列(Queue) 亲和性(Affinity)</string>
     <string name="rq_affinity_summary">尽可能让核心完成自己发出的调度程序请求，而非给其他的核心来完成，数值越高越积极</string>
+
     <!-- Kernel Samepage Merging -->
     <string name="full_scans">完整扫描</string>
     <string name="pages_shared">共享的页面</string>
@@ -606,6 +632,7 @@
     <string name="deferred_timer_summary">降低一些 CPU 使用率，较少的记忆体节省效果。 </string>
     <string name="max_cpu_usage">最大 CPU 使用率</string>
     <string name="max_cpu_usage_summary">合并页面时要使用的最大CPU百分比。 </string>
+
     <!-- Low Memory Killer -->
     <string name="foreground_app">前台应用程式</string>
     <string name="lmk_adaptive">自适应低记忆体杀手</string>
@@ -623,6 +650,7 @@
     <string name="kill_lmk_summary">在使用交换时杀死LMK。 </string>
     <string name="kill_lmk_threshold">杀死LMK阈值</string>
     <string name="kill_lmk_threshold_summary">如何充分交换需要杀死LMK。 </string>
+
     <!-- Wakelock -->
     <string name="wakelock">唤醒锁</string>
     <string name="wakelocks_other">其他唤醒锁</string>
@@ -669,6 +697,7 @@
     <string name="wlan_ctrl_wakelock_divider">wlan_ctrl唤醒分频器</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic唤醒锁分频器</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD唤醒锁分频器</string>
+
     <!-- Virtual Memory -->
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
@@ -682,11 +711,13 @@
     <string name="memory_pool_summary">可用作压缩页快取的主记忆体的记忆体池百分比。 </string>
     <string name="maximum_compression_ratio">最大压缩比</string>
     <string name="maximum_compression_ratio_summary">最大的压缩比，百分比，可接受的压缩页面。没有压缩的至少这一个例句的任何页面将被拒绝。 </string>
+
     <!-- Entropy -->
     <string name="available">可用</string>
     <string name="poolsize">Poolsize</string>
     <string name="read">读取</string>
     <string name="write">写入</string>
+
     <!-- Misc -->
     <string name="android_logger">Android 的日志记录</string>
     <string name="android_logger_summary">开启/关闭安卓日志记录</string>
@@ -718,6 +749,7 @@
     <string name="tcp_summary">拥塞控制是一种用来调整传输控制协议（TCP/IP）连线单次传送的分组数量的算法。它透过增减单次传送量逐步调整，使之逼近目前网路的承载量。 </string>
     <string name="hostname">主机名称</string>
     <string name="wireguard">WireGuard VPN</string>
+
     <!-- Performance Tweaks -->
     <string name="spectrum">性能调整</string>
     <string name="profileTile">设定档</string>
@@ -731,6 +763,7 @@
     <string name="spec_battery_summary">超保守的设定档, 让性能受到打击, 以达成持久的电池续航。 </string>
     <string name="spec_gaming">游戏</string>
     <string name="spec_gaming_summary">在未锁定的图形性能以外的大多数领域与性能相同。 </string>
+
     <!-- Custom Controls -->
     <string name="welcome">欢迎</string>
     <string name="custom_controls_summary">在本节中，你可以建立或汇入 （尚） 的应用程式中不存在的自订控制项。 </string>
@@ -767,11 +800,13 @@
     <string name="name_empty">名字不能为空白！ </string>
     <string name="import_malformed">汇入档案格式错误！ </string>
     <string name="import_wrong_version">汇入的档案版本太旧了！ </string>
+
      <!-- Backup -->
     <string name="boot_partition">引导分区</string>
     <string name="recovery_partition">恢复分区</string>
     <string name="fota_partition">Fota解决方案分区</string>
     <string name="flash">刷入</string>
+
     <!-- Build prop Editor -->
     <string name="add">增加</string>
     <string name="backup_item">%1$s 已经被备份到 %2$s</string>
@@ -780,6 +815,7 @@
     <string name="key">密码</string>
     <string name="value">值</string>
     <string name="key_empty">密码不能为空白！ </string>
+
     <!-- Profile -->
     <string name="apply_on_boot_not_available">在配置档案模式下，您的更改不会影响启动时应用。 </string>
     <string name="profile_warning">您在这里更改的所有内容都将保存到您的个人资料中。但注意！您的设定也将被应用，但不会保存以在启动时应用。 </string>
@@ -803,17 +839,20 @@
     <string name="select_all">全选</string>
     <string name="nothing_selected">未选择任何内容</string>
     <string name="profile_empty">个人资料是空的！ </string>
+
     <!-- Init.d -->
     <string name="emulate_initd">模拟 Init.d</string>
     <string name="emulate_initd_summary">如果您的装置预设不支援Init.d，您可以启用它以模拟其行为。 </string>
     <string name="exceute_question">执行 %s 吗？ </string>
     <string name="executing">执行中</string>
     <string name="result">结果</string>
+
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">本节介绍当装置启动时会发生什么。如果它是空白的，则在启动后不会发生。 </string>
     <string name="delete_question">删除 %s 吗？ </string>
     <string name="arguments">参数： %s</string>
     <string name="disable_question">停用 %s 吗？ </string>
+
     <!-- SmartPack -->
     <string name="support">支援</string>
     <string name="support_summary">造访 xda-developers.com 的支援页面</string>
@@ -860,6 +899,7 @@
     <string name="no_kernel_support">不支援的版本</string>
     <string name="no_kernel_support_summary">Smartpack-核心尚未适配您的 android 版本</string>
     <string name="saving">储存中...</string>
+
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
@@ -878,6 +918,7 @@
     <string name="appupdater_channel_name">更新通知</string>
     <string name="appupdater_downloading_file">正在下载...</string>
     <string name="appupdater_download_filed">下载失败!</string>
+
     <!-- Settings-->
     <string name="open_settings">打开设定</string>
     <string name="fahrenheit_title">使用华氏温度</string>
@@ -935,6 +976,7 @@
     <string name="set_password_first">首先设定密码</string>
     <string name="fingerprint_summary">使用指纹传递安全检查。这将工作，只要你有指纹注册。 </string>
     <string name="sections">部分</string>
+
     <!-- About -->
     <string name="libraries_used">使用的资源库</string>
     <string name="source_code">原始程式码</string>
@@ -943,10 +985,12 @@
     <string name="change_logs_summary">检视变更</string>
     <string name="donate_me">捐赠给我</string>
     <string name="donate_me_summary">想透过捐款来感谢我的工作吗？请点击这里</string>
+
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">请检查您的网际网路连线！ </string>
     <string name="translators">翻译人员</string>
+
     <!-- FAQ -->
     <string name="how_different">问题1。这个应用程式跟Grarak的官方版 Kernel Adiutor 有何不同之处？ </string>
     <string name="how_different_summary">答案. 此应用程式经过显著修改, 以满足Smartpack核心(例如CPU 输入升压控制, 进阶充电控制介面(三星msm8974 核心), selinux 开关, OTA 支援, 显示背光控制和更多) 的需求。 </string>
