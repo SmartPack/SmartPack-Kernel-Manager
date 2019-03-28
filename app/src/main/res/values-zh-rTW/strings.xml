@@ -31,7 +31,7 @@
     <string name="donate_summary">此功能僅適用於官方 Kernel Adiutor 的捐贈版本 (不是此修改後的 SmartPack核心管理器)! \n * 請注意 * 如果您購買了捐贈應用程式, 您可能需要切換到官方 Kernel Adiutor 以獲得好處。</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>
     <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
-    <string name="ad_here">您的廣告可以在這裡</string>
+    <string name="ad_here">廣告位招租</string>
     <string name="remove_ad">移除廣告</string>
     <string name="warning">警告</string>
     <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，adblock使用者）。</string>
