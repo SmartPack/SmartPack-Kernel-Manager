@@ -604,50 +604,24 @@ public class CPUFragment extends RecyclerViewFragment {
 	}
 
 	if (mCPUInputBoost.hascpuiboostfreq()) { 
-            List<String> freqs = mCPUInputBoost.getcpuiboostfreq();
-            final String[] lowFreq = {freqs.get(0)};
-            final String[] highFreq = {freqs.get(1)};
-
-            GenericSelectView lowfreq = new GenericSelectView();
-            lowfreq.setTitle(getString(R.string.input_boost_freq) + (" (Hz)"));
-            lowfreq.setSummary("Low");
-            lowfreq.setValue(lowFreq[0]);
-            lowfreq.setValueRaw(lowfreq.getValue().replace(" Hz", ""));
-            lowfreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            lowfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+            GenericSelectView iboostfreq = new GenericSelectView();
+            iboostfreq.setTitle(getString(R.string.input_boost_freq) + (" (Hz)"));
+            iboostfreq.setSummary(getString(R.string.input_boost_freq_summary));
+            iboostfreq.setValue(mCPUInputBoost.getcpuiboostfreq());
+            iboostfreq.setInputType(InputType.TYPE_CLASS_NUMBER);
+            iboostfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                 @Override
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mCPUInputBoost.setcpuiboostfreq(value, highFreq[0], getActivity());
+                    mCPUInputBoost.setcpuiboostfreq(value, getActivity());
                     genericSelectView.setValue(value);
-                    lowFreq[0] = value;
 		    getHandler().postDelayed(() -> {
-		    lowfreq.setValueRaw(lowfreq.getValue().replace(" Hz", ""));
+		    iboostfreq.setValue(mCPUInputBoost.getcpuiboostfreq());
 		    },
 	    	500);
                 }
             });
 
-            cpuBoost.addItem(lowfreq);
-
-            GenericSelectView highfreq = new GenericSelectView();
-            highfreq.setSummary("High");
-            highfreq.setValue(highFreq[0]);
-            highfreq.setValueRaw(highfreq.getValue().replace(" Hz", ""));
-            highfreq.setInputType(InputType.TYPE_CLASS_NUMBER);
-            highfreq.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mCPUInputBoost.setcpuiboostfreq(lowFreq[0], value, getActivity());
-                    genericSelectView.setValue(value);
-                    highFreq[0] = value;
-		    getHandler().postDelayed(() -> {
-		    highfreq.setValueRaw(highfreq.getValue().replace(" Hz", ""));
-		    },
-	    	500);
-                }
-            });
-
-            cpuBoost.addItem(highfreq);
+            cpuBoost.addItem(iboostfreq);
 	}
 
 	if (mCPUInputBoost.hascpuinputboostlf()) {

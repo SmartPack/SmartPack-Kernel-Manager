@@ -98,18 +98,12 @@ public class CPUInputBoost {
         return INPUT_BOOST_DURATION != null;
     }
 
-    public void setcpuiboostfreq(String value1, String value2, Context context) {
-        String value = value1 + " " + value2;
+    public void setcpuiboostfreq(String value, Context context) {
         run(Control.write(String.valueOf(value), PARANT + CPU_INPUT_BOOST_FREQ), PARANT + CPU_INPUT_BOOST_FREQ, context);
     }
 
-    public List<String> getcpuiboostfreq() {
-        String freqs[] = Utils.readFile(PARANT + CPU_INPUT_BOOST_FREQ).split(" ");
-        List<String> ibfreqs = new ArrayList<>();
-        for (String freq : freqs) {
-            ibfreqs.add(freq.trim());
-        }
-        return ibfreqs;
+    public String getcpuiboostfreq() {
+        return Utils.readFile(PARANT + CPU_INPUT_BOOST_FREQ);
     }
 
     public boolean hascpuiboostfreq() {
