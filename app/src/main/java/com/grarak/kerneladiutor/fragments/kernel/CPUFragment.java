@@ -603,6 +603,27 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(cpuiboostduration);
 	}
 
+	if (mCPUInputBoost.haswakeboostduration()) { 
+            GenericSelectView wakeBoostMS = new GenericSelectView();
+            wakeBoostMS.setTitle(getString(R.string.wake_boost_duration) + (" (ms)"));
+            wakeBoostMS.setSummary(("Set ") + getString(R.string.wake_boost_duration));
+            wakeBoostMS.setValue(mCPUInputBoost.getwakeboostduration());
+            wakeBoostMS.setInputType(InputType.TYPE_CLASS_NUMBER);
+            wakeBoostMS.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mCPUInputBoost.setwakeboostduration(value, getActivity());
+                    genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    wakeBoostMS.setValue(mCPUInputBoost.getwakeboostduration());
+		    },
+	    	500);
+                }
+            });
+
+            cpuBoost.addItem(wakeBoostMS);
+	}
+
 	if (mCPUInputBoost.hascpuiboostfreq()) { 
             GenericSelectView iboostfreq = new GenericSelectView();
             iboostfreq.setTitle(getString(R.string.input_boost_freq) + (" (Hz)"));
@@ -657,6 +678,24 @@ public class CPUFragment extends RecyclerViewFragment {
 	    500);
 
             cpuBoost.addItem(cpuiboosthf);
+	}
+
+	if (mCPUInputBoost.hasinputboostFreq()) {
+            SelectView cpuiboostfreq = new SelectView();
+            cpuiboostfreq.setTitle(getString(R.string.input_boost_freq));
+            cpuiboostfreq.setSummary(getString(R.string.input_boost_freq_summary));
+            cpuiboostfreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            cpuiboostfreq.setItem((mCPUInputBoost.getinputboostFreq() / 1000)
+		+ getString(R.string.mhz));
+            cpuiboostfreq.setOnItemSelected((selectView, position, item)
+		-> mCPUInputBoost.setinputboostFreq(mCPUFreq.getFreqs().get(position), getActivity()));
+		getHandler().postDelayed(() -> {
+		cpuiboostfreq.setItem((mCPUInputBoost.getinputboostFreq() / 1000)
+		+ getString(R.string.mhz));
+		},
+	    500);
+
+            cpuBoost.addItem(cpuiboostfreq);
 	}
 
 	if (mCPUBoost.hasCpuBoostInputFreq()) {

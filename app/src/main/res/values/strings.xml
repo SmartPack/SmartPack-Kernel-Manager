@@ -220,6 +220,7 @@
     <string name="cpu_input_boost_summary">Enable CPU Input Boost, an event-based CPU boosting driver by Sultanxda.</string>
     <string name="cpuiboost_duration">Input Boost Duration</string>
     <string name="cpuiboost_duration_summary">Set CPU Input Boost duration</string>
+    <string name="wake_boost_duration">Wake Boost Duration</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">More than one hotplugging system is enabled!\nPlease only use one.</string>

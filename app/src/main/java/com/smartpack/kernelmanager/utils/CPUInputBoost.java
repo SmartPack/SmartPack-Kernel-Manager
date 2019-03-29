@@ -52,8 +52,11 @@ public class CPUInputBoost {
     private static final String CPU_INPUT_BOOST_DURATION = "/ib_duration_ms";
     private static final String CPU_INPUT_BOOST_FREQ = "/ib_freqs";
     private static final String CPU_INPUT_BOOST_MODULE_DURATION = "/input_boost_duration";
+    private static final String CPU_INPUT_BOOST_MODULE_DURATION_MS = "/input_boost_duration_ms";
+    private static final String WAKE_BOOST_DURATION = "/wake_boost_duration";
     private static final String CPU_INPUT_BOOST_LF = "/input_boost_freq_lp";
     private static final String CPU_INPUT_BOOST_HF = "/input_boost_freq_hp";
+    private static final String INPUT_BOOST_FREQ = "/input_boost_freq";
 
     private static final String DYN_STUNE_BOOST = "/dynamic_stune_boost";
 
@@ -70,6 +73,8 @@ public class CPUInputBoost {
             INPUT_BOOST_DURATION = PARANT + CPU_INPUT_BOOST_DURATION;
         } else if (Utils.existFile(PARANT + CPU_INPUT_BOOST_MODULE_DURATION)) {
             INPUT_BOOST_DURATION = PARANT + CPU_INPUT_BOOST_MODULE_DURATION;
+        } else if (Utils.existFile(PARANT + CPU_INPUT_BOOST_MODULE_DURATION_MS)) {
+            INPUT_BOOST_DURATION = PARANT + CPU_INPUT_BOOST_MODULE_DURATION_MS;
         }
     }
 
@@ -96,6 +101,18 @@ public class CPUInputBoost {
 
     public boolean hascpuiboostduration() {
         return INPUT_BOOST_DURATION != null;
+    }
+
+    public void setwakeboostduration(String value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + WAKE_BOOST_DURATION), PARANT + WAKE_BOOST_DURATION, context);
+    }
+
+    public String getwakeboostduration() {
+        return Utils.readFile(PARANT + WAKE_BOOST_DURATION);
+    }
+
+    public boolean haswakeboostduration() {
+        return Utils.existFile(PARANT + WAKE_BOOST_DURATION);
     }
 
     public void setcpuiboostfreq(String value, Context context) {
@@ -132,6 +149,18 @@ public class CPUInputBoost {
 
     public boolean hascpuinputboosthf() {
         return Utils.existFile(PARANT + CPU_INPUT_BOOST_HF);
+    }
+
+    public int getinputboostFreq() {
+        return Utils.strToInt(Utils.readFile(PARANT + INPUT_BOOST_FREQ));
+    }
+
+    public void setinputboostFreq(int value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + INPUT_BOOST_FREQ), PARANT + INPUT_BOOST_FREQ, context);
+    }
+
+    public boolean hasinputboostFreq() {
+        return Utils.existFile(PARANT + INPUT_BOOST_FREQ);
     }
 
     public void setDynStuneBoost(int value, Context context) {
