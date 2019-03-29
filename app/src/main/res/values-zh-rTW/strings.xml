@@ -148,7 +148,7 @@
     <string name="cpu_max_screen_off_freq">CPU 最高頻率(螢幕關閉)</string>
     <string name="cpu_max_screen_off_freq_summary">設定 CPU 在螢幕關閉時可提升的最高頻率</string>
     <string name="cpu_governor">CPU 管理模式</string>
-    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應工作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
+    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應運作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
     <string name="cpu_governor_tunables">CPU 管理模式調整</string>
     <string name="governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
     <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
@@ -159,7 +159,7 @@
     <string name="disabled">已停用</string>
     <string name="enabled">已啟用</string>
     <string name="aggressive">積極的</string>
-    <string name="power_saving_wq">在未休眠的核心上分配工作隊列以節省電力。停用時將只分配在同一個核心上</string>
+    <string name="power_saving_wq">在未休眠的核心上分配運作隊列以節省電力。停用時將只分配在同一個核心上</string>
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
@@ -347,10 +347,10 @@
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">一個有效的解決方法的 msm-adreno-tz 的間接費用。由arter97開發。</string>
     <string name="down_differential">向下差速器</string>
-    <string name="down_differential_summary">用來決定給予的工作負載是否閒置的門檻。</string>
+    <string name="down_differential_summary">用來決定給予的運作負載是否閒置的門檻。</string>
     <string name="idle_wait">閒置等待</string>
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
-    <string name="workload">工作負載</string>
+    <string name="workload">運作負載</string>
     <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
     <!--Thermal-->
     <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
@@ -977,10 +977,10 @@
     <string name="confirm_new_password">確認新密碼</string>
     <string name="old_password_wrong">舊密碼錯誤</string>
     <string name="password_empty">密碼為空</string>
-    <string name="password_not_match">新密碼不匹配確認</string>
-    <string name="password_too_long">密碼太長（最多32個字符）</string>
+    <string name="password_not_match">新密碼不相符確認</string>
+    <string name="password_too_long">密碼太長（最多32個字元）</string>
     <string name="set_password_first">首先設定密碼</string>
-    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將工作，只要你有指紋註冊。</string>
+    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將運作，只要你有指紋註冊。</string>
     <string name="sections">部分</string>
     <!-- About -->
     <string name="libraries_used">使用的資源庫</string>
@@ -989,7 +989,7 @@
     <string name="change_logs">更新日誌</string>
     <string name="change_logs_summary">檢視變更</string>
     <string name="donate_me">捐贈給我</string>
-    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點擊這裡</string>
+    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
     <string name="no_internet">請檢查您的網際網路連線！</string>
@@ -1000,23 +1000,23 @@
     <string name="can_i_use">問題2。我可以將此應用程式與其他自訂核心一起使用嗎？</string>
     <string name="can_i_use_summary">答案：為什麼不呢？它將像往常一樣運作。</string>
     <string name="cpu_freq_not_sticking">問題3。為什麼我設定的 CPU 頻率不會固定？</string>
-    <string name="cpu_freq_not_sticking_summary">答案：這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
+    <string name="cpu_freq_not_sticking_summary">答案：這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的運作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
     <string name="feature_not_appearing">問題4。為什麼功能 x 和 y 沒有顯示？</string>
     <string name="feature_not_appearing_summary">答案：僅顯示已安裝核心支援的功能。</string>
     <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
-    <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式通用的所有裝置。</string>
+    <string name="add_new_features_summary">答案：這很難說。我嘗試增加所有功能，但很難使這個應用程式適用於所有裝置。</string>
     <string name="rom_abc">問題6。核心是否與 ROM a/b/c 相容？</string>
     <string name="rom_abc_summary">答案：我不知道。我所有的核心都是基於Lineage-OS/原廠ROM上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
-    <string name="better_than">問題7。你的核心比原廠/\' x/y/z \' 核心好嗎？</string>
-    <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 \"x/y/z\" 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
+    <string name="better_than">問題7。你的核心比原廠「x/y/z」 核心好嗎？</string>
+    <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 「x/y/z」 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
     <string name="how_abt_sot">問題8。性能/SOT 如何？</string>
     <string name="how_abt_sot_summary">答案：由於 sot、性能等主要基於幾個因素, 如 ROM、已安裝的應用程式等, 沒有其他人能夠準確預測您的手機的性能。所以, 你應該自己測試。</string>
     <string name="what_best">問題9。你能告訴我性能的最佳設定嗎？</string>
-    <string name="what_best_summary">答案：同樣, 這取決於幾個因素。我只能分享我最喜歡的設定, 給我最好的結果在我最喜歡的 ROM。</string>
+    <string name="what_best_summary">答案：同樣地, 這取決於幾個因素。我只能分享我最喜歡的設定, 在我最喜歡的 ROM 達成最好的結果。</string>
     <string name="battery_drain">問題10。安裝核心後, 我遇到了大量耗電。有什麼解決辦法嗎？</string>
     <string name="battery_drain_summary">答案.。在我看來, 包括我在內的任何核心都無法在電池壽命方面產生如此大的變化 (既不是積極的, 也不是消極的)。這應該是因為你的 ROM, gapp, 其他已安裝的應用程式, 喚醒鎖等。</string>
     <string name="cache_dalvik">問題11。在安裝核心後, 我是否需要在之前擦除 cache/dalvik 快取？</string>
-    <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 \"看到\" cache/dalvik 快取。</string>
+    <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 「看到」 cache/dalvik 快取。</string>
     <string name="found_bugs">問題12。我在你的 app/核心中發現了一個錯誤, 我該怎麼辦？</string>
     <string name="found_bugs_summary">答案請提供盡可能多的資訊 (如什麼功能、哪些功能不起作用、螢幕截圖或 logcat (如果可能), 並在相應的 xda 開發人員頁面中發佈。或者, 您也可以將問題提交到相應的 github 源。</string>
     <string name="can_i_contribute">問題13。我可以為您的 app/核心專案做出貢獻嗎？如果是, 如何做到？</string>
