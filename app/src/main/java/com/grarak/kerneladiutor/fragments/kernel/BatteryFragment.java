@@ -149,7 +149,11 @@ public class BatteryFragment extends RecyclerViewFragment {
             ACLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		@Override
 		public void onItemSelected(SelectView selectView, int position, String item) {
-			mBattery.setFastChargeControlAC(item, getActivity());
+		    mBattery.setFastChargeControlAC(item, getActivity());
+		    getHandler().postDelayed(() -> {
+		    ACLevelCard.setItem(mBattery.getFastChargeCustomAC());
+		    },
+	        500);
 		}
             });
             acci.addItem(ACLevelCard);
@@ -165,7 +169,11 @@ public class BatteryFragment extends RecyclerViewFragment {
             USBLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		@Override
 		public void onItemSelected(SelectView selectView, int position, String item) {
-		        mBattery.setFastChargeControlUSB(item, getActivity());
+		    mBattery.setFastChargeControlUSB(item, getActivity());
+		    getHandler().postDelayed(() -> {
+		    USBLevelCard.setItem(mBattery.getFastChargeCustomUSB());
+		    },
+	        500);
 		}
             });
             acci.addItem(USBLevelCard);
@@ -179,7 +187,11 @@ public class BatteryFragment extends RecyclerViewFragment {
             WirelessLevelCard.setOnItemSelected(new SelectView.OnItemSelected() {
 		@Override
 		public void onItemSelected(SelectView selectView, int position, String item) {
-			mBattery.setFastChargeControlWIRELESS(item, getActivity());
+		    mBattery.setFastChargeControlWIRELESS(item, getActivity());
+		    getHandler().postDelayed(() -> {
+		    WirelessLevelCard.setItem(mBattery.getFastChargeCustomWIRELESS());
+		    },
+	        500);
 		}
             });
             acci.addItem(WirelessLevelCard);
@@ -193,7 +205,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             MtpFastCharge.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
-			mBattery.enableMtpForceFastCharge(isChecked, getActivity());
+		    mBattery.enableMtpForceFastCharge(isChecked, getActivity());
 		}
             });
             acci.addItem(MtpFastCharge);
@@ -230,6 +242,10 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelAC((position * 25), getActivity());
+		    getHandler().postDelayed(() -> {
+		    chargeLevelAC.setProgress(mBattery.getchargeLevelAC() / 25 );
+		    },
+	        500);
                 }
 
                 @Override
@@ -251,6 +267,10 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelUSB((position * 25), getActivity());
+		    getHandler().postDelayed(() -> {
+		    chargeLevelUSB.setProgress(mBattery.getchargeLevelUSB() / 25 );
+		    },
+	        500);
                 }
 
                 @Override
@@ -272,6 +292,10 @@ public class BatteryFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mBattery.setchargeLevelWL((position * 25), getActivity());
+		    getHandler().postDelayed(() -> {
+		    chargeLevelWL.setProgress(mBattery.getchargeLevelWL() / 25 );
+		    },
+	        500);
                 }
 
                 @Override
@@ -316,7 +340,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             OnePlusOTG.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
-			mBattery.OPOTGenable(isChecked, getActivity());
+		    mBattery.OPOTGenable(isChecked, getActivity());
 		}
             });
             acci.addItem(OnePlusOTG);
@@ -330,7 +354,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
-			mBattery.enableThunderCharge(isChecked, getActivity());
+		    mBattery.enableThunderCharge(isChecked, getActivity());
 		}
             });
 
@@ -348,6 +372,10 @@ public class BatteryFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mBattery.setThunderChargeAC(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    acharge.setValue(mBattery.getThunderChargeAC());
+		    },
+	        500);
                 }
             });
 
@@ -365,6 +393,10 @@ public class BatteryFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mBattery.setThunderChargeUSB(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    usbcharge.setValue(mBattery.getThunderChargeUSB());
+		    },
+	        500);
                 }
             });
 

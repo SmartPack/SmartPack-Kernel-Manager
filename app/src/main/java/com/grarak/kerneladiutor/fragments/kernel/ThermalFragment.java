@@ -84,6 +84,10 @@ public class ThermalFragment extends RecyclerViewFragment {
             @Override
             public void onChanged(SwitchView switchView, boolean isChecked) {
                 Thermald.enableThermald(isChecked, getActivity());
+		getHandler().postDelayed(() -> {
+		thermald.setChecked(Thermald.isThermaldEnabled());
+		},
+	    500);
             }
         });
 
@@ -148,6 +152,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMSMThermal.enableCoreControl(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    coreControl.setChecked(mMSMThermal.isCoreControlEnabled());
+		    },
+	    	500);
                 }
             });
 
@@ -162,6 +170,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMSMThermal.enableVddRestriction(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    vddRestriction.setChecked(mMSMThermal.isVddRestrictionEnabled());
+		    },
+	    	500);
                 }
             });
 
@@ -350,6 +362,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     mMSMThermal.setPollMs(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    pollMs.setValue(mMSMThermal.getPollMs());
+		    },
+	    	500);
                 }
             });
 
@@ -842,7 +858,11 @@ public class ThermalFragment extends RecyclerViewFragment {
             enableswitch.addOnSwitchListener(new SwitchView.OnSwitchListener() {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
-			MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
+		    MSMThermalSimple.enablesimplemsmthermal(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    enableswitch.setChecked(MSMThermalSimple.issimplemsmthermalEnabled());
+		    },
+	    	500);
 		}
             });
             SimpleMSMThermal.addItem(enableswitch);
@@ -858,6 +878,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     MSMThermalSimple.setSamplingMS(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    samplingMS.setValue(MSMThermalSimple.getSamplingMS());
+		    },
+	    	500);
                 }
             });
 
@@ -874,6 +898,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     MSMThermalSimple.setUserMaxFreq(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    userMaxFreq.setValue(MSMThermalSimple.getUserMaxFreq());
+		    },
+	    	500);
                 }
             });
 
@@ -894,6 +922,10 @@ public class ThermalFragment extends RecyclerViewFragment {
                     public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                         MSMThermalSimple.setValue(value, position, getActivity());
                         genericSelectView.setValue(value);
+			getHandler().postDelayed(() -> {
+			thermalZone.setValueRaw(thermalZone.getValue());
+			},
+		    500);
                     }
                 });
 

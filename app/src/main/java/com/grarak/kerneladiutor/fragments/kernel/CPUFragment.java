@@ -822,6 +822,10 @@ public class CPUFragment extends RecyclerViewFragment {
 			public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 			    Misc.setValue(value, position, getActivity());
 			    genericSelectView.setValue(value);
+			    getHandler().postDelayed(() -> {
+			    advStune.setValueRaw(advStune.getValue());
+			    },
+		    	500);
 			}
                     });
                     class advsettingsManager {
