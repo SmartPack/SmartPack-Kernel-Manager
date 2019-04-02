@@ -1,5 +1,9 @@
 # Change-logs
 
+## 59. April 02, 2019
+*Release-tag: v7.7*
+Changes: CPU Input Boost: Switched little and big cluster input frequency control to more convenient select view. CPU Input boost: Updated input boost frequency control for devices using old sysfs paths to avoid random issues. CPU Input Boost: Extended control over new sysfs paths (includes wake_boost_duration). Translations: update Chinese traditional (credits: jason5545). Display & LED: Updated and switched Max and Min display control to input style so that users can choose any value. Overall: Applied *refresh* function 500 ms after applying many tasks to make sure that it's really working. Miscellaneous changes.
+
 ## 58. March 27, 2019
 *Release-tag: v7.6*
 Changes: CPU Hotplug & Sound: Overall changes in the appearance. KSM: Updated for UKSM. GPU: Adreno idler & Simple GPU Algo: Visual enhancements. GPU: Added devfreq boost control. Screen: KLapse: Updated brightness control. Screen: KLapse: Brightness factor: Switched to seekbar view. SmartPack: Properly updated support check logic to avoid issues in discontinued devices. Thermal: MSM Simple: Updated thermal zone display style. LMK: Fixed some options not showing.

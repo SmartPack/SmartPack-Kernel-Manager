@@ -1,16 +1,14 @@
 {
-  "latestVersion": "7.6-20190327",
+  "latestVersion": "7.7-20190402",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Hotplug & Sound: Overall changes in the appearance.",
-    "- KSM: Updated for UKSM.",
-    "- GPU: Adreno idler & Simple GPU Algo: Visual enhancements.",
-    "- GPU: Added devfreq boost control.",
-    "- Screen: KLapse: Updated brightness control.",
-    "- Screen: KLapse: Brightness factor: Switched to seekbar view.",
-    "- SmartPack: Properly updated device support check.",
-    "- Thermal: MSM Simple: Updated thermal zone display style.",
-    "- LMK: Fixed some options not showing."
+    "- CPU Input Boost: Switched little and big cluster input frequency control to more convenient select view.",
+    "- CPU Input boost: Updated input boost frequency control for devices using old sysfs paths to avoid random issues.",
+    "- CPU Input Boost: Extended control over new sysfs paths (includes wake_boost_duration).",
+    "- Translations: update Chinese traditional (credits: jason5545).",
+    "- Display & LED: Updated and switched Max and Min display control to input style so that users can choose any value.",
+    "- Overall: Applied *refresh* function 500 ms after applying many (not all) tasks to make sure that it's really working.",
+    "- Miscellaneous changes."
   ]
 }
