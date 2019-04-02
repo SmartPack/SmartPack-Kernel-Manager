@@ -614,10 +614,10 @@
     <string name="charging_mode_summary">只有在裝置充電時, 喚醒控制項才會處於啟用狀態。</string>
 
     <!-- LED -->
-    <string name="fade">淡出：</string>
-    <string name="fade_summary">為衰落啟用、 停用閃爍。</string>
-    <string name="led_intensity">LED 通知 (強度)</string>
-    <string name="led_speed">LED 通知 (速度)</string>
+    <string name="led_notification">LED 通知</string>
+    <string name="fade">閃爍/淡出</string>
+    <string name="led_intensity">強度</string>
+    <string name="led_speed">速度</string>
     <string name="stock">庫存量</string>
     <string name="continuous_light">連續的光</string>
     <string name="bright_light_environment">明亮的環境</string>
@@ -633,8 +633,7 @@
     <string name="fade_in_summary">設定時間段的上升斜率。</string>
     <string name="fade_out">淡出</string>
     <string name="fade_out_summary">設定時間段的上升斜率。</string>
-    <string name="backlight_max">顯示背光 (最大值)</string>
-    <string name="backlight_min">顯示背光 (最小值)</string>
+    <string name="display_backlight">顯示背光</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">內部儲存空間</string>

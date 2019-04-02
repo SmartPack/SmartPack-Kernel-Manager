@@ -50,9 +50,10 @@ public class LED {
     private static final String RED_SPEED = "/sys/class/leds/red/led_speed";
     private static final String GREEN_RATE = "/sys/class/leds/green/rate";
 
-    private static final String DISPLAY_BACKLIGHT = "/sys/class/leds/lcd-backlight/max_brightness";
+    private static final String BACKLIGHT_MAX = "/sys/class/leds/lcd-backlight/max_brightness";
     private static final String BACKLIGHT_MIN = "/sys/module/mdss_fb/parameters/backlight_min";
     private static final String DRM_BACKLIGHT_MIN = "/sys/module/msm_drm/parameters/backlight_min";
+    private static final String DRM_BACKLIGHT_MAX = "/sys/module/msm_drm/parameters/backlight_max";
     private static final String CHARGING_LIGHT = "/sys/class/leds/charging/max_brightness";
     private static final String CHARGING_LIGHT_2 = "/sys/class/sec/led/led_intensity";
 
@@ -81,6 +82,8 @@ public class LED {
     private String SPEED;
     private String ENABLE_FILE;
     private String FADE_FILE;
+    private String MAX_BACKLIGHT;
+    private String MIN_BACKLIGHT;
 
     private LED() {
         for (String file : mSpeeds.keySet()) {
@@ -98,6 +101,16 @@ public class LED {
             FADE_FILE = LED_FADE;
         } else if (Utils.existFile(RED_FADE)) {
             FADE_FILE = RED_FADE;
+        }
+        if (Utils.existFile(BACKLIGHT_MAX)) {
+            MAX_BACKLIGHT = BACKLIGHT_MAX;
+        } else if (Utils.existFile(DRM_BACKLIGHT_MAX)) {
+            MAX_BACKLIGHT = DRM_BACKLIGHT_MAX;
+        }
+        if (Utils.existFile(BACKLIGHT_MIN)) {
+            MIN_BACKLIGHT = BACKLIGHT_MIN;
+        } else if (Utils.existFile(DRM_BACKLIGHT_MIN)) {
+            MIN_BACKLIGHT = DRM_BACKLIGHT_MIN;
         }
     }
 
@@ -153,40 +166,28 @@ public class LED {
         return FADE_FILE != null;
     }
 
-    public void setdisplaybacklight(int value, Context context) {
-        run(Control.write(String.valueOf(value), DISPLAY_BACKLIGHT), DISPLAY_BACKLIGHT, context);
+    public void setBacklightMax(String value, Context context) {
+        run(Control.write(String.valueOf(value), MAX_BACKLIGHT), MAX_BACKLIGHT, context);
     }
 
-    public static int getdisplaybacklight() {
-        return Utils.strToInt(Utils.readFile(DISPLAY_BACKLIGHT));
+    public String getBacklightMax() {
+        return Utils.readFile(MAX_BACKLIGHT);
     }
 
-    public static boolean hasdisplaybacklight() {
-        return Utils.existFile(DISPLAY_BACKLIGHT);
+    public boolean hasBacklightMax() {
+        return MAX_BACKLIGHT != null;
     }
 
-    public void setBacklightMin(int value, Context context) {
-        run(Control.write(String.valueOf(value), BACKLIGHT_MIN), BACKLIGHT_MIN, context);
+    public void setBacklightMin(String value, Context context) {
+        run(Control.write(String.valueOf(value), MIN_BACKLIGHT), MIN_BACKLIGHT, context);
     }
 
-    public static int getBacklightMin() {
-        return Utils.strToInt(Utils.readFile(BACKLIGHT_MIN));
+    public String getBacklightMin() {
+        return Utils.readFile(MIN_BACKLIGHT);
     }
 
-    public static boolean hasBacklightMin() {
-        return Utils.existFile(BACKLIGHT_MIN);
-    }
-
-    public void setdrmBacklightMin(int value, Context context) {
-        run(Control.write(String.valueOf(value), DRM_BACKLIGHT_MIN), DRM_BACKLIGHT_MIN, context);
-    }
-
-    public static int getdrmBacklightMin() {
-        return Utils.strToInt(Utils.readFile(DRM_BACKLIGHT_MIN));
-    }
-
-    public static boolean hasdrmBacklightMin() {
-        return Utils.existFile(DRM_BACKLIGHT_MIN);
+    public boolean hasBacklightMin() {
+        return MIN_BACKLIGHT != null;
     }
 
     public void setcharginglight(int value, Context context) {
@@ -206,8 +207,8 @@ public class LED {
     }
 
     public boolean supported() {
-        return hasFade() || hasdisplaybacklight() || hasBacklightMin() || hascharginglight()
-		|| hasIntensity() || hasSpeed() || Sec.supported() || hasdrmBacklightMin();
+        return hasFade() || hasBacklightMax() || hasBacklightMin() || hascharginglight()
+		|| hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {

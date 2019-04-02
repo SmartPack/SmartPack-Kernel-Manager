@@ -628,10 +628,10 @@
     <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
 
     <!-- LED -->
-    <string name="fade">LED Notification (Blink/Fade)</string>
-    <string name="fade_summary">Enable for fading, disable for blinking.</string>
-    <string name="led_intensity">LED Notification (Intensity)</string>
-    <string name="led_speed">LED Notification (Speed)</string>
+    <string name="led_notification">LED Notification</string>
+    <string name="fade">Blink/Fade</string>
+    <string name="led_intensity">Intensity</string>
+    <string name="led_speed">Speed</string>
     <string name="stock">Stock</string>
     <string name="continuous_light">Continuous light</string>
     <string name="bright_light_environment">Bright Light Environment</string>
@@ -647,8 +647,7 @@
     <string name="fade_in_summary">Sets the time period of the rising slope.</string>
     <string name="fade_out">Fade out</string>
     <string name="fade_out_summary">Sets the time period of the falling slope.</string>
-    <string name="backlight_max">Display Backlight (Max)</string>
-    <string name="backlight_min">Display Backlight (Min)</string>
+    <string name="display_backlight">Display Backlight</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>

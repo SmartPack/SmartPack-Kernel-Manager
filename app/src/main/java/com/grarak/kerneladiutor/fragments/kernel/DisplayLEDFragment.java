@@ -19,6 +19,8 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.text.InputType;
+
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -26,6 +28,7 @@ import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.kernel.led.LED;
 import com.grarak.kerneladiutor.utils.kernel.led.Sec;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
@@ -49,11 +52,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (mLED.hasdisplaybacklight() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
+        if (mLED.hasBacklightMax() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
 		|| mLED.hasSpeed() || (Sec.hasNotificationRampDown()) || (Sec.hasNotificationRampUp())
 		|| (Sec.hasNotificationRampControl()) || mLED.hasFade() || Sec.hasNotificationDelayOff()
-		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()
-		|| mLED.hasdrmBacklightMin()) {
+		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
             displayandledInit(items);
         }
     }
@@ -62,77 +64,45 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
         CardView DisplyAndLED = new CardView(getActivity());
         DisplyAndLED.setTitle(getString(R.string.led));
 
-	if (mLED.hasdisplaybacklight()) {
-            SeekBarView displaybacklight = new SeekBarView();
-            displaybacklight.setTitle(getString(R.string.backlight_max));
-            if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-		// Increase maximum range (Max: 1275; Offset: 25)
-		displaybacklight.setMax(1275);
-		displaybacklight.setOffset(25);
-		displaybacklight.setProgress(mLED.getdisplaybacklight() / 25 );
-		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setdisplaybacklight((position * 25), getActivity());
-		    }
+	if (mLED.hasBacklightMax()) {
+            GenericSelectView backlightMax = new GenericSelectView();
+            backlightMax.setTitle(getString(R.string.display_backlight));
+            backlightMax.setSummary("Max");
+            backlightMax.setValue(mLED.getBacklightMax());
+            backlightMax.setInputType(InputType.TYPE_CLASS_NUMBER);
+            backlightMax.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mLED.setBacklightMax(value, getActivity());
+                    genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    backlightMax.setValue(mLED.getBacklightMax());
+		    },
+	    	500);
+                }
+            });
 
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
-            } else {
-            // Set normal range (Max: 255; Offset: 5)
-		displaybacklight.setMax(255);
-		displaybacklight.setOffset(5);
-		displaybacklight.setProgress(mLED.getdisplaybacklight() / 5 );
-		displaybacklight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		    @Override
-		    public void onStop(SeekBarView seekBarView, int position, String value) {
-			mLED.setdisplaybacklight((position * 5), getActivity());
-		    }
-
-		    @Override
-		    public void onMove(SeekBarView seekBarView, int position, String value) {
-		    }
-		});
-            }
-
-            DisplyAndLED.addItem(displaybacklight);
+            DisplyAndLED.addItem(backlightMax);
 	}
 
-	if (mLED.hasBacklightMin() || mLED.hasdrmBacklightMin()) {
-            SeekBarView BacklightMin = new SeekBarView();
-            BacklightMin.setTitle(getString(R.string.backlight_min));
-            if (mLED.hasdrmBacklightMin()) {
-		// For msm_drm devices, set maximum range at 4000 (Offset: 50)
-		BacklightMin.setMax(4080);
-		BacklightMin.setOffset(40);
-		BacklightMin.setProgress(mLED.getdrmBacklightMin() / 40 );
-            } else if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-		// Based on the current Maximum Backlight of the display, decide Max range & Offset
-		BacklightMin.setMax(1275);
-		BacklightMin.setOffset(25);
-		BacklightMin.setProgress(mLED.getBacklightMin() / 25 );
-            } else {
-		// Set normal range (Max: 255; Offset: 5)
-		BacklightMin.setMax(255);
-		BacklightMin.setOffset(5);
-		BacklightMin.setProgress(mLED.getBacklightMin() / 5 );
-            }
-            BacklightMin.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (mLED.hasdrmBacklightMin()) {
-			mLED.setdrmBacklightMin((position * 40), getActivity());
-		    } else if ((mLED.getdisplaybacklight() >= 256) && (mLED.getdisplaybacklight() <= 1275)) {
-			mLED.setBacklightMin((position * 25), getActivity());
-		    } else {
-			mLED.setBacklightMin((position * 5), getActivity());
-		    }
-		}
-		@Override
-		public void onMove(SeekBarView seekBarView, int position, String value) {
-		}
+	if (mLED.hasBacklightMin()) {
+            GenericSelectView BacklightMin = new GenericSelectView();
+	    if (!mLED.hasBacklightMax()) {
+            	BacklightMin.setTitle(getString(R.string.display_backlight));
+	    }
+            BacklightMin.setSummary("Min");
+            BacklightMin.setValue(mLED.getBacklightMin());
+            BacklightMin.setInputType(InputType.TYPE_CLASS_NUMBER);
+            BacklightMin.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mLED.setBacklightMin(value, getActivity());
+                    genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    BacklightMin.setValue(mLED.getBacklightMin());
+		    },
+	    	500);
+                }
             });
 
             DisplyAndLED.addItem(BacklightMin);
@@ -140,13 +110,18 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 
 	if (mLED.hasIntensity()) {
             SeekBarView intensity = new SeekBarView();
-            intensity.setTitle(getString(R.string.led_intensity));
+            intensity.setTitle(getString(R.string.led_notification));
+            intensity.setSummary(getString(R.string.led_intensity));
             intensity.setUnit("%");
             intensity.setProgress(mLED.getIntensity());
             intensity.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
 		    mLED.setIntensity(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    intensity.setProgress(mLED.getIntensity());
+		    },
+	    	500);
 		}
 
 		@Override
@@ -159,13 +134,18 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 
 	if (mLED.hascharginglight()) {
             SeekBarView charginglight = new SeekBarView();
-            charginglight.setTitle(getString(R.string.led_intensity));
+            charginglight.setTitle(getString(R.string.led_notification));
+            charginglight.setSummary(getString(R.string.led_intensity));
             charginglight.setMax(255);
             charginglight.setProgress(mLED.getcharginglight());
             charginglight.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
 		    mLED.setcharginglight((position), getActivity());
+		    getHandler().postDelayed(() -> {
+		    charginglight.setProgress(mLED.getcharginglight());
+		    },
+	    	500);
 		}
 		@Override
 		public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -176,13 +156,22 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 
 	if (mLED.hasSpeed()) {
             SeekBarView speed = new SeekBarView();
-            speed.setTitle(getString(R.string.led_speed));
+	    if (mLED.hasIntensity() || mLED.hascharginglight()) {
+	    // We do not need a title in this case
+	    } else {
+            	speed.setTitle(getString(R.string.led_notification));
+	    }
+            speed.setSummary(getString(R.string.led_speed));
             speed.setItems(mLED.getSpeedMenu(getActivity()));
             speed.setProgress(mLED.getSpeed());
             speed.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
 		@Override
 		public void onStop(SeekBarView seekBarView, int position, String value) {
 		    mLED.setSpeed(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    speed.setProgress(mLED.getSpeed());
+		    },
+	    	500);
 		}
 
 		@Override
@@ -192,6 +181,29 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
 
             DisplyAndLED.addItem(speed);
 	}
+
+        if (mLED.hasFade()) {
+            SwitchView fade = new SwitchView();
+	    if (mLED.hasIntensity() || mLED.hascharginglight()) {
+	    // We do not need a title in this case
+	    } else {
+            	fade.setTitle(getString(R.string.led_notification));
+	    }
+            fade.setSummary(getString(R.string.fade));
+            fade.setChecked(mLED.isFadeEnabled());
+            fade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mLED.enableFade(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    fade.setChecked(mLED.isFadeEnabled());
+		    },
+	    	500);
+                }
+            });
+
+            DisplyAndLED.addItem(fade);
+        }
 
         if (Sec.hasHighpowerCurrent()) {
             SeekBarView highpowerCurrent = new SeekBarView();
@@ -205,6 +217,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setHighpowerCurrent(position * 5, getActivity());
+		    getHandler().postDelayed(() -> {
+		    highpowerCurrent.setProgress(Sec.getHighpowerCurrent() / 5);
+		    },
+	    	500);
                 }
 
                 @Override
@@ -227,6 +243,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setLowpowerCurrent(position * 5, getActivity());
+		    getHandler().postDelayed(() -> {
+		    lowpowerCurrent.setProgress(Sec.getLowpowerCurrent() / 5);
+		    },
+	    	500);
                 }
 
                 @Override
@@ -248,6 +268,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setNotificationDelayOn(position * 10, getActivity());
+		    getHandler().postDelayed(() -> {
+		    notificationDelayOn.setProgress(Sec.getNotificationDelayOn() / 100);
+		    },
+	    	500);
                 }
 
                 @Override
@@ -269,6 +293,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setNotificationDelayOff(position * 10, getActivity());
+		    getHandler().postDelayed(() -> {
+		    notificationDelayOff.setProgress(Sec.getNotificationDelayOff() / 100);
+		    },
+	    	500);
                 }
 
                 @Override
@@ -277,21 +305,6 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             });
 
             DisplyAndLED.addItem(notificationDelayOff);
-        }
-
-        if (mLED.hasFade()) {
-            SwitchView fade = new SwitchView();
-            fade.setTitle(getString(R.string.fade));
-            fade.setSummary(getString(R.string.fade_summary));
-            fade.setChecked(mLED.isFadeEnabled());
-            fade.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mLED.enableFade(isChecked, getActivity());
-                }
-            });
-
-            DisplyAndLED.addItem(fade);
         }
 
         if (Sec.hasNotificationRampControl()) {
@@ -303,6 +316,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     Sec.enableNotificationRampControl(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    notificationRampControl.setChecked(Sec.isNotificationRampControlEnabled());
+		    },
+	    	500);
                 }
             });
 
@@ -321,6 +338,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setNotificationRampUp(position * 100, getActivity());
+		    getHandler().postDelayed(() -> {
+		    notificationRampUp.setProgress(Sec.getNotificationRampUp() / 100);
+		    },
+	    	500);
                 }
 
                 @Override
@@ -343,6 +364,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     Sec.setNotificationRampDown(position * 100, getActivity());
+		    getHandler().postDelayed(() -> {
+		    notificationRampDown.setProgress(Sec.getNotificationRampDown() / 100);
+		    },
+	    	500);
                 }
 
                 @Override

@@ -579,10 +579,10 @@
     <string name="charging_mode_summary">只有在装置充电时, 唤醒控制项才会处于启用状态。 </string>
 
     <!-- LED -->
-    <string name="fade">淡出：</string>
-    <string name="fade_summary">为衰落启用、 停用闪烁。 </string>
-    <string name="led_intensity">LED 通知 (强度)</string>
-    <string name="led_speed">LED 通知 (速度)</string>
+    <string name="led_notification">LED 通知</string>
+    <string name="fade">閃爍/淡出</string>
+    <string name="led_intensity">强度</string>
+    <string name="led_speed">速度</string>
     <string name="stock">库存量</string>
     <string name="continuous_light">连续的光</string>
     <string name="bright_light_environment">明亮的环境</string>
@@ -598,8 +598,7 @@
     <string name="fade_in_summary">设定时间段的上升斜率。 </string>
     <string name="fade_out">淡出</string>
     <string name="fade_out_summary">设定时间段的上升斜率。 </string>
-    <string name="backlight_max">显示背光 (最大值)</string>
-    <string name="backlight_min">显示背光 (最小值)</string>
+    <string name="display_backlight">显示背光</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">内部储存空间</string>
