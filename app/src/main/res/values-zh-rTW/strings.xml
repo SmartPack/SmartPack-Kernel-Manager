@@ -742,7 +742,7 @@
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Z-RAM 演算法</string>
-    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。\n在更改此選項之前, 將 Z-RAM 磁片大小減少到 \"0\"。</string>
+    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。\n在更改此選項之前, 將 Z-RAM 磁片大小減少到 「0」。</string>
     <string name="disksize">磁碟空間</string>
     <string name="disksize_summary">嘗試透過避免在物理儲存上分頁，而不是在RAM中使用壓縮的虛擬裝置來提高性能。分頁在RAM中進行，直到有必要在物理儲存上使用交換空間。</string>
     <string name="zswap">ZSWAP</string>
@@ -861,17 +861,17 @@
     <string name="key_empty">密碼不能為空白！</string>
 
     <!-- Profile -->
-    <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時應用。</string>
-    <string name="profile_warning">您在這裡更改的所有內容都將保存到您的個人資料中。但注意！您的設定也將被應用，但不會保存以在啟動時應用。</string>
+    <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時套用。</string>
+    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的個人資料中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
     <string name="no_changes">沒有任何更改作用！</string>
     <string name="apply_question">套用 %s 嗎？</string>
     <string name="append">附加</string>
     <string name="details">細節</string>
     <string name="press_again_to_apply">再次按 %s 即可套用。</string>
     <string name="applied">套用成功</string>
-    <string name="profile_tasker">簡介Tasker</string>
-    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上應用配置檔案，則必須使用Tasker。</string>
-    <string name="profile_tasker_toast">當任務者應用配置檔案時顯示提示訊息</string>
+    <string name="profile_tasker">Tasker 設定檔</string>
+    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上套用配置檔案，則必須使用Tasker。</string>
+    <string name="profile_tasker_toast">當任務者套用配置檔案時顯示提示訊息</string>
     <string name="profile_tile">設定檔瓷磚</string>
     <string name="profile_tile_summary">顯示允許您選擇配置檔案的磁貼。</string>
     <string name="profile_select">選擇配置檔案</string>
@@ -955,7 +955,7 @@
     <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
     <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下載</string>
     <string name="appupdater_update_not_available">恭喜</string>
-    <string name="appupdater_update_not_available_description">\"您已經擁有最新版本的 SmartPack-核心管理器!</string>
+    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack-核心管理器!</string>
     <string name="appupdater_btn_update">更新</string>
     <string name="appupdater_btn_disable">不要再顯示</string>
     <string name="appupdater_btn_dismiss">忽略</string>
@@ -964,14 +964,14 @@
     <string name="appupdater_download_filed">下載失敗!</string>
 
     <!-- Settings-->
-    <string name="open_settings">打開設定</string>
+    <string name="open_settings">開啟設定</string>
     <string name="fahrenheit_title">使用華氏溫度</string>
     <string name="fahrenheit_summary">使用華氏溫度測量。</string>
     <string name="force_english">強制使用英文</string>
     <string name="user_interface">使用者界面</string>
     <string name="dark_theme">深色主題</string>
     <string name="material_icon">Material 圖示</string>
-    <string name="banner_resizer">橫幅resizer</string>
+    <string name="banner_resizer">橫幅 resizer</string>
     <string name="hide_banner">隱藏橫幅</string>
     <string name="force_cards">強制使用卡片風格</string>
     <string name="force_cards_summary">如果可能，請使用卡片。</string>
@@ -984,7 +984,7 @@
     <string name="twenty_sec">20 秒</string>
     <string name="fifty_sec">50 秒</string>
     <string name="apply_on_boot_test_summary">測試適用於啟動。這包括在啟動期間應用的所有類型的東西，例如自訂控件，配置檔案，init.d等。</string>
-    <string name="apply_on_boot_running">開機後套用服務已經執行。請稍候，直到完成。</string>
+    <string name="apply_on_boot_running">開機後套用服務已經在執行中。請稍候，直到完成。</string>
     <string name="test">測試</string>
     <string name="nothing_apply">沒有套用任何設定值！</string>
     <string name="hide">隱藏</string>
