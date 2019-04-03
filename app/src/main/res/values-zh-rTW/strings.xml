@@ -30,13 +30,13 @@
     <string name="license_invalid">感謝您購買捐款應用程式！不幸的是，授權檢查失敗。請稍後再試。如果它仍然無法運作，請與我聯繫。你需要網際網路連線！</string>
     <string name="pirated">似乎捐款應用程式並非透過Play商店購買！如果你使用的是盜版，那麼以你為恥！</string>
     <string name="donate">給 Grarak 捐款</string>
-    <string name="donate_summary">此功能僅適用於官方 Kernel Adiutor 的捐贈版本 (不是此修改後的 SmartPack核心管理器)! \n * 請注意 * 如果您購買了捐贈應用程式, 您可能需要切換到官方 Kernel Adiutor 以獲得好處。</string>
+    <string name="donate_summary">此功能僅適用於官方 Kernel Adiutor 的捐贈版本 (不是此修改後的 SmartPack 核心管理器)! \n * 請注意 * 如果您購買了捐贈應用程式, 您可能需要切換到官方 Kernel Adiutor 以獲得好處。</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>
     <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
     <string name="ad_here">廣告位招租</string>
     <string name="remove_ad">移除廣告</string>
     <string name="warning">警告</string>
-    <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，adblock使用者）。</string>
+    <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，ADBlock 使用者）。</string>
     <string name="open_ad_anyway">仍然打開廣告</string>
     <string name="apply_on_boot">開機後自動套用</string>
     <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
@@ -176,7 +176,7 @@
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
-    <string name="cpu_quiet_summary">CPUQuiet實現可插拔政策迫使cpu核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
+    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
     <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
     <string name="cpu_boost">CPU 加速</string>
     <string name="debug_mask">偵錯遮罩</string>
@@ -199,9 +199,9 @@
     <string name="msm_limiter">MSM 限制器</string>
     <string name="msm_limiter_summary">啟用由neobuddy89製作的 MSM 限制器</string>
     <string name="freq_control">頻率控制</string>
-    <string name="freq_control_summary">允許 msm 限制器控制 cpu 的頻率。</string>
+    <string name="freq_control_summary">允許 MSM 限制器控制 CPU 的頻率。</string>
     <string name="dyn_stune_boost">動態調整增強</string>
-    <string name="stune_boost_ms">Stune Boost Duration</string>
+    <string name="stune_boost_ms">Stune Boost 時長</string>
     <string name="adv_sett">進階設定</string>
 
     <!-- CPU Input Boost -->
@@ -812,7 +812,7 @@
     <string name="welcome">歡迎</string>
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
     <string name="example">例子</string>
-    <string name="custom_controls_example_summary">需要的例子？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
+    <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
     <string name="create">新增</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
@@ -820,7 +820,7 @@
     <string name="title">標題</string>
     <string name="description">描述</string>
     <string name="applying">套用中</string>
-    <string name="switch_enabled_summary">判中斷關是否啟用。傳回1代表啟用。傳回0代表停用</string>
+    <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
     <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的shell指令碼的參數。</string>
     <string name="seekbar_min">最小</string>
     <string name="seekbar_max">最大</string>
@@ -829,7 +829,7 @@
     <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的Min是50和Max 100，seekbar是70，它將返回20作為進度。</string>
     <string name="control_generic">通用</string>
     <string name="generic_value">數值</string>
-    <string name="generic_value_summary">編輯器的目前值。基本上可以是任何東西。</string>
+    <string name="generic_value_summary">編輯器的目前數值。基本上可以是任何東西。</string>
     <string name="generic_apply_summary">編輯器將返回輸入的任何內容。</string>
     <string name="required">需要</string>
     <string name="hit_test">你必須先試打！</string>
@@ -841,7 +841,7 @@
     <string name="name">名稱</string>
     <string name="already_exists">%s 已經存在！</string>
     <string name="exported_item">%1$s 已經被匯出到 %2$s</string>
-    <string name="name_empty">名字不能為空白！</string>
+    <string name="name_empty">名稱不能為空白！</string>
     <string name="import_malformed">匯入檔案格式錯誤！</string>
     <string name="import_wrong_version">匯入的檔案版本太舊了！</string>
 
