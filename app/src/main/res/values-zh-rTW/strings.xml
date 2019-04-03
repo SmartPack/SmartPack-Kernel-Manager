@@ -161,7 +161,7 @@
     <string name="cpu_max_screen_off_freq">CPU 最高頻率(螢幕關閉)</string>
     <string name="cpu_max_screen_off_freq_summary">設定 CPU 在螢幕關閉時可提升的最高頻率</string>
     <string name="cpu_governor">CPU 管理模式</string>
-    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應工作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
+    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應運作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
     <string name="cpu_governor_tunables">CPU 管理模式調整</string>
     <string name="governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
     <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
@@ -172,7 +172,7 @@
     <string name="disabled">已停用</string>
     <string name="enabled">已啟用</string>
     <string name="aggressive">積極的</string>
-    <string name="power_saving_wq">在未休眠的核心上分配工作隊列以節省電力。停用時將只分配在同一個核心上</string>
+    <string name="power_saving_wq">在未休眠的核心上分配運作隊列以節省電力。停用時將只分配在同一個核心上</string>
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
@@ -364,10 +364,10 @@
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">一個有效的解決方法的 msm-adreno-tz 的間接費用。由arter97開發。</string>
     <string name="down_differential">向下差速器</string>
-    <string name="down_differential_summary">用來決定給予的工作負載是否閒置的門檻。</string>
+    <string name="down_differential_summary">用來決定給予的運作負載是否閒置的門檻。</string>
     <string name="idle_wait">閒置等待</string>
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
-    <string name="workload">工作負載</string>
+    <string name="workload">運作負載</string>
     <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
 
     <!--Thermal-->
@@ -1015,10 +1015,10 @@
     <string name="confirm_new_password">確認新密碼</string>
     <string name="old_password_wrong">舊密碼錯誤</string>
     <string name="password_empty">密碼為空</string>
-    <string name="password_not_match">新密碼不相符確認</string>
+    <string name="password_not_match">新密碼不相符</string>
     <string name="password_too_long">密碼太長（最多32個字元）</string>
     <string name="set_password_first">首先設定密碼</string>
-    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將工作，只要你有指紋註冊。</string>
+    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將運作，只要你有指紋註冊。</string>
     <string name="sections">部分</string>
 
     <!-- About -->
@@ -1028,7 +1028,7 @@
     <string name="change_logs">更新日誌</string>
     <string name="change_logs_summary">檢視變更</string>
     <string name="donate_me">捐贈給我</string>
-    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點擊這裡</string>
+    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
@@ -1038,10 +1038,10 @@
     <!-- FAQ -->
     <string name="how_different">問題1。此應用程式跟 Grarak 的官方版 Kernel Adiutor 有何不同之處？</string>
     <string name="how_different_summary">答案：此應用程式經過顯著修改, 以滿足	SmartPack 核心的需求。這個應用程式的一些附加功能包括但不限於, 即 CPU 輸入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. 進階充電控制介面 (Samsung msm8974 核心), vi. Boeffla 喚醒鎖, vii. Boeffla 和 Flar 的聲音控制與每個通道的支援, viii. SELinux 開關, ix. Smartpack核心的 OTA 支援、x. 顯示背光控制等。</string>
-    <string name="can_i_use">問題2。我可以將此應用程式與其他自訂核心一起使用嗎？</string>
+    <string name="can_i_use">問題2。我可以將此應用程式與其他第三方核心一起使用嗎？</string>
     <string name="can_i_use_summary">答案：為什麼不呢？它將像往常一樣運作。</string>
     <string name="cpu_freq_not_sticking">問題3。為什麼我設定的 CPU 頻率不會固定？</string>
-    <string name="cpu_freq_not_sticking_summary">答案：這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
+    <string name="cpu_freq_not_sticking_summary">答案：這能歸咎於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
     <string name="feature_not_appearing">問題4。為什麼功能 x 和 y 沒有顯示？</string>
     <string name="feature_not_appearing_summary">答案：僅顯示已安裝核心支援的功能。</string>
     <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
