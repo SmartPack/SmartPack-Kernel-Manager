@@ -618,7 +618,7 @@
     <string name="fade">閃爍/淡出</string>
     <string name="led_intensity">強度</string>
     <string name="led_speed">速度</string>
-    <string name="stock">原始</string>
+    <string name="stock">原始速度</string>
     <string name="continuous_light">連續的光</string>
     <string name="bright_light_environment">明亮的環境</string>
     <string name="bright_light_environment_summary">設定當在明亮環境中LED的相對強度。</string>
