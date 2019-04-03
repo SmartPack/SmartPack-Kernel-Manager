@@ -30,13 +30,13 @@
     <string name="license_invalid">感謝您購買捐款應用程式！不幸的是，授權檢查失敗。請稍後再試。如果它仍然無法運作，請與我聯繫。你需要網際網路連線！</string>
     <string name="pirated">似乎捐款應用程式並非透過Play商店購買！如果你使用的是盜版，那麼以你為恥！</string>
     <string name="donate">給 Grarak 捐款</string>
-    <string name="donate_summary">此功能僅適用於官方 Kernel Adiutor 的捐贈版本 (不是此修改後的 SmartPack核心管理器)! \n * 請注意 * 如果您購買了捐贈應用程式, 您可能需要切換到官方 Kernel Adiutor 以獲得好處。</string>
+    <string name="donate_summary">此功能僅適用於官方 Kernel Adiutor 的捐贈版本 (不是此修改後的 SmartPack 核心管理器)! \n * 請注意 * 如果您購買了捐贈應用程式, 您可能需要切換到官方 Kernel Adiutor 以獲得好處。</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>
     <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
-    <string name="ad_here">您的廣告可以在這裡</string>
+    <string name="ad_here">廣告位招租</string>
     <string name="remove_ad">移除廣告</string>
     <string name="warning">警告</string>
-    <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，adblock使用者）。</string>
+    <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，ADBlock 使用者）。</string>
     <string name="open_ad_anyway">仍然打開廣告</string>
     <string name="apply_on_boot">開機後自動套用</string>
     <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
@@ -161,7 +161,7 @@
     <string name="cpu_max_screen_off_freq">CPU 最高頻率(螢幕關閉)</string>
     <string name="cpu_max_screen_off_freq_summary">設定 CPU 在螢幕關閉時可提升的最高頻率</string>
     <string name="cpu_governor">CPU 管理模式</string>
-    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應工作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
+    <string name="cpu_governor_summary">CPU 管理模式決定 CPU 回應運作負載改變時的行為。更改管理模式將會影響 CPU 如何在可用頻率間切換頻率。</string>
     <string name="cpu_governor_tunables">CPU 管理模式調整</string>
     <string name="governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
     <string name="cpu_governor_tunables_read_error">無法讀取目前 CPU 的管理器。\n\n如果您正在使用 QCOM 的 異質運算多核心處理器架構(big.LITTLE)，這是一個已知的問題。系統會強制 CPU 關閉，使得應用程式非常難讀取到 CPU 特定核心並進行狀態統計。請嘗試重新選擇該選項。CPU 有時會傲嬌的拒絕打開一個核心。</string>
@@ -172,11 +172,11 @@
     <string name="disabled">已停用</string>
     <string name="enabled">已啟用</string>
     <string name="aggressive">積極的</string>
-    <string name="power_saving_wq">在未休眠的核心上分配工作隊列以節省電力。停用時將只分配在同一個核心上</string>
+    <string name="power_saving_wq">在未休眠的核心上分配運作隊列以節省電力。停用時將只分配在同一個核心上</string>
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
-    <string name="cpu_quiet_summary">CPUQuiet實現可插拔政策迫使cpu核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
+    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
     <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
     <string name="cpu_boost">CPU 加速</string>
     <string name="debug_mask">偵錯遮罩</string>
@@ -199,9 +199,9 @@
     <string name="msm_limiter">MSM 限制器</string>
     <string name="msm_limiter_summary">啟用由neobuddy89製作的 MSM 限制器</string>
     <string name="freq_control">頻率控制</string>
-    <string name="freq_control_summary">允許 msm 限制器控制 cpu 的頻率。</string>
+    <string name="freq_control_summary">允許 MSM 限制器控制 CPU 的頻率。</string>
     <string name="dyn_stune_boost">動態調整增強</string>
-    <string name="stune_boost_ms">Stune Boost Duration</string>
+    <string name="stune_boost_ms">Stune Boost 時長</string>
     <string name="adv_sett">進階設定</string>
 
     <!-- CPU Input Boost -->
@@ -364,10 +364,10 @@
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">一個有效的解決方法的 msm-adreno-tz 的間接費用。由arter97開發。</string>
     <string name="down_differential">向下差速器</string>
-    <string name="down_differential_summary">用來決定給予的工作負載是否閒置的門檻。</string>
+    <string name="down_differential_summary">用來決定給予的運作負載是否閒置的門檻。</string>
     <string name="idle_wait">閒置等待</string>
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
-    <string name="workload">工作負載</string>
+    <string name="workload">運作負載</string>
     <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
 
     <!--Thermal-->
@@ -618,21 +618,21 @@
     <string name="fade">閃爍/淡出</string>
     <string name="led_intensity">強度</string>
     <string name="led_speed">速度</string>
-    <string name="stock">庫存量</string>
+    <string name="stock">原始速度</string>
     <string name="continuous_light">連續的光</string>
     <string name="bright_light_environment">明亮的環境</string>
     <string name="bright_light_environment_summary">設定當在明亮環境中LED的相對強度。</string>
-    <string name="low_light_environment">低光環境</string>
+    <string name="low_light_environment">低光源環境</string>
     <string name="low_light_environment_summary">設定在低亮度環境下的LED的相對強度。</string>
     <string name="notification">通知</string>
     <string name="on">開</string>
     <string name="off">關</string>
     <string name="fade_ramp_control">褪色入口匝道控制</string>
-    <string name="fade_ramp_control_summary">啟用或停用 LED 淡進/出 （坡道） 控制。</string>
+    <string name="fade_ramp_control_summary">啟用或停用 LED 淡入/出 （坡道） 控制。</string>
     <string name="fade_in">淡入</string>
-    <string name="fade_in_summary">設定時間段的上升斜率。</string>
+    <string name="fade_in_summary">設定上升斜率的時間段。</string>
     <string name="fade_out">淡出</string>
-    <string name="fade_out_summary">設定時間段的上升斜率。</string>
+    <string name="fade_out_summary">設定上升斜率的時間段。</string>
     <string name="display_backlight">顯示背光</string>
 
     <!-- I/O Scheduler -->
@@ -643,9 +643,9 @@
     <string name="scheduler_tunable">排程調整</string>
     <string name="scheduler_tunable_summary">這些配置項目與您使用的排程有關。</string>
     <string name="read_ahead">預讀</string>
-    <string name="read_ahead_summary">在手機記憶體預讀取值。</string>
-    <string name="rotational">旋轉儲存裝置(Hdd機械硬碟)</string>
-    <string name="rotational_summary">將本裝置視為旋轉儲存裝置(Hdd機械硬碟)。</string>
+    <string name="read_ahead_summary">在手機記憶體預先讀取數值。</string>
+    <string name="rotational">旋轉儲存裝置(HDD 機械硬碟)</string>
+    <string name="rotational_summary">將本裝置視為旋轉儲存裝置(HDD機械硬碟)。</string>
     <string name="iostats">I/O 統計資料</string>
     <string name="iostats_summary">維護此儲存裝置的 I/O 統計資料。停用將中斷 I/O 監控程式。(提升I/O效能但增加I/O錯誤的可能)</string>
     <string name="add_random">增加隨機</string>
@@ -676,7 +676,7 @@
     <!-- Low Memory Killer -->
     <string name="foreground_app">前台應用程式</string>
     <string name="lmk_adaptive">自適應低記憶體殺手</string>
-    <string name="lmk_adaptive_summary">檢測到抖動情況時，動態地使LMK更積極。</string>
+    <string name="lmk_adaptive_summary">偵測到抖動情況時，動態地使LMK更積極。</string>
     <string name="visible_app">可見的應用程式</string>
     <string name="secondary_server">次要服務</string>
     <string name="hidden_app">後台應用程式</string>
@@ -742,7 +742,7 @@
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Z-RAM 演算法</string>
-    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。\n在更改此選項之前, 將 Z-RAM 磁片大小減少到 \"0\"。</string>
+    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。\n在更改此選項之前, 將 Z-RAM 磁片大小減少到 「0」。</string>
     <string name="disksize">磁碟空間</string>
     <string name="disksize_summary">嘗試透過避免在物理儲存上分頁，而不是在RAM中使用壓縮的虛擬裝置來提高性能。分頁在RAM中進行，直到有必要在物理儲存上使用交換空間。</string>
     <string name="zswap">ZSWAP</string>
@@ -789,16 +789,16 @@
     <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連線單次傳送的分組數量的算法。它透過增減單次傳送量逐步調整，使之逼近目前網路的承載量。</string>
     <string name="hostname">主機名稱</string>
     <string name="wireguard">WireGuard VPN</string>
-    <string name="leases_enable">Leases Enable</string>
-    <string name="leases_enable_summary">Enable or disable file leases on a system-wide basis</string>
-    <string name="lease_break_time">Lease Break Time</string>
-    <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
+    <string name="leases_enable">啟用檔案租用</string>
+    <string name="leases_enable_summary">在系統範圍內啟用或停用檔案租用</string>
+    <string name="lease_break_time">中斷租用時間</string>
+    <string name="lease_break_time_summary">核心授予持有檔案租用的處理程序在向該處理程序傳送信號後授予該處理程序的寬限期, 通知它另一個處理程序正在等待開啟該檔案。</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">性能調整</string>
     <string name="profileTile">設定檔</string>
     <string name="spec_title">性能調整</string>
-    <string name="spec_info">對頻譜管理器的改編。\n在可用的預定義設定檔中選擇一個。</string>
+    <string name="spec_info">對頻譜管理器的改編。\n在可用的預先定義設定檔中選擇一個。</string>
     <string name="spec_balanced">平衡</string>
     <string name="spec_balanced_summary">預設核心設定檔, 專為在基本任務中的平滑性能而設計, 同時保持出色的電池續航。</string>
     <string name="spec_performance">高性能</string>
@@ -812,7 +812,7 @@
     <string name="welcome">歡迎</string>
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
     <string name="example">例子</string>
-    <string name="custom_controls_example_summary">需要的例子？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
+    <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
     <string name="create">新增</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
@@ -820,7 +820,7 @@
     <string name="title">標題</string>
     <string name="description">描述</string>
     <string name="applying">套用中</string>
-    <string name="switch_enabled_summary">判中斷關是否啟用。傳回1代表啟用。傳回0代表停用</string>
+    <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
     <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的shell指令碼的參數。</string>
     <string name="seekbar_min">最小</string>
     <string name="seekbar_max">最大</string>
@@ -829,7 +829,7 @@
     <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的Min是50和Max 100，seekbar是70，它將返回20作為進度。</string>
     <string name="control_generic">通用</string>
     <string name="generic_value">數值</string>
-    <string name="generic_value_summary">編輯器的目前值。基本上可以是任何東西。</string>
+    <string name="generic_value_summary">編輯器的目前數值。基本上可以是任何東西。</string>
     <string name="generic_apply_summary">編輯器將返回輸入的任何內容。</string>
     <string name="required">需要</string>
     <string name="hit_test">你必須先試打！</string>
@@ -841,7 +841,7 @@
     <string name="name">名稱</string>
     <string name="already_exists">%s 已經存在！</string>
     <string name="exported_item">%1$s 已經被匯出到 %2$s</string>
-    <string name="name_empty">名字不能為空白！</string>
+    <string name="name_empty">名稱不能為空白！</string>
     <string name="import_malformed">匯入檔案格式錯誤！</string>
     <string name="import_wrong_version">匯入的檔案版本太舊了！</string>
 
@@ -861,17 +861,17 @@
     <string name="key_empty">密碼不能為空白！</string>
 
     <!-- Profile -->
-    <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時應用。</string>
-    <string name="profile_warning">您在這裡更改的所有內容都將保存到您的個人資料中。但注意！您的設定也將被應用，但不會保存以在啟動時應用。</string>
+    <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時套用。</string>
+    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的個人資料中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
     <string name="no_changes">沒有任何更改作用！</string>
     <string name="apply_question">套用 %s 嗎？</string>
     <string name="append">附加</string>
     <string name="details">細節</string>
     <string name="press_again_to_apply">再次按 %s 即可套用。</string>
     <string name="applied">套用成功</string>
-    <string name="profile_tasker">簡介Tasker</string>
-    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上應用配置檔案，則必須使用Tasker。</string>
-    <string name="profile_tasker_toast">當任務者應用配置檔案時顯示提示訊息</string>
+    <string name="profile_tasker">Tasker 設定檔</string>
+    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上套用配置檔案，則必須使用Tasker。</string>
+    <string name="profile_tasker_toast">當任務者套用配置檔案時顯示提示訊息</string>
     <string name="profile_tile">設定檔瓷磚</string>
     <string name="profile_tile_summary">顯示允許您選擇配置檔案的磁貼。</string>
     <string name="profile_select">選擇配置檔案</string>
@@ -955,7 +955,7 @@
     <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
     <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下載</string>
     <string name="appupdater_update_not_available">恭喜</string>
-    <string name="appupdater_update_not_available_description">\"您已經擁有最新版本的 SmartPack-核心管理器!</string>
+    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack-核心管理器!</string>
     <string name="appupdater_btn_update">更新</string>
     <string name="appupdater_btn_disable">不要再顯示</string>
     <string name="appupdater_btn_dismiss">忽略</string>
@@ -964,14 +964,14 @@
     <string name="appupdater_download_filed">下載失敗!</string>
 
     <!-- Settings-->
-    <string name="open_settings">打開設定</string>
+    <string name="open_settings">開啟設定</string>
     <string name="fahrenheit_title">使用華氏溫度</string>
     <string name="fahrenheit_summary">使用華氏溫度測量。</string>
     <string name="force_english">強制使用英文</string>
     <string name="user_interface">使用者界面</string>
     <string name="dark_theme">深色主題</string>
     <string name="material_icon">Material 圖示</string>
-    <string name="banner_resizer">橫幅resizer</string>
+    <string name="banner_resizer">橫幅 resizer</string>
     <string name="hide_banner">隱藏橫幅</string>
     <string name="force_cards">強制使用卡片風格</string>
     <string name="force_cards_summary">如果可能，請使用卡片。</string>
@@ -983,19 +983,19 @@
     <string name="ten_sec">10 秒</string>
     <string name="twenty_sec">20 秒</string>
     <string name="fifty_sec">50 秒</string>
-    <string name="apply_on_boot_test_summary">測試適用於啟動。這包括在啟動期間應用的所有類型的東西，例如自定義控件，配置檔案，init.d等。</string>
-    <string name="apply_on_boot_running">應用於引導服務已經運行。請等待，直到完成。</string>
+    <string name="apply_on_boot_test_summary">測試適用於啟動。這包括在啟動期間應用的所有類型的東西，例如自訂控件，配置檔案，init.d等。</string>
+    <string name="apply_on_boot_running">開機後套用服務已經在執行中。請稍候，直到完成。</string>
     <string name="test">測試</string>
-    <string name="nothing_apply">沒有發現適用！</string>
+    <string name="nothing_apply">沒有套用任何設定值！</string>
     <string name="hide">隱藏</string>
-    <string name="apply_on_boot_hide_summary">隱藏啟動時應用的通知。延遲仍將保持！</string>
+    <string name="apply_on_boot_hide_summary">隱藏啟動時套用的通知。延遲仍將保持！</string>
     <string name="toast">彈出訊息（Toast）</string>
     <string name="apply_on_boot_toast_summary">應用設定時顯示提示訊息。</string>
     <string name="confirmation_notification">確認通知</string>
-    <string name="apply_on_boot_confirmation_notification_summary">使用可見通知應用啟動後，隨後顯示一條通知，確認啟動成功。</string>
+    <string name="apply_on_boot_confirmation_notification_summary">使用可見通知套用啟動後，隨後顯示一條通知，確認啟動成功。</string>
     <string name="script">指令碼</string>
-    <string name="apply_on_boot_script_summary">使用shell指令碼應用設定。請只啟用此，如果你有關於申請煩惱啟動。如果在啟用此選項後問題仍然存在，請確保沒有其他應用程式與核心調解器衝突。</string>
-    <string name="debugging">除錯</string>
+    <string name="apply_on_boot_script_summary">使用shell指令碼套用設定。請只有在開機後套用服務無法正確運作時才啟用此選項。如果在啟用此選項後問題仍然存在，請確保沒有其他應用程式與核心調解器衝突。</string>
+    <string name="debugging">偵錯</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">將 logcat 複製到 /sdcard/logcat.txt</string>
     <string name="last_kmsg">最新的核心訊息</string>
@@ -1015,10 +1015,10 @@
     <string name="confirm_new_password">確認新密碼</string>
     <string name="old_password_wrong">舊密碼錯誤</string>
     <string name="password_empty">密碼為空</string>
-    <string name="password_not_match">新密碼不匹配確認</string>
-    <string name="password_too_long">密碼太長（最多32個字符）</string>
+    <string name="password_not_match">新密碼不相符</string>
+    <string name="password_too_long">密碼太長（最多32個字元）</string>
     <string name="set_password_first">首先設定密碼</string>
-    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將工作，只要你有指紋註冊。</string>
+    <string name="fingerprint_summary">使用指紋傳遞安全檢查。這將運作，只要你有指紋註冊。</string>
     <string name="sections">部分</string>
 
     <!-- About -->
@@ -1028,7 +1028,7 @@
     <string name="change_logs">更新日誌</string>
     <string name="change_logs_summary">檢視變更</string>
     <string name="donate_me">捐贈給我</string>
-    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點擊這裡</string>
+    <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
@@ -1036,30 +1036,30 @@
     <string name="translators">翻譯人員</string>
 
     <!-- FAQ -->
-    <string name="how_different">問題1。這個應用程式跟Grarak的官方版 Kernel Adiutor 有何不同之處？</string>
-    <string name="how_different_summary">答案：此應用程式經過顯著修改, 以滿足	Smart-Pack核心的需求。這個應用程式的一些附加功能包括但不限於, 即 CPU 輸入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. 進階充電控制介面 (Samsung msm8974 核心), vi. Boeffla 喚醒鎖, vii. Boeffla 和 Flar 的聲音控制與每個通道的支援, viii. SELinux 開關, ix. Smartpack核心的 OTA 支援、x. 顯示背光控制等。</string>
-    <string name="can_i_use">問題2。我可以將此應用程式與其他自訂核心一起使用嗎？</string>
+    <string name="how_different">問題1。此應用程式跟 Grarak 的官方版 Kernel Adiutor 有何不同之處？</string>
+    <string name="how_different_summary">答案：此應用程式經過顯著修改, 以滿足	SmartPack 核心的需求。這個應用程式的一些附加功能包括但不限於, 即 CPU 輸入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. 進階充電控制介面 (Samsung msm8974 核心), vi. Boeffla 喚醒鎖, vii. Boeffla 和 Flar 的聲音控制與每個通道的支援, viii. SELinux 開關, ix. Smartpack核心的 OTA 支援、x. 顯示背光控制等。</string>
+    <string name="can_i_use">問題2。我可以將此應用程式與其他第三方核心一起使用嗎？</string>
     <string name="can_i_use_summary">答案：為什麼不呢？它將像往常一樣運作。</string>
     <string name="cpu_freq_not_sticking">問題3。為什麼我設定的 CPU 頻率不會固定？</string>
-    <string name="cpu_freq_not_sticking_summary">答案：這能歸因於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
+    <string name="cpu_freq_not_sticking_summary">答案：這能歸咎於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
     <string name="feature_not_appearing">問題4。為什麼功能 x 和 y 沒有顯示？</string>
     <string name="feature_not_appearing_summary">答案：僅顯示已安裝核心支援的功能。</string>
     <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
-    <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式通用的所有裝置。</string>
+    <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式適用於所有裝置。</string>
     <string name="rom_abc">問題6。核心是否與 ROM a/b/c 相容？</string>
     <string name="rom_abc_summary">答案：我不知道。我所有的核心都是基於Lineage-OS/原廠ROM上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
-    <string name="better_than">問題7。你的核心比原廠/\' x/y/z \' 核心好嗎？</string>
-    <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 \"x/y/z\" 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
+    <string name="better_than">問題7。你的核心比原廠/「 x/y/z 」' 核心好嗎？</string>
+    <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 「x/y/z」 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
     <string name="how_abt_sot">問題8。性能/SOT 如何？</string>
-    <string name="how_abt_sot_summary">答案：由於 sot、性能等主要基於幾個因素, 如 ROM、已安裝的應用程式等, 沒有其他人能夠準確預測您的手機的性能。所以, 你應該自己測試。</string>
+    <string name="how_abt_sot_summary">答案：由於 SOT、性能等主要基於幾個因素, 如 ROM、已安裝的應用程式等, 沒有其他人能夠準確預測您的手機的性能。所以, 你應該自己測試。</string>
     <string name="what_best">問題9。你能告訴我性能的最佳設定嗎？</string>
-    <string name="what_best_summary">答案：同樣, 這取決於幾個因素。我只能分享我最喜歡的設定, 給我最好的結果在我最喜歡的 ROM。</string>
+    <string name="what_best_summary">答案：同樣地, 這取決於幾個因素。我只能分享我最喜歡的設定, 在我最喜歡的 ROM 提供最好的結果。</string>
     <string name="battery_drain">問題10。安裝核心後, 我遇到了大量耗電。有什麼解決辦法嗎？</string>
-    <string name="battery_drain_summary">答案.。在我看來, 包括我在內的任何核心都無法在電池壽命方面產生如此大的變化 (既不是積極的, 也不是消極的)。這應該是因為你的 ROM, gapp, 其他已安裝的應用程式, 喚醒鎖等。</string>
+    <string name="battery_drain_summary">答案：在我看來, 包括我在內的任何核心都無法在電池壽命方面產生如此大的變化 (既不是積極的, 也不是消極的)。這應該是因為你的 ROM, gapp, 其他已安裝的應用程式, 喚醒鎖等。</string>
     <string name="cache_dalvik">問題11。在安裝核心後, 我是否需要在之前擦除 cache/dalvik 快取？</string>
-    <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 \"看到\" cache/dalvik 快取。</string>
+    <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 「看到」 cache/dalvik 快取。</string>
     <string name="found_bugs">問題12。我在你的 app/核心中發現了一個錯誤, 我該怎麼辦？</string>
-    <string name="found_bugs_summary">答案請提供盡可能多的資訊 (如什麼功能、哪些功能不起作用、螢幕截圖或 logcat (如果可能), 並在相應的 xda 開發人員頁面中發佈。或者, 您也可以將問題提交到相應的 github 源。</string>
-    <string name="can_i_contribute">問題13。我可以為您的 app/核心專案做出貢獻嗎？如果是, 如何做到？</string>
-    <string name="can_i_contribute_summary">答案, 當然。任何形式的貢獻 (捐贈、原始碼等) 都是樂見和高度讚賞的。請瀏覽 \"關於\" 部分瞭解更多詳情。</string>
+    <string name="found_bugs_summary">答案：請提供盡可能多的資訊 (如什麼功能、哪些功能不起作用、螢幕截圖或 logcat (如果可能), 並在相應的 xda 開發人員頁面中發佈。或者, 您也可以將問題提交到相應的 github 源。</string>
+    <string name="can_i_contribute">問題13。我可以為您的 app/核心專案做出貢獻嗎？如果可以, 要怎麼做？</string>
+    <string name="can_i_contribute_summary">答案：當然。任何形式的貢獻 (捐贈、原始碼等) 都是樂見和高度讚賞的。請瀏覽 「關於」 部分瞭解更多詳細資訊。</string>
 </resources>
