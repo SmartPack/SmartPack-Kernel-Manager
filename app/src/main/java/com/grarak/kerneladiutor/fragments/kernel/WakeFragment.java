@@ -197,6 +197,29 @@ public class WakeFragment extends RecyclerViewFragment {
             wakeCard.addItem(s2s);
 	}
 
+	if (mS2s.hasVibStrength()) {
+            SeekBarView vibStrength = new SeekBarView();
+            vibStrength.setTitle(getString(R.string.s2s) + (" ") + getString(R.string.vibration_strength));
+            vibStrength.setMax(90);
+            vibStrength.setProgress(mS2s.getVibStrength());
+            vibStrength.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mS2s.setVibStrength((position), getActivity());
+		    getHandler().postDelayed(() -> {
+		    vibStrength.setProgress(mS2s.getVibStrength());
+		    },
+	        500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            wakeCard.addItem(vibStrength);
+        }
+
 	if (mMisc.hasWake()) {
             SelectView wake = new SelectView();
             wake.setSummary(getString(R.string.wake));
