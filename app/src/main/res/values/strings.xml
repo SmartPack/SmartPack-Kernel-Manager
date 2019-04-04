@@ -791,6 +791,8 @@
     <string name="android_logger_summary">Turn On/Off Android logging</string>
     <string name="printk_logger">PrintK logging</string>
     <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
+    <string name="doze">Doze Mode</string>
+    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
     <string name="selinux_switch">SELinux Switch</string>
     <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>

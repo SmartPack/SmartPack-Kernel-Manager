@@ -283,6 +283,21 @@ public class MiscFragment extends RecyclerViewFragment {
             miscCard.addItem(leaseBreakTime);
 	}
 
+	if (mMisc.hasDoze()) {
+            SwitchView doze = new SwitchView();
+            doze.setTitle(getString(R.string.doze));
+            doze.setSummary(getString(R.string.doze_summary));
+            doze.setChecked(mMisc.isDozeEnabled());
+            doze.addOnSwitchListener((switchView, isChecked)
+                -> mMisc.enableDoze(isChecked, getActivity()));
+		getHandler().postDelayed(() -> {
+		doze.setChecked(mMisc.isDozeEnabled());
+		},
+	    500);
+
+            miscCard.addItem(doze);
+	}
+
 	if (mMisc.hasSELinux()) {
 	    SwitchView selinux = new SwitchView();
 	    selinux.setTitle(getString(R.string.selinux_switch));
