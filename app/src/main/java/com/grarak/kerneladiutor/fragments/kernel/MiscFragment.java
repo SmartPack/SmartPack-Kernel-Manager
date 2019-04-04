@@ -63,7 +63,7 @@ public class MiscFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
 	if (mVibration.supported() || mMisc.hasLoggerEnable() || mMisc.hasPrintKMode() || mMisc.hasCrc()
 		|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers()
-		|| mMisc.hasArchPower() || mMisc.hasSELinux()) {
+		|| mMisc.hasArchPower() || mMisc.hasDoze() || mMisc.hasSELinux()) {
             miscInit(items);
 	}
         if (PowerSuspend.supported()) {
