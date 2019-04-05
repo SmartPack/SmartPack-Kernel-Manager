@@ -89,6 +89,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
 		public void onItemSelected(SelectView selectView, int position, String item) {
                     mDt2w.set(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    dt2w.setItem(mDt2w.get());
+		    },
+	        500);
             	}
             });
 
@@ -105,6 +109,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
                     mS2w.set(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    s2w.setItem(mS2w.get());
+		    },
+	        500);
                 }
             });
 
@@ -120,6 +128,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mS2w.enableLenient(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    lenient.setChecked(mS2w.isLenientEnabled());
+		    },
+	        500);
                 }
             });
 
@@ -136,6 +148,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onItemSelected(SelectView selectView, int position, String item) {
                     mT2w.set(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    t2w.setItem(mT2w.get());
+		    },
+	        500);
             	}
             });
 
@@ -152,6 +168,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onItemSelected(SelectView selectView, int position, String item) {
                     mDt2s.set(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    dt2s.setItem(mDt2s.get());
+		    },
+	        500);
             	}
             });
 
@@ -168,6 +188,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onItemSelected(SelectView selectView, int position, String item) {
                     mS2s.set(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    s2s.setItem(mS2s.get());
+		    },
+	        500);
             	}
             });
 
@@ -183,6 +207,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
                     mMisc.setWake(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    wake.setItem(mMisc.getWake());
+		    },
+	        500);
             	}
             });
 
@@ -201,6 +229,11 @@ public class WakeFragment extends RecyclerViewFragment {
                     @Override
                     public void onChanged(SwitchView switchView, boolean isChecked) {
                     	Gestures.enable(isChecked, position, getActivity());
+			getHandler().postDelayed(() -> {
+			for (int i = 0; i < gestures.size(); i++) {
+			    gesture.setChecked(Gestures.isEnabled(i));
+			}},
+	            500);
                     }
             	});
 
@@ -217,6 +250,10 @@ public class WakeFragment extends RecyclerViewFragment {
 		@Override
 		public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enableCamera(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    camera.setChecked(mMisc.isCameraEnabled());
+		    },
+	        500);
 		}
             });
 
@@ -232,6 +269,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enablePocket(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    pocket.setChecked(mMisc.isPocketEnabled());
+		    },
+	        500);
             	}
             });
 
@@ -253,6 +294,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onStop(SeekBarView seekBarView, int position, String value) {
                     mMisc.setTimeout(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    timeout.setProgress(mMisc.getTimeout());
+		    },
+	        500);
             	}
 
             	@Override
@@ -279,6 +324,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
            	public void onStop(SeekBarView seekBarView, int position, String value) {
                     mMisc.setChargeTimeout(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    chargetimeout.setProgress(mMisc.getChargeTimeout());
+		    },
+	        500);
             	}
 
             	@Override
@@ -298,6 +347,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enablePowerKeySuspend(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    powerKeySuspend.setChecked(mMisc.isPowerKeySuspendEnabled());
+		    },
+	        500);
             	}
             });
 
@@ -313,6 +366,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enableKeyPowerMode(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    keyPowerMode.setChecked(mMisc.isKeyPowerModeEnabled());
+		    },
+	        500);
             	}
             });
 
@@ -328,6 +385,10 @@ public class WakeFragment extends RecyclerViewFragment {
             	@Override
             	public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enableChargingMode(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    chargingMode.setChecked(mMisc.isChargingModeEnabled());
+		    },
+	        500);
             	}
             });
 
@@ -346,6 +407,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mDt2s.setWidth(position + Math.round(w / 28.8f), getActivity());
+		    getHandler().postDelayed(() -> {
+		    width.setProgress(mDt2s.getWidth() - Math.round(w / 28.8f));
+		    },
+	        500);
                 }
 
                 @Override
@@ -368,6 +433,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mDt2s.setHeight(position + Math.round(h / 51.2f), getActivity());
+		    getHandler().postDelayed(() -> {
+		    height.setProgress(mDt2s.getHeight() - Math.round(h / 51.2f));
+		    },
+	        500);
                 }
 
                 @Override
@@ -386,6 +455,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mMisc.enableVibration(isChecked, getActivity());
+		    getHandler().postDelayed(() -> {
+		    vibration.setChecked(mMisc.isVibrationEnabled());
+		    },
+	        500);
                 }
             });
 
@@ -402,6 +475,10 @@ public class WakeFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mMisc.setVibVibration(position, getActivity());
+		    getHandler().postDelayed(() -> {
+		    vibVibration.setProgress(mMisc.getVibVibration());
+		    },
+	        500);
                 }
 
                 @Override
