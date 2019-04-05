@@ -60,7 +60,6 @@ public class Dt2w {
 
     private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
     private final List<Integer> mLgeTouchCoreMenu = new ArrayList<>();
-    private final List<Integer> mAndroidTouchMenu = new ArrayList<>();
     private final List<Integer> mGenericMenu = new ArrayList<>();
 
     {
@@ -70,17 +69,13 @@ public class Dt2w {
         mLgeTouchCoreMenu.add(R.string.bottom_half);
         mLgeTouchCoreMenu.add(R.string.top_half);
 
-        mAndroidTouchMenu.add(R.string.disabled);
-        mAndroidTouchMenu.add(R.string.half);
-        mAndroidTouchMenu.add(R.string.full);
-
         mGenericMenu.add(R.string.disabled);
         mGenericMenu.add(R.string.enabled);
 
         mFiles.put(LGE_TOUCH_DT2W, mGenericMenu);
         mFiles.put(LGE_TOUCH_CORE_DT2W, mLgeTouchCoreMenu);
         mFiles.put(LGE_TOUCH_GESTURE, mGenericMenu);
-        mFiles.put(ANDROID_TOUCH_DT2W, mAndroidTouchMenu);
+        mFiles.put(ANDROID_TOUCH_DT2W, mGenericMenu);
         mFiles.put(ANDROID_TOUCH2_DT2W, mGenericMenu);
         mFiles.put(TOUCH_PANEL_DT2W, mGenericMenu);
         mFiles.put(DT2W_WAKEUP_GESTURE, mGenericMenu);

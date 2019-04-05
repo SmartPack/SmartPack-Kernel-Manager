@@ -45,13 +45,23 @@ public class S2s {
     }
 
     private static final String S2S = "/sys/android_touch/sweep2sleep";
+    private static final String S2S_1 = "/sys/sweep2sleep/sweep2sleep";
     private static final String S2S_2 = "/sys/android_touch2/sweep2sleep";
 
+    private static final String S2S_VIB_STRENGTH = "/sys/sweep2sleep/vib_strength";
+
     private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
+    private final List<Integer> mS2s1Menu = new ArrayList<>();
     private final List<Integer> mS2s2Menu = new ArrayList<>();
     private final List<Integer> mGenericMenu = new ArrayList<>();
 
     {
+
+        mS2s1Menu.add(R.string.disabled);
+        mS2s1Menu.add(R.string.s2s_right);
+        mS2s1Menu.add(R.string.s2s_left);
+        mS2s1Menu.add(R.string.s2s_any);
+
         mS2s2Menu.add(R.string.s2s_right);
         mS2s2Menu.add(R.string.s2s_left);
         mS2s2Menu.add(R.string.s2s_any);
@@ -60,6 +70,7 @@ public class S2s {
         mGenericMenu.add(R.string.enabled);
 
         mFiles.put(S2S, mGenericMenu);
+        mFiles.put(S2S_1, mS2s1Menu);
         mFiles.put(S2S_2, mS2s2Menu);
     }
 
@@ -88,6 +99,18 @@ public class S2s {
             list.add(context.getString(id));
         }
         return list;
+    }
+
+    public void setVibStrength(int value, Context context) {
+        run(Control.write(String.valueOf(value), S2S_VIB_STRENGTH), S2S_VIB_STRENGTH, context);
+    }
+
+    public static int getVibStrength() {
+        return Utils.strToInt(Utils.readFile(S2S_VIB_STRENGTH));
+    }
+
+    public static boolean hasVibStrength() {
+        return Utils.existFile(S2S_VIB_STRENGTH);
     }
 
     public boolean supported() {

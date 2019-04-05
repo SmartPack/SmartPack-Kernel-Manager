@@ -626,6 +626,10 @@
     <string name="key_power_mode_summary">Wake controls will only be active when you put your device into sleep with the power key.</string>
     <string name="charging_mode">Charging Mode</string>
     <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
 
     <!-- LED -->
     <string name="led_notification">LED Notification</string>
@@ -787,6 +791,8 @@
     <string name="android_logger_summary">Turn On/Off Android logging</string>
     <string name="printk_logger">PrintK logging</string>
     <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
+    <string name="doze">Doze Mode</string>
+    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
     <string name="selinux_switch">SELinux Switch</string>
     <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>

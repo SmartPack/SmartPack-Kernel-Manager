@@ -21,6 +21,7 @@ package com.grarak.kerneladiutor.views.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.database.Cursor;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.WindowManager;
@@ -97,6 +98,22 @@ public class Dialog extends AlertDialog.Builder {
     @Override
     public Dialog setNegativeButton(int textId, DialogInterface.OnClickListener listener) {
         return (Dialog) super.setNegativeButton(textId, listener);
+    }
+
+    @Override
+    public Dialog setMultiChoiceItems(int itemsId, boolean[] checkedItems, DialogInterface.OnMultiChoiceClickListener listener){
+        return (Dialog) super.setMultiChoiceItems(itemsId, checkedItems, listener);
+    }
+
+    @Override
+    public Dialog setMultiChoiceItems(Cursor cursor, String isCheckedColumn, String labelColumn, DialogInterface.OnMultiChoiceClickListener listener){
+        return (Dialog) super.setMultiChoiceItems(cursor, isCheckedColumn, labelColumn, listener);
+    }
+
+    @Override
+    public Dialog
+    setMultiChoiceItems(CharSequence[] items, boolean[] checkedItems, DialogInterface.OnMultiChoiceClickListener listener){
+        return (Dialog) super.setMultiChoiceItems(items, checkedItems, listener);
     }
 
     public Dialog setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
