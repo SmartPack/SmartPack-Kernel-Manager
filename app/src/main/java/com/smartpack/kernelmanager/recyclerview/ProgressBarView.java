@@ -19,7 +19,7 @@
  *
  */
 
-package com.smartpack.kernelmanager.utils;
+package com.smartpack.kernelmanager.recyclerview;
 
 import android.view.View;
 
