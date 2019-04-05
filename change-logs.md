@@ -1,5 +1,9 @@
 # Change-logs
 
+## 60. April 05, 2019
+*Release-tag: v7.8*
+Changes: Gestures: add full control over flar's sweep2wake gestures. Gestures: dt2w: Restricted to enable or disable options (in-line with most of the modern devices). Gestures: sweep2sleep: Added support to new sysf's. Gestures: Switch to card view for a better visual experience. Misc: added an option to disable android's native doze mode. Translations: Updated Chinese traditional (thanks again to @jason5545)
+
 ## 59. April 02, 2019
 *Release-tag: v7.7*
 Changes: CPU Input Boost: Switched little and big cluster input frequency control to more convenient select view. CPU Input boost: Updated input boost frequency control for devices using old sysfs paths to avoid random issues. CPU Input Boost: Extended control over new sysfs paths (includes wake_boost_duration). Translations: update Chinese traditional (credits: jason5545). Display & LED: Updated and switched Max and Min display control to input style so that users can choose any value. Overall: Applied *refresh* function 500 ms after applying many tasks to make sure that it's really working. Miscellaneous changes.
