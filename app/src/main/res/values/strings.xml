@@ -626,6 +626,10 @@
     <string name="key_power_mode_summary">Wake controls will only be active when you put your device into sleep with the power key.</string>
     <string name="charging_mode">Charging Mode</string>
     <string name="charging_mode_summary">Wake controls will only be active when device is charging.</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
 
     <!-- LED -->
     <string name="led_notification">LED Notification</string>

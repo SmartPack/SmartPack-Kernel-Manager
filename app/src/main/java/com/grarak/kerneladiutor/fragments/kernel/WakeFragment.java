@@ -35,6 +35,8 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
+import com.smartpack.kernelmanager.recyclerview.CheckBoxView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,22 +101,19 @@ public class WakeFragment extends RecyclerViewFragment {
             wakeCard.addItem(dt2w);
 	}
 
+        int n = mS2w.get();
+
         if (mS2w.supported()) {
-            SelectView s2w = new SelectView();
+            CheckBoxView s2w = new CheckBoxView();
             s2w.setTitle(getString(R.string.s2w));
             s2w.setSummary(getString(R.string.s2w_summary));
             s2w.setItems(mS2w.getMenu(getActivity()));
-            s2w.setItem(mS2w.get());
-            s2w.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mS2w.set(position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    s2w.setItem(mS2w.get());
-		    },
-	        500);
-                }
-            });
+            s2w.setItem(mS2w.getStringValue(getActivity(), n));
+
+		getHandler().postDelayed(() -> {
+		s2w.setItems(mS2w.getMenu(getActivity()));
+		},
+	    500);
 
             wakeCard.addItem(s2w);
         }
