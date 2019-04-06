@@ -176,7 +176,7 @@
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
-    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
+    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電量。</string>
     <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
     <string name="cpu_boost">CPU 加速</string>
     <string name="debug_mask">偵錯遮罩</string>
@@ -368,7 +368,7 @@
     <string name="idle_wait">閒置等待</string>
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
     <string name="workload">運作負載</string>
-    <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
+    <string name="workload_summary">如果將這個值調高，Adreno 管理器將會更頻繁的嘗試降低頻率</string>
 
     <!--Thermal-->
     <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
@@ -819,7 +819,7 @@
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
     <string name="example">例子</string>
     <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
-    <string name="create">新增</string>
+    <string name="create">建立</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
     <string name="control_seekbar">搜尋欄</string>
@@ -868,7 +868,7 @@
 
     <!-- Profile -->
     <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時套用。</string>
-    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的個人資料中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
+    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的配置檔案中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
     <string name="no_changes">沒有任何更改作用！</string>
     <string name="apply_question">套用 %s 嗎？</string>
     <string name="append">附加</string>
@@ -882,13 +882,13 @@
     <string name="profile_tile_summary">顯示允許您選擇配置檔案的磁貼。</string>
     <string name="profile_select">選擇配置檔案</string>
     <string name="applying_profile">套用 %s 中！</string>
-    <string name="no_profiles">找不到個人資料！你必須先建立它們。</string>
-    <string name="sections_disabled">所有部分已停用！沒有為您的個人資料。</string>
+    <string name="no_profiles">找不到配置檔案！你必須先建立它們。</string>
+    <string name="sections_disabled">所有部分已停用！沒有為您的配置檔案。</string>
     <string name="new_mode">新增帳戶</string>
     <string name="current_settings">目前的設定</string>
     <string name="select_all">全選</string>
     <string name="nothing_selected">未選擇任何內容</string>
-    <string name="profile_empty">個人資料是空的！</string>
+    <string name="profile_empty">配置檔案是空的！</string>
 
     <!-- Init.d -->
     <string name="emulate_initd">模擬 Init.d</string>
