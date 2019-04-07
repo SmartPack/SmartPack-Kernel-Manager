@@ -616,7 +616,7 @@
     <string name="down">下</string>
     <string name="left">左</string>
     <string name="right">右</string>
- 
+
     <!-- LED -->
     <string name="led_notification">LED 通知</string>
     <string name="fade">閃爍/淡出</string>
