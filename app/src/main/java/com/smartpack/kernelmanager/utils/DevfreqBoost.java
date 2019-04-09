@@ -39,6 +39,7 @@ public class DevfreqBoost {
     private static final String DEVFREQ_BOOST = "/sys/module/devfreq_boost/parameters";
 
     private static final String DEVFREQ_BOOST_DURATION = DEVFREQ_BOOST + "/input_boost_duration";
+    private static final String WAKE_BOOST_DURATION = DEVFREQ_BOOST + "/wake_boost_duration";
     private static final String DEVFREQ_BOOST_FREQ = DEVFREQ_BOOST + "/msm_cpubw_boost_freq";
 
     public static void setDevfreqboostDuration(String value, Context context) {
@@ -63,6 +64,18 @@ public class DevfreqBoost {
 
     public static boolean hasDevfreqboostFreq() {
         return Utils.existFile(DEVFREQ_BOOST_FREQ);
+    }
+
+    public static void setwakeboostduration(String value, Context context) {
+        run(Control.write(String.valueOf(value), WAKE_BOOST_DURATION), WAKE_BOOST_DURATION, context);
+    }
+
+    public static String getwakeboostduration() {
+        return Utils.readFile(WAKE_BOOST_DURATION);
+    }
+
+    public static boolean haswakeboostduration() {
+        return Utils.existFile(WAKE_BOOST_DURATION);
     }
 
     public static boolean supported() {

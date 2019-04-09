@@ -473,6 +473,27 @@ public class GPUFragment extends RecyclerViewFragment {
 
 	}
 
+	if (DevfreqBoost.haswakeboostduration()) { 
+            GenericSelectView wakeBoostMS = new GenericSelectView();
+            wakeBoostMS.setTitle(getString(R.string.wake_boost_duration) + (" (ms)"));
+            wakeBoostMS.setSummary(("Set ") + getString(R.string.wake_boost_duration));
+            wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
+            wakeBoostMS.setInputType(InputType.TYPE_CLASS_NUMBER);
+            wakeBoostMS.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    DevfreqBoost.setwakeboostduration(value, getActivity());
+                    genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    wakeBoostMS.setValue(DevfreqBoost.getwakeboostduration());
+		    },
+	    	500);
+                }
+            });
+
+            devfreqboost.addItem(wakeBoostMS);
+	}
+
 	if (DevfreqBoost.hasDevfreqboostFreq()) {
             GenericSelectView dbfreq = new GenericSelectView();
             dbfreq.setTitle(getString(R.string.devfreq_boost_freq) + (" (Hz)"));
