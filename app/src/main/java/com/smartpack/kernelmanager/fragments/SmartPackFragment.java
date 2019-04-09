@@ -83,12 +83,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             spversion.setTitle(("Latest ") + getString(R.string.version));
             if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
 		if (SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()) {
-		    spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+		    spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.get_it));
 		} else {
 		    spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
 		}
             } else if (SmartPack.SmartPackRelease()) {
-		spversion.setSummary(("~ SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available ~") + getString(R.string.recheck));
+		spversion.setSummary(("~ SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available ~") + getString(R.string.get_it));
             } else {
 		spversion.setSummary(getString(R.string.latest_version_check));
             }
@@ -107,32 +107,24 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		}
 		if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
 		    if (SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()) {
-			spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.recheck));
+			spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.get_it));
 		    } else {
 			spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
 		    }
             	} else if (SmartPack.SmartPackRelease()) {
-		    spversion.setSummary(("~ SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available ~") + getString(R.string.recheck));
+		    spversion.setSummary(("~ SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available ~") + getString(R.string.get_it));
 		} else {
 		    spversion.setSummary(getString(R.string.update_check_failed) + getString(R.string.recheck));
 		}
-            }
-            });
-            smartpack.addItem(spversion);
-
-            DescriptionView downloads = new DescriptionView();
-            downloads.setTitle(getString(R.string.get_it));
-            downloads.setSummary(getString(R.string.get_it_summary));
-            downloads.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-		@Override
-		public void onClick(RecyclerViewItem item) {
+		// Initialize SmartPack-Kernel auto install/update
+		if (SmartPack.hasSmartPackInstalled() && SmartPack.SmartPackRelease() && SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()  || SmartPack.SmartPackRelease() && (!(SmartPack.hasSmartPackInstalled()))) {
 		    // Check and delete an old version of the kernel from the download folder, if any...
 		    if (SmartPack.isSmartPackDownloaded()) {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
 		    }
 		    // Show an alert dialogue and let the user know the process...
 		    AlertDialog.Builder downloads = new AlertDialog.Builder(getActivity());
-		    downloads.setTitle(getString(R.string.download_flash));
+		    downloads.setTitle(("SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available..."));
 		    downloads.setMessage(getString(R.string.downloads_message));
 		    downloads.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
 		    });
@@ -184,9 +176,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			}
 		    });
 		    downloads.show();
-		} 
+		}}
             });
-            smartpack.addItem(downloads);
+            smartpack.addItem(spversion);
 	}
 
 	if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {

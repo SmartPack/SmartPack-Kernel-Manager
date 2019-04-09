@@ -114,7 +114,6 @@
     <string name="smartpack">SmartPack</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="kernelupdate">Kernel Updates</string>
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
@@ -932,11 +931,8 @@
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="website">Website</string>
     <string name="website_summary">Visit SmartPack homepage</string>
-    <string name="get_it">Get It!</string>
-    <string name="get_it_summary">Get latest SmartPack-Kernel for your device</string>
     <string name="download">Download</string>
-    <string name="download_flash">Download and Flash</string>
-    <string name="downloads_message">\nThe app will download the latest version of SmartPack-Kernel available for your device.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
+    <string name="downloads_message">\nClick \'Download\' to initialize auto kernel updates.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
     <string name="autoflash">Auto-flash</string>
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
@@ -968,6 +964,7 @@
     <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n\n</string>
     <string name="latest_version_check">Click here to check the latest version info</string>
     <string name="recheck">\n(Click here to re-check)</string>
+    <string name="get_it">\n(Click here to Get It!)</string>
     <string name="update_check_failed">Failed to get latest version info! Please check your internet connection</string>
     <string name="up_to_date_message">Congrats! You are up-to-date</string>
     <string name="no_kernel_support">Unsupported Version</string>
