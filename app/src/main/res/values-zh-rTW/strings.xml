@@ -3,10 +3,10 @@
 <!--Author: jason5545 <jason5545@gmail.com>-->
 
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="checking_info">檢查資訊…</string>
-    <string name="checking_root">檢查root權限</string>
-    <string name="searching_busybox">搜尋busybox</string>
-    <string name="collecting_info">蒐集資訊中</string>
+    <string name="checking_info">檢查資訊中…</string>
+    <string name="checking_root">檢查 Root 權限中…</string>
+    <string name="searching_busybox">搜尋 Busybox 中…</string>
+    <string name="collecting_info">蒐集資訊中…</string>
     <string name="no_root">無 Root 權限</string>
     <string name="no_busybox">沒有 Busybox 指令</string>
     <string name="open">開啟 %s</string>
@@ -108,7 +108,6 @@
     <string name="smartpack">SmartPack</string>
     <string name="about">關於</string>
     <string name="contributors">貢獻者</string>
-    <string name="kernelupdate">核心更新</string>
 
     <!-- Overall -->
     <string name="offline">離線</string>
@@ -176,7 +175,7 @@
     <string name="cfs_scheduler_policy">CFS 排程策略</string>
     <string name="cfs_scheduler_policy_summary">決定 CFS 排程器在不同 CPU 單元上如何平衡任務的策略。</string>
     <string name="cpu_quiet">CPUQuiet</string>
-    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電能。</string>
+    <string name="cpu_quiet_summary">CPUQuiet 實現可插拔政策迫使 CPU 核心進入靜止狀態。適當的政策將不傷害性能節省電量。</string>
     <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
     <string name="cpu_boost">CPU 加速</string>
     <string name="debug_mask">偵錯遮罩</string>
@@ -368,7 +367,7 @@
     <string name="idle_wait">閒置等待</string>
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
     <string name="workload">運作負載</string>
-    <string name="workload_summary">如果將這個值調高，Adreno管理器將會更頻繁的嘗試降低頻率</string>
+    <string name="workload_summary">如果將這個值調高，Adreno 管理器將會更頻繁的嘗試降低頻率</string>
 
     <!--Thermal-->
     <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
@@ -612,6 +611,10 @@
     <string name="key_power_mode_summary">只有當您使用電源鍵將裝置置於睡眠狀態時, 喚醒控制項才會處於啟用狀態。</string>
     <string name="charging_mode">充電模式</string>
     <string name="charging_mode_summary">只有在裝置充電時, 喚醒控制項才會處於啟用狀態。</string>
+    <string name="up">上</string>
+    <string name="down">下</string>
+    <string name="left">左</string>
+    <string name="right">右</string>
 
     <!-- LED -->
     <string name="led_notification">LED 通知</string>
@@ -621,9 +624,9 @@
     <string name="stock">原始速度</string>
     <string name="continuous_light">連續的光</string>
     <string name="bright_light_environment">明亮的環境</string>
-    <string name="bright_light_environment_summary">設定當在明亮環境中LED的相對強度。</string>
+    <string name="bright_light_environment_summary">設定當在明亮環境中 LED 的相對強度。</string>
     <string name="low_light_environment">低光源環境</string>
-    <string name="low_light_environment_summary">設定在低亮度環境下的LED的相對強度。</string>
+    <string name="low_light_environment_summary">設定在低亮度環境下的 LED 的相對強度。</string>
     <string name="notification">通知</string>
     <string name="on">開</string>
     <string name="off">關</string>
@@ -645,7 +648,7 @@
     <string name="read_ahead">預讀</string>
     <string name="read_ahead_summary">在手機記憶體預先讀取數值。</string>
     <string name="rotational">旋轉儲存裝置(HDD 機械硬碟)</string>
-    <string name="rotational_summary">將本裝置視為旋轉儲存裝置(HDD機械硬碟)。</string>
+    <string name="rotational_summary">將本裝置視為旋轉儲存裝置(HDD 機械硬碟)。</string>
     <string name="iostats">I/O 統計資料</string>
     <string name="iostats_summary">維護此儲存裝置的 I/O 統計資料。停用將中斷 I/O 監控程式。(提升I/O效能但增加I/O錯誤的可能)</string>
     <string name="add_random">增加隨機</string>
@@ -762,15 +765,17 @@
     <string name="android_logger">Android 的日誌記錄</string>
     <string name="android_logger_summary">開啟/關閉安卓日誌記錄</string>
     <string name="printk_logger">列印輸出記錄</string>
-    <string name="printk_logger_summary">啟用/停用 Linux 列印輸出日誌記錄</string>
+    <string name="printk_logger_summary">啟用/停用 Linux 列印輸出日誌記錄。</string>
+    <string name="doze">Doze 模式</string>
+    <string name="doze_summary">啟用 Doze 模式，當您的裝置處於待機狀態時，防止某些任務在後臺執行。 </string>
     <string name="selinux_switch">SELinux 開關</string>
-    <string name="selinux_switch_summary">停用以將 SELinux 切換為允許模式</string>
+    <string name="selinux_switch_summary">停用以將 SELinux 切換為允許模式。</string>
     <string name="crc">軟體CRC控制</string>
     <string name="crc_summary">CRC是一種機制旨在防止資料損壞時啟動。資料塊可以失去其業績的30％。</string>
     <string name="fsync">Fsync</string>
-    <string name="fsync_summary">停用系統崩潰時的資料遺失的風險提高檔案系統性能。</string>
+    <string name="fsync_summary">停用系統當機時的資料遺失的風險提高檔案系統性能。</string>
     <string name="dynamic_fsync">動態多次的Fsync</string>
-    <string name="dynamic_fsync_summary">當啟用時，螢幕是在多次的fsync操作是非同步。當螢幕關閉時，同步完成此操作。</string>
+    <string name="dynamic_fsync_summary">當啟用時，螢幕是在多次的 Fsync 操作是非同步。當螢幕關閉時，同步完成此操作。</string>
     <string name="gentlefairsleepers">溫柔的公平露宿者</string>
     <string name="gentlefairsleepers_summary">只給睡眠者50％的服務赤字。停用此功能可以節省一點電池電量。</string>
     <string name="arch_power">拱的權力</string>
@@ -802,7 +807,7 @@
     <string name="spec_balanced">平衡</string>
     <string name="spec_balanced_summary">預設核心設定檔, 專為在基本任務中的平滑性能而設計, 同時保持出色的電池續航。</string>
     <string name="spec_performance">高性能</string>
-    <string name="spec_performance_summary">在標準任務中進行了優化, 其回歸率比 \"平衡\" 要低很多, 但透過限制圖形來維護電池。</string>
+    <string name="spec_performance_summary">在標準任務中進行了優化, 其回歸率比 「平衡」 要低很多, 但透過限制圖形來維護電池續航。</string>
     <string name="spec_battery">電池</string>
     <string name="spec_battery_summary">超保守的設定檔, 讓性能受到打擊, 以達成持久的電池續航。</string>
     <string name="spec_gaming">遊戲</string>
@@ -813,7 +818,7 @@
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
     <string name="example">例子</string>
     <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
-    <string name="create">新增</string>
+    <string name="create">建立</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
     <string name="control_seekbar">搜尋欄</string>
@@ -821,12 +826,12 @@
     <string name="description">描述</string>
     <string name="applying">套用中</string>
     <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
-    <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的shell指令碼的參數。</string>
+    <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的 Shell 指令碼的參數。</string>
     <string name="seekbar_min">最小</string>
     <string name="seekbar_max">最大</string>
     <string name="seekbar_progress">進度</string>
-    <string name="seekbar_progress_summary">Seekbar的目前狀態。透過定義min和max建立一個整數數組。例如：Min為50，Max為100，進度為0，這意味著50是seekbar的目前狀態。</string>
-    <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的Min是50和Max 100，seekbar是70，它將返回20作為進度。</string>
+    <string name="seekbar_progress_summary">Seekbar的目前狀態。透過定義最小和最大建立一個整數數組。例如：最小為50，最大為100，進度為0，這意味著50是seekbar的目前狀態。</string>
+    <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的最小是50和最大為100，seekbar是70，它將返回20作為進度。</string>
     <string name="control_generic">通用</string>
     <string name="generic_value">數值</string>
     <string name="generic_value_summary">編輯器的目前數值。基本上可以是任何東西。</string>
@@ -848,7 +853,7 @@
     <!-- Backup -->
     <string name="boot_partition">引導分區</string>
     <string name="recovery_partition">恢復分區</string>
-    <string name="fota_partition">Fota解決方案分區</string>
+    <string name="fota_partition"> FOTA 解決方案分區</string>
     <string name="flash">刷入</string>
 
     <!-- Build prop Editor -->
@@ -862,7 +867,7 @@
 
     <!-- Profile -->
     <string name="apply_on_boot_not_available">在配置檔案模式下，您的更改不會影響啟動時套用。</string>
-    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的個人資料中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
+    <string name="profile_warning">您在這裡更改的所有內容都將儲存到您的配置檔案中。但注意！您的設定也將被套用，但不會儲存以在啟動時套用。</string>
     <string name="no_changes">沒有任何更改作用！</string>
     <string name="apply_question">套用 %s 嗎？</string>
     <string name="append">附加</string>
@@ -870,19 +875,19 @@
     <string name="press_again_to_apply">再次按 %s 即可套用。</string>
     <string name="applied">套用成功</string>
     <string name="profile_tasker">Tasker 設定檔</string>
-    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上套用配置檔案，則必須使用Tasker。</string>
+    <string name="profile_tasker_summary">如果要在特定事件（例如啟動應用程式）上套用配置檔案，則必須使用 Tasker。</string>
     <string name="profile_tasker_toast">當任務者套用配置檔案時顯示提示訊息</string>
     <string name="profile_tile">設定檔瓷磚</string>
     <string name="profile_tile_summary">顯示允許您選擇配置檔案的磁貼。</string>
     <string name="profile_select">選擇配置檔案</string>
     <string name="applying_profile">套用 %s 中！</string>
-    <string name="no_profiles">找不到個人資料！你必須先建立它們。</string>
-    <string name="sections_disabled">所有部分已停用！沒有為您的個人資料。</string>
+    <string name="no_profiles">找不到配置檔案！你必須先建立它們。</string>
+    <string name="sections_disabled">所有部分已停用！沒有為您的配置檔案。</string>
     <string name="new_mode">新增帳戶</string>
     <string name="current_settings">目前的設定</string>
     <string name="select_all">全選</string>
     <string name="nothing_selected">未選擇任何內容</string>
-    <string name="profile_empty">個人資料是空的！</string>
+    <string name="profile_empty">配置檔案是空的！</string>
 
     <!-- Init.d -->
     <string name="emulate_initd">模擬 Init.d</string>
@@ -892,7 +897,7 @@
     <string name="result">結果</string>
 
     <!-- On Boot -->
-    <string name="on_boot_welcome_summary">本節介紹當裝置啟動時會發生什麼。如果它是空白的，則在啟動後不會發生。</string>
+    <string name="on_boot_welcome_summary">本節介紹當裝置啟動時會發生什麼。如果它是空白的，則在啟動後什麼也不會發生。</string>
     <string name="delete_question">刪除 %s 嗎？</string>
     <string name="arguments">參數： %s</string>
     <string name="disable_question">停用 %s 嗎？</string>
@@ -902,16 +907,14 @@
     <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
     <string name="website">網站</string>
     <string name="website_summary">造訪 SmartPack 網站</string>
-    <string name="get_it">取得</string>
-    <string name="get_it_summary">為您的裝置取得最新的 SmartPack 核心</string>
+    <string name="get_it">點選這裡以取得更新</string>
     <string name="download">下載</string>
-    <string name="download_flash">下載並安裝</string>
-    <string name="downloads_message">\n應用程式將下載最新版本的 SmartPack-核心可用於您的裝置。\n\n警告! 下載將需要一些時間來完成! 請耐心等待!\n\n新核心準備好安裝後, 應用程式將通知您。\n</string>
+    <string name="downloads_message">\n點選下載以開始自動刷入核心\n\n警告! 下載將需要一些時間來完成! 請耐心等待!\n\n新核心準備好安裝後, 應用程式將通知您。\n</string>
     <string name="autoflash">自動安裝</string>
     <string name="install_now">立即安裝</string>
-    <string name="flash_message">\nSmartPack核心 已下載至 \'/sdcard/Download/\'\n\n您要立即安裝嗎?\n</string>
+    <string name="flash_message">\nSmartPack核心 已下載至 「/sdcard/Download/」\n\n您要立即安裝嗎?\n</string>
     <string name="no_flash_message">\n對不起! 自動安裝將無法在此裝置上運作。但是, 下載完成後, 您可以手動安裝核心。\n要重新開機嗎？\n</string>
-    <string name="download_failed_message">\n您正在執行不受支援的 android 版本嗎？\n\n如果沒有, 請檢查您的網際網路連線!\n\n</string>
+    <string name="download_failed_message">\n您正在執行不受支援的 Android 版本嗎？\n\n如果沒有, 請檢查您的網際網路連線!\n\n</string>
     <string name="advance_options">進階選項</string>
     <string name="reboot">重啟</string>
     <string name="reboot_now">立即重新啟動</string>
@@ -941,21 +944,21 @@
     <string name="update_check_failed">無法取得最新版本資訊! 請檢查您的網際網路連線</string>
     <string name="up_to_date_message">恭喜！已是最新版本</string>
     <string name="no_kernel_support">不支援的版本</string>
-    <string name="no_kernel_support_summary">Smartpack-核心尚未適配您的 android 版本</string>
+    <string name="no_kernel_support_summary">SmartPack 核心尚未適配您的 android 版本</string>
     <string name="saving">儲存中...</string>
 
     <!-- App Updater -->
     <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
     <string name="check_update">檢查更新</string>
-    <string name="check_update_summary">檢查SmartPack-Kernel Manager的新版本</string>
+    <string name="check_update_summary">檢查 SmartPack-Kernel Manager 的新版本</string>
     <string name="appupdater_update_available">有可以使用的更新！</string>
     <string name="appupdater_update_available_description_dialog">更新 %1$s 可供下載。透過下載最新的更新, 您將取得 %2$s 的最新功能、改進和錯誤修復。</string>
     <string name="appupdater_update_available_description_dialog_before_release_notes">更新 %1$s 可供下載。\n\n您可以取得這些新功能:\n%2$s</string>
     <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
     <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下載</string>
     <string name="appupdater_update_not_available">恭喜</string>
-    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack-核心管理器!</string>
+    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack 核心管理器!</string>
     <string name="appupdater_btn_update">更新</string>
     <string name="appupdater_btn_disable">不要再顯示</string>
     <string name="appupdater_btn_dismiss">忽略</string>
@@ -990,25 +993,25 @@
     <string name="hide">隱藏</string>
     <string name="apply_on_boot_hide_summary">隱藏啟動時套用的通知。延遲仍將保持！</string>
     <string name="toast">彈出訊息（Toast）</string>
-    <string name="apply_on_boot_toast_summary">應用設定時顯示提示訊息。</string>
+    <string name="apply_on_boot_toast_summary">套用設定時顯示提示訊息。</string>
     <string name="confirmation_notification">確認通知</string>
     <string name="apply_on_boot_confirmation_notification_summary">使用可見通知套用啟動後，隨後顯示一條通知，確認啟動成功。</string>
     <string name="script">指令碼</string>
-    <string name="apply_on_boot_script_summary">使用shell指令碼套用設定。請只有在開機後套用服務無法正確運作時才啟用此選項。如果在啟用此選項後問題仍然存在，請確保沒有其他應用程式與核心調解器衝突。</string>
+    <string name="apply_on_boot_script_summary">使用 shell 指令碼套用設定。請只有在開機後套用服務無法正確運作時才啟用此選項。如果在啟用此選項後問題仍然存在，請確保沒有其他應用程式與核心調解器衝突。</string>
     <string name="debugging">偵錯</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">將 logcat 複製到 /sdcard/logcat.txt</string>
     <string name="last_kmsg">最新的核心訊息</string>
     <string name="last_kmsg_summary">將 /proc/last_kmsg 複製到 /sdcard/last_kmsg.txt</string>
     <string name="console_ramoops">主控台 ramoops</string>
-    <string name="console_ramoops_summary">儲存/sys/fs/pstore/console-ramoops* 到 \'sdcard\'</string>
+    <string name="console_ramoops_summary">儲存 /sys/fs/pstore/console-ramoops* 到 \'sdcard\'</string>
     <string name="driver_message">驅動程式訊息</string>
     <string name="driver_message_summary">將驅動程式訊息 (dmesg） 複製到 /sdcard/dmesg.txt</string>
     <string name="driver_ramoops">Driver Ramoops</string>
     <string name="driver_ramoops_summary">儲存 /sys/fs/pstore/dmesg-ramoops* 到 \'sdcard\'</string>
     <string name="security">安全</string>
     <string name="set_password">設定密碼</string>
-    <string name="set_password_summary">您可以透過設定密碼來保護SmartPack-Kernel Manager。每次打開此應用程式，您必須輸入它。如果您忘記了，只需在裝置的設定中擦除此應用的數據即可。別擔心，我不會共享您的密碼。</string>
+    <string name="set_password_summary">您可以透過設定密碼來保護 SmartPack 核心管理器。每次打開此應用程式，您必須輸入它。如果您忘記了，只需在裝置的設定中擦除此應用的數據即可。別擔心，我不會共享您的密碼。</string>
     <string name="delete_password">刪除密碼</string>
     <string name="old_password">舊密碼</string>
     <string name="new_password">新密碼</string>
@@ -1024,7 +1027,7 @@
     <!-- About -->
     <string name="libraries_used">使用的資源庫</string>
     <string name="source_code">原始程式碼</string>
-    <string name="source_code_summary">在GitHub上檢視原始碼</string>
+    <string name="source_code_summary">在 GitHub 上檢視原始碼</string>
     <string name="change_logs">更新日誌</string>
     <string name="change_logs_summary">檢視變更</string>
     <string name="donate_me">捐贈給我</string>
@@ -1047,7 +1050,7 @@
     <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
     <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式適用於所有裝置。</string>
     <string name="rom_abc">問題6。核心是否與 ROM a/b/c 相容？</string>
-    <string name="rom_abc_summary">答案：我不知道。我所有的核心都是基於Lineage-OS/原廠ROM上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
+    <string name="rom_abc_summary">答案：我不知道。我所有的核心都是基於 Lineage-OS/原廠ROM 上。但是, 如果您的 ROM 是基於 Lineage-OS/原廠ROM (並使用相同的核心原始程式碼), 它很可能會運作。</string>
     <string name="better_than">問題7。你的核心比原廠/「x/y/z」 核心好嗎？</string>
     <string name="better_than_summary">答案：關於原廠, 是的, 在很多方面應該更好 (否則永遠不會公開)。至於 「x/y/z」 核心, 我不知道。我甚至可能不會注意到上面提到的 \"x/y/z\" 核心。</string>
     <string name="how_abt_sot">問題8。性能/SOT 如何？</string>
