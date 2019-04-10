@@ -680,6 +680,41 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuBoost.addItem(cpuiboosthf);
 	}
 
+	if (mCPUInputBoost.hasremoveinputboostlf()) {
+            SelectView iboostfreq = new SelectView();
+            iboostfreq.setTitle(getString(R.string.cluster_return_freq));
+            iboostfreq.setSummary("LITTLE");
+            iboostfreq.setItems(mCPUFreq.getAdjustedFreq(mCPUFreq.getLITTLECpu(), getActivity()));
+            iboostfreq.setItem((mCPUInputBoost.getremoveinputboostlf() / 1000)
+		+ getString(R.string.mhz));
+            iboostfreq.setOnItemSelected((selectView, position, item)
+		-> mCPUInputBoost.setremoveinputboostlf(mCPUFreq.getFreqs(mCPUFreq.getLITTLECpu()).get(position), getActivity()));
+		getHandler().postDelayed(() -> {
+		iboostfreq.setItem((mCPUInputBoost.getremoveinputboostlf() / 1000)
+		+ getString(R.string.mhz));
+		},
+	    500);
+
+            cpuBoost.addItem(iboostfreq);
+	}
+
+	if (mCPUInputBoost.hasremoveinputboosthf()) {
+            SelectView iboostfreq = new SelectView();
+            iboostfreq.setSummary("big");
+            iboostfreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            iboostfreq.setItem((mCPUInputBoost.getremoveinputboosthf() / 1000)
+		+ getString(R.string.mhz));
+            iboostfreq.setOnItemSelected((selectView, position, item)
+		-> mCPUInputBoost.setremoveinputboosthf(mCPUFreq.getFreqs().get(position), getActivity()));
+		getHandler().postDelayed(() -> {
+		iboostfreq.setItem((mCPUInputBoost.getremoveinputboosthf() / 1000)
+		+ getString(R.string.mhz));
+		},
+	    500);
+
+            cpuBoost.addItem(iboostfreq);
+	}
+
 	if (mCPUInputBoost.hasinputboostFreq()) {
             SelectView cpuiboostfreq = new SelectView();
             cpuiboostfreq.setTitle(getString(R.string.input_boost_freq));

@@ -57,6 +57,8 @@ public class CPUInputBoost {
     private static final String CPU_INPUT_BOOST_LF = "/input_boost_freq_lp";
     private static final String CPU_INPUT_BOOST_HF = "/input_boost_freq_hp";
     private static final String INPUT_BOOST_FREQ = "/input_boost_freq";
+    private static final String REMOVE_INPUT_BOOST_LF = "/remove_input_boost_freq_lp";
+    private static final String REMOVE_INPUT_BOOST_HF = "/remove_input_boost_freq_hp";
 
     private static final String DYN_STUNE_BOOST = "/dynamic_stune_boost";
 
@@ -149,6 +151,30 @@ public class CPUInputBoost {
 
     public boolean hascpuinputboosthf() {
         return Utils.existFile(PARANT + CPU_INPUT_BOOST_HF);
+    }
+
+    public int getremoveinputboostlf() {
+        return Utils.strToInt(Utils.readFile(PARANT + REMOVE_INPUT_BOOST_LF));
+    }
+
+    public void setremoveinputboostlf(int value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + REMOVE_INPUT_BOOST_LF), PARANT + REMOVE_INPUT_BOOST_LF, context);
+    }
+
+    public boolean hasremoveinputboostlf() {
+        return Utils.existFile(PARANT + REMOVE_INPUT_BOOST_LF);
+    }
+
+    public int getremoveinputboosthf() {
+        return Utils.strToInt(Utils.readFile(PARANT + REMOVE_INPUT_BOOST_HF));
+    }
+
+    public void setremoveinputboosthf(int value, Context context) {
+        run(Control.write(String.valueOf(value), PARANT + REMOVE_INPUT_BOOST_HF), PARANT + REMOVE_INPUT_BOOST_HF, context);
+    }
+
+    public boolean hasremoveinputboosthf() {
+        return Utils.existFile(PARANT + REMOVE_INPUT_BOOST_HF);
     }
 
     public int getinputboostFreq() {
