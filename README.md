@@ -6,7 +6,7 @@
 ### ! [Download latest build](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true) ! [All builds](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases) !
 ## Added features over official KA
 
-* CPU Input Boost (Sultanxda).
+* CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
 * K-Lapse Support (tanish2k09)
@@ -14,11 +14,13 @@
 * Per-channel control for Flar's sound
 * Significantly different Faux Sound implementation.
 * In-built Spectrum Support (frap129).
+* Wake and sleep gestures (flar2).
 * Adreno Boost (flar2).
+* Dynamic Stune Boost (joshuous)
 * MSM Sleeper (flar2).
 * Boeffla Wakelock Blocker (Lord Boeffla).
 * Display Backlight Control (Min & Max).
-* SELinux Switch.
+* Switches to tweak SELinux, Android Doze mode and PrintK logging.
 * WireGuard version information.
 * Auto-updates (in *About* page).
 * Real-time Charging Status.

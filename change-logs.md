@@ -1,9 +1,8 @@
 # Change-logs
 
 ## 61. April 10, 2019
-
 *Release-tag: v7.9*
-CPU Input Boost: Addrd support to Cluster Return Frequency. GPU: devfreq_boost: Added control to wake_boost_duration. SmartPack: Integrated auto kernel flash with the latest version check. SmartPack: Show support status only for OOS. Updated Chinese translations (thanks again to @jason5545). build: Updated gradle to latest.
+Changes: CPU Input Boost: Addrd support to Cluster Return Frequency. GPU: devfreq_boost: Added control to wake_boost_duration. SmartPack: Integrated auto kernel flash with the latest version check. SmartPack: Show support status only for OOS. Misc: Updated Chinese translations (thanks again to @jason5545). build: Updated gradle to latest.
 
 ## 60. April 05, 2019
 *Release-tag: v7.8*
