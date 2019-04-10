@@ -1,5 +1,10 @@
 # Change-logs
 
+## 61. April 10, 2019
+
+*Release-tag: v7.9*
+CPU Input Boost: Addrd support to Cluster Return Frequency. GPU: devfreq_boost: Added control to wake_boost_duration. SmartPack: Integrated auto kernel flash with the latest version check. SmartPack: Show support status only for OOS. Updated Chinese translations (thanks again to @jason5545). build: Updated gradle to latest.
+
 ## 60. April 05, 2019
 *Release-tag: v7.8*
 Changes: Gestures: add full control over flar's sweep2wake gestures. Gestures: dt2w: Restricted to enable or disable options (in-line with most of the modern devices). Gestures: sweep2sleep: Added support to new sysf's. Gestures: Switch to card view for a better visual experience. Misc: added an option to disable android's native doze mode. Translations: Updated Chinese traditional (thanks again to @jason5545)
