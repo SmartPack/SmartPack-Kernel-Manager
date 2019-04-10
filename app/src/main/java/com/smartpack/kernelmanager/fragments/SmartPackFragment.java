@@ -109,6 +109,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			spversion.setSummary(("~ New Update (") + SmartPack.getlatestSmartPackVersion() + (") Available ~") + getString(R.string.get_it));
 		    } else {
 			spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
+			// Show an alert message if the device is already on latest SmartPack-Kernel
+			Dialog uptodate = new Dialog(getActivity());
+			uptodate.setTitle(getString(R.string.appupdater_update_not_available));
+			uptodate.setMessage(("\n") + getString(R.string.up_to_date_message));
+			uptodate.setNegativeButton(getString(R.string.ok), (dialogInterface, i) -> {
+			});
+			uptodate.show();
 		    }
             	} else if (SmartPack.SmartPackRelease()) {
 		    spversion.setSummary(("~ SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available ~") + getString(R.string.get_it));
