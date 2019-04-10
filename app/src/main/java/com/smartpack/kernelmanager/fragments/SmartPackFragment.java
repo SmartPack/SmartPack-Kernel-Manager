@@ -26,12 +26,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -123,7 +122,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			RootUtils.runCommand("rm -rf /sdcard/Download/SmartPack-Kernel.zip");
 		    }
 		    // Show an alert dialogue and let the user know the process...
-		    AlertDialog.Builder downloads = new AlertDialog.Builder(getActivity());
+		    Dialog downloads = new Dialog(getActivity());
 		    downloads.setTitle(("SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available..."));
 		    downloads.setMessage(getString(R.string.downloads_message));
 		    downloads.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -139,7 +138,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		    if (SmartPack.isSmartPackDownloaded()) {
 			// Show Auto-flash message if we recognize recovery...
 			if (SmartPack.hasRecovery()) {
-		            AlertDialog.Builder flash = new AlertDialog.Builder(getActivity());
+		            Dialog flash = new Dialog(getActivity());
 		            flash.setTitle(getString(R.string.autoflash));
 		            flash.setMessage(getString(R.string.flash_message));
 		            flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
@@ -153,7 +152,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 		            flash.show();
 			// If not, show an "Auto-flash not possible" message...
 			} else {
-		            AlertDialog.Builder noflash = new AlertDialog.Builder(getActivity());
+		            Dialog noflash = new Dialog(getActivity());
 		            noflash.setTitle(getString(R.string.warning));
 		            noflash.setMessage(getString(R.string.no_flash_message));
 		            noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -167,7 +166,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 			}
 		    // Shown "Download failed" message...
 		    } else {
-			AlertDialog.Builder downloadfailed = new AlertDialog.Builder(getActivity());
+			Dialog downloadfailed = new Dialog(getActivity());
 			downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
 			downloadfailed.setMessage(getString(R.string.download_failed_message));
 			downloadfailed.setPositiveButton(getString(R.string.exit), (dialog2, id2) -> {
@@ -254,13 +253,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
         reset.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            AlertDialog.Builder resetsettings = new AlertDialog.Builder(getActivity());
+            Dialog resetsettings = new Dialog(getActivity());
             resetsettings.setTitle(getString(R.string.warning));
             resetsettings.setMessage(getString(R.string.reset_settings_message));
             resetsettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-            AlertDialog.Builder reboot = new AlertDialog.Builder(getActivity());
+            Dialog reboot = new Dialog(getActivity());
             reboot.setTitle(getString(R.string.reboot));
             reboot.setMessage(getString(R.string.reboot_message));
             reboot.setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
@@ -351,7 +350,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             wipe_cache.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		AlertDialog.Builder wipecache = new AlertDialog.Builder(getActivity());
+		Dialog wipecache = new Dialog(getActivity());
 		wipecache.setTitle(getString(R.string.sure_question));
 		wipecache.setMessage(getString(R.string.wipe_cache_message));
 		wipecache.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -373,7 +372,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             wipe_data.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
 		@Override
 		public void onClick(RecyclerViewItem item) {
-		AlertDialog.Builder wipedata = new AlertDialog.Builder(getActivity());
+		Dialog wipedata = new Dialog(getActivity());
 		wipedata.setTitle(getString(R.string.sure_question));
 		wipedata.setMessage(getString(R.string.wipe_data_message));
 		wipedata.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -396,7 +395,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	recoveryreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            AlertDialog.Builder recoveryreboot = new AlertDialog.Builder(getActivity());
+            Dialog recoveryreboot = new Dialog(getActivity());
             recoveryreboot.setTitle(getString(R.string.sure_question));
             recoveryreboot.setMessage(getString(R.string.recovery_message));
             recoveryreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
@@ -417,7 +416,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 	bootloaderreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-            AlertDialog.Builder bootloaderreboot = new AlertDialog.Builder(getActivity());
+            Dialog bootloaderreboot = new Dialog(getActivity());
             bootloaderreboot.setTitle(getString(R.string.sure_question));
             bootloaderreboot.setMessage(getString(R.string.bootloader_message));
             bootloaderreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
