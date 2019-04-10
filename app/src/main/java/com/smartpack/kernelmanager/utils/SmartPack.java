@@ -57,6 +57,13 @@ public class SmartPack {
     }
 
     /**
+     * Check for Oxygen OS
+     */
+    public static boolean isOnePlusOOS() {
+        return Utils.hasProp("ro.oxygen.version");
+    }
+
+    /**
      * Get current SmartPack version
      */
     public static String getSmartPackVersion() {
@@ -95,6 +102,6 @@ public class SmartPack {
     }
 
     public static boolean supported() {
-        return isOnePlusmsm8998();
+        return isOnePlusmsm8998() && isOnePlusOOS();
     }
 }
