@@ -2188,6 +2188,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
                 public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                     AlucardHotplug.setAlucardHotplugSamplingRate(value, getActivity());
                     genericSelectView.setValue(value);
+		    getHandler().postDelayed(() -> {
+		    samplingRate.setValue(AlucardHotplug.getAlucardHotplugSamplingRate());
+		    },
+	        500);
                 }
             });
 
@@ -2482,6 +2486,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate11(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr1.setValue(AlucardHotplug.getHotplugRate11());
+		},
+	    500);
 	    }
 	});
 
@@ -2493,6 +2501,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate20(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr2.setValue(AlucardHotplug.getHotplugRate20());
+		},
+	    500);
 	    }
 	});
 
@@ -2504,6 +2516,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate21(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr3.setValue(AlucardHotplug.getHotplugRate21());
+		},
+	    500);
 	    }
 	});
 
@@ -2515,6 +2531,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate30(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr4.setValue(AlucardHotplug.getHotplugRate30());
+		},
+	    500);
 	    }
 	});
 
@@ -2526,6 +2546,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate31(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr5.setValue(AlucardHotplug.getHotplugRate31());
+		},
+	    500);
 	    }
 	});
 
@@ -2537,6 +2561,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRate40(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hr6.setValue(AlucardHotplug.getHotplugRate40());
+		},
+	    500);
 	    }
 	});
 
@@ -2548,6 +2576,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ11(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq1.setValue(AlucardHotplug.getHotplugRQ11());
+		},
+	    500);
 	    }
 	});
 
@@ -2559,6 +2591,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ20(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq2.setValue(AlucardHotplug.getHotplugRQ20());
+		},
+	    500);
 	    }
 	});
 
@@ -2570,6 +2606,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ21(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq3.setValue(AlucardHotplug.getHotplugRQ21());
+		},
+	    500);
 	    }
 	});
 
@@ -2581,6 +2621,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ30(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq4.setValue(AlucardHotplug.getHotplugRQ30());
+		},
+	    500);
 	    }
 	});
 
@@ -2592,6 +2636,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ31(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq5.setValue(AlucardHotplug.getHotplugRQ31());
+		},
+	    500);
 	    }
 	});
 
@@ -2603,6 +2651,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
 		AlucardHotplug.setHotplugRQ40(value, getActivity());
 		genericSelectView.setValue(value);
+		getHandler().postDelayed(() -> {
+		hrq6.setValue(AlucardHotplug.getHotplugRQ40());
+		},
+	    500);
 	    }
 	});
 
