@@ -20,6 +20,7 @@
 package com.grarak.kerneladiutor.utils.kernel.cpuhotplug;
 
 import com.smartpack.kernelmanager.utils.MSMSleeper;
+import com.smartpack.kernelmanager.utils.MBHotplug;
 
 /**
  * Created by willi on 07.05.16.
@@ -29,7 +30,8 @@ public class Hotplug {
     public static boolean supported() {
         return MPDecision.supported() || IntelliPlug.getInstance().supported() || LazyPlug.supported()
 		|| BluPlug.supported() || MakoHotplug.supported() || MSMHotplug.getInstance().supported()
-		|| AlucardHotplug.supported() || CoreCtl.getInstance().supported() || MSMSleeper.supported();
+		|| AlucardHotplug.supported() || CoreCtl.getInstance().supported()
+		|| MSMSleeper.supported() || MBHotplug.getInstance().supported();
     }
 
 }
