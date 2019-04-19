@@ -1,13 +1,11 @@
 {
-  "latestVersion": "7.9-20190410",
+  "latestVersion": "7.10-20190419",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Input Boost: Addrd support to Cluster Return Frequency.",
-    "- GPU: devfreq_boost: Added control to wake_boost_duration.",
-    "- SmartPack: Integrated auto kernel flash with the latest version check.",
-    "- SmartPack: Show support status only for Oxygen OS.",
-    "- Misc: Updated Chinese translations (thanks again to @jason5545).",
+    "- CPU Hotplug: Added MSM MPDecision/Bricked hotplug.",
+    "- Misc. Added Russian translations (credits to @andrey167).",
+    "- Misc: Updated Chinese translations (thanks to @Roiyaru and @jason5545).",
     "- build: Updated gradle to latest."
   ]
 }
