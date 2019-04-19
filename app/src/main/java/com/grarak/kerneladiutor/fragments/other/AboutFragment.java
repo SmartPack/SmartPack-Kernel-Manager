@@ -67,6 +67,7 @@ public class AboutFragment extends RecyclerViewFragment {
     static {
         sTranslations.put("Chinese (Traditional),jason5545", "https://github.com/jason5545");
         sTranslations.put("Chinese (Simplified),Roiyaru", "https://github.com/Roiyaru");
+        sTranslations.put("Russian,andrey167", "https://github.com/andrey167");
     }
 
     @Override
