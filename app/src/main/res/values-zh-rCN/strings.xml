@@ -201,7 +201,6 @@
     <string name="freq_control_summary">允许 MSM 限制器控制 CPU 的频率。</string>
     <string name="dyn_stune_boost">动态调整增强</string>
     <string name="stune_boost_ms">Stune Boost 时长</string>
-    <string name="adv_sett">高级设置</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU输入升频</string>
@@ -327,6 +326,7 @@
     <string name="hotplug_load">热插拔负载</string>
     <string name="hotplug_rate">热插拔速率</string>
     <string name="hotplug_rq">热插拔 RQ</string>
+    <string name="adv_sett">高级设置</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">全局偏移</string>

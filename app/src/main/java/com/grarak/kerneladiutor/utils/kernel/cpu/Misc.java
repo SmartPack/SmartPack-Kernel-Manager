@@ -52,8 +52,15 @@ public class Misc {
 
     private static final String ADVANCED = "/dev/stune";
 
-    private static final String[] STUNE = {"schedtune.sched_boost", "top-app/schedtune.sched_boost",
-	"foreground/schedtune.sched_boost", "background/schedtune.sched_boost", "rt/schedtune.sched_boost"};
+    private static final String[] STUNE = {"schedtune.sched_boost", "schedtune.sched_boost_enabled",
+	"schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "top-app/schedtune.sched_boost",
+	"top-app/schedtune.sched_boost_enabled", "top-app/schedtune.sched_boost_no_override", "top-app/schedtune.prefer_idle",
+	"top-app/schedtune.colocate", "rt/schedtune.sched_boost", "rt/schedtune.sched_boost_enabled",
+	"rt/schedtune.sched_boost_no_override", "rt/schedtune.prefer_idle", "rt/schedtune.colocate",
+	"foreground/schedtune.sched_boost", "foreground/schedtune.sched_boost_enabled","foreground/schedtune.sched_boost_no_override",
+	"foreground/schedtune.prefer_idle", "foreground/schedtune.colocate", "background/schedtune.sched_boost",
+	"background/schedtune.sched_boost_enabled", "background/schedtune.sched_boost_no_override",
+	"background/schedtune.prefer_idle", "background/schedtune.colocate"};
 
     private static String[] sAvailableCFSSchedulers;
     private static String[] sCpuQuietAvailableGovernors;

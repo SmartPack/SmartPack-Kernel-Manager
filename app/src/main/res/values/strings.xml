@@ -212,7 +212,8 @@
     <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
     <string name="stune_boost_ms">Stune Boost Duration</string>
-    <string name="adv_sett">Advanced Settings</string>
+    <string name="stune_boost_sett">Stune Boost Settings</string>
+    <string name="stune_boost_sett_summary">Enable to get access to advanced stune boost settings.</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>
@@ -352,6 +353,7 @@
     <string name="hotplug_load">Hotplug Load</string>
     <string name="hotplug_rate">Hotplug Rate</string>
     <string name="hotplug_rq">Hotplug RQ</string>
+    <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>

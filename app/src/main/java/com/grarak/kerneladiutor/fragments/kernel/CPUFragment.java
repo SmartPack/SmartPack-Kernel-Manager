@@ -820,7 +820,8 @@ public class CPUFragment extends RecyclerViewFragment {
 
             if (Misc.hasDynStuneBoostDuration()) {
             	GenericSelectView stuneBoostDuration = new GenericSelectView();
-            	stuneBoostDuration.setSummary(getString(R.string.stune_boost_ms) + (" (ms)"));
+            	stuneBoostDuration.setTitle(getString(R.string.stune_boost_ms) + (" (ms)"));
+            	stuneBoostDuration.setSummary(("Set ") + getString(R.string.stune_boost_ms));
             	stuneBoostDuration.setValue(Misc.getDynStuneBoostDuration());
             	stuneBoostDuration.setInputType(InputType.TYPE_CLASS_NUMBER);
             	stuneBoostDuration.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
@@ -833,61 +834,65 @@ public class CPUFragment extends RecyclerViewFragment {
 
                 cpuBoost.addItem(stuneBoostDuration);
 	    }
+	}
 
-            if (!(Prefs.getBoolean("advanced_settings", false, getActivity())))
-		Prefs.saveBoolean("advanced_settings", false, getActivity());
 
-            final SwitchView advsettings = new SwitchView();
-            advsettings.setSummary(getString(R.string.adv_sett));
-            advsettings.setChecked(Prefs.getBoolean("advanced_settings", false, getActivity()));
 
-            cpuBoost.addItem(advsettings);
 
-            for (int i = 0; i < Misc.size(); i++) {
-		if (Misc.exists(i)) {
-                    GenericSelectView advStune = new GenericSelectView();
-                    advStune.setSummary(Misc.getName(i));
-                    advStune.setValue(Misc.getValue(i));
-                    advStune.setValueRaw(advStune.getValue());
-                    advStune.setInputType(InputType.TYPE_CLASS_NUMBER);
+	if (!(Prefs.getBoolean("stune_boost", false, getActivity())))
+	    Prefs.saveBoolean("stune_boost", false, getActivity());
 
-                    final int position = i;
-                    advStune.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-			@Override
-			public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-			    Misc.setValue(value, position, getActivity());
-			    genericSelectView.setValue(value);
-			    getHandler().postDelayed(() -> {
-			    advStune.setValueRaw(advStune.getValue());
-			    },
-		    	500);
-			}
-                    });
-                    class advsettingsManager {
-                    public void showadvsettings (boolean enable) {
-                    if (enable == true) {
-			cpuBoost.addItem(advStune);
-                    } else {
-			cpuBoost.removeItem(advStune);
-                    }
-		}
-            }
-	
-            final advsettingsManager manager = new advsettingsManager();
-		if (Prefs.getBoolean("advanced_settings", false, getActivity()) == true) {
-                    manager.showadvsettings(true);
-		} else {
-                    manager.showadvsettings(false);
-		}
-		advsettings.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                    @Override
-                    public void onChanged(SwitchView switchview, boolean isChecked) {
-			Prefs.saveBoolean("advanced_settings", isChecked, getActivity());
-			manager.showadvsettings(isChecked);
-                    }
+	final SwitchView stuneBoost = new SwitchView();
+	stuneBoost.setTitle(getString(R.string.stune_boost_sett));
+	stuneBoost.setSummary(getString(R.string.stune_boost_sett_summary));
+	stuneBoost.setChecked(Prefs.getBoolean("stune_boost", false, getActivity()));
+
+	cpuBoost.addItem(stuneBoost);
+
+	for (int i = 0; i < Misc.size(); i++) {
+	    if (Misc.exists(i)) {
+		GenericSelectView advStune = new GenericSelectView();
+		advStune.setSummary(Misc.getName(i));
+		advStune.setValue(Misc.getValue(i));
+		advStune.setValueRaw(advStune.getValue());
+		advStune.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+		final int position = i;
+		advStune.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+		    @Override
+		    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+			Misc.setValue(value, position, getActivity());
+			genericSelectView.setValue(value);
+			getHandler().postDelayed(() -> {
+			advStune.setValueRaw(advStune.getValue());
+			},
+		    500);
+		    }
 		});
+		class stuneBoostManager {
+		public void showstuneBoost (boolean enable) {
+		if (enable == true) {
+		    cpuBoost.addItem(advStune);
+		} else {
+		    cpuBoost.removeItem(advStune);
 		}
-            }
+	    }
+	}
+	
+	final stuneBoostManager manager = new stuneBoostManager();
+	    if (Prefs.getBoolean("stune_boost", false, getActivity()) == true) {
+		manager.showstuneBoost(true);
+	    } else {
+		manager.showstuneBoost(false);
+	    }
+	    stuneBoost.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchview, boolean isChecked) {
+		    Prefs.saveBoolean("stune_boost", isChecked, getActivity());
+		    manager.showstuneBoost(isChecked);
+		}
+	    });
+	    }
 	}
 
 	if (cpuBoost.size() > 0) {
