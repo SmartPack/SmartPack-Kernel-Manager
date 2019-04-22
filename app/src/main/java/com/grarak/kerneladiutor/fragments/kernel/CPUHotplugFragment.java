@@ -45,6 +45,7 @@ import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import com.smartpack.kernelmanager.utils.MSMSleeper;
 import com.smartpack.kernelmanager.utils.MBHotplug;
+import com.smartpack.kernelmanager.utils.AutoSMP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -105,6 +106,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         }
         if (mMBHotplug.supported()) {
             mbHotplugInit(items);
+        }
+        if (AutoSMP.supported()) {
+            autoSMPInit(items);
         }
         if (mCoreCtl.supported()) {
             coreCtlInit(items);
@@ -3161,6 +3165,258 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 
         if (mbHotplugCard.size() > 0) {
             items.add(mbHotplugCard);
+        }
+    }
+
+    private void autoSMPInit(List<RecyclerViewItem> items) {
+	CardView autoSMPCard = new CardView(getActivity());
+	autoSMPCard.setTitle(getString(R.string.autosmp));
+
+	SwitchView enable = new SwitchView();
+	SeekBarView cpuFreqDown = new SeekBarView();
+	SeekBarView cpuFreqUp = new SeekBarView();
+	SeekBarView cycleDown = new SeekBarView();
+	SeekBarView cycleUp = new SeekBarView();
+	SeekBarView delay = new SeekBarView();
+	SeekBarView maxCpus = new SeekBarView();
+	SeekBarView minCpus = new SeekBarView();
+	SwitchView scroffSingleCore = new SwitchView();
+
+        if (AutoSMP.hasAutoSmpEnable()) {
+            enable.setSummary(getString(R.string.autosmp_summary));
+            enable.setChecked(AutoSMP.isAutoSmpEnabled());
+            enable.addOnSwitchListener((switchView, isChecked) -> {
+		AutoSMP.enableAutoSmp(isChecked, getActivity());
+		getHandler().postDelayed(() -> {
+		// Show or hide other options on the basis of the main driver status
+		if (AutoSMP.isAutoSmpEnabled()) {
+		    if (AutoSMP.hasAutoSmpCpufreqDown()) {
+			cpuFreqDown.setProgress(AutoSMP.getAutoSmpCpufreqDown());
+			autoSMPCard.addItem(cpuFreqDown);
+		    }
+		    if (AutoSMP.hasAutoSmpCpufreqUp()) {
+			cpuFreqUp.setProgress(AutoSMP.getAutoSmpCpufreqUp());
+			autoSMPCard.addItem(cpuFreqUp);
+		    }
+		    if (AutoSMP.hasAutoSmpCycleDown()) {
+			cycleDown.setProgress(AutoSMP.getAutoSmpCycleDown());
+			autoSMPCard.addItem(cycleDown);
+		    }
+		    if (AutoSMP.hasAutoSmpCycleUp()) {
+			cycleUp.setProgress(AutoSMP.getAutoSmpCycleUp());
+			autoSMPCard.addItem(cycleUp);
+		    }
+		    if (AutoSMP.hasAutoSmpDelay()) {
+			delay.setProgress(AutoSMP.getAutoSmpDelay());
+			autoSMPCard.addItem(delay);
+		    }
+		    if (AutoSMP.hasAutoSmpMaxCpus()) {
+			maxCpus.setProgress(AutoSMP.getAutoSmpMaxCpus() - 1);
+			autoSMPCard.addItem(maxCpus);
+		    }
+		    if (AutoSMP.hasAutoSmpMinCpus()) {
+			minCpus.setProgress(AutoSMP.getAutoSmpMinCpus() - 1);
+			autoSMPCard.addItem(minCpus);
+		    }
+		    if (AutoSMP.hasAutoSmpScroffSingleCore()) {
+			scroffSingleCore.setChecked(AutoSMP.isAutoSmpScroffSingleCoreEnabled());
+			autoSMPCard.addItem(scroffSingleCore);
+		    }
+		} else {
+		   autoSMPCard.removeItem(cpuFreqDown);
+		   autoSMPCard.removeItem(cpuFreqUp);
+		   autoSMPCard.removeItem(cycleDown);
+		   autoSMPCard.removeItem(cycleUp);
+		   autoSMPCard.removeItem(delay);
+		   autoSMPCard.removeItem(maxCpus);
+		   autoSMPCard.removeItem(minCpus);
+		   autoSMPCard.removeItem(scroffSingleCore);
+	    	}
+	    }, 100);
+	    });
+
+	    autoSMPCard.addItem(enable);
+            mEnableViews.add(enable);
+        }
+
+        if (AutoSMP.hasAutoSmpCpufreqDown()) {
+            cpuFreqDown.setTitle(getString(R.string.downrate_limits));
+            cpuFreqDown.setUnit("%");
+            cpuFreqDown.setProgress(AutoSMP.getAutoSmpCpufreqDown());
+            cpuFreqDown.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpCpufreqDown(position, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(cpuFreqDown);
+	    } else {
+            	autoSMPCard.removeItem(cpuFreqDown);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpCpufreqUp()) {
+            cpuFreqUp.setTitle(getString(R.string.uprate_limits));
+            cpuFreqUp.setUnit("%");
+            cpuFreqUp.setProgress(AutoSMP.getAutoSmpCpufreqUp());
+            cpuFreqUp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpCpufreqUp(position, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(cpuFreqUp);
+	    } else {
+            	autoSMPCard.removeItem(cpuFreqUp);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpCycleDown()) {
+            cycleDown.setTitle(getString(R.string.cycle_down));
+            cycleDown.setSummary(getString(R.string.cycle_down_summary));
+            cycleDown.setMax(mCPUFreq.getCpuCount());
+            cycleDown.setProgress(AutoSMP.getAutoSmpCycleDown());
+            cycleDown.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpCycleDown(position, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(cycleDown);
+	    } else {
+            	autoSMPCard.removeItem(cycleDown);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpCycleUp()) {
+            cycleUp.setTitle(getString(R.string.cycle_up));
+            cycleUp.setSummary(getString(R.string.cycle_up_summary));
+            cycleUp.setMax(mCPUFreq.getCpuCount());
+            cycleUp.setProgress(AutoSMP.getAutoSmpCycleUp());
+            cycleUp.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpCycleUp(position, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(cycleUp);
+	    } else {
+            	autoSMPCard.removeItem(cycleUp);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpDelay()) {
+            delay.setTitle(getString(R.string.delay));
+            delay.setSummary(getString(R.string.delay_summary));
+            delay.setUnit(getString(R.string.ms));
+            delay.setMax(500);
+            delay.setProgress(AutoSMP.getAutoSmpDelay());
+            delay.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpDelay(position, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(delay);
+	    } else {
+            	autoSMPCard.removeItem(delay);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpMaxCpus()) {
+            maxCpus.setTitle(getString(R.string.max_cpu_online));
+            maxCpus.setSummary(getString(R.string.max_cpu_online_summary));
+            maxCpus.setMax(mCPUFreq.getCpuCount());
+            maxCpus.setMin(1);
+            maxCpus.setProgress(AutoSMP.getAutoSmpMaxCpus() - 1);
+            maxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpMaxCpus(position + 1, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(maxCpus);
+	    } else {
+            	autoSMPCard.removeItem(maxCpus);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpMinCpus()) {
+            minCpus.setTitle(getString(R.string.min_cpu_online));
+            minCpus.setSummary(getString(R.string.min_cpu_online_summary));
+            minCpus.setMax(mCPUFreq.getCpuCount());
+            minCpus.setMin(1);
+            minCpus.setProgress(AutoSMP.getAutoSmpMinCpus() - 1);
+            minCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSMP.setAutoSmpMinCpus(position + 1, getActivity());
+                }
+            });
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(minCpus);
+	    } else {
+            	autoSMPCard.removeItem(minCpus);
+	    }
+        }
+
+        if (AutoSMP.hasAutoSmpScroffSingleCore()) {
+            scroffSingleCore.setTitle(getString(R.string.screen_off_single_cpu));
+            scroffSingleCore.setSummary(getString(R.string.screen_off_single_cpu_summary));
+            scroffSingleCore.setChecked(AutoSMP.isAutoSmpScroffSingleCoreEnabled());
+            scroffSingleCore.addOnSwitchListener((switchView, isChecked)
+		-> AutoSMP.enableAutoSmpScroffSingleCoreActive(isChecked, getActivity()));
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(scroffSingleCore);
+	    } else {
+            	autoSMPCard.removeItem(scroffSingleCore);
+	    }
+        }
+
+        if (autoSMPCard.size() > 0) {
+            items.add(autoSMPCard);
         }
     }
 

@@ -328,6 +328,14 @@
     <string name="start_delay_summary">Time delay in milliseconds until Hotplug starts to work.</string>
     <string name="pause">Pause</string>
     <string name="pause_summary">If something else plugs in the CPU, fall asleep for this much milliseconds of time.</string>
+    <string name="autosmp">AutoSMP</string>
+    <string name="autosmp_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by mrg666.</string>
+    <string name="downrate_limits">Downrate Limits</string>
+    <string name="uprate_limits">Uprate Limits</string>
+    <string name="cycle_down">Cycle Down</string>
+    <string name="cycle_down_summary">Cycles to wait after the last hotplug event to unplug another core.</string>
+    <string name="cycle_up">Cycle Up</string>
+    <string name="cycle_up_summary">Cycles to wait after the last hotplug event to plug another core.</string>
     <string name="core_control">Core Control</string>
     <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
     <string name="hcube">H-Cube</string>
