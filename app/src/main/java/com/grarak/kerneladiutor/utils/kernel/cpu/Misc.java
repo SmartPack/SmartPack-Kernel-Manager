@@ -51,6 +51,9 @@ public class Misc {
     private static final String DYN_STUNE_BOOST_MS = "/sys/module/cpu_boost/parameters/dynamic_stune_boost_ms";
 
     private static final String ADVANCED = "/dev/stune";
+    private static final String SCHED_BOOST = ADVANCED + "/schedtune.sched_boost";
+    private static final String SCHED_BOOST_ENABLED = ADVANCED + "/schedtune.sched_boost_enabled";
+    private static final String SCHED_BOOST_NO_OVERRIDE = ADVANCED + "/schedtune.sched_boost_no_override";
 
     private static final String[] STUNE = {"schedtune.sched_boost", "schedtune.sched_boost_enabled",
 	"schedtune.sched_boost_no_override", "schedtune.prefer_idle", "schedtune.colocate", "top-app/schedtune.sched_boost",
@@ -120,6 +123,10 @@ public class Misc {
 
     public static int size() {
         return STUNE.length;
+    }
+
+    public static boolean hasSchedBoostSettings() {
+        return Utils.existFile(SCHED_BOOST) || Utils.existFile(SCHED_BOOST_ENABLED) || Utils.existFile(SCHED_BOOST_NO_OVERRIDE);
     }
 
     public static void setCpuQuietGovernor(String value, Context context) {

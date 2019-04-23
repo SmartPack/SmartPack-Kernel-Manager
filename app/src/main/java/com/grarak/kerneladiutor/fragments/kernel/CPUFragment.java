@@ -836,9 +836,6 @@ public class CPUFragment extends RecyclerViewFragment {
 	    }
 	}
 
-
-
-
 	if (!(Prefs.getBoolean("stune_boost", false, getActivity())))
 	    Prefs.saveBoolean("stune_boost", false, getActivity());
 
@@ -847,7 +844,9 @@ public class CPUFragment extends RecyclerViewFragment {
 	stuneBoost.setSummary(getString(R.string.stune_boost_sett_summary));
 	stuneBoost.setChecked(Prefs.getBoolean("stune_boost", false, getActivity()));
 
-	cpuBoost.addItem(stuneBoost);
+	if (Misc.hasSchedBoostSettings()) {
+	    cpuBoost.addItem(stuneBoost);
+	}
 
 	for (int i = 0; i < Misc.size(); i++) {
 	    if (Misc.exists(i)) {
