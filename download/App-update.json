@@ -1,11 +1,9 @@
 {
-  "latestVersion": "7.10-20190419",
+  "latestVersion": "7.11-20190424",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Hotplug: Added MSM MPDecision/Bricked hotplug.",
-    "- Misc. Added Russian translations (credits to @andrey167).",
-    "- Misc: Updated Chinese translations (thanks to @Roiyaru and @jason5545).",
-    "- build: Updated gradle to latest."
+    "- CPU Hotplug: Added AutoSMP.",
+    "- CPU: Separated stune boost setting from dynamic stune boost and made available for all the supported devices."
   ]
 }

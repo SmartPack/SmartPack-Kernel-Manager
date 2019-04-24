@@ -1,5 +1,9 @@
 # Change-logs
 
+## 63. April 24, 2019
+*Release-tag: v7.11*
+Changes: CPU Hotplug: Added AutoSMP. CPU: Separated stune boost setting from dynamic stune boost and made available for all the supported devices.
+
 ## 62. April 19, 2019
 *Release-tag: v7.10*
 Changes: CPU Hotplug: Added MSM MPDecision/Bricked hotplug. Misc. Added Russian translations (credits to @andrey167). Misc: Updated Chinese translations (thanks to @Roiyaru & @jason5545). build: Updated gradle to latest.
