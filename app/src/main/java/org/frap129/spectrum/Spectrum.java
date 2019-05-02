@@ -35,8 +35,14 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 public class Spectrum {
 
-    public static String getProfile(){
-        return RootUtils.runCommand("getprop persist.spectrum.profile");
+    static boolean spectrumVendor = RootUtils.getProp("vendor.spectrum.support").equals("1");
+
+    public static String getProfile() {
+	if (spectrumVendor) {
+	    return RootUtils.runCommand("getprop persist.vendor.spectrum.profile");
+	} else {
+	    return RootUtils.runCommand("getprop persist.spectrum.profile");
+	}
     }
 
     // Method that interprets a profile and sets it
@@ -54,13 +60,18 @@ public class Spectrum {
         new AsyncTask<Object, Object, Void>() {
             @Override
             protected Void doInBackground(Object... params) {
-                RootUtils.runCommand("setprop persist.spectrum.profile " + profile);
+		if (spectrumVendor) {
+		    RootUtils.runCommand("setprop persist.vendor.spectrum.profile " + profile);
+		} else {
+		    RootUtils.runCommand("setprop persist.spectrum.profile " + profile);
+		}
                 return null;
             }
         }.execute();
     }
 
     public static boolean supported() {
-        return RootUtils.getProp("spectrum.support").equals("1");
+        return RootUtils.getProp("spectrum.support").equals("1")
+		|| RootUtils.getProp("vendor.spectrum.support").equals("1");
     }
 }
