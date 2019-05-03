@@ -145,7 +145,7 @@
 
         <!-- Profile Tile -->
         <service
-            android:name="org.frap129.spectrum.ProfileTile"
+            android:name="com.smartpack.kernelmanager.tiles.SpectrumTile"
             android:enabled="true"
             android:icon="@drawable/ic_spectrum_logo"
             android:label="@string/profileTile"
@@ -156,7 +156,7 @@
         </service>
 
         <service
-            android:name="com.smartpack.kernelmanager.utils.KLapseTile"
+            android:name="com.smartpack.kernelmanager.tiles.KLapseTile"
             android:enabled="true"
             android:icon="@drawable/ic_klapse"
             android:label="@string/klapse"

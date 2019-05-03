@@ -19,7 +19,7 @@
  *
  */
 
-package org.frap129.spectrum;
+package com.smartpack.kernelmanager.tiles;
 
 import android.annotation.TargetApi;
 import android.graphics.drawable.Icon;
@@ -31,6 +31,8 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 
+import org.frap129.spectrum.Spectrum;
+
 /*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>
  *
@@ -40,7 +42,7 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 
 @TargetApi(Build.VERSION_CODES.N)
-public class ProfileTile extends TileService {
+public class SpectrumTile extends TileService {
 
     private int id = Utils.strToInt(Spectrum.getProfile());
 
