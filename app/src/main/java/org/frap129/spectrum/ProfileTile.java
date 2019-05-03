@@ -42,8 +42,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 @TargetApi(Build.VERSION_CODES.N)
 public class ProfileTile extends TileService {
 
-    private static final String SERVICE_STATUS_FLAG = "serviceStatus";
-    private boolean click = false;
+    private int id = Utils.strToInt(Spectrum.getProfile());
 
     @Override
     public void onStartListening() {
@@ -57,7 +56,6 @@ public class ProfileTile extends TileService {
 
     private void updateTile() {
         Tile tile = this.getQsTile();
-        boolean isActive = getServiceStatus();
         Icon newIcon;
         String newLabel;
         int newState;
@@ -67,33 +65,33 @@ public class ProfileTile extends TileService {
             newLabel = "No Spectrum support";
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
             newState = Tile.STATE_INACTIVE;
-        }else {
-            if (isActive && click) {
-		newLabel = "Gaming";
+        } else {
+            if (id == 0) {
+		newLabel = "Performance";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
 		newState = Tile.STATE_ACTIVE;
-		click = false;
-		Spectrum.setProfile(3);
-		Prefs.saveInt("spectrum_profile", 3, getApplicationContext());
-            } else if (!isActive && click) {
+		id +=1;
+		Spectrum.setProfile(1);
+		Prefs.saveInt("spectrum_profile", 1, getApplicationContext());
+            } else if (id == 1) {
 		newLabel = "Battery";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
 		newState = Tile.STATE_ACTIVE;
-		click = true;
+		id +=1;
 		Spectrum.setProfile(2);
 		Prefs.saveInt("spectrum_profile", 2, getApplicationContext());
-            } else if (isActive && !click){
-		newLabel = "Performance";
+            } else if (id == 2) {
+		newLabel = "Gaming";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
 		newState = Tile.STATE_ACTIVE;
-		click = true;
-		Spectrum.setProfile(1);
-		Prefs.saveInt("spectrum_profile", 1, getApplicationContext());
+		id +=1;
+		Spectrum.setProfile(3);
+		Prefs.saveInt("spectrum_profile", 3, getApplicationContext());
             } else {
 		newLabel = "Balance";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
 		newState = Tile.STATE_ACTIVE;
-		click = false;
+		id = 0;
 		Spectrum.setProfile(0);
 		Prefs.saveInt("spectrum_profile", 0, getApplicationContext());
             }
@@ -104,16 +102,6 @@ public class ProfileTile extends TileService {
         tile.setIcon(newIcon);
         tile.setState(newState);
         tile.updateTile();
-    }
-
-    private boolean getServiceStatus() {
-
-        boolean isActive = Prefs.getBoolean(SERVICE_STATUS_FLAG, false, getApplicationContext());
-        isActive = !isActive;
-
-        Prefs.saveBoolean(SERVICE_STATUS_FLAG, isActive, getApplicationContext());
-
-        return isActive;
     }
 
     private void resetTileStatus() {
@@ -129,31 +117,22 @@ public class ProfileTile extends TileService {
             newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
             newState = Tile.STATE_INACTIVE;
         }else {
-            if (profile == 3){
+            if (profile == 3) {
 		newLabel = "Gaming";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_game);
 		newState = Tile.STATE_ACTIVE;
-		click = false;
-            } else if (profile == 2){
+            } else if (profile == 2) {
 		newLabel = "Battery";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_battery);
 		newState = Tile.STATE_ACTIVE;
-		click = true;
-            } else if (profile == 1){
+            } else if (profile == 1) {
 		newLabel = "Performance";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_performance);
 		newState = Tile.STATE_ACTIVE;
-		click = true;
-            } else if (profile == 0){
+            } else {
 		newLabel = "Balance";
 		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_balanced);
 		newState = Tile.STATE_ACTIVE;
-		click = false;
-            } else {
-		newLabel = "Custom";
-		newIcon = Icon.createWithResource(getApplicationContext(), R.drawable.ic_spectrum_logo);
-		newState = Tile.STATE_ACTIVE;
-		click = false;
             }
         }
 
