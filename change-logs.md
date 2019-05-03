@@ -1,5 +1,9 @@
 # Change-logs
 
+## 64. May 03, 2019
+*Release-tag: v7.12*
+Changes: Spectrum: Fixed spectrum support on some newer devices. Quick tile: Added new quick tile to control K-Lapse. Miscellaneous changes.
+
 ## 63. April 24, 2019
 *Release-tag: v7.11*
 Changes: CPU Hotplug: Added AutoSMP. CPU: Separated stune boost setting from dynamic stune boost and made available for all the supported devices.

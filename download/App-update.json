@@ -1,9 +1,10 @@
 {
-  "latestVersion": "7.11-20190424",
+  "latestVersion": "7.12-20190503",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Hotplug: Added AutoSMP.",
-    "- CPU: Separated stune boost setting from dynamic stune boost and made available for all the supported devices."
+    "- Spectrum: Fixed spectrum support on some newer devices.",
+    "- Quick tile: Added new quick tile to control K-Lapse.",
+    "- Miscellaneous changes."
   ]
 }
