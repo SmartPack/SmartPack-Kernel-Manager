@@ -95,7 +95,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!Utils.DONATED) {
+        if (!Utils.isDonated(requireActivity())) {
             Prefs.remove(KEY_HIDE_BANNER, getActivity());
             Prefs.remove(KEY_ACCENT_COLOR, getActivity());
         }
@@ -196,7 +196,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 Utils.setStartActivity(checked, requireActivity());
                 return true;
             case KEY_HIDE_BANNER:
-                if (!Utils.DONATED) {
+                if (!Utils.isDonated(requireActivity())) {
                     ViewUtils.dialogDonate(getActivity()).show();
                     return false;
                 }
@@ -234,7 +234,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         String key = preference.getKey();
         switch (key) {
             case KEY_BANNER_RESIZER:
-                if (Utils.DONATED) {
+                if (Utils.isDonated(requireActivity())) {
                     Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -243,7 +243,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 }
                 return true;
             case KEY_ACCENT_COLOR:
-                if (Utils.DONATED) {
+                if (Utils.isDonated(requireActivity())) {
                     List<Integer> sColors = new ArrayList<>();
                     for (int i = 0; i < BorderCircleView.sAccentColors.size(); i++) {
                         sColors.add(BorderCircleView.sAccentColors.keyAt(i));

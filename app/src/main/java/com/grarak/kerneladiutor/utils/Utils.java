@@ -76,8 +76,31 @@ import java.util.Random;
 public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
-    public static boolean DONATED = BuildConfig.DEBUG;
+    private static final String KA_DONATION_PACKAGE = "com.grarak.kerneladiutordonate";
+    private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
     public static boolean DARK_THEME;
+
+    public static boolean isKADonated(Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo(KA_DONATION_PACKAGE, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException ignored) {
+            return false;
+        }
+    }
+
+    public static boolean isSPDonated(Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo(SP_DONATION_PACKAGE, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException ignored) {
+            return false;
+        }
+    }
+
+    public static boolean isDonated(Context context) {
+        return BuildConfig.DEBUG || isKADonated(context) || isSPDonated(context);
+    }
 
     public static void startService(Context context, Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
