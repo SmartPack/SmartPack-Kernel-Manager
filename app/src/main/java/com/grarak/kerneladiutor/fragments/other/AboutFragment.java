@@ -33,6 +33,7 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.AppUpdaterTask;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
@@ -141,7 +142,16 @@ public class AboutFragment extends RecyclerViewFragment {
         donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+		Dialog donate_to_me = new Dialog(getActivity());
+		donate_to_me.setTitle(getString(R.string.donate_me));
+		donate_to_me.setMessage(getString(R.string.donate_me_message));
+		donate_to_me.setNegativeButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
+		    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
+		});
+		donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
+		    Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+		});
+		donate_to_me.show();
             }
         });
 
@@ -149,7 +159,9 @@ public class AboutFragment extends RecyclerViewFragment {
         about.addItem(support);
         about.addItem(sourcecode);
         about.addItem(changelogs);
-        about.addItem(donatetome);
+	if (!Utils.isDonated(requireActivity())) {
+            about.addItem(donatetome);
+	}
         items.add(about);
     }
 
