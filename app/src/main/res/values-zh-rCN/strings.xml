@@ -29,8 +29,8 @@
     <string name="total">总共</string>
     <string name="license_invalid">感谢您购买捐款应用程序！不幸的是，授权检查失败。请稍后再试。如果它仍然无法运作，请与我联系。你需要正常的网络连接！</string>
     <string name="pirated">似乎捐款应用程序并非通过Play商店购买！如果你使用的是盗版，那么你应该感到耻辱！</string>
-    <string name="donate">给 Grarak 捐款</string>
-    <string name="donate_summary">此功能仅适用于官方 Kernel Adiutor 的捐赠版本 (不是此修改后的 SmartPack 内核管理器)! \n * 请注意 * 如果您购买了捐赠应用程序, 您可能需要切换到官方 Kernel Adiutor 以获得好处。</string>
+    <string name="donate">捐助</string>
+    <string name="donate_summary">此功能仅在捐赠版应用安装后可用！别怕，本应用是开源软件，因此您可以轻松地自己构建它并删除此检查。尽管如此，我还是希望您支持开发人员。感谢您使用 SmartPack-Kernel Manager！</string>
     <string name="donate_nope">我不会爱上这种骗局！</string>
     <string name="donate_yes">我喜欢这个应用程序，捐是应该的！</string>
     <string name="ad_here">广告位招租</string>
