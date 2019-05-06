@@ -1,5 +1,9 @@
 # Change-logs
 
+## 65. May 06, 2019
+*Release-tag: v7.13*
+Changes: Build: Optimized app size (now it is much  smaller). Introduced new donation package. Miscellaneous changes.
+
 ## 64. May 03, 2019
 *Release-tag: v7.12*
 Changes: Spectrum: Fixed spectrum support on some newer devices. Quick tile: Added new quick tile to control K-Lapse. Miscellaneous changes.

@@ -1,10 +1,10 @@
 {
-  "latestVersion": "7.12-20190503",
+  "latestVersion": "7.13-20190506",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Spectrum: Fixed spectrum support on some newer devices.",
-    "- Quick tile: Added new quick tile to control K-Lapse.",
+    "- Build: Optimized app size (now it is much  smaller).",
+    "- Introduced new donation package.",
     "- Miscellaneous changes."
   ]
 }
