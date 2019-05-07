@@ -3177,6 +3177,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	SeekBarView cpuFreqUp = new SeekBarView();
 	SeekBarView cycleDown = new SeekBarView();
 	SeekBarView cycleUp = new SeekBarView();
+	SelectView minBoostFreq = new SelectView();
 	SeekBarView delay = new SeekBarView();
 	SeekBarView maxCpus = new SeekBarView();
 	SeekBarView minCpus = new SeekBarView();
@@ -3206,6 +3207,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 			cycleUp.setProgress(AutoSMP.getAutoSmpCycleUp());
 			autoSMPCard.addItem(cycleUp);
 		    }
+		    if (AutoSMP.hasMinBoostFreq()) {
+			minBoostFreq.setItem((AutoSMP.getMinBoostFreq() / 1000) + getString(R.string.mhz));
+			autoSMPCard.addItem(minBoostFreq);
+		    }
 		    if (AutoSMP.hasAutoSmpDelay()) {
 			delay.setProgress(AutoSMP.getAutoSmpDelay());
 			autoSMPCard.addItem(delay);
@@ -3227,6 +3232,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 		   autoSMPCard.removeItem(cpuFreqUp);
 		   autoSMPCard.removeItem(cycleDown);
 		   autoSMPCard.removeItem(cycleUp);
+		   autoSMPCard.removeItem(minBoostFreq);
 		   autoSMPCard.removeItem(delay);
 		   autoSMPCard.removeItem(maxCpus);
 		   autoSMPCard.removeItem(minCpus);
@@ -3328,6 +3334,22 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             	autoSMPCard.removeItem(cycleUp);
 	    }
         }
+
+        if (AutoSMP.hasMinBoostFreq()) {
+            minBoostFreq.setTitle(getString(R.string.min_boost_freq));
+            minBoostFreq.setSummary(("Select ") + getString(R.string.min_boost_freq));
+            minBoostFreq.setItems(mCPUFreq.getAdjustedFreq(getActivity()));
+            minBoostFreq.setItem((AutoSMP.getMinBoostFreq() / 1000) + getString(R.string.mhz));
+	    minBoostFreq.setOnItemSelected((selectView, position, item)
+		-> AutoSMP.setMinBoostFreq(
+		mCPUFreq.getFreqs().get(position), getActivity()));
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(minBoostFreq);
+	    } else {
+            	autoSMPCard.removeItem(minBoostFreq);
+	    }
+	}
 
         if (AutoSMP.hasAutoSmpDelay()) {
             delay.setTitle(getString(R.string.delay));

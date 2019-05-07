@@ -338,6 +338,7 @@
     <string name="cycle_up_summary">Cycles to wait after the last hotplug event to plug another core.</string>
     <string name="core_control">Core Control</string>
     <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
+    <string name="min_boost_freq">Minimum Boost Frequency</string>
     <string name="hcube">H-Cube</string>
     <string name="hcube_summary">OnePlus\' modified Core Control.</string>
     <string name="min_cpus_big">Minimum CPUs big</string>

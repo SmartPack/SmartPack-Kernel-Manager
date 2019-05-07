@@ -43,6 +43,7 @@ public class AutoSMP {
     private static final String HOTPLUG_AUTOSMP_CPUFREQ_UP = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up";
     private static final String HOTPLUG_AUTOSMP_CYCLE_DOWN = HOTPLUG_AUTOSMP_CONF + "/cycle_down";
     private static final String HOTPLUG_AUTOSMP_CYCLE_UP = HOTPLUG_AUTOSMP_CONF + "/cycle_up";
+    private static final String HOTPLUG_AUTOSMP_MIN_BOOST_FREQ = HOTPLUG_AUTOSMP_CONF + "/min_boost_freq";
     private static final String HOTPLUG_AUTOSMP_DELAY = HOTPLUG_AUTOSMP_CONF + "/delay";
     private static final String HOTPLUG_AUTOSMP_MAX_CPUS = HOTPLUG_AUTOSMP_CONF + "/max_cpus";
     private static final String HOTPLUG_AUTOSMP_MIN_CPUS = HOTPLUG_AUTOSMP_CONF + "/min_cpus";
@@ -97,6 +98,18 @@ public class AutoSMP {
 
     public static boolean hasAutoSmpDelay() {
         return Utils.existFile(HOTPLUG_AUTOSMP_DELAY);
+    }
+
+    public static void setMinBoostFreq(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MIN_BOOST_FREQ), HOTPLUG_AUTOSMP_MIN_BOOST_FREQ, context);
+    }
+
+    public static int getMinBoostFreq() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_MIN_BOOST_FREQ));
+    }
+
+    public static boolean hasMinBoostFreq() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MIN_BOOST_FREQ);
     }
 
     public static void setAutoSmpCycleUp(int value, Context context) {
