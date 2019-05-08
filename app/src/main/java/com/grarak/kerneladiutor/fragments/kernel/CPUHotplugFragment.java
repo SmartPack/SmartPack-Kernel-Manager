@@ -3173,6 +3173,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	autoSMPCard.setTitle(getString(R.string.autosmp));
 
 	SwitchView enable = new SwitchView();
+	SwitchView hotplugSuspend = new SwitchView();
 	SeekBarView cpuFreqDown = new SeekBarView();
 	SeekBarView cpuFreqUp = new SeekBarView();
 	SeekBarView cycleDown = new SeekBarView();
@@ -3191,6 +3192,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 		getHandler().postDelayed(() -> {
 		// Show or hide other options on the basis of the main driver status
 		if (AutoSMP.isAutoSmpEnabled()) {
+		    if (AutoSMP.hasHotplugSuspend()) {
+			hotplugSuspend.setChecked(AutoSMP.isHotplugSuspendEnabled());
+			autoSMPCard.addItem(hotplugSuspend);
+		    }
 		    if (AutoSMP.hasAutoSmpCpufreqDown()) {
 			cpuFreqDown.setProgress(AutoSMP.getAutoSmpCpufreqDown());
 			autoSMPCard.addItem(cpuFreqDown);
@@ -3228,6 +3233,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 			autoSMPCard.addItem(scroffSingleCore);
 		    }
 		} else {
+		   autoSMPCard.removeItem(hotplugSuspend);
 		   autoSMPCard.removeItem(cpuFreqDown);
 		   autoSMPCard.removeItem(cpuFreqUp);
 		   autoSMPCard.removeItem(cycleDown);
@@ -3244,6 +3250,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
 	    autoSMPCard.addItem(enable);
             mEnableViews.add(enable);
         }
+
+        if (AutoSMP.hasHotplugSuspend()) {
+            hotplugSuspend.setSummary(getString(R.string.hotplug_suspend));
+            hotplugSuspend.setChecked(AutoSMP.isHotplugSuspendEnabled());
+            hotplugSuspend.addOnSwitchListener((switchView, isChecked)
+		-> AutoSMP.enableHotplugSuspend(isChecked, getActivity()));
+
+	    if (!AutoSMP.hasAutoSmpEnable() || AutoSMP.hasAutoSmpEnable() && AutoSMP.isAutoSmpEnabled()) {
+            	autoSMPCard.addItem(hotplugSuspend);
+	    } else {
+            	autoSMPCard.removeItem(hotplugSuspend);
+	    }
+	}
 
         if (AutoSMP.hasAutoSmpCpufreqDown()) {
             cpuFreqDown.setTitle(getString(R.string.downrate_limits));
@@ -3424,8 +3443,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
         }
 
         if (AutoSMP.hasAutoSmpScroffSingleCore()) {
-            scroffSingleCore.setTitle(getString(R.string.screen_off_single_cpu));
-            scroffSingleCore.setSummary(getString(R.string.screen_off_single_cpu_summary));
+            scroffSingleCore.setSummary(getString(R.string.screen_off_single_cpu));
             scroffSingleCore.setChecked(AutoSMP.isAutoSmpScroffSingleCoreEnabled());
             scroffSingleCore.addOnSwitchListener((switchView, isChecked)
 		-> AutoSMP.enableAutoSmpScroffSingleCoreActive(isChecked, getActivity()));

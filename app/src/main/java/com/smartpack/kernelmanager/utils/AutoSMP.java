@@ -39,6 +39,7 @@ public class AutoSMP {
     private static final String HOTPLUG_AUTOSMP_PARAMETERS = "/sys/module/autosmp/parameters";
     private static final String HOTPLUG_AUTOSMP_CONF = "/sys/kernel/autosmp/conf";
     private static final String HOTPLUG_AUTOSMP_ENABLE = HOTPLUG_AUTOSMP_PARAMETERS + "/enabled";
+    private static final String HOTPLUG_AUTOSMP_HOTPLUG_SUSPEND = HOTPLUG_AUTOSMP_PARAMETERS + "/hotplug_suspend";
     private static final String HOTPLUG_AUTOSMP_CPUFREQ_DOWN = HOTPLUG_AUTOSMP_CONF + "/cpufreq_down";
     private static final String HOTPLUG_AUTOSMP_CPUFREQ_UP = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up";
     private static final String HOTPLUG_AUTOSMP_CYCLE_DOWN = HOTPLUG_AUTOSMP_CONF + "/cycle_down";
@@ -110,6 +111,18 @@ public class AutoSMP {
 
     public static boolean hasMinBoostFreq() {
         return Utils.existFile(HOTPLUG_AUTOSMP_MIN_BOOST_FREQ);
+    }
+
+    public static void enableHotplugSuspend(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", HOTPLUG_AUTOSMP_HOTPLUG_SUSPEND), HOTPLUG_AUTOSMP_HOTPLUG_SUSPEND, context);
+    }
+
+    public static boolean isHotplugSuspendEnabled() {
+        return Utils.readFile(HOTPLUG_AUTOSMP_HOTPLUG_SUSPEND).equals("1");
+    }
+
+    public static boolean hasHotplugSuspend() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_HOTPLUG_SUSPEND);
     }
 
     public static void setAutoSmpCycleUp(int value, Context context) {
