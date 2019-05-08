@@ -142,16 +142,22 @@ public class AboutFragment extends RecyclerViewFragment {
         donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-		Dialog donate_to_me = new Dialog(getActivity());
-		donate_to_me.setTitle(getString(R.string.donate_me));
-		donate_to_me.setMessage(getString(R.string.donate_me_message));
-		donate_to_me.setNegativeButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
-		    Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
-		});
-		donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
-		    Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
-		});
-		donate_to_me.show();
+                Dialog donate_to_me = new Dialog(getActivity());
+                donate_to_me.setTitle(getString(R.string.donate_me));
+                if (Utils.isSPDonated(requireActivity())) {
+                    donate_to_me.setMessage(getString(R.string.donate_me_message));
+                    donate_to_me.setNegativeButton(getString(R.string.donate_nope), (dialogInterface, i) -> {
+                    });
+                } else {
+                    donate_to_me.setMessage(getString(R.string.donate_me_message) + getString(R.string.donate_me_playstore));
+                    donate_to_me.setNegativeButton(getString(R.string.purchase_app), (dialogInterface, i) -> {
+                        Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", getActivity());
+                    });
+                }
+                donate_to_me.setPositiveButton(getString(R.string.paypal_donation), (dialog1, id1) -> {
+                    Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+                });
+                donate_to_me.show();
             }
         });
 
@@ -159,9 +165,8 @@ public class AboutFragment extends RecyclerViewFragment {
         about.addItem(support);
         about.addItem(sourcecode);
         about.addItem(changelogs);
-	if (!Utils.isDonated(requireActivity())) {
-            about.addItem(donatetome);
-	}
+        about.addItem(donatetome);
+
         items.add(about);
     }
 

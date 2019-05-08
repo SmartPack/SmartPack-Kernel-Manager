@@ -1084,7 +1084,8 @@
     <string name="change_logs_summary">View Change-logs</string>
     <string name="donate_me">Donate to Me</string>
     <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
-    <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me, either via PayPal, or by purchasing the SmartPack Donation Package from PlayStore, as it is helpful to continue my projects more active, although it is not at all necessary.\n\nPlease note: Purchasing the donation package will unlock some hidden features in this app.\n</string>
+    <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
+    <string name="donate_me_playstore">\nPlease note: I can accept donations either via PayPal, or through SmartPack Donation Package in PlayStore. Moreover, purchasing the donation package will unlock some hidden features in this app.\n</string>
     <string name="purchase_app">Donation App</string>
     <string name="paypal_donation">PayPal</string>
 
