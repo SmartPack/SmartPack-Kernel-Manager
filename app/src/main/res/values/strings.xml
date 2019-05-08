@@ -1025,6 +1025,7 @@
     <string name="dark_theme">Dark theme</string>
     <string name="material_icon">Material icon</string>
     <string name="banner_resizer">Banner resizer</string>
+    <string name="banner_resizer_message">Phone screen orientation should be \'Portrait\'!</string>
     <string name="hide_banner">Hide banner</string>
     <string name="force_cards">Force cards</string>
     <string name="force_cards_summary">Use cards for items if possible.</string>

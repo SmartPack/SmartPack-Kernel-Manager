@@ -23,6 +23,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -235,9 +236,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         switch (key) {
             case KEY_BANNER_RESIZER:
                 if (Utils.isDonated(requireActivity())) {
-                    Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    if (Utils.getOrientation(requireActivity()) == Configuration.ORIENTATION_PORTRAIT) {
+                        Intent intent = new Intent(getActivity(), BannerResizerActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    } else {
+                        Utils.toast(R.string.banner_resizer_message, getActivity());
+                    }
                 } else {
                     ViewUtils.dialogDonate(getActivity()).show();
                 }
