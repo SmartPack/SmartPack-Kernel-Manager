@@ -1049,16 +1049,8 @@
     <string name="feature_not_appearing_summary">答案：仅显示已安装内核支持的功能。</string>
     <string name="add_new_features">问题5。是否可以将功能 x 和 y 添加到您的 内核/App 中？</string>
     <string name="add_new_features_summary">这很难说。我尝试添加所有功能，但很难使这个应用程序适用于所有设备。</string>
-    <string name="rom_abc">问题6。内核是否与 ROM a/b/c 兼容？</string>
-    <string name="rom_abc_summary">答案：我不知道。我所有的内核都是基于 Lineage-OS/原厂ROM 上。但是, 如果您的 ROM 是基于 Lineage-OS/原厂ROM (并使用相同的内核源代码), 它很可能会运作。</string>
-    <string name="better_than">问题7。你的内核比原厂/「x/y/z」 内核好吗？</string>
-    <string name="better_than_summary">答案：关于原厂, 是的, 在很多方面应该更好 (否则永远不会公开)。至于 「x/y/z」 内核, 我不知道。我甚至可能不会注意到上面提到的 \"x/y/z\" 内核。</string>
-    <string name="how_abt_sot">问题8。性能/SOT 如何？</string>
-    <string name="how_abt_sot_summary">答案：由于 SOT、性能等主要基于几个因素, 如 ROM、已安装的应用程序等, 没有其他人能够准确预测您的手机的性能。所以, 你应该自己测试。</string>
     <string name="what_best">问题9。你能告诉我性能的最佳设置吗？</string>
     <string name="what_best_summary">答案：同样地, 这取决于几个因素。我只能分享我最喜欢的设置, 在我最喜欢的 ROM 提供最好的结果。</string>
-    <string name="battery_drain">问题10。安装内核后, 我遇到了大量耗电。有什么解决办法吗？</string>
-    <string name="battery_drain_summary">答案：在我看来, 包括我在内的任何内核都无法在电池寿命方面产生如此大的变化 (既不是积极的, 也不是消极的)。这应该是因为你的 ROM, gapp, 其他已安装的应用程序, 唤醒锁等。</string>
     <string name="cache_dalvik">问题11。在安装内核后, 我是否需要在之前擦除 cache/dalvik 缓存？</string>
     <string name="cache_dalvik_summary">答案：不用。因为内核甚至没有 「看到」 cache/dalvik 缓存。</string>
     <string name="found_bugs">问题12。我在你的 app/内核中发现了一个错误, 我该怎么办？</string>

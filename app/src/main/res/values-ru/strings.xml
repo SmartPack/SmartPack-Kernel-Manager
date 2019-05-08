@@ -85,11 +85,7 @@
     <string name="banner_resizer">Изменение размера баннера</string>
     <string name="baseband">Модем</string>
     <string name="battery">Батарея</string>
-    <string name="battery_drain">В10. Я столкнулся с сильным разрядом батареи после установки вашего ядра. Любое решение?</string>
-    <string name="battery_drain_summary">Отв. На мой взгляд, ни одно ядро, в том числе и мое, не способно оказать такое большое влияние (ни положительное, ни отрицательное) на время автономной работы. Это должно быть из-за вашего ПЗУ, Gapps, других установленных приложений, блокировок пробуждения и т. Д.</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
-    <string name="better_than">Q7. Ваше ядро лучше, чем стоковые / ‘x / y / z’ ядра?</string>
-    <string name="better_than_summary">Отв. Что касается акций, да, это должно быть лучше во многих аспектах (в противном случае он никогда не будет опубликован). Что касается ядер «x / y / z», я не знаю. Я даже не знаю о упомянутых ядрах ‘x / y / z ’.</string>
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">Ядерная замена MPDecision от Qualcomm. Разработано командой Code_Blue.</string>
     <string name="blue">Cиний</string>
@@ -435,8 +431,6 @@
     <string name="hotplug_rq">Hotplug RQ</string>
     <string name="hotplug_temp">Hotplugging Temperature</string>
     <string name="hotplug_temp_summary">Пороговая температура для начала выключения ядер.</string>
-    <string name="how_abt_sot">Q8. Как насчет производительности / SOT?</string>
-    <string name="how_abt_sot_summary">Отв. Поскольку SOT, производительность и т. Д. В значительной степени зависят от нескольких факторов, таких как ПЗУ, установленные приложения и т. Д., Никто другой не может точно предсказать производительность / SOT вашего мобильного телефона. Итак, вы должны проверить и выяснить самостоятельно.</string>
     <string name="how_different">Q1. Чем это приложение отличается от официального ядра Grarak Adiutor?</string>
     <string name="how_different_summary">"Ответ. Это приложение значительно модифицировано для удовлетворения потребностей Smart-Pack-Kernel. Некоторые из дополнительных функций этого приложения включают, но не ограничиваются, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost , iv. K-Lapse, v. Расширенный интерфейс управления зарядкой (ядра Samsung msm8974), vi. Boeffla Wakelocks, vii. Средства управления звуком Boeffla и Flar с поддержкой по каналам, viii. Переключатель SELinux, ix. Поддержка OTA для SmartPack-Kernel , х. Дисплей управления подсветкой и многое другое. "</string>
     <string name="hybrid">Гибридный</string>
@@ -728,8 +722,6 @@
     <string name="result">Результат</string>
     <string name="right">Правильно</string>
     <string name="rom">Прошивка</string>
-    <string name="rom_abc">Q6. Совместимо ли ваше ядро с ROM (s) a / b / c?</string>
-    <string name="rom_abc_summary">Отв. Я не знаю. Все мои ядра основаны и протестированы только на Lineage-OS / Stock-ROM. Однако, если ваши ПЗУ a / b / c основаны на Lineage-OS / Stock-ROM (и используют тот же исходный код ядра), это, скорее всего, будет работать.</string>
     <string name="rotational">Вращающееся устройство памяти</string>
     <string name="rotational_summary">Считать устройство вращающимся устройством памяти.</string>
     <string name="rq_affinity_summary">Установка выполнения запросов планировщика ядрами процессора, от которых эти запросы исходили. Чем больше значение, тем выше агрессивность.</string>

@@ -1093,30 +1093,22 @@
     <string name="translators">Translators</string>
 
     <!-- FAQ -->
-    <string name="how_different">Q1. How this App different from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This App is significantly modified to meet the needs of Smart-Pack-Kernel. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
-    <string name="can_i_use">Q2. Can I use this App with other custom kernels?</string>
-    <string name="can_i_use_summary">Ans. Why not? It will work as usual.</string>
+    <string name="how_different">Q1. How different is this app from Grarak’s official Kernel Adiutor?</string>
+    <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
+    <string name="can_i_use">Q2. Can I use this App to control any custom kernel?</string>
+    <string name="can_i_use_summary">Ans. Why not? This app will work as usual with any kernel, as long as root access granted.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>
     <string name="cpu_freq_not_sticking_summary">Ans. This could be due to many reasons. Many kernels nowadays have their own hotplugging system which controls the CPU frequency and CyanogenMod has their own CPU Boost implementation which regulates the frequency. I would suggest you don\'t touch the CPU frequencies and let the kernel do its job. This also counts for other functions! If they don\'t stick, it\'s because the kernel/system doesn\'t want to let you change it.</string>
     <string name="feature_not_appearing">Q4. Why don\'t features x and y show up?</string>
-    <string name="feature_not_appearing_summary">Ans. Only features which are supported by your installed kernel are shown.</string>
-    <string name="add_new_features">Q5. Could you add feature x and y to your Kernel/App?</string>
-    <string name="add_new_features_summary">Ans. It depends on the feature and the capability of the device. I’m happy to check and add, if possible, any useful features (unless it is too experimental or dangerous) to my Kernel/App. Please give your suggestions in the respective xda-developers page.</string>
-    <string name="rom_abc">Q6. Is your kernel compatible with ROM(s) a/b/c?</string>
-    <string name="rom_abc_summary">Ans. I do not know. All of my kernels are based off and tested only on Lineage-OS/Stock-ROM. However, if your ROM(s) a/b/c are based on Lineage-OS/Stock-ROM (and uses the same kernel source code), it will most probably work.</string>
-    <string name="better_than">Q7. Is your kernel better than stock/‘x/y/z’ kernel(s)?</string>
-    <string name="better_than_summary">Ans. Regarding stock, Yes, It should be better in many aspects (Otherwise it will never be published). Regarding ‘x/y/z’ kernels, I don’t know. I even may not aware of the mentioned ‘x/y/z’ kernels.</string>
-    <string name="how_abt_sot">Q8. How about performance/SOT?</string>
-    <string name="how_abt_sot_summary">Ans. Since SOT, performance etc. are largely based on several factors such as ROM, installed apps etc., no one else can exactly predict the performance/SOT of your mobile. So, you should test and find out by yourself.</string>
-    <string name="what_best">Q9. Can you tell me the best settings for performance/SOT?</string>
-    <string name="what_best_summary">Ans. Again, it depends on several factors. I can only share my favorite settings that give me the best results in my favorite ROM.</string>
-    <string name="battery_drain">Q10. I’m facing a heavy battery drain after installing your Kernel. Any solution?</string>
-    <string name="battery_drain_summary">Ans. In my opinion, any kernel including mine is not capable to make such a big difference (neither positive nor negative) in battery life. It should be because of your ROM, Gapps, other installed apps, wake-locks etc.</string>
-    <string name="cache_dalvik">Q11. Do I need to wipe cache/dalvik cache before/after flashing your Kernel?</string>
+    <string name="feature_not_appearing_summary">Ans. Only features that are implemented to your Kernel are shown.</string>
+    <string name="add_new_features">Q5. Could you add feature x and y to your App?</string>
+    <string name="add_new_features_summary">Ans. I’m happy to check and add, if possible, any useful features (unless it is too experimental or dangerous) to my App. Please give your suggestions in the xda-developers page.</string>
+    <string name="what_best">Q6. Can you tell me the best settings for performance/SOT?</string>
+    <string name="what_best_summary">Ans. It\'s depends on several factors. I can only share my favorite settings that give me the best results in my favorite ROM.</string>
+    <string name="cache_dalvik">Q7. Do I need to wipe cache/dalvik cache before/after flashing a Kernel?</string>
     <string name="cache_dalvik_summary">Ans. NO. Because the kernel does not even ‘see’ cache/dalvik cache.</string>
-    <string name="found_bugs">Q12. I found a bug in your App/Kernel, what do I do?</string>
-    <string name="found_bugs_summary">Ans. Please provide as much information as possible (such as what feature, what didn\'t work, screenshots or logcat if possible) and post in the respective xda-developers page. Alternately, you may also submit an issue to the respective GitHub Source.</string>
-    <string name="can_i_contribute">Q13. Can I contribute to your App/Kernel Projects? If so, How?</string>
+    <string name="found_bugs">Q8. I found a bug in your App, what do I do?</string>
+    <string name="found_bugs_summary">Ans. Please provide as much information as possible (such as what feature, what didn\'t work, screenshots or logcat if possible) and post in the xda-developers page. Alternately, you may also raise an issue in the GitHub page.</string>
+    <string name="can_i_contribute">Q9. Can I contribute to your Projects? If so, How?</string>
     <string name="can_i_contribute_summary">Ans. Absolutely. Any kind of contributions (Donations, Code etc.) are most welcomed and highly appreciated. Please visit "About" Section for more details.</string>
 </resources>
