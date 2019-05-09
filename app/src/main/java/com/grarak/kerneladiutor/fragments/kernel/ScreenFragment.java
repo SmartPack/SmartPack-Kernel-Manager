@@ -141,6 +141,10 @@ public class ScreenFragment extends RecyclerViewFragment {
 	CardView klapseCard = new CardView(getActivity());
 	klapseCard.setTitle(getString(R.string.klapse));
 
+	int nightR = KLapse.getklapseRed();
+	int nightG = KLapse.getklapseGreen();
+	int nightB = KLapse.getklapseBlue();
+
         if (KLapse.hasEnable()) {
             SelectView enable = new SelectView();
             enable.setSummary(getString(R.string.klapse_summary));
@@ -150,6 +154,12 @@ public class ScreenFragment extends RecyclerViewFragment {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
 		    KLapse.setklapseEnable(position, getActivity());
+		    getHandler().postDelayed(() -> {
+                    KLapse.setklapseRed((nightR), getActivity());
+                    KLapse.setklapseGreen((nightG), getActivity());
+                    KLapse.setklapseBlue((nightB), getActivity());
+		    },
+	        100);
                 }
             });
 

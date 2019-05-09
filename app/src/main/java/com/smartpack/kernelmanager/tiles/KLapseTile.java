@@ -36,6 +36,9 @@ import com.smartpack.kernelmanager.utils.KLapse;
 public class KLapseTile extends TileService {
 
     private int id = KLapse.getklapseEnable();
+    private int nightR = KLapse.getklapseRed();
+    private int nightG = KLapse.getklapseGreen();
+    private int nightB = KLapse.getklapseBlue();
 
     @Override
     public void onStartListening() {
@@ -62,6 +65,9 @@ public class KLapseTile extends TileService {
 		newState = Tile.STATE_ACTIVE;
 		id +=1;
 		KLapse.setklapseEnable(2, this);
+		KLapse.setklapseRed(nightR, this);
+		KLapse.setklapseGreen(nightG, this);
+		KLapse.setklapseBlue(nightB, this);
             } else if (id == 2) {
 		newLabel = "K-Lapse\nTurned-Off";
 		newState = Tile.STATE_ACTIVE;
@@ -72,6 +78,9 @@ public class KLapseTile extends TileService {
 		newState = Tile.STATE_ACTIVE;
 		id = 1;
 		KLapse.setklapseEnable(1, this);
+		KLapse.setklapseRed(nightR, this);
+		KLapse.setklapseGreen(nightG, this);
+		KLapse.setklapseBlue(nightB, this);
             }
         }
 
