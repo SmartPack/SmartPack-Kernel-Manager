@@ -27,17 +27,11 @@
     <string name="free">Free</string>
     <string name="total">Total</string>
 
-    <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
-    <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="donate">Donate</string>
     <string name="donate_summary">This feature is only available when the donation app is installed! Don\'t worry though. Because this app is open source you can easily build it yourself and remove this check. But I hope you support the developers anyway. Thanks for using SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Not now!</string>
     <string name="donate_yes">Donate!</string>
-    <string name="ad_here">Your advertisement could be here</string>
-    <string name="remove_ad">Remove ad</string>
     <string name="warning">Warning!</string>
-    <string name="gh_ad">This is a non commercial ad! Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users).</string>
-    <string name="open_ad_anyway">Open ad anyway</string>
 
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_text">Applying settings in %d seconds.</string>
@@ -1030,8 +1024,6 @@
     <string name="force_cards">Force cards</string>
     <string name="force_cards_summary">Use cards for items if possible.</string>
     <string name="accent_color">Accent Color</string>
-    <string name="section_icons">Section Icons</string>
-    <string name="section_icons_summary">Show icons for each section in navigation drawer.</string>
     <string name="instant">Instant</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>
@@ -1049,7 +1041,6 @@
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>
     <string name="apply_on_boot_script_summary">Use a shell script to apply settings. Please only enable this if you have troubles with apply on boot. If the problem still persists after enabling this option, please make sure no other app is conflicting with SmartPack-Kernel Manager.</string>
-    <string name="debugging">Debugging</string>
     <string name="logcat">Logcat(s)</string>
     <string name="logcat_summary">Save all logcats, including radio and events, into \'sdcard\'</string>
     <string name="last_kmsg">Last Kernel Message</string>

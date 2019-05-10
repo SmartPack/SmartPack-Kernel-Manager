@@ -27,17 +27,11 @@
     <string name="used">使用中</string>
     <string name="free">可用</string>
     <string name="total">总共</string>
-    <string name="license_invalid">感谢您购买捐款应用程序！不幸的是，授权检查失败。请稍后再试。如果它仍然无法运作，请与我联系。你需要正常的网络连接！</string>
-    <string name="pirated">似乎捐款应用程序并非通过Play商店购买！如果你使用的是盗版，那么你应该感到耻辱！</string>
     <string name="donate">捐助</string>
     <string name="donate_summary">此功能仅在捐赠版应用安装后可用！别怕，本应用是开源软件，因此您可以轻松地自己构建它并删除此检查。尽管如此，我还是希望您支持开发人员。感谢您使用 SmartPack-Kernel Manager！</string>
     <string name="donate_nope">我不会爱上这种骗局！</string>
     <string name="donate_yes">我喜欢这个应用程序，捐是应该的！</string>
-    <string name="ad_here">广告位招租</string>
-    <string name="remove_ad">移除广告</string>
     <string name="warning">警告</string>
-    <string name="gh_ad">这是非商业广告！不要认真对待这个！只是一个有趣的方式来填充的空间，当实际的广告没有加载（可能你是 ADBlock 用户）。</string>
-    <string name="open_ad_anyway">仍然打开广告</string>
     <string name="apply_on_boot">开机后自动应用</string>
     <string name="apply_on_boot_text">设置将于 %d 秒后应用...</string>
     <string name="apply_on_boot_complete">设置应用 成功！</string>
@@ -979,8 +973,6 @@
     <string name="force_cards">强制使用卡片风格</string>
     <string name="force_cards_summary">如果可能，请使用卡片。</string>
     <string name="accent_color">辅色</string>
-    <string name="section_icons">部分图标</string>
-    <string name="section_icons_summary">在导航抽屉中显示每个部分的图标。</string>
     <string name="instant">立即</string>
     <string name="five_sec">5 秒</string>
     <string name="ten_sec">10 秒</string>
@@ -998,7 +990,6 @@
     <string name="apply_on_boot_confirmation_notification_summary">使用可见通知应用启动后，随后显示一条通知，确认启动成功。</string>
     <string name="script">脚本</string>
     <string name="apply_on_boot_script_summary">使用 shell 脚本应用设置。请只有在开机后应用服务无法正确运作时才启用此选项。如果在启用此选项后问题仍然存在，请确保没有其他应用程序与内核调解器冲突。</string>
-    <string name="debugging">侦错</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
     <string name="last_kmsg">最新的内核信息</string>

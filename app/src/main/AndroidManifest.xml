@@ -73,7 +73,6 @@
         <activity android:name=".activities.tools.CustomControlsActivity" />
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.FilePickerActivity" />
-        <activity android:name=".activities.tools.DownloadsActivity" />
         <activity android:name=".activities.tools.profile.ProfileActivity" />
         <activity
             android:name=".activities.SecurityActivity"

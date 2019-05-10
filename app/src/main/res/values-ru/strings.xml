@@ -5,7 +5,6 @@
     <string name="about">О приложении</string>
     <string name="accent_color">Цветовой акцент</string>
     <string name="acci">Расширенный интерфейс управления зарядом</string>
-    <string name="ad_here">Здесь может быть ваша реклама</string>
     <string name="add">Добавить</string>
     <string name="add_new_features">Могли ли бы вы добавить функцию x и y?</string>
     <string name="add_new_features_summary">Сложно сказать. Я пытаюсь добавлять все функции, но это сложно сделать это приложение универсальным для всех устройств.</string>
@@ -228,7 +227,6 @@
     <string name="daytime_rgb">Дневные цвета</string>
     <string name="debug_mask">Маска отладки</string>
     <string name="debug_mask_summary">Позволяет вам активировать маску отладки для операций.</string>
-    <string name="debugging">Отладка</string>
     <string name="deep_sleep">Глубокий сон</string>
     <string name="defer_sampling">Отложенная выборка</string>
     <string name="deferred_timer">Отложенный таймер</string>
@@ -377,7 +375,6 @@
     <string name="generic_value_summary">Текущее значение редактора. Может быть пустым.</string>
     <string name="gentlefairsleepers">Вежливое обращение со спящими</string>
     <string name="gentlefairsleepers_summary">Предоставление спящим службам только 50% их функционала. Отключение этой функции может способствовать небольшой экономии батареи.</string>
-    <string name="gh_ad">Это не коммерческая реклама! Не принимайте её всерьёз! Просто весёлый способ заполнить пустоту, когда настоящая реклама не загрузится (смотря на вас, пользователи adblock).</string>
     <string name="global_offset">Глобальное смещение</string>
     <string name="glove_mode">Режим перчаток</string>
     <string name="glove_mode_summary">Это позволит вам использовать ваш телефон даже при ношении перчатки.</string>
@@ -506,7 +503,6 @@
     <string name="lenient">Мягкость Sweep2Wake</string>
     <string name="lenient_summary">Требуется только 1 и 4 кнопка для запуска Sweep2Wake.</string>
     <string name="libraries_used">Используемые библиотеки</string>
-    <string name="license_invalid">Спасибо за покупку приложения-пожертвования! К сожалению, проверка лицензии не удалась. Пожалуйста, попробуйте снова позже. Если она всё ещё не работает, пожалуйста, свяжитесь со мной. Вам необходим доступ к интернету!</string>
     <string name="light">Легкий</string>
     <string name="lmk">Low Memory Killer</string>
     <string name="lmk_adaptive">Адаптивный Low Memory Killer</string>
@@ -626,7 +622,6 @@
     <string name="online_delay">Задержка онлайн</string>
     <string name="online_delay_summary">Время до отключения ядра.</string>
     <string name="open">Открыть %s</string>
-    <string name="open_ad_anyway">Всё равно открыть рекламу</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="options">Опции</string>
     <string name="otg_enable">Переключатель OTG</string>
@@ -649,7 +644,6 @@
     <string name="per_channel_controls">Управление по каналам</string>
     <string name="performance">Производительность</string>
     <string name="permission_denied_write_storage">Отказано в разрешении на запись в память устройства!</string>
-    <string name="pirated">Похоже, приложение-пожертвование не было куплено через Play Маркет! Если вы спиратили его, то вам должно быть стыдно!</string>
     <string name="pocket_mode">Режим В кармане</string>
     <string name="pocket_mode_summary">Активация этой функции отключит управление пробуждением при нахождении устройства в кармане.</string>
     <string name="poll">Опрос</string>
@@ -712,7 +706,6 @@
     <string name="red_whites">Белые в красном</string>
     <string name="register_hook">Зарегистрировать хук</string>
     <string name="register_hook_summary">Перехват регистра действует как средство, позволяющее перехватить настройки сценария и изменить их посредством дельта-управления. Если в базовой последовательности сценария нет настройки (регистра), то изменить его данным средством невозможно.</string>
-    <string name="remove_ad">Убрать рекламу</string>
     <string name="required">Обязательно</string>
     <string name="reset">Сброс</string>
     <string name="reset_settings">Сбросить приложение</string>
@@ -763,8 +756,6 @@
     <string name="script">Скрипт</string>
     <string name="searching_busybox">Поиск busybox</string>
     <string name="secondary_server">Вторичные приложения</string>
-    <string name="section_icons">Значки разделов</string>
-    <string name="section_icons_summary">Показывать значки для каждого раздела в панели навигации.</string>
     <string name="sections">Разделы</string>
     <string name="sections_disabled">Все секции отключены! Профилей не осталось.</string>
     <string name="security">Безопасность</string>

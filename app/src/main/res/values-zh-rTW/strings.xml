@@ -27,17 +27,11 @@
     <string name="used">使用中</string>
     <string name="free">可用</string>
     <string name="total">總共</string>
-    <string name="license_invalid">感謝您購買捐款應用程式！不幸的是，授權檢查失敗。請稍後再試。如果它仍然無法運作，請與我聯繫。你需要網際網路連線！</string>
-    <string name="pirated">似乎捐款應用程式並非透過Play商店購買！如果你使用的是盜版，那麼以你為恥！</string>
     <string name="donate">捐贈</string>
     <string name="donate_summary">此功能僅在安裝了捐贈應用程序時可用！不要擔心。因為這個程序是開源的，你可以很容易地自己建立，並刪除這個檢查。但我希望你支持開發人員。感謝您使用SmartPack-Kernel Manager！</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>
     <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
-    <string name="ad_here">廣告位招租</string>
-    <string name="remove_ad">移除廣告</string>
     <string name="warning">警告</string>
-    <string name="gh_ad">這是非商業廣告！不要認真對待這個！只是一個有趣的方式來填充的空間，當實際的廣告沒有載入（看看你，ADBlock 使用者）。</string>
-    <string name="open_ad_anyway">仍然打開廣告</string>
     <string name="apply_on_boot">開機後自動套用</string>
     <string name="apply_on_boot_text">設定值將於 %d 秒後套用...</string>
     <string name="apply_on_boot_complete">設定值套用 成功！</string>
@@ -979,8 +973,6 @@
     <string name="force_cards">強制使用卡片風格</string>
     <string name="force_cards_summary">如果可能，請使用卡片。</string>
     <string name="accent_color">輔色</string>
-    <string name="section_icons">部分圖示</string>
-    <string name="section_icons_summary">在導航抽屜中顯示每個部分的圖示。</string>
     <string name="instant">立即</string>
     <string name="five_sec">5 秒</string>
     <string name="ten_sec">10 秒</string>
@@ -998,7 +990,6 @@
     <string name="apply_on_boot_confirmation_notification_summary">使用可見通知套用啟動後，隨後顯示一條通知，確認啟動成功。</string>
     <string name="script">指令碼</string>
     <string name="apply_on_boot_script_summary">使用 shell 指令碼套用設定。請只有在開機後套用服務無法正確運作時才啟用此選項。如果在啟用此選項後問題仍然存在，請確保沒有其他應用程式與核心調解器衝突。</string>
-    <string name="debugging">偵錯</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">將 logcat 複製到 /sdcard/logcat.txt</string>
     <string name="last_kmsg">最新的核心訊息</string>
