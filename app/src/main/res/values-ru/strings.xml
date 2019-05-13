@@ -50,14 +50,12 @@
     <string name="apply_question">Применить %s?</string>
     <string name="applying">Применение</string>
     <string name="applying_profile">Применение %s!</string>
-    <string name="appupdater_btn_disable">"Не показывай снова"</string>
+    <string name="appupdater_btn_disable">Не показывай снова</string>
     <string name="appupdater_btn_dismiss">Отклонить</string>
     <string name="appupdater_btn_update">Обновить</string>
-    <string name="appupdater_channel">appupdater_channel_01</string>
     <string name="appupdater_channel_name">Уведомление о наличии обновлений</string>
     <string name="appupdater_download_filed">Ошибка загрузки</string>
     <string name="appupdater_downloading_file">Загружаеться...</string>
-    <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_available">Обновление доступно!</string>
     <string name="appupdater_update_available_description_dialog">Обновление %1$s доступно для скачивания. Загрузив последнее обновление, вы получите последние функции, улучшения и исправления ошибок за %2$s.</string>
     <string name="appupdater_update_available_description_notification">Доступно для загрузки обновление %1$s из %2$s</string>
@@ -74,6 +72,8 @@
     <string name="auto_brightness_summary">Автоматически установить коэффициент яркости в заданном диапазоне времени.</string>
     <string name="autoflash">Автоматическая прошивка</string>
     <string name="autosleep">Автосон</string>
+    <string name="autosmp">AutoSMP</string>
+    <string name="autosmp_summary">«Замена ядра в Qualcomm MPDecision. Разработано mrg666».</string>
     <string name="available">Доступно</string>
     <string name="backing_up">Резервирование в процессе</string>
     <string name="backlight_dimmer">Уменьшение яркости экрана</string>
@@ -82,6 +82,7 @@
     <string name="backup_item">%1$s был резервно копирован в %2$s</string>
     <string name="balanced">Сбалансированный</string>
     <string name="banner_resizer">Изменение размера баннера</string>
+    <string name="banner_resizer_message">«Ориентация экрана телефона должна быть« Портрет »!»</string>
     <string name="baseband">Модем</string>
     <string name="battery">Батарея</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
@@ -103,16 +104,18 @@
     <string name="boeffla_wakelock">Boeffla Generic Wakelock Blocker</string>
     <string name="boefflasound">Boeffla Sound</string>
     <string name="boefflasound_summary">Включить / выключить Boeffla Sound Engine</string>
+    <string name="boost_frequency_core">Увеличение частоты ядра% d</string>
     <string name="boost_lock_duration">Повышение длительности блокировки</string>
     <string name="boost_lock_duration_summary">Минимальный интервал усиления ядра.</string>
     <string name="boot_partition">Загрузочный раздел</string>
     <string name="bootloader">Загрузчик</string>
     <string name="bottom_half">Нижняя половина</string>
+    <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="bright_light_environment">Высокая освещенность</string>
     <string name="bright_light_environment_summary">Установите относительную интенсивность светодиода при ярком свете.</string>
-    <string name="bright_scale">Brightness Based Scaling</string>
+    <string name="bright_scale">Яркость на основе масштабирования</string>
     <string name="brightness">Яркость</string>
-    <string name="brightness_factor">Brightness Factor</string>
+    <string name="brightness_factor">Коэффициент яркости</string>
     <string name="brightness_factor_summary">10: точная яркость; 5: 50% от текущей яркости.</string>
     <string name="brightness_mode">Используйте режим экспоненциального подсветки вместо линейного режима.</string>
     <string name="build_display_id">Номер сборки</string>
@@ -123,7 +126,7 @@
     <string name="busy_up_threshold">Верхний порог занятости</string>
     <string name="busy_up_threshold_summary">Порог для включения кластера big CPU.</string>
     <string name="cache_dalvik">Q11. Нужно ли стирать кеш / dalvik кеш до / после перепрошивки вашего ядра?</string>
-    <string name="cache_dalvik_summary">Отв. NO. Потому что ядро даже не "видит" кеш / далвик кеш.</string>
+    <string name="cache_dalvik_summary">Отв. NO. Потому что ядро даже не видит кеш / далвик кеш.</string>
     <string name="camera_gesture">Жест камеры</string>
     <string name="camera_gesture_summary">Запуск камеры по умолчанию рисунком круга на экране.</string>
     <string name="can_i_contribute">Q13. Могу ли я внести свой вклад в ваши проекты приложений / ядра? Если так, то как?</string>
@@ -145,9 +148,7 @@
     <string name="charge_timeout">Тайм-аут зарядки</string>
     <string name="charge_timeout_summary">Установите длительность, когда элементы управления пробуждения будут отключены после выключения экрана во время зарядки.</string>
     <string name="charging_enable">Включить зарядку</string>
-    <string name="charging_enable_summary">
-58/5000
-Предупреждение! Зарядка будет немедленно остановлена, если она отключена.</string>
+    <string name="charging_enable_summary">Предупреждение! Зарядка будет немедленно остановлена, если она отключена.</string>
     <string name="charging_mode">Режим зарядки</string>
     <string name="charging_mode_summary">Управление пробуждением будет активным только при зарядке устройства.</string>
     <string name="check_interval">Интервал проверки</string>
@@ -155,7 +156,9 @@
     <string name="check_update_summary">Проверьте наличие новых версий SmartPack-Kernel Manager.</string>
     <string name="checking_info">Проверка информации…</string>
     <string name="checking_root">Проверка рут-доступа</string>
-    <string name="cluster_return_freq">Cluster Return Frequency</string>
+    <string name="cluster_big">big</string>
+    <string name="cluster_little">LITTLE</string>
+    <string name="cluster_return_freq">Частота возврата кластера</string>
     <string name="collecting_info">Сбор информации</string>
     <string name="commits">Изменения: %d</string>
     <string name="confirm_new_password">Подтвердите новый пароль</string>
@@ -209,7 +212,7 @@
     <string name="cpu_usage">Использование ЦП</string>
     <string name="cpu_usage_string">Использование ЦП: %s</string>
     <string name="cpu_voltage">Напряжение ЦП</string>
-    <string name="cpuiboost_duration">Input Boost Duration</string>
+    <string name="cpuiboost_duration">Продолжительность усиления ввода</string>
     <string name="cpuiboost_duration_summary">Установите CPU Input Boost duration</string>
     <string name="cpus_boosted">Ядер усилено</string>
     <string name="cpus_boosted_summary">Макс. количество одновременно ускоренных ядер ЦП.</string>
@@ -223,6 +226,10 @@
     <string name="custom_controls">Пользовательские функции</string>
     <string name="custom_controls_example_summary">Нужен пример? Нажмите &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\">здесь&lt;a>.</string>
     <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
+    <string name="cycle_down">Cycle Down</string>
+    <string name="cycle_down_summary">Циклы ожидания после последнего события горячего подключения для отключения другого ядра.</string>
+    <string name="cycle_up">Cycle Up</string>
+    <string name="cycle_up_summary">Циклы ожидания после последнего события горячей замены для подключения другого ядра.</string>
     <string name="dark_theme">Тёмная тема</string>
     <string name="daytime_rgb">Дневные цвета</string>
     <string name="debug_mask">Маска отладки</string>
@@ -251,10 +258,10 @@
     <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
     <string name="display_backlight">Подсветка дисплея</string>
     <string name="donate">Пожертвовать</string>
-    <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование SmartPack-Kernel Manager!</string>
     <string name="donate_me">Пожертвовать мне</string>
     <string name="donate_me_summary">Хотите оценить мою работу с пожертвованием? кликните сюда</string>
     <string name="donate_nope">Я не попадусь на эту аферу!</string>
+    <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование SmartPack-Kernel Manager!</string>
     <string name="donate_yes">Я люблю это приложение. Должен пожертвовать!</string>
     <string name="down">Вниз</string>
     <string name="down_differential">Дифференциал снижения</string>
@@ -264,9 +271,9 @@
     <string name="down_timer_cnt">Обратный отсчет</string>
     <string name="down_timer_cnt_summary">Управление таймером понижения частоты процессора.</string>
     <string name="download">Скачать</string>
+    <string name="downrate_limits">Пределы рейтинга</string>
     <string name="doze">Режим Doze</string>
-    <string name="doze_summary">
-Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания.</string>
+    <string name="doze_summary">Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания.</string>
     <string name="draw_c">Нарисуйте С</string>
     <string name="draw_e">Нарисуйте Е</string>
     <string name="draw_m">Нарисуйте М</string>
@@ -346,7 +353,7 @@
     <string name="foreground_app">Активные приложения</string>
     <string name="fota_partition">Раздел обновления</string>
     <string name="found_bugs">Q12. Я нашел ошибку в вашем приложении / ядре, что мне делать?</string>
-    <string name="found_bugs_summary">"Ответ. Пожалуйста, предоставьте как можно больше информации (например, какая функция, что не сработало, снимки экрана или logcat, если это возможно) и опубликуйте ее на соответствующей странице разработчиков xda. Кроме того, вы также можете отправить вопрос в соответствующий GitHub. Источник."</string>
+    <string name="found_bugs_summary">Ответ. Пожалуйста, предоставьте как можно больше информации (например, какая функция, что не сработало, снимки экрана или logcat, если это возможно) и опубликуйте ее на соответствующей странице разработчиков xda. Кроме того, вы также можете отправить вопрос в соответствующий GitHub. Источник.</string>
     <string name="free">Свободно</string>
     <string name="freq_control">Контроль частоты</string>
     <string name="freq_control_mask">Маска контроля частоты</string>
@@ -422,17 +429,20 @@
     <string name="hostname">Имя устройства</string>
     <string name="hotplug_boost">Усиление при hotplug-е</string>
     <string name="hotplug_boost_summary">Усиление при hotplug-е похоже на усиление при вводе, но срабатывает при переходе ядра в онлайн.</string>
-    <string name="hotplug_frequency">Hotplug Frequency</string>
-    <string name="hotplug_load">Hotplug Load</string>
+    <string name="hotplug_frequency">Частота Hotplug</string>
+    <string name="hotplug_load">Загрузка hotplug</string>
     <string name="hotplug_rate">Hotplug Rate</string>
     <string name="hotplug_rq">Hotplug RQ</string>
-    <string name="hotplug_temp">Hotplugging Temperature</string>
+    <string name="hotplug_suspend">Hotplug Приостановить</string>
+    <string name="hotplug_temp">Температура при хотплаге</string>
     <string name="hotplug_temp_summary">Пороговая температура для начала выключения ядер.</string>
     <string name="how_different">Q1. Чем это приложение отличается от официального ядра Grarak Adiutor?</string>
     <string name="how_different_summary">"Ответ. Это приложение значительно модифицировано для удовлетворения потребностей Smart-Pack-Kernel. Некоторые из дополнительных функций этого приложения включают, но не ограничиваются, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost , iv. K-Lapse, v. Расширенный интерфейс управления зарядкой (ядра Samsung msm8974), vi. Boeffla Wakelocks, vii. Средства управления звуком Boeffla и Flar с поддержкой по каналам, viii. Переключатель SELinux, ix. Поддержка OTA для SmartPack-Kernel , х. Дисплей управления подсветкой и многое другое. "</string>
     <string name="hybrid">Гибридный</string>
     <string name="hysteresis">Значение гистерезиса</string>
     <string name="hysteresis_summary">Чем оно ниже, тем быстрее отклик.</string>
+    <string name="idle_frequency">Частота в режиме ожидания</string>
+    <string name="idle_frequency_summary">Если первое ядро ниже этой частоты, не подключайте другие ядра.</string>
     <string name="idle_wait">Ожидание</string>
     <string name="idle_wait_summary">Количество событий, после которого частота будет понижена. Adreno idler понизит частоту только если эти события были событиями простоя. Это нужно для того, чтобы избавиться от микро-лагов при листании или во время игры. Чем меньше значение, тем более активно idler будет понижать частоту.</string>
     <string name="immediately_limit_stop">Сразу же ограничить</string>
@@ -447,7 +457,7 @@
     <string name="input_interval_summary">Минимальный интервал усиления ЦП при обнаружении ввода.</string>
     <string name="inputs">Устройства ввода</string>
     <string name="insanity">БеЗуМиЕ</string>
-    <string name="install_now">Install Now</string>
+    <string name="install_now">Установить сейчас</string>
     <string name="instant">Мгновенно</string>
     <string name="intelliplug">IntelliPlug</string>
     <string name="intelliplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано faux123.</string>
@@ -483,7 +493,7 @@
     <string name="ksm_summary">Снижает загрузку памяти, но влияет на загрузку ЦП.</string>
     <string name="last_kmsg">Последнее сообщение ядра</string>
     <string name="last_kmsg_summary">Скопировать /proc/last_kmsg в /sdcard/last_kmsg.txt</string>
-    <string name="latest_version_check">Click here to check the latest version info</string>
+    <string name="latest_version_check">Нажмите здесь, чтобы проверить информацию о последней версии</string>
     <string name="laziness">Ленивость</string>
     <string name="laziness_summary">Увеличивает порог увеличения или уменьшения частоты GPU. Чем меньше значение, тем больше будет производительность.</string>
     <string name="lazy">Lazy</string>
@@ -538,6 +548,7 @@
     <string name="maximum_compression_ratio">Максимальный коэффициент сжатия</string>
     <string name="maximum_compression_ratio_summary">Максимальная степень сжатия, в процентах, для сжимаемых страниц. Любая страница, которая не сжимается до этого соотношения, будет отклонена.</string>
     <string name="mb">МБ</string>
+    <string name="mb_hotplug_summary">«Замена ядра в Qualcomm MPDecision. Разработано show-p1984».</string>
     <string name="mc_power_saving">Многоядерное энергосбережение</string>
     <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
     <string name="mdnie_global_controls">Управление функцией mDNle</string>
@@ -548,6 +559,7 @@
     <string name="mhz">МГц</string>
     <string name="microphone_gain">Усиление микрофона</string>
     <string name="min">мин</string>
+    <string name="min_boost_freq">Минимальная частота ускорения</string>
     <string name="min_brightness">Минимальная яркость</string>
     <string name="min_brightness_summary">Позволяет уменьшить яркость экрана ниже стокового значения.</string>
     <string name="min_cpu_online">Минимальное количество работающих ядер</string>
@@ -556,6 +568,7 @@
     <string name="min_cpus_big_summary">Минимальное количество процессоров BIG, которые должны быть онлайн.</string>
     <string name="min_rgb">Минимальное значение RGB</string>
     <string name="min_time_cpu_online">Минимальное время работы ЦП</string>
+    <string name="minus">-</string>
     <string name="misc">Разное</string>
     <string name="more">Больше</string>
     <string name="mpdecision">MPDecision</string>
@@ -568,6 +581,7 @@
     <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
     <string name="msm_limiter">MSM Limiter</string>
     <string name="msm_limiter_summary">Включить MSM Limiter by neobuddy89.</string>
+    <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="msm_sleeper">MSM Sleeper</string>
     <string name="msm_sleeper_summary">«Замена ядра в Qualcomm MPDecision. Разработано flar2».</string>
     <string name="msm_thermal">MSM Thermal</string>
@@ -578,8 +592,6 @@
     <string name="mv">мВ</string>
     <string name="name">Название</string>
     <string name="name_empty">Пустое имя!</string>
-    <string name="native_express_id_dark">ca-app-pub-1851546461606210/4717926683</string>
-    <string name="native_express_id_light">ca-app-pub-1851546461606210/9265877481</string>
     <string name="negative_toggle">Отрицательный рычаг</string>
     <string name="negative_toggle_summary">Включить инвертирование цветов экрана быстрым нажатием кнопки МЕНЮ 4 раза.</string>
     <string name="netlink_wakelock">NetLink Wakelock</string>
@@ -613,7 +625,7 @@
     <string name="offline_load">Автономном режиме нагрузки</string>
     <string name="offline_load_summary">Не автономном режиме процессор, если он падает под более низкого уровня до порога нагрузки.</string>
     <string name="offset">Смещение</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ок</string>
     <string name="old_password">Старый пароль</string>
     <string name="old_password_wrong">Старый пароль неверный</string>
     <string name="on">Вкл</string>
@@ -641,9 +653,13 @@
     <string name="password_not_match">Новый пароль не совпадает с подтверждением</string>
     <string name="password_too_long">Пароль слишком длинный (макс. 32 символа)</string>
     <string name="password_wrong">Неверный пароль</string>
+    <string name="pause">Пауза</string>
+    <string name="pause_summary">Если что-то еще включается в процессор, засыпайте на это много миллисекунд времени.</string>
+    <string name="paypal_donation">PayPal</string>
     <string name="per_channel_controls">Управление по каналам</string>
     <string name="performance">Производительность</string>
     <string name="permission_denied_write_storage">Отказано в разрешении на запись в память устройства!</string>
+    <string name="plus">+</string>
     <string name="pocket_mode">Режим В кармане</string>
     <string name="pocket_mode_summary">Активация этой функции отключит управление пробуждением при нахождении устройства в кармане.</string>
     <string name="poll">Опрос</string>
@@ -679,6 +695,7 @@
     <string name="profile_warning">Все, что Вы измените здесь, будет сохранено в профиле. Внимание! Ваши настройки также будут применены, но не сохранятся для применения при загрузке.</string>
     <string name="pulse_freq">Частота импульсов</string>
     <string name="pulse_freq_summary">Количество миллисекунд, после которых вызывается klapse_pulse.</string>
+    <string name="purchase_app">Приложение для пожертвований</string>
     <string name="px">пкс</string>
     <string name="qcom_rx_wakelock">Qcom rx Wakelock</string>
     <string name="qcom_rx_wakelock_summary">Предотвратить Qcom rx wakelock.</string>
@@ -691,12 +708,12 @@
     <string name="read_ahead_summary">Значение пост-чтения памяти телефона.</string>
     <string name="reboot">Перезагрузить</string>
     <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
+    <string name="reboot_bootloader_summary">Перезагрузить в режим загрузки</string>
     <string name="reboot_later">Перезагрузить позже</string>
     <string name="reboot_now">Перезагрузить сейчас</string>
     <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="reboot_recovery_summary">Устройство будет перезагружено в режим рекавери</string>
     <string name="recovery_partition">Раздел восстановления</string>
-    <string name="refresh">Обновить</string>
     <string name="red">Красный</string>
     <string name="red_blacks">Черные в красном</string>
     <string name="red_greys">Красный серый</string>
@@ -704,6 +721,7 @@
     <string name="red_negative">Негатив красного</string>
     <string name="red_positive">Позитив красного</string>
     <string name="red_whites">Белые в красном</string>
+    <string name="refresh">Обновить</string>
     <string name="register_hook">Зарегистрировать хук</string>
     <string name="register_hook_summary">Перехват регистра действует как средство, позволяющее перехватить настройки сценария и изменить их посредством дельта-управления. Если в базовой последовательности сценария нет настройки (регистра), то изменить его данным средством невозможно.</string>
     <string name="required">Обязательно</string>
@@ -748,7 +766,7 @@
     <string name="screen_contrast">Контраст</string>
     <string name="screen_hue">Цвет экрана</string>
     <string name="screen_hue_summary">При установке высокого значения можете получить проблемы с MSM8x26 SoC!</string>
-    <string name="screen_limit">Screen On Current Limit</string>
+    <string name="screen_limit">Экран на текущий предел</string>
     <string name="screen_limit_summary">Включить экран при текущем ограничении</string>
     <string name="screen_off_single_cpu">Одно ядро при выключенном экране</string>
     <string name="screen_off_single_cpu_summary">Использовать только одно ядро, когда экран выключен.</string>
@@ -774,6 +792,7 @@
     <string name="set_password">Установить пароль</string>
     <string name="set_password_first">Сначала установите пароль</string>
     <string name="set_password_summary">Вы можете защитить Kernel Adiutor, установив пароль. Каждый раз, когда вы откроете это приложение, вы должны ввести его. Если вы его забудете, просто сотрите данные этого приложения в настройках вашего устройства. Не волнуйтесь, я не поделюсь вашим паролем.</string>
+    <string name="settings">Настройки</string>
     <string name="shutdown_temp">Температура выключения</string>
     <string name="simple_gpu_algorithm">Простой алгоритм GPU</string>
     <string name="simple_gpu_algorithm_summary">Дополнение к регулятору GPU MSM Andreno TZ. Разработано faux123.</string>
@@ -782,7 +801,6 @@
     <string name="slide_left">Сдвиг влево</string>
     <string name="slide_right">Сдвиг вправо</string>
     <string name="slide_up">Сдвиг вверх</string>
-    <string name="smartpack">SmartPack</string>
     <string name="smb135x_wakelock">smb135x Wakelock</string>
     <string name="smb135x_wakelock_summary">"Предотвращение Wakelock'а во время автономного питания."</string>
     <string name="sound">Звук</string>
@@ -803,14 +821,18 @@
     <string name="spec_title">Твики производительности</string>
     <string name="spectrum">Твики производительности</string>
     <string name="srgb">sRGB</string>
+    <string name="start_delay">Задержка запуска</string>
+    <string name="start_delay_summary">Задержка в миллисекундах, пока Hotplug не начнет работать.</string>
     <string name="start_time">Старт</string>
     <string name="statistics">Статистика</string>
     <string name="stock">Стандартный</string>
     <string name="stockchargelogic">Установите 0 для стандартной логике заряда</string>
     <string name="strict">Строгий</string>
     <string name="stune_boost_ms">Продолжительность Stune Boost</string>
+    <string name="stune_boost_sett">Настройки Stune Boost</string>
+    <string name="stune_boost_sett_summary">Включите, чтобы получить доступ к расширенным настройкам ускорения оглушения.</string>
     <string name="support">Поддержка</string>
-    <string name="support_summary">Посетить страницу поддержки на  xda-developers.com</string>
+    <string name="support_summary">Посетить страницу поддержки на xda-developers.com</string>
     <string name="sure_question">Вы уверены?</string>
     <string name="suspend">Приостановить</string>
     <string name="suspend_defer_time">Время отсрочки задержки</string>
@@ -821,12 +843,11 @@
     <string name="switch_enabled_summary">Указывает, включен ли переключатель. 1 - включен и 0 - выключен.</string>
     <string name="sync_threshold">Порог синхронизации</string>
     <string name="sync_threshold_summary">Когда загрузка ядра превышает установленный порог, текущее ядро повышается до этой частоты.</string>
+    <string name="sysfs">Sysfs</string>
     <string name="t2w">Tap2Wake</string>
     <string name="t2w_summary">Пробуждение устройства тапом по экрану.</string>
     <string name="task_threshold">Порог задания</string>
-    <string name="task_threshold_summary">
-50/5000
-Порог при балансировке задач в большие процессорные модули.</string>
+    <string name="task_threshold_summary">Порог при балансировке задач в большие процессорные модули.</string>
     <string name="tcp">Алгоритм передачи данных по TCP</string>
     <string name="tcp_summary">TCP протокол - один из сетевых протоколов (IP), также известный как TCP/IP.</string>
     <string name="temp_hysteresis">Температурный гистерезис</string>
@@ -863,9 +884,12 @@
     <string name="total">Всего</string>
     <string name="touch_boost">Усиление при касании</string>
     <string name="touch_boost_summary">Повышает вашу минимальную скорость ЦП, если вы коснётесь экрана или нажмёте кнопку.</string>
+    <string name="touch_boost_time">Интервал Touch Boost</string>
+    <string name="touch_boost_time_summary">Как долго процессор должен быть увеличен после прикосновения к экрану.</string>
     <string name="translators">Переводчики</string>
-    <string name="treble_status">Project Treble Support</string>
+    <string name="treble_status">Поддержка Project Treble</string>
     <string name="tri">Tri</string>
+    <string name="trustzone">TrustZone</string>
     <string name="tunables_error">%s не настраивается</string>
     <string name="turn_off">Выключен</string>
     <string name="twenty_sec">20 секунд</string>
@@ -883,6 +907,7 @@
     <string name="update_check_failed">Не удалось получить информацию о последней версии! Пожалуйста, проверьте подключение к интернету</string>
     <string name="update_rate">Частота обновления</string>
     <string name="update_rate_summary">Периодичность отбора проб нагрузки между процессорами. Нижняя средства быстрее/более неустойчивой.</string>
+    <string name="uprate_limits">Uprate Limits</string>
     <string name="uptime">Время работы</string>
     <string name="usb_fast_charge_summary">Устройство будет заряжаться быстрее, когда оно подключено по USB. Переподключите устройство после изменения этой опции.</string>
     <string name="used">Используеться</string>
@@ -929,11 +954,11 @@
     <string name="wkl_gps_summary">Wakelock bcm4359(GPS-чип) является одним из крупнейших источников пробуждения после Sensorhub &amp; SSP. Отключите для лучшего глубокого сна и меньшего времени бодрствования. Включите для стандартного поведения.</string>
     <string name="wkl_name">Название</string>
     <string name="wkl_order">Wakelocks order</string>
-    <string name="wkl_order_summary">Select the listing order of the Wakelocks</string>
+    <string name="wkl_order_summary">Выберите порядок листинга Wakelocks</string>
     <string name="wkl_sensorhub">SensorHub</string>
     <string name="wkl_sensorhub_summary">SensorHub Wakelock является одним из крупнейших источников пробуждения. Отключите для лучшего глубокого сна и меньшего времени бодрствования. Включить для стандартного поведения.</string>
     <string name="wkl_ssp">SSP</string>
-    <string name="wkl_ssp_summary">SSP Wakelock - один из самых больших источников вейклоков после Sensorhub. Отключите  для лучшего глубокого сна и меньшешего времени бодрствования. Включите для стандартного поведения.</string>
+    <string name="wkl_ssp_summary">SSP Wakelock - один из самых больших источников вейклоков после Sensorhub. Отключите для лучшего глубокого сна и меньшешего времени бодрствования. Включите для стандартного поведения.</string>
     <string name="wkl_time">Время</string>
     <string name="wkl_total_time">Время</string>
     <string name="wkl_wakep_count">Пробуждения</string>
