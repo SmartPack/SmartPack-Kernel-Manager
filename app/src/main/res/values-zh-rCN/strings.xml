@@ -51,16 +51,9 @@
     <string name="wrong_extension">请选择一个文件来对 %s 进行扩充</string>
 
     <!-- Units -->
-    <string name="mhz">MHz</string>
-    <string name="celsius">ºC</string>
-    <string name="fahrenheit">℉</string>
-    <string name="mb">MB</string>
     <string name="ms">毫秒</string>
-    <string name="mv">mV</string>
     <string name="min">分</string>
     <string name="mah">毫安(mAh)</string>
-    <string name="ma">mA</string>
-    <string name="kb">kB</string>
     <string name="px">像素</string>
 
     <!-- Special signs -->
@@ -75,19 +68,14 @@
     <string name="device">设备</string>
     <string name="memory">内存</string>
     <string name="inputs">输入</string>
-    <string name="cpu">CPU</string>
     <string name="cpu_hotplug">CPU 热插拔</string>
     <string name="cpu_voltage">CPU 电压</string>
-    <string name="gpu">GPU</string>
     <string name="thermal">温度管理</string>
     <string name="battery">电池</string>
     <string name="sound">声音</string>
     <string name="screen">屏幕</string>
     <string name="wake">唤醒手势</string>
-    <string name="led">LED</string>
     <string name="io_scheduler">I/O 排程器</string>
-    <string name="ksm">KSM</string>
-    <string name="uksm">UKSM</string>
     <string name="lmk">低内存清除机制</string>
     <string name="virtual_memory">虚拟内存</string>
     <string name="entropy">熵</string>
@@ -99,7 +87,6 @@
     <string name="initd">启动脚本</string>
     <string name="on_boot">开机启用</string>
     <string name="settings">设置</string>
-    <string name="smartpack">SmartPack</string>
     <string name="about">关于</string>
     <string name="contributors">贡献者</string>
 
@@ -126,7 +113,6 @@
     <string name="fingerprint">指纹辨识</string>
     <string name="build_display_id">组建 ID 显示</string>
     <string name="baseband">基频</string>
-    <string name="rom">ROM</string>
     <string name="bootloader">开机加载器(Bootloader)</string>
     <string name="hardware">硬件</string>
     <string name="architecture">CPU 架构</string>
@@ -209,14 +195,12 @@
     <string name="intelliplug">IntelliPlug热插拔</string>
     <string name="intelliplug_summary">将高通的 MPDecision 更换为由 faux123 开发的内核</string>
     <string name="cpu_hotplug_profile_summary">括号中的数字表示在任何时间上线的内核数量。</string>
-    <string name="insanity">InSaNiTy</string>
     <string name="balanced">平衡</string>
     <string name="performance">高性能</string>
     <string name="conservative">保守</string>
     <string name="eco_insanity">节能 疯狂模式(InSaNiTy)</string>
     <string name="eco_performance">Eco 高性能</string>
     <string name="eco_conservative">Eco 保守</string>
-    <string name="tri">Tri</string>
     <string name="eco">节约模式</string>
     <string name="strict">严格</string>
     <string name="eco_mode">节能模式</string>
@@ -241,13 +225,10 @@
     <string name="boost_lock_duration_summary">CPU 被加速的最小时间间隔。</string>
     <string name="down_lock_duration">向下锁定持续时间</string>
     <string name="down_lock_duration_summary">CPU 保持上线的最小时间间隔。</string>
-    <string name="fshift">FShift</string>
-    <string name="lazyplug">LazyPlug</string>
     <string name="lazyplug_summary">将高通的 MPDecision 更换为由 arter97 开发的内核</string>
     <string name="lazy">懒</string>
     <string name="possible_cpu_cores">可能的CPU内核</string>
     <string name="possible_cpu_cores_summary">可能的CPU内核，lazyplug可以使用。</string>
-    <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">将高通的 MPDecision 更换为由 Code_Blue 团队开发的内核</string>
     <string name="powersaver_mode">省电模式</string>
     <string name="powersaver_mode_summary">设置 1 CPU 最大工作频率为 @1728MHz。</string>
@@ -297,7 +278,6 @@
     <string name="dual_core_mode">双核模式</string>
     <string name="core_control">内核控制</string>
     <string name="core_control_summary">高通的热插拔方案。抱歉您不能关闭它。#blameqcom</string>
-    <string name="hcube">H-Cube</string>
     <string name="hcube_summary">OnePlus 修改过的内核控制。</string>
     <string name="min_cpus_big">大核内核数下限</string>
     <string name="min_cpus_big_summary">工作的最小 CPU 大核数量。</string>
@@ -343,7 +323,6 @@
     <string name="gpu_governor_tunables">GPU 管理模式调整</string>
     <string name="simple_gpu_algorithm">简单的 GPU 的算法</string>
     <string name="simple_gpu_algorithm_summary">由 faux123 开发的附加 MSM Adreno TZ GPU 管理模式</string>
-    <string name="adrenoboost">AdrenoBoost</string>
     <string name="adrenoboost_summary">Msm adreno tz GPU 调速器的附加组件。由 flar2 开发</string>
     <string name="devfreq_boost">Devfreq 增益</string>
     <string name="devfreq_boost_ms">增益时长</string>
@@ -354,7 +333,6 @@
     <string name="laziness_summary">这将添加提高或降低 GPU 频率的阈值。越低, 你得到的性能就越高。</string>
     <string name="ramp_thresold">Ramp 阈值</string>
     <string name="ramp_thresold_summary">这将添加 GPU 调控器降低请求的次数。它越高, 你得到的性能就越高。</string>
-    <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">一个有效的解决方法的 msm-adreno-tz 的间接方法。由arter97开发。</string>
     <string name="down_differential">向下差速器</string>
     <string name="down_differential_summary">用来决定给予的运作负载是否闲置的阀值。</string>
@@ -367,7 +345,6 @@
     <string name="thermal_info">在下面选项中只使用一种温度管理，同时使用超过一种可能会导致不可预期的行为。</string>
     <string name="thermald">原厂温度管里</string>
     <string name="thermald_summary">避免设备过热的原厂温度管理。如果当前内核有其它选项时应该禁用。</string>
-    <string name="intellithermal">Intellithermal</string>
     <string name="intellithermal_summary">将高通的温度管里更换为由 faux123 开发的内核</string>
     <string name="intellithermal_optimized">Intellithermal 优化版</string>
     <string name="intellithermal_optimized_summary">将高通的温度管理更换为由 faux123 与 alucard_24 开发的内核</string>
@@ -380,7 +357,6 @@
     <string name="cpu_temp_hysteresis">内核温度滞后</string>
     <string name="freq_step">频率设置</string>
     <string name="immediately_limit_stop">立即限制停止</string>
-    <string name="poll">Poll</string>
     <string name="poll_summary">读取传感器的取样间隔。</string>
     <string name="temp_hysteresis">温度滞后</string>
     <string name="thermal_limit_low">最低温度限制</string>
@@ -456,10 +432,8 @@
     <string name="headphone_tpa6165_gain">耳机放大器增益（TPA6165扩展名）</string>
     <string name="microphone_gain">麦克风增益</string>
     <string name="volume_gain">音量增益</string>
-    <string name="boefflasound">Boeffla Sound</string>
     <string name="boefflasound_summary">启用/禁用 Boeffla Sound Engine</string>
     <string name="earpiece_gain">耳机增益 (通话)</string>
-    <string name="faux_sound">Faux Sound</string>
     <string name="faux_sound_summary">启用/禁用 Faux Sound Engine</string>
     <string name="lock_mic_gain">锁定麦克风增益</string>
     <string name="lock_mic_gain_summary">防止对麦克风增益进行修改</string>
@@ -479,7 +453,6 @@
     <string name="screen_value">屏幕值</string>
     <string name="screen_contrast">对比度</string>
     <string name="high_brightness_mode">高亮度模式</string>
-    <string name="srgb">sRGB</string>
     <string name="gamma">伽玛值</string>
     <string name="red_greys">红灰</string>
     <string name="red_mids">红色的中间</string>
@@ -523,7 +496,6 @@
     <string name="glove_mode_summary">启用这个可以让你在戴着手套时使用手机</string>
 	
     <!-- K-Lapse -->
-    <string name="klapse">K-Lapse</string>
     <string name="klapse_summary">选择偏好的 K-Lapse 模式, 由 tanish2k09 的内核级实时显示模块。这不应该设置为关闭来调整其余的 K-Lapse 参数.</string>
     <string name="turn_off">已关闭</string>
     <string name="time_scale">基于时间的缩放比例</string>
@@ -556,7 +528,6 @@
     <string name="half">一半</string>
     <string name="s2w">滑动屏幕唤醒</string>
     <string name="s2w_summary">滑动屏幕来唤醒您的设备</string>
-    <string name="s2w_s2s">Sweep2Wake + Sweep2Sleep</string>
     <string name="s2s">滑动睡眠</string>
     <string name="s2w_right">Sweep2Wake 的权利</string>
     <string name="s2w_left">Sweep2Wake左</string>
@@ -571,7 +542,6 @@
     <string name="dt2s_summary">透过在屏幕顶部的双攻锁定您的设备。</string>
     <string name="s2w_charging">当充电时滑动屏幕唤醒</string>
     <string name="dt2w_charging">当充电时双击屏幕唤醒</string>
-    <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
     <string name="dt2w_s2w_charging">当充电时双击屏幕唤醒及滑动屏幕唤醒</string>
     <string name="s2s_summary">透过在屏幕上滑动锁定设备你。</string>
     <string name="s2s_right">滑动至右侧</string>
@@ -736,13 +706,10 @@
     <string name="bcmdhd_wakelock_divider">BCMDHD唤醒锁分频器</string>
 
     <!-- Virtual Memory -->
-    <string name="swap">SWAP</string>
-    <string name="zram">Z-RAM</string>
     <string name="zram_algo">Z-RAM 算法</string>
     <string name="zram_algo_summary">设置默认 Z-RAM 压缩算法。\n在更改此选项之前, 将 Z-RAM 磁盘大小减少到 「0」。</string>
     <string name="disksize">磁盘空间</string>
     <string name="disksize_summary">尝试透过避免在物理保存上分页，而不是在RAM中使用压缩的虚拟设备来提高性能。分页在RAM中进行，直到有必要在物理保存上使用交换空间。</string>
-    <string name="zswap">ZSWAP</string>
     <string name="zswap_summary">ZSwap是一个用于交换页面的轻量级压缩缓存。它需要正在被换出的过程中的页面，并尝试将它们压缩到动态分配的基于RAM的内存池中。Zswap基本上交换CPU周期以减少交换I / O。</string>
     <string name="memory_pool">内存池</string>
     <string name="memory_pool_summary">可用作压缩页缓存的主存储器的内存池百分比。</string>
@@ -751,7 +718,6 @@
 
     <!-- Entropy -->
     <string name="available">可用</string>
-    <string name="poolsize">Poolsize</string>
     <string name="read">读取</string>
     <string name="write">写入</string>
 
@@ -766,7 +732,6 @@
     <string name="selinux_switch_summary">禁用以将 SELinux 切换为允许模式。</string>
     <string name="crc">软件CRC控制</string>
     <string name="crc_summary">CRC是一种机制旨在防止数据损坏时启动。数据块可以失去其业绩的30％。</string>
-    <string name="fsync">Fsync</string>
     <string name="fsync_summary">禁用系统当机时的数据遗失的风险提高文件系统性能。</string>
     <string name="dynamic_fsync">动态多次的Fsync</string>
     <string name="dynamic_fsync_summary">当启用时，屏幕是在多次的 Fsync 操作是异步。当屏幕关闭时，同步完成此操作。</string>
@@ -787,7 +752,6 @@
     <string name="tcp">TCP 拥塞控制算法</string>
     <string name="tcp_summary">拥塞控制是一种用来调整传输控制协议（TCP/IP）连接单次传送的分组数量的算法。它透过增减单次传送量逐步调整，使之逼近当前网络的承载量。</string>
     <string name="hostname">主机名</string>
-    <string name="wireguard">WireGuard VPN</string>
     <string name="leases_enable">启用文件租用</string>
     <string name="leases_enable_summary">在系统范围内启用或禁用文件租用</string>
     <string name="lease_break_time">中断租用时间</string>
@@ -942,7 +906,6 @@
     <string name="saving">保存中...</string>
 
     <!-- App Updater -->
-    <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
     <string name="check_update">检查更新</string>
     <string name="check_update_summary">检查 SmartPack-Kernel Manager 的新版本</string>
@@ -990,7 +953,6 @@
     <string name="apply_on_boot_confirmation_notification_summary">使用可见通知应用启动后，随后显示一条通知，确认启动成功。</string>
     <string name="script">脚本</string>
     <string name="apply_on_boot_script_summary">使用 shell 脚本应用设置。请只有在开机后应用服务无法正确运作时才启用此选项。如果在启用此选项后问题仍然存在，请确保没有其他应用程序与内核调解器冲突。</string>
-    <string name="logcat">Logcat</string>
     <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
     <string name="last_kmsg">最新的内核信息</string>
     <string name="last_kmsg_summary">将 /proc/last_kmsg 复制到 /sdcard/last_kmsg.txt</string>
@@ -998,7 +960,6 @@
     <string name="console_ramoops_summary">保存 /sys/fs/pstore/console-ramoops* 到 \'sdcard\'</string>
     <string name="driver_message">驱动程序信息</string>
     <string name="driver_message_summary">将驱动程序信息 (dmesg） 复制到 /sdcard/dmesg.txt</string>
-    <string name="driver_ramoops">Driver Ramoops</string>
     <string name="driver_ramoops_summary">保存 /sys/fs/pstore/dmesg-ramoops* 到 \'sdcard\'</string>
     <string name="security">安全</string>
     <string name="set_password">设置密码</string>

@@ -991,7 +991,7 @@
     <string name="saving">Saving...</string>
 
     <!-- App Updater -->
-    <string name="appupdater_json">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
+    <string name="appupdater_json" translatable="false">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
     <string name="appupdater_update_title">New update available!\nv%2$s</string>
     <string name="check_update">Check for Updates</string>
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
@@ -1067,7 +1067,7 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.\n\nIf you like SmartPack-Kernel, please consider to donate to me as it is helpful to continue this project more active, though it is not at all necessary.</string>
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
     <string name="libraries_used">Libraries used</string>
     <string name="source_code">Source Code</string>
     <string name="source_code_summary">View source code at GitHub</string>
