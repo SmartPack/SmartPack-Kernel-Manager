@@ -28,7 +28,7 @@
     <string name="free">可用</string>
     <string name="total">總共</string>
     <string name="donate">捐贈</string>
-    <string name="donate_summary">此功能僅在安裝了捐贈應用程序時可用！不要擔心。因為這個程序是開源的，你可以很容易地自己建立，並刪除這個檢查。但我希望你支持開發人員。感謝您使用SmartPack-Kernel Manager！</string>
+    <string name="donate_summary">此功能僅在安裝了捐贈應用程式時可以使用！不要擔心。因為這個程式是開放原始碼的，你可以很容易地自己建立，並刪除這個檢查。但我希望你支持開發人員。感謝您使用 SmartPack-Kernel Manager！</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>
     <string name="donate_yes">我喜歡這個應用程式，捐是應該的！</string>
     <string name="warning">警告</string>
@@ -181,12 +181,16 @@
     <string name="freq_control_summary">允許 MSM 限制器控制 CPU 的頻率。</string>
     <string name="dyn_stune_boost">動態調整增強</string>
     <string name="stune_boost_ms">Stune Boost 時長</string>
+	<string name="stune_boost_sett">Stune Boost Settings</string>
+	<string name="stune_boost_sett_summary">Enable to get access to advanced stune boost settings.</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU輸入加速</string>
     <string name="cpu_input_boost_summary">啟用 sultanxda 開發的 cpu 輸入加速。</string>
     <string name="cpuiboost_duration">輸入加速持續時間</string>
     <string name="cpuiboost_duration_summary">設定 CPU輸入加速持續時間</string>
+	<string name="wake_boost_duration">Wake Boost Duration</string>
+    <string name="cluster_return_freq">Cluster Return Frequency</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">已啟用多個熱插拔系統！\n您只能使用一個。</string>
@@ -276,8 +280,30 @@
     <string name="io_is_busy_summary">用來使熱插拔將 I/O 時間視為 CPU 負載時間。</string>
     <string name="quad_core_mode">四核模式</string>
     <string name="dual_core_mode">雙核模式</string>
+	<string name="msm_mpdecision_hotplug">MSM MPDecision 熱插拔</string>
+    <string name="bricked_hotplug">Bricked 熱插拔</string>
+    <string name="mb_hotplug_summary">高通的 MPDecision 核心內替代品。由 show-p1984 開發.</string>
+    <string name="idle_frequency">空閒頻率</string>
+    <string name="idle_frequency_summary">如果第一個核心低於此頻率, 則不要插入其他核心.</string>
+    <string name="touch_boost_time">觸摸加速時間</string>
+    <string name="touch_boost_time_summary">觸碰螢幕後, 應提高 CPU 的時間.</string>
+    <string name="boost_frequency_core">升壓頻率核心% d</string>
+    <string name="start_delay">開始延遲</string>
+    <string name="start_delay_summary">在熱插拔開始工作之前的時間延遲 (以毫秒為單位).</string>
+    <string name="pause">暫停</string>
+    <string name="pause_summary">如果有其他東西插入 CPU, 在這很毫秒的時間裡睡著.</string>
+	<string name="autosmp">自動貼片</string>
+    <string name="autosmp_summary">高通的 MPDecision 核心內替代品。由 mrg666 開發.</string>
+    <string name="downrate_limits">下載限值</string>
+    <string name="uprate_limits">最高限制</string>
+    <string name="cycle_down">向下迴圈</string>
+    <string name="cycle_down_summary">迴圈等待後, 最後一個熱插拔事件, 以拔掉另一個核心.</string>
+    <string name="cycle_up">迴圈向上</string>
+    <string name="cycle_up_summary">迴圈等待後, 最後一個熱插拔事件插入另一個核心.</string>
     <string name="core_control">核心控制</string>
     <string name="core_control_summary">高通的熱插拔方案。抱歉您不能關閉它。#blameqcom</string>
+	<string name="min_boost_freq">最小增益頻率</string>
+    <string name="hotplug_suspend">熱插拔待命</string>
     <string name="hcube_summary">OnePlus 修改過的核心控制。</string>
     <string name="min_cpus_big">大核核心數下限</string>
     <string name="min_cpus_big_summary">上線的最小 CPU 大核數量。</string>
@@ -303,7 +329,7 @@
     <string name="adv_sett">進階設定</string>
 
     <!-- CPU Voltage -->
-    <string name="global_offset">全局偏移</string>
+    <string name="global_offset">全域偏移</string>
     <string name="override_vmin">重置最低電壓</string>
     <string name="override_vmin_summary">停用製造商對降壓的限制</string>
 
@@ -487,7 +513,7 @@
     <string name="offset">偏移</string>
     <string name="negative_toggle">負切換</string>
     <string name="negative_toggle_summary">啟用透過按選單按鈕四次即可反相螢幕顏色的功能</string>
-    <string name="mdnie_global_controls">mDNIe全局控件</string>
+    <string name="mdnie_global_controls">mDNIe全域控件</string>
     <string name="register_hook">註冊勾點</string>
     <string name="register_hook_summary">註冊攔截行為像一個鉤子，並將啟用捕獲場景設定並透過delta控件修改它們。如果場景在其基本序列中沒有設定（寄存器），則它不能被鉤子修改。</string>
     <string name="master_sequence">主序列</string>
@@ -932,6 +958,7 @@
     <string name="dark_theme">深色主題</string>
     <string name="material_icon">Material 圖示</string>
     <string name="banner_resizer">橫幅 resizer</string>
+    <string name="banner_resizer_message">請將自動旋轉螢幕設定為關閉（直向）</string>
     <string name="hide_banner">隱藏橫幅</string>
     <string name="force_cards">強制使用卡片風格</string>
     <string name="force_cards_summary">如果可能，請使用卡片。</string>
@@ -963,7 +990,7 @@
     <string name="driver_ramoops_summary">儲存 /sys/fs/pstore/dmesg-ramoops* 到 \'sdcard\'</string>
     <string name="security">安全</string>
     <string name="set_password">設定密碼</string>
-    <string name="set_password_summary">您可以透過設定密碼來保護 SmartPack 核心管理器。每次打開此應用程式，您必須輸入它。如果您忘記了，只需在裝置的設定中擦除此應用的數據即可。別擔心，我不會共享您的密碼。</string>
+    <string name="set_password_summary">您可以透過設定密碼來保護 SmartPack 核心管理器。每次打開此應用程式，您必須輸入它。如果您忘記了，只需在裝置的設定中刪除此應用程式的資料即可。別擔心，我不會共享您的密碼。</string>
     <string name="delete_password">刪除密碼</string>
     <string name="old_password">舊密碼</string>
     <string name="new_password">新密碼</string>
@@ -984,6 +1011,10 @@
     <string name="change_logs_summary">檢視變更</string>
     <string name="donate_me">捐贈給我</string>
     <string name="donate_me_summary">想透過捐款來感謝我的工作嗎？請點選這裡</string>
+    <string name="donate_me_message"> \n如果你喜歡我的工作，請考慮給我捐款，因為有助於我的項目更加活躍，儘管不是強制性的。\n</string>
+    <string name="donate_me_playstore">\n請注意: 我除了可以透過 PayPal 接受捐款, 您也可以購買 Play Store 中的 SmartPack Donation Package 來表示支持。此外, 購買 SmartPack Donation Package 將解鎖在這個應用程式中的一些隱藏的功能。\n</string>
+    <string name="purchase_app">購買應用程式</string>
+    <string name="paypal_donation">PayPal</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
@@ -999,14 +1030,14 @@
     <string name="cpu_freq_not_sticking_summary">答案：這能歸咎於很多原因。現今許多核心擁有自己的熱插拔系統來控制 CPU 頻率，並且 CyanogenMod 擁有自己的 CPU 加速補償來管理頻率。我建議您不要更動 CPU 頻率，讓核心做它的工作。這對其它功能也很重要！如果頻率沒有固定，那是因為核心/系統不想讓您改變它。</string>
     <string name="feature_not_appearing">問題4。為什麼功能 x 和 y 沒有顯示？</string>
     <string name="feature_not_appearing_summary">答案：僅顯示已安裝核心支援的功能。</string>
-    <string name="add_new_features">問題5。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
+    <string name="add_new_features">問題6。是否可以將功能 x 和 y 新增到您的 核心/App 中？</string>
     <string name="add_new_features_summary">這很難說。我嘗試增加所有功能，但很難使這個應用程式適用於所有裝置。</string>
-    <string name="what_best">問題9。你能告訴我性能的最佳設定嗎？</string>
+    <string name="what_best">問題7。你能告訴我性能的最佳設定嗎？</string>
     <string name="what_best_summary">答案：同樣地, 這取決於幾個因素。我只能分享我最喜歡的設定, 在我最喜歡的 ROM 提供最好的結果。</string>
-    <string name="cache_dalvik">問題11。在安裝核心後, 我是否需要在之前擦除 cache/dalvik 快取？</string>
+    <string name="cache_dalvik">問題8。在安裝核心後, 我是否需要在之前擦除 cache/dalvik 快取？</string>
     <string name="cache_dalvik_summary">答案：不用。因為核心甚至沒有 「看到」 cache/dalvik 快取。</string>
-    <string name="found_bugs">問題12。我在你的 app/核心中發現了一個錯誤, 我該怎麼辦？</string>
+    <string name="found_bugs">問題9。我在你的 app/核心中發現了一個錯誤, 我該怎麼辦？</string>
     <string name="found_bugs_summary">答案：請提供盡可能多的資訊 (如什麼功能、哪些功能不起作用、螢幕截圖或 logcat (如果可能), 並在相應的 xda 開發人員頁面中發佈。或者, 您也可以將問題提交到相應的 github 源。</string>
-    <string name="can_i_contribute">問題13。我可以為您的 app/核心專案做出貢獻嗎？如果可以, 要怎麼做？</string>
+    <string name="can_i_contribute">問題10。我可以為您的 app/核心專案做出貢獻嗎？如果可以, 要怎麼做？</string>
     <string name="can_i_contribute_summary">答案：當然。任何形式的貢獻 (捐贈、原始碼等) 都是樂見和高度讚賞的。請瀏覽 「關於」 部分瞭解更多詳細資訊。</string>
 </resources>
