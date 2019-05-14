@@ -223,7 +223,7 @@ public class AboutFragment extends RecyclerViewFragment {
             rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.launchUrl("https://github.com/sunilpaulmathew", getActivity());
+                    Utils.launchUrl("https://github.com/SmartPack/", getActivity());
                 }
             });
             return rootView;
