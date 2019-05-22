@@ -147,6 +147,14 @@ public class SmartPack {
         }
     }
 
+    public static void makeInternalStorageFolder() {
+        File file = new File(Utils.getInternalDataStorage());
+        if (file.exists() && file.isFile()) {
+            file.delete();
+        }
+        file.mkdirs();
+    }
+
     public static void makeFlashFolder() {
         RootUtils.runCommand("mkdir " + FLASH_FOLDER);
     }
@@ -168,6 +176,8 @@ public class SmartPack {
          * Flashing recovery zip without rebooting to custom recovery
          * Credits to osm0sis @ xda-developers.com
          */
+        // Check and create, if necessary, internal storage folder
+        makeInternalStorageFolder();
         if (Utils.existFile(flashFolder)) {
             RootUtils.runCommand(CleanUpCommand);
         } else {

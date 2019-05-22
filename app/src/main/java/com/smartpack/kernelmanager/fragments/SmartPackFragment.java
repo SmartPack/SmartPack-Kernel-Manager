@@ -168,6 +168,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
                             // Initiate device specific downloads...
                             SmartPack.getLatestKernel();
+                            // Check and create, if necessary, internal storage folder
+                            SmartPack.makeInternalStorageFolder();
                             // Extract the above downloaded kernel for auto-flash...
                             if (!SmartPack.hasFlashFolder()) {
                                 SmartPack.makeFlashFolder();
