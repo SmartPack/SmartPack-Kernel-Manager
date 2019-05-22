@@ -953,6 +953,7 @@
     <string name="download">Download</string>
     <string name="downloads_message">\nClick \'Download\' to initialize auto kernel updates.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
     <string name="autoflash">Auto-flash</string>
+    <string name="autoflash_message">\nSmartPack-Kernel is downloaded and ready for auto-flashing. Do you want to flash it NOW?\n\nPlease note: Your device will be automatically rebooted after the flashing process.\n</string>
     <string name="install_now">Install Now</string>
     <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
     <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
@@ -988,7 +989,6 @@
     <string name="up_to_date_message">Congrats! You are up-to-date</string>
     <string name="no_kernel_support">Unsupported Version</string>
     <string name="no_kernel_support_summary">SmartPack-Kernel is not (yet) available for your Android version</string>
-    <string name="saving">Saving...</string>
 
     <!-- App Updater -->
     <string name="appupdater_json" translatable="false">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>

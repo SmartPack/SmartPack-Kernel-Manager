@@ -926,7 +926,6 @@
     <string name="up_to_date_message">恭喜！已是最新版本</string>
     <string name="no_kernel_support">不支援的版本</string>
     <string name="no_kernel_support_summary">SmartPack 核心尚未適配您的 android 版本</string>
-    <string name="saving">儲存中...</string>
 
     <!-- App Updater -->
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>

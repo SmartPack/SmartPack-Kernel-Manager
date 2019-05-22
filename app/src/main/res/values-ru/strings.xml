@@ -690,7 +690,6 @@
     <string name="sampling_rate">Частота дискретизации</string>
     <string name="saturation_intensity">Уровень насыщенности</string>
     <string name="save">Сохранить</string>
-    <string name="saving">Сохранение...</string>
     <string name="scaling_rate">Скорость масштабирования (минута)</string>
     <string name="scaling_rate_summary">Управляет тем, как скоро RGB достигает дневного и ночного режимов в пределах часового диапазона запуска и остановки.</string>
     <string name="scheduler">Планировщик</string>
