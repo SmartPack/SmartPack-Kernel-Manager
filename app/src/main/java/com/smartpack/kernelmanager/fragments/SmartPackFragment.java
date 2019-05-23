@@ -195,9 +195,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         String flashFolder = Utils.getInternalDataStorage() + "/flash";
                                         String RECOVERY_API = "3";
                                         new Execute().execute("cd " + flashFolder);
-                                        new Execute().execute("mount -o remount,rw / && mkdir /tmp tmp");
+                                        new Execute().execute("mount -o remount,rw / && mkdir /tmp");
                                         new Execute().execute("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
-                                        new Execute().execute("sh META-INF/com/google/android/update-binary " + RECOVERY_API + " tmp " + KernelZip);
+                                        new Execute().execute("sh META-INF/com/google/android/update-binary " + RECOVERY_API + " 1 " + KernelZip);
                                         new Execute().execute("cd ../ && rm -r flash/");
                                         new Execute().execute(RebootCommand);
                                     });
