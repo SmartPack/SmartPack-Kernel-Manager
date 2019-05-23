@@ -898,6 +898,9 @@
     <string name="recovery_partition">Recovery partition</string>
     <string name="fota_partition">Fota partition</string>
     <string name="flash">Flash</string>
+    <string name="flasher">Flasher</string>
+    <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes were applied after a reboot.</string>
+    <string name="flasher_message">Flash Now</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>
@@ -972,16 +975,16 @@
     <string name="restoring">Restoring</string>
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
-    <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n\n</string>
+    <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n</string>
     <string name="reboot_recovery_summary">Reboot device into Recovery Mode</string>
     <string name="reboot_bootloader_summary">Reboot device into Download Mode</string>
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
-    <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n\n</string>
-    <string name="bootloader_message">\nYour device will be rebooted into Download Mode.\n\n</string>
+    <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n</string>
+    <string name="bootloader_message">\nYour device will be rebooted into Download Mode.\n</string>
     <string name="wipe_cache_summary">Wipe Cache Partition</string>
     <string name="wipe_data_summary">Wipe Data Partition</string>
-    <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n\n</string>
-    <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n\n</string>
+    <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
+    <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="latest_version_check">Click here to check the latest version info</string>
     <string name="recheck">\n(Click here to re-check)</string>
     <string name="get_it">\n(Click here to Get It!)</string>

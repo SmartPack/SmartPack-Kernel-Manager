@@ -22,14 +22,25 @@
 package com.smartpack.kernelmanager.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.activities.FilePickerActivity;
+import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -37,6 +48,8 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 import com.smartpack.kernelmanager.utils.SmartPack;
 
+import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -44,6 +57,23 @@ import java.util.List;
  */
 
 public class SmartPackFragment extends RecyclerViewFragment {
+    private boolean mPermissionDenied;
+
+    private Dialog mSelectionMenu;
+    private Dialog mFlashingDialog;
+    private Dialog mFlashDialog;
+
+    @Override
+    protected boolean showTopFab() {
+        return true;
+    }
+
+    @Override
+    protected Drawable getTopFabDrawable() {
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_flash));
+        DrawableCompat.setTint(drawable, Color.WHITE);
+        return drawable;
+    }
 
     @Override
     protected void init() {
@@ -51,13 +81,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @Override
-    protected boolean showViewPager() {
-        return false;
+    protected void addItems(List<RecyclerViewItem> items) {
+        SmartPackInit(items);
     }
 
     @Override
-    protected void addItems(List<RecyclerViewItem> items) {
-        SmartPackInit(items);
+    protected void postInit() {
+        super.postInit();
+
+        addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.smartpack),
+                getString(R.string.flasher_summary)));
     }
 
     private void SmartPackInit(List<RecyclerViewItem> items) {
@@ -138,12 +171,14 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             // Extract the above downloaded kernel for auto-flash...
                             if (!SmartPack.hasFlashFolder()) {
                                 SmartPack.makeFlashFolder();
+                            } else {
+                                SmartPack.cleanFlashFolder();
                             }
                             SmartPack.extractLatestKernel();
                             // Proceed only if the download was successful...
                             if (SmartPack.isSmartPackDownloaded()) {
                                 // Proceed to auto-flash if the extraction was successful...
-                                if (SmartPack.isAnykernelExtracted()) {
+                                if (SmartPack.isZIPFileExtracted()) {
                                     Dialog flash = new Dialog(getActivity());
                                     flash.setTitle(getString(R.string.autoflash));
                                     flash.setMessage(getString(R.string.autoflash_message));
@@ -473,6 +508,122 @@ public class SmartPackFragment extends RecyclerViewFragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onTopFabClick() {
+        super.onTopFabClick();
+        if (mPermissionDenied) {
+            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            return;
+        }
+
+        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
+                R.array.flasher), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent manualflash = new Intent(getActivity(), FilePickerActivity.class);
+                manualflash.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
+                manualflash.putExtra(FilePickerActivity.EXTENSION_INTENT, ".zip");
+                startActivityForResult(manualflash, 0);
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mSelectionMenu = null;
+            }
+        });
+        mSelectionMenu.show();
+    }
+
+    private void showFlashingDialog(final File file) {
+        final LinkedHashMap<String, SmartPack.FLASHMENU> menu = getflashMenu();
+        mFlashingDialog = new Dialog(getActivity()).setItems(menu.keySet().toArray(
+                new String[menu.size()]), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                SmartPack.FLASHMENU flashmenu = menu.values().toArray(new SmartPack.FLASHMENU[menu.size()])[i];
+                if (file != null) {
+                    manualFlash(flashmenu, file, true);
+                }
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mFlashingDialog = null;
+            }
+        });
+        mFlashingDialog.show();
+    }
+
+    private void manualFlash(final SmartPack.FLASHMENU flashmenu, final File file, final boolean flashing) {
+        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                new AsyncTask<Void, Void, Void>() {
+
+                    private ProgressDialog mProgressDialog;
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        mProgressDialog = new ProgressDialog(getActivity());
+                        mProgressDialog.setMessage(getString(R.string.flashing));
+                        mProgressDialog.setCancelable(false);
+                        mProgressDialog.show();
+                    }
+
+                    @Override
+                    protected Void doInBackground(Void... voids) {
+                        SmartPack.manualFlash(file);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        super.onPostExecute(aVoid);
+                        try {
+                            mProgressDialog.dismiss();
+                        } catch (IllegalArgumentException ignored) {
+                        }
+                    }
+                }.execute();
+            }
+        }, new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mFlashDialog = null;
+            }
+        }, getActivity());
+        mFlashDialog.show();
+    }
+
+    @Override
+    public void onPermissionDenied(int request) {
+        super.onPermissionDenied(request);
+        if (request == 0) {
+            mPermissionDenied = true;
+            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+        }
+    }
+
+    private LinkedHashMap<String, SmartPack.FLASHMENU> getflashMenu() {
+        LinkedHashMap<String, SmartPack.FLASHMENU> flashingMenu = new LinkedHashMap<>();
+        flashingMenu.put(getString(R.string.flasher_message), SmartPack.FLASHMENU.FLASH);
+        return flashingMenu;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 0 && data != null) {
+            showFlashingDialog(new File(data.getStringExtra(FilePickerActivity.RESULT_INTENT)));
         }
     }
 }
