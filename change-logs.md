@@ -1,5 +1,9 @@
 # Change-logs
 
+## 67. May 23, 2019
+*Release-tag: v8.0*<br>
+Changes: SmartPack: Added an option to flash any recovery zip file without reboot. SmartPack: Implemented real "AutoFlash" for SmartPack Kernel. build: Updated gradle to 3.5.0-beta02. Misc. Updated Russian & Chinese Traditional translations. Miscellaneous changes everywhere, please check my GitHub page for more info.
+
 ## 66. May 10, 2019
 *Release-tag: v7.14*<br>
 Changes: Screen: KLapse: Workaround to avoid the time delay while switching modes. Hotplug: AutoSMP: Added Minimum Boost Frequency and Hotplug Suspend. Misc: Updated icons for SmartPack & Gestures page. Settings: Prevent banner resize option (only for donated version) if screen is landscape to avoid app crashing. build: Updated gradle to latest beta release. Misc: Removed a bunch of unused resources from the app. Miscellaneous changes on FAQ, About and more.

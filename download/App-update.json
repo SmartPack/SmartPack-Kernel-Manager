@@ -1,14 +1,12 @@
 {
-  "latestVersion": "7.14-20190510",
+  "latestVersion": "8.0-20190523",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Changes: Screen: KLapse: Workaround to avoid the time delay while switching modes.",
-    "- Hotplug: AutoSMP: Added Minimum Boost Frequency and Hotplug Suspend.",
-    "- Misc: Updated icons for SmartPack & Gestures page.",
-    "- Settings: Prevent banner resize option if screen is landscape to avoid app crashing.",
-    "- Misc: Removed a bunch of unused resources from the app.",
-    "- build: Updated gradle to latest beta release.",
-    "- Miscellaneous changes on FAQ, About and more."
+    "- SmartPack: Added an option to flash any recovery zip file without reboot.",
+    "- SmartPack: Implemented real 'AutoFlash' for SmartPack Kernel",
+    "- build: Updated gradle to 3.5.0-beta02.",
+    "- Misc. Updated Russian & Chinese Traditional translations.",
+    "- Miscellaneous changes everywhere, please check my GitHub page for more info."
   ]
 }
