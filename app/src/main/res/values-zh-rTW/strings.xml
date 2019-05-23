@@ -417,8 +417,8 @@
     <string name="core_control_mask_summary">CPU 遮罩, 用於確定是否可以控制核心 (設定為0以停用)。</string>
     <string name="freq_control_mask">頻率控制</string>
     <string name="freq_control_mask_summary">CPU 遮罩, 用於確定是否可以將核心用於 freq 控制。</string>
-    <string name="freq_mit_control_mask">Frequency Mitigation Control Mask</string>
-    <string name="freq_mit_control_mask_summary">The frequency mitigation bitmask that will be used to determine if KTM should do emergency frequency mitigation for a core or not.</string>
+    <string name="freq_mit_control_mask">減輕觸控螢幕對頻率的影響</string>
+    <string name="freq_mit_control_mask_summary">頻率緩解位元遮罩，用於確定 KTM 是否應對核心進行緊急頻率緩解.</string>
 
     <!-- Battery -->
     <string name="capacity">容量</string>
@@ -892,6 +892,7 @@
     <string name="download">下載</string>
     <string name="downloads_message">\n點選下載以開始自動刷入核心\n\n警告! 下載將需要一些時間來完成! 請耐心等待!\n\n新核心準備好安裝後, 應用程式將通知您。\n</string>
     <string name="autoflash">自動安裝</string>
+    <string name="autoflash_message">\nSmartPack 核心已下載完成並準備好自動刷入。是否要立即刷入？\n\n  請注意: 您的裝置將在刷入過程後自動重新開機。\n</string>
     <string name="install_now">立即安裝</string>
     <string name="flash_message">\nSmartPack核心 已下載至 「/sdcard/Download/」\n\n您要立即安裝嗎?\n</string>
     <string name="no_flash_message">\n對不起! 自動安裝將無法在此裝置上運作。但是, 下載完成後, 您可以手動安裝核心。\n要重新開機嗎？\n</string>
@@ -904,6 +905,9 @@
     <string name="reboot_bootloader">重啟至 Bootloader</string>
     <string name="wipe_data">清除資料</string>
     <string name="wipe_cache">清除快取</string>
+    <string name="flasher">刷入器</string>
+    <string name="flasher_summary">按一下刷入按鈕選擇並刷入可用於復原模式的 zip 檔案, 而無需重新開機到第三方復原模式。變更將在重新開機後套用。</string>
+    <string name="flasher_message">立即刷入</string>
     <string name="manual_flashing">我自己來</string>
     <string name="backing_up">備份中</string>
     <string name="flashing">刷入中</string>
