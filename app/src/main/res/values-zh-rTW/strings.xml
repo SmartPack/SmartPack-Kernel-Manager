@@ -48,7 +48,7 @@
 
     <!-- File Picker -->
     <string name="select_question">選擇 %s 嗎？</string>
-    <string name="wrong_extension">請選擇一個檔案來對 %s 進行擴充</string>
+    <string name="wrong_extension">請選擇一個副檔名為 %s 的檔案</string>
 
     <!-- Units -->
     <string name="ms">毫秒</string>
@@ -914,16 +914,16 @@
     <string name="restoring">還原中</string>
     <string name="reset_settings">重設應用程式</string>
     <string name="reset_settings_summary">重置</string>
-    <string name="reset_settings_message">\n應用程式設定將被完全刪除。\n\n你確定嗎？\n\n</string>
+    <string name="reset_settings_message">\n應用程式設定將被完全刪除。\n你確定嗎？\n\n</string>
     <string name="reboot_recovery_summary">將裝置重新開機到復原模式</string>
     <string name="reboot_bootloader_summary">將裝置重新開機到下載模式</string>
     <string name="reboot_message">為避免配置失敗, 強烈建議重新開機。\n\n是否要重新開機？\n</string>
-    <string name="recovery_message">\n您的裝置將重新開機到復原模式。\n\n</string>
-    <string name="bootloader_message">\n您的裝置將重新開機到下載模式。\n\n</string>
+    <string name="recovery_message">\n您的裝置將重新開機到復原模式。\n</string>
+    <string name="bootloader_message">\n您的裝置將重新開機到下載模式。\n</string>
     <string name="wipe_cache_summary">擦除快取分割區</string>
     <string name="wipe_data_summary">擦除資料分割區</string>
-    <string name="wipe_cache_message">\ncache/dalvik 裝置的快取分割區將被刪除。\n\n注意! 裝置將被重新開機。\n\n</string>
-    <string name="wipe_data_message">\n您的裝置的資料分區將被完全擦除。\n\n警告! 您將遺失包括應用在內的所有使用者資料。\n\n注意! 裝置將被重新開機。\n\n</string>
+    <string name="wipe_cache_message">\ncache/dalvik 裝置的快取分割區將被刪除。\n\n注意! 裝置將被重新開機。\n</string>
+    <string name="wipe_data_message">\n您的裝置的資料分區將被完全擦除。\n\n警告! 您將遺失包括應用程式在內的所有使用者資料。\n\n注意! 裝置將被重新開機。\n</string>
     <string name="latest_version_check">點選這裡檢視最新版本資訊</string>
     <string name="recheck">\n(點選此處重新檢查)</string>
     <string name="update_check_failed">無法取得最新版本資訊! 請檢查您的網際網路連線</string>
