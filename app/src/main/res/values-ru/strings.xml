@@ -65,6 +65,7 @@
     <string name="auto_brightness_schedule">График автояркости (час)</string>
     <string name="auto_brightness_summary">Автоматически установить коэффициент яркости в заданном диапазоне времени.</string>
     <string name="autoflash">Автоматическая прошивка</string>
+    <string name="autoflash_message">\nSmartPack-Kernel загружен и готов к автоматической перепрошивке. Вы хотите прошить его СЕЙЧАС?\n\nОбратите внимание: ваше устройство будет автоматически перезагружено после процесса перепрошивки.\n</string>
     <string name="autosleep">Автосон</string>
     <string name="autosmp_summary">«Замена ядра в Qualcomm MPDecision. Разработано mrg666».</string>
     <string name="available">Доступно</string>
@@ -96,6 +97,7 @@
     <string name="boost_lock_duration_summary">Минимальный интервал усиления ядра.</string>
     <string name="boot_partition">Загрузочный раздел</string>
     <string name="bootloader">Загрузчик</string>
+    <string name="bootloader_message">\nВаше устройство будет перезагружено в режим загрузки.\n</string>
     <string name="bottom_half">Нижняя половина</string>
     <string name="bright_light_environment">Высокая освещенность</string>
     <string name="bright_light_environment_summary">Установите относительную интенсивность светодиода при ярком свете.</string>
@@ -318,6 +320,9 @@
     <string name="first_level_summary">Порог загрузки для включения всех CPU.</string>
     <string name="five_sec">5 секунд</string>
     <string name="flash">Прошить</string>
+    <string name="flasher">Прошивальшикr</string>
+    <string name="flasher_summary">Нажмите кнопку прошивки, чтобы выбрать и прошить файл восстановления ZIP без перезагрузки в пользовательское восстановление. Изменения вступят в силу после перезагрузки.</string>
+    <string name="flasher_message">Прошить сейчас</string>
     <string name="flashing">Прошивка в процессе</string>
     <string name="force_cards">Карточки принудительно</string>
     <string name="force_cards_summary">Использовать карточки для объектов, если возможно.</string>
@@ -652,6 +657,7 @@
     <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="reboot_recovery_summary">Устройство будет перезагружено в режим рекавери</string>
     <string name="recovery_partition">Раздел восстановления</string>
+    <string name="recovery_message">\nВаше устройство будет перезагружено в режим восстановления.\n</string>
     <string name="red">Красный</string>
     <string name="red_blacks">Черные в красном</string>
     <string name="red_greys">Красный серый</string>
@@ -665,6 +671,7 @@
     <string name="required">Обязательно</string>
     <string name="reset">Сброс</string>
     <string name="reset_settings">Сбросить приложение</string>
+    <string name="reset_settings_message">\nНастройки приложения будут полностью удалены.\n\nВы уверены?\n</string>
     <string name="reset_settings_summary">Сбросить пользовательские настройки</string>
     <string name="restore">Восстановить</string>
     <string name="restoring">Восстановление в процессе</string>
@@ -862,8 +869,10 @@
     <string name="white_point">Точка белого</string>
     <string name="width">Ширина</string>
     <string name="wipe_cache">Стереть кэш</string>
+    <string name="wipe_cache_message">\nCache/Dalvik Cache разделы вашего устройства будут удалены.\n\nВнимание! Устройство будет перезагружено.\n</string>
     <string name="wipe_cache_summary">Очистить раздел кеша</string>
     <string name="wipe_data">Очистить раздел Data</string>
+    <string name="wipe_data_message">\nДанные раздела вашего устройства будут полностью удалены.\n\nВнимание! Вы потеряете все пользовательские данные, включая приложения. \ N \ nВнимание! Устройство будет перезагружено.\n</string>
     <string name="wipe_data_summary">Очистить раздел Data</string>
     <string name="wkl_allowed">Wakelocks Разрещен</string>
     <string name="wkl_blocked">Wakelocks Заблокирован</string>
