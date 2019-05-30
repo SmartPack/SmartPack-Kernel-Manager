@@ -183,12 +183,14 @@ public class SmartPack {
         } else {
             RootUtils.runCommand("mkdir '" + flashFolder + "'");
         }
-        RootUtils.runCommand("unzip '" + path + "' -d '" + flashFolder + "'");
-        if (isZIPFileExtracted()) {
-            RootUtils.runCommand("cd '" + flashFolder + "' && mount -o remount,rw / && mkdir /tmp");
-            RootUtils.runCommand("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
-            RootUtils.runCommand("sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' 1 '" + path + "'");
-            RootUtils.runCommand(CleanUpCommand);
+        if (file.length() <= 100000000) {
+            RootUtils.runCommand("unzip '" + path + "' -d '" + flashFolder + "'");
+            if (isZIPFileExtracted()) {
+                RootUtils.runCommand("cd '" + flashFolder + "' && mount -o remount,rw / && mkdir /tmp");
+                RootUtils.runCommand("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
+                RootUtils.runCommand("sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' 1 '" + path + "'");
+                RootUtils.runCommand(CleanUpCommand);
+            }
         }
     }
 

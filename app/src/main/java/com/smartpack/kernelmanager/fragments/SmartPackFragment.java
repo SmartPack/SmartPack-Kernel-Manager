@@ -24,7 +24,6 @@ package com.smartpack.kernelmanager.fragments;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -525,6 +524,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 R.array.flasher), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                Utils.toast(R.string.file_size_limit, getActivity());
                 Intent manualflash = new Intent(getActivity(), FilePickerActivity.class);
                 manualflash.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
                 manualflash.putExtra(FilePickerActivity.EXTENSION_INTENT, ".zip");
@@ -560,7 +560,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void manualFlash(final SmartPack.FLASHMENU flashmenu, final File file, final boolean flashing) {
-        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question), new DialogInterface.OnClickListener() {
+        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question) + ("\n\n") + getString(R.string.file_size_limit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }

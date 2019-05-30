@@ -314,6 +314,7 @@
     <string name="feature_not_appearing_summary">Отображаются только функции, поддерживаемые устройством!</string>
     <string name="features">Характеристики</string>
     <string name="fifty_sec">50 секунд</string>
+    <string name="file_size_limit">Обратите внимание: по соображениям безопасности файлы восстановления размером более 100 МБ не могут быть прошиты</string>
     <string name="fingerprint">Отпечаток</string>
     <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
     <string name="first_level">Первый уровень</string>

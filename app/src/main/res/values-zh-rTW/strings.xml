@@ -908,6 +908,7 @@
     <string name="flasher">刷入器</string>
     <string name="flasher_summary">按一下刷入按鈕選擇並刷入可用於復原模式的 zip 檔案, 而無需重新開機到第三方復原模式。變更將在重新開機後套用。</string>
     <string name="flasher_message">立即刷入</string>
+    <string name="file_size_limit">請注意: 出於安全原因, 超過 100 MB 的檔案將不允許刷入。</string>
     <string name="manual_flashing">我自己來</string>
     <string name="backing_up">備份中</string>
     <string name="flashing">刷入中</string>
