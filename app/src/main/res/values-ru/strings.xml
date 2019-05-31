@@ -59,7 +59,6 @@
     <string name="appupdater_update_not_available_description">«У вас уже есть последняя версия SmartPack-Kernel Manager!»</string>
     <string name="arch_power_summary">Включение специальных функций/энергосбережения Arch.</string>
     <string name="architecture">Архитектура</string>
-    <string name="area">Область</string>
     <string name="arguments">Параметры: %s</string>
     <string name="auto_dimming">Авто-яркость</string>
     <string name="auto_dimming_schedule">График автояркости</string>
@@ -161,10 +160,8 @@
     <string name="core">Ядро %d</string>
     <string name="core_control">Управление ядрами</string>
     <string name="core_control_mask_summary">Маска процессора, которая будет использоваться для определения, можно ли управлять ядром или нет (установите 0, чтобы отключить).</string>
-    <string name="core_control_summary">Hotplug от Qualcomm. Извините, вы не можете отключить его. #blameqcom</string>
     <string name="cores">Ядра: %d</string>
     <string name="cores_singular">Ядро %d</string>
-    <string name="cores_string">Ядра: %s</string>
     <string name="cpu">ЦП</string>
     <string name="cpu_boost">Усиление ЦП</string>
     <string name="cpu_down_rate">Скорость понижения процессора</string>
@@ -230,7 +227,6 @@
     <string name="devfreq_boost_ms">Продолжительность усиления</string>
     <string name="devfreq_boost_ms_summary">Установить продолжительность повышения devfreq</string>
     <string name="device">Устройство</string>
-    <string name="disable">Отключить</string>
     <string name="disable_question">Отключить %s?</string>
     <string name="disabled">Отключено</string>
     <string name="disksize">Размер диска</string>
@@ -266,7 +262,6 @@
     <string name="dt2w_charging">Пробуждение по дв. тапу во время зарядки</string>
     <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake во время зарядки</string>
     <string name="dt2w_summary">Будит устройство двойным тапом по экрану.</string>
-    <string name="dual_core_mode">Двух-ядерный режим</string>
     <string name="dynamic_fsync">Динамический Fsync</string>
     <string name="dynamic_fsync_summary">При активированной функции и включенном экране fsync не синхронизируется. Когда экран выключен, операция выполняется синхронно.</string>
     <string name="earpiece_gain">Наушники Gain (звонки)</string>
@@ -347,7 +342,6 @@
     <string name="freq_throttle_temp">Троттлинг частоты при температуре</string>
     <string name="freq_throttle_temp_summary">Температура начала троттлинга частоты.</string>
     <string name="frequencies">Частоты</string>
-    <string name="frequencies_string">Частоты: %s</string>
     <string name="fsync_summary">Отключите для улучшения производительности файловой системы с риском потери данных в случае сбоя.</string>
     <string name="full">Полный экран</string>
     <string name="full_scans">Полное сканирование</string>
@@ -362,7 +356,6 @@
     <string name="glove_mode">Режим перчаток</string>
     <string name="glove_mode_summary">Это позволит вам использовать ваш телефон даже при ношении перчатки.</string>
     <string name="governor_tunables_summary">Различные элементы конфигурации, которые зависят от регулятора.</string>
-    <string name="governors_string">%s Регулятор</string>
     <string name="gpu">Графический процессор</string>
     <string name="gpu_2d_freq">2D частота GPU</string>
     <string name="gpu_2d_governor">2D регулятор GPU</string>
@@ -385,7 +378,6 @@
     <string name="green_negative">Зелёный отрицательный</string>
     <string name="green_positive">Позитив зеленого</string>
     <string name="green_whites">Белые в зеленом</string>
-    <string name="half">Половина</string>
     <string name="handlers">Обработчики</string>
     <string name="hardware">Оборудование</string>
     <string name="hcube_summary">Модифицированный контроль ядер от OnePlus.</string>
@@ -553,8 +545,6 @@
     <string name="no_busybox">Busybox отсутствует</string>
     <string name="no_changes">Без изменений!</string>
     <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
-    <string name="no_kernel_support">Неподдерживаемая версия</string>
-    <string name="no_kernel_support_summary">SmartPack-Kernel (пока) недоступен для вашей версии Android</string>
     <string name="no_offline_core">Вы не можете отключить это ядро!</string>
     <string name="no_picture">Нет картинки</string>
     <string name="no_profiles">Профиль не найден! Вы должны сначала создать их.</string>
@@ -563,7 +553,6 @@
     <string name="not_in_range">Не в диапазоне</string>
     <string name="nothing_apply">Ничего не найдено для применения!</string>
     <string name="nothing_selected">Ничего не выбрано</string>
-    <string name="notification">Уведомление</string>
     <string name="nr_requests_summary">Это контролирует, сколько запросов может быть выделено на уровне блоков для запросов на чтение или запись.</string>
     <string name="off">Выкл</string>
     <string name="offline">Оффлайн</string>
@@ -610,7 +599,6 @@
     <string name="poll">Опрос</string>
     <string name="poll_summary">Интервал выборки для считывания датчика.</string>
     <string name="poolsize">Размер пула</string>
-    <string name="possible_cpu_cores">Возможные ядра процессора</string>
     <string name="possible_cpu_cores_summary">Ядра процессора, который может использовать lazyplug.</string>
     <string name="power_key_suspend">Отключение сенсора при нажатии кнопки питания</string>
     <string name="power_key_suspend_summary">Включите, чтобы жесты пробуждения отключались при блокировке экрана кнопкой питания.</string>
@@ -643,7 +631,6 @@
     <string name="purchase_app">Приложение для пожертвований</string>
     <string name="px">пкс</string>
     <string name="qcom_rx_wakelock_summary">Предотвратить Qcom rx wakelock.</string>
-    <string name="quad_core_mode">Четырёх-ядерный режим</string>
     <string name="ram">ОЗУ</string>
     <string name="ramp_thresold">Пороговое ограничение</string>
     <string name="ramp_thresold_summary">Увеличивает частоту запросов замедления регулятора GPU. Чем выше значение, тем выше будет производительность.</string>
@@ -802,7 +789,6 @@
     <string name="thermal_info">Используйте только один драйвер из представленных вариантов, использование более одного за раз может привести к непредсказуемым последствиям.</string>
     <string name="thermal_limit_high">Высокий тепловой режим</string>
     <string name="thermal_limit_low">Низкий тепловой предел</string>
-    <string name="thermal_zone">Термальные зоны</string>
     <string name="thermald_summary">Стандартный термодрайвер, который защищает устройство от перегрева. Его следует отключить, если ядро имеет альтернативу ему.</string>
     <string name="threshold">Пороговое значение</string>
     <string name="thunder_charge_summary">Активировать Thunder Charge by varun.chitre15</string>

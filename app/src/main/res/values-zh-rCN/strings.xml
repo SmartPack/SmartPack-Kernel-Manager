@@ -10,7 +10,6 @@
     <string name="no_root">无 Root 权限</string>
     <string name="no_busybox">没有 Busybox 指令</string>
     <string name="open">开启 %s</string>
-    <string name="disable">禁用</string>
 
     <!-- Security -->
     <string name="password">密码</string>
@@ -125,9 +124,6 @@
     <string name="handlers">管理者</string>
 
     <!-- CPU -->
-    <string name="cores_string">%s 核心</string>
-    <string name="frequencies_string">%s 频率</string>
-    <string name="governors_string">%s 管理模式</string>
     <string name="cores_singular">%d 核心</string>
     <string name="cores">%d 核心</string>
     <string name="cpu_usage">CPU 使用率</string>
@@ -227,7 +223,6 @@
     <string name="down_lock_duration_summary">CPU 保持上线的最小时间间隔。</string>
     <string name="lazyplug_summary">将高通的 MPDecision 更换为由 arter97 开发的内核</string>
     <string name="lazy">懒</string>
-    <string name="possible_cpu_cores">可能的CPU内核</string>
     <string name="possible_cpu_cores_summary">可能的CPU内核，lazyplug可以使用。</string>
     <string name="blu_plug_summary">将高通的 MPDecision 更换为由 Code_Blue 团队开发的内核</string>
     <string name="powersaver_mode">省电模式</string>
@@ -274,10 +269,7 @@
     <string name="cpu_up_rate">CPU 升频速度</string>
     <string name="io_is_busy">IO 非常忙碌</string>
     <string name="io_is_busy_summary">用来使热插拔将 I/O 时间视为 CPU 负载时间。</string>
-    <string name="quad_core_mode">四核模式</string>
-    <string name="dual_core_mode">双核模式</string>
     <string name="core_control">内核控制</string>
-    <string name="core_control_summary">高通的热插拔方案。抱歉您不能关闭它。#blameqcom</string>
     <string name="hcube_summary">OnePlus 修改过的内核控制。</string>
     <string name="min_cpus_big">大核内核数下限</string>
     <string name="min_cpus_big_summary">工作的最小 CPU 大核数量。</string>
@@ -385,7 +377,6 @@
     <string name="msm_thermal_simple">简易温度监控</string>
     <string name="msm_thermal_simple_summary">将高通的温度管里更换为由 sultanxda 开发的内核</string>
     <string name="usermax_freq">CPU 最高频率</string>
-    <string name="thermal_zone">热区</string>
     <string name="freq_mitg_temp">频率调节温度</string>
     <string name="freq_mitg_temp_summary">阈值温度, 以降低 cpu 的最高频率。</string>
     <string name="hotplug_temp">热插拔温度</string>
@@ -525,7 +516,6 @@
     <string name="full">全部</string>
     <string name="bottom_half">下半部</string>
     <string name="top_half">上半部</string>
-    <string name="half">一半</string>
     <string name="s2w">滑动屏幕唤醒</string>
     <string name="s2w_summary">滑动屏幕来唤醒您的设备</string>
     <string name="s2s">滑动睡眠</string>
@@ -566,7 +556,6 @@
     <string name="charge_timeout_summary">当充电时，在屏幕关闭之后，设置将唤醒控制禁用的时间。</string>
     <string name="power_key_suspend">电源键暂停</string>
     <string name="power_key_suspend_summary">开启这项目当您按电源键关闭屏幕，将会关闭唤醒控制。</string>
-    <string name="area">区域</string>
     <string name="width">宽度</string>
     <string name="height">高度</string>
     <string name="vibration">震动</string>
@@ -591,7 +580,6 @@
     <string name="bright_light_environment_summary">设置当在明亮环境中LED的相对强度。</string>
     <string name="low_light_environment">低光源环境</string>
     <string name="low_light_environment_summary">设置在低亮度环境下的LED的相对强度。</string>
-    <string name="notification">通知</string>
     <string name="on">开</string>
     <string name="off">关</string>
     <string name="fade_ramp_control">褪色入口匝道控制</string>
@@ -901,8 +889,6 @@
     <string name="recheck">\n(点击此处重新检查)</string>
     <string name="update_check_failed">无法获取最新版本信息! 请检查您的互联网连接</string>
     <string name="up_to_date_message">恭喜！已是最新版本</string>
-    <string name="no_kernel_support">不支持的版本</string>
-    <string name="no_kernel_support_summary">SmartPack 内核尚未适配您的 android 版本</string>
 
     <!-- App Updater -->
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>

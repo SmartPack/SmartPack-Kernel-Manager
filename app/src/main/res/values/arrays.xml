@@ -18,11 +18,6 @@
     </string-array>
 
     <!-- CPU Hotplug -->
-    <string-array name="endurance_level_items">
-        <item>@string/disabled</item>
-        <item>@string/quad_core_mode</item>
-        <item>@string/dual_core_mode</item>
-    </string-array>
 
     <!-- Screen -->
     <string-array name="colors">

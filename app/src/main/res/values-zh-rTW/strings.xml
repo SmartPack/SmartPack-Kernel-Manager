@@ -10,7 +10,6 @@
     <string name="no_root">無 Root 權限</string>
     <string name="no_busybox">沒有 Busybox 指令</string>
     <string name="open">開啟 %s</string>
-    <string name="disable">停用</string>
 
     <!-- Security -->
     <string name="password">密碼</string>
@@ -126,9 +125,6 @@
     <string name="handlers">管理者</string>
 
     <!-- CPU -->
-    <string name="cores_string">%s 核心</string>
-    <string name="frequencies_string">%s 頻率</string>
-    <string name="governors_string">%s 管理模式</string>
     <string name="cores_singular">%d 核心</string>
     <string name="cores">%d 核心</string>
     <string name="cpu_usage">CPU 使用率</string>
@@ -228,7 +224,6 @@
     <string name="down_lock_duration_summary">CPU 保持上線的最小時間間隔。</string>
     <string name="lazyplug_summary">將高通的 MPDecision 更換為由 arter97 開發的核心</string>
     <string name="lazy">懶</string>
-    <string name="possible_cpu_cores">可能的CPU核心</string>
     <string name="possible_cpu_cores_summary">可能的CPU核心，lazyplug可以使用。</string>
     <string name="blu_plug_summary">將高通的 MPDecision 更換為由 Code_Blue 團隊開發的核心</string>
     <string name="powersaver_mode">省電模式</string>
@@ -275,8 +270,6 @@
     <string name="cpu_up_rate">CPU 上升速度</string>
     <string name="io_is_busy">IO 非常忙碌</string>
     <string name="io_is_busy_summary">用來使熱插拔將 I/O 時間視為 CPU 負載時間。</string>
-    <string name="quad_core_mode">四核模式</string>
-    <string name="dual_core_mode">雙核模式</string>
     <string name="msm_mpdecision_hotplug">MSM MPDecision 熱插拔</string>
     <string name="bricked_hotplug">Bricked 熱插拔</string>
     <string name="mb_hotplug_summary">高通的 MPDecision 核心內替代品。由 show-p1984 開發.</string>
@@ -298,7 +291,6 @@
     <string name="cycle_up">迴圈向上</string>
     <string name="cycle_up_summary">迴圈等待後, 最後一個熱插拔事件插入另一個核心.</string>
     <string name="core_control">核心控制</string>
-    <string name="core_control_summary">高通的熱插拔方案。抱歉您不能關閉它。#blameqcom</string>
     <string name="min_boost_freq">最小增益頻率</string>
     <string name="hotplug_suspend">熱插拔待命</string>
     <string name="hcube_summary">OnePlus 修改過的核心控制。</string>
@@ -408,7 +400,6 @@
     <string name="msm_thermal_simple">簡易溫度監控</string>
     <string name="msm_thermal_simple_summary">將高通的溫度管裡更換為由 sultanxda 開發的核心</string>
     <string name="usermax_freq">CPU 最高頻率</string>
-    <string name="thermal_zone">熱區</string>
     <string name="freq_mitg_temp">頻率調節溫度</string>
     <string name="freq_mitg_temp_summary">閾值溫度, 以降低 cpu 的最高頻率。</string>
     <string name="hotplug_temp">熱插拔溫度</string>
@@ -548,7 +539,6 @@
     <string name="full">滿</string>
     <string name="bottom_half">下半部</string>
     <string name="top_half">上半部</string>
-    <string name="half">一半</string>
     <string name="s2w">滑動螢幕喚醒</string>
     <string name="s2w_summary">滑動螢幕來喚醒您的裝置</string>
     <string name="s2s">滑動睡眠</string>
@@ -589,7 +579,6 @@
     <string name="charge_timeout_summary">當充電時，在螢幕關閉之後，設定將喚醒控制停用的時間。</string>
     <string name="power_key_suspend">電源鍵暫停</string>
     <string name="power_key_suspend_summary">開啟這項目當您按電源鍵關閉螢幕，將會關閉喚醒控制。</string>
-    <string name="area">區域</string>
     <string name="width">寬度</string>
     <string name="height">高度</string>
     <string name="vibration">震動</string>
@@ -614,7 +603,6 @@
     <string name="bright_light_environment_summary">設定當在明亮環境中 LED 的相對強度。</string>
     <string name="low_light_environment">低光源環境</string>
     <string name="low_light_environment_summary">設定在低亮度環境下的 LED 的相對強度。</string>
-    <string name="notification">通知</string>
     <string name="on">開</string>
     <string name="off">關</string>
     <string name="fade_ramp_control">褪色入口匝道控制</string>
@@ -929,8 +917,6 @@
     <string name="recheck">\n(點選此處重新檢查)</string>
     <string name="update_check_failed">無法取得最新版本資訊! 請檢查您的網際網路連線</string>
     <string name="up_to_date_message">恭喜！已是最新版本</string>
-    <string name="no_kernel_support">不支援的版本</string>
-    <string name="no_kernel_support_summary">SmartPack 核心尚未適配您的 android 版本</string>
 
     <!-- App Updater -->
     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>

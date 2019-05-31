@@ -52,12 +52,6 @@
         <item name="android:ellipsize">middle</item>
     </style>
 
-    <style name="Base.Widget.AppCompat.CompoundButton.CheckBox.Custom">
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">?attr/colorAccent</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
     <style name="Swirl">
         <item name="swirl_errorColor">?attr/colorAccent</item>
         <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
