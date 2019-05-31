@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
@@ -49,7 +48,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
-import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
@@ -102,8 +100,10 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import org.frap129.spectrum.SpectrumFragment;
 import org.frap129.spectrum.Spectrum;
 
+import com.smartpack.kernelmanager.fragments.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.SmartPackFragment;
 import com.smartpack.kernelmanager.fragments.WakelockFragment;
+import com.smartpack.kernelmanager.utils.KLapse;
 import com.smartpack.kernelmanager.utils.Wakelocks;
 
 import java.lang.ref.WeakReference;
@@ -200,6 +200,9 @@ public class NavigationActivity extends BaseActivity
         }
         if (Screen.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.screen, ScreenFragment.class, R.drawable.ic_display));
+        }
+        if (KLapse.supported()) {
+            mFragments.add(new NavigationActivity.NavigationFragment(R.string.klapse, KLapseFragment.class, R.drawable.ic_klapse));
         }
         if (Wake.supported()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.wake, WakeFragment.class, R.drawable.ic_gestures));

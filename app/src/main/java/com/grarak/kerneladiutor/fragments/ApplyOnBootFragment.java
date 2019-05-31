@@ -49,6 +49,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 
+import com.smartpack.kernelmanager.fragments.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.WakelockFragment;
 
 import java.util.HashMap;
@@ -64,6 +65,7 @@ public class ApplyOnBootFragment extends BaseFragment {
     public static final String THERMAL = "thermal_onboot";
     public static final String GPU = "gpu_onboot";
     public static final String SCREEN = "screen_onboot";
+    public static final String KLAPSE = "klapse_onboot";
     public static final String WAKE = "wake_onboot";
     public static final String SOUND = "sound_onboot";
     public static final String BATTERY = "battery_onboot";
@@ -85,6 +87,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(ThermalFragment.class, THERMAL);
         sAssignments.put(GPUFragment.class, GPU);
         sAssignments.put(ScreenFragment.class, SCREEN);
+        sAssignments.put(KLapseFragment.class, KLAPSE);
         sAssignments.put(WakeFragment.class, WAKE);
         sAssignments.put(SoundFragment.class, SOUND);
         sAssignments.put(BatteryFragment.class, BATTERY);

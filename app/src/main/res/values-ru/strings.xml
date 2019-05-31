@@ -61,9 +61,9 @@
     <string name="architecture">Архитектура</string>
     <string name="area">Область</string>
     <string name="arguments">Параметры: %s</string>
-    <string name="auto_brightness">Авто-яркость</string>
-    <string name="auto_brightness_schedule">График автояркости (час)</string>
-    <string name="auto_brightness_summary">Автоматически установить коэффициент яркости в заданном диапазоне времени.</string>
+    <string name="auto_dimming">Авто-яркость</string>
+    <string name="auto_dimming_schedule">График автояркости</string>
+    <string name="auto_dimming_summary">Автоматически установить коэффициент яркости в заданном диапазоне времени.</string>
     <string name="autoflash">Автоматическая прошивка</string>
     <string name="autoflash_message">\nSmartPack-Kernel загружен и готов к автоматической перепрошивке. Вы хотите прошить его СЕЙЧАС?\n\nОбратите внимание: ваше устройство будет автоматически перезагружено после процесса перепрошивки.\n</string>
     <string name="autosleep">Автосон</string>
@@ -103,7 +103,7 @@
     <string name="bright_light_environment_summary">Установите относительную интенсивность светодиода при ярком свете.</string>
     <string name="bright_scale">Яркость на основе масштабирования</string>
     <string name="brightness">Яркость</string>
-    <string name="brightness_factor">Коэффициент яркости</string>
+    <string name="dimming">Коэффициент яркости</string>
     <string name="brightness_factor_summary">10: точная яркость; 5: 50% от текущей яркости.</string>
     <string name="brightness_mode">Используйте режим экспоненциального подсветки вместо линейного режима.</string>
     <string name="build_display_id">Номер сборки</string>
@@ -409,7 +409,7 @@
     <string name="hotplug_temp">Температура при хотплаге</string>
     <string name="hotplug_temp_summary">Пороговая температура для начала выключения ядер.</string>
     <string name="how_different">Q1. Чем это приложение отличается от официального ядра Grarak Adiutor?</string>
-    <string name="how_different_summary">"Ответ. Это приложение значительно модифицировано для удовлетворения потребностей Smart-Pack-Kernel. Некоторые из дополнительных функций этого приложения включают, но не ограничиваются, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost , iv. K-Lapse, v. Расширенный интерфейс управления зарядкой (ядра Samsung msm8974), vi. Boeffla Wakelocks, vii. Средства управления звуком Boeffla и Flar с поддержкой по каналам, viii. Переключатель SELinux, ix. Поддержка OTA для SmartPack-Kernel , х. Дисплей управления подсветкой и многое другое. "</string>
+    <string name="how_different_summary">"Ответ. Это приложение значительно модифицировано для удовлетворения потребностей Smart-Pack-Kernel. Некоторые из дополнительных функций этого приложения включают, но не ограничиваются, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost , iv. K-lapse, v. Расширенный интерфейс управления зарядкой (ядра Samsung msm8974), vi. Boeffla Wakelocks, vii. Средства управления звуком Boeffla и Flar с поддержкой по каналам, viii. Переключатель SELinux, ix. Поддержка OTA для SmartPack-Kernel , х. Дисплей управления подсветкой и многое другое. "</string>
     <string name="hybrid">Гибридный</string>
     <string name="hysteresis">Значение гистерезиса</string>
     <string name="hysteresis_summary">Чем оно ниже, тем быстрее отклик.</string>
@@ -455,7 +455,7 @@
     <string name="kill_lmk_summary">Завершить LMK, когда используется своп.</string>
     <string name="kill_lmk_threshold">Убрать порог LMK</string>
     <string name="kill_lmk_threshold_summary">Насколько должна быть заполнена подкачка, чтобы завершиь LMK.</string>
-    <string name="klapse_summary">«Выберите предпочтительный режим K-Lapse, модуль отображения в реальном времени на уровне ядра от tanish2k09. Это не должно быть выключено для настройки остальных параметров K-Lapse».</string>
+    <string name="klapse_summary">«Выберите предпочтительный режим K-lapse, модуль отображения в реальном времени на уровне ядра от tanish2k09. Это не должно быть выключено для настройки остальных параметров K-lapse».</string>
     <string name="ksm">Объединять страницы памяти ядра</string>
     <string name="ksm_summary">Снижает загрузку памяти, но влияет на загрузку ЦП.</string>
     <string name="last_kmsg">Последнее сообщение ядра</string>
@@ -547,7 +547,7 @@
     <string name="network">Сеть</string>
     <string name="new_mode">Новый</string>
     <string name="new_password">Новый пароль</string>
-    <string name="night_mode_schedule">Расписание ночного режима (час)</string>
+    <string name="night_mode_schedule">Расписание ночного режима</string>
     <string name="nightmode_rgb">Цвета ночного режима</string>
     <string name="no_busybox">Busybox отсутствует</string>
     <string name="no_changes">Без изменений!</string>

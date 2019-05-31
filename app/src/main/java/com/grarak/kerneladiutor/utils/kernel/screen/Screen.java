@@ -19,8 +19,6 @@
  */
 package com.grarak.kerneladiutor.utils.kernel.screen;
 
-import com.smartpack.kernelmanager.utils.KLapse;
-
 /**
  * Created by willi on 01.06.16.
  */
@@ -28,7 +26,7 @@ public class Screen {
 
     public static boolean supported() {
         return Calibration.getInstance().supported() || Gamma.supported()
-                || Misc.getInstance().supported() || KLapse.supported();
+                || Misc.getInstance().supported();
     }
 
 }

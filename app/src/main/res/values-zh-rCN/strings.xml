@@ -495,12 +495,12 @@
     <string name="glove_mode">手套模式</string>
     <string name="glove_mode_summary">启用这个可以让你在戴着手套时使用手机</string>
 	
-    <!-- K-Lapse -->
-    <string name="klapse_summary">选择偏好的 K-Lapse 模式, 由 tanish2k09 的内核级实时显示模块。这不应该设置为关闭来调整其余的 K-Lapse 参数.</string>
+    <!-- K-lapse -->
+    <string name="klapse_summary">选择偏好的 K-lapse 模式, 由 tanish2k09 的内核级实时显示模块。这不应该设置为关闭来调整其余的 K-lapse 参数.</string>
     <string name="turn_off">已关闭</string>
     <string name="time_scale">基于时间的缩放比例</string>
     <string name="bright_scale">基于亮度的缩放比例</string>
-    <string name="night_mode_schedule">夜间模式排程 (小时)</string>
+    <string name="night_mode_schedule">夜间模式排程</string>
     <string name="start_time">开始时间</string>
     <string name="end_time">结束时间</string>
     <string name="scaling_rate">缩放率 (分钟)</string>
@@ -509,11 +509,11 @@
     <string name="fadeback_time_summary">结束时间之前, RGB 应开始返回到 "白天" 颜色的分钟数.</string>
     <string name="daytime_rgb">白天的颜色</string>
     <string name="nightmode_rgb">夜间模式颜色</string>
-    <string name="auto_brightness">自动亮度</string>
-    <string name="auto_brightness_summary">在设置的时间范围内自动设置亮度因子.</string>
-    <string name="brightness_factor">亮度因子</string>
+    <string name="auto_dimming">自动亮度</string>
+    <string name="auto_dimming_summary">在设置的时间范围内自动设置亮度因子.</string>
+    <string name="dimming">亮度因子</string>
     <string name="brightness_factor_summary">10: 精确的亮度; 5:50% 的当前亮度.</string>
-    <string name="auto_brightness_schedule">自动亮度排程 (小时)</string>
+    <string name="auto_dimming_schedule">自动亮度排程</string>
     <string name="backlight_range">背光范围</string>
     <string name="pulse_freq">脉冲频率</string>
     <string name="pulse_freq_summary">在它之后调用 klapse_pulse 的毫秒数.</string>
@@ -991,7 +991,7 @@
 
     <!-- FAQ -->
     <string name="how_different">问题1。此应用程序跟 Grarak 的官方版 Kernel Adiutor 有何不同之处？</string>
-    <string name="how_different_summary">答案：此应用程序经过显著修改, 以满足	SmartPack 内核的需求。这个应用程序的一些附加功能包括但不限于, 即 CPU 输入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. 高级充电控制接口 (Samsung msm8974 内核), vi. Boeffla 唤醒锁, vii. Boeffla 和 Flar 的声音控制与每个通道的支持, viii. SELinux 开关, ix. Smartpack内核的 OTA 支持、x. 显示背光控制等。</string>
+    <string name="how_different_summary">答案：此应用程序经过显著修改, 以满足	SmartPack 内核的需求。这个应用程序的一些附加功能包括但不限于, 即 CPU 输入增益, ii。Adreno Boost, iii. Dynamic Stune Boost, iv. K-lapse, v. 高级充电控制接口 (Samsung msm8974 内核), vi. Boeffla 唤醒锁, vii. Boeffla 和 Flar 的声音控制与每个通道的支持, viii. SELinux 开关, ix. Smartpack内核的 OTA 支持、x. 显示背光控制等。</string>
     <string name="can_i_use">问题2。我可以将此应用程序与其他第三方内核一起使用吗？</string>
     <string name="can_i_use_summary">答案：为什么不呢？它将像往常一样运作。</string>
     <string name="cpu_freq_not_sticking">问题3。为什么我设置的 CPU 频率不会固定？</string>

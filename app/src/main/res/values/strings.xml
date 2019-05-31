@@ -561,13 +561,13 @@
     <string name="glove_mode">Glove Mode</string>
     <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
-    <!-- K-Lapse -->
-    <string name="klapse">K-Lapse</string>
-    <string name="klapse_summary">Select preferred K-Lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-Lapse parameters.</string>
+    <!-- K-lapse -->
+    <string name="klapse">K-lapse</string>
+    <string name="klapse_summary">Select preferred K-lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-lapse parameters.</string>
     <string name="turn_off">Turned-Off</string>
     <string name="time_scale">Time Based Scaling</string>
     <string name="bright_scale">Brightness Based Scaling</string>
-    <string name="night_mode_schedule">Night Mode Schedule (Hour)</string>
+    <string name="night_mode_schedule">Night Mode Schedule</string>
     <string name="start_time">Start</string>
     <string name="end_time">End</string>
     <string name="scaling_rate">Scaling Rate (Minute)</string>
@@ -576,14 +576,17 @@
     <string name="fadeback_time_summary">The number of minutes before End Time when RGB should start going back to Daytime colors.</string>
     <string name="daytime_rgb">Daytime Colors</string>
     <string name="nightmode_rgb">Night Mode Colors</string>
-    <string name="auto_brightness">Auto-brightness</string>
-    <string name="auto_brightness_summary">Automatically set the brightness factor in a set time range.</string>
-    <string name="brightness_factor">Brightness Factor</string>
+    <string name="dimming">Dimming</string>
+    <string name="dimming_summary">100: Accurate brightness; 50: 50% of current intensity.</string>
     <string name="brightness_factor_summary">10: Accurate brightness; 5: 50% of current brightness.</string>
-    <string name="auto_brightness_schedule">Auto-brightness Schedule (Hour)</string>
+    <string name="auto_dimming">Auto Dimming</string>
+    <string name="auto_dimming_summary">Automatically set the brightness factor in a set time range.</string>
+    <string name="auto_dimming_schedule">Auto Dimming Schedule</string>
     <string name="backlight_range">Backlight Range</string>
     <string name="pulse_freq">Pulse Frequency</string>
     <string name="pulse_freq_summary">The number of milliseconds after which klapse_pulse is called.</string>
+    <string name="flow_freq">Flow Frequency</string>
+    <string name="flow_freq_summary">The amount of milliseconds after which 1 RGB frame is shifted.</string>
 
     <!-- Wake -->
     <string name="dt2w">DoubleTap2Wake</string>
@@ -1090,7 +1093,7 @@
 
     <!-- FAQ -->
     <string name="how_different">Q1. How different is this app from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
+    <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
     <string name="can_i_use">Q2. Can I use this App to control any custom kernel?</string>
     <string name="can_i_use_summary">Ans. Why not? This app will work as usual with any kernel, as long as root access granted.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>
