@@ -176,14 +176,16 @@
     <string name="msm_limiter_summary">啟用由neobuddy89製作的 MSM 限制器</string>
     <string name="freq_control">頻率控制</string>
     <string name="freq_control_summary">允許 MSM 限制器控制 CPU 的頻率。</string>
-    <string name="dyn_stune_boost">動態調整增強</string>
+    <string name="dyn_stune_boost">動態 Stune Boost</string>
     <string name="stune_boost_ms">Stune Boost 時長</string>
+	<string name="stune_boost_sett">Stune Boost 設定</string>
+    <string name="stune_boost_sett_summary">點選以瀏覽 Stune Boost 進階設定.</string>
 
     <!-- CPU Input Boost -->
-    <string name="cpu_input_boost">CPU輸入加速</string>
-    <string name="cpu_input_boost_summary">啟用 sultanxda 開發的 cpu 輸入加速。</string>
+    <string name="cpu_input_boost">CPU 輸入加速</string>
+    <string name="cpu_input_boost_summary">啟用 sultanxda 開發的 CPU 輸入加速。</string>
     <string name="cpuiboost_duration">輸入加速持續時間</string>
-    <string name="cpuiboost_duration_summary">設定 CPU輸入加速持續時間</string>
+    <string name="cpuiboost_duration_summary">設定 CPU 輸入加速持續時間</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">已啟用多個熱插拔系統！\n您只能使用一個。</string>
@@ -282,7 +284,6 @@
     <string name="start_delay_summary">在熱插拔開始工作之前的時間延遲 (以毫秒為單位).</string>
     <string name="pause">暫停</string>
     <string name="pause_summary">如果有其他東西插入 CPU, 在這很毫秒的時間裡睡著.</string>
-    <string name="autosmp">自動貼片</string>
     <string name="autosmp_summary">高通的 MPDecision 核心內替代品。由 mrg666 開發.</string>
     <string name="downrate_limits">下載限值</string>
     <string name="uprate_limits">最高限制</string>
