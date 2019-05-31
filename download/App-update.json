@@ -1,12 +1,13 @@
 {
-  "latestVersion": "8.0-20190523",
+  "latestVersion": "8.1-20190531",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: Added an option to flash any recovery zip file without reboot.",
-    "- SmartPack: Implemented real 'AutoFlash' for SmartPack Kernel",
-    "- build: Updated gradle to 3.5.0-beta02.",
+    "- SmartPack: Flasher: Added a file size limit of 100 MB.",
+    "- Virtual Memory: zRAM: Increased maximum limit to 2560.",
+    "- K-lapse: Moved to own page.",
+    "- K-lapse: Updates for v5.0.",
     "- Misc. Updated Russian & Chinese Traditional translations.",
-    "- Miscellaneous changes everywhere, please check my GitHub page for more info."
+    "- Miscellaneous changes, please check my GitHub page for more info."
   ]
 }

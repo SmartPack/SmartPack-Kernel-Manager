@@ -1,5 +1,9 @@
 # Change-logs
 
+## 68. May 31, 2019
+*Release-tag: v8.1*<br>
+Changes: Virtual Memory: zRAM: Increased maximum limit to 2560. SmartPack: Flasher: Added a file size limit of 100 MB. K-lapse: Moved to own page. K-lapse: Updates for v5.0. Misc. Updated Russian & Chinese Traditional translations. Miscellaneous changes, please check my GitHub page for more info.
+
 ## 67. May 23, 2019
 *Release-tag: v8.0*<br>
 Changes: SmartPack: Added an option to flash any recovery zip file without reboot. SmartPack: Implemented real "AutoFlash" for SmartPack Kernel. build: Updated gradle to 3.5.0-beta02. Misc. Updated Russian & Chinese Traditional translations. Miscellaneous changes everywhere, please check my GitHub page for more info.
