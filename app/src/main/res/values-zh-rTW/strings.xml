@@ -179,7 +179,7 @@
     <string name="dyn_stune_boost">動態 Stune Boost</string>
     <string name="stune_boost_ms">Stune Boost 時長</string>
 	<string name="stune_boost_sett">Stune Boost 設定</string>
-    <string name="stune_boost_sett_summary">點選以瀏覽 Stune Boost 進階設定.</string>
+    <string name="stune_boost_sett_summary">點選以瀏覽 Stune Boost 進階設定。</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU 輸入加速</string>
