@@ -64,7 +64,7 @@ public class KLapseFragment extends RecyclerViewFragment {
 
     private void klapsInit(List<RecyclerViewItem> items) {
         CardView klapseCard = new CardView(getActivity());
-        klapseCard.setTitle(getString(R.string.klapse));
+        klapseCard.setTitle(KLapse.hasklapseVersion() ? getString(R.string.klapse) + " v" + KLapse.getklapseVersion() : getString(R.string.klapse));
 
         int nightR = KLapse.getklapseRed();
         int nightG = KLapse.getklapseGreen();
@@ -385,7 +385,6 @@ public class KLapseFragment extends RecyclerViewFragment {
 
         if (KLapse.hasBLRangeUpper()) {
             GenericSelectView backlightRange = new GenericSelectView();
-            backlightRange.setTitle(getString(R.string.backlight_range));
             backlightRange.setSummary("Max");
             backlightRange.setValue(KLapse.getBLRangeUpper());
             backlightRange.setInputType(InputType.TYPE_CLASS_NUMBER);

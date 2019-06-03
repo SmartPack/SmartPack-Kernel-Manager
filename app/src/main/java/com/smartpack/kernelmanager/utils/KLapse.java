@@ -76,6 +76,7 @@ public class KLapse {
     private static final String FLOW_FREQ = KLAPSE_NEW + "/flow_freq";
     private static final String BACKLIGHT_RANGE_UPPER = KLAPSE_NEW + "/bl_range_upper";
     private static final String BACKLIGHT_RANGE_LOWER = KLAPSE_NEW + "/bl_range_lower";
+    private static final String KLAPSE_VERSION = "/sys/module/klapse/version";
 
     public static boolean hasEnable() {
         return Utils.existFile(KLAPSE_ENABLE) || Utils.existFile(KLAPSE_ENABLE_NEW);
@@ -365,7 +366,7 @@ public class KLapse {
 
     public static boolean isAutoBrightnessFactorEnabled() {
         if (Utils.existFile(DIMMER_FACTOR_AUTO)) {
-            return Utils.readFile(DIMMER_FACTOR_AUTO).startsWith("1");
+            return Utils.readFile(DIMMER_FACTOR_AUTO).startsWith("1") || Utils.readFile(DIMMER_FACTOR_AUTO).startsWith("Y");
         } else {
             return Utils.readFile(BRIGHTNESS_FACTOR_AUTO).startsWith("1");
         }
@@ -538,6 +539,14 @@ public class KLapse {
 
     public static boolean hasFlowFreq() {
         return Utils.existFile(FLOW_FREQ);
+    }
+
+    public static boolean hasklapseVersion() {
+        return Utils.existFile(KLAPSE_VERSION);
+    }
+
+    public static String getklapseVersion() {
+        return Utils.readFile(KLAPSE_VERSION);
     }
 
     public static boolean supported() {
