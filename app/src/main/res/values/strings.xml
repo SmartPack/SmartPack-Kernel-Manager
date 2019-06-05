@@ -47,10 +47,6 @@
     <!-- Editor -->
     <string name="save">Save</string>
 
-    <!-- File Picker -->
-    <string name="select_question">Select %s?</string>
-    <string name="wrong_extension">Please select a file with %s extension.</string>
-
     <!-- Units -->
     <string name="mhz">MHz</string>
     <string name="celsius">ºC</string>
@@ -893,6 +889,8 @@
     <string name="flasher_message">Flash Now</string>
     <string name="file_size_limit">Please note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
     <string name="sure_message">Are you sure to flash %s?</string>
+    <string name="select_question">Select %s?</string>
+    <string name="wrong_extension">Please select a file with %s extension.</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>

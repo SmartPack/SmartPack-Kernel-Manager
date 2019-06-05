@@ -45,10 +45,6 @@
     <!-- Editor -->
     <string name="save">儲存</string>
 
-    <!-- File Picker -->
-    <string name="select_question">選擇 %s 嗎？</string>
-    <string name="wrong_extension">請選擇一個副檔名為 %s 的檔案</string>
-
     <!-- Units -->
     <string name="ms">毫秒</string>
     <string name="min">分</string>
@@ -825,6 +821,8 @@
     <string name="recovery_partition">恢復分區</string>
     <string name="fota_partition"> FOTA 解決方案分區</string>
     <string name="flash">刷入</string>
+    <string name="select_question">選擇 %s 嗎？</string>
+    <string name="wrong_extension">請選擇一個副檔名為 %s 的檔案</string>
 
     <!-- Build prop Editor -->
     <string name="add">增加</string>

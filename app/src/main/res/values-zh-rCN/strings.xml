@@ -45,10 +45,6 @@
     <!-- Editor -->
     <string name="save">保存</string>
 
-    <!-- File Picker -->
-    <string name="select_question">选择 %s 吗？</string>
-    <string name="wrong_extension">请选择一个文件来对 %s 进行扩充</string>
-
     <!-- Units -->
     <string name="ms">毫秒</string>
     <string name="min">分</string>
@@ -801,6 +797,8 @@
     <string name="recovery_partition">恢复分区</string>
     <string name="fota_partition"> FOTA 解决方案分区</string>
     <string name="flash">刷入</string>
+    <string name="select_question">选择 %s 吗？</string>
+    <string name="wrong_extension">请选择一个文件来对 %s 进行扩充</string>
 
     <!-- Build prop Editor -->
     <string name="add">添加</string>
