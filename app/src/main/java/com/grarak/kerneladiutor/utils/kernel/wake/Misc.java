@@ -66,6 +66,8 @@ public class Misc {
 
     private static final String CHARGING_MODE_SMDK4412 = "/sys/devices/virtual/misc/touchwake/charging_mode";
 
+    private static final String SMART_WAKE = "/sys/android_touch/gesture";
+
     private final HashMap<String, List<Integer>> mWakeFiles = new HashMap<>();
     private final List<Integer> mScreenWakeOptionsMenu = new ArrayList<>();
 
@@ -265,13 +267,25 @@ public class Misc {
         return list;
     }
 
+    public void enableSmartWake(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", SMART_WAKE), SMART_WAKE, context);
+    }
+
+    public boolean isSmartWakeEnabled() {
+        return Utils.readFile(SMART_WAKE).equals("1");
+    }
+
+    public boolean hasSmartWake() {
+        return Utils.existFile(SMART_WAKE);
+    }
+
     public boolean hasWake() {
         return WAKE != null;
     }
 
     public boolean supported() {
         return hasWake() || hasCamera() || hasPocket() || hasTimeout() || hasChargeTimeout() || hasPowerKeySuspend()
-                || hasKeyPowerMode() || hasChargingMode() || hasVibration() || hasVibVibration();
+                || hasKeyPowerMode() || hasChargingMode() || hasVibration() || hasVibVibration() || hasSmartWake();
     }
 
     private void run(String command, String id, Context context) {

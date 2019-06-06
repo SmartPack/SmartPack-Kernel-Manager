@@ -71,8 +71,8 @@ public class WakeFragment extends RecyclerViewFragment {
 		|| mMisc.hasWake() || Gestures.supported() || mMisc.hasCamera() || mMisc.hasPocket()
 		|| mMisc.hasTimeout() || mMisc.hasChargeTimeout() || mMisc.hasPowerKeySuspend()
 		|| mMisc.hasKeyPowerMode() || mMisc.hasChargingMode() || mMisc.hasVibration()
-		|| mMisc.hasVibVibration() || mDt2s.hasHeight() || mDt2s.hasWidth()
-		|| mS2w.supported() || mS2w.hasLenient()) {
+		|| mMisc.hasVibVibration() || mMisc.hasSmartWake() || mDt2s.hasHeight()
+		|| mDt2s.hasWidth() || mS2w.supported() || mS2w.hasLenient()) {
             wakeInit(items);
         }
     }
@@ -511,8 +511,26 @@ public class WakeFragment extends RecyclerViewFragment {
 	    wakeCard.addItem(vibVibration);
         }
 
-	if (wakeCard.size() > 0) {
-	    items.add(wakeCard);
-	}
+        if (mMisc.hasSmartWake()) {
+            SwitchView smartWake = new SwitchView();
+            smartWake.setSummary(getString(R.string.smart_wake));
+            smartWake.setChecked(mMisc.isSmartWakeEnabled());
+            smartWake.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                @Override
+                public void onChanged(SwitchView switchView, boolean isChecked) {
+                    mMisc.enableSmartWake(isChecked, getActivity());
+                    getHandler().postDelayed(() -> {
+                                smartWake.setChecked(mMisc.isSmartWakeEnabled());
+                            },
+                            500);
+                }
+            });
+
+            wakeCard.addItem(smartWake);
+        }
+
+        if (wakeCard.size() > 0) {
+            items.add(wakeCard);
+        }
     }
 }
