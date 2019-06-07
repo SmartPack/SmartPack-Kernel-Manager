@@ -124,6 +124,9 @@ public class CPUFragment extends RecyclerViewFragment {
         if (MSMLimiter.supported()) {
             msmlimiterInit(items);
         }
+        if (Misc.hasVoxpopuliTunable()) {
+            powerhalTunabledInit(items);
+        }
     }
 
     private void cpuInit(List<RecyclerViewItem> items) {
@@ -950,6 +953,42 @@ public class CPUFragment extends RecyclerViewFragment {
 	if (msmLimiter.size() > 0) {
             items.add(msmLimiter);
 	}
+    }
+
+    private void powerhalTunabledInit(List<RecyclerViewItem> items) {
+        CardView powerhal = new CardView(getActivity());
+        powerhal.setTitle(getString(R.string.powerhal_tunables));
+
+        for (int i = 0; i < Misc.VoxpopuliTunablesize(); i++) {
+            if (Misc.VoxpopuliTunableexists(i)) {
+                GenericSelectView tunables = new GenericSelectView();
+                tunables.setSummary(Misc.getVoxpopuliTunableName(i));
+                tunables.setValue(Misc.getVoxpopuliTunableValue(i));
+                tunables.setValueRaw(tunables.getValue());
+                tunables.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+                final int position = i;
+                tunables.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        Misc.setVoxpopuliTunableValue(value, position, getActivity());
+                        genericSelectView.setValue(value);
+                        getHandler().postDelayed(() -> {
+                                    for (int i = 0; i < Misc.VoxpopuliTunablesize(); i++) {
+                                        tunables.setValue(Misc.getVoxpopuliTunableValue(i));
+                                    }
+                                },
+                                500);
+                    }
+                });
+
+                powerhal.addItem(tunables);
+            }
+        }
+
+        if (powerhal.size() > 0) {
+            items.add(powerhal);
+        }
     }
 
     private float[] mCPUUsages;

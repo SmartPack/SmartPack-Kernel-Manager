@@ -200,6 +200,7 @@
     <string name="stune_boost_ms">Stune Boost Duration</string>
     <string name="stune_boost_sett">Stune Boost Settings</string>
     <string name="stune_boost_sett_summary">Enable to get access to advanced stune boost settings.</string>
+    <string name="powerhal_tunables">Power HAL Tunables</string>
 
     <!-- CPU Input Boost -->
     <string name="cpu_input_boost">CPU Input Boost</string>

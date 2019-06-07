@@ -65,6 +65,12 @@ public class Misc {
 	"background/schedtune.sched_boost_enabled", "background/schedtune.sched_boost_no_override",
 	"background/schedtune.prefer_idle", "background/schedtune.colocate"};
 
+    private static final String VOXPOPULI = "/dev/voxpopuli";
+
+    private static final String[] TUNABLES = {"enable_interaction_boost", "fling_min_boost_duration",
+            "fling_max_boost_duration", "fling_boost_topapp", "fling_min_freq_big", "fling_min_freq_little",
+            "touch_boost_duration", "touch_boost_topapp", "touch_min_freq_big", "touch_min_freq_little"};
+
     private static String[] sAvailableCFSSchedulers;
     private static String[] sCpuQuietAvailableGovernors;
 
@@ -212,6 +218,31 @@ public class Misc {
 
     public static boolean hasMcPowerSaving() {
         return Utils.existFile(CPU_MC_POWER_SAVING);
+    }
+
+    public static void setVoxpopuliTunableValue(String value, int position, Context context) {
+        run(Control.write(value, VOXPOPULI + "/" + TUNABLES[position]), VOXPOPULI + "/" +
+                TUNABLES[position], context);
+    }
+
+    public static String getVoxpopuliTunableValue(int position) {
+        return Utils.readFile(VOXPOPULI + "/" + TUNABLES[position]);
+    }
+
+    public static String getVoxpopuliTunableName(int position) {
+        return Utils.upperCaseEachWord(TUNABLES[position]).replace("_", " ");
+    }
+
+    public static boolean VoxpopuliTunableexists(int position) {
+        return Utils.existFile(VOXPOPULI + "/" + TUNABLES[position]);
+    }
+
+    public static int VoxpopuliTunablesize() {
+        return TUNABLES.length;
+    }
+
+    public static boolean hasVoxpopuliTunable() {
+        return Utils.existFile(VOXPOPULI);
     }
 
     private static void run(String command, String id, Context context) {
