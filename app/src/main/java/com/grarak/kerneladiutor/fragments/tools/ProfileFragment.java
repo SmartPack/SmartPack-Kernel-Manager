@@ -27,8 +27,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +47,6 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.activities.FilePickerActivity;
 import com.grarak.kerneladiutor.activities.NavigationActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileActivity;
 import com.grarak.kerneladiutor.activities.tools.profile.ProfileEditActivity;
@@ -71,6 +72,7 @@ import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -89,6 +91,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private boolean mTaskerMode;
     private Profiles mProfiles;
+    private String mPath;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
     private boolean mLoaded;
@@ -412,9 +415,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                         startActivityForResult(createProfileActivityIntent(), 0);
                         break;
                     case 1:
-                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
+                        Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("*/*");
                         startActivityForResult(intent, 1);
                         break;
                 }
@@ -482,20 +484,38 @@ public class ProfileFragment extends RecyclerViewFragment {
                 mProfiles.commit();
             }
         } else if (requestCode == 1) {
-            ImportProfile importProfile = new ImportProfile(data.getStringExtra(
-                    FilePickerActivity.RESULT_INTENT));
-
-            if (!importProfile.readable()) {
-                Utils.toast(R.string.import_malformed, getActivity());
-                return;
+            Uri uri = data.getData();
+            File file = new File(uri.getPath());
+            if (file.getName().endsWith(".json")) {
+                Dialog selectProfile = new Dialog(getActivity());
+                selectProfile.setMessage(getString(R.string.select_question, file.getName()));
+                selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                });
+                selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+                    if (file.getAbsolutePath().contains("/document/raw:")) {
+                        mPath = file.getAbsolutePath().replace("/document/raw:", "");
+                    } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                        mPath = Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", "");
+                    } else if (file.getAbsolutePath().contains("/document/")) {
+                        mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+                    } else {
+                        mPath = file.getAbsolutePath();
+                    }
+                    ImportProfile importProfile = new ImportProfile(mPath);
+                    if (!importProfile.readable()) {
+                        Utils.toast(R.string.import_malformed, getActivity());
+                        return;
+                    }
+                    if (!importProfile.matchesVersion()) {
+                        Utils.toast(R.string.import_wrong_version, getActivity());
+                        return;
+                    }
+                    showImportDialog(importProfile);
+                });
+                selectProfile.show();
+            } else {
+                Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
             }
-
-            if (!importProfile.matchesVersion()) {
-                Utils.toast(R.string.import_wrong_version, getActivity());
-                return;
-            }
-
-            showImportDialog(importProfile);
         } else if (requestCode == 3) {
             reload();
         }
