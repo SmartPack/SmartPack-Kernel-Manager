@@ -20,11 +20,14 @@
 package com.grarak.kerneladiutor.fragments.tools.customcontrols;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -33,7 +36,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.activities.FilePickerActivity;
 import com.grarak.kerneladiutor.activities.tools.CustomControlsActivity;
 import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.customcontrols.ExportControl;
@@ -42,6 +44,7 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.CustomControlException;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Items;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Values;
@@ -53,6 +56,7 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.customcontrols.ErrorView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +69,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     private Dialog mOptionsDialog;
     private Dialog mItemsDialog;
     private Dialog mDeleteDialog;
+
+    private String mPath;
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoadingThread;
     private AsyncTask<Void, Void, ImportControl> mImportingThread;
@@ -97,9 +103,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                         showControls();
                         break;
                     case 1:
-                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".json");
+                        Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("*/*");
                         startActivityForResult(intent, 1);
                 }
             }
@@ -489,12 +494,37 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
-            if (requestCode == 0) {
+            if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
                 HashMap<String, Object> results = (HashMap<String, Object>) data.getSerializableExtra(
                         CustomControlsActivity.RESULT_INTENT);
                 updateControls(results);
             } else if (requestCode == 1) {
-                importing(data.getStringExtra(FilePickerActivity.RESULT_INTENT));
+                if (requestCode == 1) {
+                    Uri uri = data.getData();
+                    File file = new File(uri.getPath());
+                    if (file.getName().endsWith(".json")) {
+                        Dialog selectjson = new Dialog(getActivity());
+                        selectjson.setMessage(getString(R.string.select_question, file.getName()));
+                        selectjson.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                        });
+                        selectjson.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
+			    if (file.getAbsolutePath().contains("/document/raw:")) {
+			    	mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+			    } else if (file.getAbsolutePath().contains("/document/primary:")) {
+			    	mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+			    } else if (file.getAbsolutePath().contains("/document/")) {
+			    	mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+			    } else {
+			    	mPath = file.getAbsolutePath();
+			    }
+			    importing(mPath);
+
+                        });
+                        selectjson.show();
+                    } else {
+                        Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
+                    }
+                }
             }
         }
     }
