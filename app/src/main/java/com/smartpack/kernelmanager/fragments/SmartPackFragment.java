@@ -21,11 +21,13 @@
 
 package com.smartpack.kernelmanager.fragments;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
@@ -34,7 +36,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.activities.FilePickerActivity;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -61,6 +62,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private Dialog mSelectionMenu;
     private Dialog mFlashingDialog;
     private Dialog mFlashDialog;
+
+    private String mPath;
 
     @Override
     protected boolean showTopFab() {
@@ -525,9 +528,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Utils.toast(R.string.file_size_limit, getActivity());
-                Intent manualflash = new Intent(getActivity(), FilePickerActivity.class);
-                manualflash.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                manualflash.putExtra(FilePickerActivity.EXTENSION_INTENT, ".zip");
+                Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
+                manualflash.setType("application/zip");
                 startActivityForResult(manualflash, 0);
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -560,7 +562,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void manualFlash(final SmartPack.FLASHMENU flashmenu, final File file, final boolean flashing) {
-        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question) + ("\n\n") + getString(R.string.file_size_limit), new DialogInterface.OnClickListener() {
+        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_message, file.getName()) + ("\n\n") +
+                getString(R.string.file_size_limit), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }
@@ -624,8 +627,20 @@ public class SmartPackFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0 && data != null) {
-            showFlashingDialog(new File(data.getStringExtra(FilePickerActivity.RESULT_INTENT)));
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            File file = new File(uri.getPath());
+	    if (file.getAbsolutePath().contains("/document/raw:")) {
+                mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+            } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+            } else if (file.getAbsolutePath().contains("/document/")) {
+                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+            } else {
+                mPath = file.getAbsolutePath();
+            }
+            showFlashingDialog(new File(mPath));
+	    RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
         }
     }
 }
