@@ -20,24 +20,27 @@
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.activities.FilePickerActivity;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -65,6 +68,8 @@ public class BackupFragment extends RecyclerViewFragment {
     private Dialog mRestoreDialog;
 
     private boolean mLoaded;
+
+    private String mPath;
 
     @Override
     protected boolean showTopFab() {
@@ -263,9 +268,8 @@ public class BackupFragment extends RecyclerViewFragment {
                         showBackupFlashingDialog(null);
                         break;
                     case 1:
-                        Intent intent = new Intent(getActivity(), FilePickerActivity.class);
-                        intent.putExtra(FilePickerActivity.PATH_INTENT, "/sdcard");
-                        intent.putExtra(FilePickerActivity.EXTENSION_INTENT, ".img");
+                        Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("*/*");
                         startActivityForResult(intent, 0);
                         break;
                 }
@@ -302,7 +306,7 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void restore(final Backup.PARTITION partition, final File file, final boolean flashing) {
-        mRestoreDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question), new DialogInterface.OnClickListener() {
+        mRestoreDialog = ViewUtils.dialogBuilder(getString(R.string.sure_message, file.getName()), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }
@@ -467,8 +471,23 @@ public class BackupFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0 && data != null) {
-            showBackupFlashingDialog(new File(data.getStringExtra(FilePickerActivity.RESULT_INTENT)));
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            File file = new File(uri.getPath());
+            if (file.getName().endsWith(".img")) {
+		if (file.getAbsolutePath().contains("/document/raw:")) {
+		    mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+		} else if (file.getAbsolutePath().contains("/document/primary:")) {
+		    mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+		} else if (file.getAbsolutePath().contains("/document/")) {
+		    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+		} else {
+		    mPath = file.getAbsolutePath();
+		}
+		showBackupFlashingDialog(new File(mPath));
+            } else {
+                Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
+            }
         }
     }
 
