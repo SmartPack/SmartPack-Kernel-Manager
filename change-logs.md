@@ -1,5 +1,9 @@
 # Change-logs
 
+## 69. June 07, 2019
+*Release-tag: v8.2*<br>
+Changes: Over-all: Updated to use external file manager. Wake: Added initial support to Smart Wake. CPU: Added initial support to Power HAL tunables. K-lapse: Added version info (only for v5.0 onwards). K-lapse: Fixed auto-dimmer not working properly. build: Updated gradle to 3.5.0-beta03. Updated Chinese Traditional translations. Miscellaneous changes, please check my GitHub page for more info.
+
 ## 68. May 31, 2019
 *Release-tag: v8.1*<br>
 Changes: Virtual Memory: zRAM: Increased maximum limit to 2560. SmartPack: Flasher: Added a file size limit of 100 MB. K-lapse: Moved to own page. K-lapse: Updates for v5.0. Misc. Updated Russian & Chinese Traditional translations. Miscellaneous changes, please check my GitHub page for more info.
