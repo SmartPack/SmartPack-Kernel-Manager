@@ -481,7 +481,9 @@ public class BackupFragment extends RecyclerViewFragment {
 		    mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
 		} else if (file.getAbsolutePath().contains("/document/")) {
 		    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-		} else {
+        } else if (file.getAbsolutePath().contains("/storage_root")) {
+            mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+        } else {
 		    mPath = file.getAbsolutePath();
 		}
 		showBackupFlashingDialog(new File(mPath));
