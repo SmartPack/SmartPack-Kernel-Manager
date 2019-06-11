@@ -1,14 +1,11 @@
 {
-  "latestVersion": "8.2-20190607",
+  "latestVersion": "8.3-20190611",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Over-all: Updated to use external file manager.",
-    "- Wake: Added initial support to Smart Wake.",
-    "- K-lapse: Added version info (only for v5.0 onwards).",
-    "- K-lapse: Fixed auto-dimmer not working properly.",
-    "- build: Updated gradle to 3.5.0-beta03.",
-    "- Updated Chinese Traditional translations.",
-    "- Miscellaneous changes, please check my GitHub page for more info."
+    "- SmartPack: Flasher: Updated to work with some some file managers.",
+    "- SmartPack: Updated permission request.",
+    "- Back-up, Profiles & custom Control: Updated for some file managers.",
+    "- SmartPack: Flasher: Introduced an additional file extension check"
   ]
 }
