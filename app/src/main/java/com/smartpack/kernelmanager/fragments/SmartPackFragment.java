@@ -634,18 +634,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            if (file.getAbsolutePath().contains("/document/raw:")) {
-                mPath  = file.getAbsolutePath().replace("/document/raw:", "");
-            } else if (file.getAbsolutePath().contains("/document/primary:")) {
-                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-            } else if (file.getAbsolutePath().contains("/document/")) {
-                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-            } else if (file.getAbsolutePath().contains("/storage_root")) {
-                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+            if (file.getName().endsWith(".zip")) {
+                if (file.getAbsolutePath().contains("/document/raw:")) {
+                    mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+                } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                    mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+                } else if (file.getAbsolutePath().contains("/document/")) {
+                    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+                } else if (file.getAbsolutePath().contains("/storage_root")) {
+                    mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+                } else {
+                    mPath = file.getAbsolutePath();
+                }
+                showFlashingDialog(new File(mPath));
             } else {
-                mPath = file.getAbsolutePath();
+                Utils.toast(getString(R.string.file_selection_error), getActivity());
             }
-            showFlashingDialog(new File(mPath));
         }
     }
 }

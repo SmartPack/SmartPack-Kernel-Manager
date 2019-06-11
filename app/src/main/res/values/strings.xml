@@ -893,6 +893,7 @@
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>
+    <string name="file_selection_error">Failed to get data from external file manager</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>
