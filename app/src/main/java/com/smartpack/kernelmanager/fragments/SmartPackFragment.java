@@ -27,6 +27,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -49,6 +50,7 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.utils.SmartPack;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -85,6 +87,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         SmartPackInit(items);
+	requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     @Override
@@ -196,10 +199,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                          */
                                         String flashFolder = Utils.getInternalDataStorage() + "/flash";
                                         String RECOVERY_API = "3";
+                                        FileDescriptor fd = new FileDescriptor();
                                         new Execute().execute("cd " + flashFolder);
                                         new Execute().execute("mount -o remount,rw / && mkdir /tmp");
                                         new Execute().execute("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
-                                        new Execute().execute("sh META-INF/com/google/android/update-binary " + RECOVERY_API + " 1 " + KernelZip);
+                                        new Execute().execute("sh META-INF/com/google/android/update-binary " + RECOVERY_API + " " + fd + " " + KernelZip + " | tee " + Utils.getInternalDataStorage() + "/autoflash_log.txt");
                                         new Execute().execute("cd ../ && rm -r flash/");
                                         new Execute().execute(RebootCommand);
                                     });
@@ -630,17 +634,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-	    if (file.getAbsolutePath().contains("/document/raw:")) {
+            if (file.getAbsolutePath().contains("/document/raw:")) {
                 mPath  = file.getAbsolutePath().replace("/document/raw:", "");
             } else if (file.getAbsolutePath().contains("/document/primary:")) {
                 mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
             } else if (file.getAbsolutePath().contains("/document/")) {
                 mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+            } else if (file.getAbsolutePath().contains("/storage_root")) {
+                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
             } else {
                 mPath = file.getAbsolutePath();
             }
             showFlashingDialog(new File(mPath));
-	    RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
         }
     }
 }
