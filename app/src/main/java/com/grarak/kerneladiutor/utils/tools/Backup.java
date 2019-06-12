@@ -56,7 +56,13 @@ public class Backup {
             "/dev/block/platform/sdhci.1/by-name/boot",
             "/dev/block/nandc",
             "/dev/bootimg",
-            "/dev/boot"
+            "/dev/boot",
+            /* 
+             * A/B devices: Partitions has both Boot & Recovery
+             * Ref: https://source.android.com/devices/bootloader/partitions-images
+             */
+            "/dev/block/platform/soc/7824900.sdhci/by-name/boot" + getBootSlot(),
+            "/dev/block/by-name/boot" + getBootSlot()
     };
 
     private static final String[] Recovery = {
@@ -172,6 +178,10 @@ public class Backup {
             }
         }
         return fota;
+    }
+
+    public static String getBootSlot() {
+        return RootUtils.runCommand("getprop ro.boot.slot_suffix");
     }
 
     public static boolean hasBackup() {
