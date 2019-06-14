@@ -140,9 +140,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             spversion.setSummary(SmartPack.getlatestSmartPackVersion() + ("\n~ ") + getString(R.string.up_to_date_message) + (" ~") + getString(R.string.recheck));
                             // Show an alert message if the device is already on latest SmartPack-Kernel
                             Dialog uptodate = new Dialog(getActivity());
+                            uptodate.setIcon(R.mipmap.ic_launcher);
                             uptodate.setTitle(getString(R.string.appupdater_update_not_available));
                             uptodate.setMessage(("\n") + getString(R.string.up_to_date_message));
-                            uptodate.setNegativeButton(getString(R.string.ok), (dialogInterface, i) -> {
+                            uptodate.setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
                             });
                             uptodate.show();
                         }
@@ -159,9 +160,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         }
                         // Show an alert dialogue and let the user know the process...
                         Dialog downloads = new Dialog(getActivity());
+                        downloads.setIcon(R.mipmap.ic_launcher);
                         downloads.setTitle(("SmartPack-Kernel ") + SmartPack.getlatestSmartPackVersion() + (" is available..."));
                         downloads.setMessage(getString(R.string.downloads_message));
-                        downloads.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                        downloads.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                         });
                         downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
                             // Initiate device specific downloads...
@@ -180,9 +182,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 // Proceed to auto-flash if the extraction was successful...
                                 if (SmartPack.isZIPFileExtracted()) {
                                     Dialog flash = new Dialog(getActivity());
+                                    flash.setIcon(R.mipmap.ic_launcher);
                                     flash.setTitle(getString(R.string.autoflash));
                                     flash.setMessage(getString(R.string.autoflash_message));
-                                    flash.setNegativeButton(getString(R.string.flash_later), (dialogInterface, i) -> {
+                                    flash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                                         SmartPack.cleanFlashFolder();
                                     });
                                     flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
@@ -204,9 +207,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     // Otherwise, show a flash via recovery message, only if we recognize recovery...
                                 } else if (SmartPack.hasRecovery()) {
                                     Dialog flash = new Dialog(getActivity());
+                                    flash.setIcon(R.mipmap.ic_launcher);
                                     flash.setTitle(getString(R.string.autoflash));
                                     flash.setMessage(getString(R.string.flash_message));
-                                    flash.setNegativeButton(getString(R.string.flash_later), (dialogInterface, i) -> {
+                                    flash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                                         SmartPack.cleanFlashFolder();
                                     });
                                     flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
@@ -218,9 +222,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     // If everything failed, show an "Auto-flash not possible" message...
                                 } else {
                                     Dialog noflash = new Dialog(getActivity());
+                                    noflash.setIcon(R.mipmap.ic_launcher);
                                     noflash.setTitle(getString(R.string.warning));
                                     noflash.setMessage(getString(R.string.no_flash_message));
-                                    noflash.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                                    noflash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                                     });
                                     noflash.setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
                                         new Execute().execute(RebootCommand + " recovery");
@@ -317,15 +322,17 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Dialog resetsettings = new Dialog(getActivity());
+                resetsettings.setIcon(R.mipmap.ic_launcher);
                 resetsettings.setTitle(getString(R.string.warning));
                 resetsettings.setMessage(getString(R.string.reset_settings_message));
-                resetsettings.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                resetsettings.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
                     Dialog reboot = new Dialog(getActivity());
+                    reboot.setIcon(R.mipmap.ic_launcher);
                     reboot.setTitle(getString(R.string.reboot));
                     reboot.setMessage(getString(R.string.reboot_message));
-                    reboot.setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+                    reboot.setNeutralButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
                         new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
                         new Execute().execute("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
                     });
@@ -412,9 +419,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(RecyclerViewItem item) {
                     Dialog wipecache = new Dialog(getActivity());
+                    wipecache.setIcon(R.mipmap.ic_launcher);
                     wipecache.setTitle(getString(R.string.sure_question));
                     wipecache.setMessage(getString(R.string.wipe_cache_message));
-                    wipecache.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    wipecache.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     });
                     wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
                         new Execute().execute("echo --wipe_cache > /cache/recovery/command");
@@ -432,9 +440,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(RecyclerViewItem item) {
                     Dialog wipedata = new Dialog(getActivity());
+                    wipedata.setIcon(R.mipmap.ic_launcher);
                     wipedata.setTitle(getString(R.string.sure_question));
                     wipedata.setMessage(getString(R.string.wipe_data_message));
-                    wipedata.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    wipedata.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     });
                     wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
                         new Execute().execute("echo --wipe_data > /cache/recovery/command");
@@ -453,9 +462,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Dialog recoveryreboot = new Dialog(getActivity());
+                recoveryreboot.setIcon(R.mipmap.ic_launcher);
                 recoveryreboot.setTitle(getString(R.string.sure_question));
                 recoveryreboot.setMessage(getString(R.string.recovery_message));
-                recoveryreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                recoveryreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 recoveryreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                     new Execute().execute(RebootCommand + " recovery");
@@ -472,9 +482,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Dialog bootloaderreboot = new Dialog(getActivity());
+                bootloaderreboot.setIcon(R.mipmap.ic_launcher);
                 bootloaderreboot.setTitle(getString(R.string.sure_question));
                 bootloaderreboot.setMessage(getString(R.string.bootloader_message));
-                bootloaderreboot.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                bootloaderreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 bootloaderreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                     new Execute().execute(RebootCommand + " bootloader");
