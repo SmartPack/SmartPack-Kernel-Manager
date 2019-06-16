@@ -23,7 +23,6 @@ package com.smartpack.kernelmanager.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -40,7 +39,6 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -51,7 +49,6 @@ import com.smartpack.kernelmanager.utils.SmartPack;
 
 import java.io.File;
 import java.io.FileDescriptor;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -60,10 +57,6 @@ import java.util.List;
 
 public class SmartPackFragment extends RecyclerViewFragment {
     private boolean mPermissionDenied;
-
-    private Dialog mSelectionMenu;
-    private Dialog mFlashingDialog;
-    private Dialog mFlashDialog;
 
     private String mPath;
 
@@ -189,10 +182,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     Dialog flash = new Dialog(getActivity());
                                     flash.setTitle(getString(R.string.autoflash));
                                     flash.setMessage(getString(R.string.autoflash_message));
-                                    flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
+                                    flash.setNegativeButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                                         SmartPack.cleanFlashFolder();
                                     });
-                                    flash.setPositiveButton(getString(R.string.install_now), (dialog2, id2) -> {
+                                    flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
                                         /*
                                          * Flashing recovery zip without rebooting to custom recovery
                                          * Credits to osm0sis @ xda-developers.com
@@ -213,10 +206,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     Dialog flash = new Dialog(getActivity());
                                     flash.setTitle(getString(R.string.autoflash));
                                     flash.setMessage(getString(R.string.flash_message));
-                                    flash.setNegativeButton(getString(R.string.manual_flashing), (dialogInterface, i) -> {
+                                    flash.setNegativeButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                                         SmartPack.cleanFlashFolder();
                                     });
-                                    flash.setPositiveButton(getString(R.string.install_now), (dialog2, id2) -> {
+                                    flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
                                         new Execute().execute(RecoveryFlashCommand);
                                         SmartPack.cleanFlashFolder();
                                         new Execute().execute(RebootCommand + " recovery");
@@ -527,89 +520,37 @@ public class SmartPackFragment extends RecyclerViewFragment {
             return;
         }
 
-        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
-                R.array.flasher), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Utils.toast(R.string.file_size_limit, getActivity());
-                Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
-                manualflash.setType("application/zip");
-                startActivityForResult(manualflash, 0);
-            }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mSelectionMenu = null;
-            }
-        });
-        mSelectionMenu.show();
+        Utils.toast(R.string.file_size_limit, getActivity());
+        Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
+        manualflash.setType("application/zip");
+        startActivityForResult(manualflash, 0);
     }
 
-    private void showFlashingDialog(final File file) {
-        final LinkedHashMap<String, SmartPack.FLASHMENU> menu = getflashMenu();
-        mFlashingDialog = new Dialog(getActivity()).setItems(menu.keySet().toArray(
-                new String[menu.size()]), new DialogInterface.OnClickListener() {
+    private void manualFlash(final File file) {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                SmartPack.FLASHMENU flashmenu = menu.values().toArray(new SmartPack.FLASHMENU[menu.size()])[i];
-                if (file != null) {
-                    manualFlash(flashmenu, file, true);
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.flashing) + (" ") + file.getName());
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                SmartPack.manualFlash(file);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
                 }
             }
-        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mFlashingDialog = null;
-            }
-        });
-        mFlashingDialog.show();
-    }
-
-    private void manualFlash(final SmartPack.FLASHMENU flashmenu, final File file, final boolean flashing) {
-        mFlashDialog = ViewUtils.dialogBuilder(getString(R.string.sure_message, file.getName()) + ("\n\n") +
-                getString(R.string.file_size_limit), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                new AsyncTask<Void, Void, Void>() {
-
-                    private ProgressDialog mProgressDialog;
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        mProgressDialog = new ProgressDialog(getActivity());
-                        mProgressDialog.setMessage(getString(R.string.flashing));
-                        mProgressDialog.setCancelable(false);
-                        mProgressDialog.show();
-                    }
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        SmartPack.manualFlash(file);
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
-                        try {
-                            mProgressDialog.dismiss();
-                        } catch (IllegalArgumentException ignored) {
-                        }
-                    }
-                }.execute();
-            }
-        }, new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                mFlashDialog = null;
-            }
-        }, getActivity());
-        mFlashDialog.show();
+        }.execute();
     }
 
     @Override
@@ -619,12 +560,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             mPermissionDenied = true;
             Utils.toast(R.string.permission_denied_write_storage, getActivity());
         }
-    }
-
-    private LinkedHashMap<String, SmartPack.FLASHMENU> getflashMenu() {
-        LinkedHashMap<String, SmartPack.FLASHMENU> flashingMenu = new LinkedHashMap<>();
-        flashingMenu.put(getString(R.string.flasher_message), SmartPack.FLASHMENU.FLASH);
-        return flashingMenu;
     }
 
     @Override
@@ -646,7 +581,16 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 } else {
                     mPath = file.getAbsolutePath();
                 }
-                showFlashingDialog(new File(mPath));
+                Dialog manualFlash = new Dialog(getActivity());
+                manualFlash.setIcon(R.mipmap.ic_launcher);
+                manualFlash.setTitle(getString(R.string.flasher));
+                manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") + getString(R.string.file_size_limit));
+                manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
+                });
+                manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
+                    manualFlash(new File(mPath));
+                });
+                manualFlash.show();
             } else {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
             }

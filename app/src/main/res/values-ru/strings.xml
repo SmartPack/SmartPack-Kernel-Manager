@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--Author: andrey167 <andrey_167@bk.ru>-->
+﻿<!--Author: andrey167 <andrey_167@bk.ru>-->
 
 <resources>
     <string name="about">О приложении</string>
@@ -421,7 +420,8 @@
     <string name="input_interval_summary">Минимальный интервал усиления ЦП при обнаружении ввода.</string>
     <string name="inputs">Устройства ввода</string>
     <string name="insanity">БеЗуМиЕ</string>
-    <string name="install_now">Установить сейчас</string>
+    <string name="flash_now">Установить сейчас</string>
+    <string name="flash_later">Я буду использовать мои руки</string>
     <string name="instant">Мгновенно</string>
     <string name="intelliplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано faux123.</string>
     <string name="intellithermal_optimized">Оптимизированный Intellithermal</string>
@@ -483,7 +483,6 @@
     <string name="mah">мА/ч</string>
     <string name="mako_hotplug_summary">Ядерная замена MPDecision от Qualcomm. Разработано franciscofranco.</string>
     <string name="manual">Ручная установка</string>
-    <string name="manual_flashing">Я буду использовать мои руки</string>
     <string name="master_sequence">Мастер последовательности</string>
     <string name="master_sequence_summary">Включение главной последовательности отключит и будет игнорировать профили и сценарии Samsung, элементы управления ROM будут отключены.</string>
     <string name="material_icon">Иконка Material</string>
