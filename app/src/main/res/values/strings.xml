@@ -949,11 +949,13 @@
     <string name="download">Download</string>
     <string name="downloads_message">\nClick \'Download\' to initialize auto kernel updates.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
     <string name="autoflash">Auto-flash</string>
+    <string name="recovery_flash">Flash via Recovery</string>
+    <string name="recovery_flash_message">Flashing %s via Recovery</string>
     <string name="autoflash_message">\nSmartPack-Kernel is downloaded and ready for auto-flashing. Do you want to flash it NOW?\n\nPlease note: Your device will be automatically rebooted after the flashing process.\n</string>
     <string name="flash_now">Flash Now</string>
     <string name="flash_later">Flash later</string>
-    <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'\n\nDo you want to Install it NOW?\n</string>
-    <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel once the download is completed.\nDo you want to reboot?\n</string>
+    <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'. However, due to the absence of proper BusyBox binaries on this device, flashing via recovery is only available.\n\nDo you want to Install it NOW?\n</string>
+    <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel which is available at \'/sdcard/Download/\'.\nDo you want to reboot?\n</string>
     <string name="download_failed_message">\nAre you running an unsupported android version?\n\nIf not, please check your internet connection!\n\n</string>
     <string name="advance_options">Advanced Options</string>
     <string name="reboot">Reboot</string>

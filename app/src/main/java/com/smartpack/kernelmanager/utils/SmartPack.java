@@ -38,16 +38,14 @@ import java.io.FileDescriptor;
 public class SmartPack {
 
     private static final String SMARTPACK_VERSION = "/version";
-
     private static final String SMARTPACK_DOWNLOADED = Environment.getExternalStorageDirectory().toString() + "/Download/SmartPack-Kernel.zip";
-
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
-
     private static final String LATEST_VERSION = Environment.getDataDirectory() + "/version";
-
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
-
     private static final String RECOVERY = "/cache/recovery/";
+    private static final String RECOVERY_API = "3";
+
+    private static final FileDescriptor fd = new FileDescriptor();
 
     /**
      * Check SmartPack-Kernel is installed
@@ -112,16 +110,14 @@ public class SmartPack {
         return Utils.existFile(ZIPFILE_EXTRACTED);
     }
 
-    public static boolean hasFlashFolder() {
-        return Utils.existFile(FLASH_FOLDER);
-    }
-
     public static boolean hasRecovery() {
         return Utils.existFile(RECOVERY);
     }
 
     public static void deleteVersionInfo() {
-        RootUtils.runCommand("rm -r " + LATEST_VERSION );
+        if (haslatestSmartPackVersion()) {
+            RootUtils.runCommand("rm -r " + LATEST_VERSION);
+        }
     }
 
     public static void getVersionInfo() {
@@ -133,7 +129,9 @@ public class SmartPack {
     }
 
     public static void deleteLatestKernel() {
-        RootUtils.runCommand("rm -rf " + SMARTPACK_DOWNLOADED);
+        if (isSmartPackDownloaded()) {
+            RootUtils.runCommand("rm -rf " + SMARTPACK_DOWNLOADED);
+        }
     }
 
     public static void getLatestKernel() {
@@ -153,44 +151,65 @@ public class SmartPack {
     }
 
     public static void makeFlashFolder() {
-        RootUtils.runCommand("mkdir " + FLASH_FOLDER);
-    }
-
-    public static void extractLatestKernel() {
-        RootUtils.runCommand("unzip " + SMARTPACK_DOWNLOADED + " -d " + FLASH_FOLDER);
+        File flashFolderPath = new File(FLASH_FOLDER);
+        if (flashFolderPath.exists() && flashFolderPath.isFile()) {
+            flashFolderPath.delete();
+        }
+        flashFolderPath.mkdirs();
     }
 
     public static void cleanFlashFolder() {
-        RootUtils.runCommand("rm -r " + FLASH_FOLDER + "/*");
+        if (!FLASH_FOLDER.isEmpty()) {
+            RootUtils.runCommand("rm -r " + FLASH_FOLDER + "/*");
+        }
     }
 
-    public static void manualFlash(File file) {
-        FileDescriptor fd = new FileDescriptor();
-        String path = file.toString();
-        String flashFolder = Utils.getInternalDataStorage() + "/flash";
-        String RECOVERY_API = "3";
-        String CleanUpCommand = "rm -r '" + flashFolder + "'/*";
+    public static void extractLatestKernel(String path) {
+        RootUtils.runCommand("unzip " + path + " -d " + FLASH_FOLDER);
+    }
+
+    public static void flashCommand(String path) {
         /*
          * Flashing recovery zip without rebooting to custom recovery
          * Credits to osm0sis @ xda-developers.com
          */
+        RootUtils.runCommand("echo '" + path + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
+        RootUtils.runCommand("cd '" + FLASH_FOLDER + "' && mount -o remount,rw / && mkdir /tmp");
+        RootUtils.runCommand("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
+        RootUtils.runCommand("sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' " + fd + " '" + path + "'| tee '" + Utils.getInternalDataStorage() + "'/flasher_log.txt");
+        cleanFlashFolder();
+    }
+
+    public static void prepareFlashFolder() {
         // Check and create, if necessary, internal storage folder
         makeInternalStorageFolder();
-        if (Utils.existFile(flashFolder)) {
-            RootUtils.runCommand(CleanUpCommand);
+        if (Utils.existFile(FLASH_FOLDER)) {
+            cleanFlashFolder();
         } else {
-            RootUtils.runCommand("mkdir '" + flashFolder + "'");
+            makeFlashFolder();
         }
+    }
+
+    public static void autoFlash() {
+        String path = SMARTPACK_DOWNLOADED;
+        flashCommand(path);
+    }
+
+    public static void manualFlash(File file) {
+        String path = file.toString();
         if (file.length() <= 100000000) {
-            RootUtils.runCommand("unzip '" + path + "' -d '" + flashFolder + "'");
+            prepareFlashFolder();
+            extractLatestKernel(path);
             if (isZIPFileExtracted()) {
-                RootUtils.runCommand("echo '" + path + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
-                RootUtils.runCommand("cd '" + flashFolder + "' && mount -o remount,rw / && mkdir /tmp");
-                RootUtils.runCommand("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
-                RootUtils.runCommand("sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' " + fd + " '" + path + "'| tee '" + Utils.getInternalDataStorage() + "'/flasher_log.txt");
-                RootUtils.runCommand(CleanUpCommand);
+                flashCommand(path);
             }
         }
+    }
+
+    public static void recoveryFlash() {
+        String path = SMARTPACK_DOWNLOADED;
+        String RecoveryFlashCommand = "echo --update_package=/" + path + " > /cache/recovery/command";
+        RootUtils.runCommand(RecoveryFlashCommand);
     }
 
     public static boolean supported() {

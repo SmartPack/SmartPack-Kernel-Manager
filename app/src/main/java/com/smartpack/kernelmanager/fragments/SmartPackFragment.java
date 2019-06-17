@@ -48,7 +48,6 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.smartpack.kernelmanager.utils.SmartPack;
 
 import java.io.File;
-import java.io.FileDescriptor;
 import java.util.List;
 
 /**
@@ -58,6 +57,8 @@ import java.util.List;
 public class SmartPackFragment extends RecyclerViewFragment {
     private boolean mPermissionDenied;
 
+    private String RebootCommand = "am broadcast android.intent.action.ACTION_SHUTDOWN " + "&&" +
+            " sync && echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3 && reboot";
     private String mPath;
 
     @Override
@@ -95,10 +96,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         CardView smartpack = new CardView(getActivity());
         smartpack.setTitle(getString(R.string.smartpack_kernel));
 
-        String KernelZip = Environment.getExternalStorageDirectory().toString() + "/Download/SmartPack-Kernel.zip";
-        String RecoveryFlashCommand = "echo --update_package=/" + KernelZip + " > /cache/recovery/command";
-        String RebootCommand = "am broadcast android.intent.action.ACTION_SHUTDOWN && sync && echo 3 > /proc/sys/vm/drop_caches && sync && sleep 3 && reboot";
-
         if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {
             DescriptionView currentspversion = new DescriptionView();
             currentspversion.setTitle(("Current ") + getString(R.string.version));
@@ -127,11 +124,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             spversion.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    // Delete latest kernel version information
-                    if (SmartPack.haslatestSmartPackVersion()) {
-                        SmartPack.deleteVersionInfo();
+                    if (mPermissionDenied) {
+                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                        return;
                     }
-                    // Get latest kernel version information
+                    // Update latest kernel version information
+                    SmartPack.deleteVersionInfo();
                     SmartPack.getVersionInfo();
                     if ((SmartPack.hasSmartPackInstalled()) && (SmartPack.SmartPackRelease())) {
                         if (SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()) {
@@ -155,9 +153,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     // Initialize SmartPack-Kernel auto install/update
                     if (SmartPack.hasSmartPackInstalled() && SmartPack.SmartPackRelease() && SmartPack.getSmartPackVersionNumber() < SmartPack.getlatestSmartPackVersionNumber()  || SmartPack.SmartPackRelease() && (!(SmartPack.hasSmartPackInstalled()))) {
                         // Check and delete an old version of the kernel from the download folder, if any...
-                        if (SmartPack.isSmartPackDownloaded()) {
-                            SmartPack.deleteLatestKernel();
-                        }
+                        SmartPack.deleteLatestKernel();
                         // Show an alert dialogue and let the user know the process...
                         Dialog downloads = new Dialog(getActivity());
                         downloads.setIcon(R.mipmap.ic_launcher);
@@ -166,17 +162,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         downloads.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                         });
                         downloads.setPositiveButton(getString(R.string.download), (dialog1, id1) -> {
+                            // Check and create, if necessary, internal storage folder
+                            SmartPack.prepareFlashFolder();
                             // Initiate device specific downloads...
                             SmartPack.getLatestKernel();
-                            // Check and create, if necessary, internal storage folder
-                            SmartPack.makeInternalStorageFolder();
                             // Extract the above downloaded kernel for auto-flash...
-                            if (!SmartPack.hasFlashFolder()) {
-                                SmartPack.makeFlashFolder();
-                            } else {
-                                SmartPack.cleanFlashFolder();
-                            }
-                            SmartPack.extractLatestKernel();
+                            String path = Environment.getExternalStorageDirectory().toString() + "/Download/SmartPack-Kernel.zip";
+                            SmartPack.extractLatestKernel(path);
                             // Proceed only if the download was successful...
                             if (SmartPack.isSmartPackDownloaded()) {
                                 // Proceed to auto-flash if the extraction was successful...
@@ -189,34 +181,20 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         SmartPack.cleanFlashFolder();
                                     });
                                     flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
-                                        /*
-                                         * Flashing recovery zip without rebooting to custom recovery
-                                         * Credits to osm0sis @ xda-developers.com
-                                         */
-                                        String flashFolder = Utils.getInternalDataStorage() + "/flash";
-                                        String RECOVERY_API = "3";
-                                        FileDescriptor fd = new FileDescriptor();
-                                        new Execute().execute("cd " + flashFolder);
-                                        new Execute().execute("mount -o remount,rw / && mkdir /tmp");
-                                        new Execute().execute("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
-                                        new Execute().execute("sh META-INF/com/google/android/update-binary " + RECOVERY_API + " " + fd + " " + KernelZip + " | tee " + Utils.getInternalDataStorage() + "/autoflash_log.txt");
-                                        new Execute().execute("cd ../ && rm -r flash/");
-                                        new Execute().execute(RebootCommand);
+                                        autoFlash();
                                     });
                                     flash.show();
                                     // Otherwise, show a flash via recovery message, only if we recognize recovery...
                                 } else if (SmartPack.hasRecovery()) {
                                     Dialog flash = new Dialog(getActivity());
                                     flash.setIcon(R.mipmap.ic_launcher);
-                                    flash.setTitle(getString(R.string.autoflash));
+                                    flash.setTitle(getString(R.string.recovery_flash));
                                     flash.setMessage(getString(R.string.flash_message));
                                     flash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                                         SmartPack.cleanFlashFolder();
                                     });
                                     flash.setPositiveButton(getString(R.string.flash_now), (dialog2, id2) -> {
-                                        new Execute().execute(RecoveryFlashCommand);
-                                        SmartPack.cleanFlashFolder();
-                                        new Execute().execute(RebootCommand + " recovery");
+                                        recovrtyFlash();
                                     });
                                     flash.show();
                                     // If everything failed, show an "Auto-flash not possible" message...
@@ -235,6 +213,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                 // Shown "Download failed" message...
                             } else {
                                 Dialog downloadfailed = new Dialog(getActivity());
+                                downloadfailed.setIcon(R.mipmap.ic_launcher);
                                 downloadfailed.setTitle(getString(R.string.appupdater_download_filed));
                                 downloadfailed.setMessage(getString(R.string.download_failed_message));
                                 downloadfailed.setPositiveButton(getString(R.string.exit), (dialog2, id2) -> {
@@ -521,6 +500,63 @@ public class SmartPackFragment extends RecyclerViewFragment {
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
         }
+    }
+
+    private void autoFlash() {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.flashing) + (" ") + getString(R.string.smartpack_kernel) + (" ") + SmartPack.getlatestSmartPackVersion());
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                SmartPack.autoFlash();
+                RootUtils.runCommand(RebootCommand);
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+        }.execute();
+    }
+
+    private void recovrtyFlash() {
+        new AsyncTask<Void, Void, Void>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.recovery_flash_message, getString(R.string.smartpack_kernel) + (" ") + SmartPack.getlatestSmartPackVersion()));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            @Override
+            protected Void doInBackground(Void... voids) {
+                SmartPack.recoveryFlash();
+                SmartPack.cleanFlashFolder();
+                RootUtils.runCommand(RebootCommand + " recovery");
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+        }.execute();
     }
 
     @Override
