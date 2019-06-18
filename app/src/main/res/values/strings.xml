@@ -497,6 +497,7 @@
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
+    <string name="white">White</string>
     <string name="min_rgb">Minimum RGB Value</string>
     <string name="invert_screen">Invert Screen</string>
     <string name="saturation_intensity">Saturation Intensity</string>
@@ -658,6 +659,7 @@
     <string name="fade_out">Fade out</string>
     <string name="fade_out_summary">Sets the time period of the falling slope.</string>
     <string name="display_backlight">Display Backlight</string>
+    <string name="led_brightness">LED Brightness (Max)</string>
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>

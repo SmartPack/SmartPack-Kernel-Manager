@@ -59,6 +59,12 @@ public class LED {
 
     private static final String LED_FADE = "/sys/class/sec/led/led_fade";
 
+    private static final String LED_BRIGHTNESS = "/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0030/leds";
+    private static final String LED_BRIGHTNESS_B = LED_BRIGHTNESS + "/B/max_brightness";
+    private static final String LED_BRIGHTNESS_G = LED_BRIGHTNESS + "/G/max_brightness";
+    private static final String LED_BRIGHTNESS_R = LED_BRIGHTNESS + "/R/max_brightness";
+    private static final String LED_BRIGHTNESS_W = LED_BRIGHTNESS + "/W/max_brightness";
+
     private final LinkedHashMap<Integer, Boolean> mRedSpeed = new LinkedHashMap<>();
     private final LinkedHashMap<Integer, Boolean> mGreenRate = new LinkedHashMap<>();
 
@@ -206,9 +212,58 @@ public class LED {
        return ENABLE_FILE != null;
     }
 
+    public void setLEDBrightnessB(int value, Context context) {
+        run(Control.write(String.valueOf(value), LED_BRIGHTNESS_B), LED_BRIGHTNESS_B, context);
+    }
+
+    public static int getLEDBrightnessB() {
+        return Utils.strToInt(Utils.readFile(LED_BRIGHTNESS_B));
+    }
+
+    public static boolean hasLEDBrightnessB() {
+       return Utils.existFile(LED_BRIGHTNESS_B);
+    }
+
+    public void setLEDBrightnessG(int value, Context context) {
+        run(Control.write(String.valueOf(value), LED_BRIGHTNESS_G), LED_BRIGHTNESS_G, context);
+    }
+
+    public static int getLEDBrightnessG() {
+        return Utils.strToInt(Utils.readFile(LED_BRIGHTNESS_G));
+    }
+
+    public static boolean hasLEDBrightnessG() {
+       return Utils.existFile(LED_BRIGHTNESS_G);
+    }
+
+    public void setLEDBrightnessR(int value, Context context) {
+        run(Control.write(String.valueOf(value), LED_BRIGHTNESS_R), LED_BRIGHTNESS_R, context);
+    }
+
+    public static int getLEDBrightnessR() {
+        return Utils.strToInt(Utils.readFile(LED_BRIGHTNESS_R));
+    }
+
+    public static boolean hasLEDBrightnessR() {
+       return Utils.existFile(LED_BRIGHTNESS_R);
+    }
+
+    public void setLEDBrightnessW(int value, Context context) {
+        run(Control.write(String.valueOf(value), LED_BRIGHTNESS_W), LED_BRIGHTNESS_W, context);
+    }
+
+    public static int getLEDBrightnessW() {
+        return Utils.strToInt(Utils.readFile(LED_BRIGHTNESS_W));
+    }
+
+    public static boolean hasLEDBrightnessW() {
+       return Utils.existFile(LED_BRIGHTNESS_W);
+    }
+
     public boolean supported() {
         return hasFade() || hasBacklightMax() || hasBacklightMin() || hascharginglight()
-		|| hasIntensity() || hasSpeed() || Sec.supported();
+                || hasLEDBrightnessB() || hasLEDBrightnessG() || hasLEDBrightnessR()
+                || hasLEDBrightnessW() || hasIntensity() || hasSpeed() || Sec.supported();
     }
 
     private void run(String command, String id, Context context) {

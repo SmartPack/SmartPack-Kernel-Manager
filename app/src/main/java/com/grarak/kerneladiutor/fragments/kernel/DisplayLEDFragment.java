@@ -24,7 +24,6 @@ import android.text.InputType;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.kernel.led.LED;
 import com.grarak.kerneladiutor.utils.kernel.led.Sec;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -53,9 +52,11 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         if (mLED.hasBacklightMax() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
-		|| mLED.hasSpeed() || (Sec.hasNotificationRampDown()) || (Sec.hasNotificationRampUp())
-		|| (Sec.hasNotificationRampControl()) || mLED.hasFade() || Sec.hasNotificationDelayOff()
-		|| Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
+                || mLED.hasLEDBrightnessB() || mLED.hasLEDBrightnessG() || mLED.hasLEDBrightnessR()
+                || mLED.hasLEDBrightnessW() || mLED.hasSpeed() || (Sec.hasNotificationRampDown())
+                || (Sec.hasNotificationRampUp()) || (Sec.hasNotificationRampControl()) || mLED.hasFade()
+                || Sec.hasNotificationDelayOff() || Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent()
+                || Sec.hasHighpowerCurrent()) {
             displayandledInit(items);
         }
     }
@@ -378,9 +379,102 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             DisplyAndLED.addItem(notificationRampDown);
         }
 
-	if (DisplyAndLED.size() > 0) {
+        if (mLED.hasLEDBrightnessR()) {
+            SeekBarView maxBrightness = new SeekBarView();
+            maxBrightness.setTitle(getString(R.string.led_brightness));
+            maxBrightness.setSummary(getString(R.string.red));
+            maxBrightness.setMax(255);
+            maxBrightness.setProgress(mLED.getLEDBrightnessR());
+            maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setLEDBrightnessR(position, getActivity());
+                    getHandler().postDelayed(() -> {
+                                maxBrightness.setProgress(mLED.getLEDBrightnessR());
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(maxBrightness);
+        }
+
+        if (mLED.hasLEDBrightnessG()) {
+            SeekBarView maxBrightness = new SeekBarView();
+            maxBrightness.setSummary(getString(R.string.green));
+            maxBrightness.setMax(255);
+            maxBrightness.setProgress(mLED.getLEDBrightnessG());
+            maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setLEDBrightnessG(position, getActivity());
+                    getHandler().postDelayed(() -> {
+                                maxBrightness.setProgress(mLED.getLEDBrightnessG());
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(maxBrightness);
+        }
+
+        if (mLED.hasLEDBrightnessB()) {
+            SeekBarView maxBrightness = new SeekBarView();
+            maxBrightness.setSummary(getString(R.string.blue));
+            maxBrightness.setMax(255);
+            maxBrightness.setProgress(mLED.getLEDBrightnessB());
+            maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setLEDBrightnessB(position, getActivity());
+                    getHandler().postDelayed(() -> {
+                                maxBrightness.setProgress(mLED.getLEDBrightnessB());
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(maxBrightness);
+        }
+
+        if (mLED.hasLEDBrightnessW()) {
+            SeekBarView maxBrightness = new SeekBarView();
+            maxBrightness.setSummary(getString(R.string.white));
+            maxBrightness.setMax(255);
+            maxBrightness.setProgress(mLED.getLEDBrightnessW());
+            maxBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setLEDBrightnessW(position, getActivity());
+                    getHandler().postDelayed(() -> {
+                                maxBrightness.setProgress(mLED.getLEDBrightnessW());
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(maxBrightness);
+        }
+
+        if (DisplyAndLED.size() > 0) {
             items.add(DisplyAndLED);
-	}
+        }
     }
 
 }
