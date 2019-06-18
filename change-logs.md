@@ -1,5 +1,9 @@
 # Change-logs
 
+## 71. June 18, 2019
+*Release-tag: v8.4*<br>
+Changes: Display & LED: Added support to LED Max Brightness (Red/Green/Blue/White). SmartPack: Flasher: Simplified manual flashing menu. SmartPack: Auto/Manual Flashing: Internal updates. SmartPack/About: Updated alert dialogues.
+
 ## 70. June 11, 2019
 *Release-tag: v8.3*<br>
 Changes: SmartPack: Flasher: Updated to work with some some file manager. SmartPack: Updated permission request. Back-up, Profiles & custom Control: Updated for some file manager. SmartPack: Flasher: Introduced an additional file extension check.

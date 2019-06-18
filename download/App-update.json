@@ -1,11 +1,11 @@
 {
-  "latestVersion": "8.3-20190611",
+  "latestVersion": "8.4-20190611",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: Flasher: Updated to work with some some file managers.",
-    "- SmartPack: Updated permission request.",
-    "- Back-up, Profiles & custom Control: Updated for some file managers.",
-    "- SmartPack: Flasher: Introduced an additional file extension check"
+    "- Display & LED: Added support to LED Max Brightness (Red/Green/Blue/White).",
+    "- SmartPack: Flasher: Simplified manual flashing menu.",
+    "- SmartPack: Auto/Manual Flashing: Internal updates.",
+    "- SmartPack/About: Updated alert dialogues."
   ]
 }
