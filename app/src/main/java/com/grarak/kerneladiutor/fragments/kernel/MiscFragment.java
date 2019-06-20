@@ -61,54 +61,143 @@ public class MiscFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-	if (mVibration.supported() || mMisc.hasLoggerEnable() || mMisc.hasPrintKMode() || mMisc.hasCrc()
-		|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers()
-		|| mMisc.hasArchPower() || mMisc.hasDoze() || mMisc.hasSELinux()) {
-            miscInit(items);
-	}
-        if (PowerSuspend.supported()) {
-            powersuspendInit(items);
-        }
-        networkInit(items);
+		if (mVibration.supported() || mMisc.hasLoggerEnable() || mMisc.hasPrintKMode() || mMisc.hasCrc()
+				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
+				|| mMisc.hasDoze() || mMisc.hasSELinux() || mMisc.hasHapticOverride() || mMisc.hasHapticUser()
+				|| mMisc.hasHapticsNotification() || mMisc.hasHapticsCall()) {
+			miscInit(items);
+		}
+		if (PowerSuspend.supported()) {
+			powersuspendInit(items);
+		}
+		networkInit(items);
     }
 
     private void miscInit(List<RecyclerViewItem> items) {
         CardView miscCard = new CardView(getActivity());
         miscCard.setTitle(getString(R.string.misc));
 
-	if (mVibration.supported()) {
-	    final Vibrator vibrator = (Vibrator) getActivity()
-                .getSystemService(Context.VIBRATOR_SERVICE);
+		if (mVibration.supported()) {
+			final Vibrator vibrator = (Vibrator) getActivity()
+					.getSystemService(Context.VIBRATOR_SERVICE);
 
-	    final int min = mVibration.getMin();
-	    int max = mVibration.getMax();
-	    final float offset = (max - min) / 100f;
+			final int min = mVibration.getMin();
+			int max = mVibration.getMax();
+			final float offset = (max - min) / 100f;
 
-	    SeekBarView vibration = new SeekBarView();
-	    vibration.setTitle(getString(R.string.vibration_strength));
-	    vibration.setUnit("%");
-	    vibration.setProgress(Math.round((mVibration.get() - min) / offset));
-	    vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-		@Override
-		public void onStop(SeekBarView seekBarView, int position, String value) {
-                    mVibration.setVibration(Math.round(position * offset + min), getActivity());
-                    getHandler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-                            if (vibrator != null) {
-				vibrator.vibrate(300);
-                            }
-                    	}
-                    }, 250);
-            	}
+			SeekBarView vibration = new SeekBarView();
+			vibration.setTitle(getString(R.string.vibration_strength));
+			vibration.setUnit(" %");
+			vibration.setProgress(Math.round((mVibration.get() - min) / offset));
+			vibration.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					mVibration.setVibration(Math.round(position * offset + min), getActivity());
+					getHandler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							if (vibrator != null) {
+								vibrator.vibrate(300);
+							}
+						}
+					}, 250);
+				}
 
-            	@Override
-            	public void onMove(SeekBarView seekBarView, int position, String value) {
-            	}
-            });
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
 
-            miscCard.addItem(vibration);
-	}
+			miscCard.addItem(vibration);
+		}
+
+        if (mMisc.hasHapticOverride()) {
+			SwitchView override = new SwitchView();
+			override.setTitle(getString(R.string.override_vib));
+			override.setSummary(getString(R.string.override_vib_summary));
+			override.setChecked(mMisc.isHapticOverrideEnabled());
+			override.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableHapticOverride(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								override.setChecked(mMisc.isHapticOverrideEnabled());
+							},
+							500);
+				}
+			});
+
+			miscCard.addItem(override);
+		}
+
+		if (mMisc.hasHapticUser()) {
+			SeekBarView hapticUser = new SeekBarView();
+			hapticUser.setSummary(getString(R.string.system_vib));
+			hapticUser.setUnit(" %");
+			hapticUser.setProgress(mMisc.getHapticUser() / 36);
+			hapticUser.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					mMisc.setHapticUser((position * 36), getActivity());
+					getHandler().postDelayed(() -> {
+								hapticUser.setProgress(mMisc.getHapticUser() / 36);
+							},
+							500);
+				}
+
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
+
+			miscCard.addItem(hapticUser);
+		}
+
+		if (mMisc.hasHapticsNotification()) {
+			SeekBarView hapticNoti = new SeekBarView();
+			hapticNoti.setSummary(getString(R.string.notification_vib));
+			hapticNoti.setUnit(" %");
+			hapticNoti.setProgress(mMisc.getHapticsNotification() / 36);
+			hapticNoti.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					mMisc.setHapticsNotification((position * 36), getActivity());
+					getHandler().postDelayed(() -> {
+								hapticNoti.setProgress(mMisc.getHapticsNotification() / 36);
+							},
+							500);
+				}
+
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
+
+			miscCard.addItem(hapticNoti);
+		}
+
+		if (mMisc.hasHapticsCall()) {
+			SeekBarView hapticCalls = new SeekBarView();
+			hapticCalls.setSummary(getString(R.string.calls_vib));
+			hapticCalls.setUnit(" %");
+			hapticCalls.setProgress(mMisc.getHapticsCall() / 36);
+			hapticCalls.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					mMisc.setHapticsCall((position * 36), getActivity());
+					getHandler().postDelayed(() -> {
+								hapticCalls.setProgress(mMisc.getHapticsCall() / 36);
+							},
+							500);
+				}
+
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
+
+			miscCard.addItem(hapticCalls);
+		}
 
 	if (mMisc.hasLoggerEnable()) {
 	    SwitchView logger = new SwitchView();

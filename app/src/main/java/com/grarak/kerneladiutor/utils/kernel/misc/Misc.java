@@ -61,6 +61,12 @@ public class Misc {
 
     private static final String DOZE = "dumpsys deviceidle";
 
+    private static final String HAPTICS = "/sys/devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8950@3:qcom,haptics@c000/leds/vibrator";
+    private static final String HAPTICS_OVERRIDE = HAPTICS + "/vmax_override";
+    private static final String HAPTICS_USER = HAPTICS + "/vmax_mv_user";
+    private static final String HAPTICS_NOTIFICATION = HAPTICS + "/vmax_mv_strong";
+    private static final String HAPTICS_CALL = HAPTICS + "/vmax_mv_call";
+
     private final List<String> mLoggers = new ArrayList<>();
     private final List<String> mCrcs = new ArrayList<>();
     private final List<String> mFsyncs = new ArrayList<>();
@@ -271,6 +277,81 @@ public class Misc {
 
     public static boolean hasLeaseBreakTime() {
         return Utils.existFile(LEASE_BREAK_TIME);
+    }
+
+    public void enableHapticOverride(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", HAPTICS_OVERRIDE), HAPTICS_OVERRIDE, context);
+    }
+
+    public boolean isHapticOverrideEnabled() {
+        return Utils.readFile(HAPTICS_OVERRIDE).equals("1");
+    }
+
+    public boolean hasHapticOverride() {
+        return Utils.existFile(HAPTICS_OVERRIDE);
+    }
+
+    public void setHapticUser(int value, Context context) {
+        if (value >= 3596) {
+            run(Control.write(String.valueOf(3596), HAPTICS_USER), HAPTICS_USER, context);
+        } else {
+            run(Control.write(String.valueOf(value), HAPTICS_USER), HAPTICS_USER, context);
+        }
+    }
+
+    public static int getHapticUser() {
+        int value = Utils.strToInt(Utils.readFile(HAPTICS_USER));
+        if (value >= 3596) {
+            return 3600;
+        } else {
+            return value;
+        }
+    }
+
+    public static boolean hasHapticUser() {
+        return Utils.existFile(HAPTICS_USER);
+    }
+
+    public void setHapticsNotification(int value, Context context) {
+        if (value >= 3596) {
+            run(Control.write(String.valueOf(3596), HAPTICS_NOTIFICATION), HAPTICS_NOTIFICATION, context);
+        } else {
+            run(Control.write(String.valueOf(value), HAPTICS_NOTIFICATION), HAPTICS_NOTIFICATION, context);
+        }
+    }
+
+    public static int getHapticsNotification() {
+        int value = Utils.strToInt(Utils.readFile(HAPTICS_NOTIFICATION));
+        if (value >= 3596) {
+            return 3600;
+        } else {
+            return value;
+        }
+    }
+
+    public static boolean hasHapticsNotification() {
+        return Utils.existFile(HAPTICS_NOTIFICATION);
+    }
+
+    public void setHapticsCall(int value, Context context) {
+        if (value >= 3596) {
+            run(Control.write(String.valueOf(3596), HAPTICS_CALL), HAPTICS_CALL, context);
+        } else {
+            run(Control.write(String.valueOf(value), HAPTICS_CALL), HAPTICS_CALL, context);
+        }
+    }
+
+    public static int getHapticsCall() {
+        int value = Utils.strToInt(Utils.readFile(HAPTICS_CALL));
+        if (value >= 3596) {
+            return 3600;
+        } else {
+            return value;
+        }
+    }
+
+    public static boolean hasHapticsCall() {
+        return Utils.existFile(HAPTICS_CALL);
     }
 
     private void run(String command, String id, Context context) {
