@@ -94,7 +94,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private void SmartPackInit(List<RecyclerViewItem> items) {
         CardView smartpack = new CardView(getActivity());
-        smartpack.setTitle(getString(R.string.smartpack_kernel));
+        smartpack.setTitle(SmartPack.supported() ? getString(R.string.smartpack_kernel)
+                : getString(R.string.flash_log));
 
         if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {
             DescriptionView currentspversion = new DescriptionView();
@@ -226,6 +227,33 @@ public class SmartPackFragment extends RecyclerViewFragment {
             });
             smartpack.addItem(spversion);
         }
+
+        DescriptionView flashLog = new DescriptionView();
+        if (SmartPack.supported()) {
+            flashLog.setTitle(getString(R.string.flash_log));
+        }
+        flashLog.setSummary(getString(R.string.flash_log_summary));
+        flashLog.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                if (SmartPack.isPathLog() && SmartPack.isFlashLog()) {
+                    flashLog.setSummary(Utils.readFile(Utils.getInternalDataStorage() + "/last_flash.txt"));
+                } else {
+                    flashLog.setSummary(getString(R.string.nothing_show));
+                }
+                if (SmartPack.isFlashLog()) {
+                    Dialog flashLog = new Dialog(getActivity());
+                    flashLog.setIcon(R.mipmap.ic_launcher);
+                    flashLog.setTitle(getString(R.string.flash_log));
+                    flashLog.setMessage(Utils.readFile(Utils.getInternalDataStorage() + "/flasher_log.txt"));
+                    flashLog.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
+                    });
+                    flashLog.show();
+                }
+            }
+        });
+
+        smartpack.addItem(flashLog);
 
         if (SmartPack.supported() && SmartPack.hasSmartPackInstalled()) {
             DescriptionView xdapage = new DescriptionView();
@@ -616,6 +644,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
+            SmartPack.cleanLogs();
+            RootUtils.runCommand("echo '" + file.getAbsolutePath() + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
             if (file.getName().endsWith(".zip")) {
                 if (file.getAbsolutePath().contains("/document/raw:")) {
                     mPath  = file.getAbsolutePath().replace("/document/raw:", "");

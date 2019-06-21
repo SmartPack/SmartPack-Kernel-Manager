@@ -158,6 +158,25 @@ public class SmartPack {
         flashFolderPath.mkdirs();
     }
 
+    public static boolean isPathLog() {
+        return Utils.existFile(Utils.getInternalDataStorage() + "/last_flash.txt");
+    }
+
+    public static boolean isFlashLog() {
+        return Utils.existFile(Utils.getInternalDataStorage() + "/flasher_log.txt");
+    }
+
+    public static void cleanLogs() {
+        File PathLog = new File(Utils.getInternalDataStorage() + "/last_flash.txt");
+        File FlashLog = new File(Utils.getInternalDataStorage() + "/flasher_log.txt");
+        if (isPathLog()) {
+            PathLog.delete();
+        }
+        if (isFlashLog()) {
+            FlashLog.delete();
+        }
+    }
+
     public static void cleanFlashFolder() {
         if (!FLASH_FOLDER.isEmpty()) {
             RootUtils.runCommand("rm -r " + FLASH_FOLDER + "/*");
@@ -173,7 +192,6 @@ public class SmartPack {
          * Flashing recovery zip without rebooting to custom recovery
          * Credits to osm0sis @ xda-developers.com
          */
-        RootUtils.runCommand("echo '" + path + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
         RootUtils.runCommand("cd '" + FLASH_FOLDER + "' && mount -o remount,rw / && mkdir /tmp");
         RootUtils.runCommand("mke2fs -F tmp.ext4 250000 && mount -o loop tmp.ext4 /tmp/");
         RootUtils.runCommand("sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' " + fd + " '" + path + "'| tee '" + Utils.getInternalDataStorage() + "'/flasher_log.txt");
@@ -191,7 +209,9 @@ public class SmartPack {
     }
 
     public static void autoFlash() {
+        cleanLogs();
         String path = SMARTPACK_DOWNLOADED;
+        RootUtils.runCommand("echo '" + path + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
         flashCommand(path);
     }
 
