@@ -494,12 +494,12 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
-            if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+            if (requestCode == 0) {
                 HashMap<String, Object> results = (HashMap<String, Object>) data.getSerializableExtra(
                         CustomControlsActivity.RESULT_INTENT);
                 updateControls(results);
             } else if (requestCode == 1) {
-                if (requestCode == 1) {
+                if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
                     Uri uri = data.getData();
                     File file = new File(uri.getPath());
                     if (file.getName().endsWith(".json")) {
@@ -508,18 +508,18 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                         selectjson.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                         });
                         selectjson.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-			    if (file.getAbsolutePath().contains("/document/raw:")) {
-			    	mPath  = file.getAbsolutePath().replace("/document/raw:", "");
-			    } else if (file.getAbsolutePath().contains("/document/primary:")) {
-			    	mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-			    } else if (file.getAbsolutePath().contains("/document/")) {
-			    	mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-                } else if (file.getAbsolutePath().contains("/storage_root")) {
-                    mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-                } else {
-			    	mPath = file.getAbsolutePath();
-			    }
-			    importing(mPath);
+                            if (file.getAbsolutePath().contains("/document/raw:")) {
+                                mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+                            } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+                            } else if (file.getAbsolutePath().contains("/document/")) {
+                                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+                            } else if (file.getAbsolutePath().contains("/storage_root")) {
+                                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+                            } else {
+                                mPath = file.getAbsolutePath();
+                            }
+                            importing(mPath);
 
                         });
                         selectjson.show();
