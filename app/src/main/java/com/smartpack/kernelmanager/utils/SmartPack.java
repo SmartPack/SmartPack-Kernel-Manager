@@ -217,13 +217,15 @@ public class SmartPack {
 
     public static void manualFlash(File file) {
         String path = file.toString();
-        if (file.length() <= 100000000) {
-            prepareFlashFolder();
-            extractLatestKernel(path);
-            if (isZIPFileExtracted()) {
-                flashCommand(path);
-            }
+        prepareFlashFolder();
+        extractLatestKernel(path);
+        if (isZIPFileExtracted()) {
+            flashCommand(path);
         }
+    }
+
+    public static long fileSize(File file) {
+        return file.length();
     }
 
     public static void recoveryFlash() {

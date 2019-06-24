@@ -896,7 +896,7 @@
     <string name="flasher">Flasher</string>
     <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes will be applied after a reboot.</string>
     <string name="flasher_message">Flash Now</string>
-    <string name="file_size_limit">Please note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
+    <string name="file_size_limit">The size of \'%s\' is bigger than 100 MB.\n\nPlease Note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>

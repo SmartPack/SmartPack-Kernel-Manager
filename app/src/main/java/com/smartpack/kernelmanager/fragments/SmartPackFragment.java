@@ -615,7 +615,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             return;
         }
 
-        Utils.toast(R.string.file_size_limit, getActivity());
         Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
         manualflash.setType("application/zip");
         startActivityForResult(manualflash, 0);
@@ -681,16 +680,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
             } else {
                 mPath = file.getAbsolutePath();
             }
-            Dialog manualFlash = new Dialog(getActivity());
-            manualFlash.setIcon(R.mipmap.ic_launcher);
-            manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") + getString(R.string.file_size_limit));
-            manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
-            });
-            manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
-                manualFlash(new File(mPath));
-            });
-            manualFlash.show();
+            if (SmartPack.fileSize(new File(mPath)) <= 100000000) {
+                Dialog manualFlash = new Dialog(getActivity());
+                manualFlash.setIcon(R.mipmap.ic_launcher);
+                manualFlash.setTitle(getString(R.string.flasher));
+                manualFlash.setMessage(getString(R.string.sure_message, file.getName()));
+                manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
+                });
+                manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
+                    manualFlash(new File(mPath));
+                });
+                manualFlash.show();
+            } else {
+                Dialog flashSizeError = new Dialog(getActivity());
+                flashSizeError.setIcon(R.mipmap.ic_launcher);
+                flashSizeError.setTitle(getString(R.string.flasher));
+                flashSizeError.setMessage(getString(R.string.file_size_limit, file.getName()));
+                flashSizeError.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
+                });
+                flashSizeError.show();
+            }
         }
     }
 }
