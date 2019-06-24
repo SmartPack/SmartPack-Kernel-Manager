@@ -166,6 +166,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             // Check and create, if necessary, internal storage folder
                             SmartPack.prepareFlashFolder();
                             // Initiate device specific downloads...
+                            if (!Utils.isNetworkAvailable(getContext())) {
+                                Utils.toast(R.string.no_internet, getActivity());
+                                return;
+                            }
                             SmartPack.getLatestKernel();
                             // Extract the above downloaded kernel for auto-flash...
                             String path = Environment.getExternalStorageDirectory().toString() + "/Download/SmartPack-Kernel.zip";
@@ -263,6 +267,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(RecyclerViewItem item) {
                     if (SmartPack.isOnePlusmsm8998()) {
+                        if (!Utils.isNetworkAvailable(getContext())) {
+                            Utils.toast(R.string.no_internet, getActivity());
+                            return;
+                        }
                         Utils.launchUrl("https://forum.xda-developers.com/oneplus-5t/development/kernel-smartpack-linaro-gcc-7-x-oxygen-t3832458", getActivity());
                     }
                 }
@@ -276,6 +284,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(RecyclerViewItem item) {
                     if (SmartPack.isOnePlusmsm8998()) {
+                        if (!Utils.isNetworkAvailable(getContext())) {
+                            Utils.toast(R.string.no_internet, getActivity());
+                            return;
+                        }
                         Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T", getActivity());
                     }
                 }
@@ -288,6 +300,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             changelogsp.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
+                    if (!Utils.isNetworkAvailable(getContext())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
                     if ((SmartPack.isOnePlusmsm8998()) && (Build.VERSION.SDK_INT == 27)) {
                         Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Project_OP5T/Oreo/change-logs.md", getActivity());
                     } else if ((SmartPack.isOnePlusmsm8998()) && (Build.VERSION.SDK_INT == 28)) {
@@ -305,6 +321,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             website.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
+                    if (!Utils.isNetworkAvailable(getContext())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
                     if (SmartPack.isOnePlusmsm8998()) {
                         Utils.launchUrl("https://smartpack.github.io/op5t/", getActivity());
                     } else {

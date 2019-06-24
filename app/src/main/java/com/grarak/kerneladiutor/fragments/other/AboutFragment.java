@@ -20,7 +20,6 @@
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.os.Bundle;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +81,7 @@ public class AboutFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         aboutInit(items);
         librariesInit(items);
-	translationsInit(items);
+        translationsInit(items);
     }
 
     private void aboutInit(List<RecyclerViewItem> items) {
@@ -102,6 +101,10 @@ public class AboutFragment extends RecyclerViewFragment {
         updatecheck.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
                 AppUpdaterTask.appCheck(getActivity());
             }
         });
@@ -112,6 +115,10 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
                 Utils.launchUrl("https://forum.xda-developers.com/android/apps-games/app-smartpack-kernel-manager-t3854717", getActivity());
             }
         });
@@ -122,6 +129,10 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
                 Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity());
             }
         });
@@ -132,6 +143,10 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
                 Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity());
             }
         });
@@ -142,6 +157,10 @@ public class AboutFragment extends RecyclerViewFragment {
         donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
                 Dialog donate_to_me = new Dialog(getActivity());
                 donate_to_me.setIcon(R.mipmap.ic_launcher);
                 donate_to_me.setTitle(getString(R.string.donate_me));
@@ -183,6 +202,10 @@ public class AboutFragment extends RecyclerViewFragment {
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
+                    if (!Utils.isNetworkAvailable(getContext())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
                     Utils.launchUrl(sLibraries.get(lib), getActivity());
                 }
             });
@@ -204,6 +227,10 @@ public class AboutFragment extends RecyclerViewFragment {
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
+                    if (!Utils.isNetworkAvailable(getContext())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
                     Utils.launchUrl(sTranslations.get(lib), getActivity());
                 }
             });
@@ -224,6 +251,10 @@ public class AboutFragment extends RecyclerViewFragment {
             rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (!Utils.isNetworkAvailable(getContext())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
                     Utils.launchUrl("https://github.com/SmartPack/", getActivity());
                 }
             });
