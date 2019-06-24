@@ -474,22 +474,22 @@ public class BackupFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            if (file.getName().endsWith(".img")) {
-		if (file.getAbsolutePath().contains("/document/raw:")) {
-		    mPath  = file.getAbsolutePath().replace("/document/raw:", "");
-		} else if (file.getAbsolutePath().contains("/document/primary:")) {
-		    mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-		} else if (file.getAbsolutePath().contains("/document/")) {
-		    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-        } else if (file.getAbsolutePath().contains("/storage_root")) {
-            mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-        } else {
-		    mPath = file.getAbsolutePath();
-		}
-		showBackupFlashingDialog(new File(mPath));
-            } else {
+            if (!file.getName().endsWith(".img")) {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
+                return;
             }
+            if (file.getAbsolutePath().contains("/document/raw:")) {
+                mPath = file.getAbsolutePath().replace("/document/raw:", "");
+            } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+            } else if (file.getAbsolutePath().contains("/document/")) {
+                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+            } else if (file.getAbsolutePath().contains("/storage_root")) {
+                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+            } else {
+                mPath = file.getAbsolutePath();
+            }
+            showBackupFlashingDialog(new File(mPath));
         }
     }
 

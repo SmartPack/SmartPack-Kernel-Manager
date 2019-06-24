@@ -666,31 +666,31 @@ public class SmartPackFragment extends RecyclerViewFragment {
             File file = new File(uri.getPath());
             SmartPack.cleanLogs();
             RootUtils.runCommand("echo '" + file.getAbsolutePath() + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
-            if (file.getName().endsWith(".zip")) {
-                if (file.getAbsolutePath().contains("/document/raw:")) {
-                    mPath  = file.getAbsolutePath().replace("/document/raw:", "");
-                } else if (file.getAbsolutePath().contains("/document/primary:")) {
-                    mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-                } else if (file.getAbsolutePath().contains("/document/")) {
-                    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-                } else if (file.getAbsolutePath().contains("/storage_root")) {
-                    mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-                } else {
-                    mPath = file.getAbsolutePath();
-                }
-                Dialog manualFlash = new Dialog(getActivity());
-                manualFlash.setIcon(R.mipmap.ic_launcher);
-                manualFlash.setTitle(getString(R.string.flasher));
-                manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") + getString(R.string.file_size_limit));
-                manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
-                });
-                manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
-                    manualFlash(new File(mPath));
-                });
-                manualFlash.show();
-            } else {
+            if (!file.getName().endsWith(".zip")) {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
+                return;
             }
+            if (file.getAbsolutePath().contains("/document/raw:")) {
+                mPath  = file.getAbsolutePath().replace("/document/raw:", "");
+            } else if (file.getAbsolutePath().contains("/document/primary:")) {
+                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+            } else if (file.getAbsolutePath().contains("/document/")) {
+                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+            } else if (file.getAbsolutePath().contains("/storage_root")) {
+                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+            } else {
+                mPath = file.getAbsolutePath();
+            }
+            Dialog manualFlash = new Dialog(getActivity());
+            manualFlash.setIcon(R.mipmap.ic_launcher);
+            manualFlash.setTitle(getString(R.string.flasher));
+            manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") + getString(R.string.file_size_limit));
+            manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
+            });
+            manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
+                manualFlash(new File(mPath));
+            });
+            manualFlash.show();
         }
     }
 }
