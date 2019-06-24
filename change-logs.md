@@ -1,5 +1,9 @@
 # Change-logs
 
+## 72. June 24, 2019
+*Release-tag: v8.5*<br>
+Changes: SmartPack: Flasher: Updated file Size check. Custom Control: Fixed "Create" not working. SmartPack: Added option to view (last) Flasher log. Misc: Added haptic feedback control. build: Updated gradle to 3.5.0-beta04. Overall: Simplified file extension check. SmartPack/About: Check for internet availability.
+
 ## 71. June 18, 2019
 *Release-tag: v8.4*<br>
 Changes: Display & LED: Added support to LED Max Brightness (Red/Green/Blue/White). SmartPack: Flasher: Simplified manual flashing menu. SmartPack: Auto/Manual Flashing: Internal updates. SmartPack/About: Updated alert dialogues.
