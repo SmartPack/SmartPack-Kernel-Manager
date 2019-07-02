@@ -57,6 +57,7 @@ public class Dt2w {
     private static final String DT2W_FT5X06 = "/sys/bus/i2c/drivers/ft5x06_i2c/5-0038/d2w_switch";
     private static final String LENOVO_DT2W = "/sys/lenovo_tp_gestures/tpd_suspend_status";
     private static final String DT2W_SMDK4412 = "/sys/devices/virtual/misc/touchwake/knockon";
+    private static final String ENABLE_DT2W = "/proc/touchpanel/enable_dt2w";
 
     private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
     private final List<Integer> mLgeTouchCoreMenu = new ArrayList<>();
@@ -85,6 +86,7 @@ public class Dt2w {
         mFiles.put(DT2W_FT5X06, mGenericMenu);
         mFiles.put(LENOVO_DT2W, mGenericMenu);
         mFiles.put(DT2W_SMDK4412, mGenericMenu);
+        mFiles.put(ENABLE_DT2W, mGenericMenu);
     }
 
     private String FILE;

@@ -61,7 +61,7 @@ public class Misc {
 
     private static final String DOZE = "dumpsys deviceidle";
 
-    private static final String HAPTICS = "/sys/devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-03/200f000.qcom,spmi:qcom,pmi8950@3:qcom,haptics@c000/leds/vibrator";
+    private static final String HAPTICS = "/sys/class/leds/vibrator";
     private static final String HAPTICS_OVERRIDE = HAPTICS + "/vmax_override";
     private static final String HAPTICS_USER = HAPTICS + "/vmax_mv_user";
     private static final String HAPTICS_NOTIFICATION = HAPTICS + "/vmax_mv_strong";
