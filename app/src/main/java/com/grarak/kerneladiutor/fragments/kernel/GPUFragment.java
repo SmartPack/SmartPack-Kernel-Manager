@@ -39,6 +39,7 @@ import com.grarak.kerneladiutor.views.recyclerview.XYGraphView;
 
 import com.smartpack.kernelmanager.utils.Adrenoboost;
 import com.smartpack.kernelmanager.utils.DevfreqBoost;
+import com.smartpack.kernelmanager.utils.GPUMisc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +199,27 @@ public class GPUFragment extends RecyclerViewFragment {
 
                 gpuCard.addItem(tunables);
             }
+        }
+
+        if (GPUMisc.hasgpuPwrLevel()) {
+            GenericSelectView PowerLevel = new GenericSelectView();
+            PowerLevel.setTitle(getString(R.string.gpu_powelevel));
+            PowerLevel.setSummary(("Set ") + getString(R.string.gpu_powelevel));
+            PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
+            PowerLevel.setInputType(InputType.TYPE_CLASS_NUMBER);
+            PowerLevel.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    GPUMisc.setgpuPwrLevel(value, getActivity());
+                    genericSelectView.setValue(value);
+                    getHandler().postDelayed(() -> {
+                                PowerLevel.setValue(GPUMisc.getgpuPwrLevel());
+                            },
+                            500);
+                }
+            });
+
+            gpuCard.addItem(PowerLevel);
         }
 
         if (gpuCard.size() > 0) {
@@ -473,7 +495,7 @@ public class GPUFragment extends RecyclerViewFragment {
 
 	}
 
-	if (DevfreqBoost.haswakeboostduration()) { 
+	if (DevfreqBoost.haswakeboostduration()) {
             GenericSelectView wakeBoostMS = new GenericSelectView();
             wakeBoostMS.setTitle(getString(R.string.wake_boost_duration) + (" (ms)"));
             wakeBoostMS.setSummary(("Set ") + getString(R.string.wake_boost_duration));
