@@ -65,6 +65,9 @@ public class LED {
     private static final String LED_BRIGHTNESS_R = LED_BRIGHTNESS + "/R/max_brightness";
     private static final String LED_BRIGHTNESS_W = LED_BRIGHTNESS + "/W/max_brightness";
 
+    private static final String WHITE_LED_BRIGHTNESS = "/sys/devices/soc/qpnp-flash-led-25/leds/led:torch_0/max_brightness";
+    private static final String YELLOW_LED_BRIGHTNESS = "/sys/devices/soc/qpnp-flash-led-25/leds/led:torch_1/max_brightness";
+
     private final LinkedHashMap<Integer, Boolean> mRedSpeed = new LinkedHashMap<>();
     private final LinkedHashMap<Integer, Boolean> mGreenRate = new LinkedHashMap<>();
 
@@ -260,10 +263,35 @@ public class LED {
        return Utils.existFile(LED_BRIGHTNESS_W);
     }
 
+    public void setWhiteLED(int value, Context context) {
+        run(Control.write(String.valueOf(value), WHITE_LED_BRIGHTNESS), WHITE_LED_BRIGHTNESS, context);
+    }
+
+    public static int getWhiteLED() {
+        return Utils.strToInt(Utils.readFile(WHITE_LED_BRIGHTNESS));
+    }
+
+    public static boolean hasWhiteLED() {
+        return Utils.existFile(WHITE_LED_BRIGHTNESS);
+    }
+
+    public void setYellowLED(int value, Context context) {
+        run(Control.write(String.valueOf(value), YELLOW_LED_BRIGHTNESS), YELLOW_LED_BRIGHTNESS, context);
+    }
+
+    public static int getYellowLED() {
+        return Utils.strToInt(Utils.readFile(YELLOW_LED_BRIGHTNESS));
+    }
+
+    public static boolean hasYellowLED() {
+        return Utils.existFile(YELLOW_LED_BRIGHTNESS);
+    }
+
     public boolean supported() {
         return hasFade() || hasBacklightMax() || hasBacklightMin() || hascharginglight()
                 || hasLEDBrightnessB() || hasLEDBrightnessG() || hasLEDBrightnessR()
-                || hasLEDBrightnessW() || hasIntensity() || hasSpeed() || Sec.supported();
+                || hasLEDBrightnessW() || hasIntensity() || hasSpeed() || Sec.supported()
+                || hasWhiteLED() || hasYellowLED();
     }
 
     private void run(String command, String id, Context context) {

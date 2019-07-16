@@ -53,10 +53,10 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         if (mLED.hasBacklightMax() || mLED.hasBacklightMin() || mLED.hascharginglight() || mLED.hasIntensity()
                 || mLED.hasLEDBrightnessB() || mLED.hasLEDBrightnessG() || mLED.hasLEDBrightnessR()
-                || mLED.hasLEDBrightnessW() || mLED.hasSpeed() || (Sec.hasNotificationRampDown())
-                || (Sec.hasNotificationRampUp()) || (Sec.hasNotificationRampControl()) || mLED.hasFade()
-                || Sec.hasNotificationDelayOff() || Sec.hasNotificationDelayOn() || Sec.hasLowpowerCurrent()
-                || Sec.hasHighpowerCurrent()) {
+                || mLED.hasLEDBrightnessW() || mLED.hasSpeed() || mLED.hasWhiteLED() || mLED.hasYellowLED()
+                || Sec.hasNotificationRampDown() || Sec.hasNotificationRampUp() || Sec.hasNotificationRampControl()
+                || mLED.hasFade() || Sec.hasNotificationDelayOff() || Sec.hasNotificationDelayOn()
+                || Sec.hasLowpowerCurrent() || Sec.hasHighpowerCurrent()) {
             displayandledInit(items);
         }
     }
@@ -470,6 +470,56 @@ public class DisplayLEDFragment extends RecyclerViewFragment {
             });
 
             DisplyAndLED.addItem(maxBrightness);
+        }
+
+        if (mLED.hasWhiteLED()) {
+            SeekBarView whiteLEDBrightness = new SeekBarView();
+            whiteLEDBrightness.setTitle(getString(R.string.flash_led));
+            whiteLEDBrightness.setSummary(getString(R.string.white));
+            whiteLEDBrightness.setUnit(" %");
+            whiteLEDBrightness.setProgress(mLED.getWhiteLED() / 2);
+            whiteLEDBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setWhiteLED((position * 2), getActivity());
+                    getHandler().postDelayed(() -> {
+                                whiteLEDBrightness.setProgress(mLED.getWhiteLED() / 2);
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(whiteLEDBrightness);
+        }
+
+        if (mLED.hasYellowLED()) {
+            SeekBarView yellowLEDBrightness = new SeekBarView();
+            if (!mLED.hasWhiteLED()) {
+                yellowLEDBrightness.setTitle(getString(R.string.flash_led));
+            }
+            yellowLEDBrightness.setSummary(getString(R.string.yellow));
+            yellowLEDBrightness.setUnit(" %");
+            yellowLEDBrightness.setProgress(mLED.getYellowLED() / 2);
+            yellowLEDBrightness.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mLED.setYellowLED((position * 2), getActivity());
+                    getHandler().postDelayed(() -> {
+                                yellowLEDBrightness.setProgress(mLED.getYellowLED() / 2);
+                            },
+                            500);
+                }
+
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+
+            DisplyAndLED.addItem(yellowLEDBrightness);
         }
 
         if (DisplyAndLED.size() > 0) {

@@ -499,6 +499,8 @@
     <string name="green">Green</string>
     <string name="blue">Blue</string>
     <string name="white">White</string>
+    <string name="flash_led">Flash LED intensity</string>
+    <string name="yellow">Yellow</string>
     <string name="min_rgb">Minimum RGB Value</string>
     <string name="invert_screen">Invert Screen</string>
     <string name="saturation_intensity">Saturation Intensity</string>
