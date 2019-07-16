@@ -1,5 +1,9 @@
 # Change-logs
 
+## 73. July 16, 2019
+*Release-tag: v8.6*<br>
+Changes: GPU: Added GPU Power Level Control. Display & LED: Added support to LED Flash Intensity. Misc: Updated haptic feedback control (Credits to @khusika). Gestures: Updated dt2w for xiaomi devices (Credits to @khusika). build: Updated gradle to 3.5.0-beta05.
+
 ## 72. June 24, 2019
 *Release-tag: v8.5*<br>
 Changes: SmartPack: Flasher: Updated file Size check. Custom Control: Fixed "Create" not working. SmartPack: Added option to view (last) Flasher log. Misc: Added haptic feedback control. build: Updated gradle to 3.5.0-beta04. Overall: Simplified file extension check. SmartPack/About: Check for internet availability.
