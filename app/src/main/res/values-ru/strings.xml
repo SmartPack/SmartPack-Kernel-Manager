@@ -737,7 +737,7 @@
     <string name="speaker_gain">Усиление динамиков</string>
     <string name="speaker_leakage">Утечка драйвера динамика</string>
     <string name="speaker_leakage_summary">Обходной путь программного обеспечения, чтобы избежать утечки на драйвере динамика</string>
-    <string name="spec_balanced">Сбалансируюший</string>
+    <string name="spec_balanced">Сбалансированный</string>
     <string name="spec_balanced_summary">Профиль ядра по умолчанию предназначен для плавного выполнения основных задач при сохранении фантастической батареи.</string>
     <string name="spec_battery">Батарея</string>
     <string name="spec_battery_summary">Ультраконсервативный профиль, позволяющий повысить производительность и сохранить длительное время автономной работы.</string>
