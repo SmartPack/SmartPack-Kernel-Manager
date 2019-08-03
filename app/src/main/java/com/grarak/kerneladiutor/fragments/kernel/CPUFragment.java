@@ -118,7 +118,8 @@ public class CPUFragment extends RecyclerViewFragment {
             cpuQuietInit(items);
         }
         if (mCPUBoost.supported() || mCPUInputBoost.supported() || Misc.hasCpuTouchBoost()
-		|| Misc.hasDynStuneBoost() || Misc.hasDynStuneBoostDuration()) {
+                || Misc.hasDynStuneBoost() || Misc.hasDynStuneBoostDuration()
+                || Misc.hasSchedBoostSettings()) {
             cpuBoostInit(items);
         }
         if (MSMLimiter.supported()) {
