@@ -6,12 +6,13 @@
 ### ! [Download latest build](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true) ! [All builds](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases) !
 ## Added features over official KA
 
+* Option to flash recovery zip files while running Android OS.
 * CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
 * K-Lapse Support (tanish2k09)
 * Boeffla Sound (Lord Boeffla) with Per-channel Control
-* Per-channel control for Flar's sound
+* Per-channel control for Flar's sound.
 * Significantly different Faux Sound implementation.
 * In-built Spectrum Support (frap129).
 * Wake and sleep gestures (flar2).
@@ -24,11 +25,11 @@
 * WireGuard version information.
 * Auto-updates (in *About* page).
 * Real-time Charging Status.
-* RAM & Swap Status
+* RAM & Swap Status.
 * LED Blink/Fade support.
 * Device & android version specific kernel download & Auto flashing for supported devices.
-* Dedicated Frequently Asked Questions (FAQ) section for SmartPack-Kernel (Manager).
-* Also compatible with stock & other kernels
+* Dedicated Frequently Asked Questions (FAQ) section.
+* Also compatible with any devices and kernels.
 * And much more…
 
 ## Donations
@@ -41,6 +42,10 @@ If you like to appreciate my work, please consider donating to me (either via [P
 ## Credits
 
 In addition to official Kernel Adiutor and its related dependencies, I used codes from the following people:
+
+#### Chris Renshaw
+
+* [Auto-flash](https://github.com/osm0sis)
 
 #### Joe Maples
 
