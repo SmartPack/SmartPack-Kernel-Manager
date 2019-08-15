@@ -1088,6 +1088,8 @@
     <string name="donate_me_playstore">\nPlease note: I can accept donations either via PayPal, or through SmartPack Donation Package in PlayStore. Moreover, purchasing the donation package will unlock some hidden features in this app.\n</string>
     <string name="purchase_app">Donation App</string>
     <string name="paypal_donation">PayPal</string>
+    <string name="auto_update_check">Auto Update Check</string>
+    <string name="auto_update_check_summary">Check for new versions of SmartPack-Kernel Manager on app launch</string>
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>

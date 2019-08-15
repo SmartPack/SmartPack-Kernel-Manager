@@ -30,12 +30,14 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
+import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -106,6 +108,17 @@ public class AboutFragment extends RecyclerViewFragment {
                     return;
                 }
                 AppUpdaterTask.appCheck(getActivity());
+            }
+        });
+
+        SwitchView autoUpdateCheck = new SwitchView();
+        autoUpdateCheck.setTitle(getString(R.string.auto_update_check));
+        autoUpdateCheck.setSummary(getString(R.string.auto_update_check_summary));
+        autoUpdateCheck.setChecked(Prefs.getBoolean("auto_update", true, getActivity()));
+        autoUpdateCheck.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchview, boolean isChecked) {
+                Prefs.saveBoolean("auto_update", isChecked, getActivity());
             }
         });
 
@@ -182,6 +195,7 @@ public class AboutFragment extends RecyclerViewFragment {
         });
 
         about.addItem(updatecheck);
+        about.addItem(autoUpdateCheck);
         about.addItem(support);
         about.addItem(sourcecode);
         about.addItem(changelogs);
