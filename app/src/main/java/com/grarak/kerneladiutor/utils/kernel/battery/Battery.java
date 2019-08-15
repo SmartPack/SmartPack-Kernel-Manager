@@ -87,6 +87,7 @@ public class Battery {
     private static final String HEALTH = POWER_SUPPLY + "/battery/health";
     private static final String LEVEL = POWER_SUPPLY + "/battery/capacity";
     private static final String VOLTAGE = POWER_SUPPLY + "/battery/voltage_now";
+    private static final String ENABLE_CHARGING = POWER_SUPPLY + "/battery/charging_enabled";
 
     private static final String CHARGE_TYPE = POWER_SUPPLY + "/usb/type";
     private static final String OP_OTG_SWITCH = POWER_SUPPLY + "/usb/otg_switch";
@@ -128,16 +129,24 @@ public class Battery {
         return Utils.existFile(BCL);
     }
 
-    public static String getbatterychargelimit() {
-        return Utils.readFile(BCL);
-    }
-
     public void enablebatterychargelimit(boolean enable, Context context) {
         run(Control.write(enable ? "0" : "1", BCL), BCL, context);
     }
 
     public boolean batterychargelimitenabled() {
         return Utils.readFile(BCL).equals("0");
+    }
+
+    public boolean hasChargingEnable() {
+        return Utils.existFile(ENABLE_CHARGING);
+    }
+
+    public void enableCharging(boolean enable, Context context) {
+        run(Control.write(enable ? "1" : "0", ENABLE_CHARGING), ENABLE_CHARGING, context);
+    }
+
+    public boolean ChargingEnabled() {
+        return Utils.readFile(ENABLE_CHARGING).equals("1");
     }
 
     public static List<String> enableForceFastCharge(Context context) {
@@ -439,7 +448,8 @@ public class Battery {
 
     public boolean supported() {
         return hasFastCharge() || haschargeLevel() || hasUSBFastCharge() || hasBatteryLevel() || hasBatteryVoltage()
-		|| hasBatteryHealth() || haschargingstatus() || hasBlx() || hasbatterychargelimit() || hasOPOTGSwitch();
+                || hasBatteryHealth() || haschargingstatus() || hasBlx() || hasbatterychargelimit()
+                || hasOPOTGSwitch() || hasChargingEnable();
     }
 
     private void run(String command, String id, Context context) {
