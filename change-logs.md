@@ -1,5 +1,9 @@
 # Change-logs
 
+## 74. August 15, 2019
+*Release-tag: v8.7*<br>
+Changes: About: Add an option to disable auto-update check (Enabled by default). Battery: Add switch to disable charging on support OnePlus phones. build: Updated gradle to 3.5.0-rc03.
+
 ## 73. July 16, 2019
 *Release-tag: v8.6*<br>
 Changes: GPU: Added GPU Power Level Control. Display & LED: Added support to LED Flash Intensity. Misc: Updated haptic feedback control (Credits to @khusika). Gestures: Updated dt2w for xiaomi devices (Credits to @khusika). build: Updated gradle to 3.5.0-beta05.
