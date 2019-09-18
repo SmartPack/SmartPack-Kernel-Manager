@@ -352,6 +352,8 @@
     <string name="max_cpu_online_big_summary">Maximum number of big CPUs that will be online.</string>
     <string name="max_cpu_online_little">Maximum LITTLE CPUs Online</string>
     <string name="max_cpu_online_little_summary">Maximum number of LITTLE CPUs that will be online.</string>
+    <string name="nr_max_cpu">Maximum Online CPUs</string>
+    <string name="nr_min_cpu">Minimum Online CPUs</string>
     <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Voltage -->

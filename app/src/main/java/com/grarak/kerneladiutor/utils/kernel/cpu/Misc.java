@@ -44,6 +44,8 @@ public class Misc {
     private static final String CPU_QUIET_TEGRA_ENABLE = CPU_QUIET + "/tegra_cpuquiet/enable";
     private static final String CPU_QUIET_AVAILABLE_GOVERNORS = CPU_QUIET + "/available_governors";
     private static final String CPU_QUIET_CURRENT_GOVERNOR = CPU_QUIET + "/current_governor";
+    private static final String CPU_QUIET_NR_MIN_CPUS = CPU_QUIET + "/nr_min_cpus";
+    private static final String CPU_QUIET_NR_MAX_CPUS = CPU_QUIET + "/nr_max_cpus";
 
     private static final String CPU_TOUCH_BOOST = "/sys/module/msm_performance/parameters/touchboost";
 
@@ -141,6 +143,30 @@ public class Misc {
 
     public static String getCpuQuietCurGovernor() {
         return Utils.readFile(CPU_QUIET_CURRENT_GOVERNOR);
+    }
+
+    public static void setCpuQuietNrMinCPUs(String value, Context context) {
+        run(Control.write(String.valueOf(value), CPU_QUIET_NR_MIN_CPUS), CPU_QUIET_NR_MIN_CPUS, context);
+    }
+
+    public static String getCpuQuietNrMinCPUs() {
+        return Utils.readFile(CPU_QUIET_NR_MIN_CPUS);
+    }
+
+    public static boolean hasCpuQuietNrMinCPUs() {
+        return Utils.existFile(CPU_QUIET_NR_MIN_CPUS);
+    }
+
+    public static void setCpuQuietNrMaxCPUs(String value, Context context) {
+        run(Control.write(String.valueOf(value), CPU_QUIET_NR_MAX_CPUS), CPU_QUIET_NR_MAX_CPUS, context);
+    }
+
+    public static String getCpuQuietNrMaxCPUs() {
+        return Utils.readFile(CPU_QUIET_NR_MAX_CPUS);
+    }
+
+    public static boolean hasCpuQuietNrMaxCPUs() {
+        return Utils.existFile(CPU_QUIET_NR_MAX_CPUS);
     }
 
     public static List<String> getCpuQuietAvailableGovernors() {
