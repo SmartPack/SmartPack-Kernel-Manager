@@ -346,6 +346,12 @@
     <string name="hotplug_load">Hotplug Load</string>
     <string name="hotplug_rate">Hotplug Rate</string>
     <string name="hotplug_rq">Hotplug RQ</string>
+    <string name="aio_hotplug">AiO Hotplug</string>
+    <string name="aio_hotplug_summary">All in One HotPlug for Qualcomm devices. Developed by Shoaib0597.</string>
+    <string name="max_cpu_online_big">Maximum big CPUs Online</string>
+    <string name="max_cpu_online_big_summary">Maximum number of big CPUs that will be online.</string>
+    <string name="max_cpu_online_little">Maximum LITTLE CPUs Online</string>
+    <string name="max_cpu_online_little_summary">Maximum number of LITTLE CPUs that will be online.</string>
     <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Voltage -->
