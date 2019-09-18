@@ -613,7 +613,7 @@
     <string name="dt2w_charging">DoubleTap2Wake while charging</string>
     <string name="dt2w_s2w">DoubleTap2Wake + Sweep2Wake</string>
     <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
-    <string name="s2s_summary">Lock you device by swiping on the screen.</string>
+    <string name="s2s_summary">Lock your device by swiping on the screen.</string>
     <string name="s2s_right">Sweep Right</string>
     <string name="s2s_left">Sweep Left</string>
     <string name="s2s_any">Sweep Left or Right</string>
@@ -858,7 +858,7 @@
     <string name="spec_performance">Performance</string>
     <string name="spec_performance_summary">Tuned for top-tier performance in standard tasks with many fewer regressions than Balanced, but maintains battery by limiting graphics.</string>
     <string name="spec_battery">Battery</string>
-    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to archive long-lasting battery life.</string>
+    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to achive long-lasting battery life.</string>
     <string name="spec_gaming">Gaming</string>
     <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
 
@@ -924,7 +924,7 @@
 
     <!-- Profile -->
     <string name="apply_on_boot_not_available">In profiles mode your changes won\'t have an impact on apply on boot.</string>
-    <string name="profile_warning">Everything you change here is gonna be saved to your profile. But attention! Your settings will also get applied, but won\'t get saved to apply on boot.</string>
+    <string name="profile_warning">Everything you change here is going to be saved to your profile. But attention! Your settings will also get applied, but won\'t get saved to apply on boot.</string>
     <string name="no_changes">No changes made!</string>
     <string name="apply_question">Apply %s?</string>
     <string name="append">Append</string>
@@ -938,7 +938,7 @@
     <string name="profile_tile_summary">Show a tile which allows you to select a profile.</string>
     <string name="profile_select">Select Profile</string>
     <string name="applying_profile">Applying %s!</string>
-    <string name="no_profiles">No profile found! You have to create them first.</string>
+    <string name="no_profiles">No profiles found! You have to create them first.</string>
     <string name="sections_disabled">All sections disabled! No profiles for you.</string>
     <string name="new_mode">New</string>
     <string name="current_settings">Current settings</string>
@@ -1116,7 +1116,7 @@
     <string name="add_new_features">Q5. Could you add feature x and y to your App?</string>
     <string name="add_new_features_summary">Ans. I’m happy to check and add, if possible, any useful features (unless it is too experimental or dangerous) to my App. Please give your suggestions in the xda-developers page.</string>
     <string name="what_best">Q6. Can you tell me the best settings for performance/SOT?</string>
-    <string name="what_best_summary">Ans. It\'s depends on several factors. I can only share my favorite settings that give me the best results in my favorite ROM.</string>
+    <string name="what_best_summary">Ans. It depends on several factors. I can only share my favorite settings that give me the best results in my favorite ROM.</string>
     <string name="cache_dalvik">Q7. Do I need to wipe cache/dalvik cache before/after flashing a Kernel?</string>
     <string name="cache_dalvik_summary">Ans. NO. Because the kernel does not even ‘see’ cache/dalvik cache.</string>
     <string name="found_bugs">Q8. I found a bug in your App, what do I do?</string>
