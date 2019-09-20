@@ -2,7 +2,7 @@
     <string name="checking_info">Verificando informações…</string>
     <string name="checking_root">Verificando acesso root</string>
     <string name="searching_busybox">Procurando pelo busybox</string>
-    <string name="collecting_info">Collectando informações</string>
+    <string name="collecting_info">Coletando informações</string>
     <string name="no_root">Sem root</string>
     <string name="no_busybox">Sem busybox</string>
     <string name="open">Abrir %s</string>
@@ -89,7 +89,7 @@
     <string name="misc">Vários</string>
     <string name="custom_controls">Controles personalizados</string>
     <string name="backup">Backup</string>
-    <string name="build_prop_editor">Editor Build prop</string>
+    <string name="build_prop_editor">Editor Build.prop</string>
     <string name="profile">Perfil</string>
     <string name="initd">Init.d</string>
     <string name="on_boot">Na inicialização</string>
@@ -101,14 +101,14 @@
     <!-- Overall -->
     <string name="offline">Offline</string>
     <string name="core">Núcleo %d</string>
-    <string name="gpu_freq">Freqûencia da GPU</string>
+    <string name="gpu_freq">Frequência da GPU</string>
     <string name="refresh">Atualizar</string>
     <string name="reset">Redefinir</string>
     <string name="restore">Restaurar</string>
     <string name="deep_sleep">Sono profundo</string>
     <string name="uptime">Tempo de atividade</string>
-    <string name="error_frequencies">Falha ao carregar freqûencias</string>
-    <string name="unused_frequencies">Freqûencias não usadas</string>
+    <string name="error_frequencies">Falha ao carregar frequências</string>
+    <string name="unused_frequencies">frequências não usadas</string>
 
     <!-- Device -->
     <string name="processor">Processador</string>
@@ -138,11 +138,11 @@
     <string name="cores_singular">%d núclero</string>
     <string name="cores">%d núcleos</string>
     <string name="cpu_usage">Uso de CPU</string>
-    <string name="cpu_usage_string">%s de uso de CPU</string>
+    <string name="cpu_usage_string">Uso de CPU %s</string>
     <string name="no_offline_core">Você não pode desligar esse núcleo!</string>
-    <string name="cpu_max_freq">Freqûencia máxima da CPU</string>
+    <string name="cpu_max_freq">frequência máxima da CPU</string>
     <string name="cpu_max_freq_summary">Defina a frequência máxima que a CPU alcança.</string>
-    <string name="cpu_min_freq">Freqûencia mínima da CPU</string>
+    <string name="cpu_min_freq">frequência mínima da CPU</string>
     <string name="cpu_min_freq_summary">Defina a frequência mínima para qual a CPU reduz.</string>
     <string name="cpu_max_screen_off_freq">Frequência máxima com tela desligada da CPU</string>
     <string name="cpu_max_screen_off_freq_summary">Defina a frequência máxima que a CPU aumenta quando a tela estiver desligada.</string>
@@ -188,8 +188,8 @@
     <string name="freq_control_summary">Permite que o Limitador MSM controle as frequências das suas CPUs.</string>
     <string name="dyn_stune_boost">Impulso de stune dinâmico</string>
     <string name="stune_boost_ms">Duração do impulso de stune</string>
-    <string name="stune_boost_sett">COnfigurações do impulso de stune</string>
-    <string name="stune_boost_sett_summary">Ative para obter acesso a configurações avançadas do impulso de stune.</string>
+    <string name="stune_boost_sett">Configurações do impulso stune</string>
+    <string name="stune_boost_sett_summary">Ative para obter acesso a configurações avançadas do impulso stune.</string>
     <string name="powerhal_tunables">Ajustáveis do Power HAL</string>
 
     <!-- CPU Input Boost -->
@@ -198,7 +198,7 @@
     <string name="cpuiboost_duration">Duração do impulso de entrada</string>
     <string name="cpuiboost_duration_summary">Definir duração do impulso de entrada da CPU</string>
     <string name="wake_boost_duration">Duração do impulso de ativamento</string>
-    <string name="cluster_return_freq">Freqûencia de retorno do cluster</string>
+    <string name="cluster_return_freq">frequência de retorno do cluster</string>
 
     <!-- CPU Hotplug -->
     <string name="hotplug_warning">Mais de um sistema de hotplug está ativado!\nPor favor, use apenas um.</string>
@@ -310,7 +310,7 @@
     <string name="cycle_down_summary">Ciclos para aguardar após o último evento de hotplug para desativar outro núcleo.</string>
     <string name="cycle_up">Ciclo de desativação</string>
     <string name="cycle_up_summary">Ciclos para aguardar após o último evento de hotplug para ativar outro núcleo.</string>
-    <string name="core_control">Controle do núcleos</string>
+    <string name="core_control">Controle dos núcleos</string>
     <string name="min_boost_freq">Frequência de impulso mínima</string>
     <string name="hotplug_suspend">Suspensão do Hotplug</string>
     <string name="hcube">H-Cube</string>
@@ -332,7 +332,7 @@
     <string name="max_down_count">Limite de núcleo desativados</string>
     <string name="max_up_count">Limite de núcleo ativados</string>
     <string name="suspend_max_online">Máximo de núcleos ativados durante a suspensão</string>
-    <string name="hotplug_frequency">Freqûencia do Hotplug</string>
+    <string name="hotplug_frequency">frequência do Hotplug</string>
     <string name="hotplug_load">Carga do Hotplug</string>
     <string name="hotplug_rate">Taxa do Hotplug</string>
     <string name="hotplug_rq">Hotplug RQ</string>
@@ -365,7 +365,7 @@
     <string name="devfreq_boost_ms">Duração do Impulso</string>
     <string name="devfreq_boost_ms_summary">Define a duração do impulso do devfreq</string>
     <string name="devfreq_boost_freq">Frequência de Impulso</string>
-    <string name="devfreq_boost_freq_summary">Define a freqûencia de impulso de freqûencia do devfreq</string>
+    <string name="devfreq_boost_freq_summary">Define a frequência de impulso de frequência do devfreq</string>
     <string name="laziness">Preguiça</string>
     <string name="laziness_summary">Isso aumenta o limite para aumentar ou diminuir as frequências da GPU. Quanto menor, mais desempenho você obtém.</string>
     <string name="ramp_thresold">Limite de aumento</string>
@@ -413,13 +413,13 @@
     <string name="temp_limit_min_freq_summary">A térmica usará essa frequência para suprimir a temperatura máxima.</string>
     <string name="allowed_low_low">Fase 1: Permitido Baixo Baixo</string>
     <string name="allowed_low_high">Fase 1: Permitido Baixo Alto</string>
-    <string name="allowed_low_freq">Fase 1: Permitido Baixo Freqûencia</string>
+    <string name="allowed_low_freq">Fase 1: Permitido Baixo Frequência</string>
     <string name="allowed_mid_low">Fase 2: Permitido Médio Baixo</string>
     <string name="allowed_mid_high">Fase 2: Permitido Médio Alto</string>
-    <string name="allowed_mid_freq">Fase 2: Permitido Médio Freqûencia</string>
+    <string name="allowed_mid_freq">Fase 2: Permitido Médio Frequência</string>
     <string name="allowed_max_low">Fase 3: Permitido Máx. Baixo</string>
     <string name="allowed_max_high">Fase 3: Permitido Máx. Alto</string>
-    <string name="allowed_max_freq">Fase 3: Permitido Máx. Freqûencia</string>
+    <string name="allowed_max_freq">Fase 3: Permitido Máx. Frequência</string>
     <string name="check_interval">Intervalo de Verificação</string>
     <string name="shutdown_temp">Temperatura de Desligamento</string>
     <string name="msm_thermal">MSM Thermal</string>
@@ -494,7 +494,7 @@
     <string name="min_rgb">Valor Mínimo RGB</string>
     <string name="invert_screen">Inverter Tela</string>
     <string name="saturation_intensity">Intensidade da Saturação</string>
-    <string name="grayscale_mode">Mode de Escala de Cinza</string>
+    <string name="grayscale_mode">Mode Tons de Cinza</string>
     <string name="screen_hue">Matiz da Tela</string>
     <string name="screen_hue_summary">Você pode ter problemas com o SoC MSM8x26 ao definir um valor alto.</string>
     <string name="screen_value">Valor da Tela</string>
@@ -545,7 +545,7 @@
 
     <!-- K-lapse -->
     <string name="klapse">K-lapse</string>
-    <string name="klapse_summary">Selecione o modo K-lapse preferido, um módulo de exibição ao vivo no nível do kernel por tanish2k09. Isso não deve ser desativado para ajustar o restante dos parâmetros do K-lapse.</string>
+    <string name="klapse_summary">Selecione o modo K-lapse preferido, um módulo de exibição ao vivo no nível do kernel por tanish2k09. Isso não deve ser desativado se deseja ajustar o restante dos parâmetros do K-lapse.</string>
     <string name="turn_off">Desligado</string>
     <string name="time_scale">Escala Baseada no Tempo</string>
     <string name="bright_scale">Escala Baseada no Brilho</string>
@@ -553,7 +553,7 @@
     <string name="start_time">Início</string>
     <string name="end_time">Fim</string>
     <string name="scaling_rate">Taxa de Escala (Minuto)</string>
-    <string name="scaling_rate_summary">Controla o quão cedo o RGB alcança do modo diurno para o noturno dentro do intervalo de hora de início e parada.</string>
+    <string name="scaling_rate_summary">Controla o quão cedo o RGB vai do modo diurno para o noturno dentro do intervalo de início e parada.</string>
     <string name="fadeback_time">Tempo de Desvanecimento (Minuto)</string>
     <string name="fadeback_time_summary">O número de minutos antes do Horário de Término em que o RGB deve voltar às cores diurnas.</string>
     <string name="daytime_rgb">Cores Diurnas</string>
@@ -562,7 +562,7 @@
     <string name="dimming_summary">100: Brilho preciso; 50: 50% da intensidade atual.</string>
     <string name="brightness_factor_summary">10: Brilho preciso; 5: 50% do brilho atual.</string>
     <string name="auto_dimming">Escurecimento automático</string>
-    <string name="auto_dimming_summary">Defina automaticamente o fator de brilho em um intervalo de tempo definido.</string>
+    <string name="auto_dimming_summary">Definir automaticamente o fator de brilho em um intervalo de tempo definido.</string>
     <string name="auto_dimming_schedule">Agend. do Escur. Automático</string>
     <string name="backlight_range">Alcance da Luz de Fundo</string>
     <string name="pulse_freq">Frequência de Pulso</string>
@@ -661,7 +661,7 @@
 
     <!-- I/O Scheduler -->
     <string name="internal_storage">Armazenamento Interno</string>
-    <string name="external_storage">Armazenamento externo</string>
+    <string name="external_storage">Armazenamento Externo</string>
     <string name="scheduler">Agendador</string>
     <string name="scheduler_summary">Defina o algoritmo de elevador de I/O ativo. O Agendador decide como lidar com solicitações de I/O.</string>
     <string name="scheduler_tunable">Ajustáveis do Agendador</string>
@@ -673,7 +673,7 @@
     <string name="iostats">Estatísticas I/O</string>
     <string name="iostats_summary">Manter estatísticas de I/O para este dispositivo de armazenamento. Desativar interromperá os aplicativos de monitoramento de I/O.</string>
     <string name="add_random">Adicionar Aleatoriedade</string>
-    <string name="add_random_summary">Criar entropia do armazenamento giratório (rotacional).</string>
+    <string name="add_random_summary">Gerar entropia a partir do armazenamento giratório (rotacional).</string>
     <string name="rq_affitiny">Afinidade RQ</string>
     <string name="rq_affinity_summary">Tentar concluir as solicitações do agendador no núcleo da CPU de onde foram feitas. Valores mais altos são mais agressivos.</string>
     <string name="nomerges">Sem Mesclagem</string>
@@ -698,14 +698,14 @@
     <string name="uksm_governor_summary">Definir o CPU Governor for UKSM.</string>
 
     <!-- Low Memory Killer -->
-    <string name="foreground_app">Aplicativos em Primeiro Plano</string>
+    <string name="foreground_app">Aplicativos em primeiro plano</string>
     <string name="lmk_adaptive">Low Memory Killer Adaptivo</string>
     <string name="lmk_adaptive_summary">Torne o LMK mais agressivo dinamicamente quando muitos aplicativos inúteis forem detectados.</string>
     <string name="visible_app">Aplicativos visíveis</string>
-    <string name="secondary_server">Servidor secondário</string>
+    <string name="secondary_server">Servidor secundário</string>
     <string name="hidden_app">Aplicativos escondidos</string>
     <string name="content_providers">Provedores de conteúdo</string>
-    <string name="empty_app">Aplicativos Vazios</string>
+    <string name="empty_app">Aplicativos vazios</string>
     <string name="very_light">Muito suave</string>
     <string name="light">Suave</string>
     <string name="medium">Médio</string>
@@ -1013,7 +1013,7 @@
     <string name="fahrenheit_summary">Usar fahrenheit para medir a temperatura.</string>
     <string name="force_english">Forçar a exibição no idioma inglês</string>
     <string name="user_interface">Interface de usuário</string>
-    <string name="dark_theme">Temas escuro</string>
+    <string name="dark_theme">Tema escuro</string>
     <string name="material_icon">Ícone Material</string>
     <string name="banner_resizer">Redimensionador de banner</string>
     <string name="banner_resizer_message">A orientação da tela do telefone deveria estar em \'Retrato\'!</string>
@@ -1033,7 +1033,7 @@
     <string name="hide">Esconder</string>
     <string name="apply_on_boot_hide_summary">Ocultar a notificação de aplicar na inicialização. O atraso ainda permanecerá!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Mostrar um toast quando as configurações foram aplicadas.</string>
+    <string name="apply_on_boot_toast_summary">Mostrar um toast quando as configurações forem aplicadas.</string>
     <string name="confirmation_notification">Notificação de confirmação</string>
     <string name="apply_on_boot_confirmation_notification_summary">Depois de aplicar na inicialização, com a notificação visível, mostrar uma notificação posteriormente com a confirmação de que a aplicação na inicialização foi bem-sucedida.</string>
     <string name="script">Script</string>
