@@ -1,5 +1,9 @@
 # Change-logs
 
+## 75. September 20, 2019
+*Release-tag: v8.8*<br>
+Changes: CPU Hotplug: Added AIO hotplug. CPU: CPU Quiet: Added Min and Max CPUs. Translations: Added Brazilian Portuguese (Credits: @Lennoard). Translations: Updated Russian (Credits: @Andrey) and Chinese simplified (Credits: @Roiyaru)
+
 ## 74. August 15, 2019
 *Release-tag: v8.7*<br>
 Changes: About: Add an option to disable auto-update check (Enabled by default). Battery: Add switch to disable charging on support OnePlus phones. build: Updated gradle to 3.5.0-rc03.

@@ -1,10 +1,11 @@
 {
-  "latestVersion": "8.7-20190815",
+  "latestVersion": "8.8-20190920",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- About: Add an option to disable auto-update check (Enabled by default).",
-    "- Battery: Add switch to disable charging on support OnePlus phones.",
-    "- build: Updated gradle to 3.5.0-rc03."
+    "- CPU Hotplug: Added AIO hotplug.",
+    "- CPU: CPU Quiet: Added Min and Max CPUs.",
+    "- Translations: Added Brazilian Portuguese (Credits: @Lennoard).",
+    "- Translations: Updated Russian (Credits: @Andrey) and Chinese simplified (Credits: @Roiyaru)."
   ]
 }
