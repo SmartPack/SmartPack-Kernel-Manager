@@ -108,7 +108,7 @@
     <string name="deep_sleep">Sono profundo</string>
     <string name="uptime">Tempo de atividade</string>
     <string name="error_frequencies">Falha ao carregar frequências</string>
-    <string name="unused_frequencies">frequências não usadas</string>
+    <string name="unused_frequencies">Frequências não usadas</string>
 
     <!-- Device -->
     <string name="processor">Processador</string>
@@ -140,9 +140,9 @@
     <string name="cpu_usage">Uso de CPU</string>
     <string name="cpu_usage_string">Uso de CPU %s</string>
     <string name="no_offline_core">Você não pode desligar esse núcleo!</string>
-    <string name="cpu_max_freq">frequência máxima da CPU</string>
+    <string name="cpu_max_freq">Frequência máxima da CPU</string>
     <string name="cpu_max_freq_summary">Defina a frequência máxima que a CPU alcança.</string>
-    <string name="cpu_min_freq">frequência mínima da CPU</string>
+    <string name="cpu_min_freq">Frequência mínima da CPU</string>
     <string name="cpu_min_freq_summary">Defina a frequência mínima para qual a CPU reduz.</string>
     <string name="cpu_max_screen_off_freq">Frequência máxima com tela desligada da CPU</string>
     <string name="cpu_max_screen_off_freq_summary">Defina a frequência máxima que a CPU aumenta quando a tela estiver desligada.</string>
@@ -494,7 +494,7 @@
     <string name="min_rgb">Valor Mínimo RGB</string>
     <string name="invert_screen">Inverter Tela</string>
     <string name="saturation_intensity">Intensidade da Saturação</string>
-    <string name="grayscale_mode">Mode Tons de Cinza</string>
+    <string name="grayscale_mode">Modo Tons de Cinza</string>
     <string name="screen_hue">Matiz da Tela</string>
     <string name="screen_hue_summary">Você pode ter problemas com o SoC MSM8x26 ao definir um valor alto.</string>
     <string name="screen_value">Valor da Tela</string>
@@ -504,7 +504,7 @@
     <string name="gamma">Gama</string>
     <string name="red_greys">Cinzas Vermelhos</string>
     <string name="red_mids">Médios Vermelhos</string>
-    <string name="red_blacks">Pretps Vermelhos</string>
+    <string name="red_blacks">Pretos Vermelhos</string>
     <string name="red_whites">Brancos Vermelhos</string>
     <string name="green_greys">Cinzas Verdes</string>
     <string name="green_mids">Médios Verdes</string>
@@ -521,7 +521,7 @@
     <string name="green_positive">Verde Positivo</string>
     <string name="green_negative">Verde Negativo</string>
     <string name="blue_positive">Azul Positivo</string>
-    <string name="blue_negative">Azul NEgativo</string>
+    <string name="blue_negative">Azul Negativo</string>
     <string name="white_point">Ponto Branco</string>
     <string name="lcd_backlight">Luz de Fundo do LCD</string>
     <string name="gamma_profiles_summary">Após selecionar um perfil, por favor, desligue e ligue a tela.</string>
@@ -538,7 +538,7 @@
     <string name="mdnie_global_controls">Controles globais do mDNIe</string>
     <string name="register_hook">Gancho do Registrador</string>
     <string name="register_hook_summary">A interceptação de registro atua como um gancho e permitirá capturar as configurações do cenário e modificá-las através de controles delta. Se um cenário não possuir uma configuração (registrador) em sua sequência base, ele não poderá ser modificado pelo gancho.</string>
-    <string name="master_sequence">Seqûencia Principal</string>
+    <string name="master_sequence">Sequência Principal</string>
     <string name="master_sequence_summary">A ativação da sequência principal desabilitará e ignorará os perfis e cenários da Samsung, os controles da ROM serão desabilitados.</string>
     <string name="glove_mode">Modo Luva</string>
     <string name="glove_mode_summary">Ativar isso permitirá que você use seu telefone mesmo usando luvas.</string>
@@ -781,7 +781,7 @@
     <string name="disksize_summary">Tenta aumentar o desempenho, evitando paginação no armazenamento físico, em vez disso, usando um dispositivo virtual compactado na RAM. A paginação ocorre na RAM até que seja necessário usar o espaço swap no armazenamento físico.</string>
     <string name="zswap">ZSWAP</string>
     <string name="zswap_summary">O ZSwap é um cache compactado leve para troca de páginas. Ele pega as páginas que estão sendo trocadas e tenta compactá-las em um conjunto de memórias baseadas em RAM alocadas dinamicamente. O Zswap basicamente negocia ciclos de CPU para uma troca I/O potencialmente reduzida.</string>
-    <string name="memory_pool">Poll de Memória</string>
+    <string name="memory_pool">Pool de Memória</string>
     <string name="memory_pool_summary">Porcentagem de pool de memória da memória principal que pode ser usada como cache de página compactado.</string>
     <string name="maximum_compression_ratio">Taxa máxima de compressão</string>
     <string name="maximum_compression_ratio_summary">Taxa máxima de compactação, em porcentagem, para uma página compactada aceitável. Qualquer página que não compactar pelo menos nessa proporção será rejeitada.</string>
@@ -833,7 +833,7 @@
     <!-- Performance Tweaks -->
     <string name="spectrum">Tweas de Desempenho</string>
     <string name="profileTile">Perfil</string>
-    <string name="spec_title">Tweas de Desenpenho</string>
+    <string name="spec_title">Tweaks de Desenpenho</string>
     <string name="spec_info">Uma adaptação do Spectrum Manager do frap129.\nSelecione um entre os perfis predefinidos disponíveis.</string>
     <string name="spec_balanced">Balanceado</string>
     <string name="spec_balanced_summary">O perfil padrão do kernel projetado para desempenho suave em tarefas básicas, mantendo uma bateria fantástica.</string>
@@ -842,7 +842,7 @@
     <string name="spec_battery">Bateria</string>
     <string name="spec_battery_summary">O perfil ultraconservador que permite que o desempenho seja afetado, a fim de alcançar a vida útil da bateria de longa duração.</string>
     <string name="spec_gaming">Gaming</string>
-    <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
+    <string name="spec_gaming_summary">Idêntico ao performance na maioria das áreas, exceto o desempenho gráfico desbloqueado.</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Bem-vindo</string>
@@ -1039,7 +1039,7 @@
     <string name="script">Script</string>
     <string name="apply_on_boot_script_summary">Use um script de shell para aplicar as configurações. Ative isso somente se você tiver problemas com a aplicação na inicialização. Se o problema persistir após a ativação dessa opção, verifique se nenhum outro aplicativo está em conflito com o SmartPack-Kernel Manager.</string>
     <string name="logcat">Logcat(s)</string>
-    <string name="logcat_summary">Salve todos os logcats, incluindo rádio e eventos no \'sdcard\'</string>
+    <string name="logcat_summary">Salvar todos os logcats, incluindo rádio e eventos no \'sdcard\'</string>
     <string name="last_kmsg">Última Mensagem do Kernel</string>
     <string name="last_kmsg_summary">Salvar /proc/last_kmsg no \'sdcard\'</string>
     <string name="console_ramoops">Console Ramoops</string>
@@ -1080,7 +1080,7 @@
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>
-    <string name="no_internet">Por favor, verifique sua conexão à internet!</string>
+    <string name="no_internet">Por favor, verifique sua conexão à Internet!</string>
     <string name="translators">Tradutores</string>
 
     <!-- FAQ -->
@@ -1094,7 +1094,7 @@
     <string name="feature_not_appearing_summary">R. Somente os recursos implementados no seu Kernel são mostrados.</string>
     <string name="add_new_features">P5. Você poderia adicionar os recursos X e Y ao seu aplicativo?</string>
     <string name="add_new_features_summary">R. É um prazer verificar e adicionar, se possível, quaisquer recursos úteis (a menos que sejam muito experimentais ou perigosos) ao meu aplicativo. Por favor, dê suas sugestões na página no xda-developers.</string>
-    <string name="what_best">Q6. Você pode me dizer as melhores configurações para desempenho / tempo com tela ligada?</string>
+    <string name="what_best">Q6. Você pode me dizer as melhores configurações para desempenho / tempo de tela ligada?</string>
     <string name="what_best_summary">R. Isso depende de vários fatores. Só posso compartilhar minhas configurações favoritas que me dão os melhores resultados na minha ROM favorita.</string>
     <string name="cache_dalvik">P7. Preciso limpar o cache / dalvik cache antes / depois da atualização do Kernel?</string>
     <string name="cache_dalvik_summary">R. NÃO. Porque o kernel nem mesmo \'vê\' o cache / dalvik cache.</string>
