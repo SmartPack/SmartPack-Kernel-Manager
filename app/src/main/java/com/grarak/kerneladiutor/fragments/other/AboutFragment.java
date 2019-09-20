@@ -52,7 +52,7 @@ public class AboutFragment extends RecyclerViewFragment {
     static {
         sLibraries.put("Google,AndroidX Library", "https://developer.android.com/jetpack/androidx");
         sLibraries.put("Google,NavigationView library", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
-	sLibraries.put("Chris Renshaw,Auto-flash", "https://github.com/osm0sis");
+        sLibraries.put("Chris Renshaw,Auto-flash", "https://github.com/osm0sis");
         sLibraries.put("Joe Maples,Spectrum", "https://github.com/frap129/spectrum");
         sLibraries.put("Ozodrukh,CircularReveal", "https://github.com/ozodrukh/CircularReveal");
         sLibraries.put("Roman Nurik,dashclock", "https://github.com/romannurik/dashclock");
@@ -70,7 +70,8 @@ public class AboutFragment extends RecyclerViewFragment {
     static {
         sTranslations.put("Chinese (Traditional),jason5545", "https://github.com/jason5545");
         sTranslations.put("Chinese (Simplified),Roiyaru", "https://github.com/Roiyaru");
-        sTranslations.put("Russian,andrey167", "https://github.com/andrey167");
+        sTranslations.put("Russian,Andrey", "https://github.com/andrey167");
+        sTranslations.put("Portuguese (Brazilian),Lennoard Silva", "https://github.com/Lennoard");
     }
 
     @Override

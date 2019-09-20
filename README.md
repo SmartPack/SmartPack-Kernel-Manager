@@ -59,6 +59,7 @@ In addition to official Kernel Adiutor and its related dependencies, I used code
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
 * [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
 * [Andrey](https://github.com/andrey167), Russian
+* [Lennoard Silva](https://github.com/Lennoard), Portuguese (Brazilian)
 
 ## Report a bug or request a feature
 
