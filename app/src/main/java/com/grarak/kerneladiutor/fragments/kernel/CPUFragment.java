@@ -461,7 +461,7 @@ public class CPUFragment extends RecyclerViewFragment {
 
         if (Misc.hasCpuQuietNrMinCPUs()) {
             GenericSelectView NrMinCPUs = new GenericSelectView();
-            NrMinCPUs.setSummary(getString(R.string.nr_max_cpu));
+            NrMinCPUs.setSummary(getString(R.string.nr_min_cpu));
             NrMinCPUs.setValue(Misc.getCpuQuietNrMinCPUs());
             NrMinCPUs.setInputType(InputType.TYPE_CLASS_NUMBER);
             NrMinCPUs.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
