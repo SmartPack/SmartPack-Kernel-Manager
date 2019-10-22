@@ -203,14 +203,14 @@
     <string name="hysteresis_summary">值越低回應越快</string>
     <string name="cpu_threshold">CPU 閥值</string>
     <string name="cpu_threshold_summary">數值越高，CPU 使用率則越低</string>
-    <string name="suspend">暫停</string>
-    <string name="suspend_summary">預防暫停</string>
+    <string name="suspend">待機</string>
+    <string name="suspend_summary">預防待機</string>
     <string name="cpus_boosted">CPU 已加速</string>
     <string name="cpus_boosted_summary">同時被加速的 CPU 最大數量</string>
-    <string name="min_cpu_online">最小 CPU 上線</string>
-    <string name="min_cpu_online_summary">將處於聯機狀態的最少CPU數。</string>
-    <string name="max_cpu_online">最大 CPU 上線</string>
-    <string name="max_cpu_online_summary">將處於聯機狀態的最大CPU數。</string>
+    <string name="min_cpu_online">最少 CPU 上線數</string>
+    <string name="min_cpu_online_summary">將處於線上狀態的最少CPU數。</string>
+    <string name="max_cpu_online">最多 CPU 上線數</string>
+    <string name="max_cpu_online_summary">處於線上狀態的最大CPU數。</string>
     <string name="max_cpu_online_screen_off">螢幕關閉時的最大 CPU</string>
     <string name="max_cpu_online_screen_off_summary">當螢幕關閉時上線的最大 CPU 數量。</string>
     <string name="suspend_defer_time">暫停延遲時間</string>
@@ -311,6 +311,15 @@
     <string name="hotplug_load">熱插拔負載</string>
     <string name="hotplug_rate">熱插拔速率</string>
     <string name="hotplug_rq">熱插拔 RQ</string>
+    <string name="aio_hotplug">AiO 熱插拔</string>
+    <string name="aio_hotplug_summary">適用於高通裝置的 All in One 熱插拔。 由 Shoaib0597 開發</string>
+    <string name="max_cpu_online_big">最多 大核 CPU 上線數</string>
+    <string name="max_cpu_online_big_summary">大核 CPU 的最大上線數量</string>
+    <string name="max_cpu_online_little">最多 小核 CPU 上線數</string>
+    <string name="max_cpu_online_little_summary">小核 CPU 的最大上線數量</string>
+
+    <string name="nr_max_cpu">最多上線 CPU 數</string>
+    <string name="nr_min_cpu">最低上線 CPU 數</string>
     <string name="adv_sett">進階設定</string>
 
     <!-- CPU Voltage -->
@@ -351,6 +360,8 @@
     <string name="idle_wait_summary">要降低頻率斜向進刀之前等待的事件數。Idlewait\'th 事件在目前之前必須前腎上腺托輥坡道下頻率都處於空閒狀態。這種實現是為了防止微型滯後上滾動或玩遊戲。腎上腺托輥將更積極地嘗試斜向頻率下刀，如果這設定為較低的值。</string>
     <string name="workload">運作負載</string>
     <string name="workload_summary">如果將這個值調高，Adreno 管理器將會更頻繁的嘗試降低頻率</string>
+    <string name="gpu_powelevel">GPU 電源等級</string>
+    
 
     <!--Thermal-->
     <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
@@ -454,6 +465,9 @@
     <string name="red">紅色</string>
     <string name="green">綠色</string>
     <string name="blue">藍色</string>
+    <string name="white">白色</string>
+    <string name="flash_led"> LED 閃爍強度</string>
+    <string name="yellow">黃色</string>
     <string name="min_rgb">最小 RGB 值</string>
     <string name="invert_screen">反轉螢幕顏色</string>
     <string name="saturation_intensity">飽和強度</string>
@@ -573,12 +587,17 @@
     <string name="timeout_summary">在螢幕關閉之後，設定將喚醒控制停用的時間。</string>
     <string name="charge_timeout">充電逾時</string>
     <string name="charge_timeout_summary">當充電時，在螢幕關閉之後，設定將喚醒控制停用的時間。</string>
-    <string name="power_key_suspend">電源鍵暫停</string>
+    <string name="power_key_suspend">電源鍵待機</string>
     <string name="power_key_suspend_summary">開啟這項目當您按電源鍵關閉螢幕，將會關閉喚醒控制。</string>
     <string name="width">寬度</string>
     <string name="height">高度</string>
     <string name="vibration">震動</string>
     <string name="vibration_strength">震動強度</string>
+     <string name="override_vib">覆寫震動設定</string>
+    <string name="override_vib_summary">允許覆寫系統預設的震動設定。</string>
+    <string name="system_vib">系統震動</string>
+    <string name="notification_vib">通知</string>
+    <string name="calls_vib">通話</string>
     <string name="key_power_mode">電源鍵模式</string>
     <string name="key_power_mode_summary">只有當您使用電源鍵將裝置置於睡眠狀態時, 喚醒控制項才會處於啟用狀態。</string>
     <string name="charging_mode">充電模式</string>
@@ -747,13 +766,13 @@
     <string name="arch_power">拱的權力</string>
     <string name="arch_power_summary">啟用拱的特定權力的功能儲蓄。</string>
     <string name="power_suspend">待命</string>
-    <string name="power_suspend_mode">暫停的模式電源</string>
+    <string name="power_suspend_mode">待機的模式電源</string>
     <string name="power_suspend_mode_summary">由核心自動管理核心模式，液晶鉤和最高水準掛鉤。若要手動啟用或停用電源待命狀態，請選擇使用者模式。</string>
     <string name="autosleep">自動睡眠</string>
     <string name="userspace">使用者空間</string>
     <string name="lcd_panel">液晶面板</string>
     <string name="hybrid">混合</string>
-    <string name="power_suspend_state">暫停狀態的電源</string>
+    <string name="power_suspend_state">待機狀態的電源</string>
     <string name="power_suspend_state_summary">當螢幕關閉時核心電源管理驅動。如果啟用了更好的電池儲存。注意：如果權力待命模式是在使用者模式下，只可以更改此設定。</string>
     <string name="network">網路</string>
     <string name="tcp">TCP 擁塞控制演算法</string>
@@ -817,11 +836,12 @@
 
     <!-- Backup -->
     <string name="boot_partition">引導分區</string>
-    <string name="recovery_partition">恢復分區</string>
+    <string name="recovery_partition">復原分區</string>
     <string name="fota_partition"> FOTA 解決方案分區</string>
     <string name="flash">刷入</string>
     <string name="select_question">選擇 %s 嗎？</string>
     <string name="wrong_extension">請選擇一個副檔名為 %s 的檔案</string>
+    <string name="file_selection_error">從外部檔案管理器取得資料失敗</string>
 
     <!-- Build prop Editor -->
     <string name="add">增加</string>
@@ -877,12 +897,15 @@
     <string name="get_it">點選這裡以取得更新</string>
     <string name="download">下載</string>
     <string name="downloads_message">\n點選下載以開始自動刷入核心\n\n警告! 下載將需要一些時間來完成! 請耐心等待!\n\n新核心準備好安裝後, 應用程式將通知您。\n</string>
-    <string name="autoflash">自動安裝</string>
+    <string name="autoflash">自動刷入</string>
     <string name="autoflash_message">\nSmartPack 核心已下載完成並準備好自動刷入。是否要立即刷入？\n\n  請注意: 您的裝置將在刷入過程後自動重新開機。\n</string>
-    <string name="flash_now">立即安裝</string>
+    <string name="flash_now">立即刷入</string>
     <string name="flash_later">我自己來</string>
-    <string name="flash_message">\nSmartPack核心 已下載至 「/sdcard/Download/」\n\n您要立即安裝嗎?\n</string>
-    <string name="no_flash_message">\n對不起! 自動安裝將無法在此裝置上運作。但是, 下載完成後, 您可以手動安裝核心。\n要重新開機嗎？\n</string>
+    <string name="flash_log">刷入器日誌</string>
+    <string name="flash_log_summary">點選以取得上次刷入的日誌</string>
+    <string name="nothing_show">沒有可顯示的內容。再次點選以重試</string>
+    <string name="flash_message">\nSmartPack 核心已被下載至 「/sdcard/Download/」 然而，由於此裝置上沒有適當的 BusyBox 二進位檔案，因此只能透過第三方復原模式刷入。\\n\n您要立即安裝嗎？\n</string>
+    <string name="no_flash_message">\n很抱歉！ 自動安裝將無法在此裝置上運作。但是, 下載完成後, 您可以於「/sdcard/Download/」手動刷入核心。\n要重新開機嗎？\n</string>
     <string name="download_failed_message">\n您正在執行不受支援的 Android 版本嗎？\n\n如果沒有, 請檢查您的網際網路連線!\n\n</string>
     <string name="advance_options">進階選項</string>
     <string name="reboot">重啟</string>
@@ -895,7 +918,7 @@
     <string name="flasher">刷入器</string>
     <string name="flasher_summary">按一下刷入按鈕選擇並刷入可用於復原模式的 zip 檔案, 而無需重新開機到第三方復原模式。變更將在重新開機後套用。</string>
     <string name="flasher_message">立即刷入</string>
-    <string name="file_size_limit">請注意: 出於安全原因, 超過 100 MB 的檔案將不允許刷入。</string>
+    <string name="file_size_limit">\'%s\' 的大小已超過 100 MB.\n\n請注意: 出於安全原因, 超過 100 MB 的檔案將不允許刷入。</string>
     <string name="backing_up">備份中</string>
     <string name="flashing">刷入中</string>
     <string name="restoring">還原中</string>
@@ -999,6 +1022,10 @@
     <string name="donate_me_message"> \n如果你喜歡我的工作，請考慮給我捐款，因為有助於我的項目更加活躍，儘管不是強制性的。\n</string>
     <string name="donate_me_playstore">\n請注意: 我除了可以透過 PayPal 接受捐款, 您也可以購買 Play Store 中的 SmartPack Donation Package 來表示支持。此外, 購買 SmartPack Donation Package 將解鎖在這個應用程式中的一些隱藏的功能。\n</string>
     <string name="purchase_app">購買應用程式</string>
+    <string name="paypal_donation">PayPal</string>
+    <string name="auto_update_check">檢查自動更新</string>
+    <string name="auto_update_check_summary">當應用程式啟動時檢查 SmartPack-Kernel Manager 的更新版本</string>
+
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>
