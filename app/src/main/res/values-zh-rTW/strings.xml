@@ -317,7 +317,6 @@
     <string name="max_cpu_online_big_summary">大核 CPU 的最大上線數量</string>
     <string name="max_cpu_online_little">最多 小核 CPU 上線數</string>
     <string name="max_cpu_online_little_summary">小核 CPU 的最大上線數量</string>
-
     <string name="nr_max_cpu">最多上線 CPU 數</string>
     <string name="nr_min_cpu">最低上線 CPU 數</string>
     <string name="adv_sett">進階設定</string>
@@ -361,7 +360,6 @@
     <string name="workload">運作負載</string>
     <string name="workload_summary">如果將這個值調高，Adreno 管理器將會更頻繁的嘗試降低頻率</string>
     <string name="gpu_powelevel">GPU 電源等級</string>
-    
 
     <!--Thermal-->
     <string name="thermal_info">在下面選項中只使用一種溫度管理，同時使用超過一種可能會導致不可預期的行為。</string>
@@ -1025,7 +1023,7 @@
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">檢查自動更新</string>
     <string name="auto_update_check_summary">當應用程式啟動時檢查 SmartPack-Kernel Manager 的更新版本</string>
-
+    <string name="licence">授權協議</string>
 
     <!-- Contributors -->
     <string name="commits">%d 提交</string>

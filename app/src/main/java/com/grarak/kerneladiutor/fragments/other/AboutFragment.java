@@ -267,11 +267,14 @@ public class AboutFragment extends RecyclerViewFragment {
             rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!Utils.isNetworkAvailable(getContext())) {
-                        Utils.toast(R.string.no_internet, getActivity());
-                        return;
-                    }
-                    Utils.launchUrl("https://github.com/SmartPack/", getActivity());
+                    Dialog licence = new Dialog(getActivity());
+                    licence.setIcon(R.mipmap.ic_launcher);
+                    licence.setTitle(getString(R.string.licence));
+                    licence.setMessage(getString(R.string.licence_message));
+                    licence.setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    });
+
+                    licence.show();
                 }
             });
             return rootView;
