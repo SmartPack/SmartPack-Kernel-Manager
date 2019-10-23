@@ -1,11 +1,11 @@
 {
-  "latestVersion": "8.8-20190920",
+  "latestVersion": "8.9-20191023",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Hotplug: Added AIO hotplug.",
-    "- CPU: CPU Quiet: Added Min and Max CPUs.",
-    "- Translations: Added Brazilian Portuguese (Credits: @Lennoard).",
-    "- Translations: Updated Russian (Credits: @Andrey) and Chinese simplified (Credits: @Roiyaru)."
+    "- CPU: CPU Quiet: Corrected some mistakes.",
+    "- About: Integrated a licence view with SP icon.",
+    "- Translations: Updated Brazilian Portuguese (Credits: @Lennoard) Chinese traditional (Credits: @jason5545).",
+    "- gradle: Updated build tools."
   ]
 }

@@ -1,8 +1,12 @@
 # Change-logs
 
+## 76. October 23, 2019
+*Release-tag: v8.9*<br>
+Changes: CPU: CPU Quiet: Corrected some mistakes. About: Integrated a licence view with SP icon. Translations: Updated Brazilian Portuguese (Credits: @Lennoard) Chinese traditional (Credits: @jason5545). gradle: Updated build tools.
+
 ## 75. September 20, 2019
 *Release-tag: v8.8*<br>
-Changes: CPU Hotplug: Added AIO hotplug. CPU: CPU Quiet: Added Min and Max CPUs. Translations: Added Brazilian Portuguese (Credits: @Lennoard). Translations: Updated Russian (Credits: @Andrey) and Chinese simplified (Credits: @Roiyaru)
+Changes: CPU Hotplug: Added AIO hotplug. CPU: CPU Quiet: Added Min and Max CPUs. Translations: Added Brazilian Portuguese (Credits: @Lennoard). Translations: Updated Russian (Credits: @Andrey) and Chinese simplified (Credits: @Roiyaru).
 
 ## 74. August 15, 2019
 *Release-tag: v8.7*<br>
