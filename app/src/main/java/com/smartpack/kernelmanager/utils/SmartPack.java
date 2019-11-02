@@ -37,74 +37,12 @@ import java.io.FileDescriptor;
 
 public class SmartPack {
 
-    private static final String SMARTPACK_VERSION = "/version";
-    private static final String SMARTPACK_DOWNLOADED = Environment.getExternalStorageDirectory().toString() + "/Download/SmartPack-Kernel.zip";
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
-    private static final String LATEST_VERSION = Environment.getDataDirectory() + "/version";
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
     private static final String RECOVERY = "/cache/recovery/";
     private static final String RECOVERY_API = "3";
 
     private static final FileDescriptor fd = new FileDescriptor();
-
-    /**
-     * Check SmartPack-Kernel is installed
-     */
-    public static boolean hasSmartPackInstalled() {
-        return Utils.readFile("/proc/version").contains("SmartPack-Kernel");
-    }
-
-    public static boolean hasSmartPackVersion() {
-        return Utils.existFile(SMARTPACK_VERSION);
-    }
-
-    /**
-     * Check device support
-     */
-    public static boolean isOnePlusmsm8998() {
-        return Device.getFingerprint().contains("OnePlus5");
-    }
-
-    /**
-     * Check for Oxygen OS
-     */
-    public static boolean isOnePlusOOS() {
-        return Utils.hasProp("ro.oxygen.version");
-    }
-
-    /**
-     * Get current SmartPack version
-     */
-    public static String getSmartPackVersion() {
-        return Utils.readFile(SMARTPACK_VERSION);
-    }
-
-    public static int getSmartPackVersionNumber() {
-        return Utils.strToInt(Utils.readFile(SMARTPACK_VERSION).replace("stable", "").replace("beta", "").replace("alpha", "").replace("test", "").replace("-", "").replace("v", ""));
-    }
-
-    /**
-     * Get latest SmartPack version
-     */
-    public static String getlatestSmartPackVersion() {
-        return Utils.readFile(LATEST_VERSION);
-    }
-
-    public static boolean SmartPackRelease() {
-        return getlatestSmartPackVersion().contains("alpha-v") || getlatestSmartPackVersion().contains("beta-v") || getlatestSmartPackVersion().contains("stable-v") || getlatestSmartPackVersion().contains("test");
-    }
-
-    public static int getlatestSmartPackVersionNumber() {
-        return Utils.strToInt(Utils.readFile(LATEST_VERSION).replace("stable", "").replace("beta", "").replace("alpha", "").replace("test", "").replace("-", "").replace("v", ""));
-    }
-
-    public static boolean haslatestSmartPackVersion() {
-        return Utils.existFile(LATEST_VERSION);
-    }
-
-    public static boolean isSmartPackDownloaded() {
-        return Utils.existFile(SMARTPACK_DOWNLOADED);
-    }
 
     public static boolean isZIPFileExtracted() {
         return Utils.existFile(ZIPFILE_EXTRACTED);
@@ -112,34 +50,6 @@ public class SmartPack {
 
     public static boolean hasRecovery() {
         return Utils.existFile(RECOVERY);
-    }
-
-    public static void deleteVersionInfo() {
-        if (haslatestSmartPackVersion()) {
-            RootUtils.runCommand("rm -r " + LATEST_VERSION);
-        }
-    }
-
-    public static void getVersionInfo() {
-        if (isOnePlusmsm8998() && Build.VERSION.SDK_INT == 27) {
-            RootUtils.runCommand("curl -L -o " + LATEST_VERSION + " https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/anykernel_SmartPack/ramdisk/version?raw=true");
-        } else if (isOnePlusmsm8998() && Build.VERSION.SDK_INT == 28) {
-            RootUtils.runCommand("curl -L -o " + LATEST_VERSION + " https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie/anykernel_SmartPack/ramdisk/version?raw=true");
-        }
-    }
-
-    public static void deleteLatestKernel() {
-        if (isSmartPackDownloaded()) {
-            RootUtils.runCommand("rm -rf " + SMARTPACK_DOWNLOADED);
-        }
-    }
-
-    public static void getLatestKernel() {
-        if ((SmartPack.isOnePlusmsm8998()) && (Build.VERSION.SDK_INT == 27)) {
-            RootUtils.runCommand("curl -L -o " + SMARTPACK_DOWNLOADED + " https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Oreo/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
-        } else if ((SmartPack.isOnePlusmsm8998()) && (Build.VERSION.SDK_INT == 28)) {
-            RootUtils.runCommand("curl -L -o " + SMARTPACK_DOWNLOADED + " https://github.com/SmartPack/SmartPack-Kernel-Project_OP5T/blob/Pie/kernel-release/SmartPack-Kernel-dumpling.zip?raw=true");
-        }
     }
 
     public static void makeInternalStorageFolder() {
@@ -208,13 +118,6 @@ public class SmartPack {
         }
     }
 
-    public static void autoFlash() {
-        cleanLogs();
-        String path = SMARTPACK_DOWNLOADED;
-        RootUtils.runCommand("echo '" + path + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
-        flashCommand(path);
-    }
-
     public static void manualFlash(File file) {
         String path = file.toString();
         prepareFlashFolder();
@@ -228,13 +131,4 @@ public class SmartPack {
         return file.length();
     }
 
-    public static void recoveryFlash() {
-        String path = SMARTPACK_DOWNLOADED;
-        String RecoveryFlashCommand = "echo --update_package=/" + path + " > /cache/recovery/command";
-        RootUtils.runCommand(RecoveryFlashCommand);
-    }
-
-    public static boolean supported() {
-        return isOnePlusmsm8998() && isOnePlusOOS();
-    }
 }
