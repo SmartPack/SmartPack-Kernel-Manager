@@ -18,8 +18,7 @@
      <string name="press_back_again_exit">再按一次返回键以离开app</string>
      <string name="cancel">取消</string>
      <string name="ok">确定</string>
-     <string name="exit">离开</string>
-     <string name="yes">是的</string>
+     <string name="yes">是的</string>
      <string name="unknown">未知</string>
      <string name="used">使用中</string>
      <string name="free">可用</string>
@@ -869,20 +868,9 @@
      <!-- SmartPack -->
      <string name="support">支持信息</string>
      <string name="support_summary">造访 xda-developers.com 的支持页面</string>
-     <string name="website">网站</string>
-     <string name="website_summary">访问 SmartPack 网站</string>
-     <string name="get_it">点选这里以取得更新</string>
-     <string name="download">下载</string>
-     <string name="downloads_message">\n点选下载以开始自动刷入核心\n\n警告! 下载将需要一些时间来完成! 请耐心等待!\n\n新核心准备好安装后, 应用程式 将通知您。  \n</string>
-     <string name="autoflash">自动安装</string>
-     <string name="autoflash_message">\nSmartPack 核心已下载完成并准备好自动刷入。 是否要立即刷入？  \n\n 请注意: 您的装置将在刷入过程后自动重新开机。  \n</string>
-     <string name="flash_now">立即安装</string>
+     <string name="flash_now">立即安装</string>
      <string name="flash_later">我自己来</string>
-     <string name="flash_message">\nSmartPack核心 已下载至 「/sdcard/Download/」\n\n您要立即安装吗?\n</string>
-     <string name="no_flash_message">\n对不起! 自动安装将无法在此装置上运作。 但是, 下载完成后, 您可以手动安装核心。  \n要重新开机吗？  \n</string>
-     <string name="download_failed_message">\n您正在执行不受支持的 Android 版本吗？  \n\n如果没有, 请检查您的网际网路连线!\n\n</string>
-     <string name="advance_options">高级选项</string>
-     <string name="reboot">重启</string>
+     <string name="reboot">重启</string>
      <string name="reboot_now">立即重新启动</string>
      <string name="reboot_later">稍后重新开机</string>
      <string name="reboot_recovery">重启至 Recovery</string>
@@ -891,8 +879,7 @@
      <string name="wipe_cache">清除cache</string>
      <string name="flasher">Flasher</string>
      <string name="flasher_summary">按一下刷入按钮选择并刷入可用于复原模式的 zip 档案, 而无需重新开机到第三方复原模式。 变更将在重新开机后套用。  </string>
-     <string name="flasher_message">立即刷入</string>
-     <string name="file_size_limit">请注意: 出于安全原因, 超过 100 MB 的档案将不允许刷入。  </string>
+     <string name="file_size_limit">请注意: 出于安全原因, 超过 100 MB 的档案将不允许刷入。  </string>
      <string name="backing_up">备份中</string>
      <string name="flashing">刷入中</string>
      <string name="restoring">还原中</string>
@@ -908,10 +895,6 @@
      <string name="wipe_data_summary">擦除资料分割区</string>
      <string name="wipe_cache_message">\ncache/dalvik 装置的快取分割区将被删除。  \n\n注意! 装置将被重新开机。  \n</string>
      <string name="wipe_data_message">\n您的装置的资料分区将被完全擦除。  \n\n警告! 您将遗失包括应用程式在内的所有使用者资料。  \n\n注意! 装置将被重新开机。  \n</string>
-     <string name="latest_version_check">点选这里检视最新版本资讯</string>
-     <string name="recheck">\n(点选此处重新检查)</string>
-     <string name="update_check_failed">无法取得最新版本信息! 请检查你是否使用真正的互联网！</string>
-     <string name="up_to_date_message">恭喜！ 已是最新版本</string>
 
      <!-- App Updater -->
      <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>

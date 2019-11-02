@@ -19,7 +19,6 @@
     <string name="press_back_again_exit">Press back again to exit</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
-    <string name="exit">Exit</string>
     <string name="yes">YES</string>
     <string name="unknown">Unknown</string>
     <string name="used">Used</string>
@@ -67,7 +66,6 @@
     <!-- Headers -->
     <string name="statistics">Statistics</string>
     <string name="kernel" translatable="false">Kernel</string>
-    <string name="smartpack_kernel" translatable="false">SmartPack-Kernel</string>
     <string name="tools">Tools</string>
     <string name="other">Other</string>
 
@@ -906,7 +904,6 @@
     <string name="flash">Flash</string>
     <string name="flasher">Flasher</string>
     <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes will be applied after a reboot.</string>
-    <string name="flasher_message">Flash Now</string>
     <string name="file_size_limit">The size of \'%s\' is bigger than 100 MB.\n\nPlease Note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
@@ -962,23 +959,11 @@
     <!-- SmartPack -->
     <string name="support">Support</string>
     <string name="support_summary">Visit support page at xda-developers.com</string>
-    <string name="website">Website</string>
-    <string name="website_summary">Visit SmartPack homepage</string>
-    <string name="download">Download</string>
-    <string name="downloads_message">\nClick \'Download\' to initialize auto kernel updates.\n\nWarning! Downloading will take some time to finish! Please be patient!\n\nYou will be notified by the App once the new kernel is ready to flash.\n</string>
-    <string name="autoflash">Auto-flash</string>
-    <string name="recovery_flash">Flash via Recovery</string>
-    <string name="recovery_flash_message">Flashing %s via Recovery</string>
-    <string name="autoflash_message">\nSmartPack-Kernel is downloaded and ready for auto-flashing. Do you want to flash it NOW?\n\nPlease note: Your device will be automatically rebooted after the flashing process.\n</string>
     <string name="flash_now">Flash Now</string>
     <string name="flash_later">Flash later</string>
     <string name="flash_log">Flasher Log</string>
     <string name="flash_log_summary">Click to get the details of last flashing</string>
     <string name="nothing_show">Nothing to Show. Click again to recheck</string>
-    <string name="flash_message">\nSmartPack-Kernel is downloaded into \'/sdcard/Download/\'. However, due to the absence of proper BusyBox binaries on this device, flashing via recovery is only available.\n\nDo you want to Install it NOW?\n</string>
-    <string name="no_flash_message">\nSorry! Auto-flash will NOT work on this device. However, you can manually flash the Kernel which is available at \'/sdcard/Download/\'.\nDo you want to reboot?\n</string>
-    <string name="download_failed_message">\nAre you running an unsupported android version?\n\nIf not, please check your internet connection!\n\n</string>
-    <string name="advance_options">Advanced Options</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>
@@ -1001,11 +986,6 @@
     <string name="wipe_data_summary">Wipe Data Partition</string>
     <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
-    <string name="latest_version_check">Click here to check the latest version info</string>
-    <string name="recheck">\n(Click here to re-check)</string>
-    <string name="get_it">\n(Click here to Get It!)</string>
-    <string name="update_check_failed">Failed to get latest version info! Please check your internet connection</string>
-    <string name="up_to_date_message">Congrats! You are up-to-date</string>
 
     <!-- App Updater -->
     <string name="appupdater_json" translatable="false">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>

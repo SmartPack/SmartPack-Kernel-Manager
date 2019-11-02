@@ -17,7 +17,6 @@
     <string name="press_back_again_exit">Pressione voltar novamente para sair</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">OK</string>
-    <string name="exit">Sair</string>
     <string name="yes">SIM</string>
     <string name="unknown">Desconhecido</string>
     <string name="used">Usado</string>
@@ -888,7 +887,6 @@
     <string name="flash">Flash</string>
     <string name="flasher">Flasheador</string>
     <string name="flasher_summary">Clique no botão flash para selecionar e flashear um arquivo ZIP de recovery sem reiniciar para o recovery personalizado. As alterações serão aplicadas após uma reinicialização.</string>
-    <string name="flasher_message">Flashear Agora</string>
     <string name="file_size_limit">O tamanho de \'%s\' é maior que 100 MB.\n\nObservação: por motivos de segurança, os arquivos de recovery com mais de 100 MB não serão permitidos flashear.</string>
     <string name="sure_message">Tem certeza de que deseja flashear %s?</string>
     <string name="select_question">Selecionar %s?</string>
@@ -944,23 +942,11 @@
     <!-- SmartPack -->
     <string name="support">Suporte</string>
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
-    <string name="website">Site</string>
-    <string name="website_summary">Visite a homepage do SmartPack</string>
-    <string name="download">Download</string>
-    <string name="downloads_message">\nClique em \'Download\' para inicializar as atualizações automáticas do kernel.\n\nAviso! O download levará algum tempo para terminar! Por favor, seja paciente!\n\nvocê será notificado pelo aplicativo assim que o novo kernel estiver pronto para ser flasheado.\n</string>
-    <string name="autoflash">Auto-flashear</string>
-    <string name="recovery_flash">Flashear via Recovery</string>
-    <string name="recovery_flash_message">Flasheando %s via Recovery</string>
-    <string name="autoflash_message">\nSmartPack-Kernel está baixado e pronto para flashear automaticamente. Deseja flasheá-lo AGORA?\n\nPor favor, note: seu dispositivo será reiniciado automaticamente após o processo de flash.\n</string>
     <string name="flash_now">Flashear Agora</string>
     <string name="flash_later">Flashear depois</string>
     <string name="flash_log">Registro do Flasher</string>
     <string name="flash_log_summary">Clique para obter os detalhes do último flash</string>
     <string name="nothing_show">Nada para mostrar. Clique novamente para verificar novamente</string>
-    <string name="flash_message">\nO SmartPack-Kernel está baixado em \'/sdcard/Download/\'. No entanto, devido à ausência de binários BusyBox adequados neste dispositivo, somente o flash via recovery está disponível.\n\nDeseja instalá-lo AGORA?\n</string>
-    <string name="no_flash_message">\nDesculpe! O flash automático NÃO funciona neste dispositivo. No entanto, você pode flashear manualmente o Kernel, disponível em \'/sdcard/Download/\'.\nDeseja reiniciar?\n</string>
-    <string name="download_failed_message">\nVocê está executando uma versão Android não suportada?\n\nSe não, verifique sua conexão com a Internet!\n\n</string>
-    <string name="advance_options">Opções Avançadas</string>
     <string name="reboot">Reiniciar</string>
     <string name="reboot_now">Reiniciar Agora</string>
     <string name="reboot_later">Reiniciar Depois</string>
@@ -983,11 +969,6 @@
     <string name="wipe_data_summary">Limpar partição Data</string>
     <string name="wipe_cache_message">\nAs partições Cache / Dalvik Cache do seu dispositivo serão apagadas.\n\nAtenção! O dispositivo será reiniciado.\n</string>
     <string name="wipe_data_message">\nA partição de dados do seu dispositivo será completamente apagada.\n\nAviso! Você perderá todos os dados do usuário, incluindo aplicativos.\n\nAtenção! O dispositivo será reiniciado.\n</string>
-    <string name="latest_version_check">Clique aqui para verificar as informações da versão mais recente</string>
-    <string name="recheck">\n(Clique aqui para verificar novamente)</string>
-    <string name="get_it">\n(Clique aqui para obtê-lo!)</string>
-    <string name="update_check_failed">Falha ao obter as informações da versão mais recente! Por favor, verifique sua conexão à internet</string>
-    <string name="up_to_date_message">Boa 06! Você está atualizado</string>
 
     <!-- App Updater -->
     <string name="appupdater_update_title">Nova atualização disponível!\nv%2$s</string>

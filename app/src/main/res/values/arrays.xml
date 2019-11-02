@@ -92,11 +92,6 @@
         <item>@string/current_settings</item>
     </string-array>
 
-    <!-- SmartPack -->
-    <string-array name="flasher">
-        <item>@string/flasher</item>
-    </string-array>
-
     <!-- Settings -->
     <string-array name="apply_on_boot_delay_entries">
         <item>@string/instant</item>

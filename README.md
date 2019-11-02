@@ -27,7 +27,6 @@
 * Real-time Charging Status.
 * RAM & Swap Status.
 * LED Blink/Fade support.
-* Device & android version specific kernel download & Auto flashing for supported devices.
 * Dedicated Frequently Asked Questions (FAQ) section.
 * Also compatible with any devices and kernels.
 * And much more…
