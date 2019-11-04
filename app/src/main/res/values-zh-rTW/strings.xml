@@ -518,7 +518,7 @@
 
     <!-- K-lapse -->
     <string name="klapse_summary">選擇偏好的 K-lapse 模式, 由 tanish2k09 的核心級即時顯示模組。如果將這個設定為關閉則其餘的 K-lapse 參數無效.</string>
-    <string name="turn_off">已關閉</string>
+    <string name="klapse_off">已關閉</string>
     <string name="time_scale">基於時間的縮放比例</string>
     <string name="bright_scale">基於亮度的縮放比例</string>
     <string name="night_mode_schedule">夜間模式排程</string>

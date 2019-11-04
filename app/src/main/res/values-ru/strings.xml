@@ -500,7 +500,7 @@
     <string name="glove_mode_summary">Это позволит вам использовать ваш телефон даже при ношении перчатки.</string>
     <string name="klapse">K-lapse</string>
     <string name="klapse_summary">«Выберите предпочтительный режим K-lapse, модуль отображения в реальном времени на уровне ядра от tanish2k09. Это не должно быть выключено для настройки остальных параметров K-lapse».</string>
-    <string name="turn_off">Выключен</string>
+    <string name="klapse_off">Выключен</string>
     <string name="time_scale">Масштабирование по времени</string>
     <string name="bright_scale">Яркость на основе масштабирования</string>
     <string name="night_mode_schedule">Расписание ночного режима</string>

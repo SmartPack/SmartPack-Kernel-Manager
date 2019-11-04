@@ -545,7 +545,7 @@
     <!-- K-lapse -->
     <string name="klapse">K-lapse</string>
     <string name="klapse_summary">Selecione o modo K-lapse preferido, um módulo de exibição ao vivo no nível do kernel por tanish2k09. Isso não deve ser desativado se deseja ajustar o restante dos parâmetros do K-lapse.</string>
-    <string name="turn_off">Desligado</string>
+    <string name="klapse_off">Desligado</string>
     <string name="time_scale">Escala Baseada no Tempo</string>
     <string name="bright_scale">Escala Baseada no Brilho</string>
     <string name="night_mode_schedule">Programação do Modo Noturno</string>

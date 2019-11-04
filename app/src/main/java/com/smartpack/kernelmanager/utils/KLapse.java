@@ -84,7 +84,7 @@ public class KLapse {
 
     public static List<String> enable(Context context) {
         List<String> list = new ArrayList<>();
-        list.add(context.getString(R.string.turn_off));
+        list.add(context.getString(R.string.klapse_off));
         list.add(context.getString(R.string.time_scale));
         list.add(context.getString(R.string.bright_scale));
         return list;

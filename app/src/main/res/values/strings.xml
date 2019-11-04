@@ -562,7 +562,7 @@
     <!-- K-lapse -->
     <string name="klapse">K-lapse</string>
     <string name="klapse_summary">Select preferred K-lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-lapse parameters.</string>
-    <string name="turn_off">Turned-Off</string>
+    <string name="klapse_off">Turned-Off</string>
     <string name="time_scale">Time Based Scaling</string>
     <string name="bright_scale">Brightness Based Scaling</string>
     <string name="night_mode_schedule">Night Mode Schedule</string>
