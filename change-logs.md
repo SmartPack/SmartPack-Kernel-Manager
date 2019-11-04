@@ -1,5 +1,9 @@
 # Change-logs
 
+## 77. November 04, 2019
+*Release-tag: v8.10*<br>
+Changes: gradle: Updated SDK to 29 (Android Q). gradle: Updated build dependencies. SmartPack: Added option to ShutDown & Normal Reboot. SmartPack: Removed SmartPack-Kernel support and related features.
+
 ## 76. October 23, 2019
 *Release-tag: v8.9*<br>
 Changes: CPU: CPU Quiet: Corrected some mistakes. About: Integrated a licence view with SP icon. Translations: Updated Brazilian Portuguese (Credits: @Lennoard) Chinese traditional (Credits: @jason5545). gradle: Updated build tools.

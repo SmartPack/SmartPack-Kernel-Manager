@@ -1,11 +1,11 @@
 {
-  "latestVersion": "8.9-20191023",
+  "latestVersion": "8.10-20191104",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU: CPU Quiet: Corrected some mistakes.",
-    "- About: Integrated a licence view with SP icon.",
-    "- Translations: Updated Brazilian Portuguese (Credits: @Lennoard) Chinese traditional (Credits: @jason5545).",
-    "- gradle: Updated build tools."
+    "- gradle: Updated SDK to 29 (Android Q).",
+    "- SmartPack: Added option to ShutDown & Normal Reboot.",
+    "- SmartPack: Removed SmartPack-Kernel support and related features.",
+    "- gradle: Updated build dependencies."
   ]
 }
