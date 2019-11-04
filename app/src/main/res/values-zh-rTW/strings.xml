@@ -895,6 +895,8 @@
     <string name="flash_log_summary">點選以取得上次刷入的日誌</string>
     <string name="nothing_show">沒有可顯示的內容。再次點選以重試</string>
     <string name="reboot">重啟</string>
+    <string name="reboot_summary">重新啟動</string>
+    <string name="normal_reboot_message">\n裝置將重新開機\n</string>
     <string name="reboot_now">立即重新啟動</string>
     <string name="reboot_later">稍後重新開機</string>
     <string name="reboot_recovery">重啟至 Recovery</string>
@@ -915,6 +917,9 @@
     <string name="reboot_message">為避免配置失敗, 強烈建議重新開機。\n\n是否要重新開機？\n</string>
     <string name="recovery_message">\n您的裝置將重新開機到復原模式。\n</string>
     <string name="bootloader_message">\n您的裝置將重新開機到下載模式。\n</string>
+    <string name="turn_off">關機</string>
+    <string name="turn_off_message">\n將裝置關機\n</string>
+    <string name="turn_off_summary">關機</string>
     <string name="wipe_cache_summary">擦除快取分割區</string>
     <string name="wipe_data_summary">擦除資料分割區</string>
     <string name="wipe_cache_message">\ncache/dalvik 裝置的快取分割區將被刪除。\n\n注意! 裝置將被重新開機。\n</string>

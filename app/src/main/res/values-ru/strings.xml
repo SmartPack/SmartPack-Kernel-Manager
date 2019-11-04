@@ -869,10 +869,15 @@
     <string name="flash_log_summary">Нажмите, чтобы получить информацию о последней перепрошивке</string>
     <string name="nothing_show">Нечего показать. Нажмите еще раз, чтобы проверить</string>
     <string name="reboot">Перезагрузить</string>
+    <string name="reboot_summary">Перезагрузить устройство</string>
+    <string name="normal_reboot_message">\nВаше устройство будет перезагружено.\n</string>
     <string name="reboot_now">Перезагрузить сейчас</string>
     <string name="reboot_later">Перезагрузить позже</string>
     <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
+    <string name="turn_off">Выключен</string>
+    <string name="turn_off_message">\nУстройство будет выключено.\n</string>
+    <string name="turn_off_summary">Выключить устройство</string>
     <string name="wipe_data">Очистить раздел Data</string>
     <string name="wipe_cache">Стереть кэш</string>
     <string name="backing_up">Резервирование в процессе</string>

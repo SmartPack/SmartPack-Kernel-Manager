@@ -948,10 +948,15 @@
     <string name="flash_log_summary">Clique para obter os detalhes do último flash</string>
     <string name="nothing_show">Nada para mostrar. Clique novamente para verificar novamente</string>
     <string name="reboot">Reiniciar</string>
+    <string name="reboot_summary">Reiniciar o dispositivo</string>
+    <string name="normal_reboot_message">\nSeu dispositivo será reiniciado.\n</string>
     <string name="reboot_now">Reiniciar Agora</string>
     <string name="reboot_later">Reiniciar Depois</string>
     <string name="reboot_recovery">Reiniciar no Recovery</string>
     <string name="reboot_bootloader">Reiniciar no Bootloader</string>
+    <string name="turn_off">Desligar</string>
+    <string name="turn_off_message">\nSeu dispositivo será desligado.\n</string>
+    <string name="turn_off_summary">Desliga seu aparelho</string>
     <string name="wipe_data">Limpar Data</string>
     <string name="wipe_cache">Limpar Cache</string>
     <string name="backing_up">Fazendo Backup</string>
