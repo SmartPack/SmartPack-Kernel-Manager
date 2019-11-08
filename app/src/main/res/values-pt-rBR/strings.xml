@@ -775,7 +775,7 @@
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Algoritmo Z-RAM</string>
-    <string name="zram_algo_summary">Defina o algoritmo padrão de compactação Z-RAM\nReduza o tamanho do disco Z-RAM para \'0\' antes de alterar esta opção.</string>
+    <string name="zram_algo_summary">Defina o algoritmo padrão de compactação Z-RAM.</string>
     <string name="disksize">Tamanho do disco</string>
     <string name="disksize_summary">Tenta aumentar o desempenho, evitando paginação no armazenamento físico, em vez disso, usando um dispositivo virtual compactado na RAM. A paginação ocorre na RAM até que seja necessário usar o espaço swap no armazenamento físico.</string>
     <string name="zswap">ZSWAP</string>

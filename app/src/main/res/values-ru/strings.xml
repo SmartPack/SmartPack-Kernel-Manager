@@ -716,7 +716,7 @@
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Алгоритм Z-RAM</string>
-    <string name="zram_algo_summary">Установите алгоритм сжатия Z-RAM по умолчанию. \nУменьшите размер Z-RAM до \'0\', прежде чем изменять эту опцию.</string>
+    <string name="zram_algo_summary">Установите алгоритм сжатия Z-RAM по умолчанию.</string>
     <string name="disksize">Размер диска</string>
     <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
     <string name="zswap">ZSWAP</string>

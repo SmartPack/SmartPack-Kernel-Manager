@@ -730,7 +730,7 @@
 
     <!-- Virtual Memory -->
     <string name="zram_algo">Z-RAM 演算法</string>
-    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。\n在更改此選項之前, 將 Z-RAM 磁片大小減少到 「0」。</string>
+    <string name="zram_algo_summary">設定預設 Z-RAM 壓縮演算法。</string>
     <string name="disksize">磁碟空間</string>
     <string name="disksize_summary">嘗試透過避免在物理儲存上分頁，而不是在RAM中使用壓縮的虛擬裝置來提高性能。分頁在RAM中進行，直到有必要在物理儲存上使用交換空間。</string>
     <string name="zswap_summary">ZSwap是一個用於交換頁面的輕量級壓縮快取。它需要正在被換出的過程中的頁面，並嘗試將它們壓縮到動態分配的基於RAM的記憶體池中。Zswap基本上交換CPU週期以減少交換I / O。</string>

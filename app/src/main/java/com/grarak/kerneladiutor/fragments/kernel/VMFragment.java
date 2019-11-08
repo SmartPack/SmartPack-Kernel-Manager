@@ -153,10 +153,10 @@ public class VMFragment extends RecyclerViewFragment {
             @Override
             public void onStop(SeekBarView seekBarView, int position, String value) {
                 ZRAM.setDisksize(position * 8, getActivity());
-		getHandler().postDelayed(() -> {
-		zram.setProgress(ZRAM.getDisksize() / 8);
-		},
-	    500);
+                getHandler().postDelayed(() -> {
+                            zram.setProgress(ZRAM.getDisksize() / 8);
+                        },
+                        500);
             }
 
             @Override
@@ -166,25 +166,30 @@ public class VMFragment extends RecyclerViewFragment {
 
         zRAM.addItem(zram);
 
+        int zRAMvalue = ZRAM.getDisksize();
+
         if (ZRAM.hasZRAMAlgo()) {
             SelectView zramAlgo = new SelectView();
             zramAlgo.setTitle(getString(R.string.zram_algo));
-            zramAlgo.setSummary(getString(R.string.zram_algo_summary));
+            zramAlgo.setSummary(getString(R.string.zram_algo_summary) + ("\n") + getString(R.string.warning) +
+                    (" ") + getString(R.string.zram_algo_warning));
             zramAlgo.setItems(ZRAM.getAvailableZRAMAlgos());
             zramAlgo.setItem(ZRAM.getZRAMAlgo());
             zramAlgo.setOnItemSelected(new SelectView.OnItemSelected() {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
+                    ZRAM.setDisksize(0, getActivity());
                     ZRAM.setZRAMAlgo(item, getActivity());
-		    getHandler().postDelayed(() -> {
-		    zramAlgo.setItem(ZRAM.getZRAMAlgo());
-		    },
-		500);
+                    ZRAM.setDisksize((zRAMvalue), getActivity());
+                    getHandler().postDelayed(() -> {
+                                zramAlgo.setItem(ZRAM.getZRAMAlgo());
+                            },
+                            500);
                 }
             });
 
             zRAM.addItem(zramAlgo);
-	}
+        }
 
         if (zRAM.size() > 0) {
             items.add(zRAM);
