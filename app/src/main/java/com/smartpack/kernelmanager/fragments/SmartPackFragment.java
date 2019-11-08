@@ -451,7 +451,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Dialog manualFlash = new Dialog(getActivity());
                 manualFlash.setIcon(R.mipmap.ic_launcher);
                 manualFlash.setTitle(getString(R.string.flasher));
-                manualFlash.setMessage(getString(R.string.sure_message, file.getName()));
+                manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
+                        getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
                 manualFlash.setNeutralButton(getString(R.string.flash_later), (dialogInterface, i) -> {
                 });
                 manualFlash.setPositiveButton(getString(R.string.flash_now), (dialog1, id1) -> {
