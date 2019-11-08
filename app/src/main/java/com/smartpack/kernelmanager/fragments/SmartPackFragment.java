@@ -29,7 +29,6 @@ import android.graphics.drawable.Drawable;
 import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Environment;
 
 import androidx.core.content.ContextCompat;
@@ -108,12 +107,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
         flashLog.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (SmartPack.isPathLog() && SmartPack.isFlashLog()) {
+                if (SmartPack.hasPathLog() && SmartPack.hasFlashLog()) {
                     flashLog.setSummary(Utils.readFile(Utils.getInternalDataStorage() + "/last_flash.txt"));
                 } else {
                     flashLog.setSummary(getString(R.string.nothing_show));
                 }
-                if (SmartPack.isFlashLog()) {
+                if (SmartPack.hasFlashLog()) {
                     Dialog flashLog = new Dialog(getActivity());
                     flashLog.setIcon(R.mipmap.ic_launcher);
                     flashLog.setTitle(getString(R.string.flash_log));
