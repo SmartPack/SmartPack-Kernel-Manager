@@ -20,13 +20,11 @@
 package com.grarak.kerneladiutor.utils.kernel.battery;
 
 import android.content.Context;
-import android.text.TextUtils;
  
-import com.grarak.kerneladiutor.R;
-
 import androidx.annotation.NonNull;
 
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
@@ -62,20 +60,17 @@ public class Battery {
     private static final String AC_CHARGE_LEVEL = FAST_CHARGE + "/ac_levels";
     private static final String USB_CHARGE_LEVEL = FAST_CHARGE + "/usb_levels";
     private static final String WIRELESS_CHARGE_LEVEL = FAST_CHARGE + "/wireless_levels";
-    private static final String FAILSAFE_CONTROL = FAST_CHARGE + "/failsafe";
 
     private static final String CHARGE_LEVEL = "/sys/kernel/charge_levels";
     private static final String CHARGE_LEVEL_AC = CHARGE_LEVEL + "/charge_level_ac";
     private static final String CHARGE_LEVEL_USB = CHARGE_LEVEL + "/charge_level_usb";
     private static final String CHARGE_LEVEL_WL = CHARGE_LEVEL + "/charge_level_wireless";
-    private static final String CHARGE_INFO = CHARGE_LEVEL + "/charge_info";
     private static final String USB_FAST_CHARGE = CHARGE_LEVEL + "/enable_usb_fastcharge";
 
     private static final String THUNDER_CHARGE = "/sys/kernel/thundercharge_control";
     private static final String THUNDER_CHARGE_ENABLE = THUNDER_CHARGE + "/enabled";
     private static final String THUNDER_CHARGE_AC = THUNDER_CHARGE + "/custom_ac_current";
     private static final String THUNDER_CHARGE_USB = THUNDER_CHARGE + "/custom_usb_current";
-    private static final String THUNDER_CHARGE_VERSION = THUNDER_CHARGE + "/version";
 
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
@@ -266,12 +261,21 @@ public class Battery {
         return Utils.existFile(CHARGING_CURRENT);
     }
     
-    public static int getchargingstatus() {
-        return Utils.strToInt(Utils.readFile(CHARGING_CURRENT));
+    public static String getchargingstatus() {
+        int chargingrate = Utils.strToInt(Utils.readFile(CHARGING_CURRENT));
+        if (chargingrate > 10000) {
+            return String.valueOf(chargingrate / 1000);
+        } else if (chargingrate < -10000) {
+            return String.valueOf(chargingrate / -1000);
+        } else if (chargingrate < 0 && chargingrate > -1000) {
+            return String.valueOf(chargingrate * -1);
+        } else {
+            return String.valueOf(chargingrate);
+        }
     }
     
-    public static boolean isDischarging() {
-        return Utils.readFile(CHARGE_STATUS).equals("Discharging");
+    public static String ChargingStatus() {
+        return Utils.readFile(CHARGE_STATUS);
     }
 
     public static int ChargingType() {
@@ -291,27 +295,20 @@ public class Battery {
     }
 
     public static int BatteryLevel() {
-        return Utils.strToInt(Utils.readFile(LEVEL));
+        return Utils.strToInt(Utils.readFile(LEVEL).replace(".0", ""));
     }
 
     public static boolean hasBatteryVoltage() {
         return Utils.existFile(VOLTAGE);
     }
 
-    public static int BatteryVoltage() {
-        return Utils.strToInt(Utils.readFile(VOLTAGE));
+    public static String BatteryVoltage() {
+        int voltage = Utils.strToInt(Utils.readFile(VOLTAGE));
+        return String.valueOf(voltage / 1000);
     }
 
-    public static boolean isDASHCharging() {
-        return Utils.readFile(CHARGE_TYPE).equals("DASH");
-    }
-
-    public static boolean isACCharging() {
-        return Utils.readFile(CHARGE_TYPE).equals("USB_DCP");
-    }
-
-    public static boolean isUSBCharging() {
-        return Utils.readFile(CHARGE_TYPE).equals("USB");
+    public static String ChargerType() {
+        return Utils.readFile(CHARGE_TYPE);
     }
 
     public static boolean haschargeLevel() {
@@ -364,14 +361,6 @@ public class Battery {
 
     public static boolean haschargeLevelWL() {
         return Utils.existFile(CHARGE_LEVEL_WL);
-    }
-
-    public static int getchargeInfo() {
-        return Utils.strToInt(Utils.readFile(CHARGE_INFO));
-    }
-
-    public static boolean haschargeInfo() {
-        return Utils.existFile(CHARGE_INFO);
     }
 
     public static boolean hasUSBFastCharge() {

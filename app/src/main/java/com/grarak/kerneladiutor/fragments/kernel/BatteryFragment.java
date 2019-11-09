@@ -25,9 +25,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
-import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
@@ -77,8 +75,10 @@ public class BatteryFragment extends RecyclerViewFragment {
         super.postInit();
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
-        addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
-                mBattery.getCapacity() + getString(R.string.mah)));
+        if (mBattery.hasCapacity()) {
+            addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
+                    mBattery.getCapacity() + getString(R.string.mah)));
+        }
     }
 
     private void acciInit(List<RecyclerViewItem> items) {
@@ -427,65 +427,35 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
         if (mChargingStatus != null) {
-	    float chargingrate = Battery.getchargingstatus();
-	    if (Battery.isDischarging()){		
-		mChargingStatus.setTitle("Discharge Rate");
-		if (chargingrate >= 10000) {
-		    mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
-		} else if (chargingrate <= 0) {
-		    mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
-		} else {
-		    mChargingStatus.setStat(String.valueOf(chargingrate * -1) + (" mA"));
-		}		
-	    } else if (chargingrate >= 10000) {
-		if (Battery.isACCharging()) {
-		    mChargingStatus.setTitle("Charge Rate (AC)");
-		} else if (Battery.isUSBCharging()) {
-		    mChargingStatus.setTitle("Charge Rate (USB)");
-		} else {
-		    mChargingStatus.setTitle("Charge Rate");
-		}
-		mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
-	    } else if (chargingrate <= 0) {
-		if (Battery.isDASHCharging()) {
-		    mChargingStatus.setTitle("Charge Rate (Dash)");
-		} else if (Battery.isACCharging()) {
-		    mChargingStatus.setTitle("Charge Rate (AC)");
-		} else if (Battery.isUSBCharging()) {
-		    mChargingStatus.setTitle("Charge Rate (USB)");
-		} else {
-		    mChargingStatus.setTitle("Charge Rate");
-		}
-		mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
-	    } else {
-		if (Battery.ChargingType() == 3) {
-		    mChargingStatus.setTitle("Charge Rate (AC)");
-		} else if (Battery.ChargingType() == 4) {
-		    mChargingStatus.setTitle("Charge Rate (USB)");
-		} else if (Battery.ChargingType() == 10) {
-		    mChargingStatus.setTitle("Charge Rate (Wireless)");
-		} else {
-		    mChargingStatus.setTitle("Charge Rate");
-		}
-		mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-	    }
-	}
+            if (Battery.ChargingStatus().equals("Charging")) {
+                if (Battery.ChargerType().equals("USB_DCP") || Battery.ChargingType() == 3) {
+                    mChargingStatus.setTitle("Charge Rate (AC)");
+                } else if (Battery.ChargerType().equals("USB") || Battery.ChargingType() == 4) {
+                    mChargingStatus.setTitle("Charge Rate (USB)");
+                } else if (Battery.ChargingType() == 10) {
+                    mChargingStatus.setTitle("Charge Rate (Wireless)");
+                } else {
+                    mChargingStatus.setTitle("Charge Rate");
+                }
+                mChargingStatus.setStat(Battery.getchargingstatus() + (" mA"));
+            } else {
+                mChargingStatus.setTitle("Discharge Rate");
+                mChargingStatus.setStat(("-") + Battery.getchargingstatus() + (" mA"));
+            }
+        }
         if (mBatteryInfo != null) {
-	    float level = Battery.BatteryLevel();
-	    float voltage = Battery.BatteryVoltage();
-	    if (Battery.hasBatteryHealth()) {
-	    	mBatteryInfo.setTitle(getString(R.string.battery) + (" (Health: ") + (Battery.BatteryHealth()) + (")"));
-	    } else {
-	    	mBatteryInfo.setTitle(getString(R.string.battery));
-	    }
-	    if (Battery.hasBatteryLevel() && Battery.hasBatteryVoltage()) {
-	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %  -  VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
-	    } else if (Battery.hasBatteryLevel() && !(Battery.hasBatteryVoltage())) {
-	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %"));
-	    } else if (!(Battery.hasBatteryLevel()) && Battery.hasBatteryVoltage()) {
-	    	mBatteryInfo.setStat(("VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
-	    }
-	}
+            if (Battery.hasBatteryHealth()) {
+                mBatteryInfo.setTitle(getString(R.string.battery) + (" (Health: ") + (Battery.BatteryHealth()) + (")"));
+            } else {
+                mBatteryInfo.setTitle(getString(R.string.battery));
+            }
+            if (Battery.hasBatteryLevel() && Battery.hasBatteryVoltage()) {
+                mBatteryInfo.setStat(("LEVEL: ") + Battery.BatteryLevel() + (" %  -  VOLTAGE: ") + Battery.BatteryVoltage() + (" mV"));
+            } else if (Battery.hasBatteryLevel() && !(Battery.hasBatteryVoltage())) {
+                mBatteryInfo.setStat(("LEVEL: ") + Battery.BatteryLevel() + (" %"));
+            } else if (!(Battery.hasBatteryLevel()) && Battery.hasBatteryVoltage()) {
+                mBatteryInfo.setStat(("VOLTAGE: ") + Battery.BatteryVoltage() + (" mV"));
+            }
+        }
     }
-
 }
