@@ -63,7 +63,11 @@ public class SmartPack {
         if (Utils.existFile(flashFolder)) {
             RootUtils.runCommand(CleanUpCommand);
         }
-        RootUtils.runCommand("mkdir " + flashFolder);
+        File flashPath = new File(flashFolder);
+        if (flashPath.exists() && flashPath.isFile()) {
+            flashPath.delete();
+        }
+        flashPath.mkdirs();
 
         /*
          * Flashing recovery zip without rebooting to custom recovery
