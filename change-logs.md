@@ -1,5 +1,9 @@
 # Change-logs
 
+## 78. November 10, 2019
+*Release-tag: v8.11*<br>
+Changes: SmartPack: Overall update to recovery zip flasher. SmartPack: Flasher: Added an option to reboot after successful flashing. VM: zRAM: Updated zRAM algorithm. SmartPack: Moved logs in a separate folder.
+
 ## 77. November 04, 2019
 *Release-tag: v8.10*<br>
 Changes: gradle: Updated SDK to 29 (Android Q). gradle: Updated build dependencies. SmartPack: Added option to ShutDown & Normal Reboot. SmartPack: Removed SmartPack-Kernel support and related features.

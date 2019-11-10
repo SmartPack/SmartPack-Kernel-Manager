@@ -1,11 +1,11 @@
 {
-  "latestVersion": "8.10-20191104",
+  "latestVersion": "8.11-20191110",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- gradle: Updated SDK to 29 (Android Q).",
-    "- SmartPack: Added option to ShutDown & Normal Reboot.",
-    "- SmartPack: Removed SmartPack-Kernel support and related features.",
-    "- gradle: Updated build dependencies."
+    "- SmartPack: Overall update to recovery zip flasher.",
+    "- SmartPack: Flasher: Added an option to reboot after successful flashing.",
+    "- VM: zRAM: Updated zRAM algorithm.",
+    "- SmartPack: Moved logs in a separate folder inside '/sdcard/SP/'."
   ]
 }
