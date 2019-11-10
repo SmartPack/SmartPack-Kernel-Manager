@@ -62,8 +62,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             " sync " + "&&" +
             " sleep 3 " + "&&" +
             " reboot";
-    private String shutdownCommand = "svc power shutdown";
-    private String rebootCommand = "svc power reboot";
+
     private String mPath;
 
     private String logFolder = Utils.getInternalDataStorage() + "/logs";
@@ -151,7 +150,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     });
                     reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
                         new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute(rebootCommand);
+                        new Execute().execute(prepareReboot);
                     });
                     reboot.show();
                 });
@@ -306,7 +305,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 turnoff.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 turnoff.setPositiveButton(getString(R.string.turn_off), (dialog1, id1) -> {
-                    new Execute().execute(shutdownCommand);
+                    new Execute().execute(prepareReboot + " -p");
                 });
                 turnoff.show();
             }
@@ -326,7 +325,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 reboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 reboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(rebootCommand);
+                    new Execute().execute(prepareReboot);
                 });
                 reboot.show();
             }
