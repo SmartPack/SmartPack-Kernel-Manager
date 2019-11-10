@@ -961,8 +961,8 @@
     <!-- SmartPack -->
     <string name="support">Support</string>
     <string name="support_summary">Visit support page at xda-developers.com</string>
-    <string name="flash_now">Flash Now</string>
-    <string name="flash_later">Flash later</string>
+    <string name="flash_only">Flash Only</string>
+    <string name="flash_reboot">Flash and Reboot</string>
     <string name="flash_log">Flasher Log</string>
     <string name="flash_log_summary">Click to get the details of last flashing</string>
     <string name="nothing_show">Nothing to Show. Click again to recheck</string>

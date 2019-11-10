@@ -863,8 +863,7 @@
     <string name="disable_question">Отключить %s?</string>
     <string name="support">Поддержка</string>
     <string name="support_summary">Посетить страницу поддержки на xda-developers.com</string>
-    <string name="flash_now">Установить сейчас</string>
-    <string name="flash_later">Я буду использовать мои руки</string>
+    <string name="flash_only">Установить сейчас</string>
     <string name="flash_log">Flasher Log</string>
     <string name="flash_log_summary">Нажмите, чтобы получить информацию о последней перепрошивке</string>
     <string name="nothing_show">Нечего показать. Нажмите еще раз, чтобы проверить</string>
