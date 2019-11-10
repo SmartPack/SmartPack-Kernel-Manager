@@ -54,6 +54,14 @@ public class SmartPack {
         }
     }
 
+    public static void prepareLogFolder() {
+        File logPath = new File(Utils.getInternalDataStorage() + "/logs");
+        if (logPath.exists() && logPath.isFile()) {
+            logPath.delete();
+        }
+        logPath.mkdirs();
+    }
+
     public static void manualFlash(File file) {
         FileDescriptor fd = new FileDescriptor();
         String path = file.toString();

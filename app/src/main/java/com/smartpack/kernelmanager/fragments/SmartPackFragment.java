@@ -66,6 +66,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private String rebootCommand = "svc power reboot";
     private String mPath;
 
+    private String logFolder = Utils.getInternalDataStorage() + "/logs";
+
     @Override
     protected boolean showTopFab() {
         return true;
@@ -164,9 +166,14 @@ public class SmartPackFragment extends RecyclerViewFragment {
         logcat.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                new Execute().execute("logcat -d > /sdcard/logcat");
-                new Execute().execute("logcat  -b radio -v time -d > /sdcard/radio");
-                new Execute().execute("logcat -b events -v time -d > /sdcard/events");
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
+                }
+                SmartPack.prepareLogFolder();
+                new Execute().execute("logcat -d > " + logFolder + "/logcat");
+                new Execute().execute("logcat  -b radio -v time -d > " + logFolder + "/radio");
+                new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
             }
         });
         smartpack.addItem(logcat);
@@ -178,7 +185,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             lastkmsg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    new Execute().execute("cat /proc/last_kmsg > /sdcard/last_kmsg");
+                    if (mPermissionDenied) {
+                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                        return;
+                    }
+                    SmartPack.prepareLogFolder();
+                    new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
                 }
             });
             smartpack.addItem(lastkmsg);
@@ -190,7 +202,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
         dmesg.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                new Execute().execute("dmesg > /sdcard/dmesg");
+                if (mPermissionDenied) {
+                    Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                    return;
+                }
+                SmartPack.prepareLogFolder();
+                new Execute().execute("dmesg > " + logFolder + "/dmesg");
             }
         });
         smartpack.addItem(dmesg);
@@ -202,7 +219,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             dmesgRamoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > /sdcard/dmesg-ramoops");
+                    if (mPermissionDenied) {
+                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                        return;
+                    }
+                    SmartPack.prepareLogFolder();
+                    new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
                 }
             });
             smartpack.addItem(dmesgRamoops);
@@ -215,7 +237,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             ramoops.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    new Execute().execute("cat /sys/fs/pstore/console-ramoops* > /sdcard/console-ramoops");
+                    if (mPermissionDenied) {
+                        Utils.toast(R.string.permission_denied_write_storage, getActivity());
+                        return;
+                    }
+                    SmartPack.prepareLogFolder();
+                    new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
                 }
             });
             smartpack.addItem(ramoops);
