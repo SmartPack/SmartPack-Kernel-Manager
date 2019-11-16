@@ -486,6 +486,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         } else if (requestCode == 1) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
+            mPath = Utils.getFilePath(file);
             if (!file.getName().endsWith(".json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
@@ -495,17 +496,6 @@ public class ProfileFragment extends RecyclerViewFragment {
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {
-                if (file.getAbsolutePath().contains("/document/raw:")) {
-                    mPath = file.getAbsolutePath().replace("/document/raw:", "");
-                } else if (file.getAbsolutePath().contains("/document/primary:")) {
-                    mPath = Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", "");
-                } else if (file.getAbsolutePath().contains("/document/")) {
-                    mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-                } else if (file.getAbsolutePath().contains("/storage_root")) {
-                    mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-                } else {
-                    mPath = file.getAbsolutePath();
-                }
                 ImportProfile importProfile = new ImportProfile(mPath);
                 if (!importProfile.readable()) {
                     Utils.toast(R.string.import_malformed, getActivity());

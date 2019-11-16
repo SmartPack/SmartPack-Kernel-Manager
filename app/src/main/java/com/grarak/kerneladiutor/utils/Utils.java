@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.UiModeManager;
@@ -45,7 +46,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
+
 import androidx.core.view.ViewCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
@@ -537,6 +538,21 @@ public class Utils {
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
+
+    @TargetApi(19)
+    public static String getFilePath(File file) {
+        if (file.getAbsolutePath().contains("/document/raw:")) {
+            return file.getAbsolutePath().replace("/document/raw:", "");
+        } else if (file.getAbsolutePath().contains("/document/primary:")) {
+            return (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
+        } else if (file.getAbsolutePath().contains("/document/")) {
+            return file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
+        } else if (file.getAbsolutePath().contains("/storage_root")) {
+            return file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+        } else {
+            return file.getAbsolutePath();
+        }
     }
 
 }

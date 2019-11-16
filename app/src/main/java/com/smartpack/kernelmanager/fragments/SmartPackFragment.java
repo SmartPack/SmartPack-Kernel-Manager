@@ -29,7 +29,6 @@ import android.graphics.drawable.Drawable;
 import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -461,21 +460,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             SmartPack.cleanLogs();
-            RootUtils.runCommand("echo '" + file.getAbsolutePath() + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
+            mPath = Utils.getFilePath(file);
+            RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
             if (!file.getName().endsWith(".zip")) {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
                 return;
-            }
-            if (file.getAbsolutePath().contains("/document/raw:")) {
-                mPath  = file.getAbsolutePath().replace("/document/raw:", "");
-            } else if (file.getAbsolutePath().contains("/document/primary:")) {
-                mPath = (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-            } else if (file.getAbsolutePath().contains("/document/")) {
-                mPath = file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-            } else if (file.getAbsolutePath().contains("/storage_root")) {
-                mPath = file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-            } else {
-                mPath = file.getAbsolutePath();
             }
             if (SmartPack.fileSize(new File(mPath)) <= 100000000) {
                 Dialog manualFlash = new Dialog(getActivity());
