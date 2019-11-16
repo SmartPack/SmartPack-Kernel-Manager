@@ -1003,7 +1003,6 @@
     <string name="banner_resizer">Redimensionador de banner</string>
     <string name="banner_resizer_message">A orientação da tela do telefone deveria estar em \'Retrato\'!</string>
     <string name="hide_banner">Esconder banner</string>
-    <string name="force_cards">Forçar cards</string>
     <string name="force_cards_summary">Usar cards para itens, se possível.</string>
     <string name="accent_color">Cor de Destaque</string>
     <string name="instant">Instantâneo</string>

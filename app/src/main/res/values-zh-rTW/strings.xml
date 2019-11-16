@@ -953,7 +953,6 @@
     <string name="banner_resizer">橫幅 resizer</string>
     <string name="banner_resizer_message">請將自動旋轉螢幕設定為關閉（直向）</string>
     <string name="hide_banner">隱藏橫幅</string>
-    <string name="force_cards">強制使用卡片風格</string>
     <string name="force_cards_summary">如果可能，請使用卡片。</string>
     <string name="accent_color">輔色</string>
     <string name="instant">立即</string>

@@ -7,10 +7,6 @@
         android:summary="@string/fahrenheit_summary"
         android:title="@string/fahrenheit_title" />
 
-    <SwitchPreferenceCompat
-        android:key="forceenglish"
-        android:summary="@string/force_english" />
-
     <PreferenceCategory
         android:key="user_interface"
         android:title="@string/user_interface">
@@ -27,9 +23,11 @@
             android:key="hide_banner"
             android:summary="@string/hide_banner" />
         <SwitchPreferenceCompat
+            android:key="forceenglish"
+            android:summary="@string/force_english" />
+        <SwitchPreferenceCompat
             android:key="forcecards"
-            android:summary="@string/force_cards_summary"
-            android:title="@string/force_cards" />
+            android:summary="@string/force_cards_summary" />
         <com.grarak.kerneladiutor.views.preference.ColorPreference
             android:key="accent_color"
             android:summary="@string/accent_color" />

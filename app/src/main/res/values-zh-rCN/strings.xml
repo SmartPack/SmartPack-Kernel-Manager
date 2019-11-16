@@ -924,7 +924,6 @@
      <string name="banner_resizer">横幅 resizer</string>
      <string name="banner_resizer_message">请将自动旋转萤幕设定为关闭（直向）</string>
      <string name="hide_banner">隐藏横幅</string>
-     <string name="force_cards">强制使用卡片风格</string>
      <string name="force_cards_summary">如果可能，请使用卡片。  </string>
      <string name="accent_color">辅色</string>
      <string name="instant">立即</string>
