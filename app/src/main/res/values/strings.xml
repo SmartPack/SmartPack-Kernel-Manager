@@ -110,6 +110,7 @@
     <string name="refresh">Refresh</string>
     <string name="reset">Reset</string>
     <string name="restore">Restore</string>
+    <string name="restore_sure_message">Are you sure to restore %s?</string>
     <string name="cluster_big" translatable="false">big</string>
     <string name="cluster_little" translatable="false">LITTLE</string>
     <string name="deep_sleep">Deep sleep</string>

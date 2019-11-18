@@ -306,7 +306,8 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void restore(final Backup.PARTITION partition, final File file, final boolean flashing) {
-        mRestoreDialog = ViewUtils.dialogBuilder(getString(R.string.sure_message, file.getName()), new DialogInterface.OnClickListener() {
+        mRestoreDialog = ViewUtils.dialogBuilder(flashing? getString(R.string.sure_message, file.getName()) :
+                getString(R.string.restore_sure_message, file.getName()), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }
