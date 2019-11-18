@@ -473,9 +473,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            SmartPack.cleanLogs();
             mPath = Utils.getFilePath(file);
             if (requestCode == 0) {
+                SmartPack.cleanLogs();
                 RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
                 if (!file.getName().endsWith(".zip")) {
                     Utils.toast(getString(R.string.file_selection_error), getActivity());
