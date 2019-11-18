@@ -72,7 +72,7 @@ public class WakeFragment extends RecyclerViewFragment {
 		|| mMisc.hasTimeout() || mMisc.hasChargeTimeout() || mMisc.hasPowerKeySuspend()
 		|| mMisc.hasKeyPowerMode() || mMisc.hasChargingMode() || mMisc.hasVibration()
 		|| mMisc.hasVibVibration() || mMisc.hasSmartWake() || mDt2s.hasHeight()
-		|| mDt2s.hasWidth() || mS2w.supported() || mS2w.hasLenient()) {
+		|| mDt2s.hasWidth() || mS2w.supported() || mS2w.hasS2W() || mS2w.hasLenient()) {
             wakeInit(items);
         }
     }
@@ -115,6 +115,25 @@ public class WakeFragment extends RecyclerViewFragment {
 		},
 	    500);
 
+            wakeCard.addItem(s2w);
+        }
+
+        if (mS2w.hasS2W()) {
+            SelectView s2w = new SelectView();
+            s2w.setTitle(getString(R.string.s2w));
+            s2w.setSummary(getString(R.string.s2w_summary));
+            s2w.setItems(mS2w.enableS2W(getActivity()));
+            s2w.setItem(mS2w.getS2W());
+            s2w.setOnItemSelected(new SelectView.OnItemSelected() {
+                @Override
+                public void onItemSelected(SelectView selectView, int position, String item) {
+                    mS2w.setS2W(position, getActivity());
+                    getHandler().postDelayed(() -> {
+                                s2w.setItem(mS2w.getS2W());
+                            },
+                            500);
+                }
+            });
             wakeCard.addItem(s2w);
         }
 

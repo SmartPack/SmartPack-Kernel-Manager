@@ -44,16 +44,16 @@ public class S2w {
         return sInstance;
     }
 
-    private static final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
     private static final String SW2 = "/sys/android_touch/sweep2wake";
     private static final String SW2_2 = "/sys/android_touch2/sweep2wake";
 
+    private final String S2W_ONLY = "/sys/android_touch/s2w_s2sonly";
+    private final String SW2_3 = "/proc/touchpanel/sweep_wake_enable";
     private final String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
 
     private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
     private final List<Integer> mS2wMenu = new ArrayList<>();
     private final List<Integer> mS2w2Menu = new ArrayList<>();
-    private final List<Integer> mGenericMenu = new ArrayList<>();
 
     {
         mS2wMenu.add(R.string.right);
@@ -68,11 +68,7 @@ public class S2w {
         mS2w2Menu.add(R.string.s2w_down);
         mS2w2Menu.add(R.string.s2w_any);
 
-        mGenericMenu.add(R.string.disabled);
-        mGenericMenu.add(R.string.enabled);
-
-        mFiles.put(S2W_ONLY, mGenericMenu);
-	mFiles.put(SW2, mS2wMenu);
+        mFiles.put(SW2, mS2wMenu);
         mFiles.put(SW2_2, mS2w2Menu);
     }
 
@@ -84,6 +80,34 @@ public class S2w {
                 FILE = file;
                 break;
             }
+        }
+    }
+
+    public List<String> enableS2W(Context context) {
+        List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
+        list.add(context.getString(R.string.enabled));
+        return list;
+    }
+
+    public boolean hasS2W() {
+        return Utils.existFile(SW2_3) ||
+                Utils.existFile(S2W_ONLY);
+    }
+
+    public int getS2W() {
+        if (Utils.existFile(SW2_3)) {
+            return Utils.strToInt(Utils.readFile(SW2_3));
+        } else {
+            return Utils.strToInt(Utils.readFile(S2W_ONLY));
+        }
+    }
+
+    public void setS2W(int value, Context context) {
+        if (Utils.existFile(SW2_3)) {
+            run(Control.write(String.valueOf(value), SW2_3), SW2_3, context);
+        } else {
+            run(Control.write(String.valueOf(value), S2W_ONLY), S2W_ONLY, context);
         }
     }
 
