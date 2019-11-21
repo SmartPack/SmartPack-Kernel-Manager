@@ -1,5 +1,9 @@
 # Change-logs
 
+## 79. November 21, 2019
+*Release-tag: v8.12*<br>
+Changes: SmartPack: Add option to execute shell script. Misc: Updated file picker using external file manager. Settings: Fix Force English option not showing. build: update gradle to 3.5.2. Sweep2Wake: Add support to Lord Boeffla's s2w. Back-Up & Restore: Update to use proper titles. Miscellaneous changes.
+
 ## 78. November 10, 2019
 *Release-tag: v8.11*<br>
 Changes: SmartPack: Overall update to recovery zip flasher. SmartPack: Flasher: Added an option to reboot after successful flashing. VM: zRAM: Updated zRAM algorithm. SmartPack: Moved logs in a separate folder.
