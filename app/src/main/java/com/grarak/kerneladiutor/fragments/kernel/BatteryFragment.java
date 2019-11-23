@@ -429,7 +429,12 @@ public class BatteryFragment extends RecyclerViewFragment {
         if (mChargingStatus != null) {
             if (Battery.ChargingStatus().equals("Charging")) {
                 if (Battery.ChargerType().equals("USB_DCP") || Battery.ChargingType() == 3) {
-                    mChargingStatus.setTitle("Charge Rate (AC)");
+                    // An attempt to distinguish OnePlus Dash Charge
+                    if (Battery.fastChgType().equals("N/A")) {
+                        mChargingStatus.setTitle("Charge Rate (Dash)");
+                    } else {
+                        mChargingStatus.setTitle("Charge Rate (AC)");
+                    }
                 } else if (Battery.ChargerType().equals("USB") || Battery.ChargingType() == 4) {
                     mChargingStatus.setTitle("Charge Rate (USB)");
                 } else if (Battery.ChargingType() == 10) {

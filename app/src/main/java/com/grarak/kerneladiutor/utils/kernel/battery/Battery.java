@@ -83,6 +83,7 @@ public class Battery {
     private static final String LEVEL = POWER_SUPPLY + "/battery/capacity";
     private static final String VOLTAGE = POWER_SUPPLY + "/battery/voltage_now";
     private static final String ENABLE_CHARGING = POWER_SUPPLY + "/battery/charging_enabled";
+    private static final String FATCHG_TYPE = POWER_SUPPLY + "/battery/charge_type";
 
     private static final String CHARGE_TYPE = POWER_SUPPLY + "/usb/type";
     private static final String OP_OTG_SWITCH = POWER_SUPPLY + "/usb/otg_switch";
@@ -309,6 +310,10 @@ public class Battery {
 
     public static String ChargerType() {
         return Utils.readFile(CHARGE_TYPE);
+    }
+
+    public static String fastChgType() {
+        return Utils.readFile(FATCHG_TYPE);
     }
 
     public static boolean haschargeLevel() {
