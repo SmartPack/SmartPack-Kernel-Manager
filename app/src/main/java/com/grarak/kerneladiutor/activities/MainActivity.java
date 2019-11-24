@@ -29,7 +29,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
-import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.services.profile.Tile;
@@ -74,17 +73,17 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         /**
-         * Initialize Boeffla Wakelock Blocker
+         * Initialize Spectrum Profiles & Wakelock Blocker
          */
-        if(Wakelocks.boefflawlsupported()) {
-            Wakelocks.CopyWakelockBlockerDefault();
+        if (RootUtils.rootAccess()) {
+            if (Spectrum.supported()) {
+                int Profile = Utils.strToInt(Spectrum.getProfile());
+                Prefs.saveInt("spectrum_profile", Profile, this);
+            }
+            if (Wakelocks.boefflawlsupported()) {
+                Wakelocks.CopyWakelockBlockerDefault();
+            }
         }
-
-        /**
-         * Initialice profile Sharedpreference
-         */
-        int prof = Utils.strToInt(Spectrum.getProfile());
-        Prefs.saveInt("spectrum_profile", prof, this);
 
         setContentView(R.layout.activity_main);
 
