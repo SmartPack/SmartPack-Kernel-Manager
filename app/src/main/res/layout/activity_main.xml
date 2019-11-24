@@ -14,7 +14,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center_vertical"
         android:paddingLeft="38dp"
         android:paddingStart="38dp"

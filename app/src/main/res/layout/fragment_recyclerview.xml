@@ -88,7 +88,6 @@
                 android:id="@+id/foreground_text"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:paddingEnd="16dp"

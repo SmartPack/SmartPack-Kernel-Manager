@@ -59,7 +59,6 @@ import com.grarak.kerneladiutor.services.boot.ApplyOnBootService;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.BorderCircleView;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 

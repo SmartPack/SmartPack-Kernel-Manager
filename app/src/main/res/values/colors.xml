@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2a7289</color>
-    <color name="colorPrimaryDark">#1d5060</color>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryVariant">#000000</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#2962FF</color>
+    <color name="colorSecondaryVariant">#0039CB</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
 
-    <color name="textcolor_light">#8a000000</color>
     <color name="textcolor_dark">#b3ffffff</color>
 
     <color name="black">#000000</color>
@@ -27,6 +30,4 @@
     <color name="colorBattery">#03a9f4</color>
     <color name="colorGaming">#ef5350</color>
 
-    <color name="rcBackground_light">#dcdcdc</color>
-    <color name="rcBackground_dark">#616161</color>
 </resources>
