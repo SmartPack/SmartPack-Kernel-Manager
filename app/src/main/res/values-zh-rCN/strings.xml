@@ -19,11 +19,8 @@
      <string name="cancel">取消</string>
      <string name="ok">确定</string>
      <string name="yes">是的</string>
-     <string name="unknown">未知</string>
-     <string name="used">使用中</string>
-     <string name="free">可用</string>
-     <string name="total">总共</string>
-     <string name="donate">捐赠</string>
+     <string name="unknown">未知</string>
+     <string name="donate">捐赠</string>
      <string name="donate_summary">此功能仅在安装了捐赠应用程式时可以使用！ 不要担心。 因为这个程式是开放原始码的，你可以很容易地自己建立，并删除这个检查。 但我希望你支持开发人员。 感谢您使用 SmartPack-Kernel Manager！  </string>
      <string name="donate_nope">我不会爱上这种骗局！  </string>
      <string name="donate_yes">我喜欢这个应用程式，立刻氪金！  </string>
@@ -310,7 +307,7 @@
      <string name="hotplug_rate">热插拔速率</string>
      <string name="hotplug_rq">热插拔 RQ</string>
      <string name="adv_sett">高级设定</string>
-     
+
      <!-- CPU Voltage -->
      <string name="global_offset">全域偏移</string>
      <string name="override_vmin">重置最低电压</string>

@@ -18,9 +18,6 @@
     <string name="ok">Ок</string>
     <string name="yes">Да</string>
     <string name="unknown">Неизвестно</string>
-    <string name="used">Используеться</string>
-    <string name="free">Свободно</string>
-    <string name="total">Всего</string>
     <string name="donate">Пожертвовать</string>
     <string name="donate_summary">Эта функция доступна только когда установлено приложение-пожертвование! Тем не менее, не волнуйтесь. Так как у этого приложения открытый исходный код, вы без труда можете собрать его самостоятельно и убрать эту проверку. Но я надеюсь, что вы в любом случае поддержите разработчиков. Спасибо за использование SmartPack-Kernel Manager!</string>
     <string name="donate_nope">Я не попадусь на эту аферу!</string>

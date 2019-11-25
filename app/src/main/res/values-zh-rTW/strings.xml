@@ -21,9 +21,6 @@
     <string name="ok">確定</string>
     <string name="yes">是的</string>
     <string name="unknown">未知</string>
-    <string name="used">使用中</string>
-    <string name="free">可用</string>
-    <string name="total">總共</string>
     <string name="donate">捐贈</string>
     <string name="donate_summary">此功能僅在安裝了捐贈應用程式時可以使用！不要擔心。因為這個程式是開放原始碼的，你可以很容易地自己建立，並刪除這個檢查。但我希望你支持開發人員。感謝您使用 SmartPack-Kernel Manager！</string>
     <string name="donate_nope">我不會愛上這種騙局！</string>

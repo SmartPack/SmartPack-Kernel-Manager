@@ -19,9 +19,6 @@
     <string name="ok">OK</string>
     <string name="yes">SIM</string>
     <string name="unknown">Desconhecido</string>
-    <string name="used">Usado</string>
-    <string name="free">Livre</string>
-    <string name="total">Total</string>
 
     <string name="donate">Doar</string>
     <string name="donate_summary">Esse recurso está disponível apenas quando o aplicativo de doação está instalado! Não se preocupe. Como este aplicativo é de código aberto, você pode facilmente compilá-lo e remover essa verificação. Mas espero que você apoie os desenvolvedores de qualquer maneira. Obrigado por usar o SmartPack-Kernel Manager!</string>

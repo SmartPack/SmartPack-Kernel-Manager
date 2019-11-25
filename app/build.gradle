@@ -72,7 +72,6 @@ dependencies {
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.akexorcist:RoundCornerProgressBar:2.0.3'
 
     testImplementation 'junit:junit:4.12'
 }
