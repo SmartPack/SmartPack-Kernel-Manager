@@ -38,6 +38,7 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
@@ -474,6 +475,10 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
+            if (Utils.isDocumentsUI(uri)) {
+                ViewUtils.dialogDocumentsUI(getActivity());
+                return;
+            }
             if (requestCode == 0) {
                 SmartPack.cleanLogs();
                 RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");

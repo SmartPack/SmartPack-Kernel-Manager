@@ -29,7 +29,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -40,7 +39,6 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -476,6 +474,10 @@ public class BackupFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
+            if (Utils.isDocumentsUI(uri)) {
+                ViewUtils.dialogDocumentsUI(getActivity());
+                return;
+            }
             if (!file.getName().endsWith(".img")) {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
                 return;

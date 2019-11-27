@@ -555,4 +555,8 @@ public class Utils {
         }
     }
 
+    public static boolean isDocumentsUI(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
 }

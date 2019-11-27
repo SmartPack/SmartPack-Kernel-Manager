@@ -27,7 +27,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,7 +43,6 @@ import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.CustomControlException;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Items;
 import com.grarak.kerneladiutor.utils.tools.customcontrols.Values;
@@ -502,6 +500,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
                     Uri uri = data.getData();
                     File file = new File(uri.getPath());
+                    if (Utils.isDocumentsUI(uri)) {
+                        ViewUtils.dialogDocumentsUI(getActivity());
+                        return;
+                    }
                     mPath = Utils.getFilePath(file);
                     if (!file.getName().endsWith(".json")) {
                         Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());

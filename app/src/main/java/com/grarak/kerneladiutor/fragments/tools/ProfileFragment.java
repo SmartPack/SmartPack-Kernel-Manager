@@ -30,7 +30,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -486,6 +485,10 @@ public class ProfileFragment extends RecyclerViewFragment {
         } else if (requestCode == 1) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
+            if (Utils.isDocumentsUI(uri)) {
+                ViewUtils.dialogDocumentsUI(getActivity());
+                return;
+            }
             mPath = Utils.getFilePath(file);
             if (!file.getName().endsWith(".json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());

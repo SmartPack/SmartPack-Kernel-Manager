@@ -995,6 +995,7 @@
     <string name="wipe_data_summary">Wipe Data Partition</string>
     <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
+    <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
 
     <!-- App Updater -->
     <string name="appupdater_json" translatable="false">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
