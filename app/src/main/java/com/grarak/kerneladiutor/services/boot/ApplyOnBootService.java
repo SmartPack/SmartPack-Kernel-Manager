@@ -36,7 +36,13 @@ import androidx.annotation.Nullable;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.NotificationId;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+
+import com.smartpack.kernelmanager.utils.Wakelocks;
+
+import org.frap129.spectrum.Spectrum;
 
 /**
  * Created by willi on 03.05.16.
@@ -73,6 +79,18 @@ public class ApplyOnBootService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        /**
+         * Initialize Spectrum Profiles & Wakelock Blocker
+         */
+        if (RootUtils.rootAccess()) {
+            if (Spectrum.supported()) {
+                int Profile = Utils.strToInt(Spectrum.getProfile());
+                Prefs.saveInt("spectrum_profile", Profile, this);
+            }
+            if (Wakelocks.boefflawlsupported()) {
+                Wakelocks.CopyWakelockBlockerDefault();
+            }
+        }
         Messenger messenger = null;
         if (intent != null) {
             Bundle extras = intent.getExtras();
