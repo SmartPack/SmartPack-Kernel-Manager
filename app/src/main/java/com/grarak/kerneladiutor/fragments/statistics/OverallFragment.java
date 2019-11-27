@@ -95,6 +95,14 @@ public class OverallFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
+
+        // Initialize auto app update check
+        if (Utils.isNetworkAvailable(getContext()) && Prefs.getBoolean("auto_update", true, getActivity()) == true) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+            AppUpdaterTask.autoappCheck(getActivity());
+        }
         statsInit(items);
         frequenciesInit(items);
     }
@@ -392,14 +400,6 @@ public class OverallFragment extends RecyclerViewFragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                                  @Nullable Bundle savedInstanceState) {
-
-            //Initialize auto app update check
-            if (Utils.isNetworkAvailable(getContext()) && Prefs.getBoolean("auto_update", true, getActivity()) == true) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                }
-                AppUpdaterTask.autoappCheck(getActivity());
-            }
 
             mHandler = new Handler();
             mUsages = new ArrayList<>();
