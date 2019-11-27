@@ -1,14 +1,15 @@
 {
-  "latestVersion": "8.12-20191121",
+  "latestVersion": "9.0-20191127",
   "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- SmartPack: Add option to execute shell script.",
-    "- Misc: Updated file picker using external file manager.",
-    "- Settings: Fix Force English option not showing.",
-    "- build: update gradle to 3.5.2.",
-    "- Sweep2Wake: Add support to Lord Boeffla's s2w.",
-    "- Back-Up & Restore: Update to use proper titles.",
+    "- Main: Overall updates according to material style guidelines.",
+    "- Main: Fixed crashing if Root access not available/granted.",
+    "- Battery: Charging Status: Report OnePlus Dash charging.",
+    "- SmartPack: Maintain flashing history inside /sdcard/SP/.",
+    "- VM: RAM & Swap view: Switched to a simple Status View.",
+    "- Main: File Picker: Show a message to prevent using default DocumentsUI.",
+    "- ApplyOnBoot: Initialize Spectrum and Boeffla Wakelock blocker upon boot.",
     "- Miscellaneous changes."
   ]
 }

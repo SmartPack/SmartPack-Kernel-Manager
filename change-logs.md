@@ -1,5 +1,9 @@
 # Change-logs
 
+## 80. November 27, 2019
+*Release-tag: v9.0*<br>
+Changes: Main: Overall updates according to material style guidelines. Main: Fixed crashing if Root access not available/granted. Battery: Charging Status: Report OnePlus Dash charging. SmartPack: Maintain flashing history inside '/sdcard/SP/'. VM: RAM & Swap view: Switched to a simple Status View. Main: File Picker: Show a message to prevent using default DocumentsUI. ApplyOnBoot: Initialize Spectrum and Boeffla Wakelock blocker upon boot. Miscellaneous changes.
+
 ## 79. November 21, 2019
 *Release-tag: v8.12*<br>
 Changes: SmartPack: Add option to execute shell script. Misc: Updated file picker using external file manager. Settings: Fix Force English option not showing. build: update gradle to 3.5.2. Sweep2Wake: Add support to Lord Boeffla's s2w. Back-Up & Restore: Update to use proper titles. Miscellaneous changes.
