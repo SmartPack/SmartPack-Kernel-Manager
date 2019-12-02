@@ -229,7 +229,7 @@ public class Misc {
         return Utils.existFile(PRINTK_MODE);
     }
 
-    public static void enableDoze(boolean enable, Context context) {
+    public static void enableDoze(boolean enable) {
         if (enable) {
             RootUtils.runCommand(DOZE + " enable");
             RootUtils.runCommand(DOZE + " force-idle");

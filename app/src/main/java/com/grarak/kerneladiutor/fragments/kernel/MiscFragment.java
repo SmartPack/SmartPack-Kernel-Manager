@@ -378,7 +378,7 @@ public class MiscFragment extends RecyclerViewFragment {
             doze.setSummary(getString(R.string.doze_summary));
             doze.setChecked(mMisc.isDozeEnabled());
             doze.addOnSwitchListener((switchView, isChecked)
-                -> mMisc.enableDoze(isChecked, getActivity()));
+                -> mMisc.enableDoze(isChecked));
 		getHandler().postDelayed(() -> {
 		doze.setChecked(mMisc.isDozeEnabled());
 		},
