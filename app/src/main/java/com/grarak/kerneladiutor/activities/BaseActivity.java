@@ -79,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        Utils.DARK_THEME = Prefs.getBoolean("darktheme", false, this);
+        Utils.DARK_THEME = Prefs.getBoolean("darktheme", true, this);
         int theme;
         String accent = Prefs.getString("accent_color", "blue_accent", this);
         if (Utils.DARK_THEME) {

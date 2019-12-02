@@ -11,6 +11,7 @@
         android:key="user_interface"
         android:title="@string/user_interface">
         <SwitchPreferenceCompat
+            android:defaultValue="true"
             android:key="darktheme"
             android:summary="@string/dark_theme" />
         <SwitchPreferenceCompat
