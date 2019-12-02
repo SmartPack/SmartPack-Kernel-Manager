@@ -440,6 +440,45 @@ public class Battery {
         return getCapacity() != 0;
     }
 
+    public static String ChargingInfoTitle() {
+        if (ChargingStatus().equals("Charging")) {
+            if (ChargerType().equals("USB_DCP") || ChargingType() == 3) {
+                // An attempt to distinguish OnePlus Dash Charge
+                if (fastChgType().equals("N/A")) {
+                    return "Charge Rate (Dash)";
+                } else {
+                    return "Charge Rate (AC)";
+                }
+            } else if (ChargerType().equals("USB") || ChargingType() == 4) {
+                return "Charge Rate (USB)";
+            } else if (ChargingType() == 10) {
+                return "Charge Rate (Wireless)";
+            } else {
+                return "Charge Rate";
+            }
+        } else {
+            return "Discharge Rate";
+        }
+    }
+
+    public static String BatteryInfoText(Context context) {
+        if (hasBatteryHealth()) {
+            return (context.getString(R.string.battery)) + (" (Health: ") + (BatteryHealth()) + (")");
+        } else {
+            return context.getString(R.string.battery);
+        }
+    }
+
+    public static String BatteryInfoStatus() {
+        if (hasBatteryLevel() && hasBatteryVoltage()) {
+            return ("LEVEL: ") + BatteryLevel() + (" % - VOLTAGE: ") + BatteryVoltage() + (" mV");
+        } else if (hasBatteryLevel() && !(hasBatteryVoltage())) {
+            return ("LEVEL: ") + BatteryLevel() + (" %");
+        } else {
+            return ("VOLTAGE: ") + BatteryVoltage() + (" mV");
+        }
+    }
+
     public boolean supported() {
         return hasFastCharge() || haschargeLevel() || hasUSBFastCharge() || hasBatteryLevel() || hasBatteryVoltage()
                 || hasBatteryHealth() || haschargingstatus() || hasBlx() || hasbatterychargelimit()

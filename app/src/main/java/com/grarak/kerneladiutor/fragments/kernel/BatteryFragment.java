@@ -427,40 +427,12 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
         if (mChargingStatus != null) {
-            if (Battery.ChargingStatus().equals("Charging")) {
-                if (Battery.ChargerType().equals("USB_DCP") || Battery.ChargingType() == 3) {
-                    // An attempt to distinguish OnePlus Dash Charge
-                    if (Battery.fastChgType().equals("N/A")) {
-                        mChargingStatus.setTitle("Charge Rate (Dash)");
-                    } else {
-                        mChargingStatus.setTitle("Charge Rate (AC)");
-                    }
-                } else if (Battery.ChargerType().equals("USB") || Battery.ChargingType() == 4) {
-                    mChargingStatus.setTitle("Charge Rate (USB)");
-                } else if (Battery.ChargingType() == 10) {
-                    mChargingStatus.setTitle("Charge Rate (Wireless)");
-                } else {
-                    mChargingStatus.setTitle("Charge Rate");
-                }
-                mChargingStatus.setStat(Battery.getchargingstatus() + (" mA"));
-            } else {
-                mChargingStatus.setTitle("Discharge Rate");
-                mChargingStatus.setStat(("-") + Battery.getchargingstatus() + (" mA"));
-            }
+            mChargingStatus.setTitle(Battery.ChargingInfoTitle());
+            mChargingStatus.setStat(Battery.getchargingstatus() + (" mA"));
         }
         if (mBatteryInfo != null) {
-            if (Battery.hasBatteryHealth()) {
-                mBatteryInfo.setTitle(getString(R.string.battery) + (" (Health: ") + (Battery.BatteryHealth()) + (")"));
-            } else {
-                mBatteryInfo.setTitle(getString(R.string.battery));
-            }
-            if (Battery.hasBatteryLevel() && Battery.hasBatteryVoltage()) {
-                mBatteryInfo.setStat(("LEVEL: ") + Battery.BatteryLevel() + (" %  -  VOLTAGE: ") + Battery.BatteryVoltage() + (" mV"));
-            } else if (Battery.hasBatteryLevel() && !(Battery.hasBatteryVoltage())) {
-                mBatteryInfo.setStat(("LEVEL: ") + Battery.BatteryLevel() + (" %"));
-            } else if (!(Battery.hasBatteryLevel()) && Battery.hasBatteryVoltage()) {
-                mBatteryInfo.setStat(("VOLTAGE: ") + Battery.BatteryVoltage() + (" mV"));
-            }
+            mBatteryInfo.setTitle(Battery.BatteryInfoText(getActivity()));
+            mBatteryInfo.setStat(Battery.BatteryInfoStatus());
         }
     }
 }
