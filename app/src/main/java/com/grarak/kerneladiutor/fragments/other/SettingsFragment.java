@@ -79,6 +79,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     private static final String KEY_BANNER_RESIZER = "banner_resizer";
     private static final String KEY_HIDE_BANNER = "hide_banner";
     private static final String KEY_ACCENT_COLOR = "accent_color";
+    private static final String KEY_SECTIONS_ICON = "section_icons";
     private static final String KEY_APPLY_ON_BOOT_TEST = "applyonboottest";
     private static final String KEY_SECURITY_CATEGORY = "security_category";
     private static final String KEY_SET_PASSWORD = "set_password";
@@ -98,6 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         if (!Utils.isDonated(requireActivity())) {
             Prefs.remove(KEY_HIDE_BANNER, getActivity());
             Prefs.remove(KEY_ACCENT_COLOR, getActivity());
+            Prefs.remove(KEY_SECTIONS_ICON, getActivity());
         }
         setRetainInstance(true);
     }
@@ -147,6 +149,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         findPreference(KEY_BANNER_RESIZER).setOnPreferenceClickListener(this);
         findPreference(KEY_HIDE_BANNER).setOnPreferenceChangeListener(this);
         findPreference(KEY_ACCENT_COLOR).setOnPreferenceClickListener(this);
+        findPreference(KEY_SECTIONS_ICON).setOnPreferenceChangeListener(this);
         findPreference(KEY_APPLY_ON_BOOT_TEST).setOnPreferenceClickListener(this);
         findPreference(KEY_SET_PASSWORD).setOnPreferenceClickListener(this);
         findPreference(KEY_DELETE_PASSWORD).setOnPreferenceClickListener(this);
@@ -202,7 +205,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 }
                 return true;
             default:
-                if (key.endsWith("_enabled")) {
+                if (key.equals(KEY_SECTIONS_ICON) || key.endsWith("_enabled")) {
                     Prefs.saveBoolean(key, checked, getActivity());
                     ((NavigationActivity) requireActivity()).appendFragments();
                     return true;
