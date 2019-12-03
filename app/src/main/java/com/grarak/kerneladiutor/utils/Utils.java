@@ -71,6 +71,7 @@ import java.math.RoundingMode;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by willi on 14.04.16.
@@ -559,4 +560,38 @@ public class Utils {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
+    /**
+     * Taken and used almost as such from yoinx's Kernel Adiutor Mod (https://github.com/yoinx/kernel_adiutor/)
+     */
+    public static String getDurationBreakdown(long millis)
+    {
+        StringBuilder sb = new StringBuilder(64);
+        if(millis <= 0)
+        {
+            sb.append("00 min 00 s");
+            return sb.toString();
+        }
+
+        long days = TimeUnit.MILLISECONDS.toDays(millis);
+        millis -= TimeUnit.DAYS.toMillis(days);
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        millis -= TimeUnit.HOURS.toMillis(hours);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
+        millis -= TimeUnit.MINUTES.toMillis(minutes);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
+
+        if (days > 0) {
+            sb.append(days);
+            sb.append(" day ");
+        }
+        if (hours > 0) {
+            sb.append(hours);
+            sb.append(" hr ");
+        }
+        sb.append(String.format("%02d", minutes));
+        sb.append(" min ");
+        sb.append(String.format("%02d", seconds));
+        sb.append(" s");
+        return sb.toString();
+    }
 }
