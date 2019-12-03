@@ -58,6 +58,7 @@ import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyButtonView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
+import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class OverallFragment extends RecyclerViewFragment {
     private GPUFreq mGPUFreq;
 
     private StatsView mGPUFreqStatsView;
-    private StatsView mUpTime;
+    private MultiStatsView mUpTime;
     private TemperatureView mTemperature;
 
     private CardView mFreqBig;
@@ -121,8 +122,8 @@ public class OverallFragment extends RecyclerViewFragment {
 
         items.add(mTemperature);
 
-        mUpTime = new StatsView();
-        mUpTime.setTitle(getString(R.string.device) + (" ") + getString(R.string.uptime));
+        mUpTime = new MultiStatsView();
+        mUpTime.setTitle(getString(R.string.uptime));
 
         items.add(mUpTime);
     }
@@ -371,7 +372,9 @@ public class OverallFragment extends RecyclerViewFragment {
             mTemperature.setBattery(mBatteryRaw);
         }
         if (mUpTime != null) {
-            mUpTime.setStat(Utils.getDurationBreakdown(SystemClock.elapsedRealtime()));
+            mUpTime.setStatsOne(("Total: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime()));
+            mUpTime.setmStatsTwo(("Awake: ") + Utils.getDurationBreakdown(SystemClock.uptimeMillis()));
+            mUpTime.setmStatsThree(("Deep Sleep: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()));
         }
     }
 
