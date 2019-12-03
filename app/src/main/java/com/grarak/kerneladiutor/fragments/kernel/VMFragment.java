@@ -256,7 +256,7 @@ public class VMFragment extends RecyclerViewFragment {
             mem.setStat("Total: " + mMemInfo.getItemMb("MemTotal") + ", Used: " + (mMemInfo.getItemMb("MemTotal")
                     - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))));
         }
-        if (mem != null) {
+        if (swap != null) {
             swap.setTitle(getString(R.string.swap));
             swap.setStat("Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + ", Used: "
                     + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")));
