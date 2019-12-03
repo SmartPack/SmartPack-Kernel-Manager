@@ -32,8 +32,8 @@ import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
-import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +45,7 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     private Battery mBattery;
 
-    private StatsView mBatteryInfo;
-    private StatsView mChargingStatus;
+    private MultiStatsView mBatteryInfo;
 
     @Override
     protected void init() {
@@ -57,13 +56,11 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        mBatteryInfo = new StatsView();
-        if (Battery.hasBatteryLevel() || Battery.hasBatteryVoltage() || Battery.hasBatteryHealth()) {
+        if (Battery.haschargingstatus() || Battery.hasBatteryLevel() || Battery.hasBatteryVoltage() || Battery.hasBatteryHealth()) {
+            mBatteryInfo = new MultiStatsView();
+            mBatteryInfo.setTitle(getString(R.string.battery));
+
             items.add(mBatteryInfo);
-        }
-        mChargingStatus = new StatsView();
-        if (Battery.haschargingstatus()) {
-            items.add(mChargingStatus);
         }
         if (mBattery.hasbatterychargelimit() || mBattery.hasChargingEnable() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx() || mBattery.hasOPOTGSwitch() || mBattery.hasThunderCharge()) {
             acciInit(items);
@@ -426,13 +423,10 @@ public class BatteryFragment extends RecyclerViewFragment {
     @Override
     protected void refresh() {
         super.refresh();
-        if (mChargingStatus != null) {
-            mChargingStatus.setTitle(Battery.ChargingInfoTitle());
-            mChargingStatus.setStat(Battery.getchargingstatus() + (" mA"));
-        }
         if (mBatteryInfo != null) {
-            mBatteryInfo.setTitle(Battery.BatteryInfoText(getActivity()));
-            mBatteryInfo.setStat(Battery.BatteryInfoStatus());
+            mBatteryInfo.setStatsOne((" Health: ") + Battery.BatteryHealth());
+            mBatteryInfo.setmStatsTwo(("Voltage: ") + Battery.BatteryVoltage() + (" mV"));
+            mBatteryInfo.setmStatsThree(Battery.ChargingInfoTitle() + (": ") + Battery.getchargingstatus() + (" mA"));
         }
     }
 }

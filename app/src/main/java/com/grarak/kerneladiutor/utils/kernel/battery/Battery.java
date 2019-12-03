@@ -461,24 +461,6 @@ public class Battery {
         }
     }
 
-    public static String BatteryInfoText(Context context) {
-        if (hasBatteryHealth()) {
-            return (context.getString(R.string.battery)) + (" (Health: ") + (BatteryHealth()) + (")");
-        } else {
-            return context.getString(R.string.battery);
-        }
-    }
-
-    public static String BatteryInfoStatus() {
-        if (hasBatteryLevel() && hasBatteryVoltage()) {
-            return ("LEVEL: ") + BatteryLevel() + (" % - VOLTAGE: ") + BatteryVoltage() + (" mV");
-        } else if (hasBatteryLevel() && !(hasBatteryVoltage())) {
-            return ("LEVEL: ") + BatteryLevel() + (" %");
-        } else {
-            return ("VOLTAGE: ") + BatteryVoltage() + (" mV");
-        }
-    }
-
     public boolean supported() {
         return hasFastCharge() || haschargeLevel() || hasUSBFastCharge() || hasBatteryLevel() || hasBatteryVoltage()
                 || hasBatteryHealth() || haschargingstatus() || hasBlx() || hasbatterychargelimit()
