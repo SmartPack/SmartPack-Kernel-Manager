@@ -33,8 +33,8 @@ import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
-import com.grarak.kerneladiutor.views.recyclerview.StatsView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +47,7 @@ public class VMFragment extends RecyclerViewFragment {
     private List<GenericSelectView> mVMs = new ArrayList<>();
 
     private Device.MemInfo mMemInfo;
-    private StatsView mem;
-    private StatsView swap;
+    private MultiStatsView mVM;
 
     @Override
     protected void init() {
@@ -60,13 +59,9 @@ public class VMFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        mem = new StatsView();
-        if (mMemInfo.getItemMb("MemTotal") != 0) {
-            items.add(mem);
-        }
-        swap = new StatsView();
-        if (mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
-            items.add(swap);
+        mVM = new MultiStatsView();
+        if (mMemInfo.getItemMb("MemTotal") != 0 && mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
+            items.add(mVM);
         }
         VMInit(items);
         if (ZRAM.supported()) {
@@ -251,15 +246,17 @@ public class VMFragment extends RecyclerViewFragment {
     protected void refresh() {
         super.refresh();
 
-        if (mem != null) {
-            mem.setTitle(getString(R.string.ram));
-            mem.setStat("Total: " + mMemInfo.getItemMb("MemTotal") + ", Used: " + (mMemInfo.getItemMb("MemTotal")
-                    - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))));
-        }
-        if (swap != null) {
-            swap.setTitle(getString(R.string.swap));
-            swap.setStat("Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + ", Used: "
-                    + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")));
+        if (mVM != null) {
+            if (mMemInfo.getItemMb("MemTotal") != 0) {
+                mVM.setStatsOne("RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB , Used: " + (mMemInfo.getItemMb("MemTotal")
+                        - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB");
+            }
+            if (mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
+                mVM.setmStatsTwo("Swap - Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
+                        + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
+            } else {
+                mVM.setmStatsTwo("Swap: N/A");
+            }
         }
     }
 
