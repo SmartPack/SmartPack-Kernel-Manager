@@ -3,7 +3,9 @@
 ## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
 
 ## Download
-### ! [Download latest build](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true) ! [All builds](https://github.com/SmartPack/SmartPack-Kernel-Manager/releases) !
+[<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
+     alt=""
+     height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true)
 ## Added features over official KA
 
 * Option to flash recovery zip files while running Android OS.
@@ -35,9 +37,15 @@
 If you like to appreciate my work, please consider donating to me (either via [PayPal](https://www.paypal.me/sunilpaulmathew/), or [Ko-fi](https://ko-fi.com/sunilpaulmathew/), or by purchasing the [SmartPack Donation Package](https://play.google.com/store/apps/details?id=com.smartpack.donate) from playstore) as it is helpful to continue my projects more active, although it is not at all necessary.<br>
 <br><strong>Please note</strong>: Purchasing the donation package will unlock some hidden features in this app.
 
-[![PayPal](https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic005.png)](https://www.paypal.me/sunilpaulmathew/)
-[![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.smartpack.donate)
-[![Ko-fi](https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic010.png)](https://ko-fi.com/sunilpaulmathew/)
+[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic005.png"
+     alt=""
+     height="80">](https://www.paypal.me/sunilpaulmathew/)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt=""
+     height="80">](https://play.google.com/store/apps/details?id=com.smartpack.donate)
+[<img src="https://raw.githubusercontent.com/SmartPack/SmartPack.github.io/master/asset/pic010.png"
+     alt=""
+     height="80">](https://ko-fi.com/sunilpaulmathew/)
 
 ## Credits
 
