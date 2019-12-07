@@ -34,7 +34,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
-        <activity android:name=".activities.StartActivity">
+        <activity android:name=".activities.StartActivity" android:label="@string/smartpack" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +47,7 @@
         </activity>
 
         <activity
-            android:name=".activities.StartActivityMaterial"
+            android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"
             android:enabled="false"
             android:icon="@mipmap/ic_launcher_material">
             <intent-filter>
