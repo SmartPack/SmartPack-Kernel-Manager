@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
@@ -17,7 +17,7 @@
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
     </style>
 
-    <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
