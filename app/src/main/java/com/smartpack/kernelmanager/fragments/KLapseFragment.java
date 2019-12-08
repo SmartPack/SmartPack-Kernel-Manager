@@ -21,12 +21,16 @@
 
 package com.smartpack.kernelmanager.fragments;
 
+import android.app.TimePickerDialog;
 import android.text.InputType;
+import android.widget.TimePicker;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
+import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -91,60 +95,57 @@ public class KLapseFragment extends RecyclerViewFragment {
             klapseCard.addItem(enable);
         }
 
-        if (KLapse.hasklapseStart() || KLapse.hasklapseStartMin()) {
-            SeekBarView klapseStart = new SeekBarView();
-            klapseStart.setTitle((KLapse.hasklapseStart()) ? getString(R.string.night_mode_schedule) + (" (Hour)")
-                    : getString(R.string.night_mode_schedule) + (" (Minute)"));
-            klapseStart.setSummary(getString(R.string.start_time));
-            if (KLapse.hasklapseStart()) {
-                klapseStart.setMax(23);
-		klapseStart.setProgress(KLapse.getklapseStart());
-            } else {
-                klapseStart.setMax(1440);
-		klapseStart.setOffset(15);
-		klapseStart.setProgress(KLapse.getklapseStart() / 15);
-            }
-            klapseStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (KLapse.hasklapseStart()) {
-                    	KLapse.setklapseStart((position), getActivity());
-		    } else {
-                    	KLapse.setklapseStart((position * 15), getActivity());
-		    }
-                }
+        if (KLapse.hasklapseStart()) {
+            int startTime = Utils.strToInt(KLapse.getklapseStartRaw());
+            int startHr = startTime / 60;
+            int startMin = startTime - (startHr * 60);
 
+            DescriptionView klapseStart = new DescriptionView();
+            klapseStart.setTitle(getString(R.string.night_mode_schedule));
+            klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
+            klapseStart.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
+                public void onClick(RecyclerViewItem item) {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    KLapse.setklapseStart((hourOfDay * 60) + minute, getActivity());
+                                    getHandler().postDelayed(() -> {
+                                                klapseStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getklapseStart());
+                                            },
+                                            500);
+                                }
+                            }, startHr, startMin, false);
+                    timePickerDialog.show();
                 }
             });
 
             klapseCard.addItem(klapseStart);
         }
 
-        if (KLapse.hasklapseStop() || KLapse.hasklapseStopMin()) {
-            SeekBarView klapseStop = new SeekBarView();
-            klapseStop.setSummary(getString(R.string.end_time));
-            if (KLapse.hasklapseStop()) {
-                klapseStop.setMax(23);
-		klapseStop.setProgress(KLapse.getklapseStop());
-            } else {
-                klapseStop.setMax(1440);
-		klapseStop.setOffset(15);
-		klapseStop.setProgress(KLapse.getklapseStop() / 15);
-            }
-            klapseStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (KLapse.hasklapseStop()) {
-                    	KLapse.setklapseStop((position), getActivity());
-		    } else {
-                    	KLapse.setklapseStop((position * 15), getActivity());
-		    }
-                }
+        if (KLapse.hasklapseStop()) {
+            int EndTime = Utils.strToInt(KLapse.getklapseStopRaw());
+            int EndHr = EndTime / 60;
+            int EndMin = EndTime - (EndHr * 60);
 
+            DescriptionView klapseStop = new DescriptionView();
+            klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
+            klapseStop.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
+                public void onClick(RecyclerViewItem item) {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    KLapse.setklapseStop((hourOfDay * 60) + minute, getActivity());
+                                    getHandler().postDelayed(() -> {
+                                                klapseStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getklapseStop());
+                                            },
+                                            500);
+                                }
+                            }, EndHr, EndMin, false);
+                    timePickerDialog.show();
                 }
             });
 
@@ -335,37 +336,6 @@ public class KLapseFragment extends RecyclerViewFragment {
             klapseCard.addItem(flowFreq);
         }
 
-        if (KLapse.hasBacklightRange()) {
-            GenericSelectView backlightRangeMin = new GenericSelectView();
-            backlightRangeMin.setTitle(getString(R.string.backlight_range));
-            backlightRangeMin.setSummary("Min");
-            backlightRangeMin.setValue(KLapse.getBacklightRange("min"));
-            backlightRangeMin.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightRangeMin.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBacklightRange("min", value, getActivity());
-                    genericSelectView.setValue(value);
-                }
-            });
-
-            klapseCard.addItem(backlightRangeMin);
-
-            GenericSelectView backlightRangeMax = new GenericSelectView();
-            backlightRangeMax.setSummary("Max");
-            backlightRangeMax.setValue(KLapse.getBacklightRange("max"));
-            backlightRangeMax.setInputType(InputType.TYPE_CLASS_NUMBER);
-            backlightRangeMax.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    KLapse.setBacklightRange("max", value, getActivity());
-                    genericSelectView.setValue(value);
-                }
-            });
-
-            klapseCard.addItem(backlightRangeMax);
-        }
-
         if (KLapse.hasBLRangeLower()) {
             GenericSelectView backlightRange = new GenericSelectView();
             backlightRange.setTitle(getString(R.string.backlight_range));
@@ -399,20 +369,13 @@ public class KLapseFragment extends RecyclerViewFragment {
             klapseCard.addItem(backlightRange);
         }
 
-        if (KLapse.hasBrightnessFactor() || KLapse.hasDimmerFactor()) {
+        if (KLapse.hasDimmerFactor()) {
             SeekBarView Dimmer = new SeekBarView();
             Dimmer.setTitle(getString(R.string.dimming));
-            if (KLapse.hasDimmerFactor()) {
-                Dimmer.setSummary(getString(R.string.dimming_summary));
-                Dimmer.setMax(100);
-                Dimmer.setMin(10);
-		Dimmer.setProgress(KLapse.getBrightnessFactor() - 10);
-            } else {
-                Dimmer.setSummary(getString(R.string.brightness_factor_summary));
-                Dimmer.setMax(10);
-                Dimmer.setMin(2);
-		Dimmer.setProgress(KLapse.getBrightnessFactor() - 2);
-            }
+            Dimmer.setSummary(getString(R.string.dimming_summary));
+            Dimmer.setMax(100);
+            Dimmer.setMin(10);
+            Dimmer.setProgress(KLapse.getBrightnessFactor() - 10);
             Dimmer.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                 @Override
                 public void onMove(SeekBarView seekBarView, int position, String value) {
@@ -420,19 +383,15 @@ public class KLapseFragment extends RecyclerViewFragment {
 
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (KLapse.hasDimmerFactor()) {
-                    	KLapse.setBrightnessFactor(position + 10, getActivity());
-		    } else {
-                    	KLapse.setBrightnessFactor(position + 2, getActivity());
-		    }
+                    KLapse.setBrightnessFactor(position + 10, getActivity());
                 }
             });
 
             klapseCard.addItem(Dimmer);
         }
 
-        SeekBarView brightFactStart = new SeekBarView();
-        SeekBarView brightFactStop = new SeekBarView();
+        DescriptionView brightFactStart = new DescriptionView();
+        DescriptionView brightFactStop = new DescriptionView();
 
         if (KLapse.hasAutoBrightnessFactor()) {
             SwitchView autoBrightness = new SwitchView();
@@ -444,22 +403,10 @@ public class KLapseFragment extends RecyclerViewFragment {
                 getHandler().postDelayed(() -> {
                     // Show or hide other Brightness options on the basis of the status of this switch
                     if (KLapse.isAutoBrightnessFactorEnabled()) {
-                        if (KLapse.hasBrightFactStart()) {
-                            brightFactStart.setProgress(KLapse.getBrightFactStart());
-                            klapseCard.addItem(brightFactStart);
-                        }
-			if (KLapse.hasDimmerStart()) {
-                            brightFactStart.setProgress(KLapse.getBrightFactStart() / 15);
-                            klapseCard.addItem(brightFactStart);
-                        }
-                        if (KLapse.hasBrightFactStop()) {
-                            brightFactStop.setProgress(KLapse.getBrightFactStop());
-                            klapseCard.addItem(brightFactStop);
-                        }
-                        if (KLapse.hasDimmerStop()) {
-                            brightFactStop.setProgress(KLapse.getBrightFactStop() / 15);
-                            klapseCard.addItem(brightFactStop);
-                        }
+                        brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
+                        klapseCard.addItem(brightFactStart);
+                        brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
+                        klapseCard.addItem(brightFactStop);
                     } else {
                         klapseCard.removeItem(brightFactStart);
                         klapseCard.removeItem(brightFactStop);
@@ -470,30 +417,28 @@ public class KLapseFragment extends RecyclerViewFragment {
             klapseCard.addItem(autoBrightness);
         }
 
-        if (KLapse.hasBrightFactStart() || KLapse.hasDimmerStart()) {
-            brightFactStart.setTitle((KLapse.hasDimmerStart()) ? getString(R.string.auto_dimming_schedule) + (" (Minute)")
-                    : getString(R.string.auto_dimming_schedule) + (" (Hour)"));
-            brightFactStart.setSummary(getString(R.string.start_time));
-            if (KLapse.hasDimmerStart()) {
-                brightFactStart.setMax(1440);
-		brightFactStart.setOffset(15);
-		brightFactStart.setProgress(KLapse.getBrightFactStart() / 15);
-            } else {
-                brightFactStart.setMax(23);
-		brightFactStart.setProgress(KLapse.getBrightFactStart());
-            }
-            brightFactStart.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (KLapse.hasDimmerStart()) {
-                    	KLapse.setBrightFactStart((position * 15), getActivity());
-		    } else {
-                    	KLapse.setBrightFactStart((position), getActivity());
-		    }
-                }
+        if (KLapse.hasDimmerStart()) {
+            int startTime = Utils.strToInt(KLapse.getBrightFactStartRaw());
+            int startHr = startTime / 60;
+            int startMin = startTime - (startHr * 60);
 
+            brightFactStart.setTitle(getString(R.string.auto_dimming_schedule));
+            brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
+            brightFactStart.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
+                public void onClick(RecyclerViewItem item) {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    KLapse.setBrightFactStart((hourOfDay * 60) + minute, getActivity());
+                                    getHandler().postDelayed(() -> {
+                                                brightFactStart.setSummary(getString(R.string.start_time) + ": " + KLapse.getBrightFactStart());
+                                            },
+                                            500);
+                                }
+                            }, startHr, startMin, false);
+                    timePickerDialog.show();
                 }
             });
 
@@ -504,28 +449,27 @@ public class KLapseFragment extends RecyclerViewFragment {
             }
         }
 
-        if (KLapse.hasBrightFactStop() || KLapse.hasDimmerStop()) {
-            brightFactStop.setSummary(getString(R.string.end_time));
-            if (KLapse.hasDimmerStop()) {
-                brightFactStop.setMax(1440);
-                brightFactStop.setOffset(15);
-		brightFactStop.setProgress(KLapse.getBrightFactStop() / 15);
-            } else {
-                brightFactStop.setMax(23);
-		brightFactStop.setProgress(KLapse.getBrightFactStop());
-            }
-            brightFactStop.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-		    if (KLapse.hasDimmerStop()) {
-                    	KLapse.setBrightFactStop((position * 15), getActivity());
-		    } else {
-                    	KLapse.setBrightFactStop((position), getActivity());
-		    }
-                }
+        if (KLapse.hasDimmerStop()) {
+            int EndTime = Utils.strToInt(KLapse.getBrightFactStopRaw());
+            int EndHr = EndTime / 60;
+            int EndMin = EndTime - (EndHr * 60);
 
+            brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
+            brightFactStop.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
+                public void onClick(RecyclerViewItem item) {
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                            new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    KLapse.setBrightFactStop((hourOfDay * 60) + minute, getActivity());
+                                    getHandler().postDelayed(() -> {
+                                                brightFactStop.setSummary(getString(R.string.end_time) + ": " + KLapse.getBrightFactStop());
+                                            },
+                                            500);
+                                }
+                            }, EndHr, EndMin, false);
+                    timePickerDialog.show();
                 }
             });
 
@@ -539,6 +483,6 @@ public class KLapseFragment extends RecyclerViewFragment {
         if (klapseCard.size() > 0) {
             items.add(klapseCard);
         }
-
     }
+
 }
