@@ -556,7 +556,6 @@
     <string name="nightmode_rgb">Cores Noturnas</string>
     <string name="dimming">Escurecimento</string>
     <string name="dimming_summary">100: Brilho preciso; 50: 50% da intensidade atual.</string>
-    <string name="brightness_factor_summary">10: Brilho preciso; 5: 50% do brilho atual.</string>
     <string name="auto_dimming">Escurecimento automático</string>
     <string name="auto_dimming_summary">Definir automaticamente o fator de brilho em um intervalo de tempo definido.</string>
     <string name="auto_dimming_schedule">Agend. do Escur. Automático</string>
@@ -769,7 +768,6 @@
     <string name="wkl_bluetooth_summary">Wakelock Bluetooth. Desative para melhorar o sono profundo e diminuir o tempo acordado. Ative para comportamento padrão.</string>
 
     <!-- Virtual Memory -->
-    <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Algoritmo Z-RAM</string>
     <string name="zram_algo_summary">Defina o algoritmo padrão de compactação Z-RAM.</string>

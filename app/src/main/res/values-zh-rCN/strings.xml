@@ -516,7 +516,6 @@
      <string name="auto_dimming">自动调光</string>
      <string name="auto_dimming_summary">在设定的时间范围内自动设定调光因数.</string>
      <string name="dimming">调光因数</string>
-     <string name="brightness_factor_summary">10: 精确的亮度; 5:50% 的目前亮度.</string>
      <string name="auto_dimming_schedule">自动调光排程</string>
      <string name="backlight_range">背光范围</string>
      <string name="pulse_freq">脉冲频率</string>

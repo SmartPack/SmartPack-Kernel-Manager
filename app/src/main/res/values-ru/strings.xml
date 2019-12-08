@@ -511,7 +511,6 @@
     <string name="nightmode_rgb">Цвета ночного режима</string>
     <string name="dimming">Коэффициент яркости</string>
     <string name="dimming_summary">100: точная яркость; 50: 50% от силы тока.</string>
-    <string name="brightness_factor_summary">10: точная яркость; 5: 50% от текущей яркости.</string>
     <string name="auto_dimming">Авто-яркость</string>
     <string name="auto_dimming_summary">Автоматически установить коэффициент яркости в заданном диапазоне времени.</string>
     <string name="auto_dimming_schedule">График автояркости</string>
@@ -710,7 +709,6 @@
     <string name="wkl_wireless_summary">Wireless Wakelock. Отключите для лучшего глубокого сна и меньшего времени бодрствования. Включить для стандартного поведения.</string>
     <string name="wkl_bluetooth">Bluetooth</string>
     <string name="wkl_bluetooth_summary">Bluetooth Wakelock. Отключите для лучшего глубокого сна и меньшего времени бодрствования. Включить для стандартного поведения.</string>
-    <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Алгоритм Z-RAM</string>
     <string name="zram_algo_summary">Установите алгоритм сжатия Z-RAM по умолчанию.</string>

@@ -574,7 +574,6 @@
     <string name="nightmode_rgb">Night Mode Colors</string>
     <string name="dimming">Dimming</string>
     <string name="dimming_summary">100: Accurate brightness; 50: 50% of current intensity.</string>
-    <string name="brightness_factor_summary">10: Accurate brightness; 5: 50% of current brightness.</string>
     <string name="auto_dimming">Auto Dimming</string>
     <string name="auto_dimming_summary">Automatically set the brightness factor in a set time range.</string>
     <string name="auto_dimming_schedule">Auto Dimming Schedule</string>
@@ -787,7 +786,6 @@
     <string name="wkl_bluetooth_summary">Bluetooth Wakelock. Disable for better deep sleep and less awake time. Enable for stock behavior.</string>
 
     <!-- Virtual Memory -->
-    <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Z-RAM Algorithm</string>
     <string name="zram_algo_summary">Set default Z-RAM Compression algorithm.</string>
