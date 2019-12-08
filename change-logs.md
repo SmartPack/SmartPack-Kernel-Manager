@@ -1,5 +1,9 @@
 # Change-logs
 
+## 81. December 08, 2019
+*Release-tag: v9.1*<br>
+Changes: K-Lapse: Scheduler: Updated to use TimePicker. Misc: Brand new SmartPack icons, and also updated some other drawable. Misc: Shorten app name on android launcher for better user experience. Settings: Make section icons user configurable and enabled dark theme by default. Overall: Display device uptime including total, awake and deep sleep. Battery and Virtual Memory: Updated live status views. Miscellaneous changes.
+
 ## 80. November 27, 2019
 *Release-tag: v9.0*<br>
 Changes: Main: Overall updates according to material style guidelines. Main: Fixed crashing if Root access not available/granted. Battery: Charging Status: Report OnePlus Dash charging. SmartPack: Maintain flashing history inside '/sdcard/SP/'. VM: RAM & Swap view: Switched to a simple Status View. Main: File Picker: Show a message to prevent using default DocumentsUI. ApplyOnBoot: Initialize Spectrum and Boeffla Wakelock blocker upon boot. Miscellaneous changes.
