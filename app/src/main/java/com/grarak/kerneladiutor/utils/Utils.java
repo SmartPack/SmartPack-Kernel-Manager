@@ -594,4 +594,14 @@ public class Utils {
         sb.append(" s");
         return sb.toString();
     }
+
+    public static String prepareReboot() {
+        String prepareReboot = "am broadcast android.intent.action.ACTION_SHUTDOWN " + "&&" +
+                " sync " + "&&" +
+                " echo 3 > /proc/sys/vm/drop_caches " + "&&" +
+                " sync " + "&&" +
+                " sleep 3 " + "&&" +
+                " reboot";
+        return prepareReboot;
+    }
 }

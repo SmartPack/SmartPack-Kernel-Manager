@@ -56,13 +56,6 @@ import java.util.List;
 public class SmartPackFragment extends RecyclerViewFragment {
     private boolean mPermissionDenied;
 
-    private String prepareReboot = "am broadcast android.intent.action.ACTION_SHUTDOWN " + "&&" +
-            " sync " + "&&" +
-            " echo 3 > /proc/sys/vm/drop_caches " + "&&" +
-            " sync " + "&&" +
-            " sleep 3 " + "&&" +
-            " reboot";
-
     private String mPath;
 
     private String logFolder = Utils.getInternalDataStorage() + "/logs";
@@ -164,7 +157,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     });
                     reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
                         new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute(prepareReboot);
+                        new Execute().execute(Utils.prepareReboot());
                     });
                     reboot.show();
                 });
@@ -277,7 +270,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     });
                     wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
                         new Execute().execute("echo --wipe_cache > /cache/recovery/command");
-                        new Execute().execute(prepareReboot + " recovery");
+                        new Execute().execute(Utils.prepareReboot() + " recovery");
                     });
                     wipecache.show();
                 }
@@ -298,7 +291,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     });
                     wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
                         new Execute().execute("echo --wipe_data > /cache/recovery/command");
-                        new Execute().execute(prepareReboot + " recovery");
+                        new Execute().execute(Utils.prepareReboot() + " recovery");
                     });
                     wipedata.show();
                 }
@@ -319,7 +312,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 turnoff.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 turnoff.setPositiveButton(getString(R.string.turn_off), (dialog1, id1) -> {
-                    new Execute().execute(prepareReboot + " -p");
+                    new Execute().execute(Utils.prepareReboot() + " -p");
                 });
                 turnoff.show();
             }
@@ -339,7 +332,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 reboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 reboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(prepareReboot);
+                    new Execute().execute(Utils.prepareReboot());
                 });
                 reboot.show();
             }
@@ -359,7 +352,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 recoveryreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 recoveryreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(prepareReboot + " recovery");
+                    new Execute().execute(Utils.prepareReboot() + " recovery");
                 });
                 recoveryreboot.show();
             }
@@ -379,7 +372,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 bootloaderreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
                 bootloaderreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(prepareReboot + " bootloader");
+                    new Execute().execute(Utils.prepareReboot() + " bootloader");
                 });
                 bootloaderreboot.show();
             }
