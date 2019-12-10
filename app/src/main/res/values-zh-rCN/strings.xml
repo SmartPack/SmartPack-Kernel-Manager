@@ -864,7 +864,6 @@
      <!-- SmartPack -->
      <string name="support">支持信息</string>
      <string name="support_summary">造访 xda-developers.com 的支持页面</string>
-     <string name="flash_only">立即安装</string>
      <string name="reboot">重启</string>
      <string name="reboot_now">立即重新启动</string>
      <string name="reboot_later">稍后重新开机</string>

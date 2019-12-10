@@ -36,7 +36,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
@@ -442,9 +441,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             @Override
             protected Void doInBackground(Void... voids) {
                 SmartPack.manualFlash(file);
-                if (Prefs.getBoolean("flash_reboot", false, getActivity()) == true) {
-                    RootUtils.runCommand(prepareReboot);
-                }
                 return null;
             }
             @Override
@@ -492,12 +488,9 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     manualFlash.setTitle(getString(R.string.flasher));
                     manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
                             getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
-                    manualFlash.setNeutralButton(getString(R.string.flash_only), (dialogInterface, i) -> {
-                        Prefs.saveBoolean("flash_reboot", false, getActivity());
-                        manualFlash(new File(mPath));
+                    manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                     });
-                    manualFlash.setPositiveButton(getString(R.string.flash_reboot), (dialogInterface, i) -> {
-                        Prefs.saveBoolean("flash_reboot", true, getActivity());
+                    manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
                         manualFlash(new File(mPath));
                     });
                     manualFlash.show();

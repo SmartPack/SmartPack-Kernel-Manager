@@ -937,7 +937,6 @@
     <!-- SmartPack -->
     <string name="support">Suporte</string>
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
-    <string name="flash_only">Flashear Agora</string>
     <string name="flash_log">Registro do Flasher</string>
     <string name="flash_log_summary">Clique para obter os detalhes do último flash</string>
     <string name="nothing_show">Nada para mostrar. Clique novamente para verificar novamente</string>
