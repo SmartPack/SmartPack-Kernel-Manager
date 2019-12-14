@@ -95,31 +95,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         CardView smartpack = new CardView(getActivity());
         smartpack.setTitle(getString(R.string.smartpack));
 
-        DescriptionView flashLog = new DescriptionView();
-        flashLog.setTitle(getString(R.string.flash_log));
-        flashLog.setSummary(getString(R.string.flash_log_summary));
-        flashLog.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                if (SmartPack.hasPathLog() && SmartPack.hasFlashLog()) {
-                    flashLog.setSummary(Utils.readFile(Utils.getInternalDataStorage() + "/last_flash.txt"));
-                } else {
-                    flashLog.setSummary(getString(R.string.nothing_show));
-                }
-                if (SmartPack.hasFlashLog()) {
-                    Dialog flashLog = new Dialog(getActivity());
-                    flashLog.setIcon(R.mipmap.ic_launcher);
-                    flashLog.setTitle(getString(R.string.flash_log));
-                    flashLog.setMessage(Utils.readFile(Utils.getInternalDataStorage() + "/flasher_log.txt"));
-                    flashLog.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
-                    });
-                    flashLog.show();
-                }
-            }
-        });
-
-        smartpack.addItem(flashLog);
-
         DescriptionView script = new DescriptionView();
         script.setTitle(getString(R.string.run_Script));
         script.setSummary(getString(R.string.run_Script_summary));
@@ -450,7 +425,22 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Dialog rebootDialog = new Dialog(getActivity());
                 rebootDialog.setMessage(getString(R.string.reboot_dialog, getString(R.string.flashing)));
                 rebootDialog.setCancelable(false);
-                rebootDialog.setNeutralButton(getString(R.string.cancel), (dialog1, id1) -> {
+                rebootDialog.setNeutralButton(getString(R.string.flash_log), (dialog1, id1) -> {
+                    if (SmartPack.hasPathLog() && SmartPack.hasFlashLog()) {
+                        Dialog flashLog  = new Dialog(getActivity());
+                        flashLog .setIcon(R.mipmap.ic_launcher);
+                        flashLog .setTitle(getString(R.string.flash_log));
+                        flashLog .setMessage(Utils.readFile(Utils.getInternalDataStorage() + "/flasher_log.txt"));
+                        flashLog .setCancelable(false);
+                        flashLog .setNeutralButton(getString(R.string.cancel), (dialog2, id2) -> {
+                        });
+                        flashLog .setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
+                            new Execute().execute(Utils.prepareReboot());
+                        });
+                        flashLog .show();
+                    }
+                });
+                rebootDialog.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
                 });
                 rebootDialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
                     new Execute().execute(Utils.prepareReboot());

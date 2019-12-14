@@ -962,8 +962,6 @@
     <string name="support">Support</string>
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="flash_log">Flasher Log</string>
-    <string name="flash_log_summary">Click to get the details of last flashing</string>
-    <string name="nothing_show">Nothing to Show. Click again to recheck</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
     <string name="reboot_summary">Reboot your device</string>

@@ -886,8 +886,6 @@
     <string name="support">支援</string>
     <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
     <string name="flash_log">刷入器日誌</string>
-    <string name="flash_log_summary">點選以取得上次刷入的日誌</string>
-    <string name="nothing_show">沒有可顯示的內容。再次點選以重試</string>
     <string name="reboot">重啟</string>
     <string name="reboot_summary">重新啟動</string>
     <string name="normal_reboot_message">\n裝置將重新開機\n</string>
