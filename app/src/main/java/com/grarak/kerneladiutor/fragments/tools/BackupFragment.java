@@ -39,6 +39,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
@@ -338,6 +339,41 @@ public class BackupFragment extends RecyclerViewFragment {
                             mProgressDialog.dismiss();
                         } catch (IllegalArgumentException ignored) {
                         }
+                        // Show an option to reboot after flashing/restoring
+                        Dialog dialog = new Dialog(getActivity());
+                        dialog.setIcon(R.mipmap.ic_launcher);
+                        dialog.setMessage(getString(R.string.reboot_dialog, getString(flashing ?
+                                R.string.flashing : R.string.restoring)));
+                        dialog.setCancelable(false);
+                        dialog.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
+                        });
+                        dialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+                            new AsyncTask<Void, Void, Void>() {
+                                private ProgressDialog mProgressDialog;
+                                @Override
+                                protected void onPreExecute() {
+                                    super.onPreExecute();
+                                    mProgressDialog = new ProgressDialog(getActivity());
+                                    mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
+                                    mProgressDialog.setCancelable(false);
+                                    mProgressDialog.show();
+                                }
+                                @Override
+                                protected Void doInBackground(Void... voids) {
+                                    RootUtils.runCommand(Utils.prepareReboot());
+                                    return null;
+                                }
+                                @Override
+                                protected void onPostExecute(Void aVoid) {
+                                    super.onPostExecute(aVoid);
+                                    try {
+                                        mProgressDialog.dismiss();
+                                    } catch (IllegalArgumentException ignored) {
+                                    }
+                                }
+                            }.execute();
+                        });
+                        dialog.show();
                     }
                 }.execute();
             }
