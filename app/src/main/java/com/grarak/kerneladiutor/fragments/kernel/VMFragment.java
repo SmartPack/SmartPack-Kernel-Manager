@@ -60,7 +60,7 @@ public class VMFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         mVM = new MultiStatsView();
-        if (mMemInfo.getItemMb("MemTotal") != 0 && mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
+        if (mMemInfo.getItemMb("MemTotal") != 0 || mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
             items.add(mVM);
         }
         VMInit(items);
