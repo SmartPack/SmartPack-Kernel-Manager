@@ -1,5 +1,9 @@
 # Change-logs
 
+## 82. December 16, 2019
+*Release-tag: v9.2*<br>
+Changes: Tools: Introduced a *Brand New* Custom controls page (simple and user-friendly) as a replcement of the old one. SmartPack: Flasher: Show reboot menu after flashing (with an option to view  flasher log). Backup: Also show reboot menu after a flash/restore. res: Introduced adaptive icons (credits: @Lennoard). gradle: Updated build tools to 3.5.3. Miscellaneous changes.
+
 ## 81. December 08, 2019
 *Release-tag: v9.1*<br>
 Changes: K-Lapse: Scheduler: Updated to use TimePicker. Misc: Brand new SmartPack icons, and also updated some other drawable. Misc: Shorten app name on android launcher for better user experience. Settings: Make section icons user configurable and enabled dark theme by default. Overall: Display device uptime including total, awake and deep sleep. Battery and Virtual Memory: Updated live status views. Miscellaneous changes.
