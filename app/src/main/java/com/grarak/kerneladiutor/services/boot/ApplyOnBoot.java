@@ -33,7 +33,6 @@ import androidx.core.app.NotificationCompat;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.MainActivity;
 import com.grarak.kerneladiutor.database.Settings;
-import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
@@ -73,7 +72,6 @@ public class ApplyOnBoot {
 
         boolean enabled = false;
         final Settings settings = new Settings(context);
-        Controls controls = new Controls(context);
 
         final HashMap<String, Boolean> mCategoryEnabled = new HashMap<>();
         final HashMap<String, String> mCustomControls = new HashMap<>();
@@ -89,11 +87,6 @@ public class ApplyOnBoot {
                 if (!enabled && categoryEnabled) {
                     enabled = true;
                 }
-            }
-        }
-        for (Controls.ControlItem item : controls.getAllControls()) {
-            if (item.isOnBootEnabled() && item.getArguments() != null) {
-                mCustomControls.put(item.getApply(), item.getArguments());
             }
         }
         for (Profiles.ProfileItem profileItem : profiles) {

@@ -774,26 +774,10 @@
     <string name="spec_gaming_summary">Идентична производительности в большинстве областей, кроме разблокированной графической производительности.</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
-    <string name="example">Примеры</string>
-    <string name="custom_controls_example_summary">Нужен пример? Нажмите &lt;a href=\"https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls\">здесь&lt;a>.</string>
     <string name="create">Создать</string>
     <string name="import_item">Импорт</string>
     <string name="control_switch">Переключатель</string>
-    <string name="control_seekbar">Строка поиска</string>
-    <string name="title">Заголовок</string>
-    <string name="description">Описание</string>
-    <string name="applying">Применение</string>
-    <string name="switch_enabled_summary">Указывает, включен ли переключатель. 1 - включен и 0 - выключен.</string>
-    <string name="switch_apply_summary">Переключатель будет возвращать 1 (включено) или 0 (отключено), в качестве аргумента вашему скрипту.</string>
-    <string name="seekbar_min">Минимально</string>
-    <string name="seekbar_max">Максимально</string>
-    <string name="seekbar_progress">Прогресс</string>
-    <string name="seekbar_progress_summary">Текущее состояние строки поиска. Установка минимума и максимума определяет целочисленный массив. Например: мин. 50, макс. 100 и прогресс 0 означает, что текущее состояние строки поиска равно 50.</string>
-    <string name="seekbar_apply_summary">Строка поиска определяет текущий прогресс. Например, мин. 50, макс. 100 и строка поиска 70 означает прогресс 20.</string>
     <string name="control_generic">Универсальный</string>
-    <string name="generic_value">Значение</string>
-    <string name="generic_value_summary">Текущее значение редактора. Может быть пустым.</string>
-    <string name="generic_apply_summary">Редактор будет возвращать все, что было написано.</string>
     <string name="required">Обязательно</string>
     <string name="hit_test">Сначала нужно выполнить тестирование!</string>
     <string name="output">Вывод</string>
@@ -854,7 +838,6 @@
     <string name="result">Результат</string>
     <string name="on_boot_welcome_summary">Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки.</string>
     <string name="delete_question">Удалить %s?</string>
-    <string name="arguments">Параметры: %s</string>
     <string name="disable_question">Отключить %s?</string>
     <string name="support">Поддержка</string>
     <string name="support_summary">Посетить страницу поддержки на xda-developers.com</string>

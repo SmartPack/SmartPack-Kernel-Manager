@@ -77,7 +77,6 @@ import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.OnBootFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
-import com.grarak.kerneladiutor.fragments.tools.customcontrols.CustomControlsFragment;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -100,6 +99,7 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import org.frap129.spectrum.SpectrumFragment;
 import org.frap129.spectrum.Spectrum;
 
+import com.smartpack.kernelmanager.fragments.CustomControlsFragment;
 import com.smartpack.kernelmanager.fragments.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.SmartPackFragment;
 import com.smartpack.kernelmanager.fragments.WakelockFragment;

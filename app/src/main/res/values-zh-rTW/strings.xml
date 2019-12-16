@@ -793,26 +793,10 @@
     <!-- Custom Controls -->
     <string name="welcome">歡迎</string>
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
-    <string name="example">例子</string>
-    <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
     <string name="create">建立</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
-    <string name="control_seekbar">搜尋欄</string>
-    <string name="title">標題</string>
-    <string name="description">描述</string>
-    <string name="applying">套用中</string>
-    <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
-    <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的 Shell 指令碼的參數。</string>
-    <string name="seekbar_min">最小</string>
-    <string name="seekbar_max">最大</string>
-    <string name="seekbar_progress">進度</string>
-    <string name="seekbar_progress_summary">Seekbar的目前狀態。透過定義最小和最大建立一個整數數組。例如：最小為50，最大為100，進度為0，這意味著50是seekbar的目前狀態。</string>
-    <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的最小是50和最大為100，seekbar是70，它將返回20作為進度。</string>
     <string name="control_generic">通用</string>
-    <string name="generic_value">數值</string>
-    <string name="generic_value_summary">編輯器的目前數值。基本上可以是任何東西。</string>
-    <string name="generic_apply_summary">編輯器將返回輸入的任何內容。</string>
     <string name="required">需要</string>
     <string name="hit_test">你必須先試打！</string>
     <string name="output">輸出</string>
@@ -879,7 +863,6 @@
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">本節介紹當裝置啟動時會發生什麼。如果它是空白的，則在啟動後什麼也不會發生。</string>
     <string name="delete_question">刪除 %s 嗎？</string>
-    <string name="arguments">參數： %s</string>
     <string name="disable_question">停用 %s 嗎？</string>
 
     <!-- SmartPack -->

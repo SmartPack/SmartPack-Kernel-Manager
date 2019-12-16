@@ -49,6 +49,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 
+import com.smartpack.kernelmanager.fragments.CustomControlsFragment;
 import com.smartpack.kernelmanager.fragments.KLapseFragment;
 import com.smartpack.kernelmanager.fragments.WakelockFragment;
 
@@ -77,6 +78,7 @@ public class ApplyOnBootFragment extends BaseFragment {
     public static final String VM = "vm_onboot";
     public static final String ENTROPY = "entropy_onboot";
     public static final String MISC = "misc_onboot";
+    public static final String CUSTOMCONTROL = "customcontrol_onboot";
 
     private static final HashMap<Class, String> sAssignments = new HashMap<>();
 
@@ -99,6 +101,7 @@ public class ApplyOnBootFragment extends BaseFragment {
         sAssignments.put(VMFragment.class, VM);
         sAssignments.put(EntropyFragment.class, ENTROPY);
         sAssignments.put(MiscFragment.class, MISC);
+        sAssignments.put(CustomControlsFragment.class, CUSTOMCONTROL);
     }
 
     public static String getAssignment(Class fragment) {

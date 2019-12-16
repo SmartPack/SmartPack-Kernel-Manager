@@ -841,26 +841,10 @@
     <!-- Custom Controls -->
     <string name="welcome">Bem-vindo</string>
     <string name="custom_controls_summary">Nesta seção você pode criar ou importar controles personalizados que não existem no aplicativo (ainda).</string>
-    <string name="example">Exemplos</string>
-    <string name="custom_controls_example_summary">Precisa de um exemplo? Toque &lt;a href="https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls">aqui&lt;a>.</string>
     <string name="create">Criar</string>
     <string name="import_item">Importar</string>
     <string name="control_switch">Interruptor</string>
-    <string name="control_seekbar">Barra deslizante</string>
-    <string name="title">Titulo</string>
-    <string name="description">Descrição</string>
-    <string name="applying">Aplicação</string>
-    <string name="switch_enabled_summary">Se o interruptor estiver ativado. Retorne 1 para ativado e 0 para desativado.</string>
-    <string name="switch_apply_summary">A interruptor retornará 1 (ativado) ou 0 (desativado) como argumento para o seu shell script.</string>
-    <string name="seekbar_min">Mín</string>
-    <string name="seekbar_max">Máx</string>
-    <string name="seekbar_progress">Progress</string>
-    <string name="seekbar_progress_summary">Estado atual da barra deslizante. Ao definir min e máx, uma lista de números inteiros é criada. Por exemplo: Mín é 50 e Máx é 100 e o progresso é 0, isso significa que 50 é o estado atual da barra deslizante.</string>
-    <string name="seekbar_apply_summary">A barra deslizante retornará seu progresso atual. Por exemplo, o seu Mín é 50 e Máx 100 e a barra deslizante está em 70, retornará 20 conforme o progresso.</string>
     <string name="control_generic">Genérico</string>
-    <string name="generic_value">Valor</string>
-    <string name="generic_value_summary">Valor atual do editor. Pode ser basicamente qualquer coisa.</string>
-    <string name="generic_apply_summary">O editor retornará o que quer que tenha sido inserido.</string>
     <string name="required">necessário</string>
     <string name="hit_test">Você tem que tocar em teste primeiro!</string>
     <string name="output">Saída</string>
@@ -931,7 +915,6 @@
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">Esta seção mostra o que acontecerá quando o dispositivo for inicializado. Se estiver em branco, nada acontecerá após a inicialização.</string>
     <string name="delete_question">Deletar %s?</string>
-    <string name="arguments">Argumentos: %s</string>
     <string name="disable_question">Disativar %s?</string>
 
     <!-- SmartPack -->

@@ -24,7 +24,6 @@ import android.os.AsyncTask;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.Settings;
-import com.grarak.kerneladiutor.database.tools.customcontrols.Controls;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -45,7 +44,6 @@ import java.util.List;
 public class OnBootFragment extends RecyclerViewFragment {
 
     private Settings mSettings;
-    private Controls mControls;
     private Profiles mProfiles;
 
     private boolean mLoaded;
@@ -70,9 +68,6 @@ public class OnBootFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         if (mSettings == null) {
             mSettings = new Settings(getActivity());
-        }
-        if (mControls == null) {
-            mControls = new Controls(getActivity());
         }
         if (mProfiles == null) {
             mProfiles = new Profiles(getActivity());
@@ -178,50 +173,6 @@ public class OnBootFragment extends RecyclerViewFragment {
             items.addAll(applyOnBoot);
         }
 
-        List<RecyclerViewItem> customControls = new ArrayList<>();
-        TitleView customControlTitle = new TitleView();
-        customControlTitle.setText(getString(R.string.custom_controls));
-
-        for (final Controls.ControlItem controlItem : mControls.getAllControls()) {
-            if (controlItem.isOnBootEnabled() && controlItem.getArguments() != null) {
-                DescriptionView controlView = new DescriptionView();
-                controlView.setTitle(controlItem.getTitle());
-                controlView.setSummary(getString(R.string.arguments, controlItem.getArguments()));
-                controlView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                    @Override
-                    public void onClick(RecyclerViewItem item) {
-                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
-                                controlItem.getTitle()),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                    }
-                                }, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        controlItem.enableOnBoot(false);
-                                        mControls.commit();
-                                        reload();
-                                    }
-                                }, new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialogInterface) {
-                                        mDeleteDialog = null;
-                                    }
-                                }, getActivity());
-                        mDeleteDialog.show();
-                    }
-                });
-
-                customControls.add(controlView);
-            }
-        }
-
-        if (customControls.size() > 0) {
-            items.add(customControlTitle);
-            items.addAll(customControls);
-        }
-
         List<RecyclerViewItem> profiles = new ArrayList<>();
         TitleView profileTitle = new TitleView();
         profileTitle.setText(getString(R.string.profile));
@@ -317,7 +268,6 @@ public class OnBootFragment extends RecyclerViewFragment {
     public void onDestroy() {
         super.onDestroy();
         mSettings = null;
-        mControls = null;
         mProfiles = null;
         mLoaded = false;
         if (mLoader != null) {

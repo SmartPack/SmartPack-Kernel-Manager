@@ -773,27 +773,11 @@
      <!-- Custom Controls -->
      <string name="welcome">欢迎</string>
      <string name="custom_controls_summary">在本节中，你可以建立或汇入 （尚） 的应用程式中不存在的自订控制项。  </string>
-     <string name="example">例子</string>
-     <string name="custom_controls_example_summary">需要范例？  href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 这里。  </string>
-     <string name="create">建立</string>
+     <string name="create">建立</string>
      <string name="import_item">汇入</string>
-     <string name="control_switch">开关</string>
-     <string name="control_seekbar">搜寻栏</string>
-     <string name="title">标题</string>
-     <string name="description">描述</string>
-     <string name="applying">套用中</string>
-     <string name="switch_enabled_summary">判断开关是否启用。 传回1代表启用。 传回0代表停用</string>
-     <string name="switch_apply_summary">该开关将返回1（启用）或0（停用）作为您的 Shell 指令码的参数。  </string>
-     <string name="seekbar_min">最小</string>
-     <string name="seekbar_max">最大</string>
-     <string name="seekbar_progress">进度</string>
-     <string name="seekbar_progress_summary">Seekbar的目前状态。 透过定义最小和最大建立一个整数数组。 例如：最小为50，最大为100，进度为0，这意味着50是seekbar的目前状态。  </string>
-     <string name="seekbar_apply_summary">Seekbar将返回其目前进度。 例如，你的最小是50和最大为100，seekbar是70，它将返回20作为进度。  </string>
-     <string name="control_generic">通用</string>
-     <string name="generic_value">数值</string>
-     <string name="generic_value_summary">编辑器的目前数值。 基本上可以是任何东西。  </string>
-     <string name="generic_apply_summary">编辑器将返回输入的任何内容。  </string>
-     <string name="required">需要</string>
+     <string name="control_switch">开关</string>
+     <string name="control_generic">通用</string>
+     <string name="required">需要</string>
      <string name="hit_test">你必须先试！  </string>
      <string name="output">输出</string>
      <string name="edit">编辑</string>
@@ -858,8 +842,7 @@
      <!-- On Boot -->
      <string name="on_boot_welcome_summary">本节介绍当装置启动时会发生什么。 如果它是空白的，则在启动后什么也不会发生。  </string>
      <string name="delete_question">删除 %s 吗？  </string>
-     <string name="arguments">参数： %s</string>
-     <string name="disable_question">停用 %s 吗？  </string>
+     <string name="disable_question">停用 %s 吗？  </string>
 
      <!-- SmartPack -->
      <string name="support">支持信息</string>

@@ -53,12 +53,7 @@
 
     <!-- Custom Controls -->
     <string-array name="custom_controls_options">
-        <item>@string/create</item>
-        <item>@string/import_item</item>
-    </string-array>
-    <string-array name="custom_controls_items">
         <item>@string/control_switch</item>
-        <item>@string/control_seekbar</item>
         <item>@string/control_generic</item>
     </string-array>
 
