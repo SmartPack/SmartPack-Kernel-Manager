@@ -606,4 +606,12 @@ public class Utils {
                 " reboot";
         return prepareReboot;
     }
+
+    /**
+     * Taken and used almost as such from the following stackoverflow discussion
+     * https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java
+     */
+    public static String getExtension(String string) {
+        return android.webkit.MimeTypeMap.getFileExtensionFromUrl(string);
+    }
 }
