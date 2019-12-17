@@ -125,7 +125,7 @@ public class ApplyOnBoot {
         if (!hideNotification) {
             builder.setContentTitle(context.getString(R.string.app_name))
                     .setContentText(context.getString(R.string.apply_on_boot_text, seconds))
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_foreground)
                     .addAction(0, context.getString(R.string.cancel), cancelIntent)
                     .setOngoing(true)
                     .setWhen(0);
@@ -138,7 +138,7 @@ public class ApplyOnBoot {
                 new NotificationCompat.Builder(context, ApplyOnBootService.CHANNEL_ID);
         if (!hideNotification) {
             builderComplete.setContentTitle(context.getString(R.string.app_name))
-                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setSmallIcon(R.mipmap.ic_launcher_foreground)
                     .setContentIntent(contentIntent)
                     .setAutoCancel(true);
         }

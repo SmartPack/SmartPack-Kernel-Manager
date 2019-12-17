@@ -11,7 +11,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+       >
 
         <FrameLayout
             android:id="@+id/content_frame"
@@ -33,6 +34,7 @@
         android:fitsSystemWindows="true"
         android:focusable="false"
         android:theme="@style/ItemTextAppearance"
+        app:itemBackground="@drawable/nav_selector_background"
         app:headerLayout="@layout/nav_header_layout" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
