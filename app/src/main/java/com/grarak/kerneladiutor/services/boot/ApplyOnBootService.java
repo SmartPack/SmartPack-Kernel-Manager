@@ -72,7 +72,7 @@ public class ApplyOnBootService extends Service {
             Notification.Builder builder = new Notification.Builder(
                     this, CHANNEL_ID);
             builder.setContentTitle(getString(R.string.apply_on_boot))
-                    .setSmallIcon(R.mipmap.ic_launcher_foreground);
+                    .setSmallIcon(R.drawable.ic_smartpack);
             startForeground(NotificationId.APPLY_ON_BOOT, builder.build());
         }
     }
