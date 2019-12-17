@@ -30,5 +30,5 @@
     <color name="colorBattery">#03a9f4</color>
     <color name="colorGaming">#ef5350</color>
 
-    <color name="colorNavItemSelected">#4DF44336</color>
+    <color name="colorNavItemSelected">#4D4285f4</color>
 </resources>
