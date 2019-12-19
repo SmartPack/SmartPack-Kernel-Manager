@@ -30,4 +30,6 @@
     <color name="colorBattery">#03a9f4</color>
     <color name="colorGaming">#ef5350</color>
 
+    <color name="colorNavHeader">#dcdcdc</color>
+
 </resources>

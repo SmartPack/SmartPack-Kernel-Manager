@@ -12,7 +12,7 @@
         android:layout_height="75dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/ic_profile"
+        android:src="@mipmap/ic_launcher"
         app:civ_border_width="3dp" />
 
     <ScrollView

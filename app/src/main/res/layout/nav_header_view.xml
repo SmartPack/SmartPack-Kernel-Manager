@@ -12,7 +12,7 @@
             android:id="@+id/nav_header_pic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_profile"
+            android:background="@color/colorNavHeader"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop" />
     </io.codetail.widget.RevealFrameLayout>
