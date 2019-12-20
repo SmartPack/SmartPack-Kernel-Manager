@@ -514,7 +514,7 @@ public class BackupFragment extends RecyclerViewFragment {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            if (!file.getName().endsWith(".img")) {
+            if (!Utils.getExtension(file.getName()).equals("img")) {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
                 return;
             }

@@ -490,7 +490,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 return;
             }
             mPath = Utils.getFilePath(file);
-            if (!file.getName().endsWith(".json")) {
+            if (!Utils.getExtension(file.getName()).equals("json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
