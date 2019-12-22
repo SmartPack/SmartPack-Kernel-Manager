@@ -1,5 +1,9 @@
 # Change-logs
 
+## 83. December 22, 2019
+*Release-tag: v9.3*<br>
+Changes: Tools: Introduced a *Brand New* Script Manager page (largely based on, and as a replacement of the Init.d page). Custom Controls: Add ability to remove a controller. Custom Controls: Add a warning alert dialogue on opening page. Navigation layout: Fix navigation drawer highlight color (@atarek1). Misc: Fix on boot notification icon (@atarek1). About: Add option to share app. Miscellaneous changes.
+
 ## 82. December 16, 2019
 *Release-tag: v9.2*<br>
 Changes: Tools: Introduced a *Brand New* Custom controls page (simple and user-friendly) as a replcement of the old one. SmartPack: Flasher: Show reboot menu after flashing (with an option to view  flasher log). Backup: Also show reboot menu after a flash/restore. res: Introduced adaptive icons (credits: @Lennoard). gradle: Updated build tools to 3.5.3. Miscellaneous changes.
