@@ -92,7 +92,7 @@
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
-    <string name="initd">Init.d</string>
+    <string name="script_manger">Script Manager</string>
     <string name="on_boot">On Boot</string>
     <string name="settings">Settings</string>
     <string name="smartpack">SmartPack</string>
@@ -930,10 +930,12 @@
     <string name="nothing_selected">Nothing selected</string>
     <string name="profile_empty">Profile is empty!</string>
 
-    <!-- Init.d -->
-    <string name="emulate_initd">Emulate Init.d</string>
-    <string name="emulate_initd_summary">If your device doesn\'t support Init.d by default, you can enable this to emulate its behaviour.</string>
+    <!-- Script Manager -->
+    <string name="scripts_manager_summary">In this section, you can create, import, edit and easily execute any properly formatted shell scripts.</string>
+    <string name="scripts_onboot_summary">If you enable this switch, all the scripts listed in this page will be executed on boot.</string>
     <string name="exceute_question">Execute %s?</string>
+    <string name="remove_script_question">%s will be also removed from the Script Manager.\n\nAre you sure?</string>
+    <string name="script_exists">A script named %s is already exists! Aborting.</string>
     <string name="executing">Executing</string>
     <string name="result">Result</string>
 

@@ -87,6 +87,12 @@
         <item>@string/current_settings</item>
     </string-array>
 
+    <!-- Scripts -->
+    <string-array name="scripts_options">
+        <item>@string/create</item>
+        <item>@string/import_item</item>
+    </string-array>
+
     <!-- Settings -->
     <string-array name="apply_on_boot_delay_entries">
         <item>@string/instant</item>

@@ -87,7 +87,6 @@
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Editor Build.prop</string>
     <string name="profile">Perfil</string>
-    <string name="initd">Init.d</string>
     <string name="on_boot">Na inicialização</string>
     <string name="settings">Configurações</string>
     <string name="smartpack">SmartPack</string>
@@ -905,9 +904,7 @@
     <string name="nothing_selected">Nada selecionado</string>
     <string name="profile_empty">O perfil está vazio!</string>
 
-    <!-- Init.d -->
-    <string name="emulate_initd">Emular Init.d</string>
-    <string name="emulate_initd_summary">Se o seu dispositivo não suportar Init.d por padrão, você poderá habilitar isto para simular seu comportamento.</string>
+    <!-- Script Manager -->
     <string name="exceute_question">Executar %s?</string>
     <string name="executing">Executando</string>
     <string name="result">Resultado</string>

@@ -75,7 +75,6 @@
     <string name="backup">備份</string>
     <string name="build_prop_editor">Build prop 編輯器</string>
     <string name="profile">設定檔</string>
-    <string name="initd">啟動指令碼</string>
     <string name="on_boot">開機啟用</string>
     <string name="settings">設定</string>
     <string name="about">關於</string>
@@ -853,9 +852,7 @@
     <string name="nothing_selected">未選擇任何內容</string>
     <string name="profile_empty">配置檔案是空的！</string>
 
-    <!-- Init.d -->
-    <string name="emulate_initd">模擬 Init.d</string>
-    <string name="emulate_initd_summary">如果您的裝置預設不支援Init.d，您可以啟用它以模擬其行為。</string>
+    <!-- Script Manager -->
     <string name="exceute_question">執行 %s 嗎？</string>
     <string name="executing">執行中</string>
     <string name="result">結果</string>

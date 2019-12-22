@@ -74,8 +74,7 @@
      <string name="backup">备份</string>
      <string name="build_prop_editor">Build prop 编辑器</string>
      <string name="profile">设定档</string>
-     <string name="initd">启动指令码</string>
-     <string name="on_boot">开机启用</string>
+     <string name="on_boot">开机启用</string>
      <string name="settings">设定</string>
      <string name="about">关于</string>
      <string name="contributors">贡献者</string>
@@ -832,10 +831,8 @@
      <string name="nothing_selected">未选择任何内容</string>
      <string name="profile_empty">配置档案是空的！  </string>
 
-     <!-- Init.d -->
-     <string name="emulate_initd">模拟 Init.d</string>
-     <string name="emulate_initd_summary">如果您的装置预设不支持Init.d，您可以启用它以模拟其行为。  </string>
-     <string name="exceute_question">执行 %s 吗？  </string>
+     <!-- Script Manager -->
+     <string name="exceute_question">执行 %s 吗？  </string>
      <string name="executing">执行中</string>
      <string name="result">结果</string>
 

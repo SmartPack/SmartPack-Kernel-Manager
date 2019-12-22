@@ -74,7 +74,6 @@ public class ApplyOnBoot {
         final Settings settings = new Settings(context);
 
         final HashMap<String, Boolean> mCategoryEnabled = new HashMap<>();
-        final HashMap<String, String> mCustomControls = new HashMap<>();
         final List<String> mProfiles = new ArrayList<>();
 
         List<Profiles.ProfileItem> profiles = new Profiles(context).getAllProfiles();
@@ -97,8 +96,7 @@ public class ApplyOnBoot {
             }
         }
 
-        final boolean initdEnabled = Prefs.getBoolean("initd_onboot", false, context);
-        enabled = enabled || mCustomControls.size() > 0 || mProfiles.size() > 0 || initdEnabled;
+        enabled = enabled || mProfiles.size() > 0;
         if (!enabled) {
             return false;
         }
@@ -180,13 +178,6 @@ public class ApplyOnBoot {
                 }
                 RootUtils.SU su = new RootUtils.SU(true, TAG);
 
-                if (initdEnabled) {
-                    RootUtils.mount(true, "/system", su);
-                    su.runCommand("for i in `ls /system/etc/init.d`;do chmod 755 $i;done");
-                    su.runCommand("[ -d /system/etc/init.d ] && run-parts /system/etc/init.d");
-                    RootUtils.mount(false, "/system", su);
-                }
-
                 List<String> commands = new ArrayList<>();
                 for (Settings.SettingsItem item : settings.getAllSettings()) {
                     String category = item.getCategory();
@@ -223,12 +214,6 @@ public class ApplyOnBoot {
                             su.runCommand(command);
                         }
                     }
-                }
-                for (String script : mCustomControls.keySet()) {
-                    RootFile file = new RootFile("/data/local/tmp/kerneladiutortmp.sh", su);
-                    file.mkdir();
-                    file.write(script, false);
-                    file.execute(mCustomControls.get(script));
                 }
 
                 List<String> profileCommands = new ArrayList<>();

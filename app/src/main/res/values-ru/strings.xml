@@ -71,7 +71,6 @@
     <string name="backup">Резервное копирование</string>
     <string name="build_prop_editor">Редактор build.prop</string>
     <string name="profile">Профиль</string>
-    <string name="initd">Init.d</string>
     <string name="on_boot">При загрузке</string>
     <string name="settings">Настройки</string>
     <string name="smartpack">SmartPack</string>
@@ -831,8 +830,6 @@
     <string name="select_all">Выбрать все</string>
     <string name="nothing_selected">Ничего не выбрано</string>
     <string name="profile_empty">Профиль пуст!</string>
-    <string name="emulate_initd">Эмулировать Init.d</string>
-    <string name="emulate_initd_summary">Если ваше устройство не поддерживает init.d, можно включить здесь его эмуляцию.</string>
     <string name="exceute_question">Выполнить %s?</string>
     <string name="executing">Выполнение</string>
     <string name="result">Результат</string>

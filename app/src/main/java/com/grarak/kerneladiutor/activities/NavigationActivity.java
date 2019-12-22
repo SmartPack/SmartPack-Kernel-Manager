@@ -74,7 +74,6 @@ import com.grarak.kerneladiutor.fragments.statistics.MemoryFragment;
 import com.grarak.kerneladiutor.fragments.statistics.OverallFragment;
 import com.grarak.kerneladiutor.fragments.tools.BackupFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
-import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
 import com.grarak.kerneladiutor.fragments.tools.OnBootFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.utils.Device;
@@ -101,6 +100,7 @@ import org.frap129.spectrum.Spectrum;
 
 import com.smartpack.kernelmanager.fragments.CustomControlsFragment;
 import com.smartpack.kernelmanager.fragments.KLapseFragment;
+import com.smartpack.kernelmanager.fragments.ScriptMangerFragment;
 import com.smartpack.kernelmanager.fragments.SmartPackFragment;
 import com.smartpack.kernelmanager.fragments.WakelockFragment;
 import com.smartpack.kernelmanager.utils.KLapse;
@@ -235,14 +235,13 @@ public class NavigationActivity extends BaseActivity
         }
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.misc, MiscFragment.class, R.drawable.ic_clear));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.tools));
-        mFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, CustomControlsFragment.class, R.drawable.ic_console));
-
         if (Backup.hasBackup()) {
             mFragments.add(new NavigationActivity.NavigationFragment(R.string.backup, BackupFragment.class, R.drawable.ic_restore));
         }
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.script_manger, ScriptMangerFragment.class, R.drawable.ic_shell));
+        mFragments.add(new NavigationActivity.NavigationFragment(R.string.custom_controls, CustomControlsFragment.class, R.drawable.ic_console));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.build_prop_editor, BuildpropFragment.class, R.drawable.ic_edit));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.profile, ProfileFragment.class, R.drawable.ic_layers));
-        mFragments.add(new NavigationActivity.NavigationFragment(R.string.initd, InitdFragment.class, R.drawable.ic_shell));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.on_boot, OnBootFragment.class, R.drawable.ic_start));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.other));
         mFragments.add(new NavigationActivity.NavigationFragment(R.string.smartpack, SmartPackFragment.class, R.drawable.ic_smartpack));

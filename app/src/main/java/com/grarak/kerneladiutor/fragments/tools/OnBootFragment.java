@@ -28,11 +28,13 @@ import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
+import com.smartpack.kernelmanager.utils.ScriptManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -216,39 +218,42 @@ public class OnBootFragment extends RecyclerViewFragment {
             items.addAll(profiles);
         }
 
-        if (Prefs.getBoolean("initd_onboot", false, getActivity())) {
-            TitleView initdTitle = new TitleView();
-            initdTitle.setText(getString(R.string.initd));
-            items.add(initdTitle);
+        if (Prefs.getBoolean("scripts_onboot", false, getActivity()) == true
+                && !ScriptManager.list().isEmpty()) {
+            for (final String script : ScriptManager.list()) {
+                if (Utils.getExtension(script).equals("sh")) {
+                    DescriptionView scriptItems = new DescriptionView();
+                    scriptItems.setSummary(getString(R.string.script_manger) + ": " + script);
+                    scriptItems.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                        @Override
+                        public void onClick(RecyclerViewItem item) {
+                            mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.remove_script_question, script),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    }, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            ScriptManager.delete(script);
+                                            if (ScriptManager.list().isEmpty()) {
+                                                Prefs.saveBoolean("scripts_onboot", false, getActivity());
+                                            }
+                                            reload();
+                                        }
+                                    }, new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialogInterface) {
+                                            mDeleteDialog = null;
+                                        }
+                                    }, getActivity());
+                            mDeleteDialog.show();
+                        }
+                    });
 
-            DescriptionView emulateInitd = new DescriptionView();
-            emulateInitd.setSummary(getString(R.string.emulate_initd));
-            emulateInitd.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.disable_question,
-                            getString(R.string.emulate_initd)),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                }
-                            }, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Prefs.saveBoolean("initd_onboot", false, getActivity());
-                                    reload();
-                                }
-                            }, new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    mDeleteDialog = null;
-                                }
-                            }, getActivity());
-                    mDeleteDialog.show();
+                    items.add(scriptItems);
                 }
-            });
-
-            items.add(emulateInitd);
+            }
         }
     }
 

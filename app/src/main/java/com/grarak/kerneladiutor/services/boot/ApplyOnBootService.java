@@ -40,6 +40,7 @@ import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import com.smartpack.kernelmanager.utils.ScriptManager;
 import com.smartpack.kernelmanager.utils.Wakelocks;
 
 import org.frap129.spectrum.Spectrum;
@@ -80,7 +81,7 @@ public class ApplyOnBootService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         /**
-         * Initialize Spectrum Profiles & Wakelock Blocker
+         * Initialize Spectrum Profiles, Wakelock Blocker & Execute Scripts
          */
         if (RootUtils.rootAccess()) {
             if (Spectrum.supported()) {
@@ -89,6 +90,14 @@ public class ApplyOnBootService extends Service {
             }
             if (Wakelocks.boefflawlsupported()) {
                 Wakelocks.CopyWakelockBlockerDefault();
+            }
+            if (Prefs.getBoolean("scripts_onboot", false, this) == true
+                    && !ScriptManager.list().isEmpty()) {
+                for (final String script : ScriptManager.list()) {
+                    if (Utils.getExtension(script).equals("sh")) {
+                        ScriptManager.execute(script);
+                    }
+                }
             }
         }
         Messenger messenger = null;
