@@ -19,6 +19,7 @@
  */
 package com.grarak.kerneladiutor.fragments.other;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -196,12 +197,33 @@ public class AboutFragment extends RecyclerViewFragment {
             }
         });
 
+        DescriptionView share = new DescriptionView();
+        share.setTitle(getString(R.string.share_app));
+        share.setSummary(getString(R.string.share_app_summary));
+        share.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getContext())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
+                Intent shareapp = new Intent();
+                shareapp.setAction(Intent.ACTION_SEND);
+                shareapp.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME)
+                        + "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                shareapp.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(shareapp, null);
+                startActivity(shareIntent);
+            }
+        });
+
         about.addItem(updatecheck);
         about.addItem(autoUpdateCheck);
         about.addItem(support);
         about.addItem(sourcecode);
         about.addItem(changelogs);
         about.addItem(donatetome);
+        about.addItem(share);
 
         items.add(about);
     }
