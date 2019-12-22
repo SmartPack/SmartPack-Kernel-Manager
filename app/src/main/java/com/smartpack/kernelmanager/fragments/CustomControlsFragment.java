@@ -21,6 +21,7 @@
 package com.smartpack.kernelmanager.fragments;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,6 +31,8 @@ import android.os.AsyncTask;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
@@ -39,6 +42,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
@@ -52,6 +56,7 @@ import com.smartpack.kernelmanager.utils.CustomControls;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2018
@@ -61,6 +66,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private AsyncTask<Void, Void, List<RecyclerViewItem>> mLoader;
 
+    private boolean mAlertDialogue = true;
     private boolean mLoaded;
     private boolean mPermissionDenied;
 
@@ -86,7 +92,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         super.init();
 
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.custom_controls),
-                getString(R.string.custom_controls_summary)));
+                Utils.htmlFrom(getString(R.string.custom_controls_summary))));
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
     }
@@ -291,10 +297,14 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch (i) {
                     case 0:
-                        createCustomControlSwitch();
+                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                        switchIntent.setType("*/*");
+                        startActivityForResult(switchIntent, 0);
                         break;
                     case 1:
-                        createCustomControlGeneric();
+                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                        genericIntent.setType("*/*");
+                        startActivityForResult(genericIntent, 1);
                         break;
                 }
             }
@@ -305,50 +315,6 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             }
         });
         mSelectionMenu.show();
-    }
-
-    private void createCustomControlSwitch() {
-        Dialog create_control_switch = new Dialog(getActivity());
-        create_control_switch.setIcon(R.mipmap.ic_launcher);
-        create_control_switch.setTitle(getString(R.string.custom_controls));
-        create_control_switch.setMessage(getString(R.string.custom_controls_message, CustomControls.switchFile().toString()));
-        create_control_switch.setNeutralButton(getString(R.string.documentation), (dialog1, id1) -> {
-            if (!Utils.isNetworkAvailable(getContext())) {
-                Utils.toast(R.string.no_internet, getActivity());
-                return;
-            }
-            Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity());
-        });
-        create_control_switch.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
-        });
-        create_control_switch.setPositiveButton(getString(R.string.create), (dialog1, id1) -> {
-            Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            startActivityForResult(intent, 0);
-        });
-        create_control_switch.show();
-    }
-
-    private void createCustomControlGeneric() {
-        Dialog create_control_general = new Dialog(getActivity());
-        create_control_general.setIcon(R.mipmap.ic_launcher);
-        create_control_general.setTitle(getString(R.string.custom_controls));
-        create_control_general.setMessage(getString(R.string.custom_controls_message, CustomControls.genericFile().toString()));
-        create_control_general.setNeutralButton(getString(R.string.documentation), (dialog1, id1) -> {
-            if (!Utils.isNetworkAvailable(getContext())) {
-                Utils.toast(R.string.no_internet, getActivity());
-                return;
-            }
-            Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity());
-        });
-        create_control_general.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
-        });
-        create_control_general.setPositiveButton(getString(R.string.create), (dialog1, id1) -> {
-            Intent intent  = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            startActivityForResult(intent, 1);
-        });
-        create_control_general.show();
     }
 
     @Override
@@ -378,7 +344,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
 
-            if (!Utils.getExtension(file.getName()).isEmpty()) {
+            if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
                 Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
                 return;
             }
@@ -403,6 +369,42 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 reload();
             });
             selectControl.show();
+        }
+    }
+
+    /*
+     * Taken and used almost as such from https://github.com/morogoku/MTweaks-KernelAdiutorMOD/
+     * Ref: https://github.com/morogoku/MTweaks-KernelAdiutorMOD/blob/dd5a4c3242d5e1697d55c4cc6412a9b76c8b8e2e/app/src/main/java/com/moro/mtweaks/fragments/kernel/BoefflaWakelockFragment.java#L133
+     */
+    private void warningDialog() {
+        View checkBoxView = View.inflate(getActivity(), R.layout.rv_checkbox, null);
+        CheckBox checkBox = checkBoxView.findViewById(R.id.checkbox);
+        checkBox.setChecked(true);
+        checkBox.setText(getString(R.string.always_show));
+        checkBox.setOnCheckedChangeListener((buttonView, isChecked)
+                -> mAlertDialogue = isChecked);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
+        alert.setIcon(R.mipmap.ic_launcher);
+        alert.setTitle(getString(R.string.warning));
+        alert.setMessage(getString(R.string.custom_controls_message));
+        alert.setCancelable(false);
+        alert.setView(checkBoxView);
+        alert.setNeutralButton(getString(R.string.documentation), (dialog, id)
+                -> Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity()));
+        alert.setPositiveButton(getString(R.string.got_it), (dialog, id)
+                -> Prefs.saveBoolean("custom_control_warning", mAlertDialogue, getActivity()));
+
+        alert.show();
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        boolean showDialog = Prefs.getBoolean("custom_control_warning", true, getActivity());
+        if (showDialog) {
+            warningDialog();
         }
     }
 

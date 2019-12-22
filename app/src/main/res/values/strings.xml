@@ -859,8 +859,8 @@
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>
-    <string name="custom_controls_summary">In this section, you can create a custom controller for any feature, which is not officially added to this app yet.</string>
-    <string name="custom_controls_message">You can basically create a custom controller for any existing sysfs path, provided, you have a supported Root File Manager installed.\n\nTo remove a controller, simply delete the respective file from %s.\n\nWarning! This feature is too powerful.\n\n***USE AT YOUR OWN RISK***</string>
+    <string name="custom_controls_summary">In this section, you can create a custom controller for any feature, which is not officially added to this app yet. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a></string>
+    <string name="custom_controls_message">You can basically create a custom controller for any existing sysfs path, provided, you have a supported Root File Manager installed. However, please be noted that this feature is too powerful to mess your device.\n\n***USE AT YOUR OWN RISK***</string>
     <string name="create">Create</string>
     <string name="import_item">Import</string>
     <string name="control_switch">Switch</string>
@@ -878,6 +878,7 @@
     <string name="name_empty">Name is empty!</string>
     <string name="import_malformed">Import file is malformed!</string>
     <string name="import_wrong_version">Version of import file is too old!</string>
+    <string name="got_it">Got it</string>
 
     <!-- Backup -->
     <string name="boot_partition">Boot partition</string>
@@ -1019,6 +1020,7 @@
     <string name="test">Test</string>
     <string name="nothing_apply">Nothing found to apply!</string>
     <string name="hide">Hide</string>
+    <string name="always_show">Always Show</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
     <string name="apply_on_boot_toast_summary">Show toast when settings got applied.</string>
