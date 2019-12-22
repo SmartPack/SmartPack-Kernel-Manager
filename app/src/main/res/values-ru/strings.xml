@@ -777,9 +777,6 @@
     <string name="import_item">Импорт</string>
     <string name="control_switch">Переключатель</string>
     <string name="control_generic">Универсальный</string>
-    <string name="required">Обязательно</string>
-    <string name="hit_test">Сначала нужно выполнить тестирование!</string>
-    <string name="output">Вывод</string>
     <string name="edit">Редактировать</string>
     <string name="export">Экспорт</string>
     <string name="delete">Удалить</string>

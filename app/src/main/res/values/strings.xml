@@ -867,9 +867,6 @@
     <string name="control_generic">Generic</string>
     <string name="documentation">Documentation</string>
     <string name="invalid_path">%s is not a valid sysfs path! Aborting.</string>
-    <string name="required">required</string>
-    <string name="hit_test">You have to hit test first!</string>
-    <string name="output">Output</string>
     <string name="edit">Edit</string>
     <string name="export">Export</string>
     <string name="delete">Delete</string>

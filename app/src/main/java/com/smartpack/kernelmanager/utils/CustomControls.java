@@ -27,11 +27,21 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
+import java.io.File;
+
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2019
  */
 
 public class CustomControls {
+
+    public static File switchFile() {
+        return new File(Utils.getInternalDataStorage() + "/controls/switch");
+    }
+
+    public static File genericFile() {
+        return new File(Utils.getInternalDataStorage() + "/controls/generic");
+    }
 
     public static boolean hasCustomControl(String string) {
         return Utils.existFile(string);
@@ -61,6 +71,11 @@ public class CustomControls {
     public static void exportPath(String path, String folder) {
         RootUtils.runCommand("echo " + path + " > " + folder + "/" + path.replaceFirst("/", "").
                 replace("/", "-"));
+    }
+
+    public static void delete(String string) {
+        File file = new File(string);
+        file.delete();
     }
 
     private static void run(String command, String id, Context context) {

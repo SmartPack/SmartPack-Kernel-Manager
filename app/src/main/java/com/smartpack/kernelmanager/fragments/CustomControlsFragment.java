@@ -28,7 +28,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
@@ -37,11 +40,13 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.utils.CustomControls;
 
 import java.io.File;
@@ -59,6 +64,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     private boolean mLoaded;
     private boolean mPermissionDenied;
 
+    private Dialog mDeleteDialog;
     private Dialog mSelectionMenu;
 
     private String mPath;
@@ -131,57 +137,138 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     }
 
     private void load(List items) {
-        File switchFile = new File(Utils.getInternalDataStorage() + "/controls/switch");
-        if (switchFile.exists()) {
-            CardView switchItemsCard = new CardView(getActivity());
-            switchItemsCard.setTitle(getString(R.string.control_switch) + " Items");
-            for (final File switchItems : switchFile.listFiles()) {
-                if (switchItems.isFile() && CustomControls.hasCustomControl(Utils.readFile(switchItems.toString()))) {
-                    SwitchView itemslist = new SwitchView();
-                    itemslist.setSummary(CustomControls.getItemPath(switchItems.toString()));
-                    itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
-                    itemslist.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                        @Override
-                        public void onChanged(SwitchView switchView, boolean isChecked) {
-                            CustomControls.enableSwitch(isChecked, Utils.readFile(switchItems.toString()), getActivity());
-                            getHandler().postDelayed(() -> {
-                                        itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
-                                    },
-                                    500);
-                        }
-                    });
-
-                    switchItemsCard.addItem(itemslist);
-                }
+        if (CustomControls.switchFile().exists()) {
+            File[] switchFileList = CustomControls.switchFile().listFiles();
+            TitleView titleView = new TitleView();
+            titleView.setText(getString(R.string.control_switch) + " Items");
+            if (switchFileList.length > 0) {
+                items.add(titleView);
             }
-            items.add(switchItemsCard);
+            switchItemsList(items);
         }
-
-        File genericFile = new File(Utils.getInternalDataStorage() + "/controls/generic");
-        if (genericFile.exists()) {
-            CardView genericItemsCard = new CardView(getActivity());
-            genericItemsCard.setTitle(getString(R.string.control_generic) + " Items");
-            for (final File genericItems : genericFile.listFiles()) {
-                if (genericItems.isFile() && CustomControls.hasCustomControl(Utils.readFile(genericItems.toString()))) {
-                    GenericSelectView itemslist = new GenericSelectView();
-                    itemslist.setSummary(CustomControls.getItemPath(genericItems.toString()));
-                    itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
-                    itemslist.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    itemslist.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                        @Override
-                        public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                            CustomControls.setGenericValue(value, Utils.readFile(genericItems.toString()), getActivity());
-                            getHandler().postDelayed(() -> {
-                                        itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
-                                    },
-                                    500);
-                        }
-                    });
-
-                    genericItemsCard.addItem(itemslist);
-                }
+        if (CustomControls.genericFile().exists()) {
+            File[] genericFileList = CustomControls.genericFile().listFiles();
+            TitleView titleView = new TitleView();
+            titleView.setText(getString(R.string.control_generic) + " Items");
+            if (genericFileList.length > 0) {
+                items.add(titleView);
             }
-            items.add(genericItemsCard);
+            genericItemsList(items);
+        }
+    }
+
+    private void switchItemsList(List<RecyclerViewItem> items) {
+        for (final File switchItems : CustomControls.switchFile().listFiles()) {
+            if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
+                    Utils.readFile(switchItems.toString()))) {
+                CardView switchItemsCard = new CardView(getActivity());
+                switchItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
+                    @Override
+                    public void onMenuReady(CardView switchItemsCard, PopupMenu popupMenu) {
+                        Menu menu = popupMenu.getMenu();
+                        menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            }
+                                        }, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                CustomControls.delete(switchItems.toString());
+                                                reload();
+                                            }
+                                        }, new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialogInterface) {
+                                                mDeleteDialog = null;
+                                            }
+                                        }, getActivity());
+                                mDeleteDialog.show();
+                                return false;
+                            }
+                        });
+                    }
+                });
+
+                SwitchView itemslist = new SwitchView();
+                itemslist.setSummary(CustomControls.getItemPath(switchItems.toString()));
+                itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
+                itemslist.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                    @Override
+                    public void onChanged(SwitchView switchView, boolean isChecked) {
+                        CustomControls.enableSwitch(isChecked, Utils.readFile(switchItems.toString()), getActivity());
+                        getHandler().postDelayed(() -> {
+                                    itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
+                                },
+                                500);
+                    }
+                });
+
+                switchItemsCard.addItem(itemslist);
+                items.add(switchItemsCard);
+            }
+        }
+    }
+
+    private void genericItemsList(List<RecyclerViewItem> items) {
+        for (final File genericItems : CustomControls.genericFile().listFiles()) {
+            if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
+                    Utils.readFile(genericItems.toString()))) {
+                CardView genericItemsCard = new CardView(getActivity());
+                genericItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
+                    @Override
+                    public void onMenuReady(CardView genericItemsCard, PopupMenu popupMenu) {
+                        Menu menu = popupMenu.getMenu();
+                        menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            }
+                                        }, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                CustomControls.delete(genericItems.toString());
+                                                reload();
+                                            }
+                                        }, new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialogInterface) {
+                                                mDeleteDialog = null;
+                                            }
+                                        }, getActivity());
+                                mDeleteDialog.show();
+                                return false;
+                            }
+                        });
+                    }
+                });
+
+                GenericSelectView itemslist = new GenericSelectView();
+                itemslist.setSummary(CustomControls.getItemPath(genericItems.toString()));
+                itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
+                itemslist.setInputType(InputType.TYPE_CLASS_NUMBER);
+                itemslist.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                    @Override
+                    public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                        CustomControls.setGenericValue(value, Utils.readFile(genericItems.toString()), getActivity());
+                        getHandler().postDelayed(() -> {
+                                    itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
+                                },
+                                500);
+                    }
+                });
+
+                genericItemsCard.addItem(itemslist);
+                items.add(genericItemsCard);
+            }
         }
     }
 
@@ -224,7 +311,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         Dialog create_control_switch = new Dialog(getActivity());
         create_control_switch.setIcon(R.mipmap.ic_launcher);
         create_control_switch.setTitle(getString(R.string.custom_controls));
-        create_control_switch.setMessage(getString(R.string.custom_controls_message, Utils.getInternalDataStorage() + "/controls/switch/"));
+        create_control_switch.setMessage(getString(R.string.custom_controls_message, CustomControls.switchFile().toString()));
         create_control_switch.setNeutralButton(getString(R.string.documentation), (dialog1, id1) -> {
             if (!Utils.isNetworkAvailable(getContext())) {
                 Utils.toast(R.string.no_internet, getActivity());
@@ -246,7 +333,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         Dialog create_control_general = new Dialog(getActivity());
         create_control_general.setIcon(R.mipmap.ic_launcher);
         create_control_general.setTitle(getString(R.string.custom_controls));
-        create_control_general.setMessage(getString(R.string.custom_controls_message, Utils.getInternalDataStorage() + "/controls/generic/"));
+        create_control_general.setMessage(getString(R.string.custom_controls_message, CustomControls.genericFile().toString()));
         create_control_general.setNeutralButton(getString(R.string.documentation), (dialog1, id1) -> {
             if (!Utils.isNetworkAvailable(getContext())) {
                 Utils.toast(R.string.no_internet, getActivity());

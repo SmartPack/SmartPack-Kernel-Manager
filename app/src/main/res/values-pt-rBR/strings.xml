@@ -844,9 +844,6 @@
     <string name="import_item">Importar</string>
     <string name="control_switch">Interruptor</string>
     <string name="control_generic">Genérico</string>
-    <string name="required">necessário</string>
-    <string name="hit_test">Você tem que tocar em teste primeiro!</string>
-    <string name="output">Saída</string>
     <string name="edit">Editar</string>
     <string name="export">Exportar</string>
     <string name="delete">Deletar</string>

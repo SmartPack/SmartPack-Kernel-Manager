@@ -776,10 +776,7 @@
      <string name="import_item">汇入</string>
      <string name="control_switch">开关</string>
      <string name="control_generic">通用</string>
-     <string name="required">需要</string>
-     <string name="hit_test">你必须先试！  </string>
-     <string name="output">输出</string>
-     <string name="edit">编辑</string>
+     <string name="edit">编辑</string>
      <string name="export">汇出</string>
      <string name="delete">删除</string>
      <string name="sure_question">你确定？  </string>

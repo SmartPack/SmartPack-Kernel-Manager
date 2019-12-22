@@ -796,9 +796,6 @@
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
     <string name="control_generic">通用</string>
-    <string name="required">需要</string>
-    <string name="hit_test">你必須先試打！</string>
-    <string name="output">輸出</string>
     <string name="edit">編輯</string>
     <string name="export">匯出</string>
     <string name="delete">刪除</string>
