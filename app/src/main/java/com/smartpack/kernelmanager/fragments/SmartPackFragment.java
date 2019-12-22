@@ -95,20 +95,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
         CardView smartpack = new CardView(getActivity());
         smartpack.setTitle(getString(R.string.smartpack));
 
-        DescriptionView script = new DescriptionView();
-        script.setTitle(getString(R.string.run_Script));
-        script.setSummary(getString(R.string.run_Script_summary));
-        script.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Intent runScript  = new Intent(Intent.ACTION_GET_CONTENT);
-                runScript.setType("*/*");
-                startActivityForResult(runScript, 1);
-            }
-        });
-
-        smartpack.addItem(script);
-
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
         reset.setSummary(getString(R.string.reset_settings_summary));
@@ -463,7 +449,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == Activity.RESULT_OK && data != null) {
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
@@ -471,50 +457,32 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            if (requestCode == 0) {
-                SmartPack.cleanLogs();
-                RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
-                if (!file.getName().endsWith(".zip")) {
-                    Utils.toast(getString(R.string.file_selection_error), getActivity());
-                    return;
-                }
-                if (SmartPack.fileSize(new File(mPath)) <= 100000000) {
-                    Dialog manualFlash = new Dialog(getActivity());
-                    manualFlash.setIcon(R.mipmap.ic_launcher);
-                    manualFlash.setTitle(getString(R.string.flasher));
-                    manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
-                            getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
-                    manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                        manualFlash(new File(mPath));
-                    });
-                    manualFlash.show();
-                } else {
-                    Dialog flashSizeError = new Dialog(getActivity());
-                    flashSizeError.setIcon(R.mipmap.ic_launcher);
-                    flashSizeError.setTitle(getString(R.string.flasher));
-                    flashSizeError.setMessage(getString(R.string.file_size_limit, file.getName()));
-                    flashSizeError.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
-                    });
-                    flashSizeError.show();
-                }
+            SmartPack.cleanLogs();
+            RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
+            if (!Utils.getExtension(file.getName()).equals("zip")) {
+                Utils.toast(getString(R.string.file_selection_error), getActivity());
+                return;
             }
-            if (requestCode == 1) {
-                if (!file.getName().endsWith(".sh")) {
-                    Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
-                    return;
-                }
-                Dialog runScript = new Dialog(getActivity());
-                runScript.setIcon(R.mipmap.ic_launcher);
-                runScript.setTitle(getString(R.string.run_Script));
-                runScript.setMessage(getString(R.string.run_Script_message, file.getName()));
-                runScript.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
+            if (SmartPack.fileSize(new File(mPath)) <= 100000000) {
+                Dialog manualFlash = new Dialog(getActivity());
+                manualFlash.setIcon(R.mipmap.ic_launcher);
+                manualFlash.setTitle(getString(R.string.flasher));
+                manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
+                        getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
+                manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
-                runScript.setPositiveButton(getString(R.string.execute), (dialogInterface, i) -> {
-                    new Execute().execute("sh " + new File(mPath));
+                manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
+                    manualFlash(new File(mPath));
                 });
-                runScript.show();
+                manualFlash.show();
+            } else {
+                Dialog flashSizeError = new Dialog(getActivity());
+                flashSizeError.setIcon(R.mipmap.ic_launcher);
+                flashSizeError.setTitle(getString(R.string.flasher));
+                flashSizeError.setMessage(getString(R.string.file_size_limit, file.getName()));
+                flashSizeError.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
+                });
+                flashSizeError.show();
             }
         }
     }
