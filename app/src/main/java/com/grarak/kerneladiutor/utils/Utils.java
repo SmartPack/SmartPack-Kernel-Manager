@@ -551,6 +551,8 @@ public class Utils {
             return file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
         } else if (file.getAbsolutePath().contains("/storage_root")) {
             return file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
+        } else if (file.getAbsolutePath().contains("/external")) {
+            return file.getAbsolutePath().replace("external", "storage/emulated/0");
         } else if (file.getAbsolutePath().contains("/root/")) {
             return file.getAbsolutePath().replace("/root", "");
         } else {
