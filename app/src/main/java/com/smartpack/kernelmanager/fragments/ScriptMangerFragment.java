@@ -70,7 +70,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
     private Dialog mExecuteDialog;
     private Dialog mOptionsDialog;
-    private Dialog mResultDialog;
     private Dialog mDeleteDialog;
     private boolean mShowCreateNameDialog;
 
@@ -115,9 +114,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         }
         if (mOptionsDialog != null) {
             mOptionsDialog.show();
-        }
-        if (mResultDialog != null) {
-            mResultDialog.show();
         }
         if (mDeleteDialog != null) {
             mDeleteDialog.show();
@@ -278,14 +274,13 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 } catch (IllegalArgumentException ignored) {
                 }
                 if (s != null && !s.isEmpty()) {
-                    mResultDialog = ViewUtils.dialogBuilder(s, null, null,
-                            new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    mResultDialog = null;
-                                }
-                            }, getActivity()).setTitle(getString(R.string.result));
-                    mResultDialog.show();
+                    new Dialog(getActivity())
+                            .setTitle(getString(R.string.result))
+                            .setMessage(s)
+                            .setCancelable(false)
+                            .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .show();
                 }
             }
         }.execute();
