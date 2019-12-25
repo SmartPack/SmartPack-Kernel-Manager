@@ -886,9 +886,9 @@
     <string name="fota_partition">Fota partition</string>
     <string name="flash">Flash</string>
     <string name="flasher">Flasher</string>
-    <string name="flasher_warning">This feature is still very new and under development. It may not have full compatibility with many flashable zip files. If you think that the flashing process failed in any case due to the above mentioned incompatibilities, please restart the app immediately before doing anything.\n\n***USE AT YOUR OWN RISK***\n</string>
+    <string name="flasher_warning">This feature is still very new and under development. It may not have full compatibility with many flashable zip files. If you think that the flashing process failed in any case due to the above mentioned incompatibilities, please restart the app immediately before doing anything.\n\nAlso, I do not recommend to try flashing anything over 500 MB.\n\n***USE AT YOUR OWN RISK***\n</string>
     <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes will be applied after a reboot.</string>
-    <string name="file_size_limit">The size of \'%s\' is bigger than 100 MB.\n\nPlease Note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
+    <string name="file_size_limit">Warning! You\'re selected a file of ~%s MB for flashing. Flashing bigger files, such as ROM\'s, using this app might be dangerous to your device.</string>
     <string name="execute">Execute</string>
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>

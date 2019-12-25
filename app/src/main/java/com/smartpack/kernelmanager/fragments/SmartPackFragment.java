@@ -54,7 +54,10 @@ import java.util.List;
  */
 
 public class SmartPackFragment extends RecyclerViewFragment {
+
     private boolean mPermissionDenied;
+
+    private ProgressDialog mProgressDialog;
 
     private String mPath;
 
@@ -344,8 +347,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private class Execute extends AsyncTask<String, Void, Void> {
-        private ProgressDialog mProgressDialog;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -382,8 +383,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void manualFlash(final File file) {
-        new AsyncTask<Void, Void, Void>() {
-            private ProgressDialog mProgressDialog;
+        new AsyncTask<Void, Void, String>() {
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -392,46 +393,33 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
+
             @Override
-            protected Void doInBackground(Void... voids) {
-                SmartPack.manualFlash(file);
-                return null;
+            protected String doInBackground(Void... voids) {
+                SmartPack.prepareManualFlash(file);
+                return SmartPack.manualFlash(file);
             }
+
             @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
                 try {
                     mProgressDialog.dismiss();
                 } catch (IllegalArgumentException ignored) {
                 }
-                /*
-                 * Thanks to Shanu Dey <sd4shanudey@gmail.com> for this idea
-                 * Ref: https://github.com/EquinoxKernel/Equinox-Kernel-Adiutor/commit/640ec2e7fc578974eb87864729abdd02439aebd5
-                 */
-                Dialog rebootDialog = new Dialog(getActivity());
-                rebootDialog.setMessage(getString(R.string.reboot_dialog, getString(R.string.flashing)));
-                rebootDialog.setCancelable(false);
-                rebootDialog.setNeutralButton(getString(R.string.flash_log), (dialog1, id1) -> {
-                    if (SmartPack.hasPathLog() && SmartPack.hasFlashLog()) {
-                        Dialog flashLog  = new Dialog(getActivity());
-                        flashLog .setIcon(R.mipmap.ic_launcher);
-                        flashLog .setTitle(getString(R.string.flash_log));
-                        flashLog .setMessage(Utils.readFile(Utils.getInternalDataStorage() + "/flasher_log.txt"));
-                        flashLog .setCancelable(false);
-                        flashLog .setNeutralButton(getString(R.string.cancel), (dialog2, id2) -> {
-                        });
-                        flashLog .setPositiveButton(getString(R.string.reboot), (dialog2, id2) -> {
-                            new Execute().execute(Utils.prepareReboot());
-                        });
-                        flashLog .show();
-                    }
-                });
-                rebootDialog.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
-                });
-                rebootDialog.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(Utils.prepareReboot());
-                });
-                rebootDialog.show();
+                if (s != null && !s.isEmpty()) {
+                    new Dialog(getActivity())
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(getString(R.string.flash_log))
+                            .setMessage(s)
+                            .setCancelable(false)
+                            .setNeutralButton(getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .setPositiveButton(getString(R.string.reboot), (dialog, id) -> {
+                                new Execute().execute(Utils.prepareReboot());
+                            })
+                            .show();
+                }
             }
         }.execute();
     }
@@ -463,27 +451,20 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
                 return;
             }
-            if (SmartPack.fileSize(new File(mPath)) <= 100000000) {
-                Dialog manualFlash = new Dialog(getActivity());
-                manualFlash.setIcon(R.mipmap.ic_launcher);
-                manualFlash.setTitle(getString(R.string.flasher));
-                manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
-                        getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
-                manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
-                    manualFlash(new File(mPath));
-                });
-                manualFlash.show();
-            } else {
-                Dialog flashSizeError = new Dialog(getActivity());
-                flashSizeError.setIcon(R.mipmap.ic_launcher);
-                flashSizeError.setTitle(getString(R.string.flasher));
-                flashSizeError.setMessage(getString(R.string.file_size_limit, file.getName()));
-                flashSizeError.setPositiveButton(getString(R.string.cancel), (dialog1, id1) -> {
-                });
-                flashSizeError.show();
+            if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
+                Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());
             }
+            Dialog manualFlash = new Dialog(getActivity());
+            manualFlash.setIcon(R.mipmap.ic_launcher);
+            manualFlash.setTitle(getString(R.string.flasher));
+            manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
+                    getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
+            manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
+            });
+            manualFlash.setPositiveButton(getString(R.string.flash), (dialogInterface, i) -> {
+                manualFlash(new File(mPath));
+            });
+            manualFlash.show();
         }
     }
 }
