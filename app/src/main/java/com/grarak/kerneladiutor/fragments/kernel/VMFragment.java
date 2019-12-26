@@ -25,6 +25,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Device;
+import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.kernel.vm.VM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZSwap;
@@ -75,6 +76,15 @@ public class VMFragment extends RecyclerViewFragment {
         vmCard.setTitle(getString(R.string.virtual_memory));
         mVMs.clear();
 
+        if (!(Prefs.getBoolean("vm_tunables", false, getActivity())))
+            Prefs.saveBoolean("vm_tunables", false, getActivity());
+
+        final SwitchView vmTunables = new SwitchView();
+        vmTunables.setSummary(getString(R.string.virtual_memory_tunables));
+        vmTunables.setChecked(Prefs.getBoolean("vm_tunables", false, getActivity()));
+
+        vmCard.addItem(vmTunables);
+
         for (int i = 0; i < VM.size(); i++) {
             if (VM.exists(i)) {
                 GenericSelectView vm = new GenericSelectView();
@@ -89,16 +99,37 @@ public class VMFragment extends RecyclerViewFragment {
                     public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
                         VM.setValue(value, position, getActivity());
                         genericSelectView.setValue(value);
-			getHandler().postDelayed(() -> {
-			for (int i = 0; i < mVMs.size(); i++) {
-		            vm.setValue(VM.getValue(i));
-		        }},
-		    500);
+                        getHandler().postDelayed(() -> {
+                                    for (int i = 0; i < mVMs.size(); i++) {
+                                        vm.setValue(VM.getValue(i));
+                                    }},
+                                500);
                     }
                 });
 
-                vmCard.addItem(vm);
-                mVMs.add(vm);
+                class vmTunablesManager {
+                    private void showVMTunables (boolean enable) {
+                        if (enable) {
+                            vmCard.addItem(vm);
+                        } else {
+                            vmCard.removeItem(vm);
+                        }
+                    }
+                }
+
+                final vmTunablesManager manager = new vmTunablesManager();
+                if (Prefs.getBoolean("vm_tunables", false, getActivity())) {
+                    manager.showVMTunables(true);
+                } else {
+                    manager.showVMTunables(false);
+                }
+                vmTunables.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+                    @Override
+                    public void onChanged(SwitchView switchview, boolean isChecked) {
+                        Prefs.saveBoolean("vm_tunables", isChecked, getActivity());
+                        manager.showVMTunables(isChecked);
+                    }
+                });
             }
         }
 

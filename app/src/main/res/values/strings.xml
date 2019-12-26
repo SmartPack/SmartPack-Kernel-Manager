@@ -798,6 +798,7 @@
     <string name="memory_pool_summary">Memory pool percentage of main memory that may be used as compressed page cache.</string>
     <string name="maximum_compression_ratio">Maximum compression ratio</string>
     <string name="maximum_compression_ratio_summary">Maximum compression ratio, as percentage, for an acceptable compressed page. Any page that does not compress by at least this ratio will be rejected.</string>
+    <string name="virtual_memory_tunables">Virtual memory tunable\'s</string>
 
     <!-- Entropy -->
     <string name="available">Available</string>
