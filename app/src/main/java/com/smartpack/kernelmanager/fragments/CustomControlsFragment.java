@@ -348,8 +348,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
                 return;
             }
-            File controls = new File(Utils.getInternalDataStorage() + (requestCode == 0 ?
-                    "/controls/switch" : "/controls/generic"));
+            File controls = (requestCode == 0 ? CustomControls.switchFile() : CustomControls.genericFile());
             if (Utils.existFile(controls + "/" + mPath.replaceFirst("/", "").
                     replace("/", "-"))) {
                 Utils.toast(getString(R.string.already_added, mPath), getActivity());
@@ -364,8 +363,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     controls.delete();
                 }
                 controls.mkdirs();
-                CustomControls.exportPath(mPath, Utils.getInternalDataStorage() +
-                        (requestCode == 0 ? "/controls/switch" : "/controls/generic"));
+                CustomControls.exportPath(mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
                 reload();
             });
             selectControl.show();
