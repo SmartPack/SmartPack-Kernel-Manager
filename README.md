@@ -6,9 +6,11 @@
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
      height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true)
-## Added features over official KA
 
+## Added features over official KA
 * Option to flash recovery zip files while running Android OS.
+* A simple and user-friendly Custom Controller, which is totally different to that of the official KA.
+* A Script Manager to easily create, import, edit and execute any properly formatted shell scripts.
 * CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
