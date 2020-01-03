@@ -60,8 +60,17 @@ public class CustomControls {
     }
 
     public static boolean isSwitchEnabled(String string) {
-        return Utils.readFile(string).startsWith("1")
-                || Utils.readFile(string).startsWith("Y");
+        String value = Utils.readFile(string);
+        if (value.startsWith("HBM mode = 1") || value.startsWith("mode = 1")
+                || value.startsWith("Boeffla sound status: 1") || value.startsWith("1")
+                || value.equals("Y") || value.startsWith("Y")) {
+            value = "1";
+        } else if (value.startsWith("HBM mode = 0") || value.startsWith("mode = 0")
+                || value.startsWith("Boeffla sound status: 0") || value.startsWith("0")
+                || value.equals("N") || value.startsWith("N")) {
+            value = "0";
+        }
+        return value.equals("1");
     }
 
     public static String getItemPath(String string) {
