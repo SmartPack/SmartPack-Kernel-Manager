@@ -21,7 +21,6 @@
 package com.smartpack.kernelmanager.fragments;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -382,18 +381,18 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         checkBox.setOnCheckedChangeListener((buttonView, isChecked)
                 -> mAlertDialogue = isChecked);
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(Objects.requireNonNull(getActivity()));
-        alert.setIcon(R.mipmap.ic_launcher);
-        alert.setTitle(getString(R.string.warning));
-        alert.setMessage(getString(R.string.custom_controls_message));
-        alert.setCancelable(false);
-        alert.setView(checkBoxView);
-        alert.setNeutralButton(getString(R.string.documentation), (dialog, id)
-                -> Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity()));
-        alert.setPositiveButton(getString(R.string.got_it), (dialog, id)
-                -> Prefs.saveBoolean("custom_control_warning", mAlertDialogue, getActivity()));
+        new Dialog(Objects.requireNonNull(getActivity()))
+                .setIcon(R.mipmap.ic_launcher)
+                .setTitle(getString(R.string.warning))
+                .setMessage(getString(R.string.custom_controls_message))
+                .setCancelable(false)
+                .setView(checkBoxView)
+                .setNeutralButton(getString(R.string.documentation), (dialog, id)
+                        -> Utils.launchUrl("https://smartpack.github.io/spkm/customcontrols/", getActivity()))
+                .setPositiveButton(getString(R.string.got_it), (dialog, id)
+                        -> Prefs.saveBoolean("custom_control_warning", mAlertDialogue, getActivity()))
 
-        alert.show();
+                .show();
     }
 
     @Override
