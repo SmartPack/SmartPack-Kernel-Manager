@@ -443,6 +443,11 @@ public class BackupFragment extends RecyclerViewFragment {
                         if (!text.endsWith(".img")) {
                             text += ".img";
                         }
+
+                        if (text.contains(" ")) {
+                            text = text.replace(" ", "_");
+                        }
+
                         if (Utils.existFile(Backup.getPath(partition) + "/" + text)) {
                             Utils.toast(getString(R.string.already_exists, text), getActivity());
                             return;

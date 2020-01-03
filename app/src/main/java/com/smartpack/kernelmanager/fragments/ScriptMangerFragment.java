@@ -275,7 +275,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 }
                 if (s != null && !s.isEmpty()) {
                     new Dialog(getActivity())
-                            .setTitle(getString(R.string.result))
                             .setMessage(s)
                             .setCancelable(false)
                             .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
@@ -393,6 +392,10 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
 
                 if (!text.endsWith(".sh")) {
                     text += ".sh";
+                }
+
+                if (text.contains(" ")) {
+                    text = text.replace(" ", "_");
                 }
 
                 if (ScriptManager.list().indexOf(text) > -1) {
