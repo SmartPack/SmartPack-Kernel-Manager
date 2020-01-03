@@ -57,8 +57,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private boolean mPermissionDenied;
 
-    private ProgressDialog mProgressDialog;
-
     private String mPath;
 
     private String logFolder = Utils.getInternalDataStorage() + "/logs";
@@ -347,13 +345,14 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private class Execute extends AsyncTask<String, Void, Void> {
+        private ProgressDialog mExecuteDialog;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.show();
+            mExecuteDialog = new ProgressDialog(getActivity());
+            mExecuteDialog.setMessage(getString(R.string.executing) + ("..."));
+            mExecuteDialog.setCancelable(false);
+            mExecuteDialog.show();
         }
 
         @Override
@@ -365,7 +364,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            mProgressDialog.dismiss();
+            mExecuteDialog.dismiss();
         }
     }
 
@@ -384,6 +383,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private void manualFlash(final File file) {
         new AsyncTask<Void, Void, String>() {
+            private ProgressDialog mProgressDialog;
 
             @Override
             protected void onPreExecute() {
