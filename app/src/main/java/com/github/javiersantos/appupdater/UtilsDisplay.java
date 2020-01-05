@@ -83,7 +83,7 @@ class UtilsDisplay {
         PendingIntent pendingIntentUpdate = PendingIntent.getActivity(context, 0, UtilsLibrary.intentToUpdate(context, updateFrom, apk), PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder builder = getBaseNotification(context, contentIntent, title, content, smallIconResourceId)
-                .addAction(R.drawable.ic_system_update_white_24dp, context.getResources().getString(R.string.appupdater_btn_update), pendingIntentUpdate);
+                .addAction(R.drawable.ic_system, context.getResources().getString(R.string.appupdater_btn_update), pendingIntentUpdate);
 
         notificationManager.notify(0, builder.build());
     }

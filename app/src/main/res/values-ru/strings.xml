@@ -932,7 +932,6 @@
     <string name="set_password_first">Сначала установите пароль</string>
     <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
     <string name="sections">Разделы</string>
-    <string name="libraries_used">Используемые библиотеки</string>
     <string name="source_code">Исходный код</string>
     <string name="source_code_summary">Посмотреть исзодный код на GitHub</string>
     <string name="change_logs">История изменений</string>

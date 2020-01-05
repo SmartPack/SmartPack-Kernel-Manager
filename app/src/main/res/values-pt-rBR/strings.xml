@@ -1017,7 +1017,6 @@
     <string name="sections">Seções</string>
 
     <!-- About -->
-    <string name="libraries_used">Bibliotecas usadas</string>
     <string name="source_code">Código Fonte</string>
     <string name="source_code_summary">Ver código fonte no GitHub</string>
     <string name="change_logs">Listas de mudanças</string>

@@ -966,7 +966,6 @@
     <string name="sections">部分</string>
 
     <!-- About -->
-    <string name="libraries_used">使用的資源庫</string>
     <string name="source_code">原始程式碼</string>
     <string name="source_code_summary">在 GitHub 上檢視原始碼</string>
     <string name="change_logs">更新日誌</string>
