@@ -51,7 +51,9 @@ If you like to appreciate my work, please consider donating to me (either via [P
 
 ## Credits
 
-In addition to official Kernel Adiutor and its related dependencies, I used codes from the following people:
+#### Willi Ye
+
+* [Kernel Adiutor](https://github.com/Grarak/KernelAdiutor)
 
 #### Chris Renshaw
 

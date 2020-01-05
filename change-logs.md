@@ -1,5 +1,9 @@
 # Change-logs
 
+## 84. January 05, 2019
+*Release-tag: v9.4*<br>
+Changes: SmartPack: Manual Flash: Directly catch and show the flashing output. SmartPack: Manual Flash: Removed file size limit with a warning message. VM: Hide VM tunables by default. Scripts & Backups: Workaround to avoid failing create scripts/backups in certain cases. Custom Controller: Switch: Updates for supporting more boolean values. Misc: Fully redesigned about page. Miscellaneous changes.
+
 ## 83. December 22, 2019
 *Release-tag: v9.3*<br>
 Changes: Tools: Introduced a *Brand New* Script Manager page (largely based on, and as a replacement of the Init.d page). Custom Controls: Add ability to remove a controller. Custom Controls: Add a warning alert dialogue on opening page. Navigation layout: Fix navigation drawer highlight color (@atarek1). Misc: Fix on boot notification icon (@atarek1). About: Add option to share app. Miscellaneous changes.
