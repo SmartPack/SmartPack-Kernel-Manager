@@ -536,6 +536,14 @@ public class Utils {
         return su == null ? new File(file).exists() : new RootFile(file, su).exists();
     }
 
+    public static String create(String text, String path) {
+        return RootUtils.runCommand("echo '" + text + "' > " + path);
+    }
+
+    public static String mount(String command, String source, String dest) {
+        return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
+    }
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();

@@ -33,8 +33,14 @@ import java.io.FileDescriptor;
 
 public class SmartPack {
 
-    private static String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
-    private static String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
+    private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
+    private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
+    private static final String UNZIP_BINARY = "/system/bin/unzip";
+    private static final String MAGISK_UNZIP = "/sbin/.magisk/busybox/unzip";
+
+    private static String mountFS(String command, String fs) {
+        return "mount " + command + " " + fs;
+    }
 
     public static boolean hasRecovery() {
         return Utils.existFile("/cache/recovery/");
@@ -83,10 +89,19 @@ public class SmartPack {
             flashPath.delete();
         }
         flashPath.mkdirs();
+        if ((Utils.readFile(UNZIP_BINARY).isEmpty() || !Utils.existFile(UNZIP_BINARY)) &&
+                Utils.existFile(MAGISK_UNZIP)) {
+            RootUtils.runCommand(mountFS("-o remount,rw", "/system"));
+            Utils.create("", UNZIP_BINARY);
+            Utils.mount("-o bind", MAGISK_UNZIP, UNZIP_BINARY);
+        }
         RootUtils.runCommand("unzip '" + path + "' -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary")) {
-            RootUtils.runCommand("cd '" + FLASH_FOLDER + "' && mount -o remount,rw / && mkdir /tmp");
-            RootUtils.runCommand("mke2fs -F tmp.ext4 500000 && mount -o loop tmp.ext4 /tmp/");
+            RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
+            RootUtils.runCommand(mountFS("-o remount,rw", "/"));
+            RootUtils.runCommand("mkdir /tmp");
+            RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
+            Utils.mount("-o loop", "tmp.ext4", "/tmp/");
         }
     }
 
@@ -99,7 +114,9 @@ public class SmartPack {
         String logTime = "echo '" + date + "' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
         String logPath = "echo -- '" + path + "' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
         String logEmptyLine = "echo ' ' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
-        return RootUtils.runCommand(flashingCommnd + " && " + logTime + " && " + logPath + " && " + logEmptyLine + " && " + CLEANING_COMMAND);
+        return RootUtils.runCommand(flashingCommnd + " && " + logTime + " && " + logPath + " && " +
+                logEmptyLine + " && " + CLEANING_COMMAND + " && " +
+                mountFS("-o remount,ro", "/ /system"));
     }
 
 }
