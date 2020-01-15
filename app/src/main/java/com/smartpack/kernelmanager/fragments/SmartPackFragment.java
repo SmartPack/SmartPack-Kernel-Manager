@@ -42,6 +42,7 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
 import com.smartpack.kernelmanager.utils.SmartPack;
@@ -95,6 +96,19 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private void SmartPackInit(List<RecyclerViewItem> items) {
         CardView smartpack = new CardView(getActivity());
         smartpack.setTitle(getString(R.string.smartpack));
+
+        GenericSelectView shell = new GenericSelectView();
+        shell.setTitle(getString(R.string.shell));
+        shell.setSummary(getString(R.string.shell_summary));
+        shell.setValue("");
+        shell.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+            @Override
+            public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                runCommand(value);
+            }
+        });
+
+        smartpack.addItem(shell);
 
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
@@ -420,6 +434,43 @@ public class SmartPackFragment extends RecyclerViewFragment {
                             })
                             .show();
                 }
+            }
+        }.execute();
+    }
+
+    private void runCommand(final String value) {
+        new AsyncTask<Void, Void, String>() {
+            private ProgressDialog mProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(getActivity());
+                mProgressDialog.setMessage(getString(R.string.executing) + ("..."));
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                RootUtils.runCommand("sleep 1");
+                return RootUtils.runCommand(value);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                new Dialog(getActivity())
+                        .setTitle(value)
+                        .setMessage(s != null && !s.isEmpty()? s : "")
+                        .setCancelable(false)
+                        .setPositiveButton(getString(R.string.cancel), (dialog, id) -> {
+                        })
+                        .show();
             }
         }.execute();
     }
