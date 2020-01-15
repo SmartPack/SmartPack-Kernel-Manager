@@ -28,6 +28,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -330,6 +331,42 @@ public class KLapse {
         int timeMin = time - (timeHr * 60);
         return (timeHr > 12 ? timeHr - 12 : timeHr) + ":" + (timeMin < 10 ?
                 "0" + timeMin : timeMin) + (timeHr > 12 ? " PM" : " AM");
+    }
+
+    private static final String[] KLAPSE_PROFILE = {
+            KLAPSE_ENABLE, KLAPSE_TARGET_R, KLAPSE_TARGET_G, KLAPSE_TARGET_B,
+            DAYTIME_R, DAYTIME_G, DAYTIME_B, KLAPSE_START_MIN, KLAPSE_END_MIN, KLAPSE_TARGET_MIN,
+            FADEBACK_MINUTES, DIMMER_FACTOR, DIMMER_FACTOR_AUTO, DIMMER_START, DIMMER_END, PULSE_FREQ,
+            FLOW_FREQ, BACKLIGHT_RANGE_UPPER, BACKLIGHT_RANGE_LOWER
+    };
+
+    public static File profileFolder() {
+        return new File(Utils.getInternalDataStorage () + "/klapse/");
+    }
+
+    public static void prepareProfileFolder() {
+        if (profileFolder().exists() && profileFolder().isDirectory()) {
+            profileFolder().delete();
+        }
+        profileFolder().mkdirs();
+    }
+
+    public static void exportKlapseSettings(String name, int position) {
+        prepareProfileFolder();
+        String value = Utils.readFile(KLAPSE_PROFILE[position]);
+        if (value.contains("Y")) {
+            value = "1";
+        } else if (value.contains("N")) {
+            value = "0";
+        }
+        if (Utils.existFile(KLAPSE_PROFILE[position])) {
+            String command = "echo " + value + " > " + KLAPSE_PROFILE[position];
+            Utils.append (command, profileFolder().toString() + "/" + name);
+        }
+    }
+
+    public static int size() {
+        return KLAPSE_PROFILE.length;
     }
 
     public static boolean supported() {

@@ -540,8 +540,16 @@ public class Utils {
         return RootUtils.runCommand("echo '" + text + "' > " + path);
     }
 
+    public static String append(String text, String path) {
+        return RootUtils.runCommand("echo '" + text + "' >> " + path);
+    }
+
     public static String mount(String command, String source, String dest) {
         return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
+    }
+
+    public static void chmod(String permission, String path) {
+        RootUtils.runCommand("chmod " + permission + " " + path);
     }
 
     public static boolean isNetworkAvailable(Context context) {

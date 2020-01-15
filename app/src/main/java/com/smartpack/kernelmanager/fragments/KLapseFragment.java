@@ -21,14 +21,23 @@
 
 package com.smartpack.kernelmanager.fragments;
 
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.text.InputType;
 import android.widget.TimePicker;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
@@ -47,9 +56,23 @@ import java.util.List;
 
 public class KLapseFragment extends RecyclerViewFragment {
 
+    private boolean mPermissionDenied;
+
     @Override
     protected void init() {
         super.init();
+    }
+
+    @Override
+    protected boolean showTopFab() {
+        return true;
+    }
+
+    @Override
+    protected Drawable getTopFabDrawable() {
+        Drawable drawable = DrawableCompat.wrap(ContextCompat.getDrawable(getActivity(), R.drawable.ic_add));
+        DrawableCompat.setTint(drawable, Color.WHITE);
+        return drawable;
     }
 
     @Override
@@ -482,6 +505,89 @@ public class KLapseFragment extends RecyclerViewFragment {
 
         if (klapseCard.size() > 0) {
             items.add(klapseCard);
+        }
+    }
+
+    @Override
+    protected void onTopFabClick() {
+        super.onTopFabClick();
+        if (mPermissionDenied) {
+            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            return;
+        }
+        showCreateDialog();
+    }
+
+    private void showCreateDialog() {
+        ViewUtils.dialogEditText("",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }, new ViewUtils.OnDialogEditTextListener() {
+                    @Override
+                    public void onClick(String text) {
+                        if (text.isEmpty()) {
+                            Utils.toast(R.string.name_empty, getActivity());
+                            return;
+                        }
+                        if (!text.endsWith(".sh")) {
+                            text += ".sh";
+                        }
+                        if (text.contains(" ")) {
+                            text = text.replace(" ", "_");
+                        }
+                        if (Utils.existFile(KLapse.profileFolder().toString() + "/" + text)) {
+                            Utils.toast(getString(R.string.profile_exists, text), getActivity());
+                            return;
+                        }
+                        final String path = text;
+                        new AsyncTask<Void, Void, Void>() {
+                            private ProgressDialog mProgressDialog;
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+                                mProgressDialog = new ProgressDialog(getActivity());
+                                mProgressDialog.setMessage(getString(R.string.exporting_settings, getString(R.string.klapse)) + "...");
+                                mProgressDialog.setCancelable(false);
+                                mProgressDialog.show();
+                            }
+                            @Override
+                            protected Void doInBackground(Void... voids) {
+                                KLapse.prepareProfileFolder();
+                                Utils.create("#!/system/bin/sh\n\n# Created by SmartPack-Kernel Manager", KLapse.profileFolder().toString() + "/" + path);
+                                if (KLapse.supported()) {
+                                    Utils.append("\n# K-lapse", KLapse.profileFolder().toString() + "/" + path);
+                                    for (int i = 0; i < KLapse.size(); i++) {
+                                        KLapse.exportKlapseSettings(path, i);
+                                    }
+                                }
+                                Utils.append("\n# The END\necho \"Profile applied successfully...\" | tee /dev/kmsg", KLapse.profileFolder().toString() + "/" + path);
+                                return null;
+                            }
+                            @Override
+                            protected void onPostExecute(Void aVoid) {
+                                super.onPostExecute(aVoid);
+                                try {
+                                    mProgressDialog.dismiss();
+                                } catch (IllegalArgumentException ignored) {
+                                }
+                            }
+                        }.execute();
+                    }
+                }, getActivity()).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+            }
+        }).show();
+    }
+
+    @Override
+    public void onPermissionDenied(int request) {
+        super.onPermissionDenied(request);
+        if (request == 0) {
+            mPermissionDenied = true;
+            Utils.toast(R.string.permission_denied_write_storage, getActivity());
         }
     }
 
