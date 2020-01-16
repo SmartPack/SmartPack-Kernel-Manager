@@ -55,7 +55,6 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("Kernel Adiutor,Willi Ye", "https://github.com/Grarak");
         sCredits.put("Auto-flash,Chris Renshaw", "https://github.com/osm0sis");
         sCredits.put("Spectrum,Joe Maples", "https://github.com/frap129/spectrum");
-        sCredits.put("AppUpdater,Javier Santos", "https://github.com/javiersantos/AppUpdater");
         sCredits.put("AndroidX,Google", "https://developer.android.com/jetpack/androidx");
         sCredits.put("NavigationView,Google", "https://developer.android.com/reference/com/google/android/material/navigation/NavigationView");
         sCredits.put("CircularReveal,Ozodrukh", "https://github.com/ozodrukh/CircularReveal");
@@ -256,9 +255,6 @@ public class AboutFragment extends RecyclerViewFragment {
                     break;
                 case "Joe Maples":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_frap129));
-                    break;
-                case "Javier Santos":
-                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_javiersantos));
                     break;
                 case "Google":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_google));

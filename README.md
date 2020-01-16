@@ -63,10 +63,6 @@ If you like to appreciate my work, please consider donating to me (either via [P
 
 * [Spectrum](https://github.com/frap129/spectrum)
 
-#### Javier Santos
-
-* [AppUpdater](https://github.com/javiersantos/AppUpdater)
-
 #### Translations
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
 * [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
@@ -114,7 +110,6 @@ I used following libraries:
 * Matthew Precious: [swirl](https://github.com/mattprecious/swirl)
 * Lopez Mikhael: [CircularImageView](https://github.com/lopspower/CircularImageView)
 * Square: [picasso](https://github.com/square/picasso)
-* Square: [okhttp](https://github.com/square/okhttp)
 * CyanogenMod: [CyanogenMod Platform SDK](https://github.com/CyanogenMod/cm_platform_sdk)
 * Akexorcist: [Android-RoundCornerProgressBar](https://github.com/akexorcist/Android-RoundCornerProgressBar)
 
