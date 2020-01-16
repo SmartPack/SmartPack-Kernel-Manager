@@ -21,6 +21,7 @@
 
 package com.smartpack.kernelmanager.fragments;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -38,6 +39,7 @@ import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
@@ -79,6 +81,7 @@ public class KLapseFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         if (KLapse.supported()) {
             klapsInit(items);
+            requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
     }
 
@@ -572,6 +575,12 @@ public class KLapseFragment extends RecyclerViewFragment {
                                     mProgressDialog.dismiss();
                                 } catch (IllegalArgumentException ignored) {
                                 }
+                                new Dialog(getActivity())
+                                        .setMessage(getString(R.string.profile_created, KLapse.profileFolder().toString() + "/" + path))
+                                        .setCancelable(false)
+                                        .setPositiveButton(getString(R.string.ok), (dialog, id) -> {
+                                        })
+                                        .show();
                             }
                         }.execute();
                     }

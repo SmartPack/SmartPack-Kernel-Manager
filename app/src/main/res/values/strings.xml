@@ -583,6 +583,7 @@
     <string name="flow_freq">Flow Frequency</string>
     <string name="flow_freq_summary">The amount of milliseconds after which 1 RGB frame is shifted.</string>
     <string name="profile_exists">A profile named %s is already exists! Aborting.</string>
+    <string name="profile_created">K-lapse settings are successfully exported and available at \'%s\'!</string>
     <string name="exporting_settings">Exporting %s settings</string>
 
     <!-- Wake -->
