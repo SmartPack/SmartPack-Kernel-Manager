@@ -1,5 +1,5 @@
-﻿<!--Author: andrey167 <andrey_167@bk.ru>-->
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Author: andrey167 <andrey_167@bk.ru>-->
 <resources>
     <string name="checking_info">Проверка информации…</string>
     <string name="checking_root">Проверка рут-доступа</string>
@@ -71,6 +71,7 @@
     <string name="backup">Резервное копирование</string>
     <string name="build_prop_editor">Редактор build.prop</string>
     <string name="profile">Профиль</string>
+    <string name="script_manger">Менеджер скриптов</string>
     <string name="on_boot">При загрузке</string>
     <string name="settings">Настройки</string>
     <string name="smartpack">SmartPack</string>
@@ -82,6 +83,7 @@
     <string name="refresh">Обновить</string>
     <string name="reset">Сброс</string>
     <string name="restore">Восстановить</string>
+    <string name="restore_sure_message">Вы уверены, что восстановили%s?</string>
     <string name="deep_sleep">Глубокий сон</string>
     <string name="uptime">Время работы</string>
     <string name="error_frequencies">Не удалось загрузить частоты</string>
@@ -160,7 +162,7 @@
     <string name="stune_boost_ms">Продолжительность Stune Boost</string>
     <string name="stune_boost_sett">Настройки Stune Boost</string>
     <string name="stune_boost_sett_summary">Включите, чтобы получить доступ к расширенным настройкам ускорения оглушения.</string>
-    <string name="powerhal_tunables">Power HAL Tunables</string>
+    <string name="powerhal_tunables">Тюнинг Power HAL </string>
     <string name="cpu_input_boost">CPU Input Boost</string>
     <string name="cpu_input_boost_summary">Включите CPU Input Boost, драйвер повышения производительности CPU от Sultanxda.</string>
     <string name="cpuiboost_duration">Продолжительность усиления ввода</string>
@@ -302,6 +304,14 @@
     <string name="hotplug_load">Загрузка hotplug</string>
     <string name="hotplug_rate">Hotplug Rate</string>
     <string name="hotplug_rq">Hotplug RQ</string>
+    <string name="aio_hotplug">AiO Hotplug</string>
+    <string name="aio_hotplug_summary">All in One HotPlug для устройств Qualcomm . Разработано Shoaib0597.</string>
+    <string name="max_cpu_online_big">Максимум активных Big ядер</string>
+    <string name="max_cpu_online_big_summary">Максимум активных Big ядер</string>
+    <string name="max_cpu_online_little">Максимум активных Little ядер </string>
+    <string name="max_cpu_online_little_summary">Максимум активных Little ядер </string>
+    <string name="nr_max_cpu">Максимум активных ядер</string>
+    <string name="nr_min_cpu">Минимум активных ядер</string>
     <string name="adv_sett">Расширенные настройки</string>
     <string name="global_offset">Глобальное смещение</string>
     <string name="override_vmin">Переопределить минимальное напряжение</string>
@@ -711,6 +721,7 @@
     <string name="zram">Z-RAM</string>
     <string name="zram_algo">Алгоритм Z-RAM</string>
     <string name="zram_algo_summary">Установите алгоритм сжатия Z-RAM по умолчанию.</string>
+    <string name="zram_algo_warning">Размер диска Z-RAM будет временно уменьшен до \'0\'. Этот процесс может иметь серьезные последствия для некоторых устройств.</string>
     <string name="disksize">Размер диска</string>
     <string name="disksize_summary">Улучшает производительность методом сжатия данных в ОЗУ вместо постоянной памяти. Использует ОЗУ до тех пор, пока не станет необходимым записать данные в постоянную память.</string>
     <string name="zswap">ZSWAP</string>
@@ -719,6 +730,7 @@
     <string name="memory_pool_summary">Процент пула памяти от основной памяти, который может быть использован как кэш сжатых страниц.</string>
     <string name="maximum_compression_ratio">Максимальный коэффициент сжатия</string>
     <string name="maximum_compression_ratio_summary">Максимальная степень сжатия, в процентах, для сжимаемых страниц. Любая страница, которая не сжимается до этого соотношения, будет отклонена.</string>
+    <string name="virtual_memory_tunables">Тюнинг виртуальной памяти</string>
     <string name="available">Доступно</string>
     <string name="poolsize">Размер пула</string>
     <string name="read">Чтение</string>
@@ -773,27 +785,34 @@
     <string name="spec_gaming_summary">Идентична производительности в большинстве областей, кроме разблокированной графической производительности.</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="custom_controls_summary">В этом разделе можно создать или импортировать пользовательские элементы управления, которых нет в приложении (пока).</string>
+    <string name="custom_controls_message">Вы можете создать собственный контроллер для любого существующего пути sysfs, при условии, что у вас установлен поддерживаемый Root File Manager. Тем не менее, обратите внимание, что эта функция слишком мощная, чтобы испортить ваше устройство. \n\n *** ИСПОЛЬЗУЙТЕ НА СВОЙ СТРАХ И РИСК ***</string>
     <string name="create">Создать</string>
     <string name="import_item">Импорт</string>
     <string name="control_switch">Переключатель</string>
     <string name="control_generic">Универсальный</string>
+    <string name="documentation">Документация</string>
+    <string name="invalid_path">%s не является допустимым путем sysfs! Отмена.</string>
     <string name="edit">Редактировать</string>
     <string name="export">Экспорт</string>
     <string name="delete">Удалить</string>
     <string name="sure_question">Вы уверены?</string>
     <string name="name">Название</string>
     <string name="already_exists">%s уже существует!</string>
+    <string name="already_added">Путь sysfs%s уже добавлен! Отмена.</string>
     <string name="exported_item">%1$s был экспортирован в %2$s</string>
     <string name="name_empty">Пустое имя!</string>
     <string name="import_malformed">Импортируемый файл поврежден!</string>
     <string name="import_wrong_version">Версия импортируемого файла слишком старая!</string>
+    <string name="got_it">Понял</string>
     <string name="boot_partition">Загрузочный раздел</string>
     <string name="recovery_partition">Раздел восстановления</string>
     <string name="fota_partition">Раздел обновления</string>
     <string name="flash">Прошить</string>
     <string name="flasher">Прошивальшикr</string>
+    <string name="flasher_warning">Эта функция все еще очень новая и находится в стадии разработки. Он может не иметь полной совместимости со многими флеш-архивами. Если вы считаете, что процесс перепрошивки в любом случае не удался из-за вышеупомянутых несовместимостей, пожалуйста, перезапустите приложение, прежде чем что-либо делать. \n\nКроме того, я не рекомендую пробовать перепрошивать что-либо более 500 МБ. \n\n ** * ИСПОЛЬЗУЙТЕ НА СВОЙ СТРАХ И РИСК *** \n</string>
     <string name="flasher_summary">Нажмите кнопку прошивки, чтобы выбрать и прошить файл восстановления ZIP без перезагрузки в пользовательское восстановление. Изменения вступят в силу после перезагрузки.</string>
     <string name="file_size_limit">Обратите внимание: по соображениям безопасности файлы восстановления размером более 100 МБ не могут быть прошиты</string>
+    <string name="execute">Выполнение</string>
     <string name="sure_message">Вы уверены, что хотите прошить %s?</string>
     <string name="select_question">Выбрать %s?</string>
     <string name="wrong_extension">Пожалуйста, выберите файл с расширением %s.</string>
@@ -827,7 +846,11 @@
     <string name="select_all">Выбрать все</string>
     <string name="nothing_selected">Ничего не выбрано</string>
     <string name="profile_empty">Профиль пуст!</string>
+    <string name="scripts_manager_summary">В этом разделе вы можете создавать, импортировать, редактировать и легко выполнять любые правильно отформатированные сценарии оболочки.</string>
+    <string name="scripts_onboot_summary">Если вы включите этот переключатель, все скрипты, перечисленные на этой странице, будут выполняться при загрузке.</string>
     <string name="exceute_question">Выполнить %s?</string>
+    <string name="remove_script_question">%s также будет удален из диспетчера сценариев. \n\nВы уверены?</string>
+    <string name="script_exists">Сценарий с именем%s уже существует! Отмена.</string>
     <string name="executing">Выполнение</string>
     <string name="result">Результат</string>
     <string name="on_boot_welcome_summary">Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки.</string>
@@ -835,8 +858,9 @@
     <string name="disable_question">Отключить %s?</string>
     <string name="support">Поддержка</string>
     <string name="support_summary">Посетить страницу поддержки на xda-developers.com</string>
-    <string name="flash_log">Flasher Log</string>
+    <string name="flash_log">Лог прошивальшика</string>
     <string name="reboot">Перезагрузить</string>
+    <string name="reboot_dialog">Настоятельно рекомендуется перезагрузить устройство после%s.</string>
     <string name="reboot_summary">Перезагрузить устройство</string>
     <string name="normal_reboot_message">\nВаше устройство будет перезагружено.\n</string>
     <string name="reboot_now">Перезагрузить сейчас</string>
@@ -863,6 +887,7 @@
     <string name="wipe_data_summary">Очистить раздел Data</string>
     <string name="wipe_cache_message">\nCache/Dalvik Cache разделы вашего устройства будут удалены.\n\nВнимание! Устройство будет перезагружено.\n</string>
     <string name="wipe_data_message">\nДанные раздела вашего устройства будут полностью удалены.\n\nВнимание! Вы потеряете все пользовательские данные, включая приложения. \ N \ nВнимание! Устройство будет перезагружено.\n</string>
+    <string name="documentsui_message">Пожалуйста, используйте внешний «Файловый менеджер», чтобы выбрать файл. Выбор файлов через стандартный \'DocumentsUI\' пока не поддерживается.</string>
     <string name="appupdater_update_title">Обновление доступно!\nv%2$s</string>
     <string name="check_update">Проверить на наличие обновлений</string>
     <string name="check_update_summary">Проверьте наличие новых версий SmartPack-Kernel Manager.</string>
@@ -891,6 +916,7 @@
     <string name="hide_banner">Скрыть баннер</string>
     <string name="force_cards_summary">Использовать карточки для объектов, если возможно.</string>
     <string name="accent_color">Цветовой акцент</string>
+    <string name="section_icons">Раздел Иконки</string>
     <string name="instant">Мгновенно</string>
     <string name="five_sec">5 секунд</string>
     <string name="ten_sec">10 секунд</string>
@@ -901,6 +927,7 @@
     <string name="test">Проверка настроек</string>
     <string name="nothing_apply">Ничего не найдено для применения!</string>
     <string name="hide">Скрыть</string>
+    <string name="always_show">Показывайте всегда</string>
     <string name="apply_on_boot_hide_summary">Скрыть уведомления при применении настроек при загрузке. При этом задержка останется.</string>
     <string name="toast">Всплывающее оповещение</string>
     <string name="apply_on_boot_toast_summary">Показывать всплывающее уведомление, когда настройки были применены.</string>
@@ -932,6 +959,7 @@
     <string name="set_password_first">Сначала установите пароль</string>
     <string name="fingerprint_summary">Использовать отпечаток пальца для прохождения проверки безопасности. Это будет работать до тех пор, пока у вас есть зарегистрированные отпечатки.</string>
     <string name="sections">Разделы</string>
+    <string name="credits">Credits</string>
     <string name="source_code">Исходный код</string>
     <string name="source_code_summary">Посмотреть исзодный код на GitHub</string>
     <string name="change_logs">История изменений</string>
@@ -944,6 +972,9 @@
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Автоматическая проверка обновлений</string>
     <string name="auto_update_check_summary">Проверять наличие новых версий SmartPack-Kernel Manager при запуске приложения</string>
+    <string name="licence">Лицензии</string><string name="share_app">Поделиться приложением</string>
+    <string name="share_app_summary">Поделитесь этим приложением с друзьями</string>
+    <string name="share_app_message">Получить  SmartPack-Kernel Manager %s из \n</string>
     <string name="commits">Изменения: %d</string>
     <string name="no_internet">Пожалуйста, проверьте интернет-соединение!</string>
     <string name="translators">Переводчики</string>
