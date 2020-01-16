@@ -17,8 +17,6 @@
         <item>@string/aggressive</item>
     </string-array>
 
-    <!-- CPU Hotplug -->
-
     <!-- Screen -->
     <string-array name="colors">
         <item>@string/red</item>
@@ -91,6 +89,14 @@
     <string-array name="scripts_options">
         <item>@string/create</item>
         <item>@string/import_item</item>
+    </string-array>
+
+    <!-- SmartPack -->
+    <string-array name="reboot_options">
+        <item>@string/turn_off</item>
+        <item>@string/reboot</item>
+        <item>@string/reboot_recovery</item>
+        <item>@string/reboot_bootloader</item>
     </string-array>
 
     <!-- Settings -->

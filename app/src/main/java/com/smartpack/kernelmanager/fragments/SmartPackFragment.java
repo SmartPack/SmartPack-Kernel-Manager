@@ -23,6 +23,7 @@ package com.smartpack.kernelmanager.fragments;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -58,6 +59,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
     private boolean mPermissionDenied;
 
+    private Dialog mOptionsDialog;
+
     private String mPath;
 
     private String logFolder = Utils.getInternalDataStorage() + "/logs";
@@ -82,7 +85,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         SmartPackInit(items);
-	requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     @Override
@@ -96,51 +99,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
     private void SmartPackInit(List<RecyclerViewItem> items) {
         CardView smartpack = new CardView(getActivity());
         smartpack.setTitle(getString(R.string.smartpack));
-
-        GenericSelectView shell = new GenericSelectView();
-        shell.setTitle(getString(R.string.shell));
-        shell.setSummary(getString(R.string.shell_summary));
-        shell.setValue("");
-        shell.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                runCommand(value);
-            }
-        });
-
-        smartpack.addItem(shell);
-
-        DescriptionView reset = new DescriptionView();
-        reset.setTitle(getString(R.string.reset_settings));
-        reset.setSummary(getString(R.string.reset_settings_summary));
-        reset.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Dialog resetsettings = new Dialog(getActivity());
-                resetsettings.setIcon(R.mipmap.ic_launcher);
-                resetsettings.setTitle(getString(R.string.warning));
-                resetsettings.setMessage(getString(R.string.reset_settings_message));
-                resetsettings.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                    Dialog reboot = new Dialog(getActivity());
-                    reboot.setIcon(R.mipmap.ic_launcher);
-                    reboot.setTitle(getString(R.string.reboot));
-                    reboot.setMessage(getString(R.string.reboot_message));
-                    reboot.setNeutralButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
-                    });
-                    reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute(Utils.prepareReboot());
-                    });
-                    reboot.show();
-                });
-                resetsettings.show();
-            }
-        });
-        smartpack.addItem(reset);
 
         DescriptionView logcat = new DescriptionView();
         logcat.setTitle(getString(R.string.logcat));
@@ -230,6 +188,90 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(ramoops);
         }
 
+        GenericSelectView shell = new GenericSelectView();
+        shell.setTitle(getString(R.string.shell));
+        shell.setSummary(getString(R.string.shell_summary));
+        shell.setValue("");
+        shell.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+            @Override
+            public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                runCommand(value);
+            }
+        });
+
+        smartpack.addItem(shell);
+
+        DescriptionView reboot_options = new DescriptionView();
+        reboot_options.setTitle(getString(R.string.reboot_options));
+        reboot_options.setSummary(getString(R.string.reboot_options_summary));
+        reboot_options.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
+                        R.array.reboot_options), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        switch (i) {
+                            case 0:
+                                new Dialog(getActivity())
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setTitle(getString(R.string.sure_question))
+                                        .setMessage(getString(R.string.turn_off_message))
+                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        })
+                                        .setPositiveButton(getString(R.string.turn_off), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.prepareReboot() + " -p");
+                                        })
+                                        .show();
+                                break;
+                            case 1:
+                                new Dialog(getActivity())
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setTitle(getString(R.string.sure_question))
+                                        .setMessage(getString(R.string.normal_reboot_message))
+                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        })
+                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.prepareReboot());
+                                        })
+                                        .show();
+                                break;
+                            case 2:
+                                new Dialog(getActivity())
+                                        .setMessage(getString(R.string.recovery_message))
+                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        })
+                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.prepareReboot() + " recovery");
+                                        })
+                                        .show();
+                                break;
+                            case 3:
+                                new Dialog(getActivity())
+                                        .setIcon(R.mipmap.ic_launcher)
+                                        .setTitle(getString(R.string.sure_question))
+                                        .setMessage(getString(R.string.bootloader_message))
+                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        })
+                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.prepareReboot() + " bootloader");
+                                        })
+                                        .show();
+                                break;
+                        }
+                    }
+                }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        mOptionsDialog = null;
+                    }
+                });
+                mOptionsDialog.show();
+            }
+        });
+
+        smartpack.addItem(reboot_options);
+
         // Show wipe (Cache/Data) functions only if we recognize recovery...
         if (SmartPack.hasRecovery()) {
             DescriptionView wipe_cache = new DescriptionView();
@@ -275,85 +317,37 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(wipe_data);
         }
 
-        DescriptionView turnoff = new DescriptionView();
-        turnoff.setTitle(getString(R.string.turn_off));
-        turnoff.setSummary(getString(R.string.turn_off_summary));
-        turnoff.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+        DescriptionView reset = new DescriptionView();
+        reset.setTitle(getString(R.string.reset_settings));
+        reset.setSummary(getString(R.string.reset_settings_summary));
+        reset.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Dialog turnoff = new Dialog(getActivity());
-                turnoff.setIcon(R.mipmap.ic_launcher);
-                turnoff.setTitle(getString(R.string.sure_question));
-                turnoff.setMessage(getString(R.string.turn_off_message));
-                turnoff.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                Dialog resetsettings = new Dialog(getActivity());
+                resetsettings.setIcon(R.mipmap.ic_launcher);
+                resetsettings.setTitle(getString(R.string.warning));
+                resetsettings.setMessage(getString(R.string.reset_settings_message));
+                resetsettings.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
                 });
-                turnoff.setPositiveButton(getString(R.string.turn_off), (dialog1, id1) -> {
-                    new Execute().execute(Utils.prepareReboot() + " -p");
+                resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                    Dialog reboot = new Dialog(getActivity());
+                    reboot.setIcon(R.mipmap.ic_launcher);
+                    reboot.setTitle(getString(R.string.reboot));
+                    reboot.setMessage(getString(R.string.reboot_message));
+                    reboot.setNeutralButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                        new Execute().execute("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
+                    });
+                    reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
+                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                        new Execute().execute(Utils.prepareReboot());
+                    });
+                    reboot.show();
                 });
-                turnoff.show();
+                resetsettings.show();
             }
         });
-        smartpack.addItem(turnoff);
-
-        DescriptionView reboot = new DescriptionView();
-        reboot.setTitle(getString(R.string.reboot));
-        reboot.setSummary(getString(R.string.reboot_summary));
-        reboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Dialog reboot = new Dialog(getActivity());
-                reboot.setIcon(R.mipmap.ic_launcher);
-                reboot.setTitle(getString(R.string.sure_question));
-                reboot.setMessage(getString(R.string.normal_reboot_message));
-                reboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                reboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(Utils.prepareReboot());
-                });
-                reboot.show();
-            }
-        });
-        smartpack.addItem(reboot);
-
-        DescriptionView recoveryreboot = new DescriptionView();
-        recoveryreboot.setTitle(getString(R.string.reboot_recovery));
-        recoveryreboot.setSummary(getString(R.string.reboot_recovery_summary));
-        recoveryreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Dialog recoveryreboot = new Dialog(getActivity());
-                recoveryreboot.setIcon(R.mipmap.ic_launcher);
-                recoveryreboot.setTitle(getString(R.string.sure_question));
-                recoveryreboot.setMessage(getString(R.string.recovery_message));
-                recoveryreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                recoveryreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(Utils.prepareReboot() + " recovery");
-                });
-                recoveryreboot.show();
-            }
-        });
-        smartpack.addItem(recoveryreboot);
-
-        DescriptionView bootloaderreboot = new DescriptionView();
-        bootloaderreboot.setTitle(getString(R.string.reboot_bootloader));
-        bootloaderreboot.setSummary(getString(R.string.reboot_bootloader_summary));
-        bootloaderreboot.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-            @Override
-            public void onClick(RecyclerViewItem item) {
-                Dialog bootloaderreboot = new Dialog(getActivity());
-                bootloaderreboot.setIcon(R.mipmap.ic_launcher);
-                bootloaderreboot.setTitle(getString(R.string.sure_question));
-                bootloaderreboot.setMessage(getString(R.string.bootloader_message));
-                bootloaderreboot.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                bootloaderreboot.setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                    new Execute().execute(Utils.prepareReboot() + " bootloader");
-                });
-                bootloaderreboot.show();
-            }
-        });
-        smartpack.addItem(bootloaderreboot);
+        smartpack.addItem(reset);
 
         items.add(smartpack);
     }
@@ -410,7 +404,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
             @Override
             protected String doInBackground(Void... voids) {
-                SmartPack.prepareManualFlash(file);
+                SmartPack.prepareManualFlash(file, getActivity());
                 return SmartPack.manualFlash(file);
             }
 
@@ -498,7 +492,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
             SmartPack.cleanLogs();
             RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
-            if (!Utils.getExtension(file.getName()).equals("zip")) {
+            if (!Utils.getExtension(mPath).equals("zip")) {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
                 return;
             }
@@ -508,7 +502,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Dialog manualFlash = new Dialog(getActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, file.getName()) + ("\n\n") +
+            manualFlash.setMessage(getString(R.string.sure_message, file.getName().replace("primary:", "")) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });

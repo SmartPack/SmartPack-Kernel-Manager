@@ -21,6 +21,9 @@
 
 package com.smartpack.kernelmanager.utils;
 
+import android.content.Context;
+
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
@@ -79,7 +82,7 @@ public class SmartPack {
      * Flashing recovery zip without rebooting to custom recovery
      * Credits to osm0sis @ xda-developers.com
      */
-    public static void prepareManualFlash(File file) {
+    public static void prepareManualFlash(File file, Context context) {
         String path = file.toString();
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
@@ -102,6 +105,8 @@ public class SmartPack {
             RootUtils.runCommand("mkdir /tmp");
             RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
             Utils.mount("-o loop", "tmp.ext4", "/tmp/");
+        } else {
+            Utils.toast(R.string.unzip_failed, context);
         }
     }
 
