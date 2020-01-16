@@ -1,6 +1,10 @@
 # Change-logs
 
-## 84. January 05, 2019
+## 85. January 16, 2020
+*Release-tag: v9.5*<br>
+Changes: SmartPack: Workaround to use Magisk BusyBox. SmartPack: Add option to run a shell commands and view output. SmartPack: Updated manual flashing. App updater: Switch to own implementation. K-lapse: Add option to export current settings as shell script. Update Russian translations. Miscellaneous changes.
+
+## 84. January 05, 2020
 *Release-tag: v9.4*<br>
 Changes: SmartPack: Manual Flash: Directly catch and show the flashing output. SmartPack: Manual Flash: Removed file size limit with a warning message. VM: Hide VM tunables by default. Scripts & Backups: Workaround to avoid failing create scripts/backups in certain cases. Custom Controller: Switch: Updates for supporting more boolean values. Misc: Fully redesigned about page. Miscellaneous changes.
 
