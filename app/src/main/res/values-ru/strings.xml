@@ -852,7 +852,6 @@
     <string name="remove_script_question">%s также будет удален из диспетчера сценариев. \n\nВы уверены?</string>
     <string name="script_exists">Сценарий с именем%s уже существует! Отмена.</string>
     <string name="executing">Выполнение</string>
-    <string name="result">Результат</string>
     <string name="on_boot_welcome_summary">Этот раздел показывает вам, что произойдёт, когда ваше устройство загрузится. Если он пустой, то ничего не произойдет после загрузки.</string>
     <string name="delete_question">Удалить %s?</string>
     <string name="disable_question">Отключить %s?</string>
@@ -861,7 +860,6 @@
     <string name="flash_log">Лог прошивальшика</string>
     <string name="reboot">Перезагрузить</string>
     <string name="reboot_dialog">Настоятельно рекомендуется перезагрузить устройство после%s.</string>
-    <string name="reboot_summary">Перезагрузить устройство</string>
     <string name="normal_reboot_message">\nВаше устройство будет перезагружено.\n</string>
     <string name="reboot_now">Перезагрузить сейчас</string>
     <string name="reboot_later">Перезагрузить позже</string>
@@ -869,7 +867,6 @@
     <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
     <string name="turn_off">Выключен</string>
     <string name="turn_off_message">\nУстройство будет выключено.\n</string>
-    <string name="turn_off_summary">Выключить устройство</string>
     <string name="wipe_data">Очистить раздел Data</string>
     <string name="wipe_cache">Стереть кэш</string>
     <string name="backing_up">Резервирование в процессе</string>
@@ -878,8 +875,6 @@
     <string name="reset_settings">Сбросить приложение</string>
     <string name="reset_settings_summary">Сбросить пользовательские настройки</string>
     <string name="reset_settings_message">\nНастройки приложения будут полностью удалены.\n\nВы уверены?\n</string>
-    <string name="reboot_recovery_summary">Устройство будет перезагружено в режим рекавери</string>
-    <string name="reboot_bootloader_summary">Перезагрузить в режим загрузки</string>
     <string name="reboot_message">Чтобы избежать сбоев конфигурации, настоятельно рекомендуется перезагрузить систему.\n\nПерезагрузить?\n</string>
     <string name="recovery_message">\nВаше устройство будет перезагружено в режим восстановления.\n</string>
     <string name="bootloader_message">\nВаше устройство будет перезагружено в режим загрузки.\n</string>
@@ -888,22 +883,8 @@
     <string name="wipe_cache_message">\nCache/Dalvik Cache разделы вашего устройства будут удалены.\n\nВнимание! Устройство будет перезагружено.\n</string>
     <string name="wipe_data_message">\nДанные раздела вашего устройства будут полностью удалены.\n\nВнимание! Вы потеряете все пользовательские данные, включая приложения. \ N \ nВнимание! Устройство будет перезагружено.\n</string>
     <string name="documentsui_message">Пожалуйста, используйте внешний «Файловый менеджер», чтобы выбрать файл. Выбор файлов через стандартный \'DocumentsUI\' пока не поддерживается.</string>
-    <string name="appupdater_update_title">Обновление доступно!\nv%2$s</string>
     <string name="check_update">Проверить на наличие обновлений</string>
     <string name="check_update_summary">Проверьте наличие новых версий SmartPack-Kernel Manager.</string>
-    <string name="appupdater_update_available">Обновление доступно!</string>
-    <string name="appupdater_update_available_description_dialog">Обновление %1$s доступно для скачивания. Загрузив последнее обновление, вы получите последние функции, улучшения и исправления ошибок за %2$s.</string>
-    <string name="appupdater_update_available_description_dialog_before_release_notes">Доступно обновление %1$s Вы можете получить следующие новые функции:\n%2$s</string>
-    <string name="appupdater_update_available_description_snackbar">Доступно обновление %1$s!</string>
-    <string name="appupdater_update_available_description_notification">Доступно для загрузки обновление %1$s из %2$s</string>
-    <string name="appupdater_update_not_available">Поздравляю</string>
-    <string name="appupdater_update_not_available_description">«У вас уже есть последняя версия SmartPack-Kernel Manager!»</string>
-    <string name="appupdater_btn_update">Обновить</string>
-    <string name="appupdater_btn_disable">Не показывай снова</string>
-    <string name="appupdater_btn_dismiss">Отклонить</string>
-    <string name="appupdater_channel_name">Уведомления об обновлениях</string>
-    <string name="appupdater_downloading_file">Загружаеться...</string>
-    <string name="appupdater_download_filed">Ошибка загрузки</string>
     <string name="open_settings">Открыть настройки</string>
     <string name="fahrenheit_title">По Фаренгейту</string>
     <string name="fahrenheit_summary">Использовать измерение температуры по Фаренгейту.</string>

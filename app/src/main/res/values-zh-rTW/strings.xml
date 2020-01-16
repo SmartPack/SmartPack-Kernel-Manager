@@ -852,7 +852,6 @@
     <!-- Script Manager -->
     <string name="exceute_question">執行 %s 嗎？</string>
     <string name="executing">執行中</string>
-    <string name="result">結果</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">本節介紹當裝置啟動時會發生什麼。如果它是空白的，則在啟動後什麼也不會發生。</string>
@@ -864,7 +863,6 @@
     <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
     <string name="flash_log">刷入器日誌</string>
     <string name="reboot">重啟</string>
-    <string name="reboot_summary">重新啟動</string>
     <string name="normal_reboot_message">\n裝置將重新開機\n</string>
     <string name="reboot_now">立即重新啟動</string>
     <string name="reboot_later">稍後重新開機</string>
@@ -881,36 +879,19 @@
     <string name="reset_settings">重設應用程式</string>
     <string name="reset_settings_summary">重置</string>
     <string name="reset_settings_message">\n應用程式設定將被完全刪除。\n你確定嗎？\n\n</string>
-    <string name="reboot_recovery_summary">將裝置重新開機到復原模式</string>
-    <string name="reboot_bootloader_summary">將裝置重新開機到下載模式</string>
     <string name="reboot_message">為避免配置失敗, 強烈建議重新開機。\n\n是否要重新開機？\n</string>
     <string name="recovery_message">\n您的裝置將重新開機到復原模式。\n</string>
     <string name="bootloader_message">\n您的裝置將重新開機到下載模式。\n</string>
     <string name="turn_off">關機</string>
     <string name="turn_off_message">\n將裝置關機\n</string>
-    <string name="turn_off_summary">關機</string>
     <string name="wipe_cache_summary">擦除快取分割區</string>
     <string name="wipe_data_summary">擦除資料分割區</string>
     <string name="wipe_cache_message">\ncache/dalvik 裝置的快取分割區將被刪除。\n\n注意! 裝置將被重新開機。\n</string>
     <string name="wipe_data_message">\n您的裝置的資料分區將被完全擦除。\n\n警告! 您將遺失包括應用程式在內的所有使用者資料。\n\n注意! 裝置將被重新開機。\n</string>
 
     <!-- App Updater -->
-    <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
     <string name="check_update">檢查更新</string>
     <string name="check_update_summary">檢查 SmartPack-Kernel Manager 的新版本</string>
-    <string name="appupdater_update_available">有可以使用的更新！</string>
-    <string name="appupdater_update_available_description_dialog">更新 %1$s 可供下載。透過下載最新的更新, 您將取得 %2$s 的最新功能、改進和錯誤修復。</string>
-    <string name="appupdater_update_available_description_dialog_before_release_notes">更新 %1$s 可供下載。\n\n您可以取得這些新功能:\n%2$s</string>
-    <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
-    <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下載</string>
-    <string name="appupdater_update_not_available">恭喜</string>
-    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack 核心管理器!</string>
-    <string name="appupdater_btn_update">更新</string>
-    <string name="appupdater_btn_disable">不要再顯示</string>
-    <string name="appupdater_btn_dismiss">忽略</string>
-    <string name="appupdater_channel_name">更新通知</string>
-    <string name="appupdater_downloading_file">正在下載...</string>
-    <string name="appupdater_download_filed">下載失敗!</string>
 
     <!-- Settings-->
     <string name="open_settings">開啟設定</string>

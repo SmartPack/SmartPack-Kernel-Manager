@@ -904,7 +904,6 @@
     <!-- Script Manager -->
     <string name="exceute_question">Executar %s?</string>
     <string name="executing">Executando</string>
-    <string name="result">Resultado</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">Esta seção mostra o que acontecerá quando o dispositivo for inicializado. Se estiver em branco, nada acontecerá após a inicialização.</string>
@@ -916,7 +915,6 @@
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
     <string name="flash_log">Registro do Flasher</string>
     <string name="reboot">Reiniciar</string>
-    <string name="reboot_summary">Reiniciar o dispositivo</string>
     <string name="normal_reboot_message">\nSeu dispositivo será reiniciado.\n</string>
     <string name="reboot_now">Reiniciar Agora</string>
     <string name="reboot_later">Reiniciar Depois</string>
@@ -924,7 +922,6 @@
     <string name="reboot_bootloader">Reiniciar no Bootloader</string>
     <string name="turn_off">Desligar</string>
     <string name="turn_off_message">\nSeu dispositivo será desligado.\n</string>
-    <string name="turn_off_summary">Desliga seu aparelho</string>
     <string name="wipe_data">Limpar Data</string>
     <string name="wipe_cache">Limpar Cache</string>
     <string name="backing_up">Fazendo Backup</string>
@@ -933,8 +930,6 @@
     <string name="reset_settings">Redefinir o App</string>
     <string name="reset_settings_summary">Redefinir configurações do usuário</string>
     <string name="reset_settings_message">\nAs configurações do aplicativo serão completamente apagadas.\n\nTem certeza?\n</string>
-    <string name="reboot_recovery_summary">Reiniciar o dispositivo no modo de recovery</string>
-    <string name="reboot_bootloader_summary">Reiniciar o dispositivo no modo download</string>
     <string name="reboot_message">Para evitar falhas na configuração, é altamente recomendável reiniciar o sistema.\n\nDeseja reiniciar?\n</string>
     <string name="recovery_message">\nSeu dispositivo será reiniciado no modo recovery.\n</string>
     <string name="bootloader_message">\nSeu dispositivo será reiniciado no modo download.\n</string>
@@ -944,22 +939,8 @@
     <string name="wipe_data_message">\nA partição de dados do seu dispositivo será completamente apagada.\n\nAviso! Você perderá todos os dados do usuário, incluindo aplicativos.\n\nAtenção! O dispositivo será reiniciado.\n</string>
 
     <!-- App Updater -->
-    <string name="appupdater_update_title">Nova atualização disponível!\nv%2$s</string>
     <string name="check_update">Verificar atualizações</string>
     <string name="check_update_summary">Verificar se há novas versões do SmartPack-Kernel Manager</string>
-    <string name="appupdater_update_available">Nova atualização disponível!</string>
-    <string name="appupdater_update_available_description_dialog">Atualização %1$s está disponível para download. Ao baixar a atualização mais recente, você obterá os recursos, melhorias e correções de bugs mais recentes para o %2$s.</string>
-    <string name="appupdater_update_available_description_dialog_before_release_notes">Atualização %1$s está disponível.\n\nVocê pode obter essas funções:\n%2$s</string>
-    <string name="appupdater_update_available_description_snackbar">Atualização %1$s está disponível!</string>
-    <string name="appupdater_update_available_description_notification">Atualização %1$s de %2$s está disponível para download</string>
-    <string name="appupdater_update_not_available">Boa 06</string>
-    <string name="appupdater_update_not_available_description">Você já possui uma versão atualizada do SmartPack-Kernel Manager!</string>
-    <string name="appupdater_btn_update">Atualizar</string>
-    <string name="appupdater_btn_disable">Não mostrar novamente</string>
-    <string name="appupdater_btn_dismiss">Dispensar</string>
-    <string name="appupdater_channel_name">Notificações de atualização</string>
-    <string name="appupdater_downloading_file">Baixando...</string>
-    <string name="appupdater_download_filed">Downlod FALHOU!</string>
 
     <!-- Settings-->
     <string name="open_settings">Abrir Configurações</string>

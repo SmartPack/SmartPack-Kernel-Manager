@@ -1,14 +1,5 @@
 {
+  "releaseNotes": "Change-log\n- SmartPack: Manual Flash: Directly catch and show flashing output\n- SmartPack: Manual Flash: Removed file size limit with a warning message.\n- VM: Hide VM tunables by default.\n- Scripts & Backups: Workaround to avoid failing create scripts/backups in certain cases.\n- Custom Controller: Switch: Updates for supporting more boolean values.\n- Misc: Fully redesigned about page.\n- Miscellaneous changes.",
   "latestVersion": "9.4-20200105",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
-  "releaseNotes": [
-    "Change-log:",
-    "- SmartPack: Manual Flash: Directly catch and show flashing output.",
-    "- SmartPack: Manual Flash: Removed file size limit with a warning message.",
-    "- VM: Hide VM tunables by default.",
-    "- Scripts & Backups: Workaround to avoid failing create scripts/backups in certain cases.",
-    "- Custom Controller: Switch: Updates for supporting more boolean values.",
-    "- Misc: Fully redesigned about page.",
-    "- Miscellaneous changes."
-  ]
+  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true"
 }

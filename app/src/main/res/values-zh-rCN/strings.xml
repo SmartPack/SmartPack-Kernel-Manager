@@ -831,9 +831,8 @@
      <!-- Script Manager -->
      <string name="exceute_question">执行 %s 吗？  </string>
      <string name="executing">执行中</string>
-     <string name="result">结果</string>
 
-     <!-- On Boot -->
+     <!-- On Boot -->
      <string name="on_boot_welcome_summary">本节介绍当装置启动时会发生什么。 如果它是空白的，则在启动后什么也不会发生。  </string>
      <string name="delete_question">删除 %s 吗？  </string>
      <string name="disable_question">停用 %s 吗？  </string>
@@ -857,9 +856,7 @@
      <string name="reset_settings">重设应用程式</string>
      <string name="reset_settings_summary">重置</string>
      <string name="reset_settings_message">\n应用程式设定将被完全删除。  \n你确定吗？  \n\n</string>
-     <string name="reboot_recovery_summary">将装置重新开机到复原模式</string>
-     <string name="reboot_bootloader_summary">将装置重新开机到下载模式</string>
-     <string name="reboot_message">为避免配置失败, 强烈建议重新开机。  \n\n是否要重新开机？  \n</string>
+     <string name="reboot_message">为避免配置失败, 强烈建议重新开机。  \n\n是否要重新开机？  \n</string>
      <string name="recovery_message">\n您的装置将重新开机到复原模式。  \n</string>
      <string name="bootloader_message">\n您的装置将重新开机到下载模式。  \n</string>
      <string name="wipe_cache_summary">擦除快取分割区</string>
@@ -868,24 +865,10 @@
      <string name="wipe_data_message">\n您的装置的资料分区将被完全擦除。  \n\n警告! 您将遗失包括应用程式在内的所有使用者资料。  \n\n注意! 装置将被重新开机。  \n</string>
 
      <!-- App Updater -->
-     <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
-     <string name="check_update">检查更新</string>
+     <string name="check_update">检查更新</string>
      <string name="check_update_summary">检查 SmartPack-Kernel Manager 的新版本</string>
-     <string name="appupdater_update_available">有可以使用的更新！  </string>
-     <string name="appupdater_update_available_description_dialog">更新 %1$s 可供下载。 透过下载最新的更新, 您将取得 %2$s 的最新功能、改进和错误修复。  </string>
-     <string name="appupdater_update_available_description_dialog_before_release_notes">更新 %1$s 可供下载。  \n\n您可以取得这些新功能:\n%2$s</string>
-     <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
-     <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下载</string>
-     <string name="appupdater_update_not_available">恭喜</string>
-     <string name="appupdater_update_not_available_description">您已经拥有最新版本的 SmartPack 核心管理器!</string>
-     <string name="appupdater_btn_update">更新</string>
-     <string name="appupdater_btn_disable">不要再显示</string>
-     <string name="appupdater_btn_dismiss">忽略</string>
-     <string name="appupdater_channel_name">更新通知</string>
-     <string name="appupdater_downloading_file">正在下载...</string>
-     <string name="appupdater_download_filed">下载失败!</string>
 
-     <!-- Settings-->
+     <!-- Settings-->
      <string name="open_settings">开启设定</string>
      <string name="fahrenheit_title">使用华氏温度</string>
      <string name="fahrenheit_summary">使用华氏温度测量。  </string>

@@ -552,6 +552,11 @@ public class Utils {
         RootUtils.runCommand("chmod " + permission + " " + path);
     }
 
+    public static void downloadFile(String path, String url) {
+        RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
+                "curl -L -o " : "wget -O ") + path + " " + url);
+    }
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();

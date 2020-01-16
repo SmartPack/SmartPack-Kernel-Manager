@@ -33,12 +33,12 @@ import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
+import com.smartpack.kernelmanager.utils.UpdateCheck;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -63,7 +63,6 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("Swirl,Matthew Precious", "https://github.com/mattprecious/swirl");
         sCredits.put("CircularImageView,Lopez Mikhael", "https://github.com/lopspower/CircularImageView");
         sCredits.put("Picasso,Square", "https://github.com/square/picasso");
-        sCredits.put("OkHttp,Square", "https://github.com/square/okhttp");
         sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
         sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
     }
@@ -160,7 +159,7 @@ public class AboutFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
-                AppUpdaterTask.appCheck(getActivity());
+                UpdateCheck.manualUpdateCheck(getActivity());
             }
         });
 

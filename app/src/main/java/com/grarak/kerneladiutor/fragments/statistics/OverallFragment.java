@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -42,10 +41,10 @@ import androidx.annotation.Nullable;
 
 import com.bvalosek.cpuspy.CpuSpyApp;
 import com.bvalosek.cpuspy.CpuStateMonitor;
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.AppUpdaterTask;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
@@ -59,6 +58,7 @@ import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyBu
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
 import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
+import com.smartpack.kernelmanager.utils.UpdateCheck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,14 +98,6 @@ public class OverallFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-
-        // Initialize auto app update check
-        if (Utils.isNetworkAvailable(getContext()) && Prefs.getBoolean("auto_update", true, getActivity()) == true) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-            }
-            AppUpdaterTask.autoappCheck(getActivity());
-        }
         statsInit(items);
         frequenciesInit(items);
     }
@@ -520,5 +512,21 @@ public class OverallFragment extends RecyclerViewFragment {
         }
 
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        // Initialize auto app update check
+        if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("auto_update", true, getActivity())) {
+            if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
+                UpdateCheck.getVersionInfo();
+            }
+            if (UpdateCheck.hasVersionInfo() && !BuildConfig.VERSION_NAME.equals(UpdateCheck.versionName())) {
+                UpdateCheck.updateAvailableDialog(getActivity());
+            }
+        }
+    }
+
 
 }
