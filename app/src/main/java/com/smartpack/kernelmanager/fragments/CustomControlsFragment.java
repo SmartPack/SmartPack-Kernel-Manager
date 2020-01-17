@@ -35,8 +35,10 @@ import android.widget.CheckBox;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
@@ -172,27 +174,38 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     public void onMenuReady(CardView switchItemsCard, PopupMenu popupMenu) {
                         Menu menu = popupMenu.getMenu();
                         menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                            }
-                                        }, new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                CustomControls.delete(switchItems.toString());
-                                                reload();
-                                            }
-                                        }, new DialogInterface.OnDismissListener() {
-                                            @Override
-                                            public void onDismiss(DialogInterface dialogInterface) {
-                                                mDeleteDialog = null;
-                                            }
-                                        }, getActivity());
-                                mDeleteDialog.show();
+                                switch (item.getItemId()) {
+                                    case 0:
+                                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                    }
+                                                }, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        CustomControls.delete(switchItems.toString());
+                                                        reload();
+                                                    }
+                                                }, new DialogInterface.OnDismissListener() {
+                                                    @Override
+                                                    public void onDismiss(DialogInterface dialogInterface) {
+                                                        mDeleteDialog = null;
+                                                    }
+                                                }, getActivity());
+                                        mDeleteDialog.show();
+                                        break;
+                                    case 1:
+                                        Utils.shareItem(getActivity(), CustomControls.getItemPath(switchItems.toString()),
+                                                switchItems.toString(), getString(R.string.share_controller, CustomControls.switchFile()) + " -> Import -> Switch'.\n\n" +
+                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
+                                                        "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                        break;
+                                }
                                 return false;
                             }
                         });
@@ -229,27 +242,38 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     public void onMenuReady(CardView genericItemsCard, PopupMenu popupMenu) {
                         Menu menu = popupMenu.getMenu();
                         menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.delete));
+                        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.share));
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                            }
-                                        }, new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                CustomControls.delete(genericItems.toString());
-                                                reload();
-                                            }
-                                        }, new DialogInterface.OnDismissListener() {
-                                            @Override
-                                            public void onDismiss(DialogInterface dialogInterface) {
-                                                mDeleteDialog = null;
-                                            }
-                                        }, getActivity());
-                                mDeleteDialog.show();
+                                switch (item.getItemId()) {
+                                    case 0:
+                                        mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                    }
+                                                }, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        CustomControls.delete(genericItems.toString());
+                                                        reload();
+                                                    }
+                                                }, new DialogInterface.OnDismissListener() {
+                                                    @Override
+                                                    public void onDismiss(DialogInterface dialogInterface) {
+                                                        mDeleteDialog = null;
+                                                    }
+                                                }, getActivity());
+                                        mDeleteDialog.show();
+                                        break;
+                                    case 1:
+                                        Utils.shareItem(getActivity(), CustomControls.getItemPath(genericItems.toString()),
+                                                genericItems.toString(), getString(R.string.share_controller, CustomControls.genericFile()) + " -> Import -> Generic'.\n\n" +
+                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
+                                                        "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                        break;
+                                }
                                 return false;
                             }
                         });
@@ -296,14 +320,56 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch (i) {
                     case 0:
-                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                        switchIntent.setType("*/*");
-                        startActivityForResult(switchIntent, 0);
+                        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
+                                R.array.create_controls_options), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                switch (i) {
+                                    case 0:
+                                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                        switchIntent.setType("*/*");
+                                        startActivityForResult(switchIntent, 0);
+                                        break;
+                                    case 1:
+                                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                        genericIntent.setType("*/*");
+                                        startActivityForResult(genericIntent, 1);
+                                        break;
+                                }
+                            }
+                        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                mSelectionMenu = null;
+                            }
+                        });
+                        mSelectionMenu.show();
                         break;
                     case 1:
-                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
-                        genericIntent.setType("*/*");
-                        startActivityForResult(genericIntent, 1);
+                        mSelectionMenu = new Dialog(getActivity()).setItems(getResources().getStringArray(
+                                R.array.create_controls_options), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                switch (i) {
+                                    case 0:
+                                        Intent switchIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                        switchIntent.setType("*/*");
+                                        startActivityForResult(switchIntent, 2);
+                                        break;
+                                    case 1:
+                                        Intent genericIntent  = new Intent(Intent.ACTION_GET_CONTENT);
+                                        genericIntent.setType("*/*");
+                                        startActivityForResult(genericIntent, 3);
+                                        break;
+                                }
+                            }
+                        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialogInterface) {
+                                mSelectionMenu = null;
+                            }
+                        });
+                        mSelectionMenu.show();
                         break;
                 }
             }
@@ -342,14 +408,24 @@ public class CustomControlsFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
-
-            if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
-                Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
+            if (requestCode == 0 || requestCode == 1) {
+                if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
+                    Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
+                    return;
+                }
+            } else {
+                if (!Utils.getExtension(file.getName()).isEmpty()) {
+                    Utils.toast(getString(R.string.invalid_controller, mPath), getActivity());
+                    return;
+                }
+            }
+            if ((requestCode == 2 || requestCode == 3) && !Utils.existFile(Utils.readFile(mPath))) {
+                Utils.toast(getString(R.string.unsupported_controller, Utils.readFile(mPath)), getActivity());
                 return;
             }
-            File controls = (requestCode == 0 ? CustomControls.switchFile() : CustomControls.genericFile());
+            File controls = (requestCode == 0 || requestCode == 2 ? CustomControls.switchFile() : CustomControls.genericFile());
             if (Utils.existFile(controls + "/" + mPath.replaceFirst("/", "").
-                    replace("/", "-"))) {
+                    replace("/", "-")) || Utils.existFile(controls + "/" + file.getName())) {
                 Utils.toast(getString(R.string.already_added, mPath), getActivity());
                 return;
             }
@@ -362,7 +438,11 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     controls.delete();
                 }
                 controls.mkdirs();
-                CustomControls.exportPath(mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                if (requestCode == 0 || requestCode == 1) {
+                    CustomControls.exportPath(mPath, (requestCode == 0 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                } else {
+                    Utils.copy(mPath, (requestCode == 2 ? CustomControls.switchFile().toString() : CustomControls.genericFile().toString()));
+                }
                 reload();
             });
             selectControl.show();

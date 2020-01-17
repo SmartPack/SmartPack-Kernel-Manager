@@ -47,9 +47,11 @@ import android.widget.Toast;
 
 import androidx.annotation.StringRes;
 
+import androidx.core.content.FileProvider;
 import androidx.core.view.ViewCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
+import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.StartActivity;
 import com.grarak.kerneladiutor.activities.StartActivityMaterial;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -438,6 +440,18 @@ public class Utils {
         }
     }
 
+    public static void shareItem(Context context, String name, String path, String string) {
+        Uri uriFile = FileProvider.getUriForFile(context,
+                "com.grarak.kerneladiutor.provider", new File(path));
+        Intent shareScript = new Intent(Intent.ACTION_SEND);
+        shareScript.setType("application/x-shellscript");
+        shareScript.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, name));
+        shareScript.putExtra(Intent.EXTRA_TEXT, string);
+        shareScript.putExtra(Intent.EXTRA_STREAM, uriFile);
+        shareScript.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.startActivity(Intent.createChooser(shareScript, context.getString(R.string.share_with)));
+    }
+
     public static int getOrientation(Activity activity) {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode() ?
                 Configuration.ORIENTATION_PORTRAIT : activity.getResources().getConfiguration().orientation;
@@ -542,6 +556,10 @@ public class Utils {
 
     public static String append(String text, String path) {
         return RootUtils.runCommand("echo '" + text + "' >> " + path);
+    }
+
+    public static String copy(String source, String dest) {
+        return RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
     public static String mount(String command, String source, String dest) {

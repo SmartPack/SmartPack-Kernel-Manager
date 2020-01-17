@@ -51,6 +51,10 @@
 
     <!-- Custom Controls -->
     <string-array name="custom_controls_options">
+        <item>@string/create</item>
+        <item>@string/import_item</item>
+    </string-array>
+    <string-array name="create_controls_options">
         <item>@string/control_switch</item>
         <item>@string/control_generic</item>
     </string-array>

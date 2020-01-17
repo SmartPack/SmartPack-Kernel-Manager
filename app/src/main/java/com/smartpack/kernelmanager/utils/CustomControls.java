@@ -25,7 +25,6 @@ import android.content.Context;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.File;
 
@@ -78,7 +77,7 @@ public class CustomControls {
     }
 
     public static void exportPath(String path, String folder) {
-        RootUtils.runCommand("echo " + path + " > " + folder + "/" + path.replaceFirst("/", "").
+        Utils.create(path, folder + "/" + path.replaceFirst("/", "").
                 replace("/", "-"));
     }
 

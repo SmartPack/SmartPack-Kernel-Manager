@@ -871,9 +871,15 @@
     <string name="control_generic">Generic</string>
     <string name="documentation">Documentation</string>
     <string name="invalid_path">%s is not a valid sysfs path! Aborting.</string>
+    <string name="invalid_controller">%s is not a valid custom controller! Aborting.</string>
+    <string name="unsupported_controller">\'%s\' doesn\'t exist in this device! Aborting.</string>
     <string name="edit">Edit</string>
     <string name="export">Export</string>
     <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="share_by">\'%s\' | shared by SmartPack-Kernel Manager</string>
+    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls</string>
+    <string name="share_with">Share with</string>
     <string name="sure_question">Are you sure?</string>
     <string name="name">Name</string>
     <string name="already_exists">%s already exists!</string>
