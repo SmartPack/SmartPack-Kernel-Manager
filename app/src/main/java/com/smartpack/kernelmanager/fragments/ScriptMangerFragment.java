@@ -245,6 +245,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 });
 
                 DescriptionView descriptionView = new DescriptionView();
+                descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
                 descriptionView.setSummary(script);
 
                 cardView.addItem(descriptionView);

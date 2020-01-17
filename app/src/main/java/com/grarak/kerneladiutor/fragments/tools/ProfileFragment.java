@@ -323,6 +323,7 @@ public class ProfileFragment extends RecyclerViewFragment {
             });
 
             final DescriptionView descriptionView = new DescriptionView();
+            descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
             descriptionView.setSummary(profileItems.get(i).getName());
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override

@@ -214,6 +214,7 @@ public class BackupFragment extends RecyclerViewFragment {
             for (final File image : file.listFiles()) {
                 if (image.isFile()) {
                     DescriptionView descriptionView = new DescriptionView();
+                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
                     descriptionView.setTitle(image.getName().replace(".img", ""));
                     descriptionView.setSummary((image.length() / 1024L / 1024L) + getString(R.string.mb));
                     descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
