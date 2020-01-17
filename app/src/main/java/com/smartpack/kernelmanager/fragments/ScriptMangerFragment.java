@@ -36,6 +36,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.activities.EditorActivity;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
@@ -178,7 +179,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                         Menu menu = popupMenu.getMenu();
                         menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.execute));
                         menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.edit));
-                        menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.delete));
+                        menu.add(Menu.NONE, 2, Menu.NONE, getString(R.string.share));
+                        menu.add(Menu.NONE, 3, Menu.NONE, getString(R.string.delete));
 
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
@@ -211,6 +213,11 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                         startActivityForResult(intent, 0);
                                         break;
                                     case 2:
+                                        Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
+                                                getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
+                                                "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                        break;
+                                    case 3:
                                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),
                                                 new DialogInterface.OnClickListener() {
                                                     @Override

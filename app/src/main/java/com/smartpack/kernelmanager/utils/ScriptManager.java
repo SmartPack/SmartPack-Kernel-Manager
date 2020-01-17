@@ -37,17 +37,20 @@ public class ScriptManager {
 
     private static final String SCRIPT = Utils.getInternalDataStorage() + "/scripts";
 
+    public static File scriptFile() {
+        return new File(SCRIPT);
+    }
+
     public static void write(String file, String text) {
         RootFile f = new RootFile(SCRIPT + "/" + file);
         f.write(text, false);
     }
 
     public static void importScript(String string) {
-        File file = new File(SCRIPT);
-        if (file.exists() && file.isFile()) {
-            file.delete();
+        if (scriptFile().exists() && scriptFile().isFile()) {
+            scriptFile().delete();
         }
-        file.mkdirs();
+        scriptFile().mkdirs();
         RootUtils.runCommand("cp " + string + " " + SCRIPT);
     }
 
