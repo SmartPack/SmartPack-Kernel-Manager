@@ -404,7 +404,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
             @Override
             protected String doInBackground(Void... voids) {
-                SmartPack.prepareManualFlash(file, getActivity());
+                SmartPack.prepareManualFlash(file);
                 return SmartPack.manualFlash(file);
             }
 
