@@ -19,11 +19,7 @@
  */
 package com.grarak.kerneladiutor.utils.root;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.database.Settings;
