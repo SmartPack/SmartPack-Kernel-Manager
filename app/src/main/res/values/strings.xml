@@ -953,6 +953,7 @@
     <string name="disable_question">Disable %s?</string>
 
     <!-- SmartPack -->
+    <string name="other_options">Other Options</string>
     <string name="shell">Run Shell Command</string>
     <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>

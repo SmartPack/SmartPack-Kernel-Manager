@@ -25,6 +25,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.Manifest;
@@ -41,10 +42,10 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
-import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.utils.SmartPack;
 
@@ -83,6 +84,17 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     @Override
+    public int getSpanCount() {
+        int span = Utils.isTablet(getActivity()) ? Utils.getOrientation(getActivity()) ==
+                Configuration.ORIENTATION_LANDSCAPE ? 5 : 4 : Utils.getOrientation(getActivity()) ==
+                Configuration.ORIENTATION_LANDSCAPE ? 3 : 2;
+        if (itemsSize() != 0 && span > itemsSize()) {
+            span = itemsSize();
+        }
+        return span;
+    }
+
+    @Override
     protected void addItems(List<RecyclerViewItem> items) {
         SmartPackInit(items);
         requestPermission(0, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -97,8 +109,11 @@ public class SmartPackFragment extends RecyclerViewFragment {
     }
 
     private void SmartPackInit(List<RecyclerViewItem> items) {
-        CardView smartpack = new CardView(getActivity());
-        smartpack.setTitle(getString(R.string.smartpack));
+        TitleView smartpack = new TitleView();
+        smartpack.setText(getString(R.string.other_options));
+        smartpack.setFullSpan(true);
+
+        items.add(smartpack);
 
         DescriptionView logcat = new DescriptionView();
         logcat.setTitle(getString(R.string.logcat));
@@ -116,7 +131,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 new Execute().execute("logcat -b events -v time -d > " + logFolder + "/events");
             }
         });
-        smartpack.addItem(logcat);
+        items.add(logcat);
 
         if (Utils.existFile("/proc/last_kmsg")) {
             DescriptionView lastkmsg = new DescriptionView();
@@ -133,7 +148,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     new Execute().execute("cat /proc/last_kmsg > " + logFolder + "/last_kmsg");
                 }
             });
-            smartpack.addItem(lastkmsg);
+            items.add(lastkmsg);
         }
 
         DescriptionView dmesg = new DescriptionView();
@@ -150,7 +165,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 new Execute().execute("dmesg > " + logFolder + "/dmesg");
             }
         });
-        smartpack.addItem(dmesg);
+        items.add(dmesg);
 
         if (Utils.existFile("/sys/fs/pstore/dmesg-ramoops*")) {
             DescriptionView dmesgRamoops = new DescriptionView();
@@ -167,7 +182,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     new Execute().execute("cat /sys/fs/pstore/dmesg-ramoops* > " + logFolder + "/dmesg-ramoops");
                 }
             });
-            smartpack.addItem(dmesgRamoops);
+            items.add(dmesgRamoops);
         }
 
         if (Utils.existFile("/sys/fs/pstore/console-ramoops*")) {
@@ -185,12 +200,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     new Execute().execute("cat /sys/fs/pstore/console-ramoops* > " + logFolder + "/console-ramoops");
                 }
             });
-            smartpack.addItem(ramoops);
+            items.add(ramoops);
         }
 
         GenericInputView shell = new GenericInputView();
         shell.setTitle(getString(R.string.shell));
         shell.setValue(getString(R.string.shell_summary));
+        shell.setFullSpan(true);
         shell.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
             @Override
             public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
@@ -198,7 +214,52 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
         });
 
-        smartpack.addItem(shell);
+        items.add(shell);
+
+        // Show wipe (Cache/Data) functions only if we recognize recovery...
+        if (SmartPack.hasRecovery()) {
+            DescriptionView wipe_cache = new DescriptionView();
+            wipe_cache.setTitle(getString(R.string.wipe_cache));
+            wipe_cache.setSummary(getString(R.string.wipe_cache_summary));
+            wipe_cache.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    Dialog wipecache = new Dialog(getActivity());
+                    wipecache.setIcon(R.mipmap.ic_launcher);
+                    wipecache.setTitle(getString(R.string.sure_question));
+                    wipecache.setMessage(getString(R.string.wipe_cache_message));
+                    wipecache.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    });
+                    wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
+                        new Execute().execute("echo --wipe_cache > /cache/recovery/command");
+                        new Execute().execute(Utils.prepareReboot() + " recovery");
+                    });
+                    wipecache.show();
+                }
+            });
+            items.add(wipe_cache);
+
+            DescriptionView wipe_data = new DescriptionView();
+            wipe_data.setTitle(getString(R.string.wipe_data));
+            wipe_data.setSummary(getString(R.string.wipe_data_summary));
+            wipe_data.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    Dialog wipedata = new Dialog(getActivity());
+                    wipedata.setIcon(R.mipmap.ic_launcher);
+                    wipedata.setTitle(getString(R.string.sure_question));
+                    wipedata.setMessage(getString(R.string.wipe_data_message));
+                    wipedata.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                    });
+                    wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
+                        new Execute().execute("echo --wipe_data > /cache/recovery/command");
+                        new Execute().execute(Utils.prepareReboot() + " recovery");
+                    });
+                    wipedata.show();
+                }
+            });
+            items.add(wipe_data);
+        }
 
         DescriptionView reboot_options = new DescriptionView();
         reboot_options.setTitle(getString(R.string.reboot_options));
@@ -269,52 +330,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
             }
         });
 
-        smartpack.addItem(reboot_options);
-
-        // Show wipe (Cache/Data) functions only if we recognize recovery...
-        if (SmartPack.hasRecovery()) {
-            DescriptionView wipe_cache = new DescriptionView();
-            wipe_cache.setTitle(getString(R.string.wipe_cache));
-            wipe_cache.setSummary(getString(R.string.wipe_cache_summary));
-            wipe_cache.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Dialog wipecache = new Dialog(getActivity());
-                    wipecache.setIcon(R.mipmap.ic_launcher);
-                    wipecache.setTitle(getString(R.string.sure_question));
-                    wipecache.setMessage(getString(R.string.wipe_cache_message));
-                    wipecache.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
-                        new Execute().execute("echo --wipe_cache > /cache/recovery/command");
-                        new Execute().execute(Utils.prepareReboot() + " recovery");
-                    });
-                    wipecache.show();
-                }
-            });
-            smartpack.addItem(wipe_cache);
-
-            DescriptionView wipe_data = new DescriptionView();
-            wipe_data.setTitle(getString(R.string.wipe_data));
-            wipe_data.setSummary(getString(R.string.wipe_data_summary));
-            wipe_data.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Dialog wipedata = new Dialog(getActivity());
-                    wipedata.setIcon(R.mipmap.ic_launcher);
-                    wipedata.setTitle(getString(R.string.sure_question));
-                    wipedata.setMessage(getString(R.string.wipe_data_message));
-                    wipedata.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
-                        new Execute().execute("echo --wipe_data > /cache/recovery/command");
-                        new Execute().execute(Utils.prepareReboot() + " recovery");
-                    });
-                    wipedata.show();
-                }
-            });
-            smartpack.addItem(wipe_data);
-        }
+        items.add(reboot_options);
 
         DescriptionView reset = new DescriptionView();
         reset.setTitle(getString(R.string.reset_settings));
@@ -346,9 +362,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 resetsettings.show();
             }
         });
-        smartpack.addItem(reset);
-
-        items.add(smartpack);
+        items.add(reset);
     }
 
     private class Execute extends AsyncTask<String, Void, Void> {
