@@ -10,8 +10,8 @@
 ## Added features over official KA
 * Option to flash recovery zip files while running Android OS.
 * A simple and user-friendly Custom Controller, which is totally different to that of the official KA.
-* A Script Manager to easily create, import, edit and execute any properly formatted shell scripts.
-* A simple amd user-friendly Kernel downloader feature, which is also totally different to that of the official KA.
+* A Script Manager to easily create, import, edit, share and execute any properly formatted shell scripts.
+* A simple and user-friendly Kernel downloader, which is also totally different to that of the official KA ([Documentation](https://smartpack.github.io/kerneldownloads/)).
 * CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
