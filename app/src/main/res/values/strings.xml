@@ -954,7 +954,7 @@
 
     <!-- SmartPack -->
     <string name="shell">Run Shell Command</string>
-    <string name="shell_summary">Execute a shell command and view result</string>
+    <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>
     <string name="support_summary">Visit support page at xda-developers.com</string>
     <string name="flash_log">Flasher Log</string>

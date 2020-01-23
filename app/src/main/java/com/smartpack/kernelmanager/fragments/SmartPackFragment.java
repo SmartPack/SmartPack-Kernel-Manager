@@ -43,9 +43,9 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
-import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
+import com.smartpack.kernelmanager.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.utils.SmartPack;
 
 import java.io.File;
@@ -188,13 +188,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
             smartpack.addItem(ramoops);
         }
 
-        GenericSelectView shell = new GenericSelectView();
+        GenericInputView shell = new GenericInputView();
         shell.setTitle(getString(R.string.shell));
-        shell.setSummary(getString(R.string.shell_summary));
-        shell.setValue("");
-        shell.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+        shell.setValue(getString(R.string.shell_summary));
+        shell.setOnGenericValueListener(new GenericInputView.OnGenericValueListener() {
             @Override
-            public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+            public void onGenericValueSelected(GenericInputView genericSelectView, String value) {
                 runCommand(value);
             }
         });
