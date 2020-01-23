@@ -21,11 +21,14 @@
 
 package com.smartpack.kernelmanager.utils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.views.dialog.Dialog;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -78,12 +81,7 @@ public class SmartPack {
         return file.length();
     }
 
-    /*
-     * Flashing recovery zip without rebooting to custom recovery
-     * Credits to osm0sis @ xda-developers.com
-     */
-    public static void prepareManualFlash(File file) {
-        String path = file.toString();
+    public static void prepareFlashFolder() {
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
         }
@@ -92,6 +90,76 @@ public class SmartPack {
             flashPath.delete();
         }
         flashPath.mkdirs();
+    }
+
+    public static void flashingTask(File file, Context context) {
+        new AsyncTask<Void, Void, String>() {
+            private ProgressDialog mProgressDialog;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                mProgressDialog = new ProgressDialog(context);
+                mProgressDialog.setMessage(context.getString(R.string.flashing) + (" ") + file.getName());
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+            }
+            protected String doInBackground(Void... voids) {
+                prepareManualFlash(file);
+                return manualFlash(file);
+            }
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                try {
+                    mProgressDialog.dismiss();
+                } catch (IllegalArgumentException ignored) {
+                }
+                if (s != null && !s.isEmpty()) {
+                    new Dialog(context)
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(context.getString(R.string.flash_log))
+                            .setMessage(s)
+                            .setCancelable(false)
+                            .setNeutralButton(context.getString(R.string.cancel), (dialog, id) -> {
+                            })
+                            .setPositiveButton(context.getString(R.string.reboot), (dialog, id) -> {
+                                new AsyncTask<Void, Void, Void>() {
+                                    @Override
+                                    protected void onPreExecute() {
+                                        super.onPreExecute();
+                                        mProgressDialog = new ProgressDialog(context);
+                                        mProgressDialog.setMessage(context.getString(R.string.rebooting) + ("..."));
+                                        mProgressDialog.setCancelable(false);
+                                        mProgressDialog.show();
+                                    }
+                                    @Override
+                                    protected Void doInBackground(Void... voids) {
+                                        RootUtils.runCommand(Utils.prepareReboot());
+                                        return null;
+                                    }
+                                    @Override
+                                    protected void onPostExecute(Void aVoid) {
+                                        super.onPostExecute(aVoid);
+                                        try {
+                                            mProgressDialog.dismiss();
+                                        } catch (IllegalArgumentException ignored) {
+                                        }
+                                    }
+                                }.execute();
+                            })
+                            .show();
+
+                }
+            }
+        }.execute();
+    }
+
+    /*
+     * Flashing recovery zip without rebooting to custom recovery
+     * Credits to osm0sis @ xda-developers.com
+     */
+    public static void prepareManualFlash(File file) {
+        String path = file.toString();
+        prepareFlashFolder();
         if ((Utils.readFile(UNZIP_BINARY).isEmpty() || !Utils.existFile(UNZIP_BINARY)) &&
                 Utils.existFile(MAGISK_UNZIP)) {
             RootUtils.runCommand(mountFS("-o remount,rw", "/system"));

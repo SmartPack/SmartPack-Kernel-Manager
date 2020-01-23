@@ -953,13 +953,31 @@
     <string name="disable_question">Disable %s?</string>
 
     <!-- SmartPack -->
+    <string name="acquiring">Acquiring update info</string>
+    <string name="donations">Donations</string>
+    <string name="donations_summary">Donate to Developer</string>
+    <string name="donations_unknown">Donation link is not provided by the developer yet!</string>
+    <string name="download">Download</string>
+    <string name="download_completed">%s is successfully downloaded. Do you want to flash it?</string>
+    <string name="downloading_update">Downloading %s</string>
+    <string name="get_it_summary">Get latest Kernel</string>
+    <string name="kernel_current">Current Version</string>
+    <string name="kernel_latest">Latest Version</string>
+    <string name="kernel_information">Kernel Informations</string>
+    <string name="update_channel">Update Channel Url</string>
+    <string name="update_channel_empty">Cleaning update channel information!</string>
+    <string name="update_channel_info">By linking the above update channel with a proper json file for your device, you can basically add kernel download, and auto-flash (not for all devices) support to any Kernel\'s available for your device. Please ask your favourite kernel developer to add support to this feature. The downloaded kernel will be available at \'%s\'.\n\nTips! You can import a json file created for franciscofranco\'s (huge \u2665 &amp; respect to him) \'FK-Kernel Manager\' and it will simply work.\n\nNeed more help? Click here!</string>
+    <string name="update_channel_invalid">You\'ve entered an invalid Url! Aborting.</string>
+    <string name="update_channel_summary">Input-update-channel-url-here</string>
+    <string name="update_check_message">SmartPack-Kernel Manager will check for a new version of %s once in a day!</string>
     <string name="other_options">Other Options</string>
     <string name="shell">Run Shell Command</string>
     <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>
-    <string name="support_summary">Visit support page at xda-developers.com</string>
+    <string name="support_summary">Visit support page</string>
     <string name="flash_log">Flasher Log</string>
     <string name="reboot">Reboot</string>
+    <string name="rebooting">Rebooting</string>
     <string name="reboot_options">Reboot Options</string>
     <string name="reboot_options_summary">Turn off or reboot your device</string>
     <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
@@ -992,7 +1010,7 @@
     <string name="update_available">New update available!\nv%s</string>
     <string name="get_it">Get It</string>
     <string name="downloading">Downloading SmartPack-Kernel Manager v%s</string>
-    <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded! Aborting.</string>
+    <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
     <string name="updated_dialog">Congrats! You\'ve already got an up-to-date version of SmartPack-Kernel Manager!</string>
     <string name="check_update">Check for Updates</string>
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>

@@ -557,6 +557,12 @@ public class Utils {
     public static String append(String text, String path) {
         return RootUtils.runCommand("echo '" + text + "' >> " + path);
     }
+    public static String delete(String path) {
+        if (Utils.existFile(path)) {
+            return RootUtils.runCommand("rm -r " + path);
+        }
+        return null;
+    }
 
     public static String copy(String source, String dest) {
         return RootUtils.runCommand("cp -r " + source + " " + dest);
@@ -564,6 +570,10 @@ public class Utils {
 
     public static String mount(String command, String source, String dest) {
         return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
+    }
+
+    public static String getChecksum(String path) {
+        return RootUtils.runCommand("sha1sum " + path);
     }
 
     public static void chmod(String permission, String path) {
