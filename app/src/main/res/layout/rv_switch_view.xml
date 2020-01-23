@@ -18,6 +18,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:scaleType="fitCenter"
+            android:layout_gravity="center"
             android:visibility="gone" />
 
         <LinearLayout

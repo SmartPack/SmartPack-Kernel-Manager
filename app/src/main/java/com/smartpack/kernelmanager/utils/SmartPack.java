@@ -41,8 +41,13 @@ public class SmartPack {
 
     private static final String FLASH_FOLDER = Utils.getInternalDataStorage() + "/flash";
     private static final String CLEANING_COMMAND = "rm -r '" + FLASH_FOLDER + "'";
+    private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     private static final String UNZIP_BINARY = "/system/bin/unzip";
     private static final String MAGISK_UNZIP = "/sbin/.magisk/busybox/unzip";
+
+    private static String flashingCommand(String binary, String api, FileDescriptor fd, String zip) {
+        return "sh " + binary + " " + api + " " + fd + " " + zip;
+    }
 
     private static String mountFS(String command, String fs) {
         return "mount " + command + " " + fs;
@@ -50,23 +55,6 @@ public class SmartPack {
 
     public static boolean hasRecovery() {
         return Utils.existFile("/cache/recovery/");
-    }
-
-    private static boolean hasPathLog() {
-        return Utils.existFile(Utils.getInternalDataStorage() + "/last_flash.txt");
-    }
-
-    private static boolean hasFlashLog() {
-        return Utils.existFile(Utils.getInternalDataStorage() + "/flasher_log.txt");
-    }
-
-    public static void cleanLogs() {
-        if (hasPathLog()) {
-            RootUtils.runCommand("rm -r " + Utils.getInternalDataStorage() + "/last_flash.txt");
-        }
-        if (hasFlashLog()) {
-            RootUtils.runCommand("rm -r " + Utils.getInternalDataStorage() + "/flasher_log.txt");
-        }
     }
 
     public static void prepareLogFolder() {
@@ -157,7 +145,7 @@ public class SmartPack {
      * Flashing recovery zip without rebooting to custom recovery
      * Credits to osm0sis @ xda-developers.com
      */
-    public static void prepareManualFlash(File file) {
+    private static void prepareManualFlash(File file) {
         String path = file.toString();
         prepareFlashFolder();
         if ((Utils.readFile(UNZIP_BINARY).isEmpty() || !Utils.existFile(UNZIP_BINARY)) &&
@@ -167,27 +155,19 @@ public class SmartPack {
             Utils.mount("-o bind", MAGISK_UNZIP, UNZIP_BINARY);
         }
         RootUtils.runCommand("unzip '" + path + "' -d '" + FLASH_FOLDER + "'");
-        if (Utils.existFile(Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary")) {
-            RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
+        if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             RootUtils.runCommand(mountFS("-o remount,rw", "/"));
             RootUtils.runCommand("mkdir /tmp");
-            RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
-            Utils.mount("-o loop", "tmp.ext4", "/tmp/");
+            RootUtils.runCommand("mke2fs -F " + FLASH_FOLDER + "/tmp.ext4 500000");
+            Utils.mount("-o loop", FLASH_FOLDER + "/tmp.ext4", "/tmp/");
         }
     }
 
-    public static String manualFlash(File file) {
+    private static String manualFlash(File file) {
         FileDescriptor fd = new FileDescriptor();
         String RECOVERY_API = "3";
-        String path = file.toString();
-        String date = RootUtils.runCommand("date");
-        String flashingCommnd = "sh META-INF/com/google/android/update-binary '" + RECOVERY_API + "' " + fd + " '" + path + "'| tee '" + Utils.getInternalDataStorage() + "'/flasher_log.txt";
-        String logTime = "echo '" + date + "' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
-        String logPath = "echo -- '" + path + "' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
-        String logEmptyLine = "echo ' ' >> '" + Utils.getInternalDataStorage() + "'/flasher_history.txt";
-        return RootUtils.runCommand(flashingCommnd + " && " + logTime + " && " + logPath + " && " +
-                logEmptyLine + " && " + CLEANING_COMMAND + " && " +
-                mountFS("-o remount,ro", "/ /system"));
+        return RootUtils.runCommand(flashingCommand(ZIPFILE_EXTRACTED, RECOVERY_API, fd, file.toString()) + " && " + CLEANING_COMMAND +
+                " && " + mountFS("-o remount,ro", "/ /system"));
     }
 
 }

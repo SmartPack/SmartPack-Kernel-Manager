@@ -685,8 +685,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            SmartPack.cleanLogs();
-            RootUtils.runCommand("echo '" + mPath + "' > " + Utils.getInternalDataStorage() + "/last_flash.txt");
             if (!Utils.getExtension(mPath).equals("zip")) {
                 Utils.toast(getString(R.string.file_selection_error), getActivity());
                 return;
