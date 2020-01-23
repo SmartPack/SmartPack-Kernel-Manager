@@ -109,7 +109,7 @@ public class AboutFragment extends RecyclerViewFragment {
         support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -124,7 +124,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -139,7 +139,7 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -154,7 +154,7 @@ public class AboutFragment extends RecyclerViewFragment {
         updatecheck.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -164,8 +164,7 @@ public class AboutFragment extends RecyclerViewFragment {
 
         SwitchView autoUpdateCheck = new SwitchView();
         autoUpdateCheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
-        autoUpdateCheck.setTitle(getString(R.string.auto_update_check));
-        autoUpdateCheck.setSummary(getString(R.string.auto_update_check_summary));
+        autoUpdateCheck.setSummary(getString(R.string.auto_update_check));
         autoUpdateCheck.setChecked(Prefs.getBoolean("auto_update", true, getActivity()));
         autoUpdateCheck.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
@@ -181,7 +180,7 @@ public class AboutFragment extends RecyclerViewFragment {
         donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -212,7 +211,7 @@ public class AboutFragment extends RecyclerViewFragment {
         share.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                if (!Utils.isNetworkAvailable(getContext())) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
@@ -229,13 +228,13 @@ public class AboutFragment extends RecyclerViewFragment {
 
         items.add(about);
         items.add(versioninfo);
-        items.add(support);
         items.add(sourcecode);
+        items.add(support);
         items.add(changelogs);
         items.add(updatecheck);
         items.add(autoUpdateCheck);
-        items.add(donatetome);
         items.add(share);
+        items.add(donatetome);
     }
 
     private void librariesInit(List<RecyclerViewItem> items) {
@@ -286,7 +285,7 @@ public class AboutFragment extends RecyclerViewFragment {
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getContext())) {
+                    if (!Utils.isNetworkAvailable(getActivity())) {
                         Utils.toast(R.string.no_internet, getActivity());
                         return;
                     }
@@ -325,7 +324,7 @@ public class AboutFragment extends RecyclerViewFragment {
             descriptionView.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getContext())) {
+                    if (!Utils.isNetworkAvailable(getActivity())) {
                         Utils.toast(R.string.no_internet, getActivity());
                         return;
                     }
