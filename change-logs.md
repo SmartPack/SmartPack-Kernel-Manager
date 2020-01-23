@@ -1,5 +1,9 @@
 # Change-logs
 
+## 86. January 23, 2020
+*Release-tag: v9.6*<br>
+Changes: SmartPack: Implemented an FK model kernel update feature. Custom Controller: Added option to share and import controllers. Script Manager: Added option to share scripts. Profiles, Scripts & Backup: Added images. SmartPack: Overall Updates in alignment. Miscellaneous changes.
+
 ## 85. January 16, 2020
 *Release-tag: v9.5*<br>
 Changes: SmartPack: Workaround to use Magisk BusyBox. SmartPack: Add option to run a shell commands and view output. SmartPack: Updated manual flashing. App updater: Switch to own implementation. K-lapse: Add option to export current settings as shell script. Update Russian translations. Miscellaneous changes.

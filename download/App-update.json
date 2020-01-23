@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-log\n- SmartPack: Workaround to use Magisk BusyBox.\n- SmartPack: Add option to run a shell commands and view output.\n- SmartPack: Updated manual flashing.\n- App updater: Switch to own implementation.\n- K-lapse: Add option to export current settings as shell script\n- Update Russian translations (credits: @andrey167).\n- Miscellaneous changes.",
-  "latestVersion": "9.5",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v9.5/com.smartpack.kernelmanager-v9.5-release.apk"
+  "releaseNotes": "Change-log\n- SmartPack: Implemented an FK model kernel update feature.\n- Custom Controller: Added option to share and import controllers.\n- Script Manager: Added option to share scripts.\n- Profiles, Scripts & Backup: Added images.\n- SmartPack: Overall Updates in alignment.\n- Miscellaneous changes.",
+  "latestVersion": "9.6",
+  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v9.6/com.smartpack.kernelmanager-v9.6-release.apk"
 }

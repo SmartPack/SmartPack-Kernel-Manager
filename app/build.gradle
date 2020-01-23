@@ -19,7 +19,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 9
-        versionName "9.5"
+        versionName "9.6"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"
@@ -59,12 +59,12 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha03'
+    implementation 'com.google.android.material:material:1.2.0-alpha04'
     implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 }
