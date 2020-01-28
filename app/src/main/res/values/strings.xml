@@ -101,6 +101,8 @@
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
+    <string name="overall_summary">Welcome to the home page of SmartPack-Kernel Manager. This page provides very basic information of your device. Advanced kernel tweaking options can be found on respective pages.</string>
+    <string name="cpu_times">CPU Times</string>
     <string name="offline">Offline</string>
     <string name="core">Core %d</string>
     <string name="gpu_freq">GPU Frequency</string>

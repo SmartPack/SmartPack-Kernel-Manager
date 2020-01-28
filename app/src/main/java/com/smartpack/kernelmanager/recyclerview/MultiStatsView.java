@@ -69,12 +69,12 @@ public class MultiStatsView extends RecyclerViewItem {
         refresh();
     }
 
-    public void setmStatsTwo(CharSequence statsTwo) {
+    public void setStatsTwo(CharSequence statsTwo) {
         mStatTwo = statsTwo;
         refresh();
     }
 
-    public void setmStatsThree(CharSequence statsThree) {
+    public void setStatsThree(CharSequence statsThree) {
         mStatThree = statsThree;
         refresh();
     }
@@ -85,15 +85,19 @@ public class MultiStatsView extends RecyclerViewItem {
 
         if (mTitleView != null && mTitle != null) {
             mTitleView.setText(mTitle);
+            mTitleView.setVisibility(View.VISIBLE);
         }
         if (mStatViewOne != null && mStatOne != null) {
             mStatViewOne.setText(mStatOne);
+            mStatViewOne.setVisibility(View.VISIBLE);
         }
         if (mStatViewTwo != null && mStatTwo != null) {
             mStatViewTwo.setText(mStatTwo);
+            mStatViewTwo.setVisibility(View.VISIBLE);
         }
         if (mStatViewThree != null && mStatThree != null) {
             mStatViewThree.setText(mStatThree);
+            mStatViewThree.setVisibility(View.VISIBLE);
         }
     }
 }

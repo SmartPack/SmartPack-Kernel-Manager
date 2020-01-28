@@ -24,7 +24,6 @@ import android.text.InputType;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.kernel.vm.VM;
 import com.grarak.kerneladiutor.utils.kernel.vm.ZRAM;
@@ -35,7 +34,6 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,23 +45,15 @@ public class VMFragment extends RecyclerViewFragment {
 
     private List<GenericSelectView> mVMs = new ArrayList<>();
 
-    private Device.MemInfo mMemInfo;
-    private MultiStatsView mVM;
-
     @Override
     protected void init() {
         super.init();
 
         addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
-        mMemInfo = Device.MemInfo.getInstance();
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        mVM = new MultiStatsView();
-        if (mMemInfo.getItemMb("MemTotal") != 0 || mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
-            items.add(mVM);
-        }
         VMInit(items);
         if (ZRAM.supported()) {
             zramInit(items);
@@ -270,24 +260,6 @@ public class VMFragment extends RecyclerViewFragment {
 
         if (zswapCard.size() > 0) {
             items.add(zswapCard);
-        }
-    }
-
-    @Override
-    protected void refresh() {
-        super.refresh();
-
-        if (mVM != null) {
-            if (mMemInfo.getItemMb("MemTotal") != 0) {
-                mVM.setStatsOne("RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB , Used: " + (mMemInfo.getItemMb("MemTotal")
-                        - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB");
-            }
-            if (mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
-                mVM.setmStatsTwo("Swap - Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
-                        + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
-            } else {
-                mVM.setmStatsTwo("Swap: N/A");
-            }
         }
     }
 

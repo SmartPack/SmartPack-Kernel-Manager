@@ -23,44 +23,33 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.BatteryManager;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.FragmentManager;
 
-import com.bvalosek.cpuspy.CpuSpyApp;
-import com.bvalosek.cpuspy.CpuStateMonitor;
 import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
-import com.grarak.kerneladiutor.fragments.BaseFragment;
+import com.grarak.kerneladiutor.fragments.DescriptionFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
+import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
+import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.utils.Prefs;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.kernel.cpu.CPUFreq;
+import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.kernel.gpu.GPUFreq;
-import com.grarak.kerneladiutor.views.XYGraph;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
-import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.StatsView;
-import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyButtonView;
-import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
 import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
+import com.smartpack.kernelmanager.utils.CPUTimes;
 import com.smartpack.kernelmanager.utils.UpdateCheck;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,280 +57,145 @@ import java.util.List;
  */
 public class OverallFragment extends RecyclerViewFragment {
 
-    private static final String TAG = OverallFragment.class.getSimpleName();
+    private Device.MemInfo mMemInfo;
 
-    private CPUFreq mCPUFreq;
     private GPUFreq mGPUFreq;
 
     private StatsView mGPUFreqStatsView;
     private MultiStatsView mUpTime;
+    private MultiStatsView mBatteryInfo;
+    private MultiStatsView mVM;
     private TemperatureView mTemperature;
 
-    private CardView mFreqBig;
-    private CardView mFreqLITTLE;
-    private CpuSpyApp mCpuSpyBig;
-    private CpuSpyApp mCpuSpyLITTLE;
-
     private double mBatteryRaw;
-
-    private FrequencyTask mFrequencyTask;
 
     @Override
     protected void init() {
         super.init();
 
-        mCPUFreq = CPUFreq.getInstance();
         mGPUFreq = GPUFreq.getInstance();
+        mMemInfo = Device.MemInfo.getInstance();
 
-        addViewPagerFragment(new CPUUsageFragment());
+        addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.overall),
+                getString(R.string.overall_summary)));
     }
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
         statsInit(items);
-        frequenciesInit(items);
     }
 
     private void statsInit(List<RecyclerViewItem> items) {
+        CardView cardView = new CardView(getActivity());
+        cardView.setDrawable(getResources().getDrawable(R.drawable.ic_chart));
+        cardView.setTitle(getString(R.string.overall) + " " + getString(R.string.statistics));
+        cardView.setOnMenuListener(new CardView.OnMenuListener() {
+            @Override
+            public void onMenuReady(CardView cardView, androidx.appcompat.widget.PopupMenu popupMenu) {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.cpu_times));
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, new CPUTimes()).commit();
+                        return false;
+                    }
+                });
+            }
+        });
         if (mGPUFreq.hasCurFreq()) {
             mGPUFreqStatsView = new StatsView();
             mGPUFreqStatsView.setTitle(getString(R.string.gpu_freq));
-
-            items.add(mGPUFreqStatsView);
+            cardView.addItem(mGPUFreqStatsView);
         }
+
         mTemperature = new TemperatureView();
         mTemperature.setFullSpan(mGPUFreqStatsView == null);
+        cardView.addItem(mTemperature);
+        items.add(cardView);
 
-        items.add(mTemperature);
-
-        mUpTime = new MultiStatsView();
-        mUpTime.setTitle(getString(R.string.uptime));
-
-        items.add(mUpTime);
-    }
-
-    private void frequenciesInit(List<RecyclerViewItem> items) {
-        FrequencyButtonView frequencyButtonView = new FrequencyButtonView();
-        frequencyButtonView.setRefreshListener(new View.OnClickListener() {
+        CardView device = new CardView(getActivity());
+        device.setDrawable(getResources().getDrawable(R.drawable.ic_device));
+        device.setTitle(Device.getModel());
+        device.setOnMenuListener(new CardView.OnMenuListener() {
             @Override
-            public void onClick(View v) {
-                updateFrequency();
-            }
-        });
-        frequencyButtonView.setResetListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CpuStateMonitor cpuStateMonitor = mCpuSpyBig.getCpuStateMonitor();
-                CpuStateMonitor cpuStateMonitorLITTLE = null;
-                if (mCpuSpyLITTLE != null) {
-                    cpuStateMonitorLITTLE = mCpuSpyLITTLE.getCpuStateMonitor();
-                }
-                try {
-                    cpuStateMonitor.setOffsets();
-                    if (cpuStateMonitorLITTLE != null) {
-                        cpuStateMonitorLITTLE.setOffsets();
+            public void onMenuReady(CardView device, androidx.appcompat.widget.PopupMenu popupMenu) {
+                Menu menu = popupMenu.getMenu();
+                menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, new DeviceFragment()).commit();
+                        return false;
                     }
-                } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
-                }
-                mCpuSpyBig.saveOffsets(getActivity());
-                if (mCpuSpyLITTLE != null) {
-                    mCpuSpyLITTLE.saveOffsets(getActivity());
-                }
-                updateView(cpuStateMonitor, mFreqBig);
-                if (cpuStateMonitorLITTLE != null) {
-                    updateView(cpuStateMonitorLITTLE, mFreqLITTLE);
-                }
-                adjustScrollPosition();
+                });
             }
         });
-        frequencyButtonView.setRestoreListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CpuStateMonitor cpuStateMonitor = mCpuSpyBig.getCpuStateMonitor();
-                CpuStateMonitor cpuStateMonitorLITTLE = null;
-                if (mCpuSpyLITTLE != null) {
-                    cpuStateMonitorLITTLE = mCpuSpyLITTLE.getCpuStateMonitor();
+        mUpTime = new MultiStatsView();
+        mUpTime.setTitle(getString(R.string.device) + " " + getString(R.string.uptime));
+        device.addItem(mUpTime);
+        items.add(device);
+
+        if (Battery.haschargingstatus() || Battery.hasBatteryVoltage()) {
+            CardView battery = new CardView(getActivity());
+            battery.setDrawable(getResources().getDrawable(R.drawable.ic_battery));
+            battery.setTitle(getString(R.string.battery));
+            battery.setOnMenuListener(new CardView.OnMenuListener() {
+                @Override
+                public void onMenuReady(CardView battery, androidx.appcompat.widget.PopupMenu popupMenu) {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.content_frame, new BatteryFragment()).commit();
+                            return false;
+                        }
+                    });
                 }
-                cpuStateMonitor.removeOffsets();
-                if (cpuStateMonitorLITTLE != null) {
-                    cpuStateMonitorLITTLE.removeOffsets();
+            });
+
+            mBatteryInfo = new MultiStatsView();
+            mBatteryInfo.setTitle((" Health: ") + Battery.BatteryHealth());
+            battery.addItem(mBatteryInfo);
+            items.add(battery);
+        }
+
+        if (mMemInfo.getItemMb("MemTotal") != 0 || mMemInfo.getInstance().
+                getItemMb("SwapTotal") != 0) {
+            CardView memmory = new CardView(getActivity());
+            memmory.setDrawable(getResources().getDrawable(R.drawable.ic_cpu));
+            memmory.setTitle(getString(R.string.memory));
+            memmory.setOnMenuListener(new CardView.OnMenuListener() {
+                @Override
+                public void onMenuReady(CardView memmory, androidx.appcompat.widget.PopupMenu popupMenu) {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.more));
+
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.content_frame, new VMFragment()).commit();
+                            return false;
+                        }
+                    });
                 }
-                mCpuSpyBig.saveOffsets(getActivity());
-                if (mCpuSpyLITTLE != null) {
-                    mCpuSpyLITTLE.saveOffsets(getActivity());
-                }
-                updateView(cpuStateMonitor, mFreqBig);
-                if (mCpuSpyLITTLE != null) {
-                    updateView(cpuStateMonitorLITTLE, mFreqLITTLE);
-                }
-                adjustScrollPosition();
-            }
-        });
-        items.add(frequencyButtonView);
-
-        mFreqBig = new CardView(getActivity());
-        if (mCPUFreq.isBigLITTLE()) {
-            mFreqBig.setTitle(getString(R.string.cluster_big));
-        } else {
-            mFreqBig.setTitle(getString(R.string.cpu));
+            });
+            mVM = new MultiStatsView();
+            memmory.addItem(mVM);
+            items.add(memmory);
         }
-        items.add(mFreqBig);
-
-        if (mCPUFreq.isBigLITTLE()) {
-            mFreqLITTLE = new CardView(getActivity());
-            mFreqLITTLE.setTitle(getString(R.string.cluster_little));
-            items.add(mFreqLITTLE);
-        }
-
-        mCpuSpyBig = new CpuSpyApp(mCPUFreq.getBigCpu(), getActivity());
-        if (mCPUFreq.isBigLITTLE()) {
-            mCpuSpyLITTLE = new CpuSpyApp(mCPUFreq.getLITTLECpu(), getActivity());
-        }
-
-        updateFrequency();
-    }
-
-    private void updateFrequency() {
-        if (mFrequencyTask == null) {
-            mFrequencyTask = new FrequencyTask();
-            mFrequencyTask.execute(this);
-        }
-    }
-
-    private static class FrequencyTask extends AsyncTask<OverallFragment, Void, OverallFragment> {
-
-        private CpuStateMonitor mBigMonitor;
-        private CpuStateMonitor mLITTLEMonitor;
-
-        @Override
-        protected OverallFragment doInBackground(OverallFragment... overallFragments) {
-            OverallFragment fragment = overallFragments[0];
-            mBigMonitor = fragment.mCpuSpyBig.getCpuStateMonitor();
-            if (fragment.mCPUFreq.isBigLITTLE()) {
-                mLITTLEMonitor = fragment.mCpuSpyLITTLE.getCpuStateMonitor();
-            }
-            try {
-                mBigMonitor.updateStates();
-            } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
-                Log.e(TAG, "Problem getting CPU states");
-            }
-            if (fragment.mCPUFreq.isBigLITTLE()) {
-                try {
-                    mLITTLEMonitor.updateStates();
-                } catch (CpuStateMonitor.CpuStateMonitorException ignored) {
-                    Log.e(TAG, "Problem getting CPU states");
-                }
-            }
-            return fragment;
-        }
-
-        @Override
-        protected void onPostExecute(OverallFragment fragment) {
-            super.onPostExecute(fragment);
-            fragment.updateView(mBigMonitor, fragment.mFreqBig);
-            if (fragment.mCPUFreq.isBigLITTLE()) {
-                fragment.updateView(mLITTLEMonitor, fragment.mFreqLITTLE);
-            }
-            fragment.adjustScrollPosition();
-            fragment.mFrequencyTask = null;
-        }
-    }
-
-    private void updateView(CpuStateMonitor monitor, CardView card) {
-        if (!isAdded() || card == null) return;
-        card.clearItems();
-
-        // update the total state time
-        DescriptionView totalTime = new DescriptionView();
-        totalTime.setTitle(getString(R.string.uptime));
-        totalTime.setSummary(sToString(monitor.getTotalStateTime() / 100L));
-        card.addItem(totalTime);
-
-        /* Get the CpuStateMonitor from the app, and iterate over all states,
-         * creating a row if the duration is > 0 or otherwise marking it in
-         * extraStates (missing) */
-        List<String> extraStates = new ArrayList<>();
-        for (CpuStateMonitor.CpuState state : monitor.getStates()) {
-            if (state.getDuration() > 0) {
-                generateStateRow(monitor, state, card);
-            } else {
-                if (state.getFreq() == 0) {
-                    extraStates.add(getString(R.string.deep_sleep));
-                } else {
-                    extraStates.add(state.getFreq() / 1000 + getString(R.string.mhz));
-                }
-            }
-        }
-
-        if (monitor.getStates().size() == 0) {
-            card.clearItems();
-            DescriptionView errorView = new DescriptionView();
-            errorView.setTitle(getString(R.string.error_frequencies));
-            card.addItem(errorView);
-            return;
-        }
-
-        // for all the 0 duration states, add the the Unused State area
-        if (extraStates.size() > 0) {
-            int n = 0;
-            StringBuilder str = new StringBuilder();
-
-            for (String s : extraStates) {
-                if (n++ > 0)
-                    str.append(", ");
-                str.append(s);
-            }
-
-            DescriptionView unusedText = new DescriptionView();
-            unusedText.setTitle(getString(R.string.unused_frequencies));
-            unusedText.setSummary(str.toString());
-            card.addItem(unusedText);
-        }
-    }
-
-    /**
-     * @return A nicely formatted String representing tSec seconds
-     */
-    private String sToString(long tSec) {
-        int h = (int) tSec / 60 / 60;
-        int m = (int) tSec / 60 % 60;
-        int s = (int) tSec % 60;
-        String sDur;
-        sDur = h + ":";
-        if (m < 10) sDur += "0";
-        sDur += m + ":";
-        if (s < 10) sDur += "0";
-        sDur += s;
-
-        return sDur;
-    }
-
-    /**
-     * Creates a View that correpsonds to a CPU freq state row as specified
-     * by the state parameter
-     */
-    private void generateStateRow(CpuStateMonitor monitor, CpuStateMonitor.CpuState state,
-                                  CardView frequencyCard) {
-        // what percentage we've got
-        float per = (float) state.getDuration() * 100 / monitor.getTotalStateTime();
-
-        String sFreq;
-        if (state.getFreq() == 0) {
-            sFreq = getString(R.string.deep_sleep);
-        } else {
-            sFreq = state.getFreq() / 1000 + getString(R.string.mhz);
-        }
-
-        // duration
-        long tSec = state.getDuration() / 100;
-        String sDur = sToString(tSec);
-
-        FrequencyTableView frequencyState = new FrequencyTableView();
-        frequencyState.setFrequency(sFreq);
-        frequencyState.setPercentage((int) per);
-        frequencyState.setDuration(sDur);
-
-        frequencyCard.addItem(frequencyState);
     }
 
     private Integer mGPUCurFreq;
@@ -365,8 +219,24 @@ public class OverallFragment extends RecyclerViewFragment {
         }
         if (mUpTime != null) {
             mUpTime.setStatsOne(("Total: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime()));
-            mUpTime.setmStatsTwo(("Awake: ") + Utils.getDurationBreakdown(SystemClock.uptimeMillis()));
-            mUpTime.setmStatsThree(("Deep Sleep: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()));
+            mUpTime.setStatsTwo(("Awake: ") + Utils.getDurationBreakdown(SystemClock.uptimeMillis()));
+            mUpTime.setStatsThree(("Deep Sleep: ") + Utils.getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()));
+        }
+        if (mBatteryInfo != null) {
+            mBatteryInfo.setStatsOne(("Voltage: ") + Battery.BatteryVoltage() + (" mV"));
+            mBatteryInfo.setStatsTwo(Battery.ChargingInfoTitle() + (": ") + Battery.getchargingstatus() + (" mA"));
+        }
+        if (mVM != null) {
+            if (mMemInfo.getItemMb("MemTotal") != 0) {
+                mVM.setStatsOne("RAM - Total: " + mMemInfo.getItemMb("MemTotal") + " MB, Used: " + (mMemInfo.getItemMb("MemTotal")
+                        - (mMemInfo.getItemMb("Cached") + mMemInfo.getItemMb("MemFree"))) + " MB");
+            }
+            if (mMemInfo.getInstance().getItemMb("SwapTotal") != 0) {
+                mVM.setStatsTwo("Swap - Total: " + mMemInfo.getInstance().getItemMb("SwapTotal") + " MB, Used: "
+                        + (mMemInfo.getInstance().getItemMb("SwapTotal") - mMemInfo.getItemMb("SwapFree")) + " MB");
+            } else {
+                mVM.setStatsTwo("Swap: N/A");
+            }
         }
     }
 
@@ -390,127 +260,6 @@ public class OverallFragment extends RecyclerViewFragment {
             getActivity().unregisterReceiver(mBatteryReceiver);
         } catch (IllegalArgumentException ignored) {
         }
-    }
-
-    public static class CPUUsageFragment extends BaseFragment {
-
-        private Handler mHandler;
-
-        private List<View> mUsages;
-        private Thread mThread;
-        private float[] mCPUUsages;
-        private int[] mFreqs;
-
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                                 @Nullable Bundle savedInstanceState) {
-
-            mHandler = new Handler();
-            mUsages = new ArrayList<>();
-            LinearLayout rootView = new LinearLayout(getActivity());
-            rootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            rootView.setGravity(Gravity.CENTER);
-            rootView.setOrientation(LinearLayout.VERTICAL);
-
-            LinearLayout subView = null;
-            for (int i = 0; i < CPUFreq.getInstance(getActivity()).getCpuCount(); i++) {
-                if (subView == null || i % 2 == 0) {
-                    subView = new LinearLayout(getActivity());
-                    subView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT, 1));
-                    rootView.addView(subView);
-                }
-
-                View view = inflater.inflate(R.layout.fragment_usage_view, subView, false);
-                view.setLayoutParams(new LinearLayout
-                        .LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT, 1));
-                ((TextView) view.findViewById(R.id.usage_core_text)).setText(getString(R.string.core, i + 1));
-                mUsages.add(view);
-                subView.addView(view);
-            }
-            return rootView;
-        }
-
-        @Override
-        public void onResume() {
-            super.onResume();
-            mHandler.post(mRefresh);
-        }
-
-        @Override
-        public void onPause() {
-            super.onPause();
-            mHandler.removeCallbacks(mRefresh);
-            if (mThread != null) {
-                mThread.interrupt();
-                mThread = null;
-            }
-        }
-
-        private Runnable mRefresh = new Runnable() {
-            @Override
-            public void run() {
-                refresh();
-                mHandler.postDelayed(this, 1000);
-            }
-        };
-
-        public void refresh() {
-            if (mThread == null) {
-                mThread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        while (true) {
-                            if (mThread == null) break;
-                            try {
-                                CPUFreq cpuFreq = CPUFreq.getInstance(getActivity());
-                                mCPUUsages = cpuFreq.getCpuUsage();
-                                if (mFreqs == null) {
-                                    mFreqs = new int[cpuFreq.getCpuCount()];
-                                }
-                                for (int i = 0; i < mFreqs.length; i++) {
-                                    if (getActivity() == null) break;
-                                    mFreqs[i] = cpuFreq.getCurFreq(i);
-                                }
-
-                                if (getActivity() == null) {
-                                    mThread = null;
-                                }
-                            } catch (InterruptedException ignored) {
-                                mThread = null;
-                            }
-                        }
-                    }
-                });
-                mThread.start();
-            }
-
-            if (mFreqs == null || mCPUUsages == null || mUsages == null) return;
-            for (int i = 0; i < mUsages.size(); i++) {
-                View usageView = mUsages.get(i);
-                TextView usageOfflineText = usageView.findViewById(R.id.usage_offline_text);
-                TextView usageLoadText = usageView.findViewById(R.id.usage_load_text);
-                TextView usageFreqText = usageView.findViewById(R.id.usage_freq_text);
-                XYGraph usageGraph = usageView.findViewById(R.id.usage_graph);
-                if (mFreqs[i] == 0) {
-                    usageOfflineText.setVisibility(View.VISIBLE);
-                    usageLoadText.setVisibility(View.GONE);
-                    usageFreqText.setVisibility(View.GONE);
-                    usageGraph.addPercentage(0);
-                } else {
-                    usageOfflineText.setVisibility(View.GONE);
-                    usageLoadText.setVisibility(View.VISIBLE);
-                    usageFreqText.setVisibility(View.VISIBLE);
-                    usageFreqText.setText(Utils.strFormat("%d" + getString(R.string.mhz), mFreqs[i] / 1000));
-                    usageLoadText.setText(Utils.strFormat("%d%%", Math.round(mCPUUsages[i + 1])));
-                    usageGraph.addPercentage(Math.round(mCPUUsages[i + 1]));
-                }
-            }
-        }
-
     }
 
     @Override
