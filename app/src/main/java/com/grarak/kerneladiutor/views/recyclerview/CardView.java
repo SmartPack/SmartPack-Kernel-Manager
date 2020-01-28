@@ -24,6 +24,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +53,14 @@ public class CardView extends RecyclerViewItem {
 
     private androidx.cardview.widget.CardView mRootView;
     private View mTitleParent;
+    private AppCompatImageView mImageView;
     private TextView mTitle;
     private AppCompatImageView mArrow;
     private View mLayoutParent;
     private LinearLayout mLayout;
     private View mMenuButton;
 
+    private Drawable mImage;
     private CharSequence mTitleText;
     private PopupMenu mPopupMenu;
     private OnMenuListener mOnMenuListener;
@@ -100,6 +103,7 @@ public class CardView extends RecyclerViewItem {
     private void initLayouts(View view) {
         mRootView = (androidx.cardview.widget.CardView) view;
         mTitleParent = view.findViewById(R.id.title_parent);
+        mImageView = view.findViewById(R.id.image);
         mTitle = view.findViewById(R.id.card_title);
         mArrow = view.findViewById(R.id.arrow_image);
         mLayoutParent = view.findViewById(R.id.layout_parent);
@@ -182,6 +186,11 @@ public class CardView extends RecyclerViewItem {
         layoutParams.height = height;
         mLayout.requestLayout();
         viewChanged();
+    }
+
+    public void setDrawable(Drawable drawable) {
+        mImage = drawable;
+        refresh();
     }
 
     public void setTitle(CharSequence title) {
@@ -303,6 +312,10 @@ public class CardView extends RecyclerViewItem {
     protected void refresh() {
         super.refresh();
         if (mTitle != null) {
+            if (mImageView != null && mImage != null) {
+                mImageView.setImageDrawable(mImage);
+                mImageView.setVisibility(View.VISIBLE);
+            }
             if (mTitleText != null) {
                 mTitle.setText(mTitleText);
                 mTitleParent.setVisibility(View.VISIBLE);
