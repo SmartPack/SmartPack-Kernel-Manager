@@ -564,6 +564,10 @@ public class Utils {
         return null;
     }
 
+    public static String sleep(int sec) {
+        return RootUtils.runCommand("sleep " + sec);
+    }
+
     public static String copy(String source, String dest) {
         return RootUtils.runCommand("cp -r " + source + " " + dest);
     }

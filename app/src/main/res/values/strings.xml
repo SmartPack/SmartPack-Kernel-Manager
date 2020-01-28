@@ -956,7 +956,6 @@
     <string name="acquiring">Acquiring update info</string>
     <string name="donations">Donations</string>
     <string name="donations_summary">Donate to Developer</string>
-    <string name="donations_unknown">Donation link is not provided by the developer yet!</string>
     <string name="download">Download</string>
     <string name="download_completed">%s is successfully downloaded. Do you want to flash it?</string>
     <string name="downloading_update">Downloading %s</string>
@@ -965,6 +964,7 @@
     <string name="kernel_latest">Latest Version</string>
     <string name="kernel_information">Kernel Informations</string>
     <string name="update_channel">Update Channel Url</string>
+    <string name="update_channel_create">Create Update Channel</string>
     <string name="update_channel_empty">Cleaning update channel information!</string>
     <string name="update_channel_info">By linking the above update channel with a proper json file for your device, you can basically add kernel download, and auto-flash (not for all devices) support to any Kernel\'s available for your device. Please ask your favourite kernel developer to add support to this feature. The downloaded kernel will be available at \'%s\'.\n\nTips! You can import a json file created for franciscofranco\'s (huge \u2665 &amp; respect to him) \'FK-Kernel Manager\' and it will simply work.\n\nNeed more help? Click here!</string>
     <string name="update_channel_invalid">You\'ve entered an invalid Url! Aborting.</string>
@@ -1004,7 +1004,34 @@
     <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
-    <string name="unzip_failed">Flashing failed due to the absence of proper BusyBox binaries! Aborting.</string>
+    <string name="unknown_link">Not provided by the developer yet!</string>
+
+    <!-- Update Channel -->
+    <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
+    <string name="update_channel_instructions"><b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> are the mandatory fields to be filled before clicking the create button.\n\n<b>Change-logs</b> could be provided, either as a well formatted text, or as a link to an online page.\n\nSecure Hash Algorithm (<b>sha1</b>) is optional, but highly recommended to ensure the authenticity of the downloaded kernel.</string>
+    <string name="kernel_name">Kernel Name</string>
+    <string name="kernel_name_summary">Kernel_Name</string>
+    <string name="kernel_version">Kernel Version</string>
+    <string name="kernel_version_summary">Kernel_version</string>
+    <string name="download_link">Download Link</string>
+    <string name="download_link_summary">download_link</string>
+    <string name="changelog_summary">changelog_texts_or_url</string>
+    <string name="sha1">Secure Hash Algorithm</string>
+    <string name="sha1_summary">sha1</string>
+    <string name="support_group">Support Group</string>
+    <string name="support_group_summary">support_link</string>
+    <string name="donation_link">Donation Link</string>
+    <string name="donation_link_summary">donation_link</string>
+    <string name="submit_summary">Create Update Channel with the current information\'s</string>
+    <string name="submit_failed">Some of the necessary fields are empty! Aborting.</string>
+    <string name="json_created">Congrats! Update Channel is successfully created at %s. Please host it somewhere and share a direct download link with your users.</string>
+    <string name="json_not_created">Creation of Update Channel is failed.</string>
+    <string name="item_empty">%s shouldn\'t be empty</string>
+    <string name="clear">Clear All</string>
+    <string name="clear_message">All the fields are empty! Aborting.</string>
+    <string name="clear_summary">Clear this page</string>
+    <string name="clearing">Clearing all</string>
+    <string name="creating">Creating %s</string>
 
     <!-- App Updater -->
     <string name="update_available">New update available!\nv%s</string>

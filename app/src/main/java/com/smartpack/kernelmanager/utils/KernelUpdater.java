@@ -27,7 +27,6 @@ import android.os.AsyncTask;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 
 import org.json.JSONException;
@@ -101,7 +100,7 @@ public class KernelUpdater {
                 clearUpdateInfo();
                 updateInfo(value);
                 updateChannel(value);
-                RootUtils.runCommand("sleep 1");
+                Utils.sleep(1);
                 return null;
             }
             @Override

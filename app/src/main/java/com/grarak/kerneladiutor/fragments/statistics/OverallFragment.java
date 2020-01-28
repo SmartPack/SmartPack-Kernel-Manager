@@ -58,7 +58,6 @@ import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyBu
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.FrequencyTableView;
 import com.grarak.kerneladiutor.views.recyclerview.overallstatistics.TemperatureView;
 import com.smartpack.kernelmanager.recyclerview.MultiStatsView;
-import com.smartpack.kernelmanager.utils.KernelUpdater;
 import com.smartpack.kernelmanager.utils.UpdateCheck;
 
 import java.util.ArrayList;
@@ -526,13 +525,6 @@ public class OverallFragment extends RecyclerViewFragment {
             if (UpdateCheck.hasVersionInfo() && !BuildConfig.VERSION_NAME.equals(UpdateCheck.versionName())) {
                 UpdateCheck.updateAvailableDialog(getActivity());
             }
-        }
-
-        // Initialize kernel update check - Once in a day
-        if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("update_check", true, getActivity())
-                && !KernelUpdater.getUpdateChannel().equals("Unavailable") && KernelUpdater.lastModified() +
-                89280000L < System.currentTimeMillis()) {
-            KernelUpdater.updateInfo(Utils.getInternalDataStorage() + "/updatechannel");
         }
     }
 

@@ -31,9 +31,13 @@ import android.graphics.drawable.Drawable;
 import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.DescriptionFragment;
@@ -43,6 +47,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
+import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 
@@ -51,6 +56,7 @@ import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.recyclerview.GenericInputView;
 import com.smartpack.kernelmanager.utils.KernelUpdater;
 import com.smartpack.kernelmanager.utils.SmartPack;
+import com.smartpack.kernelmanager.utils.UpdateChannel;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -187,10 +193,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     return;
                 }
                 KernelUpdater.acquireUpdateInfo(value, getActivity());
-                getHandler().postDelayed(() -> {
-                    updateChannel.setValue((!KernelUpdater.getKernelName().equals("Unavailable"))
-                            ? KernelUpdater.getUpdateChannel() : getString(R.string.update_channel_summary));
-                }, 100);
                 reload();
 
             }
@@ -199,10 +201,29 @@ public class SmartPackFragment extends RecyclerViewFragment {
         items.add(updateChannel);
 
         if (KernelUpdater.getLatestVersion().equals("Unavailable")) {
+            CardView cardView = new CardView(getActivity());
+            cardView.setFullSpan(true);
+            cardView.setOnMenuListener(new CardView.OnMenuListener() {
+                @Override
+                public void onMenuReady(CardView cardView, androidx.appcompat.widget.PopupMenu popupMenu) {
+                    Menu menu = popupMenu.getMenu();
+                    menu.add(Menu.NONE, 0, Menu.NONE, getString(R.string.update_channel_create));
+
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            FragmentManager fragmentManager = getFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.content_frame, new UpdateChannel()).commit();
+                            return false;
+                        }
+                    });
+                }
+            });
+
             DescriptionView info = new DescriptionView();
             info.setDrawable(getResources().getDrawable(R.drawable.ic_info));
             info.setTitle(getString(R.string.update_channel_info, Utils.getInternalDataStorage()));
-            info.setFullSpan(true);
             info.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
@@ -214,7 +235,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 }
             });
 
-            items.add(info);
+            cardView.addItem(info);
+            items.add(cardView);
         }
 
         if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
@@ -264,7 +286,12 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         Utils.toast(R.string.no_internet, getActivity());
                         return;
                     }
-                    Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                    if (KernelUpdater.getSupport().contains("https://") ||
+                            KernelUpdater.getSupport().contains("http://")) {
+                        Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                    } else {
+                        Utils.toast(R.string.unknown_link, getActivity());
+                    }
                 }
             });
 
@@ -304,11 +331,14 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         Utils.toast(R.string.no_internet, getActivity());
                         return;
                     }
-                    if (KernelUpdater.getDonationLink().equals("Unavailable")) {
-                        Utils.toast(getString(R.string.donations_unknown), getActivity());
-                        return;
+                    if (KernelUpdater.getDonationLink().contains("https://") ||
+                                KernelUpdater.getDonationLink().contains("http://")) {
+                        Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
+                        Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
+                    } else {
+                        Utils.toast(getString(R.string.unknown_link), getActivity());
                     }
-                    Utils.launchUrl(KernelUpdater.getDonationLink(), getActivity());
+
                 }
             });
 
@@ -603,6 +633,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
         @Override
         protected Void doInBackground(String... params) {
+            Utils.sleep(1);
             RootUtils.runCommand(params[0]);
             return null;
         }
@@ -612,19 +643,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             super.onPostExecute(aVoid);
             mExecuteDialog.dismiss();
         }
-    }
-
-    @Override
-    protected void onTopFabClick() {
-        super.onTopFabClick();
-        if (mPermissionDenied) {
-            Utils.toast(R.string.permission_denied_write_storage, getActivity());
-            return;
-        }
-
-        Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
-        manualflash.setType("application/zip");
-        startActivityForResult(manualflash, 0);
     }
 
     private void runCommand(final String value) {
@@ -642,7 +660,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
             @Override
             protected String doInBackground(Void... voids) {
-                RootUtils.runCommand("sleep 1");
+                Utils.sleep(1);
                 return RootUtils.runCommand(value);
             }
 
@@ -662,6 +680,19 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         .show();
             }
         }.execute();
+    }
+
+    @Override
+    protected void onTopFabClick() {
+        super.onTopFabClick();
+        if (mPermissionDenied) {
+            Utils.toast(R.string.permission_denied_write_storage, getActivity());
+            return;
+        }
+
+        Intent manualflash  = new Intent(Intent.ACTION_GET_CONTENT);
+        manualflash.setType("application/zip");
+        startActivityForResult(manualflash, 0);
     }
 
     @Override
@@ -703,6 +734,18 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 SmartPack.flashingTask(new File(mPath), getActivity());
             });
             manualFlash.show();
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        // Initialize kernel update check - Once in a day
+        if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("update_check", true, getActivity())
+                && !KernelUpdater.getUpdateChannel().equals("Unavailable") && KernelUpdater.lastModified() +
+                89280000L < System.currentTimeMillis()) {
+            KernelUpdater.updateInfo(Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel"));
         }
     }
 }
