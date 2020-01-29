@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha04'
     implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
 
