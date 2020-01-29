@@ -247,7 +247,7 @@ public class ViewUtils {
     public static void loadImagefromUrl(String url, ImageView imageView, int maxWidth, int maxHeight) {
         CustomTarget target = new CustomTarget(imageView, maxWidth, maxHeight);
         mProtectedFromGarbageCollectorTargets.add(target);
-        Picasso.with(imageView.getContext()).load(url).into(target);
+        Picasso.get().load(url).into(target);
     }
 
     private static class CustomTarget implements Target {
@@ -268,7 +268,7 @@ public class ViewUtils {
         }
 
         @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
+        public void onBitmapFailed(java.lang.Exception e, android.graphics.drawable.Drawable errorDrawable) {
             mProtectedFromGarbageCollectorTargets.remove(this);
         }
 
