@@ -1,13 +1,13 @@
 <!--Authors: Roiyaru <siriussx@outlook.com> & jason5545 <jason5545@gmail.com>-->
 
 <resources>
-     <string name="checking_info">检查信息中…</string>
-     <string name="checking_root">检查 Root 权限中…</string>
-     <string name="searching_busybox">搜寻 Busybox 中…</string>
-     <string name="collecting_info">搜集信息中…</string>
-     <string name="no_root">无 Root 权限</string>
-     <string name="no_busybox">没有 Busybox 指令</string>
-     <string name="open">开启 %s</string>
+     <string name="checking_info">正在检查信息…</string>
+     <string name="checking_root">正在检查 Root 权限…</string>
+     <string name="searching_busybox">正在寻找 Busybox …</string>
+     <string name="collecting_info">正在收集信息…</string>
+     <string name="no_root">您的设备没有 Root 权限</string>
+     <string name="no_busybox">没有找到 Busybox </string>
+     <string name="open">启动 %s</string>
 
      <!-- Security -->
      <string name="password">密码</string>
@@ -15,29 +15,29 @@
      <string name="select_picture">选择图片</string>
      <string name="no_picture">没有图片</string>
      <string name="went_wrong">出现错误！  </string>
-     <string name="press_back_again_exit">再按一次返回键以离开app</string>
+     <string name="press_back_again_exit">再按一次返回键以退出app</string>
      <string name="cancel">取消</string>
      <string name="ok">确定</string>
-     <string name="yes">是的</string>
+     <string name="yes">好的</string>
      <string name="unknown">未知</string>
      <string name="donate">捐赠</string>
-     <string name="donate_summary">此功能仅在安装了捐赠应用程式时可以使用！ 不要担心。 因为这个程式是开放原始码的，你可以很容易地自己建立，并删除这个检查。 但我希望你支持开发人员。 感谢您使用 SmartPack-Kernel Manager！  </string>
-     <string name="donate_nope">我不会爱上这种骗局！  </string>
-     <string name="donate_yes">我喜欢这个应用程式，立刻氪金！  </string>
+     <string name="donate_summary">此功能仅在安装了捐赠版应用程序时可以使用！不过不要担心，因为这个程式是开放源代码的，你可以很容易地自己重新打包，并删除这个检查程序。 但我希望你支持开发者，感谢您使用 SmartPack-Kernel Manager！  </string>
+     <string name="donate_nope">白嫖党永不为奴！  </string>
+     <string name="donate_yes">我喜欢这个应用程序，立刻氪金！  </string>
      <string name="warning">警告</string>
-     <string name="apply_on_boot">开机后自动套用</string>
-     <string name="apply_on_boot_text">设定值将于 %d 秒后套用...</string>
-     <string name="apply_on_boot_complete">设定值套用 成功！  </string>
-     <string name="apply_on_boot_canceled">设定值套用 已取消。  </string>
+     <string name="apply_on_boot">开机时自动启用</string>
+     <string name="apply_on_boot_text">开机启动设置将于 %d 秒后生效...</string>
+     <string name="apply_on_boot_complete">开机自动启用设置 已成功！  </string>
+     <string name="apply_on_boot_canceled">开机自动启用设置 已取消。  </string>
      <string name="not_in_range">不在有效的范围内</string>
      <string name="options">选项</string>
      <string name="more">更多</string>
 
      <!-- Permissions Denied -->
-     <string name="permission_denied_write_storage">系统权限拒绝对装置进行写入</string>
+     <string name="permission_denied_write_storage">您没有为本应用程序授予权限，请确认是否已经授予相关权限。</string>
 
      <!-- Editor -->
-     <string name="save">储存</string>
+     <string name="save">保存</string>
 
      <!-- Units -->
      <string name="ms">毫秒</string>
@@ -53,9 +53,9 @@
      <string name="other">其他</string>
 
      <!-- Menus -->
-     <string name="overall">概观</string>
+     <string name="overall">概览</string>
      <string name="device">设备</string>
-     <string name="memory">记忆体</string>
+     <string name="memory">内存</string>
      <string name="inputs">输入</string>
      <string name="cpu_hotplug">CPU 热插拔</string>
      <string name="cpu_voltage">CPU 电压</string>
@@ -65,17 +65,17 @@
      <string name="screen">屏幕</string>
      <string name="wake">唤醒手势</string>
      <string name="led">显示和 LED</string>
-     <string name="io_scheduler">I/O 排程器</string>
-     <string name="lmk">低记忆体清除机制</string>
-     <string name="virtual_memory">虚拟记忆体</string>
+     <string name="io_scheduler">I/O 调整器</string>
+     <string name="lmk">低内存调整机制(LMK)</string>
+     <string name="virtual_memory">虚拟内存</string>
      <string name="entropy">熵</string>
      <string name="misc">杂项</string>
-     <string name="custom_controls">自订控制</string>
+     <string name="custom_controls">自定义控制</string>
      <string name="backup">备份</string>
      <string name="build_prop_editor">Build prop 编辑器</string>
-     <string name="profile">设定档</string>
-     <string name="on_boot">开机启用</string>
-     <string name="settings">设定</string>
+     <string name="profile">设定文档</string>
+     <string name="on_boot">开机时启用</string>
+     <string name="settings">设置</string>
      <string name="about">关于</string>
      <string name="contributors">贡献者</string>
 
@@ -83,27 +83,27 @@
      <string name="offline">离线</string>
      <string name="core">核心 %d</string>
      <string name="gpu_freq">GPU 频率</string>
-     <string name="refresh">重新整理</string>
-     <string name="reset">重设</string>
+     <string name="refresh">刷新</string>
+     <string name="reset">重置</string>
      <string name="restore">还原</string>
      <string name="deep_sleep">深度睡眠</string>
      <string name="uptime">核心启用时间</string>
-     <string name="error_frequencies">载入频率失败</string>
+     <string name="error_frequencies">加载频率失败</string>
      <string name="unused_frequencies">未使用的频率</string>
 
      <!-- Device -->
      <string name="processor">处理器</string>
      <string name="vendor">制造商</string>
      <string name="features">功能</string>
-     <string name="ram">记忆体</string>
+     <string name="ram">内存</string>
      <string name="android_version">Android 版本</string>
      <string name="android_api_level">Android SDK 版本</string>
      <string name="android_codename">Android 代号</string>
      <string name="fingerprint">指纹辨识</string>
-     <string name="build_display_id">组建 ID 显示</string>
+     <string name="build_display_id">出厂 屏幕 ID</string>
      <string name="baseband">基频</string>
      <string name="bootloader">开机载入器(Bootloader)</string>
-     <string name="hardware">硬体</string>
+     <string name="hardware">硬件</string>
      <string name="architecture">CPU 架构</string>
      <string name="treble_status">Project Treble 支持</string>
 
@@ -136,12 +136,12 @@
      <string name="mc_power_saving_summary">尽可能用最少的核心来分配处理任务</string>
      <string name="disabled">已停用</string>
      <string name="enabled">已启用</string>
-     <string name="aggressive">积极的</string>
-     <string name="power_saving_wq">在未休眠的核心上分配运作队列以节省电力。 停用时将只分配在同一个核心上</string>
+     <string name="aggressive">积极</string>
+     <string name="power_saving_wq">在未休眠的核心上分配运作队列以减轻耗电。 停用时将只分配在同一个核心上</string>
      <string name="cfs_scheduler_policy">CFS 排程策略</string>
      <string name="cfs_scheduler_policy_summary">决定 CFS 排程器在不同 CPU 单元上如何平衡任务的策略。  </string>
      <string name="cpu_quiet">CPUQuiet</string>
-     <string name="cpu_quiet_summary">CPUQuiet 实现可插拔政策迫使 CPU 核心进入静止状态。 适当的政策将不影响性能节省电量。  </string>
+     <string name="cpu_quiet_summary">CPUQuiet 启用可插拔策略迫使 CPU 核心进入静止状态。 适当的策略将不影响性能节省电量。  </string>
      <string name="cpu_quiet_governor">CPUQuiet 管理模式</string>
      <string name="cpu_boost">CPU 加速</string>
      <string name="debug_mask">侦错遮罩</string>
@@ -151,24 +151,24 @@
      <string name="sync_threshold">同步阈值</string>
      <string name="sync_threshold_summary">当 CPU 跨越预设的阈值时，CPU 频率被提升到此频率。  </string>
      <string name="input_interval">输入时间间隔</string>
-     <string name="input_interval_summary">当侦测到输入时，CPU 被加速的最小时间间隔。  </string>
+     <string name="input_interval_summary">当检测到输入时，CPU 被加速的最小时间间隔。  </string>
      <string name="input_boost_freq">输入加速频率</string>
      <string name="input_boost_freq_core">核心 %d 输入加速频率</string>
-     <string name="input_boost_freq_summary">当侦测到输入时， CPU 被加速到此频率。  </string>
+     <string name="input_boost_freq_summary">当检测到输入时， CPU 被加速到此频率。  </string>
      <string name="wakeup_boost">唤醒加速</string>
-     <string name="wakeup_boost_summary">唤醒加速跟输入加速相似，但它只在萤幕开启时发生。  </string>
+     <string name="wakeup_boost_summary">唤醒加速跟输入加速相似，但它只在屏幕开启时执行。  </string>
      <string name="hotplug_boost">热插拔加速</string>
-     <string name="hotplug_boost_summary">热插拔加速跟输入加速相似，但它只在 CPU 上线时发生。  </string>
+     <string name="hotplug_boost_summary">热插拔加速跟输入加速相似，但它只在 CPU 上线时执行。  </string>
      <string name="touch_boost">触控加速</string>
-     <string name="touch_boost_summary">当您触碰萤幕或按下按钮，这将加速您的最小 CPU 速度。  </string>
+     <string name="touch_boost_summary">当您触碰屏幕或按下硬件按钮，这将加速您的最小 CPU 速度。  </string>
      <string name="msm_limiter">MSM 限制器</string>
      <string name="msm_limiter_summary">启用由neobuddy89制作的 MSM 限制器</string>
      <string name="freq_control">频率控制</string>
      <string name="freq_control_summary">允许 MSM 限制器控制 CPU 的频率。  </string>
      <string name="dyn_stune_boost">动态 Stune Boost</string>
      <string name="stune_boost_ms">Stune Boost 时长</string>
-     <string name="stune_boost_sett">Stune Boost 设定</string>
-     <string name="stune_boost_sett_summary">点选以浏览 Stune Boost 高级设定。  </string>
+     <string name="stune_boost_sett">Stune Boost 设置</string>
+     <string name="stune_boost_sett_summary">点击以浏览 Stune Boost 高级设定。  </string>
 
       <!-- CPU Input Boost -->
      <string name="cpu_input_boost">CPU 输入加速</string>
@@ -182,19 +182,19 @@
      <string name="mpdecision_summary">高通的热插拔方案。 当启用此功能，您可能会在变更频率时遇到问题。  </string>
      <string name="intelliplug">IntelliPlug热插拔</string>
      <string name="intelliplug_summary">将高通的 MPDecision 更换为由 faux123 开发的核​​心</string>
-     <string name="cpu_hotplug_profile_summary">括弧中的数字表示在任何时间上线的核心数量。  </string>
+     <string name="cpu_hotplug_profile_summary">括号中的数字表示在任何时间上线的核心数量。  </string>
      <string name="balanced">平衡</string>
      <string name="performance">高性能</string>
      <string name="conservative">保守</string>
      <string name="eco_insanity">节能 疯狂模式(InSaNiTy)</string>
      <string name="eco_performance">Eco 高性能</string>
      <string name="eco_conservative">Eco 保守</string>
-     <string name="eco">节约模式</string>
+     <string name="eco">节能模式</string>
      <string name="strict">严格</string>
      <string name="eco_mode">节能模式</string>
-     <string name="eco_mode_summary">电池节电模式</string>
+     <string name="eco_mode_summary">电池省电模式</string>
      <string name="hysteresis">滞后值</string>
-     <string name="hysteresis_summary">值越低回应越快</string>
+     <string name="hysteresis_summary">值越低反应越快</string>
      <string name="cpu_threshold">CPU 阀值</string>
      <string name="cpu_threshold_summary">数值越高，CPU 使用率则越低</string>
      <string name="suspend">暂停</string>
@@ -202,25 +202,25 @@
      <string name="cpus_boosted">CPU 已加速</string>
      <string name="cpus_boosted_summary">同时被加速的 CPU 最大数量</string>
      <string name="min_cpu_online">最小 CPU 上线</string>
-     <string name="min_cpu_online_summary">将处于联机状态的最少CPU数。  </string>
+     <string name="min_cpu_online_summary">将处于开启状态的最少CPU数。  </string>
      <string name="max_cpu_online">最大 CPU 上线</string>
-     <string name="max_cpu_online_summary">将处于联机状态的最大CPU数。  </string>
-     <string name="max_cpu_online_screen_off">萤幕关闭时的最大 CPU</string>
-     <string name="max_cpu_online_screen_off_summary">当萤幕关闭时上线的最大 CPU 数量。  </string>
+     <string name="max_cpu_online_summary">将处于开启状态的最大CPU数。  </string>
+     <string name="max_cpu_online_screen_off">屏幕关闭时的最大 CPU</string>
+     <string name="max_cpu_online_screen_off_summary">当屏幕关闭时开启的最大 CPU 数量。  </string>
      <string name="suspend_defer_time">暂停延迟时间</string>
      <string name="defer_sampling">推迟取样</string>
      <string name="boost_lock_duration">锁定加速的持续时间</string>
      <string name="boost_lock_duration_summary">CPU 被加速的最小时间间隔。  </string>
      <string name="down_lock_duration">向下锁定持续时间</string>
-     <string name="down_lock_duration_summary">CPU 保持上线的最小时间间隔。  </string>
+     <string name="down_lock_duration_summary">CPU 保持启动的最小时间间隔。  </string>
      <string name="lazyplug_summary">将高通的 MPDecision 更换为由 arter97 开发的核​​心</string>
      <string name="lazy">懒</string>
      <string name="possible_cpu_cores_summary">可能的CPU核心，lazyplug可以使用。  </string>
      <string name="blu_plug_summary">将高通的 MPDecision 更换为由 Code_Blue 团队开发的核心</string>
      <string name="powersaver_mode">省电模式</string>
-     <string name="powersaver_mode_summary">设定 1 CPU 最大上线频率为 @1728MHz。  </string>
-     <string name="up_threshold">门槛(增加)</string>
-     <string name="up_threshold_summary">超过此门槛驱动将会再让一个核心上线。  </string>
+     <string name="powersaver_mode_summary">设定 1 CPU 最大启动频率为 @1728MHz。  </string>
+     <string name="up_threshold">上限值(增加)</string>
+     <string name="up_threshold_summary">超过此上限值时驱动将会再启动一个核心。  </string>
      <string name="up_timer_cnt">控制计时器(增加)</string>
      <string name="up_timer_cnt_summary">增加 CPU 的控制计时器</string>
      <string name="down_timer_cnt">控制计时器(减少)</string>
@@ -228,32 +228,32 @@
      <string name="mako_hotplug">Mako 热插拔</string>
      <string name="mako_hotplug_summary">将高通的 MPDecision 更换为由 franciscofranco 开发的核​​心</string>
      <string name="cpus_on_touch">触碰时的 CPU</string>
-     <string name="cpus_on_touch_summary">当触碰萤幕或按下按钮时上线的 CPU 数量。  </string>
+     <string name="cpus_on_touch_summary">当触碰屏幕或按下硬件按钮时启动的 CPU 数量。  </string>
      <string name="cpu_freq_unplug_limit">CPU 的拔除频率界限</string>
      <string name="first_level">第一级</string>
-     <string name="first_level_summary">将所有 CPU 上线的门槛</string>
+     <string name="first_level_summary">将所有 CPU 启动的上限值</string>
      <string name="high_load_counter">高负载计数器</string>
-     <string name="load_threshold">负载门槛</string>
-     <string name="load_threshold_summary">将所有 CPU 上线的门槛</string>
+     <string name="load_threshold">负载上限</string>
+     <string name="load_threshold_summary">将所有 CPU 启动的上限值</string>
      <string name="max_load_counter">最大负载计数器</string>
-     <string name="min_time_cpu_online">CPU 上线的最小时间</string>
+     <string name="min_time_cpu_online">CPU 启动的最短时间</string>
      <string name="timer">计时器</string>
-      <string name="screen_off_single_cpu">萤幕关闭时单核心运作</string>
-     <string name="screen_off_single_cpu_summary">当萤幕关闭时仅用一个 CPU 的核心运作</string>
+      <string name="screen_off_single_cpu">屏幕关闭时单核心运作</string>
+     <string name="screen_off_single_cpu_summary">当屏幕关闭时仅用一个 CPU 的核心运作</string>
      <string name="delay">延迟</string>
      <string name="delay_summary">检查间隔时间</string>
      <string name="msm_hotplug">高通热插拔</string>
      <string name="msm_hotplug_summary">将高通的 MPDecision 更换为由 myfluxi 开发的核​​心</string>
      <string name="history_size">历史记录大小</string>
-     <string name="history_size_summary">CPU 平均负载的取样数量。 较低的数值带来更快/更不稳定。  </string>
+     <string name="history_size_summary">CPU 平均负载的取样数量。 较低的数值会导致CPU更快/更不稳定。  </string>
      <string name="update_rate">更新率</string>
-     <string name="update_rate_summary">CPU 负载的取样时间间隔。 较低的值表示更快/更不稳定。  </string>
+     <string name="update_rate_summary">CPU 负载的取样时间间隔。 较低的值会导致CPU更快/更不稳定。  </string>
      <string name="fast_lane_load">快速通道负载</string>
-     <string name="fast_lane_load_summary">如果任何 CPU 的目前负载大于特定门槛，藉由立即把所有 CPU 上线来改善延迟。  </string>
+     <string name="fast_lane_load_summary">如果任何 CPU 的目前负载大于限定值，就会立即把所有 CPU 启动来改善延迟。  </string>
      <string name="fast_lane_min_freq">快速通道最低频率</string>
      <string name="fast_lane_min_freq_summary">当快速通道达到上述负载，设定 CPU 可调降的最低频率。  </string>
      <string name="offline_load">离线负载</string>
-     <string name="offline_load_summary">不要将 CPU 离线如果它掉到负载门槛(增加)以下。  </string>
+     <string name="offline_load_summary">不要将 CPU 离线如果它掉到负载上限值(增加)以下。  </string>
      <string name="alucard_hotplug">Alucard 热插拔</string>
      <string name="alucard_hotplug_summary">将高通的 MPDecision 更换为由 Alucard 开发的核​​心</string>
      <string name="sampling_rate">取样频率</string>
@@ -266,13 +266,13 @@
      <string name="mb_hotplug_summary">高通的 MPDecision 核心内替代品。 由 show-p1984 开发.</string>
      <string name="idle_frequency">空闲频率</string>
      <string name="idle_frequency_summary">如果第一个核心低于此频率, 则不要插入其他核心.</string>
-     <string name="touch_boost_time">触摸加速时间</string>
-     <string name="touch_boost_time_summary">触碰萤幕后, 应提高 CPU 的时间.</string>
+     <string name="touch_boost_time">点触加速的时间</string>
+     <string name="touch_boost_time_summary">点击屏幕后, 应加速 CPU 的时间.</string>
      <string name="boost_frequency_core">升压频率核心% d</string>
      <string name="start_delay">开始延迟</string>
      <string name="start_delay_summary">在热插拔开始工作之前的时间延迟 (以毫秒为单位).</string>
      <string name="pause">暂停</string>
-     <string name="pause_summary">如果有其他东西插入 CPU, 在这很毫秒的时间里睡着.</string>
+     <string name="pause_summary">如果有其他东西插入 CPU, 在这几毫秒的时间里休眠.</string>
      <string name="autosmp_summary">高通的 MPDecision 核心内替代品。 由 mrg666 开发.</string>
      <string name="downrate_limits">下载限值</string>
      <string name="uprate_limits">最高限制</string>
@@ -285,8 +285,8 @@
      <string name="hotplug_suspend">热插拔待命</string>
      <string name="hcube_summary">OnePlus 修改过的核心控制。  </string>
      <string name="min_cpus_big">大核核心数下限</string>
-     <string name="min_cpus_big_summary">上线的最小 CPU 大核数量。  </string>
-     <string name="busy_down_threshold">Busy Down 阈值</string>
+     <string name="min_cpus_big_summary">启动的最小 CPU 大核数量。  </string>
+     <string name="busy_down_threshold">Busy Down 阈值</string>
      <string name="busy_down_threshold_summary">应关闭大核时的阈值。  </string>
      <string name="busy_up_threshold">Busy Up 阈值</string>
      <string name="busy_up_threshold_summary">应开启大核时的阈值。  </string>
@@ -298,14 +298,14 @@
      <string name="online_delay_summary">开启 CPU 前的等待时间。  </string>
      <string name="msm_sleeper">MSM 休眠器</string>
      <string name="msm_sleeper_summary">将高通的 MPDecision 更换为由 flar2 开发的核​​心</string>
-     <string name="max_down_count">核心下线阈值</string>
-     <string name="max_up_count">核心下线阈值</string>
+     <string name="max_down_count">核心禁用阈值</string>
+     <string name="max_up_count">核心禁用阈值</string>
      <string name="suspend_max_online">休眠时最大上线核心数</string>
      <string name="hotplug_frequency">热插拔频率</string>
      <string name="hotplug_load">热插拔负载</string>
      <string name="hotplug_rate">热插拔速率</string>
      <string name="hotplug_rq">热插拔 RQ</string>
-     <string name="adv_sett">高级设定</string>
+     <string name="adv_sett">高级设置</string>
 
      <!-- CPU Voltage -->
      <string name="global_offset">全域偏移</string>
@@ -927,33 +927,33 @@
      <string name="change_logs">更新日志</string>
      <string name="change_logs_summary">检视变更</string>
      <string name="donate_me">捐赠给我</string>
-     <string name="donate_me_summary">想通过氪金来感谢我的工作吗？ 请点选这里</string>
-     <string name="donate_me_message"> \n如果你喜欢我的工作，请考虑给我捐款，因为有助于我的项目更加活跃，尽管不是强制性的。  \n</string>
-     <string name="donate_me_playstore">\n请注意: 我除了可以透通过PayPal 接受捐款, 您也可以购买 Play Store 中的 SmartPack Donation Package 来表示支持。 此外, 购买 SmartPack Donation Package 将解锁在这个应用程式中的一些隐藏的功能。  \n</string>
+     <string name="donate_me_summary">想通过捐赠来感谢我的工作吗？ 请点选这里</string>
+     <string name="donate_me_message"> \n如果你喜欢我的工作，请考虑给我捐款，因为有助于我的项目更加活跃，虽然这并不是强制性的。  \n</string>
+     <string name="donate_me_playstore">\n请注意: 我除了可以通过PayPal 接受捐款, 您也可以购买 Play Store 中的 SmartPack Donation Package 来支持。 此外, 购买 SmartPack Donation Package 将解锁在这个应用程序中的一些隐藏的功能。  \n</string>
      <string name="purchase_app">购买应用程式</string>
 
      <!-- Contributors -->
      <string name="commits">%d 提交</string>
-     <string name="no_internet">请检查您是否使用真正的互联网！  </string>
+     <string name="no_internet">请检查您是否正确连接网络！  </string>
      <string name="translators">翻译人员</string>
 
      <!-- FAQ -->
      <string name="how_different">问题1。 此应用程式跟 Grarak 的官方版 Kernel Adiutor 有何不同之处？  </string>
-     <string name="how_different_summary">答案：此应用程式经过明显的修改, 以满足 SmartPack 核心的需求。 这个应用程式的一些附加功能包括但不限于, 即 CPU 输入增益, ii。  Adreno Boost, iii. Dynamic Stune Boost, iv. K-lapse, v. 高级充电控制介面(Samsung msm8974 核心), vi. Boeffla 唤醒锁, vii. Boeffla 和Flar 的声音控制与每个通道的支持, viii  . SELinux 开关, ix. Smartpack核心的OTA 支持、x. 显示背光控制等。  </string>
+     <string name="how_different_summary">答：此应用程式经过明显的修改, 以满足 SmartPack 核心的需求。 这个应用程式的一些附加功能包括但不限于, 即 CPU 输入增益, ii。  Adreno Boost, iii. Dynamic Stune Boost, iv. K-lapse, v. 高级充电控制介面(Samsung msm8974 核心), vi. Boeffla 唤醒锁, vii. Boeffla 和Flar 的声音控制与每个通道的支持, viii  . SELinux 开关, ix. Smartpack核心的OTA 支持、x. 显示背光控制等。  </string>
      <string name="can_i_use">问题2。 我可以将此应用程式与其他第三方核心一起使用吗？  </string>
-     <string name="can_i_use_summary">答案：为什么不呢？ 它将像往常一样运作。  </string>
+     <string name="can_i_use_summary">答：为什么不呢？ 它将像往常一样运作。  </string>
      <string name="cpu_freq_not_sticking">问题3。 为什么我设定的 CPU 频率不会固定？  </string>
-     <string name="cpu_freq_not_sticking_summary">答案：这能归咎于很多原因。 现今许多核心拥有自己的热插拔系统来控制 CPU 频率，并且 CyanogenMod 拥有自己的 CPU 加速补偿来管理频率。 我建议您不要更动 CPU 频率，让核心做它的工作。 这对其它功能也很重要！ 如果频率没有固定，那是因为核心/系统不想让您改变它。  </string>
+     <string name="cpu_freq_not_sticking_summary">答：这能归咎于很多原因。 现今许多核心拥有自己的热插拔系统来控制 CPU 频率，并且 CyanogenMod 拥有自己的 CPU 加速补偿来管理频率。 我建议您不要更动 CPU 频率，让核心做它的工作。 这对其它功能也很重要！ 如果频率没有固定，那是因为核心/系统不想让您改变它。  </string>
      <string name="feature_not_appearing">问题4。 为什么功能 x 和 y 没有显示？  </string>
-     <string name="feature_not_appearing_summary">答案：仅显示已安装核心支持的功能。  </string>
+     <string name="feature_not_appearing_summary">答：仅显示已安装核心支持的功能。  </string>
      <string name="add_new_features">问题5。 是否可以将功能 x 和 y 新增到您的 核心/App 中？  </string>
-     <string name="add_new_features_summary">这很难说。 我尝试增加所有功能，但很难使这个应用程式适用于所有装置。  </string>
+     <string name="add_new_features_summary">答：这很难说。 我尝试增加所有功能，但很难使这个程序适配所有的设备。  </string>
      <string name="what_best">问题6。 你能告诉我性能的最佳设定吗？  </string>
-     <string name="what_best_summary">答案：同样地, 这取决于几个因素。 我只能分享我最喜欢的设定, 在我最喜欢的 ROM 提供最好的结果。  </string>
-     <string name="cache_dalvik">问题7。 在安装核心后, 我是否需要在之前擦除 cache/dalvik 快取？  </string>
-     <string name="cache_dalvik_summary">答案：不用。 因为核心什至没有 「看到」 cache/dalvik 快取。  </string>
+     <string name="what_best_summary">答：同样地, 这取决于几个因素。 我只能分享我最喜欢的设置, 在我最喜欢的 ROM 里它能带来最佳效果。  </string>
+     <string name="cache_dalvik">问题7。 在安装核心后, 我是否需要在之前擦除 cache/dalvik 缓存？  </string>
+     <string name="cache_dalvik_summary">答：不用。 因为核心甚至没有 「看到」 cache/dalvik 缓存。  </string>
      <string name="found_bugs">问题8。 我在你的 app/核心中发现了一个错误, 我该怎么办？  </string>
-     <string name="found_bugs_summary">答案：请提供尽可能多的资讯(如什么功能、哪些功能不起作用、屏幕截图或logcat (如果可能), 并在相应的xda 开发人员页面中发布。或者, 您也可以将问题提交到相应的github 源。</string>
+     <string name="found_bugs_summary">答：请提供尽可能多的资讯(如什么功能、哪些功能不起作用、屏幕截图或logcat (如果可以的话), 并在相应的xda 开发人员页面中发布。或者, 您也可以将问题提交到相应的github 源码库。</string>
      <string name="can_i_contribute">问题9。 我可以为您的 app/核心专案做出贡献吗？ 如果可以, 要怎么做？  </string>
-     <string name="can_i_contribute_summary">答案：当然。 任何形式的贡献 (捐赠、原始码等) 都是乐见和高度赞赏的。 请浏览 「关于」 部分了解更多详细资讯。  </string>
+     <string name="can_i_contribute_summary">答：当然。 任何形式的贡献 (捐赠、原始码等) 都是非常欢迎和高度赞赏的。 请浏览 「关于」 部分了解更多详细资讯。  </string>
  </resources>
