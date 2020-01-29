@@ -1,5 +1,9 @@
 # Change-logs
 
+## 87. January 29, 2020
+*Release-tag: v9.7*<br>
+Changes: SmartPack: Introduced new page to create Update channel. Main: Overall UI updates. Translations. Improved Chinese simplified translations (Credits: @guh0613).
+
 ## 86. January 23, 2020
 *Release-tag: v9.6*<br>
 Changes: SmartPack: Implemented an FK model kernel update feature. Custom Controller: Added option to share and import controllers. Script Manager: Added option to share scripts. Profiles, Scripts & Backup: Added images. SmartPack: Overall Updates in alignment. Miscellaneous changes.

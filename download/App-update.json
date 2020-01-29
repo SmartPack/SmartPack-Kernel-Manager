@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-log\n- SmartPack: Implemented an FK model kernel update feature.\n- Custom Controller: Added option to share and import controllers.\n- Script Manager: Added option to share scripts.\n- Profiles, Scripts & Backup: Added images.\n- SmartPack: Overall Updates in alignment.\n- Miscellaneous changes.",
-  "latestVersion": "9.6",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v9.6/com.smartpack.kernelmanager-v9.6-release.apk"
+  "releaseNotes": "Change-log\n- SmartPack: Introduced new page to create Update channel.\n- Main: Overall UI updates. Translations.\n- Improved Chinese simplified translations (Credits: @guh0613).",
+  "latestVersion": "9.7",
+  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v9.7/com.smartpack.kernelmanager-v9.7-release.apk"
 }
