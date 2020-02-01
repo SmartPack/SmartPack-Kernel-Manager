@@ -320,6 +320,52 @@ public class SmartPackFragment extends RecyclerViewFragment {
             items.add(download);
         }
 
+        if (!KernelUpdater.getKernelName().equals("Unavailable")) {
+            DescriptionView share = new DescriptionView();
+            share.setTitle(getString(R.string.share_channel));
+            share.setSummary(getString(R.string.share_channel_summary));
+            share.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    if (!Utils.isNetworkAvailable(getActivity())) {
+                        Utils.toast(R.string.no_internet, getActivity());
+                        return;
+                    }
+                    Intent shareChannel = new Intent();
+                    shareChannel.setAction(Intent.ACTION_SEND);
+                    shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                    shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
+                            Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
+                            "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                    shareChannel.setType("text/plain");
+                    Intent shareIntent = Intent.createChooser(shareChannel, null);
+                    startActivity(shareIntent);
+                }
+            });
+
+            items.add(share);
+
+            DescriptionView remove = new DescriptionView();
+            remove.setTitle(getString(R.string.remove));
+            remove.setSummary(getString(R.string.remove_summary));
+            remove.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+                @Override
+                public void onClick(RecyclerViewItem item) {
+                    new Dialog(getActivity())
+                            .setMessage(getString(R.string.sure_question))
+                            .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                            })
+                            .setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
+                                KernelUpdater.clearUpdateInfo();
+                                reload();
+                            })
+                            .show();
+                }
+            });
+
+            items.add(remove);
+        }
+
         if (!KernelUpdater.getLatestVersion().equals("Unavailable")) {
             DescriptionView donations = new DescriptionView();
             donations.setTitle(getString(R.string.donations));

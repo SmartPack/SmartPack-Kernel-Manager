@@ -998,6 +998,11 @@
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
     <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
+    <string name="remove">Remove</string>
+    <string name="remove_summary">Remove this channel</string>
+    <string name="share_channel">Share Channel</string>
+    <string name="share_channel_summary">Share this Channel</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:\n</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
