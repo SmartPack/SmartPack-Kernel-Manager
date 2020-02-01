@@ -546,28 +546,26 @@ public class SmartPackFragment extends RecyclerViewFragment {
         reset.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Dialog resetsettings = new Dialog(getActivity());
-                resetsettings.setIcon(R.mipmap.ic_launcher);
-                resetsettings.setTitle(getString(R.string.warning));
-                resetsettings.setMessage(getString(R.string.reset_settings_message));
-                resetsettings.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                });
-                resetsettings.setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                    Dialog reboot = new Dialog(getActivity());
-                    reboot.setIcon(R.mipmap.ic_launcher);
-                    reboot.setTitle(getString(R.string.reboot));
-                    reboot.setMessage(getString(R.string.reboot_message));
-                    reboot.setNeutralButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
-                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute("pm clear com.smartpack.kernelmanager && am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
-                    });
-                    reboot.setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
-                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                        new Execute().execute(Utils.prepareReboot());
-                    });
-                    reboot.show();
-                });
-                resetsettings.show();
+                new Dialog(getActivity())
+                        .setMessage(getString(R.string.reset_settings_message))
+                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                        })
+                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                            new Dialog(getActivity())
+                                    .setMessage(getString(R.string.reboot_message))
+                                    .setNegativeButton(getString(R.string.reboot_later), (dialogInterface, i) -> {
+                                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                        new Execute().execute("pm clear com.smartpack.kernelmanager && " +
+                                                "am start -n com.smartpack.kernelmanager/com.grarak.kerneladiutor.activities.MainActivity");
+                                    })
+                                    .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
+                                        new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
+                                        new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
+                                                : Utils.prepareReboot());
+                                    })
+                                    .show();
+                        })
+                        .show();
             }
         });
         items.add(reset);

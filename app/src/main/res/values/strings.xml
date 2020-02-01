@@ -994,8 +994,8 @@
     <string name="restoring">Restoring</string>
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
-    <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n</string>
-    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
+    <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
+    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
     <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
 
