@@ -87,7 +87,7 @@ public class SmartPack {
             protected void onPreExecute() {
                 super.onPreExecute();
                 mProgressDialog = new ProgressDialog(context);
-                mProgressDialog.setMessage(context.getString(R.string.flashing) + (" ") + file.getName());
+                mProgressDialog.setMessage(context.getString(R.string.flashing) + " " + file.getName());
                 mProgressDialog.setCancelable(false);
                 mProgressDialog.show();
             }
@@ -121,7 +121,8 @@ public class SmartPack {
                                     }
                                     @Override
                                     protected Void doInBackground(Void... voids) {
-                                        RootUtils.runCommand(Utils.prepareReboot());
+                                        RootUtils.runCommand(Utils.existFile("/system/bin/svc") ? "svc power reboot"
+                                                : Utils.prepareReboot());
                                         return null;
                                     }
                                     @Override

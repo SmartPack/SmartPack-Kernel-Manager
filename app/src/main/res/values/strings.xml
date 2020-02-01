@@ -983,15 +983,12 @@
     <string name="reboot_options">Reboot Options</string>
     <string name="reboot_options_summary">Turn off or reboot your device</string>
     <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
-    <string name="normal_reboot_message">\nYour device will be rebooted.\n</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>
+    <string name="reboot_normal">Normal Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
     <string name="turn_off">Turn Off</string>
-    <string name="turn_off_message">\nYour device will be Turned Off.\n</string>
-    <string name="wipe_data">Wipe Data</string>
-    <string name="wipe_cache">Wipe Cache</string>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>
     <string name="restoring">Restoring</string>
@@ -999,12 +996,6 @@
     <string name="reset_settings_summary">Reset User Settings</string>
     <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n</string>
     <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
-    <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n</string>
-    <string name="bootloader_message">\nYour device will be rebooted into Download Mode.\n</string>
-    <string name="wipe_cache_summary">Wipe Cache Partition</string>
-    <string name="wipe_data_summary">Wipe Data Partition</string>
-    <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
-    <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
     <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
     <string name="unknown_link">Not provided by the developer yet!</string>
 
@@ -1115,7 +1106,6 @@
     <string name="purchase_app">Donation App</string>
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Auto Update Check</string>
-    <string name="auto_update_check_summary">Update check on app launch</string>
     <string name="licence">License</string>
     <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
     <string name="share_app">Share App</string>

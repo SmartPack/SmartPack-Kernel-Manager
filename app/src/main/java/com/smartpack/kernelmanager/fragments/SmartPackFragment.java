@@ -471,51 +471,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
 
         items.add(shell);
 
-        // Show wipe (Cache/Data) functions only if we recognize recovery...
-        if (SmartPack.hasRecovery()) {
-            DescriptionView wipe_cache = new DescriptionView();
-            wipe_cache.setTitle(getString(R.string.wipe_cache));
-            wipe_cache.setSummary(getString(R.string.wipe_cache_summary));
-            wipe_cache.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Dialog wipecache = new Dialog(getActivity());
-                    wipecache.setIcon(R.mipmap.ic_launcher);
-                    wipecache.setTitle(getString(R.string.sure_question));
-                    wipecache.setMessage(getString(R.string.wipe_cache_message));
-                    wipecache.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    wipecache.setPositiveButton(getString(R.string.wipe_cache), (dialog1, id1) -> {
-                        new Execute().execute("echo --wipe_cache > /cache/recovery/command");
-                        new Execute().execute(Utils.prepareReboot() + " recovery");
-                    });
-                    wipecache.show();
-                }
-            });
-            items.add(wipe_cache);
-
-            DescriptionView wipe_data = new DescriptionView();
-            wipe_data.setTitle(getString(R.string.wipe_data));
-            wipe_data.setSummary(getString(R.string.wipe_data_summary));
-            wipe_data.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
-                @Override
-                public void onClick(RecyclerViewItem item) {
-                    Dialog wipedata = new Dialog(getActivity());
-                    wipedata.setIcon(R.mipmap.ic_launcher);
-                    wipedata.setTitle(getString(R.string.sure_question));
-                    wipedata.setMessage(getString(R.string.wipe_data_message));
-                    wipedata.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
-                    });
-                    wipedata.setPositiveButton(getString(R.string.wipe_data), (dialog1, id1) -> {
-                        new Execute().execute("echo --wipe_data > /cache/recovery/command");
-                        new Execute().execute(Utils.prepareReboot() + " recovery");
-                    });
-                    wipedata.show();
-                }
-            });
-            items.add(wipe_data);
-        }
-
         DescriptionView reboot_options = new DescriptionView();
         reboot_options.setTitle(getString(R.string.reboot_options));
         reboot_options.setSummary(getString(R.string.reboot_options_summary));
@@ -529,47 +484,45 @@ public class SmartPackFragment extends RecyclerViewFragment {
                         switch (i) {
                             case 0:
                                 new Dialog(getActivity())
-                                        .setIcon(R.mipmap.ic_launcher)
-                                        .setTitle(getString(R.string.sure_question))
-                                        .setMessage(getString(R.string.turn_off_message))
-                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        .setMessage(getString(R.string.sure_question))
+                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
-                                        .setPositiveButton(getString(R.string.turn_off), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.prepareReboot() + " -p");
+                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power shutdown"
+                                                    : Utils.prepareReboot() + " -p");
                                         })
                                         .show();
                                 break;
                             case 1:
                                 new Dialog(getActivity())
-                                        .setIcon(R.mipmap.ic_launcher)
-                                        .setTitle(getString(R.string.sure_question))
-                                        .setMessage(getString(R.string.normal_reboot_message))
-                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        .setMessage(getString(R.string.sure_question))
+                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
-                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.prepareReboot());
+                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
+                                                    : Utils.prepareReboot());
                                         })
                                         .show();
                                 break;
                             case 2:
                                 new Dialog(getActivity())
-                                        .setMessage(getString(R.string.recovery_message))
-                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        .setMessage(getString(R.string.sure_question))
+                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
-                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.prepareReboot() + " recovery");
+                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
+                                                    : Utils.prepareReboot() + " recovery");
                                         })
                                         .show();
                                 break;
                             case 3:
                                 new Dialog(getActivity())
-                                        .setIcon(R.mipmap.ic_launcher)
-                                        .setTitle(getString(R.string.sure_question))
-                                        .setMessage(getString(R.string.bootloader_message))
-                                        .setNeutralButton(getString(R.string.cancel), (dialogInterface, ii) -> {
+                                        .setMessage(getString(R.string.sure_question))
+                                        .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
-                                        .setPositiveButton(getString(R.string.reboot), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.prepareReboot() + " bootloader");
+                                        .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
+                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
+                                                    : Utils.prepareReboot() + " bootloader");
                                         })
                                         .show();
                                 break;

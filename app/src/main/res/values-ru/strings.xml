@@ -860,15 +860,11 @@
     <string name="flash_log">Лог прошивальшика</string>
     <string name="reboot">Перезагрузить</string>
     <string name="reboot_dialog">Настоятельно рекомендуется перезагрузить устройство после%s.</string>
-    <string name="normal_reboot_message">\nВаше устройство будет перезагружено.\n</string>
     <string name="reboot_now">Перезагрузить сейчас</string>
     <string name="reboot_later">Перезагрузить позже</string>
     <string name="reboot_recovery">Перезагрузить в рекавери</string>
     <string name="reboot_bootloader">Перезагрузить в загрузчик</string>
     <string name="turn_off">Выключен</string>
-    <string name="turn_off_message">\nУстройство будет выключено.\n</string>
-    <string name="wipe_data">Очистить раздел Data</string>
-    <string name="wipe_cache">Стереть кэш</string>
     <string name="backing_up">Резервирование в процессе</string>
     <string name="flashing">Прошивка в процессе</string>
     <string name="restoring">Восстановление в процессе</string>
@@ -876,12 +872,6 @@
     <string name="reset_settings_summary">Сбросить пользовательские настройки</string>
     <string name="reset_settings_message">\nНастройки приложения будут полностью удалены.\n\nВы уверены?\n</string>
     <string name="reboot_message">Чтобы избежать сбоев конфигурации, настоятельно рекомендуется перезагрузить систему.\n\nПерезагрузить?\n</string>
-    <string name="recovery_message">\nВаше устройство будет перезагружено в режим восстановления.\n</string>
-    <string name="bootloader_message">\nВаше устройство будет перезагружено в режим загрузки.\n</string>
-    <string name="wipe_cache_summary">Очистить раздел кеша</string>
-    <string name="wipe_data_summary">Очистить раздел Data</string>
-    <string name="wipe_cache_message">\nCache/Dalvik Cache разделы вашего устройства будут удалены.\n\nВнимание! Устройство будет перезагружено.\n</string>
-    <string name="wipe_data_message">\nДанные раздела вашего устройства будут полностью удалены.\n\nВнимание! Вы потеряете все пользовательские данные, включая приложения. \ N \ nВнимание! Устройство будет перезагружено.\n</string>
     <string name="documentsui_message">Пожалуйста, используйте внешний «Файловый менеджер», чтобы выбрать файл. Выбор файлов через стандартный \'DocumentsUI\' пока не поддерживается.</string>
     <string name="check_update">Проверить на наличие обновлений</string>
     <string name="check_update_summary">Проверьте наличие новых версий SmartPack-Kernel Manager.</string>
@@ -952,7 +942,6 @@
     <string name="purchase_app">Приложение для пожертвований</string>
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Автоматическая проверка обновлений</string>
-    <string name="auto_update_check_summary">Проверять наличие новых версий SmartPack-Kernel Manager при запуске приложения</string>
     <string name="licence">Лицензии</string><string name="share_app">Поделиться приложением</string>
     <string name="share_app_summary">Поделитесь этим приложением с друзьями</string>
     <string name="share_app_message">Получить  SmartPack-Kernel Manager %s из \n</string>

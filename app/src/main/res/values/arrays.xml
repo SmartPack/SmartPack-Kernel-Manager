@@ -98,7 +98,7 @@
     <!-- SmartPack -->
     <string-array name="reboot_options">
         <item>@string/turn_off</item>
-        <item>@string/reboot</item>
+        <item>@string/reboot_normal</item>
         <item>@string/reboot_recovery</item>
         <item>@string/reboot_bootloader</item>
     </string-array>

@@ -915,15 +915,11 @@
     <string name="support_summary">Visite a página de suporte no xda-developers.com</string>
     <string name="flash_log">Registro do Flasher</string>
     <string name="reboot">Reiniciar</string>
-    <string name="normal_reboot_message">\nSeu dispositivo será reiniciado.\n</string>
     <string name="reboot_now">Reiniciar Agora</string>
     <string name="reboot_later">Reiniciar Depois</string>
     <string name="reboot_recovery">Reiniciar no Recovery</string>
     <string name="reboot_bootloader">Reiniciar no Bootloader</string>
     <string name="turn_off">Desligar</string>
-    <string name="turn_off_message">\nSeu dispositivo será desligado.\n</string>
-    <string name="wipe_data">Limpar Data</string>
-    <string name="wipe_cache">Limpar Cache</string>
     <string name="backing_up">Fazendo Backup</string>
     <string name="flashing">Flasheando</string>
     <string name="restoring">Restaurando</string>
@@ -931,12 +927,6 @@
     <string name="reset_settings_summary">Redefinir configurações do usuário</string>
     <string name="reset_settings_message">\nAs configurações do aplicativo serão completamente apagadas.\n\nTem certeza?\n</string>
     <string name="reboot_message">Para evitar falhas na configuração, é altamente recomendável reiniciar o sistema.\n\nDeseja reiniciar?\n</string>
-    <string name="recovery_message">\nSeu dispositivo será reiniciado no modo recovery.\n</string>
-    <string name="bootloader_message">\nSeu dispositivo será reiniciado no modo download.\n</string>
-    <string name="wipe_cache_summary">Limpar partição Cache</string>
-    <string name="wipe_data_summary">Limpar partição Data</string>
-    <string name="wipe_cache_message">\nAs partições Cache / Dalvik Cache do seu dispositivo serão apagadas.\n\nAtenção! O dispositivo será reiniciado.\n</string>
-    <string name="wipe_data_message">\nA partição de dados do seu dispositivo será completamente apagada.\n\nAviso! Você perderá todos os dados do usuário, incluindo aplicativos.\n\nAtenção! O dispositivo será reiniciado.\n</string>
 
     <!-- App Updater -->
     <string name="check_update">Verificar atualizações</string>
@@ -1009,7 +999,6 @@
     <string name="purchase_app">App de Doação</string>
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Verificação de Atualização Automática</string>
-    <string name="auto_update_check_summary">Verificar se há novas versões do SmartPack-Kernel Manager quando abrir o aplicativo</string>
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>
