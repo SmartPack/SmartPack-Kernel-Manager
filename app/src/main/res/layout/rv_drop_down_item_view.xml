@@ -8,11 +8,6 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
-    <View
-        style="@style/Divider"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

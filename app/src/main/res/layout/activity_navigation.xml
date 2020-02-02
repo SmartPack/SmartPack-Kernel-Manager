@@ -32,7 +32,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:focusable="false"
-        android:theme="@style/ItemTextAppearance"
         app:itemBackground="@drawable/nav_selector_background"
         app:headerLayout="@layout/nav_header_layout" />
 

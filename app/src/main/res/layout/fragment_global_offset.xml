@@ -12,7 +12,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/global_offset"
-        android:textColor="@color/white"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="20sp" />
 
     <RelativeLayout
@@ -30,7 +30,7 @@
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/minus"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorOnPrimary" />
 
         <TextView
             android:id="@+id/offset"
@@ -41,7 +41,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorOnPrimary" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_plus"
@@ -53,6 +53,6 @@
             android:background="?attr/selectableItemBackground"
             android:gravity="center"
             android:text="@string/plus"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorOnPrimary" />
     </RelativeLayout>
 </LinearLayout>

@@ -113,7 +113,7 @@ public class AboutFragment extends RecyclerViewFragment {
                     Utils.toast(R.string.no_internet, getActivity());
                     return;
                 }
-                Utils.launchUrl("https://forum.xda-developers.com/android/apps-games/app-smartpack-kernel-manager-t3854717", getActivity());
+                Utils.launchUrl("https://t.me/smartpack_kmanager", getActivity());
             }
         });
 

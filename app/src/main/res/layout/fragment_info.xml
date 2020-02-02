@@ -27,7 +27,7 @@
             android:paddingBottom="16dp"
             android:paddingTop="16dp"
             android:text="@string/about_me"
-            android:textColor="@color/white"
+            android:textColor="@color/colorOnPrimary"
             android:textSize="15sp" />
     </ScrollView>
 </LinearLayout>

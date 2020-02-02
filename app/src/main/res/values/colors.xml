@@ -3,14 +3,9 @@
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryVariant">#000000</color>
     <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorSecondary">#2962FF</color>
-    <color name="colorSecondaryVariant">#0039CB</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
 
     <color name="textcolor_dark">#b3ffffff</color>
 
-    <color name="black">#000000</color>
-    <color name="white">#ffffff</color>
     <color name="green">#5fb962</color>
     <color name="red">#f66055</color>
 
@@ -29,7 +24,4 @@
     <color name="colorPerformance">#fb8c00</color>
     <color name="colorBattery">#03a9f4</color>
     <color name="colorGaming">#ef5350</color>
-
-    <color name="colorNavHeader">#dcdcdc</color>
-
 </resources>

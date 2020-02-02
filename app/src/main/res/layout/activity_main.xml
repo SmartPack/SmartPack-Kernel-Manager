@@ -18,7 +18,7 @@
         android:paddingLeft="38dp"
         android:paddingStart="38dp"
         android:text="@string/checking_info"
-        android:textColor="@color/white"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="22sp" />
 
     <androidx.cardview.widget.CardView
