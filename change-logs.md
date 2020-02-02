@@ -1,5 +1,9 @@
 # Change-logs
 
+## 88. February 02, 2020
+*Release-tag: v9.8*<br>
+Changes: CPUFreq: Added proper support for 2 big/6 LITTLE core CPUs. Kernel Updater: Added option to remove and share channel. Misc: Updated reboot options to use svc power reboot if available. SmartPack: Simplified reboot and reset options. build: update some dependencies (e.g. picasso; Credits @pashamcr). Miscellaneous changes.
+
 ## 87. January 29, 2020
 *Release-tag: v9.7*<br>
 Changes: SmartPack: Introduced new page to create Update channel. Main: Overall UI updates. Translations. Improved Chinese simplified translations (Credits: @guh0613).
