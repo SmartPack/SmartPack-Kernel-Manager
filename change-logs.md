@@ -1,5 +1,9 @@
 # Change-logs
 
+## 89. February 03, 2020
+*Release-tag: v9.9*<br>
+Changes: Main: Updated app theme, especially the Dark one. Main: Updates for Play-Store release (removed all the conflicting features). res: Updated app icon (Credits to telegram user toxinpiper). CPUFreq: Updated to properly distinguish 4 Little/2 big core devices (need testing). Miscellaneous changes.
+
 ## 88. February 02, 2020
 *Release-tag: v9.8*<br>
 Changes: CPUFreq: Added proper support for 2 big/6 LITTLE core CPUs. Kernel Updater: Added option to remove and share channel. Misc: Updated reboot options to use svc power reboot if available. SmartPack: Simplified reboot and reset options. build: update some dependencies (e.g. picasso; Credits @pashamcr). Miscellaneous changes.

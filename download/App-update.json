@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - CPUFreq: Added proper support for 2 big/6 LITTLE core CPUs.\n - Kernel Updater: Added option to remove and share channels.\n - Misc: Updated reboot options to use svc power reboot if available.\n - SmartPack: Simplified reboot and reset options.\n - build: update some dependencies (e.g. picasso; Credits @pashamcr).\n - Miscellaneous changes.",
-  "latestVersion": "9.8",
-  "latestVersionCode": 9
+  "releaseNotes": "Change-logs\n - Main: Updated app theme, especially the Dark one.\n - Main: Updates for Play-Store release (removed all the conflicting features).\n - res: Updated app icon (Credits to telegram user toxinpiper).\n - CPUFreq: Updated to properly distinguish 4 Little/2 big core devices (need testing).\n - Miscellaneous changes.",
+  "latestVersion": "9.9",
+  "latestVersionCode": 90
 }

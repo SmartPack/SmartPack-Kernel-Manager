@@ -17,9 +17,9 @@ android {
     defaultConfig {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 9
-        versionName "9.8"
+        targetSdkVersion 29
+        versionCode 90
+        versionName "9.9"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"
