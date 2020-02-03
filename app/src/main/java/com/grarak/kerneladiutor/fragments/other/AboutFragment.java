@@ -60,8 +60,9 @@ public class AboutFragment extends RecyclerViewFragment {
         sCredits.put("Swirl,Matthew Precious", "https://github.com/mattprecious/swirl");
         sCredits.put("CircularImageView,Lopez Mikhael", "https://github.com/lopspower/CircularImageView");
         sCredits.put("Picasso,Square", "https://github.com/square/picasso");
-        sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
         sCredits.put("Platform SDK,CyanogenMod", "https://github.com/CyanogenMod/cm_platform_sdk");
+        sCredits.put("Round Corner Progress Bar,Akexorcist", "https://github.com/akexorcist/Android-RoundCornerProgressBar");
+        sCredits.put("App Icon,Toxinpiper", "https://t.me/toxinpiper");
     }
 
     static {
@@ -96,7 +97,7 @@ public class AboutFragment extends RecyclerViewFragment {
         about.setText(getString(R.string.app_name));
 
         DescriptionView versioninfo = new DescriptionView();
-        versioninfo.setDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
+        versioninfo.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
         versioninfo.setTitle(Utils.isSPDonated(requireActivity()) ? "Pro. " + getString(R.string.version) : getString(R.string.version));
         versioninfo.setSummary("v" + BuildConfig.VERSION_NAME);
 
@@ -283,6 +284,9 @@ public class AboutFragment extends RecyclerViewFragment {
                     break;
                 case "CyanogenMod":
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_cyanogenmod));
+                    break;
+                case "Toxinpiper":
+                    descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_on_boot_notification));
                     break;
             }
             descriptionView.setTitle(lib.split(",")[1]);
