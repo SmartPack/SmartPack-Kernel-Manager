@@ -744,10 +744,6 @@
     <string name="android_logger_summary">開啟/關閉安卓日誌記錄</string>
     <string name="printk_logger">列印輸出記錄</string>
     <string name="printk_logger_summary">啟用/停用 Linux 列印輸出日誌記錄。</string>
-    <string name="doze">Doze 模式</string>
-    <string name="doze_summary">啟用 Doze 模式，當您的裝置處於待機狀態時，防止某些任務在後臺執行。 </string>
-    <string name="selinux_switch">SELinux 開關</string>
-    <string name="selinux_switch_summary">停用以將 SELinux 切換為允許模式。</string>
     <string name="crc">軟體CRC控制</string>
     <string name="crc_summary">CRC是一種機制旨在防止資料損壞時啟動。資料塊可以失去其業績的30％。</string>
     <string name="fsync_summary">停用系統當機時的資料遺失的風險提高檔案系統性能。</string>

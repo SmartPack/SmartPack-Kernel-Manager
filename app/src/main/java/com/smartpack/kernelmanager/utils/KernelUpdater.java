@@ -48,9 +48,9 @@ public class KernelUpdater {
         Utils.create(value, UPDATE_CHANNEL);
     }
 
-    public static void updateInfo(String value) {
+    public static void updateInfo(String value, Context context) {
         SmartPack.prepareFlashFolder();
-        Utils.downloadFile(UPDATE_INFO, value);
+        Utils.downloadFile(UPDATE_INFO, value, context);
     }
 
     public static void clearUpdateInfo() {
@@ -98,7 +98,7 @@ public class KernelUpdater {
             @Override
             protected Void doInBackground(Void... voids) {
                 clearUpdateInfo();
-                updateInfo(value);
+                updateInfo(value, context);
                 updateChannel(value);
                 Utils.sleep(1);
                 return null;
@@ -131,7 +131,7 @@ public class KernelUpdater {
             @Override
             protected Void doInBackground(Void... voids) {
                 SmartPack.prepareFlashFolder();
-                Utils.downloadFile(LATEST_KERNEL, getUrl());
+                Utils.downloadFile(LATEST_KERNEL, getUrl(), context);
                 return null;
             }
             @Override

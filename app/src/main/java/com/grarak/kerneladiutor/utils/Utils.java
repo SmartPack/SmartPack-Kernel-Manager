@@ -83,9 +83,10 @@ public class Utils {
     private static final String TAG = Utils.class.getSimpleName();
     private static final String KA_DONATION_PACKAGE = "com.grarak.kerneladiutordonate";
     private static final String SP_DONATION_PACKAGE = "com.smartpack.donate";
+    private static final String PLAY_STORE = "com.android.vending";
     public static boolean DARK_THEME;
 
-    public static boolean isKADonated(Context context) {
+    private static boolean isKADonated(Context context) {
         try {
             context.getPackageManager().getApplicationInfo(KA_DONATION_PACKAGE, 0);
             return true;
@@ -105,6 +106,15 @@ public class Utils {
 
     public static boolean isDonated(Context context) {
         return BuildConfig.DEBUG || isKADonated(context) || isSPDonated(context);
+    }
+
+    public static boolean isPlayStoreInstalled(Context context) {
+        try {
+            context.getPackageManager().getApplicationInfo(PLAY_STORE, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException ignored) {
+            return false;
+        }
     }
 
     public static void startService(Context context, Intent intent) {
@@ -431,6 +441,10 @@ public class Utils {
     }
 
     public static void launchUrl(String url, Context context) {
+        if (!isNetworkAvailable(context)) {
+            Utils.toast(R.string.no_internet, context);
+            return;
+        }
         try {
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
@@ -557,6 +571,11 @@ public class Utils {
     public static String append(String text, String path) {
         return RootUtils.runCommand("echo '" + text + "' >> " + path);
     }
+
+    public static String createImage(String name, int size) {
+        return RootUtils.runCommand("mke2fs -F " + name + " " + size);
+    }
+
     public static String delete(String path) {
         if (Utils.existFile(path)) {
             return RootUtils.runCommand("rm -r " + path);
@@ -572,6 +591,14 @@ public class Utils {
         return RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
+    public static String unzip(String path, String folder) {
+        return RootUtils.runCommand("unzip " + path + " -d " + folder);
+    }
+
+    public static String createFolder(String path) {
+        return RootUtils.runCommand("mkdir " + path);
+    }
+
     public static String mount(String command, String source, String dest) {
         return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
     }
@@ -584,7 +611,11 @@ public class Utils {
         RootUtils.runCommand("chmod " + permission + " " + path);
     }
 
-    public static void downloadFile(String path, String url) {
+    public static void downloadFile(String path, String url, Context context) {
+        if (!isNetworkAvailable(context)) {
+            Utils.toast(R.string.no_internet, context);
+            return;
+        }
         RootUtils.runCommand((Utils.existFile("/system/bin/curl") ?
                 "curl -L -o " : "wget -O ") + path + " " + url);
     }

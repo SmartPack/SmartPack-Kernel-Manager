@@ -202,8 +202,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                     case 1:
                                         Utils.shareItem(getActivity(), CustomControls.getItemPath(switchItems.toString()),
                                                 switchItems.toString(), getString(R.string.share_controller, CustomControls.switchFile()) + " -> Import -> Switch'.\n\n" +
-                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
-                                                        "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
                                         break;
                                 }
                                 return false;

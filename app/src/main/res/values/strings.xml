@@ -816,10 +816,6 @@
     <string name="android_logger_summary">Turn On/Off Android logging</string>
     <string name="printk_logger">PrintK logging</string>
     <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
-    <string name="doze">Doze Mode</string>
-    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
-    <string name="selinux_switch">SELinux Switch</string>
-    <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
     <string name="fsync">Fsync</string>
@@ -859,7 +855,7 @@
     <string name="spec_performance">Performance</string>
     <string name="spec_performance_summary">Tuned for top-tier performance in standard tasks with many fewer regressions than Balanced, but maintains battery by limiting graphics.</string>
     <string name="spec_battery">Battery</string>
-    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to achive long-lasting battery life.</string>
+    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to achieve long-lasting battery life.</string>
     <string name="spec_gaming">Gaming</string>
     <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
 
@@ -1002,7 +998,7 @@
     <string name="remove_summary">Remove this channel</string>
     <string name="share_channel">Share Channel</string>
     <string name="share_channel_summary">Share this Channel</string>
-    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from GitHub:\n</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
 
     <!-- Update Channel -->
     <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
@@ -1033,8 +1029,8 @@
 
     <!-- App Updater -->
     <string name="update_available">New update available!\nv%s</string>
+    <string name="update_available_summary">%s\n\n**Important: Please download and manually update the app!**</string>
     <string name="get_it">Get It</string>
-    <string name="downloading">Downloading SmartPack-Kernel Manager v%s</string>
     <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
     <string name="updated_dialog">Congrats! You\'ve already got an up-to-date version of SmartPack-Kernel Manager!</string>
     <string name="check_update">Check for Updates</string>
@@ -1098,8 +1094,9 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is the official successor of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
     <string name="credits">Credits</string>
+    <string name="special_mentions">Special Mentions</string>
     <string name="source_code">Source Code</string>
     <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
@@ -1115,7 +1112,12 @@
     <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
     <string name="share_app">Share App</string>
     <string name="share_app_summary">Share this app with your friends</string>
-    <string name="share_app_message">Get SmartPack-Kernel Manager %s from\n</string>
+    <string name="share_app_message">Get SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="grarak">Willi Ye</string>
+    <string name="grarak_summary">The man behind \'Kernel Adiutor\', the official ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
+    <string name="osm0sis">Chris Renshaw</string>
+    <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
+
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>

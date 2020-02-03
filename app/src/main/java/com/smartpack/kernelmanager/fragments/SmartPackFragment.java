@@ -227,10 +227,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             info.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getActivity())) {
-                        Utils.toast(R.string.no_internet, getActivity());
-                        return;
-                    }
                     Utils.launchUrl("https://smartpack.github.io/kerneldownloads/", getActivity());
                 }
             });
@@ -256,10 +252,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 public void onClick(RecyclerViewItem item) {
                     if (KernelUpdater.getChangeLog().contains("https://") ||
                             KernelUpdater.getChangeLog().contains("http://")) {
-                        if (!Utils.isNetworkAvailable(getActivity())) {
-                            Utils.toast(R.string.no_internet, getActivity());
-                            return;
-                        }
                         Utils.launchUrl(KernelUpdater.getChangeLog(), getActivity());
                     } else {
                         new Dialog(getActivity())
@@ -282,10 +274,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             support.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getActivity())) {
-                        Utils.toast(R.string.no_internet, getActivity());
-                        return;
-                    }
                     if (KernelUpdater.getSupport().contains("https://") ||
                             KernelUpdater.getSupport().contains("http://")) {
                         Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
@@ -307,10 +295,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 public void onClick(RecyclerViewItem item) {
                     if (mPermissionDenied) {
                         Utils.toast(R.string.permission_denied_write_storage, getActivity());
-                        return;
-                    }
-                    if (!Utils.isNetworkAvailable(getActivity())) {
-                        Utils.toast(R.string.no_internet, getActivity());
                         return;
                     }
                     KernelUpdater.downloadKernel(getActivity());
@@ -336,7 +320,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                     shareChannel.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                     shareChannel.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_channel_message,
                             Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel")) +
-                            "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                            " https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
                     shareChannel.setType("text/plain");
                     Intent shareIntent = Intent.createChooser(shareChannel, null);
                     startActivity(shareIntent);
@@ -373,10 +357,6 @@ public class SmartPackFragment extends RecyclerViewFragment {
             donations.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
                 @Override
                 public void onClick(RecyclerViewItem item) {
-                    if (!Utils.isNetworkAvailable(getActivity())) {
-                        Utils.toast(R.string.no_internet, getActivity());
-                        return;
-                    }
                     if (KernelUpdater.getDonationLink().contains("https://") ||
                                 KernelUpdater.getDonationLink().contains("http://")) {
                         Utils.launchUrl(KernelUpdater.getSupport(), getActivity());
@@ -742,7 +722,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("update_check", true, getActivity())
                 && !KernelUpdater.getUpdateChannel().equals("Unavailable") && KernelUpdater.lastModified() +
                 89280000L < System.currentTimeMillis()) {
-            KernelUpdater.updateInfo(Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel"));
+            KernelUpdater.updateInfo(Utils.readFile(Utils.getInternalDataStorage() + "/updatechannel"), getActivity());
         }
     }
 }

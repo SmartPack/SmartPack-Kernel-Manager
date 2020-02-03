@@ -790,10 +790,6 @@
     <string name="android_logger_summary">Ativar / desativar os logs do Android</string>
     <string name="printk_logger">Logs do PrintK</string>
     <string name="printk_logger_summary">Ativar / desativar os logs do PrintK</string>
-    <string name="doze">Modo Doze</string>
-    <string name="doze_summary">Ative o modo doze para impedir que determinadas tarefas sejam executadas se o dispositivo estiver no estado ocioso.</string>
-    <string name="selinux_switch">Alternador SELinux</string>
-    <string name="selinux_switch_summary">Desabilite para mudar o SELinux para Permissivo</string>
     <string name="crc">Controle do Software CRC</string>
     <string name="crc_summary">O CRC é um mecanismo que visa impedir a corrupção de dados quando ativado. Os blocos de dados podem perder até 30% de seu desempenho.</string>
     <string name="fsync">Fsync</string>

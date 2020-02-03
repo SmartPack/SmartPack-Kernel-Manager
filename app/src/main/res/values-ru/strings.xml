@@ -739,10 +739,6 @@
     <string name="android_logger_summary">Включить / выключить логгирование Android</string>
     <string name="printk_logger">PrintK логирование</string>
     <string name="printk_logger_summary">Включить / выключить ведение журнала Linux PrintK</string>
-    <string name="doze">Режим Doze</string>
-    <string name="doze_summary">Включите режим Doze, чтобы запретить выполнение определенных задач, если ваше устройство находится в режиме ожидания.</string>
-    <string name="selinux_switch">переключатель SELinux</string>
-    <string name="selinux_switch_summary">Отключить для переключения Selinux в режим Permissive</string>
     <string name="crc">Управление CRC программ</string>
     <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30% своей производительности.</string>
     <string name="fsync">Fsync</string>

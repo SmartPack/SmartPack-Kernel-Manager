@@ -400,6 +400,7 @@
      <string name="freq_control_mask_summary">CPU 遮罩, 用于确定是否可以将核心用于 freq 控制。  </string>
      <string name="freq_mit_control_mask">减轻触控萤幕对频率的影响</string>
      <string name="freq_mit_control_mask_summary">频率缓解位元遮罩，用于确定 KTM 是否应对核心进行紧急频率缓解.</string>
+
      <!-- Battery -->
      <string name="capacity">容量</string>
      <string name="blx">电池寿命扩展</string>
@@ -724,11 +725,7 @@
      <string name="android_logger_summary">开启/关闭安卓日志记录</string>
      <string name="printk_logger">列印输出记录</string>
      <string name="printk_logger_summary">启用/停用 Linux 列印输出日志记录。  </string>
-     <string name="doze">Doze 模式</string>
-     <string name="doze_summary">启用 Doze 模式，当您的装置处于待机状态时，防止某些任务在后台执行。  </string>
-     <string name="selinux_switch">SELinux 开关</string>
-     <string name="selinux_switch_summary">停用以将 SELinux 切换为允许模式。  </string>
-     <string name="crc">软件CRC控制</string>
+     <string name="crc">软件CRC控制</string>
      <string name="crc_summary">CRC是一种机制旨在防止文件损坏时启动。 资料可以失去30％。  </string>
      <string name="fsync_summary">停用系统当机时的文件丢失的风险提高档案系统性能。  </string>
      <string name="dynamic_fsync">动态多次的Fsync</string>

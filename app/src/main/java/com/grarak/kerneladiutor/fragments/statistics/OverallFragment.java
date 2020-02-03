@@ -267,11 +267,14 @@ public class OverallFragment extends RecyclerViewFragment {
         super.onStart();
 
         // Initialize auto app update check
+        if (Utils.isPlayStoreInstalled(getActivity())) {
+            return;
+        }
         if (Utils.isNetworkAvailable(getActivity()) && Prefs.getBoolean("auto_update", true, getActivity())) {
             if (!UpdateCheck.hasVersionInfo() || (UpdateCheck.lastModified() + 3720000L < System.currentTimeMillis())) {
-                UpdateCheck.getVersionInfo();
+                UpdateCheck.getVersionInfo(getActivity());
             }
-            if (UpdateCheck.hasVersionInfo() && !BuildConfig.VERSION_NAME.equals(UpdateCheck.versionName())) {
+            if (UpdateCheck.hasVersionInfo() && BuildConfig.VERSION_CODE < UpdateCheck.versionCode()) {
                 UpdateCheck.updateAvailableDialog(getActivity());
             }
         }

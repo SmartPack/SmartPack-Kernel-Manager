@@ -53,10 +53,6 @@ public class SmartPack {
         return "mount " + command + " " + fs;
     }
 
-    public static boolean hasRecovery() {
-        return Utils.existFile("/cache/recovery/");
-    }
-
     public static void prepareLogFolder() {
         File logPath = new File(Utils.getInternalDataStorage() + "/logs");
         if (logPath.exists() && logPath.isFile()) {
@@ -155,11 +151,11 @@ public class SmartPack {
             Utils.create("", UNZIP_BINARY);
             Utils.mount("-o bind", MAGISK_UNZIP, UNZIP_BINARY);
         }
-        RootUtils.runCommand("unzip '" + path + "' -d '" + FLASH_FOLDER + "'");
+        Utils.unzip(path, FLASH_FOLDER);
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
             RootUtils.runCommand(mountFS("-o remount,rw", "/"));
-            RootUtils.runCommand("mkdir /tmp");
-            RootUtils.runCommand("mke2fs -F " + FLASH_FOLDER + "/tmp.ext4 500000");
+            Utils.createFolder("/tmp");
+            Utils.createImage(FLASH_FOLDER + "/tmp.ext4", 500000);
             Utils.mount("-o loop", FLASH_FOLDER + "/tmp.ext4", "/tmp/");
         }
     }

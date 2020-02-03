@@ -214,8 +214,7 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                                         break;
                                     case 2:
                                         Utils.shareItem(getActivity(), script, ScriptManager.scriptFile() + "/" + script, getString(R.string.share_script) + "\n\n" +
-                                                getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
-                                                "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                                getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
                                         break;
                                     case 3:
                                         mDeleteDialog = ViewUtils.dialogBuilder(getString(R.string.sure_question),

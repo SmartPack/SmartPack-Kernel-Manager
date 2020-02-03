@@ -1,5 +1,5 @@
 {
   "releaseNotes": "Change-logs\n - CPUFreq: Added proper support for 2 big/6 LITTLE core CPUs.\n - Kernel Updater: Added option to remove and share channels.\n - Misc: Updated reboot options to use svc power reboot if available.\n - SmartPack: Simplified reboot and reset options.\n - build: update some dependencies (e.g. picasso; Credits @pashamcr).\n - Miscellaneous changes.",
   "latestVersion": "9.8",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/releases/download/v9.8/com.smartpack.kernelmanager-v9.8-release.apk"
+  "latestVersionCode": 9
 }

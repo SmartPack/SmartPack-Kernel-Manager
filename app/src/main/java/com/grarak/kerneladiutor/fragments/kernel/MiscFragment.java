@@ -47,35 +47,35 @@ import java.util.List;
  */
 public class MiscFragment extends RecyclerViewFragment {
 
-    private Vibration mVibration;
-    private Misc mMisc;
+	private Vibration mVibration;
+	private Misc mMisc;
 
-    @Override
-    protected void init() {
-        super.init();
+	@Override
+	protected void init() {
+		super.init();
 
-        mVibration = Vibration.getInstance();
-        mMisc = Misc.getInstance();
-        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
-    }
+		mVibration = Vibration.getInstance();
+		mMisc = Misc.getInstance();
+		addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
+	}
 
-    @Override
-    protected void addItems(List<RecyclerViewItem> items) {
+	@Override
+	protected void addItems(List<RecyclerViewItem> items) {
 		if (mVibration.supported() || mMisc.hasLoggerEnable() || mMisc.hasPrintKMode() || mMisc.hasCrc()
 				|| mMisc.hasFsync() || mMisc.hasDynamicFsync() || mMisc.hasGentleFairSleepers() || mMisc.hasArchPower()
-				|| mMisc.hasDoze() || mMisc.hasSELinux() || mMisc.hasHapticOverride() || mMisc.hasHapticUser()
-				|| mMisc.hasHapticsNotification() || mMisc.hasHapticsCall()) {
+				|| mMisc.hasHapticOverride() || mMisc.hasHapticUser() || mMisc.hasHapticsNotification()
+				|| mMisc.hasHapticsCall()) {
 			miscInit(items);
 		}
 		if (PowerSuspend.supported()) {
 			powersuspendInit(items);
 		}
 		networkInit(items);
-    }
+	}
 
-    private void miscInit(List<RecyclerViewItem> items) {
-        CardView miscCard = new CardView(getActivity());
-        miscCard.setTitle(getString(R.string.misc));
+	private void miscInit(List<RecyclerViewItem> items) {
+		CardView miscCard = new CardView(getActivity());
+		miscCard.setTitle(getString(R.string.misc));
 
 		if (mVibration.supported()) {
 			final Vibrator vibrator = (Vibrator) getActivity()
@@ -111,7 +111,7 @@ public class MiscFragment extends RecyclerViewFragment {
 			miscCard.addItem(vibration);
 		}
 
-        if (mMisc.hasHapticOverride()) {
+		if (mMisc.hasHapticOverride()) {
 			SwitchView override = new SwitchView();
 			override.setTitle(getString(R.string.override_vib));
 			override.setSummary(getString(R.string.override_vib_summary));
@@ -199,337 +199,303 @@ public class MiscFragment extends RecyclerViewFragment {
 			miscCard.addItem(hapticCalls);
 		}
 
-	if (mMisc.hasLoggerEnable()) {
-	    SwitchView logger = new SwitchView();
-	    logger.setTitle(getString(R.string.android_logger));
-	    logger.setSummary(getString(R.string.android_logger_summary));
-	    logger.setChecked(mMisc.isLoggerEnabled());
-	    logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableLogger(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    logger.setChecked(mMisc.isLoggerEnabled());
-		    },
-	    	500);
+		if (mMisc.hasLoggerEnable()) {
+			SwitchView logger = new SwitchView();
+			logger.setTitle(getString(R.string.android_logger));
+			logger.setSummary(getString(R.string.android_logger_summary));
+			logger.setChecked(mMisc.isLoggerEnabled());
+			logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableLogger(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								logger.setChecked(mMisc.isLoggerEnabled());
+							},
+							500);
+				}
+			});
+
+			miscCard.addItem(logger);
 		}
-	    });
 
-	    miscCard.addItem(logger);
-	}
+		if (mMisc.hasPrintKMode()) {
+			SwitchView printk = new SwitchView();
+			printk.setTitle(getString(R.string.printk_logger));
+			printk.setSummary(getString(R.string.printk_logger_summary));
+			printk.setChecked(mMisc.isPrintKModeEnabled());
+			printk.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enablePrintKMode(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								printk.setChecked(mMisc.isPrintKModeEnabled());
+							},
+							500);
+				}
+			});
 
-	if (mMisc.hasPrintKMode()) {
-	    SwitchView printk = new SwitchView();
-	    printk.setTitle(getString(R.string.printk_logger));
-	    printk.setSummary(getString(R.string.printk_logger_summary));
-	    printk.setChecked(mMisc.isPrintKModeEnabled());
-	    printk.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enablePrintKMode(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    printk.setChecked(mMisc.isPrintKModeEnabled());
-		    },
-	    	500);
+			miscCard.addItem(printk);
 		}
-	    });
 
-	    miscCard.addItem(printk);
-	}
+		if (mMisc.hasCrc()) {
+			SwitchView crc = new SwitchView();
+			crc.setTitle(getString(R.string.crc));
+			crc.setSummary(getString(R.string.crc_summary));
+			crc.setChecked(mMisc.isCrcEnabled());
+			crc.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableCrc(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								crc.setChecked(mMisc.isCrcEnabled());
+							},
+							500);
+				}
+			});
 
-	if (mMisc.hasCrc()) {
-	    SwitchView crc = new SwitchView();
-	    crc.setTitle(getString(R.string.crc));
-	    crc.setSummary(getString(R.string.crc_summary));
-	    crc.setChecked(mMisc.isCrcEnabled());
-	    crc.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableCrc(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    crc.setChecked(mMisc.isCrcEnabled());
-		    },
-	    	500);
+			miscCard.addItem(crc);
 		}
-	    });
 
-	    miscCard.addItem(crc);
-	}
+		if (mMisc.hasFsync()) {
+			SwitchView fsync = new SwitchView();
+			fsync.setTitle(getString(R.string.fsync));
+			fsync.setSummary(getString(R.string.fsync_summary));
+			fsync.setChecked(mMisc.isFsyncEnabled());
+			fsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableFsync(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								fsync.setChecked(mMisc.isFsyncEnabled());
+							},
+							500);
+				}
+			});
 
-        if (mMisc.hasFsync()) {
-            SwitchView fsync = new SwitchView();
-            fsync.setTitle(getString(R.string.fsync));
-            fsync.setSummary(getString(R.string.fsync_summary));
-            fsync.setChecked(mMisc.isFsyncEnabled());
-            fsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableFsync(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    fsync.setChecked(mMisc.isFsyncEnabled());
-		    },
-	    	500);
-                }
-            });
-
-            miscCard.addItem(fsync);
-        }
-
-        if (mMisc.hasDynamicFsync()) {
-            SwitchView dynamicFsync = new SwitchView();
-            dynamicFsync.setTitle(getString(R.string.dynamic_fsync));
-            dynamicFsync.setSummary(getString(R.string.dynamic_fsync_summary));
-            dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
-            dynamicFsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableDynamicFsync(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
-		    },
-	    	500);
-                }
-            });
-
-            miscCard.addItem(dynamicFsync);
-        }
-
-	if (mMisc.hasGentleFairSleepers()) {
-	    SwitchView gentleFairSleepers = new SwitchView();
-	    gentleFairSleepers.setTitle(getString(R.string.gentlefairsleepers));
-	    gentleFairSleepers.setSummary(getString(R.string.gentlefairsleepers_summary));
-	    gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
-	    gentleFairSleepers.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableGentleFairSleepers(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
-		    },
-	    	500);
+			miscCard.addItem(fsync);
 		}
-	    });
 
-	    miscCard.addItem(gentleFairSleepers);
-	}
+		if (mMisc.hasDynamicFsync()) {
+			SwitchView dynamicFsync = new SwitchView();
+			dynamicFsync.setTitle(getString(R.string.dynamic_fsync));
+			dynamicFsync.setSummary(getString(R.string.dynamic_fsync_summary));
+			dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
+			dynamicFsync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableDynamicFsync(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								dynamicFsync.setChecked(mMisc.isDynamicFsyncEnabled());
+							},
+							500);
+				}
+			});
 
-	if (mMisc.hasArchPower()) {
-	    SwitchView archPower = new SwitchView();
-	    archPower.setTitle(getString(R.string.arch_power));
-	    archPower.setSummary(getString(R.string.arch_power_summary));
-	    archPower.setChecked(mMisc.isArchPowerEnabled());
-	    archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableArchPower(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    archPower.setChecked(mMisc.isArchPowerEnabled());
-		    },
-	    	500);
+			miscCard.addItem(dynamicFsync);
 		}
-	    });
 
-	    miscCard.addItem(archPower);
-	}
+		if (mMisc.hasGentleFairSleepers()) {
+			SwitchView gentleFairSleepers = new SwitchView();
+			gentleFairSleepers.setTitle(getString(R.string.gentlefairsleepers));
+			gentleFairSleepers.setSummary(getString(R.string.gentlefairsleepers_summary));
+			gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
+			gentleFairSleepers.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableGentleFairSleepers(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								gentleFairSleepers.setChecked(mMisc.isGentleFairSleepersEnabled());
+							},
+							500);
+				}
+			});
 
-	if (mMisc.hasLeases()) {
-	    SwitchView enable = new SwitchView();
-	    enable.setTitle(getString(R.string.leases_enable));
-	    enable.setSummary(getString(R.string.leases_enable_summary));
-	    enable.setChecked(mMisc.isLeasesEnabled());
-	    enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableLeases(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    enable.setChecked(mMisc.isLeasesEnabled());
-		    },
-	    	500);
+			miscCard.addItem(gentleFairSleepers);
 		}
-	    });
 
-	    miscCard.addItem(enable);
-	}
+		if (mMisc.hasArchPower()) {
+			SwitchView archPower = new SwitchView();
+			archPower.setTitle(getString(R.string.arch_power));
+			archPower.setSummary(getString(R.string.arch_power_summary));
+			archPower.setChecked(mMisc.isArchPowerEnabled());
+			archPower.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableArchPower(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								archPower.setChecked(mMisc.isArchPowerEnabled());
+							},
+							500);
+				}
+			});
 
-	if (mMisc.hasLeaseBreakTime()) {
-            GenericSelectView leaseBreakTime = new GenericSelectView();
-            leaseBreakTime.setTitle(getString(R.string.lease_break_time) + (" (s)"));
-            leaseBreakTime.setSummary(getString(R.string.lease_break_time_summary));
-            leaseBreakTime.setValue(mMisc.getLeaseBreakTime());
-            leaseBreakTime.setInputType(InputType.TYPE_CLASS_NUMBER);
-            leaseBreakTime.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-                @Override
-                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                    mMisc.setLeaseBreakTime(value, getActivity());
-                    genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    leaseBreakTime.setValue(mMisc.getLeaseBreakTime());
-		    },
-	    	500);
-                }
-            });
-
-            miscCard.addItem(leaseBreakTime);
-	}
-
-	if (mMisc.hasDoze()) {
-            SwitchView doze = new SwitchView();
-            doze.setTitle(getString(R.string.doze));
-            doze.setSummary(getString(R.string.doze_summary));
-            doze.setChecked(mMisc.isDozeEnabled());
-            doze.addOnSwitchListener((switchView, isChecked)
-                -> mMisc.enableDoze(isChecked));
-		getHandler().postDelayed(() -> {
-		doze.setChecked(mMisc.isDozeEnabled());
-		},
-	    500);
-
-            miscCard.addItem(doze);
-	}
-
-	if (mMisc.hasSELinux()) {
-	    SwitchView selinux = new SwitchView();
-	    selinux.setTitle(getString(R.string.selinux_switch));
-	    selinux.setSummary(getString(R.string.selinux_switch_summary));
-	    selinux.setChecked(mMisc.isSELinuxEnabled());
-	    selinux.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-		@Override
-		public void onChanged(SwitchView switchView, boolean isChecked) {
-                    mMisc.enableSELinux(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    selinux.setChecked(mMisc.isSELinuxEnabled());
-		    },
-	    	500);
+			miscCard.addItem(archPower);
 		}
-	    });
 
-	    miscCard.addItem(selinux);
+		if (mMisc.hasLeases()) {
+			SwitchView enable = new SwitchView();
+			enable.setTitle(getString(R.string.leases_enable));
+			enable.setSummary(getString(R.string.leases_enable_summary));
+			enable.setChecked(mMisc.isLeasesEnabled());
+			enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					mMisc.enableLeases(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								enable.setChecked(mMisc.isLeasesEnabled());
+							},
+							500);
+				}
+			});
+
+			miscCard.addItem(enable);
+		}
+
+		if (mMisc.hasLeaseBreakTime()) {
+			GenericSelectView leaseBreakTime = new GenericSelectView();
+			leaseBreakTime.setTitle(getString(R.string.lease_break_time) + (" (s)"));
+			leaseBreakTime.setSummary(getString(R.string.lease_break_time_summary));
+			leaseBreakTime.setValue(mMisc.getLeaseBreakTime());
+			leaseBreakTime.setInputType(InputType.TYPE_CLASS_NUMBER);
+			leaseBreakTime.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+				@Override
+				public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+					mMisc.setLeaseBreakTime(value, getActivity());
+					genericSelectView.setValue(value);
+					getHandler().postDelayed(() -> {
+								leaseBreakTime.setValue(mMisc.getLeaseBreakTime());
+							},
+							500);
+				}
+			});
+
+			miscCard.addItem(leaseBreakTime);
+		}
+
+		if (miscCard.size() > 0) {
+			items.add(miscCard);
+		}
 	}
 
-        if (miscCard.size() > 0) {
-            items.add(miscCard);
-        }
-    }
+	private void powersuspendInit(List<RecyclerViewItem> items) {
+		CardView psCard = new CardView(getActivity());
+		psCard.setTitle(getString(R.string.power_suspend));
 
-    private void powersuspendInit(List<RecyclerViewItem> items) {
-        CardView psCard = new CardView(getActivity());
-        psCard.setTitle(getString(R.string.power_suspend));
+		if (PowerSuspend.hasMode()) {
+			SelectView mode = new SelectView();
+			mode.setTitle(getString(R.string.power_suspend_mode));
+			mode.setSummary(getString(R.string.power_suspend_mode_summary));
+			mode.setItems(Arrays.asList(getResources().getStringArray(R.array.powersuspend_items)));
+			mode.setItem(PowerSuspend.getMode());
+			mode.setOnItemSelected(new SelectView.OnItemSelected() {
+				@Override
+				public void onItemSelected(SelectView selectView, int position, String item) {
+					PowerSuspend.setMode(position, getActivity());
+					getHandler().postDelayed(() -> {
+								mode.setItem(PowerSuspend.getMode());
+							},
+							500);
+				}
+			});
 
-        if (PowerSuspend.hasMode()) {
-            SelectView mode = new SelectView();
-            mode.setTitle(getString(R.string.power_suspend_mode));
-            mode.setSummary(getString(R.string.power_suspend_mode_summary));
-            mode.setItems(Arrays.asList(getResources().getStringArray(R.array.powersuspend_items)));
-            mode.setItem(PowerSuspend.getMode());
-            mode.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    PowerSuspend.setMode(position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    mode.setItem(PowerSuspend.getMode());
-		    },
-	    	500);
-                }
-            });
+			psCard.addItem(mode);
+		}
 
-            psCard.addItem(mode);
-        }
+		if (PowerSuspend.hasOldState()) {
+			SwitchView state = new SwitchView();
+			state.setTitle(getString(R.string.power_suspend_state));
+			state.setSummary(getString(R.string.power_suspend_state_summary));
+			state.setChecked(PowerSuspend.isOldStateEnabled());
+			state.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+				@Override
+				public void onChanged(SwitchView switchView, boolean isChecked) {
+					PowerSuspend.enableOldState(isChecked, getActivity());
+					getHandler().postDelayed(() -> {
+								state.setChecked(PowerSuspend.isOldStateEnabled());
+							},
+							500);
+				}
+			});
 
-        if (PowerSuspend.hasOldState()) {
-            SwitchView state = new SwitchView();
-            state.setTitle(getString(R.string.power_suspend_state));
-            state.setSummary(getString(R.string.power_suspend_state_summary));
-            state.setChecked(PowerSuspend.isOldStateEnabled());
-            state.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-                @Override
-                public void onChanged(SwitchView switchView, boolean isChecked) {
-                    PowerSuspend.enableOldState(isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    state.setChecked(PowerSuspend.isOldStateEnabled());
-		    },
-	    	500);
-                }
-            });
+			psCard.addItem(state);
+		}
 
-            psCard.addItem(state);
-        }
+		if (PowerSuspend.hasNewState()) {
+			SeekBarView state = new SeekBarView();
+			state.setTitle(getString(R.string.power_suspend_state));
+			state.setSummary(getString(R.string.power_suspend_state_summary));
+			state.setMax(2);
+			state.setProgress(PowerSuspend.getNewState());
+			state.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+				@Override
+				public void onStop(SeekBarView seekBarView, int position, String value) {
+					PowerSuspend.setNewState(position, getActivity());
+					getHandler().postDelayed(() -> {
+								state.setProgress(PowerSuspend.getNewState());
+							},
+							500);
+				}
 
-        if (PowerSuspend.hasNewState()) {
-            SeekBarView state = new SeekBarView();
-            state.setTitle(getString(R.string.power_suspend_state));
-            state.setSummary(getString(R.string.power_suspend_state_summary));
-            state.setMax(2);
-            state.setProgress(PowerSuspend.getNewState());
-            state.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
-                @Override
-                public void onStop(SeekBarView seekBarView, int position, String value) {
-                    PowerSuspend.setNewState(position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    state.setProgress(PowerSuspend.getNewState());
-		    },
-	    	500);
-                }
+				@Override
+				public void onMove(SeekBarView seekBarView, int position, String value) {
+				}
+			});
 
-                @Override
-                public void onMove(SeekBarView seekBarView, int position, String value) {
-                }
-            });
+			psCard.addItem(state);
+		}
 
-            psCard.addItem(state);
-        }
+		if (psCard.size() > 0) {
+			items.add(psCard);
+		}
+	}
 
-        if (psCard.size() > 0) {
-            items.add(psCard);
-        }
-    }
+	private void networkInit(List<RecyclerViewItem> items) {
+		CardView networkCard = new CardView(getActivity());
+		networkCard.setTitle(getString(R.string.network));
 
-    private void networkInit(List<RecyclerViewItem> items) {
-        CardView networkCard = new CardView(getActivity());
-        networkCard.setTitle(getString(R.string.network));
+		try {
+			SelectView tcp = new SelectView();
+			tcp.setTitle(getString(R.string.tcp));
+			tcp.setSummary(getString(R.string.tcp_summary));
+			tcp.setItems(mMisc.getTcpAvailableCongestions());
+			tcp.setItem(mMisc.getTcpCongestion());
+			tcp.setOnItemSelected(new SelectView.OnItemSelected() {
+				@Override
+				public void onItemSelected(SelectView selectView, int position, String item) {
+					mMisc.setTcpCongestion(item, getActivity());
+					getHandler().postDelayed(() -> {
+								tcp.setItem(mMisc.getTcpCongestion());
+							},
+							500);
+				}
+			});
 
-        try {
-            SelectView tcp = new SelectView();
-            tcp.setTitle(getString(R.string.tcp));
-            tcp.setSummary(getString(R.string.tcp_summary));
-            tcp.setItems(mMisc.getTcpAvailableCongestions());
-            tcp.setItem(mMisc.getTcpCongestion());
-            tcp.setOnItemSelected(new SelectView.OnItemSelected() {
-                @Override
-                public void onItemSelected(SelectView selectView, int position, String item) {
-                    mMisc.setTcpCongestion(item, getActivity());
-		    getHandler().postDelayed(() -> {
-		    tcp.setItem(mMisc.getTcpCongestion());
-		    },
-	    	500);
-                }
-            });
+			networkCard.addItem(tcp);
+		} catch (Exception ignored) {
+		}
 
-            networkCard.addItem(tcp);
-        } catch (Exception ignored) {
-        }
+		if (mMisc.hasWireguard()) {
+			DescriptionView wireguard = new DescriptionView();
+			wireguard.setTitle(getString(R.string.wireguard));
+			wireguard.setSummary(("Version: ") + mMisc.getWireguard());
 
-        if (mMisc.hasWireguard()) {
-            DescriptionView wireguard = new DescriptionView();
-            wireguard.setTitle(getString(R.string.wireguard));
-            wireguard.setSummary(("Version: ") + mMisc.getWireguard());
+			networkCard.addItem(wireguard);
+		}
 
-            networkCard.addItem(wireguard);
-        }
+		GenericSelectView hostname = new GenericSelectView();
+		hostname.setSummary(getString(R.string.hostname));
+		hostname.setValue(mMisc.getHostname());
+		hostname.setValueRaw(hostname.getValue());
+		hostname.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+			@Override
+			public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+				mMisc.setHostname(value, getActivity());
+			}
+		});
 
-        GenericSelectView hostname = new GenericSelectView();
-        hostname.setSummary(getString(R.string.hostname));
-        hostname.setValue(mMisc.getHostname());
-        hostname.setValueRaw(hostname.getValue());
-        hostname.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
-            @Override
-            public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                mMisc.setHostname(value, getActivity());
-            }
-        });
+		networkCard.addItem(hostname);
 
-        networkCard.addItem(hostname);
-
-        items.add(networkCard);
-    }
+		items.add(networkCard);
+	}
 
 }

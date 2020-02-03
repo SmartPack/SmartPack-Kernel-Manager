@@ -47,7 +47,6 @@ public class Misc {
     private static final String DYNAMIC_FSYNC = "/sys/kernel/dyn_fsync/Dyn_fsync_active";
     private static final String GENTLE_FAIR_SLEEPERS = "/sys/kernel/sched/gentle_fair_sleepers";
     private static final String ARCH_POWER = "/sys/kernel/sched/arch_power";
-    private static final String SELINUX = "/sys/fs/selinux/enforce";
     private static final String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
 
     private static final String LEASES_ENABLE = "/proc/sys/fs/leases-enable";
@@ -58,8 +57,6 @@ public class Misc {
     private static final String PRINTK_MODE = "/sys/kernel/printk_mode/printk_mode";
 
     private static final String HOSTNAME_KEY = "net.hostname";
-
-    private static final String DOZE = "dumpsys deviceidle";
 
     private static final String HAPTICS = "/sys/class/leds/vibrator";
     private static final String HAPTICS_OVERRIDE = HAPTICS + "/vmax_override";
@@ -144,18 +141,6 @@ public class Misc {
         return Utils.existFile(ARCH_POWER);
     }
 
-    public void enableSELinux(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", SELINUX), SELINUX, context);
-    }
-
-    public boolean isSELinuxEnabled() {
-        return Utils.readFile(SELINUX).equals("1");
-    }
-
-    public boolean hasSELinux() {
-        return Utils.existFile(SELINUX);
-    }
-
     public void enableGentleFairSleepers(boolean enable, Context context) {
         run(Control.write(enable ? "1" : "0", GENTLE_FAIR_SLEEPERS), GENTLE_FAIR_SLEEPERS, context);
     }
@@ -227,24 +212,6 @@ public class Misc {
 
     public static boolean hasPrintKMode() {
         return Utils.existFile(PRINTK_MODE);
-    }
-
-    public static void enableDoze(boolean enable) {
-        if (enable) {
-            RootUtils.runCommand(DOZE + " enable");
-            RootUtils.runCommand(DOZE + " force-idle");
-        } else {
-            RootUtils.runCommand(DOZE + " disable");
-        }
-    }
-
-    public static boolean isDozeEnabled() {
-        return RootUtils.runCommand(DOZE + " enabled").equals("1");
-    }
-
-    public static boolean hasDoze() {
-        return RootUtils.runCommand(DOZE + " enabled").equals("1")
-	|| RootUtils.runCommand(DOZE + " enabled").equals("0");
     }
 
     public static boolean hasWireguard() {

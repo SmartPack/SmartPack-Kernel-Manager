@@ -644,8 +644,7 @@ public class CPUFreq {
                         if ( cpu0Max > cpu6Max) {
                             mBigCpu = 0;
                             mLITTLECpu = 6;
-                        }
-                        else {
+                        } else {
                             mBigCpu = 6;
                             mLITTLECpu = 0;
                         }
