@@ -572,10 +572,6 @@ public class Utils {
         return RootUtils.runCommand("echo '" + text + "' >> " + path);
     }
 
-    public static String createImage(String name, int size) {
-        return RootUtils.runCommand("mke2fs -F " + name + " " + size);
-    }
-
     public static String delete(String path) {
         if (Utils.existFile(path)) {
             return RootUtils.runCommand("rm -r " + path);
@@ -591,24 +587,12 @@ public class Utils {
         return RootUtils.runCommand("cp -r " + source + " " + dest);
     }
 
-    public static String unzip(String path, String folder) {
-        return RootUtils.runCommand("unzip " + path + " -d " + folder);
-    }
-
-    public static String createFolder(String path) {
-        return RootUtils.runCommand("mkdir " + path);
-    }
-
     public static String mount(String command, String source, String dest) {
         return RootUtils.runCommand("mount " + command + " " + source + " " + dest);
     }
 
     public static String getChecksum(String path) {
         return RootUtils.runCommand("sha1sum " + path);
-    }
-
-    public static void chmod(String permission, String path) {
-        RootUtils.runCommand("chmod " + permission + " " + path);
     }
 
     public static void downloadFile(String path, String url, Context context) {
@@ -627,20 +611,25 @@ public class Utils {
 
     @TargetApi(19)
     public static String getFilePath(File file) {
-        if (file.getAbsolutePath().contains("/document/raw:")) {
-            return file.getAbsolutePath().replace("/document/raw:", "");
-        } else if (file.getAbsolutePath().contains("/document/primary:")) {
-            return (Environment.getExternalStorageDirectory() + ("/") + file.getAbsolutePath().replace("/document/primary:", ""));
-        } else if (file.getAbsolutePath().contains("/document/")) {
-            return file.getAbsolutePath().replace("/document/", "/storage/").replace(":", "/");
-        } else if (file.getAbsolutePath().contains("/storage_root")) {
-            return file.getAbsolutePath().replace("storage_root", "storage/emulated/0");
-        } else if (file.getAbsolutePath().contains("/external")) {
-            return file.getAbsolutePath().replace("external", "storage/emulated/0");
-        } else if (file.getAbsolutePath().contains("/root/")) {
-            return file.getAbsolutePath().replace("/root", "");
+        String path = file.getAbsolutePath();
+        if (path.contains("/document/raw:")) {
+            return path.replace("/document/raw:", "");
+        } else if (path.contains("/document/primary:")) {
+            return (Environment.getExternalStorageDirectory() + ("/") + path.replace("/document/primary:", ""));
+        } else if (path.contains("/document/")) {
+            return path.replace("/document/", "/storage/").replace(":", "/");
+        } else if (path.contains("/storage_root/storage/emulated/0")) {
+            return path.replace("/storage_root/storage/emulated/0", "/storage/emulated/0");
+        } else if (path.contains("/storage_root")) {
+            return path.replace("storage_root", "storage/emulated/0");
+        } else if (path.contains("/external")) {
+            return path.replace("external", "storage/emulated/0");
+        } else if (path.contains("/root/")) {
+            return path.replace("/root", "");
+        } else if (path.contains("file%3A%2F%2F%2F")) {
+            return path.replace("file%3A%2F%2F%2F", "").replace("%2F", "/");
         } else {
-            return file.getAbsolutePath();
+            return path;
         }
     }
 

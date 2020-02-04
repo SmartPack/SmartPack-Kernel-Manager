@@ -27,6 +27,7 @@ import android.os.AsyncTask;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.ViewUtils;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.views.dialog.Dialog;
 
@@ -44,10 +45,6 @@ public class SmartPack {
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     private static final String UNZIP_BINARY = "/system/bin/unzip";
     private static final String MAGISK_UNZIP = "/sbin/.magisk/busybox/unzip";
-
-    private static String flashingCommand(String binary, String api, FileDescriptor fd, String zip) {
-        return "sh " + binary + " " + api + " " + fd + " " + zip;
-    }
 
     private static String mountFS(String command, String fs) {
         return "mount " + command + " " + fs;
@@ -133,6 +130,9 @@ public class SmartPack {
                             })
                             .show();
 
+                } else {
+                    Utils.create(file.toString(), Utils.getInternalDataStorage() + "/file_path_error_log");
+                    ViewUtils.dialogError(context.getString(R.string.empty_flasher_log), context);
                 }
             }
         }.execute();
@@ -151,20 +151,24 @@ public class SmartPack {
             Utils.create("", UNZIP_BINARY);
             Utils.mount("-o bind", MAGISK_UNZIP, UNZIP_BINARY);
         }
-        Utils.unzip(path, FLASH_FOLDER);
+        RootUtils.runCommand("unzip '" + path + "' -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
+            RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
             RootUtils.runCommand(mountFS("-o remount,rw", "/"));
-            Utils.createFolder("/tmp");
-            Utils.createImage(FLASH_FOLDER + "/tmp.ext4", 500000);
-            Utils.mount("-o loop", FLASH_FOLDER + "/tmp.ext4", "/tmp/");
+            RootUtils.runCommand("mkdir /tmp");
+            RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
+            Utils.mount("-o loop", "tmp.ext4", "/tmp/");
         }
     }
 
     private static String manualFlash(File file) {
         FileDescriptor fd = new FileDescriptor();
         String RECOVERY_API = "3";
-        return RootUtils.runCommand(flashingCommand(ZIPFILE_EXTRACTED, RECOVERY_API, fd, file.toString()) + " && " + CLEANING_COMMAND +
-                " && " + mountFS("-o remount,ro", "/ /system"));
+        String path = file.toString();
+        String flashingCommnd = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' " +
+                fd + " '" + path + "'";
+        return RootUtils.runCommand(flashingCommnd + " && " + CLEANING_COMMAND + " && " +
+                mountFS("-o remount,ro", "/ /system"));
     }
 
 }

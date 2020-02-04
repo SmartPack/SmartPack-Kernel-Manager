@@ -689,12 +689,13 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri)) {
+            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
             if (!Utils.getExtension(mPath).equals("zip")) {
-                Utils.toast(getString(R.string.file_selection_error), getActivity());
+                Utils.create(file.getAbsolutePath(), Utils.getInternalDataStorage() + "/file_path_error_log");
+                ViewUtils.dialogError(getString(R.string.file_selection_error), getActivity());
                 return;
             }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
@@ -703,7 +704,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
             Dialog manualFlash = new Dialog(getActivity());
             manualFlash.setIcon(R.mipmap.ic_launcher);
             manualFlash.setTitle(getString(R.string.flasher));
-            manualFlash.setMessage(getString(R.string.sure_message, file.getName().replace("primary:", "")) + ("\n\n") +
+            manualFlash.setMessage(getString(R.string.sure_message, file.getName().replace("primary:", "")
+                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")) + ("\n\n") +
                     getString(R.string.warning) + (" ") + getString(R.string.flasher_warning));
             manualFlash.setNeutralButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
