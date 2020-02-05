@@ -66,12 +66,9 @@ public class SmartPack {
     public static void prepareFlashFolder() {
         if (Utils.existFile(FLASH_FOLDER)) {
             RootUtils.runCommand(CLEANING_COMMAND);
+        } else {
+            RootUtils.runCommand("mkdir '" + FLASH_FOLDER + "'");
         }
-        File flashPath = new File(FLASH_FOLDER);
-        if (flashPath.exists() && flashPath.isFile()) {
-            flashPath.delete();
-        }
-        flashPath.mkdirs();
     }
 
     public static void flashingTask(File file, Context context) {
