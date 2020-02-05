@@ -45,6 +45,12 @@ public class SmartPack {
     private static final String ZIPFILE_EXTRACTED = Utils.getInternalDataStorage() + "/flash/META-INF/com/google/android/update-binary";
     private static final String UNZIP_BINARY = "/system/bin/unzip";
     private static final String MAGISK_UNZIP = "/sbin/.magisk/busybox/unzip";
+    private static final String FLASHER_LOG = Utils.getInternalDataStorage() + "/flasher_log";
+    private static final String LOG_FILE = Utils.getInternalDataStorage() + "/file_path_error_log";
+
+    public static String errorLog() {
+        return LOG_FILE;
+    }
 
     private static String mountFS(String command, String fs) {
         return "mount " + command + " " + fs;
@@ -85,7 +91,9 @@ public class SmartPack {
                 mProgressDialog.show();
             }
             protected String doInBackground(Void... voids) {
-                prepareManualFlash(file);
+                Utils.create("## Flasher log created by SmartPack-Kernel Manager\n\n", FLASHER_LOG);
+                Utils.append("Preparing to flash " + file.getName() + "...", FLASHER_LOG);
+                Utils.append("Path: " + file.toString() + "\n", FLASHER_LOG);
                 return manualFlash(file);
             }
             protected void onPostExecute(String s) {
@@ -95,6 +103,7 @@ public class SmartPack {
                 } catch (IllegalArgumentException ignored) {
                 }
                 if (s != null && !s.isEmpty()) {
+                    Utils.append(s, FLASHER_LOG);
                     new Dialog(context)
                             .setIcon(R.mipmap.ic_launcher)
                             .setTitle(context.getString(R.string.flash_log))
@@ -131,44 +140,47 @@ public class SmartPack {
                             .show();
 
                 } else {
-                    Utils.create(file.toString(), Utils.getInternalDataStorage() + "/file_path_error_log");
-                    ViewUtils.dialogError(context.getString(R.string.empty_flasher_log), context);
+                    ViewUtils.dialogError(context.getString(R.string.empty_flasher_log), FLASHER_LOG, context);
                 }
             }
         }.execute();
     }
 
-    /*
-     * Flashing recovery zip without rebooting to custom recovery
-     * Credits to osm0sis @ xda-developers.com
-     */
-    private static void prepareManualFlash(File file) {
-        String path = file.toString();
+    private static String manualFlash(File file) {
+        /*
+         * Flashing recovery zip without rebooting to custom recovery
+         * Credits to osm0sis @ xda-developers.com
+         */
+        FileDescriptor fd = new FileDescriptor();
+        int RECOVERY_API = 3;
+        String flashingCommnd = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' '" +
+                fd + "' '" + file.toString() + "'";
         prepareFlashFolder();
+        Utils.append("Checking BusyBox binaries...", FLASHER_LOG);
         if ((Utils.readFile(UNZIP_BINARY).isEmpty() || !Utils.existFile(UNZIP_BINARY)) &&
                 Utils.existFile(MAGISK_UNZIP)) {
+            Utils.append("Native BusyBox binaries unavailable...\nUsing Magisk BusyBox...", FLASHER_LOG);
             RootUtils.runCommand(mountFS("-o remount,rw", "/system"));
             Utils.create("", UNZIP_BINARY);
             Utils.mount("-o bind", MAGISK_UNZIP, UNZIP_BINARY);
         }
-        RootUtils.runCommand("unzip '" + path + "' -d '" + FLASH_FOLDER + "'");
+        Utils.append("Extracting " + file.getName() + " to working folder...", FLASHER_LOG);
+        RootUtils.runCommand("unzip '" + file.toString() + "' -d '" + FLASH_FOLDER + "'");
         if (Utils.existFile(ZIPFILE_EXTRACTED)) {
+            Utils.append("Preparing a recovery-like environment for flashing...", FLASHER_LOG);
             RootUtils.runCommand("cd '" + FLASH_FOLDER + "'");
+            Utils.append("Mounting root file system ...", FLASHER_LOG);
             RootUtils.runCommand(mountFS("-o remount,rw", "/"));
             RootUtils.runCommand("mkdir /tmp");
+            Utils.append("Preparing a temporary ext4 image and loop mounting to '/tmp' ...", FLASHER_LOG);
             RootUtils.runCommand("mke2fs -F tmp.ext4 500000");
             Utils.mount("-o loop", "tmp.ext4", "/tmp/");
+            Utils.append("\nFlashing " + file.getName() + " ...\n", FLASHER_LOG);
+            return RootUtils.runCommand(flashingCommnd + " && " + CLEANING_COMMAND + " && " +
+                    mountFS("-o remount,ro", "/ /system"));
+        } else {
+            return Utils.append("\nExtracting zip file failed! Aborting...", FLASHER_LOG);
         }
-    }
-
-    private static String manualFlash(File file) {
-        FileDescriptor fd = new FileDescriptor();
-        String RECOVERY_API = "3";
-        String path = file.toString();
-        String flashingCommnd = "sh '" + ZIPFILE_EXTRACTED + "' '" + RECOVERY_API + "' " +
-                fd + " '" + path + "'";
-        return RootUtils.runCommand(flashingCommnd + " && " + CLEANING_COMMAND + " && " +
-                mountFS("-o remount,ro", "/ /system"));
     }
 
 }

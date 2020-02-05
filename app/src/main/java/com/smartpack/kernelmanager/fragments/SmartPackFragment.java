@@ -694,8 +694,8 @@ public class SmartPackFragment extends RecyclerViewFragment {
                 return;
             }
             if (!Utils.getExtension(mPath).equals("zip")) {
-                Utils.create(file.getAbsolutePath(), Utils.getInternalDataStorage() + "/file_path_error_log");
-                ViewUtils.dialogError(getString(R.string.file_selection_error), getActivity());
+                Utils.create(file.getAbsolutePath(), SmartPack.errorLog());
+                ViewUtils.dialogError(getString(R.string.file_selection_error), SmartPack.errorLog(), getActivity());
                 return;
             }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {

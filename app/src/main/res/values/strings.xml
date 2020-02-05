@@ -903,7 +903,7 @@
     <string name="wrong_extension">Please select a file with %s extension.</string>
     <string name="file_selection_error">Failed to get data from external file manager!</string>
     <string name="empty_flasher_log">It seems like flashing is failed!</string>
-    <string name="share_log">In order to fix this issue, please consider sharing the error log file created at \'%s\' with the developer of this app</string>
+    <string name="share_log">In order to fix this issue, please consider sharing the log file created at \'%s\' with the developer of this app.\nDo you want to share it now?</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>

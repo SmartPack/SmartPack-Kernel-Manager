@@ -127,18 +127,18 @@ public class ViewUtils {
                         -> Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.donate", context));
     }
 
-    public static void dialogError(String string, Context context) {
+    public static void dialogError(String string, String path, Context context) {
         new Dialog(context)
                 .setMessage(string + "\n" + context.getString(R.string.share_log,
-                        Utils.getInternalDataStorage() + "/file_path_error_log"))
+                        path))
                 .setNegativeButton(context.getString(R.string.cancel), (dialogInterface, i) -> {
                 })
                 .setPositiveButton(context.getString(R.string.share), (dialogInterface, i) -> {
                     Uri uriFile = FileProvider.getUriForFile(context,
-                            "com.grarak.kerneladiutor.provider", new File(Utils.getInternalDataStorage() + "/file_path_error_log"));
+                            "com.grarak.kerneladiutor.provider", new File(path));
                     Intent sharelog = new Intent(Intent.ACTION_SEND);
                     sharelog.setType("text/plain");
-                    sharelog.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, Utils.getInternalDataStorage() + "/file_path_error_log"));
+                    sharelog.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share_by, path));
                     sharelog.putExtra(Intent.EXTRA_STREAM, uriFile);
                     sharelog.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     context.startActivity(Intent.createChooser(sharelog, context.getString(R.string.share_with)));
