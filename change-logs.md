@@ -1,7 +1,11 @@
 # Change-logs
 
-## 90. February 03, 2020
-*Release-tag: v9.9*<br>
+## 91. February 05, 2020
+*Release-tag: v9.11*<br>
+Changes: SmartPack: Manual Flashing: Improve flashing. Backup, Custom Controls, Profiles, & Script Manager: Apply file manager updates. Miscellaneous changes.
+
+## 90. February 04, 2020
+*Release-tag: v9.10*<br>
 Changes: SmartPack: Manual flasher: Support more file manager. About: Link to Play-Store page. Miscellaneous changes.
 
 ## 89. February 03, 2020

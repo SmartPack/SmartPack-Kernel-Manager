@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - SmartPack: Manual flasher: Support more file manager.\n - About: Link to Play-Store page.\n - Miscellaneous changes.",
-  "latestVersion": "9.10",
-  "latestVersionCode": 91
+  "releaseNotes": "Change-logs\n - SmartPack: Manual Flashing: Improve flashing.\n - Backup, Custom Controls, Profiles, & Script Manager: Apply file manager updates.\n - Miscellaneous changes.",
+  "latestVersion": "9.11",
+  "latestVersionCode": 92
 }
