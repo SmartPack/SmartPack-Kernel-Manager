@@ -134,6 +134,21 @@ public class AboutFragment extends RecyclerViewFragment {
             }
         });
 
+        DescriptionView playstore = new DescriptionView();
+        playstore.setDrawable(getResources().getDrawable(R.drawable.ic_playstore));
+        playstore.setTitle(getString(R.string.playstore));
+        playstore.setSummary(getString(R.string.playstore_summary));
+        playstore.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                if (!Utils.isNetworkAvailable(getActivity())) {
+                    Utils.toast(R.string.no_internet, getActivity());
+                    return;
+                }
+                Utils.launchUrl("https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager", requireActivity());
+            }
+        });
+
         DescriptionView updatecheck = new DescriptionView();
         updatecheck.setDrawable(getResources().getDrawable(R.drawable.ic_update));
         updatecheck.setTitle(getString(R.string.check_update));
@@ -209,6 +224,7 @@ public class AboutFragment extends RecyclerViewFragment {
         items.add(sourcecode);
         items.add(support);
         items.add(changelogs);
+        items.add(playstore);
         if (!Utils.isPlayStoreInstalled(getActivity())) {
             items.add(updatecheck);
             items.add(autoUpdateCheck);

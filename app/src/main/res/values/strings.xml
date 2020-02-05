@@ -1103,6 +1103,8 @@
     <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
     <string name="change_logs_summary">View Change-logs</string>
+    <string name="playstore">PlayStore</string>
+    <string name="playstore_summary">Visit PlayStore page</string>
     <string name="donate_me">Donate to Me</string>
     <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
     <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
