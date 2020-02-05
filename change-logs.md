@@ -1,5 +1,9 @@
 # Change-logs
 
+## 90. February 03, 2020
+*Release-tag: v9.9*<br>
+Changes: SmartPack: Manual flasher: Support more file manager. About: Link to Play-Store page. Miscellaneous changes.
+
 ## 89. February 03, 2020
 *Release-tag: v9.9*<br>
 Changes: Main: Updated app theme, especially the Dark one. Main: Updates for Play-Store release (removed all the conflicting features). res: Updated app icon (Credits to telegram user toxinpiper). CPUFreq: Updated to properly distinguish 4 Little/2 big core devices (need testing). Miscellaneous changes.

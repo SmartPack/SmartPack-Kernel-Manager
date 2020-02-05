@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Main: Updated app theme, especially the Dark one.\n - Main: Updates for Play-Store release (removed all the conflicting features).\n - res: Updated app icon (Credits to telegram user toxinpiper).\n - CPUFreq: Updated to properly distinguish 4 Little/2 big core devices (need testing).\n - Miscellaneous changes.",
-  "latestVersion": "9.9",
-  "latestVersionCode": 90
+  "releaseNotes": "Change-logs\n - SmartPack: Manual flasher: Support more file manager.\n - About: Link to Play-Store page.\n - Miscellaneous changes.",
+  "latestVersion": "9.10",
+  "latestVersionCode": 91
 }
