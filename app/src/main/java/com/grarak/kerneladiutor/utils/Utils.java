@@ -19,7 +19,6 @@
  */
 package com.grarak.kerneladiutor.utils;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.UiModeManager;
@@ -609,28 +608,29 @@ public class Utils {
         return (cm.getActiveNetworkInfo() != null) && cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
-    @TargetApi(19)
     public static String getFilePath(File file) {
         String path = file.getAbsolutePath();
-        if (path.contains("/document/raw:")) {
-            return path.replace("/document/raw:", "");
-        } else if (path.contains("/document/primary:")) {
-            return (Environment.getExternalStorageDirectory() + ("/") + path.replace("/document/primary:", ""));
-        } else if (path.contains("/document/")) {
-            return path.replace("/document/", "/storage/").replace(":", "/");
-        } else if (path.contains("/storage_root/storage/emulated/0")) {
-            return path.replace("/storage_root/storage/emulated/0", "/storage/emulated/0");
-        } else if (path.contains("/storage_root")) {
-            return path.replace("storage_root", "storage/emulated/0");
-        } else if (path.contains("/external")) {
-            return path.replace("external", "storage/emulated/0");
-        } else if (path.contains("/root/")) {
-            return path.replace("/root", "");
-        } else if (path.contains("file%3A%2F%2F%2F")) {
-            return path.replace("file%3A%2F%2F%2F", "").replace("%2F", "/");
-        } else {
-            return path;
+        if (path.startsWith("/document/raw:")) {
+            path = path.replace("/document/raw:", "");
+        } else if (path.startsWith("/document/primary:")) {
+            path = (Environment.getExternalStorageDirectory() + ("/") + path.replace("/document/primary:", ""));
+        } else if (path.startsWith("/document/")) {
+            path = path.replace("/document/", "/storage/").replace(":", "/");
         }
+        if (path.startsWith("/storage_root/storage/emulated/0")) {
+            path = path.replace("/storage_root/storage/emulated/0", "/storage/emulated/0");
+        } else if (path.startsWith("/storage_root")) {
+            path = path.replace("storage_root", "storage/emulated/0");
+        }
+        if (path.startsWith("/external")) {
+            path = path.replace("external", "storage/emulated/0");
+        } if (path.startsWith("/root/")) {
+            path = path.replace("/root", "");
+        }
+        if (path.contains("file%3A%2F%2F%2F")) {
+            path = path.replace("file%3A%2F%2F%2F", "").replace("%2F", "/");
+        }
+        return path;
     }
 
     public static boolean isDocumentsUI(Uri uri) {
