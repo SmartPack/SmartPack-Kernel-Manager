@@ -46,11 +46,6 @@ public class SmartPack {
     private static final String UNZIP_BINARY = "/system/bin/unzip";
     private static final String MAGISK_UNZIP = "/sbin/.magisk/busybox/unzip";
     private static final String FLASHER_LOG = Utils.getInternalDataStorage() + "/flasher_log";
-    private static final String LOG_FILE = Utils.getInternalDataStorage() + "/file_path_error_log";
-
-    public static String errorLog() {
-        return LOG_FILE;
-    }
 
     private static String mountFS(String command, String fs) {
         return "mount " + command + " " + fs;

@@ -633,6 +633,10 @@ public class Utils {
         return path;
     }
 
+    public static String errorLog() {
+        return Utils.getInternalDataStorage() + "/file_path_error_log";
+    }
+
     public static boolean isDocumentsUI(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }

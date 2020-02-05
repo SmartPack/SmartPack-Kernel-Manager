@@ -413,7 +413,16 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                     return;
                 }
             } else {
-                if (!Utils.getExtension(file.getName()).isEmpty()) {
+                if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
+                    ViewUtils.dialogDocumentsUI(getActivity());
+                    return;
+                }
+                if (!Utils.existFile(mPath) && Utils.getExtension(mPath).isEmpty()) {
+                    Utils.create(file.getAbsolutePath(), Utils.errorLog());
+                    ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
+                    return;
+                }
+                if (!Utils.getExtension(mPath).isEmpty() && Utils.existFile(mPath)) {
                     Utils.toast(getString(R.string.invalid_controller, mPath), getActivity());
                     return;
                 }

@@ -517,11 +517,16 @@ public class BackupFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri)) {
+            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            if (!Utils.getExtension(file.getName()).equals("img")) {
+            if (!Utils.existFile(mPath) && Utils.getExtension(mPath).equals("img")) {
+                Utils.create(file.getAbsolutePath(), Utils.errorLog());
+                ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
+                return;
+            }
+            if (!Utils.getExtension(mPath).equals("img") && Utils.existFile(mPath)) {
                 Utils.toast(getString(R.string.wrong_extension, ".img"), getActivity());
                 return;
             }

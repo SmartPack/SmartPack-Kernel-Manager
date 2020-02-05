@@ -486,17 +486,23 @@ public class ProfileFragment extends RecyclerViewFragment {
         } else if (requestCode == 1) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            if (Utils.isDocumentsUI(uri)) {
+            mPath = Utils.getFilePath(file);
+            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            mPath = Utils.getFilePath(file);
-            if (!Utils.getExtension(file.getName()).equals("json")) {
+            if (!Utils.existFile(mPath) && Utils.getExtension(mPath).equals("json")) {
+                Utils.create(file.getAbsolutePath(), Utils.errorLog());
+                ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
+                return;
+            }
+            if (!Utils.getExtension(mPath).equals("json") && Utils.existFile(mPath)) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
             Dialog selectProfile = new Dialog(getActivity());
-            selectProfile.setMessage(getString(R.string.select_question, file.getName()));
+            selectProfile.setMessage(getString(R.string.select_question, file.getName().replace("primary:", "")
+                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")));
             selectProfile.setNegativeButton(getString(R.string.cancel), (dialog1, id1) -> {
             });
             selectProfile.setPositiveButton(getString(R.string.ok), (dialog1, id1) -> {

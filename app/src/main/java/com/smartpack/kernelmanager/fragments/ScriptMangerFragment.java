@@ -326,12 +326,18 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
             mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri)) {
+            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;
             }
-            if (!Utils.getExtension(file.getName()).equals("sh")) {
-                Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
+            if (!Utils.getExtension(mPath).equals("sh")) {
+                if (Utils.existFile(mPath)) {
+                    Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
+                } else {
+                    Utils.create(file.getAbsolutePath(), Utils.errorLog());
+                    Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
+                    ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
+                }
                 return;
             }
             if (Utils.existFile(ScriptManager.scriptExistsCheck(file.getName()))) {
@@ -339,7 +345,8 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
                 return;
             }
             Dialog selectQuestion = new Dialog(getActivity());
-            selectQuestion.setMessage(getString(R.string.select_question, file.getName()));
+            selectQuestion.setMessage(getString(R.string.select_question, file.getName().replace("primary:", "")
+                    .replace("file%3A%2F%2F%2F", "").replace("%2F", "/")));
             selectQuestion.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
             });
             selectQuestion.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
