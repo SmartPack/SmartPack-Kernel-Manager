@@ -625,11 +625,6 @@ public class CPUFreq {
 
     public boolean isBigLITTLE() {
         if (mBigCpu == -1 || mLITTLECpu == -1) {
-            List<Integer> cpu0Freqs = getFreqs(0);
-            List<Integer> cpu1Freqs = getFreqs(1);
-            List<Integer> cpu2Freqs = getFreqs(2);
-            List<Integer> cpu4Freqs = getFreqs(4);
-            List<Integer> cpu6Freqs = getFreqs(6);
             if (getCpuCount() <= 4 && !is8996()
                     || (Device.getBoard().startsWith("mt6") && !Device.getBoard().startsWith("mt6595"))
                     || Device.getBoard().startsWith("msm8929")) return false;
@@ -637,29 +632,13 @@ public class CPUFreq {
             if (is8996()) {
                 mBigCpu = 2;
                 mLITTLECpu = 0;
-            } else if (getCpuCount() <= 6) {
-                if (cpu1Freqs != null && cpu2Freqs != null) {
-                    int cpu1Max = cpu1Freqs.get(cpu1Freqs.size() - 1);
-                    int cpu2Max = cpu2Freqs.get(cpu2Freqs.size() - 1);
-                    if (cpu1Max < cpu2Max) {
-                        mBigCpu = 2;
-                        mLITTLECpu = 0;
-                    }
-                }
             } else {
-                if (cpu0Freqs != null && cpu4Freqs != null && cpu6Freqs != null) {
+                List<Integer> cpu0Freqs = getFreqs(0);
+                List<Integer> cpu4Freqs = getFreqs(4);
+                if (cpu0Freqs != null && cpu4Freqs != null) {
                     int cpu0Max = cpu0Freqs.get(cpu0Freqs.size() - 1);
                     int cpu4Max = cpu4Freqs.get(cpu4Freqs.size() - 1);
-                    int cpu6Max = cpu6Freqs.get(cpu6Freqs.size() - 1);
-                    if (cpu0Max == cpu4Max && cpu0Max != cpu6Max) {
-                        if (cpu0Max > cpu6Max) {
-                            mBigCpu = 0;
-                            mLITTLECpu = 6;
-                        } else {
-                            mBigCpu = 6;
-                            mLITTLECpu = 0;
-                        }
-                    } else if (cpu0Max > cpu4Max
+                    if (cpu0Max > cpu4Max
                             || (cpu0Max == cpu4Max && cpu0Freqs.size() > cpu4Freqs.size())) {
                         mBigCpu = 0;
                         mLITTLECpu = 4;
