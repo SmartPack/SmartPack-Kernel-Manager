@@ -46,6 +46,10 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2781194772510522~3971047091" />
+
         <activity
             android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"
             android:enabled="false"

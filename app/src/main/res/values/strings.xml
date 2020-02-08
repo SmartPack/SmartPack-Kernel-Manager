@@ -1039,9 +1039,13 @@
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
 
     <!-- Settings-->
+    <string name="allow_ads">Allow Ads</string>
+    <string name="allow_ads_summary">Support developer by allowing Ads on this app!</string>
+    <string name="disable_ads_message">Ads are disabled! However, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
+    <string name="allow_ads_message">Thank you very much for supporting my android development projects by allowing Ads!</string>
     <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_title">Fahrenheit</string>
-    <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>
+    <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
     <string name="force_english">Force displaying english language</string>
     <string name="user_interface">User interface</string>
     <string name="dark_theme">Dark theme</string>
@@ -1049,7 +1053,7 @@
     <string name="banner_resizer">Banner resizer</string>
     <string name="banner_resizer_message">Phone screen orientation should be \'Portrait\'!</string>
     <string name="hide_banner">Hide banner</string>
-    <string name="force_cards_summary">Use cards for items if possible.</string>
+    <string name="force_cards_summary">Use cards for items if possible</string>
     <string name="accent_color">Accent Color</string>
     <string name="section_icons">Section Icons</string>
     <string name="instant">Instant</string>
@@ -1065,7 +1069,7 @@
     <string name="always_show">Always Show</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Show toast when settings got applied.</string>
+    <string name="apply_on_boot_toast_summary">Show toast when settings got applied!</string>
     <string name="confirmation_notification">Confirmation Notification</string>
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>

@@ -29,6 +29,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.ads.MobileAds;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.database.tools.profiles.Profiles;
 import com.grarak.kerneladiutor.services.profile.Tile;
@@ -88,9 +89,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         View splashBackground = findViewById(R.id.splash_background);
-        mRootAccess = (TextView) findViewById(R.id.root_access_text);
-        mBusybox = (TextView) findViewById(R.id.busybox_text);
-        mCollectInfo = (TextView) findViewById(R.id.info_collect_text);
+        mRootAccess = findViewById(R.id.root_access_text);
+        mBusybox = findViewById(R.id.busybox_text);
+        mCollectInfo = findViewById(R.id.info_collect_text);
 
         /**
          * Hide huge banner in landscape mode
@@ -254,6 +255,11 @@ public class MainActivity extends BaseActivity {
                 activity.finish();
 
                 return;
+            }
+
+            // Initialize Google Ads
+            if (Prefs.getBoolean("allow_ads", true, activity)) {
+                MobileAds.initialize(activity, "ca-app-pub-2781194772510522~3971047091");
             }
 
             activity.launch();
