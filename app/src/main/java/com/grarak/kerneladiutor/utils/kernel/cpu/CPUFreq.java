@@ -632,6 +632,9 @@ public class CPUFreq {
             if (is8996()) {
                 mBigCpu = 2;
                 mLITTLECpu = 0;
+            } else if (is6Little2Big()) {
+                mBigCpu = 6;
+                mLITTLECpu = 0;
             } else {
                 List<Integer> cpu0Freqs = getFreqs(0);
                 List<Integer> cpu4Freqs = getFreqs(4);
@@ -661,6 +664,12 @@ public class CPUFreq {
     private boolean is8996() {
         String board = Device.getBoard();
         return board.equalsIgnoreCase("msm8996") || board.equalsIgnoreCase("msm8996pro");
+    }
+
+    private boolean is6Little2Big() {
+        String board = Device.getBoard();
+        return board.equalsIgnoreCase("sd670") || board.equalsIgnoreCase("universal7885")
+                || board.equalsIgnoreCase("universal7884");
     }
 
     public int getCpuCount() {
