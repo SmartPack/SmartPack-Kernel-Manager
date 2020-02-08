@@ -1,5 +1,5 @@
 {
   "releaseNotes": "Change-logs\n - SmartPack: Manual Flashing: Improve flashing.\n - Backup, Custom Controls, Profiles, & Script Manager: Apply file manager updates.\n - Miscellaneous changes.",
-  "latestVersion": "9.11",
-  "latestVersionCode": 92
+  "latestVersion": "9.12",
+  "latestVersionCode": 93
 }
