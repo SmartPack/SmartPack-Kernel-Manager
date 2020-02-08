@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - SmartPack: Manual Flashing: Improve flashing.\n - Backup, Custom Controls, Profiles, & Script Manager: Apply file manager updates.\n - Miscellaneous changes.",
+  "releaseNotes": "Change-logs\n - Main: Added a simple banner Ad view at the bottom (can be disabled in Settings).\n - CPU Freq: Reverted some recent changes made for 6 little/2 big devices.\n - res: Icon: Increased icon size a bit.\n - Translations: Added Ukrainian translations.\n - Translations: Updated Russian translations.\n - Miscellaneous changes.",
   "latestVersion": "9.12",
   "latestVersionCode": 93
 }
