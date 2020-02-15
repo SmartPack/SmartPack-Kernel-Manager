@@ -1,5 +1,9 @@
 # Change-logs
 
+## 93. February 15, 2020
+*Release-tag: v9.13*<br>
+Changes: Custom Control & Backup: Fixed crashes on some devices. Miscellaneous changes.
+
 ## 92. February 08, 2020
 *Release-tag: v9.12*<br>
 Changes: Main: Added a simple banner Ad view at the bottom (can be disabled in Settings). CPU Freq: Reverted some recent changes made for 6 little/2 big devices. res: Icon: Increased icon size a bit. Translations: Added Ukrainian translations. Translations: Updated Russian translations. Miscellaneous changes.
