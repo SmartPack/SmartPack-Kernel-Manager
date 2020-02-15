@@ -23,9 +23,11 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by willi on 09.07.16.
@@ -142,6 +144,14 @@ public class Backup {
         if (Utils.existFile(file.toString())) return file.toString();
         return Utils.getInternalDataStorage().replace(
                 Environment.getExternalStorageDirectory().toString(), "/sdcard") + "/backup/" + folder;
+    }
+
+    public static List<String> getItemsList(PARTITION PARTITION_type) {
+        RootFile file = new RootFile(getPath(PARTITION_type));
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return file.list();
     }
 
     public static String getBootPartition() {

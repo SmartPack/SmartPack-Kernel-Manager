@@ -25,8 +25,10 @@ import android.content.Context;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on December 15, 2019
@@ -72,10 +74,6 @@ public class CustomControls {
         return value.equals("1");
     }
 
-    public static String getItemPath(String string) {
-        return Utils.readFile(string);
-    }
-
     public static void exportPath(String path, String folder) {
         Utils.create(path, folder + "/" + path.replaceFirst("/", "").
                 replace("/", "-"));
@@ -84,6 +82,22 @@ public class CustomControls {
     public static void delete(String string) {
         File file = new File(string);
         file.delete();
+    }
+
+    public static List<String> switchList() {
+        RootFile file = new RootFile(switchFile().toString());
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return file.list();
+    }
+
+    public static List<String> genericList() {
+        RootFile file = new RootFile(genericFile().toString());
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return file.list();
     }
 
     private static void run(String command, String id, Context context) {

@@ -68,8 +68,6 @@ public class BackupFragment extends RecyclerViewFragment {
 
     private boolean mLoaded;
 
-    private String mPath;
-
     @Override
     protected boolean showTopFab() {
         return true;
@@ -209,9 +207,10 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void itemInit(List<RecyclerViewItem> items, final Backup.PARTITION partition) {
-        File file = new File(Backup.getPath(partition));
-        if (file.exists()) {
-            for (final File image : file.listFiles()) {
+        if (new File(Backup.getPath(partition)).exists() && new File(Backup.getPath(partition)).length() > 0
+                && Backup.getItemsList(partition) != null) {
+            for (final String backup : Backup.getItemsList(partition)) {
+                final File image = new File(Backup.getPath(partition) + "/" + backup);
                 if (image.isFile()) {
                     DescriptionView descriptionView = new DescriptionView();
                     descriptionView.setDrawable(getResources().getDrawable(R.drawable.ic_file));
@@ -516,7 +515,7 @@ public class BackupFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            mPath = Utils.getFilePath(file);
+            String mPath = Utils.getFilePath(file);
             if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
                 ViewUtils.dialogDocumentsUI(getActivity());
                 return;

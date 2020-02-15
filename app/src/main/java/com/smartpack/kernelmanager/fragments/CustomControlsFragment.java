@@ -53,6 +53,7 @@ import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.utils.CustomControls;
+import com.smartpack.kernelmanager.utils.ScriptManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -123,7 +124,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                         @Override
                         protected List<RecyclerViewItem> doInBackground(Void... voids) {
                             List<RecyclerViewItem> items = new ArrayList<>();
-                            load(items);
+                            switchItemsList(items);
+                            genericItemsList(items);
                             return items;
                         }
 
@@ -143,31 +145,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         }
     }
 
-    private void load(List items) {
-        if (CustomControls.switchFile().exists()) {
-            File[] switchFileList = CustomControls.switchFile().listFiles();
-            TitleView titleView = new TitleView();
-            titleView.setText(getString(R.string.control_switch) + " Items");
-            if (switchFileList.length > 0) {
-                items.add(titleView);
-            }
-            switchItemsList(items);
-        }
-        if (CustomControls.genericFile().exists()) {
-            File[] genericFileList = CustomControls.genericFile().listFiles();
-            TitleView titleView = new TitleView();
-            titleView.setText(getString(R.string.control_generic) + " Items");
-            if (genericFileList.length > 0) {
-                items.add(titleView);
-            }
-            genericItemsList(items);
-        }
-    }
-
     private void switchItemsList(List<RecyclerViewItem> items) {
-        for (final File switchItems : CustomControls.switchFile().listFiles()) {
+        for (final String switchItems : CustomControls.switchList()) {
             if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
-                    Utils.readFile(switchItems.toString()))) {
+                    CustomControls.switchFile().toString() + "/" + switchItems)) {
                 CardView switchItemsCard = new CardView(getActivity());
                 switchItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
                     @Override
@@ -188,7 +169,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                                 }, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                                        CustomControls.delete(switchItems.toString());
+                                                        CustomControls.delete(CustomControls.switchFile().toString() + "/" + switchItems);
                                                         reload();
                                                     }
                                                 }, new DialogInterface.OnDismissListener() {
@@ -200,9 +181,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                         mDeleteDialog.show();
                                         break;
                                     case 1:
-                                        Utils.shareItem(getActivity(), CustomControls.getItemPath(switchItems.toString()),
-                                                switchItems.toString(), getString(R.string.share_controller, CustomControls.switchFile()) + " -> Import -> Switch'.\n\n" +
-                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME));
+                                        Utils.shareItem(getActivity(), switchItems, CustomControls.switchFile().toString() +
+                                                        "/" + switchItems,getString(R.string.share_controller, CustomControls.switchFile()) +
+                                                " -> Import -> Switch'.\n\n" + getString(R.string.share_app_message, "v" +
+                                                BuildConfig.VERSION_NAME));
                                         break;
                                 }
                                 return false;
@@ -212,14 +194,17 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 });
 
                 SwitchView itemslist = new SwitchView();
-                itemslist.setSummary(CustomControls.getItemPath(switchItems.toString()));
-                itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
+                itemslist.setSummary(switchItems);
+                itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
+                        CustomControls.switchFile().toString() + "/" + switchItems)));
                 itemslist.addOnSwitchListener(new SwitchView.OnSwitchListener() {
                     @Override
                     public void onChanged(SwitchView switchView, boolean isChecked) {
-                        CustomControls.enableSwitch(isChecked, Utils.readFile(switchItems.toString()), getActivity());
+                        CustomControls.enableSwitch(isChecked, Utils.readFile(
+                                CustomControls.switchFile().toString() + "/" + switchItems), getActivity());
                         getHandler().postDelayed(() -> {
-                                    itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(switchItems.toString())));
+                                    itemslist.setChecked(CustomControls.isSwitchEnabled(Utils.readFile(
+                                            CustomControls.switchFile().toString() + "/" + switchItems)));
                                 },
                                 500);
                     }
@@ -232,9 +217,9 @@ public class CustomControlsFragment extends RecyclerViewFragment {
     }
 
     private void genericItemsList(List<RecyclerViewItem> items) {
-        for (final File genericItems : CustomControls.genericFile().listFiles()) {
+        for (final String genericItems : CustomControls.genericList()) {
             if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
-                    Utils.readFile(genericItems.toString()))) {
+                    CustomControls.switchFile().toString() + "/" + genericItems)) {
                 CardView genericItemsCard = new CardView(getActivity());
                 genericItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
                     @Override
@@ -255,7 +240,7 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                                 }, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                                        CustomControls.delete(genericItems.toString());
+                                                        CustomControls.delete(CustomControls.genericFile().toString() + "/" + genericItems);
                                                         reload();
                                                     }
                                                 }, new DialogInterface.OnDismissListener() {
@@ -267,10 +252,10 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                                         mDeleteDialog.show();
                                         break;
                                     case 1:
-                                        Utils.shareItem(getActivity(), CustomControls.getItemPath(genericItems.toString()),
-                                                genericItems.toString(), getString(R.string.share_controller, CustomControls.genericFile()) + " -> Import -> Generic'.\n\n" +
-                                                        getString(R.string.share_app_message, "v" + BuildConfig.VERSION_NAME) +
-                                                        "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true");
+                                        Utils.shareItem(getActivity(), genericItems, CustomControls.genericFile().toString() +
+                                                "/" + genericItems,getString(R.string.share_controller, CustomControls.genericFile()) +
+                                                " -> Import -> Generic'.\n\n" + getString(R.string.share_app_message, "v" +
+                                                BuildConfig.VERSION_NAME));
                                         break;
                                 }
                                 return false;
@@ -280,15 +265,18 @@ public class CustomControlsFragment extends RecyclerViewFragment {
                 });
 
                 GenericSelectView itemslist = new GenericSelectView();
-                itemslist.setSummary(CustomControls.getItemPath(genericItems.toString()));
-                itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
+                itemslist.setSummary(genericItems);
+                itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
+                        CustomControls.genericFile().toString() + "/" + genericItems)));
                 itemslist.setInputType(InputType.TYPE_CLASS_NUMBER);
                 itemslist.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
                     @Override
                     public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
-                        CustomControls.setGenericValue(value, Utils.readFile(genericItems.toString()), getActivity());
+                        CustomControls.setGenericValue(value, Utils.readFile(CustomControls.genericFile().toString() +
+                                "/" + genericItems), getActivity());
                         getHandler().postDelayed(() -> {
-                                    itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(genericItems.toString())));
+                                    itemslist.setValue(CustomControls.getGenericValue(Utils.readFile(
+                                            CustomControls.genericFile().toString() + "/" + genericItems)));
                                 },
                                 500);
                     }

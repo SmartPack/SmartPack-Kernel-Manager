@@ -435,7 +435,6 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        RootUtils.mount(false, "/system");
         if (mLoader != null) {
             mLoader.cancel(true);
             mLoader = null;
