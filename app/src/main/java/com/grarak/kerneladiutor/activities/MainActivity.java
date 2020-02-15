@@ -259,7 +259,7 @@ public class MainActivity extends BaseActivity {
 
             // Initialize Google Ads
             if (Prefs.getBoolean("allow_ads", true, activity)) {
-                MobileAds.initialize(activity, "ca-app-pub-2781194772510522~3971047091");
+                MobileAds.initialize(activity, "ca-app-pub-7791710838910455~4931988555");
             }
 
             activity.launch();
