@@ -35,7 +35,6 @@ import android.widget.CheckBox;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.grarak.kerneladiutor.BuildConfig;
@@ -51,9 +50,7 @@ import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
-import com.grarak.kerneladiutor.views.recyclerview.TitleView;
 import com.smartpack.kernelmanager.utils.CustomControls;
-import com.smartpack.kernelmanager.utils.ScriptManager;
 
 import java.io.File;
 import java.util.ArrayList;
