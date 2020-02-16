@@ -24,6 +24,11 @@
         <item>@string/blue</item>
     </string-array>
 
+    <!-- K-lapse -->
+    <string-array name="klapse">
+        <item>@string/export_settings</item>
+    </string-array>
+
     <!-- Low Memory Killer -->
     <string-array name="lmk_names">
         <item>@string/foreground_app</item>

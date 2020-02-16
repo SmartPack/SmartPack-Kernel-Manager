@@ -60,6 +60,8 @@ public class KLapseFragment extends RecyclerViewFragment {
 
     private boolean mPermissionDenied;
 
+    private Dialog mOptionsDialog;
+
     @Override
     protected void init() {
         super.init();
@@ -518,7 +520,20 @@ public class KLapseFragment extends RecyclerViewFragment {
             Utils.toast(R.string.permission_denied_write_storage, getActivity());
             return;
         }
-        showCreateDialog();
+
+        mOptionsDialog = new Dialog(getActivity()).setItems(getResources().getStringArray(
+                R.array.klapse), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                showCreateDialog();
+            }
+        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                mOptionsDialog = null;
+            }
+        });
+        mOptionsDialog.show();
     }
 
     private void showCreateDialog() {
