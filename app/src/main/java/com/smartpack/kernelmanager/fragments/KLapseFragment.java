@@ -34,6 +34,7 @@ import android.widget.TimePicker;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.grarak.kerneladiutor.BuildConfig;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -593,7 +594,12 @@ public class KLapseFragment extends RecyclerViewFragment {
                                 new Dialog(getActivity())
                                         .setMessage(getString(R.string.profile_created, KLapse.profileFolder().toString() + "/" + path))
                                         .setCancelable(false)
-                                        .setPositiveButton(getString(R.string.ok), (dialog, id) -> {
+                                        .setNegativeButton(getString(R.string.cancel), (dialog, id) -> {
+                                        })
+                                        .setPositiveButton(getString(R.string.share), (dialog, id) -> {
+                                            Utils.shareItem(getActivity(), path, KLapse.profileFolder().toString() + "/" + path,
+                                                    getString(R.string.share_script) + "\n\n" + getString(R.string.share_app_message,
+                                                            "v" + BuildConfig.VERSION_NAME));
                                         })
                                         .show();
                             }
