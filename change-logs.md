@@ -1,5 +1,9 @@
 # Change-logs
 
+## 94. February 17, 2020
+*Release-tag: v9.14*<br>
+Changes: File picking: Overall updates to work with Documents UI. Custom controls: Various improvements. K-lapse: Export settings: Added option to share exported item. Miscellaneous changes.
+
 ## 93. February 15, 2020
 *Release-tag: v9.13*<br>
 Changes: Custom Control & Backup: Fixed crashes on some devices. Miscellaneous changes.

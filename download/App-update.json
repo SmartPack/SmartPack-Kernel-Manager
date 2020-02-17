@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Custom Control & Backup: Fixed crashes on some devices.\n - Miscellaneous changes.",
-  "latestVersion": "9.13",
-  "latestVersionCode": 94
+  "releaseNotes": "Change-logs\n - File picking: Overall updates to work with Documents UI.\n - Custom controls: Various improvements.\n - K-lapse: Export settings: Added option to share exported item.\n - Miscellaneous changes.",
+  "latestVersion": "9.14",
+  "latestVersionCode": 95
 }
