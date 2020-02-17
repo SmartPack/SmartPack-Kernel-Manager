@@ -146,14 +146,6 @@ public class ViewUtils {
                 .show();
     }
 
-    public static void dialogDocumentsUI(Context context) {
-        Dialog dialogueDocumentsUI = new Dialog(context);
-        dialogueDocumentsUI.setMessage(context.getString(R.string.documentsui_message));
-        dialogueDocumentsUI.setPositiveButton(context.getString(R.string.ok), (dialogInterface, i) -> {
-        });
-        dialogueDocumentsUI.show();
-    }
-
     public static Dialog dialogEditTexts(String text, String text2, String hint, String hint2,
                                          final DialogInterface.OnClickListener negativeListener,
                                          final onDialogEditTextsListener onDialogEditTextListener,

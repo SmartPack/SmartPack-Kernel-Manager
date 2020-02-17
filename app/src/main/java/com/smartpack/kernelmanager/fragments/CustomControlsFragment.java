@@ -23,10 +23,13 @@ package com.smartpack.kernelmanager.fragments;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -144,8 +147,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private void switchItemsList(List<RecyclerViewItem> items) {
         for (final String switchItems : CustomControls.switchList()) {
-            if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
-                    CustomControls.switchFile().toString() + "/" + switchItems)) {
+            if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
+                    CustomControls.switchFile().toString() + "/" + switchItems))) {
                 CardView switchItemsCard = new CardView(getActivity());
                 switchItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
                     @Override
@@ -215,8 +218,8 @@ public class CustomControlsFragment extends RecyclerViewFragment {
 
     private void genericItemsList(List<RecyclerViewItem> items) {
         for (final String genericItems : CustomControls.genericList()) {
-            if (CustomControls.switchFile().length() > 0 && CustomControls.hasCustomControl(
-                    CustomControls.switchFile().toString() + "/" + genericItems)) {
+            if (CustomControls.switchFile().length() > 0 && Utils.existFile(Utils.readFile(
+                    CustomControls.genericFile().toString() + "/" + genericItems))) {
                 CardView genericItemsCard = new CardView(getActivity());
                 genericItemsCard.setOnMenuListener(new CardView.OnMenuListener() {
                     @Override
@@ -391,23 +394,22 @@ public class CustomControlsFragment extends RecyclerViewFragment {
         if (data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            mPath = Utils.getFilePath(file);
+            if (Utils.isDocumentsUI(uri)) {
+                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } else {
+                mPath = Utils.getFilePath(file);
+            }
             if (requestCode == 0 || requestCode == 1) {
                 if (!Utils.getExtension(file.getName()).isEmpty() || mPath.startsWith("/storage/")) {
                     Utils.toast(getString(R.string.invalid_path, mPath), getActivity());
                     return;
                 }
             } else {
-                if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
-                    ViewUtils.dialogDocumentsUI(getActivity());
-                    return;
-                }
-                if (!Utils.existFile(mPath) && Utils.getExtension(mPath).isEmpty()) {
-                    Utils.create(file.getAbsolutePath(), Utils.errorLog());
-                    ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
-                    return;
-                }
-                if (!Utils.getExtension(mPath).isEmpty() && Utils.existFile(mPath)) {
+                if (!Utils.getExtension(mPath).isEmpty()) {
                     Utils.toast(getString(R.string.invalid_controller, mPath), getActivity());
                     return;
                 }

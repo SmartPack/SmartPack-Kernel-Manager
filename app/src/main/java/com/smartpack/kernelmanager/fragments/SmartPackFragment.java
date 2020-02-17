@@ -26,11 +26,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.Manifest;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -688,15 +691,14 @@ public class SmartPackFragment extends RecyclerViewFragment {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
-                ViewUtils.dialogDocumentsUI(getActivity());
-                return;
-            }
-            if (!Utils.getExtension(mPath).equals("zip")) {
-                Utils.create(file.getAbsolutePath(), Utils.errorLog());
-                ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
-                return;
+            if (Utils.isDocumentsUI(uri)) {
+                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } else {
+                mPath = Utils.getFilePath(file);
             }
             if (SmartPack.fileSize(new File(mPath)) >= 100000000) {
                 Utils.toast(getString(R.string.file_size_limit, (SmartPack.fileSize(new File(mPath)) / 1000000)), getActivity());

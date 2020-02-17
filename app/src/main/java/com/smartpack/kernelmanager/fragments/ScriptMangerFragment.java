@@ -24,10 +24,13 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
@@ -325,19 +328,17 @@ public class ScriptMangerFragment extends RecyclerViewFragment {
         } else if (requestCode == 2) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
-                ViewUtils.dialogDocumentsUI(getActivity());
-                return;
+            if (Utils.isDocumentsUI(uri)) {
+                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } else {
+                mPath = Utils.getFilePath(file);
             }
             if (!Utils.getExtension(mPath).equals("sh")) {
-                if (Utils.existFile(mPath)) {
-                    Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
-                } else {
-                    Utils.create(file.getAbsolutePath(), Utils.errorLog());
-                    Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
-                    ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
-                }
+                Utils.toast(getString(R.string.wrong_extension, ".sh"), getActivity());
                 return;
             }
             if (Utils.existFile(ScriptManager.scriptExistsCheck(file.getName()))) {

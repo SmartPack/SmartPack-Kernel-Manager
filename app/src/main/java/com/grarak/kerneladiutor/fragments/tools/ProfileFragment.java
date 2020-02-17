@@ -25,11 +25,14 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.OpenableColumns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -486,17 +489,16 @@ public class ProfileFragment extends RecyclerViewFragment {
         } else if (requestCode == 1) {
             Uri uri = data.getData();
             File file = new File(uri.getPath());
-            mPath = Utils.getFilePath(file);
-            if (Utils.isDocumentsUI(uri) && !Utils.existFile(mPath)) {
-                ViewUtils.dialogDocumentsUI(getActivity());
-                return;
+            if (Utils.isDocumentsUI(uri)) {
+                Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                if (cursor != null && cursor.moveToFirst()) {
+                    mPath = Environment.getExternalStorageDirectory().toString() + "/Download/" +
+                            cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } else {
+                mPath = Utils.getFilePath(file);
             }
-            if (!Utils.existFile(mPath) && Utils.getExtension(mPath).equals("json")) {
-                Utils.create(file.getAbsolutePath(), Utils.errorLog());
-                ViewUtils.dialogError(getString(R.string.file_selection_error), Utils.errorLog(), getActivity());
-                return;
-            }
-            if (!Utils.getExtension(mPath).equals("json") && Utils.existFile(mPath)) {
+            if (!Utils.getExtension(mPath).equals("json")) {
                 Utils.toast(getString(R.string.wrong_extension, ".json"), getActivity());
                 return;
             }
