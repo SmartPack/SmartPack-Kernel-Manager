@@ -133,7 +133,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         addPreferencesFromResource(R.xml.settings);
 
         findPreference(KEY_ALLOW_ADS).setOnPreferenceChangeListener(this);
-        SwitchPreferenceCompat forceEnglish = (SwitchPreferenceCompat) findPreference(KEY_FORCE_ENGLISH);
+        SwitchPreferenceCompat forceEnglish = findPreference(KEY_FORCE_ENGLISH);
         if (Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en")) {
             getPreferenceScreen().removePreference(forceEnglish);
         } else {
@@ -197,7 +197,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 } else {
                     new Dialog(getActivity())
                             .setMessage(getString(R.string.disable_ads_message))
-                            .setPositiveButton(getString(R.string.cancel), (dialogInterface, i) -> {
+                            .setPositiveButton(getString(R.string.ok), (dialogInterface, i) -> {
                             })
                             .show();
                 }

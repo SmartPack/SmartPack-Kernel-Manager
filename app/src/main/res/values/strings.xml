@@ -1042,8 +1042,8 @@
     <!-- Settings-->
     <string name="allow_ads">Allow Ads</string>
     <string name="allow_ads_summary">Support developer by allowing Ads on this app!</string>
-    <string name="disable_ads_message">Ads are disabled! However, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
-    <string name="allow_ads_message">Thank you very much for supporting my android development projects by allowing Ads!</string>
+    <string name="disable_ads_message">Congrats! Ads are disabled!\n\nHowever, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
+    <string name="allow_ads_message">Thank you very much for supporting the developer by allowing Ads!</string>
     <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_title">Fahrenheit</string>
     <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
@@ -1101,7 +1101,7 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is the official successor of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
     <string name="credits">Credits</string>
     <string name="special_mentions">Special Mentions</string>
     <string name="source_code">Source Code</string>
@@ -1123,7 +1123,7 @@
     <string name="share_app_summary">Share this app with your friends</string>
     <string name="share_app_message">Get SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
     <string name="grarak">Willi Ye</string>
-    <string name="grarak_summary">The man behind \'Kernel Adiutor\', the official ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
+    <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
     <string name="osm0sis">Chris Renshaw</string>
     <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
 

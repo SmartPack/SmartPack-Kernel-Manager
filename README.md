@@ -1,5 +1,5 @@
 # SmartPack-Kernel Manager
-SmartPack-Kernel Manager is the official successor of Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
+SmartPack-Kernel Manager is a heavily modified version of Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
 
 ## Download
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
@@ -9,12 +9,12 @@ SmartPack-Kernel Manager is the official successor of Kernel Adiutor, which is o
      alt=""
      height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true)
 
-## Added features over Kernel Adiutor
+## Features
 * Almost all the features available in Kernel Adiutor.
 * Option to flash recovery zip files while running Android OS.
 * A simple and user-friendly Custom Controller, which is totally different to that of the official KA ([Documentation](https://smartpack.github.io/spkm/customcontrols/)).
 * A Script Manager to easily create, import, edit, share and execute any properly formatted shell scripts.
-* A simple and user-friendly Kernel downloader, which is also totally different to that of the official KA ([Documentation](https://smartpack.github.io/kerneldownloads/)).
+* A Kernel downloader, which is also totally different to that of the official KA ([Documentation](https://smartpack.github.io/kerneldownloads/)).
 * CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
