@@ -3,10 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="?android:attr/colorBackground"
+    android:background="@color/colorPrimary"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/found_text"
@@ -22,16 +21,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/key"
+        android:textColorHint="?attr/colorAccent"
         android:maxLines="1"
         android:textSize="15sp"
-        android:theme="?edittext_build_prop_style" />
+        android:textColor="@color/colorOnPrimary"
+        android:backgroundTint="?android:attr/colorAccent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/value_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/value"
+        android:textColorHint="?attr/colorAccent"
         android:maxLines="1"
         android:textSize="15sp"
-        android:theme="?edittext_build_prop_style" />
+        android:textColor="@color/colorOnPrimary"
+        android:backgroundTint="?android:attr/colorAccent" />
 </LinearLayout>
