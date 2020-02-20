@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - File picking: Overall updates to work with Documents UI.\n - Custom controls: Various improvements.\n - K-lapse: Export settings: Added option to share exported item.\n - Miscellaneous changes.",
-  "latestVersion": "9.14",
-  "latestVersionCode": 95
+  "releaseNotes": "Change-logs\n - Build Prop: Improved search UI (mainly on light theme).\n - IO: Add support to Adoptable storage (DM-0).\n - Misc: Updated some titles (suggested by KA developer).\n - Miscellaneous changes.",
+  "latestVersion": "9.15",
+  "latestVersionCode": 96
 }

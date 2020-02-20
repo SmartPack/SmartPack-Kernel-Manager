@@ -1,5 +1,9 @@
 # Change-logs
 
+## 95. February 20, 2020
+*Release-tag: v9.15*<br>
+Changes: Build Prop: Improved search UI (mainly on light theme). IO: Add support to Adoptable storage (DM-0). Misc: Updated some titles (suggested by KA developer). Miscellaneous changes.
+
 ## 94. February 17, 2020
 *Release-tag: v9.14*<br>
 Changes: File picking: Overall updates to work with Documents UI. Custom controls: Various improvements. K-lapse: Export settings: Added option to share exported item. Miscellaneous changes.
