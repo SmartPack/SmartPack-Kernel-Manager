@@ -681,6 +681,7 @@
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>
     <string name="external_storage">External Storage</string>
+    <string name="dm0">Adoptable Storage (DM-0)</string>
     <string name="scheduler">Scheduler</string>
     <string name="scheduler_summary">Set the active I/O elevator algorithm. The Scheduler decides how to handle I/O requests.</string>
     <string name="scheduler_tunable">Scheduler Tunable</string>

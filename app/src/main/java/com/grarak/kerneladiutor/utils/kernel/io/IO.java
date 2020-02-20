@@ -56,11 +56,13 @@ public class IO {
 
     public enum Storage {
         Internal,
-        External
+        External,
+        Dm0
     }
 
     private String INTERNAL;
     private String EXTERNAL;
+    private String DM0;
 
     private IO() {
         List<String> sInternal = new ArrayList<>();
@@ -79,10 +81,18 @@ public class IO {
         if (EXTERNAL != null && EXTERNAL.equals(INTERNAL)) {
             EXTERNAL = null;
         }
+
+        List<String> sDm0 = new ArrayList<>();
+        sDm0.add("/sys/block/dm-0/queue/");
+
+        DM0 = exists(sDm0);
     }
 
     public boolean hasExternal() {
         return EXTERNAL != null;
+    }
+    public boolean hasDm0() {
+        return DM0 != null;
     }
 
     public void setRqAffinity(Storage storage, int value, Context context) {
@@ -205,7 +215,14 @@ public class IO {
     }
 
     private String getPath(Storage storage, String file) {
-        return storage == Storage.Internal ? INTERNAL + "/" + file : EXTERNAL + "/" + file;
+        if (storage == Storage.Internal) {
+            return INTERNAL + "/" + file;
+        } else if (storage == Storage.External) {
+            return EXTERNAL + "/" + file;
+        } else if (storage == Storage.Dm0) {
+            return DM0 + "/" + file;
+        }
+        return null;
     }
 
     private int getReadahead(String path) {

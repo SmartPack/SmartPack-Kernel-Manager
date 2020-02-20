@@ -34,7 +34,6 @@ import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
 import com.grarak.kerneladiutor.views.recyclerview.SwitchView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,12 +63,20 @@ public class IOFragment extends RecyclerViewFragment {
         if (mIO.hasExternal()) {
             storageInit(IO.Storage.External, items);
         }
+        if (mIO.hasDm0()) {
+            storageInit(IO.Storage.Dm0, items);
+        }
     }
 
     private void storageInit(final IO.Storage storage, List<RecyclerViewItem> items) {
         CardView StorageCard = new CardView(getActivity());
-        StorageCard.setTitle(getString(storage == IO.Storage.Internal ? R.string.internal_storage
-                : R.string.external_storage));
+        if (storage == IO.Storage.Internal) {
+            StorageCard.setTitle(getString(R.string.internal_storage));
+        } else if (storage == IO.Storage.External) {
+            StorageCard.setTitle(getString(R.string.external_storage));
+        } else if (storage == IO.Storage.Dm0) {
+            StorageCard.setTitle(getString(R.string.dm0));
+        }
 
         if (mIO.hasScheduler(storage)) {
             SelectView scheduler = new SelectView();
@@ -81,10 +88,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onItemSelected(SelectView selectView, int position, String item) {
                     mIO.setScheduler(storage, item, getActivity());
-		    getHandler().postDelayed(() -> {
-		    scheduler.setItem(mIO.getScheduler(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                scheduler.setItem(mIO.getScheduler(storage));
+                            },
+                            500);
                 }
             });
 
@@ -116,10 +123,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mIO.setReadahead(storage, (position + 1) * 128, getActivity());
-		    getHandler().postDelayed(() -> {
-		    readahead.setProgress(mIO.getReadahead(storage) / 128 - 1);
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                readahead.setProgress(mIO.getReadahead(storage) / 128 - 1);
+                            },
+                            500);
                 }
 
                 @Override
@@ -139,10 +146,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mIO.enableRotational(storage, isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    rotational.setChecked(mIO.isRotationalEnabled(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                rotational.setChecked(mIO.isRotationalEnabled(storage));
+                            },
+                            500);
                 }
             });
 
@@ -158,10 +165,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mIO.enableIOstats(storage, isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    iostats.setChecked(mIO.isIOStatsEnabled(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                iostats.setChecked(mIO.isIOStatsEnabled(storage));
+                            },
+                            500);
                 }
             });
 
@@ -177,10 +184,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onChanged(SwitchView switchView, boolean isChecked) {
                     mIO.enableAddRandom(storage, isChecked, getActivity());
-		    getHandler().postDelayed(() -> {
-		    addRandom.setChecked(mIO.isAddRandomEnabled(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                addRandom.setChecked(mIO.isAddRandomEnabled(storage));
+                            },
+                            500);
                 }
             });
 
@@ -197,10 +204,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mIO.setRqAffinity(storage, position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    rqAffinity.setProgress(mIO.getRqAffinity(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                rqAffinity.setProgress(mIO.getRqAffinity(storage));
+                            },
+                            500);
                 }
 
                 @Override
@@ -209,10 +216,10 @@ public class IOFragment extends RecyclerViewFragment {
             });
 
             StorageCard.addItem(rqAffinity);
-	}
+        }
 
-	if (mIO.hasNomerges(storage)) {
-	    SeekBarView Nomerges = new SeekBarView();
+        if (mIO.hasNomerges(storage)) {
+            SeekBarView Nomerges = new SeekBarView();
             Nomerges.setTitle(getString(R.string.nomerges));
             Nomerges.setSummary(getString(R.string.nomerges_summary));
             Nomerges.setMax(2);
@@ -221,10 +228,10 @@ public class IOFragment extends RecyclerViewFragment {
                 @Override
                 public void onStop(SeekBarView seekBarView, int position, String value) {
                     mIO.setNomerges(storage, position, getActivity());
-		    getHandler().postDelayed(() -> {
-		    Nomerges.setProgress(mIO.getNomerges(storage));
-		    },
-	        500);
+                    getHandler().postDelayed(() -> {
+                                Nomerges.setProgress(mIO.getNomerges(storage));
+                            },
+                            500);
                 }
 
                 @Override
@@ -233,9 +240,9 @@ public class IOFragment extends RecyclerViewFragment {
             });
 
             StorageCard.addItem(Nomerges);
-	}
+        }
 
-	if (mIO.hasNrRequests(storage)) {
+        if (mIO.hasNrRequests(storage)) {
             GenericSelectView NrRequests = new GenericSelectView();
             NrRequests.setTitle(getString(R.string.nr_requests));
             NrRequests.setSummary(getString(R.string.nr_requests_summary));
@@ -245,18 +252,18 @@ public class IOFragment extends RecyclerViewFragment {
             NrRequests.setOnGenericValueListener((genericSelectView, value) -> {
                 mIO.setNrRequests(storage, value, getActivity());
                 genericSelectView.setValue(value);
-		    getHandler().postDelayed(() -> {
-		    NrRequests.setValueRaw(NrRequests.getValue());
-		    },
-	        500);
+                getHandler().postDelayed(() -> {
+                            NrRequests.setValueRaw(NrRequests.getValue());
+                        },
+                        500);
             });
 
             StorageCard.addItem(NrRequests);
-	}
+        }
 
-	if (StorageCard.size() > 0) {
+        if (StorageCard.size() > 0) {
             items.add(StorageCard);
-	}
+        }
     }
 
     private void showTunables(String scheduler, String path) {
