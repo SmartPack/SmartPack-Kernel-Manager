@@ -204,10 +204,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 return true;
             case KEY_FORCE_ENGLISH:
             case KEY_DARK_THEME:
-                getActivity().finish();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                relaunchActivity();
                 return true;
             case KEY_MATERIAL_ICON:
                 Utils.setStartActivity(checked, requireActivity());
@@ -469,10 +466,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                             Prefs.saveString(KEY_ACCENT_COLOR,
                                     BorderCircleView.sAccentColors.valueAt(mColorSelection), getActivity());
                         }
-                        getActivity().finish();
-                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
+                        relaunchActivity();
                     }
                 }).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -514,6 +508,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             else
                 viewGroup.setPadding(0, viewGroup.getPaddingTop(), viewGroup.getPaddingRight(), viewGroup.getPaddingBottom());
         }
+    }
+
+    private void relaunchActivity() {
+        requireActivity().finish();
+        requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(NavigationActivity.INTENT_SECTION,
+                SettingsFragment.class.getCanonicalName());
+        startActivity(intent);
     }
 
 }
