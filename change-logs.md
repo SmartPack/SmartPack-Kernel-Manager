@@ -1,5 +1,9 @@
 # Change-logs
 
+## 96. March 01, 2020
+*Release-tag: v9.16*<br>
+Changes: Main: Fully move to com.smartpack.kernelmanager (avoid conflicting with forks). Misc: Fixed rebooting from app not working on most cases. Misc: Added option to tweak auto-sync data. Misc: Improved sharing files. Gradle: Updated build tools and dependencies. Miscellaneous changes.
+
 ## 95. February 20, 2020
 *Release-tag: v9.15*<br>
 Changes: Build Prop: Improved search UI (mainly on light theme). IO: Add support to Adoptable storage (DM-0). Misc: Updated some titles (suggested by KA developer). Miscellaneous changes.

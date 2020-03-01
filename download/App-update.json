@@ -1,5 +1,5 @@
 {
-  "releaseNotes": "Change-logs\n - Build Prop: Improved search UI (mainly on light theme).\n - IO: Add support to Adoptable storage (DM-0).\n - Misc: Updated some titles (suggested by KA developer).\n - Miscellaneous changes.",
-  "latestVersion": "9.15",
-  "latestVersionCode": 96
+  "releaseNotes": "Change-logs\n - Main: Fully move to com.smartpack.kernelmanager (avoid conflicting with forks).\n - Misc: Fixed rebooting from app not working on most cases.\n - Misc: Added option to tweak auto-sync data.\n - Misc: Improved sharing files.\n - Gradle: Updated build tools and dependencies.\n - Miscellaneous changes.",
+  "latestVersion": "9.16",
+  "latestVersionCode": 97
 }
