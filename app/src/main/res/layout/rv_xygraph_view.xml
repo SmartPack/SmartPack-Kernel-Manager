@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-        <com.grarak.kerneladiutor.views.XYGraph
+        <com.smartpack.kernelmanager.views.XYGraph
             android:id="@+id/graph"
             android:layout_width="match_parent"
             android:layout_height="100dp" />

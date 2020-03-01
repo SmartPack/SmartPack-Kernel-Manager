@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:focusable="false">
 
-    <com.grarak.kerneladiutor.views.XYGraph
+    <com.smartpack.kernelmanager.views.XYGraph
         android:id="@+id/usage_graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

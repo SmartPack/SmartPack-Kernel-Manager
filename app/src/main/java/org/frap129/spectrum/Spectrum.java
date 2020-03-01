@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 sunilpaulmathew <sunil.kde@gmail.com>
+ * Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
  *
  * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
  * originally developed by Willi Ye <williye97@gmail.com>
@@ -23,7 +23,7 @@ package org.frap129.spectrum;
 
 import android.os.AsyncTask;
 
-import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.smartpack.kernelmanager.utils.root.RootUtils;
 
 /*
  * Based on the original implementation of Spectrum Kernel Manager by frap129 <joe@frap129.org>

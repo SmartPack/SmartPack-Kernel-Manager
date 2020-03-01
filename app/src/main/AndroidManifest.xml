@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.grarak.kerneladiutor">
+    package="com.smartpack.kernelmanager">
 
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -110,7 +110,7 @@
         <!-- CM SDK -->
         <receiver android:name=".services.profile.Tile">
             <intent-filter>
-                <action android:name="com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE" />
+                <action android:name=".action.ACTION_TOGGLE_STATE" />
             </intent-filter>
         </receiver>
 
@@ -143,7 +143,7 @@
 
         <!-- Profile Tile -->
         <service
-            android:name="com.smartpack.kernelmanager.tiles.SpectrumTile"
+            android:name=".tiles.SpectrumTile"
             android:enabled="true"
             android:icon="@drawable/ic_spectrum_logo"
             android:label="@string/profileTile"
@@ -154,7 +154,7 @@
         </service>
 
         <service
-            android:name="com.smartpack.kernelmanager.tiles.KLapseTile"
+            android:name=".tiles.KLapseTile"
             android:enabled="true"
             android:icon="@drawable/ic_klapse"
             android:label="@string/klapse"
@@ -166,7 +166,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.grarak.kerneladiutor.provider"
+            android:authorities="com.smartpack.kernelmanager.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

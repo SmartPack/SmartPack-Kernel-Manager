@@ -32,7 +32,7 @@
         <SwitchPreferenceCompat
             android:key="forcecards"
             android:summary="@string/force_cards_summary" />
-        <com.grarak.kerneladiutor.views.preference.ColorPreference
+        <com.smartpack.kernelmanager.views.preference.ColorPreference
             android:key="accent_color"
             android:summary="@string/accent_color" />
         <SwitchPreferenceCompat

@@ -8,11 +8,11 @@
         android:shortcutShortLabel="@string/settings">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.grarak.kerneladiutor.activities.MainActivity"
+            android:targetClass="com.smartpack.kernelmanager.activities.MainActivity"
             android:targetPackage="com.smartpack.kernelmanager">
             <extra
                 android:name="section"
-                android:value="com.grarak.kerneladiutor.fragments.other.SettingsFragment" />
+                android:value="com.smartpack.kernelmanager.fragments.other.SettingsFragment" />
         </intent>
         <categories android:name="android.shortcut.conversation" />
     </shortcut>

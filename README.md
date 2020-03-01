@@ -91,9 +91,26 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 * How to apply a new value
 * Make sure that no similar feature us already requested.
 
+## License
+
+    Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
+
+    SmartPack Kernel Manager is a free softwares: you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
+
+    SmartPack Kernel Manager is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+    details.
+
+    You should have received a copy of the GNU General Public License along with
+    SmartPack Kernel Manager. If not, see <http://www.gnu.org/licenses/>.
+
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
-# About official Kernel Adiutor
+# About Kernel Adiutor
 
 [![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)

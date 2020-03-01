@@ -35,7 +35,7 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewConfigurationCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.grarak.kerneladiutor.R;
+import com.smartpack.kernelmanager.R;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.widget.LinearLayout.HORIZONTAL;
