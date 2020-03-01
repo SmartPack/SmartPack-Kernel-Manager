@@ -19,6 +19,7 @@
  */
 package com.smartpack.kernelmanager.fragments.kernel;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Vibrator;
 
@@ -370,6 +371,23 @@ public class MiscFragment extends RecyclerViewFragment {
 
 			miscCard.addItem(leaseBreakTime);
 		}
+
+		SwitchView userSync = new SwitchView();
+		userSync.setTitle(getString(R.string.auto_sync));
+		userSync.setSummary(getString(R.string.auto_sync_summary));
+		userSync.setChecked(ContentResolver.getMasterSyncAutomatically());
+		userSync.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+			@Override
+			public void onChanged(SwitchView switchView, boolean isChecked) {
+				if(isChecked) {
+					ContentResolver.setMasterSyncAutomatically(true);
+				} else {
+					ContentResolver.setMasterSyncAutomatically(false);
+				}
+			}
+		});
+
+		miscCard.addItem(userSync);
 
 		if (miscCard.size() > 0) {
 			items.add(miscCard);
