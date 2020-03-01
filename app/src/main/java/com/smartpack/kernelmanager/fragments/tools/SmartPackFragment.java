@@ -512,8 +512,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power shutdown"
-                                                    : Utils.prepareReboot() + " -p");
+                                            new Execute().execute(Utils.prepareReboot() + " -p");
                                         })
                                         .show();
                                 break;
@@ -523,8 +522,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
-                                                    : Utils.prepareReboot());
+                                            new Execute().execute(Utils.prepareReboot());
                                         })
                                         .show();
                                 break;
@@ -534,8 +532,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
-                                                    : Utils.prepareReboot() + " recovery");
+                                            new Execute().execute(Utils.prepareReboot() + " recovery");
                                         })
                                         .show();
                                 break;
@@ -545,8 +542,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                         .setNegativeButton(getString(R.string.cancel), (dialogInterface, ii) -> {
                                         })
                                         .setPositiveButton(getString(R.string.yes), (dialog1, id1) -> {
-                                            new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
-                                                    : Utils.prepareReboot() + " bootloader");
+                                            new Execute().execute(Utils.prepareReboot() + " bootloader");
                                         })
                                         .show();
                                 break;
@@ -584,8 +580,7 @@ public class SmartPackFragment extends RecyclerViewFragment {
                                     })
                                     .setPositiveButton(getString(R.string.reboot_now), (dialog2, id2) -> {
                                         new Execute().execute("rm -rf /data/data/com.smartpack.kernelmanager/");
-                                        new Execute().execute(Utils.existFile("/system/bin/svc") ? "svc power reboot"
-                                                : Utils.prepareReboot());
+                                        new Execute().execute(Utils.prepareReboot());
                                     })
                                     .show();
                         })

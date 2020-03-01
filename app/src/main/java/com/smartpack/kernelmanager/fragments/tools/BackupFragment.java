@@ -360,8 +360,7 @@ public class BackupFragment extends RecyclerViewFragment {
                                 }
                                 @Override
                                 protected Void doInBackground(Void... voids) {
-                                    RootUtils.runCommand(Utils.existFile("/system/bin/svc") ? "svc power reboot"
-                                            : Utils.prepareReboot());
+                                    RootUtils.runCommand(Utils.prepareReboot());
                                     return null;
                                 }
                                 @Override
