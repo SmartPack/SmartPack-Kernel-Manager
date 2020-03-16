@@ -26,6 +26,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 
+import androidx.appcompat.widget.PopupMenu;
+
+import com.smartpack.kernelmanager.R;
 import com.smartpack.kernelmanager.utils.ViewUtils;
 
 /**
@@ -38,8 +41,16 @@ public class GenericInputView extends InputValueView {
         void onGenericValueSelected(GenericInputView genericSelectView, String value);
     }
 
+    public interface OnMenuListener {
+        void onMenuReady(GenericInputView cardView, PopupMenu popupMenu);
+    }
+
+    private View mMenuButton;
+
     private String mValueRaw;
     private OnGenericValueListener mOnGenericValueListener;
+    private PopupMenu mPopupMenu;
+    private OnMenuListener mOnMenuListener;
     private int mInputType = -1;
     private boolean mShowDialog;
 
@@ -60,7 +71,19 @@ public class GenericInputView extends InputValueView {
                 showDialog(v.getContext());
             }
         });
+
+        mMenuButton = view.findViewById(R.id.menu_button);
+        mMenuButton.setOnClickListener(v -> {
+            if (mPopupMenu != null) {
+                mPopupMenu.show();
+            }
+        });
         super.onCreateView(view);
+    }
+
+    public void setOnMenuListener(OnMenuListener onMenuListener) {
+        mOnMenuListener = onMenuListener;
+        refresh();
     }
 
     public void setValueRaw(String value) {
@@ -101,6 +124,16 @@ public class GenericInputView extends InputValueView {
                         mShowDialog = false;
                     }
                 }).show();
+    }
+
+    @Override
+    protected void refresh() {
+        super.refresh();
+        if (mMenuButton != null && mOnMenuListener != null) {
+            mMenuButton.setVisibility(View.VISIBLE);
+            mPopupMenu = new PopupMenu(mMenuButton.getContext(), mMenuButton);
+            mOnMenuListener.onMenuReady(this, mPopupMenu);
+        }
     }
 
 }

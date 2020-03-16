@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
     android:padding="10dp">
@@ -9,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"
@@ -49,15 +52,27 @@
                     android:id="@+id/switcher"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end"
+                    android:layout_gravity="end"
                     android:background="@null"
                     android:clickable="false"
                     android:focusable="false" />
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/menu_button"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="end|center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="?android:attr/textColorSecondary"
+                    android:rotation="90"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_dots" />
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </FrameLayout>
