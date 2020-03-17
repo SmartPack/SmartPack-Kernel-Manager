@@ -26,6 +26,7 @@ import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.PopupMenu;
 
 import com.smartpack.kernelmanager.R;
 
@@ -34,7 +35,12 @@ import com.smartpack.kernelmanager.R;
  */
 public class DescriptionView extends RecyclerViewItem {
 
+    public interface OnMenuListener {
+        void onMenuReady(DescriptionView cardView, PopupMenu popupMenu);
+    }
+
     private View mRootView;
+    private View mMenuButton;
     private AppCompatImageView mImageView;
     private AppCompatTextView mTitleView;
     private AppCompatTextView mSummaryView;
@@ -43,6 +49,8 @@ public class DescriptionView extends RecyclerViewItem {
     private CharSequence mTitle;
     private CharSequence mSummary;
     private MovementMethod mLinkMovementMethod;
+    private PopupMenu mPopupMenu;
+    private OnMenuListener mOnMenuListener;
 
     private boolean mGrxIsInitSelected = false;
     private int mGrxColor = 0;
@@ -55,37 +63,33 @@ public class DescriptionView extends RecyclerViewItem {
     @Override
     public void onCreateView(View view) {
         mRootView = view;
-        mImageView = (AppCompatImageView) view.findViewById(R.id.image);
-        mTitleView = (AppCompatTextView) view.findViewById(R.id.title);
-        mSummaryView = (AppCompatTextView) view.findViewById(R.id.summary);
+        mImageView = view.findViewById(R.id.image);
+        mTitleView = view.findViewById(R.id.title);
+        mSummaryView = view.findViewById(R.id.summary);
         if(mGrxIsInitSelected) this.setTextColor(mGrxColor);
 
         if (mTitleView != null) {
-            mTitleView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        mRootView.requestFocus();
-                    }
+            mTitleView.setOnFocusChangeListener((v, hasFocus) -> {
+                if (hasFocus) {
+                    mRootView.requestFocus();
                 }
             });
         }
         if (mSummaryView != null) {
-            mSummaryView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        mRootView.requestFocus();
-                    }
+            mSummaryView.setOnFocusChangeListener((v, hasFocus) -> {
+                if (hasFocus) {
+                    mRootView.requestFocus();
                 }
             });
         }
+        mMenuButton = view.findViewById(R.id.menu_button);
+        mMenuButton.setOnClickListener(v -> {
+            if (mPopupMenu != null) {
+                mPopupMenu.show();
+            }
+        });
 
         super.onCreateView(view);
-    }
-
-    public void setBackgroundColor (int color){
-        mRootView.setBackgroundColor(color);
     }
 
     public void setDrawable(Drawable drawable) {
@@ -100,6 +104,11 @@ public class DescriptionView extends RecyclerViewItem {
 
     public void setSummary(CharSequence summary) {
         mSummary = summary;
+        refresh();
+    }
+
+    public void setOnMenuListener(OnMenuListener onMenuListener) {
+        mOnMenuListener = onMenuListener;
         refresh();
     }
 
@@ -118,11 +127,6 @@ public class DescriptionView extends RecyclerViewItem {
 
     public ColorStateList getTextColors(){
         return mSummaryView.getTextColors();
-    }
-
-    public void setMovementMethod(MovementMethod movementMethod) {
-        mLinkMovementMethod = movementMethod;
-        refresh();
     }
 
     public CharSequence getTitle() {
@@ -154,16 +158,18 @@ public class DescriptionView extends RecyclerViewItem {
                 mSummaryView.setMovementMethod(mLinkMovementMethod);
             }
         }
+        if (mMenuButton != null && mOnMenuListener != null) {
+            mMenuButton.setVisibility(View.VISIBLE);
+            mPopupMenu = new PopupMenu(mMenuButton.getContext(), mMenuButton);
+            mOnMenuListener.onMenuReady(this, mPopupMenu);
+        }
         if (mRootView != null && getOnItemClickListener() != null && mTitleView != null
                 && mSummaryView != null) {
             mTitleView.setTextIsSelectable(false);
             mSummaryView.setTextIsSelectable(false);
-            mRootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (getOnItemClickListener() != null) {
-                        getOnItemClickListener().onClick(DescriptionView.this);
-                    }
+            mRootView.setOnClickListener(v -> {
+                if (getOnItemClickListener() != null) {
+                    getOnItemClickListener().onClick(DescriptionView.this);
                 }
             });
         }
