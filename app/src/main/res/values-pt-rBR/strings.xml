@@ -144,7 +144,7 @@
     <string name="cpu_governor">Governador da CPU</string>
     <string name="cpu_governor_summary">O governador da CPU determina como a CPU se comporta em resposta a alterações na carga de trabalho. A alteração do governador afetará a forma como a CPU é dimensionada através das etapas de frequência disponíveis para sua CPU.</string>
     <string name="cpu_governor_tunables">Ajustáveis do Governador da CPU</string>
-    <string name="governor_tunables_summary">Os vários itens de configuração que dependem do governador.</string>
+    <string name="governor_tunables_summary">Os vários itens de configuração dependentes do governador.</string>
     <string name="cpu_governor_tunables_read_error">Falha ao ler o governador atual da CPU.\n\nSe você estiver usando um dispositivo QCOM big.LITTLE, este é um problema conhecido. O sistema força a CPU a desativar núcleos, tornando extremamente difícil a leitura de estatísticas específicas da CPU. Tente selecionar esta opção novamente. A CPU às vezes se recusa a ativar um núcleo.</string>
     <string name="tunables_error">%s não é ajustável</string>
     <string name="manual">Manual</string>
@@ -153,7 +153,7 @@
     <string name="disabled">Ativado</string>
     <string name="enabled">Desativado</string>
     <string name="aggressive">Agressivo</string>
-    <string name="power_saving_wq">Agendar filas de trabalho em CPUs ativadas para economizar energia.</string>
+    <string name="power_saving_wq">Agendar filas de trabalho em CPUs ativas para economizar energia.</string>
     <string name="cfs_scheduler_policy">Política do Agendador CFS</string>
     <string name="cfs_scheduler_policy_summary">A política decide como o agendador CFS equilibra tarefas em diferentes unidades de CPU.</string>
     <string name="cpu_quiet">CPUQuiet</string>
@@ -350,7 +350,7 @@
     <string name="gpu_2d_governor">Governador 2D da GPU</string>
     <string name="gpu_2d_governor_summary">Defina o governador 2D da GPU.</string>
     <string name="gpu_governor">Governador da GPU</string>
-    <string name="gpu_governor_summary">Define o governador da GPU..</string>
+    <string name="gpu_governor_summary">Define o governador da GPU.</string>
     <string name="gpu_governor_tunables">Ajustáveis do Governador da GPU</string>
     <string name="simple_gpu_algorithm">Algoritmo GPU simples</string>
     <string name="simple_gpu_algorithm_summary">Um complemento para o Governador da GPU MSM Adreno TZ. Desenvolvido por faux123.</string>
@@ -659,7 +659,7 @@
     <string name="scheduler">Agendador</string>
     <string name="scheduler_summary">Defina o algoritmo de elevador de I/O ativo. O Agendador decide como lidar com solicitações de I/O.</string>
     <string name="scheduler_tunable">Ajustáveis do Agendador</string>
-    <string name="scheduler_tunable_summary">Os vários itens de configuração que dependem do Agendador.</string>
+    <string name="scheduler_tunable_summary">Os vários itens de configuração dependentes do agendador.</string>
     <string name="read_ahead">Leitura Antecipada</string>
     <string name="read_ahead_summary">O valor da leitura antecipada na memória do telefone.</string>
     <string name="rotational">Armazenamento Rotacional</string>
@@ -694,7 +694,7 @@
     <!-- Low Memory Killer -->
     <string name="foreground_app">Aplicativos em primeiro plano</string>
     <string name="lmk_adaptive">Low Memory Killer Adaptivo</string>
-    <string name="lmk_adaptive_summary">Torne o LMK mais agressivo dinamicamente quando muitos aplicativos inúteis forem detectados.</string>
+    <string name="lmk_adaptive_summary">Tornar o LMK mais agressivo dinamicamente quando muitos aplicativos inúteis forem detectados.</string>
     <string name="visible_app">Aplicativos visíveis</string>
     <string name="secondary_server">Servidor secundário</string>
     <string name="hidden_app">Aplicativos escondidos</string>
