@@ -45,8 +45,8 @@
 
     <!-- Units -->
     <string name="mhz">MHz</string>
-    <string name="celsius">ºC</string>
-    <string name="fahrenheit">ºF</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
     <string name="mb">MB</string>
     <string name="ms">ms</string>
     <string name="mv">mV</string>
@@ -880,7 +880,7 @@
     <string name="delete">Delete</string>
     <string name="share">Share</string>
     <string name="share_by">\'%s\' | shared by SmartPack-Kernel Manager</string>
-    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls</string>
+    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls\'</string>
     <string name="share_with">Share with</string>
     <string name="sure_question">Are you sure?</string>
     <string name="name">Name</string>
@@ -984,7 +984,7 @@
     <string name="rebooting">Rebooting</string>
     <string name="reboot_options">Reboot Options</string>
     <string name="reboot_options_summary">Turn off or reboot your device</string>
-    <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
+    <string name="reboot_dialog">It is highly recommended to reboot your device after %s.</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>
     <string name="reboot_normal">Normal Reboot</string>
