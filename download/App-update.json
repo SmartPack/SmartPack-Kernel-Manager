@@ -1,14 +1,5 @@
 {
-  "latestVersion": "9.1-20191208",
-  "url": "https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true",
-  "releaseNotes": [
-    "Change-log:",
-    "- K-Lapse: Scheduler: Updated to use TimePicker.",
-    "- Misc: Brand new SmartPack icons, and also updated some other drawable.",
-    "- Misc: Shorten app name on android launcher for better user experience.",
-    "- Settings: Make section icons user configurable and enabled dark theme by default.",
-    "- Overall: Display device uptime including total, awake and deep sleep.",
-    "- Battery and Virtual Memory: Updated live status views.",
-    "- Miscellaneous changes."
-  ]
+  "releaseNotes": "Change-logs\n - Main: Fully move to com.smartpack.kernelmanager (avoid conflicting with forks).\n - Misc: Fixed rebooting from app not working on most cases.\n - Misc: Added option to tweak auto-sync data.\n - Misc: Improved sharing files.\n - Gradle: Updated build tools and dependencies.\n - Miscellaneous changes.",
+  "latestVersion": "9.16",
+  "latestVersionCode": 97
 }

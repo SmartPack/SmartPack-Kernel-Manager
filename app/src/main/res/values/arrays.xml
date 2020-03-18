@@ -17,13 +17,16 @@
         <item>@string/aggressive</item>
     </string-array>
 
-    <!-- CPU Hotplug -->
-
     <!-- Screen -->
     <string-array name="colors">
         <item>@string/red</item>
         <item>@string/green</item>
         <item>@string/blue</item>
+    </string-array>
+
+    <!-- K-lapse -->
+    <string-array name="klapse">
+        <item>@string/export_settings</item>
     </string-array>
 
     <!-- Low Memory Killer -->
@@ -56,9 +59,8 @@
         <item>@string/create</item>
         <item>@string/import_item</item>
     </string-array>
-    <string-array name="custom_controls_items">
+    <string-array name="create_controls_options">
         <item>@string/control_switch</item>
-        <item>@string/control_seekbar</item>
         <item>@string/control_generic</item>
     </string-array>
 
@@ -90,6 +92,20 @@
     <string-array name="profile_modes">
         <item>@string/new_mode</item>
         <item>@string/current_settings</item>
+    </string-array>
+
+    <!-- Scripts -->
+    <string-array name="scripts_options">
+        <item>@string/create</item>
+        <item>@string/import_item</item>
+    </string-array>
+
+    <!-- SmartPack -->
+    <string-array name="reboot_options">
+        <item>@string/turn_off</item>
+        <item>@string/reboot_normal</item>
+        <item>@string/reboot_recovery</item>
+        <item>@string/reboot_bootloader</item>
     </string-array>
 
     <!-- Settings -->

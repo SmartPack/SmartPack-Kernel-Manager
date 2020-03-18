@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:focusable="false">
 
-    <com.grarak.kerneladiutor.views.XYGraph
+    <com.smartpack.kernelmanager.views.XYGraph
         android:id="@+id/usage_graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -17,10 +17,9 @@
         android:ellipsize="middle"
         android:focusable="false"
         android:gravity="center"
-        android:maxLines="1"
         android:text="@string/offline"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/colorOnPrimary"
         android:textSize="16sp"
         android:visibility="gone" />
 

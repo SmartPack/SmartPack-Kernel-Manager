@@ -11,5 +11,5 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingStart="16dp"
-    android:textColor="@color/white"
+    android:textColor="@color/colorOnPrimary"
     android:textSize="15sp" />

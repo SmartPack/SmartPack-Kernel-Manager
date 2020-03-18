@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/nav_header_fab_margin_right"
         android:layout_marginStart="@dimen/nav_header_fab_margin_left"
         android:layout_marginTop="@dimen/nav_header_fab_margin_top"
-        android:tint="@color/white"
+        android:tint="@color/colorOnPrimary"
         app:srcCompat="@drawable/ic_help" />
 
     <TextView
@@ -26,11 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:paddingBottom="16dp"
         android:paddingTop="16dp"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textColor="@color/colorOnPrimary"
+        android:textSize="20sp"
+        app:fontFamily="sans-serif-medium" />
 
 </FrameLayout>

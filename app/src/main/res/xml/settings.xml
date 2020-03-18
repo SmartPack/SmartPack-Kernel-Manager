@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <SwitchPreferenceCompat
-        android:key="useretardedmeasurement"
-        android:summary="@string/fahrenheit_summary"
-        android:title="@string/fahrenheit_title" />
+        android:defaultValue="true"
+        android:key="allow_ads"
+        android:title="@string/allow_ads"
+        android:summary="@string/allow_ads_summary" />
 
     <PreferenceCategory
         android:key="user_interface"
@@ -27,9 +27,12 @@
             android:key="forceenglish"
             android:summary="@string/force_english" />
         <SwitchPreferenceCompat
+            android:key="useretardedmeasurement"
+            android:summary="@string/fahrenheit_summary" />
+        <SwitchPreferenceCompat
             android:key="forcecards"
             android:summary="@string/force_cards_summary" />
-        <com.grarak.kerneladiutor.views.preference.ColorPreference
+        <com.smartpack.kernelmanager.views.preference.ColorPreference
             android:key="accent_color"
             android:summary="@string/accent_color" />
         <SwitchPreferenceCompat

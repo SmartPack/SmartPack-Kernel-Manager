@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.grarak.kerneladiutor">
+    package="com.smartpack.kernelmanager">
 
-    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="cyanogenmod.permission.PUBLISH_CUSTOM_TILE" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="cyanogenmod.permission.PUBLISH_CUSTOM_TILE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -47,6 +48,10 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7791710838910455~4931988555" />
+
         <activity
             android:name=".activities.StartActivityMaterial" android:label="@string/smartpack"
             android:enabled="false"
@@ -68,7 +73,6 @@
         <activity
             android:name=".views.NavHeaderView$MainHeaderActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".activities.tools.CustomControlsActivity" />
         <activity android:name=".activities.EditorActivity" />
         <activity android:name=".activities.tools.profile.ProfileActivity" />
         <activity
@@ -108,7 +112,7 @@
         <!-- CM SDK -->
         <receiver android:name=".services.profile.Tile">
             <intent-filter>
-                <action android:name="com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE" />
+                <action android:name=".action.ACTION_TOGGLE_STATE" />
             </intent-filter>
         </receiver>
 
@@ -141,7 +145,7 @@
 
         <!-- Profile Tile -->
         <service
-            android:name="com.smartpack.kernelmanager.tiles.SpectrumTile"
+            android:name=".tiles.SpectrumTile"
             android:enabled="true"
             android:icon="@drawable/ic_spectrum_logo"
             android:label="@string/profileTile"
@@ -152,7 +156,7 @@
         </service>
 
         <service
-            android:name="com.smartpack.kernelmanager.tiles.KLapseTile"
+            android:name=".tiles.KLapseTile"
             android:enabled="true"
             android:icon="@drawable/ic_klapse"
             android:label="@string/klapse"
@@ -164,7 +168,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.grarak.kerneladiutor.provider"
+            android:authorities="com.smartpack.kernelmanager.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

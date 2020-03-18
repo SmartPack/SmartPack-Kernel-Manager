@@ -75,7 +75,6 @@
     <string name="backup">備份</string>
     <string name="build_prop_editor">Build prop 編輯器</string>
     <string name="profile">設定檔</string>
-    <string name="initd">啟動指令碼</string>
     <string name="on_boot">開機啟用</string>
     <string name="settings">設定</string>
     <string name="about">關於</string>
@@ -745,10 +744,6 @@
     <string name="android_logger_summary">開啟/關閉安卓日誌記錄</string>
     <string name="printk_logger">列印輸出記錄</string>
     <string name="printk_logger_summary">啟用/停用 Linux 列印輸出日誌記錄。</string>
-    <string name="doze">Doze 模式</string>
-    <string name="doze_summary">啟用 Doze 模式，當您的裝置處於待機狀態時，防止某些任務在後臺執行。 </string>
-    <string name="selinux_switch">SELinux 開關</string>
-    <string name="selinux_switch_summary">停用以將 SELinux 切換為允許模式。</string>
     <string name="crc">軟體CRC控制</string>
     <string name="crc_summary">CRC是一種機制旨在防止資料損壞時啟動。資料塊可以失去其業績的30％。</string>
     <string name="fsync_summary">停用系統當機時的資料遺失的風險提高檔案系統性能。</string>
@@ -793,29 +788,10 @@
     <!-- Custom Controls -->
     <string name="welcome">歡迎</string>
     <string name="custom_controls_summary">在本節中，你可以建立或匯入 （尚） 的應用程式中不存在的自訂控制項。</string>
-    <string name="example">例子</string>
-    <string name="custom_controls_example_summary">需要範例？href =“Https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls”＆gt; ＆lt; ＆gt; 這裡。</string>
     <string name="create">建立</string>
     <string name="import_item">匯入</string>
     <string name="control_switch">開關</string>
-    <string name="control_seekbar">搜尋欄</string>
-    <string name="title">標題</string>
-    <string name="description">描述</string>
-    <string name="applying">套用中</string>
-    <string name="switch_enabled_summary">判斷開關是否啟用。傳回1代表啟用。傳回0代表停用</string>
-    <string name="switch_apply_summary">該開關將返回1（啟用）或0（停用）作為您的 Shell 指令碼的參數。</string>
-    <string name="seekbar_min">最小</string>
-    <string name="seekbar_max">最大</string>
-    <string name="seekbar_progress">進度</string>
-    <string name="seekbar_progress_summary">Seekbar的目前狀態。透過定義最小和最大建立一個整數數組。例如：最小為50，最大為100，進度為0，這意味著50是seekbar的目前狀態。</string>
-    <string name="seekbar_apply_summary">Seekbar將返回其目前進度。例如，你的最小是50和最大為100，seekbar是70，它將返回20作為進度。</string>
     <string name="control_generic">通用</string>
-    <string name="generic_value">數值</string>
-    <string name="generic_value_summary">編輯器的目前數值。基本上可以是任何東西。</string>
-    <string name="generic_apply_summary">編輯器將返回輸入的任何內容。</string>
-    <string name="required">需要</string>
-    <string name="hit_test">你必須先試打！</string>
-    <string name="output">輸出</string>
     <string name="edit">編輯</string>
     <string name="export">匯出</string>
     <string name="delete">刪除</string>
@@ -869,35 +845,24 @@
     <string name="nothing_selected">未選擇任何內容</string>
     <string name="profile_empty">配置檔案是空的！</string>
 
-    <!-- Init.d -->
-    <string name="emulate_initd">模擬 Init.d</string>
-    <string name="emulate_initd_summary">如果您的裝置預設不支援Init.d，您可以啟用它以模擬其行為。</string>
+    <!-- Script Manager -->
     <string name="exceute_question">執行 %s 嗎？</string>
     <string name="executing">執行中</string>
-    <string name="result">結果</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">本節介紹當裝置啟動時會發生什麼。如果它是空白的，則在啟動後什麼也不會發生。</string>
     <string name="delete_question">刪除 %s 嗎？</string>
-    <string name="arguments">參數： %s</string>
     <string name="disable_question">停用 %s 嗎？</string>
 
     <!-- SmartPack -->
     <string name="support">支援</string>
     <string name="support_summary">造訪 xda-developers.com 的支援頁面</string>
-    <string name="flash_only">立即刷入</string>
     <string name="flash_log">刷入器日誌</string>
-    <string name="flash_log_summary">點選以取得上次刷入的日誌</string>
-    <string name="nothing_show">沒有可顯示的內容。再次點選以重試</string>
     <string name="reboot">重啟</string>
-    <string name="reboot_summary">重新啟動</string>
-    <string name="normal_reboot_message">\n裝置將重新開機\n</string>
     <string name="reboot_now">立即重新啟動</string>
     <string name="reboot_later">稍後重新開機</string>
     <string name="reboot_recovery">重啟至 Recovery</string>
     <string name="reboot_bootloader">重啟至 Bootloader</string>
-    <string name="wipe_data">清除資料</string>
-    <string name="wipe_cache">清除快取</string>
     <string name="flasher">刷入器</string>
     <string name="flasher_summary">按一下刷入按鈕選擇並刷入可用於復原模式的 zip 檔案, 而無需重新開機到第三方復原模式。變更將在重新開機後套用。</string>
     <string name="file_size_limit">\'%s\' 的大小已超過 100 MB.\n\n請注意: 出於安全原因, 超過 100 MB 的檔案將不允許刷入。</string>
@@ -907,36 +872,12 @@
     <string name="reset_settings">重設應用程式</string>
     <string name="reset_settings_summary">重置</string>
     <string name="reset_settings_message">\n應用程式設定將被完全刪除。\n你確定嗎？\n\n</string>
-    <string name="reboot_recovery_summary">將裝置重新開機到復原模式</string>
-    <string name="reboot_bootloader_summary">將裝置重新開機到下載模式</string>
     <string name="reboot_message">為避免配置失敗, 強烈建議重新開機。\n\n是否要重新開機？\n</string>
-    <string name="recovery_message">\n您的裝置將重新開機到復原模式。\n</string>
-    <string name="bootloader_message">\n您的裝置將重新開機到下載模式。\n</string>
     <string name="turn_off">關機</string>
-    <string name="turn_off_message">\n將裝置關機\n</string>
-    <string name="turn_off_summary">關機</string>
-    <string name="wipe_cache_summary">擦除快取分割區</string>
-    <string name="wipe_data_summary">擦除資料分割區</string>
-    <string name="wipe_cache_message">\ncache/dalvik 裝置的快取分割區將被刪除。\n\n注意! 裝置將被重新開機。\n</string>
-    <string name="wipe_data_message">\n您的裝置的資料分區將被完全擦除。\n\n警告! 您將遺失包括應用程式在內的所有使用者資料。\n\n注意! 裝置將被重新開機。\n</string>
 
     <!-- App Updater -->
-    <string name="appupdater_update_title">有可以使用的更新!\nv%2$s</string>
     <string name="check_update">檢查更新</string>
     <string name="check_update_summary">檢查 SmartPack-Kernel Manager 的新版本</string>
-    <string name="appupdater_update_available">有可以使用的更新！</string>
-    <string name="appupdater_update_available_description_dialog">更新 %1$s 可供下載。透過下載最新的更新, 您將取得 %2$s 的最新功能、改進和錯誤修復。</string>
-    <string name="appupdater_update_available_description_dialog_before_release_notes">更新 %1$s 可供下載。\n\n您可以取得這些新功能:\n%2$s</string>
-    <string name="appupdater_update_available_description_snackbar">更新 %1$s 可以使用!</string>
-    <string name="appupdater_update_available_description_notification">更新 %1$s %2$s 可供下載</string>
-    <string name="appupdater_update_not_available">恭喜</string>
-    <string name="appupdater_update_not_available_description">您已經擁有最新版本的 SmartPack 核心管理器!</string>
-    <string name="appupdater_btn_update">更新</string>
-    <string name="appupdater_btn_disable">不要再顯示</string>
-    <string name="appupdater_btn_dismiss">忽略</string>
-    <string name="appupdater_channel_name">更新通知</string>
-    <string name="appupdater_downloading_file">正在下載...</string>
-    <string name="appupdater_download_filed">下載失敗!</string>
 
     <!-- Settings-->
     <string name="open_settings">開啟設定</string>
@@ -992,7 +933,6 @@
     <string name="sections">部分</string>
 
     <!-- About -->
-    <string name="libraries_used">使用的資源庫</string>
     <string name="source_code">原始程式碼</string>
     <string name="source_code_summary">在 GitHub 上檢視原始碼</string>
     <string name="change_logs">更新日誌</string>
@@ -1004,7 +944,6 @@
     <string name="purchase_app">購買應用程式</string>
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">檢查自動更新</string>
-    <string name="auto_update_check_summary">當應用程式啟動時檢查 SmartPack-Kernel Manager 的更新版本</string>
     <string name="licence">授權協議</string>
 
     <!-- Contributors -->

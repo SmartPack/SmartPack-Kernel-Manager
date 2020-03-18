@@ -1,5 +1,65 @@
 # Change-logs
 
+## 96. March 01, 2020
+*Release-tag: v9.16*<br>
+Changes: Main: Fully move to com.smartpack.kernelmanager (avoid conflicting with forks). Misc: Fixed rebooting from app not working on most cases. Misc: Added option to tweak auto-sync data. Misc: Improved sharing files. Gradle: Updated build tools and dependencies. Miscellaneous changes.
+
+## 95. February 20, 2020
+*Release-tag: v9.15*<br>
+Changes: Build Prop: Improved search UI (mainly on light theme). IO: Add support to Adoptable storage (DM-0). Misc: Updated some titles (suggested by KA developer). Miscellaneous changes.
+
+## 94. February 17, 2020
+*Release-tag: v9.14*<br>
+Changes: File picking: Overall updates to work with Documents UI. Custom controls: Various improvements. K-lapse: Export settings: Added option to share exported item. Miscellaneous changes.
+
+## 93. February 15, 2020
+*Release-tag: v9.13*<br>
+Changes: Custom Control & Backup: Fixed crashes on some devices. Miscellaneous changes.
+
+## 92. February 08, 2020
+*Release-tag: v9.12*<br>
+Changes: Main: Added a simple banner Ad view at the bottom (can be disabled in Settings). CPU Freq: Reverted some recent changes made for 6 little/2 big devices. res: Icon: Increased icon size a bit. Translations: Added Ukrainian translations. Translations: Updated Russian translations. Miscellaneous changes.
+
+## 91. February 05, 2020
+*Release-tag: v9.11*<br>
+Changes: SmartPack: Manual Flashing: Improve flashing. Backup, Custom Controls, Profiles, & Script Manager: Apply file manager updates. Miscellaneous changes.
+
+## 90. February 04, 2020
+*Release-tag: v9.10*<br>
+Changes: SmartPack: Manual flasher: Support more file manager. About: Link to Play-Store page. Miscellaneous changes.
+
+## 89. February 03, 2020
+*Release-tag: v9.9*<br>
+Changes: Main: Updated app theme, especially the Dark one. Main: Updates for Play-Store release (removed all the conflicting features). res: Updated app icon (Credits to telegram user toxinpiper). CPUFreq: Updated to properly distinguish 4 Little/2 big core devices (need testing). Miscellaneous changes.
+
+## 88. February 02, 2020
+*Release-tag: v9.8*<br>
+Changes: CPUFreq: Added proper support for 2 big/6 LITTLE core CPUs. Kernel Updater: Added option to remove and share channel. Misc: Updated reboot options to use svc power reboot if available. SmartPack: Simplified reboot and reset options. build: update some dependencies (e.g. picasso; Credits @pashamcr). Miscellaneous changes.
+
+## 87. January 29, 2020
+*Release-tag: v9.7*<br>
+Changes: SmartPack: Introduced new page to create Update channel. Main: Overall UI updates. Translations. Improved Chinese simplified translations (Credits: @guh0613).
+
+## 86. January 23, 2020
+*Release-tag: v9.6*<br>
+Changes: SmartPack: Implemented an FK model kernel update feature. Custom Controller: Added option to share and import controllers. Script Manager: Added option to share scripts. Profiles, Scripts & Backup: Added images. SmartPack: Overall Updates in alignment. Miscellaneous changes.
+
+## 85. January 16, 2020
+*Release-tag: v9.5*<br>
+Changes: SmartPack: Workaround to use Magisk BusyBox. SmartPack: Add option to run a shell commands and view output. SmartPack: Updated manual flashing. App updater: Switch to own implementation. K-lapse: Add option to export current settings as shell script. Update Russian translations. Miscellaneous changes.
+
+## 84. January 05, 2020
+*Release-tag: v9.4*<br>
+Changes: SmartPack: Manual Flash: Directly catch and show the flashing output. SmartPack: Manual Flash: Removed file size limit with a warning message. VM: Hide VM tunables by default. Scripts & Backups: Workaround to avoid failing create scripts/backups in certain cases. Custom Controller: Switch: Updates for supporting more boolean values. Misc: Fully redesigned about page. Miscellaneous changes.
+
+## 83. December 22, 2019
+*Release-tag: v9.3*<br>
+Changes: Tools: Introduced a *Brand New* Script Manager page (largely based on, and as a replacement of the Init.d page). Custom Controls: Add ability to remove a controller. Custom Controls: Add a warning alert dialogue on opening page. Navigation layout: Fix navigation drawer highlight color (@atarek1). Misc: Fix on boot notification icon (@atarek1). About: Add option to share app. Miscellaneous changes.
+
+## 82. December 16, 2019
+*Release-tag: v9.2*<br>
+Changes: Tools: Introduced a *Brand New* Custom controls page (simple and user-friendly) as a replcement of the old one. SmartPack: Flasher: Show reboot menu after flashing (with an option to view  flasher log). Backup: Also show reboot menu after a flash/restore. res: Introduced adaptive icons (credits: @Lennoard). gradle: Updated build tools to 3.5.3. Miscellaneous changes.
+
 ## 81. December 08, 2019
 *Release-tag: v9.1*<br>
 Changes: K-Lapse: Scheduler: Updated to use TimePicker. Misc: Brand new SmartPack icons, and also updated some other drawable. Misc: Shorten app name on android launcher for better user experience. Settings: Make section icons user configurable and enabled dark theme by default. Overall: Display device uptime including total, awake and deep sleep. Battery and Virtual Memory: Updated live status views. Miscellaneous changes.

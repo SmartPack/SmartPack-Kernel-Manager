@@ -92,7 +92,7 @@
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
-    <string name="initd">Init.d</string>
+    <string name="script_manger">Script Manager</string>
     <string name="on_boot">On Boot</string>
     <string name="settings">Settings</string>
     <string name="smartpack">SmartPack</string>
@@ -101,6 +101,8 @@
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
+    <string name="overall_summary">Welcome to the home page of SmartPack-Kernel Manager. This page provides very basic information of your device. Advanced kernel tweaking options can be found on respective pages.</string>
+    <string name="cpu_times">CPU Times</string>
     <string name="offline">Offline</string>
     <string name="core">Core %d</string>
     <string name="gpu_freq">GPU Frequency</string>
@@ -561,6 +563,7 @@
     <string name="klapse">K-lapse</string>
     <string name="klapse_summary">Select preferred K-lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-lapse parameters.</string>
     <string name="klapse_off">Turned-Off</string>
+    <string name="export_settings">Export K-lapse Settings</string>
     <string name="time_scale">Time Based Scaling</string>
     <string name="bright_scale">Brightness Based Scaling</string>
     <string name="night_mode_schedule">Night Mode Schedule</string>
@@ -582,6 +585,9 @@
     <string name="pulse_freq_summary">The number of milliseconds after which klapse_pulse is called.</string>
     <string name="flow_freq">Flow Frequency</string>
     <string name="flow_freq_summary">The amount of milliseconds after which 1 RGB frame is shifted.</string>
+    <string name="profile_exists">A profile named %s is already exists! Aborting.</string>
+    <string name="profile_created">K-lapse settings are successfully exported and available at \'%s\'! Would you like to share it?</string>
+    <string name="exporting_settings">Exporting %s settings</string>
 
     <!-- Wake -->
     <string name="dt2w">DoubleTap2Wake</string>
@@ -675,6 +681,7 @@
     <!-- I/O Scheduler -->
     <string name="internal_storage">Internal Storage</string>
     <string name="external_storage">External Storage</string>
+    <string name="dm0">Adoptable Storage (DM-0)</string>
     <string name="scheduler">Scheduler</string>
     <string name="scheduler_summary">Set the active I/O elevator algorithm. The Scheduler decides how to handle I/O requests.</string>
     <string name="scheduler_tunable">Scheduler Tunable</string>
@@ -798,6 +805,7 @@
     <string name="memory_pool_summary">Memory pool percentage of main memory that may be used as compressed page cache.</string>
     <string name="maximum_compression_ratio">Maximum compression ratio</string>
     <string name="maximum_compression_ratio_summary">Maximum compression ratio, as percentage, for an acceptable compressed page. Any page that does not compress by at least this ratio will be rejected.</string>
+    <string name="virtual_memory_tunables">Virtual memory tunable\'s</string>
 
     <!-- Entropy -->
     <string name="available">Available</string>
@@ -810,10 +818,6 @@
     <string name="android_logger_summary">Turn On/Off Android logging</string>
     <string name="printk_logger">PrintK logging</string>
     <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
-    <string name="doze">Doze Mode</string>
-    <string name="doze_summary">Enable doze mode to prevents certain tasks from running if your device is in idle state.</string>
-    <string name="selinux_switch">SELinux Switch</string>
-    <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
     <string name="fsync">Fsync</string>
@@ -842,6 +846,8 @@
     <string name="leases_enable_summary">Enable or disable file leases on a system-wide basis</string>
     <string name="lease_break_time">Lease Break Time</string>
     <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
+    <string name="auto_sync">Auto-Sync Data</string>
+    <string name="auto_sync_summary">Allow apps to automatically refresh data.\nPlease Note: It will be applied, irrespective of your on-boot settings.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Performance Tweaks</string>
@@ -853,46 +859,38 @@
     <string name="spec_performance">Performance</string>
     <string name="spec_performance_summary">Tuned for top-tier performance in standard tasks with many fewer regressions than Balanced, but maintains battery by limiting graphics.</string>
     <string name="spec_battery">Battery</string>
-    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to achive long-lasting battery life.</string>
+    <string name="spec_battery_summary">The ultra-conservative profile that lets performance take a hit in order to achieve long-lasting battery life.</string>
     <string name="spec_gaming">Gaming</string>
     <string name="spec_gaming_summary">Identical to performance in most areas other than the unlocked Graphics performance.</string>
 
     <!-- Custom Controls -->
     <string name="welcome">Welcome</string>
-    <string name="custom_controls_summary">In this section you can create or import custom controls, which don\'t exist in the app (yet).</string>
-    <string name="example">Examples</string>
-    <string name="custom_controls_example_summary">Need example? Click &lt;a href="https://github.com/Grarak/KernelAdiutor/wiki/Custom-Controls">here&lt;a>.</string>
+    <string name="custom_controls_summary">In this section, you can create a custom controller for any feature, which is not officially added to this app yet. &lt;a href="https://smartpack.github.io/spkm/customcontrols/">Documentation&lt;a></string>
+    <string name="custom_controls_message">You can basically create a custom controller for any existing sysfs path, provided, you have a supported Root File Manager installed. However, please be noted that this feature is too powerful to mess your device.\n\n***USE AT YOUR OWN RISK***</string>
     <string name="create">Create</string>
     <string name="import_item">Import</string>
     <string name="control_switch">Switch</string>
-    <string name="control_seekbar">Seekbar</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
-    <string name="applying">Applying</string>
-    <string name="switch_enabled_summary">Whether the switch is enabled. Return 1 for enabled and 0 for disabled.</string>
-    <string name="switch_apply_summary">The switch will return either 1 (enabled) or 0 (disabled) as argument to your shell script.</string>
-    <string name="seekbar_min">Min</string>
-    <string name="seekbar_max">Max</string>
-    <string name="seekbar_progress">Progress</string>
-    <string name="seekbar_progress_summary">Current state of the seekbar. By defining min and max an integer array gets created. For example: Min is 50 and Max is 100 and progress is 0, that would mean 50 is the current state of the seekbar.</string>
-    <string name="seekbar_apply_summary">Seekbar will return its current progress. For example your Min is 50 and Max 100 and the seekbar is at 70, it will return 20 as progress.</string>
     <string name="control_generic">Generic</string>
-    <string name="generic_value">Value</string>
-    <string name="generic_value_summary">Current value of the editor. Can be basically anything.</string>
-    <string name="generic_apply_summary">Editor will return whatever was entered.</string>
-    <string name="required">required</string>
-    <string name="hit_test">You have to hit test first!</string>
-    <string name="output">Output</string>
+    <string name="documentation">Documentation</string>
+    <string name="invalid_path">%s is not a valid sysfs path! Aborting.</string>
+    <string name="invalid_controller">%s is not a valid custom controller! Aborting.</string>
+    <string name="unsupported_controller">\'%s\' doesn\'t exist in this device! Aborting.</string>
     <string name="edit">Edit</string>
     <string name="export">Export</string>
     <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="share_by">\'%s\' | shared by SmartPack-Kernel Manager</string>
+    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls</string>
+    <string name="share_with">Share with</string>
     <string name="sure_question">Are you sure?</string>
     <string name="name">Name</string>
     <string name="already_exists">%s already exists!</string>
+    <string name="already_added">The sysfs path %s is already added! Aborting.</string>
     <string name="exported_item">%1$s has been exported to %2$s</string>
     <string name="name_empty">Name is empty!</string>
     <string name="import_malformed">Import file is malformed!</string>
     <string name="import_wrong_version">Version of import file is too old!</string>
+    <string name="got_it">Got it</string>
 
     <!-- Backup -->
     <string name="boot_partition">Boot partition</string>
@@ -900,17 +898,16 @@
     <string name="fota_partition">Fota partition</string>
     <string name="flash">Flash</string>
     <string name="flasher">Flasher</string>
-    <string name="flasher_warning">This feature is still very new and under development. It may not have full compatibility with many flashable zip files. If you think that the flashing process failed in any case due to the above mentioned incompatibilities, please restart the app immediately before doing anything.\n\n***USE AT YOUR OWN RISK***\n</string>
+    <string name="flasher_warning">This feature is still very new and under development. It may not have full compatibility with many flashable zip files. If you think that the flashing process failed in any case due to the above mentioned incompatibilities, please restart the app immediately before doing anything.\n\nAlso, I do not recommend to try flashing anything over 500 MB.\n\n***USE AT YOUR OWN RISK***\n</string>
     <string name="flasher_summary">Click the flash button to select and flash a recovery ZIP file without rebooting into custom recovery. The changes will be applied after a reboot.</string>
-    <string name="file_size_limit">The size of \'%s\' is bigger than 100 MB.\n\nPlease Note: Due to safety reasons, recovery files of more than 100 MB won\'t be allowed to flash.</string>
-    <string name="run_Script">Execute Script</string>
-    <string name="run_Script_summary">Click here to pick and run a shell Script</string>
-    <string name="run_Script_message">\nAre you sure to execute %s.\n\nWarning! It will blindly execute the selected script. Please make sure that you are dealing the correct file.\n\n***USE AT YOUR OWN RISK***\n</string>
+    <string name="file_size_limit">Warning! You\'re selected a file of ~%s MB for flashing. Flashing bigger files, such as ROM\'s, using this app might be dangerous to your device.</string>
     <string name="execute">Execute</string>
     <string name="sure_message">Are you sure to flash %s?</string>
     <string name="select_question">Select %s?</string>
     <string name="wrong_extension">Please select a file with %s extension.</string>
-    <string name="file_selection_error">Failed to get data from external file manager</string>
+    <string name="file_selection_error">Failed to get data from external file manager!</string>
+    <string name="empty_flasher_log">It seems like flashing is failed!</string>
+    <string name="share_log">In order to fix this issue, please consider sharing the log file created at \'%s\' with the developer of this app.\nDo you want to share it now?</string>
 
     <!-- Build prop Editor -->
     <string name="add">Add</string>
@@ -945,80 +942,114 @@
     <string name="nothing_selected">Nothing selected</string>
     <string name="profile_empty">Profile is empty!</string>
 
-    <!-- Init.d -->
-    <string name="emulate_initd">Emulate Init.d</string>
-    <string name="emulate_initd_summary">If your device doesn\'t support Init.d by default, you can enable this to emulate its behaviour.</string>
+    <!-- Script Manager -->
+    <string name="scripts_manager_summary">In this section, you can create, import, edit and easily execute any properly formatted shell scripts.</string>
+    <string name="scripts_onboot_summary">If you enable this switch, all the scripts listed in this page will be executed on boot.</string>
     <string name="exceute_question">Execute %s?</string>
+    <string name="remove_script_question">%s will be also removed from the Script Manager.\n\nAre you sure?</string>
+    <string name="script_exists">A script named %s is already exists! Aborting.</string>
     <string name="executing">Executing</string>
-    <string name="result">Result</string>
+    <string name="share_script">To apply this script, simply import this file on \'SmartPack-Kernel Manager -> Script Manager -> Import\'.</string>
 
     <!-- On Boot -->
     <string name="on_boot_welcome_summary">This section shows you what things will happen when your device boots up. If it\'s blank, then nothing will happen after boot.</string>
     <string name="delete_question">Delete %s?</string>
-    <string name="arguments">Arguments: %s</string>
     <string name="disable_question">Disable %s?</string>
 
     <!-- SmartPack -->
+    <string name="acquiring">Acquiring update info</string>
+    <string name="donations">Donations</string>
+    <string name="donations_summary">Donate to Developer</string>
+    <string name="download">Download</string>
+    <string name="download_completed">%s is successfully downloaded. Do you want to flash it?</string>
+    <string name="downloading_update">Downloading %s</string>
+    <string name="get_it_summary">Get latest Kernel</string>
+    <string name="kernel_current">Current Version</string>
+    <string name="kernel_latest">Latest Version</string>
+    <string name="kernel_information">Kernel Informations</string>
+    <string name="update_channel">Update Channel Url</string>
+    <string name="update_channel_create">Create Update Channel</string>
+    <string name="update_channel_empty">Cleaning update channel information!</string>
+    <string name="update_channel_info">By linking the above update channel with a proper json file for your device, you can basically add kernel download, and auto-flash (not for all devices) support to any Kernel\'s available for your device. Please ask your favourite kernel developer to add support to this feature. The downloaded kernel will be available at \'%s\'.\n\nTips! You can import a json file created for franciscofranco\'s (huge \u2665 &amp; respect to him) \'FK-Kernel Manager\' and it will simply work.\n\nNeed more help? Click here!</string>
+    <string name="update_channel_invalid">You\'ve entered an invalid Url! Aborting.</string>
+    <string name="update_channel_summary">Input-update-channel-url-here</string>
+    <string name="update_check_message">SmartPack-Kernel Manager will check for a new version of %s once in a day!</string>
+    <string name="other_options">Other Options</string>
+    <string name="shell">Run Shell Command</string>
+    <string name="shell_summary">Input-command-here</string>
     <string name="support">Support</string>
-    <string name="support_summary">Visit support page at xda-developers.com</string>
-    <string name="flash_only">Flash Only</string>
-    <string name="flash_reboot">Flash and Reboot</string>
+    <string name="support_summary">Visit support page</string>
     <string name="flash_log">Flasher Log</string>
-    <string name="flash_log_summary">Click to get the details of last flashing</string>
-    <string name="nothing_show">Nothing to Show. Click again to recheck</string>
     <string name="reboot">Reboot</string>
-    <string name="reboot_summary">Reboot your device</string>
-    <string name="normal_reboot_message">\nYour device will be rebooted.\n</string>
+    <string name="rebooting">Rebooting</string>
+    <string name="reboot_options">Reboot Options</string>
+    <string name="reboot_options_summary">Turn off or reboot your device</string>
+    <string name="reboot_dialog">It is  highly recommended to reboot your device after %s.</string>
     <string name="reboot_now">Reboot Now</string>
     <string name="reboot_later">Reboot Later</string>
+    <string name="reboot_normal">Normal Reboot</string>
     <string name="reboot_recovery">Reboot Recovery</string>
     <string name="reboot_bootloader">Reboot Bootloader</string>
     <string name="turn_off">Turn Off</string>
-    <string name="turn_off_message">\nYour device will be Turned Off.\n</string>
-    <string name="turn_off_summary">Turn Off your device</string>
-    <string name="wipe_data">Wipe Data</string>
-    <string name="wipe_cache">Wipe Cache</string>
     <string name="backing_up">Backing up</string>
     <string name="flashing">Flashing</string>
     <string name="restoring">Restoring</string>
     <string name="reset_settings">Reset App</string>
     <string name="reset_settings_summary">Reset User Settings</string>
-    <string name="reset_settings_message">\nApp settings will be completely erased.\n\nAre you sure?\n</string>
-    <string name="reboot_recovery_summary">Reboot device into Recovery Mode</string>
-    <string name="reboot_bootloader_summary">Reboot device into Download Mode</string>
-    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot the system.\n\nDo you want to reboot?\n</string>
-    <string name="recovery_message">\nYour device will be rebooted into Recovery mode.\n</string>
-    <string name="bootloader_message">\nYour device will be rebooted into Download Mode.\n</string>
-    <string name="wipe_cache_summary">Wipe Cache Partition</string>
-    <string name="wipe_data_summary">Wipe Data Partition</string>
-    <string name="wipe_cache_message">\nCache/Dalvik Cache partitions of your device will be erased.\n\nAttention! The device will be Rebooted.\n</string>
-    <string name="wipe_data_message">\nData partition of your device will be completely erased.\n\nWarning! You will lose all the user data including apps.\n\nAttention! The device will be Rebooted.\n</string>
+    <string name="reset_settings_message">App settings will be completely erased. Are you sure?</string>
+    <string name="reboot_message">To avoid configuration failures, it is highly recommended to reboot your device. Do you want to reboot Now?</string>
     <string name="documentsui_message">Please use an external \'File Manager\' to pick your file. Selecting files via the default \'DocumentsUI\' is not yet supported.</string>
+    <string name="unknown_link">Not provided by the developer yet!</string>
+    <string name="remove">Remove</string>
+    <string name="remove_summary">Remove this channel</string>
+    <string name="share_channel">Share Channel</string>
+    <string name="share_channel_summary">Share this Channel</string>
+    <string name="share_channel_message">To configure this update channel, simply input \'%s\' on SmartPack-Kernel Manager -> SmartPack -> Update Channel Url.\n\nGet SmartPack-Kernel Manager from\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub:</string>
+
+    <!-- Update Channel -->
+    <string name="update_channel_message">(<i>for developers only</i>)\nApp will create an update channel (json) for your kernel, as long as the information\'s provided in this page are accurate.</string>
+    <string name="update_channel_instructions"><b>Kernel Name</b>, <b>Kernel Version</b> &amp; <b>Download Link</b> are the mandatory fields to be filled before clicking the create button.\n\n<b>Change-logs</b> could be provided, either as a well formatted text, or as a link to an online page.\n\nSecure Hash Algorithm (<b>sha1</b>) is optional, but highly recommended to ensure the authenticity of the downloaded kernel.</string>
+    <string name="kernel_name">Kernel Name</string>
+    <string name="kernel_name_summary">Kernel_Name</string>
+    <string name="kernel_version">Kernel Version</string>
+    <string name="kernel_version_summary">Kernel_version</string>
+    <string name="download_link">Download Link</string>
+    <string name="download_link_summary">download_link</string>
+    <string name="changelog_summary">changelog_texts_or_url</string>
+    <string name="sha1">Secure Hash Algorithm</string>
+    <string name="sha1_summary">sha1</string>
+    <string name="support_group">Support Group</string>
+    <string name="support_group_summary">support_link</string>
+    <string name="donation_link">Donation Link</string>
+    <string name="donation_link_summary">donation_link</string>
+    <string name="submit_summary">Create Update Channel with the current information\'s</string>
+    <string name="submit_failed">Some of the necessary fields are empty! Aborting.</string>
+    <string name="json_created">Congrats! Update Channel is successfully created at %s. Please host it somewhere and share a direct download link with your users.</string>
+    <string name="json_not_created">Creation of Update Channel is failed.</string>
+    <string name="item_empty">%s shouldn\'t be empty</string>
+    <string name="clear">Clear All</string>
+    <string name="clear_message">All the fields are empty! Aborting.</string>
+    <string name="clear_summary">Clear this page</string>
+    <string name="clearing">Clearing all</string>
+    <string name="creating">Creating %s</string>
 
     <!-- App Updater -->
-    <string name="appupdater_json" translatable="false">https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/download/App-update.json</string>
-    <string name="appupdater_update_title">New update available!\nv%2$s</string>
+    <string name="update_available">New update available!\nv%s</string>
+    <string name="update_available_summary">%s\n\n**Important: Please download and manually update the app!**</string>
+    <string name="get_it">Get It</string>
+    <string name="download_failed">It seems like the download is failed, or a corrupted file is downloaded!</string>
+    <string name="updated_dialog">Congrats! You\'ve already got an up-to-date version of SmartPack-Kernel Manager!</string>
     <string name="check_update">Check for Updates</string>
     <string name="check_update_summary">Check for new versions of SmartPack-Kernel Manager</string>
-    <string name="appupdater_update_available">New update available!</string>
-    <string name="appupdater_update_available_description_dialog">Update %1$s is available to download. By downloading the latest update you will get the latest features, improvements and bug fixes for %2$s.</string>
-    <string name="appupdater_update_available_description_dialog_before_release_notes">Update %1$s is available to download.\n\nYou can get these new features:\n%2$s</string>
-    <string name="appupdater_update_available_description_snackbar">Update %1$s is available!</string>
-    <string name="appupdater_update_available_description_notification">Update %1$s of %2$s is available to download</string>
-    <string name="appupdater_update_not_available">Congrats</string>
-    <string name="appupdater_update_not_available_description">"You've already got an up-to-date version of SmartPack-Kernel Manager!</string>
-    <string name="appupdater_btn_update">Update</string>
-    <string name="appupdater_btn_disable">Don\'t show again</string>
-    <string name="appupdater_btn_dismiss">Dismiss</string>
-    <string name="appupdater_channel_name">Update notifications</string>
-    <string name="appupdater_channel" translatable="false">appupdater_channel_01</string>
-    <string name="appupdater_downloading_file">Downloading...</string>
-    <string name="appupdater_download_filed">Download FAILED!</string>
 
     <!-- Settings-->
+    <string name="allow_ads">Allow Ads</string>
+    <string name="allow_ads_summary">Support developer by allowing Ads on this app!</string>
+    <string name="disable_ads_message">Congrats! Ads are disabled!\n\nHowever, please be noted that the revenue obtained from these Ads are really helpful for the developer to continue his android development projects more active. If it doesn\'t hurt you much, please consider allowing the Ads to support the development.</string>
+    <string name="allow_ads_message">Thank you very much for supporting the developer by allowing Ads!</string>
     <string name="open_settings">Open Settings</string>
     <string name="fahrenheit_title">Fahrenheit</string>
-    <string name="fahrenheit_summary">Use fahrenheit to measure temperature.</string>
+    <string name="fahrenheit_summary">Use fahrenheit to measure temperature</string>
     <string name="force_english">Force displaying english language</string>
     <string name="user_interface">User interface</string>
     <string name="dark_theme">Dark theme</string>
@@ -1026,7 +1057,7 @@
     <string name="banner_resizer">Banner resizer</string>
     <string name="banner_resizer_message">Phone screen orientation should be \'Portrait\'!</string>
     <string name="hide_banner">Hide banner</string>
-    <string name="force_cards_summary">Use cards for items if possible.</string>
+    <string name="force_cards_summary">Use cards for items if possible</string>
     <string name="accent_color">Accent Color</string>
     <string name="section_icons">Section Icons</string>
     <string name="instant">Instant</string>
@@ -1039,9 +1070,10 @@
     <string name="test">Test</string>
     <string name="nothing_apply">Nothing found to apply!</string>
     <string name="hide">Hide</string>
+    <string name="always_show">Always Show</string>
     <string name="apply_on_boot_hide_summary">Hide the notification of apply on boot. Delay will still remain!</string>
     <string name="toast">Toast</string>
-    <string name="apply_on_boot_toast_summary">Show toast when settings got applied.</string>
+    <string name="apply_on_boot_toast_summary">Show toast when settings got applied!</string>
     <string name="confirmation_notification">Confirmation Notification</string>
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>
@@ -1072,12 +1104,15 @@
     <string name="sections">Sections</string>
 
     <!-- About -->
-    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
-    <string name="libraries_used">Libraries used</string>
+    <string name="about_me" translatable="false">SmartPack-Kernel Manager is a heavily modified version of \'Kernel Adiutor\', which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.</string>
+    <string name="credits">Credits</string>
+    <string name="special_mentions">Special Mentions</string>
     <string name="source_code">Source Code</string>
     <string name="source_code_summary">View source code at GitHub</string>
     <string name="change_logs">Change-logs</string>
     <string name="change_logs_summary">View Change-logs</string>
+    <string name="playstore">PlayStore</string>
+    <string name="playstore_summary">Visit PlayStore page</string>
     <string name="donate_me">Donate to Me</string>
     <string name="donate_me_summary">Want to appreciate my work with a Donation? Click here</string>
     <string name="donate_me_message">\nIf you like to appreciate my work, please consider donating to me as it is helpful to continue my projects more active, although it is not at all necessary.\n</string>
@@ -1085,9 +1120,16 @@
     <string name="purchase_app">Donation App</string>
     <string name="paypal_donation">PayPal</string>
     <string name="auto_update_check">Auto Update Check</string>
-    <string name="auto_update_check_summary">Check for new versions of SmartPack-Kernel Manager on app launch</string>
     <string name="licence">License</string>
     <string name="licence_message" translatable="false">SmartPack-Kernel Manager is a free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nSmartPack-Kernel Manager is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with SmartPack-Kernel Manager. If not, visit http://www.gnu.org/licenses/.</string>
+    <string name="share_app">Share App</string>
+    <string name="share_app_summary">Share this app with your friends</string>
+    <string name="share_app_message">Get SmartPack-Kernel Manager %s from\n\nPlayStore: https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager\nGitHub: https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true</string>
+    <string name="grarak">Willi Ye</string>
+    <string name="grarak_summary">The man behind \'Kernel Adiutor\', the ancestor of SmartPack-Kernel Manager. This project won\'t be true without him. Huge \u2665 &amp; respect to him, not only for his hard work on Kernel Adiutor, but also for being open to open-source.</string>
+    <string name="osm0sis">Chris Renshaw</string>
+    <string name="osm0sis_summary">The developer of the famous \'AnyKernel3\' project. Without his timely support and guidance, the auto-flashing feature on this app won\'t be happen.</string>
+
 
     <!-- Contributors -->
     <string name="commits">%d commits</string>
@@ -1095,8 +1137,8 @@
     <string name="translators">Translators</string>
 
     <!-- FAQ -->
-    <string name="how_different">Q1. How different is this app from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for SmartPack-Kernel, x. Display Backlight Control and many more.</string>
+    <string name="how_different">Q1. How different is this app from Grarak\’s official Kernel Adiutor?</string>
+    <string name="how_different_summary">Ans. This app is heavily modified to meet the needs of various kernel developers. Some of the added features of this app include, but not limited to,\n - Option to flash recovery zip files while running Android OS.\n - A simple and user-friendly Custom Controller.\n - A Script Manager to easily create, import, edit and execute any properly formatted shell scripts.\n - Control over features, such as, CPU Input Boost, Dynamic Stune Boost, K-lapse, Boeffla Wakelock blocker, etc.\n - Boeffla and Flar\'s sound controls with per-channel support.\n - and a lot more.</string>
     <string name="can_i_use">Q2. Can I use this App to control any custom kernel?</string>
     <string name="can_i_use_summary">Ans. Why not? This app will work as usual with any kernel, as long as root access granted.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>

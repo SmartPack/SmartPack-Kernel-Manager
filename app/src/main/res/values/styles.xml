@@ -1,66 +1,27 @@
 <resources>
-
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="discreteSeekBarStyle">@style/Widget.DiscreteSeekBar</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">?android:attr/textColorPrimary</item>
+        <item name="colorSecondary">?android:attr/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnPrimary</item>
         <item name="banner_frame_drawable">@drawable/drawable_frame_light</item>
-        <item name="native_express_id">@string/native_express_id_light</item>
-        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
     </style>
 
-    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
-        <item name="windowActionBar">false</item>
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowNoTitle">true</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="discreteSeekBarStyle">@style/Widget.DiscreteSeekBar</item>
-        <item name="banner_frame_drawable">@drawable/drawable_frame_dark</item>
-        <item name="native_express_id">@string/native_express_id_dark</item>
-        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
-    </style>
-
-    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">25dp</item>
-    </style>
-
-    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">25dp</item>
+        <item name="colorPrimary">?android:attr/colorBackground</item>
+        <item name="colorOnPrimary">?android:attr/textColorPrimary</item>
+        <item name="colorSecondary">?android:attr/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorOnPrimary</item>
+        <item name="banner_frame_drawable">@drawable/drawable_frame_light</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="ItemTextAppearance">
-        <item name="android:ellipsize">middle</item>
-    </style>
 
     <style name="Swirl">
         <item name="swirl_errorColor">?attr/colorAccent</item>
         <item name="swirl_ridgeColor">?android:attr/textColorSecondary</item>
     </style>
-
 </resources>

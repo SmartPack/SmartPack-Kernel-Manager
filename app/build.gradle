@@ -17,9 +17,10 @@ android {
     defaultConfig {
         applicationId "com.smartpack.kernelmanager"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 9
-        versionName "9.1-" + getDate()
+        targetSdkVersion 29
+        versionCode 97
+        versionName "9.16"
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"
@@ -42,12 +43,6 @@ android {
     }
 }
 
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('yyyyMMdd')
-    return formattedDate
-}
-
 repositories {
     maven { url "https://jitpack.io" }
 }
@@ -63,15 +58,16 @@ dependencies {
     }
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.preference:preference:1.1.0'
+    implementation 'com.github.cliftonlabs:json-simple:3.1.1'
     implementation 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.mattprecious.swirl:swirl:1.2.0'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'org.adw.library:discrete-seekbar:1.0.1'
     implementation 'org.cyanogenmod:platform.sdk:6.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
 }

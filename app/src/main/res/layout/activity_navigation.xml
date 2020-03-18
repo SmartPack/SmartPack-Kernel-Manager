@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.grarak.kerneladiutor.activities.NavigationActivity"
+    tools:context="com.smartpack.kernelmanager.activities.NavigationActivity"
     tools:openDrawer="start">
 
     <FrameLayout
@@ -32,7 +32,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:focusable="false"
-        android:theme="@style/ItemTextAppearance"
+        app:itemBackground="@drawable/nav_selector_background"
         app:headerLayout="@layout/nav_header_layout" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

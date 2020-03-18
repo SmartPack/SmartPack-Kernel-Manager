@@ -1,14 +1,20 @@
 # SmartPack-Kernel Manager
-
-## SmartPack-Kernel Manager is a modified version of official Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
+SmartPack-Kernel Manager is a heavily modified version of Kernel Adiutor, which is originally developed by Willi Ye aka Grarak. All the credits goes to the original developer.
 
 ## Download
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
+     alt=""
+     height="80">](https://play.google.com/store/apps/details?id=com.smartpack.kernelmanager)
 [<img src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png"
      alt=""
      height="80">](https://github.com/SmartPack/SmartPack-Kernel-Manager/blob/master/download/com.smartpack.kernelmanager.apk?raw=true)
-## Added features over official KA
 
+## Features
+* Almost all the features available in Kernel Adiutor.
 * Option to flash recovery zip files while running Android OS.
+* A simple and user-friendly Custom Controller, which is totally different to that of the official KA ([Documentation](https://smartpack.github.io/spkm/customcontrols/)).
+* A Script Manager to easily create, import, edit, share and execute any properly formatted shell scripts.
+* A Kernel downloader, which is also totally different to that of the official KA ([Documentation](https://smartpack.github.io/kerneldownloads/)).
 * CPU Input Boost & Devfreq Boost (Sultanxda).
 * Simple MSM Thermal (Sultanxda).
 * Advanced Control for Fast Charge (yank555.lu) & Boeffla Charge Level Interface (Lord Boeffla).
@@ -49,7 +55,9 @@ If you like to appreciate my work, please consider donating to me (either via [P
 
 ## Credits
 
-In addition to official Kernel Adiutor and its related dependencies, I used codes from the following people:
+#### Willi Ye
+
+* [Kernel Adiutor](https://github.com/Grarak/KernelAdiutor)
 
 #### Chris Renshaw
 
@@ -59,15 +67,12 @@ In addition to official Kernel Adiutor and its related dependencies, I used code
 
 * [Spectrum](https://github.com/frap129/spectrum)
 
-#### Javier Santos
-
-* [AppUpdater](https://github.com/javiersantos/AppUpdater)
-
 #### Translations
 * [jason5545](https://github.com/jason5545), Chinese (Traditional)
 * [Roiyaru](https://github.com/Roiyaru), Chinese (simplified)
 * [Andrey](https://github.com/andrey167), Russian
 * [Lennoard Silva](https://github.com/Lennoard), Portuguese (Brazilian)
+* [kiratt](http://4pda.ru/forum/index.php?showuser=5859577), Russian/Ukrainian
 
 ## Report a bug or request a feature
 
@@ -86,9 +91,26 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 * How to apply a new value
 * Make sure that no similar feature us already requested.
 
+## License
+
+    Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
+
+    SmartPack Kernel Manager is a free softwares: you can redistribute
+    it and/or modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the License,
+    or (at your option) any later version.
+
+    SmartPack Kernel Manager is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+    details.
+
+    You should have received a copy of the GNU General Public License along with
+    SmartPack Kernel Manager. If not, see <http://www.gnu.org/licenses/>.
+
 ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
-# About official Kernel Adiutor
+# About Kernel Adiutor
 
 [![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
@@ -110,7 +132,6 @@ I used following libraries:
 * Matthew Precious: [swirl](https://github.com/mattprecious/swirl)
 * Lopez Mikhael: [CircularImageView](https://github.com/lopspower/CircularImageView)
 * Square: [picasso](https://github.com/square/picasso)
-* Square: [okhttp](https://github.com/square/okhttp)
 * CyanogenMod: [CyanogenMod Platform SDK](https://github.com/CyanogenMod/cm_platform_sdk)
 * Akexorcist: [Android-RoundCornerProgressBar](https://github.com/akexorcist/Android-RoundCornerProgressBar)
 

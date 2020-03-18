@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 sunilpaulmathew <sunil.kde@gmail.com>
+ * Copyright (C) 2020-2021 sunilpaulmathew <sunil.kde@gmail.com>
  *
  * This file is part of SmartPack Kernel Manager, which is a heavily modified version of Kernel Adiutor,
  * originally developed by Willi Ye <williye97@gmail.com>
@@ -26,7 +26,7 @@ import android.os.Build;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-import com.smartpack.kernelmanager.utils.KLapse;
+import com.smartpack.kernelmanager.utils.kernel.screen.KLapse;
 
 /*
  * Created by sunilpaulmathew <sunil.kde@gmail.com> on May 02, 2019
