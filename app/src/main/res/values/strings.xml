@@ -888,7 +888,7 @@
     <string name="delete">Delete</string>
     <string name="share">Share</string>
     <string name="share_by">\'%s\' | shared by SmartPack-Kernel Manager</string>
-    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls</string>
+    <string name="share_controller">To apply this controller, simply import this file on \'SmartPack-Kernel Manager -> Custom Controls\'</string>
     <string name="share_with">Share with</string>
     <string name="sure_question">Are you sure?</string>
     <string name="name">Name</string>
